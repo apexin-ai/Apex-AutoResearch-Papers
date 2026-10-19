@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc11254cf0b4dea3f361",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval act s2 ckpt1000 submit",
+  "task_key": "worker_eval_act-s2-ckpt1000-submit_20260522T072352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_act-s2-ckpt1000-submit_20260522T072352_result.json",
+    "occurrence": 1,
+    "bytes": 221,
+    "sha256": "bae76911d1fcf4e2d135c0c742b24ee4dd4d6ee6af2839879cfa5dd6878960a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功。`eval_unified_preset.py` 正在运行（PID 975021），tmux session `exp004_s2_eval_ckpt1000`，GPU 0，日志写入 `/root/contrastive_entrain_calib/results/exp004_s2_d027_eval/eval.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-act-s2-ckpt1000-submit.md"
+}

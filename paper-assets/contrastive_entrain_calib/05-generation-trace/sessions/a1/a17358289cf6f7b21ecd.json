@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a17358289cf6f7b21ecd",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops upload local files to archive",
+  "task_key": "worker_ops_upload-local-files-to-archive_20260525T205205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_upload-local-files-to-archive_20260525T205205_result.json",
+    "occurrence": 1,
+    "bytes": 519,
+    "sha256": "6d7a20b96fb6456b40d3d619519c2c1518d8216e253fcd03cb6cf53a320e56d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "上传完成，验证通过。汇总：\n\n| 归档内容 | 服务器路径 | 文件数 | 大小 |\n|---------|-----------|--------|------|\n| 论文源文件 | `paper/latex/` | 15 项（含 _figure_backups/, _stale/, figures/, sections/ 子目录） | 58M |\n| Figures 源数据 | `paper/figures_src/` | 22 项（16 文件 + 6 个 run 目录） | 35M |\n| Registry | `results/registry.yaml` | 1 文件 | 203K |\n\n归档总大小：30G（含之前已有的实验数据）。临时 SSH 密钥已清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-upload-local-files-to-archive.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b104dc08ab9a0eb54ca",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis exp002v2 recalib r1 weakness evidence",
+  "task_key": "worker_analysis_exp002v2-recalib-r1-weakness-evidence_20260519T133726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp002v2-recalib-r1-weakness-evidence_20260519T133726_result.json",
+    "occurrence": 1,
+    "bytes": 2017,
+    "sha256": "93104046bfbbd8fda71b9a4562eee51bacf5cee1e6733033e638c361c788a4cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果已保存到 `artifacts/research/exp002v2_recalib_r1_weakness_analysis.md`。\n\n---\n\n## 核心发现\n\n### Cosine R1 (exp002v2-recalib) — 信号持续为负\n\n| 指标 | 早期 (steps 510–539) | 晚期 (steps 1675–1705) |\n|------|---------------------|----------------------|\n| R1 mean | **−0.048** | **−0.080** |\n| R1 range | [−0.098, +0.017] | [−0.189, +0.034] |\n| 正值比例 | 3.3% (1/30) | 6.7% (2/30) |\n| R3 mean | 0.495 | 0.823 |\n\n**R1 加权贡献 = −0.02（负拖累），R3 加权贡献 = +0.62。模型学习 100% 由 R3 驱动。**\n\n### Recalibration 无法解决问题\n\n- Recalib 1 (step ~999): auroc=0.815, cosine_sim=0.670\n- Recalib 2 (step ~1499): auroc=0.855, cosine_sim=0.860\n- 方向质量提升了，但 R1 在 recalib 前后均为负值，无系统性改善\n\n### 对比: Binary Probe R1 (exp008v3) 远优于 Cosine R1\n\n| 指标 | Cosine R1 (002v2) | Binary Probe R1 (008v3) |\n|------|--------------------|-------------------------|\n| R1 mean (early) | **−0.048** | **+0.591** |\n| R1 mean (late) | **−0.080** | **+0.349** |\n| R1 正值率 | 5% | **100%** |\n| 梯度方向 | 负 (惩罚) | 正 (奖励) |\n\n### 论文可用总结 (English)\n\n> In exp-002v2 (cosine-based directional reward with periodic recalibration), the R1 signal remained persistently negative throughout 1,700+ training steps (mean = −0.064, positive rate = 5%, max = +0.034), contributing a −0.02 drag on the combined reward while R3 (NLI faithfulness) dominated at +0.62. Despite recalibration improving direction quality (AUROC: 0.82 → 0.86), the cosine similarity formulation was structurally unable to produce positive R1 rewards during RL generation. In contrast, the binary probe baseline (exp-008v3) maintained a positive R1 signal throughout (mean = 0.46, range [0.06, 0.75]), confirming that the representation-level sycophancy signal exists but requires a thresholded reward formulation to be actionable during RL training."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp002v2-recalib-r1-weakness-evidence.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e61ecd5a11006ad8c940",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis ckpt4500 vs 5000 activation",
+  "task_key": "worker_analysis_ckpt4500-vs-5000-activation_20260520T194457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_ckpt4500-vs-5000-activation_20260520T194457_result.json",
+    "occurrence": 1,
+    "bytes": 1963,
+    "sha256": "a828dd53cdd4233e2ff905c778fee998dee62c487705fb29b147b2e2928e44dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有输出已保存。以下是关键发现：\n\n---\n\n## ckpt-4500 vs ckpt-5000 Activation Drift 分析结果\n\n### 核心数据（Layer 19, d_syc direction）\n\n| 指标 | ckpt-4500 | ckpt-5000 | Δ |\n|------|-----------|-----------|---|\n| **proj_user AUROC** | 0.232 | 0.225 | -0.007 |\n| **proj_asst AUROC** | 0.162 | 0.158 | -0.004 |\n| proj_user valid mean | 11.16 | 10.90 | -0.255 |\n| proj_user invalid mean | 17.13 | 16.95 | -0.180 |\n| proj_user mean_diff (v-i) | -5.98 | -6.05 | -0.075 |\n| proj_asst mean_diff (v-i) | -4.09 | -4.11 | -0.024 |\n\n> AUROC < 0.5 是正确的：valid_correction 在 d_syc 上投影更低（更不 sycophantic），与方向定义一致。翻转后有效 AUROC 约 0.77-0.84。\n\n### 关键结论\n\n**d_syc Layer 19 方向无法解释 SYCONScore 的回落（0.134→0.114）。**\n\n1. **两个 checkpoint 的 representation 差异极小**：valid 和 invalid 组都微幅向负 d_syc 方向移动（-0.18 ~ -0.26），但分离度几乎不变（AUROC Δ < 0.01）。\n\n2. **valid 组移动幅度略大于 invalid**（-0.255 vs -0.180 for proj_user），意味着 ckpt-5000 的 valid/invalid 分离度甚至微幅增大——这与 SYCONScore 下降方向相反。\n\n3. **可能的解释方向**：\n   - 行为回落发生在 **generation dynamics**（token-by-token decoding 过程），而非 pre-generation 的 representation\n   - d_syc 方向是从 **vanilla 模型**（exp-001）学到的，GRPO 训练可能已经旋转了 sycophancy-relevant subspace，需要重新计算方向\n   - 关键变化可能在 **其他层**（不仅是 layer 19）\n\n### 输出文件\n\n- `/root/contrastive_entrain_calib/results/mechanistic_analysis/activation_drift/projection_stats.json` — 完整统计\n- `raw_projections.json` — 每个样本的原始投影值\n- `projection_histogram.pdf/png` — 4 panel 分布对比图\n- `projection_scatter.png` — per-sample ckpt-4500 vs ckpt-5000 散点图"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-ckpt4500-vs-5000-activation.md"
+}

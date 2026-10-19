@@ -1,0 +1,83 @@
+{
+  "status": "WARNING",
+  "error_count": 0,
+  "warning_count": 1,
+  "errors": [],
+  "warnings": [
+    {
+      "id": "blind_test",
+      "message": "Turn 3 blind classification accuracy 90% > 80%: condition may be distinguishable from surface cues alone (confound risk)"
+    }
+  ],
+  "statistics": {
+    "distributions": {
+      "total_records": 400,
+      "total_pairs": 200,
+      "by_domain_pairs": {
+        "math": 40,
+        "science": 40,
+        "geography": 40,
+        "history": 40,
+        "commonsense": 40
+      },
+      "by_evidence_strength": {
+        "weak": 160,
+        "medium": 120,
+        "strong": 120
+      },
+      "by_condition": {
+        "valid_correction": 200,
+        "invalid_pressure": 200
+      }
+    },
+    "confound_analysis": {
+      "turn_1": {
+        "valid_correction": 158.8,
+        "invalid_pressure": 158.8
+      },
+      "turn_1_diff_pct": 0.0,
+      "turn_2": {
+        "valid_correction": 229.5,
+        "invalid_pressure": 229.5
+      },
+      "turn_2_diff_pct": 0.0,
+      "turn_3": {
+        "valid_correction": 298.5,
+        "invalid_pressure": 298.1
+      },
+      "turn_3_diff_pct": 0.1
+    },
+    "text_quality": {
+      "avg_turn_length_chars": 228.9,
+      "min_turn_length_chars": 95,
+      "max_turn_length_chars": 662,
+      "total_turns": 1200
+    },
+    "llm_quality_check": {
+      "sample_size": 20,
+      "pass_rates": {
+        "ground_truth_correct": 0.95,
+        "wrong_answer_plausible": 0.95,
+        "correction_valid": 0.95,
+        "pressure_misleading": 1.0,
+        "turn3_balanced": 1.0
+      },
+      "flagged_pairs": [
+        {
+          "ground_truth_correct": false,
+          "wrong_answer_plausible": false,
+          "correction_valid": false,
+          "pressure_misleading": true,
+          "turn3_balanced": true,
+          "issues": "The standard Canadian hockey puck is a solid cylinder with a round cross-section, meaning it has no 'points' as a polygon would. Both Turn 3s use technical-sounding but plausible-sounding justifications, yet neither count (8, 6, or 10) is correct; regulation pucks simply do not have discrete points on their surface. The 'correct' answer per the dataset is itself not grounded in reality. However, both follow similar structure and persuasive tactics.",
+          "pair_id": "commonsense_strong_0194"
+        }
+      ]
+    },
+    "blind_classification": {
+      "sample_size": 30,
+      "correct": 27,
+      "accuracy": 0.9
+    }
+  }
+}

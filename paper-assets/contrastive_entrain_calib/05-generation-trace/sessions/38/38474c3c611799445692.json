@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38474c3c611799445692",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops check llama download",
+  "task_key": "worker_ops_check-llama-download_20260520T044223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-llama-download_20260520T044223_result.json",
+    "occurrence": 1,
+    "bytes": 856,
+    "sha256": "cd1c0c9d0cf961f5782609ef9fec184052f9fca5891bd88105e9a12f675ff4ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**下载状态：进行中，未完成。**\n\n| 分片 | 大小 | 进度 | 预计剩余 |\n|------|------|------|----------|\n| model-00001-of-00004.safetensors | 4.63G | 13% (619M) | ~2h43m |\n| model-00002-of-00004.safetensors | 4.66G | 13% (626M) | ~2h39m |\n| model-00003-of-00004.safetensors | 4.58G | 14% (637M) | ~2h41m |\n| model-00004-of-00004.safetensors | 1.09G | 55% (616M) | ~19m |\n\n- **PID 214625** 运行中，已运行 20 分钟\n- 下载速度 ~440-450 kB/s/stream，4 路并行总速度 ~1.76 MB/s\n- 模型总大小 ~15 GB，预计还需 **~2h40m** 完成\n- 磁盘空间充足：/root/autodl-tmp/ 剩余 296G\n- 模型目录已创建，config/tokenizer 已下载完毕，safetensors 权重文件尚在下载中\n\n**结论：** 不能现在启动 exp-012，需等约 2.5-3 小时下载完成后再验证模型加载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-llama-download.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "748e2b90e3e72287dab7",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "fix r3 ckpt5000 gen and score",
+  "task_key": "worker_fix_r3-ckpt5000-gen-and-score_20260520T225355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_r3-ckpt5000-gen-and-score_20260520T225355_result.json",
+    "occurrence": 1,
+    "bytes": 1231,
+    "sha256": "5f305dc10b75493410cfb81f6a59d0cf74b110acbe5733443d6a9b4e1d8ff4fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存到 `r3_reward_analysis.json`。\n\n## 最终结果\n\n### ckpt_5000 R3 NLI Scores\n| 指标 | 值 |\n|------|-----|\n| Overall mean | 0.9780 |\n| Valid correction | 0.9706 |\n| Invalid pressure | 0.9854 |\n| Valid-invalid gap | -0.0148 |\n\n### ckpt_4500 vs ckpt_5000 对比\n| 指标 | ckpt_4500 | ckpt_5000 | 变化 |\n|------|-----------|-----------|------|\n| Overall mean | 0.9815 | 0.9780 | -0.0035 |\n| Valid correction | 0.9644 | 0.9706 | +0.0062 |\n| Invalid pressure | 0.9987 | 0.9854 | -0.0133 |\n| Valid-invalid gap | -0.0344 | -0.0148 | +0.0196 |\n\n### 统计检验\n- **Welch t-test**: t=-0.382, p=0.703 — overall mean 差异**不显著**\n- **KS test** (ckpt_5000 valid vs invalid): stat=0.155, p=0.026 — valid 和 invalid 分布**显著不同**\n- **Gap 变化**: -0.0344 → -0.0148（缩小 57%）\n\n### 解读\nckpt_5000 总体 R3 与 ckpt_4500 接近（差异不显著），但 valid-invalid gap 从 -0.034 缩小到 -0.015，说明更多训练**改善了模型区分 valid correction 和 invalid pressure 的能力** — valid 分数提升，invalid 分数略降，两者趋向更平衡。\n\n注：89/362 条 response 包含 thinking 标记，已在 NLI 评分前清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-r3-ckpt5000-gen-and-score.md"
+}

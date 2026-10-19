@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3e6aa62e483db31f2dc",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "train exp 003 s3",
+  "task_key": "worker_train_exp-003-s3_20260525T124402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_exp-003-s3_20260525T124402_result.json",
+    "occurrence": 1,
+    "bytes": 786,
+    "sha256": "cec8dad8b7b74fde18364612560da98279d7cb4845c48c16ac9d89616fd64665"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练成功启动，第一步已完成。R3 NLI 模型从本地缓存加载成功。\n\n**训练启动报告：**\n\n| 项目 | 值 |\n|------|-----|\n| exp_id | exp-003-s3 |\n| 服务器 | westd-29046, cuda:1 |\n| PID | 31710 |\n| tmux session | `exp-003-s3` |\n| 训练脚本 | `training/run_exp003_s3_r3only.py` (seed=44) |\n| 输出目录 | `/root/autodl-tmp/checkpoints/exp003_r3only_seed3/` |\n| 日志 | `/root/runs/contrastive_entrain_calib/exp-003-s3.log` |\n| 速度 | ~26s/step |\n| 预计运行时间 | 8000 steps × 26s ≈ **58 小时 (~2.4 天)** |\n| Registry | RUNNING |\n\n**修复记录：** 首次启动因 HuggingFace 网络不可达卡住（R3 model 下载），设置 `HF_HUB_OFFLINE=1` + `TRANSFORMERS_OFFLINE=1` 后从本地缓存加载成功。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-exp-003-s3.md"
+}

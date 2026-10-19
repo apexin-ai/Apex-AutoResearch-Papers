@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff9f51a95c13f5d9b7b5",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp016 check then vanilla baseline",
+  "task_key": "worker_eval_exp016-check-then-vanilla-baseline_20260519T141853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp016-check-then-vanilla-baseline_20260519T141853_result.json",
+    "occurrence": 1,
+    "bytes": 555,
+    "sha256": "c015dec0df671d7cf50c81a6aa8f44ea4741ccbc59245e4fe9794bf7cc7df083"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-016 re-eval 仍在运行。**\n\n当前进度：\n- **Alpha 0.00**: 完成 (362/362)，hooks fired 0 次\n- **Alpha 0.50**: 完成 (362/362)，hooks fired 917,518 次\n- **Alpha 1.00**: 完成 (362/362)，hooks fired 883,589 次\n- **Alpha 2.00**: 进行中，**240/362**（最新日志 22:16）\n- **Alpha 5.00**: 未开始\n\n每个 alpha 跑完约 60 分钟。Alpha 2.00 还剩 ~120 个样本（约 20 分钟），Alpha 5.00 还需约 60 分钟。预计整体完成时间约 **23:35 左右**（距现在约 1 小时 20 分钟）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp016-check-then-vanilla-baseline.md"
+}

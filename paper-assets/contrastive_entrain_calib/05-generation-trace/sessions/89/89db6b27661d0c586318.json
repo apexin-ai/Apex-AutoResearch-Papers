@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89db6b27661d0c586318",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp 003 eval ckpt7000 v3",
+  "task_key": "worker_eval_exp-003-eval-ckpt7000-v3_20260521T081249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp-003-eval-ckpt7000-v3_20260521T081249_result.json",
+    "occurrence": 1,
+    "bytes": 872,
+    "sha256": "95611a09ced7a370d2e760afa3deb84e65300ff61194e5b3749f5caa27d6ac70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**任务完成。** 总结：\n\n### 失败诊断\n- **v1**: 正常运行到 80/362 后被 SIGTERM kill (EXIT_CODE=143)，外部进程清理\n- **v2**: LoRA 加载时 GPU 内存不足（accelerate 报缺 2.3GB），随后被 SIGTERM kill\n- **根因**: cuda:3 被叠加提交多个 eval 任务（发现 PID 191750 + PID 193010 同时占 cuda:3，29.7GB / 32.6GB），导致内存争抢和进程被 kill\n\n### v3 提交\n- **exp_id**: `exp-003-eval-ckpt7000-v3`\n- **GPU**: cuda:0（避开 cuda:3 的 collision 问题）\n- **PID**: 861274\n- **状态**: RUNNING，模型/LoRA/NLI 全部加载成功，无内存警告\n- **预计完成**: ~60-75 分钟（约 17:45-18:00 服务器时间）\n- **日志**: `~/runs/contrastive_entrain_calib/exp-003-eval-ckpt7000-v3.log`\n- **Registry**: 已更新为 RUNNING，parent=exp-003\n- **report.md**: 已自动更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-003-eval-ckpt7000-v3.md"
+}

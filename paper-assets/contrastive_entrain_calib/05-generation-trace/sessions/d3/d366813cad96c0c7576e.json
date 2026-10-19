@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d366813cad96c0c7576e",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "monitor exp002v3 r1 check",
+  "task_key": "worker_monitor_exp002v3-r1-check_20260519T183451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp002v3-r1-check_20260519T183451_result.json",
+    "occurrence": 1,
+    "bytes": 2592,
+    "sha256": "01da806661655742df47a4b92ae5418d44555f433b54e58eb8528f6a45583d1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data. Log has 7 steps, 2 ranks per step. No grad_norm/entropy fields in this log. Let me compile the analysis.\n\n```\n进程状态：存活（GPU 利用率 65-70%，4卡均有显存占用）\n当前步数：7（最新 02:35:38，~35s/step）\nGPU 0 显存：25582 MiB / 32607 MiB (78%)\nGPU 1 显存：24288 MiB / 32607 MiB (74%)\nGPU 2 显存：21494 MiB / 32607 MiB (66%)\nGPU 3 显存：24824 MiB / 32607 MiB (76%)\n\n⚠️ 注意：tmux 日志显示之前有一次 crash（02:07，TypeError: compute_rewards() takes 5 positional arguments but 7 were given），当前运行是重启后的（02:31 启动）。\n\n=== R1 信号分析 (step 1-7，双 rank 平均) ===\n\n逐步 R1 mean（rank0 / rank1 / 平均）:\nstep 1: R1=-0.2694 / -0.0124 / avg=-0.1409, R3=0.9975, combined=0.5422\nstep 2: R1=-0.0695 / -0.2964 / avg=-0.1830, R3=0.9977, combined=0.5255\nstep 3: R1=-0.0779 / -0.0759 / avg=-0.0769, R3=0.9760, combined=0.5548\nstep 4: R1=-0.1757 / -0.3358 / avg=-0.2558, R3=0.9949, combined=0.4946\nstep 5: R1=-0.0205 / -0.1654 / avg=-0.0930, R3=0.9985, combined=0.5619\nstep 6: R1=+0.1160 / -0.4015 / avg=-0.1428, R3=0.9987, combined=0.5421\nstep 7: R1=-0.0484 / -0.2527 / avg=-0.1506, R3=0.9985, combined=0.5389\n\n汇总 (step 5-7):\n- R1 mean: -0.1288（趋势：平稳偏负，无改善迹象）\n- R1 正值率: 16.7%（6 个 rank 观测中仅 1 个 > 0，即 step 6 rank 0 的 +0.116）\n- R1 占 combined 比例: -9.4%（R1 是负贡献，拉低 combined）\n- R3 mean: 0.9986（saturation 风险：是，持续 > 0.99）\n- per-strength R1 (step 5-7 所有 rank):\n    weak  = -0.053（最好，偶有正值 +0.21~+0.36）\n    medium= -0.164\n    strong= -0.305（最差，全部为负）\n\n异常检测:\n- grad_norm: 日志中无此字段\n- entropy: 日志中无此字段\n\n结论: ⚠️ R1 无效，需立即汇报 Director\n```\n\n**关键判断依据：**\n\n1. **R1 均值 -0.129（step 5-7）**，比 exp002v2-recalib 的 -0.064 更差。scaled cosine (scale_factor=5) 不仅没有产生正信号，反而放大了负值。\n2. **R1 正值率 16.7%**，虽然比 exp002v2-recalib 的 5% 有提升，但远不足以驱动有效训练。\n3. **R3 完全饱和（>0.998）**，combined reward 几乎被 R3 主导，R1 信号在梯度中被淹没。\n4. **Strong strength R1 全负（-0.305）**，说明方向向量对强校准偏移的样本产生了系统性惩罚，方向可能需要反转或重新提取。\n5. **rank 间方差极大**（step 6: +0.116 vs -0.402），说明 R1 信号高度不稳定，batch 随机性主导。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp002v3-r1-check.md"
+}

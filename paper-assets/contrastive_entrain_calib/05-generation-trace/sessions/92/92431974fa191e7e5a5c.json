@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "92431974fa191e7e5a5c",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "test westd28034 lora vram",
+  "task_key": "worker_test_westd28034_lora_vram_20260518T134538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_test_westd28034_lora_vram_20260518T134538.log",
+    "occurrence": 1,
+    "bytes": 724515,
+    "sha256": "8ef66e75528d508350041aeb51ff3612cfac8b271a0cdd88924a4ccce8afe20f"
+  },
+  "statistics": {
+    "messages": 538,
+    "user_turns": 0,
+    "tool_calls": 213,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 108,
+      "tool_call": 213,
+      "tool_result": 213,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 538,
+      "chunks": [
+        {
+          "path": "92431974fa191e7e5a5c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "92431974fa191e7e5a5c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "92431974fa191e7e5a5c-part-0003.json",
+          "message_count": 178
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/test-westd28034-lora-vram.md"
+}

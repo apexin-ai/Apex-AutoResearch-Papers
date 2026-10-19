@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77f519fea3bca5adc193",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "check exp003s2 health",
+  "task_key": "worker_check_exp003s2-health_20260520T001915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp003s2-health_20260520T001915_result.json",
+    "occurrence": 1,
+    "bytes": 720,
+    "sha256": "4f918bbf134e151099277f560ed7b9a2c374753759f1f5fc8af5c7329698d284"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-003-s2 健康报告：**\n\n| 项目 | 状态 |\n|------|------|\n| **进程** | 存活，已运行 1h51m |\n| **当前 step** | 5 / 8000（刚启动，~39.6s/step） |\n| **entropy/reward** | 日志中尚未输出指标（仅 5 步，太早），暂无 collapse 迹象 |\n| **GPU 0** | 100% 利用率，76064 MiB 显存占用 |\n\n补充：\n- 反复出现的 `d_syc not loaded; returning R3-only rewards` 是预期行为（脚本为 `run_exp003s2_r3only.py`）。\n- NLI 模型 `cross-encoder/nli-deberta-v3-base` 已成功加载。\n- GPU 1 也有 97%/38161 MiB 占用，可能是其他任务。\n\n**结论：运行正常，建议 30-60 分钟后再查一次日志确认 reward 指标趋势。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp003s2-health.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "252f6a160e0a5e7ddaf5",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "paper writing conc",
+  "task_key": "worker_paper_writing_conc_20260520T153140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_conc_20260520T153140_result.json",
+    "occurrence": 1,
+    "bytes": 554,
+    "sha256": "71d3cccaf9591e9b8454e4848a50ecc0b69d9fde50fa58843169d149cbda7aff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All constraints pass:\n\n- **325 words** (LaTeX commands inflate this slightly; body text is ~300)\n- **No em-dashes or en-dashes**\n- **No \"-ing\" phrase endings**\n- **No forbidden openers or blacklisted words**\n\nWritten to `docs/paper/sections/conclusion.tex`. The section follows a three-paragraph arc: (1) the hypothesis and its falsification, (2) the specific failure modes with key numbers, and (3) the broader principle that detection discriminability does not imply reward utility, ending on the generalizable alignment lesson."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-conc.md"
+}

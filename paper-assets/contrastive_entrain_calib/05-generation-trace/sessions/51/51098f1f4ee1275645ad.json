@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51098f1f4ee1275645ad",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp004 eval collector",
+  "task_key": "worker_eval_exp004-eval-collector_20260519T130325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp004-eval-collector_20260519T130325_result.json",
+    "occurrence": 1,
+    "bytes": 160,
+    "sha256": "f79259d983be624ac11b64c3531b23a98165acf497f2f443298ea2a5a1bb1547"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitoring loop set. Next check in ~4.5 minutes. I'll report back with progress updates and the full results table once all 5 checkpoints finish."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp004-eval-collector.md"
+}

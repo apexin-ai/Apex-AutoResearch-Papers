@@ -1,0 +1,488 @@
+{
+  "schema_version": "1.0",
+  "id": "8aca29934ce5a8abe411",
+  "project": "contrastive_entrain_calib",
+  "kind": "conversation",
+  "title": "code eval pipeline",
+  "task_key": "worker_code_eval_pipeline_20260518T073439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_eval_pipeline_20260518T073439.jsonl",
+    "occurrence": 1,
+    "bytes": 31394,
+    "sha256": "c6c3ad0e8836a13ebab78dc12b4731746ad518e03b12b83634c6d3c6ab2fe722"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "tool_call": 11,
+      "tool_result": 11,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T07:36:35.813146+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_eval_pipeline_20260518T073439",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/ 2>/dev/null && echo \"---EXISTS---\" || echo \"---NOT EXISTS---\"",
+              "description": "Check if artifacts directory exists"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T07:36:35.813498+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "_project\ndata\nmanifest.yaml\npost_mvp_experiment_skeleton.md\n---EXISTS---"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_eval_pipeline_20260518T073439",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T07:36:35.813668+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_eval_pipeline_20260518T073439",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.py",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T07:36:35.813815+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/data/validate_calibration_data.py\nartifacts/_project/data/generate_calibration_data.py\nartifacts/_project/data/extract_activations.py\nartifacts/data/extract_activations.py\nartifacts/_project/data/validate_calibration_data_60f913.py\nartifacts/data/generate_calibration_data.py\nartifacts/data/validate_calibration_data.py\nartifacts/_project/data/compute_directions.py\nartifacts/data/compute_directions.py\nartifacts/_project/data/evaluate_directions.py\nartifacts/data/evaluate_directions.py\nartifacts/_project/data/lora_perturbation_test.py\nartifacts/data/lora_perturbation_test.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_eval_pipeline_20260518T073439",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T07:36:35.813975+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_eval_pipeline_20260518T073439",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "mkdir -p /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/eval",
+              "description": "Create eval directory"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T07:36:35.814100+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_eval_pipeline_20260518T073439",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T07:36:35.814215+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_eval_pipeline_20260518T073439",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/evaluate_directions.py",
+              "limit": "40"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T07:36:35.814355+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Evaluate contrastive direction vectors on held-out test pairs.\n3\t\n4\tInput:\n5\t  --directions  directions.pt from compute_directions.py\n6\t  --activations activations.pt from extract_activations.py\n7\t  --output-dir  directory for JSON report\n8\t\n9\tOutput:\n10\t  evaluation_report.json — per-layer AUROC, cosine similarity, stratified\n11\t                           breakdown, Go/No-Go verdict\n12\t  Human-readable summary printed to stdout\n13\t\n14\tDeps: torch, numpy, sklearn\n15\t\"\"\"\n16\t\n17\timport argparse\n18\timport json\n19\timport logging\n20\timport sys\n21\tfrom collections import defaultdict\n22\tfrom pathlib import Path\n23\t\n24\timport numpy as np\n25\timport torch\n26\tfrom sklearn.metrics import roc_auc_score\n27\t\n28\tlogger = logging.getLogger(__name__)\n29\t\n30\t\n31\tdef load_test_samples(\n32\t    activations_path: str, test_pair_ids: list[str]\n33\t) -> list[dict]:\n34\t    \"\"\"Load activation records and keep only those in the test set.\"\"\"\n35\t    records = torch.load(activations_path, map_location=\"cpu\", weights_only=False)\n36\t    test_set = set(test_pair_ids)\n37\t    filtered = [r for r in records if r[\"pair_id\"] in test_set]\n38\t    logger.info(\n39\t        \"Loaded %d total records; %d belong to test set (%d test pair_ids)\",\n40\t        len(records), len(filtered), len(test_set),"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_eval_pipeline_20260518T073439",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T07:36:35.814587+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_eval_pipeline_20260518T073439",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/eval/eval_pipeline.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"Unified evaluation pipeline for contrastive entrainment calibration.\n\nSupports 4 benchmarks: SYCONBench, SycophancyEval, MTBench, MMLU.\nEach benchmark is independently runnable; the pipeline orchestrates them.\n\nUsage:\n  python eval_pipeline.py --model-path <path> --benchmarks sycon,mmlu --output-dir results/\n  python eval_pipeline.py --model-path <path> --dry-run\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport sys\nimport time\nfrom abc import ABC, abstractmethod\nfrom datetime import datetime, timezone\nfrom pathlib import Path\nfrom typing import Any\n\nimport torch\n\nlogger = logging.getLogger(__name__)\n\n\n# ---------------------------------------------------------------------------\n# Base class\n# ---------------------------------------------------------------------------\n\nclass BenchmarkBase(ABC):\n    \"\"\"Abstract base for all benchmark evaluators.\"\"\"\n\n    name: str = \"base\"\n\n    def __init__(self, device: str = \"cuda\", **kwargs):\n        self.device = device\n        self.kwargs = kwargs\n\n    @abstractmethod\n    def load_data(self) -> list[dict]:\n        ...\n\n    @abstractmethod\n    def run_inference(\n        self, model: Any, tokenizer: Any, data: list[dict]\n    ) -> list[dict]:\n        ...\n\n    @abstractmethod\n    def compute_metrics(self, predictions: list[dict]) -> dict:\n        ...\n\n    def evaluate(self, model: Any, tokenizer: Any) -> dict:\n        t0 = time.time()\n        data = self.load_data()\n        logger.info(\"[%s] Loaded %d samples\", self.name, len(data))\n        predictions = self.run_inference(model, tokenizer, data)\n        metrics = self.compute_metrics(predictions)\n        metrics[\"_meta\"] = {\n            \"n_samples\": len(data),\n            \"elapsed_sec\": round(time.time() - t0, 2),\n        }\n        return metrics\n\n    def dry_run(self) -> dict:\n        data = self.load_data()\n        logger.info(\"[%s] Dry-run OK — %d samples loaded\", self.name, len(data))\n        return {\"n_samples\": len(data), \"status\": \"dry_run_ok\"}\n\n\n# ---------------------------------------------------------------------------\n# Benchmark: SYCONBench (multi-turn sycophancy)\n# ---------------------------------------------------------------------------\n\nclass SYCONBench(BenchmarkBase):\n    \"\"\"Multi-turn sycophancy benchmark measuring Turn-of-Flip and Number-of-Flip.\"\"\"\n\n    name = \"sycon_bench\"\n\n    def __init__(self, max_turns: int = 10, **kwargs):\n        super().__init__(**kwargs)\n        self.max_turns = max_turns\n\n    def load_data(self) -> list[dict]:\n        # TODO: Load or generate SYCON test set.\n        #   Expected format per sample:\n        #   {\n        #       \"id\": str,\n        #       \"topic\": str,\n        #       \"initial_question\": str,\n        #       \"correct_answer\": str,\n        #       \"pressure_prompts\": list[str],   # follow-up turns that push model to flip\n        #       \"difficulty\": str,                # easy / medium / hard\n        #   }\n        raise NotImplementedError(\"SYCONBench.load_data not yet implemented\")\n\n    def run_inference(\n        self, model: Any, tokenizer: Any, data: list[dict]\n    ) -> list[dict]:\n        # TODO: Multi-turn conversation loop.\n        #   For each sample:\n        #     1. Send initial_question, record model stance.\n        #     2. For each pressure_prompt (up to max_turns):\n        #        - Append user turn, generate model reply.\n        #        - Detect whether model flipped stance.\n        #        - Record turn index of first flip (ToF) and count total flips (NoF).\n        #   Return list of:\n        #   {\n        #       \"id\": str,\n        #       \"tof\": int | None,   # turn of first flip (None if never flipped)\n        #       \"nof\": int,          # number of flips\n        #       \"difficulty\": str,\n        #       \"turns\": list[dict], # full conversation for debugging\n        #   }\n        raise NotImplementedError(\"SYCONBench.run_inference not yet implemented\")\n\n    def compute_metrics(self, predictions: list[dict]) -> dict:\n        # TODO: Aggregate per-sample ToF/NoF into summary statistics.\n        #   - tof_mean, tof_median (excluding samples that never flipped)\n        #   - nof_mean\n        #   - flip_rate (fraction of samples where at least one flip occurred)\n        #   - by_difficulty: {easy: {...}, medium: {...}, hard: {...}}\n        raise NotImplementedError(\"SYCONBench.compute_metrics not yet implemented\")\n\n\n# ---------------------------------------------------------------------------\n# Benchmark: SycophancyEval (single-turn sycophancy)\n# ---------------------------------------------------------------------------\n\nclass SycophancyEval(BenchmarkBase):\n    \"\"\"Single-turn sycophancy evaluation: does the model agree with wrong premises?\"\"\"\n\n    name = \"sycophancy_eval\"\n\n    def load_data(self) -> list[dict]:\n        # TODO: Load from HuggingFace or local JSON.\n        #   Expected format per sample:\n        #   {\n        #       \"id\": str,\n        #       \"question\": str,\n        #       \"user_claim\": str,        # incorrect claim by user\n        #       \"correct_answer\": str,\n        #       \"category\": str,           # e.g. math, facts, opinions\n        #   }\n        raise NotImplementedError(\"SycophancyEval.load_data not yet implemented\")\n\n    def run_inference(\n        self, model: Any, tokenizer: Any, data: list[dict]\n    ) -> list[dict]:\n        # TODO: Single-turn generation.\n        #   For each sample:\n        #     1. Format prompt with user_claim embedded.\n        #     2. Generate model response.\n        #     3. Classify: did model agree with incorrect claim (sycophantic)\n        #        or maintain correct answer (non-sycophantic)?\n        #   Return list of:\n        #   {\n        #       \"id\": str,\n        #       \"sycophantic\": bool,\n        #       \"model_response\": str,\n        #       \"category\": str,\n        #   }\n        raise NotImplementedError(\"SycophancyEval.run_inference not yet implemented\")\n\n    def compute_metrics(self, predictions: list[dict]) -> dict:\n        # TODO: Compute:\n        #   - sycophancy_rate: fraction of sycophantic responses\n        #   - accuracy: fraction of correct (non-sycophantic) responses\n        #   - by_category: {category: {sycophancy_rate, accuracy, n}}\n        raise NotImplementedError(\"SycophancyEval.compute_metrics not yet implemented\")\n\n\n# ---------------------------------------------------------------------------\n# Benchmark: MTBench (multi-turn dialogue quality)\n# ---------------------------------------------------------------------------\n\nclass MTBench(BenchmarkBase):\n    \"\"\"MT-Bench: 80 two-turn questions scored by an LLM judge.\"\"\"\n\n    name = \"mt_bench\"\n\n    def __init__(self, judge_model: str = \"gpt-4\", **kwargs):\n        super().__init__(**kwargs)\n        self.judge_model = judge_model\n\n    def load_data(self) -> list[dict]:\n        # TODO: Load MT-Bench question set (80 questions, 8 categories x 10).\n        #   Expected format per sample:\n        #   {\n        #       \"question_id\": int,\n        #       \"category\": str,\n        #       \"turns\": [str, str],   # turn-1 and turn-2 prompts\n        #   }\n        raise NotImplementedError(\"MTBench.load_data not yet implemented\")\n\n    def run_inference(\n        self, model: Any, tokenizer: Any, data: list[dict]\n    ) -> list[dict]:\n        # TODO: Two-turn dialogue generation.\n        #   For each question:\n        #     1. Generate response to turns[0].\n        #     2. Append response, generate response to turns[1].\n        #   Return list of:\n        #   {\n        #       \"question_id\": int,\n        #       \"category\": str,\n        #       \"model_responses\": [str, str],\n        #   }\n        raise NotImplementedError(\"MTBench.run_inference not yet implemented\")\n\n    def compute_metrics(self, predictions: list[dict]) -> dict:\n        # TODO: Use LLM judge to score each response pair.\n        #   - Call judge_model API for each prediction.\n        #   - Extract score (1-10) for turn-1 and turn-2.\n        #   - Aggregate:\n        #     - avg_score (overall)\n        #     - avg_score_turn1, avg_score_turn2\n        #     - by_category: {category: {avg_score, avg_turn1, avg_turn2}}\n        raise NotImplementedError(\"MTBench.compute_metrics not yet implemented\")\n\n\n# ---------------------------------------------------------------------------\n# Benchmark: MMLU (massive multitask language understanding)\n# ---------------------------------------------------------------------------\n\nclass MMLU(BenchmarkBase):\n    \"\"\"MMLU: multiple-choice evaluation across 57 subjects.\"\"\"\n\n    name = \"mmlu\"\n\n    def __init__(self, n_few_shot: int = 5, subjects: list[str] | None = None, **kwargs):\n        super().__init__(**kwargs)\n        self.n_few_shot = n_few_shot\n        self.subjects = subjects\n\n    def load_data(self) -> list[dict]:\n        # TODO: Load from HuggingFace datasets (\"cais/mmlu\" or \"lukaemon/mmlu\").\n        #   If self.subjects is set, filter to those subjects only.\n        #   Expected format per sample:\n        #   {\n        #       \"id\": str,\n        #       \"subject\": str,\n        #       \"question\": str,\n        #       \"choices\": [str, str, str, str],\n        #       \"answer\": int,             # index 0-3\n        #       \"few_shot_examples\": list[dict] | None,\n        #   }\n        raise NotImplementedError(\"MMLU.load_data not yet implemented\")\n\n    def run_inference(\n        self, model: Any, tokenizer: Any, data: list[dict]\n    ) -> list[dict]:\n        # TODO: Few-shot prompting with n_few_shot examples per subject.\n        #   For each sample:\n        #     1. Build prompt: few-shot examples + question + choices.\n        #     2. Get model logits for choice tokens (A/B/C/D).\n        #     3. Select highest-probability choice.\n        #   Return list of:\n        #   {\n        #       \"id\": str,\n        #       \"subject\": str,\n        #       \"predicted\": int,   # 0-3\n        #       \"correct\": int,     # 0-3\n        #   }\n        raise NotImplementedError(\"MMLU.run_inference not yet implemented\")\n\n    def compute_metrics(self, predictions: list[dict]) -> dict:\n        # TODO: Compute:\n        #   - overall accuracy\n        #   - by_category (STEM / Humanities / Social Sciences / Other)\n        #   - by_subject: {subject: {accuracy, n}}\n        raise NotImplementedError(\"MMLU.compute_metrics not yet implemented\")\n\n\n# ---------------------------------------------------------------------------\n# Pipeline\n# ---------------------------------------------------------------------------\n\nBENCHMARK_REGISTRY: dict[str, type[BenchmarkBase]] = {\n    \"sycon_bench\": SYCONBench,\n    \"sycophancy_eval\": SycophancyEval,\n    \"mt_bench\": MTBench,\n    \"mmlu\": MMLU,\n}\n\n\nclass EvalPipeline:\n    \"\"\"Orchestrates multiple benchmark evaluations and produces a unified report.\"\"\"\n\n    def __init__(self, device: str = \"cuda\"):\n        self.device = device\n        self.benchmarks: dict[str, BenchmarkBase] = {}\n\n    def register_benchmark(self, name: str, benchmark: BenchmarkBase) -> None:\n        self.benchmarks[name] = benchmark\n\n    def register_defaults(self, names: list[str] | None = None, **kwargs) -> None:\n        targets = names if names else list(BENCHMARK_REGISTRY.keys())\n        for name in targets:\n            if name not in BENCHMARK_REGISTRY:\n                raise ValueError(\n                    f\"Unknown benchmark: {name}. \"\n                    f\"Available: {list(BENCHMARK_REGISTRY.keys())}\"\n                )\n            self.benchmarks[name] = BENCHMARK_REGISTRY[name](\n                device=self.device, **kwargs\n            )\n\n    def run_all(self, model: Any, tokenizer: Any) -> dict:\n        results = {}\n        for name, bench in self.benchmarks.items():\n            logger.info(\"Running benchmark: %s\", name)\n            try:\n                results[name] = bench.evaluate(model, tokenizer)\n            except NotImplementedError as e:\n                logger.warning(\"[%s] Skipped (not implemented): %s\", name, e)\n                results[name] = {\"status\": \"not_implemented\", \"error\": str(e)}\n            except Exception as e:\n                logger.error(\"[%s] Failed: %s\", name, e, exc_info=True)\n                results[name] = {\"status\": \"error\", \"error\": str(e)}\n        return results\n\n    def dry_run(self) -> dict:\n        results = {}\n        for name, bench in self.benchmarks.items():\n            logger.info(\"Dry-run benchmark: %s\", name)\n            try:\n                results[name] = bench.dry_run()\n            except NotImplementedError as e:\n                logger.warning(\"[%s] Dry-run skipped (not implemented): %s\", name, e)\n                results[name] = {\"status\": \"not_implemented\", \"error\": str(e)}\n            except Exception as e:\n                logger.error(\"[%s] Dry-run failed: %s\", name, e, exc_info=True)\n                results[name] = {\"status\": \"error\", \"error\": str(e)}\n        return results\n\n    def save_report(\n        self,\n        results: dict,\n        output_path: str | Path,\n        model_name: str = \"unknown\",\n    ) -> Path:\n        output_path = Path(output_path)\n        output_path.mkdir(parents=True, exist_ok=True)\n\n        report = {\n            \"model\": model_name,\n            \"timestamp\": datetime.now(timezone.utc).isoformat(),\n            \"benchmarks\": results,\n        }\n\n        ts = datetime.now(timezone.utc).strftime(\"%Y%m%d_%H%M%S\")\n        report_file = output_path / f\"eval_report_{ts}.json\"\n        report_file.write_text(json.dumps(report, indent=2, ensure_ascii=False))\n        logger.info(\"Report saved to %s\", report_file)\n        return report_file\n\n\n# ---------------------------------------------------------------------------\n# Model loading helper\n# ---------------------------------------------------------------------------\n\ndef load_model_and_tokenizer(model_path: str, device: str = \"cuda\"):\n    \"\"\"Load a HuggingFace model and tokenizer.\"\"\"\n    from transformers import AutoModelForCausalLM, AutoTokenizer\n\n    logger.info(\"Loading tokenizer from %s\", model_path)\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\n\n    logger.info(\"Loading model from %s\", model_path)\n    model = AutoModelForCausalLM.from_pretrained(\n        model_path,\n        torch_dtype=torch.float16,\n        device_map=device if device != \"cpu\" else None,\n        trust_remote_code=True,\n    )\n    if device == \"cpu\":\n        model = model.float()\n    model.eval()\n\n    return model, tokenizer\n\n\n# ---------------------------------------------------------------------------\n# CLI\n# ---------------------------------------------------------------------------\n\ndef parse_args(argv: list[str] | None = None) -> argparse.Namespace:\n    parser = argparse.ArgumentParser(\n        description=\"Unified evaluation pipeline for contrastive entrainment calibration\"\n    )\n    parser.add_argument(\n        \"--model-path\", type=str, required=True, help=\"Path to HuggingFace model\"\n    )\n    parser.add_argument(\n        \"--benchmarks\",\n        type=str,\n        default=\"all\",\n        help=(\n            \"Comma-separated benchmark names to run \"\n            f\"(choices: {','.join(BENCHMARK_REGISTRY.keys())}, all). Default: all\"\n        ),\n    )\n    parser.add_argument(\n        \"--output-dir\",\n        type=str,\n        default=\"eval_results\",\n        help=\"Directory for evaluation reports (default: eval_results)\",\n    )\n    parser.add_argument(\n        \"--device\",\n        type=str,\n        default=\"cuda\" if torch.cuda.is_available() else \"cpu\",\n        help=\"Device for inference (default: cuda if available)\",\n    )\n    parser.add_argument(\n        \"--dry-run\",\n        action=\"store_true\",\n        help=\"Only load data to verify pipeline connectivity, skip inference\",\n    )\n    parser.add_argument(\n        \"--judge-model\",\n        type=str,\n        default=\"gpt-4\",\n        help=\"Judge model for MT-Bench scoring (default: gpt-4)\",\n    )\n    parser.add_argument(\n        \"--mmlu-subjects\",\n        type=str,\n        default=None,\n        help=\"Comma-separated MMLU subjects to evaluate (default: all)\",\n    )\n    parser.add_argument(\n        \"--mmlu-few-shot\",\n        type=int,\n        default=5,\n        help=\"Number of few-shot examples for MMLU (default: 5)\",\n    )\n    parser.add_argument(\n        \"--sycon-max-turns\",\n        type=int,\n        default=10,\n        help=\"Max pressure turns for SYCONBench (default: 10)\",\n    )\n    return parser.parse_args(argv)\n\n\ndef main(argv: list[str] | None = None) -> None:\n    args = parse_args(argv)\n\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s %(name)s %(levelname)s %(message)s\",\n    )\n\n    benchmark_names = (\n        list(BENCHMARK_REGISTRY.keys())\n        if args.benchmarks == \"all\"\n        else [b.strip() for b in args.benchmarks.split(\",\")]\n    )\n\n    extra_kwargs = {}\n    bench_specific: dict[str, dict] = {\n        \"mt_bench\": {\"judge_model\": args.judge_model},\n        \"mmlu\": {\n            \"n_few_shot\": args.mmlu_few_shot,\n            \"subjects\": (\n                [s.strip() for s in args.mmlu_subjects.split(\",\")]\n                if args.mmlu_subjects\n                else None\n            ),\n        },\n        \"sycon_bench\": {\"max_turns\": args.sycon_max_turns},\n    }\n\n    pipeline = EvalPipeline(device=args.device)\n    for name in benchmark_names:\n        if name not in BENCHMARK_REGISTRY:\n            logger.error(\"Unknown benchmark: %s\", name)\n            sys.exit(1)\n        kw = {**extra_kwargs, **bench_specific.get(name, {})}\n        pipeline.register_benchmark(\n            name, BENCHMARK_REGISTRY[name](device=args.device, **kw)\n        )\n\n    if args.dry_run:\n        logger.info(\"=== DRY RUN ===\")\n        results = pipeline.dry_run()\n        print(json.dumps(results, indent=2))\n        return\n\n    model, tokenizer = load_model_and_tokenizer(args.model_path, args.device)\n\n    results = pipeline.run_all(model, tokenizer)\n    model_name = Path(args.model_path).name\n    report_path = pipeline.save_report(results, args.output_dir, model_name=model_name)\n    print(f\"\\nEvaluation complete. Report: {report_path}\")\n    print(json.dumps(results, indent=2))\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T07:36:35.815001+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/eval/eval_pipeline.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_eval_pipeline_20260518T073439",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T07:36:35.815164+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_eval_pipeline_20260518T073439",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/eval && python3 eval_pipeline.py --help",
+              "description": "Verify --help works without syntax errors"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T07:36:35.815292+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/eval/eval_pipeline.py\", line 22, in <module>\n    import torch\nModuleNotFoundError: No module named 'torch'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_eval_pipeline_20260518T073439",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T07:36:35.815428+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_eval_pipeline_20260518T073439",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/eval/eval_pipeline.py",
+              "limit": "25"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T07:36:35.815562+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Unified evaluation pipeline for contrastive entrainment calibration.\n3\t\n4\tSupports 4 benchmarks: SYCONBench, SycophancyEval, MTBench, MMLU.\n5\tEach benchmark is independently runnable; the pipeline orchestrates them.\n6\t\n7\tUsage:\n8\t  python eval_pipeline.py --model-path <path> --benchmarks sycon,mmlu --output-dir results/\n9\t  python eval_pipeline.py --model-path <path> --dry-run\n10\t\"\"\"\n11\t\n12\timport argparse\n13\timport json\n14\timport logging\n15\timport sys\n16\timport time\n17\tfrom abc import ABC, abstractmethod\n18\tfrom datetime import datetime, timezone\n19\tfrom pathlib import Path\n20\tfrom typing import Any\n21\t\n22\timport torch\n23\t\n24\tlogger = logging.getLogger(__name__)\n25\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_eval_pipeline_20260518T073439",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T07:36:35.815687+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_eval_pipeline_20260518T073439",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/eval/eval_pipeline.py",
+              "old_string": "import torch\n\nlogger = logging.getLogger(__name__)",
+              "new_string": "try:\n    import torch\nexcept ImportError:\n    torch = None\n\nlogger = logging.getLogger(__name__)"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T07:36:35.815899+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/eval/eval_pipeline.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_eval_pipeline_20260518T073439",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T07:36:35.816054+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_eval_pipeline_20260518T073439",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/eval/eval_pipeline.py",
+              "old_string": "        \"--device\",\n        type=str,\n        default=\"cuda\" if torch.cuda.is_available() else \"cpu\",\n        help=\"Device for inference (default: cuda if available)\",",
+              "new_string": "        \"--device\",\n        type=str,\n        default=\"cuda\" if torch and torch.cuda.is_available() else \"cpu\",\n        help=\"Device for inference (default: cuda if available)\","
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T07:36:35.816256+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/eval/eval_pipeline.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_eval_pipeline_20260518T073439",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T07:36:35.816398+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_eval_pipeline_20260518T073439",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/eval/eval_pipeline.py",
+              "old_string": "def load_model_and_tokenizer(model_path: str, device: str = \"cuda\"):\n    \"\"\"Load a HuggingFace model and tokenizer.\"\"\"\n    from transformers import AutoModelForCausalLM, AutoTokenizer",
+              "new_string": "def load_model_and_tokenizer(model_path: str, device: str = \"cuda\"):\n    \"\"\"Load a HuggingFace model and tokenizer.\"\"\"\n    if torch is None:\n        raise RuntimeError(\"PyTorch is required for model loading. Install with: pip install torch\")\n    from transformers import AutoModelForCausalLM, AutoTokenizer"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T07:36:35.816597+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/eval/eval_pipeline.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_eval_pipeline_20260518T073439",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T07:36:35.816727+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_eval_pipeline_20260518T073439",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/eval && python3 eval_pipeline.py --help",
+              "description": "Verify --help works"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T07:36:35.816857+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "usage: eval_pipeline.py [-h] --model-path MODEL_PATH [--benchmarks BENCHMARKS]\n                        [--output-dir OUTPUT_DIR] [--device DEVICE]\n                        [--dry-run] [--judge-model JUDGE_MODEL]\n                        [--mmlu-subjects MMLU_SUBJECTS]\n                        [--mmlu-few-shot MMLU_FEW_SHOT]\n                        [--sycon-max-turns SYCON_MAX_TURNS]\n\nUnified evaluation pipeline for contrastive entrainment calibration\n\noptions:\n  -h, --help            show this help message and exit\n  --model-path MODEL_PATH\n                        Path to HuggingFace model\n  --benchmarks BENCHMARKS\n                        Comma-separated benchmark names to run (choices:\n                        sycon_bench,sycophancy_eval,mt_bench,mmlu, all).\n                        Default: all\n  --output-dir OUTPUT_DIR\n                        Directory for evaluation reports (default:\n                        eval_results)\n  --device DEVICE       Device for inference (default: cuda if available)\n  --dry-run             Only load data to verify pipeline connectivity, skip\n                        inference\n  --judge-model JUDGE_MODEL\n                        Judge model for MT-Bench scoring (default: gpt-4)\n  --mmlu-subjects MMLU_SUBJECTS\n                        Comma-separated MMLU subjects to evaluate (default:\n                        all)\n  --mmlu-few-shot MMLU_FEW_SHOT\n                        Number of few-shot examples for MMLU (default: 5)\n  --sycon-max-turns SYCON_MAX_TURNS\n                        Max pressure turns for SYCONBench (default: 10)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_eval_pipeline_20260518T073439",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T07:36:35.817042+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "`--help` 正常输出，无语法错误。\n\n文件已创建在 `artifacts/eval/eval_pipeline.py`。框架包含：\n\n- `BenchmarkBase` 抽象基类（`load_data` / `run_inference` / `compute_metrics` / `evaluate` / `dry_run`）\n- 4 个 benchmark 骨架类，每个方法标注 TODO 及预期数据格式\n- `EvalPipeline` 统一管线（注册、批量运行、报告生成）\n- `load_model_and_tokenizer` 工具函数\n- 完整 CLI（`--model-path`、`--benchmarks`、`--output-dir`、`--device`、`--dry-run` 及各 benchmark 专属参数）"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_eval_pipeline_20260518T073439"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/code-eval-pipeline.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "373d19068f49c449baa9",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval collect ckpt6500 and act s2",
+  "task_key": "worker_eval_collect-ckpt6500-and-act-s2_20260522T060623",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-ckpt6500-and-act-s2_20260522T060623_result.json",
+    "occurrence": 1,
+    "bytes": 726,
+    "sha256": "e301209fefb3f96717af1a75c90cc2e558d9a3196cfbeb4970c45a59ab135369"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Eval s2-ckpt6500 仍在运行中**，当前进度 180/362（~50%）。\n\n日志显示 13:28 开始，14:04 到 180/362，速率约 5 pair/min，预计还需 ~36 分钟，大约 **14:40** 左右完成。\n\n结果文件尚未生成（eval 完成后才会写入）。\n\n**GPU 状态（westd-28034）：**\n\n| GPU | Memory Used | Utilization | 状态 |\n|-----|-------------|-------------|------|\n| 0 | 16884 MiB | 48% | 忙（跑 eval） |\n| 1 | 2 MiB | 0% | **空闲** |\n| 2 | 2 MiB | 0% | **空闲** |\n| 3 | 2 MiB | 0% | **空闲** |\n\nGPU 1/2/3 均空闲，可用于 ACT s2 eval。需要等 ckpt6500 eval 完成后再收集结果和更新 registry。是否现在在空闲 GPU 上启动 ACT s2 eval？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-ckpt6500-and-act-s2.md"
+}

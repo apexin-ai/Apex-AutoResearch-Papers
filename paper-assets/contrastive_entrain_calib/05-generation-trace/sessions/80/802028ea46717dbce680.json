@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "802028ea46717dbce680",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops 29046 monitor and len512",
+  "task_key": "worker_ops_29046-monitor-and-len512_20260523T011410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_29046-monitor-and-len512_20260523T011410_result.json",
+    "occurrence": 1,
+    "bytes": 323,
+    "sha256": "55cde78ca740c61a9e964f38cadeae37a8e334ff0bb2a65cad898f6e6526c7ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "len512 启动成功！GPU1 98% 利用率，NLI 模型加载成功，step 1/8000 已开始训练。\n\n```\nACT s2 训练: 完成, step 8000/8000\nSCP ckpt-7500: 成功\nSCP ckpt-8000: 成功\nlen512: 启动成功 PID=553700\nGPU 状态:\n  GPU0: gs8 训练 (38GB, 98%)\n  GPU1: len512 训练 (41GB, 98%)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-29046-monitor-and-len512.md"
+}

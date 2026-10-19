@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e897ebdb58c5fe0a475",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval mmlu gsm8k capability",
+  "task_key": "worker_eval_mmlu-gsm8k-capability_20260524T022831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_mmlu-gsm8k-capability_20260524T022831_result.json",
+    "occurrence": 1,
+    "bytes": 355,
+    "sha256": "0c13024feb1f363ec282bf11b07f724819fd318515b47b2429a1e327131d50ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估已启动：\n- **PID**: 651783\n- **GPU**: cuda:0，Vanilla Qwen3-8B 模型已加载，正在跑 MMLU (5-shot)\n- **日志**: `/root/autodl-tmp/contrastive_entrain_calib/outputs/lm_eval/eval_3model.log`\n- **计划**: Vanilla → ACT s1 ckpt-8000 → R3-only s1 ckpt-6500，每个跑 MMLU + GSM8K\n- 15 分钟后自动检查进展。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-mmlu-gsm8k-capability.md"
+}

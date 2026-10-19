@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54d3dab8a80e9f3f8f3c",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diag gs8 ckpt1000 quick check",
+  "task_key": "worker_diag_gs8-ckpt1000-quick-check_20260523T000644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_gs8-ckpt1000-quick-check_20260523T000644_result.json",
+    "occurrence": 1,
+    "bytes": 591,
+    "sha256": "86a136020f21e02ed4671fb581a70e5ed472061dfc0d8c37c44edee8657d245d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 eval 全部仍在运行：\n\n| Eval | GPU | 进度 | 预估 |\n|------|-----|------|------|\n| **gs8 ckpt-1000** (PID 140553) | GPU 0 | 140/362 (~39%) | 已跑 ~30min，预计还需 ~45min |\n| **s2 ckpt-6500** | GPU 2 | 80/362 (~22%) | 预计还需 ~20min（速度快很多，~80s/20样本） |\n| **s2 ckpt-7000** | GPU 3 | 60/362 (~17%) | 预计还需 ~25min |\n\nGPU 显存占用：GPU0 16.9GB, GPU1 21.8GB, GPU2 17.7GB, GPU3 17.7GB — 四卡都在工作。\n\neval_results 目录暂无新结果，只有之前的 exp-003-s2-ckpt8000、exp-004-s2-ckpt2000/3000。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-gs8-ckpt1000-quick-check.md"
+}

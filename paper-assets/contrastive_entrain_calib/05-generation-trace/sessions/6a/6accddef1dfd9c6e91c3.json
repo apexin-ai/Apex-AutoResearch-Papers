@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6accddef1dfd9c6e91c3",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnosis 28034 eval status check",
+  "task_key": "worker_diagnosis_28034-eval-status-check_20260521T073124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_28034-eval-status-check_20260521T073124_result.json",
+    "occurrence": 1,
+    "bytes": 2074,
+    "sha256": "1541a69320ec0bbd5aefd8e5e232af3016b4621005381249aa8c11fddef3345d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### GPU 0 (cuda:0) — ckpt5000-v2 ✅ 运行中\n| 项目 | 值 |\n|------|-----|\n| PID | 497834 (nohup) |\n| 进度 | **40/362** (11%) @ 15:29 |\n| 速率 | ~20 pairs / 4.5 min |\n| GPU 占用 | 16854MiB, util 18% |\n| 预计完成 | **~16:43** |\n\n### GPU 1 (cuda:1) — ckpt6000 ✅ 运行中\n| 项目 | 值 |\n|------|-----|\n| PID | 498446 (tmux: exp-003-eval-ckpt6000) |\n| 进度 | **20/362** (5.5%) @ 15:27 |\n| 速率 | ~20 pairs / 5 min |\n| GPU 占用 | 16854MiB, util 36% |\n| 预计完成 | **~16:57** |\n\n### GPU 2 (cuda:2) — ckpt6500 ✅ 运行中\n| 项目 | 值 |\n|------|-----|\n| PID | 498584 (tmux: exp-003-eval-ckpt6500) |\n| 进度 | **40/362** (11%) @ 15:32 |\n| 速率 | ~20 pairs / 5 min |\n| GPU 占用 | 16854MiB, util 24% |\n| 预计完成 | **~16:53** |\n\n### GPU 3 (cuda:3) — ⚠️ 冲突：两个进程抢 GPU\n\n**旧进程 — ckpt7000 (非 v2)**\n| 项目 | 值 |\n|------|-----|\n| PID | 498666 (tmux: exp-003-eval-ckpt7000) |\n| 进度 | 20/362 (5.5%) @ 15:27 |\n| exp_id | `exp003-ckpt7000`（不是 v2） |\n\n**新进程 — ckpt7000-v2**\n| 项目 | 值 |\n|------|-----|\n| PID | 500594 (tmux: exp-003-eval-ckpt7000-v2) |\n| 进度 | **0/362** — 刚启动，还没出 progress |\n| exp_id | `exp003-ckpt7000-v2` |\n\n两个进程合计占 **29781MiB / 32607MiB (91%)**。ckpt7000-v2 的日志已出现 accelerate 内存不足警告：\n\n> `no modules could be assigned to the following devices due to insufficient memory: - 0: 2489319424 bytes required`\n\n### 结果产出\n4 个当前 eval **均未完成**，results 目录中无 ckpt5000-v2 / ckpt6000 / ckpt6500 / ckpt7000-v2 的输出文件。\n\n### 需要处理\n**必须 kill 旧的 ckpt7000 (PID 498666)**，否则：\n1. ckpt7000-v2 因 VRAM 不足可能 OOM 或跑得极慢\n2. 旧的 ckpt7000 产出的 exp_id 是 `exp003-ckpt7000` 而非 v2，结果也不是你要的\n\n建议执行：\n```bash\nkill 498666  # kill 旧 ckpt7000\ntmux kill-session -t exp-003-eval-ckpt7000  # 清理旧 tmux\n```\n\n是否要我执行？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-28034-eval-status-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5cc81a5010dc156ffe3e",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval collect ckpt8000",
+  "task_key": "worker_eval_collect-ckpt8000_20260521T113829",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-ckpt8000_20260521T113829_result.json",
+    "occurrence": 1,
+    "bytes": 516,
+    "sha256": "d94e08bf9a9f932308e7d9e12d897f0c78654329703193e1c84e3e96372523d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果汇总：\n\n**exp-003 ckpt-8000 (FINAL) eval 结果：**\n- **SYCONScore = 0.1433**\n- ToF = 0.0773\n- NoF = 0.9724\n\nSeed 1 完整 late-training 轨迹：ckpt-6000=0.085 → ckpt-6500=0.153 → ckpt-7000=0.105 → ckpt-7500=0.105 → **ckpt-8000=0.143**\n\n最终 checkpoint 回弹到 0.143，略高于 vanilla baseline (0.134)，仍在振荡区间 (0.085–0.153) 内。R3-only GRPO seed 1 未能稳定超越 baseline，late-training 表现为持续振荡而非收敛。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-ckpt8000.md"
+}

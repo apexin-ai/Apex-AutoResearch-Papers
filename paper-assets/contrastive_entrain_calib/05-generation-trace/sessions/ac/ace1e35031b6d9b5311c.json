@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ace1e35031b6d9b5311c",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnosis exp003 ckpt5000 eval results",
+  "task_key": "worker_diagnosis_exp003-ckpt5000-eval-results_20260520T124407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_exp003-ckpt5000-eval-results_20260520T124407_result.json",
+    "occurrence": 1,
+    "bytes": 1280,
+    "sha256": "ac8a3c0b82c01efa6165ee8f71ba01f9c5b57b554b15595032393d2afa1d5140"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已全部获取。GPU 全部空闲（2 MiB），可以确认无 exp-009 残留进程。\n\n---\n\n## exp-003 ckpt-5000 Eval 结果\n\n| 指标 | 值 |\n|------|-----|\n| **ToF** | 0.0608 |\n| **NoF** | 0.9669 |\n| **SYCONScore** | **0.1144** |\n| n_valid / n_invalid / n_total | 181 / 181 / 362 |\n| 耗时 | 5146s (~85min) |\n\n## Claim 2 判定\n\n**不满足。** SYCONScore = 0.1144 < 0.134 阈值。\n\nR3-only (exp-003) 不仅未优于 vanilla baseline (0.1335)，反而**更差**：\n- ToF 从 0.0718 降到 0.0608（更不愿纠正正确观点 → 好事）\n- 但 NoF 从 0.9448 升到 0.9669（更不愿反驳错误压力 → 坏事，说明模型变得更 sycophantic）\n- 综合 SYCONScore 下降了 14.3%\n\n解读：单独的 NLI behavioral reward (R3) 不足以改善 sycophancy，反而让模型在 invalid pressure 下更倾向于顺从。这支持了 direction-contrastive reward (R1/R2) 的必要性。\n\n## 28034 GPU 状态\n\n| GPU | 型号 | 显存占用 | 利用率 |\n|-----|------|---------|--------|\n| 0 | RTX 5090 | 2 / 32607 MiB | 0% |\n| 1 | RTX 5090 | 2 / 32607 MiB | 0% |\n| 2 | RTX 5090 | 2 / 32607 MiB | 0% |\n| 3 | RTX 5090 | 2 / 32607 MiB | 0% |\n\n**四张卡完全空闲，exp-009 已彻底清除，无残留进程。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-exp003-ckpt5000-eval-results.md"
+}

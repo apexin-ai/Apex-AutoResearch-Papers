@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9ca9f717ac09e1d2bc9",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ssh kill duplicate fix exp004s2",
+  "task_key": "worker_ssh_kill-duplicate-fix-exp004s2_20260522T155341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill-duplicate-fix-exp004s2_20260522T155341_result.json",
+    "occurrence": 1,
+    "bytes": 1564,
+    "sha256": "369bed63226036678e96b8fe42d4c2cdabdd10149c8b0652fd6cbab35d80ecbe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n### 1. Kill 结果\nPID 502516 已成功终止（SIGTERM 即退出）。\n\n### 2. PID 494017 状态\n运行中，当前 **step 4000/8000**，刚保存了 checkpoint-4000。运行时间 ~5h，在 GPU1（CUDA_VISIBLE_DEVICES=1）上。\n\n### 3. Checkpoint 完整性（按 adapter_model.safetensors mtime）\n\n| Checkpoint | mtime | 可信？ | 说明 |\n|---|---|---|---|\n| checkpoint-2000 | 20:24:52 | **可信** | 初始恢复点 |\n| checkpoint-2500 | 21:41:14 | **不确定** | 两个进程都经过此 step，可能被覆盖 |\n| checkpoint-3000 | **22:56:41** | **被污染** | 时间晚于 3500，是 PID 502516（已 kill）写的覆盖 |\n| checkpoint-3500 | 22:36:45 | **可信** | 只有 PID 494017 能到 3500 |\n| checkpoint-4000 | 刚保存 | **可信** | PID 502516 已死，只有 494017 写入 |\n\n关键问题：**checkpoint-3000 被 PID 502516 覆盖了**（mtime 22:56 比 checkpoint-3500 的 22:36 晚 20 分钟，说明是慢进程后写入的）。\n\n### 4. 日志污染\n**严重**。585 条记录，仅 399 个 unique step：\n- Step 2010-2500：每个出现 **3 次**（原始训练 + 两次恢复都写入）\n- Step 2510-3360：每个出现 **2 次**（两个恢复进程同时写入）\n- `train_log.jsonl` 需要清洗后才能用于分析\n\n### 5. GPU 状态\nGPU0: 100% / 55GB，GPU1: 97% / 40GB。只剩 PID 494017 一个 exp-004-s2 进程。\n\n**建议后续操作**：如果需要日志分析，需按时间戳或 PID 过滤 `train_log.jsonl` 去重。checkpoint-3000 不可信，可以删掉。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-duplicate-fix-exp004s2.md"
+}

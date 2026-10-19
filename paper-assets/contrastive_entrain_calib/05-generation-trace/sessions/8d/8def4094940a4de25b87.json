@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8def4094940a4de25b87",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code prep exp002v2recalib eval",
+  "task_key": "worker_code_prep-exp002v2recalib-eval_20260519T103312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep-exp002v2recalib-eval_20260519T103312_result.json",
+    "occurrence": 1,
+    "bytes": 784,
+    "sha256": "47ccb85ce2717c64cb1125aa66de8114bdf87d37f8c07e4b307c8691df35b96f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建并通过语法检查。\n\n**汇总：**\n\n- 脚本路径：`/root/contrastive_entrain_calib/eval/run_exp002v2recalib_unified_eval.sh`\n- Checkpoint 目录：`/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/`（当前有 checkpoint-500 和 checkpoint-1000，训练在 step ~1089/8000，save_steps=500）\n- LoRA 确认：checkpoint-500 内有 `adapter_model.safetensors`\n- Calibration 数据：`/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl`\n- 输出目录：`/root/contrastive_entrain_calib/results/exp002v2recalib_unified_eval/`\n- 覆盖 checkpoint 500~8000（每 500 步），自动跳过不存在和已评估的 checkpoint\n- 运行方式：`CUDA_VISIBLE_DEVICES=0 bash eval/run_exp002v2recalib_unified_eval.sh`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-exp002v2recalib-eval.md"
+}

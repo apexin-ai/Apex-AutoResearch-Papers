@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28ed5555c790d30ce1a2",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp 003 s2 ckpts",
+  "task_key": "worker_eval_exp-003-s2-ckpts_20260525T124348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp-003-s2-ckpts_20260525T124348_result.json",
+    "occurrence": 1,
+    "bytes": 63,
+    "sha256": "9aedafb5601adbcc98a6739cbc3856e8d978826dddafbdfd1c45f8ec06c49547"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval 在正常运行，270 秒后自动轮询。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-003-s2-ckpts.md"
+}

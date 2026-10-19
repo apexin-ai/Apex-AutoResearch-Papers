@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5d440680d25bfd1b0c0",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diag exp004 failure",
+  "task_key": "worker_diag_exp004-failure_20260518T163248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp004-failure_20260518T163248_result.json",
+    "occurrence": 1,
+    "bytes": 1605,
+    "sha256": "cd27bbd71deaeb5f6be97c715428e08783f701491786d89a45ce6848c54fee79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 调查结论\n\n**exp-004 并没有 crash。训练正在正常进行。**\n\n### 失败根因\n\n\"crash\"是 launch 脚本 (`launch_exp004.sh`) 里的 **dry-run 步骤 OOM**，不是实际训练进程。\n\n时间线：\n1. **23:55** — 训练进程 (PID 18204) 通过另一条命令直接启动，加载模型到 GPU 0（占用 ~21 GiB）\n2. **00:28** — launch 脚本完成模型下载后尝试 dry-run，也在 GPU 0 上加载模型\n3. dry-run OOM crash：`CUDA out of memory. Tried to allocate 96.00 MiB. GPU 0 has ... 70.38 MiB free`\n4. `set -e` 导致 launch 脚本退出，看起来像\"训练 crash 了\"\n\n**实际上是两个进程同时抢 GPU 0 导致的 dry-run 失败。**\n\n### 训练当前状态\n\n训练进程 PID 18204 正常运行中，已到 **step 270/8000**：\n\n| Metric | Step 10 | Step 270 |\n|--------|---------|----------|\n| sft_loss | 2.586 | 0.013 |\n| l2_loss | 2.433 | 0.016 |\n| total_loss | 2.830 | 0.014 |\n| lr | 2.5e-6 | 4.96e-5 |\n\nLoss 下降健康，每 10 步约 84 秒，预计总时长约 18.7 小时。\n\n### GPU 当前状态\n\n| GPU | 显存 | 状态 |\n|-----|------|------|\n| GPU 0 | 21.6 / 32.6 GiB | 训练中 (PID 18204, 49% util) |\n| GPU 1 | 空闲 | 可用 |\n| GPU 2 | 空闲 | 可用 |\n| GPU 3 | 空闲 | 可用 |\n\n### 修复建议\n\n无需修复 — 训练正常进行。但 launch 脚本有设计缺陷：dry-run 没有检查 GPU 是否已被占用。如果后续需要复用该脚本，建议在 dry-run 前加 `nvidia-smi` 检查，或直接去掉 dry-run 步骤（训练脚本自身已经能快速失败）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp004-failure.md"
+}

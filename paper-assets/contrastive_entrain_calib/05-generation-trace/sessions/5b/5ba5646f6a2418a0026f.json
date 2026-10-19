@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ba5646f6a2418a0026f",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops anon repo check",
+  "task_key": "worker_ops_anon-repo-check_20260523T161229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_anon-repo-check_20260523T161229_result.json",
+    "occurrence": 1,
+    "bytes": 3221,
+    "sha256": "ccc2d57e1293334139820884b44f7c5a8d771bbbee099a7344f25a0b1f2de2df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "检查完毕。以下是完整性检查汇总：\n\n---\n\n## 匿名仓库完整性检查报告\n\n### 1. 代码完整性 ✅\n\n| 目录/文件 | 状态 | 内容 |\n|-----------|------|------|\n| `training/` | ✅ 存在 | 17 个文件，覆盖 DCGRPO、R3-only、ACT、probe penalty、steering 等多组实验 |\n| `eval/` | ✅ 存在 | 8 个文件，含 pipeline、unified preset、vanilla baseline、NLI utils、lm-eval |\n| `data/` | ✅ 存在 | 4 个文件：train_split、eval_split、eval_held_out、calibration_v2_1_expanded |\n| 配置文件 | ✅ 存在 | `requirements.txt`、`.gitignore`、多个 `.sh` 脚本 |\n| 根目录工具脚本 | ✅ 存在 | extract_activations、compute_directions、evaluate_directions 等 |\n\n总计 **46 files**，与 commit 记录一致。\n\n### 2. README 检查 ⚠️ 有缺失\n\n| 项目 | 状态 | 说明 |\n|------|------|------|\n| 项目描述 | ✅ | 有，描述了三阶段 pipeline |\n| 环境依赖 | ✅ | 提到 Python 3.10+, CUDA 12.x, PyTorch 2.x, `pip install -r requirements.txt` |\n| 训练使用说明 | ⚠️ **不足** | 没有具体的训练命令示例（如 `python training/run_exp003_r3only.py`） |\n| 评估使用说明 | ⚠️ **不足** | 没有评估命令示例 |\n| 数据格式说明 | ⚠️ **不足** | 仅提到 292 train / 70 held-out 的数量，缺少 JSONL 字段说明 |\n| 复现步骤 | ❌ **缺失** | 没有 step-by-step 的复现流程 |\n\n### 3. 敏感信息检查 ✅ 通过\n\n- **作者身份**：所有文件均无姓名、邮箱、机构信息 ✅\n- **API key / token**：未发现任何硬编码凭证 ✅\n- **绝对路径**：所有路径均为相对路径（`./models/`、`./data/`） ✅\n- **wandb 实体名**：未发现 wandb project/entity 配置 ✅\n- **GitHub org 名**：使用 `anonymous-nlp-2026-2`，已匿名 ✅\n\n### 4. 数据文件 ✅\n\n- 训练数据（`train_split.jsonl`）、评估数据（`eval_split.jsonl`、`eval_held_out.jsonl`）和校准数据（`calibration_v2_1_expanded.jsonl`）均已包含在仓库中\n- 数据格式为 JSONL，每条包含 `pair_id`、`condition`、`domain`、`ground_truth`、`turns` 等字段，无身份信息\n\n---\n\n### 建议修复项\n\n**README 需补充以下内容**（草拟如下）：\n\n```markdown\n## Quick Start\n\n### 1. Environment Setup\n```bash\npip install -r requirements.txt\n```\n\n### 2. Direction Extraction\n```bash\npython extract_activations.py --model_path ./models/Qwen3-8B --data_path ./data/calibration_v2_1_expanded.jsonl\npython compute_directions.py\n```\n\n### 3. Training\n```bash\n# ACT + SFT (main method)\npython training/run_exp004s2_act.py\n\n# GRPO + R3 reward\npython training/run_exp003_r3only.py\n```\n\n### 4. Evaluation\n```bash\nbash eval/run_exp003_unified_eval.sh\n# or run LM-Eval benchmarks\nbash eval/run_lm_eval.sh\n```\n\n## Data Format\n\nEach JSONL entry contains:\n- `pair_id`: unique sample identifier\n- `condition`: `valid_correction` or `invalid_pressure`\n- `domain`: subject area (e.g., math)\n- `ground_truth`: correct answer\n- `turns`: multi-turn dialogue as `[{role, content}, ...]`\n```\n\n需要我把这段补充内容写入本地 README 并推送到仓库吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-anon-repo-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed8fe2dc0891d9fbc3b4",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "transfer scp ckpt7500 to 28034",
+  "task_key": "worker_transfer_scp-ckpt7500-to-28034_20260521T082838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_transfer_scp-ckpt7500-to-28034_20260521T082838_result.json",
+    "occurrence": 1,
+    "bytes": 424,
+    "sha256": "cbf951f73b5d479a128ee6595177e97ce24e6cdaaa8955f1e3b54f9d3accf238"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SCP 完成，验证通过。\n\n| 项目 | 源 (29046) | 目标 (28034) |\n|------|-----------|-------------|\n| adapter_model.safetensors | 245,405,936 bytes | 245,405,936 bytes |\n| 文件总数 | 15 | 15 |\n| 路径 | `/root/autodl-tmp/checkpoints/exp003_r3only_seed1/checkpoint-7500/` | `/root/autodl-tmp/checkpoints/exp003/checkpoint-7500/` |\n\n全部 15 个文件完整传输，本地暂存已清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/transfer-scp-ckpt7500-to-28034.md"
+}

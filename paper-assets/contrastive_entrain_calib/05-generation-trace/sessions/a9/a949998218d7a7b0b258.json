@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a949998218d7a7b0b258",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis trajectory compilation",
+  "task_key": "worker_analysis_trajectory-compilation_20260521T103902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_trajectory-compilation_20260521T103902_result.json",
+    "occurrence": 1,
+    "bytes": 849,
+    "sha256": "d329342cc80e8224b76099be5cb0ae6079ecb4fbce827dbb608246148fbae740"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务完成：\n\n**任务 1 — Registry 清理**：3 个旧命名条目已标记 conclusion=killed + notes 注明被新条目替代：\n- `exp-003-s2-eval-ckpt2500` → superseded by `exp-003-eval-s2-ckpt2500`\n- `exp-003-s2-eval-ckpt3000` → superseded by `exp-003-eval-s2-ckpt3000`\n- `exp-003-s2-eval-ckpt2000` → superseded by `exp-003-eval-s2-ckpt2000`\n\n**任务 2 — 轨迹数据编纂**：已写入 memory.md \"R3-only 完整轨迹分析\" 段落，包含：\n- Seed 1 完整 11 checkpoint 表（step 1000→7500，ckpt-8000 待补）\n- Seed 2 已完成 5 checkpoint 表（ckpt-2500/3500 RUNNING 待补）\n- 跨 seed 对比表（step 1000/2000/3000 方差极小，2000/3000 几乎完全一致）\n- 三阶段分析：爬升期→退化振荡期→晚期收敛，核心结论 R3-only 天花板 = vanilla baseline"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-trajectory-compilation.md"
+}

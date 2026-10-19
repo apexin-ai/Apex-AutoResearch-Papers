@@ -1,0 +1,1797 @@
+{
+  "schema_version": "1.0",
+  "id": "797c67b8da93bb1c4aef",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "code exp002v3 final adjustments",
+  "task_key": "worker_code_exp002v3-final-adjustments_20260519T073451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp002v3-final-adjustments_20260519T073451.log",
+    "occurrence": 1,
+    "bytes": 136681,
+    "sha256": "2f418ca1962f9ea44d6ca6641b24913b91d2adf6376d20b1e82b18120e935f0d"
+  },
+  "statistics": {
+    "messages": 41,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 14,
+      "tool_result": 14,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+                "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "96e59762-7e43-4d1e-8b7f-df574ec91071",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779193200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "a9f76534-40ac-4975-8d26-51385c67107a",
+                "session_id": "510b82f4-68d9-4088-af61-28880100879c"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me break down the tasks:\n\n1. SSH to the server and read the run script\n2. Remove `resume_from_checkpoint` related code\n3. Confirm all configuration values\n4. Add monitoring for step 0-50\n5. Add anomaly detection comments at top\n6. Dry-run compile check\n7. Sync to local\n8. Confirm trainer import path\n\nLet me start by reading the remote file and checking the trainer import path.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "a71d42d4-2670-48ab-a7bd-2188536f7058",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0147tLWkmZYupnN7efx2wFRL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13421,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13421
+                },
+                "output_tokens": 31,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先读取远程 run script 和确认 trainer import 路径。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "d9e01d17-a30d-486c-aa38-1e69d94b2819",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0147tLWkmZYupnN7efx2wFRL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13421,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13421
+                },
+                "output_tokens": 31,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BdSczwcFbytGhxgaQP1RJu",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "ca81171e-1b7c-45a5-a741-809f206bb10f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0147tLWkmZYupnN7efx2wFRL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13421,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13421
+                },
+                "output_tokens": 31,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T07:35:07.126Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01BdSczwcFbytGhxgaQP1RJu",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__save_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "96b09a3e-7b81-4997-a512-8c8e078fae22",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__save_project_file"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Pn3imbRanGHumtsN64F2R4",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29046",
+                "command": "cat /root/contrastive_entrain_calib/training/run_exp002v3_dcgrpo_scaled_cosine.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "63ac3719-bafb-434f-842f-3c18d93b407e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T9RwDDR2e4Nv64nf88nbmG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1071,
+                "cache_read_input_tokens": 25262,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1071
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T07:35:11.841Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Pn3imbRanGHumtsN64F2R4",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp-002v3: DC-GRPO with scaled cosine R1.\\\\n\\\\nParent: exp-002v2 (cosine R1, but R1 signal too weak vs R3)\\\\nKey change: r1_scale_factor=5.0 amplifies cosine R1 from ~[-0.2, +0.2] to ~[-1, +1],\\\\nmaking it commensurate with R3 (NLI, [0,1]). Weights rebalanced to 0.5/0.5.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nfrom datasets import Dataset\\\\nfrom peft import LoraConfig\\\\nfrom transformers import AutoTokenizer\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/mvp_v2_1_expanded/training\\\\\\\")\\\\nfrom dcgrpo_trainer import DCGRPOConfig, DCGRPOTrainer\\\\n\\\\nOUTPUT_DIR = \\\\\\\"/root/contrastive_entrain_calib/checkpoints/exp002v3_dcgrpo_scaled_cosine\\\\\\\"\\\\nos.makedirs(OUTPUT_DIR, exist_ok=True)\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\\\\\\\",\\\\n    handlers=[\\\\n        logging.StreamHandler(),\\\\n        logging.FileHandler(os.path.join(OUTPUT_DIR, \\\\\\\"train.log\\\\\\\")),\\\\n    ],\\\\n)\\\\nlogger = logging.getLogger(\\\\\\\"exp002v3\\\\\\\")\\\\n\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\\\\"\\\\nDATA_PATH = \\\\\\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\\\\\"\\\\nDIRECTION_PATH = \\\\\\\"/root/contrastive_entrain_calib/results/exp001/directions.pt\\\\\\\"\\\\n\\\\nR1_WEIGHT = 0.4\\\\nR2_WEIGHT = 0.0\\\\nR3_WEIGHT = 0.6\\\\nR1_SCALE_FACTOR = 5.0\\\\nREWARD_LAYERS = [19, 20, 24, 27, 32, 33, 35]\\\\nSEED = 42\\\\n\\\\n\\\\nclass _StrengthAwareReward:\\\\n    __name__ = \\\\\\\"dc_grpo_reward\\\\\\\"\\\\n\\\\n    def __init__(self, trainer, inner):\\\\n        self.trainer = trainer\\\\n        self._inner = inner\\\\n\\\\n    def __call__(self, prompts, completions, **kwargs):\\\\n        self.trainer._current_strengths = kwargs.get(\\\\n            \\\\\\\"evidence_strength\\\\\\\", [\\\\\\\"unknown\\\\\\\"] * len(completions)\\\\n        )\\\\n        return self._inner(prompts, completions, **kwargs)\\\\n\\\\n\\\\nclass Exp002v3Trainer(DCGRPOTrainer):\\\\n    def __init__(self, *args, **kwargs):\\\\n        super().__init__(*args, **kwargs)\\\\n        self._current_strengths = []\\\\n        self._log_step = 0\\\\n        self.reward_funcs = [_StrengthAwareReward(self, self.reward_funcs[0])]\\\\n        if hasattr(self, \\\\\\\"reward_func_names\\\\\\\"):\\\\n            self.reward_func_names = [\\\\\\\"dc_grpo_reward\\\\\\\"]\\\\n\\\\n    def compute_rewards(self, completions, conditions, pair_ids, batch_activations, r1_ema=None, ema_alpha=0.3):\\\\n        rewards, components = super().compute_rewards(\\\\n            completions, conditions, pair_ids, batch_activations, r1_ema, ema_alpha\\\\n        )\\\\n\\\\n        self._log_step += 1\\\\n        if self._log_step % 10 == 0:\\\\n            strengths = self._current_strengths or []\\\\n            for strength in [\\\\\\\"weak\\\\\\\", \\\\\\\"medium\\\\\\\", \\\\\\\"strong\\\\\\\"]:\\\\n                indices = [i for i, s in enumerate(strengths) if s == strength]\\\\n                if indices:\\\\n                    r1_vals = [components[\\\\\\\"r1\\\\\\\"][i] for i in indices if i < len(components[\\\\\\\"r1\\\\\\\"])]\\\\n                    if r1_vals:\\\\n                        logger.info(\\\\\\\"reward/r1_%s_mean=%.4f n=%d\\\\\\\", strength, sum(r1_vals) / len(r1_vals), len(r1_vals))\\\\n\\\\n        return rewards, components\\\\n\\\\n\\\\ndef load_dataset(tokenizer):\\\\n    records = []\\\\n    with open(DATA_PATH) as f:\\\\n        for line in f:\\\\n            rec = json.loads(line)\\\\n            msgs = [{\\\\\\\"role\\\\\\\": t[\\\\\\\"role\\\\\\\"], \\\\\\\"content\\\\\\\": t[\\\\\\\"content\\\\\\\"]} for t in rec[\\\\\\\"turns\\\\\\\"]]\\\\n            try:\\\\n                prompt = tokenizer.apply_chat_template(\\\\n                    msgs, tokenize=False, add_generation_prompt=True, enable_thinking=False\\\\n                )\\\\n            except TypeError:\\\\n                prompt = tokenizer.apply_chat_template(\\\\n                    msgs, tokenize=False, add_generation_prompt=True\\\\n                )\\\\n            records.append({\\\\n                \\\\\\\"prompt\\\\\\\": prompt,\\\\n                \\\\\\\"condition\\\\\\\": rec[\\\\\\\"condition\\\\\\\"],\\\\n                \\\\\\\"pair_id\\\\\\\": str(rec[\\\\\\\"pair_id\\\\\\\"]),\\\\n                \\\\\\\"evidence_strength\\\\\\\": rec.get(\\\\\\\"evidence_strength\\\\\\\", \\\\\\\"unknown\\\\\\\"),\\\\n            })\\\\n    logger.info(\\\\\\\"Loaded %d records from %s\\\\\\\", len(records), DATA_PATH)\\\\n    return Dataset.from_list(records)\\\\n\\\\n\\\\ndef main():\\\\n    torch.manual_seed(SEED)\\\\n\\\\n    logger.info(\\\\\\\"=== exp-002v3: DC-GRPO Scaled Cosine R1 ===\\\\\\\")\\\\n    logger.info(\\\\\\\"Weights: R1=%.2f, R2=%.2f, R3=%.2f | R1 scale_factor=%.1f\\\\\\\", R1_WEIGHT, R2_WEIGHT, R3_WEIGHT, R1_SCALE_FACTOR)\\\\n    logger.info(\\\\\\\"Reward layers: %s\\\\\\\", REWARD_LAYERS)\\\\n\\\\n    model_path = MODEL_PATH if Path(MODEL_PATH).exists() else \\\\\\\"Qwen/Qwen3-8B\\\\\\\"\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\\\n    if tokenizer.pad_token_id is None:\\\\n        tokenizer.pad_token_id = tokenizer.eos_token_id\\\\n\\\\n    dataset = load_dataset(tokenizer)\\\\n\\\\n    config = DCGRPOConfig(\\\\n        output_dir=OUTPUT_DIR,\\\\n        direction_path=DIRECTION_PATH,\\\\n        reward_layers=REWARD_LAYERS,\\\\n        reward_position=\\\\\\\"asst_first\\\\\\\",\\\\n        r1_weight=R1_WEIGHT,\\\\n        r2_weight=R2_WEIGHT,\\\\n        r3_weight=R3_WEIGHT,\\\\n        r1_scale_factor=R1_SCALE_FACTOR,\\\\n        r3_model_name=\\\\\\\"cross-encoder/nli-deberta-v3-base\\\\\\\",\\\\n        recalibration_interval=500,\\\\n        calibration_data_path=DATA_PATH,\\\\n        num_train_epochs=10,\\\\n        per_device_train_batch_size=1,\\\\n        gradient_accumulation_steps=16,\\\\n        gradient_checkpointing=True,\\\\n        learning_rate=5e-5,\\\\n        warmup_steps=200,\\\\n        logging_steps=10,\\\\n        save_steps=500,\\\\n        max_steps=8000,\\\\n        bf16=True,\\\\n        seed=SEED,\\\\n        max_completion_length=256,\\\\n        num_generations=2,\\\\n    )\\\\n\\\\n    peft_config = LoraConfig(\\\\n        r=64,\\\\n        lora_alpha=64,\\\\n        target_modules=[\\\\\\\"q_proj\\\\\\\", \\\\\\\"v_proj\\\\\\\", \\\\\\\"k_proj\\\\\\\", \\\\\\\"o_proj\\\\\\\"],\\\\n        bias=\\\\\\\"none\\\\\\\",\\\\n        task_type=\\\\\\\"CAUSAL_LM\\\\\\\",\\\\n    )\\\\n\\\\n    trainer = Exp002v3Trainer(\\\\n        model=model_path,\\\\n        args=config,\\\\n        train_dataset=dataset,\\\\n        processing_class=tokenizer,\\\\n        peft_config=peft_config,\\\\n    )\\\\n\\\\n    logger.info(\\\\\\\"Starting training...\\\\\\\")\\\\n    trainer.train(resume_from_checkpoint=\\\\\\\"/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/checkpoint-500\\\\\\\")\\\\n    trainer.save_model(os.path.join(OUTPUT_DIR, \\\\\\\"final\\\\\\\"))\\\\n    trainer.cleanup()\\\\n    logger.info(\\\\\\\"Training complete. Checkpoint: %s/final\\\\\\\", OUTPUT_DIR)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.24}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "5ced411e-cf63-4c06-8089-c35e50c854da",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp-002v3: DC-GRPO with scaled cosine R1.\\\\n\\\\nParent: exp-002v2 (cosine R1, but R1 signal too weak vs R3)\\\\nKey change: r1_scale_factor=5.0 amplifies cosine R1 from ~[-0.2, +0.2] to ~[-1, +1],\\\\nmaking it commensurate with R3 (NLI, [0,1]). Weights rebalanced to 0.5/0.5.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nfrom datasets import Dataset\\\\nfrom peft import LoraConfig\\\\nfrom transformers import AutoTokenizer\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/mvp_v2_1_expanded/training\\\\\\\")\\\\nfrom dcgrpo_trainer import DCGRPOConfig, DCGRPOTrainer\\\\n\\\\nOUTPUT_DIR = \\\\\\\"/root/contrastive_entrain_calib/checkpoints/exp002v3_dcgrpo_scaled_cosine\\\\\\\"\\\\nos.makedirs(OUTPUT_DIR, exist_ok=True)\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\\\\\\\",\\\\n    handlers=[\\\\n        logging.StreamHandler(),\\\\n        logging.FileHandler(os.path.join(OUTPUT_DIR, \\\\\\\"train.log\\\\\\\")),\\\\n    ],\\\\n)\\\\nlogger = logging.getLogger(\\\\\\\"exp002v3\\\\\\\")\\\\n\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\\\\"\\\\nDATA_PATH = \\\\\\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\\\\\"\\\\nDIRECTION_PATH = \\\\\\\"/root/contrastive_entrain_calib/results/exp001/directions.pt\\\\\\\"\\\\n\\\\nR1_WEIGHT = 0.4\\\\nR2_WEIGHT = 0.0\\\\nR3_WEIGHT = 0.6\\\\nR1_SCALE_FACTOR = 5.0\\\\nREWARD_LAYERS = [19, 20, 24, 27, 32, 33, 35]\\\\nSEED = 42\\\\n\\\\n\\\\nclass _StrengthAwareReward:\\\\n    __name__ = \\\\\\\"dc_grpo_reward\\\\\\\"\\\\n\\\\n    def __init__(self, trainer, inner):\\\\n        self.trainer = trainer\\\\n        self._inner = inner\\\\n\\\\n    def __call__(self, prompts, completions, **kwargs):\\\\n        self.trainer._current_strengths = kwargs.get(\\\\n            \\\\\\\"evidence_strength\\\\\\\", [\\\\\\\"unknown\\\\\\\"] * len(completions)\\\\n        )\\\\n        return self._inner(prompts, completions, **kwargs)\\\\n\\\\n\\\\nclass Exp002v3Trainer(DCGRPOTrainer):\\\\n    def __init__(self, *args, **kwargs):\\\\n        super().__init__(*args, **kwargs)\\\\n        self._current_strengths = []\\\\n        self._log_step = 0\\\\n        self.reward_funcs = [_StrengthAwareReward(self, self.reward_funcs[0])]\\\\n        if hasattr(self, \\\\\\\"reward_func_names\\\\\\\"):\\\\n            self.reward_func_names = [\\\\\\\"dc_grpo_reward\\\\\\\"]\\\\n\\\\n    def compute_rewards(self, completions, conditions, pair_ids, batch_activations, r1_ema=None, ema_alpha=0.3):\\\\n        rewards, components = super().compute_rewards(\\\\n            completions, conditions, pair_ids, batch_activations, r1_ema, ema_alpha\\\\n        )\\\\n\\\\n        self._log_step += 1\\\\n        if self._log_step % 10 == 0:\\\\n            strengths = self._current_strengths or []\\\\n            for strength in [\\\\\\\"weak\\\\\\\", \\\\\\\"medium\\\\\\\", \\\\\\\"strong\\\\\\\"]:\\\\n                indices = [i for i, s in enumerate(strengths) if s == strength]\\\\n                if indices:\\\\n                    r1_vals = [components[\\\\\\\"r1\\\\\\\"][i] for i in indices if i < len(components[\\\\\\\"r1\\\\\\\"])]\\\\n                    if r1_vals:\\\\n                        logger.info(\\\\\\\"reward/r1_%s_mean=%.4f n=%d\\\\\\\", strength, sum(r1_vals) / len(r1_vals), len(r1_vals))\\\\n\\\\n        return rewards, components\\\\n\\\\n\\\\ndef load_dataset(tokenizer):\\\\n    records = []\\\\n    with open(DATA_PATH) as f:\\\\n        for line in f:\\\\n            rec = json.loads(line)\\\\n            msgs = [{\\\\\\\"role\\\\\\\": t[\\\\\\\"role\\\\\\\"], \\\\\\\"content\\\\\\\": t[\\\\\\\"content\\\\\\\"]} for t in rec[\\\\\\\"turns\\\\\\\"]]\\\\n            try:\\\\n                prompt = tokenizer.apply_chat_template(\\\\n                    msgs, tokenize=False, add_generation_prompt=True, enable_thinking=False\\\\n                )\\\\n            except TypeError:\\\\n                prompt = tokenizer.apply_chat_template(\\\\n                    msgs, tokenize=False, add_generation_prompt=True\\\\n                )\\\\n            records.append({\\\\n                \\\\\\\"prompt\\\\\\\": prompt,\\\\n                \\\\\\\"condition\\\\\\\": rec[\\\\\\\"condition\\\\\\\"],\\\\n                \\\\\\\"pair_id\\\\\\\": str(rec[\\\\\\\"pair_id\\\\\\\"]),\\\\n                \\\\\\\"evidence_strength\\\\\\\": rec.get(\\\\\\\"evidence_strength\\\\\\\", \\\\\\\"unknown\\\\\\\"),\\\\n            })\\\\n    logger.info(\\\\\\\"Loaded %d records from %s\\\\\\\", len(records), DATA_PATH)\\\\n    return Dataset.from_list(records)\\\\n\\\\n\\\\ndef main():\\\\n    torch.manual_seed(SEED)\\\\n\\\\n    logger.info(\\\\\\\"=== exp-002v3: DC-GRPO Scaled Cosine R1 ===\\\\\\\")\\\\n    logger.info(\\\\\\\"Weights: R1=%.2f, R2=%.2f, R3=%.2f | R1 scale_factor=%.1f\\\\\\\", R1_WEIGHT, R2_WEIGHT, R3_WEIGHT, R1_SCALE_FACTOR)\\\\n    logger.info(\\\\\\\"Reward layers: %s\\\\\\\", REWARD_LAYERS)\\\\n\\\\n    model_path = MODEL_PATH if Path(MODEL_PATH).exists() else \\\\\\\"Qwen/Qwen3-8B\\\\\\\"\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\\\n    if tokenizer.pad_token_id is None:\\\\n        tokenizer.pad_token_id = tokenizer.eos_token_id\\\\n\\\\n    dataset = load_dataset(tokenizer)\\\\n\\\\n    config = DCGRPOConfig(\\\\n        output_dir=OUTPUT_DIR,\\\\n        direction_path=DIRECTION_PATH,\\\\n        reward_layers=REWARD_LAYERS,\\\\n        reward_position=\\\\\\\"asst_first\\\\\\\",\\\\n        r1_weight=R1_WEIGHT,\\\\n        r2_weight=R2_WEIGHT,\\\\n        r3_weight=R3_WEIGHT,\\\\n        r1_scale_factor=R1_SCALE_FACTOR,\\\\n        r3_model_name=\\\\\\\"cross-encoder/nli-deberta-v3-base\\\\\\\",\\\\n        recalibration_interval=500,\\\\n        calibration_data_path=DATA_PATH,\\\\n        num_train_epochs=10,\\\\n        per_device_train_batch_size=1,\\\\n        gradient_accumulation_steps=16,\\\\n        gradient_checkpointing=True,\\\\n        learning_rate=5e-5,\\\\n        warmup_steps=200,\\\\n        logging_steps=10,\\\\n        save_steps=500,\\\\n        max_steps=8000,\\\\n        bf16=True,\\\\n        seed=SEED,\\\\n        max_completion_length=256,\\\\n        num_generations=2,\\\\n    )\\\\n\\\\n    peft_config = LoraConfig(\\\\n        r=64,\\\\n        lora_alpha=64,\\\\n        target_modules=[\\\\\\\"q_proj\\\\\\\", \\\\\\\"v_proj\\\\\\\", \\\\\\\"k_proj\\\\\\\", \\\\\\\"o_proj\\\\\\\"],\\\\n        bias=\\\\\\\"none\\\\\\\",\\\\n        task_type=\\\\\\\"CAUSAL_LM\\\\\\\",\\\\n    )\\\\n\\\\n    trainer = Exp002v3Trainer(\\\\n        model=model_path,\\\\n        args=config,\\\\n        train_dataset=dataset,\\\\n        processing_class=tokenizer,\\\\n        peft_config=peft_config,\\\\n    )\\\\n\\\\n    logger.info(\\\\\\\"Starting training...\\\\\\\")\\\\n    trainer.train(resume_from_checkpoint=\\\\\\\"/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/checkpoint-500\\\\\\\")\\\\n    trainer.save_model(os.path.join(OUTPUT_DIR, \\\\\\\"final\\\\\\\"))\\\\n    trainer.cleanup()\\\\n    logger.info(\\\\\\\"Training complete. Checkpoint: %s/final\\\\\\\", OUTPUT_DIR)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.24}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"exp-002v3: DC-GRPO with scaled cosine R1.\\n\\nParent: exp-002v2 (cosine R1, but R1 signal too weak vs R3)\\nKey change: r1_scale_factor=5.0 amplifies cosine R1 from ~[-0.2, +0.2] to ~[-1, +1],\\nmaking it commensurate with R3 (NLI, [0,1]). Weights rebalanced to 0.5/0.5.\\n\\\"\\\"\\\"\\nimport json\\nimport logging\\nimport os\\nimport sys\\nfrom pathlib import Path\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom peft import LoraConfig\\nfrom transformers import AutoTokenizer\\n\\nsys.path.insert(0, \\\"/root/mvp_v2_1_expanded/training\\\")\\nfrom dcgrpo_trainer import DCGRPOConfig, DCGRPOTrainer\\n\\nOUTPUT_DIR = \\\"/root/contrastive_entrain_calib/checkpoints/exp002v3_dcgrpo_scaled_cosine\\\"\\nos.makedirs(OUTPUT_DIR, exist_ok=True)\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\\\",\\n    handlers=[\\n        logging.StreamHandler(),\\n        logging.FileHandler(os.path.join(OUTPUT_DIR, \\\"train.log\\\")),\\n    ],\\n)\\nlogger = logging.getLogger(\\\"exp002v3\\\")\\n\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\"\\nDATA_PATH = \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\"\\nDIRECTION_PATH = \\\"/root/contrastive_entrain_calib/results/exp001/directions.pt\\\"\\n\\nR1_WEIGHT = 0.4\\nR2_WEIGHT = 0.0\\nR3_WEIGHT = 0.6\\nR1_SCALE_FACTOR = 5.0\\nREWARD_LAYERS = [19, 20, 24, 27, 32, 33, 35]\\nSEED = 42\\n\\n\\nclass _StrengthAwareReward:\\n    __name__ = \\\"dc_grpo_reward\\\"\\n\\n    def __init__(self, trainer, inner):\\n        self.trainer = trainer\\n        self._inner = inner\\n\\n    def __call__(self, prompts, completions, **kwargs):\\n        self.trainer._current_strengths = kwargs.get(\\n            \\\"evidence_strength\\\", [\\\"unknown\\\"] * len(completions)\\n        )\\n        return self._inner(prompts, completions, **kwargs)\\n\\n\\nclass Exp002v3Trainer(DCGRPOTrainer):\\n    def __init__(self, *args, **kwargs):\\n        super().__init__(*args, **kwargs)\\n        self._current_strengths = []\\n        self._log_step = 0\\n        self.reward_funcs = [_StrengthAwareReward(self, self.reward_funcs[0])]\\n        if hasattr(self, \\\"reward_func_names\\\"):\\n            self.reward_func_names = [\\\"dc_grpo_reward\\\"]\\n\\n    def compute_rewards(self, completions, conditions, pair_ids, batch_activations, r1_ema=None, ema_alpha=0.3):\\n        rewards, components = super().compute_rewards(\\n            completions, conditions, pair_ids, batch_activations, r1_ema, ema_alpha\\n        )\\n\\n        self._log_step += 1\\n        if self._log_step % 10 == 0:\\n            strengths = self._current_strengths or []\\n            for strength in [\\\"weak\\\", \\\"medium\\\", \\\"strong\\\"]:\\n                indices = [i for i, s in enumerate(strengths) if s == strength]\\n                if indices:\\n                    r1_vals = [components[\\\"r1\\\"][i] for i in indices if i < len(components[\\\"r1\\\"])]\\n                    if r1_vals:\\n                        logger.info(\\\"reward/r1_%s_mean=%.4f n=%d\\\", strength, sum(r1_vals) / len(r1_vals), len(r1_vals))\\n\\n        return rewards, components\\n\\n\\ndef load_dataset(tokenizer):\\n    records = []\\n    with open(DATA_PATH) as f:\\n        for line in f:\\n            rec = json.loads(line)\\n            msgs = [{\\\"role\\\": t[\\\"role\\\"], \\\"content\\\": t[\\\"content\\\"]} for t in rec[\\\"turns\\\"]]\\n            try:\\n                prompt = tokenizer.apply_chat_template(\\n                    msgs, tokenize=False, add_generation_prompt=True, enable_thinking=False\\n                )\\n            except TypeError:\\n                prompt = tokenizer.apply_chat_template(\\n                    msgs, tokenize=False, add_generation_prompt=True\\n                )\\n            records.append({\\n                \\\"prompt\\\": prompt,\\n                \\\"condition\\\": rec[\\\"condition\\\"],\\n                \\\"pair_id\\\": str(rec[\\\"pair_id\\\"]),\\n                \\\"evidence_strength\\\": rec.get(\\\"evidence_strength\\\", \\\"unknown\\\"),\\n            })\\n    logger.info(\\\"Loaded %d records from %s\\\", len(records), DATA_PATH)\\n    return Dataset.from_list(records)\\n\\n\\ndef main():\\n    torch.manual_seed(SEED)\\n\\n    logger.info(\\\"=== exp-002v3: DC-GRPO Scaled Cosine R1 ===\\\")\\n    logger.info(\\\"Weights: R1=%.2f, R2=%.2f, R3=%.2f | R1 scale_factor=%.1f\\\", R1_WEIGHT, R2_WEIGHT, R3_WEIGHT, R1_SCALE_FACTOR)\\n    logger.info(\\\"Reward layers: %s\\\", REWARD_LAYERS)\\n\\n    model_path = MODEL_PATH if Path(MODEL_PATH).exists() else \\\"Qwen/Qwen3-8B\\\"\\n\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\n    if tokenizer.pad_token_id is None:\\n        tokenizer.pad_token_id = tokenizer.eos_token_id\\n\\n    dataset = load_dataset(tokenizer)\\n\\n    config = DCGRPOConfig(\\n        output_dir=OUTPUT_DIR,\\n        direction_path=DIRECTION_PATH,\\n        reward_layers=REWARD_LAYERS,\\n        reward_position=\\\"asst_first\\\",\\n        r1_weight=R1_WEIGHT,\\n        r2_weight=R2_WEIGHT,\\n        r3_weight=R3_WEIGHT,\\n        r1_scale_factor=R1_SCALE_FACTOR,\\n        r3_model_name=\\\"cross-encoder/nli-deberta-v3-base\\\",\\n        recalibration_interval=500,\\n        calibration_data_path=DATA_PATH,\\n        num_train_epochs=10,\\n        per_device_train_batch_size=1,\\n        gradient_accumulation_steps=16,\\n        gradient_checkpointing=True,\\n        learning_rate=5e-5,\\n        warmup_steps=200,\\n        logging_steps=10,\\n        save_steps=500,\\n        max_steps=8000,\\n        bf16=True,\\n        seed=SEED,\\n        max_completion_length=256,\\n        num_generations=2,\\n    )\\n\\n    peft_config = LoraConfig(\\n        r=64,\\n        lora_alpha=64,\\n        target_modules=[\\\"q_proj\\\", \\\"v_proj\\\", \\\"k_proj\\\", \\\"o_proj\\\"],\\n        bias=\\\"none\\\",\\n        task_type=\\\"CAUSAL_LM\\\",\\n    )\\n\\n    trainer = Exp002v3Trainer(\\n        model=model_path,\\n        args=config,\\n        train_dataset=dataset,\\n        processing_class=tokenizer,\\n        peft_config=peft_config,\\n    )\\n\\n    logger.info(\\\"Starting training...\\\")\\n    trainer.train(resume_from_checkpoint=\\\"/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/checkpoint-500\\\")\\n    trainer.save_model(os.path.join(OUTPUT_DIR, \\\"final\\\"))\\n    trainer.cleanup()\\n    logger.info(\\\"Training complete. Checkpoint: %s/final\\\", OUTPUT_DIR)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the full file. Let me analyze:\n\n1. **resume_from_checkpoint**: Line `trainer.train(resume_from_checkpoint=\"/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/checkpoint-500\")` needs to be changed to `trainer.train()`\n\n2. **Configuration values**:\n   - `R1_WEIGHT = 0.4` ✓\n   - `R2_WEIGHT = 0.0` ✓\n   - `R3_WEIGHT = 0.6` ✓\n   - `R1_SCALE_FACTOR = 5.0` ✓\n   - `lora_alpha = 64` ✓\n   - `recalibration_interval=500` ✓\n   - `max_steps=8000` ✓\n   - `seed=42` / `SEED = 42` ✓\n\n3. **Trainer import**: The file imports `DCGRPOConfig` and `DCGRPOTrainer` from a custom trainer module located at `/root/mvp_v2_1_expanded/training/dcgrpo_trainer.py`.\n\nNow I need to verify whether `r1_scale_factor` is properly handled in that trainer file, and check if there's another copy of it at the contrastive training calibration path. I also notice the existing monitoring logs R1 strength every 10 steps, but the user wants much more granular logging for the first 50 steps—tracking R1 and R3 statistics separately, combined reward variance, gradient norms, and entropy. I should add anomaly detection comments at the top of the relevant section as well.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "30b36f98-d675-4536-8708-6240f2052a73",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017pmHs4PxBwYHZTqMDu6Fo2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2686,
+                "cache_read_input_tokens": 26333,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2686
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已读取。trainer 从 `/root/mvp_v2_1_expanded/training/dcgrpo_trainer.py` 导入。先检查该文件中 `r1_scale_factor` 的处理，以及 `/root/contrastive_entrain_calib/training/` 下是否也有 dcgrpo_trainer。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "04cf21b0-444e-4318-955f-7b41d4a23546",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017pmHs4PxBwYHZTqMDu6Fo2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2686,
+                "cache_read_input_tokens": 26333,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2686
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DUCXKMdXE7g855R2FvwRWi",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29046",
+                "command": "grep -n \"r1_scale_factor\\|R1_SCALE\\|scale_factor\" /root/mvp_v2_1_expanded/training/dcgrpo_trainer.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "05671abd-b573-499c-88c9-f741c1086197",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017pmHs4PxBwYHZTqMDu6Fo2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2686,
+                "cache_read_input_tokens": 26333,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2686
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T07:35:23.107Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DUCXKMdXE7g855R2FvwRWi",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "756d5ec7-d784-438d-ad23-f4116714eb6b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018vTGeMi6bLWixazhAPfprf",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29046",
+                "command": "ls /root/contrastive_entrain_calib/training/dcgrpo_trainer.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "4db72636-ee50-429d-b8c9-e9357c6c8176",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017pmHs4PxBwYHZTqMDu6Fo2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2686,
+                "cache_read_input_tokens": 26333,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2686
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T07:35:24.037Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018vTGeMi6bLWixazhAPfprf",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/contrastive_entrain_calib/training/dcgrpo_trainer.py': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "89998679-afa0-4899-9c1d-9af456788e84",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/contrastive_entrain_calib/training/dcgrpo_trainer.py': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/contrastive_entrain_calib/training/dcgrpo_trainer.py': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.48}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011rkoQitxKg1oL84si8enpQ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29046",
+                "command": "grep -n \"r1_scale_factor\" /root/mvp_v2_1_expanded/training/dcgrpo_trainer.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "606f11e4-7798-4c4c-a811-0b8bfdb924c4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013frTCtTZfmLT8E7WyzLkB1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1065,
+                "cache_read_input_tokens": 29019,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1065
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T07:35:29.091Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011rkoQitxKg1oL84si8enpQ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"130:    r1_scale_factor: float = 1.0\\\\n271:        self._r1_scale_factor = args.r1_scale_factor\\\\n674:        return self._r1_scale_factor * sum(scores) / len(scores)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "41162621-45a9-4f96-b9f7-f288acce22fc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"130:    r1_scale_factor: float = 1.0\\\\n271:        self._r1_scale_factor = args.r1_scale_factor\\\\n674:        return self._r1_scale_factor * sum(scores) / len(scores)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"130:    r1_scale_factor: float = 1.0\\n271:        self._r1_scale_factor = args.r1_scale_factor\\n674:        return self._r1_scale_factor * sum(scores) / len(scores)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HmQ8bDo1p4WeAGR1HWf8Uz",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29046",
+                "command": "grep -n \"scale_factor\" /root/mvp_v2_1_expanded/training/dcgrpo_trainer.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "f9f46132-ce64-46a1-9a62-bd2cdd151806",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013frTCtTZfmLT8E7WyzLkB1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1065,
+                "cache_read_input_tokens": 29019,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1065
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T07:35:29.996Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HmQ8bDo1p4WeAGR1HWf8Uz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"130:    r1_scale_factor: float = 1.0\\\\n271:        self._r1_scale_factor = args.r1_scale_factor\\\\n674:        return self._r1_scale_factor * sum(scores) / len(scores)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "dbe4e575-e783-4d9b-aa20-cbef94669cf5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"130:    r1_scale_factor: float = 1.0\\\\n271:        self._r1_scale_factor = args.r1_scale_factor\\\\n674:        return self._r1_scale_factor * sum(scores) / len(scores)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"130:    r1_scale_factor: float = 1.0\\n271:        self._r1_scale_factor = args.r1_scale_factor\\n674:        return self._r1_scale_factor * sum(scores) / len(scores)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good. The `r1_scale_factor` is handled in `/root/mvp_v2_1_expanded/training/dcgrpo_trainer.py`:\n- Line 130: config default `r1_scale_factor: float = 1.0`\n- Line 271: stored as `self._r1_scale_factor = args.r1_scale_factor`\n- Line 674: applied as `return self._r1_scale_factor * sum(scores) / len(scores)`\n\nThe run script passes `r1_scale_factor=R1_SCALE_FACTOR` (5.0) via `DCGRPOConfig`, so the trainer will pick it up. No need to modify the trainer file.\n\n\nSince there's no dcgrpo_trainer.py in the contrastive_entrain_calib directory, I'm relying on the import from mvp_v2_1_expanded. Now I need to make three key edits: remove the checkpoint resume parameter, add anomaly detection comments after the docstring, and enhance the early step monitoring to catch issues in the first 50 steps since the existing logging only triggers every 10 steps.\n\nThe trainer already logs standard metrics like loss and grad_norm at the configured interval, and the compute_rewards override currently logs R1 by strength. I should extend that override to also capture R1/R3 mean and std values plus combined reward variance during the critical early training phase, while relying on the trainer's built-in logging for grad_norm and entropy metrics.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "b6f2d6a7-965e-4e81-a721-b74aa7d9a0cc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Fghma2gcyeayBiVxvE4KZB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 583,
+                "cache_read_input_tokens": 30084,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 583
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认情况：\n- `r1_scale_factor` 在 `/root/mvp_v2_1_expanded/training/dcgrpo_trainer.py` 第130/271/674行正确实现\n- `/root/contrastive_entrain_calib/training/dcgrpo_trainer.py` 不存在，导入路径是 mvp_v2_1_expanded，无需同步\n- 所有配置值已正确，只需移除 `resume_from_checkpoint` + 增强监控\n\n现在执行修改。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "798ae3ef-e8ad-4a0d-81c6-e7abe3980070",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Fghma2gcyeayBiVxvE4KZB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 583,
+                "cache_read_input_tokens": 30084,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 583
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R8DDSAGNK6SUmzZtQ5qQd3",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29046",
+                "command": "cat > /tmp/patch_exp002v3.py << 'PYEOF'\nimport re\n\nfilepath = \"/root/contrastive_entrain_calib/training/run_exp002v3_dcgrpo_scaled_cosine.py\"\nwith open(filepath, \"r\") as f:\n    content = f.read()\n\n# 1. Add anomaly detection comments after the docstring\nold_docstring_end = '\"\"\"'\n# Find the second occurrence of \"\"\" (end of module docstring)\nfirst = content.index('\"\"\"')\nsecond = content.index('\"\"\"', first + 3)\ninsert_pos = second + 3\n\nmonitoring_comment = \"\"\"\n\n# MONITORING: step 0-50 异常阈值\n# - grad_norm > 1.0 → 立即汇报\n# - entropy < 0.1 → 立即汇报\n# FALLBACK: 如果不稳定，准备 scale=5 + weight=0.3 配置\n\"\"\"\n\n# Check if already inserted\nif \"MONITORING: step 0-50\" not in content:\n    content = content[:insert_pos] + monitoring_comment + content[insert_pos:]\n\n# 2. Remove resume_from_checkpoint\ncontent = re.sub(\n    r'trainer\\.train\\(resume_from_checkpoint=[^\\)]+\\)',\n    'trainer.train()',\n    content\n)\n\n# 3. Enhance compute_rewards for step 0-50 detailed logging\n# Replace the existing compute_rewards logging block with enhanced version\nold_logging = '''        self._log_step += 1\n        if self._log_step % 10 == 0:\n            strengths = self._current_strengths or []\n            for strength in [\"weak\", \"medium\", \"strong\"]:\n                indices = [i for i, s in enumerate(strengths) if s == strength]\n                if indices:\n                    r1_vals = [components[\"r1\"][i] for i in indices if i < len(components[\"r1\"])]\n                    if r1_vals:\n                        logger.info(\"reward/r1_%s_mean=%.4f n=%d\", strength, sum(r1_vals) / len(r1_vals), len(r1_vals))'''\n\nnew_logging = '''        self._log_step += 1\n        log_this = (self._log_step <= 50) or (self._log_step % 10 == 0)\n        if log_this:\n            import statistics\n            r1_vals = list(components.get(\"r1\", []))\n            r3_vals = list(components.get(\"r3\", []))\n            combined = [float(r) for r in rewards]\n            if r1_vals:\n                r1_m = sum(r1_vals) / len(r1_vals)\n                r1_s = statistics.stdev(r1_vals) if len(r1_vals) > 1 else 0.0\n                logger.info(\"step=%d R1 mean=%.4f std=%.4f\", self._log_step, r1_m, r1_s)\n            if r3_vals:\n                r3_m = sum(r3_vals) / len(r3_vals)\n                r3_s = statistics.stdev(r3_vals) if len(r3_vals) > 1 else 0.0\n                logger.info(\"step=%d R3 mean=%.4f std=%.4f\", self._log_step, r3_m, r3_s)\n            if combined:\n                c_s = statistics.stdev(combined) if len(combined) > 1 else 0.0\n                logger.info(\"step=%d combined_reward std=%.4f\", self._log_step, c_s)\n            strengths = self._current_strengths or []\n            for strength in [\"weak\", \"medium\", \"strong\"]:\n                indices = [i for i, s in enumerate(strengths) if s == strength]\n                if indices:\n                    sv = [r1_vals[i] for i in indices if i < len(r1_vals)]\n                    if sv:\n                        logger.info(\"step=%d reward/r1_%s_mean=%.4f n=%d\", self._log_step, strength, sum(sv) / len(sv), len(sv))'''\n\nif old_logging in content:\n    content = content.replace(old_logging, new_logging)\nelse:\n    print(\"WARNING: could not find old logging block for replacement\")\n\nwith open(filepath, \"w\") as f:\n    f.write(content)\n\nprint(\"Patch applied successfully\")\nPYEOF\npython3 /tmp/patch_exp002v3.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "b6b5b5f5-f488-4fd4-8d96-c525a8fb39db",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Fghma2gcyeayBiVxvE4KZB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 583,
+                "cache_read_input_tokens": 30084,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 583
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T07:36:01.356Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R8DDSAGNK6SUmzZtQ5qQd3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Patch applied successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "47a74a7d-b10d-40ff-b5d0-fe0cdd8b0d14",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Patch applied successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Patch applied successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QVNfU4fvVHL6nhfhgLgtES",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29046",
+                "command": "cd /root/contrastive_entrain_calib && /root/miniconda3/bin/python -m py_compile training/run_exp002v3_dcgrpo_scaled_cosine.py && echo \"PASS\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "7a5b0221-e712-4276-8dab-fffa97ba7a4b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0131DmTXQUhg9yep1b4tFg3J",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2241,
+                "cache_read_input_tokens": 30667,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2241
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T07:36:09.794Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QVNfU4fvVHL6nhfhgLgtES",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PASS\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "3e8d1539-85bf-4b55-bb80-578fa4cae956",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PASS\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"PASS\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过。验证最终文件内容。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "9a3d0941-45b1-437c-b8bb-e199598eb316",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0119QGvz7XQhUDaQYa1qHDuW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 231,
+                "cache_read_input_tokens": 32908,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 231
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BzA2kf7aRXwG4N1fH8bKS5",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29046",
+                "command": "cat /root/contrastive_entrain_calib/training/run_exp002v3_dcgrpo_scaled_cosine.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "3836f6e8-856b-4373-9c6d-19bfe3e46f65",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0119QGvz7XQhUDaQYa1qHDuW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 231,
+                "cache_read_input_tokens": 32908,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 231
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T07:36:13.507Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BzA2kf7aRXwG4N1fH8bKS5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp-002v3: DC-GRPO with scaled cosine R1.\\\\n\\\\nParent: exp-002v2 (cosine R1, but R1 signal too weak vs R3)\\\\nKey change: r1_scale_factor=5.0 amplifies cosine R1 from ~[-0.2, +0.2] to ~[-1, +1],\\\\nmaking it commensurate with R3 (NLI, [0,1]). Weights rebalanced to 0.5/0.5.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n# MONITORING: step 0-50 异常阈值\\\\n# - grad_norm > 1.0 → 立即汇报\\\\n# - entropy < 0.1 → 立即汇报\\\\n# FALLBACK: 如果不稳定，准备 scale=5 + weight=0.3 配置\\\\n\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nfrom datasets import Dataset\\\\nfrom peft import LoraConfig\\\\nfrom transformers import AutoTokenizer\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/mvp_v2_1_expanded/training\\\\\\\")\\\\nfrom dcgrpo_trainer import DCGRPOConfig, DCGRPOTrainer\\\\n\\\\nOUTPUT_DIR = \\\\\\\"/root/contrastive_entrain_calib/checkpoints/exp002v3_dcgrpo_scaled_cosine\\\\\\\"\\\\nos.makedirs(OUTPUT_DIR, exist_ok=True)\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\\\\\\\",\\\\n    handlers=[\\\\n        logging.StreamHandler(),\\\\n        logging.FileHandler(os.path.join(OUTPUT_DIR, \\\\\\\"train.log\\\\\\\")),\\\\n    ],\\\\n)\\\\nlogger = logging.getLogger(\\\\\\\"exp002v3\\\\\\\")\\\\n\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\\\\"\\\\nDATA_PATH = \\\\\\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\\\\\"\\\\nDIRECTION_PATH = \\\\\\\"/root/contrastive_entrain_calib/results/exp001/directions.pt\\\\\\\"\\\\n\\\\nR1_WEIGHT = 0.4\\\\nR2_WEIGHT = 0.0\\\\nR3_WEIGHT = 0.6\\\\nR1_SCALE_FACTOR = 5.0\\\\nREWARD_LAYERS = [19, 20, 24, 27, 32, 33, 35]\\\\nSEED = 42\\\\n\\\\n\\\\nclass _StrengthAwareReward:\\\\n    __name__ = \\\\\\\"dc_grpo_reward\\\\\\\"\\\\n\\\\n    def __init__(self, trainer, inner):\\\\n        self.trainer = trainer\\\\n        self._inner = inner\\\\n\\\\n    def __call__(self, prompts, completions, **kwargs):\\\\n        self.trainer._current_strengths = kwargs.get(\\\\n            \\\\\\\"evidence_strength\\\\\\\", [\\\\\\\"unknown\\\\\\\"] * len(completions)\\\\n        )\\\\n        return self._inner(prompts, completions, **kwargs)\\\\n\\\\n\\\\nclass Exp002v3Trainer(DCGRPOTrainer):\\\\n    def __init__(self, *args, **kwargs):\\\\n        super().__init__(*args, **kwargs)\\\\n        self._current_strengths = []\\\\n        self._log_step = 0\\\\n        self.reward_funcs = [_StrengthAwareReward(self, self.reward_funcs[0])]\\\\n        if hasattr(self, \\\\\\\"reward_func_names\\\\\\\"):\\\\n            self.reward_func_names = [\\\\\\\"dc_grpo_reward\\\\\\\"]\\\\n\\\\n    def compute_rewards(self, completions, conditions, pair_ids, batch_activations, r1_ema=None, ema_alpha=0.3):\\\\n        rewards, components = super().compute_rewards(\\\\n            completions, conditions, pair_ids, batch_activations, r1_ema, ema_alpha\\\\n        )\\\\n\\\\n        self._log_step += 1\\\\n        log_this = (self._log_step <= 50) or (self._log_step % 10 == 0)\\\\n        if log_this:\\\\n            import statistics\\\\n            r1_vals = list(components.get(\\\\\\\"r1\\\\\\\", []))\\\\n            r3_vals = list(components.get(\\\\\\\"r3\\\\\\\", []))\\\\n            combined = [float(r) for r in rewards]\\\\n            if r1_vals:\\\\n                r1_m = sum(r1_vals) / len(r1_vals)\\\\n                r1_s = statistics.stdev(r1_vals) if len(r1_vals) > 1 else 0.0\\\\n                logger.info(\\\\\\\"step=%d R1 mean=%.4f std=%.4f\\\\\\\", self._log_step, r1_m, r1_s)\\\\n            if r3_vals:\\\\n                r3_m = sum(r3_vals) / len(r3_vals)\\\\n                r3_s = statistics.stdev(r3_vals) if len(r3_vals) > 1 else 0.0\\\\n                logger.info(\\\\\\\"step=%d R3 mean=%.4f std=%.4f\\\\\\\", self._log_step, r3_m, r3_s)\\\\n            if combined:\\\\n                c_s = statistics.stdev(combined) if len(combined) > 1 else 0.0\\\\n                logger.info(\\\\\\\"step=%d combined_reward std=%.4f\\\\\\\", self._log_step, c_s)\\\\n            strengths = self._current_strengths or []\\\\n            for strength in [\\\\\\\"weak\\\\\\\", \\\\\\\"medium\\\\\\\", \\\\\\\"strong\\\\\\\"]:\\\\n                indices = [i for i, s in enumerate(strengths) if s == strength]\\\\n                if indices:\\\\n                    sv = [r1_vals[i] for i in indices if i < len(r1_vals)]\\\\n                    if sv:\\\\n                        logger.info(\\\\\\\"step=%d reward/r1_%s_mean=%.4f n=%d\\\\\\\", self._log_step, strength, sum(sv) / len(sv), len(sv))\\\\n\\\\n        return rewards, components\\\\n\\\\n\\\\ndef load_dataset(tokenizer):\\\\n    records = []\\\\n    with open(DATA_PATH) as f:\\\\n        for line in f:\\\\n            rec = json.loads(line)\\\\n            msgs = [{\\\\\\\"role\\\\\\\": t[\\\\\\\"role\\\\\\\"], \\\\\\\"content\\\\\\\": t[\\\\\\\"content\\\\\\\"]} for t in rec[\\\\\\\"turns\\\\\\\"]]\\\\n            try:\\\\n                prompt = tokenizer.apply_chat_template(\\\\n                    msgs, tokenize=False, add_generation_prompt=True, enable_thinking=False\\\\n                )\\\\n            except TypeError:\\\\n                prompt = tokenizer.apply_chat_template(\\\\n                    msgs, tokenize=False, add_generation_prompt=True\\\\n                )\\\\n            records.append({\\\\n                \\\\\\\"prompt\\\\\\\": prompt,\\\\n                \\\\\\\"condition\\\\\\\": rec[\\\\\\\"condition\\\\\\\"],\\\\n                \\\\\\\"pair_id\\\\\\\": str(rec[\\\\\\\"pair_id\\\\\\\"]),\\\\n                \\\\\\\"evidence_strength\\\\\\\": rec.get(\\\\\\\"evidence_strength\\\\\\\", \\\\\\\"unknown\\\\\\\"),\\\\n            })\\\\n    logger.info(\\\\\\\"Loaded %d records from %s\\\\\\\", len(records), DATA_PATH)\\\\n    return Dataset.from_list(records)\\\\n\\\\n\\\\ndef main():\\\\n    torch.manual_seed(SEED)\\\\n\\\\n    logger.info(\\\\\\\"=== exp-002v3: DC-GRPO Scaled Cosine R1 ===\\\\\\\")\\\\n    logger.info(\\\\\\\"Weights: R1=%.2f, R2=%.2f, R3=%.2f | R1 scale_factor=%.1f\\\\\\\", R1_WEIGHT, R2_WEIGHT, R3_WEIGHT, R1_SCALE_FACTOR)\\\\n    logger.info(\\\\\\\"Reward layers: %s\\\\\\\", REWARD_LAYERS)\\\\n\\\\n    model_path = MODEL_PATH if Path(MODEL_PATH).exists() else \\\\\\\"Qwen/Qwen3-8B\\\\\\\"\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\\\n    if tokenizer.pad_token_id is None:\\\\n        tokenizer.pad_token_id = tokenizer.eos_token_id\\\\n\\\\n    dataset = load_dataset(tokenizer)\\\\n\\\\n    config = DCGRPOConfig(\\\\n        output_dir=OUTPUT_DIR,\\\\n        direction_path=DIRECTION_PATH,\\\\n        reward_layers=REWARD_LAYERS,\\\\n        reward_position=\\\\\\\"asst_first\\\\\\\",\\\\n        r1_weight=R1_WEIGHT,\\\\n        r2_weight=R2_WEIGHT,\\\\n        r3_weight=R3_WEIGHT,\\\\n        r1_scale_factor=R1_SCALE_FACTOR,\\\\n        r3_model_name=\\\\\\\"cross-encoder/nli-deberta-v3-base\\\\\\\",\\\\n        recalibration_interval=500,\\\\n        calibration_data_path=DATA_PATH,\\\\n        num_train_epochs=10,\\\\n        per_device_train_batch_size=1,\\\\n        gradient_accumulation_steps=16,\\\\n        gradient_checkpointing=True,\\\\n        learning_rate=5e-5,\\\\n        warmup_steps=200,\\\\n        logging_steps=10,\\\\n        save_steps=500,\\\\n        max_steps=8000,\\\\n        bf16=True,\\\\n        seed=SEED,\\\\n        max_completion_length=256,\\\\n        num_generations=2,\\\\n    )\\\\n\\\\n    peft_config = LoraConfig(\\\\n        r=64,\\\\n        lora_alpha=64,\\\\n        target_modules=[\\\\\\\"q_proj\\\\\\\", \\\\\\\"v_proj\\\\\\\", \\\\\\\"k_proj\\\\\\\", \\\\\\\"o_proj\\\\\\\"],\\\\n        bias=\\\\\\\"none\\\\\\\",\\\\n        task_type=\\\\\\\"CAUSAL_LM\\\\\\\",\\\\n    )\\\\n\\\\n    trainer = Exp002v3Trainer(\\\\n        model=model_path,\\\\n        args=config,\\\\n        train_dataset=dataset,\\\\n        processing_class=tokenizer,\\\\n        peft_config=peft_config,\\\\n    )\\\\n\\\\n    logger.info(\\\\\\\"Starting training...\\\\\\\")\\\\n    trainer.train()\\\\n    trainer.save_model(os.path.join(OUTPUT_DIR, \\\\\\\"final\\\\\\\"))\\\\n    trainer.cleanup()\\\\n    logger.info(\\\\\\\"Training complete. Checkpoint: %s/final\\\\\\\", OUTPUT_DIR)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "2e89a00a-13e7-4f7e-a47b-92ebcff0e6f2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp-002v3: DC-GRPO with scaled cosine R1.\\\\n\\\\nParent: exp-002v2 (cosine R1, but R1 signal too weak vs R3)\\\\nKey change: r1_scale_factor=5.0 amplifies cosine R1 from ~[-0.2, +0.2] to ~[-1, +1],\\\\nmaking it commensurate with R3 (NLI, [0,1]). Weights rebalanced to 0.5/0.5.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n# MONITORING: step 0-50 异常阈值\\\\n# - grad_norm > 1.0 → 立即汇报\\\\n# - entropy < 0.1 → 立即汇报\\\\n# FALLBACK: 如果不稳定，准备 scale=5 + weight=0.3 配置\\\\n\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nfrom datasets import Dataset\\\\nfrom peft import LoraConfig\\\\nfrom transformers import AutoTokenizer\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/mvp_v2_1_expanded/training\\\\\\\")\\\\nfrom dcgrpo_trainer import DCGRPOConfig, DCGRPOTrainer\\\\n\\\\nOUTPUT_DIR = \\\\\\\"/root/contrastive_entrain_calib/checkpoints/exp002v3_dcgrpo_scaled_cosine\\\\\\\"\\\\nos.makedirs(OUTPUT_DIR, exist_ok=True)\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\\\\\\\",\\\\n    handlers=[\\\\n        logging.StreamHandler(),\\\\n        logging.FileHandler(os.path.join(OUTPUT_DIR, \\\\\\\"train.log\\\\\\\")),\\\\n    ],\\\\n)\\\\nlogger = logging.getLogger(\\\\\\\"exp002v3\\\\\\\")\\\\n\\\\nMODEL_PATH = \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\\\\"\\\\nDATA_PATH = \\\\\\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\\\\\"\\\\nDIRECTION_PATH = \\\\\\\"/root/contrastive_entrain_calib/results/exp001/directions.pt\\\\\\\"\\\\n\\\\nR1_WEIGHT = 0.4\\\\nR2_WEIGHT = 0.0\\\\nR3_WEIGHT = 0.6\\\\nR1_SCALE_FACTOR = 5.0\\\\nREWARD_LAYERS = [19, 20, 24, 27, 32, 33, 35]\\\\nSEED = 42\\\\n\\\\n\\\\nclass _StrengthAwareReward:\\\\n    __name__ = \\\\\\\"dc_grpo_reward\\\\\\\"\\\\n\\\\n    def __init__(self, trainer, inner):\\\\n        self.trainer = trainer\\\\n        self._inner = inner\\\\n\\\\n    def __call__(self, prompts, completions, **kwargs):\\\\n        self.trainer._current_strengths = kwargs.get(\\\\n            \\\\\\\"evidence_strength\\\\\\\", [\\\\\\\"unknown\\\\\\\"] * len(completions)\\\\n        )\\\\n        return self._inner(prompts, completions, **kwargs)\\\\n\\\\n\\\\nclass Exp002v3Trainer(DCGRPOTrainer):\\\\n    def __init__(self, *args, **kwargs):\\\\n        super().__init__(*args, **kwargs)\\\\n        self._current_strengths = []\\\\n        self._log_step = 0\\\\n        self.reward_funcs = [_StrengthAwareReward(self, self.reward_funcs[0])]\\\\n        if hasattr(self, \\\\\\\"reward_func_names\\\\\\\"):\\\\n            self.reward_func_names = [\\\\\\\"dc_grpo_reward\\\\\\\"]\\\\n\\\\n    def compute_rewards(self, completions, conditions, pair_ids, batch_activations, r1_ema=None, ema_alpha=0.3):\\\\n        rewards, components = super().compute_rewards(\\\\n            completions, conditions, pair_ids, batch_activations, r1_ema, ema_alpha\\\\n        )\\\\n\\\\n        self._log_step += 1\\\\n        log_this = (self._log_step <= 50) or (self._log_step % 10 == 0)\\\\n        if log_this:\\\\n            import statistics\\\\n            r1_vals = list(components.get(\\\\\\\"r1\\\\\\\", []))\\\\n            r3_vals = list(components.get(\\\\\\\"r3\\\\\\\", []))\\\\n            combined = [float(r) for r in rewards]\\\\n            if r1_vals:\\\\n                r1_m = sum(r1_vals) / len(r1_vals)\\\\n                r1_s = statistics.stdev(r1_vals) if len(r1_vals) > 1 else 0.0\\\\n                logger.info(\\\\\\\"step=%d R1 mean=%.4f std=%.4f\\\\\\\", self._log_step, r1_m, r1_s)\\\\n            if r3_vals:\\\\n                r3_m = sum(r3_vals) / len(r3_vals)\\\\n                r3_s = statistics.stdev(r3_vals) if len(r3_vals) > 1 else 0.0\\\\n                logger.info(\\\\\\\"step=%d R3 mean=%.4f std=%.4f\\\\\\\", self._log_step, r3_m, r3_s)\\\\n            if combined:\\\\n                c_s = statistics.stdev(combined) if len(combined) > 1 else 0.0\\\\n                logger.info(\\\\\\\"step=%d combined_reward std=%.4f\\\\\\\", self._log_step, c_s)\\\\n            strengths = self._current_strengths or []\\\\n            for strength in [\\\\\\\"weak\\\\\\\", \\\\\\\"medium\\\\\\\", \\\\\\\"strong\\\\\\\"]:\\\\n                indices = [i for i, s in enumerate(strengths) if s == strength]\\\\n                if indices:\\\\n                    sv = [r1_vals[i] for i in indices if i < len(r1_vals)]\\\\n                    if sv:\\\\n                        logger.info(\\\\\\\"step=%d reward/r1_%s_mean=%.4f n=%d\\\\\\\", self._log_step, strength, sum(sv) / len(sv), len(sv))\\\\n\\\\n        return rewards, components\\\\n\\\\n\\\\ndef load_dataset(tokenizer):\\\\n    records = []\\\\n    with open(DATA_PATH) as f:\\\\n        for line in f:\\\\n            rec = json.loads(line)\\\\n            msgs = [{\\\\\\\"role\\\\\\\": t[\\\\\\\"role\\\\\\\"], \\\\\\\"content\\\\\\\": t[\\\\\\\"content\\\\\\\"]} for t in rec[\\\\\\\"turns\\\\\\\"]]\\\\n            try:\\\\n                prompt = tokenizer.apply_chat_template(\\\\n                    msgs, tokenize=False, add_generation_prompt=True, enable_thinking=False\\\\n                )\\\\n            except TypeError:\\\\n                prompt = tokenizer.apply_chat_template(\\\\n                    msgs, tokenize=False, add_generation_prompt=True\\\\n                )\\\\n            records.append({\\\\n                \\\\\\\"prompt\\\\\\\": prompt,\\\\n                \\\\\\\"condition\\\\\\\": rec[\\\\\\\"condition\\\\\\\"],\\\\n                \\\\\\\"pair_id\\\\\\\": str(rec[\\\\\\\"pair_id\\\\\\\"]),\\\\n                \\\\\\\"evidence_strength\\\\\\\": rec.get(\\\\\\\"evidence_strength\\\\\\\", \\\\\\\"unknown\\\\\\\"),\\\\n            })\\\\n    logger.info(\\\\\\\"Loaded %d records from %s\\\\\\\", len(records), DATA_PATH)\\\\n    return Dataset.from_list(records)\\\\n\\\\n\\\\ndef main():\\\\n    torch.manual_seed(SEED)\\\\n\\\\n    logger.info(\\\\\\\"=== exp-002v3: DC-GRPO Scaled Cosine R1 ===\\\\\\\")\\\\n    logger.info(\\\\\\\"Weights: R1=%.2f, R2=%.2f, R3=%.2f | R1 scale_factor=%.1f\\\\\\\", R1_WEIGHT, R2_WEIGHT, R3_WEIGHT, R1_SCALE_FACTOR)\\\\n    logger.info(\\\\\\\"Reward layers: %s\\\\\\\", REWARD_LAYERS)\\\\n\\\\n    model_path = MODEL_PATH if Path(MODEL_PATH).exists() else \\\\\\\"Qwen/Qwen3-8B\\\\\\\"\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\\\n    if tokenizer.pad_token_id is None:\\\\n        tokenizer.pad_token_id = tokenizer.eos_token_id\\\\n\\\\n    dataset = load_dataset(tokenizer)\\\\n\\\\n    config = DCGRPOConfig(\\\\n        output_dir=OUTPUT_DIR,\\\\n        direction_path=DIRECTION_PATH,\\\\n        reward_layers=REWARD_LAYERS,\\\\n        reward_position=\\\\\\\"asst_first\\\\\\\",\\\\n        r1_weight=R1_WEIGHT,\\\\n        r2_weight=R2_WEIGHT,\\\\n        r3_weight=R3_WEIGHT,\\\\n        r1_scale_factor=R1_SCALE_FACTOR,\\\\n        r3_model_name=\\\\\\\"cross-encoder/nli-deberta-v3-base\\\\\\\",\\\\n        recalibration_interval=500,\\\\n        calibration_data_path=DATA_PATH,\\\\n        num_train_epochs=10,\\\\n        per_device_train_batch_size=1,\\\\n        gradient_accumulation_steps=16,\\\\n        gradient_checkpointing=True,\\\\n        learning_rate=5e-5,\\\\n        warmup_steps=200,\\\\n        logging_steps=10,\\\\n        save_steps=500,\\\\n        max_steps=8000,\\\\n        bf16=True,\\\\n        seed=SEED,\\\\n        max_completion_length=256,\\\\n        num_generations=2,\\\\n    )\\\\n\\\\n    peft_config = LoraConfig(\\\\n        r=64,\\\\n        lora_alpha=64,\\\\n        target_modules=[\\\\\\\"q_proj\\\\\\\", \\\\\\\"v_proj\\\\\\\", \\\\\\\"k_proj\\\\\\\", \\\\\\\"o_proj\\\\\\\"],\\\\n        bias=\\\\\\\"none\\\\\\\",\\\\n        task_type=\\\\\\\"CAUSAL_LM\\\\\\\",\\\\n    )\\\\n\\\\n    trainer = Exp002v3Trainer(\\\\n        model=model_path,\\\\n        args=config,\\\\n        train_dataset=dataset,\\\\n        processing_class=tokenizer,\\\\n        peft_config=peft_config,\\\\n    )\\\\n\\\\n    logger.info(\\\\\\\"Starting training...\\\\\\\")\\\\n    trainer.train()\\\\n    trainer.save_model(os.path.join(OUTPUT_DIR, \\\\\\\"final\\\\\\\"))\\\\n    trainer.cleanup()\\\\n    logger.info(\\\\\\\"Training complete. Checkpoint: %s/final\\\\\\\", OUTPUT_DIR)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"exp-002v3: DC-GRPO with scaled cosine R1.\\n\\nParent: exp-002v2 (cosine R1, but R1 signal too weak vs R3)\\nKey change: r1_scale_factor=5.0 amplifies cosine R1 from ~[-0.2, +0.2] to ~[-1, +1],\\nmaking it commensurate with R3 (NLI, [0,1]). Weights rebalanced to 0.5/0.5.\\n\\\"\\\"\\\"\\n\\n# MONITORING: step 0-50 异常阈值\\n# - grad_norm > 1.0 → 立即汇报\\n# - entropy < 0.1 → 立即汇报\\n# FALLBACK: 如果不稳定，准备 scale=5 + weight=0.3 配置\\n\\nimport json\\nimport logging\\nimport os\\nimport sys\\nfrom pathlib import Path\\n\\nimport torch\\nfrom datasets import Dataset\\nfrom peft import LoraConfig\\nfrom transformers import AutoTokenizer\\n\\nsys.path.insert(0, \\\"/root/mvp_v2_1_expanded/training\\\")\\nfrom dcgrpo_trainer import DCGRPOConfig, DCGRPOTrainer\\n\\nOUTPUT_DIR = \\\"/root/contrastive_entrain_calib/checkpoints/exp002v3_dcgrpo_scaled_cosine\\\"\\nos.makedirs(OUTPUT_DIR, exist_ok=True)\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\\\",\\n    handlers=[\\n        logging.StreamHandler(),\\n        logging.FileHandler(os.path.join(OUTPUT_DIR, \\\"train.log\\\")),\\n    ],\\n)\\nlogger = logging.getLogger(\\\"exp002v3\\\")\\n\\nMODEL_PATH = \\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\"\\nDATA_PATH = \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\"\\nDIRECTION_PATH = \\\"/root/contrastive_entrain_calib/results/exp001/directions.pt\\\"\\n\\nR1_WEIGHT = 0.4\\nR2_WEIGHT = 0.0\\nR3_WEIGHT = 0.6\\nR1_SCALE_FACTOR = 5.0\\nREWARD_LAYERS = [19, 20, 24, 27, 32, 33, 35]\\nSEED = 42\\n\\n\\nclass _StrengthAwareReward:\\n    __name__ = \\\"dc_grpo_reward\\\"\\n\\n    def __init__(self, trainer, inner):\\n        self.trainer = trainer\\n        self._inner = inner\\n\\n    def __call__(self, prompts, completions, **kwargs):\\n        self.trainer._current_strengths = kwargs.get(\\n            \\\"evidence_strength\\\", [\\\"unknown\\\"] * len(completions)\\n        )\\n        return self._inner(prompts, completions, **kwargs)\\n\\n\\nclass Exp002v3Trainer(DCGRPOTrainer):\\n    def __init__(self, *args, **kwargs):\\n        super().__init__(*args, **kwargs)\\n        self._current_strengths = []\\n        self._log_step = 0\\n        self.reward_funcs = [_StrengthAwareReward(self, self.reward_funcs[0])]\\n        if hasattr(self, \\\"reward_func_names\\\"):\\n            self.reward_func_names = [\\\"dc_grpo_reward\\\"]\\n\\n    def compute_rewards(self, completions, conditions, pair_ids, batch_activations, r1_ema=None, ema_alpha=0.3):\\n        rewards, components = super().compute_rewards(\\n            completions, conditions, pair_ids, batch_activations, r1_ema, ema_alpha\\n        )\\n\\n        self._log_step += 1\\n        log_this = (self._log_step <= 50) or (self._log_step % 10 == 0)\\n        if log_this:\\n            import statistics\\n            r1_vals = list(components.get(\\\"r1\\\", []))\\n            r3_vals = list(components.get(\\\"r3\\\", []))\\n            combined = [float(r) for r in rewards]\\n            if r1_vals:\\n                r1_m = sum(r1_vals) / len(r1_vals)\\n                r1_s = statistics.stdev(r1_vals) if len(r1_vals) > 1 else 0.0\\n                logger.info(\\\"step=%d R1 mean=%.4f std=%.4f\\\", self._log_step, r1_m, r1_s)\\n            if r3_vals:\\n                r3_m = sum(r3_vals) / len(r3_vals)\\n                r3_s = statistics.stdev(r3_vals) if len(r3_vals) > 1 else 0.0\\n                logger.info(\\\"step=%d R3 mean=%.4f std=%.4f\\\", self._log_step, r3_m, r3_s)\\n            if combined:\\n                c_s = statistics.stdev(combined) if len(combined) > 1 else 0.0\\n                logger.info(\\\"step=%d combined_reward std=%.4f\\\", self._log_step, c_s)\\n            strengths = self._current_strengths or []\\n            for strength in [\\\"weak\\\", \\\"medium\\\", \\\"strong\\\"]:\\n                indices = [i for i, s in enumerate(strengths) if s == strength]\\n                if indices:\\n                    sv = [r1_vals[i] for i in indices if i < len(r1_vals)]\\n                    if sv:\\n                        logger.info(\\\"step=%d reward/r1_%s_mean=%.4f n=%d\\\", self._log_step, strength, sum(sv) / len(sv), len(sv))\\n\\n        return rewards, components\\n\\n\\ndef load_dataset(tokenizer):\\n    records = []\\n    with open(DATA_PATH) as f:\\n        for line in f:\\n            rec = json.loads(line)\\n            msgs = [{\\\"role\\\": t[\\\"role\\\"], \\\"content\\\": t[\\\"content\\\"]} for t in rec[\\\"turns\\\"]]\\n            try:\\n                prompt = tokenizer.apply_chat_template(\\n                    msgs, tokenize=False, add_generation_prompt=True, enable_thinking=False\\n                )\\n            except TypeError:\\n                prompt = tokenizer.apply_chat_template(\\n                    msgs, tokenize=False, add_generation_prompt=True\\n                )\\n            records.append({\\n                \\\"prompt\\\": prompt,\\n                \\\"condition\\\": rec[\\\"condition\\\"],\\n                \\\"pair_id\\\": str(rec[\\\"pair_id\\\"]),\\n                \\\"evidence_strength\\\": rec.get(\\\"evidence_strength\\\", \\\"unknown\\\"),\\n            })\\n    logger.info(\\\"Loaded %d records from %s\\\", len(records), DATA_PATH)\\n    return Dataset.from_list(records)\\n\\n\\ndef main():\\n    torch.manual_seed(SEED)\\n\\n    logger.info(\\\"=== exp-002v3: DC-GRPO Scaled Cosine R1 ===\\\")\\n    logger.info(\\\"Weights: R1=%.2f, R2=%.2f, R3=%.2f | R1 scale_factor=%.1f\\\", R1_WEIGHT, R2_WEIGHT, R3_WEIGHT, R1_SCALE_FACTOR)\\n    logger.info(\\\"Reward layers: %s\\\", REWARD_LAYERS)\\n\\n    model_path = MODEL_PATH if Path(MODEL_PATH).exists() else \\\"Qwen/Qwen3-8B\\\"\\n\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\n    if tokenizer.pad_token_id is None:\\n        tokenizer.pad_token_id = tokenizer.eos_token_id\\n\\n    dataset = load_dataset(tokenizer)\\n\\n    config = DCGRPOConfig(\\n        output_dir=OUTPUT_DIR,\\n        direction_path=DIRECTION_PATH,\\n        reward_layers=REWARD_LAYERS,\\n        reward_position=\\\"asst_first\\\",\\n        r1_weight=R1_WEIGHT,\\n        r2_weight=R2_WEIGHT,\\n        r3_weight=R3_WEIGHT,\\n        r1_scale_factor=R1_SCALE_FACTOR,\\n        r3_model_name=\\\"cross-encoder/nli-deberta-v3-base\\\",\\n        recalibration_interval=500,\\n        calibration_data_path=DATA_PATH,\\n        num_train_epochs=10,\\n        per_device_train_batch_size=1,\\n        gradient_accumulation_steps=16,\\n        gradient_checkpointing=True,\\n        learning_rate=5e-5,\\n        warmup_steps=200,\\n        logging_steps=10,\\n        save_steps=500,\\n        max_steps=8000,\\n        bf16=True,\\n        seed=SEED,\\n        max_completion_length=256,\\n        num_generations=2,\\n    )\\n\\n    peft_config = LoraConfig(\\n        r=64,\\n        lora_alpha=64,\\n        target_modules=[\\\"q_proj\\\", \\\"v_proj\\\", \\\"k_proj\\\", \\\"o_proj\\\"],\\n        bias=\\\"none\\\",\\n        task_type=\\\"CAUSAL_LM\\\",\\n    )\\n\\n    trainer = Exp002v3Trainer(\\n        model=model_path,\\n        args=config,\\n        train_dataset=dataset,\\n        processing_class=tokenizer,\\n        peft_config=peft_config,\\n    )\\n\\n    logger.info(\\\"Starting training...\\\")\\n    trainer.train()\\n    trainer.save_model(os.path.join(OUTPUT_DIR, \\\"final\\\"))\\n    trainer.cleanup()\\n    logger.info(\\\"Training complete. Checkpoint: %s/final\\\", OUTPUT_DIR)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部改动确认无误。同步到本地。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "d567a1e6-5c1a-408e-8da4-5247d4e36d91",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TUgBbq3NVerURUdrNKaDCj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3109,
+                "cache_read_input_tokens": 33139,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3109
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NHGV6i7sQKwj4dQFyM4fpw",
+              "name": "Bash",
+              "input": {
+                "command": "mkdir -p /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/training",
+                "description": "Create local artifacts directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "b0de77a2-0f7f-41b0-b34a-8fe48154811b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TUgBbq3NVerURUdrNKaDCj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3109,
+                "cache_read_input_tokens": 33139,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3109
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T07:36:18.362Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NHGV6i7sQKwj4dQFyM4fpw",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "150c48d5-2ce4-49ea-8df0-6a72ee0c7b80",
+            "tool_use_result": {
+              "stdout": "",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": true
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H59hVDDzygshvg27dR19Fe",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/training/run_exp002v3_dcgrpo_scaled_cosine.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"exp-002v3: DC-GRPO with scaled cosine R1.\n\nParent: exp-002v2 (cosine R1, but R1 signal too weak vs R3)\nKey change: r1_scale_factor=5.0 amplifies cosine R1 from ~[-0.2, +0.2] to ~[-1, +1],\nmaking it commensurate with R3 (NLI, [0,1]). Weights rebalanced to 0.5/0.5.\n\"\"\"\n\n# MONITORING: step 0-50 异常阈值\n# - grad_norm > 1.0 → 立即汇报\n# - entropy < 0.1 → 立即汇报\n# FALLBACK: 如果不稳定，准备 scale=5 + weight=0.3 配置\n\nimport json\nimport logging\nimport os\nimport sys\nfrom pathlib import Path\n\nimport torch\nfrom datasets import Dataset\nfrom peft import LoraConfig\nfrom transformers import AutoTokenizer\n\nsys.path.insert(0, \"/root/mvp_v2_1_expanded/training\")\nfrom dcgrpo_trainer import DCGRPOConfig, DCGRPOTrainer\n\nOUTPUT_DIR = \"/root/contrastive_entrain_calib/checkpoints/exp002v3_dcgrpo_scaled_cosine\"\nos.makedirs(OUTPUT_DIR, exist_ok=True)\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n    handlers=[\n        logging.StreamHandler(),\n        logging.FileHandler(os.path.join(OUTPUT_DIR, \"train.log\")),\n    ],\n)\nlogger = logging.getLogger(\"exp002v3\")\n\nMODEL_PATH = \"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\"\nDATA_PATH = \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\"\nDIRECTION_PATH = \"/root/contrastive_entrain_calib/results/exp001/directions.pt\"\n\nR1_WEIGHT = 0.4\nR2_WEIGHT = 0.0\nR3_WEIGHT = 0.6\nR1_SCALE_FACTOR = 5.0\nREWARD_LAYERS = [19, 20, 24, 27, 32, 33, 35]\nSEED = 42\n\n\nclass _StrengthAwareReward:\n    __name__ = \"dc_grpo_reward\"\n\n    def __init__(self, trainer, inner):\n        self.trainer = trainer\n        self._inner = inner\n\n    def __call__(self, prompts, completions, **kwargs):\n        self.trainer._current_strengths = kwargs.get(\n            \"evidence_strength\", [\"unknown\"] * len(completions)\n        )\n        return self._inner(prompts, completions, **kwargs)\n\n\nclass Exp002v3Trainer(DCGRPOTrainer):\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        self._current_strengths = []\n        self._log_step = 0\n        self.reward_funcs = [_StrengthAwareReward(self, self.reward_funcs[0])]\n        if hasattr(self, \"reward_func_names\"):\n            self.reward_func_names = [\"dc_grpo_reward\"]\n\n    def compute_rewards(self, completions, conditions, pair_ids, batch_activations, r1_ema=None, ema_alpha=0.3):\n        rewards, components = super().compute_rewards(\n            completions, conditions, pair_ids, batch_activations, r1_ema, ema_alpha\n        )\n\n        self._log_step += 1\n        log_this = (self._log_step <= 50) or (self._log_step % 10 == 0)\n        if log_this:\n            import statistics\n            r1_vals = list(components.get(\"r1\", []))\n            r3_vals = list(components.get(\"r3\", []))\n            combined = [float(r) for r in rewards]\n            if r1_vals:\n                r1_m = sum(r1_vals) / len(r1_vals)\n                r1_s = statistics.stdev(r1_vals) if len(r1_vals) > 1 else 0.0\n                logger.info(\"step=%d R1 mean=%.4f std=%.4f\", self._log_step, r1_m, r1_s)\n            if r3_vals:\n                r3_m = sum(r3_vals) / len(r3_vals)\n                r3_s = statistics.stdev(r3_vals) if len(r3_vals) > 1 else 0.0\n                logger.info(\"step=%d R3 mean=%.4f std=%.4f\", self._log_step, r3_m, r3_s)\n            if combined:\n                c_s = statistics.stdev(combined) if len(combined) > 1 else 0.0\n                logger.info(\"step=%d combined_reward std=%.4f\", self._log_step, c_s)\n            strengths = self._current_strengths or []\n            for strength in [\"weak\", \"medium\", \"strong\"]:\n                indices = [i for i, s in enumerate(strengths) if s == strength]\n                if indices:\n                    sv = [r1_vals[i] for i in indices if i < len(r1_vals)]\n                    if sv:\n                        logger.info(\"step=%d reward/r1_%s_mean=%.4f n=%d\", self._log_step, strength, sum(sv) / len(sv), len(sv))\n\n        return rewards, components\n\n\ndef load_dataset(tokenizer):\n    records = []\n    with open(DATA_PATH) as f:\n        for line in f:\n            rec = json.loads(line)\n            msgs = [{\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in rec[\"turns\"]]\n            try:\n                prompt = tokenizer.apply_chat_template(\n                    msgs, tokenize=False, add_generation_prompt=True, enable_thinking=False\n                )\n            except TypeError:\n                prompt = tokenizer.apply_chat_template(\n                    msgs, tokenize=False, add_generation_prompt=True\n                )\n            records.append({\n                \"prompt\": prompt,\n                \"condition\": rec[\"condition\"],\n                \"pair_id\": str(rec[\"pair_id\"]),\n                \"evidence_strength\": rec.get(\"evidence_strength\", \"unknown\"),\n            })\n    logger.info(\"Loaded %d records from %s\", len(records), DATA_PATH)\n    return Dataset.from_list(records)\n\n\ndef main():\n    torch.manual_seed(SEED)\n\n    logger.info(\"=== exp-002v3: DC-GRPO Scaled Cosine R1 ===\")\n    logger.info(\"Weights: R1=%.2f, R2=%.2f, R3=%.2f | R1 scale_factor=%.1f\", R1_WEIGHT, R2_WEIGHT, R3_WEIGHT, R1_SCALE_FACTOR)\n    logger.info(\"Reward layers: %s\", REWARD_LAYERS)\n\n    model_path = MODEL_PATH if Path(MODEL_PATH).exists() else \"Qwen/Qwen3-8B\"\n\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\n    if tokenizer.pad_token_id is None:\n        tokenizer.pad_token_id = tokenizer.eos_token_id\n\n    dataset = load_dataset(tokenizer)\n\n    config = DCGRPOConfig(\n        output_dir=OUTPUT_DIR,\n        direction_path=DIRECTION_PATH,\n        reward_layers=REWARD_LAYERS,\n        reward_position=\"asst_first\",\n        r1_weight=R1_WEIGHT,\n        r2_weight=R2_WEIGHT,\n        r3_weight=R3_WEIGHT,\n        r1_scale_factor=R1_SCALE_FACTOR,\n        r3_model_name=\"cross-encoder/nli-deberta-v3-base\",\n        recalibration_interval=500,\n        calibration_data_path=DATA_PATH,\n        num_train_epochs=10,\n        per_device_train_batch_size=1,\n        gradient_accumulation_steps=16,\n        gradient_checkpointing=True,\n        learning_rate=5e-5,\n        warmup_steps=200,\n        logging_steps=10,\n        save_steps=500,\n        max_steps=8000,\n        bf16=True,\n        seed=SEED,\n        max_completion_length=256,\n        num_generations=2,\n    )\n\n    peft_config = LoraConfig(\n        r=64,\n        lora_alpha=64,\n        target_modules=[\"q_proj\", \"v_proj\", \"k_proj\", \"o_proj\"],\n        bias=\"none\",\n        task_type=\"CAUSAL_LM\",\n    )\n\n    trainer = Exp002v3Trainer(\n        model=model_path,\n        args=config,\n        train_dataset=dataset,\n        processing_class=tokenizer,\n        peft_config=peft_config,\n    )\n\n    logger.info(\"Starting training...\")\n    trainer.train()\n    trainer.save_model(os.path.join(OUTPUT_DIR, \"final\"))\n    trainer.cleanup()\n    logger.info(\"Training complete. Checkpoint: %s/final\", OUTPUT_DIR)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "fc015243-16c8-4fe4-8a0c-30add62a0c2a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B3FMXB1FihDfvYPQF8dzeo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 145,
+                "cache_read_input_tokens": 36248,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 145
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T07:36:39.521Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "<tool_use_error>File has not been read yet. Read it first before writing to it.</tool_use_error>",
+              "is_error": true,
+              "tool_use_id": "toolu_01H59hVDDzygshvg27dR19Fe"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "7f10860a-2ae6-489b-811b-e80e5cc972b9",
+            "tool_use_result": "Error: File has not been read yet. Read it first before writing to it."
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DvKyPoDZFYdTuUtczyXfbR",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/training/run_exp002v3_dcgrpo_scaled_cosine.py 2>/dev/null; echo \"---\"; ls /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/training/",
+                "description": "Check if local file exists"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "c3748328-d6f8-4cb2-b002-db41a7d2ce14",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RrouqHrUeeQT1Qqz1Dijw7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2604,
+                "cache_read_input_tokens": 36393,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2604
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T07:36:43.168Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DvKyPoDZFYdTuUtczyXfbR",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/training/run_exp002v3_dcgrpo_scaled_cosine.py\n---\n__pycache__\ndcgrpo_trainer.py\ngpu_smoke_test.py\ngrpo_framework.py\nmeasure_direction_stability.py\nprobe_module.py\nrecalibrate_offline_test.py\nrun_exp002v3_dcgrpo_scaled_cosine.py\nrun_exp008_binary_probe_penalty.py\nrun_exp008v3_binary_probe_grpo.py\nrun_exp008v3_hook_probe.py\nrun_exp014_continuous_probe.py\nrun_exp016_actadd_steering.py\nsmoke_test_dcgrpo.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "656da005-4f44-4227-8e8e-fec122548bd9",
+            "tool_use_result": {
+              "stdout": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/training/run_exp002v3_dcgrpo_scaled_cosine.py\n---\n__pycache__\ndcgrpo_trainer.py\ngpu_smoke_test.py\ngrpo_framework.py\nmeasure_direction_stability.py\nprobe_module.py\nrecalibrate_offline_test.py\nrun_exp002v3_dcgrpo_scaled_cosine.py\nrun_exp008_binary_probe_penalty.py\nrun_exp008v3_binary_probe_grpo.py\nrun_exp008v3_hook_probe.py\nrun_exp014_continuous_probe.py\nrun_exp016_actadd_steering.py\nsmoke_test_dcgrpo.py",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XxZjWedtPrJyNUBzkCFstR",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/training/run_exp002v3_dcgrpo_scaled_cosine.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "f44a70cb-0c9b-476c-b5bb-4cb5a327fa07",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VV9YeJ99aa3xqV57jZCVhx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 394,
+                "cache_read_input_tokens": 38997,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 394
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-19T07:36:46.291Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XxZjWedtPrJyNUBzkCFstR",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"exp-002v3: DC-GRPO with scaled cosine R1.\n3\t\n4\tParent: exp-002v2 (cosine R1, but R1 signal too weak vs R3)\n5\tKey change: r1_scale_factor=5.0 amplifies cosine R1 from ~[-0.2, +0.2] to ~[-1, +1],\n6\tmaking it commensurate with R3 (NLI, [0,1]). Weights rebalanced to 0.5/0.5.\n7\t\"\"\"\n8\timport json\n9\timport logging\n10\timport os\n11\timport sys\n12\tfrom pathlib import Path\n13\t\n14\timport torch\n15\tfrom datasets import Dataset\n16\tfrom peft import LoraConfig\n17\tfrom transformers import AutoTokenizer\n18\t\n19\tsys.path.insert(0, \"/root/mvp_v2_1_expanded/training\")\n20\tfrom dcgrpo_trainer import DCGRPOConfig, DCGRPOTrainer\n21\t\n22\tOUTPUT_DIR = \"/root/contrastive_entrain_calib/checkpoints/exp002v3_dcgrpo_scaled_cosine\"\n23\tos.makedirs(OUTPUT_DIR, exist_ok=True)\n24\t\n25\tlogging.basicConfig(\n26\t    level=logging.INFO,\n27\t    format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n28\t    handlers=[\n29\t        logging.StreamHandler(),\n30\t        logging.FileHandler(os.path.join(OUTPUT_DIR, \"train.log\")),\n31\t    ],\n32\t)\n33\tlogger = logging.getLogger(\"exp002v3\")\n34\t\n35\tMODEL_PATH = \"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\"\n36\tDATA_PATH = \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\"\n37\tDIRECTION_PATH = \"/root/contrastive_entrain_calib/results/exp001/directions.pt\"\n38\t\n39\tR1_WEIGHT = 0.4\n40\tR2_WEIGHT = 0.0\n41\tR3_WEIGHT = 0.6\n42\tR1_SCALE_FACTOR = 5.0\n43\tREWARD_LAYERS = [19, 20, 24, 27, 32, 33, 35]\n44\tSEED = 42\n45\t\n46\t\n47\tclass _StrengthAwareReward:\n48\t    __name__ = \"dc_grpo_reward\"\n49\t\n50\t    def __init__(self, trainer, inner):\n51\t        self.trainer = trainer\n52\t        self._inner = inner\n53\t\n54\t    def __call__(self, prompts, completions, **kwargs):\n55\t        self.trainer._current_strengths = kwargs.get(\n56\t            \"evidence_strength\", [\"unknown\"] * len(completions)\n57\t        )\n58\t        return self._inner(prompts, completions, **kwargs)\n59\t\n60\t\n61\tclass Exp002v3Trainer(DCGRPOTrainer):\n62\t    def __init__(self, *args, **kwargs):\n63\t        super().__init__(*args, **kwargs)\n64\t        self._current_strengths = []\n65\t        self._log_step = 0\n66\t        self.reward_funcs = [_StrengthAwareReward(self, self.reward_funcs[0])]\n67\t        if hasattr(self, \"reward_func_names\"):\n68\t            self.reward_func_names = [\"dc_grpo_reward\"]\n69\t\n70\t    def compute_rewards(self, completions, conditions, pair_ids, batch_activations, r1_ema=None, ema_alpha=0.3):\n71\t        rewards, components = super().compute_rewards(\n72\t            completions, conditions, pair_ids, batch_activations, r1_ema, ema_alpha\n73\t        )\n74\t\n75\t        self._log_step += 1\n76\t        if self._log_step % 10 == 0:\n77\t            strengths = self._current_strengths or []\n78\t            for strength in [\"weak\", \"medium\", \"strong\"]:\n79\t                indices = [i for i, s in enumerate(strengths) if s == strength]\n80\t                if indices:\n81\t                    r1_vals = [components[\"r1\"][i] for i in indices if i < len(components[\"r1\"])]\n82\t                    if r1_vals:\n83\t                        logger.info(\"reward/r1_%s_mean=%.4f n=%d\", strength, sum(r1_vals) / len(r1_vals), len(r1_vals))\n84\t\n85\t        return rewards, components\n86\t\n87\t\n88\tdef load_dataset(tokenizer):\n89\t    records = []\n90\t    with open(DATA_PATH) as f:\n91\t        for line in f:\n92\t            rec = json.loads(line)\n93\t            msgs = [{\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in rec[\"turns\"]]\n94\t            try:\n95\t                prompt = tokenizer.apply_chat_template(\n96\t                    msgs, tokenize=False, add_generation_prompt=True, enable_thinking=False\n97\t                )\n98\t            except TypeError:\n99\t                prompt = tokenizer.apply_chat_template(\n100\t                    msgs, tokenize=False, add_generation_prompt=True\n101\t                )\n102\t            records.append({\n103\t                \"prompt\": prompt,\n104\t                \"condition\": rec[\"condition\"],\n105\t                \"pair_id\": str(rec[\"pair_id\"]),\n106\t                \"evidence_strength\": rec.get(\"evidence_strength\", \"unknown\"),\n107\t            })\n108\t    logger.info(\"Loaded %d records from %s\", len(records), DATA_PATH)\n109\t    return Dataset.from_list(records)\n110\t\n111\t\n112\tdef main():\n113\t    torch.manual_seed(SEED)\n114\t\n115\t    logger.info(\"=== exp-002v3: DC-GRPO Scaled Cosine R1 ===\")\n116\t    logger.info(\"Weights: R1=%.2f, R2=%.2f, R3=%.2f | R1 scale_factor=%.1f\", R1_WEIGHT, R2_WEIGHT, R3_WEIGHT, R1_SCALE_FACTOR)\n117\t    logger.info(\"Reward layers: %s\", REWARD_LAYERS)\n118\t\n119\t    model_path = MODEL_PATH if Path(MODEL_PATH).exists() else \"Qwen/Qwen3-8B\"\n120\t\n121\t    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\n122\t    if tokenizer.pad_token_id is None:\n123\t        tokenizer.pad_token_id = tokenizer.eos_token_id\n124\t\n125\t    dataset = load_dataset(tokenizer)\n126\t\n127\t    config = DCGRPOConfig(\n128\t        output_dir=OUTPUT_DIR,\n129\t        direction_path=DIRECTION_PATH,\n130\t        reward_layers=REWARD_LAYERS,\n131\t        reward_position=\"asst_first\",\n132\t        r1_weight=R1_WEIGHT,\n133\t        r2_weight=R2_WEIGHT,\n134\t        r3_weight=R3_WEIGHT,\n135\t        r1_scale_factor=R1_SCALE_FACTOR,\n136\t        r3_model_name=\"cross-encoder/nli-deberta-v3-base\",\n137\t        recalibration_interval=500,\n138\t        calibration_data_path=DATA_PATH,\n139\t        num_train_epochs=10,\n140\t        per_device_train_batch_size=1,\n141\t        gradient_accumulation_steps=16,\n142\t        gradient_checkpointing=True,\n143\t        learning_rate=5e-5,\n144\t        warmup_steps=200,\n145\t        logging_steps=10,\n146\t        save_steps=500,\n147\t        max_steps=8000,\n148\t        bf16=True,\n149\t        seed=SEED,\n150\t        max_completion_length=256,\n151\t        num_generations=2,\n152\t    )\n153\t\n154\t    peft_config = LoraConfig(\n155\t        r=64,\n156\t        lora_alpha=64,\n157\t        target_modules=[\"q_proj\", \"v_proj\", \"k_proj\", \"o_proj\"],\n158\t        bias=\"none\",\n159\t        task_type=\"CAUSAL_LM\",\n160\t    )\n161\t\n162\t    trainer = Exp002v3Trainer(\n163\t        model=model_path,\n164\t        args=config,\n165\t        train_dataset=dataset,\n166\t        processing_class=tokenizer,\n167\t        peft_config=peft_config,\n168\t    )\n169\t\n170\t    logger.info(\"Starting training...\")\n171\t    trainer.train(resume_from_checkpoint=\"/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/checkpoint-500\")\n172\t    trainer.save_model(os.path.join(OUTPUT_DIR, \"final\"))\n173\t    trainer.cleanup()\n174\t    logger.info(\"Training complete. Checkpoint: %s/final\", OUTPUT_DIR)\n175\t\n176\t\n177\tif __name__ == \"__main__\":\n178\t    main()\n179\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "786cb7d7-4c39-4c02-9580-57fceb63c6d5",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/training/run_exp002v3_dcgrpo_scaled_cosine.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"exp-002v3: DC-GRPO with scaled cosine R1.\n\nParent: exp-002v2 (cosine R1, but R1 signal too weak vs R3)\nKey change: r1_scale_factor=5.0 amplifies cosine R1 from ~[-0.2, +0.2] to ~[-1, +1],\nmaking it commensurate with R3 (NLI, [0,1]). Weights rebalanced to 0.5/0.5.\n\"\"\"\nimport json\nimport logging\nimport os\nimport sys\nfrom pathlib import Path\n\nimport torch\nfrom datasets import Dataset\nfrom peft import LoraConfig\nfrom transformers import AutoTokenizer\n\nsys.path.insert(0, \"/root/mvp_v2_1_expanded/training\")\nfrom dcgrpo_trainer import DCGRPOConfig, DCGRPOTrainer\n\nOUTPUT_DIR = \"/root/contrastive_entrain_calib/checkpoints/exp002v3_dcgrpo_scaled_cosine\"\nos.makedirs(OUTPUT_DIR, exist_ok=True)\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n    handlers=[\n        logging.StreamHandler(),\n        logging.FileHandler(os.path.join(OUTPUT_DIR, \"train.log\")),\n    ],\n)\nlogger = logging.getLogger(\"exp002v3\")\n\nMODEL_PATH = \"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\"\nDATA_PATH = \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\"\nDIRECTION_PATH = \"/root/contrastive_entrain_calib/results/exp001/directions.pt\"\n\nR1_WEIGHT = 0.4\nR2_WEIGHT = 0.0\nR3_WEIGHT = 0.6\nR1_SCALE_FACTOR = 5.0\nREWARD_LAYERS = [19, 20, 24, 27, 32, 33, 35]\nSEED = 42\n\n\nclass _StrengthAwareReward:\n    __name__ = \"dc_grpo_reward\"\n\n    def __init__(self, trainer, inner):\n        self.trainer = trainer\n        self._inner = inner\n\n    def __call__(self, prompts, completions, **kwargs):\n        self.trainer._current_strengths = kwargs.get(\n            \"evidence_strength\", [\"unknown\"] * len(completions)\n        )\n        return self._inner(prompts, completions, **kwargs)\n\n\nclass Exp002v3Trainer(DCGRPOTrainer):\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        self._current_strengths = []\n        self._log_step = 0\n        self.reward_funcs = [_StrengthAwareReward(self, self.reward_funcs[0])]\n        if hasattr(self, \"reward_func_names\"):\n            self.reward_func_names = [\"dc_grpo_reward\"]\n\n    def compute_rewards(self, completions, conditions, pair_ids, batch_activations, r1_ema=None, ema_alpha=0.3):\n        rewards, components = super().compute_rewards(\n            completions, conditions, pair_ids, batch_activations, r1_ema, ema_alpha\n        )\n\n        self._log_step += 1\n        if self._log_step % 10 == 0:\n            strengths = self._current_strengths or []\n            for strength in [\"weak\", \"medium\", \"strong\"]:\n                indices = [i for i, s in enumerate(strengths) if s == strength]\n                if indices:\n                    r1_vals = [components[\"r1\"][i] for i in indices if i < len(components[\"r1\"])]\n                    if r1_vals:\n                        logger.info(\"reward/r1_%s_mean=%.4f n=%d\", strength, sum(r1_vals) / len(r1_vals), len(r1_vals))\n\n        return rewards, components\n\n\ndef load_dataset(tokenizer):\n    records = []\n    with open(DATA_PATH) as f:\n        for line in f:\n            rec = json.loads(line)\n            msgs = [{\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in rec[\"turns\"]]\n            try:\n                prompt = tokenizer.apply_chat_template(\n                    msgs, tokenize=False, add_generation_prompt=True, enable_thinking=False\n                )\n            except TypeError:\n                prompt = tokenizer.apply_chat_template(\n                    msgs, tokenize=False, add_generation_prompt=True\n                )\n            records.append({\n                \"prompt\": prompt,\n                \"condition\": rec[\"condition\"],\n                \"pair_id\": str(rec[\"pair_id\"]),\n                \"evidence_strength\": rec.get(\"evidence_strength\", \"unknown\"),\n            })\n    logger.info(\"Loaded %d records from %s\", len(records), DATA_PATH)\n    return Dataset.from_list(records)\n\n\ndef main():\n    torch.manual_seed(SEED)\n\n    logger.info(\"=== exp-002v3: DC-GRPO Scaled Cosine R1 ===\")\n    logger.info(\"Weights: R1=%.2f, R2=%.2f, R3=%.2f | R1 scale_factor=%.1f\", R1_WEIGHT, R2_WEIGHT, R3_WEIGHT, R1_SCALE_FACTOR)\n    logger.info(\"Reward layers: %s\", REWARD_LAYERS)\n\n    model_path = MODEL_PATH if Path(MODEL_PATH).exists() else \"Qwen/Qwen3-8B\"\n\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\n    if tokenizer.pad_token_id is None:\n        tokenizer.pad_token_id = tokenizer.eos_token_id\n\n    dataset = load_dataset(tokenizer)\n\n    config = DCGRPOConfig(\n        output_dir=OUTPUT_DIR,\n        direction_path=DIRECTION_PATH,\n        reward_layers=REWARD_LAYERS,\n        reward_position=\"asst_first\",\n        r1_weight=R1_WEIGHT,\n        r2_weight=R2_WEIGHT,\n        r3_weight=R3_WEIGHT,\n        r1_scale_factor=R1_SCALE_FACTOR,\n        r3_model_name=\"cross-encoder/nli-deberta-v3-base\",\n        recalibration_interval=500,\n        calibration_data_path=DATA_PATH,\n        num_train_epochs=10,\n        per_device_train_batch_size=1,\n        gradient_accumulation_steps=16,\n        gradient_checkpointing=True,\n        learning_rate=5e-5,\n        warmup_steps=200,\n        logging_steps=10,\n        save_steps=500,\n        max_steps=8000,\n        bf16=True,\n        seed=SEED,\n        max_completion_length=256,\n        num_generations=2,\n    )\n\n    peft_config = LoraConfig(\n        r=64,\n        lora_alpha=64,\n        target_modules=[\"q_proj\", \"v_proj\", \"k_proj\", \"o_proj\"],\n        bias=\"none\",\n        task_type=\"CAUSAL_LM\",\n    )\n\n    trainer = Exp002v3Trainer(\n        model=model_path,\n        args=config,\n        train_dataset=dataset,\n        processing_class=tokenizer,\n        peft_config=peft_config,\n    )\n\n    logger.info(\"Starting training...\")\n    trainer.train(resume_from_checkpoint=\"/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/checkpoint-500\")\n    trainer.save_model(os.path.join(OUTPUT_DIR, \"final\"))\n    trainer.cleanup()\n    logger.info(\"Training complete. Checkpoint: %s/final\", OUTPUT_DIR)\n\n\nif __name__ == \"__main__\":\n    main()\n",
+                "numLines": 179,
+                "startLine": 1,
+                "totalLines": 179
+              }
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JvSfizcVd9iPKHJ4AUsGU7",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/training/run_exp002v3_dcgrpo_scaled_cosine.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"exp-002v3: DC-GRPO with scaled cosine R1.\n\nParent: exp-002v2 (cosine R1, but R1 signal too weak vs R3)\nKey change: r1_scale_factor=5.0 amplifies cosine R1 from ~[-0.2, +0.2] to ~[-1, +1],\nmaking it commensurate with R3 (NLI, [0,1]). Weights rebalanced to 0.5/0.5.\n\"\"\"\n\n# MONITORING: step 0-50 异常阈值\n# - grad_norm > 1.0 → 立即汇报\n# - entropy < 0.1 → 立即汇报\n# FALLBACK: 如果不稳定，准备 scale=5 + weight=0.3 配置\n\nimport json\nimport logging\nimport os\nimport sys\nfrom pathlib import Path\n\nimport torch\nfrom datasets import Dataset\nfrom peft import LoraConfig\nfrom transformers import AutoTokenizer\n\nsys.path.insert(0, \"/root/mvp_v2_1_expanded/training\")\nfrom dcgrpo_trainer import DCGRPOConfig, DCGRPOTrainer\n\nOUTPUT_DIR = \"/root/contrastive_entrain_calib/checkpoints/exp002v3_dcgrpo_scaled_cosine\"\nos.makedirs(OUTPUT_DIR, exist_ok=True)\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n    handlers=[\n        logging.StreamHandler(),\n        logging.FileHandler(os.path.join(OUTPUT_DIR, \"train.log\")),\n    ],\n)\nlogger = logging.getLogger(\"exp002v3\")\n\nMODEL_PATH = \"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\"\nDATA_PATH = \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\"\nDIRECTION_PATH = \"/root/contrastive_entrain_calib/results/exp001/directions.pt\"\n\nR1_WEIGHT = 0.4\nR2_WEIGHT = 0.0\nR3_WEIGHT = 0.6\nR1_SCALE_FACTOR = 5.0\nREWARD_LAYERS = [19, 20, 24, 27, 32, 33, 35]\nSEED = 42\n\n\nclass _StrengthAwareReward:\n    __name__ = \"dc_grpo_reward\"\n\n    def __init__(self, trainer, inner):\n        self.trainer = trainer\n        self._inner = inner\n\n    def __call__(self, prompts, completions, **kwargs):\n        self.trainer._current_strengths = kwargs.get(\n            \"evidence_strength\", [\"unknown\"] * len(completions)\n        )\n        return self._inner(prompts, completions, **kwargs)\n\n\nclass Exp002v3Trainer(DCGRPOTrainer):\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        self._current_strengths = []\n        self._log_step = 0\n        self.reward_funcs = [_StrengthAwareReward(self, self.reward_funcs[0])]\n        if hasattr(self, \"reward_func_names\"):\n            self.reward_func_names = [\"dc_grpo_reward\"]\n\n    def compute_rewards(self, completions, conditions, pair_ids, batch_activations, r1_ema=None, ema_alpha=0.3):\n        rewards, components = super().compute_rewards(\n            completions, conditions, pair_ids, batch_activations, r1_ema, ema_alpha\n        )\n\n        self._log_step += 1\n        log_this = (self._log_step <= 50) or (self._log_step % 10 == 0)\n        if log_this:\n            import statistics\n            r1_vals = list(components.get(\"r1\", []))\n            r3_vals = list(components.get(\"r3\", []))\n            combined = [float(r) for r in rewards]\n            if r1_vals:\n                r1_m = sum(r1_vals) / len(r1_vals)\n                r1_s = statistics.stdev(r1_vals) if len(r1_vals) > 1 else 0.0\n                logger.info(\"step=%d R1 mean=%.4f std=%.4f\", self._log_step, r1_m, r1_s)\n            if r3_vals:\n                r3_m = sum(r3_vals) / len(r3_vals)\n                r3_s = statistics.stdev(r3_vals) if len(r3_vals) > 1 else 0.0\n                logger.info(\"step=%d R3 mean=%.4f std=%.4f\", self._log_step, r3_m, r3_s)\n            if combined:\n                c_s = statistics.stdev(combined) if len(combined) > 1 else 0.0\n                logger.info(\"step=%d combined_reward std=%.4f\", self._log_step, c_s)\n            strengths = self._current_strengths or []\n            for strength in [\"weak\", \"medium\", \"strong\"]:\n                indices = [i for i, s in enumerate(strengths) if s == strength]\n                if indices:\n                    sv = [r1_vals[i] for i in indices if i < len(r1_vals)]\n                    if sv:\n                        logger.info(\"step=%d reward/r1_%s_mean=%.4f n=%d\", self._log_step, strength, sum(sv) / len(sv), len(sv))\n\n        return rewards, components\n\n\ndef load_dataset(tokenizer):\n    records = []\n    with open(DATA_PATH) as f:\n        for line in f:\n            rec = json.loads(line)\n            msgs = [{\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in rec[\"turns\"]]\n            try:\n                prompt = tokenizer.apply_chat_template(\n                    msgs, tokenize=False, add_generation_prompt=True, enable_thinking=False\n                )\n            except TypeError:\n                prompt = tokenizer.apply_chat_template(\n                    msgs, tokenize=False, add_generation_prompt=True\n                )\n            records.append({\n                \"prompt\": prompt,\n                \"condition\": rec[\"condition\"],\n                \"pair_id\": str(rec[\"pair_id\"]),\n                \"evidence_strength\": rec.get(\"evidence_strength\", \"unknown\"),\n            })\n    logger.info(\"Loaded %d records from %s\", len(records), DATA_PATH)\n    return Dataset.from_list(records)\n\n\ndef main():\n    torch.manual_seed(SEED)\n\n    logger.info(\"=== exp-002v3: DC-GRPO Scaled Cosine R1 ===\")\n    logger.info(\"Weights: R1=%.2f, R2=%.2f, R3=%.2f | R1 scale_factor=%.1f\", R1_WEIGHT, R2_WEIGHT, R3_WEIGHT, R1_SCALE_FACTOR)\n    logger.info(\"Reward layers: %s\", REWARD_LAYERS)\n\n    model_path = MODEL_PATH if Path(MODEL_PATH).exists() else \"Qwen/Qwen3-8B\"\n\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\n    if tokenizer.pad_token_id is None:\n        tokenizer.pad_token_id = tokenizer.eos_token_id\n\n    dataset = load_dataset(tokenizer)\n\n    config = DCGRPOConfig(\n        output_dir=OUTPUT_DIR,\n        direction_path=DIRECTION_PATH,\n        reward_layers=REWARD_LAYERS,\n        reward_position=\"asst_first\",\n        r1_weight=R1_WEIGHT,\n        r2_weight=R2_WEIGHT,\n        r3_weight=R3_WEIGHT,\n        r1_scale_factor=R1_SCALE_FACTOR,\n        r3_model_name=\"cross-encoder/nli-deberta-v3-base\",\n        recalibration_interval=500,\n        calibration_data_path=DATA_PATH,\n        num_train_epochs=10,\n        per_device_train_batch_size=1,\n        gradient_accumulation_steps=16,\n        gradient_checkpointing=True,\n        learning_rate=5e-5,\n        warmup_steps=200,\n        logging_steps=10,\n        save_steps=500,\n        max_steps=8000,\n        bf16=True,\n        seed=SEED,\n        max_completion_length=256,\n        num_generations=2,\n    )\n\n    peft_config = LoraConfig(\n        r=64,\n        lora_alpha=64,\n        target_modules=[\"q_proj\", \"v_proj\", \"k_proj\", \"o_proj\"],\n        bias=\"none\",\n        task_type=\"CAUSAL_LM\",\n    )\n\n    trainer = Exp002v3Trainer(\n        model=model_path,\n        args=config,\n        train_dataset=dataset,\n        processing_class=tokenizer,\n        peft_config=peft_config,\n    )\n\n    logger.info(\"Starting training...\")\n    trainer.train()\n    trainer.save_model(os.path.join(OUTPUT_DIR, \"final\"))\n    trainer.cleanup()\n    logger.info(\"Training complete. Checkpoint: %s/final\", OUTPUT_DIR)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "3338382c-ba5e-4cc2-9c84-7785337b7428",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P98QhWUNaEQdsdtAydHz1w",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2562,
+                "cache_read_input_tokens": 39391,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2562
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T07:37:11.372Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JvSfizcVd9iPKHJ4AUsGU7",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/training/run_exp002v3_dcgrpo_scaled_cosine.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "840c689a-aaff-43b1-83bb-5030065401ec",
+            "tool_use_result": {
+              "type": "update",
+              "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/training/run_exp002v3_dcgrpo_scaled_cosine.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"exp-002v3: DC-GRPO with scaled cosine R1.\n\nParent: exp-002v2 (cosine R1, but R1 signal too weak vs R3)\nKey change: r1_scale_factor=5.0 amplifies cosine R1 from ~[-0.2, +0.2] to ~[-1, +1],\nmaking it commensurate with R3 (NLI, [0,1]). Weights rebalanced to 0.5/0.5.\n\"\"\"\n\n# MONITORING: step 0-50 异常阈值\n# - grad_norm > 1.0 → 立即汇报\n# - entropy < 0.1 → 立即汇报\n# FALLBACK: 如果不稳定，准备 scale=5 + weight=0.3 配置\n\nimport json\nimport logging\nimport os\nimport sys\nfrom pathlib import Path\n\nimport torch\nfrom datasets import Dataset\nfrom peft import LoraConfig\nfrom transformers import AutoTokenizer\n\nsys.path.insert(0, \"/root/mvp_v2_1_expanded/training\")\nfrom dcgrpo_trainer import DCGRPOConfig, DCGRPOTrainer\n\nOUTPUT_DIR = \"/root/contrastive_entrain_calib/checkpoints/exp002v3_dcgrpo_scaled_cosine\"\nos.makedirs(OUTPUT_DIR, exist_ok=True)\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n    handlers=[\n        logging.StreamHandler(),\n        logging.FileHandler(os.path.join(OUTPUT_DIR, \"train.log\")),\n    ],\n)\nlogger = logging.getLogger(\"exp002v3\")\n\nMODEL_PATH = \"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\"\nDATA_PATH = \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\"\nDIRECTION_PATH = \"/root/contrastive_entrain_calib/results/exp001/directions.pt\"\n\nR1_WEIGHT = 0.4\nR2_WEIGHT = 0.0\nR3_WEIGHT = 0.6\nR1_SCALE_FACTOR = 5.0\nREWARD_LAYERS = [19, 20, 24, 27, 32, 33, 35]\nSEED = 42\n\n\nclass _StrengthAwareReward:\n    __name__ = \"dc_grpo_reward\"\n\n    def __init__(self, trainer, inner):\n        self.trainer = trainer\n        self._inner = inner\n\n    def __call__(self, prompts, completions, **kwargs):\n        self.trainer._current_strengths = kwargs.get(\n            \"evidence_strength\", [\"unknown\"] * len(completions)\n        )\n        return self._inner(prompts, completions, **kwargs)\n\n\nclass Exp002v3Trainer(DCGRPOTrainer):\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        self._current_strengths = []\n        self._log_step = 0\n        self.reward_funcs = [_StrengthAwareReward(self, self.reward_funcs[0])]\n        if hasattr(self, \"reward_func_names\"):\n            self.reward_func_names = [\"dc_grpo_reward\"]\n\n    def compute_rewards(self, completions, conditions, pair_ids, batch_activations, r1_ema=None, ema_alpha=0.3):\n        rewards, components = super().compute_rewards(\n            completions, conditions, pair_ids, batch_activations, r1_ema, ema_alpha\n        )\n\n        self._log_step += 1\n        log_this = (self._log_step <= 50) or (self._log_step % 10 == 0)\n        if log_this:\n            import statistics\n            r1_vals = list(components.get(\"r1\", []))\n            r3_vals = list(components.get(\"r3\", []))\n            combined = [float(r) for r in rewards]\n            if r1_vals:\n                r1_m = sum(r1_vals) / len(r1_vals)\n                r1_s = statistics.stdev(r1_vals) if len(r1_vals) > 1 else 0.0\n                logger.info(\"step=%d R1 mean=%.4f std=%.4f\", self._log_step, r1_m, r1_s)\n            if r3_vals:\n                r3_m = sum(r3_vals) / len(r3_vals)\n                r3_s = statistics.stdev(r3_vals) if len(r3_vals) > 1 else 0.0\n                logger.info(\"step=%d R3 mean=%.4f std=%.4f\", self._log_step, r3_m, r3_s)\n            if combined:\n                c_s = statistics.stdev(combined) if len(combined) > 1 else 0.0\n                logger.info(\"step=%d combined_reward std=%.4f\", self._log_step, c_s)\n            strengths = self._current_strengths or []\n            for strength in [\"weak\", \"medium\", \"strong\"]:\n                indices = [i for i, s in enumerate(strengths) if s == strength]\n                if indices:\n                    sv = [r1_vals[i] for i in indices if i < len(r1_vals)]\n                    if sv:\n                        logger.info(\"step=%d reward/r1_%s_mean=%.4f n=%d\", self._log_step, strength, sum(sv) / len(sv), len(sv))\n\n        return rewards, components\n\n\ndef load_dataset(tokenizer):\n    records = []\n    with open(DATA_PATH) as f:\n        for line in f:\n            rec = json.loads(line)\n            msgs = [{\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in rec[\"turns\"]]\n            try:\n                prompt = tokenizer.apply_chat_template(\n                    msgs, tokenize=False, add_generation_prompt=True, enable_thinking=False\n                )\n            except TypeError:\n                prompt = tokenizer.apply_chat_template(\n                    msgs, tokenize=False, add_generation_prompt=True\n                )\n            records.append({\n                \"prompt\": prompt,\n                \"condition\": rec[\"condition\"],\n                \"pair_id\": str(rec[\"pair_id\"]),\n                \"evidence_strength\": rec.get(\"evidence_strength\", \"unknown\"),\n            })\n    logger.info(\"Loaded %d records from %s\", len(records), DATA_PATH)\n    return Dataset.from_list(records)\n\n\ndef main():\n    torch.manual_seed(SEED)\n\n    logger.info(\"=== exp-002v3: DC-GRPO Scaled Cosine R1 ===\")\n    logger.info(\"Weights: R1=%.2f, R2=%.2f, R3=%.2f | R1 scale_factor=%.1f\", R1_WEIGHT, R2_WEIGHT, R3_WEIGHT, R1_SCALE_FACTOR)\n    logger.info(\"Reward layers: %s\", REWARD_LAYERS)\n\n    model_path = MODEL_PATH if Path(MODEL_PATH).exists() else \"Qwen/Qwen3-8B\"\n\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\n    if tokenizer.pad_token_id is None:\n        tokenizer.pad_token_id = tokenizer.eos_token_id\n\n    dataset = load_dataset(tokenizer)\n\n    config = DCGRPOConfig(\n        output_dir=OUTPUT_DIR,\n        direction_path=DIRECTION_PATH,\n        reward_layers=REWARD_LAYERS,\n        reward_position=\"asst_first\",\n        r1_weight=R1_WEIGHT,\n        r2_weight=R2_WEIGHT,\n        r3_weight=R3_WEIGHT,\n        r1_scale_factor=R1_SCALE_FACTOR,\n        r3_model_name=\"cross-encoder/nli-deberta-v3-base\",\n        recalibration_interval=500,\n        calibration_data_path=DATA_PATH,\n        num_train_epochs=10,\n        per_device_train_batch_size=1,\n        gradient_accumulation_steps=16,\n        gradient_checkpointing=True,\n        learning_rate=5e-5,\n        warmup_steps=200,\n        logging_steps=10,\n        save_steps=500,\n        max_steps=8000,\n        bf16=True,\n        seed=SEED,\n        max_completion_length=256,\n        num_generations=2,\n    )\n\n    peft_config = LoraConfig(\n        r=64,\n        lora_alpha=64,\n        target_modules=[\"q_proj\", \"v_proj\", \"k_proj\", \"o_proj\"],\n        bias=\"none\",\n        task_type=\"CAUSAL_LM\",\n    )\n\n    trainer = Exp002v3Trainer(\n        model=model_path,\n        args=config,\n        train_dataset=dataset,\n        processing_class=tokenizer,\n        peft_config=peft_config,\n    )\n\n    logger.info(\"Starting training...\")\n    trainer.train()\n    trainer.save_model(os.path.join(OUTPUT_DIR, \"final\"))\n    trainer.cleanup()\n    logger.info(\"Training complete. Checkpoint: %s/final\", OUTPUT_DIR)\n\n\nif __name__ == \"__main__\":\n    main()\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 5,
+                  "oldLines": 6,
+                  "newStart": 5,
+                  "newLines": 12,
+                  "lines": [
+                    " Key change: r1_scale_factor=5.0 amplifies cosine R1 from ~[-0.2, +0.2] to ~[-1, +1],",
+                    " making it commensurate with R3 (NLI, [0,1]). Weights rebalanced to 0.5/0.5.",
+                    " \"\"\"",
+                    "+",
+                    "+# MONITORING: step 0-50 异常阈值",
+                    "+# - grad_norm > 1.0 → 立即汇报",
+                    "+# - entropy < 0.1 → 立即汇报",
+                    "+# FALLBACK: 如果不稳定，准备 scale=5 + weight=0.3 配置",
+                    "+",
+                    " import json",
+                    " import logging",
+                    " import os"
+                  ]
+                },
+                {
+                  "oldStart": 73,
+                  "oldLines": 14,
+                  "newStart": 79,
+                  "newLines": 30,
+                  "lines": [
+                    "         )",
+                    " ",
+                    "         self._log_step += 1",
+                    "-        if self._log_step % 10 == 0:",
+                    "+        log_this = (self._log_step <= 50) or (self._log_step % 10 == 0)",
+                    "+        if log_this:",
+                    "+            import statistics",
+                    "+            r1_vals = list(components.get(\"r1\", []))",
+                    "+            r3_vals = list(components.get(\"r3\", []))",
+                    "+            combined = [float(r) for r in rewards]",
+                    "+            if r1_vals:",
+                    "+                r1_m = sum(r1_vals) / len(r1_vals)",
+                    "+                r1_s = statistics.stdev(r1_vals) if len(r1_vals) > 1 else 0.0",
+                    "+                logger.info(\"step=%d R1 mean=%.4f std=%.4f\", self._log_step, r1_m, r1_s)",
+                    "+            if r3_vals:",
+                    "+                r3_m = sum(r3_vals) / len(r3_vals)",
+                    "+                r3_s = statistics.stdev(r3_vals) if len(r3_vals) > 1 else 0.0",
+                    "+                logger.info(\"step=%d R3 mean=%.4f std=%.4f\", self._log_step, r3_m, r3_s)",
+                    "+            if combined:",
+                    "+                c_s = statistics.stdev(combined) if len(combined) > 1 else 0.0",
+                    "+                logger.info(\"step=%d combined_reward std=%.4f\", self._log_step, c_s)",
+                    "             strengths = self._current_strengths or []",
+                    "             for strength in [\"weak\", \"medium\", \"strong\"]:",
+                    "                 indices = [i for i, s in enumerate(strengths) if s == strength]",
+                    "                 if indices:",
+                    "-                    r1_vals = [components[\"r1\"][i] for i in indices if i < len(components[\"r1\"])]",
+                    "-                    if r1_vals:",
+                    "-                        logger.info(\"reward/r1_%s_mean=%.4f n=%d\", strength, sum(r1_vals) / len(r1_vals), len(r1_vals))",
+                    "+                    sv = [r1_vals[i] for i in indices if i < len(r1_vals)]",
+                    "+                    if sv:",
+                    "+                        logger.info(\"step=%d reward/r1_%s_mean=%.4f n=%d\", self._log_step, strength, sum(sv) / len(sv), len(sv))",
+                    " ",
+                    "         return rewards, components",
+                    " "
+                  ]
+                },
+                {
+                  "oldStart": 168,
+                  "oldLines": 7,
+                  "newStart": 190,
+                  "newLines": 7,
+                  "lines": [
+                    "     )",
+                    " ",
+                    "     logger.info(\"Starting training...\")",
+                    "-    trainer.train(resume_from_checkpoint=\"/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/checkpoint-500\")",
+                    "+    trainer.train()",
+                    "     trainer.save_model(os.path.join(OUTPUT_DIR, \"final\"))",
+                    "     trainer.cleanup()",
+                    "     logger.info(\"Training complete. Checkpoint: %s/final\", OUTPUT_DIR)"
+                  ]
+                }
+              ],
+              "originalFile": "#!/usr/bin/env python3\n\"\"\"exp-002v3: DC-GRPO with scaled cosine R1.\n\nParent: exp-002v2 (cosine R1, but R1 signal too weak vs R3)\nKey change: r1_scale_factor=5.0 amplifies cosine R1 from ~[-0.2, +0.2] to ~[-1, +1],\nmaking it commensurate with R3 (NLI, [0,1]). Weights rebalanced to 0.5/0.5.\n\"\"\"\nimport json\nimport logging\nimport os\nimport sys\nfrom pathlib import Path\n\nimport torch\nfrom datasets import Dataset\nfrom peft import LoraConfig\nfrom transformers import AutoTokenizer\n\nsys.path.insert(0, \"/root/mvp_v2_1_expanded/training\")\nfrom dcgrpo_trainer import DCGRPOConfig, DCGRPOTrainer\n\nOUTPUT_DIR = \"/root/contrastive_entrain_calib/checkpoints/exp002v3_dcgrpo_scaled_cosine\"\nos.makedirs(OUTPUT_DIR, exist_ok=True)\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n    handlers=[\n        logging.StreamHandler(),\n        logging.FileHandler(os.path.join(OUTPUT_DIR, \"train.log\")),\n    ],\n)\nlogger = logging.getLogger(\"exp002v3\")\n\nMODEL_PATH = \"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\"\nDATA_PATH = \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\"\nDIRECTION_PATH = \"/root/contrastive_entrain_calib/results/exp001/directions.pt\"\n\nR1_WEIGHT = 0.4\nR2_WEIGHT = 0.0\nR3_WEIGHT = 0.6\nR1_SCALE_FACTOR = 5.0\nREWARD_LAYERS = [19, 20, 24, 27, 32, 33, 35]\nSEED = 42\n\n\nclass _StrengthAwareReward:\n    __name__ = \"dc_grpo_reward\"\n\n    def __init__(self, trainer, inner):\n        self.trainer = trainer\n        self._inner = inner\n\n    def __call__(self, prompts, completions, **kwargs):\n        self.trainer._current_strengths = kwargs.get(\n            \"evidence_strength\", [\"unknown\"] * len(completions)\n        )\n        return self._inner(prompts, completions, **kwargs)\n\n\nclass Exp002v3Trainer(DCGRPOTrainer):\n    def __init__(self, *args, **kwargs):\n        super().__init__(*args, **kwargs)\n        self._current_strengths = []\n        self._log_step = 0\n        self.reward_funcs = [_StrengthAwareReward(self, self.reward_funcs[0])]\n        if hasattr(self, \"reward_func_names\"):\n            self.reward_func_names = [\"dc_grpo_reward\"]\n\n    def compute_rewards(self, completions, conditions, pair_ids, batch_activations, r1_ema=None, ema_alpha=0.3):\n        rewards, components = super().compute_rewards(\n            completions, conditions, pair_ids, batch_activations, r1_ema, ema_alpha\n        )\n\n        self._log_step += 1\n        if self._log_step % 10 == 0:\n            strengths = self._current_strengths or []\n            for strength in [\"weak\", \"medium\", \"strong\"]:\n                indices = [i for i, s in enumerate(strengths) if s == strength]\n                if indices:\n                    r1_vals = [components[\"r1\"][i] for i in indices if i < len(components[\"r1\"])]\n                    if r1_vals:\n                        logger.info(\"reward/r1_%s_mean=%.4f n=%d\", strength, sum(r1_vals) / len(r1_vals), len(r1_vals))\n\n        return rewards, components\n\n\ndef load_dataset(tokenizer):\n    records = []\n    with open(DATA_PATH) as f:\n        for line in f:\n            rec = json.loads(line)\n            msgs = [{\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in rec[\"turns\"]]\n            try:\n                prompt = tokenizer.apply_chat_template(\n                    msgs, tokenize=False, add_generation_prompt=True, enable_thinking=False\n                )\n            except TypeError:\n                prompt = tokenizer.apply_chat_template(\n                    msgs, tokenize=False, add_generation_prompt=True\n                )\n            records.append({\n                \"prompt\": prompt,\n                \"condition\": rec[\"condition\"],\n                \"pair_id\": str(rec[\"pair_id\"]),\n                \"evidence_strength\": rec.get(\"evidence_strength\", \"unknown\"),\n            })\n    logger.info(\"Loaded %d records from %s\", len(records), DATA_PATH)\n    return Dataset.from_list(records)\n\n\ndef main():\n    torch.manual_seed(SEED)\n\n    logger.info(\"=== exp-002v3: DC-GRPO Scaled Cosine R1 ===\")\n    logger.info(\"Weights: R1=%.2f, R2=%.2f, R3=%.2f | R1 scale_factor=%.1f\", R1_WEIGHT, R2_WEIGHT, R3_WEIGHT, R1_SCALE_FACTOR)\n    logger.info(\"Reward layers: %s\", REWARD_LAYERS)\n\n    model_path = MODEL_PATH if Path(MODEL_PATH).exists() else \"Qwen/Qwen3-8B\"\n\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\n    if tokenizer.pad_token_id is None:\n        tokenizer.pad_token_id = tokenizer.eos_token_id\n\n    dataset = load_dataset(tokenizer)\n\n    config = DCGRPOConfig(\n        output_dir=OUTPUT_DIR,\n        direction_path=DIRECTION_PATH,\n        reward_layers=REWARD_LAYERS,\n        reward_position=\"asst_first\",\n        r1_weight=R1_WEIGHT,\n        r2_weight=R2_WEIGHT,\n        r3_weight=R3_WEIGHT,\n        r1_scale_factor=R1_SCALE_FACTOR,\n        r3_model_name=\"cross-encoder/nli-deberta-v3-base\",\n        recalibration_interval=500,\n        calibration_data_path=DATA_PATH,\n        num_train_epochs=10,\n        per_device_train_batch_size=1,\n        gradient_accumulation_steps=16,\n        gradient_checkpointing=True,\n        learning_rate=5e-5,\n        warmup_steps=200,\n        logging_steps=10,\n        save_steps=500,\n        max_steps=8000,\n        bf16=True,\n        seed=SEED,\n        max_completion_length=256,\n        num_generations=2,\n    )\n\n    peft_config = LoraConfig(\n        r=64,\n        lora_alpha=64,\n        target_modules=[\"q_proj\", \"v_proj\", \"k_proj\", \"o_proj\"],\n        bias=\"none\",\n        task_type=\"CAUSAL_LM\",\n    )\n\n    trainer = Exp002v3Trainer(\n        model=model_path,\n        args=config,\n        train_dataset=dataset,\n        processing_class=tokenizer,\n        peft_config=peft_config,\n    )\n\n    logger.info(\"Starting training...\")\n    trainer.train(resume_from_checkpoint=\"/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/checkpoint-500\")\n    trainer.save_model(os.path.join(OUTPUT_DIR, \"final\"))\n    trainer.cleanup()\n    logger.info(\"Training complete. Checkpoint: %s/final\", OUTPUT_DIR)\n\n\nif __name__ == \"__main__\":\n    main()\n",
+              "userModified": false
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 最终配置确认表\n\n| 参数 | 要求值 | 实际值 | 状态 |\n|---|---|---|---|\n| `R1_WEIGHT` | 0.4 | 0.4 | OK |\n| `R2_WEIGHT` | 0.0 | 0.0 | OK |\n| `R3_WEIGHT` | 0.6 | 0.6 | OK |\n| `R1_SCALE_FACTOR` | 5.0 | 5.0 | OK |\n| `lora_alpha` | 64 | 64 | OK |\n| `recalibration_interval` | 500 | 500 | OK |\n| `max_steps` | 8000 | 8000 | OK |\n| `seed` | 42 | 42 | OK |\n| `resume_from_checkpoint` | 删除 | 已删除，`trainer.train()` 无参数 | OK |\n\n## Dry-run 结果\n\n`py_compile` → **PASS**\n\n## Trainer import 路径确认\n\n- Run script: `sys.path.insert(0, \"/root/mvp_v2_1_expanded/training\")`\n- 导入: `from dcgrpo_trainer import DCGRPOConfig, DCGRPOTrainer`\n- 实际路径: `/root/mvp_v2_1_expanded/training/dcgrpo_trainer.py`\n- `/root/contrastive_entrain_calib/training/dcgrpo_trainer.py` **不存在**，无歧义\n- `r1_scale_factor` 在该 trainer 第130/271/674行正确实现（config default=1.0，run script 传入 5.0）\n\n## 修改摘要\n\n1. 删除 `resume_from_checkpoint`，从 base model 从头训练\n2. 添加顶部异常阈值监控注释\n3. 增强 `compute_rewards`：step 1-50 每步打印 R1/R3 mean+std、combined reward std、按 strength 分组的 R1；step 50+ 恢复每 10 步打印\n4. `grad_norm`/`entropy` 由 HF trainer 内置 `logging_steps=10` 自动记录，无需额外代码\n5. 远程 + 本地文件已同步"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "uuid": "69532367-bb09-49f9-8f62-696928f1d701",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T5n3ok8sZjML6m1Ec3jAxW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2631,
+                "cache_read_input_tokens": 41953,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2631
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 最终配置确认表\n\n| 参数 | 要求值 | 实际值 | 状态 |\n|---|---|---|---|\n| `R1_WEIGHT` | 0.4 | 0.4 | OK |\n| `R2_WEIGHT` | 0.0 | 0.0 | OK |\n| `R3_WEIGHT` | 0.6 | 0.6 | OK |\n| `R1_SCALE_FACTOR` | 5.0 | 5.0 | OK |\n| `lora_alpha` | 64 | 64 | OK |\n| `recalibration_interval` | 500 | 500 | OK |\n| `max_steps` | 8000 | 8000 | OK |\n| `seed` | 42 | 42 | OK |\n| `resume_from_checkpoint` | 删除 | 已删除，`trainer.train()` 无参数 | OK |\n\n## Dry-run 结果\n\n`py_compile` → **PASS**\n\n## Trainer import 路径确认\n\n- Run script: `sys.path.insert(0, \"/root/mvp_v2_1_expanded/training\")`\n- 导入: `from dcgrpo_trainer import DCGRPOConfig, DCGRPOTrainer`\n- 实际路径: `/root/mvp_v2_1_expanded/training/dcgrpo_trainer.py`\n- `/root/contrastive_entrain_calib/training/dcgrpo_trainer.py` **不存在**，无歧义\n- `r1_scale_factor` 在该 trainer 第130/271/674行正确实现（config default=1.0，run script 传入 5.0）\n\n## 修改摘要\n\n1. 删除 `resume_from_checkpoint`，从 base model 从头训练\n2. 添加顶部异常阈值监控注释\n3. 增强 `compute_rewards`：step 1-50 每步打印 R1/R3 mean+std、combined reward std、按 strength 分组的 R1；step 50+ 恢复每 10 步打印\n4. `grad_norm`/`entropy` 由 HF trainer 内置 `logging_steps=10` 自动记录，无需额外代码\n5. 远程 + 本地文件已同步"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 143694,
+            "duration_api_ms": 141316,
+            "num_turns": 15,
+            "stop_reason": "end_turn",
+            "session_id": "510b82f4-68d9-4088-af61-28880100879c",
+            "total_cost_usd": 0.66135225,
+            "usage": {
+              "input_tokens": 17,
+              "cache_creation_input_tokens": 32743,
+              "cache_read_input_tokens": 412235,
+              "output_tokens": 9950,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 32743,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 622,
+                  "cache_read_input_tokens": 41953,
+                  "cache_creation_input_tokens": 2631,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2631
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1656,
+                "outputTokens": 20,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001756,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 17,
+                "outputTokens": 9950,
+                "cacheReadInputTokens": 412235,
+                "cacheCreationInputTokens": 32743,
+                "webSearchRequests": 0,
+                "costUSD": 0.6595962500000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "64feb13b-8ac5-49e6-b7d6-50a0dbfe94a6"
+          },
+          "id": "event-000041"
+        }
+      ],
+      "message_count": 41
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp002v3-final-adjustments.md"
+}

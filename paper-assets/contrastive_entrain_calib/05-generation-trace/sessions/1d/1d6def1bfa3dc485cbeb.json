@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d6def1bfa3dc485cbeb",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval checkpoint pipeline monitor",
+  "task_key": "worker_eval_checkpoint-pipeline-monitor_20260522T114809",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_checkpoint-pipeline-monitor_20260522T114809_result.json",
+    "occurrence": 1,
+    "bytes": 304,
+    "sha256": "2b1f1309a0fa29b6ff85c82622d3b7399e9def1ab82e46d25a99615140c44f7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "首次轮询完成，当前状态：\n- **exp-003-s2 (R3-only)**: 最新 checkpoint-7000，ckpt-7500 预计还需 ~20-30 分钟\n- **exp-004-s2 (ACT)**: step 2390/8000，ckpt-2500 预计 ~16 分钟内产出\n\n已设置 ~5 分钟后再次轮询，ACT s2 的 ckpt-2500 下次可能就绪。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-checkpoint-pipeline-monitor.md"
+}

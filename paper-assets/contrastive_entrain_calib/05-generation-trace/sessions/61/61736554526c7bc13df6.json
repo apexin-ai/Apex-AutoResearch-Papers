@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61736554526c7bc13df6",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code eval joint check",
+  "task_key": "worker_code_eval-joint-check_20260525T072725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval-joint-check_20260525T072725_result.json",
+    "occurrence": 1,
+    "bytes": 466,
+    "sha256": "3e507eac4fb7cf1761328c887271ad85039bf8ac137225b56891d73b412be4e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成：\n\n1. **seed3 eval 全部完成** — 5 个 checkpoint 指标已收集并写入 registry\n2. **Best checkpoint: ckpt-1000**（SYCONScore=0.4067），之后单调下降，ckpt-2000/final 退化到 0.0845\n3. **Registry 已更新**，conclusion=success\n4. **Cron `exp-008-eval-joint` 已删除**\n5. **seed4（cuda:1）未在运行** — 两张 GPU 均空闲，0MiB 占用，无进程。需要确认 seed4 是正常完成还是异常退出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-joint-check.md"
+}

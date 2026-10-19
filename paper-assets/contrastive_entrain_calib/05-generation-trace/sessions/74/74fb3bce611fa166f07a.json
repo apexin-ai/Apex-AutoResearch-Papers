@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74fb3bce611fa166f07a",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "writing paper audit r8",
+  "task_key": "worker_writing_paper-audit-r8_20260524T125525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_paper-audit-r8_20260524T125525_result.json",
+    "occurrence": 1,
+    "bytes": 1334,
+    "sha256": "9e1c311a093cc0b317b9c4a3e8f99225282be186230a7b4a2cc68461fc344427"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 7 items completed. Summary of changes:\n\n**3a. Em-dash removal** — Replaced all prose `---` across 8 files with commas, parentheses, colons, or restructured sentences. Table N/A markers in appendix preserved.\n\n**3b. 4/31 → 4/28** — Changed all occurrences in abstract, introduction, and conclusion from \"4/31 (12.9%)\" to \"4/28 (14.3%) across two seeds\". Conclusion now explicitly notes \"gs=8 ablation: 0/3\" separately.\n\n**3c. Experiment IDs removed** — Removed \"exp-008\" and \"exp-008v3\" from probe_trap.tex (4 occurrences) and appendix.tex (1 occurrence). Replaced with descriptive labels (\"frozen-probe run\") where context needed it.\n\n**3d. Abstract word count** — 177 words, within the 200-word EMNLP limit.\n\n**3e. GPU info** — Added \"All experiments were conducted on a single NVIDIA L20 GPU (48 GB). Total compute: ~120 GPU-hours across all runs.\" to the hyperparameter table footnotes in appendix.tex.\n\n**3f. 47/47 → 31/31** — Changed abstract and conclusion to \"31/31 across two seeds\". Introduction C1 bullet now reads \"31/31 across two seeds; 47/47 including reduced-LoRA ablation\". Discussion figure caption already had 31/31.\n\n**3g. C1/C2 order** — Swapped contribution bullets in introduction so C1 (reliability gap) appears before C2 (probe reward trap)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-paper-audit-r8.md"
+}

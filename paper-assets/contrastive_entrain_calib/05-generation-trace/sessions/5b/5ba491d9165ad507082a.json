@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ba491d9165ad507082a",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ssh kill dup cuda2",
+  "task_key": "worker_ssh_kill-dup-cuda2_20260522T193926",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill-dup-cuda2_20260522T193926_result.json",
+    "occurrence": 1,
+    "bytes": 396,
+    "sha256": "425f2418a4b588027d90701970295c62cf0073fd91720d04e29b5530720941b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 1979 已成功 kill。\n\n**GPU 2 剩余进程：**\n- PID 108611 — `exp-004-reduced-lora-ckpt500` eval，占用 12912 MiB\n\n**其他 eval 进程（非 GPU 2）：**\n- PID 22131 / tmux session — `exp003s2_r3only_ckpt8000` eval on CUDA:3\n- PID 171442 — `exp-004-reduced-lora-ckpt1000` eval on CUDA:3\n\nGPU 2 上只剩 ckpt500 的 eval 在跑，重复进程已清除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-dup-cuda2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "feed9db858e626e6b953",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval checkpoint inventory and eval",
+  "task_key": "worker_eval_checkpoint-inventory-and-eval_20260522T213643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_checkpoint-inventory-and-eval_20260522T213643_result.json",
+    "occurrence": 1,
+    "bytes": 1383,
+    "sha256": "c8fea2393dc9a7bfc14f8f8ac9d806b251ebdfac1af503afd3b4925e2c50bd1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 GPU 全部在用，分配正确。\n\n---\n\n## 汇报\n\n### 29046 ACT S2 checkpoint 清单\n\n训练进行到 step 6250，仍在运行。\n\n| Checkpoint | 状态 |\n|---|---|\n| 500 | 已 eval（已清理，不在磁盘上） |\n| 1000 | 已 eval（已清理） |\n| 1500 | 已 eval（已清理） |\n| 2000 | 已 eval |\n| **2500** | **未 eval**（在磁盘上） |\n| 3000 | 已 eval |\n| 3500 | 已 eval |\n| 4000 | 已 eval |\n| 4500 | 已 eval |\n| 5000 | 已 eval |\n| **5500** | **未 eval** → 已 SCP 到 28034，GPU2 eval 中 |\n| **6000** | **未 eval** → 已 SCP 到 28034，GPU0 eval 中 |\n\n### 28034 Reduced-lora checkpoint 清单\n\n路径：`/root/autodl-tmp/outputs/exp-004-reduced-lora/`，训练到 step 2370，仍在运行。\n\n| Checkpoint | 状态 |\n|---|---|\n| 500 | 已 eval (0.1515) |\n| 1000 | 已 eval (0.1700) |\n| **1500** | **未 eval** |\n| **2000** | **未 eval** |\n\n### GPU 分配\n\n| GPU | PID | 任务 | 显存 |\n|---|---|---|---|\n| GPU0 | 133996 | **ACT s2 ckpt-6000 eval**（本次启动） | 17650 MiB |\n| GPU1 | 30011 | r3only s2 ckpt-8000 eval（之前启动的 tmux） | 21758 MiB |\n| GPU2 | 134523 | **ACT s2 ckpt-5500 eval**（本次启动） | 17650 MiB |\n| GPU3 | 131250 | exp-003-gs8-ckpt-500 verified eval（之前启动的） | 16874 MiB |\n\n### PID 958710\n\n已不存在，进程已结束。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-checkpoint-inventory-and-eval.md"
+}

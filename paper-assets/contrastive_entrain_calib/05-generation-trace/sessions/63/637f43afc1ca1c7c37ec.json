@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "637f43afc1ca1c7c37ec",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops verify nli on 29046",
+  "task_key": "worker_ops_verify-nli-on-29046_20260523T101355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-nli-on-29046_20260523T101355_result.json",
+    "occurrence": 1,
+    "bytes": 880,
+    "sha256": "91f757938dc078f10369a85342fbb6f1d27390c32e1c5f0b46531a721eff1344"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n**NLI 模型已就位**，但不在代码预期的本地目录，而是在 HuggingFace cache 中：\n\n| 项 | 状态 |\n|---|---|\n| 预期路径 `eval/nli-deberta-v3-base-local/` | **不存在** |\n| HF cache (autodl-tmp) | `/root/autodl-tmp/.hf_cache/hub/models--cross-encoder--nli-deberta-v3-base/` — **715MB，完整** |\n| HF cache (默认) | `/root/.cache/huggingface/hub/models--cross-encoder--nli-deberta-v3-base/` — **715MB，完整** |\n| 关键文件 | `config.json` ✓, `model.safetensors` ✓, `tokenizer.json` ✓, `spm.model` ✓ |\n| snapshot | `6c749ce3425cd33b46d187e45b92bbf96ee12ec7` |\n\n模型存在两份 cache 副本（可能是 `HF_HOME` 设置变更所致）。如果代码硬编码了 `nli-deberta-v3-base-local/` 路径则需要改为从 cache 加载（`cross-encoder/nli-deberta-v3-base`），或创建符号链接。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-nli-on-29046.md"
+}

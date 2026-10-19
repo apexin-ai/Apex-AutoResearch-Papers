@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ecb53f4c4e7fed2ca07",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops post restart4 28034 eval survival",
+  "task_key": "worker_ops_post-restart4-28034-eval-survival_20260519T135321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_post-restart4-28034-eval-survival_20260519T135321_result.json",
+    "occurrence": 1,
+    "bytes": 1317,
+    "sha256": "65c0d465722d653d20f00309f4323ced4a718d8f8dcb6ec0e0ac579347861553"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n---\n\n## 状态总览\n\n| 任务 | GPU | 状态 | 详情 |\n|------|-----|------|------|\n| **exp-004 trimmed eval** | 0 | **已死** | 服务重启时被杀 |\n| **exp-016 ActAdd re-eval** | 3 | **存活** | alpha=2.0, 进度 220/362 |\n| **exp-008v3 training** | 1+2 | **存活** | step 1334/8000 (17%), ~23s/it |\n\n### GPU 状态\n| GPU | Util | VRAM |\n|-----|------|------|\n| 0 | 0% | 17.7/32.6 GB (残留显存，无活跃进程) |\n| 1 | 0% | 31.4/32.6 GB |\n| 2 | 0% | 30.7/32.6 GB |\n| 3 | 23% | 16.5/32.6 GB |\n\n### exp-004 eval 详情\n- **ckpt-500**: 已完成 (ToF=0.0939, NoF=0.8895, SYCONScore=0.1699)\n- **ckpt-2000**: 日志显示模型已加载、开始跑 362 pairs，但结果目录只有 eval.log，无 json — **跑到一半被杀**\n- **ckpt-8000**: 未开始\n- 需要重启，从 ckpt-2000 继续\n\n### exp-016 re-eval 详情\n- 已完成 alpha=0, 0.5, 1.0；当前跑 alpha=2.0 (220/362)，还剩 alpha=5.0\n- 预计再需 ~1-2 小时\n\n### exp-008v3 training 详情\n- Step 1334/8000, ETA ~42h\n- GPU util 显示 0% 但进程活跃且持续出 log（可能刚好在 CPU 阶段）\n- combined_mean reward ≈ 0.5\n\n---\n\n**需要重启 exp-004 eval。** 要现在重启吗？可以跳过 ckpt-500（已完成），只跑 ckpt-2000 和 ckpt-8000。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-post-restart4-28034-eval-survival.md"
+}

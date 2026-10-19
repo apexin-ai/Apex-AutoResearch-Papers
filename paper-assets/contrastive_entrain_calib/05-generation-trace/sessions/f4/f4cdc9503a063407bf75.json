@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4cdc9503a063407bf75",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "check westd28034 model status",
+  "task_key": "worker_check_westd28034_model_status_20260518T150207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd28034_model_status_20260518T150207_result.json",
+    "occurrence": 1,
+    "bytes": 677,
+    "sha256": "8a2cd326aaaf65fb2442662389e345430108453f61054cd2f5818ab3be7be10d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查结果\n\n**模型下载未完成，且已失败停止。**\n\n| 项目 | 状态 |\n|------|------|\n| 已下载 | 4.2 GB / ~16 GB（约 26%） |\n| 活跃下载进程 | 无（已停止） |\n| incomplete 文件 | 4 个（model-00003~00005.safetensors + tokenizer.json） |\n| 失败原因 | 多个文件 `The read operation timed out`，且未设置 `HF_TOKEN`（限速） |\n| 本地路径 | `/root/autodl-tmp/.hf_cache/models--Qwen--Qwen3-8B/` |\n\n**失败原因**：未认证下载（日志提示 `unauthenticated requests`），HuggingFace 限速导致多个 safetensors 分片超时。\n\n需要设置 `HF_TOKEN` 后重新下载，是否继续？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd28034-model-status.md"
+}

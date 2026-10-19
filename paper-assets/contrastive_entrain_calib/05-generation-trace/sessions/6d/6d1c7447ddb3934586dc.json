@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d1c7447ddb3934586dc",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code exp016 unified reeval prep",
+  "task_key": "worker_code_exp016-unified-reeval-prep_20260519T100949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp016-unified-reeval-prep_20260519T100949_result.json",
+    "occurrence": 1,
+    "bytes": 695,
+    "sha256": "07e9f33038727277b26538fed03def64a63e8999567ee7284a96172f362d9be3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`--help` 验证通过。脚本已创建在 `/root/contrastive_entrain_calib/eval/eval_exp016_actadd_unified.py`。\n\n整合内容:\n- **ActAdd hook**: 从 `run_exp016_reeval.py` 提取 `SteeringHookManager` + `load_directions`，`target_layers` 改为参数化\n- **Eval 流程**: 从 `eval_unified_preset.py` 提取 D027 标准流程（NLIChecker discrete classification, ToF/NoF/SYCONScore）\n- **Generation**: `enable_thinking=False` + regex `<think>` 清除\n- **输出**: 每个 alpha 打印指标 + 最终汇总表 + `summary.json` + `detailed.json`\n- 所有路径默认值已配置（directions.pt, calibration data, Qwen3-8B, NLI 模型），离线环境变量已设置"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp016-unified-reeval-prep.md"
+}

@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0",
+  "id": "19a1d537b8cebfbf25e0",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "analysis bootstrap auroc ci",
+  "task_key": "worker_analysis_bootstrap-auroc-ci_20260522T112612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap-auroc-ci_20260522T112612.log",
+    "occurrence": 1,
+    "bytes": 1994187,
+    "sha256": "677e59b9f98e95a9e521edcd524f9c4a23ecbc72cb97279b0ab977aaf9629ff3"
+  },
+  "statistics": {
+    "messages": 1304,
+    "user_turns": 2,
+    "tool_calls": 487,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 2,
+      "assistant": 317,
+      "tool_call": 487,
+      "tool_result": 487,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 210,
+      "chunks": [
+        {
+          "path": "19a1d537b8cebfbf25e0-part-0001.json",
+          "message_count": 169
+        },
+        {
+          "path": "19a1d537b8cebfbf25e0-part-0002.json",
+          "message_count": 41
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1081,
+      "chunks": [
+        {
+          "path": "19a1d537b8cebfbf25e0-part-0002.json",
+          "message_count": 139
+        },
+        {
+          "path": "19a1d537b8cebfbf25e0-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "19a1d537b8cebfbf25e0-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "19a1d537b8cebfbf25e0-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "19a1d537b8cebfbf25e0-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "19a1d537b8cebfbf25e0-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "19a1d537b8cebfbf25e0-part-0008.json",
+          "message_count": 42
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "19a1d537b8cebfbf25e0-part-0008.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-bootstrap-auroc-ci.md"
+}

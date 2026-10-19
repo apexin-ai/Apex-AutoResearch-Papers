@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d99eaea083c5c811fcf6",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval check acts2 ckpt4000 result",
+  "task_key": "worker_eval_check-acts2-ckpt4000-result_20260522T170038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_check-acts2-ckpt4000-result_20260522T170038_result.json",
+    "occurrence": 1,
+    "bytes": 561,
+    "sha256": "30c92f32cf8c8ad55b688fd7b616a0243cb842f2912903ec324eabe1b166b176"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron job already cleaned up (not found in session store — likely removed by the earlier auto-fail hook).\n\n```\nexp-004-s2-eval-ckpt4000: SYCONScore=0.2061, ToF=0.1160, NoF=0.9227\n> vanilla(0.1335)? yes (+0.0726)\nconclusion: success\n```\n\nSeed 2 ckpt-4000 trajectory: 500→0.223, 1000→0.256, 1500→0.214, 2000→0.214, 3000→0.254, **4000→0.206**. Slight dip from ckpt-3000 (0.254), still well above vanilla. Note: the registry previously had `conclusion=failed` due to process monitoring false alarm — now corrected to `success`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-check-acts2-ckpt4000-result.md"
+}

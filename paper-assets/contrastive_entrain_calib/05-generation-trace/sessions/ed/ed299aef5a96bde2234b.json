@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed299aef5a96bde2234b",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diag exp004 checkpoint config",
+  "task_key": "worker_diag_exp004-checkpoint-config_20260518T191111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp004-checkpoint-config_20260518T191111_result.json",
+    "occurrence": 1,
+    "bytes": 1096,
+    "sha256": "83efbb4f2aecfa60903eab01043a9b5219447444e9f24889d5585f9db03d643f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n## exp-004 Checkpoint 状态\n\n| 项目 | 值 |\n|---|---|\n| **save_steps** | 500 |\n| **max_steps** | config.json 写的 2（可能是 dry-run 残留），实际在跑 8000 |\n| **当前进度** | step 1350 / 8000 |\n| **SFT loss** | ~2.2e-05（已完全记忆，符合预期） |\n\n### 已保存的 checkpoint\n- `checkpoint-500` ✅\n- `checkpoint-1000` ✅\n\n### Director 要求的 checkpoint 覆盖情况\n\n| 要求 step | 状态 |\n|---|---|\n| 500 | ✅ 已保存 |\n| 1000 | ✅ 已保存 |\n| 2000 | ⏳ 将在 ~step 2000 自动保存（save_steps=500 整除 2000） |\n| 4000 | ⏳ 将自动保存（save_steps=500 整除 4000） |\n| 8000 | ⏳ 将自动保存（save_steps=500 整除 8000） |\n\n### 结论\n\n**save_steps=500 无需修改。** 500 能整除 500、1000、2000、4000、8000，所有 Director 要求的 checkpoint 都会被自动保存。额外还会保存 1500、2500、3000、3500、4500、5000、5500、6000、6500、7000、7500 这些中间点（磁盘空间允许的话无害，还能提供更细粒度的分析选项）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp004-checkpoint-config.md"
+}

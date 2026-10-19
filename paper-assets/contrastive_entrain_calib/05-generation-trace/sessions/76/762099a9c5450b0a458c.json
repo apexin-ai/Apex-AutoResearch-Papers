@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "762099a9c5450b0a458c",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ssh check exp003 training progress",
+  "task_key": "worker_ssh_check-exp003-training-progress_20260521T081216",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-exp003-training-progress_20260521T081216_result.json",
+    "occurrence": 1,
+    "bytes": 2162,
+    "sha256": "a642df703064c2d5bff464c6bf998268e6c9bf878e93d12113bdd95918e2b0a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### exp-003 (seed1) — PID 70649, cuda:1, westd-29046\n\n| 指标 | 值 |\n|------|-----|\n| 运行时长 | 2d 15h 21m |\n| 最新 checkpoint | **7500** (May 21 14:10) |\n| 估算当前 step | ~7740 (基于 checkpoint 间隔推算) |\n| 每 500 步耗时 | ~4h17m (ckpt-7000→7500) |\n| 预计完成 (step 8000) | **今天 ~18:25** (~2h 后) |\n\n> 无直接训练日志（log 文件只有 HF 下载记录），进度从 checkpoint 时间戳推算。\n\n### exp-003-s2 (seed2) — PID 237432, cuda:0, westd-29046\n\n| 指标 | 值 |\n|------|-----|\n| 运行时长 | 1d 7h 55m |\n| 当前 step | **3641 / 8000** (45.5%) |\n| 速度 | ~29.5s/step |\n| 最新 checkpoint | **3500** (May 21 15:00) |\n| 预计完成 | **May 23 ~04:00** (~35.7h 后) |\n\n### Checkpoint 可用性\n\n| Checkpoint | westd-29046 seed1 | westd-29046 seed2 | westd-28034 (eval) |\n|:----------:|:-----------------:|:-----------------:|:------------------:|\n| 500–3500   | ✅ (每500一个)     | ✅ (500–3500)     | ❌                  |\n| 4000       | ✅                 | —                 | ✅                  |\n| 4500       | ✅                 | —                 | ✅                  |\n| 5000       | ✅                 | —                 | ✅                  |\n| 5500       | ✅                 | —                 | ✅                  |\n| 6000       | ✅                 | —                 | ✅                  |\n| 6500       | ✅                 | —                 | ✅                  |\n| **7000**   | ✅                 | —                 | ✅                  |\n| **7500**   | ✅                 | —                 | ❌ 未同步           |\n| **8000**   | ❌ 未生成          | —                 | ❌ 未生成           |\n\n### 关键结论\n\n- **checkpoint-7000**: 两台服务器都有 ✅\n- **checkpoint-7500**: 仅在 westd-29046 训练机上，**未同步到 westd-28034 eval 服务器**\n- **checkpoint-8000**: **尚未生成**，seed1 预计 ~2h 后产出（今天 18:25 左右）\n- seed2 进度约 45%，与 seed1 差距约 4000 步，预计后天凌晨完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-exp003-training-progress.md"
+}

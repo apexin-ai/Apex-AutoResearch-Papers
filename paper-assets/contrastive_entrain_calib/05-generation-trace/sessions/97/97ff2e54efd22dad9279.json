@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97ff2e54efd22dad9279",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diag exp004 data loading",
+  "task_key": "worker_diag_exp004-data-loading_20260518T173821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp004-data-loading_20260518T173821_result.json",
+    "occurrence": 1,
+    "bytes": 2550,
+    "sha256": "43c14c910632136e22eeaf3f947262f997f2566c0e6b97ebd5c095aafe1d071a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整分析如下：\n\n## exp-004 数据加载流程\n\n### 数据文件\n`/root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl` — 与 exp-008 相同。\n\n### 数据结构\n每条数据是 3-turn 对话：\n1. **Turn 0 (user)**: 提问\n2. **Turn 1 (assistant)**: 给出错误答案\n3. **Turn 2 (user)**: 用户纠正/施压\n\n**没有第 4 轮 assistant response。**\n\n### exp-004 的关键处理方式\n\nexp-004 **不需要第 4 轮**。它的 SFT target 是 **Turn 1（assistant 的第一次回复）**：\n\n```python\n# _tokenize_sample 的逻辑：\nmsgs = [{\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in sample[\"turns\"]]  # 全部 3 turns\n\nfull_ids = tokenizer.apply_chat_template(\n    msgs, tokenize=True, add_generation_prompt=True  # ← 加 generation prompt\n)\n\n# 定位 assistant（Turn 1）的起止位置\npre_asst_ids = tokenizer.apply_chat_template(\n    msgs[:1], tokenize=True, add_generation_prompt=True  # 只取 Turn 0\n)\nasst_start = len(pre_asst_ids)  # assistant 回复开始的 token 位置\n\n# 找 <|im_end|> 确定 assistant 回复结束\nasst_end = asst_start\nwhile asst_end < len(full_ids) and full_ids[asst_end] != im_end_id:\n    asst_end += 1\nasst_end += 1\n\n# labels: 只有 Turn 1 (assistant) 区间有 loss，其余 -100\nlabels = [-100] * len(full_ids)\nfor i in range(asst_start, min(asst_end, len(full_ids))):\n    labels[i] = full_ids[i]\n```\n\n### SFT Target 定义\n\n- **Input**: 完整 3-turn 对话 + generation prompt（作为 context）\n- **Labels**: 只在 Turn 1（assistant 首次回复）的 token 位置计算 cross-entropy，其余位置 masked（-100）\n- **resp_pos**: `len(full_ids) - 1`，即序列最后一个 token 的位置，用于提取 hidden state 做 L2 consistency loss\n\n### 与 exp-008 的根本区别\n\nexp-008 试图把 **Turn 3（第二轮 assistant response）** 作为 SFT target，但数据里根本没有 Turn 3。\n\nexp-004 的做法完全不同：它把整个 3-turn 对话作为 input context，SFT target 是已有的 Turn 1（assistant 的初始回复）。本质上是在\"给定完整对话上下文\"的条件下，训练模型重现 assistant 的原始回答。\n\n### 可复用到 exp-008 的方案\n\n直接复用 exp-004 的 `_tokenize_sample` 方法：用 3-turn 数据 + `add_generation_prompt=True`，将 Turn 1 (assistant) 作为 SFT target。或者，如果 exp-008 需要训练模型在被纠正后的回复，需要先用 LLM 生成第 4 轮 assistant response 追加到数据中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp004-data-loading.md"
+}

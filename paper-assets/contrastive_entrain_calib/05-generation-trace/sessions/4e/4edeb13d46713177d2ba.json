@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4edeb13d46713177d2ba",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code fix quality default",
+  "task_key": "worker_code_fix_quality_default_20260518T051439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_quality_default_20260518T051439_result.json",
+    "occurrence": 1,
+    "bytes": 209,
+    "sha256": "8bfa25ed7a6cffbb47d96b22d6f081e33f576d236c0102f48e628bff7d35d503"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`--check-quality`（默认关闭）已改为 `--skip-quality`（默认开启 LLM 质量检查，传此 flag 关闭）。`--help` 输出确认无语法错误且显示 `--skip-quality`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-quality-default.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a67d892bd8b89ebe9bda",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops reference audit",
+  "task_key": "worker_ops_reference-audit_20260523T161218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_reference-audit_20260523T161218_result.json",
+    "occurrence": 1,
+    "bytes": 1590,
+    "sha256": "89b96d435c609f68e1b6f438c0ce1e7742894c3be0c03d16a19256f6a609138d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有引用正确关联。\n\n## 修改汇总\n\n### references.bib 修改\n\n**arXiv → 正式 venue（5 条）：**\n1. `zou2023repe`: @article arXiv → **@inproceedings ICLR 2025**\n2. `sharma2023sycophancy`: @article arXiv → **@inproceedings ICLR 2024**\n3. `wei2024synthetic`: @article arXiv → **@inproceedings ICLR 2024**\n4. `ethayarajh2024kto`: @article arXiv → **@inproceedings ICML 2024**\n5. `casper2023openproblems`: journal 从 arXiv → **TMLR**\n\n**格式修正（3 条）：**\n6. `obrien2025fewbadneurons`: @article → **@inproceedings**（workshop 论文）\n7. `mckinney2023fragility`: @article → **@inproceedings**（workshop 论文）\n8. `papadatos2024probepenalties`: @article arXiv → **@inproceedings NeurIPS SoLaR Workshop 2024**\n\n**新增条目（3 条）：**\n9. `yang2025qwen3` — Qwen3 Technical Report (arXiv:2505.09388)\n10. `grattafiori2024llama3` — The Llama 3 Herd of Models (arXiv:2407.21783)\n11. `openai2025gpt41` — GPT-4.1 (OpenAI blog post)\n\n### tex 文件修改\n\n12. `framework.tex:8` — GPT-4.1 后补 `\\citep{openai2025gpt41}`\n13. `framework.tex:55` — Qwen3-8B 后补 `\\citep{yang2025qwen3}`\n14. `direction_quality.tex:19` — Llama-3-8B-Instruct 后补 `\\citep{grattafiori2024llama3}`\n\n### 未修改项（确认无需更新）\n\n- `shao2024grpo` (DeepSeekMath) — 仍为 arXiv preprint，未发表到正式 venue\n- `turner2023actadd` — 仍为 arXiv preprint\n- `denison2024subterfuge` — 仍为 arXiv preprint\n- `consistency2025bctact` — 2025年10月 arXiv preprint，尚无正式 venue"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-reference-audit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a947f08d7676f40d1f0",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval gs8 ckpt500 scp and eval",
+  "task_key": "worker_eval_gs8-ckpt500-scp-and-eval_20260522T195237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gs8-ckpt500-scp-and-eval_20260522T195237_result.json",
+    "occurrence": 1,
+    "bytes": 1493,
+    "sha256": "056201eb01d30dacc7473358fd83a84205a7b6dd965532c2979e442a03e1ee1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-003-gs8-ckpt500 Eval 结果\n\n| 指标 | 值 |\n|------|-----|\n| **SYCONScore** | **0.1045** |\n| **ToF** | 0.0552 |\n| **NoF** | 0.9558 |\n| n_valid / n_invalid | 181 / 181 |\n| 耗时 | 4070s (~68 min) |\n\n### 对比\n\n| 配置 | SYCONScore | ToF | 对比 gs8 |\n|------|------------|-----|----------|\n| Vanilla | 0.1335 | — | gs8 低 0.029 |\n| gs=2 R3-only s1 ckpt-500 | 0.116 | — | gs8 低 0.012 |\n| gs=2 R3-only s2 ckpt-500 | 0.085 | — | gs8 高 0.020 |\n| **gs=8 R3-only ckpt-500** | **0.1045** | **0.0552** | — |\n\n### 需要注意的问题\n\nsummary 显示 `lora: (none)`。这是因为命令用 `--model_path` 直接指向了 adapter 目录，没有传 `--lora_path`。transformers 4.57.6 的 `AutoModelForCausalLM.from_pretrained()` 应该能自动检测 `adapter_config.json` 并加载 base model + LoRA adapter，但脚本日志只记录了 `args.lora_path` 的值（None），不反映实际是否加载了 LoRA。\n\neval.json 文件大小 620KB（远大于其他 eval 的 250-280KB），耗时也是其他 eval 的 2 倍多（4070s vs 1773s），这说明模型生成了更长的回复。SYCONScore (0.1045) 与 vanilla (0.1335) 有明显差异，不像是纯 base model 的结果，但**无法 100% 确认 LoRA 是否生效**。\n\n如果需要确认结果准确性，建议用标准方式重跑：`--model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/contrastive_entrain_calib/eval_checkpoints/exp-003-gs8-ckpt-500`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-gs8-ckpt500-scp-and-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9db30fcbcc292ed0b1a",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval seed2 ckpt6500 pipeline",
+  "task_key": "worker_eval_seed2-ckpt6500-pipeline_20260522T052542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_seed2-ckpt6500-pipeline_20260522T052542_result.json",
+    "occurrence": 1,
+    "bytes": 460,
+    "sha256": "83d6b01618c010d22f5877ab5cd526fcd6c9accf76f6456f385a76920bf9751e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**执行摘要：**\n- SCP：ckpt-6500 从 29046 成功传到 28034（`scp -P 28034 ... root@connect.westd.seetacloud.com:...`）\n- Checkpoint 验证：17 文件，~735MB，完整到位\n- Registry：`exp-003-eval-s2-ckpt6500` 已创建，状态 RUNNING，hypothesis 和 parent 已设置\n- Eval 已启动：tmux session `eval-s2-ckpt6500`，GPU 0 已占用 14944 MiB，进程运行中\n- 日志：`/tmp/eval-s2-ckpt6500.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-seed2-ckpt6500-pipeline.md"
+}

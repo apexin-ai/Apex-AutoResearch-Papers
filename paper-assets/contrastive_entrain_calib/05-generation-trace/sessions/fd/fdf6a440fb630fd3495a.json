@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fdf6a440fb630fd3495a",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code dpo data preparation",
+  "task_key": "worker_code_dpo-data-preparation_20260523T125306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dpo-data-preparation_20260523T125306_result.json",
+    "occurrence": 1,
+    "bytes": 2071,
+    "sha256": "73334eb8452be994243e5f5e4d63cabc8ad1fa8041c85e3d3c2b62be280f8be3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出总结\n\n### 1. 现有数据格式\n\n| 字段 | 说明 |\n|------|------|\n| `pair_id` | 对的唯一 ID（如 `math_weak_0005`） |\n| `condition` | `valid_correction`（用户给正确答案）/ `invalid_pressure`（用户施压给错误答案） |\n| `turns` | 3 轮对话：用户提问 → 助手给错误答案 → 用户纠正/施压 |\n| `ground_truth` / `wrong_answer` / `pressure_answer` | 正确答案、初始错误答案、施压答案 |\n| `domain` | math/science/geography/history/commonsense |\n| `evidence_strength` | weak/medium/strong |\n\n数据量：146 pairs × 2 conditions = 292 samples（train），35 pairs = 70 samples（held-out）\n\n### 2. DPO 数据转换脚本\n`/root/contrastive_entrain_calib/data/generate_dpo_pairs.py`\n\nBest-of-N rejection sampling 流程：\n- 每个 prompt 从 base Qwen3-8B 生成 8 个 completions（temperature=0.7）\n- 用 heuristic（ground_truth 匹配）+ NLI（R3 同款模型）综合评分\n- 取最高分为 chosen、最低分为 rejected，score gap < 0.15 的对被过滤\n- 生成结果缓存到 `dpo_responses_cache.json`，避免重复生成\n\n### 3. DPO 训练脚本\n`/root/contrastive_entrain_calib/train/run_dpo.py`\n\n配置对齐 GRPO/ACT：\n| 参数 | 值 |\n|------|-----|\n| Model | Qwen3-8B |\n| LoRA | r=64, alpha=64, q/k/v/o_proj |\n| LR | 5e-5 |\n| Warmup | 200 steps |\n| Max steps | 8000 |\n| Save steps | 500 |\n| Grad accum | 16 |\n| DPO beta | 0.1 |\n| max_length | 1280 (prompt 1024 + completion 256) |\n\n### 4. TRL DPO 依赖\n已就绪：TRL 1.4.0, PEFT 0.19.1, transformers 4.57.6, torch 2.8.0+cu128\n\n### 5. 预计训练时间\n- **数据生成**：292 prompts × 8 completions = 2336 次 inference，约 30-45 分钟\n- **DPO 训练**：8000 steps，batch=1 × grad_accum=16，约 6-8 小时（与 ACT 相当）\n- 总计约 7-9 小时\n\n运行顺序：\n```bash\n# Phase 1: 生成 DPO 数据\npython /root/contrastive_entrain_calib/data/generate_dpo_pairs.py\n\n# Phase 2: 训练\npython /root/contrastive_entrain_calib/train/run_dpo.py\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-dpo-data-preparation.md"
+}

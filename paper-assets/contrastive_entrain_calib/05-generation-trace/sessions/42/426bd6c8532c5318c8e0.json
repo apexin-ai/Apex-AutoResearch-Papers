@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "426bd6c8532c5318c8e0",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code exp 008 seed3 launch",
+  "task_key": "worker_code_exp-008-seed3-launch_20260524T220831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-008-seed3-launch_20260524T220831_result.json",
+    "occurrence": 1,
+    "bytes": 483,
+    "sha256": "d74c64ae56138d338c677e0fe343da693cadc54306207ba68972c9cf734a3f97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已正常启动并运行中。\n\n**汇总：**\n\n| 步骤 | 状态 |\n|------|------|\n| Eval 进程 (seed2) | 已终止，无已保存结果（仅完成 ckpt-500 的 80/362 pairs） |\n| cuda:0 | 已释放并被 seed3 训练占用 |\n| exp-008-seed3 训练 | 已启动 (PID 726631)，step=10，loss=1.9369，S(t)=0.43 |\n| Registry | exp-008-seed3 → RUNNING，spec 已写入 |\n\nseed2 的 eval 需要后续重跑（4 个 checkpoint 均未完成评估）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-008-seed3-launch.md"
+}

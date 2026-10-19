@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3cd3b7e2ab25ed07ca35",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnosis 28034 eval and gpu",
+  "task_key": "worker_diagnosis_28034-eval-and-gpu_20260520T080254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_28034-eval-and-gpu_20260520T080254_result.json",
+    "occurrence": 1,
+    "bytes": 1529,
+    "sha256": "72deaf7d1fbd4efeeb15bf74ddd4bbd5cdfcb47a1f31504ba50b812f367021a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-28034 (exp-009)\n\n### GPU 状态\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 0% | 5/32607 MiB (空闲) |\n| 1 | 100% | 31432/32607 MiB |\n| 2 | 67% | 30668/32607 MiB |\n| 3 | 49% | 16766/32607 MiB |\n\nGPU 1-2 跑训练 (PID 200881/200882)，GPU 3 跑 eval (PID 227022)，GPU 0 空闲。\n\n### exp-009 训练\n- **PID 200283**: 运行中，已 5h16m\n- **Step**: 902/8000 (11%)，~20s/step，预估剩余 ~40h\n- **最新 reward**: r1=0.397, r2=0.000, r3=0.714, combined=0.635\n\n### exp-009 ckpt-500 eval\n- **PID 227017**: 运行中，已 1h04m\n- **进度**: 180/362 (50%)，每 20 个约 6-7min\n- **结果文件**: **尚未生成**（results 目录为空）\n- 预估还需 ~1h 完成\n\n**eval 还在跑，结果还没出来。需要等完成后再读 ToF/NoF/SYCONScore。**\n\n---\n\n## westd-29046 (exp-003)\n\n### GPU 状态\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 95% | 38049/97887 MiB |\n| 1 | 97% | 38161/97887 MiB |\n\n两卡高负载运行中。\n\n### exp-003 (seed1)\n- **PID 70649**: 运行中，已 1天15h31m\n- **Step**: 3760/8000 (47%)，~45s/step\n- **最新 checkpoint**: checkpoint-4500 (May 20 12:33)\n- **reward (step 3760)**: r3_mean=0.6972, std=0.4051\n- **预估剩余**: ~55h\n\n### exp-003-s2 (seed2)\n- **PID 237437**: 运行中，已 8h05m\n- **Step**: 793/8000 (10%)，~40s/step\n- **最新 checkpoint**: 有一个（May 20 13:51）\n- **预估剩余**: ~80h\n\n两个实验都是 R3-only（d_syc not loaded），正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-28034-eval-and-gpu.md"
+}

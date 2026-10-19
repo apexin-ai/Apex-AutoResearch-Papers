@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "b7e7fe7257de6e2f01fc",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "setup westd28034 model download",
+  "task_key": "worker_setup_westd28034_model_download_20260518T132211",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_westd28034_model_download_20260518T132211.log",
+    "occurrence": 1,
+    "bytes": 571801,
+    "sha256": "10c0c5d70e40f6946a5bb14773d92077d19c6a6fa699e7b5565cf11da2d47545"
+  },
+  "statistics": {
+    "messages": 406,
+    "user_turns": 0,
+    "tool_calls": 154,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 94,
+      "tool_call": 154,
+      "tool_result": 154,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 406,
+      "chunks": [
+        {
+          "path": "b7e7fe7257de6e2f01fc-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b7e7fe7257de6e2f01fc-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b7e7fe7257de6e2f01fc-part-0003.json",
+          "message_count": 46
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/setup-westd28034-model-download.md"
+}

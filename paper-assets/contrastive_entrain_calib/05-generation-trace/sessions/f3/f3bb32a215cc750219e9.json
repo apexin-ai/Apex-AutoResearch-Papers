@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3bb32a215cc750219e9",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnosis 28034 eval progress",
+  "task_key": "worker_diagnosis_28034-eval-progress_20260521T073540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_28034-eval-progress_20260521T073540_result.json",
+    "occurrence": 1,
+    "bytes": 1170,
+    "sha256": "ca9697a6dae7eb7d8033df8423a55f0222a0f9c2274d24b7b1c0376834d90366"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Eval 状态汇总\n\n| Exp ID | PID | 状态 | 进度 | 预计剩余 |\n|--------|-----|------|------|---------|\n| exp003-ckpt5000-v2 | 497834 | **RUNNING** | 40/362 (11%) | ~72 min |\n| exp003-ckpt6000 | 498446 | **RUNNING** | 40/362 (11%) | ~72 min |\n| exp003-ckpt6500 | 498584 | **RUNNING** | 40/362 (11%) | ~72 min |\n| exp003-ckpt7000-v2 | 500589 | **RUNNING** | 0/362 (刚开始推理) | ~85 min |\n\n**速率**: ~20 samples / 5 min（前三个 checkpoint 一致）。\n\n**ckpt7000-v2 注意**: GPU 3 显存占用 29781/32607 MiB（91%），日志有 accelerate 内存不足警告（`no modules could be assigned to device 0 due to insufficient memory`），但进程已通过模型加载阶段并开始 eval。需关注是否会 OOM。\n\n## GPU 快照\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 (ckpt5000-v2) | 35% | 16884 / 32607 MiB |\n| 1 (ckpt6000) | 38% | 16864 / 32607 MiB |\n| 2 (ckpt6500) | 36% | 16864 / 32607 MiB |\n| 3 (ckpt7000-v2) | 36% | 29781 / 32607 MiB |\n\n## 已有结果（results 目录）\n\nckpt1000, 2000, 3000, 4000, 4500, 5500 已完成，当前跑的 4 个 checkpoint 尚无结果文件产出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-28034-eval-progress.md"
+}

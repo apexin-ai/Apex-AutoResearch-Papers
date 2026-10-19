@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2f5f1c3734aa6f34437",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "check exp003 step",
+  "task_key": "worker_check_exp003-step_20260520T030450",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp003-step_20260520T030450_result.json",
+    "occurrence": 1,
+    "bytes": 472,
+    "sha256": "0ad659918354aa97e7e33a8199899f3a82bd577d11b41c9fb025fbc08dd7d49f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-003 状态：**\n\n- **当前 step**: 3760 / 8000（47%）\n- **最新 checkpoint**: checkpoint-4000（每 500 步存一次）\n- **reward/r3 mean**: 0.6972，std=0.4051\n- **日志文件**: `exp003_v2.log`（`exp003_restart.log` 是之前失败的运行，deberta 加载报错）\n\n**GPU 利用率：**\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 76,094 MiB | 100% |\n| 1 | 38,161 MiB | 98% |\n\n双卡满载运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp003-step.md"
+}

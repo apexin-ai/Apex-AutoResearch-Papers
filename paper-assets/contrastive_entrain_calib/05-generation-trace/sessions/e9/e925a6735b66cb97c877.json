@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e925a6735b66cb97c877",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval r3only s2 final ckpts",
+  "task_key": "worker_eval_r3only-s2-final-ckpts_20260522T104852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_r3only-s2-final-ckpts_20260522T104852_result.json",
+    "occurrence": 1,
+    "bytes": 516,
+    "sha256": "2c6bfcd03759831c4536bd550117131e16b5bf67f8be230d500cdf7549adf8ae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**当前状态汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| 训练进度 | step 7344/8000 (92%) |\n| checkpoint 路径 | `/root/autodl-tmp/checkpoints/exp003_r3only_seed2/` |\n| 最新 ckpt | checkpoint-7000 |\n| ckpt-7500 预计 | ~19:56 UTC（约67分钟后） |\n| ckpt-8000 预计 | ~23:36 UTC（约4.7小时后） |\n| 28034 目标目录 | 已创建 `checkpoints_r3only_s2/` |\n\n已设置 40 分钟后自动检查 ckpt-7500 是否产出，产出后立即 SCP 到 28034 并提交 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-r3only-s2-final-ckpts.md"
+}

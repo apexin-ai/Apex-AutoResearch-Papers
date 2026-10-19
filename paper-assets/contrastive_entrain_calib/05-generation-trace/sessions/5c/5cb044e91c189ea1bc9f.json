@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5cb044e91c189ea1bc9f",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code exp016 directions fix",
+  "task_key": "worker_code_exp016-directions-fix_20260518T205541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp016-directions-fix_20260518T205541_result.json",
+    "occurrence": 1,
+    "bytes": 250,
+    "sha256": "bcc963add1606fda6778de6263250b4bff19cc10bb052f92e3ef0d5c64ed9863"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已修复。`load_directions` 现在正确地将 `directions.pt` 作为 dict 解析，通过 `data[\"d_syc\"]` 取出 tensor 后再做 layer 索引，同时加了 `weights_only=True`。验证确认文件中无残留的 `raw[` 模式。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp016-directions-fix.md"
+}

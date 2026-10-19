@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a9fb5482ed0853ce388",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval gs8 log diagnostic",
+  "task_key": "worker_eval_gs8-log-diagnostic_20260522T194257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gs8-log-diagnostic_20260522T194257_result.json",
+    "occurrence": 1,
+    "bytes": 1116,
+    "sha256": "861d65be57cf87775f73a39a8e70effd9608a7287a6dc0d8015a1e9b8fae76b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 两个日志文件\n\n| 日志 | 最后修改 (UTC+8) | 大小 | 最新 step | step time |\n|------|-------------------|------|-----------|-----------|\n| `/root/autodl-tmp/.../exp003_gs8_r3only/train.log` | 00:38:06 (已停更) | 7.6KB | **step 38** | ~66s/it |\n| `/root/runs/.../exp-003-gs8.log` | **03:43:22 (活跃)** | 117KB | **step 478** | ~24.2s/it |\n\n### 矛盾原因\n\n- `train.log` 在 step 38 后停止写入（可能是 stdout 重定向断开），**已不再更新**\n- `exp-003-gs8.log` 是实际活跃日志，持续更新中\n- Worker A 读的是正确日志（当时 step ~412, 24s/step）✓\n- Worker B 读的是停更的 `train.log`（step 38, 66s/step）✗\n\n### 进程状态\n- PID 516696 运行中，已运行 **4h08m**，GPU 占用 **38188 MiB**\n- 当前 step **478**/8000, epoch 2.54, ~24.2s/step\n\n### ckpt-500 状态\n- **NOT READY** — 整个输出目录下没有任何 checkpoint 目录\n- 预计还需 ~(500-478) × 24.5s ≈ **9 分钟** 生成 ckpt-500\n\n需要等 ckpt-500 生成后再执行 SCP。要我过几分钟后再来检查？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-gs8-log-diagnostic.md"
+}

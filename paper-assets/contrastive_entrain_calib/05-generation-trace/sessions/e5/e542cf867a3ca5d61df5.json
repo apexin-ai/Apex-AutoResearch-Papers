@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "e542cf867a3ca5d61df5",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnose exp 003",
+  "task_key": "worker_diagnose_exp-003_20260521T102232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp-003_20260521T102232_result.json",
+    "occurrence": 1,
+    "bytes": 1919,
+    "sha256": "e27a44f1314f776c6ac8e069f04855bf353a4a433dd7a321eb1b1ddedb8de664"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。`trainer_state.json` 确认 `global_step: 8000`。\n\n**结论：exp-003 训练正常完成，Cron 报告是误报。**\n\n时间线：\n- `exp003_restart.log`（May 18 23:05）：更早的失败尝试，因网络不可达无法从 HF 下载 `microsoft/deberta-v3-base` 而崩溃\n- `exp003_v2.log`（May 19 00:51 → May 20 05:55）：成功启动的运行，日志在 step 3760 后停止写入（stdout 缓冲/fd 断开），但训练继续执行\n- Checkpoint 持续保存到 8000（May 21 18:12），`final/` 目录包含完整 adapter model\n- 进程正常退出后 Cron 5次检测到进程不存在，因缺少 sentinel 文件/W&B 心跳，误判为失败\n\n```json\n{\"last_step\": 8000, \"max_checkpoint\": 8000, \"ckpt_8000_exists\": true, \"root_cause\": \"训练正常完成全部8000步(trainer_state.json确认global_step=8000)。exp003_v2.log在step 3760后停止写入(stdout fd断开)但训练未中断。Cron因无completion sentinel/W&B心跳而误报process dead。\", \"error_type\": \"normal_completion\", \"gpu_released\": true, \"fix_steps\": [\"无需修复——训练已正常完成\", \"建议: 训练脚本结尾添加sentinel文件(如touch .done)防止Cron误报\", \"可直接使用checkpoint-8000或final/进行后续评估\"]}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "last_step": 8000,
+              "max_checkpoint": 8000,
+              "ckpt_8000_exists": true,
+              "root_cause": "训练正常完成全部8000步(trainer_state.json确认global_step=8000)。exp003_v2.log在step 3760后停止写入(stdout fd断开)但训练未中断。Cron因无completion sentinel/W&B心跳而误报process dead。",
+              "error_type": "normal_completion",
+              "gpu_released": true,
+              "fix_steps": [
+                "无需修复——训练已正常完成",
+                "建议: 训练脚本结尾添加sentinel文件(如touch .done)防止Cron误报",
+                "可直接使用checkpoint-8000或final/进行后续评估"
+              ]
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-003.md"
+}

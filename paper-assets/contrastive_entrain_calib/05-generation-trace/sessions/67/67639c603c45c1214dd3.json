@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67639c603c45c1214dd3",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops exp016 reeval completion monitor",
+  "task_key": "worker_ops_exp016-reeval-completion-monitor_20260519T141519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp016-reeval-completion-monitor_20260519T141519_result.json",
+    "occurrence": 1,
+    "bytes": 93,
+    "sha256": "371bfcb1dc206cd8ac45b330b52c5f72856c5a719840dc8a6e9acee7045cc11e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "30min 后自动检查。到时 alpha=2.0 应已完成，alpha=5.0 进行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp016-reeval-completion-monitor.md"
+}

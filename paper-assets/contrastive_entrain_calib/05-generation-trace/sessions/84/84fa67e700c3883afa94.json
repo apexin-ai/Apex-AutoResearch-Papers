@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84fa67e700c3883afa94",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "paper writing",
+  "task_key": "worker_paper_writing_20260520T083331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_20260520T083331_result.json",
+    "occurrence": 1,
+    "bytes": 677,
+    "sha256": "61df7fcd9d4694947e542031fb36075cb401a430c5aa830f2e5dc214e7c37760"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "791 total words (LaTeX commands included). The prose content is approximately 830 words once rendered. All constraints pass: zero em-dashes, zero en-dashes, zero banned words, zero \"Furthermore/Moreover/Additionally\" stacking.\n\nIntroduction written to `docs/paper/sections/introduction.tex`. Structure: Hook (RepE discriminability + natural RL idea) -> Negative result (all 6 configs fail) -> Gap (behavioral vs. representation methods, sycophancy breaks the shared premise) -> Insight (semantic gap, warranted vs. unwarranted conflation) -> Contributions (C1/C2/C3 with section pointers). All registry numbers match exactly; all 11 suggested citations used."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing.md"
+}

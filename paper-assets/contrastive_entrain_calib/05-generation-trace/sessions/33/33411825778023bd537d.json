@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33411825778023bd537d",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ssh check 29046 training",
+  "task_key": "worker_ssh_check-29046-training_20260522T052258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-29046-training_20260522T052258_result.json",
+    "occurrence": 1,
+    "bytes": 949,
+    "sha256": "5d2c3c113537dc121b09a4de976850f2d8f1755082ccc776ec75f09115d6cfe9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n| 实验 | Step | 进度 | Loss | Reward (mean) | GPU 利用率 | ETA |\n|------|------|------|------|--------|------------|-----|\n| **exp-003-s2** (R3-only, GPU0, PID 237432) | 6589 / 8000 | 82% | 0.0006 | 0.582 | 97%, 38G/97G | ~今晚 23:30 UTC |\n| **exp-004-s2** (ACT, GPU1, PID 447710) | 430 / 8000 | 5.4% | sft=0.0019, total=0.0027 | — | 38%, 23G/97G | ~明天 08:00 UTC |\n\n**ckpt-6500**: 已生成，路径 `/root/autodl-tmp/checkpoints/exp003_r3only_seed2/checkpoint-6500/`（May 22 12:45 写入）。已有全部 checkpoints: 500 ~ 6500（每 500 步一个）。\n\n**关键指标 exp-003-s2 最近**：loss=0.0006, reward=0.582, kl=0.016, lr=3.9e-06, ~25.8s/step。还剩约 1411 步，约 10 小时完成。\n\n**exp-004-s2**：刚启动约 1 小时，~8.9s/step，loss 已从 0.23 快速下降到 0.002。还需约 18.7 小时。GPU1 利用率偏低（38%），可能是 batch 间 data loading 开销。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-29046-training.md"
+}

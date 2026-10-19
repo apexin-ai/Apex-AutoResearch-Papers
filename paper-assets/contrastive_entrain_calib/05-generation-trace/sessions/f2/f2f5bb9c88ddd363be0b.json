@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2f5bb9c88ddd363be0b",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code scp exp003 ckpt5000",
+  "task_key": "worker_code_scp-exp003-ckpt5000_20260520T100842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_scp-exp003-ckpt5000_20260520T100842_result.json",
+    "occurrence": 1,
+    "bytes": 599,
+    "sha256": "57d8e3f5be66660b61587284419843f9ffff7d68d50f0c47fc51a7d5fbde33e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "scp 完成。总结：\n\n- **ckpt-5000 已成功传输到 westd-28034**\n- 实际存储路径：`/root/autodl-tmp/checkpoints/exp003/checkpoint-5000/`（数据盘，根分区已满无法存放）\n- 软链接：`/root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-5000` → 数据盘路径\n- 大小：718M，16 个文件，与 29046 源完全一致\n- 之前的 `tmp_scp_key` 仍然有效，无需重新生成\n\n注意：28034 根分区已 100% 满，后续写文件需注意使用数据盘。ckpt-4000 占了根分区 1.1G，如果不再需要可以清理腾出空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-scp-exp003-ckpt5000.md"
+}

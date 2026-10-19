@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2465e5747ccdb5619453",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code exp 004 reduced lora launch",
+  "task_key": "worker_code_exp-004-reduced-lora-launch_20260522T161557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-004-reduced-lora-launch_20260522T161557_result.json",
+    "occurrence": 1,
+    "bytes": 1005,
+    "sha256": "d38e2dc24654cc72e3f503ac143fb8d60c8bac404ecd86fa3628a143d09e7923"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Training confirmed running. Step 10 logged at 72s.\n\n**汇报：**\n\n- **脚本路径**: `/root/contrastive_entrain_calib/training/run_exp004_reduced_lora.py` (28034)\n- **PID**: 30006 (tmux wrapper) / 30011 (python process on GPU 1)\n- **Log**: `~/runs/contrastive_entrain_calib/exp-004-reduced-lora.log`\n- **Output**: `/root/autodl-tmp/outputs/exp-004-reduced-lora/`\n\n**Diff 确认（仅改 3 处，其他不变）**：\n1. `lora_alpha`: `args.lora_rank * 2` (128) → `args.lora_rank` (64) ✓\n2. `target_modules`: 7 个 → 4 个 `[\"q_proj\", \"k_proj\", \"v_proj\", \"o_proj\"]` ✓\n3. `output_dir`: → `/root/autodl-tmp/outputs/exp-004-reduced-lora` ✓\n\n**其他参数不变确认**：\n- `r=64`, `seed=42`, `lr=5e-5`, `lambda_l2=0.1`, `max_steps=8000`, `save_steps=500`, `grad_accum=16`, `warmup_steps=200`\n- Loss: `sft_loss + 0.1 * l2_loss`（不变）\n- Data: `calibration_v2_1_expanded.jsonl`（181 pairs，不变）\n\nStep 10: sft=2.5445, l2=2.365277, total=2.7810"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-004-reduced-lora-launch.md"
+}

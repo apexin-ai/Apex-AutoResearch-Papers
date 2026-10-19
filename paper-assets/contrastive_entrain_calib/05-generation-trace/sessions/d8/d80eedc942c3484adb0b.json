@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d80eedc942c3484adb0b",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops 28034 disk cleanup",
+  "task_key": "worker_ops_28034-disk-cleanup_20260520T102827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_28034-disk-cleanup_20260520T102827_result.json",
+    "occurrence": 1,
+    "bytes": 1087,
+    "sha256": "e37bb813dbaf464ab299a94c1a36900bb1ca17122251f52f1297536df1f95067"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 清理报告\n\n| 项目 | 值 |\n|------|-----|\n| **清理前** | 根分区 99%，可用 333MB |\n| **清理后** | 根分区 97%，可用 1.1GB |\n| **删除内容** | `/root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-4000`（~0.8GB） |\n\n### 根分区仍需关注的大目录\n\n| 目录 | 大小 | 说明 |\n|------|------|------|\n| `outputs/exp-004-act-baseline/` | **12GB** | 最大占用 |\n| `checkpoints/exp008v3_binary_probe_grpo/` | **5.6GB** | |\n| `checkpoints/exp014_probe_baseline/` | **5.6GB** | |\n| `results/exp001/` | 410MB | |\n| `results/exp012_llama_direction/` | 91MB | |\n\n根分区 29GB/30GB 仍然很紧张，`outputs/exp-004-act-baseline/`（12GB）和两个 checkpoint 目录（共 11.2GB）是大头，清掉可释放 ~23GB。\n\n### 数据盘状态\n- **ckpt-5000 确认位置**：`/root/autodl-tmp/checkpoints/exp003/checkpoint-5000/`（718MB）\n- **数据盘剩余**：282GB 可用（20% 使用率）\n- **eval 输出目录已创建**：`/root/autodl-tmp/results/exp003_unified_eval/` 和 `vanilla_d027_reeval/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-28034-disk-cleanup.md"
+}

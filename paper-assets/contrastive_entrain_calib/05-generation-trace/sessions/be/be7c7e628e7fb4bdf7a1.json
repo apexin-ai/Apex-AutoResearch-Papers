@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be7c7e628e7fb4bdf7a1",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval collect ckpt2000 result",
+  "task_key": "worker_eval_collect-ckpt2000-result_20260523T105709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-ckpt2000-result_20260523T105709_result.json",
+    "occurrence": 1,
+    "bytes": 691,
+    "sha256": "73bcd3f50a13f8d88a298c568c107cec26729a342375ab7e1d03afe74585fa75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n| 项目 | 状态 |\n|------|------|\n| **checkpoint-2000** | 未生成，当前最新 step = **1950** |\n| **训练进程** | 运行中 (PID 553700, `run_exp003_len512_r3only.py`) |\n| **wait_and_eval.sh** | 运行中 (PID 591882)，每 30s 轮询，已检查 6 次均未找到 |\n| **eval 结果** | 无（eval 尚未启动） |\n\n**ETA 估算**：\n- 每 10 步约 92s → 剩余 50 步约 **460s ≈ 8 分钟**\n- checkpoint-1500 生成于 17:47 CST，按速率推算 checkpoint-2000 约在 **19:04 CST**（约 5-6 分钟后）\n- checkpoint 生成后 eval 脚本会自动启动\n\n无需手动干预，wait_and_eval.sh 会自动检测并触发 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-ckpt2000-result.md"
+}

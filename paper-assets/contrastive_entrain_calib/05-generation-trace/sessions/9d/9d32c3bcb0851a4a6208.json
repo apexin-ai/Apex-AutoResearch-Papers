@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d32c3bcb0851a4a6208",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "paper fig1a aspect v4",
+  "task_key": "worker_paper_fig1a-aspect-v4_20260525T172433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig1a-aspect-v4_20260525T172433_result.json",
+    "occurrence": 1,
+    "bytes": 369,
+    "sha256": "cf3836512fa17c2b476f9c2e52abb7a54f828b3e37d6d5f447263d5df295afa6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **PNG**: `docs/paper/figures/fig_teaser_a.png` (1376×1536, ratio 0.896:1)\n- **PDF**: `docs/paper/figures/fig_teaser_a.pdf`\n- 宽高比与 `fig_teaser_b.pdf` (1376×1536, 0.896:1) 完全匹配\n- PaperBanana 原始生成为 2:3 portrait (1696×2528)，后 pad+resize 至目标尺寸\n- 已还原 visualizer.py 补丁，已注册 artifact"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig1a-aspect-v4.md"
+}

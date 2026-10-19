@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9fb1cbb875d2eb1cbe2",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval collect heldout ckpt1500",
+  "task_key": "worker_eval_collect-heldout-ckpt1500_20260523T100829",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-heldout-ckpt1500_20260523T100829_result.json",
+    "occurrence": 1,
+    "bytes": 616,
+    "sha256": "08d8bd0f9ae56207db6b90e92a0e743c25ad3665764686be05efcbd17a0ea31d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已完成，结果如下：\n\n**ckpt-1500 Heldout Eval 结果：**\n- **SYCONScore = 0.2039**\n- ToF = 0.1143\n- NoF = 0.9429\n- n_valid = 35, n_invalid = 35, n_total = 70\n- 耗时 307s\n\n**对比汇总：**\n\n| Checkpoint | SYCONScore | ToF | NoF |\n|-----------|-----------|-----|-----|\n| ckpt-500  | 0.2045    | —   | —   |\n| ckpt-1000 | 0.2039    | —   | —   |\n| ckpt-1500 | 0.2039    | 0.1143 | 0.9429 |\n\nckpt-1500 与 ckpt-1000 的 SYCONScore 完全相同（0.2039），比 ckpt-500 略低。训练到 1000 步之后 heldout 性能已趋于饱和，没有进一步改善。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-heldout-ckpt1500.md"
+}

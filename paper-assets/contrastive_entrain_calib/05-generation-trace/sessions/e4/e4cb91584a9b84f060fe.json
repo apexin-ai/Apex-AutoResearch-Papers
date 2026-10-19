@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4cb91584a9b84f060fe",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code prep exp008v3 eval",
+  "task_key": "worker_code_prep-exp008v3-eval_20260519T102942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep-exp008v3-eval_20260519T102942_result.json",
+    "occurrence": 1,
+    "bytes": 1286,
+    "sha256": "a120c9b284c4d6e798a8649a4dce1856995eaf373c998a263170cb2b9fb24241"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本创建完毕，语法检查通过。\n\n## 报告\n\n### Checkpoint 格式\n- **LoRA adapter**：每个 checkpoint 包含 `adapter_model.safetensors` + `adapter_config.json`（r=64, alpha=64, targets=q/k/v/o_proj）\n- **不需要 DeepSpeed 合并**：虽然 `global_step500/` 内有 ZeRO-2 optimizer states，但 HF Trainer + PEFT 已自动保存了 merged LoRA adapter，eval 直接用 `--lora_path` 加载即可\n- Base model: Qwen3-8B (`/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B`)\n\n### Checkpoint 保存节奏\n- `save_steps=500`, `max_steps=8000` → 最多 16 个 checkpoint + 1 个 `final`\n- 当前已有：`checkpoint-500`（训练 step ~291 时还没到 500，但日志看时间戳已保存）\n\n### Eval 脚本\n`/root/contrastive_entrain_calib/eval/run_exp008v3_unified_eval.sh`\n\n- 遍历 checkpoint-500 到 checkpoint-8000 + final\n- 自动跳过不存在的 checkpoint 和已完成的 eval\n- GPU 通过 `CUDA_VISIBLE_DEVICES` 外部传入\n- 输出到 `/root/contrastive_entrain_calib/results/exp008v3_unified_eval/`\n- exp_id 格式：`exp008v3-ckptNNNN` / `exp008v3-final`\n\n### 运行方式\n```bash\nCUDA_VISIBLE_DEVICES=0 bash /root/contrastive_entrain_calib/eval/run_exp008v3_unified_eval.sh\n```\n\n不需要额外步骤，直接可跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-exp008v3-eval.md"
+}

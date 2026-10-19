@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64ac85d7695c4ab5c4d5",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval gs8 ckpt500 wait v2",
+  "task_key": "worker_eval_gs8-ckpt500-wait-v2_20260522T194609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gs8-ckpt500-wait-v2_20260522T194609_result.json",
+    "occurrence": 1,
+    "bytes": 112,
+    "sha256": "1cf08714376236e40a9ffef8215111c4f4df62b0a74e09345e3f864998582c50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台进程每 60 秒检查一次 checkpoint-500 是否生成，2 分钟后我会轮询结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-gs8-ckpt500-wait-v2.md"
+}

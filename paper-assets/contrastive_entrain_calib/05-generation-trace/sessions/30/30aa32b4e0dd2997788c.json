@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30aa32b4e0dd2997788c",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnosis training progress 29046",
+  "task_key": "worker_diagnosis_training-progress-29046_20260521T071752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_training-progress-29046_20260521T071752_result.json",
+    "occurrence": 1,
+    "bytes": 1720,
+    "sha256": "c88d6064081ac46d29256f74ea3dc5805c266151b5d9904ee9f4ebeeff13146b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据足够，汇总报告。\n\n---\n\n## 训练进度报告 — 2026-05-21 ~15:20 CST\n\n### exp-003 (R3-only GRPO seed 1) — cuda:1\n\n| 指标 | 值 |\n|------|-----|\n| PID | 70649 (存活，已运行 2d 14h 27m) |\n| GPU 利用率 | 95%, 38161 MiB / 97887 MiB |\n| 最新 checkpoint | **checkpoint-7500**（May 21 14:10 创建） |\n| 估算当前 step | **~7636 / 8000** |\n| 每步耗时 | ~30.9s（基于 ckpt-7000→7500 间隔 15441s） |\n| 剩余步数 | ~364 |\n| **预计完成** | **May 21 ~18:30 CST（约 3 小时后）** |\n| 已有 checkpoints | 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, 7500 |\n\n> **注意**: `tee` 日志 (`logs/exp003_v2.log`) 在 step 3760 (May 20) 后停止更新，可能是 tee 管道缓冲问题。但 checkpoint 持续产出，训练本身正常。\n\n### exp-003-s2 (R3-only GRPO seed 2) — cuda:0\n\n| 指标 | 值 |\n|------|-----|\n| PID | 237432 (存活，已运行 1d 7h 1m) |\n| GPU 利用率 | 95%, 38049 MiB / 97887 MiB |\n| 日志确认 step | **3533 / 8000**（May 21 15:18） |\n| 最新 checkpoint | **checkpoint-3500**（May 21 15:00 创建） |\n| 每步耗时 | ~30.6s（基于 ckpt-3000→3500 间隔 15277s） |\n| 剩余步数 | ~4467 |\n| **预计完成** | **May 23 ~05:00 CST（约 38 小时后）** |\n| 已有 checkpoints | 500, 1000, 1500, 2000, 2500, 3000, 3500 |\n\n### 系统状态\n\n- 磁盘 `/root/autodl-tmp`: 51G used / 250G total (21%) — 充足\n- 无异常：两张 GPU 均 95% 利用率，进程稳定\n\n### 关键时间线\n\n- **exp-003 今天 ~18:30 完成** → 可立即跑 ckpt-8000 final eval\n- **exp-003-s2 May 23 凌晨完成** → DDL May 25 前有约 2 天 buffer"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-training-progress-29046.md"
+}

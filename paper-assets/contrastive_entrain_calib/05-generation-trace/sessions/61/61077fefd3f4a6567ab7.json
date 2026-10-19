@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61077fefd3f4a6567ab7",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "fix recalib bug 28034 only",
+  "task_key": "worker_fix_recalib-bug-28034-only_20260519T113847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_recalib-bug-28034-only_20260519T113847_result.json",
+    "occurrence": 1,
+    "bytes": 449,
+    "sha256": "1d4c0830febf25b6e4cd81e93aa753d20ee7a16fed3be1516a7cc95cc997bbbd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。变更摘要：\n\n- **line 190**: `step = t._reward_step` → `step = t.state.global_step`\n- 这使得 recalibration 条件判断（line 192-194）和 `recalibrate_direction()` 调用（line 195）都基于 `t.state.global_step`\n- `t._reward_step += 1`（line 189）保留不动\n- 语法检查通过，备份已保存为 `dcgrpo_trainer.py.bak_pre_recalib_fix`\n- `/root/mvp_v2_1_expanded/` 下是独立副本，未修改"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-recalib-bug-28034-only.md"
+}

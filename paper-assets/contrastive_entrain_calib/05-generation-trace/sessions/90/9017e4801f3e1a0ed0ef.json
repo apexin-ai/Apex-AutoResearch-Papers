@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9017e4801f3e1a0ed0ef",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "check ckpt1000 eval result",
+  "task_key": "worker_check_ckpt1000-eval-result_20260520T002220",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_ckpt1000-eval-result_20260520T002220_result.json",
+    "occurrence": 1,
+    "bytes": 816,
+    "sha256": "8242535900cae780369f10c9dc81831f429e7a7586381f2281d29f10f6691475"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Eval 仍在运行，尚未产出结果。**\n\n- **进程 171048**：仍存活，已运行 **2小时41分钟**\n- **进度**：日志只有 15 行，模型和 NLI 已加载完毕，进入 \"Running eval on 362 pairs...\" 阶段，但日志中未输出逐条进度（没有 pair 级别的 log），无法确认具体跑到了第几条\n- **结果目录** `exp008v3_ckpt1000_eval/` 存在但为空，`default_preset_summary.txt` 尚未生成\n\n**GPU 状态**：\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| 0 | 76% | 31,376 MiB |\n| 1 | 48% | 16,726 MiB |\n| 2 | 0% | 5 MiB |\n| 3 | 86% | 30,614 MiB |\n\nGPU 0 和 1 有负载，说明 eval 进程在工作中。2小时41分钟跑 362 条偏慢——可能是生成长度较大或单条推理时间长。需要继续等待。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-ckpt1000-eval-result.md"
+}

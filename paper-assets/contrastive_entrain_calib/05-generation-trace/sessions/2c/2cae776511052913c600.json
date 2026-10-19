@@ -1,0 +1,1213 @@
+{
+  "schema_version": "1.0",
+  "id": "2cae776511052913c600",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "sync directions to 28034",
+  "task_key": "worker_sync_directions_to_28034_20260518T150611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_directions_to_28034_20260518T150611.log",
+    "occurrence": 1,
+    "bytes": 27249,
+    "sha256": "aa2f1228dbaf25131d015b421c943c6ae3fff7829500ef9bf67c7c26a98080ca"
+  },
+  "statistics": {
+    "messages": 28,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 8,
+      "tool_result": 8,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+                "session_id": "4a3267ba-6a8b-4439-90c2-4bad6c80eb59",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "742a0bb0-7e02-4694-a98e-6924b6cebbc0",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779120000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "beb909fc-f860-4725-9f2c-3b7262aa4971",
+                "session_id": "4a3267ba-6a8b-4439-90c2-4bad6c80eb59"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants to sync a file between two servers. Let me start by checking the file on westd-29046.",
+              "signature": "Ep8CClkIDRgCKkCRgojam3DRGhYY7MpgaOzIIBLKR/Oyk58D3IBCEY2XAkq5dWspAvLt0sW7lz0Y6+JqQU7MpnvX9mo35hVUoR9IMg9jbGF1ZGUtb3B1cy00LTY4ABIMxwo24HhG5sWTpkvDGgxtXdJfEx6ksTFtqoIiMH2b989SED5wX1wmzs3i0ChYazxxVNgE/5/Pu/XINU4Qu54m0e+CpfDKFvJeFmDDNCp0ORnMQFCZtKI4zJpku4aFuzX8JqkOh1+f2E3Ir6opvPnGWONiALJrv9X/Hq5GCEpjt7TzMK/ILKh4Fcb7TnhIf8NqYAp50HIXdAdwnMoeuo/qLWtB3eK753tjOLddaDFw6QQVWctfkul3XfojULQteYKPy98YAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4a3267ba-6a8b-4439-90c2-4bad6c80eb59",
+            "uuid": "960830aa-2673-495b-ae5b-bfc164d4b98f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TKEu1DijFMymXB2L5vivUU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12590,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12590
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先确认源文件存在。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4a3267ba-6a8b-4439-90c2-4bad6c80eb59",
+            "uuid": "0448be8e-2af6-4177-8463-9d894ad99944",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TKEu1DijFMymXB2L5vivUU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12590,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12590
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016eyWty7QaMTNe1t32kWy9m",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4a3267ba-6a8b-4439-90c2-4bad6c80eb59",
+            "uuid": "a38f8879-475d-4768-a60e-110493df4ab0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TKEu1DijFMymXB2L5vivUU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12590,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12590
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T15:06:22.293Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_016eyWty7QaMTNe1t32kWy9m",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4a3267ba-6a8b-4439-90c2-4bad6c80eb59",
+            "uuid": "49b46c2d-41a8-4792-95f7-7ea054b5a4ff",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013sPBcn4vE9BRxJcEZNEFtq",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29046",
+                "command": "ls -la /root/contrastive_entrain_calib/results/exp001/directions.pt",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4a3267ba-6a8b-4439-90c2-4bad6c80eb59",
+            "uuid": "6d0c2ea0-bf06-41f7-94ed-c9dfd8db08eb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01X66YyPpycB4gvKFRu9pXJs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 721,
+                "cache_read_input_tokens": 24431,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 721
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T15:06:26.574Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013sPBcn4vE9BRxJcEZNEFtq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 2366013 May 18 22:52 /root/contrastive_entrain_calib/results/exp001/directions.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4a3267ba-6a8b-4439-90c2-4bad6c80eb59",
+            "uuid": "cc57c79f-83da-474d-aa4d-62116d91126b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 2366013 May 18 22:52 /root/contrastive_entrain_calib/results/exp001/directions.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 2366013 May 18 22:52 /root/contrastive_entrain_calib/results/exp001/directions.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件存在，2.3MB。在 westd-28034 创建目标目录并尝试 scp 直传。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4a3267ba-6a8b-4439-90c2-4bad6c80eb59",
+            "uuid": "0f905bc5-afbe-4730-a02b-1bbd7c2437c3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F4fBYc6B7acgdnwyVpQ3tr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 250,
+                "cache_read_input_tokens": 25152,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 250
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PeHCcssqRfJTbqXZNREjdi",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-28034",
+                "command": "mkdir -p /root/contrastive_entrain_calib/results/exp001/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4a3267ba-6a8b-4439-90c2-4bad6c80eb59",
+            "uuid": "6be97ac0-f556-4a72-bdbd-1c36dcb35a38",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F4fBYc6B7acgdnwyVpQ3tr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 250,
+                "cache_read_input_tokens": 25152,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 250
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T15:06:30.907Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PeHCcssqRfJTbqXZNREjdi",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4a3267ba-6a8b-4439-90c2-4bad6c80eb59",
+            "uuid": "b4f5ffbe-e91f-41d9-b9e1-1498fb3145c9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.98}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "目标目录已创建。尝试 scp 直传。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4a3267ba-6a8b-4439-90c2-4bad6c80eb59",
+            "uuid": "3caa1970-ccb4-4c4b-b256-c181dc795738",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LKm5vTmcw1M7RWRPxAPyF2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 229,
+                "cache_read_input_tokens": 25402,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 229
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Aa5dLHiyPyoG2SmR9RWVDa",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29046",
+                "command": "scp -P 28034 -o StrictHostKeyChecking=no /root/contrastive_entrain_calib/results/exp001/directions.pt root@connect.westd.seetacloud.com:/root/contrastive_entrain_calib/results/exp001/",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4a3267ba-6a8b-4439-90c2-4bad6c80eb59",
+            "uuid": "17dfe6c6-0d45-43c8-97a0-0c6384245806",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LKm5vTmcw1M7RWRPxAPyF2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 229,
+                "cache_read_input_tokens": 25402,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 229
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T15:06:35.472Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Aa5dLHiyPyoG2SmR9RWVDa",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.78}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4a3267ba-6a8b-4439-90c2-4bad6c80eb59",
+            "uuid": "8558b57d-a452-458a-a739-8b4f85d51ed5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.78}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "SCP succeeded. Now let me verify on westd-28034.",
+              "signature": "EusBClkIDRgCKkAczB95vAlqz9YOPaxrV+C37KmcD/8wcvlzRj1GDqMAZ2/dkkaAJTfXpFcNMstyH7MeEGtoCF7YryH1jHF89m7QMg9jbGF1ZGUtb3B1cy00LTY4ABIMXX728HO2u64Svz31GgxSj16Ni5cV2hCkcyoiMP82MQPRuuVGUd7EIzAfeEUvxm/ZrW5STIQ9t5tw4dZhbeRWYq8PYdo5XuggR+MXnCpAh58w9Yie7juYgzRxBPSyOiQQgYfWAUkdUJO2MppBaTRr7Sh4ULDzOtPTxlZ1ROuqpgwKurVR8EJjiIVkbMtCdxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4a3267ba-6a8b-4439-90c2-4bad6c80eb59",
+            "uuid": "5841135e-f21a-43cb-9c0d-02b1af61553b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JsRDLTW8EUC3AJ2ejUnYTQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 278,
+                "cache_read_input_tokens": 25631,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 278
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "直传成功。验证目标文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4a3267ba-6a8b-4439-90c2-4bad6c80eb59",
+            "uuid": "96b8dcb0-b12f-43db-b479-d1bfcc860ebf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JsRDLTW8EUC3AJ2ejUnYTQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 278,
+                "cache_read_input_tokens": 25631,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 278
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012mLGHtosre8b6MybggVhX1",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-28034",
+                "command": "ls -la /root/contrastive_entrain_calib/results/exp001/directions.pt",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4a3267ba-6a8b-4439-90c2-4bad6c80eb59",
+            "uuid": "30298871-692d-494c-8d22-f11f3b90df6d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JsRDLTW8EUC3AJ2ejUnYTQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 278,
+                "cache_read_input_tokens": 25631,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 278
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T15:06:39.501Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012mLGHtosre8b6MybggVhX1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 2366013 May 18 23:06 /root/contrastive_entrain_calib/results/exp001/directions.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4a3267ba-6a8b-4439-90c2-4bad6c80eb59",
+            "uuid": "f03f9755-a19e-462c-a925-2a389efefd15",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 2366013 May 18 23:06 /root/contrastive_entrain_calib/results/exp001/directions.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 2366013 May 18 23:06 /root/contrastive_entrain_calib/results/exp001/directions.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01THrzpsZnbdoeMadGuhFtfg",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-28034",
+                "command": "python3 -c \"\nimport torch\nd = torch.load('/root/contrastive_entrain_calib/results/exp001/directions.pt', map_location='cpu', weights_only=True)\nprint(f'Keys: {list(d.keys())}')\nif 'd_syc' in d: print(f'd_syc shape: {d[\\\"d_syc\\\"].shape}')\n\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4a3267ba-6a8b-4439-90c2-4bad6c80eb59",
+            "uuid": "ea069527-ff17-4228-b4a4-e8e724ddb216",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JsRDLTW8EUC3AJ2ejUnYTQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 278,
+                "cache_read_input_tokens": 25631,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 278
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T15:06:40.643Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01THrzpsZnbdoeMadGuhFtfg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"\\\\\\\\nimport torch\\\\\\\\nd = torch.load(\\\\\\\\'/root/contrastive_entrain_calib/results/exp001/directions.pt\\\\\\\\', map_location=\\\\\\\\'cpu\\\\\\\\', weights_only=True)\\\\\\\\nprint(f\\\\\\\\'Keys: {list(d.keys())}\\\\\\\\')\\\\\\\\nif \\\\\\\\'d_syc\\\\\\\\' in d: print(f\\\\\\\\'d_syc shape: {d[\\\\\\\\\\\\\\\\\\\\\\\"d_syc\\\\\\\\\\\\\\\\\\\\\\\"].shape}\\\\\\\\')\\\\\\\\n\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4a3267ba-6a8b-4439-90c2-4bad6c80eb59",
+            "uuid": "0163451b-46b3-448a-b231-c7dc061f448b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"\\\\\\\\nimport torch\\\\\\\\nd = torch.load(\\\\\\\\'/root/contrastive_entrain_calib/results/exp001/directions.pt\\\\\\\\', map_location=\\\\\\\\'cpu\\\\\\\\', weights_only=True)\\\\\\\\nprint(f\\\\\\\\'Keys: {list(d.keys())}\\\\\\\\')\\\\\\\\nif \\\\\\\\'d_syc\\\\\\\\' in d: print(f\\\\\\\\'d_syc shape: {d[\\\\\\\\\\\\\\\\\\\\\\\"d_syc\\\\\\\\\\\\\\\\\\\\\\\"].shape}\\\\\\\\')\\\\\\\\n\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python3 -c \\\"\\\\nimport torch\\\\nd = torch.load(\\\\'/root/contrastive_entrain_calib/results/exp001/directions.pt\\\\', map_location=\\\\'cpu\\\\', weights_only=True)\\\\nprint(f\\\\'Keys: {list(d.keys())}\\\\')\\\\nif \\\\'d_syc\\\\' in d: print(f\\\\'d_syc shape: {d[\\\\\\\\\\\"d_syc\\\\\\\\\\\"].shape}\\\\')\\\\n\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件大小一致（2,366,013 bytes），传输完整。westd-28034 没装 python3，换个方式验证。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4a3267ba-6a8b-4439-90c2-4bad6c80eb59",
+            "uuid": "39840981-35cd-4a7e-abab-f0ba05a4109e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PMtxNntRrvEALBjoNur521",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 895,
+                "cache_read_input_tokens": 25909,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 895
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HCJzjAX1DkV8qK7CMmw9Kw",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-28034",
+                "command": "md5sum /root/contrastive_entrain_calib/results/exp001/directions.pt",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4a3267ba-6a8b-4439-90c2-4bad6c80eb59",
+            "uuid": "6623bf73-9da6-4b5f-9fdb-5dcf9eb9480b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PMtxNntRrvEALBjoNur521",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 895,
+                "cache_read_input_tokens": 25909,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 895
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B2weZJtHh8nkhSqtoieGJ3",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29046",
+                "command": "md5sum /root/contrastive_entrain_calib/results/exp001/directions.pt",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4a3267ba-6a8b-4439-90c2-4bad6c80eb59",
+            "uuid": "1a07d70b-34da-46b8-b722-24d72aea5065",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PMtxNntRrvEALBjoNur521",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 895,
+                "cache_read_input_tokens": 25909,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 895
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-18T15:06:45.234Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HCJzjAX1DkV8qK7CMmw9Kw",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"64164d1544677e837b4cc86e3d269e1e  /root/contrastive_entrain_calib/results/exp001/directions.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4a3267ba-6a8b-4439-90c2-4bad6c80eb59",
+            "uuid": "387ab310-fcea-4d84-9db5-bc1b2325837a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"64164d1544677e837b4cc86e3d269e1e  /root/contrastive_entrain_calib/results/exp001/directions.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"64164d1544677e837b4cc86e3d269e1e  /root/contrastive_entrain_calib/results/exp001/directions.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T15:06:45.695Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B2weZJtHh8nkhSqtoieGJ3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"64164d1544677e837b4cc86e3d269e1e  /root/contrastive_entrain_calib/results/exp001/directions.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4a3267ba-6a8b-4439-90c2-4bad6c80eb59",
+            "uuid": "51776e1a-4a21-4149-9702-d04cfb08d0ce",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"64164d1544677e837b4cc86e3d269e1e  /root/contrastive_entrain_calib/results/exp001/directions.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"64164d1544677e837b4cc86e3d269e1e  /root/contrastive_entrain_calib/results/exp001/directions.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成。MD5 校验一致：`64164d1544677e837b4cc86e3d269e1e`，文件大小 2,366,013 bytes。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4a3267ba-6a8b-4439-90c2-4bad6c80eb59",
+            "uuid": "c4fdaaa7-b775-46e3-bde7-779f68b4abb0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RsqyWPmC77arrtewnWXwmE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 558,
+                "cache_read_input_tokens": 26804,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 558
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成。MD5 校验一致：`64164d1544677e837b4cc86e3d269e1e`，文件大小 2,366,013 bytes。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 30124,
+            "duration_api_ms": 28058,
+            "num_turns": 9,
+            "stop_reason": "end_turn",
+            "session_id": "4a3267ba-6a8b-4439-90c2-4bad6c80eb59",
+            "total_cost_usd": 0.21359225,
+            "usage": {
+              "input_tokens": 11,
+              "cache_creation_input_tokens": 15521,
+              "cache_read_input_tokens": 165170,
+              "output_tokens": 1308,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 15521,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 51,
+                  "cache_read_input_tokens": 26804,
+                  "cache_creation_input_tokens": 558,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 558
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1161,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001246,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 11,
+                "outputTokens": 1308,
+                "cacheReadInputTokens": 165170,
+                "cacheCreationInputTokens": 15521,
+                "webSearchRequests": 0,
+                "costUSD": 0.21234625000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "763741bd-9b15-422e-84ec-2c191d56fa36"
+          },
+          "id": "event-000028"
+        }
+      ],
+      "message_count": 28
+    }
+  ],
+  "readable_path": "readable/worker-executions/sync-directions-to-28034.md"
+}

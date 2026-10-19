@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9048728c3389b1593e4",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp 003 s2 eval ckpt2000",
+  "task_key": "worker_eval_exp-003-s2-eval-ckpt2000_20260521T081805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp-003-s2-eval-ckpt2000_20260521T081805_result.json",
+    "occurrence": 1,
+    "bytes": 944,
+    "sha256": "68235d9d30d874462257f82b2c643dc5f5b38ab8d96b00382f7cb6d734b88ba1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 执行结果\n\n### exp-003-s2-eval-ckpt2000 — 已提交，正在运行\n\n- **Server**: westd-28034, GPU 3\n- **tmux session**: `exp-003-s2-eval-ckpt2000`\n- **Log**: `~/runs/contrastive_entrain_calib/exp-003-s2-eval-ckpt2000.log`\n- **Registry**: RUNNING，spec 已补充\n\n**注意**：GPU 3 已有 exp003s2-ckpt3000 eval 在跑（~9 分钟），两个 eval 共享 GPU（29.8GB/32GB）。模型部分 offload 到 CPU，eval 能运行但会比正常慢。ckpt-3000 完成后（预计 ~50 分钟），GPU 释放，ckpt-2000 eval 速度会恢复正常。\n\n### ckpt-7500 同步 — 阻塞\n\n- checkpoint-7500 位于 westd-29046: `/root/autodl-tmp/checkpoints/exp003_r3only_seed1/checkpoint-7500/`（719MB）\n- westd-28034 上 exp003 已有到 checkpoint-7000，缺 7500\n- **两台服务器无直连 SSH**（无 `.ssh/config` 互通），无法直接 SCP\n- 需要手动中转或配置服务器间 SSH 密钥才能同步"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-003-s2-eval-ckpt2000.md"
+}

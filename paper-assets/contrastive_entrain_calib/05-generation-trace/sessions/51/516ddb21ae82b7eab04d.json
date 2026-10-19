@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "516ddb21ae82b7eab04d",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops provenance phantom cleanup",
+  "task_key": "worker_ops_provenance-phantom-cleanup_20260523T105406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_provenance-phantom-cleanup_20260523T105406_result.json",
+    "occurrence": 1,
+    "bytes": 882,
+    "sha256": "a2ec54d248069576db77f40c7e613dd91f9ec6380d96db3b8c4997a642c3f33d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All phantom IDs cleared. Here's the summary:\n\n## 映射结果\n\n| Phantom ID | Registry ID | 依据 | 出现位置 |\n|---|---|---|---|\n| `exp-005` | **`exp-002`** | C362 \"cosine reward cannot separate\" → exp-002 是 tanh gate cosine 公式，因 activation norms 100-1200x 导致 gate saturation | C355, C358, C362, C388, C397, C436 (5处) |\n| `exp-006` | **`exp-002v2`** | C362 同上 → exp-002v2 是 pure cosine 公式，gap 仅 0.098 | C355, C358, C362, C397 (4处) |\n| `exp-007` | **`exp-002v3`** | C358 \"every formulation fails\" 中第三个 cosine 变体 → exp-002v3 是 scaled cosine，R3 saturates at 0.9998 | C355, C358, C397 (3处) |\n| `exp-002v2-recalib` | **`exp002v2-recalib`** | 命名不一致（多了一个连字符），registry 中为 `exp002v2-recalib` | C407, C449 (2处) |\n\n共替换 14 处引用，0 个 phantom ID 残留。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-provenance-phantom-cleanup.md"
+}

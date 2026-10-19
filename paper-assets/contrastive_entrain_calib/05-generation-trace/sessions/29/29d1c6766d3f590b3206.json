@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "29d1c6766d3f590b3206",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "code vanilla r3 nli control",
+  "task_key": "worker_code_vanilla-r3-nli-control_20260524T233239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_vanilla-r3-nli-control_20260524T233239.log",
+    "occurrence": 1,
+    "bytes": 532484,
+    "sha256": "cd7a5f87981c80fc89a1e9fee1d27fbce90f4bca36006caf67372bbeab48d21b"
+  },
+  "statistics": {
+    "messages": 426,
+    "user_turns": 0,
+    "tool_calls": 174,
+    "roles": {
+      "log": 1,
+      "system": 8,
+      "record": 1,
+      "assistant": 67,
+      "tool_call": 174,
+      "tool_result": 174,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 426,
+      "chunks": [
+        {
+          "path": "29d1c6766d3f590b3206-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "29d1c6766d3f590b3206-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "29d1c6766d3f590b3206-part-0003.json",
+          "message_count": 66
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-vanilla-r3-nli-control.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a5ac35fc2a41e9de978",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis trajectory compile",
+  "task_key": "worker_analysis_trajectory-compile_20260521T103757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_trajectory-compile_20260521T103757_result.json",
+    "occurrence": 1,
+    "bytes": 815,
+    "sha256": "9162460996a3d24323281481446086ef58a6d81592f74517e6ccc6a5ca7295a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。轨迹数据表已保存到两处：\n\n1. **`artifacts/trajectory_data_complete.md`** — 完整版，含 9 个方法的逐 checkpoint 数据\n2. **`memory.md`** 末尾 — best checkpoint 汇总表\n\n关键结论：\n- **ACT (exp-004) 是唯一显著超越 vanilla 的方法**，ckpt-7000 SYCONScore=0.2858 (+114%)，ckpt-8000 约 0.3013 (+126%)\n- **R3-GRPO s1** 在 ckpt-6500 意外出现 0.1529 (+14.5%)，是此前未知的新高点（之前认为 ckpt-4500 的 0.1337 是峰值）\n- **R3-GRPO s2** 始终低于 baseline，两个 eval 仍在 RUNNING\n- 其余 5 种方法全部 negative（probe reward trap / mode collapse / 净负效果）\n\n**待补数据：** exp-003-eval-ckpt8000 (RUNNING)、exp-003-s2 ckpt2500/3500 (RUNNING)、exp-004 ckpt500/2000/8000 (未提交独立 eval)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-trajectory-compile.md"
+}

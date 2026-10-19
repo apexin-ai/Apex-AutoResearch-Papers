@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c23eb45557767f769339",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "writing appendix ref audit",
+  "task_key": "worker_writing_appendix-ref-audit_20260525T090637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_appendix-ref-audit_20260525T090637_result.json",
+    "occurrence": 1,
+    "bytes": 1540,
+    "sha256": "1cbf29a4a9f16b0cc2996831747814a5c1602675718f7e7839a9f1ef12c5b5fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n(a) 附录盘点\n- App §1: [app:training] [训练细节] 包含 reward weight 选择、response truncation 验证、hyperparameters 表(tab:hyperparams)、early termination criterion、GRPO reward variants 配置\n- App §1 Table: [tab:hyperparams] [超参表格] GRPO variants 与 ACT 的训练超参对比（LR、batch、LoRA config 等）\n- App §2: [app:taxonomy] [失败分类] probe-trained model 的 5 类 stubbornness 失败模式（deliberation traps 28.7%、sycophantic stubbornness 24.3%、acknowledge-but-maintain 23.8%、genuine-accept-missed 18.8%、refute/ignore 4.5%）\n\n(b) 引用状态\n- [app:training]: ✅ 已有合格引用 at framework.tex:28 \"(Appendix~\\ref{app:training})\" — weight 选择方法\n- [app:training]: ✅ 已有合格引用 at framework.tex:55 \"full hyperparameters are reported in Appendix~\\ref{app:training}\"\n- [app:training]: ❌ early termination sub-content 无直接引用 → 已添加引用 at discussion.tex:55 \"termination criterion in Appendix~\\ref{app:training}\"\n- [app:training]: ❌ truncation 验证 sub-content 无直接引用 → 已添加引用 at cosine_failure.tex:32 \"we verify that no evaluation response reaches the 256-token limit (Appendix~\\ref{app:training})\"\n- [tab:hyperparams]: ✅ 在 app:training 节内，由 framework.tex:55 覆盖（\"full hyperparameters\"），无需单独引用\n- [app:taxonomy]: ✅ 已有合格引用 at probe_trap.tex:17 \"Full taxonomy in Appendix~\\ref{app:taxonomy}\"\n\n(c) 删除建议\n- 无\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/writing-appendix-ref-audit.md"
+}

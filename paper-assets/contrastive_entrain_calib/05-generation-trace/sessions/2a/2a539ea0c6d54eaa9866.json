@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a539ea0c6d54eaa9866",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis r3 reward wait and collect",
+  "task_key": "worker_analysis_r3-reward-wait-and-collect_20260520T202740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r3-reward-wait-and-collect_20260520T202740_result.json",
+    "occurrence": 1,
+    "bytes": 87,
+    "sha256": "9e23848055843978395063cb04ce6af8e93af1db63b6fa57ef137d01d0ea7314"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程 618423 仍在运行，生成进度 300/362。4 分钟后再查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r3-reward-wait-and-collect.md"
+}

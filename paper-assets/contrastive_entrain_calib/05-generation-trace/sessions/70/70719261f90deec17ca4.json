@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70719261f90deec17ca4",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp004 ckpt7000 ckpt5000 results",
+  "task_key": "worker_eval_exp004-ckpt7000-ckpt5000-results_20260520T150853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp004-ckpt7000-ckpt5000-results_20260520T150853_result.json",
+    "occurrence": 1,
+    "bytes": 1106,
+    "sha256": "8153574c4a2744ffd7a815027d8a35ea7948cb16c168b18ba3e8ea2535924919"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。以下是完整的 ACT baseline (exp-004) SYCONScore 训练轨迹（D027 unified eval）：\n\n| Checkpoint | ToF | NoF | SYCONScore | vs Vanilla |\n|---|---|---|---|---|\n| Vanilla | - | - | **0.1335** | baseline |\n| ckpt-500 | 0.0939 | 0.8895 | 0.1699 | +27.3% |\n| ckpt-1000 | 0.1160 | 0.8729 | 0.2048 | +53.4% |\n| ckpt-2000 | 0.1492 | 0.8785 | 0.2550 | +91.0% |\n| **ckpt-5000** | **0.1547** | **0.8785** | **0.2631** | **+97.1%** |\n| ckpt-4000 | 0.1215 | 0.8950 | 0.2140 | +60.3% |\n| ckpt-6000 | 0.1547 | 0.8508 | 0.2618 | +96.1% |\n| **ckpt-7000** | **0.1713** | **0.8619** | **0.2858** | **+114.1%** |\n| ckpt-8000 | 0.1823 | 0.8674 | 0.3013 | +125.7% |\n\n轨迹分析：\n- ckpt-5000 (SYCONScore=0.2631) 和 ckpt-7000 (0.2858) 填补了 ckpt-4000→6000 和 ckpt-6000→8000 之间的空隙\n- ckpt-4000 是一个明显的 dip（0.214），ckpt-5000 恢复到 0.2631，说明 4000 步附近的下降是暂时的\n- 整体趋势：SYCONScore 随训练步数单调递增（除 ckpt-4000 外），ToF 稳步上升，NoF 略有下降但保持在 0.85+ 水平"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp004-ckpt7000-ckpt5000-results.md"
+}

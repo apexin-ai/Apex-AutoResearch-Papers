@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "566f600cec8154c9e0cf",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops scp s2 ckpt2000 3000",
+  "task_key": "worker_ops_scp-s2-ckpt2000-3000_20260521T043838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scp-s2-ckpt2000-3000_20260521T043838_result.json",
+    "occurrence": 1,
+    "bytes": 887,
+    "sha256": "c532e20a3d98fd9ab4333fd0bddb2f3c2f7136cf903efaadb30034db947861d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**SCP 全部成功。** 通过临时 SSH key 从 29046 直接传到 28034（绕过本机中转）。\n\n### 传输详情\n| Checkpoint | 源路径 (29046) | 大小 |\n|---|---|---|\n| checkpoint-2000 | `exp003_r3only_seed2/checkpoint-2000` | 718MB |\n| checkpoint-2500 | `exp003_r3only_seed2/checkpoint-2500` | 718MB |\n| checkpoint-3000 | `exp003_r3only_seed2/checkpoint-3000` | 718MB |\n\n注意：29046 上路径是 `exp003_r3only_seed2`（非 `exp003_s2`），已按目标命名放入 28034 的 `exp003_s2/`。\n\n### 28034 完整 s2 checkpoint 列表\n```\ncheckpoint-500\ncheckpoint-1000\ncheckpoint-1500\ncheckpoint-2000  ← 新增\ncheckpoint-2500  ← 新增\ncheckpoint-3000  ← 新增\n```\n\n每个 checkpoint 包含 adapter_model.safetensors (245MB) + optimizer.pt (491MB) + tokenizer + 配置文件，文件完整。临时 SSH key 已清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-scp-s2-ckpt2000-3000.md"
+}

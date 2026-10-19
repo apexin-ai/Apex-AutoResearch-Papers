@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "447104a0ca028a604a6c",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "run exp 003 r3only",
+  "task_key": "worker_run_exp-003_r3only_20260518T144402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_exp-003_r3only_20260518T144402_result.json",
+    "occurrence": 1,
+    "bytes": 1033,
+    "sha256": "dc5ddb0da20a3599e4d41d0dd63251d166fe62a99ff38ec51bca06299a70891f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练任务已提交并在运行。\n\n**总结：**\n\n| 项目 | 状态 |\n|------|------|\n| 脚本 | `/root/contrastive_entrain_calib/training/run_exp003_r3only.py` 已部署 |\n| 配置 | `r1=0.0, r2=0.0, r3=1.0`，`direction_path=\"\"`（R3-only fallback） |\n| 训练参数 | batch=1, grad_accum=16, lr=5e-5, max_steps=6000, LoRA r=64, num_gen=4 |\n| 数据 | 362 条 calibration_v2_1_expanded.jsonl |\n| 进程 | screen session `exp003`（PID 54216），cuda:1 |\n| 输出 | `/root/autodl-tmp/checkpoints/exp003_r3only_seed1/` |\n| 日志 | `/root/autodl-tmp/checkpoints/exp003_r3only_seed1.log` |\n| Registry | exp-003 → RUNNING |\n| 当前状态 | Qwen3-8B 模型下载中（~4MB/s，预计 ~1小时），之后自动开始训练 |\n\n注意事项：\n- 使用 `HF_ENDPOINT=https://hf-mirror.com` 绕过 huggingface.co 网络不可达\n- HF cache 放在 `/root/autodl-tmp/.cache/huggingface`（数据盘 218GB 可用）\n- DeBERTa-v3-base（R3 NLI 模型）会在训练首次计算 reward 时自动下载"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-exp-003-r3only.md"
+}

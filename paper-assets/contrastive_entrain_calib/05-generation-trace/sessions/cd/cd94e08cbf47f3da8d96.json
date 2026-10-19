@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "cd94e08cbf47f3da8d96",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "paper fig framework pb",
+  "task_key": "worker_paper_fig-framework-pb_20260525T130344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig-framework-pb_20260525T130344_result.json",
+    "occurrence": 1,
+    "bytes": 2105252,
+    "sha256": "7469ab8a27c19e54291f897e26d971dec6fc36fa655f1b26329cb086843c6f16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "cd94e08cbf47f3da8d96-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig-framework-pb.md"
+}

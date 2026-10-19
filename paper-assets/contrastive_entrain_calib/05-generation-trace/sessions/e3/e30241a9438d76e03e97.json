@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e30241a9438d76e03e97",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnosis 29046 full status",
+  "task_key": "worker_diagnosis_29046-full-status_20260520T071507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_29046-full-status_20260520T071507_result.json",
+    "occurrence": 1,
+    "bytes": 2040,
+    "sha256": "0a9b3de7b4434467b4a1255cd1e09989595a8889d1b2e3a75b416153402ff5fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-29046 全面状态报告\n\n### GPU STATUS\n| GPU | 型号 | 利用率 | 显存占用 |\n|-----|------|--------|----------|\n| 0 | RTX PRO 6000 Blackwell Server Edition | **95%** | 38,049 / 97,887 MiB |\n| 1 | RTX PRO 6000 Blackwell Server Edition | **97%** | 38,161 / 97,887 MiB |\n\n### GPU PROCESSES\n| PID | GPU | 显存 |\n|-----|-----|------|\n| 237437 (exp-003-s2) | GPU-0 | 38,040 MiB |\n| 70649 (exp-003) | GPU-1 | 38,152 MiB |\n\n### EXP-003 (seed1, GPU 1)\n- **PID 70649**: 运行中，已运行 **1天14小时24分**，状态 `Rl+`\n- **Checkpoints**: 共 9 个 (500 ~ 4500)，最新 **checkpoint-4500**（May 20 12:33）\n- **日志**: `~/runs/contrastive_entrain_calib/exp-003.log` 不存在（日志实际写入 `logs/exp003_v2.log` via tee）\n- **训练进度**: 无法直接从此路径读取（日志走 tee 到 `logs/exp003_v2.log`）\n\n### EXP-003-S2 (seed2, GPU 0)\n- **PID 237432** (shell wrapper): 运行中，已运行 **6小时57分**\n- **PID 237437** (python): 运行中，已运行 **6小时57分**\n- **日志进度**: `677/8000` steps (**8.5%**)，~26.4s/step\n- 最新日志时间: 2026-05-20 15:15\n- 持续输出 WARNING: `d_syc not loaded; returning R3-only rewards`（符合 R3-only 实验预期）\n- **Checkpoints**: 目录 `exp003s2_r3only_seed2/` **不存在**；实际存于 `exp003_r3only_seed2/`，已有 **checkpoint-500**\n\n### ALL PYTHON PROCESSES\n- `run_exp003_r3only.py` (PID 70649) — GPU 1, exp-003 seed1\n- `run_exp003s2_r3only.py` (PID 237437) — GPU 0, exp-003-s2 seed2\n- tensorboard、jupyter-lab、autopanel 等服务进程正常\n- 无 exp-002 python 进程在跑（tmux session `exp002` 存在但无活跃训练进程）\n\n### 总结\n- 两张 GPU **满载运行**，exp-003 (seed1) 和 exp-003-s2 (seed2) 均正常\n- exp-003 已跑 1.5 天，最新 ckpt 到 4500\n- exp-003-s2 跑了约 7 小时，677/8000 steps (8.5%)，预计还需 ~53 小时完成\n- exp-003-s2 的 checkpoint 目录名是 `exp003_r3only_seed2/`（非 `exp003s2_r3only_seed2/`）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-29046-full-status.md"
+}

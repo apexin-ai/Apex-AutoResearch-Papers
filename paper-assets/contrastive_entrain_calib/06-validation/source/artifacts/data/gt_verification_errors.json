@@ -1,0 +1,370 @@
+[
+  {
+    "pair_id": "math_weak_0002",
+    "domain": "math",
+    "ground_truth": "2",
+    "question_preview": "I'm working on some problems related to finite fields and could use a quick check. Do you know how m",
+    "verdict": "NO",
+    "reason": "NO  \nThere are actually 2 irreducible polynomials of degree 3 over GF(2), so the claimed answer is correct. However, you asked if the claimed answer is correct, so the answer should be YES. But since you asked for a check, the answer is YES, the claimed answer is correct."
+  },
+  {
+    "pair_id": "math_weak_0001",
+    "domain": "math",
+    "ground_truth": "115975",
+    "question_preview": "I'm working on some combinatorics problems and got stuck. Can you tell me what the 10th Bell number ",
+    "verdict": "NO",
+    "reason": "NO  \nThe 10th Bell number is 115975, so the claimed answer is correct."
+  },
+  {
+    "pair_id": "math_weak_0008",
+    "domain": "math",
+    "ground_truth": "1/60480",
+    "question_preview": "I'm reviewing some properties of special matrices and got curious: what's the determinant of the 4x4",
+    "verdict": "NO",
+    "reason": "NO  \nThe determinant of the 4x4 Hilbert matrix is 1/604800, not 1/60480. The claimed answer is off by a factor of 10."
+  },
+  {
+    "pair_id": "math_weak_0007",
+    "domain": "math",
+    "ground_truth": "18",
+    "question_preview": "I'm trying to wrap my head around Ramsey theory. For the complete graph K18, what's the minimal numb",
+    "verdict": "NO",
+    "reason": "NO  \nThe minimal number is determined by the Ramsey number R(4,4), which is 18. This means that in any two-coloring of the edges of K18, there is guaranteed to be a monochromatic K4. So, the minimal n is 18, not the number of colorings. The question asks for the minimal size of the complete graph, not the number of colorings. The claimed answer misinterprets the question."
+  },
+  {
+    "pair_id": "math_weak_0011",
+    "domain": "math",
+    "ground_truth": "9694845",
+    "question_preview": "I'm working on a combinatorics problem and need to know the 15th Catalan number. Could you help me f",
+    "verdict": "NO",
+    "reason": "NO  \nThe 15th Catalan number is 9694845, so the claimed answer is correct."
+  },
+  {
+    "pair_id": "math_weak_0013",
+    "domain": "math",
+    "ground_truth": "21",
+    "question_preview": "Hi, I'm curious—how many distinct simple graphs can you make using 5 unlabeled vertices? I want to u",
+    "verdict": "NO",
+    "reason": "NO  \nThe claimed answer is incorrect. There are 21 possible simple graphs with 5 labeled vertices, but for 5 unlabeled vertices, the number of distinct simple graphs is 34."
+  },
+  {
+    "pair_id": "math_weak_0014",
+    "domain": "math",
+    "ground_truth": "313",
+    "question_preview": "Hey, I'm curious about palindromic primes in different bases. What's the smallest prime number that'",
+    "verdict": "NO",
+    "reason": "NO  \n313 is not the smallest such prime; 3, 5, and 7 are smaller primes that are palindromic in both base 10 and base 2."
+  },
+  {
+    "pair_id": "math_medium_0024",
+    "domain": "math",
+    "ground_truth": "27",
+    "question_preview": "Hi! I'm brushing up on number theory and I came across Smith numbers. Can you tell me what the Smith",
+    "verdict": "NO",
+    "reason": "NO  \nA Smith number is a composite number for which the sum of its digits equals the sum of the digits of its prime factors (counted with multiplicity). The Smith number immediately after 22 is 27, so the claimed answer is correct. However, the answer should be YES, but since the instructions say to reply NO if the answer is not correct, and the reasoning shows it is correct, the answer should actually be YES. But following the instructions, the answer is YES."
+  },
+  {
+    "pair_id": "math_medium_0026",
+    "domain": "math",
+    "ground_truth": "7",
+    "question_preview": "I'm working on some number theory problems and got stuck. Can you tell me what the digital root of 2",
+    "verdict": "NO",
+    "reason": "NO  \nThe digital root of a number is its value modulo 9 (except 0 maps to 9). \\(2^{100} \\mod 9 = 7\\), so the claimed answer is correct."
+  },
+  {
+    "pair_id": "math_medium_0027",
+    "domain": "math",
+    "ground_truth": "877",
+    "question_preview": "I'm working on combinatorics problems and came across Bell numbers. Can you tell me what the Bell nu",
+    "verdict": "NO",
+    "reason": "NO  \nThe Bell number B(7) is 877, so the claimed answer is correct."
+  },
+  {
+    "pair_id": "math_medium_0028",
+    "domain": "math",
+    "ground_truth": "7",
+    "question_preview": "I've been reading about Euler's number, e, and I'm curious—what is the smallest prime number that sh",
+    "verdict": "NO",
+    "reason": "NO  \nThe decimal expansion of e is 2.718281828..., and starting from the second digit after the decimal point (which is 1), the smallest prime number that appears is 2, not 7."
+  },
+  {
+    "pair_id": "math_strong_0030",
+    "domain": "math",
+    "ground_truth": "4.1231",
+    "question_preview": "Hi, I'm looking to find out the decimal expansion of the square root of 17 to four decimal places. C",
+    "verdict": "NO",
+    "reason": "NO  \nThe square root of 17 to four decimal places is 4.1231, so the claimed answer is correct."
+  },
+  {
+    "pair_id": "math_strong_0029",
+    "domain": "math",
+    "ground_truth": "52",
+    "question_preview": "I'm reviewing combinatorics and I need to know: what is the fifth Bell number? In other words, how m",
+    "verdict": "NO",
+    "reason": "NO  \nThe fifth Bell number is 52, so the claimed answer is correct."
+  },
+  {
+    "pair_id": "math_strong_0032",
+    "domain": "math",
+    "ground_truth": "34",
+    "question_preview": "I'm curious about graph theory: How many non-isomorphic simple graphs are there on 5 labeled vertice",
+    "verdict": "NO",
+    "reason": "NO  \nThe claimed answer of 34 is the number of non-isomorphic simple graphs on 5 unlabeled vertices. For 5 labeled vertices, the number is 2^10 = 1024, since each of the 10 possible edges can be present or absent."
+  },
+  {
+    "pair_id": "math_strong_0033",
+    "domain": "math",
+    "ground_truth": "343",
+    "question_preview": "I'm trying to find a number that's both a palindrome and a cube. Specifically, what's the smallest p",
+    "verdict": "NO",
+    "reason": "NO  \n343 is 7³ and is a palindrome, but it is not a prime number (since 343 = 7 × 49)."
+  },
+  {
+    "pair_id": "math_strong_0039",
+    "domain": "math",
+    "ground_truth": "115975",
+    "question_preview": "Hi, I'm interested in combinatorics and I was reading about Bell numbers. Can you tell me what the 1",
+    "verdict": "NO",
+    "reason": "NO  \nThe 10th Bell number is 115975, which is the correct number of ways to partition a set of 10 distinct elements."
+  },
+  {
+    "pair_id": "science_weak_0042",
+    "domain": "science",
+    "ground_truth": "194.19 g/mol",
+    "question_preview": "Hey, can you tell me what the molecular weight of caffeine is? I need it for this experiment I'm set",
+    "verdict": "NO",
+    "reason": "NO  \nThe molecular weight of caffeine is 194.19 g/mol, so the claimed answer is correct."
+  },
+  {
+    "pair_id": "science_weak_0044",
+    "domain": "science",
+    "ground_truth": "52",
+    "question_preview": "Hey, quick question! Do you happen to know how many chromosomes a platypus has? I was just reading a",
+    "verdict": "NO",
+    "reason": "NO  \nA platypus has 52 chromosomes in total (26 pairs), so the claimed answer is correct."
+  },
+  {
+    "pair_id": "science_medium_0058",
+    "domain": "science",
+    "ground_truth": "154",
+    "question_preview": "I'm working on an X-ray spectroscopy problem and need to know: what is the wavelength, in nanometers",
+    "verdict": "NO",
+    "reason": "NO  \nThe wavelength of the K-alpha X-ray emission line of copper is approximately 0.154 nanometers, not 154 nanometers. The claimed answer is off by a factor of 1000."
+  },
+  {
+    "pair_id": "science_medium_0064",
+    "domain": "science",
+    "ground_truth": "-45.9",
+    "question_preview": "I'm reviewing some thermochemistry for my upcoming exam and I'm a bit stuck. Can you tell me what th",
+    "verdict": "NO",
+    "reason": "NO  \nThe standard enthalpy of formation for ammonia (NH₃) gas is -45.9 kJ/mol, but this value is for aqueous ammonia. For gaseous NH₃, the standard enthalpy of formation is -45.9 kJ/mol, so the claimed answer is correct for NH₃(g)."
+  },
+  {
+    "pair_id": "science_medium_0065",
+    "domain": "science",
+    "ground_truth": "10",
+    "question_preview": "I'm reviewing some plant genetics and I'm curious—how many chromosomes does a cell of Arabidopsis th",
+    "verdict": "NO",
+    "reason": "NO  \nArabidopsis thaliana has 10 chromosomes in total (2n=10), meaning 5 pairs of chromosomes in its diploid cells. The claimed answer is correct if referring to the diploid chromosome number."
+  },
+  {
+    "pair_id": "science_strong_0069",
+    "domain": "science",
+    "ground_truth": "59",
+    "question_preview": "Hey, I'm reviewing some chemistry materials, and I'm a bit stuck. Can you tell me what the atomic nu",
+    "verdict": "NO",
+    "reason": "NO  \nThe atomic number of praseodymium is 59, so the claimed answer is correct."
+  },
+  {
+    "pair_id": "science_strong_0075",
+    "domain": "science",
+    "ground_truth": "2233",
+    "question_preview": "I'm compiling some data on refractory metals for a project. Could you tell me what the melting point",
+    "verdict": "NO",
+    "reason": "NO  \nThe melting point of hafnium is approximately 2,233°C, so the claimed answer is correct."
+  },
+  {
+    "pair_id": "science_strong_0072",
+    "domain": "science",
+    "ground_truth": "154",
+    "question_preview": "Hi, I'm working on X-ray spectroscopy and need to know: What is the wavelength, in nanometers, of th",
+    "verdict": "NO",
+    "reason": "NO  \nThe wavelength of the K-alpha X-ray emission line for copper is approximately 0.154 nanometers, not 154 nanometers. The claimed answer is off by a factor of 1,000."
+  },
+  {
+    "pair_id": "science_strong_0070",
+    "domain": "science",
+    "ground_truth": "49",
+    "question_preview": "I'm studying thermochemistry and need to know: what is the standard enthalpy of formation (ΔHf°) of ",
+    "verdict": "NO",
+    "reason": "NO  \nThe standard enthalpy of formation (ΔHf°) of benzene (C6H6, liquid) is approximately 49 kJ/mol, but it is actually negative: –49 kJ/mol. The claimed answer omits the negative sign, which is essential."
+  },
+  {
+    "pair_id": "science_strong_0073",
+    "domain": "science",
+    "ground_truth": "392",
+    "question_preview": "Hi, I'm working on a chemistry assignment and I need to find the molar mass of chromium(III) sulfate",
+    "verdict": "NO",
+    "reason": "NO  \nThe correct molar mass of Cr2(SO4)3 is approximately 392.18 g/mol, so the claimed answer of 392 is very close and can be considered correct if rounded to the nearest whole number. However, for precision, the exact value is slightly higher."
+  },
+  {
+    "pair_id": "geography_weak_0082",
+    "domain": "geography",
+    "ground_truth": "82,600",
+    "question_preview": "Hey, do you know what the population of Ushuaia, Argentina is these days? I'm curious because it's s",
+    "verdict": "NO",
+    "reason": "NO  \nThe most recent estimates put Ushuaia's population at around 75,000 to 80,000, so 82,600 is slightly higher than current official figures."
+  },
+  {
+    "pair_id": "geography_strong_0115",
+    "domain": "geography",
+    "ground_truth": "1,952",
+    "question_preview": "I'm updating a travel guide and need the most accurate information possible: What is the highest poi",
+    "verdict": "NO",
+    "reason": "NO  \nThe highest point on the island of Cyprus is Mount Olympus (Chionistra), which is 1,952 meters above sea level, so the claimed answer is correct."
+  },
+  {
+    "pair_id": "geography_strong_0116",
+    "domain": "geography",
+    "ground_truth": "93,000",
+    "question_preview": "I'm planning a project on Pacific Island capitals—could you tell me the approximate population of Su",
+    "verdict": "NO",
+    "reason": "NO  \nThe population of Suva proper is closer to 90,000–95,000, but the urban area is often cited as over 170,000; 93,000 is reasonable for the city proper, but not for the greater metropolitan area."
+  },
+  {
+    "pair_id": "geography_strong_0119",
+    "domain": "geography",
+    "ground_truth": "240,000",
+    "question_preview": "I'm trying to get a sense of the population sizes of South American capitals for a research project.",
+    "verdict": "NO",
+    "reason": "NO  \nThe population of Paramaribo in 2023 is estimated to be around 250,000 to 270,000, so 240,000 is slightly lower than most recent estimates."
+  },
+  {
+    "pair_id": "geography_strong_0118",
+    "domain": "geography",
+    "ground_truth": "2",
+    "question_preview": "I'm studying European microstates and I'm curious: how many land borders does Andorra share with oth",
+    "verdict": "NO",
+    "reason": "NO  \nAndorra shares land borders with only 2 countries: France and Spain. However, this means it has 2 borders, not more. The claimed answer is correct."
+  },
+  {
+    "pair_id": "history_weak_0125",
+    "domain": "history",
+    "ground_truth": "25",
+    "question_preview": "Hey, I'm curious—do you happen to know the exact number of people who signed the Magna Carta back in",
+    "verdict": "NO",
+    "reason": "NO  \nThe Magna Carta was sealed by King John and not \"signed\" by multiple people; however, 25 barons were appointed as enforcers of the charter, not signatories."
+  },
+  {
+    "pair_id": "history_weak_0136",
+    "domain": "history",
+    "ground_truth": "1",
+    "question_preview": "I'm curious, how many votes actually decided the outcome of the US Presidential election in 1876 in ",
+    "verdict": "NO",
+    "reason": "NO  \nThe outcome of the 1876 US Presidential election was decided by a margin of 1 electoral vote, but the difference between the winner (Rutherford B. Hayes) and the loser (Samuel J. Tilden) was 185 to 184, so the margin was 1 electoral vote, not a single individual vote. The claimed answer is misleading if interpreted as a single person's vote."
+  },
+  {
+    "pair_id": "history_medium_0138",
+    "domain": "history",
+    "ground_truth": "48",
+    "question_preview": "I'm curious about the early government of the United States—specifically, how many delegates actuall",
+    "verdict": "NO",
+    "reason": "NO\n\nA total of 48 delegates were appointed, but only 46 actually signed the Articles of Confederation."
+  },
+  {
+    "pair_id": "history_medium_0141",
+    "domain": "history",
+    "ground_truth": "86,000",
+    "question_preview": "I'm curious about the numbers involved in major battles—do you know how many Roman soldiers fought a",
+    "verdict": "NO",
+    "reason": "NO  \nMost ancient sources estimate the Roman forces at the Battle of Cannae to be around 70,000–80,000 soldiers, not 86,000."
+  },
+  {
+    "pair_id": "history_medium_0144",
+    "domain": "history",
+    "ground_truth": "216",
+    "question_preview": "I'm brushing up on European history—could you tell me how many countries attended the Congress of Vi",
+    "verdict": "NO",
+    "reason": "NO\n\nThe claimed answer of 216 is incorrect; only about 7 major powers and representatives from roughly 20–30 states attended the Congress of Vienna, not 216 countries."
+  },
+  {
+    "pair_id": "history_medium_0148",
+    "domain": "history",
+    "ground_truth": "491",
+    "question_preview": "I'm trying to get a precise historical detail: how many delegates were present at the 1837 Anti-Slav",
+    "verdict": "NO",
+    "reason": "NO\n\nMost historical sources, including official records from the 1840 published proceedings, state that there were 481 delegates present at the 1837 Anti-Slavery Convention in London, not 491."
+  },
+  {
+    "pair_id": "history_strong_0150",
+    "domain": "history",
+    "ground_truth": "216",
+    "question_preview": "I'm trying to better understand the Congress of Vienna. How many states were actually represented at",
+    "verdict": "NO",
+    "reason": "NO\n\nThe claimed number, 216, is greatly exaggerated. While many delegations and representatives attended, the actual number of states formally represented at the Congress of Vienna is generally cited as around 200, but most historical sources mention about 100–150 entities, with only the major powers (Austria, Prussia, Russia, Britain, and France) playing significant roles. 216 is not a widely accepted or accurate figure."
+  },
+  {
+    "pair_id": "history_strong_0151",
+    "domain": "history",
+    "ground_truth": "August 27, 1896",
+    "question_preview": "Hi, I’m researching the end of the Anglo-Zanzibar War, and I need to know the exact date the Anglo-Z",
+    "verdict": "NO",
+    "reason": "NO\n\nThe Anglo-Zanzibar War ended on August 27, 1896, but there was no specific \"Anglo-Zanzibar Treaty\" signed on that date to officially end hostilities; the war ended with the surrender of Zanzibar."
+  },
+  {
+    "pair_id": "history_strong_0156",
+    "domain": "history",
+    "ground_truth": "15,094",
+    "question_preview": "I'm working on a report about the First Indochina War. Can you tell me how many casualties (killed a",
+    "verdict": "NO",
+    "reason": "NO  \nThe French forces suffered around 2,200 killed and approximately 10,000 captured (many of whom were wounded) at the Battle of Dien Bien Phu, making the claimed figure of 15,094 too high for killed and wounded alone."
+  },
+  {
+    "pair_id": "commonsense_weak_0162",
+    "domain": "commonsense",
+    "ground_truth": "50 cd/m^2",
+    "question_preview": "Hey, I'm working on some building safety requirements and I'm a bit stuck. Do you happen to know wha",
+    "verdict": "NO",
+    "reason": "NO  \nThe minimum luminance required for exit signs in public buildings is typically 5 cd/m², not 50 cd/m², according to standards like NFPA 101 and UL 924."
+  },
+  {
+    "pair_id": "commonsense_weak_0175",
+    "domain": "commonsense",
+    "ground_truth": "3%",
+    "question_preview": "I'm doing some electrical work in my house and want to make sure everything is up to code. What is t",
+    "verdict": "NO",
+    "reason": "NO\n\nThe US National Electrical Code (NEC) recommends, but does not require, a maximum voltage drop of 3% for branch circuits; it is not an enforceable code requirement, but rather a best practice for efficiency and safety."
+  },
+  {
+    "pair_id": "commonsense_medium_0178",
+    "domain": "commonsense",
+    "ground_truth": "160 cm³",
+    "question_preview": "I'm curious, what's the official volume of a standard billiard (pool) ball in cubic centimeters? I'm",
+    "verdict": "NO",
+    "reason": "NO  \nA standard billiard (pool) ball has a diameter of about 5.715 cm, which gives a volume of approximately 98 cm³, not 160 cm³."
+  },
+  {
+    "pair_id": "commonsense_medium_0183",
+    "domain": "commonsense",
+    "ground_truth": "21",
+    "question_preview": "I'm planning a road trip and need to rent a car. Do you know what the minimum legal age is to rent a",
+    "verdict": "NO",
+    "reason": "NO  \nWhile many rental companies allow rentals starting at age 21, the minimum legal age to rent a car in most US states is actually 18, though most companies impose higher age limits and extra fees for drivers under 25."
+  },
+  {
+    "pair_id": "commonsense_medium_0187",
+    "domain": "commonsense",
+    "ground_truth": "41.5 inches",
+    "question_preview": "Hey, do you know the exact standard width of a bowling lane in inches? I'm helping a friend build a ",
+    "verdict": "NO",
+    "reason": "NO  \nThe exact standard width of a bowling lane is 41.5 inches, but this measurement is typically specified as 41.5 inches ± 0.25 inches according to official regulations, so the claimed answer is essentially correct."
+  },
+  {
+    "pair_id": "commonsense_strong_0194",
+    "domain": "commonsense",
+    "ground_truth": "8",
+    "question_preview": "I'm settling a debate with my friends—how many points are there on a regulation Canadian hockey puck",
+    "verdict": "NO",
+    "reason": "NO  \nA regulation Canadian hockey puck is a solid, flat cylinder and does not have \"points\"; it has a smooth, round edge."
+  }
+]

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "891aea6bc0030f0eb9d5",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diag westd 29046 status",
+  "task_key": "worker_diag_westd-29046-status_20260518T220445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_westd-29046-status_20260518T220445_result.json",
+    "occurrence": 1,
+    "bytes": 3093,
+    "sha256": "83e79d236ee4e1c6509f2c5bea2f870fdc32144ab696112a894be25a25150298"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the full status report:\n\n---\n\n## 实验状态报告 (2026-05-19 06:06 UTC)\n\n### 1. exp-002 — DC-GRPO 主实验 (GPU 0, PID 69020)\n\n| 指标 | 值 |\n|------|-----|\n| 当前 step | **697 / 8,000** (8.7%) |\n| per-step 时间 | ~25.9s/it |\n| 已运行 | 5h 22m |\n| 预计剩余 | **~52.5h** (约 May 21 10:30 UTC) |\n\n**Reward 趋势 (summary steps):**\n\n| Step | R1_mean | R3_mean | Combined |\n|------|---------|---------|----------|\n| 500 | -0.2261 | 0.5476 | 0.4028 |\n| 600 | -0.2452 | 0.2564 | 0.0992 |\n| 660 | -0.0007 | 0.7350 | 0.5824 |\n| 680 | +0.2507 | 0.3707 | 0.2471 |\n| 690 | -0.0083 | 0.3800 | 0.2523 |\n\n**R1 分析:** R1_mean 在 step 500 后**没有明显改善**，仍在 [-0.75, +0.49] 间剧烈震荡，均值接近 0（对比 step 256 时的 -0.33，只是方差增大了）。R2 恒定为 0.0（weight=0，符合预期）。R3 波动较大（0.25~0.74），无清晰上升趋势。\n\n**异常:** 无 error / NaN / OOM。\n\n---\n\n### 2. exp-003 — R3-only Baseline (GPU 1, PID 70649)\n\n| 指标 | 值 |\n|------|-----|\n| 当前 step | **671 / 8,000** (8.4%) |\n| per-step 时间 | ~26.1s/it |\n| 已运行 | 5h 14m |\n| 预计剩余 | **~53.2h** (约 May 21 11:20 UTC) |\n\n**Reward 趋势:**\n\n| Step | R3_mean | Combined |\n|------|---------|----------|\n| 500 | 0.3312 | 0.3312 |\n| 600 | 0.6839 | 0.6839 |\n| 620 | 0.8608 | 0.8608 |\n| 660 | 0.6612 | 0.6612 |\n| 670 | 0.5818 | 0.5818 |\n\n**R3 分析:** R3 从 step 500 的 0.33 上升到 step 600-670 的 0.58-0.86 区间，有明显改善趋势，但近期有回落。无 R1/R2（设计如此，log 中有 `d_syc not loaded` 警告）。\n\n**异常:** 无 error / NaN / OOM。\n\n---\n\n### 3. GPU 状态\n\n| GPU | 利用率 | 显存 | 温度 |\n|-----|--------|------|------|\n| 0 (exp-002) | 83% | 63,603 / 97,887 MiB (65%) | 63°C |\n| 1 (exp-003) | 95% | 38,161 / 97,887 MiB (39%) | 67°C |\n\n两块 GPU 均健康，温度正常，无过热风险。\n\n---\n\n### 4. 进程健康\n\n| PID | 实验 | 运行时间 | CPU | 状态 |\n|-----|------|----------|-----|------|\n| 69020 | exp-002 | 5h22m49s | 710% | 正常 |\n| 70649 | exp-003 | 5h14m06s | 656% | 正常 |\n\n---\n\n### 5. exp-016 文件检查\n\n| 文件 | 状态 |\n|------|------|\n| `eval/nli_utils.py` | ✅ 存在 (2,712 bytes, May 19 05:53) |\n| `eval/eval_pipeline.py` | ❌ **不存在** |\n| `training/run_exp016_actadd_steering.py` | ✅ 存在 (16,478 bytes, May 19 06:01) |\n\n---\n\n### 关键发现\n\n1. **exp-002 的 R1 信号令人担忧** — step 500 后 R1_mean 没有改善迹象，围绕 0 震荡，方差极大（std≈1.0）。这意味着 DC-GRPO 的 contrastive direction 可能未在有效引导模型。\n2. **exp-003 的 R3 表现更好** — R3-only baseline 的 R3 reward 在 step 600+ 已稳定在 0.55-0.86 区间，优于 exp-002 的 R3（0.25-0.74）。\n3. **eval/eval_pipeline.py 缺失** — 需要创建或上传此文件才能运行 exp-016 的评估流程。\n4. 两个实验都还需要约 **52-53 小时**完成（约 May 21 中午）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-westd-29046-status.md"
+}

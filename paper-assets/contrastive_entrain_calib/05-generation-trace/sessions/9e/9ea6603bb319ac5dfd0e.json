@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ea6603bb319ac5dfd0e",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval gs8 ckpt1000 collect",
+  "task_key": "worker_eval_gs8-ckpt1000-collect_20260522T235658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gs8-ckpt1000-collect_20260522T235658_result.json",
+    "occurrence": 1,
+    "bytes": 822,
+    "sha256": "5ebe125293aee475623db5ea1bf0457ab0e2ff8ac49723a24b65147c6c72aea8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 完成。结果如下：\n\n---\n\n**gs8 ckpt-1000: SYCONScore=0.0845, ToF=0.0442, NoF=0.9558**\n\n- LoRA 已确认: `/root/contrastive_entrain_calib/eval_checkpoints/exp-003-gs8-ckpt-1000`\n- 模型: Qwen3-8B, 样本数: 362 (valid=181, invalid=181), 耗时: 4302s\n\n**对比：**\n\n| 配置 | SYCONScore | vs vanilla | vs gs8 ckpt-500 |\n|------|-----------|------------|-----------------|\n| vanilla | 0.1335 | — | — |\n| gs8 ckpt-500 | 0.0844 | -0.0491 | — |\n| **gs8 ckpt-1000** | **0.0845** | **-0.0490** | **+0.0001** |\n\ngs8 ckpt-1000 与 ckpt-500 的 SYCONScore 几乎完全一致（0.0845 vs 0.0844，差异仅 0.0001），说明 ckpt-500 之后 SYCONScore 已收敛，继续训练到 ckpt-1000 没有带来进一步改善。两者相对 vanilla 均有显著下降（约 -36.7%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-gs8-ckpt1000-collect.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "993b524eb3e3966b97b6",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis collect truncation results",
+  "task_key": "worker_analysis_collect-truncation-results_20260522T151739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_collect-truncation-results_20260522T151739_result.json",
+    "occurrence": 1,
+    "bytes": 1472,
+    "sha256": "24b3fe4ef5e9524ab042761a6e08481e1d2e5ed39d4d1f600e6db670c7cd4ca3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已完成（耗时 278.8 秒）。结果文件已读取成功。\n\n## Truncation AUROC 最终结果\n\n### asst_first 位置（第一个 assistant token）\n\n| 条件 | AUROC | Cosine Gap | Syc Mean | Valid Mean |\n|------|-------|------------|----------|------------|\n| Full response | **0.76** | 0.0035 | 0.024 | 0.0205 |\n| Truncated 256 | **0.60** | 0.0044 | 0.0507 | 0.0463 |\n| **AUROC diff** | **0.16** | | | |\n\n### mean_position（全序列均值）\n\n| 条件 | AUROC | Cosine Gap | Syc Mean | Valid Mean |\n|------|-------|------------|----------|------------|\n| Full response | **0.71** | 0.0025 | -0.0034 | -0.0059 |\n| Truncated 256 | **0.62** | 0.0043 | 0.016 | 0.0117 |\n| **AUROC diff** | **0.09** | | | |\n\n### Response Length Stats\n- Mean: 651.5 tokens, Median: 638, P25-P75: [524, 795]\n- **100% 的 response 超过 256 tokens**（截断是有效的）\n\n### 关键结论\n\n1. **Full response d_syc 判别力显著优于 truncated**：asst_first 位置 AUROC 从 0.76 降到 0.60（Δ=0.16），mean_position 从 0.71 降到 0.62（Δ=0.09）\n2. 截断后 cosine gap 反而略增（0.0035→0.0044），但 AUROC 下降——说明截断后 d_syc 的分布 overlap 增大，即 signal 变得更 noisy\n3. 截断后两个 condition 的绝对 cosine 值都升高了（从 ~0.02 升到 ~0.05），可能因为前 256 tokens 的 hidden state 包含更集中的 sycophancy 信号，但缺乏后续 response 的区分性信息"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-collect-truncation-results.md"
+}

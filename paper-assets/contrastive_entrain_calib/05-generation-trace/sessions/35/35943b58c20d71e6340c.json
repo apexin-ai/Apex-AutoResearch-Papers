@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35943b58c20d71e6340c",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops exp002v3 precheck readiness",
+  "task_key": "worker_ops_exp002v3-precheck-readiness_20260519T133259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp002v3-precheck-readiness_20260519T133259_result.json",
+    "occurrence": 1,
+    "bytes": 2164,
+    "sha256": "11684f448b2b73d3fdf31b0b813e4610481db0b4a21553b6f4994cfcdc1c8bd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-002v3 部署就绪状态检查\n\n| # | 检查项 | 状态 | 备注 |\n|---|--------|------|------|\n| 1 | **launch_exp002v3.sh 存在且正确** | **PASS** | `unset CUDA_VISIBLE_DEVICES` ✓, 绝对路径 `/root/miniconda3/bin/deepspeed` ✓, `--include localhost:0,3` ✓ |\n| 1b | **超参数 (Python 脚本)** | **PASS** | `R1_SCALE_FACTOR=5.0` ✓, `R1_WEIGHT=0.4` ✓, `R3_WEIGHT=0.6` ✓, `R2_WEIGHT=0.0` |\n| 2 | **DeepSpeed config** | **PASS** | 脚本实际引用 `ds_config_exp002v3.json`（非 `ds_config_zero2.json`），已存在，ZeRO stage 2 ✓, bf16 ✓, grad_accum=16 ✓ |\n| 3 | **recalib bug fix** | **PASS** | `_DCRewardCallable.__call__` 中使用 `step = t.state.global_step` 做 recalibration 判断 ✓, `t._reward_step` 仅作计数器 |\n| 3b | **备份文件** | **PASS** | `dcgrpo_trainer.py.bak_pre_recalib_fix` 存在 (May 19 19:39) |\n| 4 | **directions.pt** | **PASS** | 脚本引用 `/root/contrastive_entrain_calib/results/exp001/directions.pt` ✓ 存在 |\n| 4b | **probe 文件** | **PASS** | `probe_module.py` 存在, 多个 `probe.pt` checkpoint 存在 |\n| 5 | **训练数据** | **PASS** | `/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl` (367KB) ✓ |\n| 5b | **模型权重** | **PASS** | Qwen3-8B 5 个 shard 全在 `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/` |\n| 6 | **磁盘空间 (根分区)** | **WARN** | `/` 仅剩 **4.9GB** (84% used)，DeepSpeed checkpoint 会写到根分区的 `checkpoints/` 目录，500 step 保存一次可能不够 |\n| 6b | **磁盘空间 (数据盘)** | **PASS** | `/root/autodl-tmp` 剩 305GB (14% used) |\n\n### 需要处理的问题\n\n**根分区仅 4.9GB，checkpoint 存储空间不足。** `OUTPUT_DIR` 设为 `/root/contrastive_entrain_calib/checkpoints/exp002v3_dcgrpo_scaled_cosine/`，位于根分区。LoRA checkpoint (r=64, 4 target modules) 每个约 500MB-1GB，加上 DeepSpeed optimizer states，save_steps=500 会快速耗尽空间。\n\n建议：将 `OUTPUT_DIR` 改为 `/root/autodl-tmp/checkpoints/exp002v3_dcgrpo_scaled_cosine/`，或在根分区建软链接指向数据盘。\n\n其余检查项全部通过，可以启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp002v3-precheck-readiness.md"
+}

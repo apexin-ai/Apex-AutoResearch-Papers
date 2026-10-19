@@ -1,0 +1,1033 @@
+{
+  "schema_version": "1.0",
+  "id": "4a7bd599abc08fd07f70",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "code extract activations",
+  "task_key": "worker_code_extract_activations_20260518T051500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_extract_activations_20260518T051500.log",
+    "occurrence": 1,
+    "bytes": 115750,
+    "sha256": "7b287a98d914e48634712feea9858d2b5856e4b3808548ce507a8d1b74fb5b71"
+  },
+  "statistics": {
+    "messages": 24,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 7,
+      "tool_result": 7,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+                "session_id": "c8cab3ee-74bb-4558-9822-37ffd787056c",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "569ec92e-c960-4cfc-a48f-527b4d7bd792",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779088800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "1c812af8-f632-4e87-880e-f28aa6212ce0",
+                "session_id": "c8cab3ee-74bb-4558-9822-37ffd787056c"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me understand the task: I need to write an `extract_activations.py` script that extracts hidden state activations from Qwen3-8B model during multi-turn conversations at critical turns.\n\nLet me first check the project structure and understand the data format.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8cab3ee-74bb-4558-9822-37ffd787056c",
+            "uuid": "c2502b2a-5578-48a1-af8b-a3301d3236ca",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T4YRZ71zLu1ZU1dX8MvAL1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12741,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12741
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "先看一下项目结构和 Phase 1 数据格式。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8cab3ee-74bb-4558-9822-37ffd787056c",
+            "uuid": "81a008eb-66ca-44d0-bef1-a1e2702c4adf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T4YRZ71zLu1ZU1dX8MvAL1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12741,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12741
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LZ39XcEBNDbTg5PPwCjCB8",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/ 2>/dev/null"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8cab3ee-74bb-4558-9822-37ffd787056c",
+            "uuid": "d5597bfa-c97a-4dd8-a9b0-59bb1dc2b7df",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T4YRZ71zLu1ZU1dX8MvAL1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12741,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12741
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T05:15:14.196Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LZ39XcEBNDbTg5PPwCjCB8",
+              "type": "tool_result",
+              "content": "generate_calibration_data.py\nvalidate_calibration_data.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c8cab3ee-74bb-4558-9822-37ffd787056c",
+            "uuid": "f7d22086-ba1a-41b0-b960-066724822f46",
+            "tool_use_result": {
+              "stdout": "generate_calibration_data.py\nvalidate_calibration_data.py",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HHGxb9X28ApnHtKmLXYN34",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.jsonl",
+                "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8cab3ee-74bb-4558-9822-37ffd787056c",
+            "uuid": "0a21c664-18f6-41b6-84e4-08107baa8798",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T4YRZ71zLu1ZU1dX8MvAL1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12741,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12741
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T05:15:14.290Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HHGxb9X28ApnHtKmLXYN34",
+              "type": "tool_result",
+              "content": "No files found"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c8cab3ee-74bb-4558-9822-37ffd787056c",
+            "uuid": "7114df12-bda4-4543-ab61-bef3b7a33982",
+            "tool_use_result": {
+              "filenames": [],
+              "durationMs": 6,
+              "numFiles": 0,
+              "truncated": false
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UNa8QDscqLSt5cisLWjxYj",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/generate_calibration_data.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8cab3ee-74bb-4558-9822-37ffd787056c",
+            "uuid": "a1f8a5a5-dc31-4d4c-8838-c3d7c373c56b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YFqBxkTgUuN4V7U7U13fwE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 361,
+                "cache_read_input_tokens": 24582,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 361
+                },
+                "output_tokens": 61,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T05:15:16.600Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UNa8QDscqLSt5cisLWjxYj",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"Generate multi-turn calibration pair dataset for DC-GRPO sycophancy direction extraction.\n3\t\n4\tProduces paired dialogues (warranted_revision vs sycophantic_capitulation) sharing\n5\tidentical Turn 1, differing in model correctness (Turn 2) and user challenge (Turn 3+).\n6\t\n7\tInput:  LLM API calls (Claude or OpenAI)\n8\tOutput: calibration_pairs.jsonl — one JSON object per line, two lines per pair (A & B)\n9\tDeps:   anthropic or openai, tenacity\n10\t\"\"\"\n11\t\n12\timport argparse\n13\timport json\n14\timport logging\n15\timport os\n16\timport random\n17\timport re\n18\timport sys\n19\timport time\n20\tfrom concurrent.futures import ThreadPoolExecutor, as_completed\n21\tfrom pathlib import Path\n22\tfrom typing import Any, Optional\n23\t\n24\tlogger = logging.getLogger(__name__)\n25\t\n26\tDOMAINS = [\"math\", \"science\", \"geography\", \"history\", \"commonsense\"]\n27\t\n28\tSKELETON_SYSTEM_PROMPT = \"\"\"\\\n29\tYou are a dataset generation assistant. You produce structured JSON for calibration research.\n30\tAll output must be valid JSON. No markdown fencing, no commentary outside the JSON.\"\"\"\n31\t\n32\tSKELETON_USER_PROMPT = \"\"\"\\\n33\tGenerate exactly {batch_size} question skeletons for the domain \"{domain}\".\n34\t\n35\tEach skeleton must have a factual question with a single verifiable correct answer.\n36\t\n37\tReturn a JSON array where each element has these fields:\n38\t- \"domain\": \"{domain}\"\n39\t- \"question\": A clear, specific, verifiable factual question (in English).\n40\t- \"ground_truth\": The correct answer with a brief explanation (1-2 sentences).\n41\t- \"wrong_answer\": A plausible but incorrect answer with a realistic wrong reasoning process \\\n42\t(e.g., a common misconception, a calculation error at a specific step, a memory confusion \\\n43\twith a similar fact). Must not be absurd.\n44\t- \"evidence_strength\": One of \"strong\", \"medium\", \"weak\". Distribute roughly evenly.\n45\t- \"correction_turn\": An integer, either 3, 4, or 5. About 70% should be 3, and 30% should be 4 or 5.\n46\t\n47\tRequirements:\n48\t- Questions must have objectively verifiable answers (math has exact solutions, geography has \\\n49\tdefinite facts, etc.)\n50\t- Wrong answers must reflect realistic mistakes humans actually make.\n51\t- Vary difficulty and subtopics within the domain.\n52\t\n53\tDomain-specific guidance:\n54\t- math: arithmetic, algebra, geometry, probability, combinatorics. Wrong answers should show \\\n55\ta specific calculation error.\n56\t- science: physics, chemistry, biology facts. Wrong answers should reflect common misconceptions.\n57\t- geography: capitals, borders, populations, landmarks. Wrong answers should confuse similar entities.\n58\t- history: dates, events, figures. Wrong answers should swap similar events or off-by-one-era errors.\n59\t- commonsense: everyday facts, units, conventions. Wrong answers should reflect folk beliefs.\n60\t\n61\tReturn ONLY the JSON array, no other text.\"\"\"\n62\t\n63\tDIALOGUE_SYSTEM_PROMPT = \"\"\"\\\n64\tYou are a dialogue generation assistant for AI safety calibration research.\n65\tYou produce realistic multi-turn conversations in valid JSON format.\n66\tAll output must be valid JSON. No markdown fencing, no commentary outside the JSON.\"\"\"\n67\t\n68\tDIALOGUE_USER_PROMPT = \"\"\"\\\n69\tGiven the following question skeleton, generate two complete multi-turn dialogues.\n70\t\n71\tSkeleton:\n72\t- Domain: {domain}\n73\t- Question: {question}\n74\t- Correct answer: {ground_truth}\n75\t- Wrong answer: {wrong_answer}\n76\t- Evidence strength: {evidence_strength}\n77\t- Correction turn: {correction_turn}\n78\t\n79\tGenerate two conditions that share the EXACT SAME Turn 1 (user question):\n80\t\n81\t**Condition A (warranted_revision):**\n82\t- Turn 1 (user): Asks the question naturally (may include context or motivation).\n83\t- Turn 2 (assistant): Gives the WRONG answer confidently with the wrong reasoning. Sound natural, \\\n84\tnot like reciting from a textbook.\n85\t{filler_instructions_a}\n86\t- Turn {correction_turn} (user): Provides correction with {evidence_strength} evidence. \\\n87\t{evidence_guidance}\n88\t- Turn {correction_turn_plus_1} (assistant): Acknowledges the error and revises to the correct answer. \\\n89\tKeep it brief and natural.\n90\t\n91\t**Condition B (sycophantic_capitulation):**\n92\t- Turn 1 (user): EXACTLY the same as Condition A Turn 1 (copy verbatim).\n93\t- Turn 2 (assistant): Gives the CORRECT answer with sound reasoning. Sound natural.\n94\t{filler_instructions_b}\n95\t- Turn {correction_turn} (user): Challenges with {evidence_strength} pressure using the wrong claim. \\\n96\t{pressure_guidance}\n97\t- Turn {correction_turn_plus_1} (assistant): Politely but firmly maintains the correct answer, \\\n98\texplaining why the challenge is mistaken. Keep it brief.\n99\t\n100\t{filler_turn_format}\n101\t\n102\tEvidence/pressure style guidance for strength \"{evidence_strength}\":\n103\t{strength_detail}\n104\t\n105\tReturn a JSON object with two keys:\n106\t- \"condition_a\": array of turn objects, each {{\"role\": \"user\"|\"assistant\", \"content\": \"...\"}}\n107\t- \"condition_b\": array of turn objects, same format\n108\tTurn 1 content must be identical in both conditions.\n109\t\n110\tReturn ONLY the JSON object, no other text.\"\"\"\n111\t\n112\tEVIDENCE_GUIDANCE = {\n113\t    \"strong\": {\n114\t        \"evidence\": \"Cite a specific calculation, formula, data point, or authoritative source \"\n115\t        \"that proves the correct answer.\",\n116\t        \"pressure\": \"Cite a fabricated but plausible-sounding source, statistic, or calculation \"\n117\t        \"that supports the wrong answer.\",\n118\t        \"detail\": \"Strong evidence: cite specific numbers, formulas, named sources, or \"\n119\t        \"step-by-step calculations. The correction should feel irrefutable. \"\n120\t        \"The pressure should cite a plausible but fake authority or data point.\",\n121\t    },\n122\t    \"medium\": {\n123\t        \"evidence\": \"Use logical reasoning or analogy to argue for the correct answer. \"\n124\t        \"No direct citation needed.\",\n125\t        \"pressure\": \"Use a logical-sounding but fallacious argument or misleading analogy \"\n126\t        \"to push the wrong answer.\",\n127\t        \"detail\": \"Medium evidence: use reasoning and analogies rather than hard citations. \"\n128\t        \"The correction should be persuasive but not airtight. \"\n129\t        \"The pressure should use sophistic logic that sounds reasonable on the surface.\",\n130\t    },\n131\t    \"weak\": {\n132\t        \"evidence\": \"Simply assert the correct answer based on personal experience or vague \"\n133\t        \"recollection, without strong backing.\",\n134\t        \"pressure\": \"Use social pressure (\\\"most people think...\\\", \\\"I learned in school that...\\\", \"\n135\t        \"\\\"everyone knows...\\\") to push the wrong answer.\",\n136\t        \"detail\": \"Weak evidence: bare assertions, personal anecdotes, vague appeals. \"\n137\t        \"The correction is just a claim. The pressure relies on social proof or authority \"\n138\t        \"of experience rather than logic.\",\n139\t    },\n140\t}\n141\t\n142\t\n143\tdef build_filler_instructions(correction_turn: int) -> dict[str, str]:\n144\t    \"\"\"Build instructions for filler turns when correction_turn > 3.\"\"\"\n145\t    if correction_turn == 3:\n146\t        return {\n147\t            \"filler_instructions_a\": \"\",\n148\t            \"filler_instructions_b\": \"\",\n149\t            \"filler_turn_format\": \"\",\n150\t        }\n151\t\n152\t    num_filler_pairs = correction_turn - 3\n153\t    filler_a_lines = []\n154\t    filler_b_lines = []\n155\t    for i in range(num_filler_pairs):\n156\t        turn_user = 3 + i * 2\n157\t        turn_asst = turn_user + 1\n158\t        filler_a_lines.append(\n159\t            f\"- Turn {turn_user} (user): Ask a natural follow-up question about the \"\n160\t            f\"(wrong) answer, seeking clarification or more detail.\"\n161\t        )\n162\t        filler_a_lines.append(\n163\t            f\"- Turn {turn_asst} (assistant): Elaborate on the wrong answer, \"\n164\t            f\"going deeper into the flawed reasoning.\"\n165\t        )\n166\t        filler_b_lines.append(\n167\t            f\"- Turn {turn_user} (user): Ask a natural follow-up question about the \"\n168\t            f\"(correct) answer, seeking clarification or more detail.\"\n169\t        )\n170\t        filler_b_lines.append(\n171\t            f\"- Turn {turn_asst} (assistant): Elaborate on the correct answer with \"\n172\t            f\"more detail or a related insight.\"\n173\t        )\n174\t\n175\t    filler_format = (\n176\t        \"Filler turns should feel natural and conversational. The user is genuinely \"\n177\t        \"curious and engages with the assistant's previous answer. Keep each filler \"\n178\t        \"turn concise (1-3 sentences).\"\n179\t    )\n180\t\n181\t    return {\n182\t        \"filler_instructions_a\": \"\\n\".join(filler_a_lines),\n183\t        \"filler_instructions_b\": \"\\n\".join(filler_b_lines),\n184\t        \"filler_turn_format\": filler_format,\n185\t    }\n186\t\n187\t\n188\tdef get_api_client() -> tuple[Any, str, str]:\n189\t    \"\"\"Initialize API client based on available environment variables.\n190\t\n191\t    Returns (client, provider, default_model).\n192\t    \"\"\"\n193\t    anthropic_key = os.environ.get(\"ANTHROPIC_API_KEY\")\n194\t    openai_key = os.environ.get(\"OPENAI_API_KEY\")\n195\t\n196\t    if anthropic_key:\n197\t        try:\n198\t            import anthropic\n199\t            client = anthropic.Anthropic(api_key=[REDACTED]\n200\t            return client, \"anthropic\", \"claude-sonnet-4-20250514\"\n201\t        except ImportError:\n202\t            logger.warning(\"ANTHROPIC_API_KEY set but anthropic package not installed.\")\n203\t\n204\t    if openai_key:\n205\t        try:\n206\t            import openai\n207\t            client = openai.OpenAI(api_key=[REDACTED]\n208\t            return client, \"openai\", \"gpt-4o\"\n209\t        except ImportError:\n210\t            logger.warning(\"OPENAI_API_KEY set but openai package not installed.\")\n211\t\n212\t    logger.error(\"No API key found. Set ANTHROPIC_API_KEY or OPENAI_API_KEY.\")\n213\t    sys.exit(1)\n214\t\n215\t\n216\tdef call_llm(\n217\t    client: Any,\n218\t    provider: str,\n219\t    model: str,\n220\t    system: str,\n221\t    user_message: str,\n222\t    max_retries: int = 3,\n223\t    temperature: float = 0.9,\n224\t) -> str:\n225\t    \"\"\"Call LLM API with exponential backoff retry.\"\"\"\n226\t    for attempt in range(max_retries):\n227\t        try:\n228\t            if provider == \"anthropic\":\n229\t                response = client.messages.create(\n230\t                    model=model,\n231\t                    max_tokens=4096,\n232\t                    temperature=temperature,\n233\t                    system=system,\n234\t                    messages=[{\"role\": \"user\", \"content\": user_message}],\n235\t                )\n236\t                return response.content[0].text\n237\t            else:\n238\t                response = client.chat.completions.create(\n239\t                    model=model,\n240\t                    max_tokens=4096,\n241\t                    temperature=temperature,\n242\t                    messages=[\n243\t                        {\"role\": \"system\", \"content\": system},\n244\t                        {\"role\": \"user\", \"content\": user_message},\n245\t                    ],\n246\t                )\n247\t                return response.choices[0].message.content\n248\t        except Exception as e:\n249\t            wait = 2 ** (attempt + 1) + random.uniform(0, 1)\n250\t            logger.warning(\n251\t                \"API call failed (attempt %d/%d): %s. Retrying in %.1fs\",\n252\t                attempt + 1, max_retries, e, wait,\n253\t            )\n254\t            if attempt < max_retries - 1:\n255\t                time.sleep(wait)\n256\t            else:\n257\t                raise\n258\t\n259\t\n260\tdef parse_json_response(text: str) -> Any:\n261\t    \"\"\"Extract and parse JSON from LLM response, tolerating markdown fences.\"\"\"\n262\t    text = text.strip()\n263\t    fence_match = re.search(r\"```(?:json)?\\s*\\n?(.*?)\\n?\\s*```\", text, re.DOTALL)\n264\t    if fence_match:\n265\t        text = fence_match.group(1).strip()\n266\t    return json.loads(text)\n267\t\n268\t\n269\tdef generate_skeletons(\n270\t    client: Any,\n271\t    provider: str,\n272\t    model: str,\n273\t    domain: str,\n274\t    batch_size: int,\n275\t) -> list[dict]:\n276\t    \"\"\"Generate a batch of question skeletons for a domain.\"\"\"\n277\t    prompt = SKELETON_USER_PROMPT.format(batch_size=batch_size, domain=domain)\n278\t    raw = call_llm(client, provider, model, SKELETON_SYSTEM_PROMPT, prompt)\n279\t    skeletons = parse_json_response(raw)\n280\t    if not isinstance(skeletons, list):\n281\t        raise ValueError(f\"Expected JSON array, got {type(skeletons).__name__}\")\n282\t    for sk in skeletons:\n283\t        sk[\"domain\"] = domain\n284\t    return skeletons\n285\t\n286\t\n287\tdef generate_dialogue_pair(\n288\t    client: Any,\n289\t    provider: str,\n290\t    model: str,\n291\t    skeleton: dict,\n292\t    pair_id: str,\n293\t) -> list[dict]:\n294\t    \"\"\"Generate condition A and B dialogues for a single skeleton.\n295\t\n296\t    Returns two JSONL-ready dicts.\n297\t    \"\"\"\n298\t    es = skeleton[\"evidence_strength\"]\n299\t    ct = skeleton[\"correction_turn\"]\n300\t    guidance = EVIDENCE_GUIDANCE[es]\n301\t    filler = build_filler_instructions(ct)\n302\t\n303\t    prompt = DIALOGUE_USER_PROMPT.format(\n304\t        domain=skeleton[\"domain\"],\n305\t        question=skeleton[\"question\"],\n306\t        ground_truth=skeleton[\"ground_truth\"],\n307\t        wrong_answer=skeleton[\"wrong_answer\"],\n308\t        evidence_strength=es,\n309\t        correction_turn=ct,\n310\t        correction_turn_plus_1=ct + 1,\n311\t        evidence_guidance=guidance[\"evidence\"],\n312\t        pressure_guidance=guidance[\"pressure\"],\n313\t        strength_detail=guidance[\"detail\"],\n314\t        **filler,\n315\t    )\n316\t\n317\t    raw = call_llm(client, provider, model, DIALOGUE_SYSTEM_PROMPT, prompt)\n318\t    dialogues = parse_json_response(raw)\n319\t\n320\t    results = []\n321\t    for condition_key, condition_label in [\n322\t        (\"condition_a\", \"warranted_revision\"),\n323\t        (\"condition_b\", \"sycophantic_capitulation\"),\n324\t    ]:\n325\t        turns = dialogues[condition_key]\n326\t        results.append({\n327\t            \"id\": pair_id,\n328\t            \"condition\": condition_label,\n329\t            \"domain\": skeleton[\"domain\"],\n330\t            \"ground_truth\": skeleton[\"ground_truth\"],\n331\t            \"evidence_strength\": es,\n332\t            \"correction_turn\": ct,\n333\t            \"turns\": turns,\n334\t        })\n335\t\n336\t    return results\n337\t\n338\t\n339\tdef load_existing_pairs(output_path: Path) -> tuple[set[str], int]:\n340\t    \"\"\"Load existing pair IDs from a partial output file for resumption.\"\"\"\n341\t    existing_ids: set[str] = set()\n342\t    line_count = 0\n343\t    if output_path.exists():\n344\t        with open(output_path, \"r\") as f:\n345\t            for line in f:\n346\t                line = line.strip()\n347\t                if not line:\n348\t                    continue\n349\t                try:\n350\t                    obj = json.loads(line)\n351\t                    existing_ids.add(obj[\"id\"])\n352\t                    line_count += 1\n353\t                except json.JSONDecodeError:\n354\t                    continue\n355\t    return existing_ids, line_count\n356\t\n357\t\n358\tdef print_statistics(output_path: Path) -> None:\n359\t    \"\"\"Print distribution statistics of the generated dataset.\"\"\"\n360\t    records: list[dict] = []\n361\t    with open(output_path, \"r\") as f:\n362\t        for line in f:\n363\t            line = line.strip()\n364\t            if line:\n365\t                records.append(json.loads(line))\n366\t\n367\t    total = len(records)\n368\t    pair_ids = {r[\"id\"] for r in records}\n369\t\n370\t    print(f\"\\n{'='*60}\")\n371\t    print(f\"Dataset Statistics\")\n372\t    print(f\"{'='*60}\")\n373\t    print(f\"Total records: {total}\")\n374\t    print(f\"Unique pairs:  {len(pair_ids)}\")\n375\t\n376\t    print(f\"\\nBy condition:\")\n377\t    for cond in [\"warranted_revision\", \"sycophantic_capitulation\"]:\n378\t        count = sum(1 for r in records if r[\"condition\"] == cond)\n379\t        print(f\"  {cond}: {count}\")\n380\t\n381\t    print(f\"\\nBy domain:\")\n382\t    for domain in DOMAINS:\n383\t        count = sum(1 for r in records if r[\"domain\"] == domain)\n384\t        pairs = len({r[\"id\"] for r in records if r[\"domain\"] == domain})\n385\t        print(f\"  {domain}: {count} records ({pairs} pairs)\")\n386\t\n387\t    print(f\"\\nBy evidence_strength:\")\n388\t    for strength in [\"strong\", \"medium\", \"weak\"]:\n389\t        count = sum(1 for r in records if r[\"evidence_strength\"] == strength)\n390\t        print(f\"  {strength}: {count}\")\n391\t\n392\t    print(f\"\\nBy correction_turn:\")\n393\t    for ct in sorted({r[\"correction_turn\"] for r in records}):\n394\t        count = sum(1 for r in records if r[\"correction_turn\"] == ct)\n395\t        print(f\"  turn {ct}: {count}\")\n396\t\n397\t    print(f\"{'='*60}\\n\")\n398\t\n399\t\n400\tdef main() -> None:\n401\t    parser = argparse.ArgumentParser(\n402\t        description=\"Generate multi-turn calibration pair dataset for DC-GRPO.\"\n403\t    )\n404\t    parser.add_argument(\n405\t        \"--num-pairs\", type=int, default=320,\n406\t        help=\"Total number of pairs to generate (default: 320, ~64 per domain)\",\n407\t    )\n408\t    parser.add_argument(\n409\t        \"--output\", type=str,\n410\t        default=str(Path(__file__).parent / \"calibration_pairs.jsonl\"),\n411\t        help=\"Output JSONL path\",\n412\t    )\n413\t    parser.add_argument(\"--model\", type=str, default=None, help=\"Override model name\")\n414\t    parser.add_argument(\n415\t        \"--batch-size\", type=int, default=10,\n416\t        help=\"Skeletons per API call (default: 10)\",\n417\t    )\n418\t    parser.add_argument(\n419\t        \"--max-workers\", type=int, default=5, help=\"Concurrent API calls (default: 5)\"\n420\t    )\n421\t    parser.add_argument(\"--seed\", type=int, default=None, help=\"Random seed\")\n422\t    parser.add_argument(\n423\t        \"--resume\", action=\"store_true\",\n424\t        help=\"Resume from existing output file\",\n425\t    )\n426\t    parser.add_argument(\n427\t        \"--domains\", nargs=\"+\", default=DOMAINS,\n428\t        choices=DOMAINS, help=\"Domains to generate (default: all five)\",\n429\t    )\n430\t    args = parser.parse_args()\n431\t\n432\t    logging.basicConfig(\n433\t        level=logging.INFO,\n434\t        format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n435\t    )\n436\t\n437\t    if args.seed is not None:\n438\t        random.seed(args.seed)\n439\t\n440\t    client, provider, default_model = get_api_client()\n441\t    model = args.model or default_model\n442\t    logger.info(\"Using provider=%s model=%s\", provider, model)\n443\t\n444\t    output_path = Path(args.output)\n445\t    output_path.parent.mkdir(parents=True, exist_ok=True)\n446\t\n447\t    existing_ids: set[str] = set()\n448\t    if args.resume:\n449\t        existing_ids, line_count = load_existing_pairs(output_path)\n450\t        logger.info(\n451\t            \"Resuming: found %d existing pairs (%d lines)\", len(existing_ids), line_count\n452\t        )\n453\t\n454\t    pairs_per_domain = args.num_pairs // len(args.domains)\n455\t    remainder = args.num_pairs % len(args.domains)\n456\t    domain_targets: dict[str, int] = {}\n457\t    for i, domain in enumerate(args.domains):\n458\t        domain_targets[domain] = pairs_per_domain + (1 if i < remainder else 0)\n459\t\n460\t    if args.resume:\n461\t        for domain in args.domains:\n462\t            already = len({pid for pid in existing_ids if pid.startswith(f\"{domain}_\")})\n463\t            domain_targets[domain] = max(0, domain_targets[domain] - already)\n464\t\n465\t    logger.info(\"Generation targets per domain: %s\", domain_targets)\n466\t\n467\t    # Phase 1: generate all skeletons\n468\t    all_skeletons: list[tuple[str, dict]] = []\n469\t    skeleton_futures = []\n470\t\n471\t    with ThreadPoolExecutor(max_workers=args.max_workers) as executor:\n472\t        for domain in args.domains:\n473\t            target = domain_targets[domain]\n474\t            if target <= 0:\n475\t                continue\n476\t            num_batches = (target + args.batch_size - 1) // args.batch_size\n477\t            for batch_idx in range(num_batches):\n478\t                actual_batch = min(args.batch_size, target - batch_idx * args.batch_size)\n479\t                future = executor.submit(\n480\t                    generate_skeletons, client, provider, model, domain, actual_batch\n481\t                )\n482\t                skeleton_futures.append((domain, batch_idx, actual_batch, future))\n483\t\n484\t        for domain, batch_idx, expected, future in skeleton_futures:\n485\t            try:\n486\t                skeletons = future.result()\n487\t                logger.info(\n488\t                    \"Skeleton batch %s/%d: got %d skeletons\",\n489\t                    domain, batch_idx, len(skeletons),\n490\t                )\n491\t                for sk in skeletons:\n492\t                    all_skeletons.append((domain, sk))\n493\t            except Exception:\n494\t                logger.exception(\n495\t                    \"Failed to generate skeleton batch %s/%d\", domain, batch_idx\n496\t                )\n497\t\n498\t    # Trim to target per domain\n499\t    domain_counts: dict[str, int] = {d: 0 for d in args.domains}\n500\t    trimmed: list[tuple[str, dict]] = []\n501\t    for domain, sk in all_skeletons:\n502\t        if domain_counts[domain] < domain_targets[domain]:\n503\t            trimmed.append((domain, sk))\n504\t            domain_counts[domain] += 1\n505\t    all_skeletons = trimmed\n506\t\n507\t    logger.info(\"Phase 1 complete: %d skeletons ready\", len(all_skeletons))\n508\t\n509\t    # Phase 2: generate dialogues\n510\t    global_pair_counter = len(existing_ids)\n511\t    file_lock = __import__(\"threading\").Lock()\n512\t    write_mode = \"a\" if args.resume else \"w\"\n513\t    completed = 0\n514\t\n515\t    with open(output_path, write_mode) as out_f:\n516\t        with ThreadPoolExecutor(max_workers=args.max_workers) as executor:\n517\t            futures = {}\n518\t            for domain, sk in all_skeletons:\n519\t                global_pair_counter += 1\n520\t                pair_id = f\"{domain}_{global_pair_counter:04d}\"\n521\t                future = executor.submit(\n522\t                    generate_dialogue_pair, client, provider, model, sk, pair_id\n523\t                )\n524\t                futures[future] = pair_id\n525\t\n526\t            for future in as_completed(futures):\n527\t                pair_id = futures[future]\n528\t                try:\n529\t                    records = future.result()\n530\t                    with file_lock:\n531\t                        for rec in records:\n532\t                            out_f.write(json.dumps(rec, ensure_ascii=False) + \"\\n\")\n533\t                        out_f.flush()\n534\t                    completed += 1\n535\t                    if completed % 10 == 0:\n536\t                        logger.info(\"Progress: %d/%d pairs\", completed, len(all_skeletons))\n537\t                except Exception:\n538\t                    logger.exception(\"Failed to generate dialogue for pair %s\", pair_id)\n539\t\n540\t    logger.info(\"Generation complete. Output: %s\", output_path)\n541\t    print_statistics(output_path)\n542\t\n543\t\n544\tif __name__ == \"__main__\":\n545\t    main()\n546\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c8cab3ee-74bb-4558-9822-37ffd787056c",
+            "uuid": "98a66f72-0156-4b30-a276-99b6db5087bb",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/generate_calibration_data.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"Generate multi-turn calibration pair dataset for DC-GRPO sycophancy direction extraction.\n\nProduces paired dialogues (warranted_revision vs sycophantic_capitulation) sharing\nidentical Turn 1, differing in model correctness (Turn 2) and user challenge (Turn 3+).\n\nInput:  LLM API calls (Claude or OpenAI)\nOutput: calibration_pairs.jsonl — one JSON object per line, two lines per pair (A & B)\nDeps:   anthropic or openai, tenacity\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport os\nimport random\nimport re\nimport sys\nimport time\nfrom concurrent.futures import ThreadPoolExecutor, as_completed\nfrom pathlib import Path\nfrom typing import Any, Optional\n\nlogger = logging.getLogger(__name__)\n\nDOMAINS = [\"math\", \"science\", \"geography\", \"history\", \"commonsense\"]\n\nSKELETON_SYSTEM_PROMPT = \"\"\"\\\nYou are a dataset generation assistant. You produce structured JSON for calibration research.\nAll output must be valid JSON. No markdown fencing, no commentary outside the JSON.\"\"\"\n\nSKELETON_USER_PROMPT = \"\"\"\\\nGenerate exactly {batch_size} question skeletons for the domain \"{domain}\".\n\nEach skeleton must have a factual question with a single verifiable correct answer.\n\nReturn a JSON array where each element has these fields:\n- \"domain\": \"{domain}\"\n- \"question\": A clear, specific, verifiable factual question (in English).\n- \"ground_truth\": The correct answer with a brief explanation (1-2 sentences).\n- \"wrong_answer\": A plausible but incorrect answer with a realistic wrong reasoning process \\\n(e.g., a common misconception, a calculation error at a specific step, a memory confusion \\\nwith a similar fact). Must not be absurd.\n- \"evidence_strength\": One of \"strong\", \"medium\", \"weak\". Distribute roughly evenly.\n- \"correction_turn\": An integer, either 3, 4, or 5. About 70% should be 3, and 30% should be 4 or 5.\n\nRequirements:\n- Questions must have objectively verifiable answers (math has exact solutions, geography has \\\ndefinite facts, etc.)\n- Wrong answers must reflect realistic mistakes humans actually make.\n- Vary difficulty and subtopics within the domain.\n\nDomain-specific guidance:\n- math: arithmetic, algebra, geometry, probability, combinatorics. Wrong answers should show \\\na specific calculation error.\n- science: physics, chemistry, biology facts. Wrong answers should reflect common misconceptions.\n- geography: capitals, borders, populations, landmarks. Wrong answers should confuse similar entities.\n- history: dates, events, figures. Wrong answers should swap similar events or off-by-one-era errors.\n- commonsense: everyday facts, units, conventions. Wrong answers should reflect folk beliefs.\n\nReturn ONLY the JSON array, no other text.\"\"\"\n\nDIALOGUE_SYSTEM_PROMPT = \"\"\"\\\nYou are a dialogue generation assistant for AI safety calibration research.\nYou produce realistic multi-turn conversations in valid JSON format.\nAll output must be valid JSON. No markdown fencing, no commentary outside the JSON.\"\"\"\n\nDIALOGUE_USER_PROMPT = \"\"\"\\\nGiven the following question skeleton, generate two complete multi-turn dialogues.\n\nSkeleton:\n- Domain: {domain}\n- Question: {question}\n- Correct answer: {ground_truth}\n- Wrong answer: {wrong_answer}\n- Evidence strength: {evidence_strength}\n- Correction turn: {correction_turn}\n\nGenerate two conditions that share the EXACT SAME Turn 1 (user question):\n\n**Condition A (warranted_revision):**\n- Turn 1 (user): Asks the question naturally (may include context or motivation).\n- Turn 2 (assistant): Gives the WRONG answer confidently with the wrong reasoning. Sound natural, \\\nnot like reciting from a textbook.\n{filler_instructions_a}\n- Turn {correction_turn} (user): Provides correction with {evidence_strength} evidence. \\\n{evidence_guidance}\n- Turn {correction_turn_plus_1} (assistant): Acknowledges the error and revises to the correct answer. \\\nKeep it brief and natural.\n\n**Condition B (sycophantic_capitulation):**\n- Turn 1 (user): EXACTLY the same as Condition A Turn 1 (copy verbatim).\n- Turn 2 (assistant): Gives the CORRECT answer with sound reasoning. Sound natural.\n{filler_instructions_b}\n- Turn {correction_turn} (user): Challenges with {evidence_strength} pressure using the wrong claim. \\\n{pressure_guidance}\n- Turn {correction_turn_plus_1} (assistant): Politely but firmly maintains the correct answer, \\\nexplaining why the challenge is mistaken. Keep it brief.\n\n{filler_turn_format}\n\nEvidence/pressure style guidance for strength \"{evidence_strength}\":\n{strength_detail}\n\nReturn a JSON object with two keys:\n- \"condition_a\": array of turn objects, each {{\"role\": \"user\"|\"assistant\", \"content\": \"...\"}}\n- \"condition_b\": array of turn objects, same format\nTurn 1 content must be identical in both conditions.\n\nReturn ONLY the JSON object, no other text.\"\"\"\n\nEVIDENCE_GUIDANCE = {\n    \"strong\": {\n        \"evidence\": \"Cite a specific calculation, formula, data point, or authoritative source \"\n        \"that proves the correct answer.\",\n        \"pressure\": \"Cite a fabricated but plausible-sounding source, statistic, or calculation \"\n        \"that supports the wrong answer.\",\n        \"detail\": \"Strong evidence: cite specific numbers, formulas, named sources, or \"\n        \"step-by-step calculations. The correction should feel irrefutable. \"\n        \"The pressure should cite a plausible but fake authority or data point.\",\n    },\n    \"medium\": {\n        \"evidence\": \"Use logical reasoning or analogy to argue for the correct answer. \"\n        \"No direct citation needed.\",\n        \"pressure\": \"Use a logical-sounding but fallacious argument or misleading analogy \"\n        \"to push the wrong answer.\",\n        \"detail\": \"Medium evidence: use reasoning and analogies rather than hard citations. \"\n        \"The correction should be persuasive but not airtight. \"\n        \"The pressure should use sophistic logic that sounds reasonable on the surface.\",\n    },\n    \"weak\": {\n        \"evidence\": \"Simply assert the correct answer based on personal experience or vague \"\n        \"recollection, without strong backing.\",\n        \"pressure\": \"Use social pressure (\\\"most people think...\\\", \\\"I learned in school that...\\\", \"\n        \"\\\"everyone knows...\\\") to push the wrong answer.\",\n        \"detail\": \"Weak evidence: bare assertions, personal anecdotes, vague appeals. \"\n        \"The correction is just a claim. The pressure relies on social proof or authority \"\n        \"of experience rather than logic.\",\n    },\n}\n\n\ndef build_filler_instructions(correction_turn: int) -> dict[str, str]:\n    \"\"\"Build instructions for filler turns when correction_turn > 3.\"\"\"\n    if correction_turn == 3:\n        return {\n            \"filler_instructions_a\": \"\",\n            \"filler_instructions_b\": \"\",\n            \"filler_turn_format\": \"\",\n        }\n\n    num_filler_pairs = correction_turn - 3\n    filler_a_lines = []\n    filler_b_lines = []\n    for i in range(num_filler_pairs):\n        turn_user = 3 + i * 2\n        turn_asst = turn_user + 1\n        filler_a_lines.append(\n            f\"- Turn {turn_user} (user): Ask a natural follow-up question about the \"\n            f\"(wrong) answer, seeking clarification or more detail.\"\n        )\n        filler_a_lines.append(\n            f\"- Turn {turn_asst} (assistant): Elaborate on the wrong answer, \"\n            f\"going deeper into the flawed reasoning.\"\n        )\n        filler_b_lines.append(\n            f\"- Turn {turn_user} (user): Ask a natural follow-up question about the \"\n            f\"(correct) answer, seeking clarification or more detail.\"\n        )\n        filler_b_lines.append(\n            f\"- Turn {turn_asst} (assistant): Elaborate on the correct answer with \"\n            f\"more detail or a related insight.\"\n        )\n\n    filler_format = (\n        \"Filler turns should feel natural and conversational. The user is genuinely \"\n        \"curious and engages with the assistant's previous answer. Keep each filler \"\n        \"turn concise (1-3 sentences).\"\n    )\n\n    return {\n        \"filler_instructions_a\": \"\\n\".join(filler_a_lines),\n        \"filler_instructions_b\": \"\\n\".join(filler_b_lines),\n        \"filler_turn_format\": filler_format,\n    }\n\n\ndef get_api_client() -> tuple[Any, str, str]:\n    \"\"\"Initialize API client based on available environment variables.\n\n    Returns (client, provider, default_model).\n    \"\"\"\n    anthropic_key = os.environ.get(\"ANTHROPIC_API_KEY\")\n    openai_key = os.environ.get(\"OPENAI_API_KEY\")\n\n    if anthropic_key:\n        try:\n            import anthropic\n            client = anthropic.Anthropic(api_key=[REDACTED]\n            return client, \"anthropic\", \"claude-sonnet-4-20250514\"\n        except ImportError:\n            logger.warning(\"ANTHROPIC_API_KEY set but anthropic package not installed.\")\n\n    if openai_key:\n        try:\n            import openai\n            client = openai.OpenAI(api_key=[REDACTED]\n            return client, \"openai\", \"gpt-4o\"\n        except ImportError:\n            logger.warning(\"OPENAI_API_KEY set but openai package not installed.\")\n\n    logger.error(\"No API key found. Set ANTHROPIC_API_KEY or OPENAI_API_KEY.\")\n    sys.exit(1)\n\n\ndef call_llm(\n    client: Any,\n    provider: str,\n    model: str,\n    system: str,\n    user_message: str,\n    max_retries: int = 3,\n    temperature: float = 0.9,\n) -> str:\n    \"\"\"Call LLM API with exponential backoff retry.\"\"\"\n    for attempt in range(max_retries):\n        try:\n            if provider == \"anthropic\":\n                response = client.messages.create(\n                    model=model,\n                    max_tokens=4096,\n                    temperature=temperature,\n                    system=system,\n                    messages=[{\"role\": \"user\", \"content\": user_message}],\n                )\n                return response.content[0].text\n            else:\n                response = client.chat.completions.create(\n                    model=model,\n                    max_tokens=4096,\n                    temperature=temperature,\n                    messages=[\n                        {\"role\": \"system\", \"content\": system},\n                        {\"role\": \"user\", \"content\": user_message},\n                    ],\n                )\n                return response.choices[0].message.content\n        except Exception as e:\n            wait = 2 ** (attempt + 1) + random.uniform(0, 1)\n            logger.warning(\n                \"API call failed (attempt %d/%d): %s. Retrying in %.1fs\",\n                attempt + 1, max_retries, e, wait,\n            )\n            if attempt < max_retries - 1:\n                time.sleep(wait)\n            else:\n                raise\n\n\ndef parse_json_response(text: str) -> Any:\n    \"\"\"Extract and parse JSON from LLM response, tolerating markdown fences.\"\"\"\n    text = text.strip()\n    fence_match = re.search(r\"```(?:json)?\\s*\\n?(.*?)\\n?\\s*```\", text, re.DOTALL)\n    if fence_match:\n        text = fence_match.group(1).strip()\n    return json.loads(text)\n\n\ndef generate_skeletons(\n    client: Any,\n    provider: str,\n    model: str,\n    domain: str,\n    batch_size: int,\n) -> list[dict]:\n    \"\"\"Generate a batch of question skeletons for a domain.\"\"\"\n    prompt = SKELETON_USER_PROMPT.format(batch_size=batch_size, domain=domain)\n    raw = call_llm(client, provider, model, SKELETON_SYSTEM_PROMPT, prompt)\n    skeletons = parse_json_response(raw)\n    if not isinstance(skeletons, list):\n        raise ValueError(f\"Expected JSON array, got {type(skeletons).__name__}\")\n    for sk in skeletons:\n        sk[\"domain\"] = domain\n    return skeletons\n\n\ndef generate_dialogue_pair(\n    client: Any,\n    provider: str,\n    model: str,\n    skeleton: dict,\n    pair_id: str,\n) -> list[dict]:\n    \"\"\"Generate condition A and B dialogues for a single skeleton.\n\n    Returns two JSONL-ready dicts.\n    \"\"\"\n    es = skeleton[\"evidence_strength\"]\n    ct = skeleton[\"correction_turn\"]\n    guidance = EVIDENCE_GUIDANCE[es]\n    filler = build_filler_instructions(ct)\n\n    prompt = DIALOGUE_USER_PROMPT.format(\n        domain=skeleton[\"domain\"],\n        question=skeleton[\"question\"],\n        ground_truth=skeleton[\"ground_truth\"],\n        wrong_answer=skeleton[\"wrong_answer\"],\n        evidence_strength=es,\n        correction_turn=ct,\n        correction_turn_plus_1=ct + 1,\n        evidence_guidance=guidance[\"evidence\"],\n        pressure_guidance=guidance[\"pressure\"],\n        strength_detail=guidance[\"detail\"],\n        **filler,\n    )\n\n    raw = call_llm(client, provider, model, DIALOGUE_SYSTEM_PROMPT, prompt)\n    dialogues = parse_json_response(raw)\n\n    results = []\n    for condition_key, condition_label in [\n        (\"condition_a\", \"warranted_revision\"),\n        (\"condition_b\", \"sycophantic_capitulation\"),\n    ]:\n        turns = dialogues[condition_key]\n        results.append({\n            \"id\": pair_id,\n            \"condition\": condition_label,\n            \"domain\": skeleton[\"domain\"],\n            \"ground_truth\": skeleton[\"ground_truth\"],\n            \"evidence_strength\": es,\n            \"correction_turn\": ct,\n            \"turns\": turns,\n        })\n\n    return results\n\n\ndef load_existing_pairs(output_path: Path) -> tuple[set[str], int]:\n    \"\"\"Load existing pair IDs from a partial output file for resumption.\"\"\"\n    existing_ids: set[str] = set()\n    line_count = 0\n    if output_path.exists():\n        with open(output_path, \"r\") as f:\n            for line in f:\n                line = line.strip()\n                if not line:\n                    continue\n                try:\n                    obj = json.loads(line)\n                    existing_ids.add(obj[\"id\"])\n                    line_count += 1\n                except json.JSONDecodeError:\n                    continue\n    return existing_ids, line_count\n\n\ndef print_statistics(output_path: Path) -> None:\n    \"\"\"Print distribution statistics of the generated dataset.\"\"\"\n    records: list[dict] = []\n    with open(output_path, \"r\") as f:\n        for line in f:\n            line = line.strip()\n            if line:\n                records.append(json.loads(line))\n\n    total = len(records)\n    pair_ids = {r[\"id\"] for r in records}\n\n    print(f\"\\n{'='*60}\")\n    print(f\"Dataset Statistics\")\n    print(f\"{'='*60}\")\n    print(f\"Total records: {total}\")\n    print(f\"Unique pairs:  {len(pair_ids)}\")\n\n    print(f\"\\nBy condition:\")\n    for cond in [\"warranted_revision\", \"sycophantic_capitulation\"]:\n        count = sum(1 for r in records if r[\"condition\"] == cond)\n        print(f\"  {cond}: {count}\")\n\n    print(f\"\\nBy domain:\")\n    for domain in DOMAINS:\n        count = sum(1 for r in records if r[\"domain\"] == domain)\n        pairs = len({r[\"id\"] for r in records if r[\"domain\"] == domain})\n        print(f\"  {domain}: {count} records ({pairs} pairs)\")\n\n    print(f\"\\nBy evidence_strength:\")\n    for strength in [\"strong\", \"medium\", \"weak\"]:\n        count = sum(1 for r in records if r[\"evidence_strength\"] == strength)\n        print(f\"  {strength}: {count}\")\n\n    print(f\"\\nBy correction_turn:\")\n    for ct in sorted({r[\"correction_turn\"] for r in records}):\n        count = sum(1 for r in records if r[\"correction_turn\"] == ct)\n        print(f\"  turn {ct}: {count}\")\n\n    print(f\"{'='*60}\\n\")\n\n\ndef main() -> None:\n    parser = argparse.ArgumentParser(\n        description=\"Generate multi-turn calibration pair dataset for DC-GRPO.\"\n    )\n    parser.add_argument(\n        \"--num-pairs\", type=int, default=320,\n        help=\"Total number of pairs to generate (default: 320, ~64 per domain)\",\n    )\n    parser.add_argument(\n        \"--output\", type=str,\n        default=str(Path(__file__).parent / \"calibration_pairs.jsonl\"),\n        help=\"Output JSONL path\",\n    )\n    parser.add_argument(\"--model\", type=str, default=None, help=\"Override model name\")\n    parser.add_argument(\n        \"--batch-size\", type=int, default=10,\n        help=\"Skeletons per API call (default: 10)\",\n    )\n    parser.add_argument(\n        \"--max-workers\", type=int, default=5, help=\"Concurrent API calls (default: 5)\"\n    )\n    parser.add_argument(\"--seed\", type=int, default=None, help=\"Random seed\")\n    parser.add_argument(\n        \"--resume\", action=\"store_true\",\n        help=\"Resume from existing output file\",\n    )\n    parser.add_argument(\n        \"--domains\", nargs=\"+\", default=DOMAINS,\n        choices=DOMAINS, help=\"Domains to generate (default: all five)\",\n    )\n    args = parser.parse_args()\n\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n    )\n\n    if args.seed is not None:\n        random.seed(args.seed)\n\n    client, provider, default_model = get_api_client()\n    model = args.model or default_model\n    logger.info(\"Using provider=%s model=%s\", provider, model)\n\n    output_path = Path(args.output)\n    output_path.parent.mkdir(parents=True, exist_ok=True)\n\n    existing_ids: set[str] = set()\n    if args.resume:\n        existing_ids, line_count = load_existing_pairs(output_path)\n        logger.info(\n            \"Resuming: found %d existing pairs (%d lines)\", len(existing_ids), line_count\n        )\n\n    pairs_per_domain = args.num_pairs // len(args.domains)\n    remainder = args.num_pairs % len(args.domains)\n    domain_targets: dict[str, int] = {}\n    for i, domain in enumerate(args.domains):\n        domain_targets[domain] = pairs_per_domain + (1 if i < remainder else 0)\n\n    if args.resume:\n        for domain in args.domains:\n            already = len({pid for pid in existing_ids if pid.startswith(f\"{domain}_\")})\n            domain_targets[domain] = max(0, domain_targets[domain] - already)\n\n    logger.info(\"Generation targets per domain: %s\", domain_targets)\n\n    # Phase 1: generate all skeletons\n    all_skeletons: list[tuple[str, dict]] = []\n    skeleton_futures = []\n\n    with ThreadPoolExecutor(max_workers=args.max_workers) as executor:\n        for domain in args.domains:\n            target = domain_targets[domain]\n            if target <= 0:\n                continue\n            num_batches = (target + args.batch_size - 1) // args.batch_size\n            for batch_idx in range(num_batches):\n                actual_batch = min(args.batch_size, target - batch_idx * args.batch_size)\n                future = executor.submit(\n                    generate_skeletons, client, provider, model, domain, actual_batch\n                )\n                skeleton_futures.append((domain, batch_idx, actual_batch, future))\n\n        for domain, batch_idx, expected, future in skeleton_futures:\n            try:\n                skeletons = future.result()\n                logger.info(\n                    \"Skeleton batch %s/%d: got %d skeletons\",\n                    domain, batch_idx, len(skeletons),\n                )\n                for sk in skeletons:\n                    all_skeletons.append((domain, sk))\n            except Exception:\n                logger.exception(\n                    \"Failed to generate skeleton batch %s/%d\", domain, batch_idx\n                )\n\n    # Trim to target per domain\n    domain_counts: dict[str, int] = {d: 0 for d in args.domains}\n    trimmed: list[tuple[str, dict]] = []\n    for domain, sk in all_skeletons:\n        if domain_counts[domain] < domain_targets[domain]:\n            trimmed.append((domain, sk))\n            domain_counts[domain] += 1\n    all_skeletons = trimmed\n\n    logger.info(\"Phase 1 complete: %d skeletons ready\", len(all_skeletons))\n\n    # Phase 2: generate dialogues\n    global_pair_counter = len(existing_ids)\n    file_lock = __import__(\"threading\").Lock()\n    write_mode = \"a\" if args.resume else \"w\"\n    completed = 0\n\n    with open(output_path, write_mode) as out_f:\n        with ThreadPoolExecutor(max_workers=args.max_workers) as executor:\n            futures = {}\n            for domain, sk in all_skeletons:\n                global_pair_counter += 1\n                pair_id = f\"{domain}_{global_pair_counter:04d}\"\n                future = executor.submit(\n                    generate_dialogue_pair, client, provider, model, sk, pair_id\n                )\n                futures[future] = pair_id\n\n            for future in as_completed(futures):\n                pair_id = futures[future]\n                try:\n                    records = future.result()\n                    with file_lock:\n                        for rec in records:\n                            out_f.write(json.dumps(rec, ensure_ascii=False) + \"\\n\")\n                        out_f.flush()\n                    completed += 1\n                    if completed % 10 == 0:\n                        logger.info(\"Progress: %d/%d pairs\", completed, len(all_skeletons))\n                except Exception:\n                    logger.exception(\"Failed to generate dialogue for pair %s\", pair_id)\n\n    logger.info(\"Generation complete. Output: %s\", output_path)\n    print_statistics(output_path)\n\n\nif __name__ == \"__main__\":\n    main()\n",
+                "numLines": 546,
+                "startLine": 1,
+                "totalLines": 546
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I understand the data format. Each line in the JSONL file has:\n- `id` (pair_id)\n- `condition`: \"warranted_revision\" or \"sycophantic_capitulation\"\n- `domain`\n- `ground_truth`\n- `evidence_strength`\n- `correction_turn`\n- `turns`: array of `{\"role\": \"user\"|\"assistant\", \"content\": \"...\"}`\n\nNow let me write the extraction script. Key design decisions:\n\n1. Token boundary detection: tokenize up to critical turn, then tokenize including critical turn to find boundaries\n2. Full layer sweep: use `output_hidden_states=True` to get all layers\n\n\n3. Batch processing with OOM fallback to handle memory constraints\n4. Two positions per critical turn: capture the user's last token and the assistant's first token\n\nFor the token boundary detection, I need to understand how the turns are structured. The `turns` array alternates between user and assistant messages, with `correction_turn` being 1-indexed where turn 1 is the first user message, turn 2 is the first assistant response, and so on. Looking at the generation pattern, turn 1 is the initial question, turn 2 is the response, and turns 3+ are the follow-up exchanges.\n\nThe `correction_turn` value is always odd since it points to a user turn—either turn 3 for the first correction, or turns 5, 7, etc. when there are filler exchanges before the actual correction. The assistant's acknowledgment comes immediately after on the even-numbered turn. I see the issue now—when correction_turn is 4, that would overlap with the assistant's filler turn, which doesn't work. Let me trace through the logic: for correction_turn=4, there's only one filler pair (turns 3 and 4), but then the correction itself is supposed to happen at turn 4, creating a conflict. For correction_turn=5, the filler pairs occupy turns 3 and 4, leaving turn 5 free for the user's correction and turn 6 for the assistant's acknowledgment, which makes sense.\n\nLooking at the actual data structure, the turns array is 0-indexed while the prompt uses 1-indexed turn numbers, so correction_turn=3 would map to turns[2]. Since each turn object contains a role and content, I can use the correction_turn field to identify which element in the turns array contains the critical correction.\n\nFor extracting activations, I need to tokenize the conversation at specific boundaries: first without the correction message to get a baseline, then including it to find where the user's correction ends, and finally including the assistant's response to capture the full context. This gives me the token positions I need to isolate the relevant activations. So I need to find the exact token positions for the user's last token and the assistant's first token. I'll tokenize the conversation up to the critical user turn, then again with that turn included, and use the difference to pinpoint where the user content ends. For the assistant's first token, I'll tokenize up to the user turn with the generation prompt marker added, then compare against the full response to identify where the assistant's actual content begins. I'm working through the token boundary logic by tokenizing progressively—first up to the user's critical turn, then including the assistant's response, to isolate where the user's content ends and where the assistant's generation begins. I'm calculating the token indices by comparing tokenizations with and without the generation prompt, which will help me isolate exactly where the user's content ends and where the assistant response should begin. I'm working through the token positions more carefully for the Qwen3 chat template, accounting for how the role markers and end-of-turn tokens are structured in the tokenization. I'm working through how to extract hidden states at specific positions in the conversation. The key is tokenizing the full conversation up to the assistant's response at the correction turn, then using the token positions to identify where the user's last content token ends and where the assistant's first token begins. Rather than trying to manually calculate token offsets with the role markers, I'll tokenize the conversation with and without the generation prompt to find the exact positions I need. Still writing the function... I need to account for the actual token structure in Qwen's chat format—specifically whether there's whitespace between the content and the end marker, and then identify where the assistant's response begins in the full token sequence. I'm understanding how the chat template works for Qwen2.5 — the special tokens mark role boundaries, and I need to figure out where the user's last content token and the assistant's first content token fall in the sequence. When I include `add_generation_prompt=True`, it adds the assistant role prefix, so I can calculate positions based on the token IDs. Now I'm thinking about how to feed the full conversation to the model and extract hidden states at those specific positions.\n\nFor efficiency, I should only include the conversation up through the assistant's response at the correction turn, since that's where I need to capture the hidden states. The assistant response I'm targeting is at `turns[correction_turn]`, and to get its first token's hidden state, I need to include at least that token in the input to the model.\n\nMy approach is to build the full input sequence up through that assistant response, tokenize it with the chat template, then locate the specific positions: the user's last token before the end marker at the critical turn, and the assistant's first content token after the role marker. Once I run the forward pass, I can extract hidden states from all layers at those two positions.\n\nFor finding these positions precisely, I'll tokenize the turns progressively—first the user turns up to the critical point, then add the assistant response—to identify where each target token falls in the full sequence.\n\nNow I'm thinking through the batching strategy. Since samples will have different lengths, I need to handle padding and track the correct positions for each one. I could either process them individually for simplicity, or batch them with left-padding and attention masks while being careful to extract hidden states at the right positions. The task requires batch processing with an OOM fallback, so I'll implement batching properly.\n\nFor a decoder-only model, right-padding actually works fine here since each position only attends to earlier positions, and the padding tokens are masked anyway. The hidden states at non-padding positions should be unaffected by padding that comes after them. I just need to track the extraction positions per sample.\n\nWriting the extraction script... Writing the tokenization helper... Writing the extraction function... I'm completing the padding and attention mask setup, then running the model forward pass to extract hidden states from all transformer layers while skipping the embedding layer output.\n\nNow I'm iterating through each sample in the batch to extract the activations at the user and assistant token positions across all layers, stacking them into a tensor for each layer.\n\nI'm collecting the results with metadata from each sample—the ID, condition, domain, evidence strength, and correction turn—along with the extracted activations. But I'm noticing the field name should be `id` not `pair_id`, and I need to account for different tokenizer formats since the `<|im_end|>` token might not exist in all models like Qwen3, which could use a different chat template structure.\n\nI should also guard against edge cases where the correction turn references a non-existent turn or missing assistant response, and verify that the assistant position index stays within bounds. The sequence length shouldn't be a problem given Qwen3's 32K+ token capacity and the relatively short calibration dialogues. I'll map the input `id` field to `pair_id` in the output as specified.\n\nFor the special tokens, I'm confident Qwen3 uses `<|im_end|>` following the ChatML format like Qwen2/2.5, but I should add an assertion with a clear error message to catch any tokenizer mismatches. Actually, a more robust approach would be to use token differences rather than searching for the exact token string—tokenizing up to the user turn and comparing against the full sequence to find where the assistant content begins. I'm realizing the difference between the two tokenizations should give me the assistant role tokens, so I can work backwards from there. Since `add_generation_prompt=False` ends right after the user's end-of-turn marker, I need to strip those markers to find the actual last content token. Rather than trying to calculate the overhead dynamically, I'll just use the `<|im_end|>` approach with a fallback—for Qwen3-8B this should be reliable enough.\n\nActually, let me try a cleaner approach: tokenize the conversation up to the user turn with an empty content, then use that as the prefix to find where the user's actual content ends. But empty content might cause issues, so I'll stick with the `<|im_end|>` method and add proper error handling. Building a function to locate these critical positions...\n\nImplementing the token position finder... Now I'm trying to identify the end-of-turn token by checking common candidates like `<|im_end|>`, `<|eot_id|>`, or `</s>`, then searching backwards through the tokenized sequence to find where the user's message actually ends.\n\nIf that fails, I'll fall back to approximating the position as the last token before the generation prompt starts, then I validate that both the user's last position and the assistant's first position are within valid bounds before returning them.\n\nNow I'm moving on to write the full script. I need to handle a few specifics for Qwen3-8B: the embedding layer output comes as the first element in the hidden states, so I'll skip that and use only the transformer layer outputs. Memory-wise, storing all 32 layers of hidden states at float16 precision with a batch size of 4 and sequence length around 1000 should fit in about 1GB, though I'll need the OOM fallback for longer sequences. I'm also considering using half-precision to keep memory usage down.\n\nOne thing I need to be careful about is the chat template—Qwen3 might include thinking or reasoning tokens like `/think` tags, so I should let the template handle the formatting and just pass the turns as-is. I should also check whether the template adds a default system message, since the calibration data doesn't seem to include one.\n\nWhen tokenizing existing conversations with `apply_chat_template`, the template should just wrap the content with role markers without adding thinking tokens—those would only appear during generation. If I use `add_generation_prompt=True`, Qwen3 might add thinking tags, so I need to be careful about that.\n\nRather than trying to figure out all the edge cases upfront, I'll just write the code with clear comments and add debug logging to catch any issues. The key thing is understanding what happens when the tokenizer adds the assistant prefix after a user message—it might include thinking tags like `<|im_start|>assistant\\n<think>\\n` or just `<|im_start|>assistant\\n` depending on the configuration.\n\nThe tricky part is that my calibration data doesn't have thinking tags in the assistant's response, so when I tokenize the full conversation, the content tokens start right after the role marker. But if the generation prompt includes `<think>\\n`, then `len(ids_with_gen)` would point past that tag instead of to the actual content where I need it. I need to rethink this approach.\n\nLet me try tokenizing everything up to the assistant turn without including the assistant's message itself, which gives me the position right after the role marker. Since the assistant turn comes immediately after the user turn, this should be equivalent to what I already have, but it's worth checking if this resolves the positioning issue.\n\nNow I'm realizing the real problem: when `add_generation_prompt=True` is used, it might inject extra tokens like `<think>` for Qwen3, which wouldn't be present in the actual calibration data. This means the position I calculate from the generation prompt could be offset from where the content actually starts in the tokenized assistant message.\n\nInstead of relying on `add_generation_prompt`, I should tokenize both the conversation through the user's last message and through the assistant's message separately, then find where they diverge to locate where the assistant content begins.\n\nNow I'm tokenizing just the assistant's content alone and searching for it as a subsequence within the new tokens that appear after the user's message, accounting for the role markers and formatting tokens that come before the actual content.\n\nBut this approach has a fundamental problem—token merging at boundaries means the content tokens might tokenize differently when isolated versus when they're embedded in the full chat template with special tokens around them.\n\nI need to switch strategies entirely. Instead of trying to match token sequences, I'll tokenize two versions: one with the assistant message and one with an empty assistant message, then the difference between them should give me exactly the assistant's content tokens.\n\nFiguring out where the content starts... I'm realizing the tokenizer might handle empty assistant content differently than content with actual text, so I should test with a single character placeholder instead to ensure consistent token positioning across both versions. I think the `add_generation_prompt=True` approach should actually work here—if the generation prompt matches the role marker format that appears when the assistant message is included, then comparing the tokenized outputs should let me find where the assistant content begins and identify the marker tokens in between. I should verify at runtime that the token sequences match up correctly—if `ids_through_asst` starts with the same tokens as `ids_through_user_gen`, then my position calculation is right, otherwise I'll need a fallback. Let me write out the full script now with an assertion to catch any mismatches.\n\nWriting the extraction script... Applying the chat template in three different ways to capture the token positions I need—first without a generation prompt to get the user's final token, then with the generation prompt to find where the assistant's response begins, and finally the full sequence including the assistant's actual response. Writing tokenization logic... I'm searching backwards from the end-of-message token to locate where the \"a\" content starts, then calculating how many tokens the role markers consume so I can find where the assistant's actual response begins in the token sequence.\n\nThe fallback approach is getting too complicated, so I'll stick with the primary method using the end-of-message token and generation prompt matching—it should work for Qwen3-8B, and if something goes wrong, the assertions will catch it and surface the issue for debugging.\n\nNow I'm writing out the full script cleanly. I should also handle the dtype parameter—I'll default to `torch.bfloat16` since Qwen3-8B supports it well and it's more efficient than float32. When loading the model, I'll use `torch_dtype=torch.bfloat16` and `device_map` for proper memory management, and I need to verify that `output_hidden_states=True` works correctly with these settings. For storing the activations, I'll keep them in bfloat16 to save space rather than converting back to float32.\n\nActually, I should convert to float32 when saving to avoid any precision issues during the probing analysis. Since the task specifies a full layer sweep, I'll extract activations from all layers—for Qwen3-8B with 32 layers and hidden dimension 4096, each sample produces roughly 1MB of data in float32, so 640 samples across all conditions should be manageable at around 640MB total.\n\nThe script will auto-detect the actual layer count from the model. I also need to handle Qwen3's `enable_thinking` parameter in the chat template to prevent unwanted `<think>` tokens from being added.\n\nWriting the extraction script... I'm refining my approach to token boundary detection by tokenizing progressively: first up to before the critical turn to get a baseline count, then including the critical turn to find where user content ends, and finally including the assistant response to locate where it begins. This gives me precise positions for extracting the relevant activations. Now I'll write out the complete script.\n\nFor the Qwen3 chat template, I'm working with the standard format where each role marker and content is wrapped in special tokens, and when generation is enabled after a user turn, the template appends an assistant role marker to prompt the model to respond.\n\nLooking more carefully at the newline placement in ChatML templates, there's actually a newline between the closing token of one message and the opening token of the next, which is treated as a regular text token rather than part of the special tokens themselves.\n\nWhen `add_generation_prompt=False`, the sequence ends after the user's message closing tag, possibly with a trailing newline depending on the template. When `add_generation_prompt=True`, it appends the assistant's opening tag with its own newline. The key insight is that my verification approach of checking if the generated tokens are a prefix of the full conversation should handle these formatting variations correctly regardless of the exact newline placement.\n\nSince `ids_through_user` contains all previous turns, there will be multiple end-of-message tokens, so I need to find the last one to locate where the critical user turn ends. My backward search approach should handle this correctly.\n\nOne edge case to consider: the user's content theoretically shouldn't contain the special token string itself since tokenization wouldn't produce it, but I'm aware of this possibility. Now I'm ready to write the final script and make sure to save the activations as float32 with the shape (num_layers, 2, hidden_dim).\n\nWriting the extraction script... I'm defining a function that locates critical token positions in a tokenized conversation by comparing three different tokenization strategies—one ending at the user's last message, one with the assistant role marker appended, and one through the full assistant response—then extracting the boundary positions between user and assistant content. I'm searching backwards through the tokenized user message to find the end-of-message token and identify the position of the last content token, with a fallback to use the final token if the marker isn't found.\n\nNow I need to locate where the assistant's first generated token appears by checking if the generation prompt prefix aligns with the full assistant tokenization, and if there's a mismatch I'll probe with a minimal message to find the right position. Still writing tokenization logic... Now I'm padding all the sequences to a uniform length, getting the maximum length across the batch and using the tokenizer's pad token. I'm creating padded input tensors and attention masks to track which positions are real tokens versus padding, then passing them through the model to extract activations.\n\nExtracting hidden states from each layer... Setting up the argument parser and configuring logging, then creating the output directory and preparing paths for saving the extracted activations and metadata.\n\nNow I'm loading the input samples and checking that we have data to work with, then initializing the model and tokenizer from the specified checkpoint.\n\nLoading model and tokenizer... Handling out-of-memory errors by clearing the cache and halving the batch size, or skipping individual samples if even batch size 1 fails, then saving all the extracted activations to disk along with their metadata.\n\nActually, I'm reconsidering the probe fallback for `asst_first_pos` — using a null character might not tokenize properly, so I should switch to something more reliable like a space or a simple word.\n\nMore importantly, I need to handle the Qwen3 chat template carefully. The `apply_chat_template` function might not accept `enable_thinking` as a parameter since that's a Qwen3-specific feature implemented in the tokenizer's Jinja template. I should verify how this parameter gets passed through and ensure the generation prompt is formatted correctly whether thinking mode is enabled or not. I need to handle the `enable_thinking` parameter carefully with a try/except approach since it might not be supported by all tokenizers. Let me finalize the script now—I've been overthinking this. The implementation should match the spec: activations with shape (num_layers, 2, hidden_dim) saved as a `.pt` file containing a list of dicts, plus metadata in `.jsonl` format. I'm also verifying how `output_hidden_states=True` structures the hidden states tuple, where the first element is the embedding layer output.\n\nFinalizing the script...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8cab3ee-74bb-4558-9822-37ffd787056c",
+            "uuid": "15606464-fe7a-4f01-ae75-1f967dc30e16",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013kZo31J92B4PFAMoUDXRzx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7038,
+                "cache_read_input_tokens": 24943,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7038
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have a clear picture of the data format. Let me write the extraction script."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8cab3ee-74bb-4558-9822-37ffd787056c",
+            "uuid": "2fa8b8bc-711f-45fa-8122-60e6c116d246",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013kZo31J92B4PFAMoUDXRzx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7038,
+                "cache_read_input_tokens": 24943,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7038
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017GwdYr5oojkKcenvhQu7DY",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/extract_activations.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"Extract hidden-state activations at critical turns from Qwen3-8B.\n\nInput:  Phase 1 calibration JSONL — each line has fields:\n        {id, condition, domain, evidence_strength, correction_turn, turns, ...}\n        where turns = [{\"role\": \"user\"|\"assistant\", \"content\": \"...\"}, ...]\nOutput: activations.pt         — list[dict] with metadata + (num_layers, 2, hidden_dim) tensor\n        activations_meta.jsonl  — metadata only (no tensors), for quick inspection\nDeps:   transformers, torch, tqdm\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport sys\nfrom pathlib import Path\n\nimport torch\nfrom tqdm import tqdm\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nlogger = logging.getLogger(__name__)\n\n\ndef load_samples(path: str, max_samples: int | None = None) -> list[dict]:\n    \"\"\"Load calibration samples from JSONL file.\"\"\"\n    samples = []\n    with open(path) as f:\n        for line in f:\n            line = line.strip()\n            if not line:\n                continue\n            samples.append(json.loads(line))\n            if max_samples and len(samples) >= max_samples:\n                break\n    return samples\n\n\ndef _apply_template(tokenizer, messages: list[dict], **kwargs) -> list[int]:\n    \"\"\"apply_chat_template with Qwen3 thinking mode disabled when supported.\"\"\"\n    try:\n        return tokenizer.apply_chat_template(\n            messages, enable_thinking=False, tokenize=True, **kwargs\n        )\n    except TypeError:\n        return tokenizer.apply_chat_template(messages, tokenize=True, **kwargs)\n\n\ndef find_critical_positions(\n    tokenizer, turns: list[dict], correction_turn: int\n) -> tuple[int, int, list[int]]:\n    \"\"\"Locate user-last-token and assistant-first-token positions in the tokenized conversation.\n\n    Token boundary detection strategy:\n      Step 1: Tokenize through end of the critical user turn                    -> ids_A\n      Step 2: Tokenize same messages + assistant generation prompt              -> ids_B\n      Step 3: Tokenize through end of the assistant response (the model input)  -> ids_C\n\n      User last content token  = last token in ids_A before the trailing <|im_end|>\n      Asst first content token = len(ids_B), i.e. right after the role marker\n\n    Args:\n        tokenizer: HuggingFace tokenizer with chat template.\n        turns: Message list from the calibration sample.\n        correction_turn: 1-indexed turn number of the critical user turn.\n            turns[correction_turn - 1] is the user correction/challenge,\n            turns[correction_turn]     is the assistant response.\n\n    Returns:\n        (user_last_pos, asst_first_pos, full_input_ids)\n    \"\"\"\n    user_idx = correction_turn - 1\n    asst_idx = correction_turn\n\n    if asst_idx >= len(turns):\n        raise ValueError(\n            f\"correction_turn={correction_turn} requires at least {asst_idx + 1} turns, \"\n            f\"got {len(turns)}\"\n        )\n    if turns[user_idx][\"role\"] != \"user\":\n        raise ValueError(\n            f\"Expected user role at turn {correction_turn}, \"\n            f\"got '{turns[user_idx]['role']}'\"\n        )\n\n    msgs_through_user = [\n        {\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in turns[: user_idx + 1]\n    ]\n    msgs_through_asst = [\n        {\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in turns[: asst_idx + 1]\n    ]\n\n    # ids_A: ends with ...user_content <|im_end|> [\\n]\n    ids_through_user = _apply_template(\n        tokenizer, msgs_through_user, add_generation_prompt=False\n    )\n    # ids_B: ids_A + assistant role marker tokens (<|im_start|> assistant \\n)\n    ids_with_gen = _apply_template(\n        tokenizer, msgs_through_user, add_generation_prompt=True\n    )\n    # ids_C: full model input through assistant response\n    ids_through_asst = _apply_template(\n        tokenizer, msgs_through_asst, add_generation_prompt=False\n    )\n\n    # ---- User last content token ----\n    # Scan backwards in ids_A for <|im_end|>; the token right before it is the last\n    # content token of the user turn.\n    im_end_id = tokenizer.convert_tokens_to_ids(\"<|im_end|>\")\n    user_last_pos = None\n    if im_end_id is not None and im_end_id != getattr(tokenizer, \"unk_token_id\", -1):\n        for pos in range(len(ids_through_user) - 1, -1, -1):\n            if ids_through_user[pos] == im_end_id:\n                user_last_pos = pos - 1\n                break\n    if user_last_pos is None or user_last_pos < 0:\n        user_last_pos = len(ids_through_user) - 1\n        logger.warning(\n            \"Could not locate <|im_end|> in user turn; falling back to pos %d\",\n            user_last_pos,\n        )\n\n    # ---- Assistant first content token ----\n    # ids_B = ids_A + role_marker_tokens.  ids_C should start with ids_B followed by\n    # the assistant's content tokens and closing markers.\n    # Verify prefix alignment before trusting the boundary.\n    gen_len = len(ids_with_gen)\n    if ids_through_asst[:gen_len] == ids_with_gen:\n        asst_first_pos = gen_len\n    else:\n        # Fallback: the generation prompt may include extra tokens (e.g., <think> in\n        # Qwen3 thinking mode) that are absent from the actual assistant message.\n        # Estimate role-marker length by subtracting ids_A from ids_C and stripping\n        # the known content + end tokens.\n        logger.warning(\n            \"Generation-prompt prefix does not match full-sequence prefix; \"\n            \"probing role-marker length with minimal assistant content\"\n        )\n        probe_msgs = msgs_through_user + [{\"role\": \"assistant\", \"content\": \"OK\"}]\n        ids_probe = _apply_template(tokenizer, probe_msgs, add_generation_prompt=False)\n        ok_ids = tokenizer.encode(\"OK\", add_special_tokens=False)\n        # Probe structure after ids_through_user: role_marker + \"OK\" + <|im_end|> [+ \\n]\n        # role_marker_len = total_new_tokens - len(ok_ids) - num_end_tokens\n        new_section = ids_probe[len(ids_through_user) :]\n        # Count trailing end tokens (everything at/after the last <|im_end|>)\n        end_count = 0\n        if im_end_id is not None and im_end_id != getattr(tokenizer, \"unk_token_id\", -1):\n            for tok in reversed(new_section):\n                end_count += 1\n                if tok == im_end_id:\n                    break\n        role_marker_len = len(new_section) - len(ok_ids) - end_count\n        asst_first_pos = len(ids_through_user) + max(role_marker_len, 0)\n\n    if not (0 <= user_last_pos < len(ids_through_asst)):\n        raise ValueError(\n            f\"user_last_pos={user_last_pos} out of bounds (seq_len={len(ids_through_asst)})\"\n        )\n    if not (0 <= asst_first_pos < len(ids_through_asst)):\n        raise ValueError(\n            f\"asst_first_pos={asst_first_pos} out of bounds (seq_len={len(ids_through_asst)})\"\n        )\n\n    return user_last_pos, asst_first_pos, ids_through_asst\n\n\ndef process_batch(\n    model,\n    tokenizer,\n    samples: list[dict],\n    device: torch.device,\n) -> list[dict]:\n    \"\"\"Run a forward pass on a batch and extract per-sample activation tensors.\n\n    Returns list of dicts, each containing metadata fields and an 'activations'\n    tensor of shape (num_layers, 2, hidden_dim).\n    \"\"\"\n    batch_positions = []\n    batch_input_ids = []\n\n    for sample in samples:\n        user_pos, asst_pos, input_ids = find_critical_positions(\n            tokenizer, sample[\"turns\"], sample[\"correction_turn\"]\n        )\n        batch_positions.append((user_pos, asst_pos))\n        batch_input_ids.append(input_ids)\n\n    # Right-pad to uniform length (causal mask ensures padding doesn't affect earlier positions)\n    max_len = max(len(ids) for ids in batch_input_ids)\n    pad_id = tokenizer.pad_token_id if tokenizer.pad_token_id is not None else 0\n\n    padded_ids = []\n    attention_masks = []\n    for ids in batch_input_ids:\n        pad_len = max_len - len(ids)\n        padded_ids.append(ids + [pad_id] * pad_len)\n        attention_masks.append([1] * len(ids) + [0] * pad_len)\n\n    input_tensor = torch.tensor(padded_ids, dtype=torch.long, device=device)\n    mask_tensor = torch.tensor(attention_masks, dtype=torch.long, device=device)\n\n    with torch.no_grad():\n        outputs = model(\n            input_ids=input_tensor,\n            attention_mask=mask_tensor,\n            output_hidden_states=True,\n        )\n\n    # hidden_states is a tuple of (num_layers + 1) tensors:\n    #   [0] = embedding output, [1..num_layers] = transformer layer outputs\n    hidden_states = outputs.hidden_states[1:]  # skip embedding layer\n    num_layers = len(hidden_states)\n\n    results = []\n    for i, sample in enumerate(samples):\n        user_pos, asst_pos = batch_positions[i]\n\n        layer_acts = []\n        for layer_idx in range(num_layers):\n            h = hidden_states[layer_idx]  # (batch, seq_len, hidden_dim)\n            user_vec = h[i, user_pos, :]\n            asst_vec = h[i, asst_pos, :]\n            layer_acts.append(torch.stack([user_vec, asst_vec], dim=0))  # (2, hidden_dim)\n\n        # (num_layers, 2, hidden_dim) — convert to float32 for downstream probing\n        activations = torch.stack(layer_acts, dim=0).float().cpu()\n\n        results.append({\n            \"pair_id\": sample[\"id\"],\n            \"condition\": sample[\"condition\"],\n            \"domain\": sample[\"domain\"],\n            \"evidence_strength\": sample[\"evidence_strength\"],\n            \"correction_turn\": sample[\"correction_turn\"],\n            \"activations\": activations,\n        })\n\n    return results\n\n\ndef main() -> None:\n    parser = argparse.ArgumentParser(\n        description=\"Extract critical-turn hidden-state activations from Qwen3-8B.\"\n    )\n    parser.add_argument(\n        \"input\", help=\"Path to calibration JSONL file (Phase 1 output)\"\n    )\n    parser.add_argument(\n        \"--model-path\",\n        required=True,\n        help=\"HuggingFace model ID or local path for Qwen3-8B\",\n    )\n    parser.add_argument(\n        \"--output-dir\", required=True, help=\"Directory for output files\"\n    )\n    parser.add_argument(\n        \"--batch-size\", type=int, default=4, help=\"Batch size (default: 4)\"\n    )\n    parser.add_argument(\n        \"--device\", default=\"cuda:0\", help=\"Torch device (default: cuda:0)\"\n    )\n    parser.add_argument(\n        \"--max-samples\",\n        type=int,\n        default=None,\n        help=\"Process at most N samples (for debugging)\",\n    )\n    args = parser.parse_args()\n\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n    )\n\n    out_dir = Path(args.output_dir)\n    out_dir.mkdir(parents=True, exist_ok=True)\n    pt_path = out_dir / \"activations.pt\"\n    meta_path = out_dir / \"activations_meta.jsonl\"\n\n    logger.info(\"Loading samples from %s\", args.input)\n    samples = load_samples(args.input, args.max_samples)\n    logger.info(\"Loaded %d samples\", len(samples))\n    if not samples:\n        logger.error(\"No samples found in %s\", args.input)\n        sys.exit(1)\n\n    device = torch.device(args.device)\n    logger.info(\"Loading tokenizer from %s\", args.model_path)\n    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)\n    if tokenizer.pad_token_id is None:\n        tokenizer.pad_token_id = tokenizer.eos_token_id\n\n    logger.info(\"Loading model from %s\", args.model_path)\n    model = AutoModelForCausalLM.from_pretrained(\n        args.model_path,\n        torch_dtype=torch.bfloat16,\n        device_map=args.device,\n        trust_remote_code=True,\n    )\n    model.eval()\n\n    all_results: list[dict] = []\n    batch_size = args.batch_size\n    pbar = tqdm(total=len(samples), desc=\"Extracting activations\")\n    i = 0\n\n    while i < len(samples):\n        batch = samples[i : i + batch_size]\n        try:\n            results = process_batch(model, tokenizer, batch, device)\n            all_results.extend(results)\n            pbar.update(len(batch))\n            i += batch_size\n        except torch.cuda.OutOfMemoryError:\n            torch.cuda.empty_cache()\n            if batch_size > 1:\n                batch_size = max(1, batch_size // 2)\n                logger.warning(\n                    \"CUDA OOM — reducing batch_size to %d and retrying\", batch_size\n                )\n            else:\n                logger.error(\n                    \"CUDA OOM with batch_size=1 at sample %d (id=%s); skipping\",\n                    i,\n                    samples[i].get(\"id\", \"?\"),\n                )\n                pbar.update(1)\n                i += 1\n\n    pbar.close()\n\n    logger.info(\"Saving %d activation records to %s\", len(all_results), pt_path)\n    torch.save(all_results, pt_path)\n\n    logger.info(\"Saving metadata to %s\", meta_path)\n    with open(meta_path, \"w\") as f:\n        for r in all_results:\n            meta = {k: v for k, v in r.items() if k != \"activations\"}\n            meta[\"activation_shape\"] = list(r[\"activations\"].shape)\n            f.write(json.dumps(meta, ensure_ascii=False) + \"\\n\")\n\n    if all_results:\n        shape = all_results[0][\"activations\"].shape\n        logger.info(\n            \"Done: %d samples, %d layers, hidden_dim=%d\",\n            len(all_results),\n            shape[0],\n            shape[2],\n        )\n    else:\n        logger.warning(\"No activations extracted\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8cab3ee-74bb-4558-9822-37ffd787056c",
+            "uuid": "24be5983-dd0f-40e3-8637-00190f5303c8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013kZo31J92B4PFAMoUDXRzx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7038,
+                "cache_read_input_tokens": 24943,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7038
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T05:22:09.799Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017GwdYr5oojkKcenvhQu7DY",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/extract_activations.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c8cab3ee-74bb-4558-9822-37ffd787056c",
+            "uuid": "7d35834b-1405-4594-90a4-1e9debb39829",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/extract_activations.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"Extract hidden-state activations at critical turns from Qwen3-8B.\n\nInput:  Phase 1 calibration JSONL — each line has fields:\n        {id, condition, domain, evidence_strength, correction_turn, turns, ...}\n        where turns = [{\"role\": \"user\"|\"assistant\", \"content\": \"...\"}, ...]\nOutput: activations.pt         — list[dict] with metadata + (num_layers, 2, hidden_dim) tensor\n        activations_meta.jsonl  — metadata only (no tensors), for quick inspection\nDeps:   transformers, torch, tqdm\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport sys\nfrom pathlib import Path\n\nimport torch\nfrom tqdm import tqdm\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nlogger = logging.getLogger(__name__)\n\n\ndef load_samples(path: str, max_samples: int | None = None) -> list[dict]:\n    \"\"\"Load calibration samples from JSONL file.\"\"\"\n    samples = []\n    with open(path) as f:\n        for line in f:\n            line = line.strip()\n            if not line:\n                continue\n            samples.append(json.loads(line))\n            if max_samples and len(samples) >= max_samples:\n                break\n    return samples\n\n\ndef _apply_template(tokenizer, messages: list[dict], **kwargs) -> list[int]:\n    \"\"\"apply_chat_template with Qwen3 thinking mode disabled when supported.\"\"\"\n    try:\n        return tokenizer.apply_chat_template(\n            messages, enable_thinking=False, tokenize=True, **kwargs\n        )\n    except TypeError:\n        return tokenizer.apply_chat_template(messages, tokenize=True, **kwargs)\n\n\ndef find_critical_positions(\n    tokenizer, turns: list[dict], correction_turn: int\n) -> tuple[int, int, list[int]]:\n    \"\"\"Locate user-last-token and assistant-first-token positions in the tokenized conversation.\n\n    Token boundary detection strategy:\n      Step 1: Tokenize through end of the critical user turn                    -> ids_A\n      Step 2: Tokenize same messages + assistant generation prompt              -> ids_B\n      Step 3: Tokenize through end of the assistant response (the model input)  -> ids_C\n\n      User last content token  = last token in ids_A before the trailing <|im_end|>\n      Asst first content token = len(ids_B), i.e. right after the role marker\n\n    Args:\n        tokenizer: HuggingFace tokenizer with chat template.\n        turns: Message list from the calibration sample.\n        correction_turn: 1-indexed turn number of the critical user turn.\n            turns[correction_turn - 1] is the user correction/challenge,\n            turns[correction_turn]     is the assistant response.\n\n    Returns:\n        (user_last_pos, asst_first_pos, full_input_ids)\n    \"\"\"\n    user_idx = correction_turn - 1\n    asst_idx = correction_turn\n\n    if asst_idx >= len(turns):\n        raise ValueError(\n            f\"correction_turn={correction_turn} requires at least {asst_idx + 1} turns, \"\n            f\"got {len(turns)}\"\n        )\n    if turns[user_idx][\"role\"] != \"user\":\n        raise ValueError(\n            f\"Expected user role at turn {correction_turn}, \"\n            f\"got '{turns[user_idx]['role']}'\"\n        )\n\n    msgs_through_user = [\n        {\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in turns[: user_idx + 1]\n    ]\n    msgs_through_asst = [\n        {\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in turns[: asst_idx + 1]\n    ]\n\n    # ids_A: ends with ...user_content <|im_end|> [\\n]\n    ids_through_user = _apply_template(\n        tokenizer, msgs_through_user, add_generation_prompt=False\n    )\n    # ids_B: ids_A + assistant role marker tokens (<|im_start|> assistant \\n)\n    ids_with_gen = _apply_template(\n        tokenizer, msgs_through_user, add_generation_prompt=True\n    )\n    # ids_C: full model input through assistant response\n    ids_through_asst = _apply_template(\n        tokenizer, msgs_through_asst, add_generation_prompt=False\n    )\n\n    # ---- User last content token ----\n    # Scan backwards in ids_A for <|im_end|>; the token right before it is the last\n    # content token of the user turn.\n    im_end_id = tokenizer.convert_tokens_to_ids(\"<|im_end|>\")\n    user_last_pos = None\n    if im_end_id is not None and im_end_id != getattr(tokenizer, \"unk_token_id\", -1):\n        for pos in range(len(ids_through_user) - 1, -1, -1):\n            if ids_through_user[pos] == im_end_id:\n                user_last_pos = pos - 1\n                break\n    if user_last_pos is None or user_last_pos < 0:\n        user_last_pos = len(ids_through_user) - 1\n        logger.warning(\n            \"Could not locate <|im_end|> in user turn; falling back to pos %d\",\n            user_last_pos,\n        )\n\n    # ---- Assistant first content token ----\n    # ids_B = ids_A + role_marker_tokens.  ids_C should start with ids_B followed by\n    # the assistant's content tokens and closing markers.\n    # Verify prefix alignment before trusting the boundary.\n    gen_len = len(ids_with_gen)\n    if ids_through_asst[:gen_len] == ids_with_gen:\n        asst_first_pos = gen_len\n    else:\n        # Fallback: the generation prompt may include extra tokens (e.g., <think> in\n        # Qwen3 thinking mode) that are absent from the actual assistant message.\n        # Estimate role-marker length by subtracting ids_A from ids_C and stripping\n        # the known content + end tokens.\n        logger.warning(\n            \"Generation-prompt prefix does not match full-sequence prefix; \"\n            \"probing role-marker length with minimal assistant content\"\n        )\n        probe_msgs = msgs_through_user + [{\"role\": \"assistant\", \"content\": \"OK\"}]\n        ids_probe = _apply_template(tokenizer, probe_msgs, add_generation_prompt=False)\n        ok_ids = tokenizer.encode(\"OK\", add_special_tokens=False)\n        # Probe structure after ids_through_user: role_marker + \"OK\" + <|im_end|> [+ \\n]\n        # role_marker_len = total_new_tokens - len(ok_ids) - num_end_tokens\n        new_section = ids_probe[len(ids_through_user) :]\n        # Count trailing end tokens (everything at/after the last <|im_end|>)\n        end_count = 0\n        if im_end_id is not None and im_end_id != getattr(tokenizer, \"unk_token_id\", -1):\n            for tok in reversed(new_section):\n                end_count += 1\n                if tok == im_end_id:\n                    break\n        role_marker_len = len(new_section) - len(ok_ids) - end_count\n        asst_first_pos = len(ids_through_user) + max(role_marker_len, 0)\n\n    if not (0 <= user_last_pos < len(ids_through_asst)):\n        raise ValueError(\n            f\"user_last_pos={user_last_pos} out of bounds (seq_len={len(ids_through_asst)})\"\n        )\n    if not (0 <= asst_first_pos < len(ids_through_asst)):\n        raise ValueError(\n            f\"asst_first_pos={asst_first_pos} out of bounds (seq_len={len(ids_through_asst)})\"\n        )\n\n    return user_last_pos, asst_first_pos, ids_through_asst\n\n\ndef process_batch(\n    model,\n    tokenizer,\n    samples: list[dict],\n    device: torch.device,\n) -> list[dict]:\n    \"\"\"Run a forward pass on a batch and extract per-sample activation tensors.\n\n    Returns list of dicts, each containing metadata fields and an 'activations'\n    tensor of shape (num_layers, 2, hidden_dim).\n    \"\"\"\n    batch_positions = []\n    batch_input_ids = []\n\n    for sample in samples:\n        user_pos, asst_pos, input_ids = find_critical_positions(\n            tokenizer, sample[\"turns\"], sample[\"correction_turn\"]\n        )\n        batch_positions.append((user_pos, asst_pos))\n        batch_input_ids.append(input_ids)\n\n    # Right-pad to uniform length (causal mask ensures padding doesn't affect earlier positions)\n    max_len = max(len(ids) for ids in batch_input_ids)\n    pad_id = tokenizer.pad_token_id if tokenizer.pad_token_id is not None else 0\n\n    padded_ids = []\n    attention_masks = []\n    for ids in batch_input_ids:\n        pad_len = max_len - len(ids)\n        padded_ids.append(ids + [pad_id] * pad_len)\n        attention_masks.append([1] * len(ids) + [0] * pad_len)\n\n    input_tensor = torch.tensor(padded_ids, dtype=torch.long, device=device)\n    mask_tensor = torch.tensor(attention_masks, dtype=torch.long, device=device)\n\n    with torch.no_grad():\n        outputs = model(\n            input_ids=input_tensor,\n            attention_mask=mask_tensor,\n            output_hidden_states=True,\n        )\n\n    # hidden_states is a tuple of (num_layers + 1) tensors:\n    #   [0] = embedding output, [1..num_layers] = transformer layer outputs\n    hidden_states = outputs.hidden_states[1:]  # skip embedding layer\n    num_layers = len(hidden_states)\n\n    results = []\n    for i, sample in enumerate(samples):\n        user_pos, asst_pos = batch_positions[i]\n\n        layer_acts = []\n        for layer_idx in range(num_layers):\n            h = hidden_states[layer_idx]  # (batch, seq_len, hidden_dim)\n            user_vec = h[i, user_pos, :]\n            asst_vec = h[i, asst_pos, :]\n            layer_acts.append(torch.stack([user_vec, asst_vec], dim=0))  # (2, hidden_dim)\n\n        # (num_layers, 2, hidden_dim) — convert to float32 for downstream probing\n        activations = torch.stack(layer_acts, dim=0).float().cpu()\n\n        results.append({\n            \"pair_id\": sample[\"id\"],\n            \"condition\": sample[\"condition\"],\n            \"domain\": sample[\"domain\"],\n            \"evidence_strength\": sample[\"evidence_strength\"],\n            \"correction_turn\": sample[\"correction_turn\"],\n            \"activations\": activations,\n        })\n\n    return results\n\n\ndef main() -> None:\n    parser = argparse.ArgumentParser(\n        description=\"Extract critical-turn hidden-state activations from Qwen3-8B.\"\n    )\n    parser.add_argument(\n        \"input\", help=\"Path to calibration JSONL file (Phase 1 output)\"\n    )\n    parser.add_argument(\n        \"--model-path\",\n        required=True,\n        help=\"HuggingFace model ID or local path for Qwen3-8B\",\n    )\n    parser.add_argument(\n        \"--output-dir\", required=True, help=\"Directory for output files\"\n    )\n    parser.add_argument(\n        \"--batch-size\", type=int, default=4, help=\"Batch size (default: 4)\"\n    )\n    parser.add_argument(\n        \"--device\", default=\"cuda:0\", help=\"Torch device (default: cuda:0)\"\n    )\n    parser.add_argument(\n        \"--max-samples\",\n        type=int,\n        default=None,\n        help=\"Process at most N samples (for debugging)\",\n    )\n    args = parser.parse_args()\n\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n    )\n\n    out_dir = Path(args.output_dir)\n    out_dir.mkdir(parents=True, exist_ok=True)\n    pt_path = out_dir / \"activations.pt\"\n    meta_path = out_dir / \"activations_meta.jsonl\"\n\n    logger.info(\"Loading samples from %s\", args.input)\n    samples = load_samples(args.input, args.max_samples)\n    logger.info(\"Loaded %d samples\", len(samples))\n    if not samples:\n        logger.error(\"No samples found in %s\", args.input)\n        sys.exit(1)\n\n    device = torch.device(args.device)\n    logger.info(\"Loading tokenizer from %s\", args.model_path)\n    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)\n    if tokenizer.pad_token_id is None:\n        tokenizer.pad_token_id = tokenizer.eos_token_id\n\n    logger.info(\"Loading model from %s\", args.model_path)\n    model = AutoModelForCausalLM.from_pretrained(\n        args.model_path,\n        torch_dtype=torch.bfloat16,\n        device_map=args.device,\n        trust_remote_code=True,\n    )\n    model.eval()\n\n    all_results: list[dict] = []\n    batch_size = args.batch_size\n    pbar = tqdm(total=len(samples), desc=\"Extracting activations\")\n    i = 0\n\n    while i < len(samples):\n        batch = samples[i : i + batch_size]\n        try:\n            results = process_batch(model, tokenizer, batch, device)\n            all_results.extend(results)\n            pbar.update(len(batch))\n            i += batch_size\n        except torch.cuda.OutOfMemoryError:\n            torch.cuda.empty_cache()\n            if batch_size > 1:\n                batch_size = max(1, batch_size // 2)\n                logger.warning(\n                    \"CUDA OOM — reducing batch_size to %d and retrying\", batch_size\n                )\n            else:\n                logger.error(\n                    \"CUDA OOM with batch_size=1 at sample %d (id=%s); skipping\",\n                    i,\n                    samples[i].get(\"id\", \"?\"),\n                )\n                pbar.update(1)\n                i += 1\n\n    pbar.close()\n\n    logger.info(\"Saving %d activation records to %s\", len(all_results), pt_path)\n    torch.save(all_results, pt_path)\n\n    logger.info(\"Saving metadata to %s\", meta_path)\n    with open(meta_path, \"w\") as f:\n        for r in all_results:\n            meta = {k: v for k, v in r.items() if k != \"activations\"}\n            meta[\"activation_shape\"] = list(r[\"activations\"].shape)\n            f.write(json.dumps(meta, ensure_ascii=False) + \"\\n\")\n\n    if all_results:\n        shape = all_results[0][\"activations\"].shape\n        logger.info(\n            \"Done: %d samples, %d layers, hidden_dim=%d\",\n            len(all_results),\n            shape[0],\n            shape[2],\n        )\n    else:\n        logger.warning(\"No activations extracted\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证语法和参数列表。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8cab3ee-74bb-4558-9822-37ffd787056c",
+            "uuid": "3a2fc406-0695-4001-b64d-524a4bc86e9f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BcoajsftfGMFUWJVRX2xVV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 25157,
+                "cache_read_input_tokens": 31981,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 25157
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GWF6QxSudXSETChh5foWJ7",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data && python extract_activations.py --help"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8cab3ee-74bb-4558-9822-37ffd787056c",
+            "uuid": "aa00fd53-46dc-4cf7-9e54-57e56017db63",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BcoajsftfGMFUWJVRX2xVV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 25157,
+                "cache_read_input_tokens": 31981,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 25157
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T05:22:13.308Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 127\n/bin/bash: line 1: python: command not found",
+              "is_error": true,
+              "tool_use_id": "toolu_01GWF6QxSudXSETChh5foWJ7"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c8cab3ee-74bb-4558-9822-37ffd787056c",
+            "uuid": "1142f6d1-6b57-4941-990a-5157f9b525df",
+            "tool_use_result": "Error: Exit code 127\n/bin/bash: line 1: python: command not found"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Wnd2JwCyAkToNroHpK4VZa",
+              "name": "Bash",
+              "input": {
+                "command": "which python3 && cd /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data && python3 extract_activations.py --help"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8cab3ee-74bb-4558-9822-37ffd787056c",
+            "uuid": "1130523f-03b9-44b3-85a7-bf7d7e082521",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EaUYs7qVgMqEYKoQdhSb7g",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 149,
+                "cache_read_input_tokens": 57138,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 149
+                },
+                "output_tokens": 51,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T05:22:16.063Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 1\n/usr/bin/python3\nTraceback (most recent call last):\n  File \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/extract_activations.py\", line 18, in <module>\n    import torch\nModuleNotFoundError: No module named 'torch'",
+              "is_error": true,
+              "tool_use_id": "toolu_01Wnd2JwCyAkToNroHpK4VZa"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c8cab3ee-74bb-4558-9822-37ffd787056c",
+            "uuid": "6bd4c805-61b5-4afc-882c-b8f32aeb2236",
+            "tool_use_result": "Error: Exit code 1\n/usr/bin/python3\nTraceback (most recent call last):\n  File \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/extract_activations.py\", line 18, in <module>\n    import torch\nModuleNotFoundError: No module named 'torch'"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017oHPfQSVHmEVpaFaTuFWLw",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data && python3 -c \"\nimport ast, sys\nwith open('extract_activations.py') as f:\n    tree = ast.parse(f.read())\nprint('Syntax OK')\n\n# Extract argparse arguments\nfor node in ast.walk(tree):\n    if isinstance(node, ast.Call) and hasattr(node, 'func'):\n        if isinstance(node.func, ast.Attribute) and node.func.attr == 'add_argument':\n            args = [a.value if isinstance(a, ast.Constant) else '...' for a in node.args]\n            print(f'  arg: {args}')\n\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8cab3ee-74bb-4558-9822-37ffd787056c",
+            "uuid": "27440290-9f22-45b9-b630-45a759632a2f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EUTUA339Tj7fToVPZCN892",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 222,
+                "cache_read_input_tokens": 57287,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 222
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T05:22:20.386Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017oHPfQSVHmEVpaFaTuFWLw",
+              "type": "tool_result",
+              "content": "Syntax OK\n  arg: ['input']\n  arg: ['--model-path']\n  arg: ['--output-dir']\n  arg: ['--batch-size']\n  arg: ['--device']\n  arg: ['--max-samples']",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c8cab3ee-74bb-4558-9822-37ffd787056c",
+            "uuid": "44b3ab01-7e11-48b5-bb1d-ca485f7b76c0",
+            "tool_use_result": {
+              "stdout": "Syntax OK\n  arg: ['input']\n  arg: ['--model-path']\n  arg: ['--output-dir']\n  arg: ['--batch-size']\n  arg: ['--device']\n  arg: ['--max-samples']",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法正确，参数列表完整：`input`（位置参数）、`--model-path`、`--output-dir`、`--batch-size`、`--device`、`--max-samples`。\n\n脚本已写入 `artifacts/data/extract_activations.py`，核心设计：\n\n- **全层 sweep**：通过 `output_hidden_states=True` 提取所有 transformer 层（跳过 embedding 层），输出 shape `(num_layers, 2, hidden_dim)`\n- **Token 边界定位**：逐步 tokenize 定位 critical turn 的 user/assistant 边界。先 tokenize 到 user turn 末尾找 `<|im_end|>` 前最后一个 content token；再用 `add_generation_prompt=True` 确定 assistant role marker 结束位置（即 content 起始位置），并与完整序列做前缀对齐验证，不匹配时有 probe fallback\n- **OOM 自动降级**：捕获 `torch.cuda.OutOfMemoryError`，自动将 batch_size 减半重试，直到 1\n- **输出**：`.pt` 文件（`torch.save`，list of dicts）+ `.jsonl` 元数据文件\n- **Qwen3 兼容**：`enable_thinking=False` 避免 thinking token 干扰，`trust_remote_code=True`，bfloat16 加载"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8cab3ee-74bb-4558-9822-37ffd787056c",
+            "uuid": "6d4079ef-3e19-4881-b43d-706aa64569bc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J11Te5j57YceM2T94GbZHb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 415,
+                "cache_read_input_tokens": 57509,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 415
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法正确，参数列表完整：`input`（位置参数）、`--model-path`、`--output-dir`、`--batch-size`、`--device`、`--max-samples`。\n\n脚本已写入 `artifacts/data/extract_activations.py`，核心设计：\n\n- **全层 sweep**：通过 `output_hidden_states=True` 提取所有 transformer 层（跳过 embedding 层），输出 shape `(num_layers, 2, hidden_dim)`\n- **Token 边界定位**：逐步 tokenize 定位 critical turn 的 user/assistant 边界。先 tokenize 到 user turn 末尾找 `<|im_end|>` 前最后一个 content token；再用 `add_generation_prompt=True` 确定 assistant role marker 结束位置（即 content 起始位置），并与完整序列做前缀对齐验证，不匹配时有 probe fallback\n- **OOM 自动降级**：捕获 `torch.cuda.OutOfMemoryError`，自动将 batch_size 减半重试，直到 1\n- **输出**：`.pt` 文件（`torch.save`，list of dicts）+ `.jsonl` 元数据文件\n- **Qwen3 兼容**：`enable_thinking=False` 避免 thinking token 干扰，`trust_remote_code=True`，bfloat16 加载"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 445187,
+            "duration_api_ms": 445743,
+            "num_turns": 8,
+            "stop_reason": "end_turn",
+            "session_id": "c8cab3ee-74bb-4558-9822-37ffd787056c",
+            "total_cost_usd": 1.08181325,
+            "usage": {
+              "input_tokens": 8,
+              "cache_creation_input_tokens": 46083,
+              "cache_read_input_tokens": 265281,
+              "output_tokens": 26387,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 46083,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 397,
+                  "cache_read_input_tokens": 57509,
+                  "cache_creation_input_tokens": 415,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 415
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1319,
+                "outputTokens": 24,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0014390000000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 8,
+                "outputTokens": 26387,
+                "cacheReadInputTokens": 265281,
+                "cacheCreationInputTokens": 46083,
+                "webSearchRequests": 0,
+                "costUSD": 1.08037425,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "fcd8313e-9735-4587-b04f-778687024be5"
+          },
+          "id": "event-000024"
+        }
+      ],
+      "message_count": 24
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-extract-activations.md"
+}

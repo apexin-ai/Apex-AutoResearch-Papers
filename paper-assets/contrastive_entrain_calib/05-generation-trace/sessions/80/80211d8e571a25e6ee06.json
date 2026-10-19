@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80211d8e571a25e6ee06",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "deploy sync exp008 to westd28034",
+  "task_key": "worker_deploy_sync-exp008-to-westd28034_20260518T182251",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_deploy_sync-exp008-to-westd28034_20260518T182251_result.json",
+    "occurrence": 1,
+    "bytes": 622,
+    "sha256": "f8a420dda11f66f2c024489d87c640190f083182711b8de395ff4cc33cb5436d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n**同步结果：**\n\n| 文件 | md5sum (本地=远程) | 状态 |\n|------|-------------------|------|\n| `run_exp008_binary_probe_penalty.py` | `43fc178c3e8b95eba32c63a207ecc2f1` | 一致 |\n| `probe_module.py` | `3f92ce6b6ba023d971553f477a41c123` | 一致 |\n\n**验证结果：**\n- Probe import: `feat_mean shape: torch.Size([4096])`, `feat_std shape: torch.Size([4096])` — OK\n- 数据文件: `calibration_v2_1_expanded.jsonl` (367KB) — 存在\n- Activations: `activations.pt` (407MB) — 存在\n\nwestd-28034 上代码和数据已就绪，可以启动 exp-008 训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-sync-exp008-to-westd28034.md"
+}

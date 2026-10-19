@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2f278ff01fb7ffcfec4",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnosis exp009 ckpt1000 and 28034 status",
+  "task_key": "worker_diagnosis_exp009-ckpt1000-and-28034-status_20260520T121745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_exp009-ckpt1000-and-28034-status_20260520T121745_result.json",
+    "occurrence": 1,
+    "bytes": 945,
+    "sha256": "aa7b334b51ef79ee5b9d67227072741d0957bd720c11f15eee391da2bf977feb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-009 eval 已完成，结果已拿到。exp-003 eval 还在跑（280/362）。汇总如下：\n\n---\n\n## exp-009 ckpt-1000 Eval\n状态：**完成**\nToF: 0.0608 | NoF: 0.9337 | SYCONScore: 0.1141\nvs ckpt-500: ToF 0.0663→0.0608 (↓8.3%) | SYCONScore 0.1238→0.1141 (↓7.8%)\nKill 标准: **不满足** (SYCONScore 0.1141 > 0.10, ToF 0.0608 > 0.03)\n\n⚠️ 但趋势下行——ckpt-500→ckpt-1000 两个指标均退化，ToF 和 SYCONScore 都在下降。\n\n## exp-003 ckpt-5000 Eval\n状态：**进行中** (280/362, ~77%)\n预计 ~15-20 分钟内完成\n\n## 28034 GPU\n| GPU | Util | VRAM Used | VRAM Total |\n|-----|------|-----------|------------|\n| 0 | 17% | 16.5 GB | 31.8 GB |\n| 1 | 0% | 30.7 GB | 31.8 GB |\n| 2 | 0% | 30.0 GB | 31.8 GB |\n| 3 | 0% | 0 GB | 31.8 GB |\n\nGPU0 在跑 exp-003 eval（17% util），GPU1/2 被占用但 idle（可能是 exp-009 训练残留或其他进程），GPU3 空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-exp009-ckpt1000-and-28034-status.md"
+}

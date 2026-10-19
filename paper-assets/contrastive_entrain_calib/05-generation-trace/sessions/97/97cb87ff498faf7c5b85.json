@@ -1,0 +1,1427 @@
+{
+  "schema_version": "1.0",
+  "id": "97cb87ff498faf7c5b85",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "monitor 29046 training status",
+  "task_key": "worker_monitor_29046-training-status_20260523T124737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_29046-training-status_20260523T124737.log",
+    "occurrence": 1,
+    "bytes": 77476,
+    "sha256": "dda464df5abe056c9155db21e7e6b9d171b49362ae59c06f0e019eae0082c66e"
+  },
+  "statistics": {
+    "messages": 34,
+    "user_turns": 0,
+    "tool_calls": 13,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 13,
+      "tool_result": 13,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+                "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "708c343d-e35b-4716-833c-cb87ae3a02ba",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779543000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "baa9b096-a11f-4a1b-b1b0-605f8a2ad934",
+                "session_id": "be38b7c7-de57-4817-8dc9-43153941098e"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Looking at the task, I need to check training status on the remote server. Let me load the check-training-status skill first and fetch the necessary tools."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "d01e6191-3b3f-4640-a6e4-024caaaf84c2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DfdQJatQu28hard7cfMawu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12375,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12375
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013scytm4rHGuyv4bqJGUpSg",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "94cc75dc-ebfd-4a43-bc5f-84a265937fab",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DfdQJatQu28hard7cfMawu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12375,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12375
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T12:47:51.335Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_013scytm4rHGuyv4bqJGUpSg",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__detect_image"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "be610f02-e6db-470b-976c-2737f1620e83",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__detect_image"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me run the monitoring commands on the remote server. I'll run them in parallel where possible.",
+              "signature": "EqcCCmMIDhgCKkByC6y76kGrSohU3KkyoVcDi/7qHvCMWvm2sDxZfGhnYNzkK2h6owEwPCiYtPcGDaPfEpWj3FBClhFo1yLxhQW0Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDHx4N9WtLIAph9RG3BoMI1M58m8AEJvRwMmPIjAkd4i/0OQ0BJ+jbfCMZQ+TSjghS6FJc1mJVnEoRyXY7G1pM0b0Sm2L0uaa2EeCYSYqcs4QwDUdFyAUaBupHmxv3bL2VXOLQuFai7B9axfIN6JyF0WZiu3wcV0T44TpEH90630IrcniLV9Mxs5yC72RChj56SJT/JvaugYlI3xzOuJtPfp60FJbWX1eW5wC6N252QQu0JGcIcfYl+oJj4dHbz/IQxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "bf588a98-6884-425c-8f00-e471705c331b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KmajLsrM2SqbYYVaB5k379",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 660,
+                "cache_read_input_tokens": 24216,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 660
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LxvrPzxYPYJ8BNU3RgEMyu",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29046",
+                "command": "nvidia-smi",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "b965cb1a-33af-4988-bdf0-e76ea2b55c30",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KmajLsrM2SqbYYVaB5k379",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 660,
+                "cache_read_input_tokens": 24216,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 660
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AJNgj4PMkxj3NGf3TganTT",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29046",
+                "command": "ps aux --sort=-pcpu --no-headers",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "53d55bf9-8913-42c7-a743-ed7d4d534970",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KmajLsrM2SqbYYVaB5k379",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 660,
+                "cache_read_input_tokens": 24216,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 660
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T12:48:00.487Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LxvrPzxYPYJ8BNU3RgEMyu",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Sat May 23 20:48:00 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\\\n| N/A   45C    P0            178W /  600W |   22957MiB /  97887MiB |     33%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\\\n| N/A   65C    P0            400W /  600W |   41339MiB /  97887MiB |     95%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    0   N/A  N/A          571918      C   python                                22948MiB |\\\\n|    1   N/A  N/A          553700      C   /root/miniconda3/bin/python           41330MiB |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.29}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "a2585c19-1614-406f-b1e1-df70045c32bf",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Sat May 23 20:48:00 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\\\n| N/A   45C    P0            178W /  600W |   22957MiB /  97887MiB |     33%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\\\n| N/A   65C    P0            400W /  600W |   41339MiB /  97887MiB |     95%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    0   N/A  N/A          571918      C   python                                22948MiB |\\\\n|    1   N/A  N/A          553700      C   /root/miniconda3/bin/python           41330MiB |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.29}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Sat May 23 20:48:00 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 595.58.03              Driver Version: 595.58.03      CUDA Version: 13.2     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\n| N/A   45C    P0            178W /  600W |   22957MiB /  97887MiB |     33%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\n| N/A   65C    P0            400W /  600W |   41339MiB /  97887MiB |     95%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    0   N/A  N/A          571918      C   python                                22948MiB |\\n|    1   N/A  N/A          553700      C   /root/miniconda3/bin/python           41330MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.29}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XnFpEHNgMD62zabWNnByxi",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29046",
+                "command": "df -h /root /root/autodl-tmp",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "da1a63f8-2415-49d4-8ca7-9fce138dfa23",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KmajLsrM2SqbYYVaB5k379",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 660,
+                "cache_read_input_tokens": 24216,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 660
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T12:48:01.023Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AJNgj4PMkxj3NGf3TganTT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     553700  480  0.4 81622048 4873048 ?    Rl   10:17 3030:55 /root/miniconda3/bin/python /root/contrastive_entrain_calib/training/run_exp003_len512_r3only.py\\\\nroot     571918 97.3  0.2 54019092 2323924 pts/0 Sl+ 13:58 398:53 python training/run_exp004_heldout.py\\\\nroot     599205  4.0  0.0  16692 10932 ?        Ss   20:47   0:00 sshd: root@notty\\\\nroot       1195  1.7  0.0 725216 27956 ?        Sl   May18 135:11 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot       1217  0.3  0.0 7043804 101472 ?      Sl   May18  24:32 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot       1219  0.1  0.0 4126536 21776 ?       Sl   May18   8:07 proxy -c /init/proxy/proxy.ini\\\\nroot          1  0.0  0.0   4476  3176 ?        Ss   May18   0:01 bash /init/boot/boot.sh\\\\nroot       1211  0.0  0.0  15444  8340 ?        S    May18   0:37 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot       1215  0.0  0.0 3573372 80140 ?       Sl   May18   3:00 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot       1216  0.0  0.0 4347988 18560 ?       Sl   May18   4:04 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot       1218  0.0  0.0 182296 97932 ?        S    May18   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot       1317  0.0  0.0 28341192 12136 ?      Sl   May18   6:01 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_al1zgh0e/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_al1zgh0e/startup_error\\\\nroot      71933  0.0  0.0  97504 16844 ?        Ssl  May19   0:00 python3 -c import http.server, threading, os; os.chdir('/root/mvp_v2_1_expanded/training/'); s=http.server.HTTPServer(('0.0.0.0',19876),http.server.SimpleHTTPRequestHandler); t=threading.Thread(target=s.handle_request); t.start(); print('HTTP server ready on port 19876'); t.join(timeout=60); s.server_close()\\\\nroot     561234  0.0  0.0  16692 10912 ?        Ss   11:43   0:02 sshd: root@notty\\\\nroot     561259  0.0  0.0  16692 10712 ?        Ss   11:43   0:07 sshd: root@notty\\\\nroot     571911  0.0  0.0   6356  4060 ?        Ss   13:58   0:00 tmux new-session -d -s heldout source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=0 python training/run_exp004_heldout.py 2>&1 | tee /root/runs/contrastive_entrain_calib/exp-004-heldout.log\\\\nroot     571912  0.0  0.0   4364  3324 pts/0    Ss+  13:58   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=0 python training/run_exp004_heldout.py 2>&1 | tee /root/runs/contrastive_entrain_calib/exp-004-heldout.log\\\\nroot     571919  0.0  0.0   2796  1036 pts/0    S+   13:58   0:00 tee /root/runs/contrastive_entrain_calib/exp-004-heldout.log\\\\nroot     599221  0.0  0.0   7064  1564 ?        Rs   20:48   0:00 ps aux --sort=-pcpu --no-headers\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "9cffabd8-2196-4600-adf7-fc5af8202224",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     553700  480  0.4 81622048 4873048 ?    Rl   10:17 3030:55 /root/miniconda3/bin/python /root/contrastive_entrain_calib/training/run_exp003_len512_r3only.py\\\\nroot     571918 97.3  0.2 54019092 2323924 pts/0 Sl+ 13:58 398:53 python training/run_exp004_heldout.py\\\\nroot     599205  4.0  0.0  16692 10932 ?        Ss   20:47   0:00 sshd: root@notty\\\\nroot       1195  1.7  0.0 725216 27956 ?        Sl   May18 135:11 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot       1217  0.3  0.0 7043804 101472 ?      Sl   May18  24:32 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot       1219  0.1  0.0 4126536 21776 ?       Sl   May18   8:07 proxy -c /init/proxy/proxy.ini\\\\nroot          1  0.0  0.0   4476  3176 ?        Ss   May18   0:01 bash /init/boot/boot.sh\\\\nroot       1211  0.0  0.0  15444  8340 ?        S    May18   0:37 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot       1215  0.0  0.0 3573372 80140 ?       Sl   May18   3:00 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot       1216  0.0  0.0 4347988 18560 ?       Sl   May18   4:04 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot       1218  0.0  0.0 182296 97932 ?        S    May18   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot       1317  0.0  0.0 28341192 12136 ?      Sl   May18   6:01 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_al1zgh0e/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_al1zgh0e/startup_error\\\\nroot      71933  0.0  0.0  97504 16844 ?        Ssl  May19   0:00 python3 -c import http.server, threading, os; os.chdir('/root/mvp_v2_1_expanded/training/'); s=http.server.HTTPServer(('0.0.0.0',19876),http.server.SimpleHTTPRequestHandler); t=threading.Thread(target=s.handle_request); t.start(); print('HTTP server ready on port 19876'); t.join(timeout=60); s.server_close()\\\\nroot     561234  0.0  0.0  16692 10912 ?        Ss   11:43   0:02 sshd: root@notty\\\\nroot     561259  0.0  0.0  16692 10712 ?        Ss   11:43   0:07 sshd: root@notty\\\\nroot     571911  0.0  0.0   6356  4060 ?        Ss   13:58   0:00 tmux new-session -d -s heldout source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=0 python training/run_exp004_heldout.py 2>&1 | tee /root/runs/contrastive_entrain_calib/exp-004-heldout.log\\\\nroot     571912  0.0  0.0   4364  3324 pts/0    Ss+  13:58   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=0 python training/run_exp004_heldout.py 2>&1 | tee /root/runs/contrastive_entrain_calib/exp-004-heldout.log\\\\nroot     571919  0.0  0.0   2796  1036 pts/0    S+   13:58   0:00 tee /root/runs/contrastive_entrain_calib/exp-004-heldout.log\\\\nroot     599221  0.0  0.0   7064  1564 ?        Rs   20:48   0:00 ps aux --sort=-pcpu --no-headers\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"root     553700  480  0.4 81622048 4873048 ?    Rl   10:17 3030:55 /root/miniconda3/bin/python /root/contrastive_entrain_calib/training/run_exp003_len512_r3only.py\\nroot     571918 97.3  0.2 54019092 2323924 pts/0 Sl+ 13:58 398:53 python training/run_exp004_heldout.py\\nroot     599205  4.0  0.0  16692 10932 ?        Ss   20:47   0:00 sshd: root@notty\\nroot       1195  1.7  0.0 725216 27956 ?        Sl   May18 135:11 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot       1217  0.3  0.0 7043804 101472 ?      Sl   May18  24:32 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot       1219  0.1  0.0 4126536 21776 ?       Sl   May18   8:07 proxy -c /init/proxy/proxy.ini\\nroot          1  0.0  0.0   4476  3176 ?        Ss   May18   0:01 bash /init/boot/boot.sh\\nroot       1211  0.0  0.0  15444  8340 ?        S    May18   0:37 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot       1215  0.0  0.0 3573372 80140 ?       Sl   May18   3:00 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot       1216  0.0  0.0 4347988 18560 ?       Sl   May18   4:04 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot       1218  0.0  0.0 182296 97932 ?        S    May18   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot       1317  0.0  0.0 28341192 12136 ?      Sl   May18   6:01 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_al1zgh0e/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_al1zgh0e/startup_error\\nroot      71933  0.0  0.0  97504 16844 ?        Ssl  May19   0:00 python3 -c import http.server, threading, os; os.chdir('/root/mvp_v2_1_expanded/training/'); s=http.server.HTTPServer(('0.0.0.0',19876),http.server.SimpleHTTPRequestHandler); t=threading.Thread(target=s.handle_request); t.start(); print('HTTP server ready on port 19876'); t.join(timeout=60); s.server_close()\\nroot     561234  0.0  0.0  16692 10912 ?        Ss   11:43   0:02 sshd: root@notty\\nroot     561259  0.0  0.0  16692 10712 ?        Ss   11:43   0:07 sshd: root@notty\\nroot     571911  0.0  0.0   6356  4060 ?        Ss   13:58   0:00 tmux new-session -d -s heldout source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=0 python training/run_exp004_heldout.py 2>&1 | tee /root/runs/contrastive_entrain_calib/exp-004-heldout.log\\nroot     571912  0.0  0.0   4364  3324 pts/0    Ss+  13:58   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=0 python training/run_exp004_heldout.py 2>&1 | tee /root/runs/contrastive_entrain_calib/exp-004-heldout.log\\nroot     571919  0.0  0.0   2796  1036 pts/0    S+   13:58   0:00 tee /root/runs/contrastive_entrain_calib/exp-004-heldout.log\\nroot     599221  0.0  0.0   7064  1564 ?        Rs   20:48   0:00 ps aux --sort=-pcpu --no-headers\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T12:48:01.557Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XnFpEHNgMD62zabWNnByxi",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\noverlay          30G   25G  5.5G  82% /\\\\n/dev/md0        250G   75G  176G  30% /root/autodl-tmp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "0a43562c-5b74-4608-89b4-c627050ee99a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\noverlay          30G   25G  5.5G  82% /\\\\n/dev/md0        250G   75G  176G  30% /root/autodl-tmp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\noverlay          30G   25G  5.5G  82% /\\n/dev/md0        250G   75G  176G  30% /root/autodl-tmp\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个进程都在正常运行。现在查训练进度。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "972c0b88-3259-4a47-8994-96a98be91bdf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015ZVtpMx4vvVrAMmvgeVJag",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2575,
+                "cache_read_input_tokens": 24876,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2575
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V9uRuD2D1CNedzSQrAUuqT",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29046",
+                "command": "find /root/autodl-tmp -name \"trainer_state.json\" -path \"*heldout*\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "32a9f72a-532c-4d61-9d90-d8cd90040780",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015ZVtpMx4vvVrAMmvgeVJag",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2575,
+                "cache_read_input_tokens": 24876,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2575
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T12:48:07.660Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V9uRuD2D1CNedzSQrAUuqT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "9ae64492-c50b-423f-8496-0f8a4f0ebabc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FKEShrdB6dUw8fbx2Zzb1f",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29046",
+                "command": "find /root/autodl-tmp -name \"trainer_state.json\" -path \"*len512*\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "8fbf32db-522e-4b3a-9dea-95256c2a137f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015ZVtpMx4vvVrAMmvgeVJag",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2575,
+                "cache_read_input_tokens": 24876,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2575
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T12:48:08.661Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FKEShrdB6dUw8fbx2Zzb1f",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/contrastive_entrain_calib/outputs/exp003_len512_r3only/checkpoint-500/trainer_state.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "32b967ec-0aa2-4d92-9ab3-b8e8a2f3aaa3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/contrastive_entrain_calib/outputs/exp003_len512_r3only/checkpoint-500/trainer_state.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/contrastive_entrain_calib/outputs/exp003_len512_r3only/checkpoint-500/trainer_state.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Y7MggKZoymwnjmNDyShEbe",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29046",
+                "command": "tail -30 /root/runs/contrastive_entrain_calib/exp-004-heldout.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "4820a591-1df7-4d0d-83ec-c10791442ea6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015ZVtpMx4vvVrAMmvgeVJag",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2575,
+                "cache_read_input_tokens": 24876,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2575
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T12:48:09.604Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Y7MggKZoymwnjmNDyShEbe",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 20:03:46,111 [INFO] step=2380/8000 sft=0.0000 l2=0.001329 total=0.0001 lr=3.60e-05 elapsed=21924s\\\\n2026-05-23 20:05:18,017 [INFO] step=2390/8000 sft=0.0000 l2=0.001354 total=0.0001 lr=3.60e-05 elapsed=22016s\\\\n2026-05-23 20:06:51,351 [INFO] step=2400/8000 sft=0.0000 l2=0.001495 total=0.0002 lr=3.59e-05 elapsed=22109s\\\\n2026-05-23 20:08:25,816 [INFO] step=2410/8000 sft=0.0000 l2=0.001417 total=0.0001 lr=3.58e-05 elapsed=22203s\\\\n2026-05-23 20:09:58,503 [INFO] step=2420/8000 sft=0.0000 l2=0.001478 total=0.0002 lr=3.58e-05 elapsed=22296s\\\\n2026-05-23 20:11:31,094 [INFO] step=2430/8000 sft=0.0000 l2=0.001464 total=0.0002 lr=3.57e-05 elapsed=22389s\\\\n2026-05-23 20:13:04,278 [INFO] step=2440/8000 sft=0.0000 l2=0.001508 total=0.0002 lr=3.56e-05 elapsed=22482s\\\\n2026-05-23 20:14:37,633 [INFO] step=2450/8000 sft=0.0000 l2=0.001476 total=0.0002 lr=3.56e-05 elapsed=22575s\\\\n2026-05-23 20:16:10,149 [INFO] step=2460/8000 sft=0.0000 l2=0.001459 total=0.0002 lr=3.55e-05 elapsed=22668s\\\\n2026-05-23 20:17:42,677 [INFO] step=2470/8000 sft=0.0000 l2=0.001512 total=0.0002 lr=3.54e-05 elapsed=22760s\\\\n2026-05-23 20:19:14,914 [INFO] step=2480/8000 sft=0.0000 l2=0.001592 total=0.0002 lr=3.54e-05 elapsed=22853s\\\\n2026-05-23 20:20:48,265 [INFO] step=2490/8000 sft=0.0000 l2=0.001569 total=0.0002 lr=3.53e-05 elapsed=22946s\\\\n2026-05-23 20:22:21,524 [INFO] step=2500/8000 sft=0.0000 l2=0.001522 total=0.0002 lr=3.53e-05 elapsed=23039s\\\\n2026-05-23 20:22:22,427 [INFO] Saved checkpoint: /root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout/checkpoint-2500\\\\n2026-05-23 20:23:55,003 [INFO] step=2510/8000 sft=0.0000 l2=0.001562 total=0.0002 lr=3.52e-05 elapsed=23133s\\\\n2026-05-23 20:25:27,547 [INFO] step=2520/8000 sft=0.0000 l2=0.001648 total=0.0002 lr=3.51e-05 elapsed=23225s\\\\n2026-05-23 20:27:01,808 [INFO] step=2530/8000 sft=0.0000 l2=0.001689 total=0.0002 lr=3.51e-05 elapsed=23319s\\\\n2026-05-23 20:28:35,430 [INFO] step=2540/8000 sft=0.0000 l2=0.001662 total=0.0002 lr=3.50e-05 elapsed=23413s\\\\n2026-05-23 20:30:08,632 [INFO] step=2550/8000 sft=0.0000 l2=0.001587 total=0.0002 lr=3.49e-05 elapsed=23506s\\\\n2026-05-23 20:31:41,004 [INFO] step=2560/8000 sft=0.0000 l2=0.001641 total=0.0002 lr=3.49e-05 elapsed=23599s\\\\n2026-05-23 20:33:13,189 [INFO] step=2570/8000 sft=0.0000 l2=0.001664 total=0.0002 lr=3.48e-05 elapsed=23691s\\\\n2026-05-23 20:34:45,372 [INFO] step=2580/8000 sft=0.0000 l2=0.001594 total=0.0002 lr=3.47e-05 elapsed=23783s\\\\n2026-05-23 20:36:18,120 [INFO] step=2590/8000 sft=0.0000 l2=0.001738 total=0.0002 lr=3.47e-05 elapsed=23876s\\\\n2026-05-23 20:37:50,330 [INFO] step=2600/8000 sft=0.0000 l2=0.001687 total=0.0002 lr=3.46e-05 elapsed=23968s\\\\n2026-05-23 20:39:23,214 [INFO] step=2610/8000 sft=0.0000 l2=0.001746 total=0.0002 lr=3.46e-05 elapsed=24061s\\\\n2026-05-23 20:40:56,352 [INFO] step=2620/8000 sft=0.0000 l2=0.001719 total=0.0002 lr=3.45e-05 elapsed=24154s\\\\n2026-05-23 20:42:29,681 [INFO] step=2630/8000 sft=0.0000 l2=0.001733 total=0.0002 lr=3.44e-05 elapsed=24247s\\\\n2026-05-23 20:44:02,531 [INFO] step=2640/8000 sft=0.0000 l2=0.001509 total=0.0002 lr=3.44e-05 elapsed=24340s\\\\n2026-05-23 20:45:35,286 [INFO] step=2650/8000 sft=0.0000 l2=0.001522 total=0.0002 lr=3.43e-05 elapsed=24433s\\\\n2026-05-23 20:47:09,247 [INFO] step=2660/8000 sft=0.0000 l2=0.001532 total=0.0002 lr=3.42e-05 elapsed=24527s\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "028adec2-f03f-426a-949a-0e0559f040ed",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 20:03:46,111 [INFO] step=2380/8000 sft=0.0000 l2=0.001329 total=0.0001 lr=3.60e-05 elapsed=21924s\\\\n2026-05-23 20:05:18,017 [INFO] step=2390/8000 sft=0.0000 l2=0.001354 total=0.0001 lr=3.60e-05 elapsed=22016s\\\\n2026-05-23 20:06:51,351 [INFO] step=2400/8000 sft=0.0000 l2=0.001495 total=0.0002 lr=3.59e-05 elapsed=22109s\\\\n2026-05-23 20:08:25,816 [INFO] step=2410/8000 sft=0.0000 l2=0.001417 total=0.0001 lr=3.58e-05 elapsed=22203s\\\\n2026-05-23 20:09:58,503 [INFO] step=2420/8000 sft=0.0000 l2=0.001478 total=0.0002 lr=3.58e-05 elapsed=22296s\\\\n2026-05-23 20:11:31,094 [INFO] step=2430/8000 sft=0.0000 l2=0.001464 total=0.0002 lr=3.57e-05 elapsed=22389s\\\\n2026-05-23 20:13:04,278 [INFO] step=2440/8000 sft=0.0000 l2=0.001508 total=0.0002 lr=3.56e-05 elapsed=22482s\\\\n2026-05-23 20:14:37,633 [INFO] step=2450/8000 sft=0.0000 l2=0.001476 total=0.0002 lr=3.56e-05 elapsed=22575s\\\\n2026-05-23 20:16:10,149 [INFO] step=2460/8000 sft=0.0000 l2=0.001459 total=0.0002 lr=3.55e-05 elapsed=22668s\\\\n2026-05-23 20:17:42,677 [INFO] step=2470/8000 sft=0.0000 l2=0.001512 total=0.0002 lr=3.54e-05 elapsed=22760s\\\\n2026-05-23 20:19:14,914 [INFO] step=2480/8000 sft=0.0000 l2=0.001592 total=0.0002 lr=3.54e-05 elapsed=22853s\\\\n2026-05-23 20:20:48,265 [INFO] step=2490/8000 sft=0.0000 l2=0.001569 total=0.0002 lr=3.53e-05 elapsed=22946s\\\\n2026-05-23 20:22:21,524 [INFO] step=2500/8000 sft=0.0000 l2=0.001522 total=0.0002 lr=3.53e-05 elapsed=23039s\\\\n2026-05-23 20:22:22,427 [INFO] Saved checkpoint: /root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout/checkpoint-2500\\\\n2026-05-23 20:23:55,003 [INFO] step=2510/8000 sft=0.0000 l2=0.001562 total=0.0002 lr=3.52e-05 elapsed=23133s\\\\n2026-05-23 20:25:27,547 [INFO] step=2520/8000 sft=0.0000 l2=0.001648 total=0.0002 lr=3.51e-05 elapsed=23225s\\\\n2026-05-23 20:27:01,808 [INFO] step=2530/8000 sft=0.0000 l2=0.001689 total=0.0002 lr=3.51e-05 elapsed=23319s\\\\n2026-05-23 20:28:35,430 [INFO] step=2540/8000 sft=0.0000 l2=0.001662 total=0.0002 lr=3.50e-05 elapsed=23413s\\\\n2026-05-23 20:30:08,632 [INFO] step=2550/8000 sft=0.0000 l2=0.001587 total=0.0002 lr=3.49e-05 elapsed=23506s\\\\n2026-05-23 20:31:41,004 [INFO] step=2560/8000 sft=0.0000 l2=0.001641 total=0.0002 lr=3.49e-05 elapsed=23599s\\\\n2026-05-23 20:33:13,189 [INFO] step=2570/8000 sft=0.0000 l2=0.001664 total=0.0002 lr=3.48e-05 elapsed=23691s\\\\n2026-05-23 20:34:45,372 [INFO] step=2580/8000 sft=0.0000 l2=0.001594 total=0.0002 lr=3.47e-05 elapsed=23783s\\\\n2026-05-23 20:36:18,120 [INFO] step=2590/8000 sft=0.0000 l2=0.001738 total=0.0002 lr=3.47e-05 elapsed=23876s\\\\n2026-05-23 20:37:50,330 [INFO] step=2600/8000 sft=0.0000 l2=0.001687 total=0.0002 lr=3.46e-05 elapsed=23968s\\\\n2026-05-23 20:39:23,214 [INFO] step=2610/8000 sft=0.0000 l2=0.001746 total=0.0002 lr=3.46e-05 elapsed=24061s\\\\n2026-05-23 20:40:56,352 [INFO] step=2620/8000 sft=0.0000 l2=0.001719 total=0.0002 lr=3.45e-05 elapsed=24154s\\\\n2026-05-23 20:42:29,681 [INFO] step=2630/8000 sft=0.0000 l2=0.001733 total=0.0002 lr=3.44e-05 elapsed=24247s\\\\n2026-05-23 20:44:02,531 [INFO] step=2640/8000 sft=0.0000 l2=0.001509 total=0.0002 lr=3.44e-05 elapsed=24340s\\\\n2026-05-23 20:45:35,286 [INFO] step=2650/8000 sft=0.0000 l2=0.001522 total=0.0002 lr=3.43e-05 elapsed=24433s\\\\n2026-05-23 20:47:09,247 [INFO] step=2660/8000 sft=0.0000 l2=0.001532 total=0.0002 lr=3.42e-05 elapsed=24527s\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-23 20:03:46,111 [INFO] step=2380/8000 sft=0.0000 l2=0.001329 total=0.0001 lr=3.60e-05 elapsed=21924s\\n2026-05-23 20:05:18,017 [INFO] step=2390/8000 sft=0.0000 l2=0.001354 total=0.0001 lr=3.60e-05 elapsed=22016s\\n2026-05-23 20:06:51,351 [INFO] step=2400/8000 sft=0.0000 l2=0.001495 total=0.0002 lr=3.59e-05 elapsed=22109s\\n2026-05-23 20:08:25,816 [INFO] step=2410/8000 sft=0.0000 l2=0.001417 total=0.0001 lr=3.58e-05 elapsed=22203s\\n2026-05-23 20:09:58,503 [INFO] step=2420/8000 sft=0.0000 l2=0.001478 total=0.0002 lr=3.58e-05 elapsed=22296s\\n2026-05-23 20:11:31,094 [INFO] step=2430/8000 sft=0.0000 l2=0.001464 total=0.0002 lr=3.57e-05 elapsed=22389s\\n2026-05-23 20:13:04,278 [INFO] step=2440/8000 sft=0.0000 l2=0.001508 total=0.0002 lr=3.56e-05 elapsed=22482s\\n2026-05-23 20:14:37,633 [INFO] step=2450/8000 sft=0.0000 l2=0.001476 total=0.0002 lr=3.56e-05 elapsed=22575s\\n2026-05-23 20:16:10,149 [INFO] step=2460/8000 sft=0.0000 l2=0.001459 total=0.0002 lr=3.55e-05 elapsed=22668s\\n2026-05-23 20:17:42,677 [INFO] step=2470/8000 sft=0.0000 l2=0.001512 total=0.0002 lr=3.54e-05 elapsed=22760s\\n2026-05-23 20:19:14,914 [INFO] step=2480/8000 sft=0.0000 l2=0.001592 total=0.0002 lr=3.54e-05 elapsed=22853s\\n2026-05-23 20:20:48,265 [INFO] step=2490/8000 sft=0.0000 l2=0.001569 total=0.0002 lr=3.53e-05 elapsed=22946s\\n2026-05-23 20:22:21,524 [INFO] step=2500/8000 sft=0.0000 l2=0.001522 total=0.0002 lr=3.53e-05 elapsed=23039s\\n2026-05-23 20:22:22,427 [INFO] Saved checkpoint: /root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout/checkpoint-2500\\n2026-05-23 20:23:55,003 [INFO] step=2510/8000 sft=0.0000 l2=0.001562 total=0.0002 lr=3.52e-05 elapsed=23133s\\n2026-05-23 20:25:27,547 [INFO] step=2520/8000 sft=0.0000 l2=0.001648 total=0.0002 lr=3.51e-05 elapsed=23225s\\n2026-05-23 20:27:01,808 [INFO] step=2530/8000 sft=0.0000 l2=0.001689 total=0.0002 lr=3.51e-05 elapsed=23319s\\n2026-05-23 20:28:35,430 [INFO] step=2540/8000 sft=0.0000 l2=0.001662 total=0.0002 lr=3.50e-05 elapsed=23413s\\n2026-05-23 20:30:08,632 [INFO] step=2550/8000 sft=0.0000 l2=0.001587 total=0.0002 lr=3.49e-05 elapsed=23506s\\n2026-05-23 20:31:41,004 [INFO] step=2560/8000 sft=0.0000 l2=0.001641 total=0.0002 lr=3.49e-05 elapsed=23599s\\n2026-05-23 20:33:13,189 [INFO] step=2570/8000 sft=0.0000 l2=0.001664 total=0.0002 lr=3.48e-05 elapsed=23691s\\n2026-05-23 20:34:45,372 [INFO] step=2580/8000 sft=0.0000 l2=0.001594 total=0.0002 lr=3.47e-05 elapsed=23783s\\n2026-05-23 20:36:18,120 [INFO] step=2590/8000 sft=0.0000 l2=0.001738 total=0.0002 lr=3.47e-05 elapsed=23876s\\n2026-05-23 20:37:50,330 [INFO] step=2600/8000 sft=0.0000 l2=0.001687 total=0.0002 lr=3.46e-05 elapsed=23968s\\n2026-05-23 20:39:23,214 [INFO] step=2610/8000 sft=0.0000 l2=0.001746 total=0.0002 lr=3.46e-05 elapsed=24061s\\n2026-05-23 20:40:56,352 [INFO] step=2620/8000 sft=0.0000 l2=0.001719 total=0.0002 lr=3.45e-05 elapsed=24154s\\n2026-05-23 20:42:29,681 [INFO] step=2630/8000 sft=0.0000 l2=0.001733 total=0.0002 lr=3.44e-05 elapsed=24247s\\n2026-05-23 20:44:02,531 [INFO] step=2640/8000 sft=0.0000 l2=0.001509 total=0.0002 lr=3.44e-05 elapsed=24340s\\n2026-05-23 20:45:35,286 [INFO] step=2650/8000 sft=0.0000 l2=0.001522 total=0.0002 lr=3.43e-05 elapsed=24433s\\n2026-05-23 20:47:09,247 [INFO] step=2660/8000 sft=0.0000 l2=0.001532 total=0.0002 lr=3.42e-05 elapsed=24527s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BjHB2PPHSJ6VBkgTZxXW43",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29046",
+                "command": "find /root -maxdepth 4 -type d -name \"*len512*\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "595924a9-0211-4c0e-b46e-7442b4cb980b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015ZVtpMx4vvVrAMmvgeVJag",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2575,
+                "cache_read_input_tokens": 24876,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2575
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T12:48:10.503Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BjHB2PPHSJ6VBkgTZxXW43",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/contrastive_entrain_calib/outputs/exp003_len512_r3only\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "48f98333-de8d-47e5-a959-66c6569f89dc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/contrastive_entrain_calib/outputs/exp003_len512_r3only\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/contrastive_entrain_calib/outputs/exp003_len512_r3only\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.47}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Nss7UvqH8JeN2UZP22zQHD",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29046",
+                "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/contrastive_entrain_calib/outputs/exp003_len512_r3only/checkpoint-500/trainer_state.json')); print(f'step={d[\\\"global_step\\\"]}, epoch={d.get(\\\"epoch\\\",\\\"?\\\")}')\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "958fcdcd-b3c2-4d6b-8439-628d261edc6e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012jdoF5GQuZaCJKsNQwHihM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2987,
+                "cache_read_input_tokens": 27451,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2987
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T12:48:17.688Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Nss7UvqH8JeN2UZP22zQHD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "6bba6ed9-bd34-4cc0-98e8-04b754eae709",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Xsez2LkVMpTBYHBhWyD2bE",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29046",
+                "command": "find /root/autodl-tmp/contrastive_entrain_calib/outputs/exp003_len512_r3only -maxdepth 1 -type d -name \"checkpoint-*\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "d9c614fc-a3f8-4ef9-b2e9-be68b41cce42",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012jdoF5GQuZaCJKsNQwHihM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2987,
+                "cache_read_input_tokens": 27451,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2987
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T12:48:19.683Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Xsez2LkVMpTBYHBhWyD2bE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/contrastive_entrain_calib/outputs/exp003_len512_r3only/checkpoint-500\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "5fb9f2ed-5eef-4524-93ea-3ee2e1e96553",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/contrastive_entrain_calib/outputs/exp003_len512_r3only/checkpoint-500\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/contrastive_entrain_calib/outputs/exp003_len512_r3only/checkpoint-500\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LoKo9fCb1AE8jEg76FVH6V",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29046",
+                "command": "find /root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout -maxdepth 1 -type d -name \"checkpoint-*\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "1932f46b-1411-4b70-8711-3b0b89f1b721",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012jdoF5GQuZaCJKsNQwHihM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2987,
+                "cache_read_input_tokens": 27451,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2987
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T12:48:20.634Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LoKo9fCb1AE8jEg76FVH6V",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout/checkpoint-500\\\\n/root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout/checkpoint-1000\\\\n/root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout/checkpoint-1500\\\\n/root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout/checkpoint-2000\\\\n/root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout/checkpoint-2500\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "db93b13f-9466-417e-9ee9-c74b2024fae4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout/checkpoint-500\\\\n/root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout/checkpoint-1000\\\\n/root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout/checkpoint-1500\\\\n/root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout/checkpoint-2000\\\\n/root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout/checkpoint-2500\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout/checkpoint-500\\n/root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout/checkpoint-1000\\n/root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout/checkpoint-1500\\n/root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout/checkpoint-2000\\n/root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout/checkpoint-2500\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01X6itmSgF2zfTqmD5tsmrT7",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29046",
+                "command": "find /root -name \"*.log\" -path \"*len512*\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "8097ffd2-6df1-4258-b662-3cb205166e2f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012jdoF5GQuZaCJKsNQwHihM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2987,
+                "cache_read_input_tokens": 27451,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2987
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-23T12:48:21.417Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01X6itmSgF2zfTqmD5tsmrT7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/contrastive_entrain_calib/logs/exp003_len512.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "4b0160df-ee47-47fa-a332-ab50ae597c34",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/contrastive_entrain_calib/logs/exp003_len512.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/contrastive_entrain_calib/logs/exp003_len512.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013fLHfHrZ4jS39j3vvGSvta",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29046",
+                "command": "tail -30 /root/contrastive_entrain_calib/logs/exp003_len512.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "acbd2532-8adb-459e-9e11-fb4a2fc5d0da",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015bSm8BmGACE73Yus3HqHYz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1193,
+                "cache_read_input_tokens": 30438,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1193
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-23T12:48:24.122Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013fLHfHrZ4jS39j3vvGSvta",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 10%|▉         | 761/8000 [10:07:19<94:16:55, 46.89s/it]2026-05-23 20:25:43,111 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 762/8000 [10:08:07<94:45:03, 47.13s/it]2026-05-23 20:26:32,833 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 763/8000 [10:08:57<96:20:08, 47.92s/it]2026-05-23 20:27:19,449 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 764/8000 [10:09:42<94:44:55, 47.14s/it]2026-05-23 20:28:07,520 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 765/8000 [10:10:32<96:22:47, 47.96s/it]2026-05-23 20:28:54,827 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 766/8000 [10:11:18<94:59:53, 47.28s/it]2026-05-23 20:29:41,183 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 767/8000 [10:12:04<94:33:26, 47.06s/it]2026-05-23 20:30:27,134 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 768/8000 [10:12:50<93:28:44, 46.53s/it]2026-05-23 20:31:14,929 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 769/8000 [10:13:38<94:50:09, 47.21s/it]2026-05-23 20:32:00,549 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 770/8000 [10:14:23<93:14:42, 46.43s/it]\\\\r                                                        \\\\r\\\\r 10%|▉         | 770/8000 [10:14:23<93:14:42, 46.43s/it]2026-05-23 20:32:47,545 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 771/8000 [10:15:10<93:45:12, 46.69s/it]2026-05-23 20:33:33,656 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 772/8000 [10:15:56<93:24:05, 46.52s/it]2026-05-23 20:34:17,579 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 773/8000 [10:16:39<91:09:37, 45.41s/it]2026-05-23 20:35:01,679 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 774/8000 [10:17:24<90:54:46, 45.29s/it]2026-05-23 20:35:47,128 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 775/8000 [10:18:10<91:15:21, 45.47s/it]2026-05-23 20:36:33,747 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 776/8000 [10:18:57<92:10:18, 45.93s/it]2026-05-23 20:37:20,386 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 777/8000 [10:19:43<91:55:12, 45.81s/it]2026-05-23 20:38:08,291 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 778/8000 [10:20:33<94:26:54, 47.08s/it]2026-05-23 20:38:55,826 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 779/8000 [10:21:18<93:31:40, 46.63s/it]2026-05-23 20:39:41,052 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 780/8000 [10:22:03<92:34:39, 46.16s/it]\\\\r                                                        \\\\r\\\\r 10%|▉         | 780/8000 [10:22:03<92:34:39, 46.16s/it]2026-05-23 20:40:27,458 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 781/8000 [10:22:50<92:55:46, 46.34s/it]2026-05-23 20:41:15,654 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 782/8000 [10:23:40<95:14:17, 47.50s/it]2026-05-23 20:42:04,043 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 783/8000 [10:24:27<94:46:13, 47.27s/it]2026-05-23 20:42:49,820 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 784/8000 [10:25:13<94:00:54, 46.90s/it]2026-05-23 20:43:35,812 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 785/8000 [10:25:59<93:19:57, 46.57s/it]2026-05-23 20:44:20,886 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 786/8000 [10:26:43<92:05:28, 45.96s/it]2026-05-23 20:45:07,038 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 787/8000 [10:27:30<92:09:05, 45.99s/it]2026-05-23 20:45:55,024 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 788/8000 [10:28:18<93:45:57, 46.80s/it]2026-05-23 20:46:44,023 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 789/8000 [10:29:08<95:33:21, 47.71s/it]2026-05-23 20:47:31,457 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 790/8000 [10:29:55<95:08:54, 47.51s/it]\\\\r                                                        \\\\r\\\\r 10%|▉         | 790/8000 [10:29:55<95:08:54, 47.51s/it]2026-05-23 20:48:17,649 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "0a21313e-3001-4641-8a63-82c076a11514",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r 10%|▉         | 761/8000 [10:07:19<94:16:55, 46.89s/it]2026-05-23 20:25:43,111 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 762/8000 [10:08:07<94:45:03, 47.13s/it]2026-05-23 20:26:32,833 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 763/8000 [10:08:57<96:20:08, 47.92s/it]2026-05-23 20:27:19,449 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 764/8000 [10:09:42<94:44:55, 47.14s/it]2026-05-23 20:28:07,520 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 765/8000 [10:10:32<96:22:47, 47.96s/it]2026-05-23 20:28:54,827 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 766/8000 [10:11:18<94:59:53, 47.28s/it]2026-05-23 20:29:41,183 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 767/8000 [10:12:04<94:33:26, 47.06s/it]2026-05-23 20:30:27,134 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 768/8000 [10:12:50<93:28:44, 46.53s/it]2026-05-23 20:31:14,929 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 769/8000 [10:13:38<94:50:09, 47.21s/it]2026-05-23 20:32:00,549 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 770/8000 [10:14:23<93:14:42, 46.43s/it]\\\\r                                                        \\\\r\\\\r 10%|▉         | 770/8000 [10:14:23<93:14:42, 46.43s/it]2026-05-23 20:32:47,545 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 771/8000 [10:15:10<93:45:12, 46.69s/it]2026-05-23 20:33:33,656 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 772/8000 [10:15:56<93:24:05, 46.52s/it]2026-05-23 20:34:17,579 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 773/8000 [10:16:39<91:09:37, 45.41s/it]2026-05-23 20:35:01,679 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 774/8000 [10:17:24<90:54:46, 45.29s/it]2026-05-23 20:35:47,128 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 775/8000 [10:18:10<91:15:21, 45.47s/it]2026-05-23 20:36:33,747 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 776/8000 [10:18:57<92:10:18, 45.93s/it]2026-05-23 20:37:20,386 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 777/8000 [10:19:43<91:55:12, 45.81s/it]2026-05-23 20:38:08,291 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 778/8000 [10:20:33<94:26:54, 47.08s/it]2026-05-23 20:38:55,826 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 779/8000 [10:21:18<93:31:40, 46.63s/it]2026-05-23 20:39:41,052 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 780/8000 [10:22:03<92:34:39, 46.16s/it]\\\\r                                                        \\\\r\\\\r 10%|▉         | 780/8000 [10:22:03<92:34:39, 46.16s/it]2026-05-23 20:40:27,458 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 781/8000 [10:22:50<92:55:46, 46.34s/it]2026-05-23 20:41:15,654 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 782/8000 [10:23:40<95:14:17, 47.50s/it]2026-05-23 20:42:04,043 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 783/8000 [10:24:27<94:46:13, 47.27s/it]2026-05-23 20:42:49,820 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 784/8000 [10:25:13<94:00:54, 46.90s/it]2026-05-23 20:43:35,812 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 785/8000 [10:25:59<93:19:57, 46.57s/it]2026-05-23 20:44:20,886 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 786/8000 [10:26:43<92:05:28, 45.96s/it]2026-05-23 20:45:07,038 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 787/8000 [10:27:30<92:09:05, 45.99s/it]2026-05-23 20:45:55,024 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 788/8000 [10:28:18<93:45:57, 46.80s/it]2026-05-23 20:46:44,023 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 789/8000 [10:29:08<95:33:21, 47.71s/it]2026-05-23 20:47:31,457 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\\r 10%|▉         | 790/8000 [10:29:55<95:08:54, 47.51s/it]\\\\r                                                        \\\\r\\\\r 10%|▉         | 790/8000 [10:29:55<95:08:54, 47.51s/it]2026-05-23 20:48:17,649 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\r 10%|▉         | 761/8000 [10:07:19<94:16:55, 46.89s/it]2026-05-23 20:25:43,111 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 762/8000 [10:08:07<94:45:03, 47.13s/it]2026-05-23 20:26:32,833 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 763/8000 [10:08:57<96:20:08, 47.92s/it]2026-05-23 20:27:19,449 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 764/8000 [10:09:42<94:44:55, 47.14s/it]2026-05-23 20:28:07,520 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 765/8000 [10:10:32<96:22:47, 47.96s/it]2026-05-23 20:28:54,827 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 766/8000 [10:11:18<94:59:53, 47.28s/it]2026-05-23 20:29:41,183 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 767/8000 [10:12:04<94:33:26, 47.06s/it]2026-05-23 20:30:27,134 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 768/8000 [10:12:50<93:28:44, 46.53s/it]2026-05-23 20:31:14,929 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 769/8000 [10:13:38<94:50:09, 47.21s/it]2026-05-23 20:32:00,549 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 770/8000 [10:14:23<93:14:42, 46.43s/it]\\r                                                        \\r\\r 10%|▉         | 770/8000 [10:14:23<93:14:42, 46.43s/it]2026-05-23 20:32:47,545 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 771/8000 [10:15:10<93:45:12, 46.69s/it]2026-05-23 20:33:33,656 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 772/8000 [10:15:56<93:24:05, 46.52s/it]2026-05-23 20:34:17,579 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 773/8000 [10:16:39<91:09:37, 45.41s/it]2026-05-23 20:35:01,679 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 774/8000 [10:17:24<90:54:46, 45.29s/it]2026-05-23 20:35:47,128 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 775/8000 [10:18:10<91:15:21, 45.47s/it]2026-05-23 20:36:33,747 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 776/8000 [10:18:57<92:10:18, 45.93s/it]2026-05-23 20:37:20,386 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 777/8000 [10:19:43<91:55:12, 45.81s/it]2026-05-23 20:38:08,291 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 778/8000 [10:20:33<94:26:54, 47.08s/it]2026-05-23 20:38:55,826 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 779/8000 [10:21:18<93:31:40, 46.63s/it]2026-05-23 20:39:41,052 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 780/8000 [10:22:03<92:34:39, 46.16s/it]\\r                                                        \\r\\r 10%|▉         | 780/8000 [10:22:03<92:34:39, 46.16s/it]2026-05-23 20:40:27,458 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 781/8000 [10:22:50<92:55:46, 46.34s/it]2026-05-23 20:41:15,654 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 782/8000 [10:23:40<95:14:17, 47.50s/it]2026-05-23 20:42:04,043 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 783/8000 [10:24:27<94:46:13, 47.27s/it]2026-05-23 20:42:49,820 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 784/8000 [10:25:13<94:00:54, 46.90s/it]2026-05-23 20:43:35,812 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 785/8000 [10:25:59<93:19:57, 46.57s/it]2026-05-23 20:44:20,886 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 786/8000 [10:26:43<92:05:28, 45.96s/it]2026-05-23 20:45:07,038 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 787/8000 [10:27:30<92:09:05, 45.99s/it]2026-05-23 20:45:55,024 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 788/8000 [10:28:18<93:45:57, 46.80s/it]2026-05-23 20:46:44,023 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 789/8000 [10:29:08<95:33:21, 47.71s/it]2026-05-23 20:47:31,457 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\\r 10%|▉         | 790/8000 [10:29:55<95:08:54, 47.51s/it]\\r                                                        \\r\\r 10%|▉         | 790/8000 [10:29:55<95:08:54, 47.51s/it]2026-05-23 20:48:17,649 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 监控报告\n\n### exp-004-heldout (GPU0)\n| 指标 | 值 |\n|------|-----|\n| 当前 step | **2660 / 8000** (33.3%) |\n| 最新 checkpoint | checkpoint-2500 |\n| 速度 | ~93s / 10 steps → **9.3s/step** |\n| 已用时间 | ~6.8h (24527s) |\n| 剩余 steps | 5340 |\n| **ETA 完成** | **~13.8h → 约 5/24 10:30** |\n| 状态 | 正常，sft loss=0, l2 loss ~0.0015-0.0017 |\n\n### exp-003-len512-v3 (GPU1)\n| 指标 | 值 |\n|------|-----|\n| 当前 step | **790 / 8000** (9.9%) |\n| 最新 checkpoint | checkpoint-500 |\n| 速度 | **~46.5s/step** (略快于之前的 49.8s) |\n| 已用时间 | ~10.5h |\n| 剩余 steps | 7210 |\n| **ETA 完成** | **~93h → 约 5/27 18:00** |\n| 状态 | 正常运行，PID 553700，R3-only 模式（d_syc not loaded） |\n\n### GPU & 磁盘\n| 资源 | 状态 |\n|------|------|\n| GPU0 | 45°C, 178W/600W, 23GB/98GB VRAM, 33% util |\n| GPU1 | 65°C, 400W/600W, 41GB/98GB VRAM, 95% util |\n| 根分区 | 25G/30G used (**82%**, 偏高) |\n| 数据盘 | 75G/250G used (30%, 充裕) |\n\n**注意**: 根分区 82% 使用率偏高，建议关注是否有不必要的文件可以清理。exp-003 预计还需约 4 天才能完成。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "uuid": "9717d6ab-6350-4e14-9ed7-52d1153a5627",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HYe1eHmP2inn4FwNd2DG2n",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2618,
+                "cache_read_input_tokens": 31631,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2618
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 监控报告\n\n### exp-004-heldout (GPU0)\n| 指标 | 值 |\n|------|-----|\n| 当前 step | **2660 / 8000** (33.3%) |\n| 最新 checkpoint | checkpoint-2500 |\n| 速度 | ~93s / 10 steps → **9.3s/step** |\n| 已用时间 | ~6.8h (24527s) |\n| 剩余 steps | 5340 |\n| **ETA 完成** | **~13.8h → 约 5/24 10:30** |\n| 状态 | 正常，sft loss=0, l2 loss ~0.0015-0.0017 |\n\n### exp-003-len512-v3 (GPU1)\n| 指标 | 值 |\n|------|-----|\n| 当前 step | **790 / 8000** (9.9%) |\n| 最新 checkpoint | checkpoint-500 |\n| 速度 | **~46.5s/step** (略快于之前的 49.8s) |\n| 已用时间 | ~10.5h |\n| 剩余 steps | 7210 |\n| **ETA 完成** | **~93h → 约 5/27 18:00** |\n| 状态 | 正常运行，PID 553700，R3-only 模式（d_syc not loaded） |\n\n### GPU & 磁盘\n| 资源 | 状态 |\n|------|------|\n| GPU0 | 45°C, 178W/600W, 23GB/98GB VRAM, 33% util |\n| GPU1 | 65°C, 400W/600W, 41GB/98GB VRAM, 95% util |\n| 根分区 | 25G/30G used (**82%**, 偏高) |\n| 数据盘 | 75G/250G used (30%, 充裕) |\n\n**注意**: 根分区 82% 使用率偏高，建议关注是否有不必要的文件可以清理。exp-003 预计还需约 4 天才能完成。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 55681,
+            "duration_api_ms": 54379,
+            "num_turns": 14,
+            "stop_reason": "end_turn",
+            "session_id": "be38b7c7-de57-4817-8dc9-43153941098e",
+            "total_cost_usd": 0.27196750000000003,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 22408,
+              "cache_read_input_tokens": 150453,
+              "output_tokens": 2200,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 22408,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 586,
+                  "cache_read_input_tokens": 31631,
+                  "cache_creation_input_tokens": 2618,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2618
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1561,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0016460000000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 2200,
+                "cacheReadInputTokens": 150453,
+                "cacheCreationInputTokens": 22408,
+                "webSearchRequests": 0,
+                "costUSD": 0.2703215,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "4e2e612d-a088-4410-8254-302b017cf931"
+          },
+          "id": "event-000034"
+        }
+      ],
+      "message_count": 34
+    }
+  ],
+  "readable_path": "readable/worker-executions/monitor-29046-training-status.md"
+}

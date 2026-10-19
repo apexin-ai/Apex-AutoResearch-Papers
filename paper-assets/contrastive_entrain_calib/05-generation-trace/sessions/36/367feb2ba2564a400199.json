@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "367feb2ba2564a400199",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "paper figure fig layer auroc",
+  "task_key": "worker_paper_figure_fig_layer_auroc_20260520T080959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_layer_auroc_20260520T080959.log",
+    "occurrence": 1,
+    "bytes": 610127,
+    "sha256": "0bd19a407886dc4371e4764b12e0228769497c62ff7a00a2c3f2f6d387096f42"
+  },
+  "statistics": {
+    "messages": 260,
+    "user_turns": 0,
+    "tool_calls": 94,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 66,
+      "tool_call": 94,
+      "tool_result": 94,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 260,
+      "chunks": [
+        {
+          "path": "367feb2ba2564a400199-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "367feb2ba2564a400199-part-0002.json",
+          "message_count": 80
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-figure-fig-layer-auroc.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6ce1fa73af8147421dc",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp004 batch4 submit",
+  "task_key": "worker_eval_exp004-batch4-submit_20260520T154112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp004-batch4-submit_20260520T154112_result.json",
+    "occurrence": 1,
+    "bytes": 521,
+    "sha256": "443ac9343d793f822fc86a491fad46ad672409d74b4ebab6737e9d408e0395e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 tmux session 全部确认运行中。\n\n### 提交汇总\n\n| exp_id | Checkpoint | GPU | PID |\n|--------|-----------|-----|-----|\n| exp-004-eval-ckpt4500 | ckpt-4500 | GPU 0 | 601614 |\n| exp-004-eval-ckpt5500 | ckpt-5500 | GPU 2 | 601752 |\n| exp-004-eval-ckpt6500 | ckpt-6500 | GPU 3 | 601831 |\n| exp-004-eval-ckpt7500 | ckpt-7500 | GPU 1 | 601971 |\n\nGPU 1 上的 ckpt-1500 eval 已完成，ckpt-7500 也一并提交成功。4 张卡全部在跑，16/16 checkpoint eval 全部提交完毕。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp004-batch4-submit.md"
+}

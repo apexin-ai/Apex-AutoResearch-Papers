@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "afa65099606fc4c98f79",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval heldout ckpt2000 check and run",
+  "task_key": "worker_eval_heldout-ckpt2000-check-and-run_20260523T105048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_heldout-ckpt2000-check-and-run_20260523T105048_result.json",
+    "occurrence": 1,
+    "bytes": 702,
+    "sha256": "0097a073a35d4007949939cdc33a3073714bcc3d326977521d951db1504cdc84"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**训练状态**：exp-004-heldout 正在运行中，当前 step **1910/8000**（截至日志最后条目 18:50:38 UTC）。\n\n**已有 checkpoints**：500, 1000, 1500（在 `/root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout/`）\n\n**checkpoint-2000 尚未生成。**\n\n**ETA 估算**：\n- 每 10 步约 91-93 秒（~9.2 秒/步）\n- 距 step 2000 还需 90 步 → 约 **14 分钟**\n- 预计 checkpoint-2000 生成时间：**~19:05 UTC**（May 23）\n\n训练 loss 稳定在 sft=0.0000, l2≈0.002, total≈0.0002，与之前 plateau 一致。\n\n需要等 checkpoint-2000 生成后再跑 eval。要我过 15 分钟后再检查并自动跑 eval 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-heldout-ckpt2000-check-and-run.md"
+}

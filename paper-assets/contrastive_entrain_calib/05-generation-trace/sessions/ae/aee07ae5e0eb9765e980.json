@@ -1,0 +1,660 @@
+{
+  "schema_version": "1.0",
+  "id": "aee07ae5e0eb9765e980",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "code validate calibration v2",
+  "task_key": "worker_code_validate_calibration_v2_20260518T094636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_validate_calibration_v2_20260518T094636.log",
+    "occurrence": 1,
+    "bytes": 96206,
+    "sha256": "11c84338397bbaf515cadcba6c47beb0d2d1ef47231dc87dd989b50e9d28d99a"
+  },
+  "statistics": {
+    "messages": 14,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 3,
+      "tool_result": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+                "session_id": "46f8a510-e818-459a-9240-3b2fac95d16b",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "0fb3af9a-a6c0-44d6-80a2-6cbfeda651da",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779103800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "fbd50635-dc2f-47fb-ba09-b8591572f4dc",
+                "session_id": "46f8a510-e818-459a-9240-3b2fac95d16b"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the v1 validation script first."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "46f8a510-e818-459a-9240-3b2fac95d16b",
+            "uuid": "7819c8d3-ad94-43f3-bf9b-51f7cc2f2bcd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018RVMnFicTgzEvx7AMDs4YA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13136,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13136
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014eft5yvbadMCsp6RPxGtuL",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/validate_calibration_data.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "46f8a510-e818-459a-9240-3b2fac95d16b",
+            "uuid": "369410a5-c6c1-4927-97aa-dedb0d29c922",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018RVMnFicTgzEvx7AMDs4YA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13136,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13136
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T09:46:46.109Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014eft5yvbadMCsp6RPxGtuL",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"Validate multi-turn calibration dataset: structure, pairing, distributions, and text quality.\"\"\"\n3\t\n4\tfrom __future__ import annotations\n5\t\n6\timport argparse\n7\timport json\n8\timport os\n9\timport sys\n10\tfrom collections import Counter, defaultdict\n11\tfrom pathlib import Path\n12\tfrom typing import Any\n13\t\n14\tVALID_CONDITIONS = {\"warranted_revision\", \"sycophantic_capitulation\"}\n15\tVALID_DOMAINS = {\"math\", \"science\", \"geography\", \"history\", \"commonsense\"}\n16\tVALID_EVIDENCE = {\"strong\", \"medium\", \"weak\"}\n17\tREQUIRED_FIELDS = {\"id\", \"condition\", \"domain\", \"ground_truth\", \"evidence_strength\", \"correction_turn\", \"turns\"}\n18\t\n19\tMIN_CONTENT_LENGTH = 10\n20\tMIN_PAIRS_PER_DOMAIN = 50\n21\tEXPECTED_TURN3_RATIO = 0.70\n22\tTEMPLATE_THRESHOLD = 0.3\n23\t\n24\t\n25\tclass ValidationResult:\n26\t    \"\"\"Accumulates errors, warnings, and statistics.\"\"\"\n27\t\n28\t    def __init__(self) -> None:\n29\t        self.errors: list[dict[str, str]] = []\n30\t        self.warnings: list[dict[str, str]] = []\n31\t        self.stats: dict[str, Any] = {}\n32\t\n33\t    def error(self, pair_id: str, msg: str) -> None:\n34\t        self.errors.append({\"id\": pair_id, \"message\": msg})\n35\t\n36\t    def warn(self, pair_id: str, msg: str) -> None:\n37\t        self.warnings.append({\"id\": pair_id, \"message\": msg})\n38\t\n39\t    @property\n40\t    def passed(self) -> bool:\n41\t        return len(self.errors) == 0 and len(self.warnings) == 0\n42\t\n43\t    @property\n44\t    def exit_code(self) -> int:\n45\t        if self.errors:\n46\t            return 2\n47\t        if self.warnings:\n48\t            return 1\n49\t        return 0\n50\t\n51\t    def to_dict(self) -> dict[str, Any]:\n52\t        return {\n53\t            \"status\": \"PASS\" if self.passed else (\"ERROR\" if self.errors else \"WARNING\"),\n54\t            \"error_count\": len(self.errors),\n55\t            \"warning_count\": len(self.warnings),\n56\t            \"errors\": self.errors,\n57\t            \"warnings\": self.warnings,\n58\t            \"statistics\": self.stats,\n59\t        }\n60\t\n61\t\n62\tdef load_jsonl(path: Path, result: ValidationResult) -> list[dict[str, Any]]:\n63\t    \"\"\"Load JSONL file, recording parse errors.\"\"\"\n64\t    records: list[dict[str, Any]] = []\n65\t    with open(path, encoding=\"utf-8\") as f:\n66\t        for line_num, line in enumerate(f, 1):\n67\t            line = line.strip()\n68\t            if not line:\n69\t                continue\n70\t            try:\n71\t                obj = json.loads(line)\n72\t                obj[\"_line\"] = line_num\n73\t                records.append(obj)\n74\t            except json.JSONDecodeError as e:\n75\t                result.error(f\"line:{line_num}\", f\"JSON parse error: {e}\")\n76\t    return records\n77\t\n78\t\n79\tdef check_structure(records: list[dict[str, Any]], result: ValidationResult) -> None:\n80\t    \"\"\"Validate required fields, enum values, turn count and role alternation.\"\"\"\n81\t    for rec in records:\n82\t        pid = rec.get(\"id\", f\"line:{rec.get('_line', '?')}\")\n83\t\n84\t        missing = REQUIRED_FIELDS - rec.keys()\n85\t        if missing:\n86\t            result.error(pid, f\"Missing fields: {sorted(missing)}\")\n87\t            continue\n88\t\n89\t        if rec[\"condition\"] not in VALID_CONDITIONS:\n90\t            result.error(pid, f\"Invalid condition: {rec['condition']}\")\n91\t        if rec[\"domain\"] not in VALID_DOMAINS:\n92\t            result.error(pid, f\"Invalid domain: {rec['domain']}\")\n93\t        if rec[\"evidence_strength\"] not in VALID_EVIDENCE:\n94\t            result.error(pid, f\"Invalid evidence_strength: {rec['evidence_strength']}\")\n95\t\n96\t        turns = rec.get(\"turns\", [])\n97\t        ct = rec.get(\"correction_turn\", 3)\n98\t        if not isinstance(ct, int) or ct < 1:\n99\t            result.error(pid, f\"Invalid correction_turn: {ct}\")\n100\t            continue\n101\t\n102\t        expected_min_turns = ct + 1\n103\t        if len(turns) < expected_min_turns:\n104\t            result.error(pid, f\"Expected >= {expected_min_turns} turns (correction_turn={ct}), got {len(turns)}\")\n105\t\n106\t        if len(turns) >= 4:\n107\t            min_turns_check = min(len(turns), expected_min_turns + 4)\n108\t        else:\n109\t            min_turns_check = len(turns)\n110\t        expected_roles = [\"user\", \"assistant\"] * ((min_turns_check + 1) // 2)\n111\t        for i in range(min(len(turns), len(expected_roles))):\n112\t            if turns[i].get(\"role\") != expected_roles[i]:\n113\t                result.error(pid, f\"Turn {i+1} role should be '{expected_roles[i]}', got '{turns[i].get('role')}'\")\n114\t                break\n115\t\n116\t\n117\tdef check_pairing(records: list[dict[str, Any]], result: ValidationResult) -> dict[str, list[dict[str, Any]]]:\n118\t    \"\"\"Validate that each pair_id has exactly two records with matching metadata and Turn 1.\"\"\"\n119\t    groups: dict[str, list[dict[str, Any]]] = defaultdict(list)\n120\t    for rec in records:\n121\t        pid = rec.get(\"id\", f\"line:{rec.get('_line', '?')}\")\n122\t        groups[pid].append(rec)\n123\t\n124\t    for pid, recs in groups.items():\n125\t        if len(recs) != 2:\n126\t            result.error(pid, f\"Expected 2 records per pair_id, got {len(recs)}\")\n127\t            continue\n128\t\n129\t        conditions = {r[\"condition\"] for r in recs if \"condition\" in r}\n130\t        if conditions != VALID_CONDITIONS:\n131\t            result.error(pid, f\"Pair should have both conditions, got {conditions}\")\n132\t\n133\t        if recs[0].get(\"domain\") != recs[1].get(\"domain\"):\n134\t            result.error(pid, f\"Domain mismatch: {recs[0].get('domain')} vs {recs[1].get('domain')}\")\n135\t\n136\t        if recs[0].get(\"ground_truth\") != recs[1].get(\"ground_truth\"):\n137\t            result.error(pid, f\"ground_truth mismatch between conditions\")\n138\t\n139\t        turns_a = recs[0].get(\"turns\", [])\n140\t        turns_b = recs[1].get(\"turns\", [])\n141\t        if turns_a and turns_b:\n142\t            t1_a = turns_a[0].get(\"content\", \"\")\n143\t            t1_b = turns_b[0].get(\"content\", \"\")\n144\t            if t1_a != t1_b:\n145\t                result.error(pid, \"Turn 1 content differs between paired conditions\")\n146\t\n147\t    return dict(groups)\n148\t\n149\t\n150\tdef compute_distributions(records: list[dict[str, Any]], groups: dict[str, list[dict[str, Any]]], result: ValidationResult) -> None:\n151\t    \"\"\"Compute and validate distributions across domain, evidence_strength, correction_turn, condition.\"\"\"\n152\t    domain_counter: Counter[str] = Counter()\n153\t    evidence_counter: Counter[str] = Counter()\n154\t    turn_counter: Counter[int] = Counter()\n155\t    condition_counter: Counter[str] = Counter()\n156\t    cross: Counter[tuple[str, str]] = Counter()\n157\t\n158\t    for rec in records:\n159\t        d = rec.get(\"domain\", \"unknown\")\n160\t        e = rec.get(\"evidence_strength\", \"unknown\")\n161\t        ct = rec.get(\"correction_turn\", -1)\n162\t        c = rec.get(\"condition\", \"unknown\")\n163\t        domain_counter[d] += 1\n164\t        evidence_counter[e] += 1\n165\t        turn_counter[ct] += 1\n166\t        condition_counter[c] += 1\n167\t        cross[(d, e)] += 1\n168\t\n169\t    num_pairs = len(groups)\n170\t    pair_domain_counter: Counter[str] = Counter()\n171\t    for pid, recs in groups.items():\n172\t        if recs:\n173\t            pair_domain_counter[recs[0].get(\"domain\", \"unknown\")] += 1\n174\t\n175\t    for d in VALID_DOMAINS:\n176\t        if pair_domain_counter[d] < MIN_PAIRS_PER_DOMAIN:\n177\t            result.warn(\"distribution\", f\"Domain '{d}' has {pair_domain_counter[d]} pairs (minimum {MIN_PAIRS_PER_DOMAIN})\")\n178\t\n179\t    total_records = len(records)\n180\t    if total_records > 0:\n181\t        turn3_count = turn_counter.get(3, 0)\n182\t        turn3_ratio = turn3_count / total_records\n183\t        if abs(turn3_ratio - EXPECTED_TURN3_RATIO) > 0.15:\n184\t            result.warn(\"distribution\", f\"correction_turn=3 ratio is {turn3_ratio:.1%}, expected ~{EXPECTED_TURN3_RATIO:.0%}\")\n185\t\n186\t    result.stats[\"distributions\"] = {\n187\t        \"total_records\": total_records,\n188\t        \"total_pairs\": num_pairs,\n189\t        \"by_domain\": dict(domain_counter.most_common()),\n190\t        \"by_domain_pairs\": dict(pair_domain_counter.most_common()),\n191\t        \"by_evidence_strength\": dict(evidence_counter.most_common()),\n192\t        \"by_correction_turn\": {str(k): v for k, v in sorted(turn_counter.items())},\n193\t        \"by_condition\": dict(condition_counter.most_common()),\n194\t        \"cross_domain_evidence\": {f\"{d}|{e}\": c for (d, e), c in sorted(cross.items())},\n195\t    }\n196\t\n197\t\n198\tdef check_text_quality(records: list[dict[str, Any]], result: ValidationResult, verbose: bool = False) -> None:\n199\t    \"\"\"Check for empty content, duplicate turns, turn lengths, and template patterns.\"\"\"\n200\t    turn_lengths: list[int] = []\n201\t    first_sentences: Counter[str] = Counter()\n202\t\n203\t    for rec in records:\n204\t        pid = rec.get(\"id\", f\"line:{rec.get('_line', '?')}\")\n205\t        turns = rec.get(\"turns\", [])\n206\t\n207\t        contents: list[str] = []\n208\t        for i, turn in enumerate(turns):\n209\t            content = turn.get(\"content\", \"\")\n210\t            contents.append(content)\n211\t            turn_lengths.append(len(content))\n212\t\n213\t            if not content or len(content.strip()) < MIN_CONTENT_LENGTH:\n214\t                result.warn(pid, f\"Turn {i+1} content too short ({len(content.strip())} chars)\")\n215\t\n216\t        seen = set()\n217\t        for i, c in enumerate(contents):\n218\t            if c in seen and len(c.strip()) > MIN_CONTENT_LENGTH:\n219\t                result.warn(pid, f\"Turn {i+1} duplicates an earlier turn in the same conversation\")\n220\t            seen.add(c)\n221\t\n222\t        if turns:\n223\t            first_line = turns[0].get(\"content\", \"\").split(\"\\n\")[0].strip()[:80]\n224\t            if first_line:\n225\t                first_sentences[first_line] += 1\n226\t\n227\t    if turn_lengths:\n228\t        avg_len = sum(turn_lengths) / len(turn_lengths)\n229\t        result.stats[\"text_quality\"] = {\n230\t            \"avg_turn_length_chars\": round(avg_len, 1),\n231\t            \"min_turn_length_chars\": min(turn_lengths),\n232\t            \"max_turn_length_chars\": max(turn_lengths),\n233\t            \"total_turns\": len(turn_lengths),\n234\t        }\n235\t    else:\n236\t        result.stats[\"text_quality\"] = {}\n237\t\n238\t    total_records = len(records)\n239\t    if total_records > 0:\n240\t        template_suspects = []\n241\t        for sentence, count in first_sentences.most_common(10):\n242\t            ratio = count / total_records\n243\t            if ratio > TEMPLATE_THRESHOLD and count > 5:\n244\t                template_suspects.append({\"text\": sentence, \"count\": count, \"ratio\": round(ratio, 3)})\n245\t        if template_suspects:\n246\t            result.warn(\"template\", f\"Possible template patterns detected in Turn 1 openings: {len(template_suspects)} patterns\")\n247\t            result.stats[\"text_quality\"][\"template_suspects\"] = template_suspects\n248\t\n249\t    # Confound prevention: check if response length differs systematically between conditions.\n250\t    # turns[1] = initial assistant answer (wrong in warranted_revision, correct in sycophantic_capitulation).\n251\t    # If wrong answers are systematically shorter, probing may capture length not sycophancy.\n252\t    initial_lengths: dict[str, list[int]] = defaultdict(list)\n253\t    post_correction_lengths: dict[str, list[int]] = defaultdict(list)\n254\t    for rec in records:\n255\t        condition = rec.get(\"condition\", \"\")\n256\t        turns = rec.get(\"turns\", [])\n257\t        correction_turn = rec.get(\"correction_turn\", 3)\n258\t        if condition in VALID_CONDITIONS and len(turns) >= 2:\n259\t            initial_lengths[condition].append(len(turns[1].get(\"content\", \"\")))\n260\t        # correction_turn is 1-indexed turn number; assistant response follows at that index\n261\t        resp_idx = correction_turn\n262\t        if condition in VALID_CONDITIONS and len(turns) > resp_idx:\n263\t            post_correction_lengths[condition].append(len(turns[resp_idx].get(\"content\", \"\")))\n264\t\n265\t    for label, lengths_by_cond, stat_key in [\n266\t        (\"initial assistant response (turns[1])\", initial_lengths, \"initial_response_length\"),\n267\t        (\"post-correction response\", post_correction_lengths, \"post_correction_response_length\"),\n268\t    ]:\n269\t        if all(lengths_by_cond.get(c) for c in VALID_CONDITIONS):\n270\t            avg_wr = sum(lengths_by_cond[\"warranted_revision\"]) / len(lengths_by_cond[\"warranted_revision\"])\n271\t            avg_sc = sum(lengths_by_cond[\"sycophantic_capitulation\"]) / len(lengths_by_cond[\"sycophantic_capitulation\"])\n272\t            result.stats[\"text_quality\"][stat_key] = {\n273\t                \"warranted_revision_avg\": round(avg_wr, 1),\n274\t                \"sycophantic_capitulation_avg\": round(avg_sc, 1),\n275\t            }\n276\t            if avg_wr + avg_sc > 0:\n277\t                diff_pct = abs(avg_wr - avg_sc) / ((avg_wr + avg_sc) / 2) * 100\n278\t                result.stats[\"text_quality\"][stat_key][\"diff_pct\"] = round(diff_pct, 1)\n279\t                if diff_pct > 20:\n280\t                    result.warn(\n281\t                        \"confound\",\n282\t                        f\"Response length confound in {label}: warranted_revision avg={avg_wr:.0f} chars, \"\n283\t                        f\"sycophantic_capitulation avg={avg_sc:.0f} chars (diff={diff_pct:.0f}%)\",\n284\t                    )\n285\t\n286\t\n287\tdef check_quality_with_llm(\n288\t    records: list[dict[str, Any]],\n289\t    groups: dict[str, list[dict[str, Any]]],\n290\t    result: ValidationResult,\n291\t    sample_size: int = 20,\n292\t    model: str = \"gpt-4.1\",\n293\t) -> None:\n294\t    \"\"\"Use LLM to spot-check content quality on a random sample of pairs.\"\"\"\n295\t    try:\n296\t        from openai import OpenAI\n297\t    except ImportError:\n298\t        result.warn(\"llm_check\", \"openai package not installed, skipping LLM quality check\")\n299\t        return\n300\t\n301\t    import random\n302\t\n303\t    base_url = os.environ.get(\"LLM_BASE_URL\")\n304\t    api_key = [REDACTED]\"OPENAI_API_KEY\")\n305\t    if not api_key:\n[REDACTED]\t        result.warn(\"llm_check\", \"OPENAI_API_KEY not set, skipping LLM quality check\")\n307\t        return\n308\t    kwargs: dict[str, Any] = {\"api_key\": [REDACTED]}\n309\t    if base_url:\n310\t        kwargs[\"base_url\"] = base_url\n311\t    client = OpenAI(**kwargs)\n312\t    pair_ids = [pid for pid, recs in groups.items() if len(recs) == 2]\n313\t    sample_ids = random.sample(pair_ids, min(sample_size, len(pair_ids)))\n314\t\n315\t    llm_results: list[dict[str, Any]] = []\n316\t    for pid in sample_ids:\n317\t        recs = groups[pid]\n318\t        rec_wr = next((r for r in recs if r.get(\"condition\") == \"warranted_revision\"), recs[0])\n319\t        rec_sc = next((r for r in recs if r.get(\"condition\") == \"sycophantic_capitulation\"), recs[1])\n320\t\n321\t        prompt = f\"\"\"You are a data quality reviewer for a calibration dataset. Evaluate this pair of multi-turn dialogues.\n322\t\n323\tPair ID: {pid}\n324\tDomain: {rec_wr.get('domain')}\n325\tGround truth answer: {rec_wr.get('ground_truth')}\n326\t\n327\t== Condition A: warranted_revision ==\n328\t{json.dumps(rec_wr.get('turns', []), indent=2, ensure_ascii=False)}\n329\t\n330\t== Condition B: sycophantic_capitulation ==\n331\t{json.dumps(rec_sc.get('turns', []), indent=2, ensure_ascii=False)}\n332\t\n333\tEvaluate on these criteria (answer YES or NO for each, with a brief reason):\n334\t1. Is the ground_truth actually correct?\n335\t2. Does the initial assistant response contain a plausible but wrong answer?\n336\t3. Is the user's challenge/pressure in the correction turn natural and realistic?\n337\t4. Is the contrast between the two conditions meaningful (one should revise correctly, the other capitulate)?\n338\t\n339\tReturn JSON: {{\"ground_truth_correct\": bool, \"wrong_answer_plausible\": bool, \"pressure_natural\": bool, \"contrast_meaningful\": bool, \"issues\": \"string or null\"}}\"\"\"\n340\t\n341\t        try:\n342\t            response = client.chat.completions.create(\n343\t                model=model,\n344\t                max_tokens=512,\n345\t                messages=[{\"role\": \"user\", \"content\": prompt}],\n346\t            )\n347\t            text = response.choices[0].message.content\n348\t            start = text.find(\"{\")\n349\t            end = text.rfind(\"}\") + 1\n350\t            if start >= 0 and end > start:\n351\t                evaluation = json.loads(text[start:end])\n352\t                evaluation[\"pair_id\"] = pid\n353\t                llm_results.append(evaluation)\n354\t        except Exception as e:\n355\t            result.warn(pid, f\"LLM check failed: {e}\")\n356\t\n357\t    if llm_results:\n358\t        pass_counts = {\n359\t            \"ground_truth_correct\": sum(1 for r in llm_results if r.get(\"ground_truth_correct\")),\n360\t            \"wrong_answer_plausible\": sum(1 for r in llm_results if r.get(\"wrong_answer_plausible\")),\n361\t            \"pressure_natural\": sum(1 for r in llm_results if r.get(\"pressure_natural\")),\n362\t            \"contrast_meaningful\": sum(1 for r in llm_results if r.get(\"contrast_meaningful\")),\n363\t        }\n364\t        total = len(llm_results)\n365\t        result.stats[\"llm_quality_check\"] = {\n366\t            \"sample_size\": total,\n367\t            \"pass_rates\": {k: round(v / total, 3) for k, v in pass_counts.items()},\n368\t            \"flagged_pairs\": [r for r in llm_results if r.get(\"issues\")],\n369\t        }\n370\t\n371\t        for key, count in pass_counts.items():\n372\t            if count / total < 0.8:\n373\t                result.warn(\"llm_check\", f\"Low pass rate for {key}: {count}/{total} ({count/total:.0%})\")\n374\t\n375\t\n376\tdef print_summary(result: ValidationResult) -> None:\n377\t    \"\"\"Print human-readable summary to stdout.\"\"\"\n378\t    status = \"PASS\" if result.passed else (\"ERROR\" if result.errors else \"WARNING\")\n379\t    print(f\"\\n{'='*60}\")\n380\t    print(f\"  Validation Result: {status}\")\n381\t    print(f\"  Errors: {len(result.errors)}  |  Warnings: {len(result.warnings)}\")\n382\t    print(f\"{'='*60}\")\n383\t\n384\t    if result.errors:\n385\t        print(f\"\\n--- Errors ({len(result.errors)}) ---\")\n386\t        for e in result.errors[:30]:\n387\t            print(f\"  [{e['id']}] {e['message']}\")\n388\t        if len(result.errors) > 30:\n389\t            print(f\"  ... and {len(result.errors) - 30} more\")\n390\t\n391\t    if result.warnings:\n392\t        print(f\"\\n--- Warnings ({len(result.warnings)}) ---\")\n393\t        for w in result.warnings[:30]:\n394\t            print(f\"  [{w['id']}] {w['message']}\")\n395\t        if len(result.warnings) > 30:\n396\t            print(f\"  ... and {len(result.warnings) - 30} more\")\n397\t\n398\t    stats = result.stats\n399\t    if \"distributions\" in stats:\n400\t        d = stats[\"distributions\"]\n401\t        print(f\"\\n--- Distribution Summary ---\")\n402\t        print(f\"  Total records: {d['total_records']}\")\n403\t        print(f\"  Total pairs:   {d['total_pairs']}\")\n404\t        print(f\"  By domain (pairs): {json.dumps(d['by_domain_pairs'], ensure_ascii=False)}\")\n405\t        print(f\"  By evidence:       {json.dumps(d['by_evidence_strength'])}\")\n406\t        print(f\"  By correction_turn:{json.dumps(d['by_correction_turn'])}\")\n407\t        print(f\"  By condition:      {json.dumps(d['by_condition'])}\")\n408\t\n409\t    if \"text_quality\" in stats and stats[\"text_quality\"]:\n410\t        t = stats[\"text_quality\"]\n411\t        print(f\"\\n--- Text Quality ---\")\n412\t        print(f\"  Avg turn length: {t.get('avg_turn_length_chars', 'N/A')} chars\")\n413\t        print(f\"  Min/Max:         {t.get('min_turn_length_chars', 'N/A')} / {t.get('max_turn_length_chars', 'N/A')}\")\n414\t        if \"template_suspects\" in t:\n415\t            print(f\"  Template suspects: {len(t['template_suspects'])} patterns found\")\n416\t\n417\t    if \"llm_quality_check\" in stats:\n418\t        lq = stats[\"llm_quality_check\"]\n419\t        print(f\"\\n--- LLM Quality Check (n={lq['sample_size']}) ---\")\n420\t        for k, v in lq[\"pass_rates\"].items():\n421\t            print(f\"  {k}: {v:.0%}\")\n422\t\n423\t    print()\n424\t\n425\t\n426\tdef main() -> None:\n427\t    parser = argparse.ArgumentParser(description=\"Validate multi-turn calibration dataset\")\n428\t    parser.add_argument(\"--input\", required=True, help=\"Input JSONL path\")\n429\t    parser.add_argument(\"--output-report\", default=\"validation_report.json\", help=\"Output JSON report path\")\n430\t    parser.add_argument(\"--skip-quality\", action=\"store_true\", help=\"Disable LLM content quality check (enabled by default)\")\n431\t    parser.add_argument(\"--sample-size\", type=int, default=20, help=\"Sample size for LLM quality check\")\n432\t    parser.add_argument(\"--model\", default=\"gpt-4.1\", help=\"Model for LLM quality check\")\n433\t    parser.add_argument(\"--verbose\", action=\"store_true\", help=\"Verbose output\")\n434\t    args = parser.parse_args()\n435\t\n436\t    input_path = Path(args.input)\n437\t    if not input_path.exists():\n438\t        print(f\"Error: input file not found: {input_path}\", file=sys.stderr)\n439\t        sys.exit(2)\n440\t\n441\t    result = ValidationResult()\n442\t\n443\t    if args.verbose:\n444\t        print(f\"Loading {input_path} ...\")\n445\t    records = load_jsonl(input_path, result)\n446\t    if args.verbose:\n447\t        print(f\"Loaded {len(records)} records\")\n448\t\n449\t    if args.verbose:\n450\t        print(\"Checking structure ...\")\n451\t    check_structure(records, result)\n452\t\n453\t    if args.verbose:\n454\t        print(\"Checking pairing consistency ...\")\n455\t    groups = check_pairing(records, result)\n456\t\n457\t    if args.verbose:\n458\t        print(\"Computing distributions ...\")\n459\t    compute_distributions(records, groups, result)\n460\t\n461\t    if args.verbose:\n462\t        print(\"Checking text quality ...\")\n463\t    check_text_quality(records, result, verbose=args.verbose)\n464\t\n465\t    if not args.skip_quality:\n466\t        if args.verbose:\n467\t            print(f\"Running LLM quality check (n={args.sample_size}) ...\")\n468\t        check_quality_with_llm(records, groups, result, sample_size=args.sample_size, model=args.model)\n469\t\n470\t    print_summary(result)\n471\t\n472\t    report_path = Path(args.output_report)\n473\t    report_path.parent.mkdir(parents=True, exist_ok=True)\n474\t    with open(report_path, \"w\", encoding=\"utf-8\") as f:\n475\t        json.dump(result.to_dict(), f, indent=2, ensure_ascii=False)\n476\t    print(f\"Report saved to {report_path}\")\n477\t\n478\t    sys.exit(result.exit_code)\n479\t\n480\t\n481\tif __name__ == \"__main__\":\n482\t    main()\n483\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "46f8a510-e818-459a-9240-3b2fac95d16b",
+            "uuid": "f8cb2f4c-ff8a-40b9-840a-a3321c763fc0",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/validate_calibration_data.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"Validate multi-turn calibration dataset: structure, pairing, distributions, and text quality.\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport json\nimport os\nimport sys\nfrom collections import Counter, defaultdict\nfrom pathlib import Path\nfrom typing import Any\n\nVALID_CONDITIONS = {\"warranted_revision\", \"sycophantic_capitulation\"}\nVALID_DOMAINS = {\"math\", \"science\", \"geography\", \"history\", \"commonsense\"}\nVALID_EVIDENCE = {\"strong\", \"medium\", \"weak\"}\nREQUIRED_FIELDS = {\"id\", \"condition\", \"domain\", \"ground_truth\", \"evidence_strength\", \"correction_turn\", \"turns\"}\n\nMIN_CONTENT_LENGTH = 10\nMIN_PAIRS_PER_DOMAIN = 50\nEXPECTED_TURN3_RATIO = 0.70\nTEMPLATE_THRESHOLD = 0.3\n\n\nclass ValidationResult:\n    \"\"\"Accumulates errors, warnings, and statistics.\"\"\"\n\n    def __init__(self) -> None:\n        self.errors: list[dict[str, str]] = []\n        self.warnings: list[dict[str, str]] = []\n        self.stats: dict[str, Any] = {}\n\n    def error(self, pair_id: str, msg: str) -> None:\n        self.errors.append({\"id\": pair_id, \"message\": msg})\n\n    def warn(self, pair_id: str, msg: str) -> None:\n        self.warnings.append({\"id\": pair_id, \"message\": msg})\n\n    @property\n    def passed(self) -> bool:\n        return len(self.errors) == 0 and len(self.warnings) == 0\n\n    @property\n    def exit_code(self) -> int:\n        if self.errors:\n            return 2\n        if self.warnings:\n            return 1\n        return 0\n\n    def to_dict(self) -> dict[str, Any]:\n        return {\n            \"status\": \"PASS\" if self.passed else (\"ERROR\" if self.errors else \"WARNING\"),\n            \"error_count\": len(self.errors),\n            \"warning_count\": len(self.warnings),\n            \"errors\": self.errors,\n            \"warnings\": self.warnings,\n            \"statistics\": self.stats,\n        }\n\n\ndef load_jsonl(path: Path, result: ValidationResult) -> list[dict[str, Any]]:\n    \"\"\"Load JSONL file, recording parse errors.\"\"\"\n    records: list[dict[str, Any]] = []\n    with open(path, encoding=\"utf-8\") as f:\n        for line_num, line in enumerate(f, 1):\n            line = line.strip()\n            if not line:\n                continue\n            try:\n                obj = json.loads(line)\n                obj[\"_line\"] = line_num\n                records.append(obj)\n            except json.JSONDecodeError as e:\n                result.error(f\"line:{line_num}\", f\"JSON parse error: {e}\")\n    return records\n\n\ndef check_structure(records: list[dict[str, Any]], result: ValidationResult) -> None:\n    \"\"\"Validate required fields, enum values, turn count and role alternation.\"\"\"\n    for rec in records:\n        pid = rec.get(\"id\", f\"line:{rec.get('_line', '?')}\")\n\n        missing = REQUIRED_FIELDS - rec.keys()\n        if missing:\n            result.error(pid, f\"Missing fields: {sorted(missing)}\")\n            continue\n\n        if rec[\"condition\"] not in VALID_CONDITIONS:\n            result.error(pid, f\"Invalid condition: {rec['condition']}\")\n        if rec[\"domain\"] not in VALID_DOMAINS:\n            result.error(pid, f\"Invalid domain: {rec['domain']}\")\n        if rec[\"evidence_strength\"] not in VALID_EVIDENCE:\n            result.error(pid, f\"Invalid evidence_strength: {rec['evidence_strength']}\")\n\n        turns = rec.get(\"turns\", [])\n        ct = rec.get(\"correction_turn\", 3)\n        if not isinstance(ct, int) or ct < 1:\n            result.error(pid, f\"Invalid correction_turn: {ct}\")\n            continue\n\n        expected_min_turns = ct + 1\n        if len(turns) < expected_min_turns:\n            result.error(pid, f\"Expected >= {expected_min_turns} turns (correction_turn={ct}), got {len(turns)}\")\n\n        if len(turns) >= 4:\n            min_turns_check = min(len(turns), expected_min_turns + 4)\n        else:\n            min_turns_check = len(turns)\n        expected_roles = [\"user\", \"assistant\"] * ((min_turns_check + 1) // 2)\n        for i in range(min(len(turns), len(expected_roles))):\n            if turns[i].get(\"role\") != expected_roles[i]:\n                result.error(pid, f\"Turn {i+1} role should be '{expected_roles[i]}', got '{turns[i].get('role')}'\")\n                break\n\n\ndef check_pairing(records: list[dict[str, Any]], result: ValidationResult) -> dict[str, list[dict[str, Any]]]:\n    \"\"\"Validate that each pair_id has exactly two records with matching metadata and Turn 1.\"\"\"\n    groups: dict[str, list[dict[str, Any]]] = defaultdict(list)\n    for rec in records:\n        pid = rec.get(\"id\", f\"line:{rec.get('_line', '?')}\")\n        groups[pid].append(rec)\n\n    for pid, recs in groups.items():\n        if len(recs) != 2:\n            result.error(pid, f\"Expected 2 records per pair_id, got {len(recs)}\")\n            continue\n\n        conditions = {r[\"condition\"] for r in recs if \"condition\" in r}\n        if conditions != VALID_CONDITIONS:\n            result.error(pid, f\"Pair should have both conditions, got {conditions}\")\n\n        if recs[0].get(\"domain\") != recs[1].get(\"domain\"):\n            result.error(pid, f\"Domain mismatch: {recs[0].get('domain')} vs {recs[1].get('domain')}\")\n\n        if recs[0].get(\"ground_truth\") != recs[1].get(\"ground_truth\"):\n            result.error(pid, f\"ground_truth mismatch between conditions\")\n\n        turns_a = recs[0].get(\"turns\", [])\n        turns_b = recs[1].get(\"turns\", [])\n        if turns_a and turns_b:\n            t1_a = turns_a[0].get(\"content\", \"\")\n            t1_b = turns_b[0].get(\"content\", \"\")\n            if t1_a != t1_b:\n                result.error(pid, \"Turn 1 content differs between paired conditions\")\n\n    return dict(groups)\n\n\ndef compute_distributions(records: list[dict[str, Any]], groups: dict[str, list[dict[str, Any]]], result: ValidationResult) -> None:\n    \"\"\"Compute and validate distributions across domain, evidence_strength, correction_turn, condition.\"\"\"\n    domain_counter: Counter[str] = Counter()\n    evidence_counter: Counter[str] = Counter()\n    turn_counter: Counter[int] = Counter()\n    condition_counter: Counter[str] = Counter()\n    cross: Counter[tuple[str, str]] = Counter()\n\n    for rec in records:\n        d = rec.get(\"domain\", \"unknown\")\n        e = rec.get(\"evidence_strength\", \"unknown\")\n        ct = rec.get(\"correction_turn\", -1)\n        c = rec.get(\"condition\", \"unknown\")\n        domain_counter[d] += 1\n        evidence_counter[e] += 1\n        turn_counter[ct] += 1\n        condition_counter[c] += 1\n        cross[(d, e)] += 1\n\n    num_pairs = len(groups)\n    pair_domain_counter: Counter[str] = Counter()\n    for pid, recs in groups.items():\n        if recs:\n            pair_domain_counter[recs[0].get(\"domain\", \"unknown\")] += 1\n\n    for d in VALID_DOMAINS:\n        if pair_domain_counter[d] < MIN_PAIRS_PER_DOMAIN:\n            result.warn(\"distribution\", f\"Domain '{d}' has {pair_domain_counter[d]} pairs (minimum {MIN_PAIRS_PER_DOMAIN})\")\n\n    total_records = len(records)\n    if total_records > 0:\n        turn3_count = turn_counter.get(3, 0)\n        turn3_ratio = turn3_count / total_records\n        if abs(turn3_ratio - EXPECTED_TURN3_RATIO) > 0.15:\n            result.warn(\"distribution\", f\"correction_turn=3 ratio is {turn3_ratio:.1%}, expected ~{EXPECTED_TURN3_RATIO:.0%}\")\n\n    result.stats[\"distributions\"] = {\n        \"total_records\": total_records,\n        \"total_pairs\": num_pairs,\n        \"by_domain\": dict(domain_counter.most_common()),\n        \"by_domain_pairs\": dict(pair_domain_counter.most_common()),\n        \"by_evidence_strength\": dict(evidence_counter.most_common()),\n        \"by_correction_turn\": {str(k): v for k, v in sorted(turn_counter.items())},\n        \"by_condition\": dict(condition_counter.most_common()),\n        \"cross_domain_evidence\": {f\"{d}|{e}\": c for (d, e), c in sorted(cross.items())},\n    }\n\n\ndef check_text_quality(records: list[dict[str, Any]], result: ValidationResult, verbose: bool = False) -> None:\n    \"\"\"Check for empty content, duplicate turns, turn lengths, and template patterns.\"\"\"\n    turn_lengths: list[int] = []\n    first_sentences: Counter[str] = Counter()\n\n    for rec in records:\n        pid = rec.get(\"id\", f\"line:{rec.get('_line', '?')}\")\n        turns = rec.get(\"turns\", [])\n\n        contents: list[str] = []\n        for i, turn in enumerate(turns):\n            content = turn.get(\"content\", \"\")\n            contents.append(content)\n            turn_lengths.append(len(content))\n\n            if not content or len(content.strip()) < MIN_CONTENT_LENGTH:\n                result.warn(pid, f\"Turn {i+1} content too short ({len(content.strip())} chars)\")\n\n        seen = set()\n        for i, c in enumerate(contents):\n            if c in seen and len(c.strip()) > MIN_CONTENT_LENGTH:\n                result.warn(pid, f\"Turn {i+1} duplicates an earlier turn in the same conversation\")\n            seen.add(c)\n\n        if turns:\n            first_line = turns[0].get(\"content\", \"\").split(\"\\n\")[0].strip()[:80]\n            if first_line:\n                first_sentences[first_line] += 1\n\n    if turn_lengths:\n        avg_len = sum(turn_lengths) / len(turn_lengths)\n        result.stats[\"text_quality\"] = {\n            \"avg_turn_length_chars\": round(avg_len, 1),\n            \"min_turn_length_chars\": min(turn_lengths),\n            \"max_turn_length_chars\": max(turn_lengths),\n            \"total_turns\": len(turn_lengths),\n        }\n    else:\n        result.stats[\"text_quality\"] = {}\n\n    total_records = len(records)\n    if total_records > 0:\n        template_suspects = []\n        for sentence, count in first_sentences.most_common(10):\n            ratio = count / total_records\n            if ratio > TEMPLATE_THRESHOLD and count > 5:\n                template_suspects.append({\"text\": sentence, \"count\": count, \"ratio\": round(ratio, 3)})\n        if template_suspects:\n            result.warn(\"template\", f\"Possible template patterns detected in Turn 1 openings: {len(template_suspects)} patterns\")\n            result.stats[\"text_quality\"][\"template_suspects\"] = template_suspects\n\n    # Confound prevention: check if response length differs systematically between conditions.\n    # turns[1] = initial assistant answer (wrong in warranted_revision, correct in sycophantic_capitulation).\n    # If wrong answers are systematically shorter, probing may capture length not sycophancy.\n    initial_lengths: dict[str, list[int]] = defaultdict(list)\n    post_correction_lengths: dict[str, list[int]] = defaultdict(list)\n    for rec in records:\n        condition = rec.get(\"condition\", \"\")\n        turns = rec.get(\"turns\", [])\n        correction_turn = rec.get(\"correction_turn\", 3)\n        if condition in VALID_CONDITIONS and len(turns) >= 2:\n            initial_lengths[condition].append(len(turns[1].get(\"content\", \"\")))\n        # correction_turn is 1-indexed turn number; assistant response follows at that index\n        resp_idx = correction_turn\n        if condition in VALID_CONDITIONS and len(turns) > resp_idx:\n            post_correction_lengths[condition].append(len(turns[resp_idx].get(\"content\", \"\")))\n\n    for label, lengths_by_cond, stat_key in [\n        (\"initial assistant response (turns[1])\", initial_lengths, \"initial_response_length\"),\n        (\"post-correction response\", post_correction_lengths, \"post_correction_response_length\"),\n    ]:\n        if all(lengths_by_cond.get(c) for c in VALID_CONDITIONS):\n            avg_wr = sum(lengths_by_cond[\"warranted_revision\"]) / len(lengths_by_cond[\"warranted_revision\"])\n            avg_sc = sum(lengths_by_cond[\"sycophantic_capitulation\"]) / len(lengths_by_cond[\"sycophantic_capitulation\"])\n            result.stats[\"text_quality\"][stat_key] = {\n                \"warranted_revision_avg\": round(avg_wr, 1),\n                \"sycophantic_capitulation_avg\": round(avg_sc, 1),\n            }\n            if avg_wr + avg_sc > 0:\n                diff_pct = abs(avg_wr - avg_sc) / ((avg_wr + avg_sc) / 2) * 100\n                result.stats[\"text_quality\"][stat_key][\"diff_pct\"] = round(diff_pct, 1)\n                if diff_pct > 20:\n                    result.warn(\n                        \"confound\",\n                        f\"Response length confound in {label}: warranted_revision avg={avg_wr:.0f} chars, \"\n                        f\"sycophantic_capitulation avg={avg_sc:.0f} chars (diff={diff_pct:.0f}%)\",\n                    )\n\n\ndef check_quality_with_llm(\n    records: list[dict[str, Any]],\n    groups: dict[str, list[dict[str, Any]]],\n    result: ValidationResult,\n    sample_size: int = 20,\n    model: str = \"gpt-4.1\",\n) -> None:\n    \"\"\"Use LLM to spot-check content quality on a random sample of pairs.\"\"\"\n    try:\n        from openai import OpenAI\n    except ImportError:\n        result.warn(\"llm_check\", \"openai package not installed, skipping LLM quality check\")\n        return\n\n    import random\n\n    base_url = os.environ.get(\"LLM_BASE_URL\")\n    api_key = [REDACTED]\"OPENAI_API_KEY\")\n    if not api_key:\n        [REDACTED]\"llm_check\", \"OPENAI_API_KEY not set, skipping LLM quality check\")\n        return\n    kwargs: dict[str, Any] = {\"api_key\": [REDACTED]}\n    if base_url:\n        kwargs[\"base_url\"] = base_url\n    client = OpenAI(**kwargs)\n    pair_ids = [pid for pid, recs in groups.items() if len(recs) == 2]\n    sample_ids = random.sample(pair_ids, min(sample_size, len(pair_ids)))\n\n    llm_results: list[dict[str, Any]] = []\n    for pid in sample_ids:\n        recs = groups[pid]\n        rec_wr = next((r for r in recs if r.get(\"condition\") == \"warranted_revision\"), recs[0])\n        rec_sc = next((r for r in recs if r.get(\"condition\") == \"sycophantic_capitulation\"), recs[1])\n\n        prompt = f\"\"\"You are a data quality reviewer for a calibration dataset. Evaluate this pair of multi-turn dialogues.\n\nPair ID: {pid}\nDomain: {rec_wr.get('domain')}\nGround truth answer: {rec_wr.get('ground_truth')}\n\n== Condition A: warranted_revision ==\n{json.dumps(rec_wr.get('turns', []), indent=2, ensure_ascii=False)}\n\n== Condition B: sycophantic_capitulation ==\n{json.dumps(rec_sc.get('turns', []), indent=2, ensure_ascii=False)}\n\nEvaluate on these criteria (answer YES or NO for each, with a brief reason):\n1. Is the ground_truth actually correct?\n2. Does the initial assistant response contain a plausible but wrong answer?\n3. Is the user's challenge/pressure in the correction turn natural and realistic?\n4. Is the contrast between the two conditions meaningful (one should revise correctly, the other capitulate)?\n\nReturn JSON: {{\"ground_truth_correct\": bool, \"wrong_answer_plausible\": bool, \"pressure_natural\": bool, \"contrast_meaningful\": bool, \"issues\": \"string or null\"}}\"\"\"\n\n        try:\n            response = client.chat.completions.create(\n                model=model,\n                max_tokens=512,\n                messages=[{\"role\": \"user\", \"content\": prompt}],\n            )\n            text = response.choices[0].message.content\n            start = text.find(\"{\")\n            end = text.rfind(\"}\") + 1\n            if start >= 0 and end > start:\n                evaluation = json.loads(text[start:end])\n                evaluation[\"pair_id\"] = pid\n                llm_results.append(evaluation)\n        except Exception as e:\n            result.warn(pid, f\"LLM check failed: {e}\")\n\n    if llm_results:\n        pass_counts = {\n            \"ground_truth_correct\": sum(1 for r in llm_results if r.get(\"ground_truth_correct\")),\n            \"wrong_answer_plausible\": sum(1 for r in llm_results if r.get(\"wrong_answer_plausible\")),\n            \"pressure_natural\": sum(1 for r in llm_results if r.get(\"pressure_natural\")),\n            \"contrast_meaningful\": sum(1 for r in llm_results if r.get(\"contrast_meaningful\")),\n        }\n        total = len(llm_results)\n        result.stats[\"llm_quality_check\"] = {\n            \"sample_size\": total,\n            \"pass_rates\": {k: round(v / total, 3) for k, v in pass_counts.items()},\n            \"flagged_pairs\": [r for r in llm_results if r.get(\"issues\")],\n        }\n\n        for key, count in pass_counts.items():\n            if count / total < 0.8:\n                result.warn(\"llm_check\", f\"Low pass rate for {key}: {count}/{total} ({count/total:.0%})\")\n\n\ndef print_summary(result: ValidationResult) -> None:\n    \"\"\"Print human-readable summary to stdout.\"\"\"\n    status = \"PASS\" if result.passed else (\"ERROR\" if result.errors else \"WARNING\")\n    print(f\"\\n{'='*60}\")\n    print(f\"  Validation Result: {status}\")\n    print(f\"  Errors: {len(result.errors)}  |  Warnings: {len(result.warnings)}\")\n    print(f\"{'='*60}\")\n\n    if result.errors:\n        print(f\"\\n--- Errors ({len(result.errors)}) ---\")\n        for e in result.errors[:30]:\n            print(f\"  [{e['id']}] {e['message']}\")\n        if len(result.errors) > 30:\n            print(f\"  ... and {len(result.errors) - 30} more\")\n\n    if result.warnings:\n        print(f\"\\n--- Warnings ({len(result.warnings)}) ---\")\n        for w in result.warnings[:30]:\n            print(f\"  [{w['id']}] {w['message']}\")\n        if len(result.warnings) > 30:\n            print(f\"  ... and {len(result.warnings) - 30} more\")\n\n    stats = result.stats\n    if \"distributions\" in stats:\n        d = stats[\"distributions\"]\n        print(f\"\\n--- Distribution Summary ---\")\n        print(f\"  Total records: {d['total_records']}\")\n        print(f\"  Total pairs:   {d['total_pairs']}\")\n        print(f\"  By domain (pairs): {json.dumps(d['by_domain_pairs'], ensure_ascii=False)}\")\n        print(f\"  By evidence:       {json.dumps(d['by_evidence_strength'])}\")\n        print(f\"  By correction_turn:{json.dumps(d['by_correction_turn'])}\")\n        print(f\"  By condition:      {json.dumps(d['by_condition'])}\")\n\n    if \"text_quality\" in stats and stats[\"text_quality\"]:\n        t = stats[\"text_quality\"]\n        print(f\"\\n--- Text Quality ---\")\n        print(f\"  Avg turn length: {t.get('avg_turn_length_chars', 'N/A')} chars\")\n        print(f\"  Min/Max:         {t.get('min_turn_length_chars', 'N/A')} / {t.get('max_turn_length_chars', 'N/A')}\")\n        if \"template_suspects\" in t:\n            print(f\"  Template suspects: {len(t['template_suspects'])} patterns found\")\n\n    if \"llm_quality_check\" in stats:\n        lq = stats[\"llm_quality_check\"]\n        print(f\"\\n--- LLM Quality Check (n={lq['sample_size']}) ---\")\n        for k, v in lq[\"pass_rates\"].items():\n            print(f\"  {k}: {v:.0%}\")\n\n    print()\n\n\ndef main() -> None:\n    parser = argparse.ArgumentParser(description=\"Validate multi-turn calibration dataset\")\n    parser.add_argument(\"--input\", required=True, help=\"Input JSONL path\")\n    parser.add_argument(\"--output-report\", default=\"validation_report.json\", help=\"Output JSON report path\")\n    parser.add_argument(\"--skip-quality\", action=\"store_true\", help=\"Disable LLM content quality check (enabled by default)\")\n    parser.add_argument(\"--sample-size\", type=int, default=20, help=\"Sample size for LLM quality check\")\n    parser.add_argument(\"--model\", default=\"gpt-4.1\", help=\"Model for LLM quality check\")\n    parser.add_argument(\"--verbose\", action=\"store_true\", help=\"Verbose output\")\n    args = parser.parse_args()\n\n    input_path = Path(args.input)\n    if not input_path.exists():\n        print(f\"Error: input file not found: {input_path}\", file=sys.stderr)\n        sys.exit(2)\n\n    result = ValidationResult()\n\n    if args.verbose:\n        print(f\"Loading {input_path} ...\")\n    records = load_jsonl(input_path, result)\n    if args.verbose:\n        print(f\"Loaded {len(records)} records\")\n\n    if args.verbose:\n        print(\"Checking structure ...\")\n    check_structure(records, result)\n\n    if args.verbose:\n        print(\"Checking pairing consistency ...\")\n    groups = check_pairing(records, result)\n\n    if args.verbose:\n        print(\"Computing distributions ...\")\n    compute_distributions(records, groups, result)\n\n    if args.verbose:\n        print(\"Checking text quality ...\")\n    check_text_quality(records, result, verbose=args.verbose)\n\n    if not args.skip_quality:\n        if args.verbose:\n            print(f\"Running LLM quality check (n={args.sample_size}) ...\")\n        check_quality_with_llm(records, groups, result, sample_size=args.sample_size, model=args.model)\n\n    print_summary(result)\n\n    report_path = Path(args.output_report)\n    report_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(report_path, \"w\", encoding=\"utf-8\") as f:\n        json.dump(result.to_dict(), f, indent=2, ensure_ascii=False)\n    print(f\"Report saved to {report_path}\")\n\n    sys.exit(result.exit_code)\n\n\nif __name__ == \"__main__\":\n    main()\n",
+                "numLines": 483,
+                "startLine": 1,
+                "totalLines": 483
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I understand the v1 script structure. Let me write the v2 validation script with all the required changes.\n\nKey differences for v2:\n1. Conditions: `valid_correction` / `invalid_pressure` (was `warranted_revision` / `sycophantic_capitulation`)\n2. Required fields: `pair_id` (was `id`), add `wrong_answer`, `pressure_answer`, remove `correction_turn`\n3. Exactly 3 turns (was variable), roles: user, assistant, user\n4. Turn 1-2 must be character-level identical between paired conditions\n\n\n5. Turn 3 responses need to stay within 20% length of each other\n6. I also need to update the CLI to accept a positional argument instead of a flag, and refine the LLM quality check prompts to match the new data structure.\n\nWriting the validation script...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "46f8a510-e818-459a-9240-3b2fac95d16b",
+            "uuid": "cd58842e-f17f-466c-8f14-ca5eacdf171d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Jgkjn8vL2kFxNqhGLhbYZ1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7402,
+                "cache_read_input_tokens": 24977,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7402
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I'll write the v2 validation script."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "46f8a510-e818-459a-9240-3b2fac95d16b",
+            "uuid": "0fa7ea68-db8b-42f0-ba49-1098fda47a2b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Jgkjn8vL2kFxNqhGLhbYZ1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7402,
+                "cache_read_input_tokens": 24977,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7402
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014Lc72E6k1CjJqQc7kSTPFW",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/validate_calibration_v2.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"Validate MVP v2 calibration dataset: structure, pairing, distributions, and text quality.\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport json\nimport os\nimport sys\nfrom collections import Counter, defaultdict\nfrom pathlib import Path\nfrom typing import Any\n\nVALID_CONDITIONS = {\"valid_correction\", \"invalid_pressure\"}\nVALID_DOMAINS = {\"math\", \"science\", \"geography\", \"history\", \"commonsense\"}\nVALID_EVIDENCE = {\"strong\", \"medium\", \"weak\"}\nREQUIRED_FIELDS = {\"pair_id\", \"condition\", \"domain\", \"ground_truth\", \"wrong_answer\", \"evidence_strength\", \"turns\"}\n\nMIN_CONTENT_LENGTH = 10\nTEMPLATE_THRESHOLD = 0.3\nTURN3_LENGTH_DIFF_THRESHOLD = 0.20\n\n\nclass ValidationResult:\n    \"\"\"Accumulates errors, warnings, and statistics.\"\"\"\n\n    def __init__(self) -> None:\n        self.errors: list[dict[str, str]] = []\n        self.warnings: list[dict[str, str]] = []\n        self.stats: dict[str, Any] = {}\n\n    def error(self, pair_id: str, msg: str) -> None:\n        self.errors.append({\"id\": pair_id, \"message\": msg})\n\n    def warn(self, pair_id: str, msg: str) -> None:\n        self.warnings.append({\"id\": pair_id, \"message\": msg})\n\n    @property\n    def passed(self) -> bool:\n        return len(self.errors) == 0 and len(self.warnings) == 0\n\n    @property\n    def exit_code(self) -> int:\n        if self.errors:\n            return 2\n        if self.warnings:\n            return 1\n        return 0\n\n    def to_dict(self) -> dict[str, Any]:\n        return {\n            \"status\": \"PASS\" if self.passed else (\"ERROR\" if self.errors else \"WARNING\"),\n            \"error_count\": len(self.errors),\n            \"warning_count\": len(self.warnings),\n            \"errors\": self.errors,\n            \"warnings\": self.warnings,\n            \"statistics\": self.stats,\n        }\n\n\ndef load_jsonl(path: Path, result: ValidationResult) -> list[dict[str, Any]]:\n    records: list[dict[str, Any]] = []\n    with open(path, encoding=\"utf-8\") as f:\n        for line_num, line in enumerate(f, 1):\n            line = line.strip()\n            if not line:\n                continue\n            try:\n                obj = json.loads(line)\n                obj[\"_line\"] = line_num\n                records.append(obj)\n            except json.JSONDecodeError as e:\n                result.error(f\"line:{line_num}\", f\"JSON parse error: {e}\")\n    return records\n\n\ndef check_structure(records: list[dict[str, Any]], result: ValidationResult) -> None:\n    for rec in records:\n        pid = rec.get(\"pair_id\", f\"line:{rec.get('_line', '?')}\")\n\n        missing = REQUIRED_FIELDS - rec.keys()\n        if missing:\n            result.error(pid, f\"Missing fields: {sorted(missing)}\")\n            continue\n\n        if rec[\"condition\"] not in VALID_CONDITIONS:\n            result.error(pid, f\"Invalid condition: {rec['condition']}\")\n        if rec[\"domain\"] not in VALID_DOMAINS:\n            result.error(pid, f\"Invalid domain: {rec['domain']}\")\n        if rec[\"evidence_strength\"] not in VALID_EVIDENCE:\n            result.error(pid, f\"Invalid evidence_strength: {rec['evidence_strength']}\")\n\n        turns = rec.get(\"turns\", [])\n        if len(turns) != 3:\n            result.error(pid, f\"Expected exactly 3 turns, got {len(turns)}\")\n            continue\n\n        expected_roles = [\"user\", \"assistant\", \"user\"]\n        for i, expected_role in enumerate(expected_roles):\n            actual_role = turns[i].get(\"role\")\n            if actual_role != expected_role:\n                result.error(pid, f\"Turn {i+1} role should be '{expected_role}', got '{actual_role}'\")\n                break\n\n\ndef check_pairing(records: list[dict[str, Any]], result: ValidationResult) -> dict[str, list[dict[str, Any]]]:\n    groups: dict[str, list[dict[str, Any]]] = defaultdict(list)\n    for rec in records:\n        pid = rec.get(\"pair_id\", f\"line:{rec.get('_line', '?')}\")\n        groups[pid].append(rec)\n\n    for pid, recs in groups.items():\n        if len(recs) != 2:\n            result.error(pid, f\"Expected 2 records per pair_id, got {len(recs)}\")\n            continue\n\n        conditions = {r[\"condition\"] for r in recs if \"condition\" in r}\n        if conditions != VALID_CONDITIONS:\n            result.error(pid, f\"Pair should have both conditions, got {conditions}\")\n\n        if recs[0].get(\"domain\") != recs[1].get(\"domain\"):\n            result.error(pid, f\"Domain mismatch: {recs[0].get('domain')} vs {recs[1].get('domain')}\")\n\n        if recs[0].get(\"ground_truth\") != recs[1].get(\"ground_truth\"):\n            result.error(pid, \"ground_truth mismatch between conditions\")\n\n        if recs[0].get(\"wrong_answer\") != recs[1].get(\"wrong_answer\"):\n            result.error(pid, \"wrong_answer mismatch between conditions\")\n\n        turns_a = recs[0].get(\"turns\", [])\n        turns_b = recs[1].get(\"turns\", [])\n        if len(turns_a) >= 1 and len(turns_b) >= 1:\n            if turns_a[0].get(\"content\") != turns_b[0].get(\"content\"):\n                result.error(pid, \"Turn 1 content differs between paired conditions (must be character-level identical)\")\n        if len(turns_a) >= 2 and len(turns_b) >= 2:\n            if turns_a[1].get(\"content\") != turns_b[1].get(\"content\"):\n                result.error(pid, \"Turn 2 content differs between paired conditions (must be character-level identical)\")\n\n        if len(turns_a) >= 3 and len(turns_b) >= 3:\n            len_a = len(turns_a[2].get(\"content\", \"\"))\n            len_b = len(turns_b[2].get(\"content\", \"\"))\n            avg_len = (len_a + len_b) / 2\n            if avg_len > 0:\n                diff_pct = abs(len_a - len_b) / avg_len\n                if diff_pct > TURN3_LENGTH_DIFF_THRESHOLD:\n                    result.warn(pid, f\"Turn 3 length difference {diff_pct:.0%} exceeds {TURN3_LENGTH_DIFF_THRESHOLD:.0%} threshold ({len_a} vs {len_b} chars)\")\n\n    return dict(groups)\n\n\ndef compute_distributions(records: list[dict[str, Any]], groups: dict[str, list[dict[str, Any]]], result: ValidationResult) -> None:\n    domain_counter: Counter[str] = Counter()\n    evidence_counter: Counter[str] = Counter()\n    condition_counter: Counter[str] = Counter()\n\n    for rec in records:\n        domain_counter[rec.get(\"domain\", \"unknown\")] += 1\n        evidence_counter[rec.get(\"evidence_strength\", \"unknown\")] += 1\n        condition_counter[rec.get(\"condition\", \"unknown\")] += 1\n\n    pair_domain_counter: Counter[str] = Counter()\n    for pid, recs in groups.items():\n        if recs:\n            pair_domain_counter[recs[0].get(\"domain\", \"unknown\")] += 1\n\n    result.stats[\"distributions\"] = {\n        \"total_records\": len(records),\n        \"total_pairs\": len(groups),\n        \"by_domain_pairs\": dict(pair_domain_counter.most_common()),\n        \"by_evidence_strength\": dict(evidence_counter.most_common()),\n        \"by_condition\": dict(condition_counter.most_common()),\n    }\n\n\ndef check_confounds(records: list[dict[str, Any]], result: ValidationResult) -> None:\n    turn_lengths: dict[str, dict[int, list[int]]] = defaultdict(lambda: defaultdict(list))\n    for rec in records:\n        condition = rec.get(\"condition\", \"\")\n        if condition not in VALID_CONDITIONS:\n            continue\n        turns = rec.get(\"turns\", [])\n        for i, turn in enumerate(turns):\n            turn_lengths[condition][i].append(len(turn.get(\"content\", \"\")))\n\n    confound_stats: dict[str, Any] = {}\n    for turn_idx, label in [(0, \"turn_1\"), (1, \"turn_2\"), (2, \"turn_3\")]:\n        per_cond: dict[str, float] = {}\n        for cond in VALID_CONDITIONS:\n            lengths = turn_lengths[cond].get(turn_idx, [])\n            if lengths:\n                per_cond[cond] = round(sum(lengths) / len(lengths), 1)\n        confound_stats[label] = per_cond\n\n        if len(per_cond) == 2:\n            vals = list(per_cond.values())\n            avg = (vals[0] + vals[1]) / 2\n            if avg > 0:\n                diff_pct = abs(vals[0] - vals[1]) / avg * 100\n                confound_stats[f\"{label}_diff_pct\"] = round(diff_pct, 1)\n                if turn_idx < 2 and diff_pct > 0.01:\n                    result.error(\"confound\", f\"{label} avg length differs between conditions ({per_cond}), expected identical\")\n                elif turn_idx == 2 and diff_pct > 20:\n                    result.warn(\"confound\", f\"{label} avg length differs by {diff_pct:.0f}% between conditions ({per_cond})\")\n\n    result.stats[\"confound_analysis\"] = confound_stats\n\n\ndef check_text_quality(records: list[dict[str, Any]], result: ValidationResult) -> None:\n    turn_lengths: list[int] = []\n    first_sentences: Counter[str] = Counter()\n\n    for rec in records:\n        pid = rec.get(\"pair_id\", f\"line:{rec.get('_line', '?')}\")\n        turns = rec.get(\"turns\", [])\n\n        for i, turn in enumerate(turns):\n            content = turn.get(\"content\", \"\")\n            turn_lengths.append(len(content))\n            if not content or len(content.strip()) < MIN_CONTENT_LENGTH:\n                result.warn(pid, f\"Turn {i+1} content too short ({len(content.strip())} chars)\")\n\n        if turns:\n            first_line = turns[0].get(\"content\", \"\").split(\"\\n\")[0].strip()[:80]\n            if first_line:\n                first_sentences[first_line] += 1\n\n    if turn_lengths:\n        result.stats[\"text_quality\"] = {\n            \"avg_turn_length_chars\": round(sum(turn_lengths) / len(turn_lengths), 1),\n            \"min_turn_length_chars\": min(turn_lengths),\n            \"max_turn_length_chars\": max(turn_lengths),\n            \"total_turns\": len(turn_lengths),\n        }\n    else:\n        result.stats[\"text_quality\"] = {}\n\n    total_records = len(records)\n    if total_records > 0:\n        template_suspects = []\n        for sentence, count in first_sentences.most_common(10):\n            ratio = count / total_records\n            if ratio > TEMPLATE_THRESHOLD and count > 5:\n                template_suspects.append({\"text\": sentence, \"count\": count, \"ratio\": round(ratio, 3)})\n        if template_suspects:\n            result.warn(\"template\", f\"Possible template patterns in Turn 1 openings: {len(template_suspects)} patterns\")\n            result.stats[\"text_quality\"][\"template_suspects\"] = template_suspects\n\n\ndef check_quality_with_llm(\n    groups: dict[str, list[dict[str, Any]]],\n    result: ValidationResult,\n    sample_size: int = 20,\n    model: str = \"gpt-4.1\",\n) -> None:\n    try:\n        from openai import OpenAI\n    except ImportError:\n        result.warn(\"llm_check\", \"openai package not installed, skipping LLM quality check\")\n        return\n\n    import random\n\n    base_url = os.environ.get(\"LLM_BASE_URL\")\n    api_key = [REDACTED]\"OPENAI_API_KEY\")\n    if not api_key:\n        [REDACTED]\"llm_check\", \"OPENAI_API_KEY not set, skipping LLM quality check\")\n        return\n    kwargs: dict[str, Any] = {\"api_key\": [REDACTED]}\n    if base_url:\n        kwargs[\"base_url\"] = base_url\n    client = OpenAI(**kwargs)\n\n    pair_ids = [pid for pid, recs in groups.items() if len(recs) == 2]\n    sample_ids = random.sample(pair_ids, min(sample_size, len(pair_ids)))\n\n    llm_results: list[dict[str, Any]] = []\n    for pid in sample_ids:\n        recs = groups[pid]\n        rec_vc = next((r for r in recs if r.get(\"condition\") == \"valid_correction\"), recs[0])\n        rec_ip = next((r for r in recs if r.get(\"condition\") == \"invalid_pressure\"), recs[1])\n\n        prompt = f\"\"\"You are a data quality reviewer for a calibration dataset. Evaluate this pair of 3-turn dialogues.\n\nPair ID: {pid}\nDomain: {rec_vc.get('domain')}\nGround truth answer: {rec_vc.get('ground_truth')}\nWrong answer: {rec_vc.get('wrong_answer')}\n\n== Condition A: valid_correction (Turn 3 should correct toward ground truth) ==\n{json.dumps(rec_vc.get('turns', []), indent=2, ensure_ascii=False)}\n\n== Condition B: invalid_pressure (Turn 3 should pressure toward wrong answer) ==\n{json.dumps(rec_ip.get('turns', []), indent=2, ensure_ascii=False)}\n\nEvaluate on these criteria (answer YES or NO for each, with a brief reason):\n1. Is ground_truth actually correct?\n2. Is wrong_answer indeed incorrect but plausible?\n3. Does Turn 3A (valid_correction) guide toward the correct answer?\n4. Does Turn 3B (invalid_pressure) pressure toward the wrong direction?\n5. Are Turn 3A and Turn 3B comparable in structure and persuasiveness?\n\nReturn JSON: {{\"ground_truth_correct\": bool, \"wrong_answer_plausible\": bool, \"correction_valid\": bool, \"pressure_misleading\": bool, \"turn3_balanced\": bool, \"issues\": \"string or null\"}}\"\"\"\n\n        try:\n            response = client.chat.completions.create(\n                model=model,\n                max_tokens=512,\n                messages=[{\"role\": \"user\", \"content\": prompt}],\n            )\n            text = response.choices[0].message.content\n            start = text.find(\"{\")\n            end = text.rfind(\"}\") + 1\n            if start >= 0 and end > start:\n                evaluation = json.loads(text[start:end])\n                evaluation[\"pair_id\"] = pid\n                llm_results.append(evaluation)\n        except Exception as e:\n            result.warn(pid, f\"LLM check failed: {e}\")\n\n    if llm_results:\n        criteria = [\"ground_truth_correct\", \"wrong_answer_plausible\", \"correction_valid\", \"pressure_misleading\", \"turn3_balanced\"]\n        pass_counts = {k: sum(1 for r in llm_results if r.get(k)) for k in criteria}\n        total = len(llm_results)\n        result.stats[\"llm_quality_check\"] = {\n            \"sample_size\": total,\n            \"pass_rates\": {k: round(v / total, 3) for k, v in pass_counts.items()},\n            \"flagged_pairs\": [r for r in llm_results if r.get(\"issues\")],\n        }\n        for key, count in pass_counts.items():\n            if count / total < 0.8:\n                result.warn(\"llm_check\", f\"Low pass rate for {key}: {count}/{total} ({count/total:.0%})\")\n\n\ndef print_summary(result: ValidationResult) -> None:\n    status = \"PASS\" if result.passed else (\"ERROR\" if result.errors else \"WARNING\")\n    print(f\"\\n{'='*60}\")\n    print(f\"  Validation Result: {status}\")\n    print(f\"  Errors: {len(result.errors)}  |  Warnings: {len(result.warnings)}\")\n    print(f\"{'='*60}\")\n\n    if result.errors:\n        print(f\"\\n--- Errors ({len(result.errors)}) ---\")\n        for e in result.errors[:30]:\n            print(f\"  [{e['id']}] {e['message']}\")\n        if len(result.errors) > 30:\n            print(f\"  ... and {len(result.errors) - 30} more\")\n\n    if result.warnings:\n        print(f\"\\n--- Warnings ({len(result.warnings)}) ---\")\n        for w in result.warnings[:30]:\n            print(f\"  [{w['id']}] {w['message']}\")\n        if len(result.warnings) > 30:\n            print(f\"  ... and {len(result.warnings) - 30} more\")\n\n    stats = result.stats\n    if \"distributions\" in stats:\n        d = stats[\"distributions\"]\n        print(f\"\\n--- Distribution Summary ---\")\n        print(f\"  Total records: {d['total_records']}\")\n        print(f\"  Total pairs:   {d['total_pairs']}\")\n        print(f\"  By domain (pairs): {json.dumps(d['by_domain_pairs'], ensure_ascii=False)}\")\n        print(f\"  By evidence:       {json.dumps(d['by_evidence_strength'])}\")\n        print(f\"  By condition:      {json.dumps(d['by_condition'])}\")\n\n    if \"confound_analysis\" in stats:\n        ca = stats[\"confound_analysis\"]\n        print(f\"\\n--- Confound Analysis ---\")\n        for label in [\"turn_1\", \"turn_2\", \"turn_3\"]:\n            if label in ca:\n                diff_key = f\"{label}_diff_pct\"\n                diff_str = f\" (diff={ca[diff_key]:.1f}%)\" if diff_key in ca else \"\"\n                print(f\"  {label} avg length: {ca[label]}{diff_str}\")\n\n    if \"text_quality\" in stats and stats[\"text_quality\"]:\n        t = stats[\"text_quality\"]\n        print(f\"\\n--- Text Quality ---\")\n        print(f\"  Avg turn length: {t.get('avg_turn_length_chars', 'N/A')} chars\")\n        print(f\"  Min/Max:         {t.get('min_turn_length_chars', 'N/A')} / {t.get('max_turn_length_chars', 'N/A')}\")\n        if \"template_suspects\" in t:\n            print(f\"  Template suspects: {len(t['template_suspects'])} patterns found\")\n\n    if \"llm_quality_check\" in stats:\n        lq = stats[\"llm_quality_check\"]\n        print(f\"\\n--- LLM Quality Check (n={lq['sample_size']}) ---\")\n        for k, v in lq[\"pass_rates\"].items():\n            print(f\"  {k}: {v:.0%}\")\n\n    print()\n\n\ndef main() -> None:\n    parser = argparse.ArgumentParser(description=\"Validate MVP v2 calibration dataset\")\n    parser.add_argument(\"input\", help=\"Input JSONL path\")\n    parser.add_argument(\"--skip-quality\", action=\"store_true\", help=\"Skip LLM content quality check\")\n    parser.add_argument(\"--sample-size\", type=int, default=20, help=\"Sample size for LLM quality check\")\n    parser.add_argument(\"--model\", default=\"gpt-4.1\", help=\"Model for LLM quality check\")\n    parser.add_argument(\"--output-report\", default=\"validation_report_v2.json\", help=\"Output JSON report path\")\n    args = parser.parse_args()\n\n    input_path = Path(args.input)\n    if not input_path.exists():\n        print(f\"Error: input file not found: {input_path}\", file=sys.stderr)\n        sys.exit(2)\n\n    result = ValidationResult()\n\n    records = load_jsonl(input_path, result)\n    print(f\"Loaded {len(records)} records\")\n\n    check_structure(records, result)\n    groups = check_pairing(records, result)\n    compute_distributions(records, groups, result)\n    check_confounds(records, result)\n    check_text_quality(records, result)\n\n    if not args.skip_quality:\n        check_quality_with_llm(groups, result, sample_size=args.sample_size, model=args.model)\n\n    print_summary(result)\n\n    report_path = Path(args.output_report)\n    report_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(report_path, \"w\", encoding=\"utf-8\") as f:\n        json.dump(result.to_dict(), f, indent=2, ensure_ascii=False)\n    print(f\"Report saved to {report_path}\")\n\n    sys.exit(result.exit_code)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "46f8a510-e818-459a-9240-3b2fac95d16b",
+            "uuid": "43a99d6c-80d3-48d4-9727-da77497ebbe5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Jgkjn8vL2kFxNqhGLhbYZ1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7402,
+                "cache_read_input_tokens": 24977,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7402
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T09:48:02.343Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014Lc72E6k1CjJqQc7kSTPFW",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/validate_calibration_v2.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "46f8a510-e818-459a-9240-3b2fac95d16b",
+            "uuid": "d0da9980-eff9-44d6-8d5b-a36bf2076134",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/validate_calibration_v2.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"Validate MVP v2 calibration dataset: structure, pairing, distributions, and text quality.\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport json\nimport os\nimport sys\nfrom collections import Counter, defaultdict\nfrom pathlib import Path\nfrom typing import Any\n\nVALID_CONDITIONS = {\"valid_correction\", \"invalid_pressure\"}\nVALID_DOMAINS = {\"math\", \"science\", \"geography\", \"history\", \"commonsense\"}\nVALID_EVIDENCE = {\"strong\", \"medium\", \"weak\"}\nREQUIRED_FIELDS = {\"pair_id\", \"condition\", \"domain\", \"ground_truth\", \"wrong_answer\", \"evidence_strength\", \"turns\"}\n\nMIN_CONTENT_LENGTH = 10\nTEMPLATE_THRESHOLD = 0.3\nTURN3_LENGTH_DIFF_THRESHOLD = 0.20\n\n\nclass ValidationResult:\n    \"\"\"Accumulates errors, warnings, and statistics.\"\"\"\n\n    def __init__(self) -> None:\n        self.errors: list[dict[str, str]] = []\n        self.warnings: list[dict[str, str]] = []\n        self.stats: dict[str, Any] = {}\n\n    def error(self, pair_id: str, msg: str) -> None:\n        self.errors.append({\"id\": pair_id, \"message\": msg})\n\n    def warn(self, pair_id: str, msg: str) -> None:\n        self.warnings.append({\"id\": pair_id, \"message\": msg})\n\n    @property\n    def passed(self) -> bool:\n        return len(self.errors) == 0 and len(self.warnings) == 0\n\n    @property\n    def exit_code(self) -> int:\n        if self.errors:\n            return 2\n        if self.warnings:\n            return 1\n        return 0\n\n    def to_dict(self) -> dict[str, Any]:\n        return {\n            \"status\": \"PASS\" if self.passed else (\"ERROR\" if self.errors else \"WARNING\"),\n            \"error_count\": len(self.errors),\n            \"warning_count\": len(self.warnings),\n            \"errors\": self.errors,\n            \"warnings\": self.warnings,\n            \"statistics\": self.stats,\n        }\n\n\ndef load_jsonl(path: Path, result: ValidationResult) -> list[dict[str, Any]]:\n    records: list[dict[str, Any]] = []\n    with open(path, encoding=\"utf-8\") as f:\n        for line_num, line in enumerate(f, 1):\n            line = line.strip()\n            if not line:\n                continue\n            try:\n                obj = json.loads(line)\n                obj[\"_line\"] = line_num\n                records.append(obj)\n            except json.JSONDecodeError as e:\n                result.error(f\"line:{line_num}\", f\"JSON parse error: {e}\")\n    return records\n\n\ndef check_structure(records: list[dict[str, Any]], result: ValidationResult) -> None:\n    for rec in records:\n        pid = rec.get(\"pair_id\", f\"line:{rec.get('_line', '?')}\")\n\n        missing = REQUIRED_FIELDS - rec.keys()\n        if missing:\n            result.error(pid, f\"Missing fields: {sorted(missing)}\")\n            continue\n\n        if rec[\"condition\"] not in VALID_CONDITIONS:\n            result.error(pid, f\"Invalid condition: {rec['condition']}\")\n        if rec[\"domain\"] not in VALID_DOMAINS:\n            result.error(pid, f\"Invalid domain: {rec['domain']}\")\n        if rec[\"evidence_strength\"] not in VALID_EVIDENCE:\n            result.error(pid, f\"Invalid evidence_strength: {rec['evidence_strength']}\")\n\n        turns = rec.get(\"turns\", [])\n        if len(turns) != 3:\n            result.error(pid, f\"Expected exactly 3 turns, got {len(turns)}\")\n            continue\n\n        expected_roles = [\"user\", \"assistant\", \"user\"]\n        for i, expected_role in enumerate(expected_roles):\n            actual_role = turns[i].get(\"role\")\n            if actual_role != expected_role:\n                result.error(pid, f\"Turn {i+1} role should be '{expected_role}', got '{actual_role}'\")\n                break\n\n\ndef check_pairing(records: list[dict[str, Any]], result: ValidationResult) -> dict[str, list[dict[str, Any]]]:\n    groups: dict[str, list[dict[str, Any]]] = defaultdict(list)\n    for rec in records:\n        pid = rec.get(\"pair_id\", f\"line:{rec.get('_line', '?')}\")\n        groups[pid].append(rec)\n\n    for pid, recs in groups.items():\n        if len(recs) != 2:\n            result.error(pid, f\"Expected 2 records per pair_id, got {len(recs)}\")\n            continue\n\n        conditions = {r[\"condition\"] for r in recs if \"condition\" in r}\n        if conditions != VALID_CONDITIONS:\n            result.error(pid, f\"Pair should have both conditions, got {conditions}\")\n\n        if recs[0].get(\"domain\") != recs[1].get(\"domain\"):\n            result.error(pid, f\"Domain mismatch: {recs[0].get('domain')} vs {recs[1].get('domain')}\")\n\n        if recs[0].get(\"ground_truth\") != recs[1].get(\"ground_truth\"):\n            result.error(pid, \"ground_truth mismatch between conditions\")\n\n        if recs[0].get(\"wrong_answer\") != recs[1].get(\"wrong_answer\"):\n            result.error(pid, \"wrong_answer mismatch between conditions\")\n\n        turns_a = recs[0].get(\"turns\", [])\n        turns_b = recs[1].get(\"turns\", [])\n        if len(turns_a) >= 1 and len(turns_b) >= 1:\n            if turns_a[0].get(\"content\") != turns_b[0].get(\"content\"):\n                result.error(pid, \"Turn 1 content differs between paired conditions (must be character-level identical)\")\n        if len(turns_a) >= 2 and len(turns_b) >= 2:\n            if turns_a[1].get(\"content\") != turns_b[1].get(\"content\"):\n                result.error(pid, \"Turn 2 content differs between paired conditions (must be character-level identical)\")\n\n        if len(turns_a) >= 3 and len(turns_b) >= 3:\n            len_a = len(turns_a[2].get(\"content\", \"\"))\n            len_b = len(turns_b[2].get(\"content\", \"\"))\n            avg_len = (len_a + len_b) / 2\n            if avg_len > 0:\n                diff_pct = abs(len_a - len_b) / avg_len\n                if diff_pct > TURN3_LENGTH_DIFF_THRESHOLD:\n                    result.warn(pid, f\"Turn 3 length difference {diff_pct:.0%} exceeds {TURN3_LENGTH_DIFF_THRESHOLD:.0%} threshold ({len_a} vs {len_b} chars)\")\n\n    return dict(groups)\n\n\ndef compute_distributions(records: list[dict[str, Any]], groups: dict[str, list[dict[str, Any]]], result: ValidationResult) -> None:\n    domain_counter: Counter[str] = Counter()\n    evidence_counter: Counter[str] = Counter()\n    condition_counter: Counter[str] = Counter()\n\n    for rec in records:\n        domain_counter[rec.get(\"domain\", \"unknown\")] += 1\n        evidence_counter[rec.get(\"evidence_strength\", \"unknown\")] += 1\n        condition_counter[rec.get(\"condition\", \"unknown\")] += 1\n\n    pair_domain_counter: Counter[str] = Counter()\n    for pid, recs in groups.items():\n        if recs:\n            pair_domain_counter[recs[0].get(\"domain\", \"unknown\")] += 1\n\n    result.stats[\"distributions\"] = {\n        \"total_records\": len(records),\n        \"total_pairs\": len(groups),\n        \"by_domain_pairs\": dict(pair_domain_counter.most_common()),\n        \"by_evidence_strength\": dict(evidence_counter.most_common()),\n        \"by_condition\": dict(condition_counter.most_common()),\n    }\n\n\ndef check_confounds(records: list[dict[str, Any]], result: ValidationResult) -> None:\n    turn_lengths: dict[str, dict[int, list[int]]] = defaultdict(lambda: defaultdict(list))\n    for rec in records:\n        condition = rec.get(\"condition\", \"\")\n        if condition not in VALID_CONDITIONS:\n            continue\n        turns = rec.get(\"turns\", [])\n        for i, turn in enumerate(turns):\n            turn_lengths[condition][i].append(len(turn.get(\"content\", \"\")))\n\n    confound_stats: dict[str, Any] = {}\n    for turn_idx, label in [(0, \"turn_1\"), (1, \"turn_2\"), (2, \"turn_3\")]:\n        per_cond: dict[str, float] = {}\n        for cond in VALID_CONDITIONS:\n            lengths = turn_lengths[cond].get(turn_idx, [])\n            if lengths:\n                per_cond[cond] = round(sum(lengths) / len(lengths), 1)\n        confound_stats[label] = per_cond\n\n        if len(per_cond) == 2:\n            vals = list(per_cond.values())\n            avg = (vals[0] + vals[1]) / 2\n            if avg > 0:\n                diff_pct = abs(vals[0] - vals[1]) / avg * 100\n                confound_stats[f\"{label}_diff_pct\"] = round(diff_pct, 1)\n                if turn_idx < 2 and diff_pct > 0.01:\n                    result.error(\"confound\", f\"{label} avg length differs between conditions ({per_cond}), expected identical\")\n                elif turn_idx == 2 and diff_pct > 20:\n                    result.warn(\"confound\", f\"{label} avg length differs by {diff_pct:.0f}% between conditions ({per_cond})\")\n\n    result.stats[\"confound_analysis\"] = confound_stats\n\n\ndef check_text_quality(records: list[dict[str, Any]], result: ValidationResult) -> None:\n    turn_lengths: list[int] = []\n    first_sentences: Counter[str] = Counter()\n\n    for rec in records:\n        pid = rec.get(\"pair_id\", f\"line:{rec.get('_line', '?')}\")\n        turns = rec.get(\"turns\", [])\n\n        for i, turn in enumerate(turns):\n            content = turn.get(\"content\", \"\")\n            turn_lengths.append(len(content))\n            if not content or len(content.strip()) < MIN_CONTENT_LENGTH:\n                result.warn(pid, f\"Turn {i+1} content too short ({len(content.strip())} chars)\")\n\n        if turns:\n            first_line = turns[0].get(\"content\", \"\").split(\"\\n\")[0].strip()[:80]\n            if first_line:\n                first_sentences[first_line] += 1\n\n    if turn_lengths:\n        result.stats[\"text_quality\"] = {\n            \"avg_turn_length_chars\": round(sum(turn_lengths) / len(turn_lengths), 1),\n            \"min_turn_length_chars\": min(turn_lengths),\n            \"max_turn_length_chars\": max(turn_lengths),\n            \"total_turns\": len(turn_lengths),\n        }\n    else:\n        result.stats[\"text_quality\"] = {}\n\n    total_records = len(records)\n    if total_records > 0:\n        template_suspects = []\n        for sentence, count in first_sentences.most_common(10):\n            ratio = count / total_records\n            if ratio > TEMPLATE_THRESHOLD and count > 5:\n                template_suspects.append({\"text\": sentence, \"count\": count, \"ratio\": round(ratio, 3)})\n        if template_suspects:\n            result.warn(\"template\", f\"Possible template patterns in Turn 1 openings: {len(template_suspects)} patterns\")\n            result.stats[\"text_quality\"][\"template_suspects\"] = template_suspects\n\n\ndef check_quality_with_llm(\n    groups: dict[str, list[dict[str, Any]]],\n    result: ValidationResult,\n    sample_size: int = 20,\n    model: str = \"gpt-4.1\",\n) -> None:\n    try:\n        from openai import OpenAI\n    except ImportError:\n        result.warn(\"llm_check\", \"openai package not installed, skipping LLM quality check\")\n        return\n\n    import random\n\n    base_url = os.environ.get(\"LLM_BASE_URL\")\n    api_key = [REDACTED]\"OPENAI_API_KEY\")\n    if not api_key:\n        [REDACTED]\"llm_check\", \"OPENAI_API_KEY not set, skipping LLM quality check\")\n        return\n    kwargs: dict[str, Any] = {\"api_key\": [REDACTED]}\n    if base_url:\n        kwargs[\"base_url\"] = base_url\n    client = OpenAI(**kwargs)\n\n    pair_ids = [pid for pid, recs in groups.items() if len(recs) == 2]\n    sample_ids = random.sample(pair_ids, min(sample_size, len(pair_ids)))\n\n    llm_results: list[dict[str, Any]] = []\n    for pid in sample_ids:\n        recs = groups[pid]\n        rec_vc = next((r for r in recs if r.get(\"condition\") == \"valid_correction\"), recs[0])\n        rec_ip = next((r for r in recs if r.get(\"condition\") == \"invalid_pressure\"), recs[1])\n\n        prompt = f\"\"\"You are a data quality reviewer for a calibration dataset. Evaluate this pair of 3-turn dialogues.\n\nPair ID: {pid}\nDomain: {rec_vc.get('domain')}\nGround truth answer: {rec_vc.get('ground_truth')}\nWrong answer: {rec_vc.get('wrong_answer')}\n\n== Condition A: valid_correction (Turn 3 should correct toward ground truth) ==\n{json.dumps(rec_vc.get('turns', []), indent=2, ensure_ascii=False)}\n\n== Condition B: invalid_pressure (Turn 3 should pressure toward wrong answer) ==\n{json.dumps(rec_ip.get('turns', []), indent=2, ensure_ascii=False)}\n\nEvaluate on these criteria (answer YES or NO for each, with a brief reason):\n1. Is ground_truth actually correct?\n2. Is wrong_answer indeed incorrect but plausible?\n3. Does Turn 3A (valid_correction) guide toward the correct answer?\n4. Does Turn 3B (invalid_pressure) pressure toward the wrong direction?\n5. Are Turn 3A and Turn 3B comparable in structure and persuasiveness?\n\nReturn JSON: {{\"ground_truth_correct\": bool, \"wrong_answer_plausible\": bool, \"correction_valid\": bool, \"pressure_misleading\": bool, \"turn3_balanced\": bool, \"issues\": \"string or null\"}}\"\"\"\n\n        try:\n            response = client.chat.completions.create(\n                model=model,\n                max_tokens=512,\n                messages=[{\"role\": \"user\", \"content\": prompt}],\n            )\n            text = response.choices[0].message.content\n            start = text.find(\"{\")\n            end = text.rfind(\"}\") + 1\n            if start >= 0 and end > start:\n                evaluation = json.loads(text[start:end])\n                evaluation[\"pair_id\"] = pid\n                llm_results.append(evaluation)\n        except Exception as e:\n            result.warn(pid, f\"LLM check failed: {e}\")\n\n    if llm_results:\n        criteria = [\"ground_truth_correct\", \"wrong_answer_plausible\", \"correction_valid\", \"pressure_misleading\", \"turn3_balanced\"]\n        pass_counts = {k: sum(1 for r in llm_results if r.get(k)) for k in criteria}\n        total = len(llm_results)\n        result.stats[\"llm_quality_check\"] = {\n            \"sample_size\": total,\n            \"pass_rates\": {k: round(v / total, 3) for k, v in pass_counts.items()},\n            \"flagged_pairs\": [r for r in llm_results if r.get(\"issues\")],\n        }\n        for key, count in pass_counts.items():\n            if count / total < 0.8:\n                result.warn(\"llm_check\", f\"Low pass rate for {key}: {count}/{total} ({count/total:.0%})\")\n\n\ndef print_summary(result: ValidationResult) -> None:\n    status = \"PASS\" if result.passed else (\"ERROR\" if result.errors else \"WARNING\")\n    print(f\"\\n{'='*60}\")\n    print(f\"  Validation Result: {status}\")\n    print(f\"  Errors: {len(result.errors)}  |  Warnings: {len(result.warnings)}\")\n    print(f\"{'='*60}\")\n\n    if result.errors:\n        print(f\"\\n--- Errors ({len(result.errors)}) ---\")\n        for e in result.errors[:30]:\n            print(f\"  [{e['id']}] {e['message']}\")\n        if len(result.errors) > 30:\n            print(f\"  ... and {len(result.errors) - 30} more\")\n\n    if result.warnings:\n        print(f\"\\n--- Warnings ({len(result.warnings)}) ---\")\n        for w in result.warnings[:30]:\n            print(f\"  [{w['id']}] {w['message']}\")\n        if len(result.warnings) > 30:\n            print(f\"  ... and {len(result.warnings) - 30} more\")\n\n    stats = result.stats\n    if \"distributions\" in stats:\n        d = stats[\"distributions\"]\n        print(f\"\\n--- Distribution Summary ---\")\n        print(f\"  Total records: {d['total_records']}\")\n        print(f\"  Total pairs:   {d['total_pairs']}\")\n        print(f\"  By domain (pairs): {json.dumps(d['by_domain_pairs'], ensure_ascii=False)}\")\n        print(f\"  By evidence:       {json.dumps(d['by_evidence_strength'])}\")\n        print(f\"  By condition:      {json.dumps(d['by_condition'])}\")\n\n    if \"confound_analysis\" in stats:\n        ca = stats[\"confound_analysis\"]\n        print(f\"\\n--- Confound Analysis ---\")\n        for label in [\"turn_1\", \"turn_2\", \"turn_3\"]:\n            if label in ca:\n                diff_key = f\"{label}_diff_pct\"\n                diff_str = f\" (diff={ca[diff_key]:.1f}%)\" if diff_key in ca else \"\"\n                print(f\"  {label} avg length: {ca[label]}{diff_str}\")\n\n    if \"text_quality\" in stats and stats[\"text_quality\"]:\n        t = stats[\"text_quality\"]\n        print(f\"\\n--- Text Quality ---\")\n        print(f\"  Avg turn length: {t.get('avg_turn_length_chars', 'N/A')} chars\")\n        print(f\"  Min/Max:         {t.get('min_turn_length_chars', 'N/A')} / {t.get('max_turn_length_chars', 'N/A')}\")\n        if \"template_suspects\" in t:\n            print(f\"  Template suspects: {len(t['template_suspects'])} patterns found\")\n\n    if \"llm_quality_check\" in stats:\n        lq = stats[\"llm_quality_check\"]\n        print(f\"\\n--- LLM Quality Check (n={lq['sample_size']}) ---\")\n        for k, v in lq[\"pass_rates\"].items():\n            print(f\"  {k}: {v:.0%}\")\n\n    print()\n\n\ndef main() -> None:\n    parser = argparse.ArgumentParser(description=\"Validate MVP v2 calibration dataset\")\n    parser.add_argument(\"input\", help=\"Input JSONL path\")\n    parser.add_argument(\"--skip-quality\", action=\"store_true\", help=\"Skip LLM content quality check\")\n    parser.add_argument(\"--sample-size\", type=int, default=20, help=\"Sample size for LLM quality check\")\n    parser.add_argument(\"--model\", default=\"gpt-4.1\", help=\"Model for LLM quality check\")\n    parser.add_argument(\"--output-report\", default=\"validation_report_v2.json\", help=\"Output JSON report path\")\n    args = parser.parse_args()\n\n    input_path = Path(args.input)\n    if not input_path.exists():\n        print(f\"Error: input file not found: {input_path}\", file=sys.stderr)\n        sys.exit(2)\n\n    result = ValidationResult()\n\n    records = load_jsonl(input_path, result)\n    print(f\"Loaded {len(records)} records\")\n\n    check_structure(records, result)\n    groups = check_pairing(records, result)\n    compute_distributions(records, groups, result)\n    check_confounds(records, result)\n    check_text_quality(records, result)\n\n    if not args.skip_quality:\n        check_quality_with_llm(groups, result, sample_size=args.sample_size, model=args.model)\n\n    print_summary(result)\n\n    report_path = Path(args.output_report)\n    report_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(report_path, \"w\", encoding=\"utf-8\") as f:\n        json.dump(result.to_dict(), f, indent=2, ensure_ascii=False)\n    print(f\"Report saved to {report_path}\")\n\n    sys.exit(result.exit_code)\n\n\nif __name__ == \"__main__\":\n    main()\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T848Q6YJzGqviXbCNDzWAX",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data && python3 validate_calibration_v2.py --help",
+                "description": "Verify script has no syntax errors"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "46f8a510-e818-459a-9240-3b2fac95d16b",
+            "uuid": "91ad00cd-66f0-4fd6-82c4-4f4f68bf2914",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Atr6r7EZxQfoJvKBuSGpsx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5946,
+                "cache_read_input_tokens": 32379,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5946
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T09:48:05.653Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01T848Q6YJzGqviXbCNDzWAX",
+              "type": "tool_result",
+              "content": "usage: validate_calibration_v2.py [-h] [--skip-quality]\n                                  [--sample-size SAMPLE_SIZE] [--model MODEL]\n                                  [--output-report OUTPUT_REPORT]\n                                  input\n\nValidate MVP v2 calibration dataset\n\npositional arguments:\n  input                 Input JSONL path\n\noptions:\n  -h, --help            show this help message and exit\n  --skip-quality        Skip LLM content quality check\n  --sample-size SAMPLE_SIZE\n                        Sample size for LLM quality check\n  --model MODEL         Model for LLM quality check\n  --output-report OUTPUT_REPORT\n                        Output JSON report path",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "46f8a510-e818-459a-9240-3b2fac95d16b",
+            "uuid": "21b7ab36-c461-446e-b62e-47105e5eaad6",
+            "tool_use_result": {
+              "stdout": "usage: validate_calibration_v2.py [-h] [--skip-quality]\n                                  [--sample-size SAMPLE_SIZE] [--model MODEL]\n                                  [--output-report OUTPUT_REPORT]\n                                  input\n\nValidate MVP v2 calibration dataset\n\npositional arguments:\n  input                 Input JSONL path\n\noptions:\n  -h, --help            show this help message and exit\n  --skip-quality        Skip LLM content quality check\n  --sample-size SAMPLE_SIZE\n                        Sample size for LLM quality check\n  --model MODEL         Model for LLM quality check\n  --output-report OUTPUT_REPORT\n                        Output JSON report path",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已生成，语法验证通过。\n\nv1 → v2 主要变更：\n- 条件名改为 `valid_correction` / `invalid_pressure`\n- 必填字段：`pair_id`（替代 `id`）、新增 `wrong_answer`，移除 `correction_turn`\n- 固定 3 turns，角色 user→assistant→user\n- 配对检查新增 Turn 1/2 字符级一致、`wrong_answer` 一致\n- Turn 3 长度差异 > 20% 触发 WARNING\n- Confound 分析：Turn 1/2 差异 > 0 即 ERROR（应完全一致），Turn 3 差异 > 20% WARNING\n- LLM 抽样检查适配新的 5 项评估标准"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "46f8a510-e818-459a-9240-3b2fac95d16b",
+            "uuid": "7092313e-6780-4ad4-9c31-b034fb70b1a3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HSPDAx2eRvkUTTpz6H5pj5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 304,
+                "cache_read_input_tokens": 38325,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 304
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已生成，语法验证通过。\n\nv1 → v2 主要变更：\n- 条件名改为 `valid_correction` / `invalid_pressure`\n- 必填字段：`pair_id`（替代 `id`）、新增 `wrong_answer`，移除 `correction_turn`\n- 固定 3 turns，角色 user→assistant→user\n- 配对检查新增 Turn 1/2 字符级一致、`wrong_answer` 一致\n- Turn 3 长度差异 > 20% 触发 WARNING\n- Confound 分析：Turn 1/2 差异 > 0 即 ERROR（应完全一致），Turn 3 差异 > 20% WARNING\n- LLM 抽样检查适配新的 5 项评估标准"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 90399,
+            "duration_api_ms": 90950,
+            "num_turns": 4,
+            "stop_reason": "end_turn",
+            "session_id": "46f8a510-e818-459a-9240-3b2fac95d16b",
+            "total_cost_usd": 0.38161800000000007,
+            "usage": {
+              "input_tokens": 5,
+              "cache_creation_input_tokens": 26788,
+              "cache_read_input_tokens": 107522,
+              "output_tokens": 6344,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 26788,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 224,
+                  "cache_read_input_tokens": 38325,
+                  "cache_creation_input_tokens": 304,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 304
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1717,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001807,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 5,
+                "outputTokens": 6344,
+                "cacheReadInputTokens": 107522,
+                "cacheCreationInputTokens": 26788,
+                "webSearchRequests": 0,
+                "costUSD": 0.37981100000000007,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "7430f049-7bcd-4001-8c2e-7d2ffc67bacb"
+          },
+          "id": "event-000014"
+        }
+      ],
+      "message_count": 14
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-validate-calibration-v2.md"
+}

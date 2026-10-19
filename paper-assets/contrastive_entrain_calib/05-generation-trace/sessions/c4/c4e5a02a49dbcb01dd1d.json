@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4e5a02a49dbcb01dd1d",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval check acts2 eval results",
+  "task_key": "worker_eval_check-acts2-eval-results_20260522T151807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_check-acts2-eval-results_20260522T151807_result.json",
+    "occurrence": 1,
+    "bytes": 527,
+    "sha256": "94afd38383acf23b201b7d765989c485354f84b78de789e15e4e814ba21831ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 均已完成。结果汇总：\n\n| Checkpoint | SYCONScore | ToF | NoF |\n|---|---|---|---|\n| **ckpt-2000** | 0.2139 | 0.1215 | 0.8895 |\n| **ckpt-3000** | 0.2543 | 0.1492 | 0.8619 |\n| vanilla baseline | 0.1335 | — | — |\n\n**两个 checkpoint 的 SYCONScore 都高于 vanilla (0.1335)**，无异常。ckpt-3000 比 ckpt-2000 高约 4 个点，训练继续有提升。\n\nGPU 状态：GPU0/1/3 空闲（0%, 2MiB），GPU2 在使用（62%, 16458MiB）。Eval 已结束释放了 GPU0 和 GPU1。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-check-acts2-eval-results.md"
+}

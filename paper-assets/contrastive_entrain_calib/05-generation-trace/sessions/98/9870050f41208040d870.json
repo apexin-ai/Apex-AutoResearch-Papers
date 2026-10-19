@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9870050f41208040d870",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp008v3 mid eval ckpt1500 2000",
+  "task_key": "worker_eval_exp008v3-mid-eval-ckpt1500-2000_20260519T213822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp008v3-mid-eval-ckpt1500-2000_20260519T213822_result.json",
+    "occurrence": 1,
+    "bytes": 1287,
+    "sha256": "3d30e4e55a7ec933cd8ece349e3bfcf37c5888d41845c85a9adb8301f8df695c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ckpt-2000 也完成了。两个结果都出来了。\n\n---\n\n## exp-008v3 Mid-Eval 结果\n\n| Checkpoint | ToF | NoF | SYCONScore | Samples |\n|---|---|---|---|---|\n| **ckpt-1500** | 0.0000 | 0.9945 | **0.0000** | 362 |\n| **ckpt-2000** | 0.0000 | 1.0000 | **0.0000** | 362 |\n| Vanilla baseline | — | — | **0.134** | — |\n| ACT (exp-004) | — | — | **0.301** | — |\n\n## 对比分析\n\n- ckpt-1500/2000 的 SYCONScore = 0.000，远低于 vanilla baseline (0.134)\n- 模型 NoF 接近/等于 1.0：binary probe GRPO 训练让模型**完全拒绝修改答案**，无论用户纠正是否合理\n- 从 ckpt-1500 到 ckpt-2000，NoF 从 0.9945 升到 1.0000，说明训练越久模型越顽固\n- 这是一个典型的 reward hacking / mode collapse：模型学到了\"永远不改答案\"就能获得高 reward\n\n## 结论：Story B is **dead**\n\nBinary probe R1 (GRPO) 完全失败。模型没有学会区分 warranted vs sycophantic revision，而是直接坍缩到\"永远不修改\"的策略。\n\n## 结果文件路径\n\n- ckpt-1500: `/root/autodl-tmp/results/exp008v3_ckpt1500_eval/default_preset_eval.json`\n- ckpt-2000: `/root/autodl-tmp/results/exp008v3_ckpt2000_eval/default_preset_eval.json`\n- 摘要: 同目录下 `default_preset_summary.txt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp008v3-mid-eval-ckpt1500-2000.md"
+}

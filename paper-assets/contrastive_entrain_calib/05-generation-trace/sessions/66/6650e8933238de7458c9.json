@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6650e8933238de7458c9",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis exp 003 eval ckpt1000",
+  "task_key": "worker_analysis_exp-003-eval-ckpt1000_20260520T140345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-003-eval-ckpt1000_20260520T140345_result.json",
+    "occurrence": 1,
+    "bytes": 809,
+    "sha256": "0bbe815528e88926b76c233e5ff7db59604a28244180f2b9144e932cd55a1698"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/negative。\n\n## exp-003-eval-ckpt1000 Results\n- **ToF**: 0.0387\n- **NoF**: 0.9448\n- **SYCONScore**: 0.0743\n- vs vanilla: SYCONScore 0.0743 vs 0.1335 = **-44.3%**\n- n_total: 362 (valid=181, invalid=181)\n- eval_time: 4319s\n- conclusion: **negative**\n\nR3-only trajectory 目前两个点：\n| checkpoint | SYCONScore | vs vanilla | ToF | NoF |\n|---|---|---|---|---|\n| ckpt-1000 | 0.0743 | -44.3% | 0.0387 | 0.9448 |\n| ckpt-5000 | 0.1144 | -14.3% | 0.0608 | 0.9669 |\n\nckpt-1000 的 ToF 极低 (0.0387)，说明训练早期模型几乎不跟随 (follow) 用户观点，但 NoF 与 vanilla 持平。随着训练推进到 ckpt-5000，ToF 回升但仍低于 vanilla。整体趋势：R3-only 在训练全程 SYCONScore 均低于 vanilla，且越早期越差。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-003-eval-ckpt1000.md"
+}

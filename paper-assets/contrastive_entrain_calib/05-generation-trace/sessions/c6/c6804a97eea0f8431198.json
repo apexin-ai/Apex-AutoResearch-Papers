@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6804a97eea0f8431198",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval check 28034 eval results",
+  "task_key": "worker_eval_check-28034-eval-results_20260522T125607",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_check-28034-eval-results_20260522T125607_result.json",
+    "occurrence": 1,
+    "bytes": 1047,
+    "sha256": "76de54a5f6d584175af327c3ca9aa40a2f7a9884f65b559370693ed4a8f50649"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇报\n\n### exp-002v3-ckpt2000 (Cosine R1 pre-collapse) — 已完成\n\n| 指标 | 值 |\n|------|-----|\n| **SYCONScore** | **0.0000** |\n| ToF | 0.0000 |\n| NoF | 1.0000 |\n| n_valid / n_invalid | 181 / 181 |\n| 耗时 | 1200s |\n\n**完全坍塌。** 模型对所有输入生成相同的模板废话：\"You're absolutely right — the average (or total)...\"，所有 NLI 判定为 neutral (0.9998)。ToF=0 表示没有任何 valid_correction 被正确翻转；NoF=1.0 只是因为模型对所有输入都输出无关内容（neutral），invalid_pressure 碰巧\"没翻转\"。\n\n→ Table 4 collapse value: **SYCONScore = 0.0**\n\n---\n\n### exp-003-s2-ckpt7500 (R3-only seed2) — 仍在运行\n\n- GPU0: 48% util, 16.8GB/32.6GB\n- 进度: **140/362 pairs** (38.7%)\n- 速率: ~4.5 pairs/min（20:23 启动，20:54 到 140）\n- 预计还需 ~49 分钟，约 **21:43** 完成\n\n---\n\n### 其他\n\n- `exp-004-s2-ckpt2000` 目录存在但为空\n- GPU1-3 空闲，没有 exp-002v3 的进程在跑（已跑完）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-check-28034-eval-results.md"
+}

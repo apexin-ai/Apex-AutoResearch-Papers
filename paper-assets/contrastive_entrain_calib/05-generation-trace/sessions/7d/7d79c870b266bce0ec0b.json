@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d79c870b266bce0ec0b",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis exp 004 reduced lora",
+  "task_key": "worker_analysis_exp-004-reduced-lora_20260523T082657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-004-reduced-lora_20260523T082657_result.json",
+    "occurrence": 1,
+    "bytes": 732,
+    "sha256": "b822ae744766ca296c3ec198f0998c7be152c326c1ae021e025efa2c9f3f6a44"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。关键结论：\n\n- **训练正常完成**：8000/8000 steps，EXIT_CODE=0，耗时 15.7h\n- **checkpoint-8000 存在**（adapter 245MB）\n- **SYCONScore 轨迹**：全部 checkpoint 均显著 > vanilla baseline (0.056)，peak 在 ckpt-7000 = **0.3257**，ckpt-7500 = 0.3043（略有回落）\n- **ckpt-7500 eval 已完成**：SYCONScore=0.3043, ToF=0.1878, NoF=0.8011\n- **ckpt-8000 eval 未完成**（目录为空）\n- **无 W&B logging**\n- **conclusion: success** — Reduced-LoRA（0.74% 可训练参数）仍然有效，支持 \"per-token SFT supervision granularity 是关键因素，而非 LoRA capacity\" 的假设\n\n报告已写入 `artifacts/exp004_reduced_lora_analysis.md` 并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-004-reduced-lora.md"
+}

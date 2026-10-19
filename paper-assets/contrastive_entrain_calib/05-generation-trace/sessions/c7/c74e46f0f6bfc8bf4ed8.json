@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c74e46f0f6bfc8bf4ed8",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diag ckpt7000 and training progress",
+  "task_key": "worker_diag_ckpt7000-and-training-progress_20260521T081207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_ckpt7000-and-training-progress_20260521T081207_result.json",
+    "occurrence": 1,
+    "bytes": 2364,
+    "sha256": "1bbb42b86416b450602248db7f60e7b5e511d8c1fbeaa53e2ef01115d9808ceb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已经齐了。以下是诊断报告：\n\n---\n\n## 诊断报告\n\n### 1. ckpt-7000 eval 失败根因\n\n**两次都是被 SIGTERM (EXIT_CODE=143) 外部杀死，不是自身崩溃。**\n\n- **v1**: 模型加载成功，推理跑到 80/362 (~22分钟)后被杀\n- **v2**: 模型加载时 accelerate 报 GPU 内存不足警告（\"no modules could be assigned to device 0 due to insufficient memory: 2489319424 bytes required\"），LoRA adapter 被 offload 到 CPU。加载 362 条数据后刚开始推理就被杀\n\n根因判断：**GPU 显存不足导致 accelerate 将部分权重 offload 到 CPU → 推理变慢 → 被 job monitoring 系统判定超时后 SIGTERM 杀死**。v2 显存压力比 v1 更大（连 LoRA 都装不下），可能 westd-28034 当时有其他进程占用 GPU。\n\n### 2. Checkpoint 完整性\n\n**checkpoint-7000 完整，可以重试。**\n- `adapter_model.safetensors`: 245,405,936 bytes（与 checkpoint-6000 完全一致）\n- 所有文件齐全（adapter_config, tokenizer, optimizer, scheduler 等）\n- 磁盘空间充足：262GB 可用\n\n### 3. exp-003 训练进度\n\nwestd-29046 上有两个 seed 在并行训练：\n\n| Run | 当前 step | 总 steps | 进度 | 最新 checkpoint |\n|-----|-----------|----------|------|-----------------|\n| **seed1** | 已过 7500 | 8000 | ~94% | checkpoint-7500 (May 21 14:10) |\n| **seed2** (exp-003-s2.log) | 3641 | 8000 | 45.5% | checkpoint-3500 (May 21 15:00) |\n\nseed1 checkpoint 列表：500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000, **7500**\nseed2 checkpoint 列表：500, 1000, 1500, 2000, 2500, 3000, **3500**\n\n**seed1 预计再 ~3-4 小时完成（8000 step）。seed2 预计还需 ~35 小时。**\n\nwestd-28034 上的 eval 用 checkpoint 目录 `/root/autodl-tmp/checkpoints/exp003/` 只到 checkpoint-7000（无 7500/8000）。\n\n### 4. 建议下一步\n\n1. **ckpt-7000 重试**：确保 westd-28034 GPU 无其他进程占用后重跑。如果 GPU 显存太小（单张放不下 Qwen3-8B + LoRA），考虑加 `--max_memory` 参数或用 `dtype=float16` 减少显存占用\n2. **同步新 checkpoint**：seed1 已产出 7500，需从 westd-29046 同步到 westd-28034 的 eval checkpoint 目录\n3. **等 seed1 完成**：约 3-4 小时后产出 checkpoint-8000，届时全部 checkpoint 可一次性 eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-ckpt7000-and-training-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "629a6956224a41acf518",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval 28034 triple eval batch",
+  "task_key": "worker_eval_28034-triple-eval-batch_20260523T005351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_28034-triple-eval-batch_20260523T005351_result.json",
+    "occurrence": 1,
+    "bytes": 651,
+    "sha256": "769b11786687dd0b228ba3e40d895a68543ad4344d5ea9d39f736bf731e279ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 eval 全部启动确认完毕，15 分钟后回来检查结果。\n\n**当前状态汇总：**\n\n```\n=== 之前 ACT s2 结果（已完成）===\nckpt-6500: SYCONScore=0.2543, ToF=0.1492, NoF=0.8619\nckpt-7000: SYCONScore=0.2858, ToF=0.1713, NoF=0.8619\n\n=== 本轮 eval 启动 ===\nGPU0: reduced-lora ckpt-2500, PID=146135 (之前已在跑)\nGPU2: reduced-lora ckpt-3000, PID=146802\nGPU3: reduced-lora ckpt-3500, PID=147325\nGPU1: reduced-lora 训练中 (不动)\n\n=== 备注 ===\n- ACT s2 ckpt-7500 在 29046 已产出，但 28034→29046 SCP 失败（无 SSH key），需后续安排\n- 预计 09:20 左右全部完成\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-28034-triple-eval-batch.md"
+}

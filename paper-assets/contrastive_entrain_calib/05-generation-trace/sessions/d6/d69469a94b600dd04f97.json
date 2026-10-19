@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d69469a94b600dd04f97",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "run phase2 activation extraction",
+  "task_key": "worker_run_phase2_activation_extraction_20260518T080446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_phase2_activation_extraction_20260518T080446_result.json",
+    "occurrence": 1,
+    "bytes": 2874,
+    "sha256": "b8baf1dc2a4e09551f5961e5b3aec5a550c67c07cb6c1c18428bfa06dafec988"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All phases complete. Full results:\n\n---\n\n## Phase 2-4 Execution Summary\n\n### Phase 2: Activation Extraction\n- **640 samples** processed in **11 seconds** (54.59 it/s)\n- **36 layers**, hidden_dim=4096, Qwen3-8B on RTX PRO 6000 Blackwell\n- 2 bug fixes applied: `return_dict=False` for transformers 5.8.1 compatibility, turn indexing fix for `correction_turn` field\n\n### Phase 3: Direction Computation  \n- 320 complete pairs → **256 train / 64 test** (stratified by domain, seed=42)\n- d_syc and d_gen computed via difference-in-means, L2-normalized\n\n### Phase 4: Evaluation Results\n\n```\n============================================================\nDIRECTION EVALUATION SUMMARY\n============================================================\nTest pairs: 64  |  Test samples: 128\nLayers: 36  |  Hidden dim: 4096\n\nBest layer: 35  |  Token position: 1 (asst_first)\nBest AUROC: 1.0000\nCosine(d_syc, d_gen) at best: -1.0000  (expected: -1.0 in binary setup)\n\nTop 5 (layer, position, AUROC):\n  Layer 35, asst_first: 1.0000\n  Layer 28, asst_first: 0.9993\n  Layer 30, asst_first: 0.9993\n  Layer 23, asst_first: 0.9990\n  Layer 25, asst_first: 0.9990\n\nAUROC by domain (best layer, all positions):\n  commonsense                user_last=0.7633, asst_first=1.0000\n  geography                  user_last=0.9375, asst_first=1.0000\n  history                    user_last=0.8698, asst_first=1.0000\n  math                       user_last=0.6568, asst_first=1.0000\n  science                    user_last=0.9467, asst_first=1.0000\n\nAUROC by evidence_strength (best layer, all positions):\n  medium                     user_last=0.8673, asst_first=1.0000\n  strong                     user_last=0.8992, asst_first=1.0000\n  weak                       user_last=0.6875, asst_first=1.0000\n\nAUROC by correction_turn (best layer, all positions):\n  3                          user_last=0.8445, asst_first=1.0000\n  4                          user_last=0.8214, asst_first=1.0000\n  5                          user_last=0.8750, asst_first=1.0000\n\n------------------------------------------------------------\nGO/NO-GO VERDICT: PASS\n  AUROC=1.0000 >= 0.85 and cosine=-1.0000 < 0.3\n============================================================\n```\n\n**Key observations:**\n- **asst_first position achieves perfect AUROC (1.0) across all layers, domains, evidence strengths, and correction turns** — the sycophancy direction is perfectly separable at the assistant's first content token\n- **user_last position** is weaker and more variable: math (0.66) and weak evidence (0.69) are hardest to distinguish, while science (0.95) and strong evidence (0.90) are easiest\n- The perfect asst_first AUROC across all strata suggests the model's internal state at the first generated token already fully encodes the sycophantic vs. warranted decision"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-phase2-activation-extraction.md"
+}

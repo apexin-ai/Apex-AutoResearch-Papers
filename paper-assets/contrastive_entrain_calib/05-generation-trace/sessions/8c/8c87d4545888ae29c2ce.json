@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c87d4545888ae29c2ce",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code prepare exp014 checkpoint eval",
+  "task_key": "worker_code_prepare-exp014-checkpoint-eval_20260519T082049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare-exp014-checkpoint-eval_20260519T082049_result.json",
+    "occurrence": 1,
+    "bytes": 926,
+    "sha256": "1a6dfbda602d5875e69a9abf62a1101658578040c0cddd00974084d86527613b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已就绪。汇报：\n\n| 项目 | 路径 |\n|------|------|\n| **脚本** | `/root/contrastive_entrain_calib/eval/run_exp014_eval.sh` |\n| **Checkpoint** | `/root/contrastive_entrain_calib/checkpoints/exp014_probe_baseline/checkpoint-3000/` |\n| **Eval 数据** | `/root/contrastive_entrain_calib/data/sycon_eval_from_calib.jsonl` (362 samples) |\n| **输出目录** | `/root/contrastive_entrain_calib/results/exp014_checkpoint3000_eval/` |\n\n脚本使用 `--compare-base` 模式，会先跑 base Qwen3-8B 再跑 LoRA，输出含 delta 对比报告。NLI 模型 (`cross-encoder/nli-deberta-v3-base`) 已在本地缓存，无需联网。\n\n**预估运行时间**：sycon_bench 362 samples，compare 模式需加载模型两次（base + LoRA），每轮多 turn 推理，单 GPU 预计 **40-60 分钟**。\n\nGPU 3 空闲后直接 `bash /root/contrastive_entrain_calib/eval/run_exp014_eval.sh` 即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-exp014-checkpoint-eval.md"
+}

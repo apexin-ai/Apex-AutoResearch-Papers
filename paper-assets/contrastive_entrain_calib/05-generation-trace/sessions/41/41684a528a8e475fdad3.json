@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41684a528a8e475fdad3",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval collect and submit ckpt2000",
+  "task_key": "worker_eval_collect-and-submit-ckpt2000_20260522T094333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-and-submit-ckpt2000_20260522T094333_result.json",
+    "occurrence": 1,
+    "bytes": 766,
+    "sha256": "f3fbd7a8567f151ccef5a8ff0aceef7958ddf204a6fa8fb8f726e7aadaa273a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n### Part 1: Eval 结果收集\n\n| Experiment | SYCONScore | ToF | NoF | Conclusion |\n|---|---|---|---|---|\n| **ACT s2 ckpt-1500** (`exp-004-s2-eval-ckpt1500`) | **0.2137** | 0.1215 | 0.884 | success |\n| **R3-only s2 ckpt-7000** (`exp-003-eval-s2-ckpt7000`) | **0.0945** | 0.0497 | 0.9503 | negative |\n\nACT s2 轨迹更新：500=0.223 → 1000=0.256 → **1500=0.214**（下降，与 seed 1 的 1500=0.170 类似出现 dip）。\n\nR3-only s2 ckpt-7000=0.0945，低于 vanilla baseline (0.1335)，与 seed 1 ckpt-7000=0.105 一致——R3-only 持续 negative。\n\n### Part 2: ACT s2 ckpt-2000 eval\n\n已提交到 GPU 0（PID 992567），registry `exp-004-s2-eval-ckpt2000` 状态 RUNNING。预计 ~1 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-and-submit-ckpt2000.md"
+}

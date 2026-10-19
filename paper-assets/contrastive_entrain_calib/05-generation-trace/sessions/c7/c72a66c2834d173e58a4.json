@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c72a66c2834d173e58a4",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp004 ckpt8000 queued",
+  "task_key": "worker_eval_exp004-ckpt8000-queued_20260519T143525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp004-ckpt8000-queued_20260519T143525_result.json",
+    "occurrence": 1,
+    "bytes": 495,
+    "sha256": "6327c1595d16f82c06e7b76c061845ea3bc3131576a6cfc08d404a90863f7f63"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交，脚本正在等待 ckpt-2000 eval 完成。\n\n| 项目 | 值 |\n|------|-----|\n| wrapper 脚本 | `/root/contrastive_entrain_calib/scripts/queue_eval_ckpt8000.sh` |\n| tmux session | `exp-004` |\n| 日志 | `~/runs/contrastive_entrain_calib/exp-004.log` |\n| 服务器 | westd-28034, GPU 0 |\n\n脚本逻辑：每 30s 轮询 PID 138467，完成后自动启动 ckpt-8000 eval（参数格式与 ckpt-2000 一致，checkpoint 路径和 output_dir/exp_id 已替换）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp004-ckpt8000-queued.md"
+}

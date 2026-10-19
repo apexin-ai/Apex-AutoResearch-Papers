@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dccd865bbc9a90d61777",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval r3s2 final metrics poll",
+  "task_key": "worker_eval_r3s2-final-metrics-poll_20260522T160922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_r3s2-final-metrics-poll_20260522T160922_result.json",
+    "occurrence": 1,
+    "bytes": 66,
+    "sha256": "439eee4c0e762e5219454981c2c0a7ca84c59c389f7e7ce1bfb1f07d43b2ba87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Polling scheduled. Will check back in ~4.5 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-r3s2-final-metrics-poll.md"
+}

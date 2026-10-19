@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bacd2c010d4024808c50",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops post restart gpu status 29046",
+  "task_key": "worker_ops_post-restart-gpu-status-29046_20260519T124601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_post-restart-gpu-status-29046_20260519T124601_result.json",
+    "occurrence": 1,
+    "bytes": 1171,
+    "sha256": "dc52aa26b2b3c1214bec30634c5256f80b2a636f23b01103bcb74b567b4bbb08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态报告\n\n### GPU 状态\n| GPU | 利用率 | 显存占用 | 温度 |\n|-----|--------|----------|------|\n| 0 (exp002v2-recalib) | 95% | 66,907 MiB | 63°C |\n| 1 (exp-003) | 97% | 38,161 MiB | 65°C |\n\n两卡满载运行，温度正常。\n\n### exp-003 (R3-only GRPO, GPU 1, PID 70649)\n- **状态**: 运行中，已运行 19h55m\n- **进度**: **2505/8000** (31.3%)\n- **速度**: ~26s/step，预计剩余 ~40h\n- **R3 reward**: 近几步在 0.33–0.66 波动，step 2500 时 mean=0.4883\n- 日志路径实际在 `/root/contrastive_entrain_calib/logs/exp003_v2.log`（非 `~/runs/`）\n\n### exp002v2-recalib (Cosine + Recalib, GPU 0, PID 172838)\n- **状态**: 运行中，已运行 6h06m\n- **进度**: **1535/8000** (19.2%)\n- **速度**: ~16s/step，预计剩余 ~28h\n- **最近 reward 值**:\n  - R1: -0.13 (波动在 -0.25 ~ -0.04)\n  - R2: -0.07 ~ -0.09\n  - R3: ~0.998 (非常高且稳定)\n  - Combined: ~0.72\n\n### 小结\n两个实验均在服务重启后正常存活，持续训练中。exp002v2-recalib 的 R1 仍为负值，R3 接近饱和；exp-003 的 R3 reward 波动较大（0.3–0.7），尚在收敛过程中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-post-restart-gpu-status-29046.md"
+}

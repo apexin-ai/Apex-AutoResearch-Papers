@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8b12d7dda59a52daf65",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "run v2 1 datagen blind test",
+  "task_key": "worker_run_v2_1_datagen_blind_test_20260518T103232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_v2_1_datagen_blind_test_20260518T103232_result.json",
+    "occurrence": 1,
+    "bytes": 1768,
+    "sha256": "d4e112a0117044d41ac645269d8058a0797cc01602fe0c1021fa4ac5de9ebd83"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三轮迭代完成。汇报结果：\n\n---\n\n## v2.1 风格匹配校准数据生成结果\n\n### Blind Classification Accuracy 迭代过程\n\n| 轮次 | Accuracy | 改进措施 |\n|------|----------|----------|\n| 1 | **100%** (30/30) | 基础风格匹配（相同开头、置信度、引用模式） |\n| 2 | **97%** (29/30) | + 要求错误答案在正确答案\"邻域\"内（10ft vs 11ft），更冷门事实 |\n| 3 | **90%** (27/30) | + 全部 weak evidence（禁止引用），极冷门事实（Catalan 数、Bell 数、Mount Kinabalu 高度等），答案差异最小化 |\n\n### 关键发现\n\n**风格匹配已完全成功**——quality check 显示 100% turn3_balanced，平均长度差 1.1%，开头匹配 50/50。90% accuracy 的原因不是风格泄露，而是 **GPT-4.1 的世界知识**：即使是 C_3=5 vs 6、Bell(5)=52 vs 62 这样的冷门问题，GPT-4.1 仍有足够的事实知识来判断对错。\n\n### 最终数据质量\n\n- **Turn 1-2 一致性**: 100%（0% 差异）\n- **Turn 3 平均长度差**: 1.1%\n- **Turn 3 >20% 长度差**: 1/50 (math_0001)\n- **LLM Quality Check**: ground_truth_correct 100%, wrong_answer_plausible 100%, turn3_balanced 100%\n- **Evidence strength**: 全部 weak（无引用信号）\n- **分布**: 5 domain × 10 pairs，均匀分布\n\n### 数据文件路径\n\n`/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/calibration_v2_1.jsonl`\n\n### 结论\n\n要突破 70% 阈值，需要超出 prompt 工程的能力范围。可能的方向：\n1. 使用完全虚构的事实（编造不存在的实体/事件），使 LLM 无法从知识库验证\n2. 使用对 GPT-4.1 知识截断点之后的事实\n3. 改用更弱的模型做 blind judge"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-v2-1-datagen-blind-test.md"
+}

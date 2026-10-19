@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8df935a37a2158d57813",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diag full status check all servers",
+  "task_key": "worker_diag_full-status-check-all-servers_20260519T062307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_full-status-check-all-servers_20260519T062307_result.json",
+    "occurrence": 1,
+    "bytes": 2157,
+    "sha256": "3ca7f84d635c7901ddb7cd2115be983c14b808c5ca18406f85cce91c09c5c3af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 全面状态报告\n\n---\n\n### westd-29046 (2× RTX PRO 6000 Black, 98GB each)\n\n| 实验 | GPU | PID | Step | 进度 | 速度 | VRAM | GPU% |\n|------|-----|-----|------|------|------|------|------|\n| **exp-002v2** | 0 | 130467 | 521/8000 | 6.5% | ~30s/step | 63.6/97.9 GB | 98% |\n| **exp-003** | 1 | 70649 | 1714/8000 | 21.4% | ~30s/step | 38.2/97.9 GB | 95% |\n\n**exp-002v2 (DC-GRPO cosine)**\n- R1 持续在零附近波动，无学习趋势（最近10步: -0.06 ~ +0.003）\n- Per-strength R1 (step 519): weak=0.011, medium=-0.063, strong=-0.046 → 三个强度全部接近零\n- R3 波动较大 (0.44~0.86)，combined 0.32~0.64\n- checkpoint-500 已保存（LoRA adapter 245MB）\n- 预计完成：~May 22 凌晨（~62h）\n\n**exp-003 (R3-only)**\n- `d_syc not loaded` 警告持续出现，仅 R3 reward 生效\n- R3 波动 (0.35~0.87)，step 1710 统计: mean=0.87, std=0.34\n- 预计完成：~May 21 下午（~51h）\n\n---\n\n### westd-28034 (4× RTX 5090, 32GB each)\n\n| 实验 | GPU | PID | Step | 进度 | 速度 | VRAM | GPU% |\n|------|-----|-----|------|------|------|------|------|\n| **exp-004** | 0 | 18204 | 5700/8000 | 71.3% | ~88s/10step | 21.8/32.6 GB | 45% |\n| **exp-014** | 1+2 | 40314/40315 | 3243/8000 | 40.5% | ~10s/step | 31.4+30.6 GB | 71%+77% |\n| — | 3 | — | — | — | — | 4 MB | 0% (idle) |\n\n**exp-004 (ACT baseline)**\n- 稳定训练中，sft=0.0, l2≈0.001, lr 从 1.65e-5 缓降\n- checkpoint-5500 已保存\n- 预计完成：**~今晚 20:00**（~5.6h）\n\n**exp-014 (continuous probe, DeepSpeed 2-GPU)**\n- R1 波动极大 (0.25~0.999)，R2 恒为 0，R3 几乎饱和 (~0.999)\n- Combined 0.81~0.999\n- 已有 checkpoint: 500/1000/1500/2000/2500/3000\n- 预计完成：~May 20 03:30（~13h）\n\n**GPU 3**: 空闲，exp-016 已结束，无进程占用。\n\n---\n\n### 关注点\n1. **exp-002v2 R1 不学习**：520步了 R1 仍在零附近，per-strength 三类全无提升，可能需要诊断\n2. **exp-003 d_syc 未加载**：一直是 R3-only 模式，确认是否符合预期\n3. **exp-014 R2 恒为 0**：R2 reward 完全不起作用\n4. **GPU 3 空闲**：可安排新实验"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-full-status-check-all-servers.md"
+}

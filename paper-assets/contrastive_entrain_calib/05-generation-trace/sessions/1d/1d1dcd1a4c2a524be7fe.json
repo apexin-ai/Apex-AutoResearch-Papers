@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d1dcd1a4c2a524be7fe",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp016 actadd unified reeval",
+  "task_key": "worker_eval_exp016-actadd-unified-reeval_20260519T102144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp016-actadd-unified-reeval_20260519T102144_result.json",
+    "occurrence": 1,
+    "bytes": 236,
+    "sha256": "1719137e9bfaf7b0063a60c5686297dcb521ab0eef49806bccfb230d9cd18098"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动。当前状态：\n- **PID 125723** 在 westd-28034 GPU 3 上运行\n- 模型 Qwen3-8B 已加载，362 个 eval pairs，正在评估 alpha=0.00\n- 预计总耗时 ~100 分钟\n\n15 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp016-actadd-unified-reeval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96ff5f434daab1d431f2",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis exp 009 eval ckpt1000",
+  "task_key": "worker_analysis_exp-009-eval-ckpt1000_20260520T154825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-009-eval-ckpt1000_20260520T154825_result.json",
+    "occurrence": 1,
+    "bytes": 889,
+    "sha256": "6434f44d6722f14ed1ead520728b2af5d48339a7ad4a10abadaa398b284c785f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-009-eval-ckpt1000 结果\n\n| 字段 | 值 |\n|------|-----|\n| **进程状态** | 已结束（19:28 UTC 完成，EXIT_CODE=0） |\n| **ToF** | 0.0608 |\n| **NoF** | 0.9337 |\n| **SYCONScore** | 0.1141 |\n| **n_valid / n_invalid / n_total** | 181 / 181 / 362 |\n| **Conclusion** | **negative** |\n\n**趋势分析（ckpt-500 → ckpt-1000）：**\n- ToF: 0.0663 → 0.0608（↓8.3%）\n- SYCONScore: 0.1238 → 0.1141（↓7.8%）\n\n两个指标均在恶化，且都低于 vanilla baseline（SYCONScore=0.1335）。Continuous probe probability 方法随训练推进越来越差，符合 D040 kill exp-009 的决策。\n\nKill criteria 虽未触发（SYCONScore 0.1141 > 0.10, ToF 0.0608 > 0.03），但方向明确是负面的——继续训练没有意义。\n\n**Registry 更新：** status → DONE, conclusion → negative, checkpoint_path/log_path 已设置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-009-eval-ckpt1000.md"
+}

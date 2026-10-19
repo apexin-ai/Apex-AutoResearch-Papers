@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7121e5a0974e5994ceb0",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code westd reconnect recover",
+  "task_key": "worker_code_westd-reconnect-recover_20260525T042345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_westd-reconnect-recover_20260525T042345_result.json",
+    "occurrence": 1,
+    "bytes": 358,
+    "sha256": "0958b6a88e486dd335ea24d08d27068950e358c81188c4a176e60d3884d1292d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**SSH 连接失败。**\n\n```\n[Errno None] Unable to connect to port 29046 on 36.103.198.204\n```\n\nAutoDL 实例重启后 SSH 端口会变。请到 AutoDL 控制台查看 westd-29046 的新端口，然后更新 `~/.ssh/config` 中对应的端口配置。\n\n更新后告诉我新端口，我再继续执行状态检查和恢复流水线。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-westd-reconnect-recover.md"
+}

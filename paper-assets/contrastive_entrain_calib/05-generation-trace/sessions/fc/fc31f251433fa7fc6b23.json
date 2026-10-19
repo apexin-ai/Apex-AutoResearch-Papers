@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc31f251433fa7fc6b23",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnosis exp009 eval ckpt500 results",
+  "task_key": "worker_diagnosis_exp009-eval-ckpt500-results_20260520T092809",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_exp009-eval-ckpt500-results_20260520T092809_result.json",
+    "occurrence": 1,
+    "bytes": 1745,
+    "sha256": "881957e00c56c1f04559009783ee7740906edc69c1481f2e73eaf3b6704df98c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-009 ckpt-500 Eval Results\n\n| Metric | Value |\n|--------|-------|\n| **ToF** | 0.0663 |\n| **NoF** | 0.9337 |\n| **SYCONScore** | 0.1238 |\n| Samples | 362 (valid=181, invalid=181) |\n| Model | Qwen3-8B + LoRA (exp009 checkpoint-500) |\n| Eval time | 7671s (~2.1h) |\n\n**结论：ckpt-500 效果很差。** NoF 很高（0.93，几乎不翻转）但 ToF 极低（0.07，该翻也不翻），说明模型变得过度保守/顽固，对 valid correction 也拒绝接受。SYCONScore 0.1238 远低于可用水平。\n\n---\n\n## exp-012 Llama Probe Ablation Details\n\n### 每层 AUROC（dSYC direction, 5-fold CV）\n\n| Layer | AUROC (mean ± std) |\n|-------|-------------------|\n| **L16** | **0.7778 ± 0.036** ← best single layer |\n| L17 | 0.7227 ± 0.042 |\n| L18 | 0.7182 ± 0.040 |\n| L19 | 0.7161 ± 0.039 |\n| L20 | 0.7292 ± 0.039 |\n| L21 | 0.7268 ± 0.036 |\n| L22 | 0.7318 ± 0.036 |\n| L23 | 0.7305 ± 0.034 |\n| L24 | 0.7270 ± 0.035 |\n| L25 | 0.7366 ± 0.034 |\n| L26 | 0.7355 ± 0.033 |\n| L27 | 0.7326 ± 0.035 |\n| L28 | 0.7329 ± 0.035 |\n| L29 | 0.7310 ± 0.035 |\n| L30 | 0.7323 ± 0.034 |\n| L31 | 0.7454 ± 0.038 |\n\n### Multi-layer probe\n- **AUROC: 0.8128 ± 0.032**（16层拼接，5-fold: 0.857/0.836/0.814/0.789/0.768）\n\n### Random direction baseline（L16, 10 seeds）\n- Mean AUROC: **0.5301 ± 0.055**（范围 0.455–0.611）\n- **Δ(dSYC vs random) = 0.2477**，dSYC direction 显著优于随机方向\n\n### 关键发现\n- L16 是最佳单层（0.778），L31 次之（0.745），中间层相对平坦（0.716–0.737）\n- Multi-layer 拼接比最佳单层提升 ~3.5 个点（0.813 vs 0.778）\n- Random baseline 在 chance 附近（0.530），确认 dSYC direction 非偶然"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-exp009-eval-ckpt500-results.md"
+}

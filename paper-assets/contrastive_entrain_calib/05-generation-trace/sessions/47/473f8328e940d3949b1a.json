@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "473f8328e940d3949b1a",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "infra install tmux westd28034",
+  "task_key": "worker_infra_install-tmux-westd28034_20260518T180047",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_install-tmux-westd28034_20260518T180047_result.json",
+    "occurrence": 1,
+    "bytes": 150,
+    "sha256": "8385c8383cb23cbb4aeea99a8a79479d8d9c677d5e02de920541a52d624da231"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **westd-28034**: tmux 安装成功，版本 **3.2a**\n- **westd-29046**: tmux 已存在，版本 **3.2a**，无需安装"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-install-tmux-westd28034.md"
+}

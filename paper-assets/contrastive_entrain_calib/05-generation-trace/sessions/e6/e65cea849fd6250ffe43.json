@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "e65cea849fd6250ffe43",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "eval exp008v3 ckpt500 28034",
+  "task_key": "worker_eval_exp008v3-ckpt500-28034_20260520T002646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp008v3-ckpt500-28034_20260520T002646.log",
+    "occurrence": 1,
+    "bytes": 1200494,
+    "sha256": "c3134931ef7b7b51c520f90b65553e11486c1d79f7c9e5aeb07306646d326395"
+  },
+  "statistics": {
+    "messages": 1136,
+    "user_turns": 1,
+    "tool_calls": 530,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 68,
+      "tool_call": 530,
+      "tool_result": 530,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1116,
+      "chunks": [
+        {
+          "path": "e65cea849fd6250ffe43-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e65cea849fd6250ffe43-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "e65cea849fd6250ffe43-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "e65cea849fd6250ffe43-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "e65cea849fd6250ffe43-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "e65cea849fd6250ffe43-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "e65cea849fd6250ffe43-part-0007.json",
+          "message_count": 36
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 20,
+      "chunks": [
+        {
+          "path": "e65cea849fd6250ffe43-part-0007.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-exp008v3-ckpt500-28034.md"
+}

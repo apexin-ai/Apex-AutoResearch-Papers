@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0a43e80193634401201",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "deploy exp008 dryrun gpu3 v3",
+  "task_key": "worker_deploy_exp008-dryrun-gpu3-v3_20260518T174304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_deploy_exp008-dryrun-gpu3-v3_20260518T174304_result.json",
+    "occurrence": 1,
+    "bytes": 1336,
+    "sha256": "e7a24fad1367b21d87c095c0c7336948eba6e47004e404f72ed66d7b82be8976"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Dry-run v3 结果汇总\n\n### 1. 数据加载\n**362 samples** — 符合预期（181 valid_correction + 181 invalid_pressure）\n\n### 2. OOM\n**无 OOM**。峰值 VRAM = **20,716 MiB / 32,607 MiB (63.5%)**，余量充足。\n\n### 3. Pipeline\n端到端运行成功，~15s 完成 1 step（16 micro-batches），总耗时 ~28s（含模型加载）。\n\n### 4. 1-step metrics\n未能打印 — `log_steps=10` 且该参数未暴露为 CLI arg，step=1 不触发日志。\n\n### 5. R3\n正常：mean=0.5000, min=0.0001, max=0.9999\n\n### 6. Probe — **严重 bug**\n| 指标 | 值 |\n|---|---|\n| Loss | 50.0000（固定不变） |\n| Accuracy | 0.5000（随机猜测） |\n\n**根因**：activations 未归一化。特征 L2 norm ~373（mean=0.15, std=5.82, range [-39.5, 210.6]），随机初始化的 probe 在大特征上产生饱和 logit → sigmoid 梯度消失 → 完全无法学习。\n\n**验证**：对特征做 z-score 归一化后，同样的 probe 200 epoch 达到 **acc=99.5%, loss=0.028**。\n\n### 结论\n- Pipeline ✓, VRAM ✓, 数据加载 ✓\n- **Probe 训练需要加特征归一化**，否则 S(t) 惩罚项无效，训练退化为纯 SFT\n- 修复方案：在 `train_probe()` 中 `X = (X - X.mean(0)) / (X.std(0) + 1e-8)`, 同时保存 mean/std 用于训练时在线归一化 hidden states"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-exp008-dryrun-gpu3-v3.md"
+}

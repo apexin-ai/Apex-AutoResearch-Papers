@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78c1bb2bf16a0ff13032",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ssh scp seed2 batch",
+  "task_key": "worker_ssh_scp-seed2-batch_20260522T021253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_scp-seed2-batch_20260522T021253_result.json",
+    "occurrence": 1,
+    "bytes": 331,
+    "sha256": "7bc2708104469a4e20d71024cc61d4d9027a0410ceeeb0806bba6c496944b87f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "传输完成。28034 上 `exp003_s2` 现在有全部 12 个 checkpoint：\n\n| 已有 (之前) | 新增 (本次) |\n|---|---|\n| checkpoint-500 ~ 4000 (8个) | checkpoint-4500, 5000, 5500, 6000 (4个) |\n\n每个新 checkpoint 的 `adapter_model.safetensors` 均为 245MB（~234MB），大小一致，传输完整。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-scp-seed2-batch.md"
+}

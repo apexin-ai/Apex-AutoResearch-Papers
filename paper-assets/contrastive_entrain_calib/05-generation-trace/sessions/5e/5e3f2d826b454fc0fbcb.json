@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e3f2d826b454fc0fbcb",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis exp008v3 r2 zero diagnosis",
+  "task_key": "worker_analysis_exp008v3-r2-zero-diagnosis_20260519T141808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp008v3-r2-zero-diagnosis_20260519T141808_result.json",
+    "occurrence": 1,
+    "bytes": 794,
+    "sha256": "9c094892cab5881f30b4bf3d9585c91188bce50263d9195f4e2229b863c5f09c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**r2_mean=0 是预期行为，不是 bug。**\n\n训练脚本 `run_exp008v3_binary_probe_grpo.py` 中明确设置：\n\n```python\nR1_WEIGHT = 0.25  # Binary probe reward\nR2_WEIGHT = 0.0   # 显式禁用\nR3_WEIGHT = 0.75  # NLI behavioral reward\n```\n\n这是 ablation cascade 设计的一部分。exp-008v3 的实验目的是用 Binary Probe 替代 Directional Projection 作为 R1，同时**故意关闭 R2**（方向投影 reward），只保留 R1(probe) + R3(NLI)。\n\n日志确认训练正常运行：\n- **R1** 在 {0.0, 0.125, 0.25, 0.375} 间波动（binary probe 的离散输出 × 0.25 weight，符合预期）\n- **R2** 恒为 0.0000（weight=0，无影响）\n- **R3** 在 0.33~0.99 间正常变化\n- **combined** 正常，约 0.25~0.75 范围\n\n无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp008v3-r2-zero-diagnosis.md"
+}

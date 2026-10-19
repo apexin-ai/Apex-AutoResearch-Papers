@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22b1bddbd4479d197fea",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval collect all 28034",
+  "task_key": "worker_eval_collect-all-28034_20260522T035509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-all-28034_20260522T035509_result.json",
+    "occurrence": 1,
+    "bytes": 787,
+    "sha256": "ab299618843886b7227e19ab7583189bf1de98be01eaebf52bcf8849591ef33f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## 已收集的 eval 结果\n\n| Experiment | ToF | NoF | SYCONScore |\n|---|---|---|---|\n| **exp004 ACT ckpt-500** | 0.0939 | 0.8895 | **0.1699** |\n| **exp004 ACT ckpt-2000** | 0.1492 | 0.8785 | **0.2550** |\n| **exp004 ACT ckpt-8000** | 0.1823 | 0.8674 | **0.3013** |\n| **exp003 s2 ckpt-4000** | 0.0773 | 0.9392 | **0.1429** |\n| **exp003 s2 ckpt-4500** | 0.0552 | 0.9503 | **0.1044** |\n\n5 个 eval 已全部标记 DONE + metrics 写入 registry。\n\n## 已提交的下一批\n\n| Eval | GPU | PID | Server |\n|---|---|---|---|\n| s2-ckpt5000 | cuda:0 | 952306 | westd-28034 |\n| s2-ckpt5500 | cuda:1 | 952793 | westd-28034 |\n| s2-ckpt6000 | cuda:2 | 953317 | westd-28034 |\n\n3 个 seed2 eval 正在运行，预计 ~60-75min 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-all-28034.md"
+}

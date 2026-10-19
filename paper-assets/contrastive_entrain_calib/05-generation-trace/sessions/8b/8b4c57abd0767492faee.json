@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b4c57abd0767492faee",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops check 29046 training status",
+  "task_key": "worker_ops_check-29046-training-status_20260519T111012",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-29046-training-status_20260519T111012_result.json",
+    "occurrence": 1,
+    "bytes": 1328,
+    "sha256": "400692232e5e261f0421fa70d7c6aaeeef744dc16bca90f88c0a6a0363164e13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态报告\n\n### GPU 状态\n| GPU | 利用率 | 显存占用 | 温度 |\n|-----|--------|----------|------|\n| 0 (exp002v2-recalib) | 68% | 66,907 MiB | 61°C |\n| 1 (exp-003) | 95% | 38,161 MiB | 67°C |\n\n两卡正常运行。\n\n---\n\n### exp-003 (R3-only GRPO, GPU 1)\n\n- **进度**: step 2287 / 8000 (**28.6%**)\n- **已运行**: ~18h 19m\n- **ETA**: ~41h 40m (约 5/21 中午)\n- **速度**: ~26-28 s/step\n- **Reward**: R3 only (d_syc 未加载，仅返回 R3 reward)\n  - R3 mean 在 0.25-0.67 之间波动，combined_mean 同步\n- **注意**: 日志持续出现 `d_syc not loaded; returning R3-only rewards` warning，符合 R3-only 设计预期\n\n---\n\n### exp002v2-recalib (Cosine + Recalib, GPU 0)\n\n- **进度**: step 1208 / 8000 (**15.1%**)\n- **已运行**: ~4h 30m\n- **ETA**: ~37h (约 5/21 上午)\n- **速度**: ~20 s/step\n- **Reward 趋势** (最近 8 步):\n  - **R1 mean: -0.11 ~ +0.03** — 仍在零附近波动，未见改善\n  - R2 mean: -0.06 ~ -0.08\n  - R3 mean: 0.56 ~ 1.00 (波动大)\n  - combined mean: 0.39 ~ 0.73\n\n**R1 信号问题**: R1 reward 仍然 ≈ 0（甚至轻微负值），recalib 似乎未能有效放大 cosine 信号。1200 步后 R1 仍无正向趋势，需要关注是否 scaling 参数不足或 cosine similarity 本身区分度太低。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-29046-training-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4acd447ecf455796d9ab",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "deploy exp012 launch",
+  "task_key": "worker_deploy_exp012-launch_20260520T071808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_deploy_exp012-launch_20260520T071808_result.json",
+    "occurrence": 1,
+    "bytes": 521,
+    "sha256": "2c670bb7d22144b6662cf2dda6fa6761b6cf998d4bcf965dbdcd70de0f707faa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行正常。\n\n---\n\n**汇报：**\n\n| 项目 | 状态 |\n|------|------|\n| Llama-3-8B-Instruct 下载 | 完成（4 shards, 15G, 耗时 ~2h57m） |\n| 模型加载验证 | 通过（vocab=128000, 32 layers, hidden=4096） |\n| exp-012 | **已启动**，PID 227942，tmux session `exp-012` |\n| 日志 | `~/runs/contrastive_entrain_calib/exp-012.log` |\n| 数据 | 362 samples, 181 complete pairs |\n\n注意：脚本不支持 `--layers` 参数，已去掉。层选择可能在脚本内部硬编码。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-exp012-launch.md"
+}

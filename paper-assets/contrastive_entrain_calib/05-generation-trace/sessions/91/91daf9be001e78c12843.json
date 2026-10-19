@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "91daf9be001e78c12843",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "run v2 1 datagen blind test",
+  "task_key": "worker_run_v2_1_datagen_blind_test_20260518T103232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_v2_1_datagen_blind_test_20260518T103232.log",
+    "occurrence": 1,
+    "bytes": 641379,
+    "sha256": "f24dc94bbc00b9e78d5b14d410e84a21bcbf53a65a220bd1b655875efdbd84bd"
+  },
+  "statistics": {
+    "messages": 90,
+    "user_turns": 0,
+    "tool_calls": 22,
+    "roles": {
+      "log": 1,
+      "system": 15,
+      "record": 1,
+      "assistant": 28,
+      "tool_call": 22,
+      "tool_result": 22,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 90,
+      "chunks": [
+        {
+          "path": "91daf9be001e78c12843-part-0001.json",
+          "message_count": 78
+        },
+        {
+          "path": "91daf9be001e78c12843-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/run-v2-1-datagen-blind-test.md"
+}

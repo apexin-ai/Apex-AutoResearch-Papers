@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb5e591a2b741e3f32cd",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "audit paper registry crosscheck",
+  "task_key": "worker_audit_paper-registry-crosscheck_20260523T191603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_paper-registry-crosscheck_20260523T191603_result.json",
+    "occurrence": 1,
+    "bytes": 2169,
+    "sha256": "f59143b5e4a3d0b4ef86f4188b28eeea01a81e5443e82d166dc5cb378a301b29"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 数据自查报告\n\n### ⚠️ 需修复 (3 个)\n\n**1. Abstract/Conclusion vs Discussion 分母不一致** — 最高优先\n- Abstract/Conclusion: **\"4/31 (12.9%)\"** — 包含 gs=8 的 3 个 checkpoint (12+16+3=31)\n- Discussion: **\"4/28 (14.3%)\"** — 仅 gs=2 (12+16=28, 3/12 s1 + 1/16 s2)\n- 两个数字各自正确，但读者会以为指同一件事。审稿人很可能注意到。\n- **建议**: 统一为 4/28 (14.3%) 或在 abstract 注明 \"across all group sizes\"\n\n**2. gs=8 轨迹描述为 \"monotonically declining\"** — 实际 0.084→0.085→0.054，先微升 (+0.0001) 再降\n\n**3. R3 饱和步数** — cosine_failure.tex 写 \"by step 300\"，registry 记录 step 100 (0.9998 值正确)\n\n### ✅ 核对一致 (~65 个数字)\n\n所有可由 Registry 追溯的核心指标均一致（仅四舍五入差异）：\n- Direction quality: AUROC、per-strength、per-domain、probe ablation 全部匹配\n- Vanilla baseline: SYCONScore/ToF/NoF 匹配\n- R3-only GRPO: 所有 checkpoint SYCONScore + ToF/NoF + 计数 (3/12, 1/16) 匹配\n- ACT: 所有 checkpoint 值 + 47/47 计数 (16+15+16) 匹配\n- Probe trap: 4 个 checkpoint 的全部指标匹配\n- ActAdd: alpha=5 的 3 个指标匹配\n- Held-out: peak/ceiling/ratio 全部计算验证通过\n- 1.7× SFT/GRPO ratio: 0.2673/0.1529=1.748 ✅\n\n### ❌ 待确认 (9 项，需查训练日志)\n\n1. **Direction cosine ≈ 0.96** — Registry 中 GRPO 的 cosine=0.28（这是 cosine failure），0.96 可能来自 ACT 训练但无 registry 数据\n2. **Post-recalibration AUROC 0.910** — exp002v2-recalib 无 metrics 记录\n3. **AUROC 0.76→0.60 (truncation)** — 独立分析脚本产出\n4. **R3 ~0.98 + p=0.703** — exp-003 训练日志\n5. **Probe trap entropy/reward 值** (0.702, 0.800, +0.72 等) — exp-008v3 训练日志\n6. **AUROC <0.01 variation across checkpoints** — per-checkpoint AUROC 分析\n7. **Failure mode taxonomy 百分比** — 手工标注 (内部算术一致: 总和 100.1%)\n8. **F1c entropy 0.069 / 300 steps** — 训练日志\n9. **80–84% truncation rate** — 分析脚本\n\n完整报告已注册: `art_20260523_bf0307`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-paper-registry-crosscheck.md"
+}

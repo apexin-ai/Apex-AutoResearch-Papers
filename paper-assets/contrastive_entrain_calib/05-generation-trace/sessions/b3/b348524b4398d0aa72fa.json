@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b348524b4398d0aa72fa",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops urgent status check",
+  "task_key": "worker_ops_urgent-status-check_20260523T215914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent-status-check_20260523T215914_result.json",
+    "occurrence": 1,
+    "bytes": 1536,
+    "sha256": "30fb9173d0aaebe4609e3f8ea29f2844479d1f6853d1ef7055ea8f41cc1c07b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. exp-004-heldout (PID 571918, GPU0)\n| 指标 | 值 |\n|------|-----|\n| **当前 step** | **6250 / 8000** (78.1%) |\n| **最新 loss** | total=8.8e-05, sft=1e-06, l2=8.7e-04 |\n| **最新 checkpoint** | checkpoint-6000 (May 24 05:20) |\n| **速度** | ~9.2s/step |\n| **预计完成** | 还剩 1750 steps ≈ **4.5h → ~May 24 10:30** |\n\nLoss 已收敛，sft_loss 基本为零，仅 l2 正则项有微小波动。\n\n### 2. exp-003-len512-v3 (PID 553700, GPU1)\n| 指标 | 值 |\n|------|-----|\n| **当前 step** | **1497 / 8000** (18.7%) |\n| **最新 checkpoint** | checkpoint-1000 (May 23 23:31) |\n| **速度** | ~46.5s/step (GRPO 生成+训练) |\n| **最新 reward** | 0.475 (step 1000) |\n| **预计完成** | 还剩 6503 steps ≈ **84h → ~May 27 18:00** |\n\n注意：日志持续报 `d_syc not loaded; returning R3-only rewards`，仅用 R3 reward。\n\n### 3. GPU 状态\n| GPU | 型号 | 温度 | 功耗 | 显存 | 利用率 |\n|-----|------|------|------|------|--------|\n| 0 | RTX PRO 6000 Blackwell | 45°C | 197W/600W | 23GB/98GB | **41%** |\n| 1 | RTX PRO 6000 Blackwell | 66°C | 409W/600W | 41GB/98GB | **97%** |\n\nGPU0 利用率低（SFT 训练轻量），GPU1 满负荷（GRPO 需采样多条 completion）。\n\n### 4. ckpt-2000 Eval 结果\n已完成 ckpt-1000 / ckpt-1500 / ckpt-2000 三个 checkpoint 的 eval。ckpt-2500+ 尚无 eval 结果。\n\n**ckpt-2000 指标：**\n- **SYCONScore = 0.1567**\n- ToF = 0.0857, NoF = 0.9143\n- n_valid=35, n_invalid=35, n_total=70"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-status-check.md"
+}

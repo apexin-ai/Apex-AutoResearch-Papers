@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f6365fc2a2c5d7957da",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "audit ref verify A",
+  "task_key": "worker_audit_ref-verify-A_20260526T101739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_ref-verify-A_20260526T101739_result.json",
+    "occurrence": 1,
+    "bytes": 3907,
+    "sha256": "c2dd0482365dab2c74c82c6279ffec26c658f3bafc9915d65a5044cc2d87c015"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 52 entries searched. Let me compile the final audit report.\n\n---\n\n## Reference Audit Report (Auditor A)\n\n```\n[1]  zhang2026latentgrpo         | ✓ |\n[2]  zou2023repe                 | ✓ |\n[3]  rimsky2024caa               | ✓ |\n[4]  shao2024grpo                | ✓ |\n[5]  li2023iti                   | ✓ |\n[6]  turner2023actadd            | ✓ |\n[7]  gao2023scaling              | ✓ |\n[8]  skalse2022hacking           | ✓ |\n[9]  casper2023openproblems      | ✓ |\n[10] denison2024subterfuge       | ✓ |\n[11] sharma2023sycophancy        | ✓ |\n[12] shapira2026amplifies        | ✗ | 作者名错误：bib 写 \"Shapira, Ori\" 实际应为 \"Itai Shapira\"\n[13] wang2025internal            | ⚠️ | Venue 过时：bib 写 arXiv 2025，但已发表于 AAAI 2026\n[14] wei2024synthetic            | ✓ |\n[15] ackermann2026gradreg        | ✓ |\n[16] obrien2025fewbadneurons     | ✓ |\n[17] mckinney2023fragility       | ✗ | 年份错误：2023→2022；Workshop 名错误：\"Deep RL Workshop\"→\"ML Safety Workshop\"\n[18] papadatos2024probepenalties  | ✗ | 两个作者名错误：\"Harris\"→\"Henry\" Papadatos；\"Richard\"→\"Rachel\" Freedman\n[19] burns2023ccs                | ✓ |\n[20] sinii2025smallvectors       | ✓ |\n[21] consistency2025bctact       | ✓ |\n[22] beigi2025smart              | ✓ |\n[23] rafailov2023dpo             | ✓ |\n[24] ethayarajh2024kto           | ✓ |\n[25] luo2026craft                | ⚠️ | Venue 过时：bib 写 arXiv 2026，但已被 ICML 2026 接收\n[26] manheim2019goodhart         | ✓ |\n[27] wu2026rewardhacking         | ✓ |\n[28] he2023debertav3             | ✓ |\n[29] yang2025qwen3               | ✓ |\n[30] grattafiori2024llama3       | ✓ |\n[31] openai2025gpt41             | ✓ |\n[32] kelkar2026persona           | ✗ | 作者名错误：bib 写 \"Kelkar, Ameya\" 实际应为 \"Ishaan Kelkar\"\n[33] vennemeyer2025sycophancy    | ✓ |\n[34] hu2022lora                  | ✓ |\n[35] schulman2017ppo             | ✓ |\n[36] rajbhandari2020zero         | ✓ |\n[37] christiano2017rlhf          | ✓ |\n[38] pan2022effects              | ✓ |\n[39] marks2024geometry           | ✗ | Venue 错误：bib 写 \"ICLR 2024\"，实际发表于 ICLR 2025\n[40] kadavath2022language        | ✓ |\n[41] lin2022truthfulqa           | ✓ |\n[42] lightman2024verify          | ✓ |\n[43] touvron2023llama            | ✓ |\n[44] ouyang2022instructgpt       | ✓ |\n[45] bai2022training             | ✓ |\n[46] stiennon2020summarize       | ✓ |\n[47] ziegler2019finetuning       | ✓ |\n[48] hubinger2024sleeper         | ✓ |\n[49] perez2023discovering        | ✓ |\n[50] uesato2022solving           | ✓ |\n[51] hewitt2019designing         | ✓ |\n[52] belinkov2022probing         | ✓ |\n```\n\n### 汇总\n\n```\n总计: 52 条\n✓ 正确: 45 条\n✗ 错误: 5 条\n⚠️ 待更新: 2 条\n\n错误详情:\n1. [#12] shapira2026amplifies — 作者名 \"Ori Shapira\" 应为 \"Itai Shapira\"\n2. [#17] mckinney2023fragility — 年份 2023→2022；Workshop 名 \"NeurIPS Deep RL Workshop\"→\"NeurIPS ML Safety Workshop\"\n3. [#18] papadatos2024probepenalties — 两个作者名错：第一作者 \"Harris\"→\"Henry\" Papadatos，第二作者 \"Richard\"→\"Rachel\" Freedman\n4. [#32] kelkar2026persona — 作者名 \"Ameya Kelkar\" 应为 \"Ishaan Kelkar\"\n5. [#39] marks2024geometry — Venue \"ICLR 2024\" 应为 \"ICLR 2025\"（论文提交至 ICLR 2024 被拒，后发表于 ICLR 2025）\n\nVenue 过时（建议更新）:\n1. [#13] wang2025internal — arXiv 2025 → AAAI 2026（已发表）\n2. [#25] luo2026craft — arXiv 2026 → ICML 2026（已接收）\n```\n\n### Citation 上下文语义检查\n\n所有正文中的引用上下文均与被引论文内容语义一致，未发现\"张冠李戴\"式的错误引用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-ref-verify-a.md"
+}

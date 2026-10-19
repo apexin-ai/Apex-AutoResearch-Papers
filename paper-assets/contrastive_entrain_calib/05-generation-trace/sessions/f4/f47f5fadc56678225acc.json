@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "f47f5fadc56678225acc",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "eval 28034 collect heldout chain",
+  "task_key": "worker_eval_28034-collect-heldout-chain_20260523T072123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_28034-collect-heldout-chain_20260523T072123.log",
+    "occurrence": 1,
+    "bytes": 701848,
+    "sha256": "5b717f03b3a01e7d25fda3585d3ac6a98e272a05cf72a76dd57ed24f867f8a6c"
+  },
+  "statistics": {
+    "messages": 572,
+    "user_turns": 0,
+    "tool_calls": 222,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 124,
+      "tool_call": 222,
+      "tool_result": 222,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 572,
+      "chunks": [
+        {
+          "path": "f47f5fadc56678225acc-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f47f5fadc56678225acc-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f47f5fadc56678225acc-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "f47f5fadc56678225acc-part-0004.json",
+          "message_count": 32
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-28034-collect-heldout-chain.md"
+}

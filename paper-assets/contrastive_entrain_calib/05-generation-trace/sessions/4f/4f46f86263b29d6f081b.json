@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f46f86263b29d6f081b",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code extract activations",
+  "task_key": "worker_code_extract_activations_20260518T051500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_extract_activations_20260518T051500_result.json",
+    "occurrence": 1,
+    "bytes": 1074,
+    "sha256": "1dcc861bb0fb1df095827666d9a3cdf66b4acea31d3ecdc97fe5abf9ea9fae51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法正确，参数列表完整：`input`（位置参数）、`--model-path`、`--output-dir`、`--batch-size`、`--device`、`--max-samples`。\n\n脚本已写入 `artifacts/data/extract_activations.py`，核心设计：\n\n- **全层 sweep**：通过 `output_hidden_states=True` 提取所有 transformer 层（跳过 embedding 层），输出 shape `(num_layers, 2, hidden_dim)`\n- **Token 边界定位**：逐步 tokenize 定位 critical turn 的 user/assistant 边界。先 tokenize 到 user turn 末尾找 `<|im_end|>` 前最后一个 content token；再用 `add_generation_prompt=True` 确定 assistant role marker 结束位置（即 content 起始位置），并与完整序列做前缀对齐验证，不匹配时有 probe fallback\n- **OOM 自动降级**：捕获 `torch.cuda.OutOfMemoryError`，自动将 batch_size 减半重试，直到 1\n- **输出**：`.pt` 文件（`torch.save`，list of dicts）+ `.jsonl` 元数据文件\n- **Qwen3 兼容**：`enable_thinking=False` 避免 thinking token 干扰，`trust_remote_code=True`，bfloat16 加载"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-extract-activations.md"
+}

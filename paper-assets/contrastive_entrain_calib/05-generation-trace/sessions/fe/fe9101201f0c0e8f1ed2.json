@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe9101201f0c0e8f1ed2",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code exp008 gs8 prepare",
+  "task_key": "worker_code_exp008-gs8-prepare_20260522T130720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp008-gs8-prepare_20260522T130720_result.json",
+    "occurrence": 1,
+    "bytes": 1753,
+    "sha256": "0b2d77c413e904d86f328b471a385672411001bc5a1063b60029a2ca689f9db9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已就绪。最终核对：\n\n## 新脚本 `run_exp008_gs8_ablation.py` 关键配置对比\n\n| 参数 | exp-008 原值 | gs8 ablation |\n|------|-------------|-------------|\n| `batch_size` | 1 | **8** |\n| `grad_accum` | 16 | **2** |\n| effective batch size | 16 | 16 (不变) |\n| `max_steps` | 8000 | **800** |\n| `save_steps` | 500 | **200** (checkpoint at 200/400/600/800) |\n| `output_dir` | `.../checkpoints/exp008_binary_probe_penalty` | **`/root/autodl-tmp/.../exp008_gs8_ablation/`** |\n| `lr` | 5e-5 | 5e-5 (不变) |\n| `lora_rank/alpha` | 64/128 | 64/128 (不变) |\n| `lambda_reward/probe` | 0.1/1.0 | 0.1/1.0 (不变) |\n| `seed` | 42 | 42 (不变) |\n| `retrain_interval` | 500 | 500 (不变) |\n| `warmup_steps` | 200 | 200 (不变) |\n\n## 说明\n\n**关于 group_size 的实现**：exp-008 是纯 SFT 脚本，没有 GRPO 的 `num_generations` 参数。在 SFT 上下文中，\"group_size\" 映射到 `batch_size`——每次前向传播中 probe penalty S(t) 基于多少个样本的均值计算。原来 batch_size=1 (每个 probe 分数只看一个样本)，现在 batch_size=8 (S(t) 是 8 个样本的均值，信号更平滑)。`grad_accum` 从 16 降到 2，保持有效 batch size = 16 不变。\n\n## Dry run 状态\n\nGPU 0 被占用（PID 237437, 38GB/98GB, 95% util），**跳过 dry run**。GPU 0 有 ~60GB 空闲，Qwen3-8B (bf16 ~16GB) + batch_size=8 + `output_hidden_states=True` (所有层 hidden states) 估算需要 35-45GB，应该能放下，但需要等当前任务完成后验证。\n\n## 需要注意\n\n`warmup_steps=200` 在 `max_steps=800` 下占比 25%（原来在 8000 步中只占 2.5%）。如果你认为这会影响实验公平性，需要按比例缩小为 `warmup_steps=20`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp008-gs8-prepare.md"
+}

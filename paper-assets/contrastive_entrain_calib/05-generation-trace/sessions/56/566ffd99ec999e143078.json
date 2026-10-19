@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "566ffd99ec999e143078",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops check eval s2 ckpt3000 result",
+  "task_key": "worker_ops_check-eval-s2-ckpt3000-result_20260525T154817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-eval-s2-ckpt3000-result_20260525T154817_result.json",
+    "occurrence": 1,
+    "bytes": 651,
+    "sha256": "af238d08b53a0dfcc3d0e2d22cadc742ac943160fd7b144c639db45ca1c77654"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**exp-003-s2-eval-ckpt3000 结果**\n\n| 指标 | 值 |\n|------|-----|\n| ToF | 0.0387 |\n| NoF | 0.9503 |\n| SYCONScore | **0.0743** |\n| n_total | 362 |\n| elapsed | 4346s |\n\n**跨 seed/step 对比：**\n- seed 1 ckpt-3000: SYCONScore = 0.095\n- seed 2 ckpt-2500: SYCONScore = 0.1241\n- seed 2 ckpt-3000: SYCONScore = **0.0743** ← 明显下降\n\nSeed 2 在 step 3000 出现性能退化（相比自身 ckpt-2500 下降 40%，也低于 seed 1 同步数）。\n\n**状态更新：**\n- Registry: DONE/success，metrics 已写入\n- Cron: 已删除\n- cuda:0: 已释放（0 MiB），可启动 exp-act-256"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-eval-s2-ckpt3000-result.md"
+}

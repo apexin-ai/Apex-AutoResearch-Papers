@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2845398167e78b9a0d0",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "prep exp008 binary probe",
+  "task_key": "worker_prep_exp008-binary-probe_20260518T163308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_exp008-binary-probe_20260518T163308_result.json",
+    "occurrence": 1,
+    "bytes": 1847,
+    "sha256": "194e5b56ed601269cee837d591bb15c2f34025250a77bebc7099feda6776db17"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "就绪状态评估完成。\n\n## exp-008 就绪状态清单\n\n| 项目 | 状态 | 详情 |\n|------|------|------|\n| **代码** | **不存在** | 无 `run_exp008_*` 或 `*binary_probe*` 相关文件 |\n| **数据** | 就绪 | `directions.pt` 存在 (`d_syc: [36,2,4096]`, `d_gen: [36,2,4096]`)；`calibration_v2_1_expanded.jsonl` 和 `calibration_v2.jsonl` 都在 |\n| **基础模型** | 就绪 | Qwen3-8B 已缓存 (`/root/autodl-tmp/.hf_cache/models--Qwen--Qwen3-8B`) |\n| **DeBERTa NLI** | 就绪 | `cross-encoder/nli-deberta-v3-base` 已缓存 |\n| **依赖** | 就绪 | trl 1.4.0, peft 0.19.1, transformers 4.57.6 |\n| **GPU 3** | 空闲 | RTX 5090, 2MiB/32607MiB, 0% util |\n\n## GPU 使用情况 (westd-28034)\n\n- **GPU 0**: 21612/32607 MiB, 42% util (运行 python3 进程，可能是 exp-004)\n- **GPU 1**: 空闲\n- **GPU 2**: 空闲\n- **GPU 3**: 空闲 ← 目标卡，可用\n\n## 缺少内容\n\n**唯一缺少的是 exp-008 训练脚本。** 需要创建：\n\n1. **`training/run_exp008_binary_probe_penalty.py`** — 核心训练脚本，公式 `R_hat = R3 - lambda * S(t)`，其中 S(t) 是二元线性探针的 sycophancy 分数\n2. **`training/launch_exp008.sh`** — 启动脚本 (参考 `launch_exp004.sh`，改为 `CUDA_VISIBLE_DEVICES=3`)\n\n### 参考材料\n\n- `training/run_exp004_act_baseline.py` (11240 bytes) — 类似 baseline 结构：LoRA + 自定义 loss，使用同样的 paired calibration 数据、同样的模型加载方式、同样的 `dcgrpo_trainer.py` 中的 `_resolve_transformer_layers`\n- `training/dcgrpo_trainer.py` (29994 bytes) — 主 DC-GRPO trainer，包含方向投影等核心逻辑\n- `data/directions.pt` — 包含 `d_syc` (sycophancy 方向) 和 `d_gen` (generalization 方向)，36 层 x 2 方向 x 4096 维\n\n**不自行编写训练代码，等待 Agent 安排。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-exp008-binary-probe.md"
+}

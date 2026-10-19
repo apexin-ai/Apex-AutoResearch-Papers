@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef296f2f1baaa15f41da",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis exp 003 s2",
+  "task_key": "worker_analysis_exp-003-s2_20260522T153328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-003-s2_20260522T153328_result.json",
+    "occurrence": 1,
+    "bytes": 551,
+    "sha256": "07a879579ee2a65053726dab60994af28de92d21f04e9b37eb57154f1272675d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-003-s2 训练分析完成。报告已写入 `artifacts/exp-003-s2/training-analysis.md`。\n\n**核心结论: SUCCESS** — 8000/8000 steps 正常完成，EXIT_CODE=0。\n\n关键数据：\n- 总耗时 ~63.2h，16 个中间 checkpoint + final，共 12GB\n- 最终 reward 0.50–0.67，loss 0.0006–0.0007，KL 0.016–0.019\n- 所有生成被截断到 max_completion_length=256（clipped_ratio=1.0），无自然终止——R3-only 模式预期行为\n- 无 W&B（report_to=none）\n- 根分区 78% 使用，数据盘充裕（4%）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-003-s2.md"
+}

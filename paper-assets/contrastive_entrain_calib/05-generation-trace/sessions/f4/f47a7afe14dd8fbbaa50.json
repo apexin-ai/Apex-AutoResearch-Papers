@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f47a7afe14dd8fbbaa50",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval status 28034 full",
+  "task_key": "worker_eval_status-28034-full_20260522T185202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_status-28034-full_20260522T185202_result.json",
+    "occurrence": 1,
+    "bytes": 1018,
+    "sha256": "e45e91b041cf756f313af69a9a2b9db1d73c4a59d79b0d7da621242428923d55"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== westd-28034 Status ===\nGPU0: 占用 | PID 37266 | eval_unified_preset.py exp-004-s2-eval-ckpt5000 (17638MiB/32607MiB)\nGPU1: 占用 | PID 30011 | exp-004-reduced-lora 训练 (21758MiB/32607MiB, 45% util)\nGPU2: 空闲 | 2MiB\nGPU3: 空闲 | 2MiB\n\nexp-004-reduced-lora: step 1130/8000, total_loss=0.0009 (sft=0.0002, l2=0.0071), step_time≈6.9s/step, lr=4.40e-05\n  预计剩余: ~(8000-1130)×6.9s ≈ 13.2h\n\n空闲 GPU: cuda:2, cuda:3\n残留进程: PID 22131 (eval_r3s2_ckpt8000 的 tmux 壳进程残留，但 tmux session 已不存在，未占用 GPU)\n\neval_results 最新文件:\n  - exp-003-s2-ckpt7500 (May 22 21:36) ← 有结果\n  - exp-002v3-ckpt1000/1500/500 (May 22 21:25-21:26)\n  - exp-002v3-ckpt2000 (May 22 20:43)\n  - exp-004-s2-ckpt2000 (May 22 19:57) ← 空目录\n\n已 SCP 的 checkpoints:\n  - exp-004-s2-v2-ckpt-4500\n  - exp-004-s2-v2-ckpt-5000\n\n注意: GPU0 正在跑 exp-004-s2-eval-ckpt5000 的 eval（用的是 eval_checkpoints 里的 ckpt-5000）。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-status-28034-full.md"
+}

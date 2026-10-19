@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f25c65fbeca1bf74ae0",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "deploy exp008 dryrun gpu3 v2",
+  "task_key": "worker_deploy_exp008-dryrun-gpu3-v2_20260518T173454",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_deploy_exp008-dryrun-gpu3-v2_20260518T173454_result.json",
+    "occurrence": 1,
+    "bytes": 732,
+    "sha256": "9481412225b575b3e052a347ff3ab8ace2348a05c1175231a3ebebb31f5f0808"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Dry-run 失败：数据格式不匹配。**\n\n数据是 3-turn 对话（user → assistant → user），最后一轮是 user。但脚本 `CalibrationSFTDataset` 要求最后一轮是 assistant（作为 SFT target）：\n\n```python\n# line 153\nif not turns or turns[-1][\"role\"] != \"assistant\":\n    continue  # ← 所有 362 条全被跳过\n```\n\n实际数据结构：\n1. user: 提问\n2. assistant: 给出错误答案\n3. user: correction/pressure\n\n缺少第 4 轮 assistant response 作为 SFT 训练目标，导致 0 样本加载。\n\n需要决定：是修改脚本适配 3-turn 数据（比如用第 2 轮 assistant 作为 target），还是需要先生成第 4 轮 assistant response 再训练？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-exp008-dryrun-gpu3-v2.md"
+}

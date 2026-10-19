@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6617bad944b7f7f244c8",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "run exp 003 s2 r3only",
+  "task_key": "worker_run_exp-003-s2_r3only_20260518T153014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_exp-003-s2_r3only_20260518T153014_result.json",
+    "occurrence": 1,
+    "bytes": 723,
+    "sha256": "c9e88ac2ed12df35fda7f8e5c2ee318c27025397479cbaf4b4b5e35c91cbad72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "OOM 原因明确：westd-29046 是 RTX PRO 6000 (96GB VRAM)，westd-28034 是 RTX 5090 (32GB)。8B 模型 + GRPO (num_generations=4) 在 32GB 上放不下。\n\n**选项：**\n\n1. **多 GPU（推荐）**：用 westd-28034 的 2 张 GPU（如 cuda:2,3），通过 accelerate + FSDP 或 DeepSpeed ZeRO 分摊显存。训练超参不变，仅并行方式不同。\n2. **QLoRA (4-bit)**：模型从 ~16GB 降到 ~5GB，轻松放进 32GB 单卡。但量化会改变训练动态，不完全等同于 seed 1。\n3. **换到 westd-29046 另一张 GPU（cuda:0）**：环境完全一致，配置完全一致。最干净的方案，但需要 westd-29046 的 cuda:0 空闲且不影响其他实验。\n\n哪种方案？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-exp-003-s2-r3only.md"
+}

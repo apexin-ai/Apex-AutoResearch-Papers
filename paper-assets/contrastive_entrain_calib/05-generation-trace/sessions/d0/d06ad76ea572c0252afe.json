@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d06ad76ea572c0252afe",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diag 29046 full status",
+  "task_key": "worker_diag_29046-full-status_20260522T233042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_29046-full-status_20260522T233042_result.json",
+    "occurrence": 1,
+    "bytes": 674,
+    "sha256": "c4c49acc67c4d8df2e1e4521021046219d8a88031b98c807d821f0dc16b1d3a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nGPU状态:\nGPU0: gs8 运行中 | 97% util | 38.2/97.9 GB | 67°C | 409W\nGPU1: ACT s2 运行中 | 40% util | 23.3/97.9 GB | 50°C | 179W\n\nACT s2 训练 (exp-004-act-baseline-s2):\n状态: 运行中\n最新 step: 7010/8000\n速度: ~9.0s/step\nETA 完成: ~10:00 UTC (约2.5h后)\n可用 checkpoint: 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000\n未 eval checkpoint: 2500, 6500, 7000\n待生成 checkpoint: 7500, 8000\n\ngs8 训练 (exp-003-gs8):\n当前 step: 1038/8000\n速度: ~24.6s/step\n可用 checkpoint: 500, 1000\n下一个 ckpt (1500) 预计: ~10:40 UTC (约3.2h后)\n训练完成预计: ~May 25 07:00 UTC (~47.6h后)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-29046-full-status.md"
+}

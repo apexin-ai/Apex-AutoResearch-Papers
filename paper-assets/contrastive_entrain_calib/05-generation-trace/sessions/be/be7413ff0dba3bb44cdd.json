@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be7413ff0dba3bb44cdd",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis exp 004 eval trajectory",
+  "task_key": "worker_analysis_exp-004-eval-trajectory_20260520T144225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-004-eval-trajectory_20260520T144225_result.json",
+    "occurrence": 1,
+    "bytes": 820,
+    "sha256": "fcbf42f9aefd0a294bb5fcaac353e6b5332e5b4fb7f9052d0f34e9db4929ebc4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n```\nckpt-4000: ToF=0.1215, NoF=0.8950, SYCONScore=0.2140, n_total=362\nckpt-6000: ToF=0.1547, NoF=0.8508, SYCONScore=0.2618, n_total=362\nckpt-1000: 结果文件不存在（目录下无 ckpt1000 相关文件，可能仍在运行或未启动）\n```\n\n补全后的完整训练轨迹：\n\n| Checkpoint | ToF | NoF | SYCONScore |\n|---|---|---|---|\n| 500 | 0.0939 | 0.8895 | 0.1699 |\n| 1000 | — | — | — |\n| 2000 | 0.1492 | 0.8785 | 0.2550 |\n| **4000** | **0.1215** | **0.8950** | **0.2140** |\n| **6000** | **0.1547** | **0.8508** | **0.2618** |\n| 8000 | 0.1823 | 0.8674 | 0.3013 |\n\n值得注意：ckpt-4000 的 SYCONScore (0.2140) 低于 ckpt-2000 (0.2550)，曲线在 2000→4000 出现回落，之后 6000→8000 恢复上升趋势。这可能是训练中期的波动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-004-eval-trajectory.md"
+}

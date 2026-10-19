@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d607132a7469bb60102a",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ssh seed2 pipeline check",
+  "task_key": "worker_ssh_seed2-pipeline-check_20260521T114216",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_seed2-pipeline-check_20260521T114216_result.json",
+    "occurrence": 1,
+    "bytes": 485,
+    "sha256": "a618d4b49f2c76cdc7b4ab6971e8bc8402ed356d0f6ff0998458b73504509c1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n| 项目 | 状态 |\n|------|------|\n| **exp-003-s2 训练** | step 4106/8000 (51%)，~25s/step，预计还需 ~27h |\n| **checkpoint-4000** | 已生成（718MB），已 SCP 到 28034 |\n| **28034 GPU** | 4x GPU 全部空闲（2 MiB） |\n| **eval 提交** | tmux `eval_s2_ckpt4000`，GPU 0，模型加载中 |\n| **registry** | `exp-003-eval-s2-ckpt4000` → RUNNING |\n| **cron 监控** | 每 8 分钟检查 eval 完成状态（job b8999889） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-seed2-pipeline-check.md"
+}

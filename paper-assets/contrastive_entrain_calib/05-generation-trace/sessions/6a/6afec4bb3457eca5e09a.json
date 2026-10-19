@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6afec4bb3457eca5e09a",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp 008 seed2",
+  "task_key": "worker_eval_exp-008-seed2_20260524T220310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp-008-seed2_20260524T220310_result.json",
+    "occurrence": 1,
+    "bytes": 370,
+    "sha256": "12929a35246b4fbff1fd7ee59c20051578482bee31a25139aafaa0c02e7b43b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已在后台运行中。45 分钟后我会回来检查 checkpoint-500 的进度。\n\n当前状态：\n- **PID**: 725956\n- **GPU**: cuda:0 (RTX PRO 6000 Blackwell, 98GB)\n- **脚本**: 5 个 checkpoint 串行执行 preset eval + entropy 计算\n- **日志**: `/root/autodl-tmp/results/exp008_seed2/eval_full.log`\n- **预计总耗时**: 10-12 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-008-seed2.md"
+}

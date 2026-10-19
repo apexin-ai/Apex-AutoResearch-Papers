@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "62be16a10434e9ce3191",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops mmlu results collect",
+  "task_key": "worker_ops_mmlu-results-collect_20260524T094315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_mmlu-results-collect_20260524T094315_result.json",
+    "occurrence": 1,
+    "bytes": 1272,
+    "sha256": "9835189d530c1cafbcd545993a4fcd628221d38eec5ea416fd160e8704d0a360"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据收集完毕。\n\n---\n\n## Eval 结果\n\n| Model | MMLU (5-shot acc) | GSM8K strict-match | GSM8K flexible-extract |\n|-------|------------------:|-------------------:|-----------------------:|\n| Vanilla Qwen3-8B | **0.7493** ± 0.0035 | **0.8764** ± 0.0091 | **0.8832** ± 0.0088 |\n| ACT s1 ckpt-8000 | 0.7356 ± 0.0036 | 0.8461 ± 0.0099 | 0.8484 ± 0.0099 |\n| R3-only s1 ckpt-6500 | **0.7505** ± 0.0035 | ⏳ 运行中 (1207/1319, 91%) | ⏳ 运行中 |\n\n**R3-only GSM8K ETA**: ~112 items × ~4s/it ≈ **7-8 分钟后完成**。PID 651783 已跑 7h13m。\n\n关键发现：\n- R3-only MMLU **0.7505 > Vanilla 0.7493**，训练没有损害通用能力，反而微升\n- ACT 两项均下降（MMLU -1.37pp, GSM8K -3.03pp strict），说明 ACT 训练对通用能力有损\n\n---\n\n## exp-003-len512-v3 训练进度\n\n| 指标 | 值 |\n|------|-----|\n| 当前 step | **2405 / 8000** (30%) |\n| 最新 checkpoint | checkpoint-2000 (May 24 12:32) |\n| 速度 | ~46s/step |\n| 剩余 | 5595 steps × 46s ≈ **71.5h ≈ ~3 天** |\n| PID | 553700, 已跑 1d 7h 26m |\n\n---\n\n## GPU 状态\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| GPU 0 | 100% | 34.1 / 97.9 GB (eval) |\n| GPU 1 | 97% | 41.3 / 97.9 GB (training) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-mmlu-results-collect.md"
+}

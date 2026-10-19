@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9834fdf02a943a5e3f1",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis exp 004 eval ckpt5500 ckpt4500",
+  "task_key": "worker_analysis_exp-004-eval-ckpt5500-ckpt4500_20260520T160646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-004-eval-ckpt5500-ckpt4500_20260520T160646_result.json",
+    "occurrence": 1,
+    "bytes": 983,
+    "sha256": "167eb8934af1b52924dd1a9390f31e40235d34b5f9a5497c6dd345e0496819cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## exp-004 ACT Trajectory Eval 结果\n\n| Checkpoint | ToF | NoF | SYCONScore |\n|------------|-----|-----|------------|\n| D027 Vanilla | 0.072 | 0.945 | 0.134 |\n| ckpt-4000 | 0.1215 | 0.8950 | **0.2140** |\n| **ckpt-4500** | 0.1050 | 0.8785 | **0.1875** |\n| ckpt-5000 | 0.1547 | 0.8785 | **0.2631** |\n| **ckpt-5500** | 0.1381 | 0.8674 | **0.2383** |\n| ckpt-6000 | 0.1547 | 0.8508 | **0.2618** |\n\n两个新 checkpoint 均 > vanilla 0.134 → conclusion = **success**。\n\n**轨迹趋势**：整体上升但非单调。ckpt-4000~4500 出现明显低谷（SYCONScore 从 ckpt-2000 的 0.255 降至 0.188），ckpt-5000 起回升，后半程 (5000-6000) plateau ~0.24-0.26，ckpt-8000 再突破至 0.301。\n\n**已完成**：\n- memory.md 已更新（含完整 8-checkpoint 轨迹表 + 新增分析段落）\n- Registry 两个实验均已设为 DONE(success)，metrics/spec/conclusion 已写入\n- 无 W&B URL（日志中未出现）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-004-eval-ckpt5500-ckpt4500.md"
+}

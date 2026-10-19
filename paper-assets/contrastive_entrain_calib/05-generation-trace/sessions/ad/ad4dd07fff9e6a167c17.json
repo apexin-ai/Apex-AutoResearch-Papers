@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad4dd07fff9e6a167c17",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops training progress check",
+  "task_key": "worker_ops_training-progress-check_20260523T040420",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_training-progress-check_20260523T040420_result.json",
+    "occurrence": 1,
+    "bytes": 1646,
+    "sha256": "571cf81a46e8d2e34f35eb67fc39a757c4778448d8d05759fac92f3081179764"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练进度汇总\n\n### westd-28034 GPU:1 — exp-004-reduced-lora (PID 30011)\n\n| 指标 | 值 |\n|------|-----|\n| 当前 step | **5790 / 8000** (72.4%) |\n| 每 step 耗时 | **~6.76s** |\n| 剩余 steps | 2210 |\n| 预估完成时间 | **~2026-05-23 16:15 UTC** (~4h 10min后) |\n| 最新 checkpoint | **checkpoint-5500** |\n| GPU | RTX 5090, 21770MiB / 32607MiB, **48%** util |\n| 最新 loss | l2≈0.0019, total=0.0002 |\n\n---\n\n### westd-29046 GPU:0 — exp-003-gs8 (PID 516696)\n\n| 指标 | 值 |\n|------|-----|\n| 当前 step | **1696 / 8000** (21.2%) |\n| 每 step 耗时 | **~25.5s** |\n| 剩余 steps | 6304 |\n| 预估完成时间 | **~2026-05-25 08:45 UTC** (~44.7h后) |\n| 最新 checkpoint | **checkpoint-1500** |\n| GPU | RTX PRO 6000 Blackwell, 38197MiB / 97887MiB, **95%** util |\n| 最新 reward | mean≈0.52-0.58 |\n\n---\n\n### westd-29046 GPU:1 — exp-003-len512-v3 (PID 553700)\n\n| 指标 | 值 |\n|------|-----|\n| 当前 step | **130 / 8000** (1.6%) |\n| 每 step 耗时 | **~49.8s** |\n| 剩余 steps | 7870 |\n| 预估完成时间 | **~2026-05-28 01:00 UTC** (~108.9h / 4.5天后) |\n| 最新 checkpoint | **无**（首个 checkpoint 在 step 500） |\n| GPU | RTX PRO 6000 Blackwell, 41337MiB / 97887MiB, **95%** util |\n| 最新 reward | mean≈0.46, clipped_ratio=0.95-0.98 |\n\n---\n\n**要点：**\n- exp-004 今天下午就能跑完\n- exp-003-gs8 预计后天上午完成\n- exp-003-len512 每 step 比 gs8 慢近一倍（49.8s vs 25.5s），主要因为 max_completion_length=512 导致 generation 更长，completions/clipped_ratio 高达 0.95-0.98，预计 5月28日才能完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-training-progress-check.md"
+}

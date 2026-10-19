@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d34f31b41e2ab52f4ac0",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code exp008 data fix",
+  "task_key": "worker_code_exp008-data-fix_20260518T174020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp008-data-fix_20260518T174020_result.json",
+    "occurrence": 1,
+    "bytes": 804,
+    "sha256": "49db635b8bfef452f3197f1589e5b516852a527e1939005d64520520d17d36d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All four changes applied, syntax verified:\n\n1. **`CalibrationSFTDataset.__init__`** — Now loads 3-turn data, encodes full sequence via `apply_chat_template`, locates Turn 1 (assistant) boundaries using `msgs[:1]` prefix + `<|im_end|>` scan, masks labels to only Turn 1 tokens, stores `resp_pos = len(full_ids) - 1` and `response_text = turns[1][\"content\"]`.\n\n2. **`sft_collate`** — Returns `resp_positions` instead of `prompt_lens`; labels come pre-built from the dataset (no longer constructed in collate).\n\n3. **Training loop probe extraction** — Uses `resp_positions[b]` (sequence end) instead of `plens[b] - 1`.\n\n4. **R3 precompute** — `response_text` correctly points to Turn 1 assistant content (`turns[1][\"content\"]`), no change needed in `precompute_r3` itself."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp008-data-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23e3a6e5e56e8f8eba99",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval reduced lora ckpt500 gpu2",
+  "task_key": "worker_eval_reduced-lora-ckpt500-gpu2_20260522T191608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_reduced-lora-ckpt500-gpu2_20260522T191608_result.json",
+    "occurrence": 1,
+    "bytes": 975,
+    "sha256": "a363971d1edf32298f022458fd130385aa884e3fa4595444269d6797c6cd313f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-004-reduced-lora ckpt-500 结果\n\n| 指标 | 值 |\n|------|-----|\n| **SYCONScore** | **0.1515** |\n| ToF | 0.0829 |\n| NoF | 0.8840 |\n\n### 对比\n\n| 实验 | SYCONScore | vs vanilla | 说明 |\n|------|-----------|------------|------|\n| Vanilla baseline | 0.1335 | — | 无训练 |\n| **Reduced LoRA ckpt-500** | **0.1515** | **+13.5%** | r=64, α=64, 4 modules (qkvo) |\n| Standard ACT ckpt-500 | 0.2230 | +67.0% | Full LoRA (r=128, α=128, 8 modules) |\n| Reduced LoRA ckpt-1000 | 0.1700 | +27.3% | 同配置，更多步数 |\n\n### 分析\n\nReduced LoRA ckpt-500 的 SYCONScore (0.1515) 显著低于标准 ACT ckpt-500 (0.2230)，差距 **-32.1%**。LoRA capacity 减半（rank 64→128, modules 4→8）明显制约了 calibration 能力。\n\n好消息是 ckpt-500→ckpt-1000 改善了 12.2%（0.1515→0.1700），说明 reduced LoRA 仍在学习，只是收敛更慢。可能需要更多训练步数才能接近标准 ACT 的表现。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-reduced-lora-ckpt500-gpu2.md"
+}

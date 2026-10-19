@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "810432a7a4f288277153",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ssh kill duplicate evals 28034",
+  "task_key": "worker_ssh_kill-duplicate-evals-28034_20260522T193601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill-duplicate-evals-28034_20260522T193601_result.json",
+    "occurrence": 1,
+    "bytes": 602,
+    "sha256": "e19d29eead0c1dc53f3ea2787d14e949ba8b54f2800d760ccada44ce7e9db393"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**PID 667859 (cuda:0)**: 已不存在，进程已自行退出。\n\n**cuda:2 两个进程对比**:\n\n| PID | 启动时间 | exp_id |\n|-----|---------|--------|\n| 1979 | 03:16:44 | `exp-004-reduced-lora-eval-ckpt500` |\n| 108611 | 03:17:06 | `exp-004-reduced-lora-ckpt500` |\n\n两者命令完全相同（同一 checkpoint-500），只是 exp_id 不同。PID 1979 先启动 22 秒，exp_id 多了个 `eval-` 前缀。\n\n请确认要 kill 哪个？我的判断是 kill PID 1979（`-eval-ckpt500`，像是命名失误的重复），保留 PID 108611（`-ckpt500`，命名更规范）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-duplicate-evals-28034.md"
+}

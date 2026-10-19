@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea4436854b6d2dd4bf3f",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnosis exp003 training progress",
+  "task_key": "worker_diagnosis_exp003-training-progress_20260521T073739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_exp003-training-progress_20260521T073739_result.json",
+    "occurrence": 1,
+    "bytes": 1485,
+    "sha256": "a3ffcd613342294a971ab790c117bc9c4568ce611d0db03d10d0fb9a3b797567"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练进度报告\n\n### 1. exp-003 (PID 70649, cuda:1) — seed1\n\n| 指标 | 值 |\n|------|-----|\n| 估算当前 step | **~7670 / 8000** |\n| 进度 | **~95.9%** |\n| 最新 checkpoint | checkpoint-7500（14:10 保存） |\n| 每 step 耗时 | ~30.8s（从 ckpt-7000→7500 间距推算） |\n| 预估完成时间 | **~今天 18:25**（约 2h50m 后） |\n\n> 注：stdout 输出到 tmux pipe，无独立日志文件。当前 step 通过 checkpoint 时间戳推算。\n\n### 2. exp-003-s2 (PID 237432, cuda:0) — seed2\n\n| 指标 | 值 |\n|------|-----|\n| 当前 step | **3571 / 8000** |\n| 进度 | **44.6%** |\n| 最新 checkpoint | checkpoint-3500（15:00 保存） |\n| 每 step 耗时 | ~29-31s |\n| reward (最近) | ~0.53-0.59 |\n| 预估完成时间 | **~5月23日 04:00**（约 37h 后） |\n\n### 3. Checkpoints\n\n**exp003_r3only_seed1** (exp-003):\n- checkpoint-500 ~ checkpoint-7500：15 个，每 500 步一个 ✓\n- **ckpt-7500: 已生成** ✓\n- **ckpt-8000: 未生成**（预计 ~18:25）\n\n**exp003_r3only_seed2** (exp-003-s2):\n- checkpoint-500 ~ checkpoint-3500：7 个 ✓\n\n### 4. GPU 状态\n\n| GPU | 型号 | 利用率 | 显存 | 温度 | 任务 |\n|-----|------|--------|------|------|------|\n| 0 | RTX PRO 6000 (98GB) | **98%** | 38049/97887 MiB | 53°C | exp-003-s2 |\n| 1 | RTX PRO 6000 (98GB) | **89%** | 38161/97887 MiB | 54°C | exp-003 |\n\n两个 GPU 负载健康，温度正常。exp-003 约 3 小时后完成训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-exp003-training-progress.md"
+}

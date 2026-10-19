@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e2f454b73f34b0f4574",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval heldout ckpt2000 wait and eval",
+  "task_key": "worker_eval_heldout-ckpt2000-wait-and-eval_20260523T105456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_heldout-ckpt2000-wait-and-eval_20260523T105456_result.json",
+    "occurrence": 1,
+    "bytes": 80,
+    "sha256": "8b918ec80d0fd7e88a4bdb868f1445fe450e3fb50399cc8d2fcb17e6f1b4c8aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台脚本正在运行，2 分钟后开始轮询日志状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-heldout-ckpt2000-wait-and-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9a2f2b2b364bacf8424",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diag 28034 full status",
+  "task_key": "worker_diag_28034-full-status_20260522T233024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_28034-full-status_20260522T233024_result.json",
+    "occurrence": 1,
+    "bytes": 1738,
+    "sha256": "a7b1c2fb49cb306aecaf57635ca6c8e932dfd19d00b1c28e3cdbdaac6de80d8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "原始3个eval（gs8 ckpt-500 verify, reduced-lora ckpt-1500, reduced-lora ckpt-2000）**没有留下任何结果文件或日志**。它们的PID已经不存在，且在服务器上找不到对应的output。\n\n这是这台服务器（28034→westd-29046）的实际情况，注意服务器编号不同——有可能那3个eval跑在另一台机器上（编号28034），而当前连接的是 westd-29046。\n\n以下是当前 westd-29046 的完整状态：\n\n---\n\n```\nGPU状态:\nGPU0: 训练 exp003_gs8_r3only (PID 516696, 7h56m) — step 1040/8000 (13%), ~25s/step\nGPU1: 训练 exp004_act_baseline_s2 resume (PID 494017, 12h41m) — step 7010/8000 (87.6%), ~90s/10step\nGPU2: 无 (此服务器只有2张GPU)\nGPU3: 无\n\n当前训练进度:\nexp003_gs8_r3only:    1040/8000 (13%), 预计还需 ~48h\nexp004_act_s2_resume: 7010/8000 (87.6%), 预计还需 ~2.5h，最新 ckpt=7000\n\n已完成的 Eval 结果 (exp003 seed2 D027 preset eval):\nexp003-s2-ckpt4000: SYCONScore=0.1430, ToF=0.0773, NoF=0.9448\nexp003-s2-ckpt7500: SYCONScore=0.1241, ToF=0.0663, NoF=0.9724\nexp003-s2-ckpt8000: SYCONScore=0.1240, ToF=0.0663, NoF=0.9613\n  (所有 eval 用 seed2 checkpoint, 数据=calibration_v2_1_expanded.jsonl, n=362)\n\n原始3个eval (gs8 ckpt-500 verify / reduced-lora ckpt-1500 / reduced-lora ckpt-2000):\n  ❌ PID 131250/136668/137176 均不存在\n  ❌ 无对应结果JSON、无日志文件\n  → 可能跑在另一台服务器上，或进程被kill后未保存结果\n\nCheckpoint 清单:\nexp003_r3only_seed1: ckpt 500~8000 (每500步)\nexp003_r3only_seed2: ckpt 500~8000 (每500步)\nexp-004-act-baseline-s2: ckpt 2000~7000 (每500步, 仍在产出)\nexp003_gs8_r3only: ckpt 500, 1000 (仍在产出)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-28034-full-status.md"
+}

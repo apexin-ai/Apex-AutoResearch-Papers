@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea5d80615832bc35b72b",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval 28034 collect act heldout",
+  "task_key": "worker_eval_28034-collect-act-heldout_20260523T073538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_28034-collect-act-heldout_20260523T073538_result.json",
+    "occurrence": 1,
+    "bytes": 829,
+    "sha256": "503c33e0db64596793c790eee3f953e49689f382a048b00c6b48312a41e2748b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已收集。\n\n## ACT s1 ckpt-8000 Held-out Eval 结果\n\n| 指标 | 值 |\n|------|-----|\n| SYCONScore | **0.2841** |\n| ToF | **0.1714** |\n| NoF | **0.8286** |\n| n_valid / n_invalid / n_total | 35 / 35 / 70 |\n\n## Held-out 三方对比\n\n| 方法 | SYCONScore | ToF | NoF |\n|------|-----------|------|------|\n| Vanilla | 0.0556 | 0.0286 | 1.000 |\n| R3-only ckpt-6500 | 0.1079 | 0.0571 | 0.971 |\n| **ACT s1 ckpt-8000** | **0.2841** | **0.1714** | **0.8286** |\n\nACT s1 在三个指标上都大幅领先：SYCONScore 是 R3-only 的 2.6 倍，ToF 是 3 倍，NoF 从接近 1.0 降到 0.83。\n\n## Reduced-LoRA 训练状态\n\n- PID 30011 仍在运行（已跑 ~14h55m）\n- 最新 checkpoint：**checkpoint-7500**（15:26 保存）\n- 共 15 个 checkpoint（500 ~ 7500），每 ~57 分钟一个"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-28034-collect-act-heldout.md"
+}

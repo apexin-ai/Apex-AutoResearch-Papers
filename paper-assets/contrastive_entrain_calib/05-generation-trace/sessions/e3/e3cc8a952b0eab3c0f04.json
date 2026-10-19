@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3cc8a952b0eab3c0f04",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "paper d045 narrative fix",
+  "task_key": "worker_paper_d045-narrative-fix_20260521T044411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_d045-narrative-fix_20260521T044411_result.json",
+    "occurrence": 1,
+    "bytes": 1800,
+    "sha256": "61dfc590ff7921d23e9fe0af8c4ed25178cf5ba62d0ab9440aa43e6f74a77b05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All files are consistent. Here's the summary of all changes:\n\n---\n\n### 修改摘要\n\n**修改的文件（8个，4对 sections/ + top-level 副本）：**\n\n| 文件 | 修改内容 |\n|------|----------|\n| `sections/abstract.tex` | \"sycophancy scores plateau below the vanilla baseline\" → \"at best briefly match the vanilla baseline before regressing, establishing a ceiling at the untrained performance level\" |\n| `abstract.tex` | 同上 |\n| `sections/introduction.tex` | 已是最新版，无需修改 |\n| `introduction.tex` | (1) \"reaches only 0.114...never exceeds the vanilla baseline\" → \"briefly matches the vanilla baseline (0.134) at checkpoint 4500, but immediately regresses to 0.114\" + vanilla ceiling 表述; (2) C1 贡献项更新为 ckpt-4500 数据; (3) C3 \"all GRPO variants remain below vanilla\" → \"no GRPO variant surpasses vanilla\" |\n| `sections/discussion.tex` | 已是最新版，无需修改 |\n| `discussion.tex` | (1) Table caption 添加 †footnote; (2) R3-only 行更新为 0.134†/0.072/0.961/4500; (3) 轨迹描述添加 ckpt-4500 spike，删除 \"plateauing 15% below\" |\n| `sections/conclusion.tex` | 已是最新版，无需修改 |\n| `conclusion.tex` | \"yielded a plateau at 0.114, below the vanilla baseline\" → \"at best a transient recovery to the vanilla baseline of 0.134, followed by regression to a plateau at 0.114\" |\n\n**未修改的文件：** cosine_failure.tex, probe_trap.tex, direction_quality.tex, related_work.tex, framework.tex, appendix.tex, limitations.tex — 不含 R3-only 性能 claim。\n\n**数字一致性：** 所有 R3-only ckpt-4500 SYCONScore=0.134（Table 中标 $^\\dagger$ 注明 peak，回归至 0.114）。sections/ 版本的 Table~\\ref{tab:main_comparison} 已有正确数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-d045-narrative-fix.md"
+}

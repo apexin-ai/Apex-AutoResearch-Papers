@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "470164df853a74de24b7",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "fix exp003s2 restart",
+  "task_key": "worker_fix_exp003s2-restart_20260519T235657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp003s2-restart_20260519T235657_result.json",
+    "occurrence": 1,
+    "bytes": 1284,
+    "sha256": "14b47ae31330f431b33447e2140f93ff8d78bd663c00158e1dbf8d10f84d0c7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本 import 正常。checkpoint 目录是空的（之前 step 12 被 kill 后无残留），无需额外清理。\n\n## 报告\n\n### 1. 崩溃原因\n```\nFileNotFoundError: No usable temporary directory found in ['/tmp', '/var/tmp', '/usr/tmp', '/root/contrastive_entrain_calib']\n```\n**根分区 100% 满（30G/30G，仅剩 16K）**，导致 `/tmp` 不可写。Python `tempfile` 模块在 `dill` 初始化时失败，`import torch` 直接崩溃。\n\n空间占用大户：`.cache/pip` 3.8G、`.cache/huggingface` 5.9G、`miniconda3/pkgs` 524M。\n\n### 2. 修复措施\n- 清理 pip 缓存：`pip cache purge` → 释放 3.8G\n- 清理 conda 包缓存：`conda clean --all -y` → 释放 ~107M\n- 根分区恢复到 **3.8G 可用**（88% 使用率）\n\n### 3. 验证结果\n- `import torch` ✅ (torch=2.8.0+cu128, cuda=True)\n- `from training.run_exp003s2_r3only import *` ✅\n- `/root/autodl-tmp/checkpoints/exp003_r3only_seed2/` 目录为空，无残留冲突\n\n### 4. GPU 状态\n| GPU | 型号 | 显存占用 | 利用率 |\n|-----|------|---------|--------|\n| 0 | RTX PRO 6000 Blackwell (98GB) | **0 MiB** | **0%** ✅ 空闲 |\n| 1 | RTX PRO 6000 Blackwell (98GB) | 38161 MiB | 95% (有其他任务) |\n\n**GPU 0 空闲，可立即重启 exp-003-s2。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp003s2-restart.md"
+}

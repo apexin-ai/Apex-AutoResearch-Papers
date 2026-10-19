@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ac6c1bec888484b8751",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval collect r3s2 final evals",
+  "task_key": "worker_eval_collect-r3s2-final-evals_20260522T160151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-r3s2-final-evals_20260522T160151_result.json",
+    "occurrence": 1,
+    "bytes": 105,
+    "sha256": "4342436d8eab103aeb57e95aa141f8573157cf241d9541a1bcd477b2d8708354"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ckpt-7500 已完成，ckpt-8000 预计还需约 50 分钟。20 分钟后再检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-r3s2-final-evals.md"
+}

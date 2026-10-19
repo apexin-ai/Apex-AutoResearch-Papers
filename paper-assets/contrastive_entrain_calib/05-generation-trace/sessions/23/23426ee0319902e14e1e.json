@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23426ee0319902e14e1e",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code westd reconnect v2",
+  "task_key": "worker_code_westd-reconnect-v2_20260525T042628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_westd-reconnect-v2_20260525T042628_result.json",
+    "occurrence": 1,
+    "bytes": 1902,
+    "sha256": "b12772256cf4a03a1a69da31391fd7127de972178f472283f986d9725b620ce6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已成功启动，正在跑 seed3/checkpoint-2000（362 pairs）。\n\n---\n\n## 汇总\n\n### 连接状态\n- **westd-29046 连接成功**\n\n### GPU 状态\n- 2x NVIDIA RTX PRO 6000 Black (98GB each)\n- 两块 GPU 均空闲，无 Python 进程（eval 中断后未恢复）\n- eval 恢复脚本已启动在 cuda:0，PID=1729\n\n### Checkpoint 完好性\n\n| 实验 | Checkpoints | 状态 |\n|------|------------|------|\n| exp008_sft_seed42 (seed2) | 500, 1000, 1500, 2000, final | 全部存在 |\n| exp008_sft_seed43 (seed3) | 500, 1000, 1500, 2000, final | 全部存在 |\n| exp003_r3only_seed1 | 500-8000 (每500一个) + final | 全部存在 (17个) |\n| exp003_r3only_seed2 | 500-8000 (每500一个) + final | 全部存在 (17个) |\n\n### Eval 进度\n\n| Seed | Checkpoint | Eval | Entropy |\n|------|-----------|------|---------|\n| seed2/500 | done | done | done |\n| seed2/1000 | done | done | done |\n| seed2/1500 | done | done | done |\n| seed2/2000 | done | done | done |\n| seed2/final | done | done | done |\n| seed3/500 | done | done | done |\n| seed3/1000 | done | done | done |\n| seed3/1500 | done | done | done |\n| seed3/2000 | **running** (PID=1729) | — | — |\n| seed3/final | pending | — | — |\n\n### 已启动任务\n- **PID 1729**: seed3 恢复 eval（checkpoint-2000 + final），cuda:0\n- 日志: `/root/autodl-tmp/results/exp008_seed3_resume_eval.log`\n- 预计耗时：~70 min（每个 checkpoint ~35min）\n\n### Seed4 并行可行性\n- 每块 GPU 98GB，eval 占用约 20GB（Qwen3-8B + LoRA + NLI）\n- cuda:1 完全空闲，**可以并行启动 seed4 训练**（~20GB）无冲突\n- 也可在 cuda:0 上 eval 完成后复用\n\n### 磁盘\n- `/root/autodl-tmp/`: 250GB 总量，90GB 已用，161GB 可用 (36%) — 充足\n\n### exp-003-len512-v3\n- exp003_r3only_seed1 和 seed2 的 checkpoint 均完好（各 17 个 checkpoint + final）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-westd-reconnect-v2.md"
+}

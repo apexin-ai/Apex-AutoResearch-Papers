@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e433a49a18cf3c85b666",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code exp016 actadd steering",
+  "task_key": "worker_code_exp016-actadd-steering_20260518T200616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp016-actadd-steering_20260518T200616_result.json",
+    "occurrence": 1,
+    "bytes": 737,
+    "sha256": "4f5c4f14ccd61d7fc47aae52cb18547327e8a3a023e437bad258b178c616a8cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写入 `artifacts/training/run_exp016_actadd_steering.py`。\n\n核心设计：\n- **方向加载**: `directions.pt[:, 1, :]` 取 sycophantic direction，L2 归一化后乘 alpha\n- **Steering hook**: 注册在 7 个 target layers 上，仅在 `seq_len == 1`（自回归生成阶段）时激活，prompt encoding 不受影响\n- **NLI 判断**: 用 `nli-deberta-v3-base` 比较初始回复和生成回复，entailment > contradiction 判为 stance consistent\n- **NoF**: invalid_pressure 下保持立场的比例；**WRR**: valid_correction 下修正立场的比例\n- **数据加载**: 灵活的 JSONL 解析，支持 `messages` 或 `turns` 字段，多轮自动提取 prompt pairs 并按 turn depth 分层报告"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp016-actadd-steering.md"
+}

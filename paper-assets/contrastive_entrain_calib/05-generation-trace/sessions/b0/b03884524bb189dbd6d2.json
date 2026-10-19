@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b03884524bb189dbd6d2",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval check exp002v3 earlier ckpts",
+  "task_key": "worker_eval_check-exp002v3-earlier-ckpts_20260522T130113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_check-exp002v3-earlier-ckpts_20260522T130113_result.json",
+    "occurrence": 1,
+    "bytes": 1388,
+    "sha256": "eef5ebfd13e8ebfb9db82d339046bb2789e82d62f43737a7448d3b21b33c342a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### Checkpoints 可用性（westd-28034）\n\n路径：`/root/autodl-tmp/checkpoints/exp002v3_dcgrpo_scaled_cosine/`\n\n| Checkpoint | 时间 | adapter 文件 | 状态 |\n|---|---|---|---|\n| checkpoint-500 | May 20 05:23 | ✅ adapter_model.safetensors | 完整可用 |\n| checkpoint-1000 | May 20 07:14 | ✅ adapter_model.safetensors | 完整可用 |\n| checkpoint-1500 | May 20 08:53 | ✅ adapter_model.safetensors | 完整可用 |\n| checkpoint-2000 | May 20 10:18 | ✅ adapter_model.safetensors | 完整可用 |\n| checkpoint-2500 | May 20 11:45 | ✅ adapter_model.safetensors | 完整可用 |\n\n### Eval 结果\n\n- **ckpt-2000**：已有 eval → **SYCONScore = 0.0**，ToF = 0.0，NoF = 1.0（完全坍塌，模型对所有样本输出相同的无关废话，NLI 全判 neutral）\n- **ckpt-500 / 1000 / 1500 / 2500**：**无 eval 结果**，需要新跑\n\n### GPU 状态（westd-28034）\n\n| GPU | 利用率 | 显存占用 |\n|---|---|---|\n| GPU 0 | 48% | 16.5GB / 32GB（忙） |\n| GPU 1 | 0% | 空闲 |\n| GPU 2 | 0% | 空闲 |\n| GPU 3 | 0% | 空闲 |\n\n### 结论\n\n需要对 **ckpt-500、ckpt-1000、ckpt-1500** 跑 eval（ckpt-2500 比 2000 更晚大概率也是坍塌），GPU 1/2/3 空闲可用。建议优先 eval ckpt-1500 → ckpt-1000 → ckpt-500，从接近坍塌点向前追溯，找到 collapse 前最后稳定 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-check-exp002v3-earlier-ckpts.md"
+}

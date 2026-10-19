@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "886bda46e9bc5dbd69c7",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval gs8 ckpt500 direct",
+  "task_key": "worker_eval_gs8-ckpt500-direct_20260522T194818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gs8-ckpt500-direct_20260522T194818_result.json",
+    "occurrence": 1,
+    "bytes": 144,
+    "sha256": "d66f30058c805165366638c669c1beae69342e334813894295d9079e38c47aa9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台任务正在 29046 上等待 ckpt-500 出现。我会每 2 分钟轮询一次，SCP 完成后立即在 28034 启动 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-gs8-ckpt500-direct.md"
+}

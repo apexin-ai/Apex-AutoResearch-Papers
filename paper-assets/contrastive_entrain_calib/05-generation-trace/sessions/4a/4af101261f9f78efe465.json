@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "4af101261f9f78efe465",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "run phase1 datagen",
+  "task_key": "worker_run_phase1_datagen_20260518T055416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_phase1_datagen_20260518T055416.log",
+    "occurrence": 1,
+    "bytes": 476490,
+    "sha256": "067ba01aa55251cb65f28a4b60079cfdb1465a484e1bb8d2c8225727f18e7e07"
+  },
+  "statistics": {
+    "messages": 371,
+    "user_turns": 0,
+    "tool_calls": 158,
+    "roles": {
+      "log": 1,
+      "system": 17,
+      "record": 1,
+      "assistant": 35,
+      "tool_call": 158,
+      "tool_result": 158,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 371,
+      "chunks": [
+        {
+          "path": "4af101261f9f78efe465-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4af101261f9f78efe465-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4af101261f9f78efe465-part-0003.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/run-phase1-datagen.md"
+}

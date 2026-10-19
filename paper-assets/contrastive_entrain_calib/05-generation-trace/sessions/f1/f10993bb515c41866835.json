@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f10993bb515c41866835",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "infra sync trainer westd28034",
+  "task_key": "worker_infra_sync-trainer-westd28034_20260518T170023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_sync-trainer-westd28034_20260518T170023_result.json",
+    "occurrence": 1,
+    "bytes": 1500,
+    "sha256": "127215eded41f2e826d7e5e8a97023c76ea090534bce7ad41e3430377a5729b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 同步完成报告\n\n### 1. Trainer 同步状态: ✅ 完成\n- `dcgrpo_trainer.py` 从 westd-29046 同步到 westd-28034\n- 文件大小一致: 24605 bytes (656 行)\n- 包含所有修复: R3 inversion、R2=0 跳过逻辑、cross-encoder/nli-deberta-v3-base（动态 entailment index）、d_syc=None 分支 R3 logging\n- import 验证通过: `DCGRPOConfig, DCGRPOTrainer` 可正常导入\n\n### 2. Exp-014 代码部署状态: ✅ 完成\n- `probe_module.py` → `/root/contrastive_entrain_calib/training/` (126 行)\n- `run_exp014_continuous_probe.py` → `/root/contrastive_entrain_calib/training/` (218 行)\n- import 验证通过: `LinearProbe` 可正常导入\n\n### 3. 路径适配: ✅ 无需修改\n- `MODEL_PATH`: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B` — 路径在 westd-28034 上存在\n- `DATA_PATH`: `/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl` — 存在 (367KB)\n- `DIRECTION_PATH`: `/root/contrastive_entrain_calib/results/exp001/directions.pt` — 存在 (2.3MB)\n- `ACTIVATIONS_PATH`: `/root/contrastive_entrain_calib/results/exp001/activations.pt` — 已从 westd-29046 同步 (427MB)\n\n### 4. 缺失依赖文件: ✅ 全部就绪\n- `activations.pt` 原本缺失，已从 westd-29046 同步补齐\n- 所有四个关键文件（model、data、directions、activations）均已就位\n\n### 注意事项\n- westd-28034 的 conda base 环境需要 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base` 才能使用 python"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-sync-trainer-westd28034.md"
+}

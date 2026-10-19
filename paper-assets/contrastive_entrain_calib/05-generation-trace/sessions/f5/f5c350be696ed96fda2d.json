@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5c350be696ed96fda2d",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "knowledge fix bib entries",
+  "task_key": "worker_knowledge_fix-bib-entries_20260522T102147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_fix-bib-entries_20260522T102147_result.json",
+    "occurrence": 1,
+    "bytes": 1630,
+    "sha256": "859d7c9a0c0d3572b35e59acd54b66ec5948643d420f3c1aa079511375af31af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "7 条全部修复完成。Diff summary：\n\n| # | Key | 旧值 | 新值 |\n|---|-----|------|------|\n| 1 | `consistency2025bctact` | author=`Unknown`, title=\"Activation Consistency Training for Sycophancy Reduction\" | author=`Irpan, Alex and Turner, Alexander Matt and Kurzeja, Mark and Elson, David K. and Shah, Rohin`, title=\"Consistency Training Helps Stop Sycophancy and Jailbreaks\" |\n| 2 | `zhang2026latentgrpo` | author=`Zhang, et al.` | `Zhang, Nonghai and Ma, Weitao and Ma, Zhanyu and Xu, Jun and Gao, Jiuchong and Hao, Jinghua and He, Renqing and Xu, Jingwen` |\n| 3 | `wang2025internal` | author=`Wang, et al.` | `Wang, Keyu and Li, Jin and Yang, Shu and Zhang, Zhuoran and Wang, Di` |\n| 4 | `sinii2025smallvectors` | author=`Sinii, et al.` | `Sinii, Viacheslav and Balagansky, Nikita and Gerasimov, Gleb and Laptev, Daniil and Aksenov, Yaroslav and Kurochkin, Vadim and Gorbatovski, Alexey and Shaposhnikov, Boris and Gavrilov, Daniil` |\n| 5 | `obrien2025fewbadneurons` | author=`O'Brien, et al.` | `O'Brien, Claire and Seto, Jessica and Roy, Dristi and Dwivedi, Aditya and Dev, Sunishchal and Zhu, Kevin and O'Brien, Sean and Panda, Ashwinee and Lagasse, Ryan` |\n| 6 | `wei2024synthetic` | author=`Wei, Jerry and Ganguli, Deep and Anthropic` | `Wei, Jerry and Huang, Da and Lu, Yifeng and Zhou, Denny and Le, Quoc V.` |\n| 7 | `ackermann2026gradreg` | author=`Ackermann, Johannes and others` | `Ackermann, Johannes and Noukhovitch, Michael and Ishida, Takashi and Sugiyama, Masashi` |\n\nEntry 1 的标题也一并修正（原标题不是论文实际标题）。所有 bib key 保持不变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-fix-bib-entries.md"
+}

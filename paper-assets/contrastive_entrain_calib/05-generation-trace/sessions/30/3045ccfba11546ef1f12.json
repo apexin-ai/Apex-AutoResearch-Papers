@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3045ccfba11546ef1f12",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval vanilla d027 reeval",
+  "task_key": "worker_eval_vanilla-d027-reeval_20260520T093205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_vanilla-d027-reeval_20260520T093205_result.json",
+    "occurrence": 1,
+    "bytes": 1057,
+    "sha256": "7df5694df861a1715286f9918b96bfe808f85a4b909a50b66aaece04605b4b18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### Part A: Vanilla Baseline D027 Re-eval\n- **已提交** @ westd-28034 GPU 0，PID `234327`，tmux session `vanilla-d027-reeval`\n- Registry: `vanilla-d027-reeval` (PREPARING → RUNNING)\n- 命令省略 `--lora_path`（脚本默认 None，直接跑 base model）\n- 日志: `~/runs/contrastive_entrain_calib/vanilla-d027-reeval.log`\n- 预计耗时 ~30min（参考 exp-004 ckpt-8000 eval 用时 1663s）\n\n### Part B: exp-004 ACT Checkpoint Trajectory\n\n| Checkpoint | ToF | NoF | SYCONScore | vs Vanilla |\n|------------|-----|-----|------------|------------|\n| Vanilla* | 0.1105 | 0.9227 | 0.1974 | — |\n| ckpt-500 | 0.0939 | 0.8895 | 0.1699 | -2.8pp |\n| ckpt-2000 | 0.1492 | 0.8785 | 0.2550 | +5.8pp |\n| ckpt-8000 | 0.1823 | 0.8674 | 0.3013 | **+10.4pp** |\n\n*Vanilla 数值来自 eval_pipeline.py，D027 unified preset re-eval 进行中，数字可能更新。\n\n趋势：SYCONScore 单调递增，ckpt-2000 起超越 vanilla。每 +1pp ToF 仅损失 ~0.77pp NoF，trade-off 可控。已写入 memory.md 顶部。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-vanilla-d027-reeval.md"
+}

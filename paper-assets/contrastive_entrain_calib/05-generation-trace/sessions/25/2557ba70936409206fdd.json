@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "2557ba70936409206fdd",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "eval gs8 ckpt1000 collect",
+  "task_key": "worker_eval_gs8-ckpt1000-collect_20260522T235658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gs8-ckpt1000-collect_20260522T235658.log",
+    "occurrence": 1,
+    "bytes": 1259239,
+    "sha256": "214ca5e7e6489eef13274f13910cbbbdb3637f918183ae4a8407ff16bfbd1bc8"
+  },
+  "statistics": {
+    "messages": 1113,
+    "user_turns": 1,
+    "tool_calls": 462,
+    "roles": {
+      "log": 1,
+      "system": 70,
+      "record": 1,
+      "assistant": 109,
+      "tool_call": 462,
+      "tool_result": 462,
+      "user": 1,
+      "result": 7
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1007,
+      "chunks": [
+        {
+          "path": "2557ba70936409206fdd-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2557ba70936409206fdd-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "2557ba70936409206fdd-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "2557ba70936409206fdd-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "2557ba70936409206fdd-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "2557ba70936409206fdd-part-0006.json",
+          "message_count": 107
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 106,
+      "chunks": [
+        {
+          "path": "2557ba70936409206fdd-part-0006.json",
+          "message_count": 73
+        },
+        {
+          "path": "2557ba70936409206fdd-part-0007.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-gs8-ckpt1000-collect.md"
+}

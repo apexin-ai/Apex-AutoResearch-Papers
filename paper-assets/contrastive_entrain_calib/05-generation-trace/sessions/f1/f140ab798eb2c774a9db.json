@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f140ab798eb2c774a9db",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops post restart4 status 29046",
+  "task_key": "worker_ops_post-restart4-status-29046_20260519T135149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_post-restart4-status-29046_20260519T135149_result.json",
+    "occurrence": 1,
+    "bytes": 782,
+    "sha256": "d4b6ef13e2b4259dc9f870b8968575f3d6061680c6ad0f4fe87140fd51550872"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务都在正常运行，服务重启后未中断。\n\n## exp-003 (GPU 1) — R3-only GRPO\n\n| 项目 | 值 |\n|------|-----|\n| 当前 step | **2655 / 8000** (33.2%) |\n| 速度 | ~26.3s/step |\n| GPU 显存 | 38,161 / 97,887 MiB |\n| GPU 利用率 | 95% |\n| reward/r3_mean | ~0.54–0.69 (近10步) |\n| 预计剩余 | **~39h** (约 5/21 下午完成) |\n\n## exp002v2-recalib (GPU 0) — Cosine + recalib\n\n| 项目 | 值 |\n|------|-----|\n| 当前 step | **1757 / 8000** (22.0%) |\n| 速度 | ~15.3s/step |\n| GPU 显存 | 66,907 / 97,887 MiB |\n| GPU 利用率 | 95% |\n| reward/combined_mean | ~0.64 (r1≈-0.05, r2≈-0.11, r3≈0.87) |\n| 预计剩余 | **~27h** (约 5/21 凌晨完成) |\n\n两个任务均稳定推进，日志持续更新中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-post-restart4-status-29046.md"
+}

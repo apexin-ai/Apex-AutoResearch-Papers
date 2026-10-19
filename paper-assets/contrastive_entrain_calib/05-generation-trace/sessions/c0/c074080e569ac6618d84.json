@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "c074080e569ac6618d84",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "eval exp 003 eval ckpt7000 v3",
+  "task_key": "worker_eval_exp-003-eval-ckpt7000-v3_20260521T081249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp-003-eval-ckpt7000-v3_20260521T081249.log",
+    "occurrence": 1,
+    "bytes": 572619,
+    "sha256": "267865afde8019987271f7dcf250b41f06cd317246f93309be6f4a230fbbd8c0"
+  },
+  "statistics": {
+    "messages": 428,
+    "user_turns": 1,
+    "tool_calls": 141,
+    "roles": {
+      "log": 1,
+      "system": 20,
+      "record": 1,
+      "assistant": 118,
+      "tool_call": 141,
+      "tool_result": 141,
+      "result": 5,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 415,
+      "chunks": [
+        {
+          "path": "c074080e569ac6618d84-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c074080e569ac6618d84-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c074080e569ac6618d84-part-0003.json",
+          "message_count": 55
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "c074080e569ac6618d84-part-0003.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-exp-003-eval-ckpt7000-v3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74f59ff717c584511a08",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp 003 eval ckpt8000",
+  "task_key": "worker_eval_exp-003-eval-ckpt8000_20260521T102318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp-003-eval-ckpt8000_20260521T102318_result.json",
+    "occurrence": 1,
+    "bytes": 418,
+    "sha256": "d220f779305376b05e10e37a9c15682547979f6647af28f5f8610256ffcd5288"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **Checkpoint**: 已在 westd-28034 上确认存在\n- **Eval 进程**: 已在 `eval-ckpt8000` tmux session 中运行（PID 868607），使用 cuda:1\n- **Registry**: `exp-003-eval-ckpt8000` 已更新为 RUNNING，spec 包含完整 provenance\n- **重复 session**: 我多启动的 `exp003-eval-ckpt8000` 已杀掉，避免 GPU 冲突\n\n预计 60-75 分钟完成，cron 会自动监控。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-003-eval-ckpt8000.md"
+}

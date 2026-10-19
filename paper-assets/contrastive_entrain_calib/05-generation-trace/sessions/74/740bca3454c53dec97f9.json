@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "740bca3454c53dec97f9",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval acts2 ckpt3500 scp eval",
+  "task_key": "worker_eval_acts2-ckpt3500-scp-eval_20260522T161236",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_acts2-ckpt3500-scp-eval_20260522T161236_result.json",
+    "occurrence": 1,
+    "bytes": 447,
+    "sha256": "91a9dfed90abc22ec78760eb3b1c449692098a71ff973fb06d74be889935bbdc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。\n\n**汇报：**\n- **SCP**: checkpoint-3500 (682M) 从 29046 成功传输到 28034，`adapter_model.safetensors` (667M) 完整\n- **Eval**: tmux session `eval_acts2_ckpt3500` 正在运行，362 对样本评估中\n- **GPU**: GPU1 已占用 17660 MiB\n- **日志**: `/root/runs/contrastive_entrain_calib/exp-004-s2-eval-ckpt3500.log`\n- **输出目录**: `/root/autodl-tmp/results/exp004s2_act_eval/checkpoint-3500/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-acts2-ckpt3500-scp-eval.md"
+}

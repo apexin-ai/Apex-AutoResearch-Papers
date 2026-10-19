@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f65818e58c7f1fe2c9a3",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "test westd28034 lora vram",
+  "task_key": "worker_test_westd28034_lora_vram_20260518T134538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_test_westd28034_lora_vram_20260518T134538_result.json",
+    "occurrence": 1,
+    "bytes": 835,
+    "sha256": "6cde4677b88d22054d09c57138ca31b92e5e1772872790193cf6f461551405a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "测试完成。结果：\n\n## Qwen3-8B LoRA VRAM 测试结果（RTX 5090 32GB）\n\n| 配置 | Peak VRAM | 状态 |\n|------|-----------|------|\n| 模型加载 (bf16) | 16.4GB | OK |\n| LoRA 挂载后 | 16.4GB | OK |\n| batch=1, seq=2048 | **21.4GB** | OK |\n| batch=2, seq=2048 | **26.4GB** | OK |\n| batch=4, seq=2048 | **OOM** (27.9GB时崩) | 失败 |\n| batch=8, seq=2048 | OOM | 失败 |\n\n**结论**：\n- 32GB RTX 5090 **可以跑** Qwen3-8B LoRA 训练\n- 单卡最大 batch_size = **2**（peak 26.4GB，剩余约 6GB 余量）\n- batch=4 OOM，不可用\n- **不需要** multi-GPU DDP 就能训练\n\n**建议训练配置**：\n- `per_device_train_batch_size=2`\n- `gradient_accumulation_steps=8`（有效 batch=16）\n- `gradient_checkpointing=True`\n- `bf16=True`\n- 单卡即可，4 卡 DDP 可 4x 加速"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/test-westd28034-lora-vram.md"
+}

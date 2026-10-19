@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c1c778226245d9d8cef",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diag read exp004 config",
+  "task_key": "worker_diag_read-exp004-config_20260518T171155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_read-exp004-config_20260518T171155_result.json",
+    "occurrence": 1,
+    "bytes": 656,
+    "sha256": "b34c603a1783aa0a8e13a7601fab11bcaa8505422e6d4d8ecf71bc18297acaa9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-004 ACT baseline 配置如下：\n\n| 配置项 | 值 |\n|---|---|\n| **learning_rate** | `5e-5` |\n| **lora_rank (r)** | `64` |\n| **lora_alpha** | `128` (`lora_rank * 2`) |\n| **lora_target_modules** | `q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj` |\n| **warmup_steps** | `200` |\n| **batch_size / grad_accum** | batch_size=`1`, gradient_accumulation_steps=`16` (effective batch=16) |\n| **max_steps** | `8000` |\n| **optimizer** | `AdamW` (weight_decay=0.01, grad_clip=1.0) |\n| **scheduler** | `linear` (get_linear_schedule_with_warmup) |\n\n补充：lora_dropout=0.05, bf16 精度, gradient_checkpointing 开启。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-read-exp004-config.md"
+}

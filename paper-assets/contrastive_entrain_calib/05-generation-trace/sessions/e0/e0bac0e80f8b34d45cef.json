@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0bac0e80f8b34d45cef",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "paper writing cosine failure",
+  "task_key": "worker_paper_writing_cosine_failure_20260520T074932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_cosine_failure_20260520T074932_result.json",
+    "occurrence": 1,
+    "bytes": 838,
+    "sha256": "7a1fd2b1abaaa1a6b327795e1757e8110e8118b28609fbeeeb00f344015d1556"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "§4 已写入 `docs/paper/sections/cosine_failure.tex`，约 700 words。\n\n结构：\n- **开头**：从 §3 的 discriminability 结果过渡，预告 4-experiment diagnostic chain\n- **Table 1** (`tab:cosine_chain`)：4 行总结 F1a--F1d 的配置、公式、outcome、root cause\n- **F1a**：tanh gate saturation，norm mismatch 导致梯度消失\n- **F1b**：raw cosine gap 仅 0.098，信号被 R3 方差淹没\n- **F1c**：recalibration 把 AUROC 提到 0.91 但引入 reward discontinuity，导致 mode collapse\n- **F1d**：5x scaling 放大 noise，R3 step 100 饱和后 R1 独撑但 oscillate，终端 collapse\n- **Unified diagnosis**：cosine projection 把 warranted revision 和 unwarranted capitulation 混为一谈，方向编码 belief change direction 但不编码 warrant；过渡到 §5 binary probe"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-cosine-failure.md"
+}

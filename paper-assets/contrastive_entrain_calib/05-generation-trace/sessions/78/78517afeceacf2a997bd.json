@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78517afeceacf2a997bd",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diag full status check 0114",
+  "task_key": "worker_diag_full-status-check-0114_20260523T014735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_full-status-check-0114_20260523T014735_result.json",
+    "occurrence": 1,
+    "bytes": 1403,
+    "sha256": "f94e88f7a62a419cabf5fecf085a2c080bc4a938b3d8587c9829ea24debdbf97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== 28034 ===\nGPU0: 空闲\nGPU1: reduced-lora 训练 (21.7GB/32GB, 29%)\nGPU2: 空闲\nGPU3: 空闲\n\nEval PIDs 146135/146802/147325: 全部完成 ✓\n\nEval 结果:\n  reduced-lora ckpt-2500: SYCONScore=0.1706  ToF=0.0939  NoF=0.9282\n  reduced-lora ckpt-3000: SYCONScore=0.1705  ToF=0.0939  NoF=0.9227\n  reduced-lora ckpt-3500: SYCONScore=0.1881  ToF=0.1050  NoF=0.9061\n  --- 历史 ---\n  gs8 ckpt-1000:          SYCONScore=0.0845  ToF=0.0442  NoF=0.9558\n  ACT-s2 ckpt-6500:       SYCONScore=0.2543  ToF=0.1492  NoF=0.8619\n  ACT-s2 ckpt-7000:       SYCONScore=0.2858  ToF=0.1713  NoF=0.8619\n\nReduced-lora 训练: step 4580/8000 (~57%)\n  可用 ckpt: 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500\n\n=== 29046 ===\nGPU0: gs8 训练 (38.2GB/97.9GB, 95%)\nGPU1: ACT-s2 训练 (23.3GB/97.9GB, 40%)\n\nACT s2: step 7900/8000 (~99%), 即将完成\n  ckpt-7500: 存在 ✓\n  ckpt-8000: 不存在（还没训到）\n  可用 ckpt: 2000-7500 (每 500 步)\n\nGS8: step 1374/8000 (~17%), reward≈0.57-0.63, ~24.5s/step\n  可用 ckpt: 500, 1000\n\nlen512: 未启动（无日志）\n```\n\n**要点：**\n- ACT-s2 还差 100 步就训完，预计 ~40 分钟出 ckpt-8000\n- reduced-lora 三个 ckpt 的 SYCONScore 都很低（0.17-0.19），远低于 ACT-s2 ckpt-7000 的 0.2858\n- gs8 ckpt-1000 评估结果最差（0.0845），但训练才 17%，后续 ckpt 可能提升"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-full-status-check-0114.md"
+}

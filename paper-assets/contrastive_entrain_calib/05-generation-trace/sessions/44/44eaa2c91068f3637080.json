@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44eaa2c91068f3637080",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code fix probe normalization",
+  "task_key": "worker_code_fix-probe-normalization_20260518T174830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-probe-normalization_20260518T174830_result.json",
+    "occurrence": 1,
+    "bytes": 470,
+    "sha256": "52af9a26841607e72c4c729443acdbc2b54a20daab8e72b79dc726c1992a8adf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件均已修复且语法验证通过。\n\n改动摘要：\n- **`LinearProbe.__init__`**：添加 `feat_mean` / `feat_std` 两个 buffer（`register_buffer`）\n- **`LinearProbe.forward`**：输入先做 `(x - mean) / (std + 1e-8)` 归一化再过 linear\n- **`train_probe`**：训练前计算 `X.mean(dim=0)` / `X.std(dim=0)` 并 `copy_` 到 probe 的 buffers\n- **`save_probe` / `load_probe`**：无需改动，`state_dict` 自动包含 buffers"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-probe-normalization.md"
+}

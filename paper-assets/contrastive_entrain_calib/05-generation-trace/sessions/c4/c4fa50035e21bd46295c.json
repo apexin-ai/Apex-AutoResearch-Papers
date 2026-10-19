@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4fa50035e21bd46295c",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval status 29046 full",
+  "task_key": "worker_eval_status-29046-full_20260522T185152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_status-29046-full_20260522T185152_result.json",
+    "occurrence": 1,
+    "bytes": 1052,
+    "sha256": "bf03356b83d6d248b178e558bcc691a68548e28f3f07e2eb043d5c1520ec6cd2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== westd-29046 Status ===\nGPU0: 占用 38197MiB/97887MiB, 95% util, PID 516696 (python) — exp-003-gs8\nGPU1: 占用 23279MiB/97887MiB, 40% util, PID 494017 (python) — exp-004-s2-v2\n\nexp-003-gs8 (exp003_gs8_r3only): step 38/8000, ~66s/step\n  最新日志时间: 2026-05-23 00:37:53 (约2h前)\n  注意: WARNING \"d_syc not loaded; returning R3-only rewards\" 每步都在报\n  ckpt-500: NOT_YET — 还需 ~462 steps × 66s ≈ 8.5h (预计 ~11:20)\n  已 SCP 到 28034: NO (ckpt 未生成)\n\nexp-004-s2-v2: step 5160/8000, step_time=9.1s, ETA ≈ 7.2h (~10:05)\n  total_loss=0.000109, l2_loss=0.00106, sft_loss=3e-06\n  ckpt-5000: EXISTS (2026-05-23 02:26, adapter_model.safetensors 666MB)\n```\n\n两个要注意的点：\n\n1. **exp-003-gs8 才跑到 step 38**，看起来是刚启动不久，ckpt-500 最快要 ~8.5h 后才有。日志里 WARNING `d_syc not loaded` 每步都出现——不确定这是否符合预期（R3-only 模式）。\n\n2. **exp-004-s2-v2 的 ckpt-5000 已就绪**，需要 SCP 到别处吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-status-29046-full.md"
+}

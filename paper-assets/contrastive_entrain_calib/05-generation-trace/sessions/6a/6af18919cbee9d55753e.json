@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "6af18919cbee9d55753e",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "writing paper audit r8",
+  "task_key": "worker_writing_paper-audit-r8_20260524T125525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_writing_paper-audit-r8_20260524T125525.log",
+    "occurrence": 1,
+    "bytes": 742146,
+    "sha256": "1fb073d4902355be7255b1def101d2b2c645c72fd19bc7e6e14856e631559de6"
+  },
+  "statistics": {
+    "messages": 266,
+    "user_turns": 0,
+    "tool_calls": 107,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 48,
+      "tool_call": 107,
+      "tool_result": 107,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 266,
+      "chunks": [
+        {
+          "path": "6af18919cbee9d55753e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6af18919cbee9d55753e-part-0002.json",
+          "message_count": 86
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/writing-paper-audit-r8.md"
+}

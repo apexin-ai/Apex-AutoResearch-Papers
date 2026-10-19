@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5e6eeda15f9f71385ff",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code nli label fix critical",
+  "task_key": "worker_code_nli-label-fix-critical_20260518T204711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_nli-label-fix-critical_20260518T204711_result.json",
+    "occurrence": 1,
+    "bytes": 709,
+    "sha256": "7f97b5b7c0f8de80715972bdfdafa7e15ff393a94358484d24ce53c489df56fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good. Both `sys` and `Path` are already imported (lines 24, 26 in the original). All changes applied correctly.\n\nSummary:\n- **Created** `artifacts/eval/nli_utils.py` — shared module with `get_entailment_idx`, `get_contradiction_idx`, `load_nli_model`, and `check_stance_consistency` that dynamically read label indices from `model.config.id2label`\n- **Fixed** `artifacts/training/run_exp016_actadd_steering.py` — removed all hardcoded `probs[2]`/`probs[0]`, now uses dynamic indices via the shared utility functions. Updated `load_nli_model` return signature (4-tuple), `check_stance_consistency` signature (added idx params), `evaluate_alpha` signature, and all call sites in `main()`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-nli-label-fix-critical.md"
+}

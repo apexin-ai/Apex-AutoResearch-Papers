@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b066f4b9b895a7a8710e",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "sync dcgrpo trainer final v2",
+  "task_key": "worker_sync_dcgrpo_trainer_final_v2_20260518T125951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_dcgrpo_trainer_final_v2_20260518T125951_result.json",
+    "occurrence": 1,
+    "bytes": 272,
+    "sha256": "42886e7e9b6e3139113c96b3ca4535e713109a09954ebca6075cca975aa450d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成。远程文件 789 行（本地 790 行，差 1 行是末尾换行差异，正常），四个关键修复点全部验证通过：\n\n- `.to(h)` — 行 460\n- `tanh` — 行 466\n- `_reward_step` — 行 182/183/264\n- `step %d` — 行 192/199"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-dcgrpo-trainer-final-v2.md"
+}

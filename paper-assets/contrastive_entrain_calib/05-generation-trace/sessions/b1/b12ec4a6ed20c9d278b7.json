@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b12ec4a6ed20c9d278b7",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval collect s2 ckpt3500",
+  "task_key": "worker_eval_collect-s2-ckpt3500_20260521T111430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-s2-ckpt3500_20260521T111430_result.json",
+    "occurrence": 1,
+    "bytes": 410,
+    "sha256": "878816340234da9ae38ab727e7d19e4efde6c527476c5e6acc70d17ce6e9cf71"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。\n\n**exp-003-eval-s2-ckpt3500 结果：**\n\n| 指标 | 值 |\n|------|-----|\n| ToF | 0.0387 |\n| NoF | 0.9724 |\n| SYCONScore | **0.0744** |\n\nSeed 2 完整趋势：ckpt-2000=0.085 → ckpt-2500=0.105 → ckpt-3000=0.095 → **ckpt-3500=0.074**。SYCONScore 持续下降，ckpt-2500 仍是 seed 2 的峰值。与 vanilla baseline (0.134) 差距进一步拉大。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-s2-ckpt3500.md"
+}

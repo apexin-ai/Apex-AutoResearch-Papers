@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf62d6e3cb5fa72e07cf",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops stability checkpoint check",
+  "task_key": "worker_ops_stability-checkpoint-check_20260519T051721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_stability-checkpoint-check_20260519T051721_result.json",
+    "occurrence": 1,
+    "bytes": 513,
+    "sha256": "13aa8895aa476cc2bfcd414d8223a666d5fad773db21dc610b95547bfc5bcc4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n| 检查项 | 状态 |\n|--------|------|\n| `measure_direction_stability.py` 存在 | OK (10480 bytes, May 19 09:47) |\n| 语法检查 | OK |\n| checkpoint-500 | **不存在** |\n\n**当前训练进度**: step 385/8000, `save_steps=500`\n\n**预计 checkpoint-500 到达时间**: 还需 115 步, 每步约 28.5 秒, 约 **55 分钟后** (约 14:12 UTC)。\n\n训练在 GPU 0 上运行 (63594 MiB), GPU 1 被 exp003 占用。checkpoint-500 保存后即可运行稳定性测量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-stability-checkpoint-check.md"
+}

@@ -1,0 +1,712 @@
+{
+  "schema_version": "1.0",
+  "id": "cf5d3f1771687317b5fe",
+  "project": "contrastive_entrain_calib",
+  "kind": "conversation",
+  "title": "eval exp003 batch submit 28034",
+  "task_key": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_exp003-batch-submit-28034_20260521T071737.jsonl",
+    "occurrence": 1,
+    "bytes": 27457,
+    "sha256": "e7c0fc2b9c54ca3a7eca39fce90f0e4c263ec2c0261703163d9153dbe670946c"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 0,
+    "tool_calls": 16,
+    "roles": {
+      "tool_call": 16,
+      "tool_result": 16,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T07:19:16.892375+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T07:19:16.892828+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T07:19:16.893155+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "ls /root/autodl-tmp/checkpoints/exp003/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T07:19:16.893366+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "head -50 /root/contrastive_entrain_calib/eval/eval_unified_preset.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T07:19:16.893555+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "cat /root/contrastive_entrain_calib/scripts/eval_exp003_d027.sh",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T07:19:16.893763+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"checkpoint-1000\\\\ncheckpoint-2000\\\\ncheckpoint-3000\\\\ncheckpoint-4000\\\\ncheckpoint-4500\\\\ncheckpoint-5000\\\\ncheckpoint-5500\\\\ncheckpoint-6000\\\\ncheckpoint-6500\\\\ncheckpoint-7000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.68}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T07:19:16.894037+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"D027 unified preset evaluation script.\\\\n\\\\nComputes ToF (Turn of Flip), NoF (No Flip), SYCONScore on calibration data.\\\\nSupports base models and LoRA-adapted models. Uses NLI-based classification\\\\n(cross-encoder/nli-deberta-v3-base) with dynamic label mapping.\\\\n\\\\nGPU selection: use CUDA_VISIBLE_DEVICES=X environment variable prefix.\\\\n\\\\nDependencies: torch, transformers, peft (if --lora_path used)\\\\n\\\\nUsage:\\\\n  CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \\\\\\\\\\\\n  /root/miniconda3/bin/python eval_unified_preset.py \\\\\\\\\\\\n    --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B \\\\\\\\\\\\n    --data_path /root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl \\\\\\\\\\\\n    --output_dir /root/contrastive_entrain_calib/results/ \\\\\\\\\\\\n    --exp_id exp001_baseline\\\\n\\\\n  # With LoRA adapter:\\\\n  /root/miniconda3/bin/python eval_unified_preset.py \\\\\\\\\\\\n    --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B \\\\\\\\\\\\n    --lora_path /root/contrastive_entrain_calib/checkpoints/exp014/checkpoint-3000 \\\\\\\\\\\\n    --exp_id exp014_ckpt3000\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nimport time\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nfrom transformers import AutoModelForCausalLM, AutoModelForSequenceClassification, AutoTokenizer\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parent))\\\\nfrom nli_utils import get_entailment_idx, get_contradiction_idx\\\\n\\\\nos.environ.setdefault(\\\\\\\"HF_HUB_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\\\\\\\",\\\\n)\\\\nlogger = logging.getLogger(\\\\\\\"eval_unified_preset\\\\\\\")\\\\n\\\\nNLI_MODEL_NAME = \\\\\\\"cross-encoder/nli-deberta-v3-base\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"m\n…[truncated 40 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T07:19:16.894296+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "nvidia-smi --query-gpu=index,name,memory.used --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T07:19:16.894561+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\n# exp-003 (R3-only GRPO) D027 unified eval — run on westd-28034\\\\n# Checkpoints need to be scp'd from westd-29046 first.\\\\n#\\\\n# Step 1 — scp checkpoint (from local machine or 29046):\\\\n#   scp -r root@connect.westd.seetacloud.com:/root/autodl-tmp/checkpoints/exp003_r3only_seed1/checkpoint-8000 \\\\\\\\\\\\n#       /root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-8000\\\\n#\\\\n# Step 2 — run eval:\\\\n#   bash eval_exp003_d027.sh 8000\\\\n#   bash eval_exp003_d027.sh /path/to/checkpoint-8000\\\\nset -euo pipefail\\\\n\\\\nARG=${1:?Usage: bash eval_exp003_d027.sh <STEP_NUMBER or CHECKPOINT_PATH>}\\\\n\\\\nif [[ -d \\\\\\\"$ARG\\\\\\\" ]]; then\\\\n    CKPT_PATH=\\\\\\\"$ARG\\\\\\\"\\\\n    STEP=$(basename \\\\\\\"$CKPT_PATH\\\\\\\" | grep -oP '\\\\\\\\d+$')\\\\nelse\\\\n    STEP=\\\\\\\"$ARG\\\\\\\"\\\\n    CKPT_PATH=\\\\\\\"/root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-${STEP}\\\\\\\"\\\\nfi\\\\n\\\\nif [[ ! -f \\\\\\\"${CKPT_PATH}/adapter_model.safetensors\\\\\\\" ]]; then\\\\n    echo \\\\\\\"ERROR: adapter not found at ${CKPT_PATH}/adapter_model.safetensors\\\\\\\"\\\\n    echo \\\\\\\"Need to scp from westd-29046 first. See script header for instructions.\\\\\\\"\\\\n    exit 1\\\\nfi\\\\n\\\\nMODEL_PATH=\\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\\\\"\\\\nDATA_PATH=\\\\\\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\\\\\"\\\\nOUTPUT_DIR=\\\\\\\"/root/contrastive_entrain_calib/results/exp003_d027_eval\\\\\\\"\\\\nEXP_ID=\\\\\\\"exp003-ckpt${STEP}\\\\\\\"\\\\nGPU=${GPU:-0}\\\\n\\\\necho \\\\\\\"[$(date)] exp-003 D027 eval: step=${STEP}, gpu=${GPU}\\\\\\\"\\\\necho \\\\\\\"  checkpoint: ${CKPT_PATH}\\\\\\\"\\\\necho \\\\\\\"  output:     ${OUTPUT_DIR}/${EXP_ID}_preset_eval.json\\\\\\\"\\\\n\\\\ncd /root/contrastive_entrain_calib\\\\nCUDA_VISIBLE_DEVICES=${GPU} HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python \\\\\\\\\\\\n    eval/eval_unified_preset.py \\\\\\\\\\\\n    --model_path \\\\\\\"${MODEL_PATH}\\\\\\\" \\\\\\\\\\\\n    --lora_path \\\\\\\"${CKPT_PATH}\\\\\\\" \\\\\\\\\\\\n    --data_path \\\\\\\"${DATA_PATH}\\\\\\\" \\\\\\\\\\\\n    --output_dir \\\\\\\"${OUTPUT_\n…[truncated 237 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T07:19:16.894791+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "filters": "{'status': 'ALLOCATED'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T07:19:16.895023+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA GeForce RTX 5090, 2 MiB\\\\n1, NVIDIA GeForce RTX 5090, 2 MiB\\\\n2, NVIDIA GeForce RTX 5090, 2 MiB\\\\n3, NVIDIA GeForce RTX 5090, 2 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T07:19:16.895224+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "filters": "{'status': 'QUEUED'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T07:19:16.895417+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6204}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T07:19:16.895741+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-003-eval-ckpt6500\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:34:52.934Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:17:20.802Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-6500 with D027 unified preset. Tracking late-training trajectory: continued regression or recovery from ckpt-5000+ plateau at 0.114?\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6500\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"695493\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6500.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T04:47:38.776Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"exp-003-eval-ckpt5000-v2\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:44:31.338Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:17:19.324Z\\\", \\\"hypothesis\\\": \\\"Re-run exp-003 R3-only GRPO checkpoint-5000 eval with D027 unified preset. Previous pipeline run interrupted at 20/362. Registry has prior result (SYCONScore=0.1144) but Director requests clean re-run for data integrity.\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-5000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --outpu\n…[truncated 4351 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T07:19:16.896184+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "ls -l /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T07:19:16.896412+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 367001 May 18 19:39 /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T07:19:16.896624+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-003-eval-ckpt6000",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "contrastive_entrain_calib",
+              "spec": "{'server': 'westd-28034', 'gpu': ['cuda:1'], 'account': 'root'}"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T07:19:16.896863+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-eval-ckpt6000\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:34:51.960Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:18:40.347Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-6000 with D027 unified preset. Key test: does R3-only break above vanilla ceiling (0.1337) at later training steps, or remain in regression (0.114)?\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"695408\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6000.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T04:47:35.772Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-21T04:45:36.843Z\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9202}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T07:19:16.897101+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-003-eval-ckpt7000",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "contrastive_entrain_calib",
+              "spec": "{'server': 'westd-28034', 'gpu': ['cuda:3'], 'account': 'root'}"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T07:19:16.897336+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-eval-ckpt7000\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:34:53.503Z\\\", \\\"updated_at\\\": \\\"2026-05-21T07:18:41.325Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-7000 with D027 unified preset. Late-stage trajectory point: if regression continues, strengthens vanilla-ceiling claim; if recovery occurs, complicates narrative.\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-7000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt7000\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"695570\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt7000.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T04:47:40.882Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-21T04:45:38.832Z\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7944}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T07:19:16.897609+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "westd-28034",
+              "gpu_ids": "['cuda:0']",
+              "command": "bash -c \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-5000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt5000-v2\"",
+              "exp_id": "exp-003-eval-ckpt5000-v2",
+              "timeout_hours": "4",
+              "account": "root",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T07:19:16.898046+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "westd-28034",
+              "gpu_ids": "['cuda:1']",
+              "command": "bash -c \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6000\"",
+              "exp_id": "exp-003-eval-ckpt6000",
+              "timeout_hours": "4",
+              "account": "root",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T07:19:16.898318+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"495833\\\", \\\"log_file\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt5000-v2.log\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"server\\\": \\\"westd-28034\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"exp-003-eval-ckpt5000-v2\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.87}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T07:19:16.898559+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "westd-28034",
+              "gpu_ids": "['cuda:2']",
+              "command": "bash -c \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6500 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt6500\"",
+              "exp_id": "exp-003-eval-ckpt6500",
+              "timeout_hours": "4",
+              "account": "root",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T07:19:16.898798+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "westd-28034",
+              "gpu_ids": "['cuda:3']",
+              "command": "bash -c \"cd /root/contrastive_entrain_calib && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-7000 --data_path /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval --exp_id exp003-ckpt7000\"",
+              "exp_id": "exp-003-eval-ckpt7000",
+              "timeout_hours": "4",
+              "account": "root",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T07:19:16.899053+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"495906\\\", \\\"log_file\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6000.log\\\", \\\"gpu_ids\\\": [\\\"cuda:1\\\"], \\\"server\\\": \\\"westd-28034\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"1\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"exp-003-eval-ckpt6000\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 1
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T07:19:16.899307+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"496116\\\", \\\"log_file\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt6500.log\\\", \\\"gpu_ids\\\": [\\\"cuda:2\\\"], \\\"server\\\": \\\"westd-28034\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"2\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"exp-003-eval-ckpt6500\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.91}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T07:19:16.899543+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"496266\\\", \\\"log_file\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt7000.log\\\", \\\"gpu_ids\\\": [\\\"cuda:3\\\"], \\\"server\\\": \\\"westd-28034\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"3\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"exp-003-eval-ckpt7000\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T07:19:16.899777+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "nvidia-smi --query-gpu=index,name,memory.used --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T07:19:16.900216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA GeForce RTX 5090, 16764 MiB\\\\n1, NVIDIA GeForce RTX 5090, 16764 MiB\\\\n2, NVIDIA GeForce RTX 5090, 16152 MiB\\\\n3, NVIDIA GeForce RTX 5090, 14944 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T07:19:16.900440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "ps aux --no-headers -w -w",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T07:19:16.900849+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root          1  0.0  0.0   4476  3268 ?        Ss   May18   0:00 bash /init/boot/boot.sh\\\\nroot       1220  1.4  0.0 724640 22192 ?        Sl   May18  59:38 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot       1238  0.0  0.0 182296 97560 ?        S    May18   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot       1239  0.2  0.0 6896472 103176 ?      Sl   May18  11:21 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot       1240  0.0  0.0  15444  8804 ?        S    May18   0:16 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot       1243  0.0  0.0 4146680 81232 ?       Sl   May18   1:22 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot       1244  0.0  0.0 4200012 19948 ?       Sl   May18   2:18 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot       1245  0.1  0.0 3756340 19936 ?       Sl   May18   5:16 proxy -c /init/proxy/proxy.ini\\\\nroot       1356  0.0  0.0 28341192 12304 ?      Sl   May18   2:58 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_x30p7s62/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_x30p7s62/startup_error\\\\nroot     233617  0.0  0.0  16692 10392 ?        Ss   May20   0:08 sshd: root@notty\\\\nroot     493960  0.0  0.0  16692 10696 ?        Ss   15:17   0:00 sshd: root@notty\\\\nroot     495678  0.1  0.0  16692 10660 ?        Ss   15:17   0:00 sshd: root@notty\\\\nroot     495742  0.2  0.0  16692 10828 ?        Ss   15:18   0:00 sshd: root@notty\\\\nroot     495832  0.0  0.0   6088  3928 ?        Ss   15:18   0:00 tmux new-session -d -s exp-003-eval-ckpt5000-v2 rm -f /tmp/agent-ml-exit/exp-003-eval-ckpt5000-v2.exit; mkdir -p /tmp/agent-ml-exit; trap \n…[truncated 6325 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T07:19:16.901150+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n| 实验 | GPU | 显存占用 | PID | 状态 |\n|------|-----|---------|-----|------|\n| `exp-003-eval-ckpt5000-v2` | cuda:0 | 16764 MiB | 495833 | RUNNING |\n| `exp-003-eval-ckpt6000` | cuda:1 | 16764 MiB | 495906 | RUNNING |\n| `exp-003-eval-ckpt6500` | cuda:2 | 16152 MiB | 496116 | RUNNING |\n| `exp-003-eval-ckpt7000` | cuda:3 | 14944 MiB | 496266 | RUNNING |\n\n4 张 RTX 5090 全部占用，tmux session 和 torch compile workers 均已启动。每次 eval 约 1-1.5 小时，timeout 设为 4 小时。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-batch-submit-28034_20260521T071737"
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ],
+  "readable_path": "readable/conversations/eval-exp003-batch-submit-28034.md"
+}

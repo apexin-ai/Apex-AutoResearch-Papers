@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3937d7af4ed7b070290",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnosis exp003 seed1 exit check",
+  "task_key": "worker_diagnosis_exp003-seed1-exit-check_20260521T102010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_exp003-seed1-exit-check_20260521T102010_result.json",
+    "occurrence": 1,
+    "bytes": 871,
+    "sha256": "6f613ead9714bb30d703a62b43b80474dfabb3e96f62688583f21b612790c7e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：**SUCCESS**\n\n**checkpoint-8000 完整存在，训练正常完成 8000 steps。**\n\n证据：\n- `trainer_state.json` 确认 `global_step: 8000`，epoch=177.78\n- `adapter_model.safetensors` 245MB，时间戳 May 21 18:12\n- checkpoint-8000 目录包含全部 15 个文件（adapter_config, optimizer, scheduler, tokenizer 等）\n- 所有中间 checkpoint（500-8000，每 500 步）均存在\n\n**日志说明**：`exp003_v2.log` 在 step 3760 处停止写入（May 20 05:55），但训练实际继续运行到完成。这是日志 buffer/handler 问题，不影响训练。另有 `exp003_restart.log`（May 18，17KB）是更早的文件。\n\n**GPU 状态**：进程 70649 已退出，但 GPU 0 上仍有进程 PID 237437 占用 38GB（92% util）。这可能是其他实验，不是 exp-003。\n\n**ckpt-8000 可以立即 SCP + eval。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-exp003-seed1-exit-check.md"
+}

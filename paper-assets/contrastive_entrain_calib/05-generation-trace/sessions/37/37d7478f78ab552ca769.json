@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37d7478f78ab552ca769",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval submit ckpt7500 on 28034",
+  "task_key": "worker_eval_submit-ckpt7500-on-28034_20260522T115422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_submit-ckpt7500-on-28034_20260522T115422_result.json",
+    "occurrence": 1,
+    "bytes": 446,
+    "sha256": "e9d6526409caba8e751e3438c2c1442eceb3301928df69e9041c00998cd35e71"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n| Checkpoint | 状态 |\n|---|---|\n| **ckpt-7500** | ✅ 已 SCP 到 28034，eval 正在 GPU0 运行（tmux session: `eval-s2-7500`） |\n| **ckpt-8000** | 训练 step 7507/8000，约 3.5h 后产出。29046 后台进程（PID 500554）等待产出后自动 SCP；28034 后台进程（PID 6997）等待收到后自动在 GPU2 启动 eval |\n\n两个 ckpt 的 eval 都已全自动化，无需再手动干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-submit-ckpt7500-on-28034.md"
+}

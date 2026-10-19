@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5fed1ab47cd449a9f403",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ssh check 29046 progress and prescp",
+  "task_key": "worker_ssh_check-29046-progress-and-prescp_20260522T100001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-29046-progress-and-prescp_20260522T100001_result.json",
+    "occurrence": 1,
+    "bytes": 816,
+    "sha256": "5f5ce4acf53b7044a9f30c94d22efbd8d707637ef3308ef12cbbcd433df5ecf6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SCP 完成，验证通过。汇总：\n\n---\n\n### exp-003-s2 (R3-only seed2)\n- **当前 step**: 7231 / 8000 (90.4%)\n- **速度**: ~25.6 s/step\n- **剩余**: 769 steps × 25.6s = ~5h 28m\n- **ETA**: 2026-05-22 ~23:30 (服务器时间)\n\n### exp-004-s2 (ACT baseline seed2)\n- **当前 step**: 2230 / 8000 (27.9%)\n- **速度**: ~8.9 s/step (log 每 10 steps 一条，间隔 ~89s)\n- **剩余**: 5770 steps × 8.9s = ~14h 16m\n- **ETA**: 2026-05-23 ~08:15 (服务器时间)\n- **Checkpoint save 间隔**: 500 steps ✓ (现有 500/1000/1500/2000)\n\n### SCP 结果\n\n| Checkpoint | 状态 |\n|---|---|\n| exp-004-s2 ckpt-2000 | **新传输** → 28034 ✓ |\n| exp-003-s2 ckpt-7500 | 未生成 (当前 7231) |\n\n28034 现有 exp004_s2: 500, 1000, 1500, **2000**。exp003_s2: 500–7000 不变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-29046-progress-and-prescp.md"
+}

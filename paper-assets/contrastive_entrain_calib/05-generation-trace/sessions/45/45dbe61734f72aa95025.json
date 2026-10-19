@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "45dbe61734f72aa95025",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "viz teaser figure",
+  "task_key": "worker_viz_teaser-figure_20260523T131958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_teaser-figure_20260523T131958.log",
+    "occurrence": 1,
+    "bytes": 838996,
+    "sha256": "2ad1abed14c4523242dd1d4a3235051b1e1f20dd44d9ee636556edea2bcb4a94"
+  },
+  "statistics": {
+    "messages": 277,
+    "user_turns": 2,
+    "tool_calls": 93,
+    "roles": {
+      "log": 1,
+      "system": 42,
+      "record": 2,
+      "assistant": 43,
+      "tool_call": 93,
+      "tool_result": 93,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 51,
+      "chunks": [
+        {
+          "path": "45dbe61734f72aa95025-part-0001.json",
+          "message_count": 51
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 200,
+      "chunks": [
+        {
+          "path": "45dbe61734f72aa95025-part-0001.json",
+          "message_count": 129
+        },
+        {
+          "path": "45dbe61734f72aa95025-part-0002.json",
+          "message_count": 71
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 26,
+      "chunks": [
+        {
+          "path": "45dbe61734f72aa95025-part-0002.json",
+          "message_count": 26
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/viz-teaser-figure.md"
+}

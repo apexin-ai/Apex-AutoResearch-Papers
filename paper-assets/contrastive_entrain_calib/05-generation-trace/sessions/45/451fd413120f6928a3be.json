@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "451fd413120f6928a3be",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval collect ckpt6500 act500 results",
+  "task_key": "worker_eval_collect-ckpt6500-act500-results_20260522T070247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-ckpt6500-act500-results_20260522T070247_result.json",
+    "occurrence": 1,
+    "bytes": 729,
+    "sha256": "94184eef601a504586e5cddc84489fb37cebfd1b7991b78a993b37d889fcd15d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Summary:\n\n### Results\n\n| Experiment | SYCONScore | ToF | NoF | vs Vanilla (0.1335) |\n|---|---|---|---|---|\n| **exp003-s2-ckpt6500** (R3-only seed2) | **0.1046** | 0.0552 | 0.9779 | -21.7% |\n| **exp004-s2-ckpt500** (ACT seed2) | **0.2232** | 0.1271 | 0.9171 | +67.2% |\n\n对比 seed 1：\n- R3-only seed1 ckpt-6500 = 0.153 → seed2 ckpt-6500 = 0.1046，**seed 2 未复现 spike，反而低于 vanilla**。Conclusion: negative。\n- ACT seed1 ckpt-500 = 0.170 → seed2 ckpt-500 = **0.2232**，seed 2 大幅超过 seed 1（+31%）。ACT 跨 seed 稳定且 seed 2 更强。Conclusion: success。\n\n### GPU 状态\n4 卡全空闲（每卡 2 MiB，0% utilization）。Eval 已全部完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-ckpt6500-act500-results.md"
+}

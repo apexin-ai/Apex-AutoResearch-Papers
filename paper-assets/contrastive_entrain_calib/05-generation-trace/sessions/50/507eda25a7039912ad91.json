@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "507eda25a7039912ad91",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code exp003 eval script",
+  "task_key": "worker_code_exp003-eval-script_20260520T092621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp003-eval-script_20260520T092621_result.json",
+    "occurrence": 1,
+    "bytes": 1410,
+    "sha256": "4fa5f82d8cdfc73b7195e23658bc2c7edb48990eebd65b356c6257d1992b0728"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本验证通过。\n\n## 产出报告\n\n### 脚本路径\n| 服务器 | 路径 |\n|--------|------|\n| **westd-29046** | `/root/contrastive_entrain_calib/scripts/eval_exp003_d027.sh` |\n| **westd-28034** | `/root/contrastive_entrain_calib/scripts/eval_exp003_d027.sh` |\n\n### 用法\n```bash\n# 传 step 编号\nbash scripts/eval_exp003_d027.sh 8000\n\n# 或传完整 checkpoint 路径\nbash scripts/eval_exp003_d027.sh /root/autodl-tmp/checkpoints/exp003_r3only_seed1/checkpoint-8000\n\n# 指定 GPU（默认 GPU 0）\nGPU=3 bash scripts/eval_exp003_d027.sh 8000\n```\n\n### 建议在哪跑\n\n**推荐 westd-29046**（训练完成后 GPU 空出，checkpoint 本地无需 scp）。当前已有 checkpoint-500 到 checkpoint-5000，max_steps=8000。\n\n如果 29046 GPU 不释放，用 **westd-28034 GPU 0 或 GPU 3**（当前空闲），但需先 scp checkpoint（单个 adapter ~245MB）：\n```bash\n# 在 28034 上 scp（需确认 29046 的 SSH 端口/地址可达）\nmkdir -p /root/contrastive_entrain_calib/checkpoints/exp003/\nscp -r <29046_host>:/root/autodl-tmp/checkpoints/exp003_r3only_seed1/checkpoint-8000 \\\n    /root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-8000\n```\n\n### 训练进度\n- 当前 checkpoint：5000/8000（62.5%），最新 checkpoint-5000 生成于 May 20 16:46\n- save_steps=500，预计还有 checkpoint-5500, 6000, 6500, 7000, 7500, 8000"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp003-eval-script.md"
+}

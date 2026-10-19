@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f9d5a73db83de13ed38",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp003s2 batch1 scp eval",
+  "task_key": "worker_eval_exp003s2-batch1-scp-eval_20260520T162041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp003s2-batch1-scp-eval_20260520T162041_result.json",
+    "occurrence": 1,
+    "bytes": 850,
+    "sha256": "35c15629a61cbbb1de1a5aa3a2940f687ba8527dd1bbdfff394769b293d6905c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n### 汇报\n\n**Phase 1 SCP**: 成功。通过 tar 打包中转（排除 optimizer.pt，eval 不需要），三个 checkpoint 的 adapter 文件完整传输到 28034。\n- 源路径：`29046:/root/autodl-tmp/checkpoints/exp003_r3only_seed2/checkpoint-{500,1000,1500}`\n- 目标路径：`28034:/root/autodl-tmp/checkpoints/exp003_s2/checkpoint-{500,1000,1500}`\n- 每个 checkpoint 含 adapter_model.safetensors (245MB) + tokenizer + config，共 12 文件\n\n**Phase 3 Eval Jobs**: 三个全部启动\n\n| Job | GPU | PID | tmux session |\n|-----|-----|-----|-------------|\n| ckpt-500 | cuda:1 | 607796 | `exp-003-s2-eval-ckpt500` |\n| ckpt-1000 | cuda:2 | 607932 | `exp-003-s2-eval-ckpt1000` |\n| ckpt-1500 | cuda:3 | 608013 | `exp-003-s2-eval-ckpt1500` |\n\n**tmux 确认**: 三个 s2 eval session 均在运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp003s2-batch1-scp-eval.md"
+}

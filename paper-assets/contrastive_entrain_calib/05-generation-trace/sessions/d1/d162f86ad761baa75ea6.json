@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d162f86ad761baa75ea6",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops scp ckpt6000 7000",
+  "task_key": "worker_ops_scp-ckpt6000-7000_20260521T043616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scp-ckpt6000-7000_20260521T043616_result.json",
+    "occurrence": 1,
+    "bytes": 2926,
+    "sha256": "6770be0a4a4ca6d9ce3a4a7e681da36e439a192c520c88cf44209d9479a29e3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SCP 完成，28034 上现有全部 10 个 checkpoint。\n\n---\n\n## 产出报告\n\n### 1. SCP 状态：成功\n\n| Checkpoint | 源路径 (29046) | 目标路径 (28034) | 大小 |\n|---|---|---|---|\n| 6000 | `/root/autodl-tmp/checkpoints/exp003_r3only_seed1/checkpoint-6000/` | `/root/autodl-tmp/checkpoints/exp003/checkpoint-6000/` | 719MB |\n| 6500 | `/root/autodl-tmp/checkpoints/exp003_r3only_seed1/checkpoint-6500/` | `/root/autodl-tmp/checkpoints/exp003/checkpoint-6500/` | 719MB |\n| 7000 | `/root/autodl-tmp/checkpoints/exp003_r3only_seed1/checkpoint-7000/` | `/root/autodl-tmp/checkpoints/exp003/checkpoint-7000/` | 719MB |\n\n每个 checkpoint 含 15 个文件（adapter_model.safetensors 245MB + optimizer.pt 491MB + tokenizer/config 文件）。\n\n### 2. Eval 脚本路径\n\n```\n/root/contrastive_entrain_calib/eval/eval_unified_preset.py\n```\n\n### 3. Eval 命令格式\n\n```bash\nCUDA_VISIBLE_DEVICES=<GPU> HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \\\n/root/miniconda3/bin/python /root/contrastive_entrain_calib/eval/eval_unified_preset.py \\\n  --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B \\\n  --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-<STEP> \\\n  --data_path /root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl \\\n  --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval \\\n  --exp_id exp003-ckpt<STEP>\n```\n\n### 4. 三 GPU 并行 eval 命令\n\n```bash\n# GPU 0: ckpt-6000\nCUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \\\nnohup /root/miniconda3/bin/python /root/contrastive_entrain_calib/eval/eval_unified_preset.py \\\n  --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B \\\n  --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6000 \\\n  --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval \\\n  --exp_id exp003-ckpt6000 > /tmp/eval_6000.log 2>&1 &\n\n# GPU 1: ckpt-6500\nCUDA_VISIBLE_DEVICES=1 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \\\nnohup /root/miniconda3/bin/python /root/contrastive_entrain_calib/eval/eval_unified_preset.py \\\n  --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B \\\n  --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6500 \\\n  --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval \\\n  --exp_id exp003-ckpt6500 > /tmp/eval_6500.log 2>&1 &\n\n# GPU 2: ckpt-7000\nCUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \\\nnohup /root/miniconda3/bin/python /root/contrastive_entrain_calib/eval/eval_unified_preset.py \\\n  --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B \\\n  --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-7000 \\\n  --output_dir /root/contrastive_entrain_calib/results/exp003_d027_eval \\\n  --exp_id exp003-ckpt7000 > /tmp/eval_7000.log 2>&1 &\n```\n\n`--data_path` 有默认值指向同一文件，可省略。是否需要我直接在 28034 上启动这三个 eval？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-scp-ckpt6000-7000.md"
+}

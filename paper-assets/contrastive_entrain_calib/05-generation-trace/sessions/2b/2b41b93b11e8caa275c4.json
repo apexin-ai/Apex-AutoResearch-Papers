@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b41b93b11e8caa275c4",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code exp014 continuous probe",
+  "task_key": "worker_code_exp014-continuous-probe_20260518T164640",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp014-continuous-probe_20260518T164640_result.json",
+    "occurrence": 1,
+    "bytes": 883,
+    "sha256": "662256bb286a11085bd5c38d11f80062a573566695723d58c76779c739242094"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已写入并通过语法检查：\n\n**`probe_module.py`** — 探针模块\n- `LinearProbe`: 单层线性 + sigmoid，输出 P(sycophantic)\n- `train_probe()`: 从 activations.pt 提取 reward layers 的 mean hidden state，用 condition 标签（invalid_pressure=1, valid_correction=0）训练 logistic regression，200 epochs\n- `save_probe()` / `load_probe()`: 序列化/反序列化\n\n**`run_exp014_continuous_probe.py`** — 主训练脚本\n- `ProbeTrainer(DCGRPOTrainer)`: 仅覆写 `compute_r1`，用冻结探针的 `1.0 - P(syc)` 替代方向投影\n- 保留 `direction_path` 指向 exp-001 的 directions.pt（避免 `_DCRewardCallable` 中 `d_syc is None` 短路跳过 R1）\n- 参数：R1=0.25, R2=0.0, R3=0.75, LoRA r=16/alpha=32, 8000 步, num_generations=2\n- 探针训练后自动保存到 `OUTPUT_DIR/probe.pt`，下次运行直接加载"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp014-continuous-probe.md"
+}

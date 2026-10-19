@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97d2b6300254a932b7bb",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp004 batch1 and ckpt4000 check",
+  "task_key": "worker_eval_exp004-batch1-and-ckpt4000-check_20260520T141446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp004-batch1-and-ckpt4000-check_20260520T141446_result.json",
+    "occurrence": 1,
+    "bytes": 1034,
+    "sha256": "a72d844dc8632009ec58062ed0eed4fe41efd8b373cb2d78835f9bc2b3465650"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "四卡全部占用，全部正常启动。\n\n### 汇总\n\n**Part A: exp-003 ckpt-4000 rerun**\n- 状态：**运行中**，GPU 0（16.8 GB, 42% util）\n- tmux session: `exp-003-eval-ckpt4000`（22:14 启动）\n- 模型已加载，正在 eval 362 对数据，预计 ~30 min 内完成\n- ckpt 路径: `/root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-4000`\n\n**Part B: exp-004 补充 eval Batch 1** — 3 个 job 全部启动成功\n\n| GPU | Checkpoint | tmux session | PID |\n|-----|-----------|-------------|-----|\n| 1 | ckpt-1000 | `exp-004-eval-ckpt1000` | 591967 |\n| 2 | ckpt-4000 | `exp-004-eval-ckpt4000` | 592042 |\n| 3 | ckpt-6000 | `exp-004-eval-ckpt6000` | 592184 |\n\n**GPU 占用确认：**\n- GPU 0: 16844 MiB (exp-003 ckpt-4000 eval)\n- GPU 1: 17024 MiB (exp-004 ckpt-1000 eval)\n- GPU 2: 16152 MiB (exp-004 ckpt-4000 eval)\n- GPU 3: 14944 MiB (exp-004 ckpt-6000 eval)\n\nBatch 1 完成后还剩 10 个 checkpoint 待 eval：1500, 2500, 3000, 3500, 4500, 5000, 5500, 6500, 7000, 7500。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp004-batch1-and-ckpt4000-check.md"
+}

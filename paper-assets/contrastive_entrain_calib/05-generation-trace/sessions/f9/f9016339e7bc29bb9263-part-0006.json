@@ -1,0 +1,2019 @@
+{
+  "schema_version": "1.0",
+  "session_id": "f9016339e7bc29bb9263",
+  "rounds": [
+    {
+      "number": 67,
+      "messages": [
+        {
+          "source_line": 901,
+          "timestamp": "2026-05-25T23:33:32.513410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000901"
+        },
+        {
+          "source_line": 902,
+          "timestamp": "2026-05-25T23:33:32.864891+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/abstract.tex"
+            }
+          },
+          "id": "event-000902"
+        },
+        {
+          "source_line": 903,
+          "timestamp": "2026-05-25T23:33:33.467332+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tRepresentation engineering reveals that sycophancy is linearly encoded in LLM residual streams, suggesting that such directions could serve as training signals for alignment. We test this premise systematically and document its failure. A contrastive sycophancy direction $\\dsyc$ reliably discriminates sycophantic from non-sycophantic activations, yet every formulation that converts it into a Group Relative Policy Optimization (GRPO) reward collapses. We identify the \\emph{probe reward trap}: when a periodically retrained linear probe on $\\dsyc$ is used as a non-differentiable reward signal, behavioral death occurs within 500 steps while generation entropy remains healthy, creating a 1{,}300-step monitoring blind spot that entropy-based safeguards miss entirely. The failure persists with stopped gradients, implicating the direction's semantic limitation rather than optimization dynamics: $\\dsyc$ encodes \\emph{whether} belief changed, not \\emph{whether it should have}. The failure extends beyond probe rewards: behavioral-reward-only GRPO rarely exceeds vanilla across seeds, while dense per-token supervised fine-tuning succeeds at every evaluated checkpoint. A Low-Rank Adaptation (LoRA) ablation identifies supervision granularity as one plausible explanation\\footnote{Code and data are available at \\url{https://anonymous.4open.science/r/contrastive_entrain_calib-DDBF/}.}.\n2\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Read",
+            "elapsed_ms": 602
+          },
+          "id": "event-000903"
+        },
+        {
+          "source_line": 904,
+          "timestamp": "2026-05-25T23:33:33.618231+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/introduction.tex"
+            }
+          },
+          "id": "event-000904"
+        },
+        {
+          "source_line": 905,
+          "timestamp": "2026-05-25T23:33:33.618648+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\t\\begin{figure*}[t]\n5\t\\centering\n6\t\\begin{subfigure}[t]{0.48\\textwidth}\n7\t\\centering\n8\t\\includegraphics[width=\\textwidth]{figures/fig_teaser_a.pdf}\n9\t\\end{subfigure}\n10\t\\hfill\n11\t\\begin{subfigure}[t]{0.48\\textwidth}\n12\t\\centering\n13\t\\includegraphics[width=\\textwidth]{figures/fig_teaser_b.pdf}\n14\t\\end{subfigure}\n15\t\\caption{The probe reward trap. (a)~$\\dsyc$ discriminates sycophantic from non-sycophantic activations (AUROC $0.83$), but valid revision and unwarranted capitulation overlap along the same direction. (b)~When used as a GRPO reward, behavioral death (true-positive flip rate $\\tof{=}0$) occurs at step 500 while entropy remains healthy; the 1{,}300-step lag renders standard monitoring blind.}\n16\t\\label{fig:teaser}\n17\t\\end{figure*}\n18\t\n19\tSycophancy, the tendency of large language models (LLMs) to prioritize agreement over accuracy, is among the most persistent alignment failures in deployed systems \\citep{sharma2023sycophancy, perez2023discovering}.\n20\tModels trained with reinforcement learning from human feedback (RLHF) systematically amplify this tendency \\citep{ouyang2022instructgpt, christiano2017rlhf, shapira2026amplifies}: even when models can assess the correctness of their own outputs \\citep{kadavath2022language}, social pressure from users overrides this internal knowledge \\citep{wang2025internal}.\n21\tExisting mitigations, from synthetic data augmentation \\citep{wei2024synthetic} to neuron-level correction \\citep{obrien2025fewbadneurons}, operate on behavioral outputs rather than the internal representations that generate sycophantic decisions.\n22\tRepresentation engineering \\citep{zou2023repe, marks2024geometry} offers a structurally different approach: a contrastive sycophancy direction $\\dsyc$, extracted from style-controlled pairs of valid belief revision and sycophantic capitulation, achieves cross-validated area under the ROC curve (AUROC) of $0.83$ on Qwen3-8B and $0.78$ on Llama-3-8B (\\S\n…[truncated 3317 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000905"
+        },
+        {
+          "source_line": 906,
+          "timestamp": "2026-05-25T23:33:38.639001+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/related_work.tex"
+            }
+          },
+          "id": "event-000906"
+        },
+        {
+          "source_line": 907,
+          "timestamp": "2026-05-25T23:33:39.091487+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\\label{sec:related_work}\n2\t\n3\t\\paragraph{Representation Engineering.}\n4\tLinear directions in LLM residual streams encode behavioral concepts \\citep{zou2023repe, marks2024geometry}.\n5\tInference-time methods (Inference-Time Intervention \\citep[ITI;][]{li2023iti}, Activation Addition \\citep[ActAdd;][]{turner2023actadd}, and Contrastive Activation Addition \\citep[CAA;][]{rimsky2024caa}) demonstrate that activation geometry suffices for behavioral control \\citep{burns2023ccs}, motivating training-time extensions.\n6\t\\citet{wu2026rewardhacking} show that representation-level directions can succeed as reward signals when target behaviors are geometrically separable from confounders (\\S\\ref{sec:discussion}); however, we find that the sycophancy direction $\\dsyc$ fails in this role despite strong inference-time discriminability.\n7\t\n8\t\\paragraph{Reward Design and Overoptimization.}\n9\tProxy rewards diverge from true objectives under sustained optimization \\citep{gao2023scaling, pan2022effects}.\n10\t\\citet{manheim2019goodhart} taxonomize four Goodhart variants; our probe reward trap instantiates the \\emph{regressional} variant, where the proxy-target correlation breaks under optimization shift: $\\dsyc$ discriminates sycophantic activations under the pre-training distribution but ceases to correlate with the target once optimization shifts the policy.\n11\tThe failure is not extremal (collapse occurs at moderate optimization pressure, not distribution tails), not causal (stopped gradients prevent intervention on the direction), and not adversarial (the policy does not model the probe).\n12\tThe incremental contribution over prior regressional analyses~\\citep{gao2023scaling} is temporal: we document behavioral death within 500 steps, an order of magnitude faster than gradual degradation curves, and a 1{,}300-step lag that renders entropy monitoring blind~\\citep{skalse2022hacking}.\n13\t\n14\t\\paragraph{Sycophancy and Probe-Based Methods.}\n15\tSycophancy is pervasive \n…[truncated 2171 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-000907"
+        },
+        {
+          "source_line": 908,
+          "timestamp": "2026-05-25T23:33:39.091986+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/framework.tex"
+            }
+          },
+          "id": "event-000908"
+        },
+        {
+          "source_line": 909,
+          "timestamp": "2026-05-25T23:33:39.544108+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experimental Framework}\n2\t\\label{sec:framework}\n3\t\n4\t\\subsection{Direction Extraction}\n5\t\\label{ssec:extraction}\n6\t\n7\tWe extract a linear sycophancy direction $\\dsyc$ from the residual stream using contrastive activation pairs: a \\emph{valid correction} (warranted belief revision under strong evidence) and a \\emph{sycophantic capitulation} (unwarranted concession under social pressure).\n8\tWe construct 181 contrastive pairs using GPT-4.1 \\citep{openai2025gpt41} in a two-stage pipeline: skeleton generation followed by 3-turn dialogue completion.\n9\tStyle matching is enforced by automated validation (response length difference ${<}10\\%$, shared opening phrase ${\\geq}2$ words), with up to 3 retries per pair; 19 of 200 initial pairs were discarded for failing validation.\n10\tEvidence strength is annotated at three levels: \\emph{weak} (75 pairs; personal memory or opinion), \\emph{medium} (54 pairs; brief source citation), and \\emph{strong} (52 pairs; authoritative source with detailed data).\n11\tFrom the 181 paired examples (362 activations total), we compute the mean difference at target layer $\\ell$:\n12\t\\begin{equation}\n13\t\\label{eq:dsyc}\n14\t\\dsyc = \\frac{1}{N}\\sum_{i=1}^{N}\\left(\\mathbf{h}^{+}_i - \\mathbf{h}^{-}_i\\right)\n15\t\\end{equation}\n16\twhere $\\mathbf{h}^{+}_i$ and $\\mathbf{h}^{-}_i$ are residual-stream activations for the $i$-th valid and sycophantic response.\n17\tThe target layer is selected by 5-fold cross-validated AUROC; on Qwen3-8B this yields layer 19 with AUROC $0.827 \\pm 0.028$ (5-fold CV).\n18\t\n19\t\\subsection{Reward Formulations}\n20\t\\label{ssec:reward}\n21\t\n22\tThree formulations translate $\\dsyc$ into a direction-based signal $\\rone$, each entering as part of a GRPO \\citep{shao2024grpo} reward $R = w_1 \\cdot \\rone + w_3 \\cdot \\rthree$, where $\\rthree$ is a behavioral component (DeBERTa natural language inference (NLI) classifier scoring consistency with the ground-truth answer).\n23\t\\begin{itemize}\n24\t\\item[\\textbf{F1}] \\textbf{Cosine projection} wit\n…[truncated 3075 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-000909"
+        },
+        {
+          "source_line": 910,
+          "timestamp": "2026-05-25T23:33:39.544570+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/direction_quality.tex"
+            }
+          },
+          "id": "event-000910"
+        },
+        {
+          "source_line": 911,
+          "timestamp": "2026-05-25T23:33:39.996791+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Direction Discriminability}\n2\t\\label{sec:direction_quality}\n3\t\n4\t\\begin{table}[t]\n5\t\\centering\n6\t\\caption{Cross-model $\\dsyc$ discriminability. AUROC uncertainty is 5-fold cross-validation standard deviation; evidence-strength AUROCs are evaluated on the full dataset at each model's best layer.}\n7\t\\label{tab:cross_model}\n8\t\\resizebox{\\columnwidth}{!}{%\n9\t\\begin{tabular}{lccccc}\n10\t\\toprule\n11\tModel & Best Layer & AUROC ($\\pm$ std) & Weak & Medium & Strong \\\\\n12\t\\midrule\n13\tQwen3-8B & L19 & $0.827 \\pm 0.028$ & 0.675 & 0.883 & 0.929 \\\\\n14\tLlama-3-8B & L16 & $0.779 \\pm 0.019$ & 0.711 & 0.864 & 0.911 \\\\\n15\t\\bottomrule\n16\t\\end{tabular}}\n17\t\\end{table}\n18\t\n19\tBefore evaluating $\\dsyc$ as a reward signal (\\S\\ref{sec:cosine_failure}--\\S\\ref{sec:probe_trap}), we first establish that it captures a genuine sycophancy-related signal in the residual stream.\n20\tIf the direction failed to discriminate sycophantic from non-sycophantic activations, downstream reward failures would be trivially explained by poor direction quality rather than by a fundamental gap between discriminability and reward utility.\n21\tWe evaluate discriminability along five axes: cross-validated classification accuracy, evidence-strength stratification, cross-model transfer, training stability, and probe ablation.\n22\tFigure~\\ref{fig:direction_quality} summarizes the per-layer AUROC profiles for both models.\n23\t\n24\t\\paragraph{Qwen3-8B layer-wise discriminability.}\n25\tWe evaluate $\\dsyc$ via 5-fold cross-validated AUROC on 181 style-controlled contrastive pairs (\\S\\ref{ssec:extraction}).\n26\tThe direction achieves AUROC $0.827 \\pm 0.028$ (5-fold CV) at its best layer (L19).\n27\tDiscriminability emerges gradually across depth: layers L0--L8 perform near chance, statistical significance ($p < 0.01$) first appears at L16, and performance peaks at L19.\n28\tThis gradual emergence, with the peak in the upper third of the network, suggests that sycophancy-relevant information is encoded as a late-stage represe\n…[truncated 3925 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Read",
+            "elapsed_ms": 452
+          },
+          "id": "event-000911"
+        },
+        {
+          "source_line": 912,
+          "timestamp": "2026-05-25T23:33:39.997185+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000912"
+        },
+        {
+          "source_line": 913,
+          "timestamp": "2026-05-25T23:33:40.047586+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000913"
+        },
+        {
+          "source_line": 914,
+          "timestamp": "2026-05-25T23:33:44.768818+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "EMNLP 2026 call for papers submission deadline ARR"
+            }
+          },
+          "id": "event-000914"
+        },
+        {
+          "source_line": 915,
+          "timestamp": "2026-05-25T23:33:47.133019+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/cosine_failure.tex"
+            }
+          },
+          "id": "event-000915"
+        },
+        {
+          "source_line": 916,
+          "timestamp": "2026-05-25T23:33:47.628710+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Cosine \\texorpdfstring{$\\rone$}{R1}: Structural Failure}\n2\t\\label{sec:cosine_failure}\n3\t\n4\tDuring GRPO training, $\\dsyc$ AUROC drops from 0.827 (offline CV) to approximately 0.60: distribution shift accounts for part of this gap (0.827$\\to$0.76 on full responses) and 256-token truncation for the remainder (0.76$\\to$0.60), so the optimizer works with a substantially weaker signal than the offline metrics suggest.\n5\tWe test whether even this degraded discriminability translates into a viable reward through four configurations that form a diagnostic chain (Table~\\ref{tab:cosine_chain}): each resolves the failure mode of its predecessor but exposes a deeper limitation.\n6\t\n7\t\\begin{table}[t]\n8\t\\centering\n9\t\\caption{Cosine $\\rone$ failure chain on Qwen3-8B (LoRA rank$=$64, GRPO with $R = w_1 \\cdot \\rone + w_3 \\cdot \\rthree$).}\n10\t\\label{tab:cosine_chain}\n11\t\\resizebox{\\columnwidth}{!}{%\n12\t\\begin{tabular}{@{}lllll@{}}\n13\t\\toprule\n14\tConfig & $\\rone$ Formula & $w_1$ & Outcome & Root Cause \\\\\n15\t\\midrule\n16\tF1a & $\\tanh(\\mathbf{h}\\cdot\\dsyc/20)$ & 0.25 & Gate saturation & Norm mismatch \\\\\n17\tF1b & $\\cos(\\mathbf{h},\\, \\dsyc)$ & 0.25 & $\\rone \\approx 0$ & Gap too small \\\\\n18\tF1c & +recalibration & 0.25 & Mode collapse & Reward discontinuity \\\\\n19\tF1d & $5\\cos(\\mathbf{h},\\, \\dsyc)$ & 0.40 & Mode collapse & $\\rthree$ saturation \\\\\n20\t\\bottomrule\n21\t\\end{tabular}}\n22\t\\end{table}\n23\t\n24\tThe diagnostic chain begins with a norm mismatch.\n25\tF1a's dot-product formulation ($\\rone = \\tanh(\\mathbf{h} \\cdot \\dsyc / 20)$) saturates because residual-stream norms exceed the direction norm by orders of magnitude, zeroing the gradient early in training.\n26\tCosine similarity (F1b) eliminates this norm dependence but reveals a second problem: the gap between valid and sycophantic cosines is too narrow for meaningful reward contrast.\n27\tRecalibration (F1c, \\S\\ref{ssec:recalib}) widens the gap but introduces a third: each recalibration event creates a reward discontinuity that destabi\n…[truncated 1652 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Read",
+            "elapsed_ms": 495
+          },
+          "id": "event-000916"
+        },
+        {
+          "source_line": 917,
+          "timestamp": "2026-05-25T23:33:47.634375+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/probe_trap.tex"
+            }
+          },
+          "id": "event-000917"
+        },
+        {
+          "source_line": 918,
+          "timestamp": "2026-05-25T23:33:48.001668+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{The Probe Reward Trap}\n2\t\\label{sec:probe_trap}\n3\t\n4\tThe cosine formulations fail on signal magnitude; a natural response is to discretize.\n5\tTraining a logistic probe on $\\dsyc$ and thresholding its output yields $\\rone = \\mathbb{I}[P(\\text{syc} \\mid \\mathbf{h}) < 0.5]$ (F2 in \\S\\ref{ssec:reward}).\n6\tWe show that this discretization sidesteps the magnitude problem but creates a qualitatively worse failure.\n7\tBoth probe experiments use the probe as a non-differentiable reward component within GRPO (\\S\\ref{ssec:reward}); the trap therefore reflects a semantic limitation of the probe rather than gradient-based exploitation.\n8\t\n9\t\\paragraph{Differentiable probe: gradient gaming.}\n10\tWithout stop-gradient, the policy discovers within tens of steps that shifting activations away from the sycophancy cluster maximizes $\\rone$ regardless of response content, producing a fully inverted behavioral profile.\n11\tReplication across three seeds confirms determinism: all collapse within the first training epoch, with each probe retraining immediately re-gamed.\n12\tThis motivates the stopped-gradient design below.\n13\t\n14\t\\paragraph{Binary probe: the stubbornness trap.}\n15\tWith stop-gradient, the policy cannot game the boundary but instead exploits a deeper flaw: $\\dsyc$ does not condition on input validity, so refusing to revise a wrong answer receives the same $\\rone = 1$ as correctly resisting invalid pressure.\n16\tBy step 500, $\\tof$ drops to zero while $\\nof$ remains near-perfect, yielding $\\sycon = 0$.\n17\tQualitative analysis of 181 valid-correction responses reveals five failure modes: \\emph{deliberation traps} (28.7\\%), where the model identifies the correct answer but cannot commit; \\emph{sycophantic stubbornness} (24.3\\%), where the model verbally agrees but does not change its answer; \\emph{acknowledge-but-maintain} (23.8\\%); \\emph{genuine-accept-missed} (18.8\\%); and refute/ignore/other (4.5\\%). Full taxonomy in Appendix~\\ref{app:taxonomy}.\n18\t\n19\t\\paragraph{Beha\n…[truncated 2740 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Read",
+            "elapsed_ms": 367
+          },
+          "id": "event-000918"
+        },
+        {
+          "source_line": 919,
+          "timestamp": "2026-05-25T23:33:48.002185+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/discussion.tex"
+            }
+          },
+          "id": "event-000919"
+        },
+        {
+          "source_line": 920,
+          "timestamp": "2026-05-25T23:33:48.102976+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{When Does Discriminability Fail as Reward Utility?}\\label{sec:discussion}\n2\t\n3\t\\paragraph{Root cause of the probe reward trap.}\n4\tThe probe reward trap (\\S\\ref{sec:probe_trap}) and the cosine failures (\\S\\ref{sec:cosine_failure}) share a common geometric root.\n5\t$\\dsyc$ encodes the \\emph{direction} of belief change but not its \\emph{evidential warrant}: valid revision and sycophantic capitulation both shift activations toward the user's position along the same direction.\n6\tThe two reward families expose complementary faces of this blindness.\n7\tCosine $\\rone$ penalizes all belief change indiscriminately (mode collapse, F1c--F1d); the binary probe $\\rone$ rewards all resistance regardless of input validity (stubbornness trap, $\\tof{=}0$ by step 500), dual consequences of a direction that conflates resisting invalid challenges with refusing valid corrections.\n8\tAlthough $\\dsyc$ separability correlates with evidence strength (\\S\\ref{sec:direction_quality}), it encodes \\emph{how much} belief changed, not whether the change was appropriate (\\S\\ref{sec:probe_trap}).\n9\tCross-model evidence (Llama-3-8B AUROC $0.779$) confirms the limitation generalizes.\n10\tThis contrasts with safety directions~\\citep{zhang2026latentgrpo}, where the target behavior is geometrically distinct~\\citep{wu2026rewardhacking}; independent work confirms that persona vectors are independent of $\\dsyc$~\\citep{kelkar2026persona} and sycophancy sub-behaviors collapse onto its single axis~\\citep{vennemeyer2025sycophancy}.\n11\t\n12\t\\paragraph{GRPO results under our configuration.}\n13\t\n14\t\\begin{table}[t]\n15\t\\centering\n16\t\\caption{Sycophancy calibration methods on Qwen3-8B. Higher $\\sycon$ (harmonic mean of $\\tof$ and $\\nof$) indicates better calibration.}\n17\t\\label{tab:main_comparison}\n18\t\\resizebox{\\columnwidth}{!}{%\n19\t\\begin{tabular}{@{}llcccc@{}}\n20\t\\toprule\n21\tMethod & Type & $\\sycon$ $\\uparrow$ & $\\tof$ $\\uparrow$ & $\\nof$ $\\uparrow$ & Step \\\\\n22\t\\midrule\n23\tVanilla & -- & 0.134 & 0.072 & 0.9\n…[truncated 5350 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-000920"
+        },
+        {
+          "source_line": 921,
+          "timestamp": "2026-05-25T23:33:49.910181+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"EMNLP 2026 call for papers submission deadline ARR\"\n\nLinks: [{\"title\":\"Call for Main Conference Papers - EMNLP 2026\",\"url\":\"https://2026.emnlp.org/calls/main_conference_papers/\"},{\"title\":\"EMNLP 2026 on X: \\\"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\\\" / X\",\"url\":\"https://x.com/emnlpmeeting/status/2029508292637061462\"},{\"title\":\"EMNLP 2026 on X: \\\"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\\\" / X\",\"url\":\"https://x.com/emnlpmeeting/status/2047754845919031450\"},{\"title\":\"EMNLP 2026 : The 2026 Conference on Empirical Methods in N\",\"url\":\"https://callforpaper.org/call-for-papers-emnlp-2026\"},{\"title\":\"Call for Main Conference Papers -\",\"url\":\"https://2026.eacl.org/calls/papers/\"},{\"title\":\"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)\",\"url\":\"https://linguistlist.org/issues/37/972/\"},{\"title\":\"CALL FOR PAPERS – ACL Rolling Review\",\"url\":\"http://aclrollingreview.org/cfp\"},{\"title\":\"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/dates\"},{\"title\":\"AI Conference Deadlines - Jie Cao | Dialogue, NLP, ML\",\"url\":\"https://mlciv.com/ai-deadlines/\"},{\"title\":\"emnlp 2026 - AI Conference Deadlines\",\"url\":\"https://mlciv.com/ai-deadlines/conference/?id=emnlp26\"}]\n\nBased on the search results, here is the information about EMNLP 2026's call for papers submission deadline through ARR:\n\n## ARR Submission Deadline\n\nThe ARR submission deadline for EMNLP 2026 is\n…[truncated 782 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "WebSearch",
+            "elapsed_ms": 5141
+          },
+          "id": "event-000921"
+        },
+        {
+          "source_line": 922,
+          "timestamp": "2026-05-25T23:33:58.438232+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/conclusion.tex"
+            }
+          },
+          "id": "event-000922"
+        },
+        {
+          "source_line": 923,
+          "timestamp": "2026-05-25T23:33:58.892094+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\\label{sec:conclusion}\n2\t\n3\tEvery GRPO reward formulation we tested fails to calibrate sycophancy: $\\dsyc$-based rewards collapse because the direction conflates warranted revision with capitulation, while $\\rthree$-only GRPO fails because NLI behavioral rewards likewise lack evidential warrant under per-completion supervision.\n4\tThe probe reward trap causes behavioral death 1{,}300 steps before entropy collapse, evading standard monitoring.\n5\tDense per-token supervision succeeds where per-completion RL does not~(\\S\\ref{sec:discussion}), identifying supervision granularity as one plausible factor.\n6\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Read",
+            "elapsed_ms": 453
+          },
+          "id": "event-000923"
+        },
+        {
+          "source_line": 924,
+          "timestamp": "2026-05-25T23:33:58.892564+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/limitations.tex"
+            }
+          },
+          "id": "event-000924"
+        },
+        {
+          "source_line": 925,
+          "timestamp": "2026-05-25T23:34:00.348536+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tAll RL training uses Qwen3-8B; cross-model discriminability is confirmed on Llama-3-8B (AUROC $0.779$; Table~\\ref{tab:cross_model}), but compute constraints prevented training replication on a second architecture.\n2\tThe ACT vs.\\ GRPO comparison differs along multiple dimensions; our LoRA-controlled ablation isolates adapter capacity, but a fully controlled comparison would require matching all hyperparameters.\n3\tThe 1{,}300-step behavioral-distributional lag is from a single seed ($n{=}1$); gradient gaming replicates across three seeds (\\S\\ref{sec:probe_trap}).\n4\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Read",
+            "elapsed_ms": 1455
+          },
+          "id": "event-000925"
+        },
+        {
+          "source_line": 926,
+          "timestamp": "2026-05-25T23:34:00.348905+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/appendix.tex"
+            }
+          },
+          "id": "event-000926"
+        },
+        {
+          "source_line": 927,
+          "timestamp": "2026-05-25T23:34:00.700854+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Training Details}\n2\t\\label{app:training}\n3\t\n4\t\\paragraph{Reward weight selection.}\n5\tThe weight $w_1$ is set by diagnostic-driven iteration: $w_1{=}0.25$ was initially chosen to down-weight the noisy cosine reward term; this was later increased to $w_1{=}0.40$ for F1d after diagnostics revealed that $w_1{=}0.25$ allowed the cosine term to contribute only ${\\sim}8.3\\%$ of total reward variance.\n6\tThe empirical scaling factor in F1a ($\\dsyc/20$) is a heuristic normalization; we did not find it critical to the failure modes reported.\n7\t\n8\t\\paragraph{Response truncation.}\n9\tAll GRPO experiments use \\texttt{max\\_completion\\_length}$=$256.\n10\tAcross all 362 evaluation responses, the maximum observed length is 129 tokens (Qwen tokenizer) and 155 tokens (DeBERTa tokenizer), so no response was actually truncated at inference time.\n11\tFull-length vs.\\ 256-truncated NLI agreement is 100\\%, confirming that the truncation setting does not affect $\\rthree$ reward computation.\n12\tTruncation may affect $\\dsyc$ AUROC at the direction extraction stage (0.76 vs.\\ 0.60; see Limitations).\n13\t\n14\t\\paragraph{Hyperparameters.}\n15\tTable~\\ref{tab:hyperparams} compares training configurations for GRPO variants and ACT.\n16\t\n17\t\\begin{table}[h]\n18\t\\centering\n19\t\\small\n20\t\\caption{Training hyperparameters. All experiments use Qwen3-8B, DeepSpeed ZeRO-2, bf16 precision.}\n21\t\\label{tab:hyperparams}\n22\t\\begin{tabular}{lcc}\n23\t\\toprule\n24\t& GRPO (F1, F3)$^e$ & ACT \\\\\n25\t\\midrule\n26\tLearning rate & 5e-5 & 5e-5 \\\\\n27\tEffective batch & 16 & 16 \\\\\n28\tMax steps & 8{,}000 & 8{,}000 \\\\\n29\tWarmup steps & 200 & 200 \\\\\n30\tLR schedule & linear$^a$ & linear \\\\\n31\tGrad.\\ clipping & -- & 1.0 \\\\\n32\t\\midrule\n33\tLoRA rank & 64 & 64 \\\\\n34\tLoRA $\\alpha$ & 64 & 128 \\\\\n35\tLoRA modules & 4$^b$ & 7$^c$ \\\\\n36\tLoRA dropout & 0 & 0.05 \\\\\n37\t\\midrule\n38\tGroup size & 2$^d$ & -- \\\\\n39\tKL (Kullback--Leibler) $\\beta$ & 0.04 & -- \\\\\n40\tMax compl.\\ len. & 256 & -- \\\\\n41\tMax seq.\\ len. & -- & 1{,}024 \\\\\n42\tL2 loss weight \n…[truncated 3009 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Read",
+            "elapsed_ms": 351
+          },
+          "id": "event-000927"
+        },
+        {
+          "source_line": 928,
+          "timestamp": "2026-05-25T23:34:00.701248+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "file": "decisions.yaml"
+            }
+          },
+          "id": "event-000928"
+        },
+        {
+          "source_line": 929,
+          "timestamp": "2026-05-25T23:34:00.752197+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 75\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-18 04:50 UTC\\\\n  summary: MVP 方案：多轮方向判别力测试（AUROC ≥ 0.85 为 go/no-go）\\\\n  rationale: DC-GRPO 的核心假设是多轮场景下 d_syc/d_gen 方向能区分 sycophantic capitulation vs. genuine\\\\n    revision。这是整个方法的根基——如果方向判别力不足（AUROC < 0.85），后续 GRPO 训练的 reward 信号就不可靠。MVP 只需 forward\\\\n    pass（~4-8 GPU hours），不需要 GRPO 训练（180+ hours），是最小成本的假设验证。Phase 1（数据构建）无需 GPU 可立即启动。\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-18 04:53 UTC\\\\n  summary: 采纳 Reviewer 4 项 MVP 改进：模型统一 Qwen3-8B、cosine<0.3 门槛、LoRA 扰动检查、数据质量验证\\\\n  rationale: Reviewer 审查 D001 提出 4 个 warning：(1) MVP 不验证训练稳定性 → 加 Phase 5 LoRA 扰动检查(<1h\\\\n    GPU)；(2) 校准数据无独立验证 → 加 Phase 1.5 抽样质量校验；(3) 模型不一致(Qwen2.5-7B vs Qwen3-8B) → 统一用\\\\n    Qwen3-8B；(4) 交叉选择性无数值门槛 → cosine(d_syc,d_gen)<0.3。另采纳 AUROC 灰色区间建议(0.80-0.85 →\\\\n    调查再决定, <0.80 → 立即 pivot)。全部改动成本极低(+1 GPU hour + 数据审查)，风险显著降低。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D001\\\\n- id: D003\\\\n  date: 2026-05-18 06:44 UTC\\\\n  summary: Go/No-Go 从三条件简化为两条件（AUROC + LoRA），cosine 条件在二元设计下退化\\\\n  rationale: Reviewer 发现 compute_directions.py 中 d_gen = mean(revision) - mean(capitulation)\\\\n    = -d_syc，cosine(d_syc, d_gen) 恒等于 -1.0。根因：校准数据只有两个条件（warranted_revision vs sycophantic_capitulation），无中性\\\\n    baseline。\\\\\\\"Sycophancy Is Not One Thing\\\\\\\" 用三组对比得到独立方向，当前二元设计数学上只能产生一个方向及其反向。cosine\\\\n    < 0.3 条件 trivially satisfied，从实质 gate 中移除。MVP go/no-go 实质由 AUROC ≥ 0.85 + LoRA\\\\n    AUROC drop < 0.05 两项决定，判别力仍由 AUROC 检验。Post-MVP 如需论文 claim cross-selectivity，需增加\\\\n    neutral baseline 第三条件。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-18 09:15 UTC\\\\n  summary: MVP 不通过：AUROC=1.0 是输入文本差异的 trivial 结果，重新设计校准数据\\\\n  rationale: Reviewer critical 发现：(1) asst_first AUROC 从 Layer 0 即达 0.998，说明信号在 embedding（输入文本差异），不在模型学到的表示中\n…[truncated 11039 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-000929"
+        },
+        {
+          "source_line": 930,
+          "timestamp": "2026-05-25T23:34:10.994376+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "EMNLP 2026 author guidelines page limit format template double-blind site:2026.emnlp.org"
+            }
+          },
+          "id": "event-000930"
+        },
+        {
+          "source_line": 931,
+          "timestamp": "2026-05-25T23:34:13.250765+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/review_round_10/ 2>/dev/null",
+              "description": "Check for submitted PDF"
+            }
+          },
+          "id": "event-000931"
+        },
+        {
+          "source_line": 932,
+          "timestamp": "2026-05-25T23:34:13.753471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "submitted.pdf"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Bash",
+            "elapsed_ms": 502
+          },
+          "id": "event-000932"
+        },
+        {
+          "source_line": 933,
+          "timestamp": "2026-05-25T23:34:14.004753+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/config.yaml",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib"
+            }
+          },
+          "id": "event-000933"
+        },
+        {
+          "source_line": 934,
+          "timestamp": "2026-05-25T23:34:14.105832+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.venv/lib/python3.14/site-packages/configs/config.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Glob",
+            "elapsed_ms": 101
+          },
+          "id": "event-000934"
+        },
+        {
+          "source_line": 935,
+          "timestamp": "2026-05-25T23:34:16.822098+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"EMNLP 2026 author guidelines page limit format template double-blind site:2026.emnlp.org\"\n\nLinks: [{\"title\":\"Call for Main Conference Papers - EMNLP 2026\",\"url\":\"https://2026.emnlp.org/calls/main_conference_papers/\"},{\"title\":\"Call for Papers: EMNLP 2026 Industry Track - EMNLP 2026\",\"url\":\"https://2026.emnlp.org/calls/industry_track/\"},{\"title\":\"The 2026 Conference on Empirical Methods in Natural Language Processing - EMNLP 2026\",\"url\":\"https://2026.emnlp.org/\"},{\"title\":\"FAQ - EMNLP 2026\",\"url\":\"https://2026.emnlp.org/faq/\"},{\"title\":\"Call for Tutorials - EMNLP 2026\",\"url\":\"https://2026.emnlp.org/calls/tutorials/\"},{\"title\":\"EMNLP 2026 Paper Integrity Policy - EMNLP 2026\",\"url\":\"https://2026.emnlp.org/paper-integrity-policy/\"},{\"title\":\"Registration Information for EMNLP 2025 - EMNLP 2026\",\"url\":\"https://2026.emnlp.org/registration/\"},{\"title\":\"EMNLP 2026 AI Reviewing Experiment - EMNLP 2026\",\"url\":\"https://2026.emnlp.org/ai-reviewing-experiment/\"},{\"title\":\"Call for Workshop Papers - EMNLP 2026\",\"url\":\"https://2026.emnlp.org/calls/workshops/\"},{\"title\":\"EMNLP 2026 Blog - EMNLP 2026\",\"url\":\"https://2026.emnlp.org/blog/\"}]\n\nBased on the search results from the EMNLP 2026 website, here's what I found regarding author guidelines:\n\n## Double-Blind Review\n\nThe reviewing process will continue to be double-blind. Reviewers will not see authors, nor will authors see reviewers and reviews on ARR will not be made publicly visible.\n\nFor the Industry Track specifically, submissions must neither include the authors' names nor their affiliations.\n\n## Page Limits\n\nFor the Industry Track, papers should not exceed a maximum of 6 pages. However, the limitations section should be included at the end of the paper, before the references, and it will not count toward the page limit.\n\n## Format and Templates\n\nProposals should use the ACL paper submission format. Authors can download the LaTeX template or use the Overleaf template.\n\n## Limitations Section\n\nA\n…[truncated 577 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "WebSearch",
+            "elapsed_ms": 5827
+          },
+          "id": "event-000935"
+        },
+        {
+          "source_line": 936,
+          "timestamp": "2026-05-25T23:34:21.322365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ACL Rolling Review 2026 submission guidelines page limit long paper short paper format"
+            }
+          },
+          "id": "event-000936"
+        },
+        {
+          "source_line": 937,
+          "timestamp": "2026-05-25T23:34:21.975544+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.yaml",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/agent"
+            }
+          },
+          "id": "event-000937"
+        },
+        {
+          "source_line": 938,
+          "timestamp": "2026-05-25T23:34:22.026220+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Directory does not exist: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/agent. Note: your current working directory is /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/review_director_ae7dcdba.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000938"
+        },
+        {
+          "source_line": 939,
+          "timestamp": "2026-05-25T23:34:26.998304+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ACL Rolling Review 2026 submission guidelines page limit long paper short paper format\"\n\nLinks: [{\"title\":\"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/cfp\"},{\"title\":\"Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/authors\"},{\"title\":\"Main Conference - ACL 2026\",\"url\":\"https://2026.aclweb.org/calls/main_conference_papers/\"},{\"title\":\"Paper formatting guidelines - ACLPUB\",\"url\":\"https://acl-org.github.io/ACLPUB/formatting.html\"},{\"title\":\"Authors Beware: Common Submission Problems – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/authorchecklist\"},{\"title\":\"ACL Rolling Review | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/acl-rolling-review\"},{\"title\":\"EACL 2026: First Call for Papers | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/eacl-2026-first-call-papers\"},{\"title\":\"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/\"},{\"title\":\"ACL ARR 2026 January | OpenReview\",\"url\":\"https://openreview.net/group?id=aclweb.org%2FACL%2FARR%2F2026%2FJanuary\"},{\"title\":\"Call for Main Conference Papers -\",\"url\":\"https://2026.eacl.org/calls/papers/\"}]\n\nBased on the search results, here is the information about ACL Rolling Review 2026 submission guidelines regarding page limits:\n\n## Page Limits for ACL Rolling Review 2026\n\n**Long Papers:**\nReview versions of long papers may have up to eight (8) pages of content plus unlimited pages for references. Upon acceptance, final versions of long papers will be given one additional page – up to nine (9) pages of content plus unlimited pages for acknowledgments and references.\n\n**Short Papers:**\nReview versions of s\n…[truncated 686 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "WebSearch",
+            "elapsed_ms": 5675
+          },
+          "id": "event-000939"
+        },
+        {
+          "source_line": 940,
+          "timestamp": "2026-05-25T23:34:30.915361+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/project_config*.yaml",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib"
+            }
+          },
+          "id": "event-000940"
+        },
+        {
+          "source_line": 941,
+          "timestamp": "2026-05-25T23:34:31.668818+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Glob",
+            "elapsed_ms": 753
+          },
+          "id": "event-000941"
+        },
+        {
+          "source_line": 942,
+          "timestamp": "2026-05-25T23:34:31.769555+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/references.bib",
+              "limit": "50"
+            }
+          },
+          "id": "event-000942"
+        },
+        {
+          "source_line": 943,
+          "timestamp": "2026-05-25T23:34:31.769964+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t@article{zhang2026latentgrpo,\n2\t  title={Silence the Judge: Reinforcement Learning with Self-Verifier via Latent Geometric Clustering},\n3\t  author={Zhang, Nonghai and Ma, Weitao and Ma, Zhanyu and Xu, Jun and Gao, Jiuchong and Hao, Jinghua and He, Renqing and Xu, Jingwen},\n4\t  journal={arXiv preprint arXiv:2601.08427},\n5\t  year={2026}\n6\t}\n7\t\n8\t@inproceedings{zou2023repe,\n9\t  title={Representation Engineering: A Top-Down Approach to {AI} Transparency},\n10\t  author={Zou, Andy and Phan, Long and Chen, Sarah and Campbell, James and Guo, Phillip and Ren, Richard and Pan, Alexander and Yin, Xuwang and Mazeika, Mantas and Dombrowski, Ann-Kathrin and Gould, Shashwat and Li, Zifan and Xie, Chuanqi and Leung, Alexandria and Hase, Peter and Hendrycks, Dan},\n11\t  booktitle={International Conference on Learning Representations (ICLR)},\n12\t  year={2025}\n13\t}\n14\t\n15\t@inproceedings{rimsky2024caa,\n16\t  title={Steering Llama 2 via Contrastive Activation Addition},\n17\t  author={Rimsky, Nina and Gabrieli, Nick and Schulz, Jenna and Smith, Meg and Tong, Ioannis and Hubinger, Evan},\n18\t  booktitle={Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (ACL)},\n19\t  year={2024}\n20\t}\n21\t\n22\t@article{shao2024grpo,\n23\t  title={DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models},\n24\t  author={Shao, Zhihong and Wang, Peiyi and Zhu, Qihao and Xu, Runxin and Song, Junxiao and Zhang, Mingchuan and Li, Y.K. and Wu, Y. and Guo, Daya},\n25\t  journal={arXiv preprint arXiv:2402.03300},\n26\t  year={2024}\n27\t}\n28\t\n29\t@inproceedings{li2023iti,\n30\t  title={Inference-Time Intervention: Eliciting Truthful Answers from a Language Model},\n31\t  author={Li, Kenneth and Patel, Oam and Vi{\\'e}gas, Fernanda and Pfister, Hanspeter and Wattenberg, Martin},\n32\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n33\t  year={2023}\n34\t}\n35\t\n36\t@article{turner2023actadd,\n37\t  title={Steering Language Models With Activation Engineering}\n…[truncated 495 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000943"
+        },
+        {
+          "source_line": 944,
+          "timestamp": "2026-05-25T23:34:35.687084+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "external_review",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000944"
+        },
+        {
+          "source_line": 945,
+          "timestamp": "2026-05-25T23:34:35.939807+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (33.4KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib--claude-sessions-review-director-ae7dcdba/f4c93daa-10e8-4077-8476-ad4b23ed1129/tool-results/toolu_01Cpm8cBx9NiKtjHeH6ys7hk.txt\n\nPreview (first 2KB):\n/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/review_reports/round_4.md:162:外部审稿：未请求（项目未配置 external_review）。\n/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/review_reports/round_2.md:172:外部审稿：**未配置**。项目 `external_review.paperreview_ai.enabled` 未启用。\n/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/logs/chats/worker_transfer_scp-ckpt7500-to-28034_20260521T082838.jsonl:51:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/logs/chats/archive/feishu_group_oc_c77a380fad2d0408ce92cd1170d46f6f_director_20260522T185004_928446.jsonl:2436:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/logs/chats/archive/feishu_group_oc_c77a380fad2d0408ce92cd1170d46f6f_director_20260522T185004_928446.jsonl:2739:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/logs/chats/feishu_group_oc_056796cf71f839be40019e5f1a11791b_director.jsonl:3:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/logs/chats/feishu_group_oc_056796cf71f839be40019e5f1a11791b_director.jsonl:4:{\"ts\": \"2026-05-22T09:54:01.010750+00:00\", \"role\": \"tool\", \"session\": \"feishu:group:oc_056796cf71f839be40019e5f1a11791b:director\", \"text\": \"called ToolSearch\", \"tool\": \"ToolSearch\", \"tool_args\": {\"query\": \"select:director_get_project_overview,dispatch_visual_check,request_external_review,get_external_review_statu\n…[truncated 190 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Grep",
+            "elapsed_ms": 252
+          },
+          "id": "event-000945"
+        },
+        {
+          "source_line": 946,
+          "timestamp": "2026-05-25T23:34:53.691830+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_local_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000946"
+        },
+        {
+          "source_line": 947,
+          "timestamp": "2026-05-25T23:34:53.742452+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000947"
+        },
+        {
+          "source_line": 948,
+          "timestamp": "2026-05-25T23:34:59.314861+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/review_issues.yaml 2>/dev/null | head -100",
+              "description": "Check existing review issues tracker"
+            }
+          },
+          "id": "event-000948"
+        },
+        {
+          "source_line": 949,
+          "timestamp": "2026-05-25T23:34:59.415956+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "issues:\n  # === ROUND 1-7 RESOLVED ISSUES ===\n\n  - id: R1-N1\n    summary: \"Fisher exact test 将非独立 checkpoints 当独立样本，p<0.0001 不可信\"\n    category: method\n    severity: critical\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 1\n    mentions:\n      - round: 1\n        reviewers: [1, 2]\n        note: \"R1 首提，R2 完全同意。\"\n      - round: 2\n        reviewers: []\n        note: \"本轮未提及。论文已移除 Fisher p 值。已修复。\"\n      - round: 8\n        reviewers: []\n        note: \"Round 8 未提及，确认已修复。\"\n    resolution: \"论文已移除所有 Fisher p 值，改用描述性统计。\"\n    resolution_round: 2\n\n  - id: R2-N1\n    summary: \"遗漏 Papadatos & Freedman (2024) probe penalty 成功案例\"\n    category: framing\n    severity: critical\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 3\n    mentions:\n      - round: 6\n        reviewers: []\n        note: \"Round 6 未提及。§6 和 §7 讨论 Papadatos 充分。确认已修复。\"\n      - round: 8\n        reviewers: []\n        note: \"Round 8 R2 确认 Papadatos & Freedman 2024 已引用。\"\n    resolution: \"§6-§7 充分讨论，多轮确认已解决。\"\n    resolution_round: 2\n\n  - id: R2-N2\n    summary: \"references.bib 多条引用严重不完整\"\n    category: format\n    severity: critical\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 1\n    mentions:\n      - round: 8\n        reviewers: []\n        note: \"Round 8 引用格式完整。\"\n    resolution: \"bib entry 已补全。\"\n    resolution_round: 2\n\n  - id: R1-W3\n    summary: \"AUROC ±值来自 5-fold CV std，不是正式 CI\"\n    category: method\n    severity: warning\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 1\n    mentions:\n      - round: 8\n        reviewers: []\n        note: \"Round 8 未提及。\"\n    resolution: \"已替换为 bootstrap CI。\"\n    resolution_round: 4\n\n  - id: R2-MF4\n    summary: \"正文超 8 页限制\"\n    category: format\n    severity: critical\n    status: resolved\n    first_raised_round: 2\n    last_seen_round: 3\n    mentions:\n      - round: 8\n        reviewers: [1, 2]\n        note: \"Round 8 两位 Reviewer 及视觉审查确认正文 8 页合规。\"\n    resolution: \"正文已压缩到 8 页内。\"\n    resolution_round: 4\n\n  - id: R2-SF5\n    su\n…[truncated 440 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000949"
+        },
+        {
+          "source_line": 950,
+          "timestamp": "2026-05-25T23:35:04.637960+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/review_issues.yaml 2>/dev/null | tail -n +100",
+              "description": "Read rest of review issues tracker"
+            }
+          },
+          "id": "event-000950"
+        },
+        {
+          "source_line": 951,
+          "timestamp": "2026-05-25T23:35:04.689348+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "    severity: info\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 4\n    mentions:\n      - round: 8\n        reviewers: []\n        note: \"Round 8 未提及。百分比完整。\"\n    resolution: \"百分比已补全。\"\n    resolution_round: 5\n\n  - id: R4-W1\n    summary: \"R₃-only GRPO 在 Table 4 中缺少 ToF 和 NoF 分项数据\"\n    category: experiment\n    severity: warning\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 5\n    mentions:\n      - round: 8\n        reviewers: []\n        note: \"Round 8 Table 4 包含 R₃-only 数据（ToF=0.083, NoF=0.983）。\"\n    resolution: \"Table 4 已包含 R₃-only 的 ToF 和 NoF 数据。\"\n    resolution_round: 6\n\n  - id: R6-W1\n    summary: \"代码和数据可用性\"\n    category: format\n    severity: minor\n    status: resolved\n    first_raised_round: 6\n    last_seen_round: 8\n    mentions:\n      - round: 8\n        reviewers: [1, 2]\n        note: \"Limitations 末尾包含 GitHub URL (anonymous-nlp-2026-2)，承诺开源代码、数据、prompt templates。\"\n    resolution: \"Limitations 已包含代码/数据发布承诺和匿名 GitHub URL。\"\n    resolution_round: 8\n\n  # === PERSISTENT ISSUES (ACTIVE) ===\n\n  - id: R4-W2\n    summary: \"Abstract/Table 4 vs Introduction/§6 中 R₃-only checkpoints 总数不一致 (4/31 vs 4/28)\"\n    category: writing\n    severity: warning\n    status: in_progress\n    first_raised_round: 4\n    last_seen_round: 9\n    mentions:\n      - round: 6\n        reviewers: []\n        note: \"Round 6 论文 Introduction 使用 '4 of 31 checkpoints (12.9%)'，各处一致。\"\n      - round: 8\n        reviewers: [1]\n        note: \"R1 发现 Introduction '4 of 31 (12.9%)' vs Table 4 '4/28 across two seeds' 不一致。31 混合了 gs=2 (28) 和 gs=8 (3) 数据。问题复发。\"\n      - round: 9\n        reviewers: [1, 2]\n        note: \"双方共识 warning。introduction L23/L31 用 4/31，discussion 用 4/28，conclusion 用 4/31。未解释差异。\"\n    action_items:\n      - round: 8\n        action: \"统一为 '4/28 (gs=2)' + '0/3 (gs=8 ablation)' 分开报告\"\n        assigned_to: agent\n        status: failed\n      - round: 9\n        action: \"Paper Agent 全文搜索替换，统一为 4/28 (14.3%, gs=2 two seeds)，gs=8 单独括注\"\n        assigned_to: paper_agent\n        st\n…[truncated 20180 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Bash",
+            "elapsed_ms": 51
+          },
+          "id": "event-000951"
+        },
+        {
+          "source_line": 952,
+          "timestamp": "2026-05-25T23:35:28.092390+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__dispatch_visual_check"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__dispatch_visual_check",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "review_chat_id": "oc_056796cf71f839be40019e5f1a11791b"
+            }
+          },
+          "id": "event-000952"
+        },
+        {
+          "source_line": 953,
+          "timestamp": "2026-05-25T23:35:42.557027+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"started\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__dispatch_visual_check",
+            "elapsed_ms": 14464
+          },
+          "id": "event-000953"
+        },
+        {
+          "source_line": 954,
+          "timestamp": "2026-05-25T23:35:42.607579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_reviewer"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "tool_args": {
+              "reviewer_id": "1",
+              "round_number": "1",
+              "text": "你是 Reviewer 1，负责**方法严谨性 + 实验设计 + 可复现性**。\n\n## 论文信息\n- 标题：The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration\n- 路径：projects/contrastive_entrain_calib/docs/paper/main.tex\n- PDF：/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/review_round_10/submitted.pdf\n\n## Venue 要求（EMNLP 2026 via ARR May 2026 cycle）\n- Long paper：正文 8 页 + 无限引用 + Limitations 不计页数\n- 模板：ACL style（\\usepackage[review]{acl}）\n- 匿名规则：双盲（double-blind）\n- Limitations section 必须有，否则 desk reject\n- ARR submission deadline: 2026-05-25 (AoE)\n- Overall Assessment 评分：5=Award, 4.5=Borderline Award, 4=Conference, 3.5=Borderline Conference, 3=Findings, 2.5=Borderline Findings, 2=Resubmit next cycle, 1.5=Resubmit after next cycle, 1=Do not resubmit\n\n## 你的审查侧重\n1. **实验方法论**：实验设计是否严谨？统计分析是否合理？是否有遗漏的 ablation？\n2. **因果声明**：论文的归因是否有足够证据支撑？是否存在 confounds 未被控制？\n3. **可复现性**：超参数是否完整？实验细节是否充分？代码/数据承诺是否清楚？\n4. **方法缺陷**：group_size=2 是否构成致命替代解释？256-token truncation 对结果的影响？seed 数量是否充分？\n5. **格式合规**：是否遵守 8 页限制？匿名性？引用格式？\n\n请按以下结构输出审稿意见：\n- Summary（2-3 句）\n- Strengths（逐条）\n- Weaknesses（逐条，标注 [critical/warning/minor]）\n- Questions（需作者澄清）\n- Missing References\n- Reproducibility Score（1-5）\n- Overall Assessment + 置信度"
+            }
+          },
+          "id": "event-000954"
+        },
+        {
+          "source_line": 955,
+          "timestamp": "2026-05-25T23:35:53.998115+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_056796cf71f839be40019e5f1a11791b:reviewer_1\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "elapsed_ms": 11390
+          },
+          "id": "event-000955"
+        },
+        {
+          "source_line": 956,
+          "timestamp": "2026-05-25T23:35:54.098999+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_reviewer"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "tool_args": {
+              "reviewer_id": "2",
+              "round_number": "1",
+              "text": "你是 Reviewer 2，负责**新颖性 + framing 一致性 + 相关工作 + 写作质量**。\n\n## 论文信息\n- 标题：The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration\n- 路径：projects/contrastive_entrain_calib/docs/paper/main.tex\n- PDF：/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/review_round_10/submitted.pdf\n\n## Venue 要求（EMNLP 2026 via ARR May 2026 cycle）\n- Long paper：正文 8 页 + 无限引用 + Limitations 不计页数\n- 模板：ACL style（\\usepackage[review]{acl}）\n- 匿名规则：双盲（double-blind）\n- Limitations section 必须有，否则 desk reject\n- ARR submission deadline: 2026-05-25 (AoE)\n- Overall Assessment 评分：5=Award, 4.5=Borderline Award, 4=Conference, 3.5=Borderline Conference, 3=Findings, 2.5=Borderline Findings, 2=Resubmit next cycle, 1.5=Resubmit after next cycle, 1=Do not resubmit\n\n## 你的审查侧重\n1. **新颖性**：核心贡献相对于已知结果（Goodhart's Law、reward hacking）的增量在哪里？\"probe reward trap\" 是新发现还是已知原理的实例化？\n2. **Framing 一致性**：论文在 abstract/intro/discussion/conclusion 中的叙事是否一致？是否在不同 framing 间游移？因果声明强度是否与证据匹配？\n3. **相关工作覆盖**：是否遗漏重要相关工作？特别关注 Goodhart 文献、process reward 文献（PRM）、probing 方法论（Hewitt & Liang 2019, Belinkov 2022）、sycophancy 分解文献（Vennemeyer et al. 2025）\n4. **写作质量**：逻辑流畅性、术语一致性、AI 写作痕迹（em-dash 滥用、过度 hedging）、数据呈现清晰度\n5. **贡献定位**：三个 claims (C1/C2/C3) 的证据强度是否匹配？哪些是独立贡献哪些是同一现象的不同面？\n\n请按以下结构输出审稿意见：\n- Summary（2-3 句）\n- Strengths（逐条）\n- Weaknesses（逐条，标注 [critical/warning/minor]）\n- Questions（需作者澄清）\n- Missing References\n- Novelty Assessment\n- Overall Assessment + 置信度"
+            }
+          },
+          "id": "event-000956"
+        },
+        {
+          "source_line": 957,
+          "timestamp": "2026-05-25T23:35:55.411072+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_056796cf71f839be40019e5f1a11791b:reviewer_2\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "elapsed_ms": 1312
+          },
+          "id": "event-000957"
+        },
+        {
+          "source_line": 958,
+          "timestamp": "2026-05-25T23:36:04.387912+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "圆桌审稿 Round 1 已启动：\n\n- **视觉审查 Agent**：已派发（fire-and-forget）\n- **Reviewer 1**（方法严谨性 + 实验设计）：已分配\n- **Reviewer 2**（新颖性 + framing + 相关工作）：已分配\n\n等待两位 Reviewer 返回初审意见。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director"
+          },
+          "id": "event-000958"
+        }
+      ]
+    },
+    {
+      "number": 68,
+      "messages": [
+        {
+          "source_line": 959,
+          "timestamp": "2026-05-25T23:40:57.012410+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 1 审稿意见]:\n\n# Reviewer 1 审稿意见\n\n**论文**: The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration\n**Venue**: EMNLP 2026 via ARR May 2026 cycle\n**审查侧重**: 方法严谨性 + 实验设计 + 可复现性\n\n---\n\n## Summary\n\n本文研究将 contrastive sycophancy direction (d_syc) 作为 GRPO 奖励信号用于谄媚校准的失败现象。作者发现所有基于 d_syc 的 GRPO 奖励公式均在约 500 步时出现行为死亡（ToF→0），而生成熵在 ~1,800 步才开始下降，形成 1,300 步的监测盲区（\"probe reward trap\"）。论文同时展示 ACT（dense per-token supervision）在所有 checkpoint 上超过 vanilla baseline，提出监督粒度是关键因素。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 2.5/5 | 核心实验存在严重混淆变量（group_size=2, 256-token truncation），无法排除 GRPO 失败是这些设置导致而非 probe reward 的固有缺陷 |\n| Excitement | 3/5 | 选题有时效性，probe reward trap 概念有启发性，但实验证据不足以支撑其一般性 |\n| Reproducibility | 3/5 | 超参数基本完整（Table 6），匿名代码链接已提供，但若干关键细节缺失 |\n| Overall Assessment | 3.0 (Findings) | 文档化了一个有意义的负面结果，但因果归因证据不足，需补充关键消融实验 |\n| Confidence | 4/5 | 本人熟悉 GRPO、representation engineering、sycophancy 相关文献 |\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] **group_size=2 构成致命替代解释，消融严重不足**\n\n- 具体位置：Section 3.4 (p4), Table 5 (p8), Table 6 (Appendix A, p11)\n- 问题：GRPO 使用 group_size=2，远低于标准范围 8-64（论文自己在 p4 承认 \"below the typical range of 8-64\"）。group_size=2 意味着优势估计仅基于 2 个样本，梯度信号极度嘈杂。这对**任何**奖励函数都会导致训练不稳定，不仅限于 probe reward。论文将 GRPO 失败归因于 d_syc 的语义局限（\"encodes whether belief changed, not whether it should have\"），但同样的失败模式完全可以由 group_size=2 的噪声梯度解释。\n- Table 5 ablation 提到 \"GRPO fails at both group sizes tested\"，但从 PDF 图像难以确认第二个 group size 具体是多少。如果仅测试了 gs=2 和 gs=4，这仍远低于合理范围。**作者应测试 gs=8 或 gs=16**（可通过 gradient accumulation 实现，无需增加显存占用），以证明失败并非 group_size 不足所致。\n- 为什么影响接收：如果 group_size=8 时 GRPO 的 probe reward 能正常训练，则 \"probe reward trap\" 这一核心贡献将不成立。缺少这一消融，论文的因果推断链断裂。\n- 建议修改方向：(1) 使用 gradient accumulation 测试 gs∈{8, 16}；(2) 若因模型规模限制确实无法测试，需在更小模型（如 Qwen2.5-1.5B）上验证 group_size 敏感性；(3) 明确报告每个 ablation 的 group_size 值。\n\n**N2** [critical] **256-token truncation 严重降低 reward 信号质量，构成另一混淆变量**\n\n- 具体位置：Section 3.3 (p4), Limitations (p9), Table 6 (p11)\n- 问题：max_completion_length=256 导致 d_syc 的离线判别 AUROC 从 0.76（full response）降至 0.60（p6: \"256-token truncated...AUROC drops to 0.76 (full response) and 256-token truncation for the remainder (0.76→0.60)\"）。0.60 的 AUROC 接近随机水平（0.50），这意味着 reward 信号本身已严重退化。在这样弱的 reward 信号下 GRPO 训练失败，不能归因于 probe reward 的\"陷阱\"性质，而更可能是信号不足。\n- 论文在 Limitations (p9) 承认 \"256-token truncation\" 的影响，但将其视为次要限制而非核心实验缺陷。然而，一个 AUROC 仅 0.60 的 reward signal 在 GRPO 中失败是**完全可预期的**，不需要 \"trap\" 叙事来解释。\n- 为什么影响接收：如果 reward 信号本身太弱，probe reward trap 可能只是 \"weak reward fails in RL\" 的一个实例，这大幅降低了贡献的新颖性。\n- 建议修改方向：(1) 测试 512 或 1024 token completion length 下的 GRPO 表现；(2) 或者使用 AUROC > 0.75 的 reward 配置（如仅在高置信度样本上计算 reward）重新运行实验。\n\n**N3** [critical] **因果声明超出证据支撑——\"d_syc encodes whether belief changed, not whether it should have\" 缺少直接证据**\n\n- 具体位置：Section 7 (p7), Abstract, Section 8 Conclusion (p8)\n- 问题：这是论文最重要的因果声明之一，贯穿全文（abstract: \"implicating the direction's semantic limitations\"; conclusion: \"because the direction conflates warranted revision with capitulation\"）。但支撑这一声明的证据是**间接的**：cosine similarity 显示 valid revision 和 sycophantic capitulation 的激活偏移方向相似（Section 7, p7: \"valid revision and sycophantic capitulation both shift activations toward the user's position along the same direction\"）。\n- 这一观察有多种解释：(a) d_syc 确实无法区分两种偏移——作者的解释；(b) d_syc 捕获的是\"响应向用户对齐\"的一般方向，在 contrastive training 数据的分布之外泛化能力不足；(c) 181 对训练样本不足以训练出足够精细的 direction。作者没有提供控制实验来排除 (b) 和 (c)。\n- 为什么影响接收：作为论文的核心解释性贡献，如果这一声明仅基于间接关联而非因果验证，论文的理论深度会显著降低。\n- 建议修改方向：(1) 设计 intervention 实验——在 d_syc 方向上做 activation steering，观察模型行为变化是否符合\"无法区分 warranted/unwarranted\"的预测；(2) 构建包含明确 warranted/unwarranted 标签的测试集，直接测量 d_syc 在这两类上的分离度；(3) 或者弱化声明为 hypothesis 而非 conclusion。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] **仅 3 个 seed，统计功效不足**\n\n- 具体位置：Section 3.5 (p4), Limitations (p9)\n- 问题：核心实验仅跑 3 个 seed（p9 Limitations: \"gradient gaming lag is from a single seed (n=1); gradient gaming replicates across three seeds (§6)\"）。Table 3 的 probe reward trap trajectory 似乎基于单次运行。Table 4 的 SYCONSCORE 比较也未报告标准差或置信区间（除了 Table 1 的 AUROC 报告了 ±std）。\n- 建议：(1) 所有核心指标（ToF, NoF, SYCONSCORE）报告 mean ± std across seeds；(2) 关键比较（ACT vs. GRPO）进行统计显著性检验；(3) 理想情况下增加到 5 个 seed。\n\n**W2** [warning] **ACT vs. GRPO 比较不公平——监督粒度与监督范式混为一谈**\n\n- 具体位置：Section 3.4 (p4), Section 8 (p8), Table 5 (p8)\n- 问题：ACT 使用 per-token dense supervision + L2 activation consistency loss，而 GRPO 使用 per-completion sparse reward。论文将 ACT 的成功归因于\"supervision granularity\"（p8: \"identifying supervision granularity as one plausible factor\"）。但 ACT 与 GRPO 在至少三个维度上不同：(a) 监督粒度（token vs. completion）；(b) 训练范式（SFT vs. RL）；(c) 损失函数（cross-entropy + L2 vs. policy gradient）。\n- 没有中间实验来隔离这三个因素的贡献。例如：per-token reward shaping in GRPO（保持 RL 范式但增加粒度）、或 per-completion SFT（保持 SFT 范式但降低粒度）。\n- 建议：增加至少一个中间配置的实验，例如 token-level reward shaping within GRPO，以更严格地支撑\"粒度是关键因素\"的声明。\n\n**W3** [warning] **单一主实验模型（Qwen3-8B），跨模型验证仅限于 direction 判别力**\n\n- 具体位置：Section 5 (p5), Table 1 (p5)\n- 问题：GRPO 训练和 ACT 实验仅在 Qwen3-8B 上进行。Llama-3-8B 仅用于验证 d_syc 的跨模型判别力（Table 1, AUROC 0.779），但没有在 Llama 上运行 GRPO 或 ACT 训练。\"probe reward trap\" 可能是 Qwen3-8B 特有的现象。\n- 建议：至少在 Llama-3-8B 上运行一组 GRPO 实验验证 trap 现象是否复现。\n\n**W4** [warning] **stopped gradient 实验的论证力度被高估**\n\n- 具体位置：Section 5 (p5-6), Table 2 (p6)\n- 问题：论文声称 stopped gradient 实验\"implicates d_syc itself rather than gradient-based exploitation\"（abstract, p1）。但 stopped gradient 仅阻止模型通过梯度直接优化 probe 的内部表示，不阻止模型通过行为模式（如输出特定 token pattern）来 hack reward signal。如果 d_syc 的 AUROC 本身就只有 0.60（truncated），模型可以通过简单的行为策略（如缩短回复、重复固定模式）来获得高 reward 而不改变 sycophancy 行为。\n- 建议：分析 stopped gradient 条件下模型的实际输出，检查是否存在 reward hacking 行为模式。\n\n**W5** [warning] **Contrastive pair 构建依赖 GPT-4.1 生成，引入未控制的分布偏差**\n\n- 具体位置：Section 3.1 (p3)\n- 问题：181 个 contrastive pair 使用 GPT-4.1 通过 \"3-turn dialogue completion\" 生成，style matching 通过 \"automated validation (response-length difference < 10%, shared opening phrase)\" 控制。但 GPT-4.1 生成的 sycophantic vs. non-sycophantic 响应可能带有特定的表面模式（如特定的 hedge words、agreement markers），使得 d_syc 捕获的是 GPT-4.1 的生成模式而非 sycophancy 的通用表示。\n- 论文提到 \"19 of 200 initial pairs were discarded for failing validation\"，但 validation criteria 中没有人工检查环节的说明。\n- 建议：(1) 报告 inter-annotator agreement 或至少进行 human spot-check；(2) 在非 GPT-4.1 生成的 sycophancy 数据上验证 d_syc 的泛化能力。\n\n---\n\n## Questions（需作者澄清）\n\n**Q1**: Table 5 中 GRPO 消融测试的两个 group_size 具体值是多少？如果第二个仍然 ≤4，是否考虑过通过 gradient accumulation 模拟 gs=8+？\n\n**Q2**: 256-token truncation 下 d_syc AUROC 降至 0.60，但 Table 2 中 F1d 的 \"d_syc AUROC\" 初始值是 0.76。这个 0.76 是 full-response 的 AUROC 还是 truncated 的？如果是 truncated 的，那 0.76→0.60 的退化发生在哪个阶段？\n\n**Q3**: ACT 的 max_seq_len=1,024（Table 6）而 GRPO 的 max_completion_length=256。这意味着 ACT 训练时模型看到的序列长度是 GRPO 的 4 倍。这是否也是 ACT 成功的一个因素（更长的上下文有助于学习）？\n\n**Q4**: \"probe reward trap\" 中 1,300 步的 lag 是否跨 seed 一致？Table 3 的数据看起来只来自单次运行。如果不同 seed 的 lag 长度差异很大，\"1,300-step\" 这个具体数字的意义就需要重新评估。\n\n**Q5**: Online recalibration 每 500 步重新提取 d_syc（Section 3.3）。如果 d_syc 在 step 500 时已经因为模型的行为死亡而失去有效信号，那后续的 recalibration 是否反而加剧了问题（在已退化的表示上训练新 probe）？\n\n**Q6**: Table 4 中 ACT (per-token SFT) 的 SYCONSCORE 是 0.301，而 vanilla 是 0.134。这个提升的 effect size 有多大？在 3 个 seed 上是否一致？有没有 seed 低于 vanilla？\n\n---\n\n## Missing References\n\n1. **Rafailov et al., 2023 (DPO)** — 作为另一种不依赖显式 reward model 的对齐方法，与 GRPO 形成对比，值得在 Related Work 讨论。\n2. **Burns et al., 2023 (CCS: Contrast-Consistent Search)** — 使用类似的 contrastive representation 方法提取 truthfulness 方向，与 d_syc 的提取方法高度相关。\n3. **Li et al., 2024 (Inference-Time Intervention, ITI)** — 论文在 Section 7 (p7) 提到 \"inference-time reranking\" 但未引用 ITI 这一最相关的工作。**更正**：检查后发现论文确实引用了 Li et al., 2024 (p7)，但引用的是另一篇 Li et al. 而非 ITI。需要确认。\n\n---\n\n## 小问题（不影响接收）\n\n- **M1**: Figure 1(a) 的 y 轴标签 \"Density\" 不够清晰——是 KDE 密度估计还是归一化直方图？\n- **M2**: SYCONSCORE 定义为 ToF 和 NoF 的调和平均（Section 3.5, p4），但未解释为何选择调和平均而非算术平均或几何平均。调和平均对低值敏感，如果 ToF→0 则 SYCONSCORE→0 regardless of NoF，这可能夸大了 GRPO 的失败程度。\n- **M3**: 论文匿名性：p1 脚注的匿名 URL 格式正确。\n- **M4**: 页数合规：正文 8 页（至 Section 8 Conclusion），Limitations 和 References 从第 9 页起，符合 EMNLP 2026 要求。\n\n---\n\n## 主要优势\n\n- **S1**: 选题重要且有时效性——representation engineering 用于对齐训练是热门方向，记录其失败模式对社区有价值。\n- **S2**: 实验覆盖多种 reward formulation（cosine projection, binary probe, continuous probe），排除了单一公式的偶发问题。\n- **S3**: \"Probe reward trap\" 概念——behavioral death 先于 distributional collapse 的观察有实践指导意义，提醒从业者不能仅依赖 entropy 监控。\n- **S4**: ACT 作为对比方案展示了 dense per-token supervision 的潜力，提供了正面的 actionable insight。\n- **S5**: Stubbornness taxonomy（Appendix B）提供了有用的定性分析，帮助理解模型失败的具体行为模式。\n- **S6**: 写作清晰，结构组织良好，Figure 2 的框架图有效传达了实验设计。\n\n---\n\n## Reproducibility Score\n\n**3/5**\n\n优点：Table 6 提供了核心超参数；匿名代码链接已提供；contrastive pair 构建流程有描述。\n\n不足：(1) contrastive pair 的具体验证标准和完整生成 prompt 未提供；(2) Table 5 ablation 的 group_size 具体值在 PDF 中不清晰；(3) 仅 3 seed，未报告 per-seed breakdown；(4) ACT 的 activation consistency loss weight 和其他关键超参数散落在正文中而非集中在 Table 6。\n\n---\n\n## Overall Assessment\n\n**3.0 — Findings**\n\n本文记录了一个有意义的实验现象（probe reward 在 GRPO 中的系统性失败），选题有价值，写作清晰。然而，核心实验存在两个未被充分控制的混淆变量（group_size=2 和 256-token truncation），它们各自都可能独立解释 GRPO 的失败，使得 \"probe reward trap\" 的因果归因不够严格。因果声明（d_syc 的语义局限性）缺乏直接验证实验。ACT vs. GRPO 的比较混合了多个维度差异，\"supervision granularity\" 的归因同样不够隔离。如果能补充 group_size 和 completion length 的消融实验，并弱化部分因果声明，本文有潜力达到 Conference 水平。\n\n**Confidence: 4/5**\n"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-000959"
+        },
+        {
+          "source_line": 960,
+          "timestamp": "2026-05-25T23:41:04.174097+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reviewer 1 审稿意见已收到。等待 Reviewer 2 完成初审。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director"
+          },
+          "id": "event-000960"
+        }
+      ]
+    },
+    {
+      "number": 69,
+      "messages": [
+        {
+          "source_line": 961,
+          "timestamp": "2026-05-25T23:41:18.548542+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 1 审稿结果]:\n审稿完成。核心结论：\n\n- **Overall: 3.0 (Findings)**，Soundness 2.5，Excitement 3，Reproducibility 3，Confidence 4/5\n- **3 个 critical 问题**：(1) group_size=2 构成致命替代解释且消融不足；(2) 256-token truncation 使 reward AUROC 降至 0.60，接近随机；(3) \"d_syc encodes whether belief changed, not whether it should have\" 的因果声明缺乏直接验证\n- **5 个 warning 问题**：seed 数不足、ACT vs GRPO 比较不公平（混合多维度差异）、单模型验证、stopped gradient 论证力度被高估、contrastive pair 的 GPT-4.1 分布偏差\n- **主要优势**：选题重要、多 reward formulation 覆盖、probe reward trap 概念有实践价值、写作清晰\n\n如果补充 group_size≥8 和更长 completion length 的消融实验并弱化因果声明，有潜力提升至 Conference 水平。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-000961"
+        },
+        {
+          "source_line": 962,
+          "timestamp": "2026-05-25T23:41:43.659431+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__director_get_project_overview,mcp__agent-ml-research__get_external_review_status,mcp__agent-ml-research__get_visual_check_status",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000962"
+        },
+        {
+          "source_line": 963,
+          "timestamp": "2026-05-25T23:41:43.710058+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000963"
+        },
+        {
+          "source_line": 964,
+          "timestamp": "2026-05-25T23:41:46.274066+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_get_project_overview"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__director_get_project_overview",
+            "tool_args": {
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-000964"
+        },
+        {
+          "source_line": 965,
+          "timestamp": "2026-05-25T23:41:46.274487+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_external_review_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__get_external_review_status",
+            "tool_args": {
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-000965"
+        },
+        {
+          "source_line": 966,
+          "timestamp": "2026-05-25T23:41:46.681503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"# 项目 contrastive_entrain_calib 概况\\n\\n## 实验状态 (131 个)\\n\\n- **exp-004-eval-ckpt6000**: DONE (success) — \\n- **exp-003-eval-ckpt1000**: DONE (negative) — \\n- **exp-003-eval-ckpt5000**: DONE (negative) — \\n- **exp-009**: DONE (negative) — \\n- **exp-012**: DONE (success) — \\n- **exp-002v3**: DONE (negative) — \\n- **exp-008v3**: DONE (negative) — \\n- **exp002v2-recalib**: DONE (negative) — \\n- **exp-016**: DONE (negative) — \\n- **exp-014**: DONE (killed) — \\n- **vanilla-baseline**: DONE (success) — \\n- **exp-002v2**: DONE (killed) — \\n- **exp-002**: DONE (killed) — \\n- **exp-008**: DONE (killed) — \\n- **exp-001**: DONE (success) — \\n\\n## 最新报告\\n# Handover — 2026-05-25\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\n|--------|------|------|---------|-----|\\n| exp-act-256-v2 | ACT-256 ablation resubmit: ACT consistency training with 256 samples (128 pairs, matching GRPO data quantity) and reduced-LoRA config (r=64, alpha=64, 4 modules qkvo, dropout=0) to eliminate data-size confound in ACT vs GRPO comparison. v2: resubmit after v1 killed at step 200 due to GPU full. | — | — | — |\\n\\n## 待处理\\n- exp-002v3-gs8: Cosine R1 GRPO group_size=8 消融：如果 gs=8 也 collapse (SYCONScore=0) → d_syc cosine reward 确实不适合做 GRPO reward，即使 group_size 正确；如果 gs=8 不 collapse → gs=2 太小是 cosine R1 failure 的根因。（准备中）\\n\\n## 近期结论\\n- **exp-003-s3** (killed): R3-only GRPO seed 3 (seed=44). Third seed to increase statistical coverage. ← 基于 exp-003\\n- **exp-003-s2-eval-ckpt3000** (success): Eval exp-003-s2 (R3-only seed 2) checkpoint-3000 with D027 unified preset. Cross-seed reproducibility: compare with seed 1 ckpt-3000 (SYCONScore=0.095) for exact step match. ← 基于 exp-003-s2\\n- **exp-003-s2-eval-ckpt2500** (success): Eval exp-003-s2 (R3-only seed 2) checkpoint-2500 with D027 unified preset. Cross-seed reproducibility: compare with seed 1 ckpt-3000 (SYCONScore=0.095) for trajectory alignment. ← 基于 exp-003-s2\\n\\n## 趋势\\n成功 86 / 负向 24 / 失败 10 / 共 129\\n\\n## 下一步\\n（无活跃 id\n…[truncated 756 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__director_get_project_overview",
+            "elapsed_ms": 407
+          },
+          "id": "event-000966"
+        },
+        {
+          "source_line": 967,
+          "timestamp": "2026-05-25T23:41:46.682271+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_visual_check_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__get_visual_check_status",
+            "tool_args": {
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-000967"
+        },
+        {
+          "source_line": 968,
+          "timestamp": "2026-05-25T23:41:46.732817+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"not_requested\\\", \\\"message\\\": \\\"No external review requested.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__get_external_review_status",
+            "elapsed_ms": 458
+          },
+          "id": "event-000968"
+        },
+        {
+          "source_line": 969,
+          "timestamp": "2026-05-25T23:41:46.733373+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-25T23:35:31.458064+00:00\\\", \\\"completed_at\\\": \\\"2026-05-25T23:38:46.323772+00:00\\\", \\\"findings\\\": [{\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 2\\\", \\\"message\\\": \\\"Figure 1(a) 的 axis label 和 legend 字号偏小，接近正文 70% 下限；建议稍微增大以提升快速扫读体验\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 4\\\", \\\"message\\\": \\\"Figure 2 各面板内嵌文字（如 \\\\\\\"AUROC = 0.83\\\\\\\"、\\\\\\\"31/31 checkpoints > vanilla\\\\\\\"）字号较小，审稿人可能需要放大查看；建议关键数字适当加大或移入 caption\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 4\\\", \\\"message\\\": \\\"Figure 2(b) 中 F1/F2/F3 的 ✓/✗ 标记与文字说明间距紧凑，视觉略显拥挤\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 5\\\", \\\"message\\\": \\\"Figure 3 线条颜色方案可区分（蓝/橙），但线型（solid vs dashed）在 150dpi 下差异不够明显；建议加 marker 辅助区分\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 7\\\", \\\"message\\\": \\\"Table 4 列数较多（~8 列），单栏宽度下列间距偏窄；数据仍可读但稍显紧凑\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 8\\\", \\\"message\\\": \\\"Figure 4 中 legend 字号偏小，\\\\\\\"behavioral death\\\\\\\" 和 \\\\\\\"1,300-step lag\\\\\\\" 标注文字清晰但可再大一号\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 12\\\", \\\"message\\\": \\\"附录末页内容仅 ~12 行（约 1/6 页面），超过 3/4 页面空白；建议通过调整附录布局减少空白（如合并到 p11）\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 5-8\\\", \\\"message\\\": \\\"所有 Table 均使用 booktabs 风格（仅水平线，无竖线）✓；Table 4 最优值加粗 ✓\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 9\\\", \\\"message\\\": \\\"Limitations 段简短（~1/4 栏），符合 EMNLP 要求；References 格式统一，无 [?] 未解析引用\\\"}], \\\"counts\\\": {\\\"critical\\\": 0, \\\"warning\\\": 1, \\\"info\\\": 8}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__get_visual_check_status",
+            "elapsed_ms": 51
+          },
+          "id": "event-000969"
+        },
+        {
+          "source_line": 970,
+          "timestamp": "2026-05-25T23:42:07.526930+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Reviewer 1 初审已收录。** 关键记录：\n\n| 维度 | 评分 |\n|------|------|\n| Overall | 3.0 (Findings) |\n| Soundness | 2.5 |\n| Excitement | 3 |\n| Reproducibility | 3 |\n| Confidence | 4/5 |\n\n**Critical (3)**：group_size=2 替代解释、256-token truncation 致 AUROC≈0.60、因果声明缺直接验证\n\n**Warning (5)**：seed 数不足、ACT vs GRPO 不公平比较、单模型验证、stopped gradient 论证高估、GPT-4.1 分布偏差\n\n视觉审查已完成（0 critical, 1 warning, 8 info），外部审稿未请求。\n\n等待 Reviewer 2 初审结果。收到后进入交叉分享阶段。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director"
+          },
+          "id": "event-000970"
+        }
+      ]
+    },
+    {
+      "number": 70,
+      "messages": [
+        {
+          "source_line": 971,
+          "timestamp": "2026-05-25T23:43:35.009026+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿意见]:\n## Reviewer 2 审稿意见（Round 1）\n\n**论文**: The Probe Reward Trap: Behavioral Death Before Distributional Collapse in Sycophancy Calibration\n**审查侧重**: 新颖性 + framing 一致性 + 相关工作 + 写作质量 + 贡献定位\n\n---\n\n### Summary\n\n本文从 LLM 残差流中提取对比性 sycophancy 方向 d_syc（AUROC 0.83），然后将其转化为 GRPO 奖励信号，系统测试了四种公式化方案（cosine projection、binary probe、continuous probe、stopped-gradient variants），均导致训练失败。核心发现\"probe reward trap\"指出：binary probe 奖励下，行为死亡（ToF→0）在第 500 步出现，而生成熵直到第 1800 步才崩溃，产生 1,300 步的监控盲区。对比实验中，per-token 监督方法 ACT 在所有检查点均成功。\n\n---\n\n### Strengths\n\n**S1. 系统性的负面结果文档化**。论文测试了四种将 d_syc 转化为 GRPO 奖励的方案（F1 cosine projection、F2 binary probe、F3 continuous probe，以及 stopped-gradient 变体），而非仅测一种后就下结论。Table 2 的诊断链清晰展示了每种配置的失败模式，这种穷举式排除为\"不是实现细节问题\"提供了说服力。\n\n**S2. 行为死亡-熵崩溃时序分离的实证发现（C2）是最有价值的贡献**。Table 3 和 Figure 4a 清楚展示 ToF 在 step 500 降为 0，而 entropy 直到 step 1800 才崩溃。这一发现对实践者有直接价值——说明仅依赖 entropy monitoring 做 early stopping 是不够的。这种 *temporal dissociation* 比简单说\"reward hacking 发生了\"更有信息量。\n\n**S3. 跨模型 d_syc 判别力验证**。Section 4 不仅在 Qwen3-8B 上验证了 d_syc 的判别力（AUROC 0.83），还在 Llama-3-8B 上做了 cross-model 验证（AUROC 0.779，Table 1 / Figure 3）。Per-layer AUROC 分析（Figure 3）显示判别力在上层 1/3 逐渐涌现，与 sycophancy 作为高层语义现象的直觉一致。Stability ablation（cross-validation、model transfer、evidence-strength gradient）增强了 d_syc 本身作为诊断工具的可信度。\n\n**S4. Stubbornness 分类法（Appendix B）提供了定性补充**。对 181 条 valid-correction 响应的五类失败模式分析（deliberation traps 28.7%、sycophantic stubbornness 24.3%、acknowledge-but-maintain 23.8% 等）为定量指标提供了直观解释，揭示模型学会了调节 *refusal style* 而非 *acceptance rate*。\n\n**S5. 实验设计的关键控制**。Online recalibration（Section 3.3，每 500 步重新提取 d_syc）排除了\"方向漂移导致失败\"的假说。Section 5 对 cosine R₁ 的 dot-product/scale/stopped-gradient 变体（F1a-F1d）逐步排除了优化路径问题。这些控制实验展示了严谨的实验方法论。\n\n---\n\n### Weaknesses\n\n**N1 [critical] 新颖性定位不充分：核心发现是 Goodhart regressional variant 的已知实例化，增量贡献未被清晰论证**\n\n论文在 Section 2（Related Work，第 3 页）自己承认 \"our probe reward trap instantiates the regressional variant, where the proxy-target correlation breaks under optimization shift\"。然而论文随后赋予这一现象一个专有名称（\"probe reward trap\"）并将其定位为核心贡献，却未充分论证为什么这一特定实例化值得单独命名和研究。\n\n具体而言：\n- Manheim & Garrabrant (2019) 已系统分类了 Goodhart 的四种变体，regressional variant 明确预测代理指标在优化压力下会失效\n- Gao et al. (2023) 已在标准 reward model 上量化了 reward overoptimization 的 scaling law\n- Wu & Tang (2026, arXiv:2604.01476, 已被本文引用) 已用 representation engineering 研究 reward hacking 的检测与缓解\n\n论文需要更清晰地回答：**相对于上述已知结果，\"probe reward trap\" 的 delta 在哪里？** 当前论文暗示 delta 是 temporal dissociation（C2），但这一发现的普遍性未经验证（见 N2）。建议在 Introduction 中明确区分：(a) 已知的——representation direction 可能被 Goodhart；(b) 未知的——行为死亡与分布崩溃的时序分离及其对监控实践的具体启示。\n\n**N2 [critical] 核心实验仅在单一模型上进行，泛化性不足**\n\n所有 GRPO 训练实验和 probe reward trap 的观察均仅在 Qwen3-8B 上完成。Llama-3-8B 仅用于 d_syc 判别力的 cross-model 验证（Section 4），并未进行 GRPO 训练。\n\n这是一个显著的泛化性问题：\n- \"1,300-step lag\" 这一具体数字几乎必然依赖于模型架构、LoRA rank（64）、学习率（5e-5）、KL 系数等超参数\n- 不同模型族（如 Llama、Mistral）的 representation geometry 可能不同，d_syc 在 GRPO 中的失败模式也可能不同\n- Limitations section（第 9 页）承认 \"cross-model discriminability is confirmed on Llama-3-8B... but compute constraints prevented training replication on a second architecture\"，但这使得论文标题中的普遍性声明（\"The Probe Reward Trap\"，而非 \"A Probe Reward Trap on Qwen3-8B\"）缺乏支撑\n\n建议至少在一个额外模型上复现核心实验（即使规模较小），或将声明范围显式限定为 Qwen3-8B。\n\n**N3 [critical] C3（supervision granularity 解释）存在严重混淆变量**\n\n论文将 ACT 的成功与 GRPO 的失败归因于 \"supervision granularity\"（per-token vs per-completion），但 ACT 和 GRPO 之间至少存在三个同时变化的因素：\n\n1. **监督粒度**: per-token（ACT）vs per-completion（GRPO）\n2. **学习范式**: supervised L2 consistency loss（ACT）vs RL policy gradient（GRPO）\n3. **作用层**: ACT 在 target layers 施加 L2 约束，GRPO 通过 reward scalar 更新整个策略\n\nSection 7 的结论 \"identifying supervision granularity as one plausible explanation\" 措辞适度，但论文整体叙事（包括 abstract 和 conclusion）将其定位为核心 takeaway 之一，而未充分讨论这些混淆因素。要隔离 supervision granularity 的贡献，至少需要一个 ablation：\n- (a) per-token RL（如 token-level reward shaping with d_syc）来隔离粒度 vs 学习范式\n- 或 (b) per-completion supervised 方法来隔离粒度 vs RL\n\n没有这些 ablation，C3 更接近一个观察而非一个有支撑的因果声明。\n\n**W1 [warning] Abstract/Intro 的 framing 过度泛化**\n\nAbstract 第一句：\"Representation engineering reveals that sycophancy is linearly encoded in LLM residual streams, suggesting that such directions could serve as training signals for alignment. We test this premise systematically and document its failure.\"\n\n这一 framing 暗示论文在测试一个宽泛的前提（representation directions 作为训练信号），但实际实验仅测试了：\n- 一个方向质量水平（AUROC 0.83）\n- 一个 RL 算法（GRPO）\n- 一个模型（Qwen3-8B）\n\n\"systematically\" 和 \"document its failure\" 的措辞暗示该前提已被全面否定，但实际上论文仅否定了 GRPO + d_syc 在 Qwen3-8B 上的特定组合。更准确的 framing 应该是：\"We test one instantiation of this premise—using d_syc as a GRPO reward—and document its failure under four reward formulations.\"\n\n同样，Conclusion（Section 8）：\"Every GRPO reward formulation we tested fails to calibrate sycophancy\" 是准确的，但接着 \"Dense per-token supervision succeeds where per-completion RL does not\" 将范围扩大到了所有 per-completion RL，而实际上只测试了 GRPO。\n\n**W2 [warning] d_syc 编码内容的论证存在循环推理**\n\nSection 7（第 7 页）的核心论断：\"d_syc encodes the direction of belief change but not its evidential warrant\" 是一个关于表征内容的机制性声明。然而，这一声明的主要证据是：GRPO 在 d_syc 上失败 → 因此 d_syc 没有编码正确的信息 → 因此 GRPO 失败。\n\n这是循环推理。要直接支撑这一声明，需要独立证据，例如：\n- d_syc 与 \"是否发生了信念改变\" vs \"改变是否有证据支撑\" 两个标注维度的相关性分析\n- 在已知 valid/invalid belief change 的样本上对比 d_syc 的激活模式\n- 探测 d_syc 方向在 evidential warrant 上的判别力（应该低，以支持声明）\n\n论文在 Section 4 的 evidence-strength ablation 中有部分相关数据（AUROC 从 weak 0.803 到 strong 0.929），但这测量的是 d_syc 在不同 evidence strength 下的判别力，而非 d_syc 是否 *区分* evidence strength。\n\n**W3 [warning] 1,300-step lag 的超参数依赖性未讨论**\n\nTable 3 的 1,300-step lag（ToF 在 step 500 降为 0，entropy 在 step ≈1800 才崩溃）是论文最核心的定量发现，但这一数字的稳定性完全没有讨论：\n- 学习率（5e-5）的变化会如何影响这个 gap？\n- KL 系数（由 KL-clamp 控制）的变化呢？\n- Group size（2）的变化呢？\n- LoRA rank（64）的变化呢？\n\n如果这个 gap 在超参数变化下可以从几百步到几千步不等，那么 \"1,300-step monitoring blind spot\" 就不是一个可靠的定量结论，而只是一个定性观察（行为死亡先于熵崩溃）。建议报告至少一组超参数敏感性分析，或将声明限定为定性层面。\n\n**W4 [warning] d_syc AUROC 0.83 的质量问题未充分讨论**\n\nd_syc 在 Qwen3-8B 上的 AUROC 仅 0.83。这意味着约 17% 的样本被错误分类。论文没有讨论：\n- 如果使用更高质量的方向（如 AUROC > 0.95），reward 是否仍会失败？\n- 0.83 的判别力是否足以区分 \"d_syc 编码的信息不对\" 和 \"d_syc 编码了正确信息但不够精确\"？\n\n这一讨论很重要，因为如果更高质量的方向能成功作为 reward，那么论文的结论就不是 \"representation-based rewards fundamentally fail\"，而是 \"低质量方向作为 reward 会失败\"——这是一个显著不同且不那么有趣的结论。\n\n**W5 [warning] C1/C2/C3 之间缺乏独立性，不应定位为三个独立贡献**\n\nC1（observability gap）、C2（probe reward trap）、C3（supervision granularity explanation）本质上是同一现象的三个方面：\n- C1 是 observation：GRPO 失败，ACT 成功\n- C2 是 C1 中 GRPO 失败的一个具体时序特征\n- C3 是对 C1 的一个（未经充分验证的）解释\n\n将其定位为三个 \"principal claims\"（Section 1，第 2 页）给人以贡献量大于实际的印象。更诚实的定位是：一个核心发现（probe-based GRPO rewards fail）+ 一个有价值的附带观察（temporal dissociation）+ 一个待验证的假说（supervision granularity matters）。\n\n**M1 [minor] 个别术语一致性问题**\n\n- Section 3.2 引入三个公式时用 \"F1 Cosine projection\"/\"F2 Binary probe reward\"/\"F3 Continuous probe\"，但 Section 5 标题用 \"Cosine R₁\"，Section 6 标题用 \"The Probe Reward Trap\"。Reader 需要在 F1/F2/F3 和 R₁/R_t 之间反复对照。\n- \"behavioral death\" 在首次使用时（abstract）未给出正式定义（ToF=0），直到 Section 3.5 才定义 ToF。建议在 abstract 或 introduction 中简要说明。\n\n**M2 [minor] Figure 2 信息密度过高**\n\nFigure 2 在一个图中同时展示了 (a) Direction Extraction, (b) Reward Design Space, (c) Supervision Paradigm，以及底部的关键实验结果摘要（31/31 checkpoints, SYCONSCORE 数字等）。对于首次阅读的 reviewer 来说，这张图承载了过多信息。建议将底部的实验结果摘要移至正文或表格中。\n\n---\n\n### Questions for Authors\n\n**Q1.** 如果 d_syc 的 AUROC 能提高到 0.95+（例如通过更多对比对、更好的方向提取方法、或 non-linear probe），probe reward trap 是否仍然会出现？这对论文核心结论的影响是什么？\n\n**Q2.** Table 3 中 1,300-step lag 在不同随机种子间的方差有多大？三个种子（Appendix A）是否都展示了类似的时序分离？\n\n**Q3.** 论文是否考虑过 token-level reward shaping（将 d_syc 应用于每个 token 而非整个 completion）作为介于 GRPO 和 ACT 之间的 ablation？这将直接测试 supervision granularity 假说。\n\n**Q4.** Section 7 提到 \"Both signals encode whether belief changed, not whether it should have\"——是否有直接的实验来量化 d_syc 在 \"是否应该改变信念\" 这一维度上的判别力？\n\n**Q5.** ACT 的成功是否可能部分归因于它使用了 labeled valid/invalid pairs（监督信号本身包含了 evidential warrant 信息），而非 supervision granularity？\n\n---\n\n### Missing References\n\n1. **Pimentel et al. (2020)** \"Information-Theoretic Probing with Minimum Description Length\" — 与论文使用 linear probe 评估 d_syc 的方法论直接相关。论文引用了 Hewitt & Liang (2019) 的 selectivity 控制，但 Pimentel 等人的 MDL 框架提供了另一种评估 probe 是否真正捕获表征信息的视角。\n\n2. **Rafailov et al. (2024)** \"Direct Preference Optimization\" — 作为 GRPO 的替代 RL 范式，DPO 直接在 preference 对上优化策略而不需要显式 reward model。在讨论 \"per-completion RL fails\" 的泛化性时，提及 DPO 是否也会失败（或至少讨论其与 GRPO 的区别）是有价值的。\n\n3. **Voita & Titov (2020)** \"Information-Theoretic Probing for Linguistic Structure\" — 关于 probe 复杂度与信息内容的关系，与论文关于 \"d_syc 编码了什么\" 的讨论直接相关。\n\n注：上述参考文献的缺失不构成重大问题，但会加强论文在 probing methodology 和 RL alternatives 方面的讨论深度。\n\n---\n\n### Novelty Assessment\n\n**中等偏低（Moderate-Low）**。\n\n核心观察——representation-based proxy reward 在 RL 训练中被 Goodhart——是该领域的已知风险。论文的增量贡献在于：(1) 在 sycophancy 场景下的具体实证文档化，(2) 行为死亡与熵崩溃的时序分离发现。其中 (2) 是最有价值的贡献，但仅在单一模型上验证，且时序数字的超参数依赖性未知。\n\n论文自己承认是 Goodhart regressional variant 的实例化（Section 2），但未能充分论证为什么这一实例化值得一篇独立论文。最佳论证路径是强化 temporal dissociation 的普遍性和实践意义（需要更多模型和超参数的实验支持）。\n\n---\n\n### Overall Assessment\n\n**Overall: 3.0 — Findings**\n\n**Soundness: 3/5** — 主要实验设计合理，四种 reward 公式的穷举测试和诊断链有说服力，但核心声明受限于单一模型、C3 的混淆变量问题、以及 d_syc 编码内容论证的循环性。\n\n**Excitement: 2.5/5** — 负面结果对 representation engineering 方向的实践者有参考价值，temporal dissociation 发现有一定新意，但核心贡献是已知原理（Goodhart）的实例化，且单模型实验限制了泛化性和影响力。\n\n**一句话总结**: 论文提供了一个有条理的负面结果案例研究，但核心发现（probe reward 被 Goodhart）缺乏超越已知风险的根本新意，单模型实验和未隔离的混淆变量使得三个 claims 的说服力不足以支撑 main conference 接收。在 Findings 级别，作为 representation-based reward 的 cautionary tale 有其价值。\n\n**置信度: 4/5** — 我熟悉 representation engineering、reward overoptimization 和 probing methodology 的相关文献。对 GRPO 的具体实现细节了解中等。\n\n---\n\n### 格式合规检查\n- ✅ 正文 8 页（Sections 1-8），符合 EMNLP 2026 long paper 限制\n- ✅ Limitations section 存在（第 9 页），不计入页数限制\n- ✅ Abstract 约 160 words，符合 200 words 限制\n- ✅ 双盲格式（\"Anonymous ACL submission\"）\n- ✅ 使用 ACL style template\n- ⚠️ 未见 Ethics Statement（可选，不影响接收）"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-000971"
+        },
+        {
+          "source_line": 972,
+          "timestamp": "2026-05-25T23:43:48.325290+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__director_post_to_reviewer",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000972"
+        },
+        {
+          "source_line": 973,
+          "timestamp": "2026-05-25T23:43:48.375973+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000973"
+        },
+        {
+          "source_line": 974,
+          "timestamp": "2026-05-25T23:44:30.353043+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_reviewer"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "tool_args": {
+              "text": "## 交叉分享：Reviewer 2 的完整审稿意见\n\n请逐条阅读 Reviewer 2 的审稿意见，对每个 critical/warning/minor 问题给出 `[AGREE]` 或 `[REBUT]`（附理由）。重点关注你们之间的分歧点。\n\n---\n\n以下是 Reviewer 2 的完整审稿：\n\n**Overall: 3.0 (Findings)**，Soundness 3，Excitement 2.5，Confidence 4/5\n\n### Strengths（S1-S5）\n- S1: 系统性负面结果文档化，四种 reward 公式穷举测试有说服力\n- S2: 行为死亡-熵崩溃时序分离（C2）是最有价值的贡献\n- S3: 跨模型 d_syc 判别力验证（Qwen3-8B AUROC 0.83 + Llama-3-8B AUROC 0.779）\n- S4: Stubbornness 分类法（Appendix B）提供定性补充\n- S5: 实验设计的关键控制（online recalibration、逐步排除优化路径问题）\n\n### Weaknesses\n\n**N1 [critical] 新颖性定位不充分**：核心发现是 Goodhart regressional variant 的已知实例化。论文自己承认这一点（Section 2），但未充分论证为什么这一实例化值得单独命名（\"probe reward trap\"）和一篇独立论文。相对于 Manheim & Garrabrant (2019)、Gao et al. (2023)、Wu & Tang (2026) 的增量 delta 不清晰。\n\n**N2 [critical] 核心实验仅在单一模型上进行**：所有 GRPO 训练实验均仅在 Qwen3-8B 上完成。Llama-3-8B 仅用于 d_syc 判别力验证，未进行 GRPO 训练。\"1,300-step lag\" 几乎必然依赖于超参数。标题中的普遍性声明缺乏支撑。\n\n**N3 [critical] C3（supervision granularity）存在严重混淆变量**：ACT vs GRPO 之间至少存在三个同时变化的因素：监督粒度、学习范式（supervised L2 vs RL policy gradient）、作用层。要隔离 supervision granularity 需要 ablation（如 per-token RL 或 per-completion supervised）。\n\n**W1 [warning] Abstract/Intro framing 过度泛化**：实际仅测试了一个方向质量（AUROC 0.83）、一个 RL 算法（GRPO）、一个模型，但 framing 暗示全面否定了 representation directions 作为训练信号。\n\n**W2 [warning] d_syc 编码内容的论证存在循环推理**：\"d_syc 编码 belief change 而非 evidential warrant\" 的声明缺乏独立证据，主要靠 GRPO 失败反推。\n\n**W3 [warning] 1,300-step lag 的超参数依赖性未讨论**：学习率、KL 系数、group size、LoRA rank 变化对这个 gap 的影响完全未分析。\n\n**W4 [warning] d_syc AUROC 0.83 的质量问题**：如果更高质量方向（AUROC > 0.95）能成功，结论就从\"fundamentally fail\"变成\"低质量方向会失败\"。\n\n**W5 [warning] C1/C2/C3 缺乏独立性**：三个 claims 本质是同一现象的三个方面，不应定位为三个独立贡献。\n\n**M1 [minor]** 术语一致性问题（F1/F2/F3 vs R₁/R_t 命名混乱；behavioral death 首次使用未定义）。\n\n**M2 [minor]** Figure 2 信息密度过高。\n\n### Missing References\n1. Pimentel et al. (2020) \"Information-Theoretic Probing with MDL\"\n2. Rafailov et al. (2024) \"DPO\" — 讨论 per-completion RL 泛化性时应提及\n3. Voita & Titov (2020) \"Information-Theoretic Probing for Linguistic Structure\"\n\n### Questions\nQ1. 更高质量 d_syc（AUROC 0.95+）是否仍会触发 probe reward trap？\nQ2. 1,300-step lag 在不同种子间的方差？\nQ3. 是否考虑过 token-level reward shaping 作为 ablation？\nQ4. 是否有直接实验量化 d_syc 在 \"是否应该改变信念\" 维度的判别力？\nQ5. ACT 成功是否因为其监督信号本身包含 evidential warrant 信息？\n\n---\n\n请对以上每个 weakness（N1-N3, W1-W5, M1-M2）逐条回应 `[AGREE]` 或 `[REBUT]`。",
+              "reviewer_id": "1",
+              "project": "contrastive_entrain_calib",
+              "round_number": "1"
+            }
+          },
+          "id": "event-000974"
+        },
+        {
+          "source_line": 975,
+          "timestamp": "2026-05-25T23:44:49.642689+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_056796cf71f839be40019e5f1a11791b:reviewer_1\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "elapsed_ms": 19289
+          },
+          "id": "event-000975"
+        },
+        {
+          "source_line": 976,
+          "timestamp": "2026-05-25T23:44:49.793770+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__director_post_to_reviewer"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "tool_args": {
+              "text": "## 交叉分享：Reviewer 1 的完整审稿意见\n\n请逐条阅读 Reviewer 1 的审稿意见，对每个 critical/warning 问题给出 `[AGREE]` 或 `[REBUT]`（附理由）。重点关注你们之间的分歧点。\n\n---\n\n以下是 Reviewer 1 的完整审稿：\n\n**Overall: 3.0 (Findings)**，Soundness 2.5，Excitement 3，Confidence 4/5\n\n### 3 个 Critical 问题\n\n**C1 [critical] group_size=2 构成致命替代解释且消融不足**：GRPO 使用 group_size=2 意味着每次只采样 2 个 completion 来估计 advantage。这使得 reward signal 极度噪声化，可能是训练失败的根本原因而非 d_syc 本身的问题。论文需要 group_size≥8 的消融来排除这一替代解释。\n\n**C2 [critical] 256-token truncation 使 reward AUROC 降至 0.60，接近随机**：在 256 token 截断下，d_syc 的 reward 判别力（AUROC）从完整长度的 0.83 降至 0.60。这意味着 GRPO 实际收到的 reward signal 接近随机，训练失败可能仅是因为 reward 质量太低，而非 probe reward 的根本性问题。\n\n**C3 [critical] \"d_syc encodes whether belief changed, not whether it should have\" 的因果声明缺乏直接验证**：这一核心机制性声明没有独立的因果验证实验，主要靠训练失败来反推。\n\n### 5 个 Warning 问题\n\n**W1 [warning] seed 数不足**：仅 3 个种子，统计显著性不足。\n\n**W2 [warning] ACT vs GRPO 比较不公平**：两者之间混合了多个维度差异（监督粒度、学习范式、作用层），无法隔离归因。\n\n**W3 [warning] 单模型验证**：所有训练实验仅在 Qwen3-8B 上进行。\n\n**W4 [warning] stopped gradient 论证力度被高估**：stopped gradient 变体（F1c/F1d）仅排除了梯度回传路径问题，但论文将其论证力度描述得过高。\n\n**W5 [warning] contrastive pair 的 GPT-4.1 分布偏差**：GPT-4.1 生成的对比对可能引入系统性偏差。\n\n### 主要优势\n- 选题重要（representation-based reward 的可行性是 alignment 领域关键问题）\n- 多 reward formulation 覆盖（四种公式 + 变体的穷举测试）\n- probe reward trap 概念有实践价值\n- 写作清晰\n\n### 总结\n如果补充 group_size≥8 和更长 completion length 的消融实验并弱化因果声明，有潜力提升至 Conference 水平。\n\n---\n\n请对以上每个 weakness（C1-C3, W1-W5）逐条回应 `[AGREE]` 或 `[REBUT]`。",
+              "reviewer_id": "2",
+              "project": "contrastive_entrain_calib",
+              "round_number": "1"
+            }
+          },
+          "id": "event-000976"
+        },
+        {
+          "source_line": 977,
+          "timestamp": "2026-05-25T23:44:51.130139+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reviewer_key\\\": \\\"feishu:group:oc_056796cf71f839be40019e5f1a11791b:reviewer_2\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__director_post_to_reviewer",
+            "elapsed_ms": 1336
+          },
+          "id": "event-000977"
+        },
+        {
+          "source_line": 978,
+          "timestamp": "2026-05-25T23:45:02.170295+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "交叉分享已发送。两位 Reviewer 正在阅读对方的审稿意见并准备逐条回应。\n\n**Round 1 初审汇总**：\n- **Reviewer 1**: 3.0 (Findings)，Soundness 2.5，Excitement 3\n- **Reviewer 2**: 3.0 (Findings)，Soundness 3，Excitement 2.5\n- 两人评分一致，均定位 Findings 级别\n\n**共识区域**（两人均指出）：\n- 单模型验证（泛化性不足）\n- ACT vs GRPO 比较的混淆变量\n- d_syc 编码内容的因果声明缺乏直接验证\n\n**各自独特发现**：\n- R1 独有：group_size=2 替代解释、256-token truncation 导致 reward 退化、GPT-4.1 分布偏差\n- R2 独有：Goodhart regressional variant 的新颖性定位问题、framing 过度泛化、C1/C2/C3 缺乏独立性、循环推理\n\n等待交叉回应返回后进入收敛判断。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director"
+          },
+          "id": "event-000978"
+        }
+      ]
+    },
+    {
+      "number": 71,
+      "messages": [
+        {
+          "source_line": 979,
+          "timestamp": "2026-05-25T23:45:04.739191+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿结果]:\n审稿完成。已向 Review Director 提交完整意见，核心判断：\n\n- **Overall: 3.0 (Findings)**\n- **3 个 critical 问题**：(1) 新颖性不足——核心发现是 Goodhart regressional variant 的已知实例化，增量贡献未清晰论证；(2) 所有 GRPO 训练仅在 Qwen3-8B 单模型上进行，泛化性不足；(3) C3（supervision granularity）存在至少三个混淆变量未隔离\n- **5 个 warning 问题**：framing 过度泛化、d_syc 编码论证循环推理、1300-step lag 超参数依赖性未讨论、d_syc AUROC 0.83 质量问题、C1/C2/C3 缺乏独立性\n- **最有价值的贡献**是 behavioral death 与 entropy collapse 的时序分离（C2），但需要更多模型和超参数敏感性分析来建立普遍性"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-000979"
+        },
+        {
+          "source_line": 980,
+          "timestamp": "2026-05-25T23:45:11.482640+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "收到 Reviewer 2 的初审确认。交叉分享任务已发出，等待两位 Reviewer 的交叉回应。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director"
+          },
+          "id": "event-000980"
+        }
+      ]
+    },
+    {
+      "number": 72,
+      "messages": [
+        {
+          "source_line": 981,
+          "timestamp": "2026-05-25T23:46:28.507260+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 1 审稿意见]:\n\n# Reviewer 1 对 Reviewer 2 审稿意见的交叉回应\n\n---\n\n## Critical Issues\n\n**[AGREE] R2-N1: 新颖性定位不充分——Goodhart regressional variant 的已知实例化**\n\n同意这是一个实质性问题。论文在 Section 2 (p3) 已引用 Manheim & Garrabrant (2019)，承认 proxy-target 断裂属于 Goodhart 现象的已知范畴。但论文未清晰论证\"probe reward trap\"这一命名相对于通用 Goodhart 框架的增量贡献。\n\n补充我的发现：结合我的 N2（256-token truncation 导致 AUROC 降至 0.60），这个\"trap\"可能进一步简化为\"weak proxy reward fails in RL\"——一个更加平凡的实例。如果论文不能证明在 reward 信号质量充分（AUROC ≥ 0.75 at training time）且 GRPO 配置合理（group_size ≥ 8）的条件下 trap 仍然成立，novelty 定位会更加困难。\n\n不过，我认为 R2 对 excitement 的评分（2.5）可能略低。行为死亡先于熵崩溃的时序观察（C2）确实具有实践警示价值——即使底层机制是已知的 Goodhart 现象，这一具体表现形式对从业者来说并非显而易见。建议论文重新定位贡献：从\"发现新现象\"转向\"在 representation-based RL 这一具体场景中，首次文档化 Goodhart failure 的精确时序动态及其对标准监控手段的盲区\"。\n\n---\n\n**[AGREE] R2-N2: 核心实验仅在单一模型上进行**\n\n完全同意，与我的 W3 一致。Qwen3-8B 是唯一进行了完整 GRPO/ACT 训练的模型。Llama-3-8B 仅验证了 d_syc 的判别力（Table 1, p5），未运行任何训练实验。\"1,300-step lag\" 在不同模型架构、不同规模上是否复现完全未知。标题中 \"Sycophancy Calibration\" 的泛化暗示缺乏支撑。\n\n---\n\n**[AGREE] R2-N3: C3（supervision granularity）存在严重混淆变量**\n\n完全同意，与我的 W2 高度一致。ACT 与 GRPO 之间至少有三个维度同时变化：(a) 监督粒度（token vs. completion），(b) 学习范式（SFT + L2 loss vs. policy gradient），(c) 序列长度（ACT max_seq_len=1,024 vs. GRPO max_completion_length=256，见 Table 6, p11）。\n\n补充我的发现：我在 Q3 中还指出了第 (c) 点——ACT 的序列长度是 GRPO 的 4 倍，这也可能是 ACT 成功的因素之一。R2 没有提到这个额外的混淆变量。论文需要设计更精细的消融实验来隔离各因素。最低限度的消融应包括：per-token reward shaping in GRPO（隔离粒度因素），或将 ACT 的 max_seq_len 也限制到 256（隔离序列长度因素）。\n\n---\n\n## Warning Issues\n\n**[AGREE] R2-W1: Abstract/Intro framing 过度泛化**\n\n同意。论文测试了单一方向质量（AUROC 0.83 offline / ~0.60 truncated）、单一 RL 算法（GRPO）、单一模型（Qwen3-8B），但 abstract 使用了 \"every formulation that converts it into a GRPO reward collapses\" 这样的表述，以及 conclusion (p8) 中 \"Every GRPO reward formulation we tested fails\" 的概括。这些表述在字面上准确，但在读者感知层面暗示了更广泛的否定结论。建议将 framing 明确限定为 \"under our specific configuration (Qwen3-8B, group_size=2, 256-token completion)\"。\n\n---\n\n**[AGREE] R2-W2: d_syc 编码内容的论证存在循环推理**\n\n同意，这与我的 N3 高度重叠。R2 的表述更精确——\"缺乏独立证据，主要靠 GRPO 失败反推\"准确概括了问题。论文的推理链是：GRPO 失败 → 因为 d_syc 编码了错误的信息 → 所以 GRPO 必然失败。但缺少第二步的独立验证。\n\n我在 N3 中建议的 intervention 实验（在 d_syc 方向做 activation steering，观察行为变化）可以打破这一循环。如果 steering 向 d_syc 正方向移动同时增加 warranted revision 和 sycophantic capitulation 的概率，就直接验证了 d_syc 无法区分两者的假设。\n\n---\n\n**[AGREE] R2-W3: 1,300-step lag 的超参数依赖性未讨论**\n\n同意。与我的 Q4 一致。1,300 是一个非常具体的数字，但论文未分析它对学习率、KL 系数、group_size、LoRA rank 的敏感度。如果改变 KL 系数就能将 lag 从 1,300 缩短到 200 或拉长到 5,000，那这个数字本身的意义就大幅降低。论文应至少报告 3 个 seed 下 lag 的范围，而非单个值。\n\n---\n\n**[REBUT] R2-W4: d_syc AUROC 0.83 的质量问题——部分反驳**\n\nR2 的论点是\"如果更高质量方向（AUROC > 0.95）能成功，结论就从 fundamentally fail 变成低质量方向会失败\"。逻辑上成立，但我认为 AUROC 0.95 的门槛对线性 probe 而言**不切实际**。\n\n理由：(1) 0.83 的 AUROC 对于 residual stream 上的线性方向已经是不错的质量——representation engineering 文献中（Marks & Tegmark, 2024; Zou et al., 2025），多数 contrastive direction 的 AUROC 在 0.75-0.90 范围；(2) 达到 0.95+ 通常需要非线性 probe 或更大规模的标注数据，这会改变方法本身的性质；(3) 论文使用 181 对 contrastive pair，在该数据量下 0.83 是合理的。\n\n**但是**，更重要的问题是我在 N2 中指出的：训练时实际使用的 reward 信号质量由于 256-token truncation 降至 AUROC ~0.60，这远低于 0.83。R2 关注的应该是**训练时的有效 AUROC**（~0.60）而非离线 AUROC（0.83）。如果论文能消除 truncation 问题（使用 512+ token completion），使训练时 AUROC 接近 0.83，那就能更有力地论证 \"0.83 质量的方向仍然 trap\"。\n\n总结：同意\"方向质量 vs. 方法固有缺陷\"的区分需要讨论，但 0.95 的门槛不现实。真正的问题是训练时 AUROC 仅 0.60。\n\n---\n\n**[AGREE] R2-W5: C1/C2/C3 缺乏独立性**\n\n部分同意。C1（GRPO 失败 + ACT 成功）和 C3（supervision granularity 是解释）确实紧密耦合——C3 本质上是 C1 的候选解释，不算独立贡献。\n\n但 C2（行为死亡先于熵崩溃的 1,300 步时序分离）作为经验观察，与 C1/C3 有一定独立性——即使不同意 C3 的解释，C2 的时序观察仍然成立。建议作者将贡献重新组织为一个核心发现（probe reward 在 GRPO 中失败）加两个子发现（时序动态 + 对比 ACT 的初步解释），而非三个并列贡献。\n\n---\n\n## Minor Issues\n\n**[AGREE] R2-M1: 术语一致性**\n\n同意。F1/F2/F3 是 reward formulation 编号，R₁/R_t 是 reward component 编号，两套命名系统确实容易混淆。\"behavioral death\" 在 abstract 首次出现时确实没有正式定义。\n\n---\n\n**[REBUT] R2-M2: Figure 2 信息密度过高**\n\n不同意。Figure 2 将三个模块（Direction Extraction, Reward Design Space, Supervision Paradigm）整合在一张图中，有效传达了实验框架的全貌。对于方法论导向的论文，读者需要一张概览图来理解实验设计的逻辑关系。拆分为多张小图反而会增加读者在不同 figure 之间跳转的认知负担。在我的审稿中，我将 Figure 2 列为 strength (S6)。\n\n---\n\n## 对 R2 Missing References 的评论\n\n1. **Pimentel et al. (2020) \"Information-Theoretic Probing with MDL\"**：同意应引用。论文使用线性 probe 但未讨论 probe 本身的表达能力与 selectivity 问题。Pimentel 等人的工作直接相关。\n2. **Rafailov et al. (2024) DPO**：同意，我也在自己的审稿中指出了这一缺失引用。\n3. **Voita & Titov (2020)**：同意，与 probing methodology 的讨论相关。\n\n---\n\n## 对 R2 Questions 的评论\n\n- **Q1**（更高 AUROC 是否仍 trap）：与 R2-W4 一致，合理问题，但如上所述 0.95 门槛不现实，建议改为\"消除 truncation 后 AUROC ~0.76-0.83 是否仍 trap\"。\n- **Q2**（lag 的跨 seed 方差）：与我的 Q4 完全一致。\n- **Q3**（token-level reward shaping）：与我的 W2 一致，这是隔离 supervision granularity 的关键消融。\n- **Q4**（直接量化 d_syc 对 evidential warrant 的判别力）：与我的 N3 一致。\n- **Q5**（ACT 成功是否因为包含 warrant 信息）：有趣的问题。ACT 的监督信号来自 labeled valid/invalid pairs，确实显式包含了 \"是否应该改变\" 的信息——这可能是 ACT 成功的根本原因，而非 supervision granularity。这进一步削弱了 C3 的归因。\n\n---\n\n## R1 与 R2 的主要分歧点总结\n\n| 问题 | R1 | R2 | 差异 |\n|------|----|----|------|\n| GRPO 失败的首要替代解释 | group_size=2 + 256-token truncation（实验配置缺陷） | 方向质量不足 + Goodhart 已知现象 | R1 更聚焦实验设计层面，R2 更聚焦概念层面 |\n| Figure 2 | 优势（S6：有效传达框架） | 劣势（M2：信息过密） | 直接分歧 |\n| Excitement | 3/5 | 2.5/5 | R1 认为 C2 时序观察有实践价值，R2 认为 novelty 不足 |\n| d_syc AUROC 0.83 | 离线 0.83 尚可，问题在于 truncation 后训练时仅 0.60 | 0.83 本身就不够高 | R1 区分了离线 vs 训练时 AUROC |\n\n两位 reviewer 的核心共识：**group_size/truncation/单模型/ACT-GRPO 混淆变量**是必须解决的实验缺陷，**因果声明缺乏独立验证**是必须弱化或补充证据的理论缺陷。Overall 评分一致为 3.0 (Findings)。\n"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-000981"
+        },
+        {
+          "source_line": 982,
+          "timestamp": "2026-05-25T23:47:13.079683+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "收到 Reviewer 1 的交叉回应。\n\n**收敛评估（初步）**：R1 对 R2 的 Critical/Warning issues 几乎全部 [AGREE]，仅两处 [REBUT]（Figure 2 评价 + AUROC 门槛细节），且 rebut 不涉及核心结论。双方 Overall 评分一致（3.0 Findings）。核心共识已形成：\n\n- 单模型 + group_size=2 + truncation → 实验设计不足\n- ACT vs GRPO 混淆变量未隔离\n- 因果声明缺乏独立验证\n- Novelty 定位需要从\"新现象\"转向\"已知现象的具体文档化\"\n\n等待 Reviewer 2 对 Reviewer 1 的交叉回应，到齐后进入 Step 4（合成报告）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director"
+          },
+          "id": "event-000982"
+        }
+      ]
+    },
+    {
+      "number": 73,
+      "messages": [
+        {
+          "source_line": 983,
+          "timestamp": "2026-05-25T23:47:15.593554+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 1 审稿结果]:\n交叉回应已提交。\n\n总结：对 R2 的 10 个问题中，8 个 `[AGREE]`（N1-N3, W1-W3, W5, M1），2 个 `[REBUT]`（W4 部分反驳——0.95 门槛不现实但训练时 AUROC 0.60 确实是问题；M2 反驳——Figure 2 信息密度合理）。两位 reviewer 在 Overall 3.0 (Findings) 上达成一致，核心共识是实验混淆变量未控制 + 因果声明缺乏独立验证。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-000983"
+        },
+        {
+          "source_line": 984,
+          "timestamp": "2026-05-25T23:47:54.164431+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:get_external_review_status,get_visual_check_status,update_review_issues,read_project_file,submit_review_report_to_research_director",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000984"
+        },
+        {
+          "source_line": 985,
+          "timestamp": "2026-05-25T23:47:54.215135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000985"
+        },
+        {
+          "source_line": 986,
+          "timestamp": "2026-05-25T23:47:58.380844+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_external_review_status,mcp__agent-ml-research__get_visual_check_status,mcp__agent-ml-research__update_review_issues,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__submit_review_report_to_research_director",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000986"
+        },
+        {
+          "source_line": 987,
+          "timestamp": "2026-05-25T23:47:58.481686+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000987"
+        },
+        {
+          "source_line": 988,
+          "timestamp": "2026-05-25T23:48:03.601750+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_external_review_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__get_external_review_status",
+            "tool_args": {
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-000988"
+        },
+        {
+          "source_line": 989,
+          "timestamp": "2026-05-25T23:48:03.602248+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_visual_check_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__get_visual_check_status",
+            "tool_args": {
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-000989"
+        },
+        {
+          "source_line": 990,
+          "timestamp": "2026-05-25T23:48:04.104714+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"not_requested\\\", \\\"message\\\": \\\"No external review requested.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__get_external_review_status",
+            "elapsed_ms": 502
+          },
+          "id": "event-000990"
+        },
+        {
+          "source_line": 991,
+          "timestamp": "2026-05-25T23:48:04.105144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-25T23:35:31.458064+00:00\\\", \\\"completed_at\\\": \\\"2026-05-25T23:38:46.323772+00:00\\\", \\\"findings\\\": [{\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 2\\\", \\\"message\\\": \\\"Figure 1(a) 的 axis label 和 legend 字号偏小，接近正文 70% 下限；建议稍微增大以提升快速扫读体验\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 4\\\", \\\"message\\\": \\\"Figure 2 各面板内嵌文字（如 \\\\\\\"AUROC = 0.83\\\\\\\"、\\\\\\\"31/31 checkpoints > vanilla\\\\\\\"）字号较小，审稿人可能需要放大查看；建议关键数字适当加大或移入 caption\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 4\\\", \\\"message\\\": \\\"Figure 2(b) 中 F1/F2/F3 的 ✓/✗ 标记与文字说明间距紧凑，视觉略显拥挤\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 5\\\", \\\"message\\\": \\\"Figure 3 线条颜色方案可区分（蓝/橙），但线型（solid vs dashed）在 150dpi 下差异不够明显；建议加 marker 辅助区分\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 7\\\", \\\"message\\\": \\\"Table 4 列数较多（~8 列），单栏宽度下列间距偏窄；数据仍可读但稍显紧凑\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 8\\\", \\\"message\\\": \\\"Figure 4 中 legend 字号偏小，\\\\\\\"behavioral death\\\\\\\" 和 \\\\\\\"1,300-step lag\\\\\\\" 标注文字清晰但可再大一号\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 12\\\", \\\"message\\\": \\\"附录末页内容仅 ~12 行（约 1/6 页面），超过 3/4 页面空白；建议通过调整附录布局减少空白（如合并到 p11）\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 5-8\\\", \\\"message\\\": \\\"所有 Table 均使用 booktabs 风格（仅水平线，无竖线）✓；Table 4 最优值加粗 ✓\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 9\\\", \\\"message\\\": \\\"Limitations 段简短（~1/4 栏），符合 EMNLP 要求；References 格式统一，无 [?] 未解析引用\\\"}], \\\"counts\\\": {\\\"critical\\\": 0, \\\"warning\\\": 1, \\\"info\\\": 8}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__get_visual_check_status",
+            "elapsed_ms": 502
+          },
+          "id": "event-000991"
+        },
+        {
+          "source_line": 992,
+          "timestamp": "2026-05-25T23:48:04.306065+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "file": "artifacts/review_issues.yaml",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000992"
+        },
+        {
+          "source_line": 993,
+          "timestamp": "2026-05-25T23:48:04.357288+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'mistakes.yaml', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'artifacts/review_issues.yaml'\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 51
+          },
+          "id": "event-000993"
+        },
+        {
+          "source_line": 994,
+          "timestamp": "2026-05-25T23:48:07.620583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_local_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000994"
+        },
+        {
+          "source_line": 995,
+          "timestamp": "2026-05-25T23:48:07.671217+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000995"
+        },
+        {
+          "source_line": 996,
+          "timestamp": "2026-05-25T23:48:16.045332+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/review_issues.yaml"
+            }
+          },
+          "id": "event-000996"
+        },
+        {
+          "source_line": 997,
+          "timestamp": "2026-05-25T23:48:16.146734+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tissues:\n2\t  # === ROUND 1-7 RESOLVED ISSUES ===\n3\t\n4\t  - id: R1-N1\n5\t    summary: \"Fisher exact test 将非独立 checkpoints 当独立样本，p<0.0001 不可信\"\n6\t    category: method\n7\t    severity: critical\n8\t    status: resolved\n9\t    first_raised_round: 1\n10\t    last_seen_round: 1\n11\t    mentions:\n12\t      - round: 1\n13\t        reviewers: [1, 2]\n14\t        note: \"R1 首提，R2 完全同意。\"\n15\t      - round: 2\n16\t        reviewers: []\n17\t        note: \"本轮未提及。论文已移除 Fisher p 值。已修复。\"\n18\t      - round: 8\n19\t        reviewers: []\n20\t        note: \"Round 8 未提及，确认已修复。\"\n21\t    resolution: \"论文已移除所有 Fisher p 值，改用描述性统计。\"\n22\t    resolution_round: 2\n23\t\n24\t  - id: R2-N1\n25\t    summary: \"遗漏 Papadatos & Freedman (2024) probe penalty 成功案例\"\n26\t    category: framing\n27\t    severity: critical\n28\t    status: resolved\n29\t    first_raised_round: 1\n30\t    last_seen_round: 3\n31\t    mentions:\n32\t      - round: 6\n33\t        reviewers: []\n34\t        note: \"Round 6 未提及。§6 和 §7 讨论 Papadatos 充分。确认已修复。\"\n35\t      - round: 8\n36\t        reviewers: []\n37\t        note: \"Round 8 R2 确认 Papadatos & Freedman 2024 已引用。\"\n38\t    resolution: \"§6-§7 充分讨论，多轮确认已解决。\"\n39\t    resolution_round: 2\n40\t\n41\t  - id: R2-N2\n42\t    summary: \"references.bib 多条引用严重不完整\"\n43\t    category: format\n44\t    severity: critical\n45\t    status: resolved\n46\t    first_raised_round: 1\n47\t    last_seen_round: 1\n48\t    mentions:\n49\t      - round: 8\n50\t        reviewers: []\n51\t        note: \"Round 8 引用格式完整。\"\n52\t    resolution: \"bib entry 已补全。\"\n53\t    resolution_round: 2\n54\t\n55\t  - id: R1-W3\n56\t    summary: \"AUROC ±值来自 5-fold CV std，不是正式 CI\"\n57\t    category: method\n58\t    severity: warning\n59\t    status: resolved\n60\t    first_raised_round: 1\n61\t    last_seen_round: 1\n62\t    mentions:\n63\t      - round: 8\n64\t        reviewers: []\n65\t        note: \"Round 8 未提及。\"\n66\t    resolution: \"已替换为 bootstrap CI。\"\n67\t    resolution_round: 4\n68\t\n69\t  - id: R2-MF4\n70\t    summary: \"正文超 8 页限制\"\n71\t    category: format\n72\t    severity: critical\n73\t    status: resolved\n74\t    first_raised_round:\n…[truncated 25906 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-000997"
+        },
+        {
+          "source_line": 998,
+          "timestamp": "2026-05-25T23:51:59.666900+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_review_issues"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__update_review_issues",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "issues_yaml": "issues:\n  # === ROUND 1-7 RESOLVED ISSUES ===\n\n  - id: R1-N1\n    summary: \"Fisher exact test 将非独立 checkpoints 当独立样本，p<0.0001 不可信\"\n    category: method\n    severity: critical\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 1\n    mentions:\n      - round: 1\n        reviewers: [1, 2]\n        note: \"R1 首提，R2 完全同意。\"\n      - round: 2\n        reviewers: []\n        note: \"本轮未提及。论文已移除 Fisher p 值。已修复。\"\n      - round: 8\n        reviewers: []\n        note: \"Round 8 未提及，确认已修复。\"\n    resolution: \"论文已移除所有 Fisher p 值，改用描述性统计。\"\n    resolution_round: 2\n\n  - id: R2-N1\n    summary: \"遗漏 Papadatos & Freedman (2024) probe penalty 成功案例\"\n    category: framing\n    severity: critical\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 3\n    mentions:\n      - round: 6\n        reviewers: []\n        note: \"Round 6 未提及。§6 和 §7 讨论 Papadatos 充分。确认已修复。\"\n      - round: 8\n        reviewers: []\n        note: \"Round 8 R2 确认 Papadatos & Freedman 2024 已引用。\"\n    resolution: \"§6-§7 充分讨论，多轮确认已解决。\"\n    resolution_round: 2\n\n  - id: R2-N2\n    summary: \"references.bib 多条引用严重不完整\"\n    category: format\n    severity: critical\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 1\n    mentions:\n      - round: 8\n        reviewers: []\n        note: \"Round 8 引用格式完整。\"\n    resolution: \"bib entry 已补全。\"\n    resolution_round: 2\n\n  - id: R1-W3\n    summary: \"AUROC ±值来自 5-fold CV std，不是正式 CI\"\n    category: method\n    severity: warning\n    status: resolved\n    first_raised_round: 1\n    last_seen_round: 1\n    mentions:\n      - round: 8\n        reviewers: []\n        note: \"Round 8 未提及。\"\n    resolution: \"已替换为 bootstrap CI。\"\n    resolution_round: 4\n\n  - id: R2-MF4\n    summary: \"正文超 8 页限制\"\n    category: format\n    severity: critical\n    status: resolved\n    first_raised_round: 2\n    last_seen_round: 3\n    mentions:\n      - round: 8\n        reviewers: [1, 2]\n        note: \"Round 8 两位 Reviewer 及视觉审查确认正文 8 页合规。\"\n    resolution: \"正文已压缩到 8 页内。\"\n    resolution_round: 4\n\n  - id: R2-SF5\n    summary: \"可复现性信息不足\"\n    category: method\n    severity: warning\n    status: resolved\n    first_raised_round: 2\n    last_seen_round: 3\n    mentions:\n      - round: 8\n        reviewers: []\n        note: \"Round 8 R1 Reproducibility 3/5。Appendix A Table 5 超参数完整。\"\n    resolution: \"Appendix A Table 5 已包含完整超参数。\"\n    resolution_round: 4\n\n  - id: R4-W3\n    summary: \"Stubbornness taxonomy (Appendix B) 百分比不完整\"\n    category: writing\n    severity: info\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 4\n    mentions:\n      - round: 8\n        reviewers: []\n        note: \"Round 8 未提及。百分比完整。\"\n    resolution: \"百分比已补全。\"\n    resolution_round: 5\n\n  - id: R4-W1\n    summary: \"R₃-only GRPO 在 Table 4 中缺少 ToF 和 NoF 分项数据\"\n    category: experiment\n    severity: warning\n    status: resolved\n    first_raised_round: 4\n    last_seen_round: 5\n    mentions:\n      - round: 8\n        reviewers: []\n        note: \"Round 8 Table 4 包含 R₃-only 数据（ToF=0.083, NoF=0.983）。\"\n    resolution: \"Table 4 已包含 R₃-only 的 ToF 和 NoF 数据。\"\n    resolution_round: 6\n\n  - id: R6-W1\n    summary: \"代码和数据可用性\"\n    category: format\n    severity: minor\n    status: resolved\n    first_raised_round: 6\n    last_seen_round: 8\n    mentions:\n      - round: 8\n        reviewers: [1, 2]\n        note: \"Limitations 末尾包含 GitHub URL (anonymous-nlp-2026-2)，承诺开源代码、数据、prompt templates。\"\n    resolution: \"Limitations 已包含代码/数据发布承诺和匿名 GitHub URL。\"\n    resolution_round: 8\n\n  # === PERSISTENT ISSUES (ACTIVE) ===\n\n  - id: R4-W2\n    summary: \"Abstract/Table 4 vs Introduction/§6 中 R₃-only checkpoints 总数不一致 (4/31 vs 4/28)\"\n    category: writing\n    severity: warning\n    status: in_progress\n    first_raised_round: 4\n    last_seen_round: 10\n    mentions:\n      - round: 6\n        reviewers: []\n        note: \"Round 6 论文 Introduction 使用 '4 of 31 checkpoints (12.9%)'，各处一致。\"\n      - round: 8\n        reviewers: [1]\n        note: \"R1 发现 Introduction '4 of 31 (12.9%)' vs Table 4 '4/28 across two seeds' 不一致。31 混合了 gs=2 (28) 和 gs=8 (3) 数据。问题复发。\"\n      - round: 9\n        reviewers: [1, 2]\n        note: \"双方共识 warning。introduction L23/L31 用 4/31，discussion 用 4/28，conclusion 用 4/31。未解释差异。\"\n      - round: 10\n        reviewers: [1]\n        note: \"R1 继续标记。仍未解决。\"\n    action_items:\n      - round: 8\n        action: \"统一为 '4/28 (gs=2)' + '0/3 (gs=8 ablation)' 分开报告\"\n        assigned_to: agent\n        status: failed\n      - round: 9\n        action: \"Paper Agent 全文搜索替换，统一为 4/28 (14.3%, gs=2 two seeds)，gs=8 单独括注\"\n        assigned_to: paper_agent\n        status: in_progress\n\n  - id: R3-N1\n    summary: \"GRPO group_size=2 严重偏离标准实践（标准 8-64），构成致命替代解释\"\n    category: method\n    severity: critical\n    status: in_progress\n    first_raised_round: 3\n    last_seen_round: 10\n    mentions:\n      - round: 6\n        reviewers: [1, 2]\n        note: \"gs=8 ablation 仅 3 checkpoints，不足以排除 hypothesis (b)。\"\n      - round: 8\n        reviewers: [1, 2]\n        note: \"R1-N1 [critical]：gs=8 仅 3 checkpoints（0.084→0.085→0.054）以 declining trajectory 终止。\"\n      - round: 9\n        reviewers: [1, 2]\n        note: \"双方 AGREE。R2 补充：early termination 决策标准不明确，引入选择偏差。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"Round 10 R1 补充：如果 group_size ≥ 8 条件下 trap 不成立，novelty 更难定位。R2 在 N2 中指出单模型限制。\"\n    action_items:\n      - round: 8\n        action: \"D068 决策：gs=8 full run ROI 太低，不做。改为降级因果声明 + ACT-256 ablation\"\n        assigned_to: paper_agent+agent\n        status: in_progress\n      - round: 9\n        action: \"Agent 回溯 gs=2 前 3 checkpoint 轨迹（Q4）+ Paper Agent 明确 early termination 标准并承认 selection bias\"\n        assigned_to: agent+paper_agent\n        status: in_progress\n\n  - id: R1-W2\n    summary: \"标题和 claims scope 过于宽泛 / framing 不一致\"\n    category: framing\n    severity: warning\n    status: in_progress\n    first_raised_round: 1\n    last_seen_round: 10\n    mentions:\n      - round: 6\n        reviewers: [2]\n        note: \"R2 认为标题范围过窄。R1 认为突出最 novel 发现合理。\"\n      - round: 8\n        reviewers: [2]\n        note: \"R2-N2 [critical]：论文在三种 framing 间游移。\"\n      - round: 9\n        reviewers: [2]\n        note: \"R2 维持：需更锐利地区分 '确认已知原理' vs '发现新原理'。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R2-W1 再次指出 abstract 使用 'every formulation' 过度泛化。R1 同意。建议限定为 'under our specific configuration'。\"\n    action_items:\n      - round: 9\n        action: \"Paper Agent 重做：primary = systematic negative result + monitoring implications\"\n        assigned_to: paper_agent\n        status: in_progress\n\n  - id: R1-N2\n    summary: \"ACT seed 2 仅部分评估，ToF/NoF 缺失\"\n    category: experiment\n    severity: warning\n    status: in_progress\n    first_raised_round: 1\n    last_seen_round: 9\n    mentions:\n      - round: 9\n        reviewers: [1]\n        note: \"W11 再次指出。Registry 确认数据存在但未填入论文。\"\n    action_items:\n      - round: 9\n        action: \"Agent 提取 ACT seed 2 eval 数据 → Paper Agent 填入 Table 4\"\n        assigned_to: agent+paper_agent\n        status: in_progress\n\n  - id: R1-W6\n    summary: \"Cross-seed 分析仅 2 个 seed，统计功效不足\"\n    category: experiment\n    severity: warning\n    status: in_progress\n    first_raised_round: 1\n    last_seen_round: 10\n    mentions:\n      - round: 9\n        reviewers: [1, 2]\n        note: \"R2 AGREE 补充 2 seeds。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R2-N2 再次确认单模型限制。R1 同意需至少 3 seed 下 lag 的范围报告。\"\n    action_items:\n      - round: 9\n        action: \"SFT 3 seeds 进行中。GRPO 多 seed 不可行(50-75h)。论文中说明 GRPO 2 seeds × 14 ckpts = 28 data points。\"\n        assigned_to: paper_agent\n        status: in_progress\n\n  - id: REV-1\n    summary: \"256-token truncation 使 AUROC 降至 0.60，影响 GRPO 结果有效性和因果归因\"\n    category: method\n    severity: critical\n    status: in_progress\n    first_raised_round: 1\n    last_seen_round: 10\n    mentions:\n      - round: 9\n        reviewers: [1, 2]\n        note: \"R2 部分同意：truncation 主要影响 d_syc-based GRPO。NLI 在截断文本上的性能未报告。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R1 在 REBUT R2-W4 时明确区分离线 AUROC (0.83) vs 训练时有效 AUROC (0.60)。双方共识：真正的问题是训练时 AUROC 仅 0.60，论文 framing 'high discriminability fails' 不成立。\"\n    action_items:\n      - round: 9\n        action: \"exp-003-len512-v3 (512 token GRPO) 已在 cuda:1 + NLI 256-token 截断准确率测试\"\n        assigned_to: agent\n        status: in_progress\n\n  - id: R1-N3\n    summary: \"ACT vs GRPO 对比存在 5+ 维度 confound，因果声明过强\"\n    category: framing\n    severity: critical\n    status: in_progress\n    first_raised_round: 1\n    last_seen_round: 10\n    mentions:\n      - round: 9\n        reviewers: [1, 2]\n        note: \"R2 细化：无法排序 supervision granularity vs seq_len。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R1 补充第 (c) 个混淆变量：ACT max_seq_len=1024 vs GRPO max_completion_length=256（4倍差异）。双方要求消融隔离各因素。\"\n    action_items:\n      - round: 9\n        action: \"P6 已生效（'one plausible explanation'）。新增：Discussion 分路归因。\"\n        assigned_to: paper_agent\n        status: in_progress\n\n  - id: R1-W4\n    summary: \"Contrastive pairs evidence strength 标注无 IAA，GPT-4.1 生成无人工验证\"\n    category: method\n    severity: critical\n    status: in_progress\n    first_raised_round: 1\n    last_seen_round: 10\n    mentions:\n      - round: 9\n        reviewers: [1]\n        note: \"W4 再次提出。\"\n      - round: 10\n        reviewers: [1]\n        note: \"R1 在交叉回应中再次确认此问题，强调 cross-model generalization 不能排除捕捉生成风格。\"\n    action_items:\n      - round: 9\n        action: \"Limitations 承认 + evidence strength gradient 间接验证。ARR rebuttal 可补 IAA。\"\n        assigned_to: paper_agent\n        status: in_progress\n\n  - id: R2-SF8\n    summary: \"Wu & Tang (2026) 对比论证缺乏定量支撑\"\n    category: framing\n    severity: warning\n    status: open\n    first_raised_round: 2\n    last_seen_round: 8\n    mentions:\n      - round: 8\n        reviewers: [1]\n        note: \"论文承认 quantitative comparison 为 open question。\"\n\n  - id: R1-m2\n    summary: \"SycophancyScore harmonic mean 选择未充分 justify，应同时报告 arithmetic mean\"\n    category: method\n    severity: warning\n    status: open\n    first_raised_round: 1\n    last_seen_round: 8\n    mentions:\n      - round: 8\n        reviewers: [1]\n        note: \"R1 minor：应在 Appendix 同时报告 arithmetic mean。\"\n\n  - id: R2-W2\n    summary: \"SMART (per-step process reward) 讨论存在逻辑矛盾/张力\"\n    category: framing\n    severity: warning\n    status: in_progress\n    first_raised_round: 1\n    last_seen_round: 10\n    mentions:\n      - round: 9\n        reviewers: [2]\n        note: \"W9 再次提出。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R2-Q5 提出 ACT 成功可能因为 labeled valid/invalid pairs 显式包含 warrant 信息——这进一步削弱 supervision granularity 解释，指向 label quality 解释。R1 同意此观点。\"\n    action_items:\n      - round: 9\n        action: \"Paper Agent：具体解释 per-step rewards 可观察 step-level pattern\"\n        assigned_to: paper_agent\n        status: in_progress\n\n  - id: R3-W1\n    summary: \"discriminability ≠ reward utility 泛化声明超出单一 case study 证据\"\n    category: framing\n    severity: warning\n    status: in_progress\n    first_raised_round: 3\n    last_seen_round: 8\n    mentions:\n      - round: 8\n        reviewers: [2]\n        note: \"R2-W4：§8 泛化为 'other attributes' 缺乏实证。\"\n    action_items:\n      - round: 8\n        action: \"Paper Agent P3：§8 泛化声明加 hedging\"\n        assigned_to: paper_agent\n        status: in_progress\n\n  - id: R5-N1\n    summary: \"§3 'captures evidential granularity' 与 §5-§6 'does not encode evidential warrant' 措辞矛盾\"\n    category: framing\n    severity: warning\n    status: in_progress\n    first_raised_round: 5\n    last_seen_round: 9\n    mentions:\n      - round: 9\n        reviewers: [2]\n        note: \"W10 再次提出。验证 LaTeX: direction_quality.tex L14 已改善但缺少显式桥接。\"\n    action_items:\n      - round: 9\n        action: \"Paper Agent 加显式桥接句\"\n        assigned_to: paper_agent\n        status: in_progress\n\n  - id: R5-N2\n    summary: \"论文核心 framing 'high discriminability fails as reward' 对 C1 不成立——训练时 AUROC 仅 0.60\"\n    category: framing\n    severity: critical\n    status: in_progress\n    first_raised_round: 5\n    last_seen_round: 10\n    mentions:\n      - round: 9\n        reviewers: [1, 2]\n        note: \"R2 同意 truncation 影响 d_syc-based GRPO，但 R3-only 同样失败且不受 d_syc truncation 影响。需分情况讨论。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R1 明确：0.83 是离线 AUROC，训练时有效 AUROC ~0.60（因 256-token truncation）。论文标题级 framing 需要区分这两个数字。\"\n    action_items:\n      - round: 9\n        action: \"Paper Agent 在 Conclusion 分路归因解决。\"\n        assigned_to: paper_agent+agent\n        status: in_progress\n\n  - id: R5-W1\n    summary: \"Novelty 定位需重新框定：temporal decoupling 量化而非 'discovering a new trap'\"\n    category: framing\n    severity: warning\n    status: in_progress\n    first_raised_round: 5\n    last_seen_round: 10\n    mentions:\n      - round: 9\n        reviewers: [2]\n        note: \"R2 维持：probe reward trap 有价值，但需区分 '确认已知原理' vs '发现新原理'。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R1 同意 Goodhart 同构性，但认为行为死亡先于熵崩溃的时序观察具有实践警示价值。建议重新定位贡献为 '首次文档化 Goodhart failure 在 representation-based RL 中的精确时序动态'。\"\n    action_items:\n      - round: 9\n        action: \"Paper Agent 段落级重写：定位为 regressional Goodhart 的具体实例\"\n        assigned_to: paper_agent\n        status: in_progress\n\n  - id: R1-W5\n    summary: \"所有 RL/SFT 训练仅在 Qwen3-8B 上进行\"\n    category: experiment\n    severity: warning\n    status: open\n    first_raised_round: 1\n    last_seen_round: 10\n    mentions:\n      - round: 8\n        reviewers: [2]\n        note: \"R2-W4 隐式覆盖。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R2-N2 直接指出。R1 完全同意。Llama-3-8B 仅验证 d_syc 判别力（Table 1），未运行训练。标题 'Sycophancy Calibration' 泛化暗示缺乏支撑。\"\n\n  - id: R1-W1\n    summary: \"超参数 w1 仅测试 0.25/0.40 两个值\"\n    category: experiment\n    severity: warning\n    status: open\n    first_raised_round: 1\n    last_seen_round: 3\n    mentions:\n      - round: 8\n        reviewers: []\n        note: \"Round 8 未提及。被其他更重要问题覆盖。\"\n\n  - id: R2-W3\n    summary: \"Conclusion overclaiming / framing 不一致\"\n    category: writing\n    severity: warning\n    status: in_progress\n    first_raised_round: 1\n    last_seen_round: 10\n    mentions:\n      - round: 9\n        reviewers: [2]\n        note: \"R2 补充：Conclusion 将 d_syc 归因扩展到 R3-only GRPO 是逻辑错误。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R1 同意 abstract 'every formulation' 在读者感知层面暗示更广泛否定结论。\"\n    action_items:\n      - round: 9\n        action: \"Paper Agent：Conclusion 重写（分路归因）+ framing 统一\"\n        assigned_to: paper_agent\n        status: in_progress\n\n  - id: REV-2\n    summary: \"CRAFT/Latent-GRPO Related Work 深度不足\"\n    category: writing\n    severity: warning\n    status: open\n    first_raised_round: 1\n    last_seen_round: 5\n    mentions:\n      - round: 8\n        reviewers: []\n        note: \"Round 8 未提及。§7 已包含讨论。\"\n\n  - id: R4-N1\n    summary: \"缺乏标准 RM-based GRPO 对照基线\"\n    category: experiment\n    severity: critical\n    status: open\n    first_raised_round: 4\n    last_seen_round: 4\n    mentions:\n      - round: 8\n        reviewers: []\n        note: \"Round 8 未单独提及。\"\n\n  - id: R6-N1\n    summary: \"核心命题 'discriminability ≠ reward utility' 与 Goodhart's Law 高度同构，未讨论增量贡献\"\n    category: framing\n    severity: critical\n    status: in_progress\n    first_raised_round: 6\n    last_seen_round: 10\n    mentions:\n      - round: 9\n        reviewers: [2]\n        note: \"R2 维持。验证 LaTeX: related_work.tex 仅一句引用，P1 未完成。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R2-N1 核心论点。R1 同意但补充：行为死亡先于熵崩溃的时序观察对从业者非显而易见，具有实践价值。建议重新定位为 'representation-based RL 中首次文档化 Goodhart failure 的精确时序动态及其对标准监控手段的盲区'。\"\n    action_items:\n      - round: 9\n        action: \"Paper Agent 段落级重写（4-5 句），含四分类解释 + regressional 定位 + 增量贡献\"\n        assigned_to: paper_agent\n        status: in_progress\n\n  - id: R6-N2\n    summary: \"全部 contrastive pairs 由 GPT-4.1 生成，无人工验证\"\n    category: method\n    severity: critical\n    status: in_progress\n    first_raised_round: 6\n    last_seen_round: 10\n    mentions:\n      - round: 9\n        reviewers: [1]\n        note: \"W4 再次提出。\"\n      - round: 10\n        reviewers: [1]\n        note: \"R1 确认此问题。\"\n    action_items:\n      - round: 9\n        action: \"Limitations 承认 + evidence strength gradient 间接验证。ARR rebuttal 可补 IAA。\"\n        assigned_to: paper_agent\n        status: in_progress\n\n  - id: R6-W2\n    summary: \"遗漏 Goodhart's Law 相关文献和近期 sycophancy 工作\"\n    category: writing\n    severity: warning\n    status: in_progress\n    first_raised_round: 6\n    last_seen_round: 10\n    mentions:\n      - round: 9\n        reviewers: [2]\n        note: \"R2 强调 Hewitt & Liang (2019) 和 Belinkov (2022) 对 probing 方法论重要。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R1 同意 Pimentel et al. (2020), Rafailov et al. (2024) DPO, Voita & Titov (2020) 应引用。\"\n    action_items:\n      - round: 9\n        action: \"Paper Agent 添加 5 篇缺失引用\"\n        assigned_to: paper_agent\n        status: in_progress\n\n  - id: R8-N1\n    summary: \"遗漏 Vennemeyer et al. (2025) 'Sycophancy Is Not One Thing'\"\n    category: framing\n    severity: critical\n    status: in_progress\n    first_raised_round: 8\n    last_seen_round: 8\n    mentions:\n      - round: 8\n        reviewers: [1]\n        note: \"R1-W1 [critical]\"\n    action_items:\n      - round: 8\n        action: \"Paper Agent P2：§7 讨论 + §6 分析\"\n        assigned_to: paper_agent\n        status: in_progress\n\n  - id: R8-N2\n    summary: \"Probe reward trap 仅单 seed 验证——标题级贡献证据不足\"\n    category: experiment\n    severity: critical\n    status: in_progress\n    first_raised_round: 8\n    last_seen_round: 10\n    mentions:\n      - round: 9\n        reviewers: [1, 2]\n        note: \"R2 补充：需报告 lag 方差。SFT seeds 验证 gradient gaming 而非 GRPO probe trap。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R1 同意需至少 3 个 seed 下 lag 的范围（W3）。当前单个 1,300 值意义有限。\"\n    action_items:\n      - round: 9\n        action: \"SFT 3 seeds 继续。GRPO 多 seed 不可行(50-75h)。Limitations 诚实披露 GRPO n=1。\"\n        assigned_to: agent+paper_agent\n        status: in_progress\n\n  - id: R8-W1\n    summary: \"Train/eval 数据完全重叠（181 pairs），held-out 验证不充分\"\n    category: method\n    severity: warning\n    status: in_progress\n    first_raised_round: 8\n    last_seen_round: 10\n    mentions:\n      - round: 9\n        reviewers: [1]\n        note: \"W12 再次提出。\"\n      - round: 10\n        reviewers: [1]\n        note: \"仍为 open issue。\"\n    action_items:\n      - round: 9\n        action: \"Paper Agent 更突出报告 held-out 数据 + GRPO 不做 held-out 的理由\"\n        assigned_to: paper_agent\n        status: in_progress\n\n  - id: R8-W2\n    summary: \"遗漏 PRM 和 Probing 方法论文献\"\n    category: writing\n    severity: warning\n    status: in_progress\n    first_raised_round: 8\n    last_seen_round: 10\n    mentions:\n      - round: 9\n        reviewers: [2]\n        note: \"R2 再次强调 Hewitt & Liang 和 Belinkov 重要性。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R1 同意 Pimentel et al. (2020) 直接相关——论文使用线性 probe 但未讨论 probe 表达能力与 selectivity。\"\n    action_items:\n      - round: 9\n        action: \"与 R6-W2 合并处理\"\n        assigned_to: paper_agent\n        status: in_progress\n\n  - id: R8-W3\n    summary: \"§4 truncation AUROC 表述不一致：0.827→0.60 vs 0.76→0.60\"\n    category: writing\n    severity: info\n    status: open\n    first_raised_round: 8\n    last_seen_round: 8\n    mentions:\n      - round: 8\n        reviewers: [1]\n        note: \"0.827 是 offline 5-fold CV，0.76 是 online full-length。两处表述应统一。\"\n\n  - id: R8-M1\n    summary: \"'behavioral death' 术语未正式定义\"\n    category: writing\n    severity: info\n    status: open\n    first_raised_round: 8\n    last_seen_round: 10\n    mentions:\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R2-M1 再次提出。R1 同意 abstract 首次出现时无正式定义。\"\n\n  - id: AUDIT-1\n    summary: \"18 处 LaTeX em-dash (---) 为 AI 写作标志\"\n    category: writing\n    severity: critical\n    status: in_progress\n    first_raised_round: 8\n    last_seen_round: 8\n    mentions:\n      - round: 8\n        reviewers: []\n        note: \"Paper Audit 发现多处 --- em-dash。\"\n    action_items:\n      - round: 8\n        action: \"Agent：全部替换为逗号、括号或拆句\"\n        assigned_to: agent\n        status: in_progress\n\n  - id: AUDIT-2\n    summary: \"内部实验编号暴露 (exp-008, exp-008v3)\"\n    category: writing\n    severity: warning\n    status: in_progress\n    first_raised_round: 8\n    last_seen_round: 8\n    mentions:\n      - round: 8\n        reviewers: []\n        note: \"probe_trap.tex:10,14,22,40 和 appendix.tex:60。\"\n    action_items:\n      - round: 8\n        action: \"Agent：替换为描述性名称\"\n        assigned_to: agent\n        status: in_progress\n\n  - id: AUDIT-3\n    summary: \"47/47 ACT 统计含 reduced-LoRA 消融变体，读者可能误解\"\n    category: writing\n    severity: warning\n    status: in_progress\n    first_raised_round: 8\n    last_seen_round: 10\n    mentions:\n      - round: 9\n        reviewers: [2]\n        note: \"Q5 再次提出。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"相关问题仍存在。\"\n    action_items:\n      - round: 8\n        action: \"Agent：修改 Introduction 中 47/47 表述\"\n        assigned_to: agent\n        status: in_progress\n\n  - id: R9-N1\n    summary: \"Conclusion 因果归因逻辑错误：将 d_syc 语义局限归因为所有 GRPO 失败原因，但 R3-only GRPO 不使用 d_syc\"\n    category: framing\n    severity: critical\n    status: in_progress\n    first_raised_round: 9\n    last_seen_round: 10\n    mentions:\n      - round: 9\n        reviewers: [2]\n        note: \"R2 独立发现。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R1 同意（AGREE R2-N3）。需为 d_syc-based GRPO 和 R3-only GRPO 提供独立的失败解释。\"\n    action_items:\n      - round: 9\n        action: \"Paper Agent Conclusion 重写：分两路归因\"\n        assigned_to: paper_agent\n        status: in_progress\n\n  - id: R9-N2\n    summary: \"gs=8 early termination 决策标准不明确，引入选择偏差\"\n    category: method\n    severity: warning\n    status: in_progress\n    first_raised_round: 9\n    last_seen_round: 10\n    mentions:\n      - round: 9\n        reviewers: [2]\n        note: \"如果 early termination 是人工判断，对 gs=2 同样规则后 4/28 可能更少。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R1 同意（AGREE R2-W3 相关）。\"\n    action_items:\n      - round: 9\n        action: \"Agent 回溯 gs=2 前 3 ckpt 轨迹 + Paper Agent 明确 early termination 标准\"\n        assigned_to: agent+paper_agent\n        status: in_progress\n\n  - id: R9-N3\n    summary: \"R3 (NLI behavioral reward) 在 256-token 截断文本上的性能未报告\"\n    category: method\n    severity: warning\n    status: in_progress\n    first_raised_round: 9\n    last_seen_round: 10\n    mentions:\n      - round: 9\n        reviewers: [2]\n        note: \"truncation 对 R3-only GRPO 的影响路径是 NLI 分类器性能变化。\"\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R1 在 REBUT R2-W4 中指出：真正问题是训练时有效 AUROC ~0.60。\"\n    action_items:\n      - round: 9\n        action: \"Agent：NLI 256-token 截断准确率测试已派\"\n        assigned_to: agent\n        status: in_progress\n\n  # === ROUND 10 NEW ISSUES ===\n\n  - id: R10-N1\n    summary: \"d_syc 编码内容论证存在循环推理——GRPO 失败反推 d_syc 有缺陷，缺乏独立验证\"\n    category: method\n    severity: warning\n    status: open\n    first_raised_round: 10\n    last_seen_round: 10\n    mentions:\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R2-W2 首提，R1 AGREE。推理链循环：GRPO 失败 → d_syc 编码错误信息 → GRPO 必然失败。缺少 intervention 实验打破循环（如 activation steering 验证）。\"\n\n  - id: R10-N2\n    summary: \"C1/C2/C3 三项贡献缺乏独立性——C3 本质是 C1 的候选解释\"\n    category: framing\n    severity: warning\n    status: open\n    first_raised_round: 10\n    last_seen_round: 10\n    mentions:\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R2-W5 首提，R1 部分 AGREE。建议重组为一个核心发现（probe reward 在 GRPO 中失败）+ 两个子发现（时序动态 + ACT 对比的初步解释），而非三个并列贡献。\"\n\n  - id: R10-N3\n    summary: \"1,300-step lag 对超参数（LR, KL coeff, group_size, LoRA rank）的敏感度完全未讨论\"\n    category: experiment\n    severity: warning\n    status: open\n    first_raised_round: 10\n    last_seen_round: 10\n    mentions:\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R2-W3 首提，R1 AGREE（与 R1 Q4 一致）。应至少报告 3 seed 下 lag 范围。\"\n\n  - id: R10-N4\n    summary: \"ACT 成功可能因为 labeled valid/invalid pairs 显式包含 warrant 信息，而非 supervision granularity\"\n    category: method\n    severity: warning\n    status: open\n    first_raised_round: 10\n    last_seen_round: 10\n    mentions:\n      - round: 10\n        reviewers: [1, 2]\n        note: \"R2-Q5 提出，R1 同意。ACT 的监督信号来自 labeled pairs（包含 '是否应该改变' 的信息），这可能是 ACT 成功的根本原因。进一步削弱 C3 的 supervision granularity 归因。\"\n"
+            }
+          },
+          "id": "event-000998"
+        },
+        {
+          "source_line": 999,
+          "timestamp": "2026-05-25T23:51:59.820113+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 23730}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__update_review_issues",
+            "elapsed_ms": 153
+          },
+          "id": "event-000999"
+        },
+        {
+          "source_line": 1000,
+          "timestamp": "2026-05-25T23:53:47.569176+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_review_report_to_research_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__submit_review_report_to_research_director",
+            "tool_args": {
+              "report": "# Round 10 审稿报告\n\n**Venue**: EMNLP 2026 (ARR)  \n**Reviewers**: R1, R2  \n**轮次**: Round 10 (交叉回应后收敛)  \n**收敛状态**: 8/10 AGREE, 2 partial REBUT; Overall 评分一致\n\n---\n\n## Summary\n\n论文提出 \"probe reward trap\"——在 GRPO 中使用基于线性 probe（d_syc）的 reward signal 训练 sycophancy calibration 时，模型经历 behavioral death（ToF→0），而 ACT（token-level SFT + contrastive loss）成功避免此陷阱。核心 contributions 包括三点：C1 = GRPO 失败、C2 = 1,300-step behavioral death 先于 entropy collapse 的时序观察、C3 = supervision granularity 是 ACT 成功的候选解释。\n\n论文在单一模型（Qwen3-8B）、单一方向质量（离线 AUROC 0.83 / 训练时有效 AUROC ~0.60）、单一 RL 配置（GRPO, group_size=2, 256-token completion）下运行实验。两位 Reviewer 一致认为：实验配置的非标准性（尤其 group_size=2 和 256-token truncation）构成强替代解释，而论文的因果声明和泛化 framing 超出了证据所能支撑的范围。\n\n---\n\n## Strengths\n\n1. **实践警示价值 (S1)**：行为死亡先于熵崩溃 1,300 步的时序观察对从业者有价值——标准监控手段（entropy/KL）无法及时预警，这一盲区在 representation-based RL 中未被充分文档化。\n\n2. **实验框架清晰 (S2)**：Figure 2 有效传达了 Direction Extraction → Reward Design Space → Supervision Paradigm 的三层实验设计逻辑。评分空间（F1-F3 × R1-R3）的系统覆盖在方法论层面有教育意义。\n\n3. **ACT 方法本身 (S3)**：Token-level contrastive alignment training 在 47/47 checkpoints 保持正向 sycophancy score，跨 seed 稳定。作为负面结果的对照，ACT 的成功为后续工作提供了有价值的方向。\n\n4. **可复现性 (S4)**：Appendix A Table 5 超参数完整，匿名 GitHub 承诺代码/数据发布。\n\n5. **d_syc 跨模型验证 (S5)**：Table 1 在 Qwen3-8B 和 Llama-3-8B 上验证了 d_syc 的判别力（AUROC 0.83/0.78），证明方向本身跨架构可迁移。\n\n---\n\n## Weaknesses\n\n### Critical\n\n**W1. Novelty 定位不充分——Goodhart regressional variant 的已知实例化 [R1 AGREE, R2 首提]**\n\n\"Probe reward trap\" 本质上是 Goodhart's Law（Manheim & Garrabrant, 2019）regressional variant 在 activation-space reward 场景下的具体实例。论文已引用 Manheim & Garrabrant（Section 2, p3），但未与 Goodhart 四分类进行实质性对话，也未明确论证增量贡献。两位 Reviewer 共识：论文应重新定位为 \"首次在 representation-based RL 中文档化 Goodhart failure 的时序动态\"，而非声称发现了新现象。\n\n**W2. 核心实验仅在单一模型上进行 [R1 AGREE, R2 首提]**\n\nQwen3-8B 是唯一进行了完整 GRPO/ACT 训练的模型。Llama-3-8B 仅验证 d_syc 判别力（Table 1），未运行任何训练实验。\"1,300-step lag\" 在不同架构/规模上是否复现完全未知。标题 \"Sycophancy Calibration\" 暗示的泛化性缺乏实验支撑。\n\n**W3. ACT vs GRPO 对比存在 5+ 维度混淆变量 [双方共识]**\n\nACT 与 GRPO 之间至少同时变化：(a) 监督粒度（token vs. completion）, (b) 学习范式（SFT + L2 loss vs. policy gradient）, (c) 序列长度（ACT max_seq_len=1,024 vs. GRPO max_completion_length=256, 4× 差异）, (d) label 信息量（ACT 使用 labeled valid/invalid pairs 显式包含 warrant 信息 vs GRPO 仅有标量 reward）, (e) 训练数据对齐方式。C3 的 \"supervision granularity\" 归因无法从这些混淆中隔离。\n\n**W4. 训练时有效 AUROC 仅 0.60——论文 \"high discriminability fails\" 的 framing 不成立 [双方共识]**\n\n离线 AUROC 0.83 是 full-length response 上的 5-fold CV 结果。训练时由于 256-token truncation，有效 AUROC 降至 ~0.60。论文核心叙事 \"high discriminability ≠ reward utility\" 建立在 0.83 上，但训练中实际使用的信号质量远低于此。论文未测试消除 truncation 后（512+ token completion）是否仍然失败。\n\n**W5. GRPO group_size=2 严重偏离标准实践 [持续 critical, Round 3 首提]**\n\n标准 GRPO 使用 group_size 8-64。gs=2 仅提供极弱的 baseline signal，可能本身就足以解释训练失败。gs=8 ablation 仅 3 checkpoints 后 early termination（0.084→0.085→0.054, declining），termination 标准不明确，引入选择偏差。\n\n**W6. Contrastive pairs 无人工验证 [持续 critical, Round 6 首提]**\n\n全部 181 对由 GPT-4.1 生成，无 IAA，cross-model generalization（GPT→Qwen/Llama）不能排除 probe 捕捉的是生成风格而非语义。\n\n### Warning\n\n**W7. Abstract/Intro framing 过度泛化 [双方 AGREE]**\n\n\"Every formulation that converts it into a GRPO reward collapses\" 和 \"Every GRPO reward formulation we tested fails\" 在字面上准确，但在读者感知层面暗示了比证据更广泛的否定结论。应限定为 \"under our specific configuration (Qwen3-8B, group_size=2, 256-token completion)\"。\n\n**W8. d_syc 编码内容论证存在循环推理 [双方 AGREE]**\n\n推理链：GRPO 失败 → d_syc 编码错误信息 → GRPO 必然失败。缺少独立验证（如 activation steering intervention 实验）打破循环。\n\n**W9. 1,300-step lag 的超参数敏感度未讨论 [双方 AGREE]**\n\n1,300 是单 seed、单配置下的单个数字。未分析对 LR、KL 系数、group_size、LoRA rank 的敏感度。应至少报告 3 seed 下 lag 的范围。\n\n**W10. C1/C2/C3 贡献缺乏独立性 [R1 部分 AGREE]**\n\nC3 本质是 C1 的候选解释，不算独立贡献。建议重组为一个核心发现 + 两个子发现，而非三个并列 contributions。\n\n**W11. ACT 成功可能因为 label quality 而非 supervision granularity [双方 AGREE]**\n\nACT 使用 labeled valid/invalid pairs 显式包含 \"是否应该改变\" 的信息。这可能是 ACT 成功的根本原因，进一步削弱 C3 的归因。\n\n**W12. Conclusion 因果归因逻辑错误 [持续, Round 9 首提]**\n\n将 d_syc 语义局限归因为所有 GRPO 失败原因，但 R3-only GRPO 不使用 d_syc，需要独立解释。\n\n**W13. 4/31 vs 4/28 数字不一致 [持续, Round 4 首提]**\n\nIntroduction 用 4/31，Table 4 用 4/28，混合 gs=2 和 gs=8 数据，仍未统一。\n\n---\n\n## Questions\n\n1. 消除 256-token truncation（使用 512+ token completion）后，d_syc-based GRPO 是否仍然失败？训练时 AUROC 能否接近 0.83？\n2. 1,300-step lag 在 3 个不同 seed 下的范围是多少？\n3. 将 token-level reward shaping 引入 GRPO（隔离 supervision granularity 因素）结果如何？\n4. 如果在 d_syc 方向做 activation steering（正方向移动），是否同时增加 warranted revision 和 sycophantic capitulation 的概率？（独立验证 d_syc 无法区分两者）\n5. ACT 成功是否主要因为其标注中包含 warrant 信息（labeled valid/invalid），而非 supervision granularity？\n6. 将 ACT 的 max_seq_len 限制到 256 后表现如何？（隔离序列长度因素）\n\n---\n\n## Missing References\n\n**双方共识应引用：**\n1. Pimentel et al. (2020) \"Information-Theoretic Probing with MDL\" — probe 表达能力与 selectivity\n2. Rafailov et al. (2024) DPO — reward modeling alternative\n3. Voita & Titov (2020) — probing methodology\n4. Hewitt & Liang (2019) — probe selectivity\n5. Belinkov (2022) — probing survey\n\n---\n\n## External Review\n\n**状态**: 未请求\n\n---\n\n## Visual Layout Check（非评分项）\n\n**状态**: ✅ 完成  \n**结果**: 0 critical, 1 warning, 8 info\n\n- **[WARNING]** p12: 附录末页仅 ~12 行（约 1/6 页面），超过 3/4 页面空白。建议调整布局合并到 p11。\n- **[INFO]** p2: Figure 1(a) axis label/legend 字号偏小（接近 70% 下限）\n- **[INFO]** p4: Figure 2 面板内嵌文字字号较小，关键数字可考虑加大或移入 caption\n- **[INFO]** p4: Figure 2(b) F1/F2/F3 标记间距紧凑\n- **[INFO]** p5: Figure 3 线型在 150dpi 下差异不够明显，建议加 marker\n- **[INFO]** p7: Table 4 列间距偏窄（8 列单栏）\n- **[INFO]** p8: Figure 4 legend 字号偏小\n- **[INFO]** p5-8: 所有 Table booktabs 风格 ✓，Table 4 最优值加粗 ✓\n- **[INFO]** p9: Limitations 简短合规 ✓，References 格式统一 ✓\n\n---\n\n## Overall Assessment\n\n**Score: 3.0 — Findings**\n\n**评分理由**：\n\n论文报告了一个有实践参考价值的负面结果（probe-based reward 在 GRPO 中导致 behavioral death），并提供了有意义的时序分析（C2）。但存在以下根本性问题使其无法达到主会议接收水平：\n\n1. **实验配置非标准**：group_size=2 + 256-token truncation 构成强替代解释，无法确定失败源于方法固有缺陷还是配置缺陷。\n2. **因果声明缺乏独立验证**：ACT vs GRPO 对比存在 5+ 混淆维度，无消融隔离各因素。\n3. **单模型限制**：所有训练仅在 Qwen3-8B 上进行，泛化性无从判断。\n4. **Novelty 定位问题**：核心命题与 Goodhart's Law 高度同构，增量贡献论证不足。\n\n作为 Findings 接收的理由：时序分析（behavioral death 先于 entropy collapse）对从业者有警示价值，ACT 方法本身提供了有价值的正面对照，实验框架的系统性覆盖对后续工作有参考意义。\n\n**两位 Reviewer 分歧记录**：\n| 问题 | R1 | R2 |\n|------|----|----|\n| GRPO 失败首要解释 | 实验配置缺陷（gs=2 + truncation） | 方向质量不足 + Goodhart 已知现象 |\n| Figure 2 | 优势（有效传达框架） | 劣势（信息过密） |\n| Excitement | 3/5 | 2.5/5 |\n| AUROC 0.83 解读 | 离线尚可，问题在训练时 0.60 | 0.83 本身不够高 |\n\n---\n\n## Detailed Comments\n\n### 对作者的建议（按优先级排序）\n\n1. **[必须] 消除 truncation 混淆**：运行 512+ token completion 的 GRPO，报告训练时有效 AUROC 及结果。如仍失败，\"高判别力方向在 GRPO 中失败\" 的结论才能成立。\n\n2. **[必须] 重新定位 novelty**：承认 Goodhart regressional variant，将贡献定位为 \"首次在 activation-space reward RL 中文档化其时序结构（behavioral death 先于 entropy collapse）及其对标准监控的盲区\"。\n\n3. **[必须] 降级或消融 C3**：当前 C3 归因无法从 5+ 混淆中隔离。最低限度消融：(a) token-level reward shaping in GRPO 或 (b) ACT max_seq_len=256。否则将 C3 从 \"contribution\" 降为 \"hypothesis\"。\n\n4. **[强烈建议] 统一 framing**：全文限定为 \"under our configuration\"，避免 \"every formulation fails\" 的感知泛化。Abstract/Conclusion 中明确 group_size=2, 256-token, Qwen3-8B-only。\n\n5. **[强烈建议] 分路归因**：Conclusion 中为 d_syc-based GRPO（truncation → 低有效 AUROC）和 R3-only GRPO（per-completion granularity? NLI truncation?）分别提供失败解释。\n\n6. **[建议] 补充缺失引用**：Pimentel et al. (2020), Hewitt & Liang (2019), Belinkov (2022), Voita & Titov (2020), Rafailov et al. (2024)。\n\n7. **[建议] 统一 4/31 vs 4/28 数字**，正式定义 \"behavioral death\"，贡献重组为 1 core + 2 sub-findings。\n",
+              "project": "contrastive_entrain_calib",
+              "reviewer_ids_acknowledged": "[1, 2]",
+              "cross_response_reviewer_ids": "[1, 2]",
+              "overall_score": "3.0 - Findings",
+              "review_chat_id": "oc_056796cf71f839be40019e5f1a11791b"
+            }
+          },
+          "id": "event-001000"
+        },
+        {
+          "source_line": 1001,
+          "timestamp": "2026-05-25T23:53:51.384032+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_c77a380fad2d0408ce92cd1170d46f6f:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "tool": "mcp__agent-ml-research__submit_review_report_to_research_director",
+            "elapsed_ms": 3814
+          },
+          "id": "event-001001"
+        },
+        {
+          "source_line": 1002,
+          "timestamp": "2026-05-25T23:54:00.957114+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Round 10 审稿报告已投递。\n\n**本轮总结**：\n- 两位 Reviewer 高度收敛（8/10 AGREE），Overall 一致给出 **3.0 (Findings)**\n- 核心问题未解决：group_size=2 + 256-token truncation 构成强替代解释、ACT vs GRPO 5+ 维度混淆无消融、单模型限制、Goodhart 同构性未充分讨论\n- 与 Round 9 相比，新增明确共识：(1) d_syc 论证存在循环推理、(2) C1/C2/C3 贡献缺乏独立性、(3) ACT 成功可能源于 label quality 而非 supervision granularity\n- Issue tracker 已同步更新（新增 R10-N1 ~ R10-N4）"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director"
+          },
+          "id": "event-001002"
+        }
+      ]
+    },
+    {
+      "number": 74,
+      "messages": [
+        {
+          "source_line": 1003,
+          "timestamp": "2026-05-25T23:54:00.963106+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿意见]:\n## Reviewer 2 交叉回应 Reviewer 1 意见\n\n---\n\n### Critical 问题\n\n**[AGREE] R1-C1: group_size=2 构成致命替代解释**\n\n这是 R1 最有力的发现，也是我在初审中遗漏的重要问题。论文在 Section 3.4（第 4 页）承认 \"GRPO uses a group size of 2 due to memory constraints with 8B-parameter models, below the typical range of 8–64\"。group_size=2 意味着 advantage estimation 本质上是二元比较（两个 completion 中一好一差），noise 极大。\n\n关键推理链：Table 4 中 R_t-only GRPO（不使用 d_syc，仅用行为正确性作 reward）在 group_size=2 下同样 barely exceeds vanilla（SYCONSCORE 0.131）。这打开了一个论文未排除的替代解释：**group_size=2 下任何 GRPO reward 都会失败，失败原因是 advantage estimation noise 而非 d_syc 本身的局限性。** 论文没有展示任何 reward signal 在 group_size=2 下成功的 positive control，因此无法区分 \"d_syc 有问题\" 和 \"GRPO 在 group_size=2 下对任何 reward 都不可靠\"。\n\n这一发现与我的 N3（ACT vs GRPO 混淆变量）形成互补：如果 GRPO 在 group_size=2 下本身就不可靠，那么 ACT 的成功可能完全与 d_syc 的质量无关，而只是因为 ACT 不依赖 group-based advantage estimation。\n\n**补充建议**：除 R1 建议的 group_size≥8 消融外，还应在 group_size=2 下测试一个 \"gold standard\" reward（如 GPT-4 judge score）作为 positive control。如果 gold reward 在 group_size=2 下也失败，则论文的核心结论需要根本性重写。\n\n---\n\n**[AGREE] R1-C2: 256-token 截断使 reward 质量严重退化**\n\n这与我的 W4（d_syc AUROC 0.83 的质量问题）互补且比我的分析更具体。R1 准确定位了问题：GRPO 实际收到的 reward signal 的判别力远低于 Section 4 报告的 headline AUROC 0.83。\n\n论文在 Section 5（第 6 页）确认了截断带来的 AUROC 降级路径：offline 0.827 → distribution shift → 256-token truncation 后进一步下降。无论最终数字是 0.60 还是 0.69，这意味着 GRPO 看到的 reward signal 已接近弱分类器水平。\n\n这构成了与 C1 类似的替代解释：**训练失败可能仅因为 reward quality 太低（AUROC ≈ 0.60-0.69 在 256 token 截断下），而非 probe reward 存在根本性缺陷。** 论文需要回答的关键问题是：如果在更长 completion 上训练（d_syc AUROC 更高），probe reward trap 是否仍然出现？\n\n不过我要补充一点：即使截断是核心原因，\"probe direction 的判别力在截断下显著退化\"这一事实本身也有实践价值——它说明 representation-based reward 对 sequence length 敏感，这是部署时需要考虑的。论文如果将此作为一个独立 finding 来呈现（而非忽略它直接跳到 \"probe reward 有根本性问题\"），叙事会更诚实。\n\n---\n\n**[AGREE] R1-C3: d_syc 编码内容的因果声明缺乏直接验证**\n\n完全同意。这与我的 W2 是同一问题——我将其定为 warning，R1 定为 critical。反思后我认为 R1 的 critical 定级更准确，理由如下：\n\n\"d_syc encodes whether belief changed, not whether it should have\" 不是论文的一个附带观察，而是 Section 7 的核心解释框架，贯穿 abstract、introduction 和 conclusion。它是论文将失败从 \"implementation issue\" 提升到 \"fundamental limitation\" 的关键论证环节。如果这一声明的证据是循环的（从失败反推编码内容），那么论文的 \"fundamental limitation\" 叙事就缺乏根基，整个贡献退化为 \"我们试了几种 GRPO 配置，都没成功\"——这是一个更弱的贡献。\n\n**与 C1/C2 的交互**：如果 group_size=2 noise（C1）或 truncation quality（C2）才是失败的根本原因，那么 \"d_syc 编码错了东西\" 这一解释就完全是对 confound 的误归因。三个 critical 问题形成了一个互相强化的质疑链。\n\n---\n\n### Warning 问题\n\n**[AGREE] R1-W1: seed 数不足**\n\n3 seeds 是可接受的最低限度，但对于 SYCONSCORE 这样的复合指标（ToF 和 NoF 的调和均值），方差可能较大。论文 Appendix A 报告了 \"three seeds (s∈{1})\"——实际上我不确定这里是否是 3 个不同的种子还是其他设置。Table 2 的结果似乎也没有报告 confidence intervals 或 standard deviations。\n\n不过我认为这是 warning 而非 critical：论文的核心定性发现（所有 GRPO 配置 SYCONSCORE < vanilla）如果在 3 seeds 上一致出现，定性结论仍然成立。问题在于定量数字（如 SYCONSCORE 0.131 vs 0.267）的精度不足。\n\n---\n\n**[AGREE] R1-W2: ACT vs GRPO 比较不公平**\n\n完全同意，与我的 N3 完全一致。ACT 和 GRPO 之间的差异不仅是 supervision granularity（论文的解释），还包括学习范式（supervised vs RL）、作用层（target layers vs whole policy）、以及数据使用方式（labeled pairs vs rollouts）。没有控制实验来隔离这些因素，C3（supervision granularity 解释）是不可靠的。\n\n---\n\n**[AGREE] R1-W3: 单模型验证**\n\n与我的 N2 完全一致。不再赘述。\n\n---\n\n**[REBUT] R1-W4: stopped gradient 论证力度被高估**\n\nR1 认为 \"论文将 stopped gradient 的论证力度描述得过高\"。我部分不同意。\n\n回到原文 Section 5（第 6 页），stopped gradient 变体（F1c: stopped dot product, F1d: mode collapse）被明确定位为诊断链中的一步——排除 \"梯度通过 d_syc 回传导致方向被 corrupt\" 这一特定假说。论文的表述是（paraphrasing）：\"F1c/F1d 的失败排除了梯度操纵假说，将问题指向 d_syc 的语义局限性。\" 这是一个合理的消去推理步骤。\n\n论文没有声称 stopped gradient 证明了 \"d_syc 编码错了东西\"——它只是排除了一个特定的 alternative（gradient-based manipulation）。在诊断链中，每一步排除一个假说是标准方法论。\n\n**但 R1 有一个隐含的有效批评**：如果 C1（group_size noise）和 C2（truncation quality）才是真正的失败原因，那么 stopped gradient 排除的假说虽然被正确排除，但排除它也不能指向 \"语义局限性\"——因为还有其他未排除的 confound。所以 stopped gradient 的论证力在逻辑上是正确的，但在 R1 指出的更大 confound 背景下，其指向性被削弱了。\n\n总结：论证逻辑本身不过度，但在 C1/C2 未排除的背景下，其推论的终点（语义局限性）确实过早。\n\n---\n\n**[AGREE] R1-W5: GPT-4.1 对比对的分布偏差**\n\n同意这是一个有效关切。论文 Section 3.1（第 4 页）提到使用 GPT-4.1 (OpenAI, 2025) 以两阶段 pipeline 生成对比对：skeleton generation + dialogue completion。虽然论文有一些质量控制措施（style matching: response-length difference <10%，evidence strength 三档标注，automated validation 丢弃了 19/200 对），但 GPT-4.1 生成的 sycophantic 响应可能与真实 LLM sycophancy 存在系统性差异。\n\n具体风险：\n- GPT-4.1 的 sycophancy 风格可能过于明显/模式化，使得 d_syc 学到了 GPT-4.1 的写作风格特征而非通用的 sycophancy 信号\n- 论文用这些对比对在 Qwen3-8B 上提取方向，但 Qwen3-8B 自己产生的 sycophancy 可能有不同的 surface patterns\n\n不过这一问题的严重性有限：Section 4 的 cross-model validation（Llama-3-8B 上 AUROC 0.779）和 evidence-strength gradient 分析提供了一些间接证据说明 d_syc 捕获的是语义信号而非 style artifacts。\n\n---\n\n### 总结性评估\n\nR1 的审稿揭示了两个我初审未充分关注的重要问题：**group_size=2 的 confound（C1）和 256-token truncation 对 reward quality 的实际影响（C2）**。这两个问题与我自己的 N3（ACT/GRPO 混淆变量）和 W4（d_syc 质量问题）形成互补，共同构成一个强有力的替代解释：\n\n> 论文观察到的所有 \"probe reward trap\" 现象，可能完全由 (a) group_size=2 的 noisy advantage estimation + (b) 256-token truncation 导致的 reward quality 退化所解释，无需诉诸 \"d_syc 有根本性语义局限\" 这一更强的结论。\n\n如果作者能提供 group_size≥8 + 更长 completion length 的消融实验，且 probe reward trap 仍然出现，这将显著增强论文的核心论证。在当前证据下，**我维持 Overall 3.0 (Findings) 的评分**，但 soundness 评分下调至 **2.5/5**（受 C1/C2 confound 影响）。\n\nR1 和我在整体判断上一致：这是一篇方法论上有缺陷但选题有价值的工作，目前证据支持 Findings 接收，但不足以支持 main conference。\n\n---\n\n[Reviewer 2 审稿结果]:\n交叉回应已提交。\n\n对 R1 的 8 个问题：**6 个 AGREE，1 个 REBUT（W4 stopped gradient），1 个 AGREE with nuance（W5）**。\n\n核心共识：R1 发现的 group_size=2 confound（C1）和 256-token truncation quality degradation（C2）是我初审遗漏的重要问题，与我的 N3/W4 互补，共同构成一个强替代解释——训练失败可能源于 noisy advantage estimation + 低质量 reward signal，而非 d_syc 的根本性语义局限。Soundness 评分从 3/5 下调至 2.5/5，Overall 维持 3.0 (Findings)。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-001003"
+        },
+        {
+          "source_line": 1004,
+          "timestamp": "2026-05-25T23:54:23.382310+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reviewer 2 交叉回应已收到。R2 对 R1 的 8 个问题：6 AGREE, 1 REBUT (stopped gradient 论证逻辑本身合理但指向性在 confound 背景下被削弱), 1 AGREE with nuance。\n\n**收敛确认**：两位 Reviewer 共识完全一致，Overall 3.0 (Findings) 无分歧。R2 补充的关键洞察——\"应在 gs=2 下测试 gold standard reward 作为 positive control\"——进一步强化了 W5 的论证，但不改变整体评估。\n\n审稿报告已在 R1 交叉回应后提交（报告已包含双方核心共识）。R2 的交叉回应与已提交报告的结论完全一致，无需重新提交。\n\n**Round 10 审稿圆桌会议完成。**"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_056796cf71f839be40019e5f1a11791b:director"
+          },
+          "id": "event-001004"
+        }
+      ]
+    }
+  ]
+}

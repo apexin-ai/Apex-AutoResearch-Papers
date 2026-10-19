@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "481259a2eee378580abd",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "monitor exp002v3 r1 signal",
+  "task_key": "worker_monitor_exp002v3-r1-signal_20260519T180927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp002v3-r1-signal_20260519T180927_result.json",
+    "occurrence": 1,
+    "bytes": 1395,
+    "sha256": "dd6a3e6c07d14ef0624e12a5bbe44bb68e2dc3ba809850b480e759524af149b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "问题定位清楚了。\n\n```\n进程状态：死亡（首步崩溃，EXIT_CODE=1）\n当前步数：0（未完成任何训练步）\nGPU 0 显存占用：5 MiB（空闲）\nGPU 1 显存占用：31432 MiB（残留/其他进程）\nGPU 2 显存占用：30670 MiB（残留/其他进程）\nGPU 3 显存占用：4 MiB（空闲）\n\nR1 信号分析：无（未产生任何训练数据）\n\n异常：进程死亡\n结论：进程死亡，需修复后重启\n```\n\n## 崩溃原因\n\n`run_exp002v3_dcgrpo_scaled_cosine.py:77` 的 `Exp002v3Trainer.compute_rewards()` 调用 `super().compute_rewards()` 时多传了 2 个参数：\n\n**子类调用（6 个参数）：**\n```python\nsuper().compute_rewards(\n    completions, conditions, pair_ids, batch_activations, r1_ema, ema_alpha\n)\n```\n\n**父类签名（4 个参数）：**\n```python\ndef compute_rewards(self, completions, conditions, pair_ids, batch_activations):\n```\n\n`r1_ema` 和 `ema_alpha` 是子类新增的参数，父类 `DCGRPOTrainer.compute_rewards()` 不接受。\n\n## 修复\n\n`run_exp002v3_dcgrpo_scaled_cosine.py:77` 改为只传父类接受的 4 个参数：\n\n```python\nrewards, components = super().compute_rewards(\n    completions, conditions, pair_ids, batch_activations\n)\n```\n\n`r1_ema` 和 `ema_alpha` 留在子类签名中供子类自身逻辑使用即可。需要修复后重启训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp002v3-r1-signal.md"
+}

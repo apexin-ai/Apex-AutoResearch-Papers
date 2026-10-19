@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "83bc30bac751d5e67b16",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnosis exp009 eval result",
+  "task_key": "worker_diagnosis_exp009-eval-result_20260520T083120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_exp009-eval-result_20260520T083120_result.json",
+    "occurrence": 1,
+    "bytes": 865,
+    "sha256": "478ab42715efe0d25a3358fe2cb75622cdfbace534bdb0aaab2119e088f43c98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Eval 状态：进行中\n\n| 项目 | 状态 |\n|------|------|\n| PID 227017 | 运行中，已运行 1h13m |\n| 进度 | **200/362** pairs (~55%) |\n| 速率 | 180 pairs / 63 min ≈ 2.86 pairs/min |\n| 剩余 | 162 pairs ≈ **57 分钟** |\n| 预计完成 | ~17:25 CST |\n\n结果目录 `/root/contrastive_entrain_calib/results/exp009_ckpt500_eval/` 目前为空，eval 脚本在全部 362 pairs 处理完后才写结果文件。\n\n## GPU 状态\n\n| GPU | 利用率 | 显存 | 用途 |\n|-----|--------|------|------|\n| 0 | 0% | 5/32607 MiB | **空闲** |\n| 1 | 100% | 31432/32607 MiB | exp-009 训练 |\n| 2 | 100% | 30668/32607 MiB | exp-009 训练 |\n| 3 | 49% | 16766/32607 MiB | eval 运行中 |\n\n## 决策\n\n**无法判断是否 kill**——ToF/NoF 尚无数据。需等 eval 完成（约 57 分钟后）再读取结果做判断。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-exp009-eval-result.md"
+}

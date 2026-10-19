@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9580a7c4c20a3c081b5",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "run dcgrpo gpu smoke test",
+  "task_key": "worker_run_dcgrpo_gpu_smoke_test_20260518T123458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_dcgrpo_gpu_smoke_test_20260518T123458_result.json",
+    "occurrence": 1,
+    "bytes": 394,
+    "sha256": "171cb3430217cabb951a9cbe25fd7337bbe1508e6083e4e812a32720453bc783"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "本地文件已同步修复。\n\n**总结**: 3 项测试全部 PASSED。唯一需要修复的 bug 是 `directions.pt`（Float32）与模型 hidden states（BFloat16）的 dtype 不匹配，已在本地和远程同步修复。R1/R2 的分布显示 4 对中有 2 对 contrastive 方向正确（R2=0.5），2 对反转（R2≈-0.5），符合小样本冒烟测试的预期波动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-dcgrpo-gpu-smoke-test.md"
+}

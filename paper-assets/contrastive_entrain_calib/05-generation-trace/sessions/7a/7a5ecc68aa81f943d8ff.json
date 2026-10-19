@@ -1,0 +1,453 @@
+{
+  "schema_version": "1.0",
+  "id": "7a5ecc68aa81f943d8ff",
+  "project": "contrastive_entrain_calib",
+  "kind": "conversation",
+  "title": "diag exp002v2 step50 check",
+  "task_key": "worker_diag_exp002v2-step50-check_20260519T012608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_diag_exp002v2-step50-check_20260519T012608.jsonl",
+    "occurrence": 1,
+    "bytes": 15989,
+    "sha256": "8670cbf81879adeb992962087e381f3b962584da24a53198c4bf969509c85ef5"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T01:27:24.722358+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_exp002v2-step50-check_20260519T012608",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T01:27:24.722717+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_exp002v2-step50-check_20260519T012608",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T01:27:24.722911+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_exp002v2-step50-check_20260519T012608",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "tail -200 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T01:27:24.723060+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_exp002v2-step50-check_20260519T012608",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "grep -iE \"r1|r3|reward\" /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log | head -80",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T01:27:24.723310+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 09:03:48,532 [INFO] dcgrpo_trainer: reward/r1_mean=-0.0540\\\\n2026-05-19 09:03:48,532 [INFO] dcgrpo_trainer: reward/r2_mean=-0.0272\\\\n2026-05-19 09:03:48,532 [INFO] dcgrpo_trainer: reward/r3_mean=0.4633\\\\n2026-05-19 09:03:48,532 [INFO] dcgrpo_trainer: reward/combined_mean=0.3407\\\\n2026-05-19 09:04:14,538 [INFO] dcgrpo_trainer: reward/r1_mean=-0.0330\\\\n2026-05-19 09:04:14,538 [INFO] dcgrpo_trainer: reward/r2_mean=-0.0211\\\\n2026-05-19 09:04:14,538 [INFO] dcgrpo_trainer: reward/r3_mean=0.7492\\\\n2026-05-19 09:04:14,538 [INFO] dcgrpo_trainer: reward/combined_mean=0.5537\\\\n2026-05-19 09:04:40,856 [INFO] dcgrpo_trainer: reward/r1_mean=-0.0655\\\\n2026-05-19 09:04:40,856 [INFO] dcgrpo_trainer: reward/r2_mean=-0.0265\\\\n2026-05-19 09:04:40,857 [INFO] dcgrpo_trainer: reward/r3_mean=0.3753\\\\n2026-05-19 09:04:40,857 [INFO] dcgrpo_trainer: reward/combined_mean=0.2726\\\\n2026-05-19 09:05:06,742 [INFO] dcgrpo_trainer: reward/r1_mean=-0.0237\\\\n2026-05-19 09:05:06,742 [INFO] dcgrpo_trainer: reward/r2_mean=-0.0285\\\\n2026-05-19 09:05:06,742 [INFO] dcgrpo_trainer: reward/r3_mean=0.3758\\\\n2026-05-19 09:05:06,742 [INFO] dcgrpo_trainer: reward/combined_mean=0.2770\\\\n2026-05-19 09:05:31,960 [INFO] dcgrpo_trainer: reward/r1_mean=-0.0861\\\\n2026-05-19 09:05:31,960 [INFO] dcgrpo_trainer: reward/r2_mean=-0.0325\\\\n2026-05-19 09:05:31,960 [INFO] dcgrpo_trainer: reward/r3_mean=0.2511\\\\n2026-05-19 09:05:31,960 [INFO] dcgrpo_trainer: reward/combined_mean=0.1755\\\\n2026-05-19 09:05:57,364 [INFO] dcgrpo_trainer: reward/r1_mean=-0.0133\\\\n2026-05-19 09:05:57,364 [INFO] dcgrpo_trainer: reward/r2_mean=-0.0308\\\\n2026-05-19 09:05:57,364 [INFO] dcgrpo_trainer: reward/r3_mean=0.6209\\\\n2026-05-19 09:05:57,364 [INFO] dcgrpo_trainer: reward/combined_mean=0.4663\\\\n2026-05-19 09:06:22,472 [INFO] dcgrpo_trainer: reward/r1_mean=-0.0463\\\\n2026-05-19 09:06:22,472 [INFO] dcgrpo_trainer: reward/r2_mean=-0.0238\\\\n2026-05-19 09:06:22,472 [INFO] dcgrpo_trainer: r\n…[truncated 6427 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_exp002v2-step50-check_20260519T012608",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T01:27:24.723527+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 08:02:24,510 [INFO] exp002v2: === exp-002v2: DC-GRPO Cosine R1 (M012 tanh fix) ===\\\\n2026-05-19 08:02:24,510 [INFO] exp002v2: Weights: R1=0.25, R2=0.00, R3=0.75\\\\n2026-05-19 08:02:24,510 [INFO] exp002v2: Reward layers: [19, 20, 24, 27, 32, 33, 35]\\\\n2026-05-19 08:02:55,928 [INFO] dcgrpo_trainer: [step 1] reward/r1  mean=-0.0026  std=0.0753  min=-0.1022  max=0.1139\\\\n2026-05-19 08:02:55,929 [INFO] dcgrpo_trainer: [step 1] reward/r2  mean=0.0000  std=0.0000  min=0.0000  max=0.0000\\\\n2026-05-19 08:02:55,929 [INFO] dcgrpo_trainer: [step 1] reward/r3  mean=0.2775  std=0.4425  min=0.0002  max=0.9997\\\\n2026-05-19 08:02:55,929 [INFO] dcgrpo_trainer: [step 1] reward/combined  mean=0.2075  std=0.3470\\\\n2026-05-19 08:03:22,654 [INFO] dcgrpo_trainer: [step 2] reward/r1  mean=-0.0544  std=0.0924  min=-0.1607  max=0.0749\\\\n2026-05-19 08:03:22,654 [INFO] dcgrpo_trainer: [step 2] reward/r2  mean=0.0000  std=0.0000  min=0.0000  max=0.0000\\\\n2026-05-19 08:03:22,654 [INFO] dcgrpo_trainer: [step 2] reward/r3  mean=0.5686  std=0.5015  min=0.0004  max=0.9995\\\\n2026-05-19 08:03:22,654 [INFO] dcgrpo_trainer: [step 2] reward/combined  mean=0.4128  std=0.3911\\\\n2026-05-19 08:03:50,861 [INFO] dcgrpo_trainer: [step 3] reward/r1  mean=-0.0601  std=0.0516  min=-0.1192  max=0.0515\\\\n2026-05-19 08:03:50,862 [INFO] dcgrpo_trainer: [step 3] reward/r2  mean=0.0000  std=0.0000  min=0.0000  max=0.0000\\\\n2026-05-19 08:03:50,862 [INFO] dcgrpo_trainer: [step 3] reward/r3  mean=0.8354  std=0.3558  min=0.0021  max=0.9997\\\\n2026-05-19 08:03:50,862 [INFO] dcgrpo_trainer: [step 3] reward/combined  mean=0.6116  std=0.2727\\\\n2026-05-19 08:04:16,970 [INFO] dcgrpo_trainer: [step 4] reward/r1  mean=-0.0133  std=0.0746  min=-0.1732  max=0.0666\\\\n2026-05-19 08:04:16,970 [INFO] dcgrpo_trainer: [step 4] reward/r2  mean=-0.0071  std=0.0193  min=-0.0566  max=0.0000\\\\n2026-05-19 08:04:16,971 [INFO] dcgrpo_trainer: [step 4] reward/r3  mean=0.4979  std=0.512\n…[truncated 5717 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_exp002v2-step50-check_20260519T012608",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T01:27:24.723691+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_exp002v2-step50-check_20260519T012608",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "ls -la /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/checkpoint-*/ 2>/dev/null; echo \"EXIT: $?\"",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T01:27:24.723834+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"EXIT: 2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_exp002v2-step50-check_20260519T012608",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T01:27:24.724018+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_exp002v2-step50-check_20260519T012608",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "grep -c \"reward/r1_mean\" /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T01:27:24.724160+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"173\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_exp002v2-step50-check_20260519T012608",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T01:27:24.724280+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_exp002v2-step50-check_20260519T012608",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "grep -oP \"reward/r1_mean=\\K[-0-9.]+\" /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log | awk 'BEGIN{n=0;s=0;min=999;max=-999}{n++;v=$1;s+=v;if(v<min)min=v;if(v>max)max=v;sq+=v*v}END{m=s/n;printf \"n=%d mean=%.4f std=%.4f min=%.4f max=%.4f\\n\",n,m,sqrt(sq/n-m*m),min,max}'",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T01:27:24.724404+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"n=173 mean=-0.0412 std=0.0285 min=-0.1237 max=0.0385\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_exp002v2-step50-check_20260519T012608",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T01:27:24.724532+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_exp002v2-step50-check_20260519T012608",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "grep -oP \"reward/r3_mean=\\K[-0-9.]+\" /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log | awk 'BEGIN{n=0;s=0;min=999;max=-999}{n++;v=$1;s+=v;if(v<min)min=v;if(v>max)max=v;sq+=v*v}END{m=s/n;printf \"n=%d mean=%.4f std=%.4f min=%.4f max=%.4f\\n\",n,m,sqrt(sq/n-m*m),min,max}'",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T01:27:24.724663+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"n=173 mean=0.4917 std=0.1613 min=0.0363 max=0.9969\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_exp002v2-step50-check_20260519T012608",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T01:27:24.724937+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_exp002v2-step50-check_20260519T012608",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "grep -c \"reward/r1\" /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T01:27:24.725215+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"183\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_exp002v2-step50-check_20260519T012608",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T01:27:24.725412+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_exp002v2-step50-check_20260519T012608",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "grep \"step\\|ADAPTIVE\\|NaN\\|nan\\|inf\\|Inf\\|error\\|Error\\|loss=\" /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log | tail -20",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T01:27:24.725801+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 08:05:10,266 [INFO] dcgrpo_trainer: [step 6] reward/r2  mean=-0.0138  std=0.0247  min=-0.0553  max=0.0000\\\\n2026-05-19 08:05:10,266 [INFO] dcgrpo_trainer: [step 6] reward/r3  mean=0.8092  std=0.4012  min=0.0004  max=0.9999\\\\n2026-05-19 08:05:10,266 [INFO] dcgrpo_trainer: [step 6] reward/combined  mean=0.6029  std=0.3139\\\\n2026-05-19 08:05:36,459 [INFO] dcgrpo_trainer: [step 7] reward/r1  mean=-0.0354  std=0.1032  min=-0.1817  max=0.1551\\\\n2026-05-19 08:05:36,459 [INFO] dcgrpo_trainer: [step 7] reward/r2  mean=-0.0096  std=0.0263  min=-0.0771  max=0.0000\\\\n2026-05-19 08:05:36,459 [INFO] dcgrpo_trainer: [step 7] reward/r3  mean=0.3788  std=0.4936  min=0.0005  max=0.9997\\\\n2026-05-19 08:05:36,459 [INFO] dcgrpo_trainer: [step 7] reward/combined  mean=0.2753  std=0.3917\\\\n2026-05-19 08:06:02,842 [INFO] dcgrpo_trainer: [step 8] reward/r1  mean=-0.0671  std=0.0756  min=-0.2204  max=0.0177\\\\n2026-05-19 08:06:02,842 [INFO] dcgrpo_trainer: [step 8] reward/r2  mean=-0.0096  std=0.0209  min=-0.0435  max=0.0187\\\\n2026-05-19 08:06:02,842 [INFO] dcgrpo_trainer: [step 8] reward/r3  mean=0.3140  std=0.4743  min=0.0002  max=0.9993\\\\n2026-05-19 08:06:02,842 [INFO] dcgrpo_trainer: [step 8] reward/combined  mean=0.2187  std=0.3645\\\\n2026-05-19 08:06:30,536 [INFO] dcgrpo_trainer: [step 9] reward/r1  mean=-0.0334  std=0.0734  min=-0.1380  max=0.0599\\\\n2026-05-19 08:06:30,536 [INFO] dcgrpo_trainer: [step 9] reward/r2  mean=0.0014  std=0.0038  min=0.0000  max=0.0111\\\\n2026-05-19 08:06:30,536 [INFO] dcgrpo_trainer: [step 9] reward/r3  mean=0.5644  std=0.5069  min=0.0002  max=0.9999\\\\n2026-05-19 08:06:30,536 [INFO] dcgrpo_trainer: [step 9] reward/combined  mean=0.4150  std=0.3963\\\\n2026-05-19 08:06:57,650 [INFO] exp002v2: ADAPTIVE GATE: weak R1 mean=-0.0256 std=0.1052 n=70 -> GATED (R1=0 for weak after step 100)\\\\n2026-05-19 08:06:57,651 [INFO] dcgrpo_trainer: [step 10] reward/r1  mean=-0.0041  std=0.1009  min=-0.1358  max=0.1\n…[truncated 448 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_exp002v2-step50-check_20260519T012608",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T01:27:24.726023+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_exp002v2-step50-check_20260519T012608",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "grep \"valid_correction\\|invalid_pressure\\|per.condition\\|condition\" /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log | head -20",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T01:27:24.726174+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_exp002v2-step50-check_20260519T012608",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T01:27:24.726389+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-002v2 Sanity Check @ ~Step 183\n\n### 1. 当前进度\n- **当前步数**: ~183 steps（183 条 R1 记录）\n- **训练速度**: ~27s/step（08:02 → 09:25，83 分钟 183 步）\n- **预计 checkpoint-500 时间**: 还需 ~317 步 × 27s ≈ 2.4 小时\n\n### 2. R1 分布（cosine similarity reward）\n基于 step 11–183 的 batch-level 统计（n=173）：\n\n| 指标 | 值 |\n|------|-----|\n| mean | **-0.0412** |\n| std  | 0.0285 |\n| min  | -0.1237 |\n| max  | +0.0385 |\n\n早期详细步（step 1–10）的 per-sample 范围: min=-0.2208, max=+0.1587\n\n**R1 持续偏负**。初始 3 步 [-0.16, +0.11] 范围内，但 183 步后 batch mean 几乎没有正值（max 仅 +0.04）。cosine 信号在 [-0.2, +0.2] 范围内稳定，但系统性负偏。\n\n### 3. R3 分布（correctness reward）\n| 指标 | 值 |\n|------|-----|\n| mean | **0.4917** |\n| std  | 0.1613 |\n| min  | 0.0363 |\n| max  | 0.9969 |\n\nR3 健康，高方差表明有区分度。\n\n### 4. R2 分布\nR2 近零（大部分 batch 为 0.0000 或极小负值），符合预期。\n\n### 5. valid_correction vs invalid_pressure 区分\n**日志中无 per-condition R1 数据**。无法直接从日志判断 valid/invalid 的 R1 差异。\n\n### 6. 异常检查\n- **无 NaN/Inf/Error**\n- **无 loss 爆炸**\n- **ADAPTIVE GATE 在 step 10 触发**: weak R1 mean=-0.0256, std=0.1052 → 决定 step 100 后对 weak 样本 gate R1=0\n- **Checkpoint**: 尚无（save_steps=500）\n\n### 7. 关注点\n\n**R1 系统性负偏是主要信号**。183 步的 batch mean 均值 -0.04，极少出现正值。这意味着 cosine similarity reward 在整体上略微惩罚模型，而非提供正向对比信号。可能原因：\n- cosine baseline 偏移（模型初始隐层表征方向与 reward 期望方向不对齐）\n- 或 valid/invalid 两类都产生负 R1，只是程度不同（需要 per-condition 数据确认）\n\nR3（权重 0.75）主导训练方向，R1（权重 0.25 × -0.04 ≈ -0.01）影响较小，训练不会崩但 contrastive 信号可能没起到设计作用。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_exp002v2-step50-check_20260519T012608"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/diag-exp002v2-step50-check.md"
+}

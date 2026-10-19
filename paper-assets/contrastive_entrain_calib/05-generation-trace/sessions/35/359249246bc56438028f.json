@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "359249246bc56438028f",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval 28034 heldout baselines",
+  "task_key": "worker_eval_28034-heldout-baselines_20260523T071648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_28034-heldout-baselines_20260523T071648_result.json",
+    "occurrence": 1,
+    "bytes": 1815,
+    "sha256": "6cc55f0f41ec84ea74b7636fef0609cff97337525b6d17374611d3f96b59b47a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**1. eval_held_out.jsonl 传输** — 无需传输，28034 已有该文件（70 行，70992 bytes），与 29046 上的 eval_split.jsonl 一致。\n\n**2. Vanilla baseline eval (cuda:2)**\n- PID: 56465（子进程已启动）\n- 状态：模型已加载，正在推理 70 对数据\n- GPU 占用：16458 MiB / 32607 MiB\n- 命令：\n```\nCUDA_VISIBLE_DEVICES=2 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python eval/eval_unified_preset.py \\\n  --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B \\\n  --data_path /root/contrastive_entrain_calib/data/eval_held_out.jsonl \\\n  --output_dir eval_results/heldout_vanilla_baseline/ \\\n  --exp_id heldout_vanilla_baseline\n```\n\n**3. R3-only ckpt-6500 eval (cuda:3)**\n- PID: 56851（子进程已启动）\n- 状态：模型+LoRA adapter 已加载，正在推理 70 对数据\n- GPU 占用：16844 MiB / 32607 MiB\n- Checkpoint 路径：`/root/autodl-tmp/checkpoints/exp003/checkpoint-6500`\n- 命令：\n```\nCUDA_VISIBLE_DEVICES=3 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python eval/eval_unified_preset.py \\\n  --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B \\\n  --lora_path /root/autodl-tmp/checkpoints/exp003/checkpoint-6500 \\\n  --data_path /root/contrastive_entrain_calib/data/eval_held_out.jsonl \\\n  --output_dir eval_results/heldout_r3only_ckpt6500/ \\\n  --exp_id heldout_r3only_ckpt6500\n```\n\n**4. rl-ckpt-7000 eval (PID 55429, cuda:0)**\n- 仍在运行（已 14 分钟），进度 320/362，预计 ~2 分钟完成\n- 注意：跑的是默认 sycophancy_bench 全量数据（362 对），不是 held-out 的 70 对\n\n**5. 备注**\n- eval 脚本无 `--preset` / `--gpu` 参数，实际参数为 `--model_path`, `--lora_path`, `--data_path`, `--output_dir`, `--exp_id`\n- 70 对数据推理预计 5-10 分钟完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-28034-heldout-baselines.md"
+}

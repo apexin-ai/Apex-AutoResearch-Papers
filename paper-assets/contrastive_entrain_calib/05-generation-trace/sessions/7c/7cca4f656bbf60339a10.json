@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7cca4f656bbf60339a10",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "data fig probe trap json",
+  "task_key": "worker_data_fig-probe-trap-json_20260520T181034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_fig-probe-trap-json_20260520T181034_result.json",
+    "occurrence": 1,
+    "bytes": 467,
+    "sha256": "9c9399d4cbd5ff202e7cf549906a94a6a92e207303480d8271d395d443391aec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已写入 `artifacts/figures/probe_trap_data.json` 并注册为 artifact `art_20260520_43877a`。\n\n数据来源：westd-28034 上 exp-008v3 训练日志（TRL trainer 每 10 步输出的 summary dict 中提取 entropy，`[step N]` 行提取 R1_mean），D027 eval 数据来自 registry。R1_mean 的剧烈波动（0→0.875→0.25→1.0）源于 probe 每 500 步重训，但模型行为（stubbornness, ToF≈0）从 step 500 起锁死不变。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-fig-probe-trap-json.md"
+}

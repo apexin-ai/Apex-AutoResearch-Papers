@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2bf52d3a99580e49ca75",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "fix exp003 script patch",
+  "task_key": "worker_fix_exp003_script_patch_20260518T150149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp003_script_patch_20260518T150149_result.json",
+    "occurrence": 1,
+    "bytes": 263,
+    "sha256": "27d9112720d31b4c98902b7f847a70cd81357d864557b28115acb56ec4357adc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处修改完成，验证通过：\n\n| 参数 | 修改前 | 修改后 |\n|------|--------|--------|\n| `MODEL_PATH` (第25行) | `\"Qwen/Qwen3-8B\"` | `\"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\"` |\n| `max_steps` (第76行) | `6000` | `8000` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp003-script-patch.md"
+}

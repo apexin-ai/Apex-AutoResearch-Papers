@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5968fa0f12bcce8bbb1",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval check acts2 ckpt3500 result",
+  "task_key": "worker_eval_check-acts2-ckpt3500-result_20260522T172323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_check-acts2-ckpt3500-result_20260522T172323_result.json",
+    "occurrence": 1,
+    "bytes": 382,
+    "sha256": "eb8717722d06f985d76e69222fe2d030f8e19940e58552ac0ae975bbf28ac4c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（可能已被删除或在其他 session 创建），无影响。Registry 已更新。\n\n```\nexp-004-s2-eval-ckpt3500: SYCONScore=0.2308, ToF=0.1326, NoF=0.8895\n> vanilla(0.1335)? yes — 0.2308 vs 0.1335, +73%\n```\n\nSeed 2 ckpt-3500 的 SYCONScore (0.2308) 与 seed 1 ckpt-3500 (0.231) 几乎一致，两个 seed 在该 checkpoint 表现稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-check-acts2-ckpt3500-result.md"
+}

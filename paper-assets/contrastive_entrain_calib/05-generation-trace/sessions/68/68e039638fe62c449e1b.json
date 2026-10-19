@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68e039638fe62c449e1b",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis exp 003 eval s2 ckpt8000",
+  "task_key": "worker_analysis_exp-003-eval-s2-ckpt8000_20260522T170420",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-003-eval-s2-ckpt8000_20260522T170420_result.json",
+    "occurrence": 1,
+    "bytes": 873,
+    "sha256": "23d22e1eaba1c5f299c33258a5832e276108dff9dd1ad10ca73a7f066cab4691"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果摘要：\n\n## exp-003-eval-s2-ckpt8000 结果\n\n| 指标 | 值 |\n|------|-----|\n| **SYCONScore** | **0.1240** |\n| ToF | 0.0663 |\n| NoF | 0.9613 |\n| n_total | 362 (valid=181, invalid=181) |\n\n### 对比\n\n| 对比对象 | SYCONScore | 差值 |\n|----------|-----------|------|\n| Vanilla baseline | 0.1335 | **-7.1%** (低于 baseline) |\n| Seed 1 ckpt-8000 | 0.1433 | **-13.5%** (seed 2 更差) |\n| Seed 2 ckpt-7500 | 0.1140 | +8.8% (略有回升但仍低于 baseline) |\n\n### Conclusion: **negative**\n\nR3-only seed 2 全 trajectory 确认失败——从 ckpt-2000 到 ckpt-8000 的 SYCONScore 范围 0.0845~0.1240，始终低于 vanilla baseline 0.1335。Seed 2 表现一致性差于 seed 1（seed 1 ckpt-8000 达到 0.1433，勉强超过 baseline），说明 R3-only 训练的效果不稳定且跨 seed 不可靠。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-003-eval-s2-ckpt8000.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e71728e9c162365b551",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code exp003 multi ckpt eval pipeline",
+  "task_key": "worker_code_exp003-multi-ckpt-eval-pipeline_20260520T124658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp003-multi-ckpt-eval-pipeline_20260520T124658_result.json",
+    "occurrence": 1,
+    "bytes": 1538,
+    "sha256": "c6bd68884b768e4dcb8432aa497a58cb3e70478f5487bfb7cfb60ec3cd6125d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报如下：\n\n---\n\n### SCP 状态\n3 个 checkpoint 从 westd-29046 成功传输到 westd-28034：\n| Checkpoint | 大小 | 路径 |\n|---|---|---|\n| checkpoint-1000 | 718MB | `/root/autodl-tmp/checkpoints/exp003/checkpoint-1000` |\n| checkpoint-2000 | 718MB | `/root/autodl-tmp/checkpoints/exp003/checkpoint-2000` |\n| checkpoint-3000 | 718MB | `/root/autodl-tmp/checkpoints/exp003/checkpoint-3000` |\n\n软链接已创建到 `/root/contrastive_entrain_calib/checkpoints/exp003/`。\n\n### Eval Job 提交状态\n| Job | GPU | PID | tmux session |\n|---|---|---|---|\n| ckpt-1000 | cuda:1 | 584627 | `exp-003-eval-ckpt1000` |\n| ckpt-2000 | cuda:2 | 584702 | `exp-003-eval-ckpt2000` |\n| ckpt-3000 | cuda:3 | 584777 | `exp-003-eval-ckpt3000` |\n\n### nvidia-smi 确认\n| GPU | 显存占用 | 利用率 |\n|---|---|---|\n| 0 (RTX 5090) | 2 MiB / 32607 MiB | 0% (空闲) |\n| 1 (RTX 5090) | 14944 MiB / 32607 MiB | 11% |\n| 2 (RTX 5090) | 14944 MiB / 32607 MiB | 11% |\n| 3 (RTX 5090) | 14944 MiB / 32607 MiB | 11% |\n\n### ckpt-5000 eval 结果（已完成，耗时 5146s）\n- **ToF** = 0.0608\n- **NoF** = 0.9669\n- **SYCONScore** = 0.1144\n- n_valid = 181, n_invalid = 181, n_total = 362\n\n结果文件位于 `/root/autodl-tmp/results/exp003_unified_eval/exp003_ckpt5000_preset_eval.json`。注意新的 3 个 eval 输出目录为 `/root/contrastive_entrain_calib/results/exp003_d027_eval/`（脚本默认路径），与 ckpt-5000 的输出路径不同。预计每个 eval 约 85 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp003-multi-ckpt-eval-pipeline.md"
+}

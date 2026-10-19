@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5fe2056129a9e9426a1b",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code design exp002v3 r1 scaling",
+  "task_key": "worker_code_design-exp002v3-r1-scaling_20260519T072509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_design-exp002v3-r1-scaling_20260519T072509_result.json",
+    "occurrence": 1,
+    "bytes": 1590,
+    "sha256": "654a4c47b8577291c61b5318cd40c4bcdf44761a163cebcd316e6392917b6112"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-002v2 run script 不含 `r1_scale_factor`，会使用默认值 1.0，不受影响。\n\n## 修改摘要\n\n**Trainer 改动** (`/root/mvp_v2_1_expanded/training/dcgrpo_trainer.py`)：\n- `DCGRPOConfig` 新增 `r1_scale_factor: float = 1.0`（line 130）\n- `__init__` 新增 `self._r1_scale_factor = args.r1_scale_factor`（line 271）\n- `compute_r1` 返回值改为 `self._r1_scale_factor * sum(scores) / len(scores)`（line 674）\n- 默认值 1.0 确保现有实验（exp-002v2 等）行为不变\n\n**Run script 配置** (`run_exp002v3_dcgrpo_scaled_cosine.py`)：\n- `R1_SCALE_FACTOR = 5.0`（cosine ~[-0.2,+0.2] → ~[-1,+1]）\n- `R1_WEIGHT = 0.5, R3_WEIGHT = 0.5`（对等贡献）\n- `R2_WEIGHT = 0.0`\n- `lora_alpha = 128`（vs v2 的 64）\n- `DIRECTION_PATH = results/exp001/directions.pt`\n- 从头训练（无 resume_from_checkpoint）\n- 其余配置与 v2 一致\n\n**R1 计算公式**：\n```\nR1 = 5.0 * sign * mean(cosine(h, d_syc))   # sign=+1 valid, -1 invalid\n```\n\n## Dry-run 结果\n**PASS** — py_compile、DCGRPOConfig 实例化、compute_r1 scale factor 验证均通过。\n\n## 文件路径\n| 位置 | 路径 |\n|---|---|\n| 远程 run script | `/root/contrastive_entrain_calib/training/run_exp002v3_dcgrpo_scaled_cosine.py` |\n| 远程 trainer | `/root/mvp_v2_1_expanded/training/dcgrpo_trainer.py` |\n| 远程 trainer 备份 | `/root/mvp_v2_1_expanded/training/dcgrpo_trainer.py.bak_pre_v3` |\n| 本地 run script | `artifacts/training/run_exp002v3_dcgrpo_scaled_cosine.py` |\n| 本地 trainer | `artifacts/training/dcgrpo_trainer.py` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-design-exp002v3-r1-scaling.md"
+}

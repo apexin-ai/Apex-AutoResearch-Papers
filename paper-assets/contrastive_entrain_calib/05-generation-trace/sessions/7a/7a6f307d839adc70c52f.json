@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a6f307d839adc70c52f",
+  "project": "contrastive_entrain_calib",
+  "kind": "history",
+  "title": "agent / loop_2_1779347638.md",
+  "task_key": "loop_2_1779347638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1779347638.md",
+    "occurrence": 1,
+    "bytes": 5217,
+    "sha256": "962cbf368b1128182f87ed25e6c3e50e16aa08e945820a21608d6d4d28bb9782"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-21T07:13:56+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-28034 GPU 白名单: cuda:0/1/2/3（4× A100 32GB）。westd-29046 GPU 白名单: cuda:0/1（2× A100 96GB）。不在白名单的 GPU 禁止使用\n- exp-004 是 SFT（ACT）不是 RL——汇报/写论文时不要把它归入 GRPO 失败谱系，它是正面对照\n- exp-003 R3-only 是 MUST 实验——Claim 2 依赖它作为 behavioral-only baseline，不可 kill\n- D027 统一 eval 基线: vanilla SYCONScore=0.134（不是旧 eval_pipeline.py 的 0.197）。所有对比必须用 0.134\n- 论文 claim 强度 Medium-High (D037)，升级到 High 需要 exp-003 SYCONScore ≥ 0.20\n\n### 2. 🖥️ 基础设施快照\n- **westd-28034** (4× A100 32GB):\n  - 工作目录: `/root/contrastive_entrain_calib`\n  - Python: `/root/miniconda3/bin/python`（conda base，不是 venv）\n  - 模型: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B`, Llama: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3-8B-Instruct`\n  - 数据: `/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl` (362 pairs)\n  - 结果目录: `/root/autodl-tmp/results/`，checkpoints: `/root/autodl-tmp/checkpoints/`\n  - 磁盘: 根分区 2% used, 数据盘 24% used\n- **westd-29046** (2× A100 96GB):\n  - 同样 conda base，路径结构一致\n  - 磁盘: 根分区 4% used, 数据盘 24% used\n- **活跃进程**:\n  - westd-29046 cuda:1: exp-003 训练 (PID 70649)\n  - westd-29046 cuda:0: exp-003-s2 训练 (PID 237432)\n  - westd-28034 cuda:0: exp-003-eval-ckpt4000 (PID 591330)\n  - westd-28034 cuda:1: exp-004-eval-ckpt7000 (PID 596096)\n  - westd-28034 cuda:2: exp-004-eval-ckpt3000 (PID 595107)\n  - westd-28034 cuda:3: exp-004-eval-ckpt5000 (PID 595243) — 注意 exp-009-eval-ckpt1000 (PID 234111) 也声称占 cuda:3 且 registry 状态 RUNNING，但已跑 5h+（正常 eval ~28min），很可能是僵尸进程或已结束但状态未同步\n- **Worker**: 1 个 running (worker_paper_writing_disc_20260520T144740)\n\n### 3. 📊 当前状态\n刚完成 exp-004-eval-ckpt1000 分析并推进到 DONE（SYCONScore=0.205, +53.4% vs vanilla）。已向 Director 汇报。\n\n**RUNNING**:\n- exp-003: R3-only GRPO 训练 seed 1（westd-29046 cuda:1）—— Claim 2 关键 baseline\n- exp-003-s2: R3-only GRPO 训练 seed 2（westd-29046 cuda:0）—— 可重复性验证，ETA ~May 23\n\n**PREPARING（实际在跑，cron 监控中）**:\n- exp-003-eval-ckpt4000: R3-only ckpt-4000 eval，关键数据点（前序 ckpt-1000/2000/3000/5000 全 negative，低于 vanilla）\n- exp-004-eval-ckpt3000/5000/7000: ACT 轨迹补全，~30min 内陆续完成\n- exp-009-eval-ckpt1000: 状态可疑，需要检查是否僵尸\n\n**等待中**:\n- 上述 eval cron 回调（分钟级）\n- exp-003 训练完成 → ckpt-8000 final eval（ETA ~May 21 17:00）\n- Paper writing Worker 回调\n\n### 4. 📋 待办\n- exp-004-eval-ckpt3000/5000/7000 任一 cron 回调 → 更新 registry 到 DONE，全部完成后汇报 Director 完整 8 点轨迹 + 建议生成 paper figure\n- exp-003-eval-ckpt4000 完成 → 若 SYCONScore > 0.134 则 R3-only 开始恢复（D042 U 型趋势确认），若仍 < 0.134 则 R3-only 全程低于 vanilla，强化 \"behavioral reward alone insufficient\" 叙事\n- exp-009-eval-ckpt1000 检查 → 若 PID 已死但状态未同步，手动推到 DONE（metrics 已有：SYCONScore=0.114）；释放 cuda:3 记录\n- exp-003 训练完成 → 立即提交 ckpt-8000 eval（最终数据点），同时提交剩余中间 checkpoint eval\n- exp-003 全轨迹完成 + exp-004 全轨迹完成 → 生成 \"SYCONScore vs training steps\" paper figure（两条曲线：ACT 对照 vs R3-only baseline）\n- Paper writing Worker 回调 → 整合产出到论文章节，检查与 registry metrics 一致性\n- exp-003 SYCONScore ≥ 0.20 at any checkpoint → 触发 claim 强度升级讨论 (D037)\n\n### 5. 🎯 战略上下文\n**核心论文叙事**: \"Discriminability Without Utility\" —— d_syc 方向能判别 sycophancy (AUROC 0.82) 但所有 representation-to-reward formulation 均失败。这是 analysis paper，不是 method paper。\n\n**决策链关键节点**:\n- D037: Claim 强度 Medium-High，升 High 条件是 exp-003 SYCONScore ≥ 0.20 + exp-009 fail（exp-009 已 fail）\n- D040: exp-009 continuous probe kill，确认所有三种 R1 formulation (cosine/binary/continuous) 都失败\n- D041: exp-004 是 SFT 不是 RL，exp-003 R3-only 也表现差 → 论文 framing 稳固\n- D042: exp-003 R3-only 轨迹确认 U 型恢复趋势 (+0.010/1000steps)\n\n**易错点**:\n- exp-003 R3-only 轨迹目前全部 negative（ckpt-1000 到 5000 都 < vanilla 0.134），但有 U 型恢复趋势——不要过早下结论说 R3 完全无效，等 ckpt-4000+ 数据\n- exp-004 ACT 轨迹在 ckpt-4000 有一个 dip（0.214 vs ckpt-2000 的 0.255），ckpt-3000 结果会决定 dip 形状——不要假设完全单调\n- 论文已完成章节: Framework, Direction Quality, Cosine Failure, Probe Trap, Introduction, fig_layer_auroc。待写: Results (blocked on exp-003), Conclusion, Related Work (in progress)\n- 6 张 GPU 全满载，但如果多个 eval 同时完成会释放 westd-28034 的 GPU——优先用于 exp-003 后续 checkpoint eval\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1779347638.md"
+}

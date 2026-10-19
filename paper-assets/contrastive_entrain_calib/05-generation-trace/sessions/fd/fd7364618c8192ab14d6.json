@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "fd7364618c8192ab14d6",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "run exp 004 act deploy",
+  "task_key": "worker_run_exp-004_act_deploy_20260518T152953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_exp-004_act_deploy_20260518T152953.log",
+    "occurrence": 1,
+    "bytes": 757914,
+    "sha256": "e534e6bcb3635e6f4b369a7085f32193165a9c1e52e52e9ce34474f4ec552c0a"
+  },
+  "statistics": {
+    "messages": 550,
+    "user_turns": 0,
+    "tool_calls": 214,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 119,
+      "tool_call": 214,
+      "tool_result": 214
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 550,
+      "chunks": [
+        {
+          "path": "fd7364618c8192ab14d6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fd7364618c8192ab14d6-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "fd7364618c8192ab14d6-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "fd7364618c8192ab14d6-part-0004.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/run-exp-004-act-deploy.md"
+}

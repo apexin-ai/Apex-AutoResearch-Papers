@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8fbc8146a8bce5c6228f",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "fix exp004 eval skip logic",
+  "task_key": "worker_fix_exp004-eval-skip-logic_20260519T103159",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp004-eval-skip-logic_20260519T103159_result.json",
+    "occurrence": 1,
+    "bytes": 145,
+    "sha256": "1f057c5bb179cce045d756d27d9cbfd0733198a4a2e0a4ff313d3f79b20e83e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已修复。第 38 行的 skip 检查从 `eval_results_${EXP_ID}.json` 改为 `${EXP_ID}_preset_eval.json`，语法验证通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp004-eval-skip-logic.md"
+}

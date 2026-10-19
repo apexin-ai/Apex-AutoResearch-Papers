@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bac671b3d34d8cd5f11",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis probe ablation A B",
+  "task_key": "worker_analysis_probe-ablation-A-B_20260519T202321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_probe-ablation-A-B_20260519T202321_result.json",
+    "occurrence": 1,
+    "bytes": 1366,
+    "sha256": "24e58f1043a0164d6679150bbb39f3c089f68850215a0d154fe6fb10a85202f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果如下：\n\n## 结果表格\n\n| Probe 配置 | AUROC | ±std |\n|---|---|---|\n| **Multi-layer d_syc (7-dim, exp-008v3)** | **0.8349** | 0.0481 |\n| Per-layer: Layer 19 | 0.8166 | 0.0454 |\n| Per-layer: Layer 20 | 0.7934 | 0.0479 |\n| Per-layer: Layer 24 | 0.7768 | 0.0670 |\n| Per-layer: Layer 27 | 0.7923 | 0.0622 |\n| Per-layer: Layer 32 | 0.7886 | 0.0649 |\n| Per-layer: Layer 33 | 0.7870 | 0.0641 |\n| Per-layer: Layer 35 | 0.7818 | 0.0686 |\n| **Random-direction (7-dim, 5 seeds)** | **0.7265** | 0.0167 |\n\n## 关键结论\n\n1. **d_syc 方向是关键，不是 multi-layer combination。** Multi-layer（0.8349）相比最佳单层 layer 19（0.8166）仅提升 +0.018，但 d_syc vs random 方向差距达 **+0.108**。方向的质量贡献远大于层数组合的贡献。\n\n2. **Layer 19 单独即可达到接近 multi-layer 的性能（0.8166 vs 0.8349）。** 多层拼接带来的增益很小，主要价值在 d_syc 方向本身。\n\n3. **Random probe 并非 chance（0.5），而是 0.727。** 这说明 reward_layers 的 hidden states 本身包含一定的 condition 信息（valid_correction vs invalid_pressure 的分布差异），但 d_syc 方向精准放大了 sycophancy-relevant 的信号（+0.108 AUROC）。\n\n结果已保存至 `/root/contrastive_entrain_calib/results/probe_ablation_AB/results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-probe-ablation-a-b.md"
+}

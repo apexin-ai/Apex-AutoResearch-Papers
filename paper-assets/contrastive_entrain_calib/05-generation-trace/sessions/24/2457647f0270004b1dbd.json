@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2457647f0270004b1dbd",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnosis 29046 training status",
+  "task_key": "worker_diagnosis_29046-training-status_20260521T074814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_29046-training-status_20260521T074814_result.json",
+    "occurrence": 1,
+    "bytes": 945,
+    "sha256": "b0e3819903fecf510e591cb47c31415e10e1b7a19d72f21fcd165df73e4004d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态汇总\n\n### seed1 (exp-003, GPU 1, PID 70649)\n\n| 项目 | 值 |\n|------|-----|\n| 估算当前 step | **~7690/8000** |\n| 速度 | ~31s/step（ckpt-7000→7500 用了 4h17m） |\n| ETA 完成 | **~18:30 CST 今天**（约 2h40m 后） |\n| 已有 checkpoints | 500, 1000, 1500, ..., 7000, **7500** |\n| ckpt-7500 | adapter_model.safetensors **245MB** ✓ 可 SCP |\n| ckpt-8000 | **尚未生成** |\n\n> 没有独立 log 文件（只有 tmux session），step 通过 ckpt 时间戳推算：ckpt-7500 在 14:10 保存，距今 1h38m ≈ 190 步。\n\n### seed2 (exp-003-s2, GPU 0, PID 237437)\n\n| 项目 | 值 |\n|------|-----|\n| 当前 step | **3592/8000 (45%)** |\n| 速度 | ~30s/step |\n| ETA 完成 | **~May 23 06:00 CST**（约 38h 后） |\n| 已有 checkpoints | 500, 1000, 1500, 2000, 2500, 3000, 3500 |\n\n两个训练都在正常跑，GPU 各占 ~38GB VRAM。seed1 的 ckpt-7500 已就绪可 SCP。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-29046-training-status.md"
+}

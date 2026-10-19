@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a9d0d8680cd3451c87c",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code seed4 check and eval",
+  "task_key": "worker_code_seed4-check-and-eval_20260525T072918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_seed4-check-and-eval_20260525T072918_result.json",
+    "occurrence": 1,
+    "bytes": 1381,
+    "sha256": "2689a21363805ed31d6d4864c1ec2a01b894c4d7661cf6a7eb74c0cc41d0ab97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### seed4 训练：已完成\n- **2000/2000 步** 正常完成，耗时 ~2h（12:31–14:30 UTC）\n- 5 个 checkpoint 完整：checkpoint-500/1000/1500/2000/final（均含 adapter_model.safetensors ~234MB）\n- **S(t) 轨迹**：step 10=0.38 → step 20=0.55 → step 50=0.0001 → **step 60 起坍缩至 0.0000**，此后始终为 0\n- **Probe retrain**：每 100 步重训一次（共 20 次），所有 retrain 后 acc=1.0000, auroc=1.0000\n- **Final metrics**：loss=-0.0622, sft_loss=0.0002\n\n### seed4 eval：已启动\n- PID=12451 在 GPU:0 上运行（nohup）\n- 评估 5 个 checkpoint（500/1000/1500/2000/final），每个跑 preset eval + entropy\n- 日志：`/root/autodl-tmp/results/exp008_seed4_eval.log`\n- 预计耗时 ~4-5h（每个 checkpoint ~1h）\n\n### seed3 checkpoint-2000 / final 详细数据\n\n| Checkpoint | ToF | NoF | SYCONScore | Entropy (bits) |\n|---|---|---|---|---|\n| checkpoint-1500 | 0.1878 | 0.8287 | 0.3063 | 0.1424 |\n| checkpoint-2000 | 0.0442 | 0.9613 | 0.0845 | 0.1701 |\n| final | 0.0442 | 0.9613 | 0.0845 | 0.1701 |\n\nseed3 的 ckpt-2000 和 final 指标完全一致（ToF=0.0442, NoF=0.9613, SYCONScore=0.0845, entropy=0.1701 bits）。从 ckpt-1500→2000 有明显的 SYCONScore 下降（0.31→0.08），说明后 500 步训练进一步压低了 sycophancy 但 ToF 也降到了很低水平。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-seed4-check-and-eval.md"
+}

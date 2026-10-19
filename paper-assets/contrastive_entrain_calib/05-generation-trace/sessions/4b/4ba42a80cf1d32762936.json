@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ba42a80cf1d32762936",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diag westd 29046 progress",
+  "task_key": "worker_diag_westd-29046-progress_20260518T231441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_westd-29046-progress_20260518T231441_result.json",
+    "occurrence": 1,
+    "bytes": 1134,
+    "sha256": "e8eb022167f36acaed0602d93190fb65c4d9eab73be496b6407dd985cb303049"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完成总结\n\n### Task 1: 实验进度\n\n**exp-002** (PID 69020, GPU 0)\n- 当前 step: ~932 (最新日志 07:39:56)\n- R1_mean: -0.15 ~ -0.64 (波动正常，R1 + R2 + R3 全部激活)\n- R3_mean: 0.62 ~ 0.93\n- combined_mean: 0.43 ~ 0.67\n- R2 = 0.0 (cross-step EMA 尚未配对，符合预期)\n\n**exp-003** (PID 70649, GPU 1)\n- 当前 step: 882/8000 (11%, ETA ~52h)\n- `d_syc not loaded` — R3-only 模式运行\n- R3_mean: 0.20 ~ 0.61\n- combined_mean = R3_mean (w3=1.0 因为无 d_syc)\n- 速度 ~26s/step\n\n**GPU 利用率**\n| GPU | Util | VRAM |\n|-----|------|------|\n| 0 | 95% | 63.6/97.9 GB |\n| 1 | 98% | 38.2/97.9 GB |\n\n### Task 2: dcgrpo_trainer.py 同步\n\n- 远程备份: `/root/mvp_v2_1_expanded/training/dcgrpo_trainer.py.bak.*`\n- MD5 验证: `4a1a94bb1412033d4861feb3558e6d07` **匹配**\n- 文件行数: 1020 行 (与本地一致)\n- `recalibrate_direction` 方法: 已存在 (line 348)\n- `DCGRPOConfig.recalibration_interval`: 已存在 (line 129)\n- `DCGRPOConfig.calibration_data_path`: 已存在 (line 130)\n- 触发逻辑 `_DCRewardCallable.__call__`: 已存在 (lines 193-196)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-westd-29046-progress.md"
+}

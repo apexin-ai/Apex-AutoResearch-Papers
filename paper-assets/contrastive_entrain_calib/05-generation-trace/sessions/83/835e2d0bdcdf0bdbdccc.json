@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "835e2d0bdcdf0bdbdccc",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval acts2 ckpt4500 pipeline",
+  "task_key": "worker_eval_acts2-ckpt4500-pipeline_20260522T175443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_acts2-ckpt4500-pipeline_20260522T175443_result.json",
+    "occurrence": 1,
+    "bytes": 338,
+    "sha256": "7b65b8bd03bc042f6ecde687c0b5e3ce503de07f4778996f5dd2e164251de07d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已在 28034 GPU2 后台运行。状态：\n- ckpt-4500 从 29046 SCP 到 28034 完成\n- 实际路径为 `outputs/exp-004-act-baseline-s2/checkpoint-4500`（非 `exp-004-s2-v2`）\n- eval_unified_preset.py 已加载模型 + LoRA + NLI，正在评估 362 个 pairs\n- 预计 ~25 分钟完成，10 分钟后检查进度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-acts2-ckpt4500-pipeline.md"
+}

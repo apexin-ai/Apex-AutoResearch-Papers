@@ -1,0 +1,772 @@
+{
+  "schema_version": "1.0",
+  "id": "9b93e12987049995455c",
+  "project": "contrastive_entrain_calib",
+  "kind": "conversation",
+  "title": "cron hook exp 003 eval s2 ckpt2000",
+  "task_key": "cron_hook_exp-003-eval-s2-ckpt2000",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/cron_hook_exp-003-eval-s2-ckpt2000.jsonl",
+    "occurrence": 1,
+    "bytes": 32619,
+    "sha256": "205cdeffb6480809f8a6584f958c6b5ac6d7006460eb2e27e708c2d464532f15"
+  },
+  "statistics": {
+    "messages": 38,
+    "user_turns": 1,
+    "tool_calls": 18,
+    "roles": {
+      "user": 1,
+      "tool_call": 18,
+      "tool_result": 18,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T10:13:14.726472+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: exp-003-eval-s2-ckpt2000\n- project: contrastive_entrain_calib\n- server: westd-28034"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T10:13:29.613033+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director",
+              "max_results": "7"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T10:13:29.665026+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T10:13:33.228057+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T10:13:33.531145+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T10:13:33.986199+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (102,599 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib--claude-sessions-agent-e0fc39f5/da11c67e-c0a3-464b-a7f5-2dc445398d6a/tool-results/mcp-agent-ml-research-read_registry-1779358413731.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib--claude-sessions-agent-e0fc39f5/da11c67e-c0a3-464b-a7f5-2dc445398d6a/tool-results/mcp-agent-ml-research-read_registry-1779358413731.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 758
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T10:13:33.986644+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T10:13:33.987943+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T10:13:46.603894+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 3, \\\"results\\\": [{\\\"exp_id\\\": \\\"exp-003\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Process gone, no sentinel, no W&B — escalating to agent (miss 2/5)\\\"]}, {\\\"exp_id\\\": \\\"exp-003-s2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=237432)\\\"]}, {\\\"exp_id\\\": \\\"exp-003-eval-ckpt7500\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Process dead 5× with no signal → auto-resolved DONE(failed)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 13072
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T10:13:46.656066+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-21T10:13:42Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 54 个实验 — DONE 49, QUEUED 2, RUNNING 3\\\\n**DONE 分布**: failed 5, killed 4, negative 17, success 23\\\\n\\\\n### GPU 占用\\\\n- **实际运行**: 3 张 — westd-29046:cuda:1(exp-003), westd-29046:cuda:0(exp-003-s2), westd-28034:cuda:3(exp-003-eval-s2-ckpt2500)\\\\n\\\\n### 💾 磁盘余量\\\\n- **westd-29046**:\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/usr/bin/nvidia-smi`: 400G/439G 可用（已用 4%）\\\\n- **westd-28034**:\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/usr/bin/nvidia-smi`: 819G/879G 可用（已用 2%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `exp-003` | westd-29046 | cuda:1 | 70649 | `—` |\\\\n| `exp-003-s2` | westd-29046 | cuda:0 | 237432 | `~/runs/contrastive_entrain_calib/exp-003-s2.log` |\\\\n| `exp-003-eval-s2-ckpt2500` | westd-28034 | cuda:3 | 865026 | `—` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `exp-003-eval-ckpt7500` [failed] — 2026-05-21T10:13:40 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n- `exp-003-eval-s2-ckpt2000` [failed] — 2026-05-21T10:13:11 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n- `exp-003-eval-ckpt7000-v3` [success] — 2026-05-21T09:59:31\\\\n- `exp-003-eval-s2-ckpt3000` [success] — 2026-05-21T09:28:16\\\\n- `exp-003-eval-ckpt5000-v2` [success] — 2026-05-21T08:55:53 — EXIT_CODE=129 (non-zero)\\\\n\\\\n### 🔴 最近失败原因 (top 3)\\\\n- `exp-003-eval-ckpt7500`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n- `exp-003-eval-s2-ckpt2000`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\\\n\\\\n<!-- AUTO-FACTS-END -->\\\\n\\\\n---\\\\n\\\\n# Handover — 2026-05-21\\\\n\\\\n> 由 Agent 生成，每次\n…[truncated 2924 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 12669
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T10:13:46.708277+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/ROADMAP.md\\\", \\\"content\\\": \\\"# contrastive_entrain_calib — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-20 19:06 UTC | 更新原因: D045: ckpt-4500 spike-regression, vanilla ceiling narrative, Round 4=7/10 status\\\\n\\\\n## 核心方向\\\\nDual-layer analysis paper: \\\\\\\"Why RL Fails for Sycophancy Calibration — and Why d_syc Makes It Worse\\\\\\\"\\\\n- Layer 1: d_syc 方向成功判别 sycophancy (AUROC 0.82+) 但所有 reward formulation 均失败\\\\n- Layer 2: ALL GRPO RL 方法都失败（R3-only ceiling = vanilla）；唯一成功的是 SFT (exp-004 ACT)\\\\n- 正面对照：SFT 有 stubbornness episode 但自恢复，GRPO 无法超越 vanilla\\\\n详见 paper_framing.md (Scheme C dual-layer narrative, D041, D045 vanilla ceiling)。\\\\n\\\\n## DDL\\\\n**EMNLP 2026 ARR May 25 cycle（D044）。倒计时 5 天。**\\\\n\\\\n## 当前阶段\\\\n**Writing 冲刺 + Step 5 Reviewer 迭代（Round 4 = 7/10, 收敛中）。**\\\\n\\\\n## 5 天冲刺计划\\\\n| 日期 | 里程碑 |\\\\n|------|--------|\\\\n| May 20-21 | exp-003 ckpt-8000 final eval → Results 定稿 → D045 叙事修正 |\\\\n| May 22 | 全文 polish, figures 定稿, Reviewer Round 5 收敛 |\\\\n| May 23 | exp-003-s2 seed 2 完成, 补充 error bars → submit_paper_to_review |\\\\n| May 24 | 审稿反馈处理 + 格式检查 |\\\\n| May 25 | 提交 |\\\\n\\\\n## 当前进展\\\\n- **Paper Round 4**: 7/10, 全部 WARNING 清除, F-label/数据一致性通过\\\\n- **D045 修正中**: ckpt-4500=0.1337 打破 \\\\\\\"never exceeds vanilla\\\\\\\"，改为 \\\\\\\"vanilla ceiling\\\\\\\" 叙事（更强）\\\\n- **fig_probe_trap**: ✅ 已生成，Table 3 已同步\\\\n- **fig_trajectory**: ✅ 已生成\\\\n- **Seed 2 早期**: ckpt-500/1000/1500 eval done, 方向一致\\\\n- **exp-003 ckpt-4500 eval**: ✅ done, SYCONScore=0.1337\\\\n\\\\n## 近期任务\\\\n- [ ] Paper Agent D045 叙事修正 → Round 5 提交\\\\n- [ ] exp-003 ckpt-6000~8000 auto-pipeline（cron，ETA ckpt-6000 May 21 ~01:00）\\\\n- [ ] exp-003-s2 后续 ckpt eval（auto cron）\\\\n- [ ] May 23: submit_paper_to_review 送审稿团队\\\\n- [ ] 用户触发 /distill（literature_map 21 篇已就绪）\\\\n\\\\n## GPU 预算\\\\n**westd-28034** (4× A100 32GB): GPU0 空闲（ckpt-4500 eval done）| GPU1/2/3 空闲\\\\n**westd-29046** (2× A100 96GB): GPU0 exp-003-s2 (seed 2), GPU1 exp-003 (seed\n…[truncated 2223 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 12720
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T10:13:51.984037+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "filters": "{'exp_id': 'exp-003-eval-s2-ckpt2000'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T10:13:52.134908+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "filters": "{'exp_id': 'exp-003-eval-ckpt7500'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T10:13:52.235693+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1694}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 251
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T10:13:52.387141+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1803}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 252
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T10:14:01.033071+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib--claude-sessions-agent-e0fc39f5/da11c67e-c0a3-464b-a7f5-2dc445398d6a/tool-results/mcp-agent-ml-research-read_registry-1779358413731.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor eid in ['exp-003-eval-s2-ckpt2000', 'exp-003-eval-ckpt7500', 'exp-003-s2-eval-ckpt2000']:\n    if eid in exps:\n        print(f'=== {eid} ===')\n        print(json.dumps(exps[eid], indent=2, ensure_ascii=False))\n        print()\n\"",
+              "description": "Extract specific experiment details from registry dump"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T10:14:01.286213+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== exp-003-eval-s2-ckpt2000 ===\n{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-21T08:50:25.503Z\",\n  \"updated_at\": \"2026-05-21T10:13:11.920Z\",\n  \"hypothesis\": \"Eval exp-003-s2 (seed 2) R3-only GRPO checkpoint-2000 with D027 unified preset. Early trajectory point for seed 2: does it track seed 1 pattern (regression from vanilla baseline)? Needed for error bars and reproducibility claim.\",\n  \"parent\": \"exp-003-s2\",\n  \"spec\": {\n    \"command\": \"eval_unified_preset.py on exp003_s2/checkpoint-2000\",\n    \"server\": \"westd-28034\",\n    \"gpu\": [\n      \"cuda:2\"\n    ],\n    \"pid\": \"862245\",\n    \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\",\n    \"data_count\": 362,\n    \"model_name\": \"exp-003-s2 checkpoint-2000\",\n    \"seed\": 43,\n    \"checkpoint_source\": \"exp-003-s2/checkpoint-2000\",\n    \"eval_data\": \"D027 unified eval set (362 samples)\"\n  },\n  \"reproduce\": {\n    \"finished_at\": \"2026-05-21T10:13:11.126Z\"\n  },\n  \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\",\n  \"conclusion\": \"failed\",\n  \"completed_at\": \"2026-05-21T10:13:11.920Z\",\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_failed\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-21T10:13:14.337792+00:00\"\n      }\n    ]\n  }\n}\n\n=== exp-003-eval-ckpt7500 ===\n{\n  \"status\": \"RUNNING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-21T08:50:23.419Z\",\n  \"updated_at\": \"2026-05-21T08:54:06.032Z\",\n  \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-7500 with D027 unified preset. Late-training trajectory critical point: ckpt-6000=0.0846 (crash), ckpt-6500=0.1529 (spike above vanilla). Does ckpt-7500 continue oscillation or stabilize? Extreme instability pattern is key evidence for paper.\",\n  \"parent\": \"exp-003\",\n  \"spec\": {\n    \"command\": \"eval_unified_preset.py on exp003/checkpoint-7500\",\n    \"server\": \"westd-28034\",\n    \"gpu\": [\n      \"cuda:1\"\n    ],\n    \"pid\": \"862178\",\n    \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expan\n…[truncated 1911 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "Bash",
+            "elapsed_ms": 253
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T10:14:27.043537+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/skills/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T10:14:27.244847+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_e0fc39f5."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "Read",
+            "elapsed_ms": 201
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T10:14:27.245263+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T10:14:27.295826+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/.claude/sessions/agent_e0fc39f5."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T10:14:30.213050+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*on-experiment-failed*",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T10:14:30.464200+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "Glob",
+            "elapsed_ms": 251
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T10:14:30.464531+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*resource-saturation*",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T10:14:30.514906+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "Glob",
+            "elapsed_ms": 50
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T10:14:33.779683+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/skills/**/*.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T10:14:33.780209+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T10:14:36.442045+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/skills/**/*",
+              "path": "/home/ubuntu/agent-ml-research"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T10:14:36.644258+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/resources/beta/skills/__init__.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/resources/beta/skills/skills.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/resources/beta/skills/versions.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_create_response.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_create_params.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/__init__.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_list_params.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_retrieve_response.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_list_response.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/anthropic/types/beta/skills/version_delete_response.py\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/references/dependencies.md\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/SKILL.md\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/references/other-tools.md\n/home/ubuntu/agent-ml-research/.venv/lib/python3.14/site-packages/fastapi/.agents/skills/fastapi/references/streaming.md\n/home/ubuntu/agent-ml-research/core/skills/__init__.py\n/home/ubuntu/agent-ml-research/core/skills/tracker.py\n/home/ubuntu/agent-ml-research/core/skills/evolution.py\n/home/ubuntu/agent-ml-research/core/skills/loader.py\n/home/ubuntu/agent-ml-research/core/skills/plugin_loader.py\n/home/ubuntu/agent-ml-research/skills/global/academic-writer.skill.md\n/home/ubuntu/agent-ml-re\n…[truncated 5749 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "Glob",
+            "elapsed_ms": 202
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T10:14:39.361593+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T10:14:39.362637+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: on-experiment-failed\n3\tdescription: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。\n4\tscope: global\n5\ttags:\n6\t- workflow\n7\t- diagnosis\n8\t- cron-hook\n9\ttools:\n10\t- read_registry\n11\t- tail_training_logs\n12\t- update_registry\n13\t- append_idea\n14\t- feishu_send_result_card\n15\t- spawn_worker\n16\t- check_job_status\n17\tversion: 4\n18\theavy: true\n19\troles:\n20\t- agent\n21\t---\n22\t\n23\t# 实验失败诊断工作流\n24\t\n25\t## 触发方式\n26\t由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。\n27\t\n28\t## 步骤\n29\t\n30\t### Step 0: 读取项目上下文（诊断前必须执行）\n31\t先读文档，再看日志——否则诊断方向可能完全错误：\n32\t\n33\t- `read_project_file(\"memory.md\")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案\n34\t- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构\n35\t\n36\t读完后检查：\n37\t- memory.md 里有没有\"此类实验曾失败，原因是 X\"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程\n38\t- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）\n39\t\n40\t### Step 1: 了解失败背景\n41\t- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path\n42\t\n43\t### Step 2: 浅层日志诊断\n44\t有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)\n45\t- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback\n46\t- 没找到 → 增加行数再查\n47\t\n48\t### Step 2.5: 深查（满足以下任一条件时 spawn_worker）\n49\t- 运行时长 < 5 分钟（初始化阶段崩溃）\n50\t- tail 日志中未见明确 Traceback 或错误行\n51\t- 同类实验连续失败 ≥ 2 次\n52\t\n53\t```python\n54\tspawn_worker(\n55\t    task_type=\"diagnose:{exp_id}\",\n56\t    task_prompt=\"\"\"SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。\n57\t\n58\t项目路径：{project_path}（绝对路径）\n59\t日志路径：{log_path}（可能为空）\n60\t\n61\t执行步骤（按顺序，有结论就停）：\n62\t\n63\t1. 如果有日志路径：\n64\t   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）\n65\t   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）\n66\t   - 日志文件不存在：说明任务启动即失败，跳到步骤 2\n67\t\n68\t2. 日志无错误或无日志时，检查基础设施：\n69\t   - 入口文件是否存在\n70\t   - 激活环境并验证 import\n71\t   - 检查 configs/ 目录\n72\t\n73\t3. 检查磁盘/内存（OOM 类）\n74\t\n75\t最后输出一行 JSON：\n76\t{\"root_cause\":\"<引用具体报错行>\",\"error_type\":\"infrastructure|hyperparameter|resource|data\",\"fix_steps\":[\"步骤1\",\"步骤2\"],\"can_auto_fix\":true}\"\"\",\n77\t    tool_groups=[\"ssh\"],\n78\t)\n79\t```\n80\t\n81\tWorker 返回后，以其结论作为 Step 3 的诊断依据。\n82\t\n83\t### \n…[truncated 1766 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "Read",
+            "elapsed_ms": 1
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T10:14:57.439597+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "file": "memory.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T10:14:57.491655+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/memory.md\\\", \\\"content\\\": \\\"## memory.md\\\\n\\\\n### 关键发现\\\\n\\\\n**D029 (updated): 8 种 representation-to-reward formulation 全部失败**\\\\n- cosine R1 (exp-002): tanh 饱和 → kill\\\\n- cosine R1 v2 (exp-002v2): 去 tanh 后 mode collapse → kill  \\\\n- cosine R1 scaled (exp-002v3): 5x 放大噪声等比放大 → mode collapse\\\\n- cosine R1 recalib (exp002v2-recalib): 500 步 recalibrate 仍然 collapse\\\\n- binary probe (exp-008v3): 即时 stubbornness trap，ToF=0 at ckpt-500\\\\n- continuous probe (exp-014): adversarial gaming，30 步内 probe gamed\\\\n- continuous probe probability (exp-009): \\\\\\\"慢性 binary probe\\\\\\\"，ckpt-500 ≈ vanilla → kill\\\\n- R3-only behavioral (exp-003): \\\\\\\"uniform stubbornness\\\\\\\"，拒绝所有压力而非选择性拒绝\\\\n- ActAdd inference-time (exp-016): 提升 NoF 但摧毁 ToF，净负效果\\\\n\\\\n**R3-only 非单调轨迹 (exp-003, 2026-05-20 ckpt-4500 修正)**\\\\n- 完整 8 点轨迹：1000(0.074) → 2000(0.085) → 3000(0.095) → 4000(0.114) → **4500(0.134 ≈ vanilla)** → 5000(0.114) → 5500(0.114)\\\\n- **不是 \\\\\\\"step 4000 plateau at 0.114\\\\\\\"**——实际是先升到 step 4500 追平 vanilla，然后退化到 0.114\\\\n- R3-only 最佳也仅能追平 baseline，永远无法超越\\\\n- 退化行为可能暗示 behavioral reward 在 baseline 附近的 overfitting/reward hacking\\\\n- \\\\\\\"uniform stubbornness\\\\\\\" 机制：NLI 只能判断\\\\\\\"是否让步\\\\\\\"，无法区分\\\\\\\"该让步\\\\\\\"和\\\\\\\"不该让步\\\\\\\"\\\\n\\\\n**R3-only 跨 seed 可复现性确认 (exp-003-s2, 2026-05-20)**\\\\n- Seed 2 (seed=43) 早期轨迹与 seed 1 (seed=42) 方向完全一致\\\\n- s2-ckpt500=0.085, s2-ckpt1000=0.084, s2-ckpt1500=0.104 — 均低于 vanilla (0.134)\\\\n- Seed 2 绝对值略高于 seed 1 同阶段（~14%），但数量级一致\\\\n- 结论：R3-only below-vanilla 不是随机波动，跨 seed 可复现\\\\n\\\\n**ACT 非单调训练轨迹 (exp-004, 16 checkpoint 完整数据)**\\\\n- 整体趋势向上，但存在锯齿振荡\\\\n- 两个 dip 区：ckpt-1500 早期 dip (回落到 ckpt-500 水平) + ckpt-2500-4500 中期 dip (谷底 ckpt-4500=0.188)\\\\n- 所有 16 个 checkpoint 始终高于 vanilla baseline (0.134)\\\\n- 后半程 (5000+) 持续上升，ckpt-8000 达 0.301 (+126%)\\\\n- ACT 最差点 (0.170) 仍高于 R3-only 最好点 (0.134)，差距 +27%\\\\n\\\\n**D027 统一 Eval 基线校正**\\\\n- 所有实验统一用 eval_unified_preset.py (D027 标准)\\\\n- v\n…[truncated 1486 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 52
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T10:15:41.365832+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "diagnose:exp-003-eval-s2-ckpt2000",
+              "project": "contrastive_entrain_calib",
+              "task_prompt": "SSH 到 westd-28034，诊断两个 eval 实验的失败原因。它们几乎同时失败，可能有共同根因。\n\n## 失败实验 1: exp-003-eval-s2-ckpt2000\n- server: westd-28034, GPU: cuda:2, PID: 862245\n- command: eval_unified_preset.py on exp003_s2/checkpoint-2000\n- 失败原因: \"process dead 5× with no sentinel/W&B — auto-resolved as failed\"\n- 无 log_path（可能是 auto-pipeline 提交，没用 submit_training_job）\n\n## 失败实验 2: exp-003-eval-ckpt7500\n- server: westd-28034, GPU: cuda:1, PID: 862178\n- command: eval_unified_preset.py on exp003/checkpoint-7500\n- 失败原因: 同上\n- 无 log_path\n\n## 诊断步骤（按顺序，有结论就停）\n\n1. 检查是否有日志文件：\n   - `ls -la ~/runs/contrastive_entrain_calib/exp-003-eval-s2-ckpt2000*.log ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt7500*.log 2>/dev/null`\n   - 也检查 tmux session: `tmux ls 2>/dev/null`\n   - 检查默认 nohup 输出: `ls -la /tmp/*eval*s2*ckpt2000* /tmp/*eval*ckpt7500* 2>/dev/null`\n\n2. 如果有日志，看最后 80 行找 Traceback/Error/OOM\n\n3. 检查系统层面：\n   - `dmesg | tail -50` 看是否有 OOM killer\n   - `nvidia-smi` 看 GPU 状态\n   - `df -h /root /root/autodl-tmp` 看磁盘\n\n4. 检查 checkpoint 文件是否存在：\n   - `ls -la /root/autodl-tmp/checkpoints/exp003_s2/checkpoint-2000/ 2>/dev/null || ls -la /root/autodl-tmp/checkpoints/exp003_r3only_seed2/checkpoint-2000/ 2>/dev/null`\n   - `ls -la /root/autodl-tmp/checkpoints/exp003/checkpoint-7500/ 2>/dev/null || ls -la /root/autodl-tmp/checkpoints/exp003_r3only_seed1/checkpoint-7500/ 2>/dev/null`\n\n5. 检查 eval 脚本是否存在且可执行：\n   - `ls -la /root/contrastive_entrain_calib/eval/eval_unified_preset.py`\n   - `source /root/miniconda3/bin/activate base 2>/dev/null || source /root/miniconda3/etc/profile.d/conda.sh && conda activate base; python -c \"import torch; print(torch.cuda.is_available())\"`\n\n6. 检查最近 tmux session 历史 / 进程残留：\n   - `ps aux | grep eval_unified`\n\n7. 同时注意：exp-003-eval-s2-ckpt2500 (PID 865026, cuda:3) 当前应该在跑，确认它是否正常。\n\n最后输出一行 JSON：\n{\"root_cause\":\"<引用具体报错行>\",\"error_type\":\"infrastructure|hyperparameter|resource|data\",\"fix_steps\":[\"步骤1\",\"步骤2\"],\"can_auto_fix\":true,\"affects_ckpt7500\":true/false}",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T10:15:52.084996+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diagnose_exp-003-eval-s2-ckpt2000_20260521T101541\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/logs/workers/worker_diagnose_exp-003-eval-s2-ckpt2000_20260521T101541.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_diagnose_exp-003-eval-s2-ckpt2000_20260521T101541 started. Use get_worker_status('worker_diagnose_exp-003-eval-s2-ckpt2000_20260521T101541') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 10719
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T10:15:52.286316+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "diagnose:exp-003-training-health",
+              "project": "contrastive_entrain_calib",
+              "task_prompt": "SSH 到 westd-29046，检查 exp-003 训练进程健康状态。\n\n## 背景\nexp-003 是 R3-only GRPO seed 1 训练，PID 70649，在 cuda:1 上运行。\nCron reconcile 报告 \"Process gone, no sentinel, no W&B — escalating to agent (miss 2/5)\"。\n这意味着 cron 已经两次检测不到进程，但还没达到 5 次自动判死的阈值。\n\n这个训练非常重要——是论文核心实验，当前约在 step 5900 附近，DDL 5天后 (EMNLP 2026 ARR May 25)。\n\n## 检查步骤\n\n1. 检查进程是否存活：\n   - `ps -p 70649 -o pid,stat,etime,cmd --no-headers 2>/dev/null || echo \"PID_DEAD\"`\n   - `ps aux | grep -E \"train|grpo|exp.003\" | grep -v grep`\n\n2. 检查 tmux session：\n   - `tmux ls 2>/dev/null`\n   - 如果有相关 session，查看最近输出\n\n3. 检查训练日志：\n   - `tail -30 ~/runs/contrastive_entrain_calib/exp-003.log 2>/dev/null`\n   - 看最后的 step 数和时间戳，判断是否还在更新\n\n4. 检查 GPU 状态：\n   - `nvidia-smi`\n   - cuda:1 上是否有进程在跑？\n\n5. 检查 W&B：如果进程死了，最后一个 W&B metric 的时间戳是什么？\n\n6. 同时检查 exp-003-s2 (PID 237432, cuda:0) 是否正常。\n\n输出 JSON：\n{\"exp003_alive\":true/false,\"last_step\":<int>,\"last_timestamp\":\"<ISO>\",\"exp003_s2_alive\":true/false,\"issue\":\"<描述>\",\"action_needed\":\"none|restart|investigate\"}",
+              "tool_groups": "['ssh', 'wandb']"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-21T10:15:54.813436+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diagnose_exp-003-training-health_20260521T101552\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/logs/workers/worker_diagnose_exp-003-training-health_20260521T101552.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_diagnose_exp-003-training-health_20260521T101552 started. Use get_worker_status('worker_diagnose_exp-003-training-health_20260521T101552') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2527
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-21T10:15:59.025288+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个诊断 Worker 已派出：\n1. **westd-28034**: 诊断 exp-003-eval-s2-ckpt2000 + exp-003-eval-ckpt7500 的失败原因\n2. **westd-29046**: 检查 exp-003 训练进程健康状态（miss 2/5 告警）\n\nWorker 完成后系统会回调。等待诊断结果后更新 registry 并汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp-003-eval-s2-ckpt2000"
+          },
+          "id": "event-000038"
+        }
+      ],
+      "message_count": 38
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-exp-003-eval-s2-ckpt2000.md"
+}

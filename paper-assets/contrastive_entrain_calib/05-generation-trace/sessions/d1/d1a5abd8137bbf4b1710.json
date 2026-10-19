@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1a5abd8137bbf4b1710",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval submit s2 ckpt2500 gpu3",
+  "task_key": "worker_eval_submit-s2-ckpt2500-gpu3_20260521T092837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_submit-s2-ckpt2500-gpu3_20260521T092837_result.json",
+    "occurrence": 1,
+    "bytes": 284,
+    "sha256": "a4201258d4f9cf0b4fcc76eb100ff60d42651c514e5f0524d47eb37758b0d3bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "提交成功。\n\n| 项目 | 结果 |\n|------|------|\n| **VRAM 预检** | 2 MiB — 通过 |\n| **进程 PID** | 865026 |\n| **GPU 3 VRAM** | 16834 MiB / 32607 MiB — 正常加载 |\n| **GPU Util** | 50% — 正在推理 |\n| **tmux session** | `eval-s2-ckpt2500` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-submit-s2-ckpt2500-gpu3.md"
+}

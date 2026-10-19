@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1fd441e7aa441eb28d55",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops kill s3 and archive",
+  "task_key": "worker_ops_kill-s3-and-archive_20260525T204639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-s3-and-archive_20260525T204639_result.json",
+    "occurrence": 1,
+    "bytes": 1464,
+    "sha256": "164e8562ced74cfcc7f00703bc8dbed54eb8ef2215683329face0abc63a9d8c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-act-256-v2 (PID 2117, cuda:0) 正常运行，未受影响。\n\n## Kill 结果\n- 进程状态: PID 2191 + 子进程 PID 2196 已 kill，**DEAD**\n- cuda:1 状态: **已释放**（0 MiB），cuda:0 上 exp-act-256-v2 正常运行\n\n## 归档结果\n总大小: **30 GB**\n归档路径: `/root/autodl-tmp/contrastive_entrain_calib_archive/`（`~/contrastive_entrain_calib_archive` 为软链接）\n\n| 子目录 | 大小 | 内容 |\n|--------|------|------|\n| code/ | 84 MB | 项目全部代码（无 .git，源目录本身非 git 仓库） |\n| checkpoints/ | 30 GB | exp003_r3only_seed1/seed2/seed3, exp008_sft_seed42/43/44, act_256_ablation |\n| results/ | 427 MB | 实验结果（exp001-008 eval）、日志（logs/）、eval_results/、run_logs/ |\n| data/ | 1.1 MB | contrastive pairs + eval 数据 |\n| paper/ | 224 KB | figures_data/（fig_teaser.pdf/png） |\n\n磁盘剩余: **127 GB**（/root/autodl-tmp/ 数据盘）\n\n## 注意事项\n- 源目录 `/root/contrastive_entrain_calib/` 无 .git 目录（代码通过其他方式同步，非 git clone）\n- 无 wandb 本地目录\n- 服务器上无 paper/main.tex（论文在本地，需单独处理）\n- 无 vanilla baseline checkpoint 目录（可能模型文件在其他路径或已被清理）\n- `probe_trap_data.json` / `fig_layer_auroc_data.json` 在服务器上未找到（可能在本地 artifacts 目录）\n- exp-act-256-v2 (cuda:0, PID 2117) 未受影响，正常训练中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-s3-and-archive.md"
+}

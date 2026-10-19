@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd31913278d52ce9a1bc",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "research supplementary experiment plan",
+  "task_key": "worker_research_supplementary-experiment-plan_20260523T124755",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_supplementary-experiment-plan_20260523T124755_result.json",
+    "occurrence": 1,
+    "bytes": 5870,
+    "sha256": "333a22e318d5c23ba750b11b3dcef3e9ef103d1ceaa8d76ffda61cf8b6db8f30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the full picture. Here's the evaluation:\n\n---\n\n## 方向 A: 额外 baseline 对比\n\n### 当前 baseline 清单\n| 方法 | 类型 | 实验 | 状态 |\n|------|------|------|------|\n| Vanilla | 无训练 | vanilla-baseline | ✅ |\n| R3-only GRPO | RL (NLI reward) | exp-003 (2 seeds) | ✅ |\n| d_syc cosine R1 | RL (方向投影) | exp-002/v2/v2-recalib/v3 | ✅ 4个变体 |\n| d_syc binary probe R1 | RL (探针二值化) | exp-008v3 | ✅ |\n| d_syc continuous probe R1 | RL (探针概率) | exp-009 | ✅ |\n| ACT | SFT (激活一致性) | exp-004 (2 seeds + reduced-lora + heldout) | ✅ |\n\n### 缺失的关键 baseline\n\n**1. DPO (Direct Preference Optimization)**\n- 可行性: **4/5** — 已有 contrastive pairs (sycophantic vs non-sycophantic)，可直接构造 chosen/rejected pairs；TRL 库原生支持\n- 预期收益: **高** — DPO 是当前最主流的 alignment 方法。如果 DPO 也失败 → 强化 \"RL 类方法系统性失败\" 的 claim；如果 DPO 成功但弱于 ACT → 进一步支撑 SFT 优势论。reviewer 几乎必问 \"为什么不试 DPO\"\n- GPU 成本: ~16-24h training + ~8h eval (8 checkpoints) = **~1.5 天** on RTX PRO 6000\n- 优先级: **P0**\n\n**2. KTO (Kahneman-Tversky Optimization)**\n- 可行性: **3/5** — 不需要 paired data，只需 desirable/undesirable 标注。但 multi-turn format 需要适配\n- 预期收益: **中** — 比 DPO 冷门，reviewer 不太会追问。但作为 \"RL-free alignment 方法也不行\" 的额外数据点有价值\n- GPU 成本: ~16-24h training + ~8h eval = **~1.5 天**\n- 优先级: **P2**\n\n**3. Simple SFT (无 L2 约束)**\n- 可行性: **5/5** — 就是 ACT 去掉 L2 loss，trivial 修改\n- 预期收益: **中高** — 直接回答 \"L2 regularization 到底重要不重要\"。实质上是 L2 ablation 的极端点 (λ=0)\n- GPU 成本: ~16h + ~4h eval = **~1 天**\n- 优先级: **P1** （可合并到方向 B 的 L2 ablation）\n\n**4. Synthetic data SFT (Wei et al. 2024)**\n- 可行性: **2/5** — 需要重新生成 synthetic data，且 Wei 的方法是 single-turn 设计，适配 multi-turn 非 trivial\n- 预期收益: **低** — 不是同一 paradigm 的对比\n- 优先级: **P3** （不推荐）\n\n---\n\n## 方向 B: ACT ablation\n\n**1. L2 weight sensitivity (λ=0, 0.01, 0.05, 0.5, 1.0)**\n- 可行性: **5/5** — 改一个超参即可\n- 预期收益: **高** — 确认 L2 是 ACT 成功的关键组件。λ=0 同时回答 \"simple SFT 行不行\"。reviewer 一定会问超参敏感性\n- GPU 成本: 5 configs × ~16h = **~80h (~3.3 天)** on 1 GPU。如果双卡并行 = **~1.7 天**\n- 优先级: **P0**\n\n**2. Target layer selection (top-k / bottom-k / specific layers)**\n- 可行性: **3/5** — 需要修改 ACT loss 计算逻辑，only apply L2 to selected layers\n- 预期收益: **中** — 机制层面有趣（sycophancy 信号集中在 L16-19），但对论文核心 claim（SFT > RL）增强有限\n- GPU 成本: 4-6 configs × ~16h = **~4-6 天**\n- 优先级: **P2**\n\n**3. 训练数据量 scaling (100%, 50%, 25%)**\n- 可行性: **5/5** — 随机采样子集\n- 预期收益: **中高** — 数据效率曲线。当前只有 292 train pairs，展示 ACT 在极小数据上也 work 会很有说服力\n- GPU 成本: 2 extra configs × ~16h = **~32h (~1.3 天)**\n- 优先级: **P1**\n\n---\n\n## 方向 C: 其他 benchmark / 评估维度\n\n**1. 通用能力保留 (MMLU / GSM8K)**\n- 可行性: **5/5** — lm-eval-harness 直接跑，只需 eval 不需训练\n- 预期收益: **极高** — reviewer 几乎 100% 会问 \"ACT 是否损害通用能力\"。如果 MMLU 保持不变 → ACT 方法实用性大增。这是 table-stakes 级别的实验\n- GPU 成本: MMLU ~2-4h, GSM8K ~1-2h per model (vanilla + ACT best ckpt + R3-only best ckpt) = **~12-18h eval only**\n- 优先级: **P0**\n\n**2. 公开 sycophancy benchmark**\n- 可行性: **4/5** — Anthropic sycophancy eval (HHH) 和 TruthfulQA 有公开数据，但需适配 multi-turn format\n- 预期收益: **中高** — 验证 ACT 效果在外部 benchmark 上泛化。但当前 held-out split 已做了部分泛化验证\n- GPU 成本: Eval only, **~4-8h per benchmark**\n- 优先级: **P1**\n\n**3. 其他 base model (Llama full training)**\n- 可行性: **3/5** — 已有 Llama 方向提取 (exp-012, AUROC=0.779)。但 full ACT training 需要适配 Llama chat template、重新构造数据\n- 预期收益: **高但已部分覆盖** — exp-012 已证明跨模型方向判别力。reviewer concern 3 标记为 \"resolved\"。Full training 是 nice-to-have\n- GPU 成本: ~2-3 天 (training + eval)\n- 优先级: **P2**\n\n---\n\n## Top-3 推荐方案 (按 ROI 排序)\n\n| 排名 | 方案 | 收益 | 成本 | ROI |\n|------|------|------|------|-----|\n| **#1** | **MMLU/GSM8K 通用能力保留** | 极高 (堵住必问的 reviewer concern) | ~12-18h eval only | ★★★★★ |\n| **#2** | **L2 weight ablation** (λ=0/0.01/0.05/0.5/1.0) | 高 (超参敏感性 + L2 重要性 + 含 simple SFT baseline) | ~80h (~3.3天) 单卡 | ★★★★ |\n| **#3** | **DPO baseline** | 高 (最主流 alignment 方法，reviewer 必问) | ~1.5 天 | ★★★★ |\n\n### 执行建议\n\n三个方案可**并行**推进：\n- **MMLU/GSM8K**: 纯 eval，可在任一 GPU idle 窗口跑，不占训练资源\n- **L2 ablation + DPO**: 双卡并行，GPU0 跑 L2 ablation (5 configs 串行)，GPU1 跑 DPO training\n\n总时间约 **4-5 天**，与审稿等待期（ARR review cycle ~6-8 周）完全匹配。\n\n1.7× 差距的补强策略：L2 ablation 如果发现 λ=0 (simple SFT) 显著弱于 ACT (λ=0.1)，则故事变为 \"ACT 的 L2 约束是关键创新而非简单 SFT\"，进一步拉开与 GRPO 的差距。DPO 如果也失败，则从 \"SFT > RL\" 升级为 \"SFT > all preference optimization\"，claim 更强。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-supplementary-experiment-plan.md"
+}

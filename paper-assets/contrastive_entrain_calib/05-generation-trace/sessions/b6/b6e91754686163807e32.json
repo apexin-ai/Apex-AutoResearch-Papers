@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6e91754686163807e32",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "setup westd28034 env",
+  "task_key": "worker_setup_westd28034_env_20260518T132157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_westd28034_env_20260518T132157_result.json",
+    "occurrence": 1,
+    "bytes": 769,
+    "sha256": "7037ce4a72330279806b9a959de45fe32102c59e1f244924d87c1ed2cb9d09bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "环境部署完成。\n\n## westd-28034 环境总结\n\n| 项目 | 值 |\n|---|---|\n| GPU | 4× RTX 5090 (31GB), Driver 595.71.05 |\n| CUDA | 12.8 |\n| Python | 3.12.3 (miniconda3) |\n| PyTorch | 2.8.0+cu128 |\n| transformers | 5.8.1 |\n| trl | 1.4.0 |\n| peft | 0.19.1 |\n| datasets | 4.8.5 |\n| accelerate | 1.13.0 |\n| scipy | 1.17.1 |\n| scikit-learn | 1.8.0 |\n| wandb | 0.27.0 |\n| einops | 0.8.2 |\n\n**torchaudio** 安装但有 ABI 兼容问题（`undefined symbol: torch_library_impl`），本项目不需要，可忽略。\n\n**项目目录**: `/root/contrastive_entrain_calib/{training,data,eval,results,checkpoints}` 已创建。\n\n**环境激活命令**:\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-westd28034-env.md"
+}

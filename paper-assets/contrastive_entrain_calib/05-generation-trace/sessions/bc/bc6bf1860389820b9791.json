@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc6bf1860389820b9791",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops training progress check",
+  "task_key": "worker_ops_training-progress-check_20260523T151543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_training-progress-check_20260523T151543_result.json",
+    "occurrence": 1,
+    "bytes": 1101,
+    "sha256": "5d5703e4ef25aeb6e5330c3c3ef88ecc29ab8fac69cb73a73bf9045c1b242e1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练进度汇总\n\n### 实验 1: exp-004-heldout (PID 571918, GPU0)\n\n| 指标 | 值 |\n|------|-----|\n| 进度 | **3620 / 8000** (45.3%) |\n| 已运行 | 9h 18m |\n| 速度 | ~9.2s/step |\n| 最新 loss | total_loss=0.000109, sft_loss=3e-6, l2_loss=0.00106 |\n| 最新 checkpoint | **checkpoint-3500** |\n| GPU 利用率 | 39%, 显存 22.9/97.9 GB |\n| 预计剩余 | ~11.2h → **约 May 24 10:30 完成** |\n\n### 实验 2: exp-003-len512-v3 (PID 553700, GPU1)\n\n| 指标 | 值 |\n|------|-----|\n| 进度 | **981 / 8000** (12.3%) |\n| 已运行 | 12h 59m |\n| 速度 | ~47s/step |\n| 最新 loss | loss=0.0005, reward=0.555, kl=0.0115 (epoch 20.0) |\n| 最新 checkpoint | **checkpoint-500**（输出目录 `exp003_len512_r3only/`） |\n| GPU 利用率 | 95%, 显存 41.3/97.9 GB |\n| 预计剩余 | ~91.6h ≈ 3.8 天 → **约 May 27 下午完成** |\n\nexp003 比 exp004 慢约 5 倍（47s vs 9.2s per step），主要因为它是 GRPO 训练（需要 rollout generation），占用更多显存和计算。按当前速度，exp003 需要近 4 天才能完成 8000 步。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-training-progress-check-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3bdb5ddd88df285d453",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval gs8 ckpt500 check only",
+  "task_key": "worker_eval_gs8-ckpt500-check-only_20260522T195111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gs8-ckpt500-check-only_20260522T195111_result.json",
+    "occurrence": 1,
+    "bytes": 149,
+    "sha256": "f2e043d22cb091a913e61a7ab957387d29469f77fdad472c2642f0f31ecac5bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1. **ckpt-500**: NOT_READY（文件不存在）\n2. **当前 step**: 498/8000，预计约 1 分钟后到 step 500 并生成 checkpoint"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-gs8-ckpt500-check-only.md"
+}

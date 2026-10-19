@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "4a12837a50b4cdadd074",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "infra sync trainer westd28034",
+  "task_key": "worker_infra_sync-trainer-westd28034_20260518T170023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_sync-trainer-westd28034_20260518T170023.log",
+    "occurrence": 1,
+    "bytes": 606314,
+    "sha256": "5f9ec7a9b8f2805ce9f33bab1e81a19d2407b049ca7b8f587205b19465325284"
+  },
+  "statistics": {
+    "messages": 270,
+    "user_turns": 1,
+    "tool_calls": 96,
+    "roles": {
+      "log": 1,
+      "system": 15,
+      "record": 1,
+      "assistant": 59,
+      "tool_call": 96,
+      "tool_result": 96,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 107,
+      "chunks": [
+        {
+          "path": "4a12837a50b4cdadd074-part-0001.json",
+          "message_count": 107
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 163,
+      "chunks": [
+        {
+          "path": "4a12837a50b4cdadd074-part-0001.json",
+          "message_count": 73
+        },
+        {
+          "path": "4a12837a50b4cdadd074-part-0002.json",
+          "message_count": 90
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-sync-trainer-westd28034.md"
+}

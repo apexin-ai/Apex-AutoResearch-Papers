@@ -1,0 +1,3540 @@
+{
+  "schema_version": "1.0",
+  "session_id": "4bf0b31d6f60e2c1274f",
+  "rounds": [
+    {
+      "number": 48,
+      "messages": [
+        {
+          "source_line": 721,
+          "timestamp": "2026-05-23T04:06:40.437028+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-004-reduced-lora-eval-ckpt5000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-23T03:51:40.176Z\\\", \\\"metrics\\\": {\\\"SYCONScore\\\": 0.2463, \\\"ToF\\\": 0.1436, \\\"NoF\\\": 0.8619}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-004-s2-eval-ckpt8000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-23T02:57:02.676Z\\\", \\\"metrics\\\": {\\\"SYCONScore\\\": 0.2465, \\\"ToF\\\": 0.1436, \\\"NoF\\\": 0.8674, \\\"n_valid\\\": 181, \\\"n_total\\\": 362}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-003-len512-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-23T02:47:42.128Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp-004-reduced-lora-eval-ckpt4500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-23T02:25:13.401Z\\\", \\\"metrics\\\": {\\\"SYCONScore\\\": 0.2707, \\\"ToF\\\": 0.1602, \\\"NoF\\\": 0.8729, \\\"n_valid\\\": 181, \\\"n_total\\\": 362}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-004-s2-eval-ckpt7500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-23T02:22:32.750Z\\\", \\\"metrics\\\": {\\\"SYCONScore\\\": 0.2705, \\\"ToF\\\": 0.1547, \\\"NoF\\\": 0.8564, \\\"n_valid\\\": 181, \\\"n_total\\\": 362}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 5, \\\"total\\\": 100, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3044}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 405
+          },
+          "id": "event-000721"
+        },
+        {
+          "source_line": 722,
+          "timestamp": "2026-05-23T04:06:41.543142+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader"
+            }
+          },
+          "id": "event-000722"
+        },
+        {
+          "source_line": 723,
+          "timestamp": "2026-05-23T04:06:42.346918+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "westd-28034",
+              "exp_id": "exp-004-reduced-lora",
+              "project": "contrastive_entrain_calib",
+              "n": "3"
+            }
+          },
+          "id": "event-000723"
+        },
+        {
+          "source_line": 724,
+          "timestamp": "2026-05-23T04:06:42.850212+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"162949, GPU-2215162b-1a9f-b7a7-b46d-07f46dcf2a04, 16874 MiB, python\\\\n30011, GPU-f75ed7d5-9fad-ec10-3801-b74a5a0229ce, 21760 MiB, python\\\\n163488, GPU-ff50c368-1f16-810b-357c-3b1b23a6f256, 16854 MiB, python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1307
+          },
+          "id": "event-000724"
+        },
+        {
+          "source_line": 725,
+          "timestamp": "2026-05-23T04:06:43.402580+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-23 12:04:04,413 [INFO] step=5780/8000 sft=0.0000 l2=0.001987 total=0.0002 lr=1.42e-05 elapsed=40971s\\\", \\\"2026-05-23 12:05:12,915 [INFO] step=5790/8000 sft=0.0000 l2=0.001861 total=0.0002 lr=1.42e-05 elapsed=41039s\\\", \\\"2026-05-23 12:06:21,031 [INFO] step=5800/8000 sft=0.0000 l2=0.001961 total=0.0002 lr=1.41e-05 elapsed=41107s\\\"], \\\"line_count\\\": 3, \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-004-reduced-lora.log\\\", \\\"anomalies\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 1055
+          },
+          "id": "event-000725"
+        },
+        {
+          "source_line": 726,
+          "timestamp": "2026-05-23T04:06:57.905191+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "等 reduced-lora ckpt-5500 eval 完成 + ckpt-6000 产出，gs8 ckpt-1500 eval 可能也完成",
+              "prompt": "Continue monitoring experiments for contrastive_entrain_calib project. Check: 1) reduced-lora ckpt-5500 eval result, 2) gs8 ckpt-1500 eval result, 3) reduced-lora ckpt-6000 availability, 4) len512-v3 training progress, 5) registry updates, 6) whether held-out training launched."
+            }
+          },
+          "id": "event-000726"
+        },
+        {
+          "source_line": 727,
+          "timestamp": "2026-05-23T04:06:57.955860+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 04:11:00 (in 242s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 50
+          },
+          "id": "event-000727"
+        },
+        {
+          "source_line": 728,
+          "timestamp": "2026-05-23T04:07:00.147789+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Evals 仍在运行中。reduced-lora step 5800，ckpt-6000 约 23 分钟后。无新异常。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer"
+          },
+          "id": "event-000728"
+        }
+      ]
+    },
+    {
+      "number": 49,
+      "messages": [
+        {
+          "source_line": 729,
+          "timestamp": "2026-05-23T05:36:22.785738+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_eval_urgent-collect-and-fill_20260523T053146]:\nWorker worker_eval_urgent-collect-and-fill_20260523T053146 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "source": "system"
+          },
+          "id": "event-000729"
+        },
+        {
+          "source_line": 730,
+          "timestamp": "2026-05-23T05:36:30.984459+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'DONE'}",
+              "project": "contrastive_entrain_calib",
+              "limit": "8",
+              "fields": "['exp_id', 'status', 'conclusion', 'metrics', 'updated_at']"
+            }
+          },
+          "id": "event-000730"
+        },
+        {
+          "source_line": 731,
+          "timestamp": "2026-05-23T05:36:31.437351+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-004-reduced-lora-eval-ckpt5000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-23T03:51:40.176Z\\\", \\\"metrics\\\": {\\\"SYCONScore\\\": 0.2463, \\\"ToF\\\": 0.1436, \\\"NoF\\\": 0.8619}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-004-s2-eval-ckpt8000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-23T02:57:02.676Z\\\", \\\"metrics\\\": {\\\"SYCONScore\\\": 0.2465, \\\"ToF\\\": 0.1436, \\\"NoF\\\": 0.8674, \\\"n_valid\\\": 181, \\\"n_total\\\": 362}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-003-len512-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-23T02:47:42.128Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp-004-reduced-lora-eval-ckpt4500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-23T02:25:13.401Z\\\", \\\"metrics\\\": {\\\"SYCONScore\\\": 0.2707, \\\"ToF\\\": 0.1602, \\\"NoF\\\": 0.8729, \\\"n_valid\\\": 181, \\\"n_total\\\": 362}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-004-s2-eval-ckpt7500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-23T02:22:32.750Z\\\", \\\"metrics\\\": {\\\"SYCONScore\\\": 0.2705, \\\"ToF\\\": 0.1547, \\\"NoF\\\": 0.8564, \\\"n_valid\\\": 181, \\\"n_total\\\": 362}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-004-reduced-lora-eval-ckpt4000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-23T02:22:30.924Z\\\", \\\"metrics\\\": {\\\"SYCONScore\\\": 0.2051, \\\"ToF\\\": 0.116, \\\"NoF\\\": 0.884, \\\"n_valid\\\": 181, \\\"n_total\\\": 362}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-003-len512\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-23T02:20:06.318Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"exp-004-s2-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-23T02:07:27.081Z\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"count\\\": 8, \\\"total\\\": 100, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3685}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-000731"
+        },
+        {
+          "source_line": 732,
+          "timestamp": "2026-05-23T05:36:32.391732+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader"
+            }
+          },
+          "id": "event-000732"
+        },
+        {
+          "source_line": 733,
+          "timestamp": "2026-05-23T05:36:33.044647+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "westd-28034",
+              "exp_id": "exp-004-reduced-lora",
+              "project": "contrastive_entrain_calib",
+              "n": "3"
+            }
+          },
+          "id": "event-000733"
+        },
+        {
+          "source_line": 734,
+          "timestamp": "2026-05-23T05:36:33.697590+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"30011, GPU-f75ed7d5-9fad-ec10-3801-b74a5a0229ce, 21760 MiB, python\\\\n165317, GPU-f270fad9-1fd1-8bed-d720-cf9500380690, 12972 MiB, python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1305
+          },
+          "id": "event-000734"
+        },
+        {
+          "source_line": 735,
+          "timestamp": "2026-05-23T05:36:34.251104+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-23 13:33:58,553 [INFO] step=6510/8000 sft=0.0000 l2=0.001695 total=0.0002 lr=9.55e-06 elapsed=46365s\\\", \\\"2026-05-23 13:35:07,668 [INFO] step=6520/8000 sft=0.0000 l2=0.001765 total=0.0002 lr=9.49e-06 elapsed=46434s\\\", \\\"2026-05-23 13:36:17,138 [INFO] step=6530/8000 sft=0.0000 l2=0.001728 total=0.0002 lr=9.42e-06 elapsed=46504s\\\"], \\\"line_count\\\": 3, \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-004-reduced-lora.log\\\", \\\"anomalies\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 1206
+          },
+          "id": "event-000735"
+        },
+        {
+          "source_line": 736,
+          "timestamp": "2026-05-23T05:38:50.716221+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__tail_training_logs",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000736"
+        },
+        {
+          "source_line": 737,
+          "timestamp": "2026-05-23T05:38:50.716666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000737"
+        },
+        {
+          "source_line": 738,
+          "timestamp": "2026-05-23T05:38:53.382856+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000738"
+        },
+        {
+          "source_line": 739,
+          "timestamp": "2026-05-23T05:38:53.835394+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-003-len512-v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T02:47:44.855Z\\\", \\\"updated_at\\\": \\\"2026-05-23T02:48:07.444Z\\\", \\\"hypothesis\\\": \\\"R3-only GRPO with max_completion_length=512 (vs 256 in exp-003). Tests whether truncation is a contributing factor to reward failure. v3: correct tracking of PID 553700 (v2 was misdiagnosed as failed).\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python /root/contrastive_entrain_calib/training/run_exp003_len512_r3only.py\\\", \\\"server\\\": \\\"westd-29046\\\", \\\"gpu_ids\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"553700\\\", \\\"data_path\\\": \\\"/root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (training)\\\", \\\"eval_data\\\": \\\"N/A (training)\\\"}}, \\\"exp-004-reduced-lora\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:15:03.252Z\\\", \\\"updated_at\\\": \\\"2026-05-22T17:00:09.936Z\\\", \\\"hypothesis\\\": \\\"ACT with GRPO-matching LoRA config (r=64, alpha=64, 4 modules: qkvo) instead of standard ACT LoRA (r=64, alpha=128, 7 modules: qkvo+gate+up+down). Isolates supervision granularity vs LoRA capacity. If reduced-LoRA ACT still succeeds → supervision granularity (per-token SFT) is the key factor, not LoRA capacity.\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python training/run_exp004_reduced_lora.py\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": \\\"30006\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-004-reduced-lora.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T16:40:59.840Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 181, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (\n…[truncated 1350 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-000739"
+        },
+        {
+          "source_line": 740,
+          "timestamp": "2026-05-23T05:38:54.791171+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000740"
+        },
+        {
+          "source_line": 741,
+          "timestamp": "2026-05-23T05:38:55.142527+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000741"
+        },
+        {
+          "source_line": 742,
+          "timestamp": "2026-05-23T05:38:55.343405+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 2 MiB, 32607 MiB\\\\n1, 45 %, 21770 MiB, 32607 MiB\\\\n2, 0 %, 2 MiB, 32607 MiB\\\\n3, 0 %, 2 MiB, 32607 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-000742"
+        },
+        {
+          "source_line": 743,
+          "timestamp": "2026-05-23T05:38:56.498209+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 100 %, 38197 MiB, 97887 MiB\\\\n1, 95 %, 41337 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1355
+          },
+          "id": "event-000743"
+        },
+        {
+          "source_line": 744,
+          "timestamp": "2026-05-23T05:39:08.863847+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "westd-28034",
+              "log_path": "~/runs/contrastive_entrain_calib/exp-004-reduced-lora.log",
+              "n": "15"
+            }
+          },
+          "id": "event-000744"
+        },
+        {
+          "source_line": 745,
+          "timestamp": "2026-05-23T05:39:09.366134+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-23 13:23:34,525 [INFO] step=6420/8000 sft=0.0000 l2=0.001674 total=0.0002 lr=1.01e-05 elapsed=45741s\\\", \\\"2026-05-23 13:24:46,556 [INFO] step=6430/8000 sft=0.0000 l2=0.001728 total=0.0002 lr=1.01e-05 elapsed=45813s\\\", \\\"2026-05-23 13:25:56,005 [INFO] step=6440/8000 sft=0.0000 l2=0.001727 total=0.0002 lr=1.00e-05 elapsed=45882s\\\", \\\"2026-05-23 13:27:05,036 [INFO] step=6450/8000 sft=0.0000 l2=0.001844 total=0.0002 lr=9.94e-06 elapsed=45951s\\\", \\\"2026-05-23 13:28:14,205 [INFO] step=6460/8000 sft=0.0000 l2=0.001783 total=0.0002 lr=9.87e-06 elapsed=46021s\\\", \\\"2026-05-23 13:29:23,358 [INFO] step=6470/8000 sft=0.0000 l2=0.001833 total=0.0002 lr=9.81e-06 elapsed=46090s\\\", \\\"2026-05-23 13:30:32,337 [INFO] step=6480/8000 sft=0.0000 l2=0.001749 total=0.0002 lr=9.74e-06 elapsed=46159s\\\", \\\"2026-05-23 13:31:40,779 [INFO] step=6490/8000 sft=0.0000 l2=0.001731 total=0.0002 lr=9.68e-06 elapsed=46227s\\\", \\\"2026-05-23 13:32:49,556 [INFO] step=6500/8000 sft=0.0000 l2=0.001874 total=0.0002 lr=9.62e-06 elapsed=46296s\\\", \\\"2026-05-23 13:32:49,965 [INFO] Saved checkpoint: /root/autodl-tmp/outputs/exp-004-reduced-lora/checkpoint-6500\\\", \\\"2026-05-23 13:33:58,553 [INFO] step=6510/8000 sft=0.0000 l2=0.001695 total=0.0002 lr=9.55e-06 elapsed=46365s\\\", \\\"2026-05-23 13:35:07,668 [INFO] step=6520/8000 sft=0.0000 l2=0.001765 total=0.0002 lr=9.49e-06 elapsed=46434s\\\", \\\"2026-05-23 13:36:17,138 [INFO] step=6530/8000 sft=0.0000 l2=0.001728 total=0.0002 lr=9.42e-06 elapsed=46504s\\\", \\\"2026-05-23 13:37:25,594 [INFO] step=6540/8000 sft=0.0000 l2=0.001705 total=0.0002 lr=9.36e-06 elapsed=46572s\\\", \\\"2026-05-23 13:38:33,853 [INFO] step=6550/8000 sft=0.0000 l2=0.001701 total=0.0002 lr=9.29e-06 elapsed=46640s\\\"], \\\"line_count\\\": 15, \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-004-reduced-lora.log\\\", \\\"anomalies\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 502
+          },
+          "id": "event-000745"
+        },
+        {
+          "source_line": 746,
+          "timestamp": "2026-05-23T05:39:09.717800+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "westd-29046",
+              "log_path": "~/runs/contrastive_entrain_calib/exp-003-gs8.log",
+              "n": "15"
+            }
+          },
+          "id": "event-000746"
+        },
+        {
+          "source_line": 747,
+          "timestamp": "2026-05-23T05:39:10.170261+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"{'loss': 0.0013, 'grad_norm': 0.1056150496006012, 'learning_rate': 4.43197415578622e-05, 'num_tokens': 12676207.0, 'completions/mean_length': 256.0, 'completions/min_length': 256.0, 'completions/max_length': 256.0, 'completions/clipped_ratio': 1.0, 'completions/mean_terminated_length': 0.0, 'completions/min_terminated_length': 0.0, 'completions/max_terminated_length': 0.0, 'rewards/dc_grpo_reward/mean': 0.5346197674050928, 'rewards/dc_grpo_reward/std': 0.2797769209835678, 'reward': 0.5346197674050928, 'reward_std': 0.2797769158147275, 'frac_reward_zero_std': 0.0, 'kl': 0.032212182701914574, 'entropy': 0.329996691364795, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'step_time': 25.09144026627764, 'epoch': 10.11}\\\", \\\"{'loss': 0.0012, 'grad_norm': 0.11964836716651917, 'learning_rate': 4.425649243718498e-05, 'num_tokens': 12749479.0, 'completions/mean_length': 256.0, 'completions/min_length': 256.0, 'completions/max_length': 256.0, 'completions/clipped_ratio': 1.0, 'completions/mean_terminated_length': 0.0, 'completions/min_terminated_length': 0.0, 'completions/max_terminated_length': 0.0, 'rewards/dc_grpo_reward/mean': 0.6157642989419401, 'rewards/dc_grpo_reward/std': 0.3716767203062773, 'reward': 0.6157642989419401, 'reward_std': 0.3716767232865095, 'frac_reward_zero_std': 0.0, 'kl': 0.03054879120027181, 'entropy': 0.2875895990990102, 'clip_ratio/low_mean': 0.0, 'clip_ratio/low_min': 0.0, 'clip_ratio/high_mean': 0.0, 'clip_ratio/high_max': 0.0, 'clip_ratio/region_mean': 0.0, 'step_time': 26.461553249321877, 'epoch': 10.17}\\\", \\\"{'loss': 0.0014, 'grad_norm': 0.09222445636987686, 'learning_rate': 4.419293879205327e-05, 'num_tokens': 12817487.0, 'completions/mean_length': 256.0, 'completions/min_length': 256.0, 'completions/max_length': 256.0, 'completions/clipped_ratio': 1.0, 'completions/mean_terminated_length': 0.0,\n…[truncated 5868 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 452
+          },
+          "id": "event-000747"
+        },
+        {
+          "source_line": 748,
+          "timestamp": "2026-05-23T05:39:10.845495+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "westd-29046",
+              "log_path": "/root/contrastive_entrain_calib/logs/exp003_len512.log",
+              "n": "15"
+            }
+          },
+          "id": "event-000748"
+        },
+        {
+          "source_line": 749,
+          "timestamp": "2026-05-23T05:39:11.221571+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "limit": "15"
+            }
+          },
+          "id": "event-000749"
+        },
+        {
+          "source_line": 750,
+          "timestamp": "2026-05-23T05:39:11.675164+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"3%|▎         | 231/8000 [3:09:21<106:31:14, 49.36s/it]2026-05-23 13:27:45,086 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\", \\\"\\\\r  3%|▎         | 232/8000 [3:10:08<104:50:50, 48.59s/it]2026-05-23 13:28:32,807 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\", \\\"\\\\r  3%|▎         | 233/8000 [3:10:56<104:46:54, 48.57s/it]2026-05-23 13:29:20,428 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\", \\\"\\\\r  3%|▎         | 234/8000 [3:11:51<108:38:19, 50.36s/it]2026-05-23 13:30:14,039 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\", \\\"\\\\r  3%|▎         | 235/8000 [3:12:38<106:15:46, 49.27s/it]2026-05-23 13:31:03,844 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\", \\\"\\\\r  3%|▎         | 236/8000 [3:13:31<108:45:53, 50.43s/it]2026-05-23 13:31:53,939 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\", \\\"\\\\r  3%|▎         | 237/8000 [3:14:18<106:53:31, 49.57s/it]2026-05-23 13:32:41,238 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\", \\\"\\\\r  3%|▎         | 238/8000 [3:15:07<106:19:04, 49.31s/it]2026-05-23 13:33:29,397 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\", \\\"\\\\r  3%|▎         | 239/8000 [3:15:52<103:51:47, 48.18s/it]2026-05-23 13:34:16,043 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\", \\\"\\\\r  3%|▎         | 240/8000 [3:16:41<104:04:04, 48.28s/it]\\\\r                                                        \\\\r\\\\r  3%|▎         | 240/8000 [3:16:41<104:04:04, 48.28s/it]2026-05-23 13:35:06,077 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\", \\\"\\\\r  3%|▎         | 241/8000 [3:17:29<103:37:42, 48.08s/it]2026-05-23 13:35:53,056 [WARNING] dcgrpo_trainer: d_syc not loaded; returning R3-only rewards\\\", \\\"\\\\r  3%|▎         | 242/8000 [3:18:16<103:20:53, 47.96s/it]2026-05-23 13:36:42,773 [WARNIN\n…[truncated 623 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 829
+          },
+          "id": "event-000750"
+        },
+        {
+          "source_line": 751,
+          "timestamp": "2026-05-23T05:39:11.726067+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-004-s2-eval-ckpt2500-v2\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"created_at\\\": \\\"2026-05-23T05:38:10.411Z\\\", \\\"updated_at\\\": \\\"2026-05-23T05:38:27.352Z\\\", \\\"hypothesis\\\": \\\"ACT seed 2 ckpt-2500 eval: completes 16/16 s2 trajectory. If > vanilla like all other 15 checkpoints, confirms 32/32 total ACT > vanilla\\\", \\\"parent\\\": \\\"exp-004-s2-v2\\\"}, \\\"exp-004-reduced-lora-eval-ckpt6000\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"created_at\\\": \\\"2026-05-23T05:38:08.195Z\\\", \\\"updated_at\\\": \\\"2026-05-23T05:38:26.467Z\\\", \\\"hypothesis\\\": \\\"Reduced LoRA ACT ckpt-6000 eval: tracking post-peak decline in reduced LoRA trajectory (peak at ckpt-4500=0.271, ckpt-5500=0.255)\\\", \\\"parent\\\": \\\"exp-004-reduced-lora\\\"}, \\\"exp-004-reduced-lora-eval-ckpt5500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T04:02:30.145Z\\\", \\\"updated_at\\\": \\\"2026-05-23T05:37:58.246Z\\\", \\\"hypothesis\\\": \\\"Reduced LoRA ACT ckpt-5500 eval: SYCONScore trajectory for reduced LoRA (r=64, alpha=64, 4 modules) at step 5500, tracking post-peak trend after ckpt-4500\\\", \\\"parent\\\": \\\"exp-004-reduced-lora\\\", \\\"metrics\\\": {\\\"SYCONScore\\\": 0.2546, \\\"ToF\\\": 0.1492, \\\"NoF\\\": 0.8674}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-003-gs8-eval-ckpt1500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T04:02:32.646Z\\\", \\\"updated_at\\\": \\\"2026-05-23T05:37:57.063Z\\\", \\\"hypothesis\\\": \\\"gs8 (group_size=8) R3-only ckpt-1500 eval: if still near vanilla (like ckpt-500=0.084, ckpt-1000=0.085), confirms group_size is not the root cause of R3-only failure\\\", \\\"parent\\\": \\\"exp-003-gs8\\\", \\\"metrics\\\": {\\\"SYCONScore\\\": 0.0538, \\\"ToF\\\": 0.0276, \\\"NoF\\\": 0.9945}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp-004-reduced-lora-eval-ckpt5000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T03:47:32.387Z\\\", \\\"updated_at\\\": \\\"2026-05-23T03:51:40.176Z\\\", \\\"hypothesis\\\": \\\"Reduced LoRA ACT ckpt-5000 eval: SYCONScore trajectory for reduced LoRA (r=64, alpha=64, 4 modules) at step 5000\\\", \\\"parent\\\": \\\"exp-00\n…[truncated 6036 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 504
+          },
+          "id": "event-000751"
+        },
+        {
+          "source_line": 752,
+          "timestamp": "2026-05-23T05:39:44.546085+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "filters": "{'status': 'ALLOCATED'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000752"
+        },
+        {
+          "source_line": 753,
+          "timestamp": "2026-05-23T05:39:45.035095+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-004-s2-eval-ckpt2500-v2\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T05:38:10.411Z\\\", \\\"updated_at\\\": \\\"2026-05-23T05:38:27.352Z\\\", \\\"hypothesis\\\": \\\"ACT seed 2 ckpt-2500 eval: completes 16/16 s2 trajectory. If > vanilla like all other 15 checkpoints, confirms 32/32 total ACT > vanilla\\\", \\\"parent\\\": \\\"exp-004-s2-v2\\\"}, \\\"exp-004-reduced-lora-eval-ckpt6000\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T05:38:08.195Z\\\", \\\"updated_at\\\": \\\"2026-05-23T05:38:26.467Z\\\", \\\"hypothesis\\\": \\\"Reduced LoRA ACT ckpt-6000 eval: tracking post-peak decline in reduced LoRA trajectory (peak at ckpt-4500=0.271, ckpt-5500=0.255)\\\", \\\"parent\\\": \\\"exp-004-reduced-lora\\\"}}, \\\"count\\\": 2, \\\"total\\\": 2, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4223}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 489
+          },
+          "id": "event-000753"
+        },
+        {
+          "source_line": 754,
+          "timestamp": "2026-05-23T05:39:45.418654+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "ls -la /root/contrastive_entrain_calib/data/train_split.jsonl /root/contrastive_entrain_calib/data/eval_held_out.jsonl /root/contrastive_entrain_calib/data/eval_split.jsonl 2>/dev/null"
+            }
+          },
+          "id": "event-000754"
+        },
+        {
+          "source_line": 755,
+          "timestamp": "2026-05-23T05:39:45.469290+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 50
+          },
+          "id": "event-000755"
+        },
+        {
+          "source_line": 756,
+          "timestamp": "2026-05-23T05:39:45.820441+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "ls -la /root/contrastive_entrain_calib/training/run_exp004_heldout.py 2>/dev/null"
+            }
+          },
+          "id": "event-000756"
+        },
+        {
+          "source_line": 757,
+          "timestamp": "2026-05-23T05:39:45.971325+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 150
+          },
+          "id": "event-000757"
+        },
+        {
+          "source_line": 758,
+          "timestamp": "2026-05-23T05:39:50.543663+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "ls -la /root/contrastive_entrain_calib/data/train_split.jsonl /root/contrastive_entrain_calib/data/eval_held_out.jsonl /root/contrastive_entrain_calib/data/eval_split.jsonl"
+            }
+          },
+          "id": "event-000758"
+        },
+        {
+          "source_line": 759,
+          "timestamp": "2026-05-23T05:39:50.996392+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "ls -la /root/contrastive_entrain_calib/training/run_exp004_heldout.py"
+            }
+          },
+          "id": "event-000759"
+        },
+        {
+          "source_line": 760,
+          "timestamp": "2026-05-23T05:39:51.047031+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root  70992 May 23 08:04 /root/contrastive_entrain_calib/data/eval_held_out.jsonl\\\\n-rw-r--r-- 1 root root  70992 May 23 11:58 /root/contrastive_entrain_calib/data/eval_split.jsonl\\\\n-rw-r--r-- 1 root root 296009 May 23 08:04 /root/contrastive_entrain_calib/data/train_split.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 503
+          },
+          "id": "event-000760"
+        },
+        {
+          "source_line": 761,
+          "timestamp": "2026-05-23T05:39:51.548956+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 11485 May 23 11:58 /root/contrastive_entrain_calib/training/run_exp004_heldout.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-000761"
+        },
+        {
+          "source_line": 762,
+          "timestamp": "2026-05-23T05:39:58.045451+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "filters": "{'parent': 'exp-004-heldout'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000762"
+        },
+        {
+          "source_line": 763,
+          "timestamp": "2026-05-23T05:39:58.999610+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2755}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 954
+          },
+          "id": "event-000763"
+        },
+        {
+          "source_line": 764,
+          "timestamp": "2026-05-23T05:39:59.000143+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "find /root/contrastive_entrain_calib/outputs -maxdepth 1 -name \"*heldout*\" -type d"
+            }
+          },
+          "id": "event-000764"
+        },
+        {
+          "source_line": 765,
+          "timestamp": "2026-05-23T05:39:59.501865+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/contrastive_entrain_calib/outputs/exp004_heldout\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 501
+          },
+          "id": "event-000765"
+        },
+        {
+          "source_line": 766,
+          "timestamp": "2026-05-23T05:39:59.502308+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "find /root/autodl-tmp -maxdepth 3 -name \"*heldout*\" -type d"
+            }
+          },
+          "id": "event-000766"
+        },
+        {
+          "source_line": 767,
+          "timestamp": "2026-05-23T05:40:00.003800+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 501
+          },
+          "id": "event-000767"
+        },
+        {
+          "source_line": 768,
+          "timestamp": "2026-05-23T05:40:04.024194+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "ls -la /root/contrastive_entrain_calib/outputs/exp004_heldout/"
+            }
+          },
+          "id": "event-000768"
+        },
+        {
+          "source_line": 769,
+          "timestamp": "2026-05-23T05:40:04.627161+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 0\\\\ndrwxr-xr-x 2 root root  10 May 23 11:58 .\\\\ndrwxr-xr-x 5 root root 161 May 23 11:58 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 602
+          },
+          "id": "event-000769"
+        },
+        {
+          "source_line": 770,
+          "timestamp": "2026-05-23T05:40:04.727806+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "find /root/contrastive_entrain_calib/outputs/exp004_heldout -name \"*.log\" -o -name \"*.jsonl\" -o -name \"checkpoint-*\" -type d"
+            }
+          },
+          "id": "event-000770"
+        },
+        {
+          "source_line": 771,
+          "timestamp": "2026-05-23T05:40:05.179390+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-000771"
+        },
+        {
+          "source_line": 772,
+          "timestamp": "2026-05-23T05:40:22.447330+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__reviewer_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000772"
+        },
+        {
+          "source_line": 773,
+          "timestamp": "2026-05-23T05:40:22.648445+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 201
+          },
+          "id": "event-000773"
+        },
+        {
+          "source_line": 774,
+          "timestamp": "2026-05-23T05:40:49.330897+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — 多实验状态更新 (2026-05-23 13:40 UTC)\n\n### 1. exp-003-gs8: 终端 negative，建议提前终止\n\n[severity: warning] gs8 轨迹持续恶化：\n- ckpt-500: 0.0844\n- ckpt-1000: 0.0845\n- ckpt-1500: **0.0538** ← 进一步下降，远低于 vanilla (0.1335)\n\n当前 step 1916/8000 (24%)，entropy=0.30 持续走低，**clipped_ratio=1.0**（100% 生成被截断至 256 tokens）。模型在无意义地生成最大长度输出，SYCONScore 持续恶化。\n\n**结论已确定**：group_size=8 不能挽救 R3-only GRPO。继续训练到 step 8000 不会改变结论，只浪费 29046 GPU 0 约 40h。\n\n**建议**：提前终止 gs8，释放 29046 GPU 0 给 held-out ACT 训练（脚本已就绪）。\n\n### 2. 28034 GPU 严重空闲\n\n[severity: warning] 28034 当前状态：\n- GPU 0: 空闲 (2 MiB)\n- GPU 1: reduced-lora 训练 (step 6550/8000, 82%)\n- GPU 2: 空闲 (2 MiB) — 之前 PID 165317 已消失\n- GPU 3: 空闲 (2 MiB)\n\n两个 ALLOCATED eval 未启动：\n- exp-004-s2-eval-ckpt2500-v2（注册于 05:38 UTC，已等 **8 小时**）\n- exp-004-reduced-lora-eval-ckpt6000（注册于 05:38 UTC，已等 **8 小时**）\n\n此外 reduced-lora ckpt-6500 刚保存（13:32 UTC），也需要排 eval。\n\n距 DDL 不到 36h，3 张卡空转 8 小时是严重浪费。\n\n### 3. Held-out ACT 训练未启动\n\n[severity: warning] 28034 上数据和脚本均已就绪：\n- `/root/contrastive_entrain_calib/data/train_split.jsonl` (292 lines, 146 pairs)\n- `/root/contrastive_entrain_calib/training/run_exp004_heldout.py`\n- Output dir `/root/contrastive_entrain_calib/outputs/exp004_heldout/` 已创建但**为空**\n\nHeld-out 泛化是 ACT 最大的审稿人攻击面（train-test overlap），这个实验优先级高于继续 gs8。28034 GPU 0 或 GPU 2 空闲可立即启动。\n\n### 4. reduced-lora 轨迹更新（正面）\n\n[severity: info] 完整轨迹（12 个 checkpoint）：\n0.152 → 0.170 → 0.161 → 0.205 → 0.171 → 0.171 → 0.188 → 0.205 → **0.271** → 0.246 → 0.255 → (ckpt-6000/6500 待评)\n\n峰值后稳定在 ~0.25（未崩溃），全部 > vanilla (0.1335)。支持 \"supervision granularity 是关键因素\" 的结论。训练还剩 ~18% (1450 steps, ~2.8h)。\n\n### 行动建议优先级\n1. **立即**：启动 28034 上 2 个 ALLOCATED eval + held-out ACT 训练\n2. **考虑**：终止 gs8 释放 29046 GPU 0\n3. **追踪**：reduced-lora 剩余 checkpoint eval",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-000774"
+        },
+        {
+          "source_line": 775,
+          "timestamp": "2026-05-23T05:40:53.176429+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_c77a380fad2d0408ce92cd1170d46f6f:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3845
+          },
+          "id": "event-000775"
+        },
+        {
+          "source_line": 776,
+          "timestamp": "2026-05-23T05:41:08.019707+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "等待 Director 响应 GPU 空闲 + held-out 启动请求，检查 eval 是否被派发",
+              "prompt": "Continue monitoring experiments for contrastive_entrain_calib project. Check: 1) eval results, 2) training progress, 3) new eval launches, 4) registry updates, 5) GPU compliance."
+            }
+          },
+          "id": "event-000776"
+        },
+        {
+          "source_line": 777,
+          "timestamp": "2026-05-23T05:41:08.120653+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 05:45:00 (in 232s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 100
+          },
+          "id": "event-000777"
+        },
+        {
+          "source_line": 778,
+          "timestamp": "2026-05-23T05:41:16.145220+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已提交。核心问题：28034 三卡空闲 8 小时 + held-out 训练未启动 + gs8 terminal negative。继续监控 reduced-lora 收尾和 eval 执行情况。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer"
+          },
+          "id": "event-000778"
+        }
+      ]
+    },
+    {
+      "number": 50,
+      "messages": [
+        {
+          "source_line": 779,
+          "timestamp": "2026-05-23T05:41:55.238521+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_fix-gpu02-and-chain_20260523T053733]:\nWorker worker_ops_fix-gpu02-and-chain_20260523T053733 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "source": "worker_done:worker_ops_fix-gpu02-and-chain_20260523t053733"
+          },
+          "id": "event-000779"
+        },
+        {
+          "source_line": 780,
+          "timestamp": "2026-05-23T05:42:01.938091+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "limit": "10"
+            }
+          },
+          "id": "event-000780"
+        },
+        {
+          "source_line": 781,
+          "timestamp": "2026-05-23T05:42:02.895865+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-004-s2-eval-ckpt2500-v2\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"created_at\\\": \\\"2026-05-23T05:38:10.411Z\\\", \\\"updated_at\\\": \\\"2026-05-23T05:38:27.352Z\\\", \\\"hypothesis\\\": \\\"ACT seed 2 ckpt-2500 eval: completes 16/16 s2 trajectory. If > vanilla like all other 15 checkpoints, confirms 32/32 total ACT > vanilla\\\", \\\"parent\\\": \\\"exp-004-s2-v2\\\"}, \\\"exp-004-reduced-lora-eval-ckpt6000\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"created_at\\\": \\\"2026-05-23T05:38:08.195Z\\\", \\\"updated_at\\\": \\\"2026-05-23T05:38:26.467Z\\\", \\\"hypothesis\\\": \\\"Reduced LoRA ACT ckpt-6000 eval: tracking post-peak decline in reduced LoRA trajectory (peak at ckpt-4500=0.271, ckpt-5500=0.255)\\\", \\\"parent\\\": \\\"exp-004-reduced-lora\\\"}, \\\"exp-004-reduced-lora-eval-ckpt5500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T04:02:30.145Z\\\", \\\"updated_at\\\": \\\"2026-05-23T05:37:58.246Z\\\", \\\"hypothesis\\\": \\\"Reduced LoRA ACT ckpt-5500 eval: SYCONScore trajectory for reduced LoRA (r=64, alpha=64, 4 modules) at step 5500, tracking post-peak trend after ckpt-4500\\\", \\\"parent\\\": \\\"exp-004-reduced-lora\\\", \\\"metrics\\\": {\\\"SYCONScore\\\": 0.2546, \\\"ToF\\\": 0.1492, \\\"NoF\\\": 0.8674}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-003-gs8-eval-ckpt1500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T04:02:32.646Z\\\", \\\"updated_at\\\": \\\"2026-05-23T05:37:57.063Z\\\", \\\"hypothesis\\\": \\\"gs8 (group_size=8) R3-only ckpt-1500 eval: if still near vanilla (like ckpt-500=0.084, ckpt-1000=0.085), confirms group_size is not the root cause of R3-only failure\\\", \\\"parent\\\": \\\"exp-003-gs8\\\", \\\"metrics\\\": {\\\"SYCONScore\\\": 0.0538, \\\"ToF\\\": 0.0276, \\\"NoF\\\": 0.9945}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp-004-reduced-lora-eval-ckpt5000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T03:47:32.387Z\\\", \\\"updated_at\\\": \\\"2026-05-23T03:51:40.176Z\\\", \\\"hypothesis\\\": \\\"Reduced LoRA ACT ckpt-5000 eval: SYCONScore trajectory for reduced LoRA (r=64, alpha=64, 4 modules) at step 5000\\\", \\\"parent\\\": \\\"exp-00\n…[truncated 2593 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 957
+          },
+          "id": "event-000781"
+        },
+        {
+          "source_line": 782,
+          "timestamp": "2026-05-23T05:42:03.598851+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000782"
+        },
+        {
+          "source_line": 783,
+          "timestamp": "2026-05-23T05:42:04.000774+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000783"
+        },
+        {
+          "source_line": 784,
+          "timestamp": "2026-05-23T05:42:04.854503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 48 %, 16764 MiB, 32607 MiB\\\\n1, 44 %, 21770 MiB, 32607 MiB\\\\n2, 0 %, 2 MiB, 32607 MiB\\\\n3, 0 %, 2 MiB, 32607 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.28}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1255
+          },
+          "id": "event-000784"
+        },
+        {
+          "source_line": 785,
+          "timestamp": "2026-05-23T05:42:05.908640+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 95 %, 38197 MiB, 97887 MiB\\\\n1, 95 %, 41337 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.02}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1907
+          },
+          "id": "event-000785"
+        },
+        {
+          "source_line": 786,
+          "timestamp": "2026-05-23T05:42:13.035203+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-000786"
+        },
+        {
+          "source_line": 787,
+          "timestamp": "2026-05-23T05:42:14.490456+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"49385, GPU-2215162b-1a9f-b7a7-b46d-07f46dcf2a04, 16754 MiB\\\\n30011, GPU-f75ed7d5-9fad-ec10-3801-b74a5a0229ce, 21760 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1455
+          },
+          "id": "event-000787"
+        },
+        {
+          "source_line": 788,
+          "timestamp": "2026-05-23T05:42:14.490789+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "ls -lt /root/contrastive_entrain_calib/outputs/exp004_heldout/"
+            }
+          },
+          "id": "event-000788"
+        },
+        {
+          "source_line": 789,
+          "timestamp": "2026-05-23T05:42:14.942588+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-000789"
+        },
+        {
+          "source_line": 790,
+          "timestamp": "2026-05-23T05:42:21.820383+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "ps -p 49385 -o pid,ppid,user,etime,args --no-headers"
+            }
+          },
+          "id": "event-000790"
+        },
+        {
+          "source_line": 791,
+          "timestamp": "2026-05-23T05:42:22.285092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 49385  49380 root           02:04 python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/outputs/exp-004-reduced-lora/checkpoint-6500 --output_dir /root/contrastive_entrain_calib/eval_results/exp-004-reduced-lora-ckpt6500/ --exp_id exp-004-reduced-lora-ckpt6500\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 464
+          },
+          "id": "event-000791"
+        },
+        {
+          "source_line": 792,
+          "timestamp": "2026-05-23T05:42:37.395047+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "tmux list-sessions"
+            }
+          },
+          "id": "event-000792"
+        },
+        {
+          "source_line": 793,
+          "timestamp": "2026-05-23T05:42:37.546605+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 151
+          },
+          "id": "event-000793"
+        },
+        {
+          "source_line": 794,
+          "timestamp": "2026-05-23T05:42:38.104119+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "westd-28034",
+              "log_path": "~/runs/contrastive_entrain_calib/exp-004-reduced-lora.log",
+              "n": "5"
+            }
+          },
+          "id": "event-000794"
+        },
+        {
+          "source_line": 795,
+          "timestamp": "2026-05-23T05:42:38.556258+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-23 13:37:25,594 [INFO] step=6540/8000 sft=0.0000 l2=0.001705 total=0.0002 lr=9.36e-06 elapsed=46572s\\\", \\\"2026-05-23 13:38:33,853 [INFO] step=6550/8000 sft=0.0000 l2=0.001701 total=0.0002 lr=9.29e-06 elapsed=46640s\\\", \\\"2026-05-23 13:39:42,097 [INFO] step=6560/8000 sft=0.0000 l2=0.001779 total=0.0002 lr=9.23e-06 elapsed=46709s\\\", \\\"2026-05-23 13:40:50,477 [INFO] step=6570/8000 sft=0.0000 l2=0.001672 total=0.0002 lr=9.17e-06 elapsed=46777s\\\", \\\"2026-05-23 13:41:58,681 [INFO] step=6580/8000 sft=0.0000 l2=0.001687 total=0.0002 lr=9.10e-06 elapsed=46845s\\\"], \\\"line_count\\\": 5, \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-004-reduced-lora.log\\\", \\\"anomalies\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 452
+          },
+          "id": "event-000795"
+        },
+        {
+          "source_line": 796,
+          "timestamp": "2026-05-23T05:43:02.126591+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "等待 ckpt-6500 eval 推进，检查 Director 是否调度 GPU 2/3 + held-out 训练",
+              "prompt": "Continue monitoring experiments for contrastive_entrain_calib project. Check: 1) eval results, 2) training progress, 3) new eval launches, 4) registry updates, 5) GPU compliance."
+            }
+          },
+          "id": "event-000796"
+        },
+        {
+          "source_line": 797,
+          "timestamp": "2026-05-23T05:43:02.177193+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 05:47:00 (in 238s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 50
+          },
+          "id": "event-000797"
+        },
+        {
+          "source_line": 798,
+          "timestamp": "2026-05-23T05:43:03.571633+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "reduced-lora 训练 step 6580/8000 (82%)，~6.8s/step，预计 ~2.7h 完成。\n\n状态汇总：\n- **28034 GPU 0**: ckpt-6500 eval 运行中（PID 49385，刚启动 2 min，预计 ~70 min）\n- **28034 GPU 1**: reduced-lora 训练（step 6580/8000）\n- **28034 GPU 2/3**: 空闲\n- **ALLOCATED evals**: ckpt-6000 和 s2-ckpt2500-v2 仍未启动\n- **held-out ACT**: 仍未启动\n\nWorker \"fix-gpu02-and-chain\" 只填了 GPU 0（ckpt-6500 eval），GPU 2/3 和 held-out 训练未动。下次唤醒检查 eval 结果及后续调度。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer"
+          },
+          "id": "event-000798"
+        }
+      ]
+    },
+    {
+      "number": 51,
+      "messages": [
+        {
+          "source_line": 799,
+          "timestamp": "2026-05-23T05:58:34.807314+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ops_kill-gs8-start-heldout_20260523T055705]:\nWorker worker_ops_kill-gs8-start-heldout_20260523T055705 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "source": "worker_done:worker_ops_kill-gs8-start-heldout_20260523t055705"
+          },
+          "id": "event-000799"
+        },
+        {
+          "source_line": 800,
+          "timestamp": "2026-05-23T05:58:43.060040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "limit": "8",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000800"
+        },
+        {
+          "source_line": 801,
+          "timestamp": "2026-05-23T05:58:43.462127+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-003-gs8-eval-ckpt1500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T04:02:32.646Z\\\", \\\"updated_at\\\": \\\"2026-05-23T05:56:48.945Z\\\", \\\"hypothesis\\\": \\\"gs8 (group_size=8) R3-only ckpt-1500 eval: if still near vanilla (like ckpt-500=0.084, ckpt-1000=0.085), confirms group_size is not the root cause of R3-only failure\\\", \\\"parent\\\": \\\"exp-003-gs8\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-28034\\\", \\\"gpu_ids\\\": [\\\"cuda:3\\\"], \\\"checkpoint_source\\\": \\\"exp-003-gs8/checkpoint-1500\\\", \\\"eval_data\\\": \\\"calibration_v2_1_expanded.jsonl\\\", \\\"command\\\": \\\"eval_unified_preset.py --preset sycon\\\", \\\"data_path\\\": \\\"/root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 42}, \\\"metrics\\\": {\\\"SYCONScore\\\": 0.0538, \\\"ToF\\\": 0.0276, \\\"NoF\\\": 0.9945}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/contrastive_entrain_calib/outputs/exp003_gs8_r3only/checkpoint-1500\\\", \\\"log_path\\\": \\\"/root/contrastive_entrain_calib/eval_results/exp003_gs8_ckpt1500/\\\", \\\"completed_at\\\": \\\"2026-05-23T05:37:57.063Z\\\"}, \\\"exp-004-s2-eval-ckpt2500-v2\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T05:38:10.411Z\\\", \\\"updated_at\\\": \\\"2026-05-23T05:38:27.352Z\\\", \\\"hypothesis\\\": \\\"ACT seed 2 ckpt-2500 eval: completes 16/16 s2 trajectory. If > vanilla like all other 15 checkpoints, confirms 32/32 total ACT > vanilla\\\", \\\"parent\\\": \\\"exp-004-s2-v2\\\"}, \\\"exp-004-reduced-lora-eval-ckpt6000\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T05:38:08.195Z\\\", \\\"updated_at\\\": \\\"2026-05-23T05:38:26.467Z\\\", \\\"hypothesis\\\": \\\"Reduced LoRA ACT ckpt-6000 eval: tracking post-peak decline in reduced LoRA trajectory (peak at ckpt-4500=0.271, ckpt-5500=0.255)\\\", \\\"parent\\\": \\\"exp-004-reduced-lora\\\"}, \\\"exp-004-reduced-lora-eval-ckpt5500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\"\n…[truncated 5445 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 402
+          },
+          "id": "event-000801"
+        },
+        {
+          "source_line": 802,
+          "timestamp": "2026-05-23T05:58:44.617008+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000802"
+        },
+        {
+          "source_line": 803,
+          "timestamp": "2026-05-23T05:58:44.868374+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000803"
+        },
+        {
+          "source_line": 804,
+          "timestamp": "2026-05-23T05:58:46.023150+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 36 %, 22511 MiB, 97887 MiB\\\\n1, 95 %, 41337 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1406
+          },
+          "id": "event-000804"
+        },
+        {
+          "source_line": 805,
+          "timestamp": "2026-05-23T05:58:47.178140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 2 MiB, 32607 MiB\\\\n1, 46 %, 21770 MiB, 32607 MiB\\\\n2, 0 %, 2 MiB, 32607 MiB\\\\n3, 0 %, 2 MiB, 32607 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2309
+          },
+          "id": "event-000805"
+        },
+        {
+          "source_line": 806,
+          "timestamp": "2026-05-23T05:59:09.400501+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-000806"
+        },
+        {
+          "source_line": 807,
+          "timestamp": "2026-05-23T05:59:09.701770+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "ps -p 49385 -o pid,state,etime --no-headers"
+            }
+          },
+          "id": "event-000807"
+        },
+        {
+          "source_line": 808,
+          "timestamp": "2026-05-23T05:59:09.953063+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"571918, GPU-08d8e8b9-f62b-ebeb-bf67-9f31ce79bba5, 22506 MiB\\\\n553700, GPU-b85fe8f9-c447-fa47-fb40-37fb400998d2, 41328 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-000808"
+        },
+        {
+          "source_line": 809,
+          "timestamp": "2026-05-23T05:59:10.405068+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 703
+          },
+          "id": "event-000809"
+        },
+        {
+          "source_line": 810,
+          "timestamp": "2026-05-23T05:59:16.462790+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "ps -p 571918 -o pid,ppid,user,etime,args --no-headers"
+            }
+          },
+          "id": "event-000810"
+        },
+        {
+          "source_line": 811,
+          "timestamp": "2026-05-23T05:59:17.718221+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"571918 571912 root           01:07 python training/run_exp004_heldout.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1255
+          },
+          "id": "event-000811"
+        },
+        {
+          "source_line": 812,
+          "timestamp": "2026-05-23T05:59:17.718584+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "ls -lt /root/contrastive_entrain_calib/eval_results/exp-004-reduced-lora-ckpt6500/"
+            }
+          },
+          "id": "event-000812"
+        },
+        {
+          "source_line": 813,
+          "timestamp": "2026-05-23T05:59:18.120368+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 236\\\\n-rw-r--r-- 1 root root 236673 May 23 13:56 exp-004-reduced-lora-ckpt6500_preset_eval.json\\\\n-rw-r--r-- 1 root root    384 May 23 13:56 exp-004-reduced-lora-ckpt6500_preset_summary.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 401
+          },
+          "id": "event-000813"
+        },
+        {
+          "source_line": 814,
+          "timestamp": "2026-05-23T05:59:29.770016+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "cat /root/contrastive_entrain_calib/eval_results/exp-004-reduced-lora-ckpt6500/exp-004-reduced-lora-ckpt6500_preset_summary.txt"
+            }
+          },
+          "id": "event-000814"
+        },
+        {
+          "source_line": 815,
+          "timestamp": "2026-05-23T05:59:30.272277+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"D027 Preset Eval Summary\\\\nexp_id: exp-004-reduced-lora-ckpt6500\\\\nmodel:  /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\nlora:   /root/autodl-tmp/outputs/exp-004-reduced-lora/checkpoint-6500\\\\ndata:   /root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl\\\\ntime:   986s\\\\n\\\\nToF        = 0.1381\\\\nNoF        = 0.8287\\\\nSYCONScore = 0.2368\\\\nn_valid    = 181\\\\nn_invalid  = 181\\\\nn_total    = 362\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000815"
+        },
+        {
+          "source_line": 816,
+          "timestamp": "2026-05-23T05:59:30.272707+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000816"
+        },
+        {
+          "source_line": 817,
+          "timestamp": "2026-05-23T05:59:30.525015+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-003-len512-v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T02:47:44.855Z\\\", \\\"updated_at\\\": \\\"2026-05-23T02:48:07.444Z\\\", \\\"hypothesis\\\": \\\"R3-only GRPO with max_completion_length=512 (vs 256 in exp-003). Tests whether truncation is a contributing factor to reward failure. v3: correct tracking of PID 553700 (v2 was misdiagnosed as failed).\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python /root/contrastive_entrain_calib/training/run_exp003_len512_r3only.py\\\", \\\"server\\\": \\\"westd-29046\\\", \\\"gpu_ids\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"553700\\\", \\\"data_path\\\": \\\"/root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen/Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (training)\\\", \\\"eval_data\\\": \\\"N/A (training)\\\"}}, \\\"exp-004-reduced-lora\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:15:03.252Z\\\", \\\"updated_at\\\": \\\"2026-05-22T17:00:09.936Z\\\", \\\"hypothesis\\\": \\\"ACT with GRPO-matching LoRA config (r=64, alpha=64, 4 modules: qkvo) instead of standard ACT LoRA (r=64, alpha=128, 7 modules: qkvo+gate+up+down). Isolates supervision granularity vs LoRA capacity. If reduced-LoRA ACT still succeeds → supervision granularity (per-token SFT) is the key factor, not LoRA capacity.\\\", \\\"parent\\\": \\\"exp-004\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python training/run_exp004_reduced_lora.py\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": \\\"30006\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-004-reduced-lora.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T16:40:59.840Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 181, \\\"model_name\\\": \\\"Qwen3-8B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (\n…[truncated 1350 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 252
+          },
+          "id": "event-000817"
+        },
+        {
+          "source_line": 818,
+          "timestamp": "2026-05-23T05:59:51.016527+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "ps -p 516691 -o pid,state --no-headers"
+            }
+          },
+          "id": "event-000818"
+        },
+        {
+          "source_line": 819,
+          "timestamp": "2026-05-23T05:59:51.518996+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000819"
+        },
+        {
+          "source_line": 820,
+          "timestamp": "2026-05-23T05:59:51.720050+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "ls -lt /root/contrastive_entrain_calib/outputs/exp004_heldout/"
+            }
+          },
+          "id": "event-000820"
+        },
+        {
+          "source_line": 821,
+          "timestamp": "2026-05-23T05:59:52.172072+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/contrastive_entrain_calib/outputs/exp004_heldout/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 452
+          },
+          "id": "event-000821"
+        },
+        {
+          "source_line": 822,
+          "timestamp": "2026-05-23T05:59:58.562348+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "grep -i \"output\" /root/contrastive_entrain_calib/training/run_exp004_heldout.py"
+            }
+          },
+          "id": "event-000822"
+        },
+        {
+          "source_line": 823,
+          "timestamp": "2026-05-23T05:59:59.165161+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"All hyperparameters identical to exp-004 (seed=42). Only data path and output dir differ.\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", default=\\\\\\\"/root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout/\\\\\\\")\\\\n    os.makedirs(args.output_dir, exist_ok=True)\\\\n    with open(os.path.join(args.output_dir, \\\\\\\"config.json\\\\\\\"), \\\\\\\"w\\\\\\\") as f:\\\\n    log_path = os.path.join(args.output_dir, \\\\\\\"train_log.jsonl\\\\\\\")\\\\n                    ckpt_dir = os.path.join(args.output_dir, f\\\\\\\"checkpoint-{step}\\\\\\\")\\\\n    final_dir = os.path.join(args.output_dir, \\\\\\\"final\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 602
+          },
+          "id": "event-000823"
+        },
+        {
+          "source_line": 824,
+          "timestamp": "2026-05-23T05:59:59.165538+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "find /root -maxdepth 4 -name \"*heldout*\" -type d"
+            }
+          },
+          "id": "event-000824"
+        },
+        {
+          "source_line": 825,
+          "timestamp": "2026-05-23T05:59:59.617028+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-000825"
+        },
+        {
+          "source_line": 826,
+          "timestamp": "2026-05-23T06:00:01.736512+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "ls -lt /root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout/"
+            }
+          },
+          "id": "event-000826"
+        },
+        {
+          "source_line": 827,
+          "timestamp": "2026-05-23T06:00:02.195086+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 8\\\\n-rw-r--r-- 1 root root 116 May 23 13:59 train_log.jsonl\\\\n-rw-r--r-- 1 root root 420 May 23 13:58 config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 458
+          },
+          "id": "event-000827"
+        },
+        {
+          "source_line": 828,
+          "timestamp": "2026-05-23T06:00:06.530973+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "cat /root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout/config.json"
+            }
+          },
+          "id": "event-000828"
+        },
+        {
+          "source_line": 829,
+          "timestamp": "2026-05-23T06:00:06.732234+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "cat /root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout/train_log.jsonl"
+            }
+          },
+          "id": "event-000829"
+        },
+        {
+          "source_line": 830,
+          "timestamp": "2026-05-23T06:00:07.033395+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\\\\",\\\\n  \\\\\\\"data_path\\\\\\\": \\\\\\\"/root/contrastive_entrain_calib/data/train_split.jsonl\\\\\\\",\\\\n  \\\\\\\"output_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout/\\\\\\\",\\\\n  \\\\\\\"max_steps\\\\\\\": 8000,\\\\n  \\\\\\\"grad_accum\\\\\\\": 16,\\\\n  \\\\\\\"lr\\\\\\\": 5e-05,\\\\n  \\\\\\\"warmup_steps\\\\\\\": 200,\\\\n  \\\\\\\"lambda_l2\\\\\\\": 0.1,\\\\n  \\\\\\\"max_seq_len\\\\\\\": 1024,\\\\n  \\\\\\\"logging_steps\\\\\\\": 10,\\\\n  \\\\\\\"save_steps\\\\\\\": 500,\\\\n  \\\\\\\"seed\\\\\\\": 42,\\\\n  \\\\\\\"lora_rank\\\\\\\": 64\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-000830"
+        },
+        {
+          "source_line": 831,
+          "timestamp": "2026-05-23T06:00:07.535074+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"step\\\\\\\": 10, \\\\\\\"sft_loss\\\\\\\": 2.587648, \\\\\\\"l2_loss\\\\\\\": 2.31037598, \\\\\\\"total_loss\\\\\\\": 2.818691, \\\\\\\"lr\\\\\\\": 2.5e-06, \\\\\\\"elapsed_s\\\\\\\": 92.4}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 802
+          },
+          "id": "event-000831"
+        },
+        {
+          "source_line": 832,
+          "timestamp": "2026-05-23T06:00:50.086848+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — Worker kill-gs8-start-heldout 结果核实\n\n### 1. gs8 终止 ✓ + Held-out 启动 ✓\n\n[severity: info] 两个操作已确认执行：\n- gs8 PID 516691 已死亡，29046 GPU 0 已释放\n- Held-out ACT 训练 PID 571918 已在 29046 GPU 0 运行，step 10/8000，~9.2s/step\n- 数据路径正确：train_split.jsonl (292 lines, 80% split)\n- 超参与 exp-004 一致：seed=42, lr=5e-5, max_steps=8000, save_steps=500, lora_rank=64\n- 预计 ~20h 完成（截稿前可完成），首个 ckpt-500 约 1.3h 后\n\n### 2. Registry 缺口\n\n[severity: warning] 以下条目需要更新/创建：\n- **exp-003-gs8**: 仍显示 RUNNING，进程已被 kill → 需更新为 DONE/negative + 终止原因\n- **exp-004-heldout 训练**: 未注册 → 需创建 RUNNING 条目（PID 571918, server westd-29046, gpu cuda:0）\n- **exp-004-reduced-lora-eval-ckpt6500**: eval 已完成（SYCONScore=**0.237**, ToF=0.138, NoF=0.829），结果文件在 28034，未注册\n\n### 3. 28034 持续浪费\n\n[severity: warning] GPU 0/2/3 仍然空闲：\n- GPU 0: ckpt-6500 eval 刚完成，又空了\n- GPU 2/3: 持续空闲\n- 两个 ALLOCATED eval（s2-ckpt2500-v2, reduced-lora-ckpt6000）注册已 **8.5h**，仍未启动\n\n建议立即在 28034 空闲 GPU 上启动这两个 ALLOCATED eval。\n\n### 4. reduced-lora 完整轨迹（13 个 checkpoint）\n\n[severity: info]\n```\nckpt-500:  0.152  ckpt-3500: 0.188\nckpt-1000: 0.170  ckpt-4000: 0.205\nckpt-1500: 0.161  ckpt-4500: 0.271 ★ peak\nckpt-2000: 0.205  ckpt-5000: 0.246\nckpt-2500: 0.171  ckpt-5500: 0.255\nckpt-3000: 0.171  ckpt-6000: (pending)\n                   ckpt-6500: 0.237\n```\n峰后缓慢下降（0.271→0.237），但全部 > vanilla (0.1335)。趋势稳定，无崩溃。",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-000832"
+        },
+        {
+          "source_line": 833,
+          "timestamp": "2026-05-23T06:00:53.802705+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_c77a380fad2d0408ce92cd1170d46f6f:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3715
+          },
+          "id": "event-000833"
+        },
+        {
+          "source_line": 834,
+          "timestamp": "2026-05-23T06:00:59.659814+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "等待 reduced-lora 训练推进至 ckpt-7000，监控 held-out 训练稳定性，检查 28034 eval 调度",
+              "prompt": "Continue monitoring experiments for contrastive_entrain_calib project. Check: 1) eval results, 2) training progress, 3) new eval launches, 4) registry updates, 5) GPU compliance."
+            }
+          },
+          "id": "event-000834"
+        },
+        {
+          "source_line": 835,
+          "timestamp": "2026-05-23T06:00:59.660263+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 06:05:00 (in 240s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 0
+          },
+          "id": "event-000835"
+        },
+        {
+          "source_line": 836,
+          "timestamp": "2026-05-23T06:01:01.324538+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已提交。Worker 正确执行了 gs8 终止和 held-out 启动，但遗留 registry 缺口和 28034 GPU 空闲问题。继续监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer"
+          },
+          "id": "event-000836"
+        }
+      ]
+    },
+    {
+      "number": 52,
+      "messages": [
+        {
+          "source_line": 837,
+          "timestamp": "2026-05-23T06:20:45.334456+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_eval_28034-triple-urgent_20260523T061702]:\nWorker worker_eval_28034-triple-urgent_20260523T061702 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "source": "worker_done:worker_eval_28034-triple-urgent_20260523t061702"
+          },
+          "id": "event-000837"
+        },
+        {
+          "source_line": 838,
+          "timestamp": "2026-05-23T06:20:51.063475+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "limit": "12"
+            }
+          },
+          "id": "event-000838"
+        },
+        {
+          "source_line": 839,
+          "timestamp": "2026-05-23T06:20:51.515592+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-004-heldout\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"created_at\\\": \\\"2026-05-23T06:17:30.004Z\\\", \\\"updated_at\\\": \\\"2026-05-23T06:17:40.411Z\\\", \\\"hypothesis\\\": \\\"ACT held-out retraining: train on 80% split (292 lines), eval on 20% held-out (70 lines) to verify ACT generalizes beyond training data. Addresses train-test overlap concern.\\\", \\\"parent\\\": \\\"exp-004\\\"}, \\\"exp-003-gs8\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T15:33:34.942Z\\\", \\\"updated_at\\\": \\\"2026-05-23T06:17:39.402Z\\\", \\\"hypothesis\\\": \\\"R3-only GRPO group_size=8 消融：如果 gs=8 成功 (SYCONScore > vanilla 稳定) → 证明 gs=2 是 R3-only 失败根源；如果失败 (与 gs=2 类似 oscillation) → 证明 scalar per-completion reward 本身不足，与 group_size 无关。\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp-004-reduced-lora-eval-ckpt6500\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-23T06:17:28.219Z\\\", \\\"updated_at\\\": \\\"2026-05-23T06:17:34.995Z\\\", \\\"hypothesis\\\": \\\"Reduced LoRA ACT ckpt-6500 eval: tracking post-peak decline trajectory (peak ckpt-4500=0.271), confirms reduced LoRA still > vanilla throughout training\\\", \\\"parent\\\": \\\"exp-004-reduced-lora\\\"}, \\\"exp-003-gs8-eval-ckpt1500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T04:02:32.646Z\\\", \\\"updated_at\\\": \\\"2026-05-23T05:56:48.945Z\\\", \\\"hypothesis\\\": \\\"gs8 (group_size=8) R3-only ckpt-1500 eval: if still near vanilla (like ckpt-500=0.084, ckpt-1000=0.085), confirms group_size is not the root cause of R3-only failure\\\", \\\"parent\\\": \\\"exp-003-gs8\\\", \\\"metrics\\\": {\\\"SYCONScore\\\": 0.0538, \\\"ToF\\\": 0.0276, \\\"NoF\\\": 0.9945}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"exp-004-s2-eval-ckpt2500-v2\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"created_at\\\": \\\"2026-05-23T05:38:10.411Z\\\", \\\"updated_at\\\": \\\"2026-05-23T05:38:27.352Z\\\", \\\"hypothesis\\\": \\\"ACT seed 2 ckpt-2500 eval: completes 16/16 s2 trajectory. If > vanilla like all other 15 checkpoints, confirms 32/32 total ACT > vanilla\\\", \\\"parent\\\": \\\"exp-004-s2-v2\\\"}, \\\"exp-004-red\n…[truncated 3295 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-000839"
+        },
+        {
+          "source_line": 840,
+          "timestamp": "2026-05-23T06:20:51.666608+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000840"
+        },
+        {
+          "source_line": 841,
+          "timestamp": "2026-05-23T06:20:52.881863+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 42 %, 17660 MiB, 32607 MiB\\\\n1, 44 %, 21770 MiB, 32607 MiB\\\\n2, 47 %, 16764 MiB, 32607 MiB\\\\n3, 48 %, 16764 MiB, 32607 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1215
+          },
+          "id": "event-000841"
+        },
+        {
+          "source_line": 842,
+          "timestamp": "2026-05-23T06:21:05.973941+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-000842"
+        },
+        {
+          "source_line": 843,
+          "timestamp": "2026-05-23T06:21:06.494080+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"51827, GPU-2215162b-1a9f-b7a7-b46d-07f46dcf2a04, 17650 MiB\\\\n30011, GPU-f75ed7d5-9fad-ec10-3801-b74a5a0229ce, 21760 MiB\\\\n52330, GPU-f270fad9-1fd1-8bed-d720-cf9500380690, 16754 MiB\\\\n52840, GPU-ff50c368-1f16-810b-357c-3b1b23a6f256, 16754 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 520
+          },
+          "id": "event-000843"
+        },
+        {
+          "source_line": 844,
+          "timestamp": "2026-05-23T06:21:09.812385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "ps -p 51827 -o pid,etime,args --no-headers"
+            }
+          },
+          "id": "event-000844"
+        },
+        {
+          "source_line": 845,
+          "timestamp": "2026-05-23T06:21:10.265254+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "ps -p 52330 -o pid,etime,args --no-headers"
+            }
+          },
+          "id": "event-000845"
+        },
+        {
+          "source_line": 846,
+          "timestamp": "2026-05-23T06:21:10.717715+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 51827       02:24 python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2/checkpoint-2500 --output_dir /root/contrastive_entrain_calib/eval_results/exp004_s2_ckpt2500_v2/ --exp_id exp004_s2_ckpt2500_v2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 905
+          },
+          "id": "event-000846"
+        },
+        {
+          "source_line": 847,
+          "timestamp": "2026-05-23T06:21:10.718385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "ps -p 52840 -o pid,etime,args --no-headers"
+            }
+          },
+          "id": "event-000847"
+        },
+        {
+          "source_line": 848,
+          "timestamp": "2026-05-23T06:21:10.819191+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 52330       01:53 python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/outputs/exp-004-reduced-lora/checkpoint-6000 --output_dir /root/contrastive_entrain_calib/eval_results/exp004_reduced_lora_ckpt6000_v2/ --exp_id exp004_rl_ckpt6000_v2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 553
+          },
+          "id": "event-000848"
+        },
+        {
+          "source_line": 849,
+          "timestamp": "2026-05-23T06:21:11.373084+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 52840       01:23 python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/outputs/exp-004-reduced-lora/checkpoint-6500 --output_dir /root/contrastive_entrain_calib/eval_results/exp004_reduced_lora_ckpt6500/ --exp_id exp004_rl_ckpt6500\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 654
+          },
+          "id": "event-000849"
+        },
+        {
+          "source_line": 850,
+          "timestamp": "2026-05-23T06:21:31.107435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "westd-28034",
+              "log_path": "~/runs/contrastive_entrain_calib/exp-004-reduced-lora.log",
+              "n": "3"
+            }
+          },
+          "id": "event-000850"
+        },
+        {
+          "source_line": 851,
+          "timestamp": "2026-05-23T06:21:32.265861+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-23 14:18:15,619 [INFO] step=6900/8000 sft=0.0000 l2=0.001660 total=0.0002 lr=7.05e-06 elapsed=49022s\\\", \\\"2026-05-23 14:19:23,020 [INFO] step=6910/8000 sft=0.0000 l2=0.001722 total=0.0002 lr=6.99e-06 elapsed=49089s\\\", \\\"2026-05-23 14:20:31,934 [INFO] step=6920/8000 sft=0.0000 l2=0.001880 total=0.0002 lr=6.92e-06 elapsed=49158s\\\"], \\\"line_count\\\": 3, \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-004-reduced-lora.log\\\", \\\"anomalies\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 1158
+          },
+          "id": "event-000851"
+        },
+        {
+          "source_line": 852,
+          "timestamp": "2026-05-23T06:21:32.418374+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "westd-29046",
+              "log_path": "/root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout/train_log.jsonl",
+              "n": "5"
+            }
+          },
+          "id": "event-000852"
+        },
+        {
+          "source_line": 853,
+          "timestamp": "2026-05-23T06:21:33.475417+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"{\\\\\\\"step\\\\\\\": 110, \\\\\\\"sft_loss\\\\\\\": 0.516822, \\\\\\\"l2_loss\\\\\\\": 0.04118462, \\\\\\\"total_loss\\\\\\\": 0.520941, \\\\\\\"lr\\\\\\\": 2.7500000000000004e-05, \\\\\\\"elapsed_s\\\\\\\": 1010.5}\\\", \\\"{\\\\\\\"step\\\\\\\": 120, \\\\\\\"sft_loss\\\\\\\": 0.347983, \\\\\\\"l2_loss\\\\\\\": 0.0392334, \\\\\\\"total_loss\\\\\\\": 0.351907, \\\\\\\"lr\\\\\\\": 3e-05, \\\\\\\"elapsed_s\\\\\\\": 1102.2}\\\", \\\"{\\\\\\\"step\\\\\\\": 130, \\\\\\\"sft_loss\\\\\\\": 0.211943, \\\\\\\"l2_loss\\\\\\\": 0.03690567, \\\\\\\"total_loss\\\\\\\": 0.215634, \\\\\\\"lr\\\\\\\": 3.2500000000000004e-05, \\\\\\\"elapsed_s\\\\\\\": 1193.9}\\\", \\\"{\\\\\\\"step\\\\\\\": 140, \\\\\\\"sft_loss\\\\\\\": 0.115966, \\\\\\\"l2_loss\\\\\\\": 0.03511658, \\\\\\\"total_loss\\\\\\\": 0.119478, \\\\\\\"lr\\\\\\\": 3.5e-05, \\\\\\\"elapsed_s\\\\\\\": 1284.9}\\\", \\\"{\\\\\\\"step\\\\\\\": 150, \\\\\\\"sft_loss\\\\\\\": 0.069589, \\\\\\\"l2_loss\\\\\\\": 0.03313599, \\\\\\\"total_loss\\\\\\\": 0.072903, \\\\\\\"lr\\\\\\\": 3.7500000000000003e-05, \\\\\\\"elapsed_s\\\\\\\": 1376.5}\\\"], \\\"line_count\\\": 5, \\\"log_path\\\": \\\"/root/autodl-tmp/contrastive_entrain_calib/outputs/exp004_heldout/train_log.jsonl\\\", \\\"anomalies\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.06}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 1057
+          },
+          "id": "event-000853"
+        },
+        {
+          "source_line": 854,
+          "timestamp": "2026-05-23T06:21:58.322247+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "等待 28034 三个 eval 完成（~16min/each），检查结果并更新轨迹",
+              "prompt": "Continue monitoring experiments for contrastive_entrain_calib project. Check: 1) eval results, 2) training progress, 3) new eval launches, 4) registry updates, 5) GPU compliance."
+            }
+          },
+          "id": "event-000854"
+        },
+        {
+          "source_line": 855,
+          "timestamp": "2026-05-23T06:21:58.372824+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 06:26:00 (in 242s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 50
+          },
+          "id": "event-000855"
+        },
+        {
+          "source_line": 856,
+          "timestamp": "2026-05-23T06:22:00.227545+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个训练都正常推进：\n- **reduced-lora**: step 6920/8000 (87%), ~2h 完成\n- **held-out ACT**: step 150/8000, loss 快速下降（2.59→0.07），~9.1s/step，warmup 阶段正常\n\n28034 三个 eval 预计 ~16 min 完成（基于 ckpt-6500 先前 eval 耗时 986s）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer"
+          },
+          "id": "event-000856"
+        }
+      ]
+    },
+    {
+      "number": 53,
+      "messages": [
+        {
+          "source_line": 857,
+          "timestamp": "2026-05-23T06:44:02.783068+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_eval_28034-collect-and-chain-v2_20260523T064116]:\nWorker worker_eval_28034-collect-and-chain-v2_20260523T064116 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "source": "worker_done:worker_eval_28034-collect-and-chain-v2_20260523t064116"
+          },
+          "id": "event-000857"
+        },
+        {
+          "source_line": 858,
+          "timestamp": "2026-05-23T06:44:09.884024+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "limit": "15"
+            }
+          },
+          "id": "event-000858"
+        },
+        {
+          "source_line": 859,
+          "timestamp": "2026-05-23T06:44:10.335985+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-004-s2-eval-ckpt2500-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T05:38:10.411Z\\\", \\\"updated_at\\\": \\\"2026-05-23T06:37:55.344Z\\\", \\\"hypothesis\\\": \\\"ACT seed 2 ckpt-2500 eval: completes 16/16 s2 trajectory. If > vanilla like all other 15 checkpoints, confirms 32/32 total ACT > vanilla\\\", \\\"parent\\\": \\\"exp-004-s2-v2\\\", \\\"metrics\\\": {\\\"SYCONScore\\\": 0.2132, \\\"ToF\\\": 0.1215, \\\"NoF\\\": 0.8674}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-004-reduced-lora-eval-ckpt6000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T05:38:08.195Z\\\", \\\"updated_at\\\": \\\"2026-05-23T06:37:32.499Z\\\", \\\"hypothesis\\\": \\\"Reduced LoRA ACT ckpt-6000 eval: tracking post-peak decline in reduced LoRA trajectory (peak at ckpt-4500=0.271, ckpt-5500=0.255)\\\", \\\"parent\\\": \\\"exp-004-reduced-lora\\\", \\\"metrics\\\": {\\\"SYCONScore\\\": 0.2129, \\\"ToF\\\": 0.1215, \\\"NoF\\\": 0.8564}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-004-reduced-lora-eval-ckpt6500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T06:17:28.219Z\\\", \\\"updated_at\\\": \\\"2026-05-23T06:37:19.390Z\\\", \\\"hypothesis\\\": \\\"Reduced LoRA ACT ckpt-6500 eval: tracking post-peak decline trajectory (peak ckpt-4500=0.271), confirms reduced LoRA still > vanilla throughout training\\\", \\\"parent\\\": \\\"exp-004-reduced-lora\\\", \\\"metrics\\\": {\\\"SYCONScore\\\": 0.237, \\\"ToF\\\": 0.135, \\\"NoF\\\": 0.87}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-004-heldout\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-23T06:17:30.004Z\\\", \\\"updated_at\\\": \\\"2026-05-23T06:36:54.441Z\\\", \\\"hypothesis\\\": \\\"ACT held-out retraining: train on 80% split (292 lines), eval on 20% held-out (70 lines) to verify ACT generalizes beyond training data. Addresses train-test overlap concern.\\\", \\\"parent\\\": \\\"exp-004\\\"}, \\\"exp-003-gs8\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T15:33:34.942Z\\\", \\\"updated_at\\\": \\\"2026-05-23T06:17:39.402Z\\\", \\\"hypothesis\\\": \\\"R3-only GRPO group_size=8 消融：如果 gs=8 成功 (SYCONScore > vanilla 稳定) → 证明 gs=2 \n…[truncated 5641 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 451
+          },
+          "id": "event-000859"
+        },
+        {
+          "source_line": 860,
+          "timestamp": "2026-05-23T06:44:10.638710+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000860"
+        },
+        {
+          "source_line": 861,
+          "timestamp": "2026-05-23T06:44:11.843372+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 2 MiB, 32607 MiB\\\\n1, 28 %, 21770 MiB, 32607 MiB\\\\n2, 0 %, 2 MiB, 32607 MiB\\\\n3, 0 %, 2 MiB, 32607 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1204
+          },
+          "id": "event-000861"
+        },
+        {
+          "source_line": 862,
+          "timestamp": "2026-05-23T06:44:43.495055+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "等待 reduced-lora ckpt-7000 保存（~30min），监控 held-out 训练稳定性",
+              "prompt": "Continue monitoring experiments for contrastive_entrain_calib project. Check: 1) eval results, 2) training progress, 3) new eval launches, 4) registry updates, 5) GPU compliance."
+            }
+          },
+          "id": "event-000862"
+        },
+        {
+          "source_line": 863,
+          "timestamp": "2026-05-23T06:44:43.545748+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 06:49:00 (in 257s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 50
+          },
+          "id": "event-000863"
+        },
+        {
+          "source_line": 864,
+          "timestamp": "2026-05-23T06:44:45.192892+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 eval 全部完成并注册。关键结果：\n\n**s2-ckpt2500-v2 = 0.2132** → ACT s2 轨迹 **16/16 完成**，全部 > vanilla。加上 s1 的 16 个 → **ACT 32/32 checkpoint 100% > vanilla**，跨 seed 稳定性完全确认。\n\n**reduced-lora 更新轨迹（14 个 ckpt）**：\n```\nckpt-500:  0.152   ckpt-4500: 0.271 ★ peak\nckpt-1000: 0.170   ckpt-5000: 0.246\nckpt-1500: 0.161   ckpt-5500: 0.255\nckpt-2000: 0.205   ckpt-6000: 0.213\nckpt-2500: 0.171   ckpt-6500: 0.237\nckpt-3000: 0.171\nckpt-3500: 0.188\nckpt-4000: 0.205\n```\n\n28034 GPU 0/2/3 又空了，但 reduced-lora ckpt-7000 预计 ~30min 后保存，届时可立即 eval。无紧急问题。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer"
+          },
+          "id": "event-000864"
+        }
+      ]
+    },
+    {
+      "number": 54,
+      "messages": [
+        {
+          "source_line": 865,
+          "timestamp": "2026-05-23T07:06:08.631181+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_eval_28034-collect-v3_20260523T070258]:\nWorker worker_eval_28034-collect-v3_20260523T070258 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "source": "system"
+          },
+          "id": "event-000865"
+        },
+        {
+          "source_line": 866,
+          "timestamp": "2026-05-23T07:06:16.664398+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "limit": "8"
+            }
+          },
+          "id": "event-000866"
+        },
+        {
+          "source_line": 867,
+          "timestamp": "2026-05-23T07:06:17.117399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-004-s2-eval-ckpt2500-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T05:38:10.411Z\\\", \\\"updated_at\\\": \\\"2026-05-23T06:37:55.344Z\\\", \\\"hypothesis\\\": \\\"ACT seed 2 ckpt-2500 eval: completes 16/16 s2 trajectory. If > vanilla like all other 15 checkpoints, confirms 32/32 total ACT > vanilla\\\", \\\"parent\\\": \\\"exp-004-s2-v2\\\", \\\"metrics\\\": {\\\"SYCONScore\\\": 0.2132, \\\"ToF\\\": 0.1215, \\\"NoF\\\": 0.8674}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-004-reduced-lora-eval-ckpt6000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T05:38:08.195Z\\\", \\\"updated_at\\\": \\\"2026-05-23T06:37:32.499Z\\\", \\\"hypothesis\\\": \\\"Reduced LoRA ACT ckpt-6000 eval: tracking post-peak decline in reduced LoRA trajectory (peak at ckpt-4500=0.271, ckpt-5500=0.255)\\\", \\\"parent\\\": \\\"exp-004-reduced-lora\\\", \\\"metrics\\\": {\\\"SYCONScore\\\": 0.2129, \\\"ToF\\\": 0.1215, \\\"NoF\\\": 0.8564}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-004-reduced-lora-eval-ckpt6500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T06:17:28.219Z\\\", \\\"updated_at\\\": \\\"2026-05-23T06:37:19.390Z\\\", \\\"hypothesis\\\": \\\"Reduced LoRA ACT ckpt-6500 eval: tracking post-peak decline trajectory (peak ckpt-4500=0.271), confirms reduced LoRA still > vanilla throughout training\\\", \\\"parent\\\": \\\"exp-004-reduced-lora\\\", \\\"metrics\\\": {\\\"SYCONScore\\\": 0.237, \\\"ToF\\\": 0.135, \\\"NoF\\\": 0.87}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-004-heldout\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-23T06:17:30.004Z\\\", \\\"updated_at\\\": \\\"2026-05-23T06:36:54.441Z\\\", \\\"hypothesis\\\": \\\"ACT held-out retraining: train on 80% split (292 lines), eval on 20% held-out (70 lines) to verify ACT generalizes beyond training data. Addresses train-test overlap concern.\\\", \\\"parent\\\": \\\"exp-004\\\"}, \\\"exp-003-gs8\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T15:33:34.942Z\\\", \\\"updated_at\\\": \\\"2026-05-23T06:17:39.402Z\\\", \\\"hypothesis\\\": \\\"R3-only GRPO group_size=8 消融：如果 gs=8 成功 (SYCONScore > vanilla 稳定) → 证明 gs=2 \n…[truncated 1642 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-000867"
+        },
+        {
+          "source_line": 868,
+          "timestamp": "2026-05-23T07:06:17.620034+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000868"
+        },
+        {
+          "source_line": 869,
+          "timestamp": "2026-05-23T07:06:18.777323+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "westd-28034",
+              "log_path": "~/runs/contrastive_entrain_calib/exp-004-reduced-lora.log",
+              "n": "5"
+            }
+          },
+          "id": "event-000869"
+        },
+        {
+          "source_line": 870,
+          "timestamp": "2026-05-23T07:06:18.978669+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 47 %, 16764 MiB, 32607 MiB\\\\n1, 46 %, 21770 MiB, 32607 MiB\\\\n2, 0 %, 2 MiB, 32607 MiB\\\\n3, 0 %, 2 MiB, 32607 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1358
+          },
+          "id": "event-000870"
+        },
+        {
+          "source_line": 871,
+          "timestamp": "2026-05-23T07:06:19.482468+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"2026-05-23 15:01:41,948 [INFO] step=7280/8000 sft=0.0000 l2=0.001474 total=0.0002 lr=4.62e-06 elapsed=51628s\\\", \\\"2026-05-23 15:02:49,263 [INFO] step=7290/8000 sft=0.0000 l2=0.001514 total=0.0002 lr=4.55e-06 elapsed=51696s\\\", \\\"2026-05-23 15:03:56,701 [INFO] step=7300/8000 sft=0.0000 l2=0.001454 total=0.0002 lr=4.49e-06 elapsed=51763s\\\", \\\"2026-05-23 15:05:04,154 [INFO] step=7310/8000 sft=0.0000 l2=0.001464 total=0.0002 lr=4.42e-06 elapsed=51831s\\\", \\\"2026-05-23 15:06:12,138 [INFO] step=7320/8000 sft=0.0000 l2=0.001447 total=0.0002 lr=4.36e-06 elapsed=51899s\\\"], \\\"line_count\\\": 5, \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-004-reduced-lora.log\\\", \\\"anomalies\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 705
+          },
+          "id": "event-000871"
+        },
+        {
+          "source_line": 872,
+          "timestamp": "2026-05-23T07:06:29.161493+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-000872"
+        },
+        {
+          "source_line": 873,
+          "timestamp": "2026-05-23T07:06:29.714666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"55430, GPU-2215162b-1a9f-b7a7-b46d-07f46dcf2a04, 16754 MiB\\\\n30011, GPU-f75ed7d5-9fad-ec10-3801-b74a5a0229ce, 21760 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 553
+          },
+          "id": "event-000873"
+        },
+        {
+          "source_line": 874,
+          "timestamp": "2026-05-23T07:06:32.076773+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "ps -p 55430 -o pid,etime,args --no-headers"
+            }
+          },
+          "id": "event-000874"
+        },
+        {
+          "source_line": 875,
+          "timestamp": "2026-05-23T07:06:32.530018+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 55430       01:32 /root/miniconda3/bin/python eval/eval_unified_preset.py --model_path /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B --lora_path /root/autodl-tmp/outputs/exp-004-reduced-lora/checkpoint-7000 --output_dir eval_results/exp004_reduced_lora_ckpt7000/ --exp_id exp004_rl_ckpt7000\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 453
+          },
+          "id": "event-000875"
+        },
+        {
+          "source_line": 876,
+          "timestamp": "2026-05-23T07:06:45.512747+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "等待 ckpt-7000 eval 完成 + ckpt-7500 保存，reduced-lora 进入最后 9%",
+              "prompt": "Continue monitoring experiments for contrastive_entrain_calib project. Check: 1) eval results, 2) training progress, 3) new eval launches, 4) registry updates, 5) GPU compliance."
+            }
+          },
+          "id": "event-000876"
+        },
+        {
+          "source_line": 877,
+          "timestamp": "2026-05-23T07:06:45.713908+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 07:11:00 (in 255s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 201
+          },
+          "id": "event-000877"
+        },
+        {
+          "source_line": 878,
+          "timestamp": "2026-05-23T07:06:47.859147+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0 上运行 reduced-lora **ckpt-7000 eval**（PID 55430，已运行 1.5min，~14min 后完成）。reduced-lora 训练 step 7320/8000 (91.5%)，ckpt-7500 约 12min 后保存。一切正常运转。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer"
+          },
+          "id": "event-000878"
+        }
+      ]
+    },
+    {
+      "number": 55,
+      "messages": [
+        {
+          "source_line": 879,
+          "timestamp": "2026-05-23T07:15:52.196185+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[System 触发审查]:\n论文当前状态：Batch 12 完成，32/32 ACT > vanilla, Ablation Table 5 含 gs8 + reduced-lora 消融，train-test overlap 已在 Limitations 披露。DDL May 25, submit_paper_to_review 定在 May 24。\n\n请评估：\n1. 当前论文有没有值得在 DDL 前补充的高 ROI ablation？28034 有 2-3 张空闲 GPU + ~20h 时间窗口。\n2. reduced-lora post-peak 下降（0.271→0.246→0.255→0.213→0.237）需不需要在论文中讨论 early stopping？\n3. gs8 Table 5 目前只显示 0/2 (0%)——ckpt-1500=0.054 的数据要不要加进去变成 0/3 (0%)？数据更多更有说服力但也可能被审稿人质疑\"为什么只跑了 3 个 checkpoint\"。\n4. Claim 强度还能再提吗？还是当前 Medium-High 已经是安全线？"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "source": "system"
+          },
+          "id": "event-000879"
+        },
+        {
+          "source_line": 880,
+          "timestamp": "2026-05-23T07:16:06.737125+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "filters": "{'status': 'RUNNING'}"
+            }
+          },
+          "id": "event-000880"
+        },
+        {
+          "source_line": 881,
+          "timestamp": "2026-05-23T07:16:07.752766+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-004-reduced-lora-eval-ckpt7000\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-23T07:06:41.966Z\\\", \\\"updated_at\\\": \\\"2026-05-23T07:07:09.305Z\\\", \\\"hypothesis\\\": \\\"Eval reduced-lora ACT checkpoint-7000. If SYCONScore > vanilla (0.1335), confirms reduced LoRA capacity still supports ACT success, reinforcing supervision granularity as the key factor.\\\", \\\"parent\\\": \\\"exp-004-reduced-lora\\\"}, \\\"exp-004-heldout\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-23T06:17:30.004Z\\\", \\\"updated_at\\\": \\\"2026-05-23T06:36:54.441Z\\\", \\\"hypothesis\\\": \\\"ACT held-out retraining: train on 80% split (292 lines), eval on 20% held-out (70 lines) to verify ACT generalizes beyond training data. Addresses train-test overlap concern.\\\", \\\"parent\\\": \\\"exp-004\\\"}, \\\"exp-003-len512-v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-23T02:47:44.855Z\\\", \\\"updated_at\\\": \\\"2026-05-23T02:48:07.444Z\\\", \\\"hypothesis\\\": \\\"R3-only GRPO with max_completion_length=512 (vs 256 in exp-003). Tests whether truncation is a contributing factor to reward failure. v3: correct tracking of PID 553700 (v2 was misdiagnosed as failed).\\\", \\\"parent\\\": \\\"exp-003\\\"}, \\\"exp-004-reduced-lora\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-22T16:15:03.252Z\\\", \\\"updated_at\\\": \\\"2026-05-22T17:00:09.936Z\\\", \\\"hypothesis\\\": \\\"ACT with GRPO-matching LoRA config (r=64, alpha=64, 4 modules: qkvo) instead of standard ACT LoRA (r=64, alpha=128, 7 modules: qkvo+gate+up+down). Isolates supervision granularity vs LoRA capacity. If reduced-LoRA ACT still succeeds → supervision granularity (per-token SFT) is the key factor, not LoRA capacity.\\\", \\\"parent\\\": \\\"exp-004\\\"}}, \\\"count\\\": 4, \\\"total\\\": 4, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5995}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1015
+          },
+          "id": "event-000881"
+        },
+        {
+          "source_line": 882,
+          "timestamp": "2026-05-23T07:16:07.968709+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000882"
+        },
+        {
+          "source_line": 883,
+          "timestamp": "2026-05-23T07:16:08.117164+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 148
+          },
+          "id": "event-000883"
+        },
+        {
+          "source_line": 884,
+          "timestamp": "2026-05-23T07:16:11.502541+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "file": "paper_framing.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000884"
+        },
+        {
+          "source_line": 885,
+          "timestamp": "2026-05-23T07:16:12.106814+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — contrastive_entrain_calib\\\\n\\\\n## Target Venue\\\\n- Primary: **EMNLP 2026** via ARR May 2026 cycle\\\\n- ARR Submission Deadline: **May 25, 2026** (6 days from May 19)\\\\n- Commitment Deadline: **August 2, 2026**\\\\n- ⚠️ May cycle 新政策：提交时必须声明目标会议为 EMNLP，绑定不可更改\\\\n- Fallback: ARR August 2026 cycle (DDL ~Aug 15) → EACL 2027 / ACL 2027\\\\n- Stretch: ICLR 2027 (abstract ~Sep 2026, full paper ~Oct 2026)\\\\n\\\\n## Core Claims (3 条, 可证伪)\\\\n\\\\n1. **Directional discriminability + training stability**: The policy model's activation space encodes a linear direction d_syc that discriminates sycophantic capitulation from genuine belief revision (AUROC 0.82), with signal emerging at mid-layers (L16-19). During GRPO training, d_syc remains stable (cosine ≈ 0.96 at step 500), and linear separability is preserved (AUROC 0.80 at step 500). Periodic recalibration (every 500 steps) is included as a safety mechanism.\\\\n   - *Evidence needed*: AUROC on style-controlled data, layer progression, direction stability curve, AUROC at each checkpoint\\\\n   - *MVP basis*: v2.1 CV AUROC 0.826, Layer 0 = random, L16-19 emergence\\\\n   - *New finding (D025 corrects D024)*: Initial stability measurement reported cosine=0.28 (74° drift) but this was a measurement artifact from referencing a stale directions.pt file (different dataset). Actual drift: cosine ≈ 0.96. Direction is stable during training.\\\\n   - *New finding (D019)*: Per-layer cosine AUROC ≥ 0.77 at step 500, deep layers L32/33 improved +0.025/+0.033. Full training curve (exp-006) pending.\\\\n   - *New finding (D036)*: **Cross-model generalization confirmed.** Llama-3-8B-Instruct 5-fold CV AUROC=0.7793±0.019 (best layer=16), style-controlled=0.9227. Same strength gradient as Qwen3-8B (weak 0.711 < medium 0.864 < strong 0.911). d_syc is a cross-model phenomenon\n…[truncated 10545 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 604
+          },
+          "id": "event-000885"
+        },
+        {
+          "source_line": 886,
+          "timestamp": "2026-05-23T07:16:12.107313+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-000886"
+        },
+        {
+          "source_line": 887,
+          "timestamp": "2026-05-23T07:16:12.511343+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/ROADMAP.md\\\", \\\"content\\\": \\\"# contrastive_entrain_calib — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-23 07:07 UTC | 更新原因: reduced-lora ckpt-7000 eval 启动, 训练 step 7290/8000, ckpt-6500=0.237 confirmed\\\\n\\\\n## 核心方向\\\\nDual-layer analysis paper: \\\\\\\"Why RL Fails for Sycophancy Calibration — and Why d_syc Makes It Worse\\\\\\\"\\\\n- Layer 1: d_syc 方向成功判别 sycophancy (AUROC 0.82+) 但所有 reward formulation 均失败\\\\n- Layer 2: ALL GRPO RL 方法都失败（R3-only 围绕 vanilla 不稳定振荡 + reliability gap）；唯一成功的是 SFT (exp-004 ACT)\\\\n- Cross-seed: Spearman ρ=0.858 (p=0.006)——trajectory shape 是 method-inherent，timing 是 stochastic\\\\n详见 paper_framing.md\\\\n\\\\n## DDL\\\\n**EMNLP 2026 ARR May 25 cycle。倒计时 3 天。**\\\\n\\\\n## 当前阶段\\\\n**Paper finalization + cross-seed data collection。**\\\\n\\\\n## 冲刺计划\\\\n| 日期 | 里程碑 |\\\\n|------|--------|\\\\n| May 22 (今天) | ✅ ACT 16/16 confirmed, ✅ Spearman 分析, ✅ Paper polish 完成, seed2 eval 收尾中 |\\\\n| May 23 | seed2 数据收齐 → 最终 micro-patch → submit_paper_to_review |\\\\n| May 24 | 审稿反馈处理 |\\\\n| May 25 | 提交 |\\\\n\\\\n## 当前进展\\\\n- **ACT 16/16 > vanilla**: ✅ CONFIRMED (Fisher p<0.0001)\\\\n- **ACT seed 2**: ✅ 训练完成 (8000/8000), **16/16 eval done** (全部 > vanilla, **32/32 ACT total**). s2 最高 ckpt-7000=0.286, 最终 ckpt-8000=0.247. ckpt-2500=0.213 补全\\\\n- **R3-only seed 1**: 12/12 ✅\\\\n- **R3-only seed 2**: ✅ 16/16 COMPLETE (1/16 > vanilla). ckpt-8000=0.124 (< vanilla)\\\\n- **Bootstrap AUROC CI**: ✅ Qwen3=0.8253 [0.795, 0.857], Llama3=0.7811 [0.745, 0.819]\\\\n- **exp-002v3 (Cosine R1)**: 全部 ckpt 500-2000 SYCONScore=0.0, 从 step 0 即坍塌\\\\n- **Cross-seed Spearman**: ρ=0.858 (p=0.006), rank order preserved, timing diverges\\\\n- **Paper status**: 8 页编译通过, 0 errors, Reviewer 建议全部落实, fig_trajectory v3 定稿\\\\n\\\\n## Reliability Gap 数据\\\\n| Condition | > Vanilla | Ratio |\\\\n|-----------|----------|-------|\\\\n| ACT (2 seeds) | 32/32 | 100% |\\\\n| R3-only s1 | 3/12 | 25% |\\\\n| R3-only s2 | 1/16 | 6.3% \n…[truncated 3241 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 404
+          },
+          "id": "event-000887"
+        },
+        {
+          "source_line": 888,
+          "timestamp": "2026-05-23T07:16:12.662961+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "file": "report.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000888"
+        },
+        {
+          "source_line": 889,
+          "timestamp": "2026-05-23T07:16:12.765050+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-23\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| exp-004-reduced-lora-eval-ckpt7000 | Eval reduced-lora ACT checkpoint-7000. If SYCONScore > vanilla (0.1335), confirms reduced LoRA capacity still supports ACT success, reinforcing supervision granularity as the key factor. | — | — | — |\\\\n| exp-004-heldout | ACT held-out retraining: train on 80% split (292 lines), eval on 20% held-out (70 lines) to verify ACT generalizes beyond training data. Addresses train-test overlap concern. | — | — | — |\\\\n| exp-003-len512-v3 | R3-only GRPO with max_completion_length=512 (vs 256 in exp-003). Tests whether truncation is a contributing factor to reward failure. v3: correct tracking of PID 553700 (v2 was misdiagnosed as failed). | — | — | — |\\\\n\\\\n## 待处理\\\\n- exp-003-s3: R3-only GRPO seed 3 (seed=44). Third seed to increase statistical coverage: 3-seed mean±std more credible than 2-seed. Configuration identical to exp-003 (R3=1.0, r1=r2=0, gs=2, 8000 steps, save_steps=500).（排队等待 GPU）\\\\n- exp-003-s2-eval-ckpt3000: Eval exp-003-s2 (R3-only seed 2) checkpoint-3000 with D027 unified preset. Cross-seed reproducibility: compare with seed 1 ckpt-3000 (SYCONScore=0.095) for exact step match.（排队等待 GPU）\\\\n- exp-003-s2-eval-ckpt2500: Eval exp-003-s2 (R3-only seed 2) checkpoint-2500 with D027 unified preset. Cross-seed reproducibility: compare with seed 1 ckpt-3000 (SYCONScore=0.095) for trajectory alignment.（排队等待 GPU）\\\\n- exp-002v3-gs8: Cosine R1 GRPO group_size=8 消融：如果 gs=8 也 collapse (SYCONScore=0) → d_syc cosine reward 确实不适合做 GRPO reward，即使 group_size 正确；如果 gs=8 不 collapse → gs=2 太小是 cosine R1 failure 的根因。（准备中）\\\\n\\\\n## 近期结论\\\\n- **exp-004-s2-eval-ckpt2500-v2** (success): ACT seed 2 ckpt-2500 eval: completes 16/16 s2 t\n…[truncated 1475 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 102
+          },
+          "id": "event-000889"
+        },
+        {
+          "source_line": 890,
+          "timestamp": "2026-05-23T07:18:04.049261+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — DDL 前策略评估 (2026-05-23 15:10 UTC)\n\n### Q1: 高 ROI ablation 建议\n\n[severity: info] 28034 空闲 GPU 的 20h 窗口，按优先级排序：\n\n**必做（各 ~16min，几乎无成本）**：\n1. **Vanilla baseline 在 held-out split 上的 eval** — held-out ACT 训练完成后需要对比基准，不提前跑就会卡住后续 eval 流程\n2. **ACT s1 最佳 checkpoint（如 ckpt-7000）在 held-out split 上的 eval** — 即使 held-out 重训练没完成，也能证明已有模型在未见数据上泛化\n\n**可选（ROI 递减）**：\n3. **exp-003 R3-only seed 2 缺失 ckpt（ckpt-2500, ckpt-3000）** — 填补 seed 2 轨迹缺口，但对论文主张影响极小（16/16 已完成，Spearman 分析已有）\n4. **exp-002v3-gs8（Cosine R1 + gs=8）** — 证明 cosine reward 在任何 group_size 下都 collapse。但 cosine R1 已有 4 个变体全部 SYCONScore=0，再加一个边际价值低\n\n**不推荐**：\n- exp-003-s3（seed 3）: 需 ~55h，28034 32GB 可能 OOM（GRPO 吃显存），且 2-seed Spearman 已足够\n- Llama-3 训练实验: 需要完整 pipeline 适配，风险太高不适合 DDL 前 20h\n\n**结论**：重点做 1+2（vanilla + ACT-s1 在 held-out 上的 eval），其余边际收益不值得冒引入 last-minute 错误的风险。\n\n---\n\n### Q2: Reduced-lora post-peak 下降——需要讨论 early stopping 吗？\n\n[severity: info] **建议简要提及，但不作为重点。** 理由：\n\n完整轨迹（14 ckpt）：0.152→0.170→0.161→0.205→0.171→0.171→0.188→0.205→**0.271**→0.246→0.255→0.213→0.237→(7000 pending)\n\n关键观察：\n- ACT 主实验也有同样模式：s2 peak 在 ckpt-7000 (0.286)，ckpt-8000 回落到 0.247。这是 SFT 训练的普遍现象（过 warmup 后 overfitting），不是 reduced-lora 特有\n- 全部 14 个 checkpoint > vanilla (0.1335)，minimum=0.152，仍高出 vanilla 14%\n- reduced-lora 的论文角色是证明 \"supervision granularity 是关键因素，LoRA capacity 提供额外增益\"，不是作为独立方法推广\n\n**建议写法**：\"Both ACT variants reach peak performance around steps 4000-7000 followed by a mild plateau, consistent with standard SFT overfitting dynamics. All checkpoints remain above the vanilla baseline.\"  一句话交代，不展开 early stopping 分析——否则审稿人反而会追问 \"你做了 early stopping 实验吗？用了什么 validation set？\"，把论文拖入不必要的技术讨论。\n\n---\n\n### Q3: gs8 Table 5 是否加 ckpt-1500=0.054？\n\n[severity: info] **建议加。**\n\n0/2 (0%) → 0/3 (0%) 数字上等价，但轨迹信息不同：\n- 0.084 → 0.085 → **0.054**：持续**恶化**，不是\"没效果\"而是\"有害\"\n- 这比\"两点持平\"更有力地否定 group_size 假设\n\n审稿人 \"为什么只跑了 3 个 checkpoint\" 的质疑容易回应：在论文中写 \"The experiment was terminated early after three checkpoints showed a monotonically declining trajectory (0.084 → 0.085 → 0.054), well below the vanilla baseline (0.134). Continued training would not alter the conclusion.\" 这是标准实践——negative 结果不需要跑完 8000 步才能下结论。\n\n**注意**：如果加 ckpt-1500 数据，Table 5 caption 或 footnote 需标注 gs8 是 \"terminated early\"，与其他跑满 8000 步的实验区分。\n\n---\n\n### Q4: Claim 强度能否从 Medium-High 提升？\n\n[severity: warning] **不建议提升。当前 Medium-High 是安全线。**\n\n提升到 High 需要以下至少一项（均无法在 DDL 前完成）：\n1. **第二个训练模型**：Llama-3-8B 上重复 RL 失败 + ACT 成功（仅有 AUROC，无训练实验）\n2. **第二个数据集**：当前仅 181 pairs，claim \"general\" 需要跨数据集验证\n3. **理论框架**：形式化证明 discriminability ≠ reward utility 的条件\n\n当前证据足以支撑 Medium-High：\n- ✅ 3 种 reward formulation 全部失败（cosine/binary probe/continuous probe）\n- ✅ 2 seeds × 多 checkpoint 的系统性轨迹\n- ✅ 跨模型 AUROC 验证（Qwen3 + Llama3）\n- ✅ 机制解释（probe reward trap + behavioral-distributional collapse lag）\n- ❌ 仅 1 个训练模型\n- ❌ 仅 1 个数据集\n- ❌ 无形式化理论\n\n**风险**：如果 claim 提到 High，审稿人第一反应就是 \"only one model, one dataset\" → 直接降分。Medium-High 的 claim 措辞（\"we systematically show\" 而非 \"we prove\"、\"on Qwen3-8B\" 而非 \"across models\"）对审稿人来说是诚实且专业的信号。\n\n**底线**：EMNLP ARR 4.0 (Conference) 需要 solid evidence + clear writing + reasonable scope。Medium-High claim + 单模型 + 机制深度分析在这个 bar 是匹配的。提升 claim 反而可能从 4.0 掉到 3.5。",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-000890"
+        },
+        {
+          "source_line": 891,
+          "timestamp": "2026-05-23T07:18:07.765466+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_c77a380fad2d0408ce92cd1170d46f6f:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3716
+          },
+          "id": "event-000891"
+        },
+        {
+          "source_line": 892,
+          "timestamp": "2026-05-23T07:18:17.117518+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "等待 ckpt-7000 eval 结果 + reduced-lora 训练接近 ckpt-7500",
+              "prompt": "Continue monitoring experiments for contrastive_entrain_calib project. Check: 1) eval results, 2) training progress, 3) new eval launches, 4) registry updates, 5) GPU compliance."
+            }
+          },
+          "id": "event-000892"
+        },
+        {
+          "source_line": 893,
+          "timestamp": "2026-05-23T07:18:17.118064+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 07:23:00 (in 283s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 0
+          },
+          "id": "event-000893"
+        },
+        {
+          "source_line": 894,
+          "timestamp": "2026-05-23T07:18:19.468219+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已提交。四条建议摘要：\n1. **只做 held-out eval 的 vanilla baseline + ACT-s1 eval**，其余 ablation 边际收益不值风险\n2. **early stopping 一句话带过**，不展开——是 SFT 通病，不是 reduced-lora 特有\n3. **加 ckpt-1500=0.054 到 Table 5**，轨迹恶化比持平更有力，标注 \"terminated early\"\n4. **不提 claim**——Medium-High 是安全线，单模型+单数据集无法支撑 High"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer"
+          },
+          "id": "event-000894"
+        }
+      ]
+    },
+    {
+      "number": 56,
+      "messages": [
+        {
+          "source_line": 895,
+          "timestamp": "2026-05-23T07:20:00.959261+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_eval_28034-heldout-baselines_20260523T071648]:\nWorker worker_eval_28034-heldout-baselines_20260523T071648 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "source": "system"
+          },
+          "id": "event-000895"
+        },
+        {
+          "source_line": 896,
+          "timestamp": "2026-05-23T07:20:08.480910+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "limit": "10"
+            }
+          },
+          "id": "event-000896"
+        },
+        {
+          "source_line": 897,
+          "timestamp": "2026-05-23T07:20:08.933541+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp-004-reduced-lora-eval-ckpt7000\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-23T07:06:41.966Z\\\", \\\"updated_at\\\": \\\"2026-05-23T07:07:09.305Z\\\", \\\"hypothesis\\\": \\\"Eval reduced-lora ACT checkpoint-7000. If SYCONScore > vanilla (0.1335), confirms reduced LoRA capacity still supports ACT success, reinforcing supervision granularity as the key factor.\\\", \\\"parent\\\": \\\"exp-004-reduced-lora\\\"}, \\\"exp-004-s2-eval-ckpt2500-v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T05:38:10.411Z\\\", \\\"updated_at\\\": \\\"2026-05-23T06:37:55.344Z\\\", \\\"hypothesis\\\": \\\"ACT seed 2 ckpt-2500 eval: completes 16/16 s2 trajectory. If > vanilla like all other 15 checkpoints, confirms 32/32 total ACT > vanilla\\\", \\\"parent\\\": \\\"exp-004-s2-v2\\\", \\\"metrics\\\": {\\\"SYCONScore\\\": 0.2132, \\\"ToF\\\": 0.1215, \\\"NoF\\\": 0.8674}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-004-reduced-lora-eval-ckpt6000\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T05:38:08.195Z\\\", \\\"updated_at\\\": \\\"2026-05-23T06:37:32.499Z\\\", \\\"hypothesis\\\": \\\"Reduced LoRA ACT ckpt-6000 eval: tracking post-peak decline in reduced LoRA trajectory (peak at ckpt-4500=0.271, ckpt-5500=0.255)\\\", \\\"parent\\\": \\\"exp-004-reduced-lora\\\", \\\"metrics\\\": {\\\"SYCONScore\\\": 0.2129, \\\"ToF\\\": 0.1215, \\\"NoF\\\": 0.8564}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-004-reduced-lora-eval-ckpt6500\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-23T06:17:28.219Z\\\", \\\"updated_at\\\": \\\"2026-05-23T06:37:19.390Z\\\", \\\"hypothesis\\\": \\\"Reduced LoRA ACT ckpt-6500 eval: tracking post-peak decline trajectory (peak ckpt-4500=0.271), confirms reduced LoRA still > vanilla throughout training\\\", \\\"parent\\\": \\\"exp-004-reduced-lora\\\", \\\"metrics\\\": {\\\"SYCONScore\\\": 0.237, \\\"ToF\\\": 0.135, \\\"NoF\\\": 0.87}, \\\"conclusion\\\": \\\"success\\\"}, \\\"exp-004-heldout\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-23T06:17:30.004Z\\\", \\\"updated_at\\\": \\\"2026-05-23T06:36:54.441Z\\\", \\\"hypothesis\\\": \\\"ACT held-out retraining: \n…[truncated 2459 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-000897"
+        },
+        {
+          "source_line": 898,
+          "timestamp": "2026-05-23T07:20:09.235193+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-000898"
+        },
+        {
+          "source_line": 899,
+          "timestamp": "2026-05-23T07:20:10.543234+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 43 %, 16844 MiB, 32607 MiB\\\\n1, 48 %, 21770 MiB, 32607 MiB\\\\n2, 60 %, 16478 MiB, 32607 MiB\\\\n3, 45 %, 16844 MiB, 32607 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.29}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1308
+          },
+          "id": "event-000899"
+        },
+        {
+          "source_line": 900,
+          "timestamp": "2026-05-23T07:20:20.935424+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-000900"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c3d7b3c2ee774a352e8",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code exp012 llama direction",
+  "task_key": "worker_code_exp012-llama-direction_20260520T035716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp012-llama-direction_20260520T035716_result.json",
+    "occurrence": 1,
+    "bytes": 1438,
+    "sha256": "730a52247d5b378f92c10622b083a58e8ef125b60d3b80963ccf94d15c3e6e02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本部署成功，`--help` 和 `import` 验证均通过。\n\n## 总结\n\n**脚本** `run_exp012_llama_direction.py` 已写入 `/root/contrastive_entrain_calib/training/`（488 行），功能：\n\n1. **加载数据** — 读取 `calibration_v2_1_expanded.jsonl`（181 pairs, 362 samples, 5 domains）\n2. **提取 hidden states** — Llama-3-8B-Instruct 前向传播，`apply_chat_template` + `add_generation_prompt=True`，取 last-token position 的 L16-L31 层输出\n3. **计算 d_syc** — `mean(invalid_pressure) - mean(valid_correction)`，L2 归一化\n4. **5-fold stratified CV AUROC** — 按 domain 分层，每 fold 独立计算 d_syc\n5. **Style-controlled AUROC** — pair 内比较（concordance），控制问题内容\n6. **保存结果** — `directions.pt`、`activations.pt`、`evaluation_report.json`\n\n**Llama-3-8B-Instruct 模型状态**：**未下载**。服务器只有 Qwen3-8B (`/root/autodl-tmp/modelscope_cache/Qwen/Qwen3-8B`)。需要下载模型后才能运行。建议用 ModelScope（AutoDL 下 HF 下载极慢）：\n\n```bash\nsource /etc/network_turbo\npip install modelscope\npython -c \"from modelscope import snapshot_download; snapshot_download('LLM-Research/Meta-Llama-3-8B-Instruct', cache_dir='/root/autodl-tmp/models')\"\n```\n\n模型约 16GB (bfloat16)，下载后用 `--model-path /root/autodl-tmp/models/Meta-Llama-3-8B-Instruct` 运行。RTX 5090 32GB 单卡够用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp012-llama-direction.md"
+}

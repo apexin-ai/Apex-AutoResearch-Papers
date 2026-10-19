@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffed8b8f5d794a5a2135",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis dedup acts2 trainlog",
+  "task_key": "worker_analysis_dedup-acts2-trainlog_20260522T161247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_dedup-acts2-trainlog_20260522T161247_result.json",
+    "occurrence": 1,
+    "bytes": 315,
+    "sha256": "b32eb0f3da433ce9583a4e03beae3baf3577a3e44a36ab95858ee5f5dd24a88d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "去重完成。\n\n- **原始**: 598 行，412 个 unique step\n- **去重后**: 412 行，全部 unique，按 step 排序，范围 10–4120\n- 备份已保存为 `train_log.jsonl.bak`\n\n（注：实际 unique step 数为 412 而非预估的 399，可能是初始统计时遗漏了部分 step。）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-dedup-acts2-trainlog.md"
+}

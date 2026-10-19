@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65b7f26b2f3831d15521",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis exp 004 eval ckpt2500 3500",
+  "task_key": "worker_analysis_exp-004-eval-ckpt2500-3500_20260520T153853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-004-eval-ckpt2500-3500_20260520T153853_result.json",
+    "occurrence": 1,
+    "bytes": 404,
+    "sha256": "f92680aefb2800eb1014bbbd70cb885d28308437b8d42c9319d172a116feb627"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已完成，结果如下：\n\n```\nexp004_ckpt2500: ToF=0.1381, NoF=0.8840, SYCONScore=0.2389, n_valid=181, n_invalid=181, n_total=362\nexp004_ckpt3500: ToF=0.1326, NoF=0.9006, SYCONScore=0.2312, n_valid=181, n_invalid=181, n_total=362\n```\n\n补充：该目录下还有其他 checkpoint 的结果（ckpt1000/3000/4000/5000/6000/7000），如需一并汇总可以读取。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-004-eval-ckpt2500-3500.md"
+}

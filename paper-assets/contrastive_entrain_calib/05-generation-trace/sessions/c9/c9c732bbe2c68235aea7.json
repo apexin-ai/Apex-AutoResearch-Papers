@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9c732bbe2c68235aea7",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops len512 exit diag",
+  "task_key": "worker_ops_len512-exit-diag_20260523T021606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_len512-exit-diag_20260523T021606_result.json",
+    "occurrence": 1,
+    "bytes": 1613,
+    "sha256": "3610eef729187abe4d4b1c584dc7b38ac530bc9e4acababf456ddb15179709f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（已被删除或从未创建）。\n\n## 诊断结果\n\n### 1. 失败原因\nexp-003-len512 (PID 552217) **静默 crash**，仅完成 1/8000 steps：\n- 日志无 traceback / Python 异常 / CUDA error\n- Output 目录为空（无 checkpoint）\n- tmux session 已不存在，agent-ml exit file 和 runs log 均不存在\n- 唯一日志 `/root/contrastive_entrain_calib/logs/exp003_len512.log`（16KB）显示：\n  - 模型加载正常（Qwen3-8B on device 0 via CUDA_VISIBLE_DEVICES=1）\n  - NLI 模型下载失败（huggingface.co network unreachable），重试 5 次后从本地缓存加载\n  - Step 1 完成（479.50s/it，其中 ~7min 是 HF 重试）\n  - 之后进程消失，无任何错误输出\n- kern.log 无 OOM 记录（97GB VRAM 理论上足够）\n- **具体死因不明**，可能是 CUDA 运行时错误在 step 2 生成 512-token completion 时导致进程被 SIGKILL\n\n### 2. 是否需要重新提交\n是。重新提交前建议：\n- 加 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`（参考 exp-003-gs8 的启动方式），避免 HF 网络重试浪费时间\n- 通过 agent-ml 的 `submit_training_job` 正确提交，确保 exit file 和 runs log 被创建以便诊断\n- 可考虑在脚本中加 `try/except` 包裹 `trainer.train()` 并打印完整 traceback 到日志\n\n### 3. cuda:1 当前状态\n**完全空闲** — 0 MiB / 97887 MiB，0% 利用率。可立即用于新实验。\n\n### 4. GPU 全局状态\n| GPU | 状态 | 进程 |\n|-----|------|------|\n| GPU 0 | 38188 MiB / 97887 MiB | exp-003-gs8 (PID 516696) |\n| GPU 1 | **空闲** | — |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-len512-exit-diag.md"
+}

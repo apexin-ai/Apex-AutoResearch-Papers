@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77bcd9f0153d6a6250a0",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code exp003 gs8 launch",
+  "task_key": "worker_code_exp003-gs8-launch_20260522T153416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp003-gs8-launch_20260522T153416_result.json",
+    "occurrence": 1,
+    "bytes": 367,
+    "sha256": "1d8e93da776ffe47e2866e212f15d7bc1f99c4d645e35a56427d1aa135d4f81d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-003-gs8 已成功启动并开始训练。\n\n- **GPU 0**: 95% utilization, 34GB/96GB 显存 — 充裕\n- **GPU 1**: 不受影响（96%, 46GB）\n- 训练进度: `0/8000 steps`，R3-only 模式确认（`No direction_path provided; R1/R2 will return 0.0`）\n- tmux session: `exp-003-gs8`，日志: `~/runs/contrastive_entrain_calib/exp-003-gs8.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp003-gs8-launch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea7904049c319134775f",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops urgent gpu status check 29046",
+  "task_key": "worker_ops_urgent-gpu-status-check-29046_20260519T110755",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent-gpu-status-check-29046_20260519T110755_result.json",
+    "occurrence": 1,
+    "bytes": 720,
+    "sha256": "3bb2483df40fab970a87e0cf1ff7b8792074d4aa6966b01fe95e4183211c859d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nGPU 0: [运行中] PID=172844 显存=66898/97887 MiB  step=1199/8000\nGPU 1: [运行中] PID=70649  显存=38152/97887 MiB  step=2282/8000\n\nexp002v2-recalib: 运行中 step 1199/8000 (15%), 已跑 4h27m, 剩余 ~44h40m, 预计 5/21 ~15:50 完成\n  reward: combined=0.54, r1=-0.08, r2=-0.07, r3=0.75\n\nexp-003: 运行中 step 2282/8000 (29%), 已跑 18h17m, 剩余 ~44h, 预计 5/21 ~15:10 完成\n  reward: combined=0.54 (r3-only), ~27s/step\n  ⚠ 每步 WARNING: \"d_syc not loaded; returning R3-only rewards\" (符合 r3-only 实验设计)\n```\n\n两个实验均正常运行，无错误。exp003_restart.log 中有旧的 crash 记录（deberta 加载失败），但当前进程不受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-gpu-status-check-29046.md"
+}

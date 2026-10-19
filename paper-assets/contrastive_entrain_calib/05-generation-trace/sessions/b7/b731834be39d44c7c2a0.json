@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "b731834be39d44c7c2a0",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "ops sync eval to 29046",
+  "task_key": "worker_ops_sync-eval-to-29046_20260519T070326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync-eval-to-29046_20260519T070326.log",
+    "occurrence": 1,
+    "bytes": 726857,
+    "sha256": "c2094ecabe10207e82415202b0f43fffa05d7fbf5903408304bc3470eeaa0c3a"
+  },
+  "statistics": {
+    "messages": 146,
+    "user_turns": 1,
+    "tool_calls": 50,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 38,
+      "tool_call": 50,
+      "tool_result": 50,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 72,
+      "chunks": [
+        {
+          "path": "b731834be39d44c7c2a0-part-0001.json",
+          "message_count": 72
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 74,
+      "chunks": [
+        {
+          "path": "b731834be39d44c7c2a0-part-0001.json",
+          "message_count": 16
+        },
+        {
+          "path": "b731834be39d44c7c2a0-part-0002.json",
+          "message_count": 58
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-sync-eval-to-29046.md"
+}

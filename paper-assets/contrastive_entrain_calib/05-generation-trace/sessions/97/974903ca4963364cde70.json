@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "974903ca4963364cde70",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval submit dual ckpt1500 ckpt7000",
+  "task_key": "worker_eval_submit-dual-ckpt1500-ckpt7000_20260522T084328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_submit-dual-ckpt1500-ckpt7000_20260522T084328_result.json",
+    "occurrence": 1,
+    "bytes": 349,
+    "sha256": "7f547d28b97de35b2d6570c9e54c3a9d0ae9d1a49cb7aa413e612263fc47349a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 均已在 28034 上运行：\n\n| Eval | tmux session | GPU | VRAM |\n|------|-------------|-----|------|\n| exp-004-s2-eval-ckpt1500 (ACT seed2 ckpt-1500) | `exp004-s2-ckpt1500` | GPU 0 | 14934 MiB |\n| exp-003-eval-s2-ckpt7000 (R3-only seed2 ckpt-7000) | `exp003-s2-ckpt7000` | GPU 1 | 14934 MiB |\n\nGPU 2、3 空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-submit-dual-ckpt1500-ckpt7000.md"
+}

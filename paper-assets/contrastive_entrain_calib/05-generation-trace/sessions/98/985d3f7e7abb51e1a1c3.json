@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "985d3f7e7abb51e1a1c3",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnosis exp003 status check 0520T17",
+  "task_key": "worker_diagnosis_exp003-status-check-0520T17_20260520T161934",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_exp003-status-check-0520T17_20260520T161934_result.json",
+    "occurrence": 1,
+    "bytes": 1430,
+    "sha256": "96816f634132a54b68a103256851780d4f968b94ed91c4a9a29a2f51a66a9d95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== westd-29046 ===\n\nexp-003 seed 1 (PID 70649):\n  状态: 运行中, 已跑 1d23h28m\n  当前 step: ~5930/8000 (估算，基于最新 ckpt-5500 + 3.75h × ~115 step/h)\n  Checkpoints: ckpt-500 ~ ckpt-5500 (每500步, 共11个, 存于 /root/autodl-tmp/checkpoints/exp003_r3only_seed1/)\n  日志: stdout 输出到 pipe (无独立日志文件)\n  Step time: ~31s/step\n  ETA: ~17-18h → 约 5/21 18:00 CST\n\nexp-003-s2 seed 2 (PID 237432):\n  状态: 运行中, 已跑 16h02m\n  当前 step: 1756/8000 (22%)\n  Checkpoints: ckpt-500, ckpt-1000, ckpt-1500 (存于 /root/autodl-tmp/checkpoints/exp003_r3only_seed2/)\n  日志: ~/runs/contrastive_entrain_calib/exp-003-s2.log\n  Step time: ~27-31s/step (均值 ~28s)\n  ETA: ~48h → 约 5/23 01:00 CST\n\n29046 GPU:\n  GPU 0: 95%, 38049/97887 MiB (seed 1)\n  GPU 1: 97%, 38161/97887 MiB (seed 2)\n\n=== westd-28034 ===\n\nGPU: 4卡全部空闲 (0% 利用率, 2 MiB/32607 MiB × 4)\n无运行中的计算进程\n\nexp003 checkpoints (已拷贝到 28034):\n  /root/autodl-tmp/checkpoints/exp003/ → ckpt-1000, 2000, 3000, 4000, 5000\n\neval 已完成:\n  ckpt-1000 ✓ (preset_eval.json + summary)\n  ckpt-2000 ✓\n  ckpt-3000 ✓\n  ckpt-4000 ✓ (最新, 5/20 23:26)\n  ckpt-5000 — checkpoint 已拷贝但尚未 eval\n```\n\n**要点**: 28034 四卡全空闲，ckpt-5000 已到位但未跑 eval；seed 1 约明晚完成，seed 2 约后天凌晨完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-exp003-status-check-0520t17.md"
+}

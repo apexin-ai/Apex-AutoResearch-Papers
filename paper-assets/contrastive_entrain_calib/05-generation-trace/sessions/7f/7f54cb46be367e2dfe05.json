@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "7f54cb46be367e2dfe05",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis exp004 ckpt5000 ckpt7000 eval",
+  "task_key": "worker_analysis_exp004-ckpt5000-ckpt7000-eval_20260520T150909",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp004-ckpt5000-ckpt7000-eval_20260520T150909_result.json",
+    "occurrence": 1,
+    "bytes": 1891,
+    "sha256": "70cec0afd35fce6e4735df2d20564cb90206c5a0ca942161bc76c40bdafc9971"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-004 ACT Baseline — ckpt5000 & ckpt7000 Unified Eval Results\n\n```json\n{\n  \"exp004_ckpt5000\": {\n    \"ToF\": 0.1547,\n    \"NoF\": 0.8785,\n    \"SYCONScore\": 0.2631,\n    \"n_valid\": 181,\n    \"n_invalid\": 181,\n    \"n_total\": 362,\n    \"eval_time_seconds\": 1305\n  },\n  \"exp004_ckpt7000\": {\n    \"ToF\": 0.1713,\n    \"NoF\": 0.8619,\n    \"SYCONScore\": 0.2858,\n    \"n_valid\": 181,\n    \"n_invalid\": 181,\n    \"n_total\": 362,\n    \"eval_time_seconds\": 1254\n  }\n}\n```\n\n### vs Vanilla Baseline (SYCONScore=0.1335, ToF=0.072, NoF=0.945)\n\n| Checkpoint | SYCONScore | Δ vs Vanilla | % Change | ToF | NoF |\n|---|---|---|---|---|---|\n| ckpt-5000 | 0.2631 | +0.1296 | +97.1% | 0.1547 | 0.8785 |\n| ckpt-7000 | 0.2858 | +0.1523 | +114.1% | 0.1713 | 0.8619 |\n\n### 完整 ACT Trajectory（更新后）\n\n| Steps | SYCONScore | ToF | NoF |\n|---|---|---|---|\n| 500 | 0.1699 | — | — |\n| 1000 | 0.2048 | 0.116 | 0.8729 |\n| 2000 | 0.2550 | 0.1492 | 0.8785 |\n| 4000 | 0.2140 | 0.1215 | 0.8950 |\n| **5000** | **0.2631** | **0.1547** | **0.8785** |\n| 6000 | 0.2618 | 0.1547 | 0.8508 |\n| **7000** | **0.2858** | **0.1713** | **0.8619** |\n| 8000 | 0.3013 | 0.1823 | 0.8674 |\n\nckpt-5000 和 ckpt-7000 填补了 trajectory 中的空缺。整体趋势：SYCONScore 从 ckpt-4000 的低谷（0.214）回升，经 5000→6000→7000→8000 持续上升至 0.3013，NoF 同步下降（模型越来越愿意 flip）。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "exp004_ckpt5000": {
+                "ToF": 0.1547,
+                "NoF": 0.8785,
+                "SYCONScore": 0.2631,
+                "n_valid": 181,
+                "n_invalid": 181,
+                "n_total": 362,
+                "eval_time_seconds": 1305
+              },
+              "exp004_ckpt7000": {
+                "ToF": 0.1713,
+                "NoF": 0.8619,
+                "SYCONScore": 0.2858,
+                "n_valid": 181,
+                "n_invalid": 181,
+                "n_total": 362,
+                "eval_time_seconds": 1254
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp004-ckpt5000-ckpt7000-eval.md"
+}

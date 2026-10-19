@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b8189ecad63789c6f0b",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval read r3s2 ckpt7500 result",
+  "task_key": "worker_eval_read-r3s2-ckpt7500-result_20260522T160601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_read-r3s2-ckpt7500-result_20260522T160601_result.json",
+    "occurrence": 1,
+    "bytes": 35,
+    "sha256": "8e4134511b3bd4b6f6adcbf95d82239a33f59fc0a0cc64ca9ce0c25e0104d245"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 分钟后再查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-read-r3s2-ckpt7500-result.md"
+}

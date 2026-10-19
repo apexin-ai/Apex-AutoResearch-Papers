@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84570372cc1888a23d1e",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis act r3 reward",
+  "task_key": "worker_analysis_act-r3-reward_20260520T234721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_act-r3-reward_20260520T234721_result.json",
+    "occurrence": 1,
+    "bytes": 59,
+    "sha256": "2386a4bad77081ac47c0f9ea75a5bfe0425e8a1a4baf5dfb59ce5a283c3b9c03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台运行中，4 分钟后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-act-r3-reward.md"
+}

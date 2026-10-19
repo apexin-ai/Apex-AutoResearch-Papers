@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "f8ac9751473591b9432f",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "eval exp 003 s2 ckpts",
+  "task_key": "worker_eval_exp-003-s2-ckpts_20260525T124348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp-003-s2-ckpts_20260525T124348.log",
+    "occurrence": 1,
+    "bytes": 1270548,
+    "sha256": "dc9a1f632c2be1b04d5e5351fb57bc87d5f2243b3abc48a448beb72d6c8da555"
+  },
+  "statistics": {
+    "messages": 1258,
+    "user_turns": 1,
+    "tool_calls": 598,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "assistant": 52,
+      "record": 3,
+      "tool_call": 598,
+      "tool_result": 598,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1211,
+      "chunks": [
+        {
+          "path": "f8ac9751473591b9432f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f8ac9751473591b9432f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f8ac9751473591b9432f-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "f8ac9751473591b9432f-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "f8ac9751473591b9432f-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "f8ac9751473591b9432f-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "f8ac9751473591b9432f-part-0007.json",
+          "message_count": 131
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 47,
+      "chunks": [
+        {
+          "path": "f8ac9751473591b9432f-part-0007.json",
+          "message_count": 47
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-exp-003-s2-ckpts.md"
+}

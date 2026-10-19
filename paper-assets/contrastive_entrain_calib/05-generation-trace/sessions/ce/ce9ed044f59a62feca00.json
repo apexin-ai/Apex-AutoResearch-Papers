@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ce9ed044f59a62feca00",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "paper figure probe trap",
+  "task_key": "worker_paper_figure_probe_trap_20260520T181905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_probe_trap_20260520T181905_result.json",
+    "occurrence": 1,
+    "bytes": 394,
+    "sha256": "54b03f919ca494f042d0dee2d12a01d3d510d9f962ae742f39bdd64ceaf8dbbb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并注册。\n\n输出文件：\n- PDF: `artifacts/figures/fig_probe_trap.pdf` (22KB)\n- PNG: `artifacts/figures/fig_probe_trap.png` (108KB)\n\n图表包含：左轴 Generation Entropy（蓝色实线）、右轴 ToF（红色虚线）、step 500 处 \"Behavioral death\" 竖线、step 1840 处 \"Entropy collapse\" 竖线、底部 \"1,300-step lag\" 双向箭头。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-probe-trap.md"
+}

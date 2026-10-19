@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33ac56c8ba2c6a0ac36b",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval act resubmit 28034",
+  "task_key": "worker_eval_act-resubmit-28034_20260522T021459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_act-resubmit-28034_20260522T021459_result.json",
+    "occurrence": 1,
+    "bytes": 459,
+    "sha256": "a4a2751e30e3ae7bc3cf640b964ea534866133046651674dddc318b756bae33c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**汇总：**\n\n| Eval | GPU | PID | Registry |\n|------|-----|-----|----------|\n| ACT ckpt-500 | GPU 0 | 946775 | exp-004-eval-ckpt500-v2 (RUNNING) |\n| ACT ckpt-2000 | GPU 1 | 947273 | exp-004-eval-ckpt2000-v2 (RUNNING) |\n| ACT ckpt-8000 | GPU 2 | 947770 | exp-004-eval-ckpt8000-v2 (RUNNING) |\n\n服务器：**westd-28034**，4× A100 32GB（GPU 3 空闲备用）。Cron 每 8 分钟自动检查进程状态和日志。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-act-resubmit-28034.md"
+}

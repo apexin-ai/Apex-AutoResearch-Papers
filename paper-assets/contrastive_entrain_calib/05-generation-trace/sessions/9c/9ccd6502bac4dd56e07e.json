@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ccd6502bac4dd56e07e",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval gs8 ckpt500 status urgent",
+  "task_key": "worker_eval_gs8-ckpt500-status-urgent_20260522T205146",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gs8-ckpt500-status-urgent_20260522T205146_result.json",
+    "occurrence": 1,
+    "bytes": 761,
+    "sha256": "1ea082865137aa25e76faccea0e0ebaa8e1c4cbcf8725f0f8bd56b110a7dbfa2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n- **gs8 ckpt-500 SCP 状态**: **DONE** — checkpoint 完整（adapter_model.safetensors 235M + 全部配套文件，03:54 完成）\n- **gs8 ckpt-500 eval 状态**: **NOT_STARTED** — eval 结果文件不存在，无相关 eval 进程在运行\n- **cuda:2 进程**: **空闲** — 2MiB 显存，0% 利用率，无计算进程\n\nGPU 占用情况：\n| GPU | 占用 | 进程 |\n|-----|------|------|\n| 0 | 16.7G/32.6G | PID 958710 — 未知训练（有 torch inductor compile workers） |\n| 1 | 21.8G/32.6G | PID 30011 — exp-004-reduced-lora.py（00:40 启动，已运行 ~4h） |\n| 2 | **空闲** | — |\n| 3 | **空闲** | — |\n\ncuda:2 和 cuda:3 均空闲，可以直接启动 gs8 ckpt-500 eval。需要我启动吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-gs8-ckpt500-status-urgent.md"
+}

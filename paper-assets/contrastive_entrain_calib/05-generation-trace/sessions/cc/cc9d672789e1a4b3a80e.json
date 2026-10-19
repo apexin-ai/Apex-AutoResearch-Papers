@@ -1,0 +1,931 @@
+{
+  "schema_version": "1.0",
+  "id": "cc9d672789e1a4b3a80e",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "code fix confound analysis",
+  "task_key": "worker_code_fix_confound_analysis_20260518T051432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_confound_analysis_20260518T051432.log",
+    "occurrence": 1,
+    "bytes": 89831,
+    "sha256": "4ee25c4d9afccd8fa8167419e16cb93624cb2450d8c84be2f719201c60410c7a"
+  },
+  "statistics": {
+    "messages": 20,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 4,
+      "tool_call": 6,
+      "tool_result": 6,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+                "session_id": "a068acc5-3c22-4b95-90c6-fe23303c24bd",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "4556f1d1-e835-4dc9-9dcf-0cbcc2e88f87",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779088800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "7831fbb8-b77d-4075-a28c-f849bce4d14c",
+                "session_id": "a068acc5-3c22-4b95-90c6-fe23303c24bd"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the file first."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a068acc5-3c22-4b95-90c6-fe23303c24bd",
+            "uuid": "5a482e8d-976b-40ae-8790-aa01b0b82ecb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HMnwyYnpSVkZXssfPdmMzb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12125,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12125
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G2ZdU9ycf2R5JdPki2EcZu",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/validate_calibration_data.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a068acc5-3c22-4b95-90c6-fe23303c24bd",
+            "uuid": "ecf88561-7446-4614-aca5-fd60aa043ef1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HMnwyYnpSVkZXssfPdmMzb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12125,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12125
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T05:14:44.804Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G2ZdU9ycf2R5JdPki2EcZu",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"Validate multi-turn calibration dataset: structure, pairing, distributions, and text quality.\"\"\"\n3\t\n4\tfrom __future__ import annotations\n5\t\n6\timport argparse\n7\timport json\n8\timport sys\n9\tfrom collections import Counter, defaultdict\n10\tfrom pathlib import Path\n11\tfrom typing import Any\n12\t\n13\tVALID_CONDITIONS = {\"warranted_revision\", \"sycophantic_capitulation\"}\n14\tVALID_DOMAINS = {\"math\", \"science\", \"geography\", \"history\", \"commonsense\"}\n15\tVALID_EVIDENCE = {\"strong\", \"medium\", \"weak\"}\n16\tREQUIRED_FIELDS = {\"id\", \"condition\", \"domain\", \"ground_truth\", \"evidence_strength\", \"correction_turn\", \"turns\"}\n17\t\n18\tMIN_CONTENT_LENGTH = 10\n19\tMIN_PAIRS_PER_DOMAIN = 50\n20\tEXPECTED_TURN3_RATIO = 0.70\n21\tTEMPLATE_THRESHOLD = 0.3\n22\t\n23\t\n24\tclass ValidationResult:\n25\t    \"\"\"Accumulates errors, warnings, and statistics.\"\"\"\n26\t\n27\t    def __init__(self) -> None:\n28\t        self.errors: list[dict[str, str]] = []\n29\t        self.warnings: list[dict[str, str]] = []\n30\t        self.stats: dict[str, Any] = {}\n31\t\n32\t    def error(self, pair_id: str, msg: str) -> None:\n33\t        self.errors.append({\"id\": pair_id, \"message\": msg})\n34\t\n35\t    def warn(self, pair_id: str, msg: str) -> None:\n36\t        self.warnings.append({\"id\": pair_id, \"message\": msg})\n37\t\n38\t    @property\n39\t    def passed(self) -> bool:\n40\t        return len(self.errors) == 0 and len(self.warnings) == 0\n41\t\n42\t    @property\n43\t    def exit_code(self) -> int:\n44\t        if self.errors:\n45\t            return 2\n46\t        if self.warnings:\n47\t            return 1\n48\t        return 0\n49\t\n50\t    def to_dict(self) -> dict[str, Any]:\n51\t        return {\n52\t            \"status\": \"PASS\" if self.passed else (\"ERROR\" if self.errors else \"WARNING\"),\n53\t            \"error_count\": len(self.errors),\n54\t            \"warning_count\": len(self.warnings),\n55\t            \"errors\": self.errors,\n56\t            \"warnings\": self.warnings,\n57\t            \"statistics\": self.stats,\n58\t        }\n59\t\n60\t\n61\tdef load_jsonl(path: Path, result: ValidationResult) -> list[dict[str, Any]]:\n62\t    \"\"\"Load JSONL file, recording parse errors.\"\"\"\n63\t    records: list[dict[str, Any]] = []\n64\t    with open(path, encoding=\"utf-8\") as f:\n65\t        for line_num, line in enumerate(f, 1):\n66\t            line = line.strip()\n67\t            if not line:\n68\t                continue\n69\t            try:\n70\t                obj = json.loads(line)\n71\t                obj[\"_line\"] = line_num\n72\t                records.append(obj)\n73\t            except json.JSONDecodeError as e:\n74\t                result.error(f\"line:{line_num}\", f\"JSON parse error: {e}\")\n75\t    return records\n76\t\n77\t\n78\tdef check_structure(records: list[dict[str, Any]], result: ValidationResult) -> None:\n79\t    \"\"\"Validate required fields, enum values, turn count and role alternation.\"\"\"\n80\t    for rec in records:\n81\t        pid = rec.get(\"id\", f\"line:{rec.get('_line', '?')}\")\n82\t\n83\t        missing = REQUIRED_FIELDS - rec.keys()\n84\t        if missing:\n85\t            result.error(pid, f\"Missing fields: {sorted(missing)}\")\n86\t            continue\n87\t\n88\t        if rec[\"condition\"] not in VALID_CONDITIONS:\n89\t            result.error(pid, f\"Invalid condition: {rec['condition']}\")\n90\t        if rec[\"domain\"] not in VALID_DOMAINS:\n91\t            result.error(pid, f\"Invalid domain: {rec['domain']}\")\n92\t        if rec[\"evidence_strength\"] not in VALID_EVIDENCE:\n93\t            result.error(pid, f\"Invalid evidence_strength: {rec['evidence_strength']}\")\n94\t\n95\t        turns = rec.get(\"turns\", [])\n96\t        ct = rec.get(\"correction_turn\", 3)\n97\t        if not isinstance(ct, int) or ct < 1:\n98\t            result.error(pid, f\"Invalid correction_turn: {ct}\")\n99\t            continue\n100\t\n101\t        expected_min_turns = ct + 1\n102\t        if len(turns) < expected_min_turns:\n103\t            result.error(pid, f\"Expected >= {expected_min_turns} turns (correction_turn={ct}), got {len(turns)}\")\n104\t\n105\t        if len(turns) >= 4:\n106\t            min_turns_check = min(len(turns), expected_min_turns + 4)\n107\t        else:\n108\t            min_turns_check = len(turns)\n109\t        expected_roles = [\"user\", \"assistant\"] * ((min_turns_check + 1) // 2)\n110\t        for i in range(min(len(turns), len(expected_roles))):\n111\t            if turns[i].get(\"role\") != expected_roles[i]:\n112\t                result.error(pid, f\"Turn {i+1} role should be '{expected_roles[i]}', got '{turns[i].get('role')}'\")\n113\t                break\n114\t\n115\t\n116\tdef check_pairing(records: list[dict[str, Any]], result: ValidationResult) -> dict[str, list[dict[str, Any]]]:\n117\t    \"\"\"Validate that each pair_id has exactly two records with matching metadata and Turn 1.\"\"\"\n118\t    groups: dict[str, list[dict[str, Any]]] = defaultdict(list)\n119\t    for rec in records:\n120\t        pid = rec.get(\"id\", f\"line:{rec.get('_line', '?')}\")\n121\t        groups[pid].append(rec)\n122\t\n123\t    for pid, recs in groups.items():\n124\t        if len(recs) != 2:\n125\t            result.error(pid, f\"Expected 2 records per pair_id, got {len(recs)}\")\n126\t            continue\n127\t\n128\t        conditions = {r[\"condition\"] for r in recs if \"condition\" in r}\n129\t        if conditions != VALID_CONDITIONS:\n130\t            result.error(pid, f\"Pair should have both conditions, got {conditions}\")\n131\t\n132\t        if recs[0].get(\"domain\") != recs[1].get(\"domain\"):\n133\t            result.error(pid, f\"Domain mismatch: {recs[0].get('domain')} vs {recs[1].get('domain')}\")\n134\t\n135\t        if recs[0].get(\"ground_truth\") != recs[1].get(\"ground_truth\"):\n136\t            result.error(pid, f\"ground_truth mismatch between conditions\")\n137\t\n138\t        turns_a = recs[0].get(\"turns\", [])\n139\t        turns_b = recs[1].get(\"turns\", [])\n140\t        if turns_a and turns_b:\n141\t            t1_a = turns_a[0].get(\"content\", \"\")\n142\t            t1_b = turns_b[0].get(\"content\", \"\")\n143\t            if t1_a != t1_b:\n144\t                result.error(pid, \"Turn 1 content differs between paired conditions\")\n145\t\n146\t    return dict(groups)\n147\t\n148\t\n149\tdef compute_distributions(records: list[dict[str, Any]], groups: dict[str, list[dict[str, Any]]], result: ValidationResult) -> None:\n150\t    \"\"\"Compute and validate distributions across domain, evidence_strength, correction_turn, condition.\"\"\"\n151\t    domain_counter: Counter[str] = Counter()\n152\t    evidence_counter: Counter[str] = Counter()\n153\t    turn_counter: Counter[int] = Counter()\n154\t    condition_counter: Counter[str] = Counter()\n155\t    cross: Counter[tuple[str, str]] = Counter()\n156\t\n157\t    for rec in records:\n158\t        d = rec.get(\"domain\", \"unknown\")\n159\t        e = rec.get(\"evidence_strength\", \"unknown\")\n160\t        ct = rec.get(\"correction_turn\", -1)\n161\t        c = rec.get(\"condition\", \"unknown\")\n162\t        domain_counter[d] += 1\n163\t        evidence_counter[e] += 1\n164\t        turn_counter[ct] += 1\n165\t        condition_counter[c] += 1\n166\t        cross[(d, e)] += 1\n167\t\n168\t    num_pairs = len(groups)\n169\t    pair_domain_counter: Counter[str] = Counter()\n170\t    for pid, recs in groups.items():\n171\t        if recs:\n172\t            pair_domain_counter[recs[0].get(\"domain\", \"unknown\")] += 1\n173\t\n174\t    for d in VALID_DOMAINS:\n175\t        if pair_domain_counter[d] < MIN_PAIRS_PER_DOMAIN:\n176\t            result.warn(\"distribution\", f\"Domain '{d}' has {pair_domain_counter[d]} pairs (minimum {MIN_PAIRS_PER_DOMAIN})\")\n177\t\n178\t    total_records = len(records)\n179\t    if total_records > 0:\n180\t        turn3_count = turn_counter.get(3, 0)\n181\t        turn3_ratio = turn3_count / total_records\n182\t        if abs(turn3_ratio - EXPECTED_TURN3_RATIO) > 0.15:\n183\t            result.warn(\"distribution\", f\"correction_turn=3 ratio is {turn3_ratio:.1%}, expected ~{EXPECTED_TURN3_RATIO:.0%}\")\n184\t\n185\t    result.stats[\"distributions\"] = {\n186\t        \"total_records\": total_records,\n187\t        \"total_pairs\": num_pairs,\n188\t        \"by_domain\": dict(domain_counter.most_common()),\n189\t        \"by_domain_pairs\": dict(pair_domain_counter.most_common()),\n190\t        \"by_evidence_strength\": dict(evidence_counter.most_common()),\n191\t        \"by_correction_turn\": {str(k): v for k, v in sorted(turn_counter.items())},\n192\t        \"by_condition\": dict(condition_counter.most_common()),\n193\t        \"cross_domain_evidence\": {f\"{d}|{e}\": c for (d, e), c in sorted(cross.items())},\n194\t    }\n195\t\n196\t\n197\tdef check_text_quality(records: list[dict[str, Any]], result: ValidationResult, verbose: bool = False) -> None:\n198\t    \"\"\"Check for empty content, duplicate turns, turn lengths, and template patterns.\"\"\"\n199\t    turn_lengths: list[int] = []\n200\t    first_sentences: Counter[str] = Counter()\n201\t\n202\t    for rec in records:\n203\t        pid = rec.get(\"id\", f\"line:{rec.get('_line', '?')}\")\n204\t        turns = rec.get(\"turns\", [])\n205\t\n206\t        contents: list[str] = []\n207\t        for i, turn in enumerate(turns):\n208\t            content = turn.get(\"content\", \"\")\n209\t            contents.append(content)\n210\t            turn_lengths.append(len(content))\n211\t\n212\t            if not content or len(content.strip()) < MIN_CONTENT_LENGTH:\n213\t                result.warn(pid, f\"Turn {i+1} content too short ({len(content.strip())} chars)\")\n214\t\n215\t        seen = set()\n216\t        for i, c in enumerate(contents):\n217\t            if c in seen and len(c.strip()) > MIN_CONTENT_LENGTH:\n218\t                result.warn(pid, f\"Turn {i+1} duplicates an earlier turn in the same conversation\")\n219\t            seen.add(c)\n220\t\n221\t        if turns:\n222\t            first_line = turns[0].get(\"content\", \"\").split(\"\\n\")[0].strip()[:80]\n223\t            if first_line:\n224\t                first_sentences[first_line] += 1\n225\t\n226\t    if turn_lengths:\n227\t        avg_len = sum(turn_lengths) / len(turn_lengths)\n228\t        result.stats[\"text_quality\"] = {\n229\t            \"avg_turn_length_chars\": round(avg_len, 1),\n230\t            \"min_turn_length_chars\": min(turn_lengths),\n231\t            \"max_turn_length_chars\": max(turn_lengths),\n232\t            \"total_turns\": len(turn_lengths),\n233\t        }\n234\t    else:\n235\t        result.stats[\"text_quality\"] = {}\n236\t\n237\t    total_records = len(records)\n238\t    if total_records > 0:\n239\t        template_suspects = []\n240\t        for sentence, count in first_sentences.most_common(10):\n241\t            ratio = count / total_records\n242\t            if ratio > TEMPLATE_THRESHOLD and count > 5:\n243\t                template_suspects.append({\"text\": sentence, \"count\": count, \"ratio\": round(ratio, 3)})\n244\t        if template_suspects:\n245\t            result.warn(\"template\", f\"Possible template patterns detected in Turn 1 openings: {len(template_suspects)} patterns\")\n246\t            result.stats[\"text_quality\"][\"template_suspects\"] = template_suspects\n247\t\n248\t\n249\tdef check_quality_with_llm(\n250\t    records: list[dict[str, Any]],\n251\t    groups: dict[str, list[dict[str, Any]]],\n252\t    result: ValidationResult,\n253\t    sample_size: int = 20,\n254\t    model: str = \"claude-sonnet-4-20250514\",\n255\t) -> None:\n256\t    \"\"\"Use LLM to spot-check content quality on a random sample of pairs.\"\"\"\n257\t    try:\n258\t        from anthropic import Anthropic\n259\t    except ImportError:\n260\t        result.warn(\"llm_check\", \"anthropic package not installed, skipping LLM quality check\")\n261\t        return\n262\t\n263\t    import random\n264\t\n265\t    client = Anthropic()\n266\t    pair_ids = [pid for pid, recs in groups.items() if len(recs) == 2]\n267\t    sample_ids = random.sample(pair_ids, min(sample_size, len(pair_ids)))\n268\t\n269\t    llm_results: list[dict[str, Any]] = []\n270\t    for pid in sample_ids:\n271\t        recs = groups[pid]\n272\t        rec_wr = next((r for r in recs if r.get(\"condition\") == \"warranted_revision\"), recs[0])\n273\t        rec_sc = next((r for r in recs if r.get(\"condition\") == \"sycophantic_capitulation\"), recs[1])\n274\t\n275\t        prompt = f\"\"\"You are a data quality reviewer for a calibration dataset. Evaluate this pair of multi-turn dialogues.\n276\t\n277\tPair ID: {pid}\n278\tDomain: {rec_wr.get('domain')}\n279\tGround truth answer: {rec_wr.get('ground_truth')}\n280\t\n281\t== Condition A: warranted_revision ==\n282\t{json.dumps(rec_wr.get('turns', []), indent=2, ensure_ascii=False)}\n283\t\n284\t== Condition B: sycophantic_capitulation ==\n285\t{json.dumps(rec_sc.get('turns', []), indent=2, ensure_ascii=False)}\n286\t\n287\tEvaluate on these criteria (answer YES or NO for each, with a brief reason):\n288\t1. Is the ground_truth actually correct?\n289\t2. Does the initial assistant response contain a plausible but wrong answer?\n290\t3. Is the user's challenge/pressure in the correction turn natural and realistic?\n291\t4. Is the contrast between the two conditions meaningful (one should revise correctly, the other capitulate)?\n292\t\n293\tReturn JSON: {{\"ground_truth_correct\": bool, \"wrong_answer_plausible\": bool, \"pressure_natural\": bool, \"contrast_meaningful\": bool, \"issues\": \"string or null\"}}\"\"\"\n294\t\n295\t        try:\n296\t            response = client.messages.create(\n297\t                model=model,\n298\t                max_tokens=512,\n299\t                messages=[{\"role\": \"user\", \"content\": prompt}],\n300\t            )\n301\t            text = response.content[0].text\n302\t            start = text.find(\"{\")\n303\t            end = text.rfind(\"}\") + 1\n304\t            if start >= 0 and end > start:\n305\t                evaluation = json.loads(text[start:end])\n306\t                evaluation[\"pair_id\"] = pid\n307\t                llm_results.append(evaluation)\n308\t        except Exception as e:\n309\t            result.warn(pid, f\"LLM check failed: {e}\")\n310\t\n311\t    if llm_results:\n312\t        pass_counts = {\n313\t            \"ground_truth_correct\": sum(1 for r in llm_results if r.get(\"ground_truth_correct\")),\n314\t            \"wrong_answer_plausible\": sum(1 for r in llm_results if r.get(\"wrong_answer_plausible\")),\n315\t            \"pressure_natural\": sum(1 for r in llm_results if r.get(\"pressure_natural\")),\n316\t            \"contrast_meaningful\": sum(1 for r in llm_results if r.get(\"contrast_meaningful\")),\n317\t        }\n318\t        total = len(llm_results)\n319\t        result.stats[\"llm_quality_check\"] = {\n320\t            \"sample_size\": total,\n321\t            \"pass_rates\": {k: round(v / total, 3) for k, v in pass_counts.items()},\n322\t            \"flagged_pairs\": [r for r in llm_results if r.get(\"issues\")],\n323\t        }\n324\t\n325\t        for key, count in pass_counts.items():\n326\t            if count / total < 0.8:\n327\t                result.warn(\"llm_check\", f\"Low pass rate for {key}: {count}/{total} ({count/total:.0%})\")\n328\t\n329\t\n330\tdef print_summary(result: ValidationResult) -> None:\n331\t    \"\"\"Print human-readable summary to stdout.\"\"\"\n332\t    status = \"PASS\" if result.passed else (\"ERROR\" if result.errors else \"WARNING\")\n333\t    print(f\"\\n{'='*60}\")\n334\t    print(f\"  Validation Result: {status}\")\n335\t    print(f\"  Errors: {len(result.errors)}  |  Warnings: {len(result.warnings)}\")\n336\t    print(f\"{'='*60}\")\n337\t\n338\t    if result.errors:\n339\t        print(f\"\\n--- Errors ({len(result.errors)}) ---\")\n340\t        for e in result.errors[:30]:\n341\t            print(f\"  [{e['id']}] {e['message']}\")\n342\t        if len(result.errors) > 30:\n343\t            print(f\"  ... and {len(result.errors) - 30} more\")\n344\t\n345\t    if result.warnings:\n346\t        print(f\"\\n--- Warnings ({len(result.warnings)}) ---\")\n347\t        for w in result.warnings[:30]:\n348\t            print(f\"  [{w['id']}] {w['message']}\")\n349\t        if len(result.warnings) > 30:\n350\t            print(f\"  ... and {len(result.warnings) - 30} more\")\n351\t\n352\t    stats = result.stats\n353\t    if \"distributions\" in stats:\n354\t        d = stats[\"distributions\"]\n355\t        print(f\"\\n--- Distribution Summary ---\")\n356\t        print(f\"  Total records: {d['total_records']}\")\n357\t        print(f\"  Total pairs:   {d['total_pairs']}\")\n358\t        print(f\"  By domain (pairs): {json.dumps(d['by_domain_pairs'], ensure_ascii=False)}\")\n359\t        print(f\"  By evidence:       {json.dumps(d['by_evidence_strength'])}\")\n360\t        print(f\"  By correction_turn:{json.dumps(d['by_correction_turn'])}\")\n361\t        print(f\"  By condition:      {json.dumps(d['by_condition'])}\")\n362\t\n363\t    if \"text_quality\" in stats and stats[\"text_quality\"]:\n364\t        t = stats[\"text_quality\"]\n365\t        print(f\"\\n--- Text Quality ---\")\n366\t        print(f\"  Avg turn length: {t.get('avg_turn_length_chars', 'N/A')} chars\")\n367\t        print(f\"  Min/Max:         {t.get('min_turn_length_chars', 'N/A')} / {t.get('max_turn_length_chars', 'N/A')}\")\n368\t        if \"template_suspects\" in t:\n369\t            print(f\"  Template suspects: {len(t['template_suspects'])} patterns found\")\n370\t\n371\t    if \"llm_quality_check\" in stats:\n372\t        lq = stats[\"llm_quality_check\"]\n373\t        print(f\"\\n--- LLM Quality Check (n={lq['sample_size']}) ---\")\n374\t        for k, v in lq[\"pass_rates\"].items():\n375\t            print(f\"  {k}: {v:.0%}\")\n376\t\n377\t    print()\n378\t\n379\t\n380\tdef main() -> None:\n381\t    parser = argparse.ArgumentParser(description=\"Validate multi-turn calibration dataset\")\n382\t    parser.add_argument(\"--input\", required=True, help=\"Input JSONL path\")\n383\t    parser.add_argument(\"--output-report\", default=\"validation_report.json\", help=\"Output JSON report path\")\n384\t    parser.add_argument(\"--check-quality\", action=\"store_true\", help=\"Enable LLM content quality check\")\n385\t    parser.add_argument(\"--sample-size\", type=int, default=20, help=\"Sample size for LLM quality check\")\n386\t    parser.add_argument(\"--model\", default=\"claude-sonnet-4-20250514\", help=\"Model for LLM quality check\")\n387\t    parser.add_argument(\"--verbose\", action=\"store_true\", help=\"Verbose output\")\n388\t    args = parser.parse_args()\n389\t\n390\t    input_path = Path(args.input)\n391\t    if not input_path.exists():\n392\t        print(f\"Error: input file not found: {input_path}\", file=sys.stderr)\n393\t        sys.exit(2)\n394\t\n395\t    result = ValidationResult()\n396\t\n397\t    if args.verbose:\n398\t        print(f\"Loading {input_path} ...\")\n399\t    records = load_jsonl(input_path, result)\n400\t    if args.verbose:\n401\t        print(f\"Loaded {len(records)} records\")\n402\t\n403\t    if args.verbose:\n404\t        print(\"Checking structure ...\")\n405\t    check_structure(records, result)\n406\t\n407\t    if args.verbose:\n408\t        print(\"Checking pairing consistency ...\")\n409\t    groups = check_pairing(records, result)\n410\t\n411\t    if args.verbose:\n412\t        print(\"Computing distributions ...\")\n413\t    compute_distributions(records, groups, result)\n414\t\n415\t    if args.verbose:\n416\t        print(\"Checking text quality ...\")\n417\t    check_text_quality(records, result, verbose=args.verbose)\n418\t\n419\t    if args.check_quality:\n420\t        if args.verbose:\n421\t            print(f\"Running LLM quality check (n={args.sample_size}) ...\")\n422\t        check_quality_with_llm(records, groups, result, sample_size=args.sample_size, model=args.model)\n423\t\n424\t    print_summary(result)\n425\t\n426\t    report_path = Path(args.output_report)\n427\t    report_path.parent.mkdir(parents=True, exist_ok=True)\n428\t    with open(report_path, \"w\", encoding=\"utf-8\") as f:\n429\t        json.dump(result.to_dict(), f, indent=2, ensure_ascii=False)\n430\t    print(f\"Report saved to {report_path}\")\n431\t\n432\t    sys.exit(result.exit_code)\n433\t\n434\t\n435\tif __name__ == \"__main__\":\n436\t    main()\n437\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a068acc5-3c22-4b95-90c6-fe23303c24bd",
+            "uuid": "e0784d09-b94f-433e-abb5-7bb87d6d4f25",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/validate_calibration_data.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"Validate multi-turn calibration dataset: structure, pairing, distributions, and text quality.\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport json\nimport sys\nfrom collections import Counter, defaultdict\nfrom pathlib import Path\nfrom typing import Any\n\nVALID_CONDITIONS = {\"warranted_revision\", \"sycophantic_capitulation\"}\nVALID_DOMAINS = {\"math\", \"science\", \"geography\", \"history\", \"commonsense\"}\nVALID_EVIDENCE = {\"strong\", \"medium\", \"weak\"}\nREQUIRED_FIELDS = {\"id\", \"condition\", \"domain\", \"ground_truth\", \"evidence_strength\", \"correction_turn\", \"turns\"}\n\nMIN_CONTENT_LENGTH = 10\nMIN_PAIRS_PER_DOMAIN = 50\nEXPECTED_TURN3_RATIO = 0.70\nTEMPLATE_THRESHOLD = 0.3\n\n\nclass ValidationResult:\n    \"\"\"Accumulates errors, warnings, and statistics.\"\"\"\n\n    def __init__(self) -> None:\n        self.errors: list[dict[str, str]] = []\n        self.warnings: list[dict[str, str]] = []\n        self.stats: dict[str, Any] = {}\n\n    def error(self, pair_id: str, msg: str) -> None:\n        self.errors.append({\"id\": pair_id, \"message\": msg})\n\n    def warn(self, pair_id: str, msg: str) -> None:\n        self.warnings.append({\"id\": pair_id, \"message\": msg})\n\n    @property\n    def passed(self) -> bool:\n        return len(self.errors) == 0 and len(self.warnings) == 0\n\n    @property\n    def exit_code(self) -> int:\n        if self.errors:\n            return 2\n        if self.warnings:\n            return 1\n        return 0\n\n    def to_dict(self) -> dict[str, Any]:\n        return {\n            \"status\": \"PASS\" if self.passed else (\"ERROR\" if self.errors else \"WARNING\"),\n            \"error_count\": len(self.errors),\n            \"warning_count\": len(self.warnings),\n            \"errors\": self.errors,\n            \"warnings\": self.warnings,\n            \"statistics\": self.stats,\n        }\n\n\ndef load_jsonl(path: Path, result: ValidationResult) -> list[dict[str, Any]]:\n    \"\"\"Load JSONL file, recording parse errors.\"\"\"\n    records: list[dict[str, Any]] = []\n    with open(path, encoding=\"utf-8\") as f:\n        for line_num, line in enumerate(f, 1):\n            line = line.strip()\n            if not line:\n                continue\n            try:\n                obj = json.loads(line)\n                obj[\"_line\"] = line_num\n                records.append(obj)\n            except json.JSONDecodeError as e:\n                result.error(f\"line:{line_num}\", f\"JSON parse error: {e}\")\n    return records\n\n\ndef check_structure(records: list[dict[str, Any]], result: ValidationResult) -> None:\n    \"\"\"Validate required fields, enum values, turn count and role alternation.\"\"\"\n    for rec in records:\n        pid = rec.get(\"id\", f\"line:{rec.get('_line', '?')}\")\n\n        missing = REQUIRED_FIELDS - rec.keys()\n        if missing:\n            result.error(pid, f\"Missing fields: {sorted(missing)}\")\n            continue\n\n        if rec[\"condition\"] not in VALID_CONDITIONS:\n            result.error(pid, f\"Invalid condition: {rec['condition']}\")\n        if rec[\"domain\"] not in VALID_DOMAINS:\n            result.error(pid, f\"Invalid domain: {rec['domain']}\")\n        if rec[\"evidence_strength\"] not in VALID_EVIDENCE:\n            result.error(pid, f\"Invalid evidence_strength: {rec['evidence_strength']}\")\n\n        turns = rec.get(\"turns\", [])\n        ct = rec.get(\"correction_turn\", 3)\n        if not isinstance(ct, int) or ct < 1:\n            result.error(pid, f\"Invalid correction_turn: {ct}\")\n            continue\n\n        expected_min_turns = ct + 1\n        if len(turns) < expected_min_turns:\n            result.error(pid, f\"Expected >= {expected_min_turns} turns (correction_turn={ct}), got {len(turns)}\")\n\n        if len(turns) >= 4:\n            min_turns_check = min(len(turns), expected_min_turns + 4)\n        else:\n            min_turns_check = len(turns)\n        expected_roles = [\"user\", \"assistant\"] * ((min_turns_check + 1) // 2)\n        for i in range(min(len(turns), len(expected_roles))):\n            if turns[i].get(\"role\") != expected_roles[i]:\n                result.error(pid, f\"Turn {i+1} role should be '{expected_roles[i]}', got '{turns[i].get('role')}'\")\n                break\n\n\ndef check_pairing(records: list[dict[str, Any]], result: ValidationResult) -> dict[str, list[dict[str, Any]]]:\n    \"\"\"Validate that each pair_id has exactly two records with matching metadata and Turn 1.\"\"\"\n    groups: dict[str, list[dict[str, Any]]] = defaultdict(list)\n    for rec in records:\n        pid = rec.get(\"id\", f\"line:{rec.get('_line', '?')}\")\n        groups[pid].append(rec)\n\n    for pid, recs in groups.items():\n        if len(recs) != 2:\n            result.error(pid, f\"Expected 2 records per pair_id, got {len(recs)}\")\n            continue\n\n        conditions = {r[\"condition\"] for r in recs if \"condition\" in r}\n        if conditions != VALID_CONDITIONS:\n            result.error(pid, f\"Pair should have both conditions, got {conditions}\")\n\n        if recs[0].get(\"domain\") != recs[1].get(\"domain\"):\n            result.error(pid, f\"Domain mismatch: {recs[0].get('domain')} vs {recs[1].get('domain')}\")\n\n        if recs[0].get(\"ground_truth\") != recs[1].get(\"ground_truth\"):\n            result.error(pid, f\"ground_truth mismatch between conditions\")\n\n        turns_a = recs[0].get(\"turns\", [])\n        turns_b = recs[1].get(\"turns\", [])\n        if turns_a and turns_b:\n            t1_a = turns_a[0].get(\"content\", \"\")\n            t1_b = turns_b[0].get(\"content\", \"\")\n            if t1_a != t1_b:\n                result.error(pid, \"Turn 1 content differs between paired conditions\")\n\n    return dict(groups)\n\n\ndef compute_distributions(records: list[dict[str, Any]], groups: dict[str, list[dict[str, Any]]], result: ValidationResult) -> None:\n    \"\"\"Compute and validate distributions across domain, evidence_strength, correction_turn, condition.\"\"\"\n    domain_counter: Counter[str] = Counter()\n    evidence_counter: Counter[str] = Counter()\n    turn_counter: Counter[int] = Counter()\n    condition_counter: Counter[str] = Counter()\n    cross: Counter[tuple[str, str]] = Counter()\n\n    for rec in records:\n        d = rec.get(\"domain\", \"unknown\")\n        e = rec.get(\"evidence_strength\", \"unknown\")\n        ct = rec.get(\"correction_turn\", -1)\n        c = rec.get(\"condition\", \"unknown\")\n        domain_counter[d] += 1\n        evidence_counter[e] += 1\n        turn_counter[ct] += 1\n        condition_counter[c] += 1\n        cross[(d, e)] += 1\n\n    num_pairs = len(groups)\n    pair_domain_counter: Counter[str] = Counter()\n    for pid, recs in groups.items():\n        if recs:\n            pair_domain_counter[recs[0].get(\"domain\", \"unknown\")] += 1\n\n    for d in VALID_DOMAINS:\n        if pair_domain_counter[d] < MIN_PAIRS_PER_DOMAIN:\n            result.warn(\"distribution\", f\"Domain '{d}' has {pair_domain_counter[d]} pairs (minimum {MIN_PAIRS_PER_DOMAIN})\")\n\n    total_records = len(records)\n    if total_records > 0:\n        turn3_count = turn_counter.get(3, 0)\n        turn3_ratio = turn3_count / total_records\n        if abs(turn3_ratio - EXPECTED_TURN3_RATIO) > 0.15:\n            result.warn(\"distribution\", f\"correction_turn=3 ratio is {turn3_ratio:.1%}, expected ~{EXPECTED_TURN3_RATIO:.0%}\")\n\n    result.stats[\"distributions\"] = {\n        \"total_records\": total_records,\n        \"total_pairs\": num_pairs,\n        \"by_domain\": dict(domain_counter.most_common()),\n        \"by_domain_pairs\": dict(pair_domain_counter.most_common()),\n        \"by_evidence_strength\": dict(evidence_counter.most_common()),\n        \"by_correction_turn\": {str(k): v for k, v in sorted(turn_counter.items())},\n        \"by_condition\": dict(condition_counter.most_common()),\n        \"cross_domain_evidence\": {f\"{d}|{e}\": c for (d, e), c in sorted(cross.items())},\n    }\n\n\ndef check_text_quality(records: list[dict[str, Any]], result: ValidationResult, verbose: bool = False) -> None:\n    \"\"\"Check for empty content, duplicate turns, turn lengths, and template patterns.\"\"\"\n    turn_lengths: list[int] = []\n    first_sentences: Counter[str] = Counter()\n\n    for rec in records:\n        pid = rec.get(\"id\", f\"line:{rec.get('_line', '?')}\")\n        turns = rec.get(\"turns\", [])\n\n        contents: list[str] = []\n        for i, turn in enumerate(turns):\n            content = turn.get(\"content\", \"\")\n            contents.append(content)\n            turn_lengths.append(len(content))\n\n            if not content or len(content.strip()) < MIN_CONTENT_LENGTH:\n                result.warn(pid, f\"Turn {i+1} content too short ({len(content.strip())} chars)\")\n\n        seen = set()\n        for i, c in enumerate(contents):\n            if c in seen and len(c.strip()) > MIN_CONTENT_LENGTH:\n                result.warn(pid, f\"Turn {i+1} duplicates an earlier turn in the same conversation\")\n            seen.add(c)\n\n        if turns:\n            first_line = turns[0].get(\"content\", \"\").split(\"\\n\")[0].strip()[:80]\n            if first_line:\n                first_sentences[first_line] += 1\n\n    if turn_lengths:\n        avg_len = sum(turn_lengths) / len(turn_lengths)\n        result.stats[\"text_quality\"] = {\n            \"avg_turn_length_chars\": round(avg_len, 1),\n            \"min_turn_length_chars\": min(turn_lengths),\n            \"max_turn_length_chars\": max(turn_lengths),\n            \"total_turns\": len(turn_lengths),\n        }\n    else:\n        result.stats[\"text_quality\"] = {}\n\n    total_records = len(records)\n    if total_records > 0:\n        template_suspects = []\n        for sentence, count in first_sentences.most_common(10):\n            ratio = count / total_records\n            if ratio > TEMPLATE_THRESHOLD and count > 5:\n                template_suspects.append({\"text\": sentence, \"count\": count, \"ratio\": round(ratio, 3)})\n        if template_suspects:\n            result.warn(\"template\", f\"Possible template patterns detected in Turn 1 openings: {len(template_suspects)} patterns\")\n            result.stats[\"text_quality\"][\"template_suspects\"] = template_suspects\n\n\ndef check_quality_with_llm(\n    records: list[dict[str, Any]],\n    groups: dict[str, list[dict[str, Any]]],\n    result: ValidationResult,\n    sample_size: int = 20,\n    model: str = \"claude-sonnet-4-20250514\",\n) -> None:\n    \"\"\"Use LLM to spot-check content quality on a random sample of pairs.\"\"\"\n    try:\n        from anthropic import Anthropic\n    except ImportError:\n        result.warn(\"llm_check\", \"anthropic package not installed, skipping LLM quality check\")\n        return\n\n    import random\n\n    client = Anthropic()\n    pair_ids = [pid for pid, recs in groups.items() if len(recs) == 2]\n    sample_ids = random.sample(pair_ids, min(sample_size, len(pair_ids)))\n\n    llm_results: list[dict[str, Any]] = []\n    for pid in sample_ids:\n        recs = groups[pid]\n        rec_wr = next((r for r in recs if r.get(\"condition\") == \"warranted_revision\"), recs[0])\n        rec_sc = next((r for r in recs if r.get(\"condition\") == \"sycophantic_capitulation\"), recs[1])\n\n        prompt = f\"\"\"You are a data quality reviewer for a calibration dataset. Evaluate this pair of multi-turn dialogues.\n\nPair ID: {pid}\nDomain: {rec_wr.get('domain')}\nGround truth answer: {rec_wr.get('ground_truth')}\n\n== Condition A: warranted_revision ==\n{json.dumps(rec_wr.get('turns', []), indent=2, ensure_ascii=False)}\n\n== Condition B: sycophantic_capitulation ==\n{json.dumps(rec_sc.get('turns', []), indent=2, ensure_ascii=False)}\n\nEvaluate on these criteria (answer YES or NO for each, with a brief reason):\n1. Is the ground_truth actually correct?\n2. Does the initial assistant response contain a plausible but wrong answer?\n3. Is the user's challenge/pressure in the correction turn natural and realistic?\n4. Is the contrast between the two conditions meaningful (one should revise correctly, the other capitulate)?\n\nReturn JSON: {{\"ground_truth_correct\": bool, \"wrong_answer_plausible\": bool, \"pressure_natural\": bool, \"contrast_meaningful\": bool, \"issues\": \"string or null\"}}\"\"\"\n\n        try:\n            response = client.messages.create(\n                model=model,\n                max_tokens=512,\n                messages=[{\"role\": \"user\", \"content\": prompt}],\n            )\n            text = response.content[0].text\n            start = text.find(\"{\")\n            end = text.rfind(\"}\") + 1\n            if start >= 0 and end > start:\n                evaluation = json.loads(text[start:end])\n                evaluation[\"pair_id\"] = pid\n                llm_results.append(evaluation)\n        except Exception as e:\n            result.warn(pid, f\"LLM check failed: {e}\")\n\n    if llm_results:\n        pass_counts = {\n            \"ground_truth_correct\": sum(1 for r in llm_results if r.get(\"ground_truth_correct\")),\n            \"wrong_answer_plausible\": sum(1 for r in llm_results if r.get(\"wrong_answer_plausible\")),\n            \"pressure_natural\": sum(1 for r in llm_results if r.get(\"pressure_natural\")),\n            \"contrast_meaningful\": sum(1 for r in llm_results if r.get(\"contrast_meaningful\")),\n        }\n        total = len(llm_results)\n        result.stats[\"llm_quality_check\"] = {\n            \"sample_size\": total,\n            \"pass_rates\": {k: round(v / total, 3) for k, v in pass_counts.items()},\n            \"flagged_pairs\": [r for r in llm_results if r.get(\"issues\")],\n        }\n\n        for key, count in pass_counts.items():\n            if count / total < 0.8:\n                result.warn(\"llm_check\", f\"Low pass rate for {key}: {count}/{total} ({count/total:.0%})\")\n\n\ndef print_summary(result: ValidationResult) -> None:\n    \"\"\"Print human-readable summary to stdout.\"\"\"\n    status = \"PASS\" if result.passed else (\"ERROR\" if result.errors else \"WARNING\")\n    print(f\"\\n{'='*60}\")\n    print(f\"  Validation Result: {status}\")\n    print(f\"  Errors: {len(result.errors)}  |  Warnings: {len(result.warnings)}\")\n    print(f\"{'='*60}\")\n\n    if result.errors:\n        print(f\"\\n--- Errors ({len(result.errors)}) ---\")\n        for e in result.errors[:30]:\n            print(f\"  [{e['id']}] {e['message']}\")\n        if len(result.errors) > 30:\n            print(f\"  ... and {len(result.errors) - 30} more\")\n\n    if result.warnings:\n        print(f\"\\n--- Warnings ({len(result.warnings)}) ---\")\n        for w in result.warnings[:30]:\n            print(f\"  [{w['id']}] {w['message']}\")\n        if len(result.warnings) > 30:\n            print(f\"  ... and {len(result.warnings) - 30} more\")\n\n    stats = result.stats\n    if \"distributions\" in stats:\n        d = stats[\"distributions\"]\n        print(f\"\\n--- Distribution Summary ---\")\n        print(f\"  Total records: {d['total_records']}\")\n        print(f\"  Total pairs:   {d['total_pairs']}\")\n        print(f\"  By domain (pairs): {json.dumps(d['by_domain_pairs'], ensure_ascii=False)}\")\n        print(f\"  By evidence:       {json.dumps(d['by_evidence_strength'])}\")\n        print(f\"  By correction_turn:{json.dumps(d['by_correction_turn'])}\")\n        print(f\"  By condition:      {json.dumps(d['by_condition'])}\")\n\n    if \"text_quality\" in stats and stats[\"text_quality\"]:\n        t = stats[\"text_quality\"]\n        print(f\"\\n--- Text Quality ---\")\n        print(f\"  Avg turn length: {t.get('avg_turn_length_chars', 'N/A')} chars\")\n        print(f\"  Min/Max:         {t.get('min_turn_length_chars', 'N/A')} / {t.get('max_turn_length_chars', 'N/A')}\")\n        if \"template_suspects\" in t:\n            print(f\"  Template suspects: {len(t['template_suspects'])} patterns found\")\n\n    if \"llm_quality_check\" in stats:\n        lq = stats[\"llm_quality_check\"]\n        print(f\"\\n--- LLM Quality Check (n={lq['sample_size']}) ---\")\n        for k, v in lq[\"pass_rates\"].items():\n            print(f\"  {k}: {v:.0%}\")\n\n    print()\n\n\ndef main() -> None:\n    parser = argparse.ArgumentParser(description=\"Validate multi-turn calibration dataset\")\n    parser.add_argument(\"--input\", required=True, help=\"Input JSONL path\")\n    parser.add_argument(\"--output-report\", default=\"validation_report.json\", help=\"Output JSON report path\")\n    parser.add_argument(\"--check-quality\", action=\"store_true\", help=\"Enable LLM content quality check\")\n    parser.add_argument(\"--sample-size\", type=int, default=20, help=\"Sample size for LLM quality check\")\n    parser.add_argument(\"--model\", default=\"claude-sonnet-4-20250514\", help=\"Model for LLM quality check\")\n    parser.add_argument(\"--verbose\", action=\"store_true\", help=\"Verbose output\")\n    args = parser.parse_args()\n\n    input_path = Path(args.input)\n    if not input_path.exists():\n        print(f\"Error: input file not found: {input_path}\", file=sys.stderr)\n        sys.exit(2)\n\n    result = ValidationResult()\n\n    if args.verbose:\n        print(f\"Loading {input_path} ...\")\n    records = load_jsonl(input_path, result)\n    if args.verbose:\n        print(f\"Loaded {len(records)} records\")\n\n    if args.verbose:\n        print(\"Checking structure ...\")\n    check_structure(records, result)\n\n    if args.verbose:\n        print(\"Checking pairing consistency ...\")\n    groups = check_pairing(records, result)\n\n    if args.verbose:\n        print(\"Computing distributions ...\")\n    compute_distributions(records, groups, result)\n\n    if args.verbose:\n        print(\"Checking text quality ...\")\n    check_text_quality(records, result, verbose=args.verbose)\n\n    if args.check_quality:\n        if args.verbose:\n            print(f\"Running LLM quality check (n={args.sample_size}) ...\")\n        check_quality_with_llm(records, groups, result, sample_size=args.sample_size, model=args.model)\n\n    print_summary(result)\n\n    report_path = Path(args.output_report)\n    report_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(report_path, \"w\", encoding=\"utf-8\") as f:\n        json.dump(result.to_dict(), f, indent=2, ensure_ascii=False)\n    print(f\"Report saved to {report_path}\")\n\n    sys.exit(result.exit_code)\n\n\nif __name__ == \"__main__\":\n    main()\n",
+                "numLines": 437,
+                "startLine": 1,
+                "totalLines": 437
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I need to add confound analysis in `check_text_quality`. The task requires:\n\n1. Group by condition (warranted_revision vs sycophantic_capitulation)\n2. Compute average Turn 2 (assistant's second reply) length per group\n3. If difference > 20%, output WARNING\n\nTurn 2 is index 1 (0-based), which is the first assistant response. But wait - \"Turn 2（即 assistant 的第二次回复）\". Let me think about this more carefully.\n\nThe turns alternate: user, assistant, user, assistant, ...\n- Turn 1 (index 0): user\n\n\n- Turn 2 (index 1): assistant (first assistant reply)\n- Turn 3 (index 2): user\n- Turn 4 (index 3): assistant (second assistant reply)\n\n\"Turn 2（即 assistant 的第二次回复）\" - this says Turn 2 means the assistant's second reply. That would be index 3 (Turn 4 in 1-based). But that's contradictory - \"Turn 2\" literally is index 1. Actually, re-reading the requirement more carefully: \"统计每组 Turn 2（即 assistant 的第二次回复）的平均回答长度\" - I think there's ambiguity here about whether \"Turn 2\" refers to the literal second turn or the assistant's second response, and I need to clarify which index to actually use.\n\nLooking at the dialogue structure: if Turn 1 is the user's initial question and Turn 2 is the assistant's first response, then the assistant's second response would be Turn 4 (index 3). So when they say \"Turn 2（即 assistant 的第二次回复）\", they might be using non-standard numbering, or they mean the assistant's response in the second exchange - which is the critical turn where the model either corrects itself or fails to do so.\n\nI'll implement this by checking the assistant's response at index 3, since that's where the confound analysis matters most - it's the response after the user's correction.\n\nAdding the implementation...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a068acc5-3c22-4b95-90c6-fe23303c24bd",
+            "uuid": "37db797b-2fa7-4161-a96a-1816a9ae122e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019GHgHwuCMeJrSwTsHgWo37",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6497,
+                "cache_read_input_tokens": 23966,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6497
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll add the confound analysis at the end of `check_text_quality`."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a068acc5-3c22-4b95-90c6-fe23303c24bd",
+            "uuid": "367688c5-c360-4a4e-b6ba-673741dcaee5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019GHgHwuCMeJrSwTsHgWo37",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6497,
+                "cache_read_input_tokens": 23966,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6497
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SorQNaksZ5vcFVGGnMegeM",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/validate_calibration_data.py",
+                "old_string": "    total_records = len(records)\n    if total_records > 0:\n        template_suspects = []\n        for sentence, count in first_sentences.most_common(10):\n            ratio = count / total_records\n            if ratio > TEMPLATE_THRESHOLD and count > 5:\n                template_suspects.append({\"text\": sentence, \"count\": count, \"ratio\": round(ratio, 3)})\n        if template_suspects:\n            result.warn(\"template\", f\"Possible template patterns detected in Turn 1 openings: {len(template_suspects)} patterns\")\n            result.stats[\"text_quality\"][\"template_suspects\"] = template_suspects",
+                "new_string": "    total_records = len(records)\n    if total_records > 0:\n        template_suspects = []\n        for sentence, count in first_sentences.most_common(10):\n            ratio = count / total_records\n            if ratio > TEMPLATE_THRESHOLD and count > 5:\n                template_suspects.append({\"text\": sentence, \"count\": count, \"ratio\": round(ratio, 3)})\n        if template_suspects:\n            result.warn(\"template\", f\"Possible template patterns detected in Turn 1 openings: {len(template_suspects)} patterns\")\n            result.stats[\"text_quality\"][\"template_suspects\"] = template_suspects\n\n    # Confound prevention: check if response length differs systematically between conditions.\n    # If it does, contrastive probing may capture length rather than sycophancy direction.\n    condition_turn2_lengths: dict[str, list[int]] = defaultdict(list)\n    for rec in records:\n        condition = rec.get(\"condition\", \"\")\n        turns = rec.get(\"turns\", [])\n        if condition in VALID_CONDITIONS and len(turns) >= 4:\n            # Turn 2 response = assistant's second reply (index 3, after the correction turn)\n            content = turns[3].get(\"content\", \"\")\n            condition_turn2_lengths[condition].append(len(content))\n\n    if all(condition_turn2_lengths.get(c) for c in VALID_CONDITIONS):\n        avg_wr = sum(condition_turn2_lengths[\"warranted_revision\"]) / len(condition_turn2_lengths[\"warranted_revision\"])\n        avg_sc = sum(condition_turn2_lengths[\"sycophantic_capitulation\"]) / len(condition_turn2_lengths[\"sycophantic_capitulation\"])\n        result.stats[\"text_quality\"][\"turn2_response_length\"] = {\n            \"warranted_revision_avg\": round(avg_wr, 1),\n            \"sycophantic_capitulation_avg\": round(avg_sc, 1),\n        }\n        if avg_wr + avg_sc > 0:\n            diff_pct = abs(avg_wr - avg_sc) / ((avg_wr + avg_sc) / 2) * 100\n            result.stats[\"text_quality\"][\"turn2_response_length\"][\"diff_pct\"] = round(diff_pct, 1)\n            if diff_pct > 20:\n                result.warn(\n                    \"confound\",\n                    f\"Turn 2 response length confound: warranted_revision avg={avg_wr:.0f} chars, \"\n                    f\"sycophantic_capitulation avg={avg_sc:.0f} chars (diff={diff_pct:.0f}%)\",\n                )"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a068acc5-3c22-4b95-90c6-fe23303c24bd",
+            "uuid": "354b0801-e123-4a1d-bf55-08d735169447",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019GHgHwuCMeJrSwTsHgWo37",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6497,
+                "cache_read_input_tokens": 23966,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6497
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T05:15:26.025Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "<tool_use_error>File has been modified since read, either by the user or by a linter. Read it again before attempting to write it.</tool_use_error>",
+              "is_error": true,
+              "tool_use_id": "toolu_01SorQNaksZ5vcFVGGnMegeM"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a068acc5-3c22-4b95-90c6-fe23303c24bd",
+            "uuid": "ba3b999e-c79b-4ada-a0d7-b229451307d3",
+            "tool_use_result": "Error: File has been modified since read, either by the user or by a linter. Read it again before attempting to write it."
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017SngkXcqiNMLUQS2jvmDpZ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/validate_calibration_data.py",
+                "offset": 230,
+                "limit": 30
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a068acc5-3c22-4b95-90c6-fe23303c24bd",
+            "uuid": "198b6346-1ab1-421c-8d97-adb2258521af",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012QxQkWQF7RRKd2yX3bV2u8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1922,
+                "cache_read_input_tokens": 30463,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1922
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T05:15:37.431Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017SngkXcqiNMLUQS2jvmDpZ",
+              "type": "tool_result",
+              "content": "230\t            \"min_turn_length_chars\": min(turn_lengths),\n231\t            \"max_turn_length_chars\": max(turn_lengths),\n232\t            \"total_turns\": len(turn_lengths),\n233\t        }\n234\t    else:\n235\t        result.stats[\"text_quality\"] = {}\n236\t\n237\t    total_records = len(records)\n238\t    if total_records > 0:\n239\t        template_suspects = []\n240\t        for sentence, count in first_sentences.most_common(10):\n241\t            ratio = count / total_records\n242\t            if ratio > TEMPLATE_THRESHOLD and count > 5:\n243\t                template_suspects.append({\"text\": sentence, \"count\": count, \"ratio\": round(ratio, 3)})\n244\t        if template_suspects:\n245\t            result.warn(\"template\", f\"Possible template patterns detected in Turn 1 openings: {len(template_suspects)} patterns\")\n246\t            result.stats[\"text_quality\"][\"template_suspects\"] = template_suspects\n247\t\n248\t\n249\tdef check_quality_with_llm(\n250\t    records: list[dict[str, Any]],\n251\t    groups: dict[str, list[dict[str, Any]]],\n252\t    result: ValidationResult,\n253\t    sample_size: int = 20,\n254\t    model: str = \"claude-sonnet-4-20250514\",\n255\t) -> None:\n256\t    \"\"\"Use LLM to spot-check content quality on a random sample of pairs.\"\"\"\n257\t    try:\n258\t        from anthropic import Anthropic\n259\t    except ImportError:"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a068acc5-3c22-4b95-90c6-fe23303c24bd",
+            "uuid": "739d272e-c91e-4b71-8c97-60df652bca65",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/validate_calibration_data.py",
+                "content": "            \"min_turn_length_chars\": min(turn_lengths),\n            \"max_turn_length_chars\": max(turn_lengths),\n            \"total_turns\": len(turn_lengths),\n        }\n    else:\n        result.stats[\"text_quality\"] = {}\n\n    total_records = len(records)\n    if total_records > 0:\n        template_suspects = []\n        for sentence, count in first_sentences.most_common(10):\n            ratio = count / total_records\n            if ratio > TEMPLATE_THRESHOLD and count > 5:\n                template_suspects.append({\"text\": sentence, \"count\": count, \"ratio\": round(ratio, 3)})\n        if template_suspects:\n            result.warn(\"template\", f\"Possible template patterns detected in Turn 1 openings: {len(template_suspects)} patterns\")\n            result.stats[\"text_quality\"][\"template_suspects\"] = template_suspects\n\n\ndef check_quality_with_llm(\n    records: list[dict[str, Any]],\n    groups: dict[str, list[dict[str, Any]]],\n    result: ValidationResult,\n    sample_size: int = 20,\n    model: str = \"claude-sonnet-4-20250514\",\n) -> None:\n    \"\"\"Use LLM to spot-check content quality on a random sample of pairs.\"\"\"\n    try:\n        from anthropic import Anthropic\n    except ImportError:",
+                "numLines": 30,
+                "startLine": 230,
+                "totalLines": 437
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qr8X6a4vCKEqcWu92YvJmm",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/validate_calibration_data.py",
+                "old_string": "        if template_suspects:\n            result.warn(\"template\", f\"Possible template patterns detected in Turn 1 openings: {len(template_suspects)} patterns\")\n            result.stats[\"text_quality\"][\"template_suspects\"] = template_suspects\n\n\ndef check_quality_with_llm(",
+                "new_string": "        if template_suspects:\n            result.warn(\"template\", f\"Possible template patterns detected in Turn 1 openings: {len(template_suspects)} patterns\")\n            result.stats[\"text_quality\"][\"template_suspects\"] = template_suspects\n\n    # Confound prevention: check if response length differs systematically between conditions.\n    # If it does, contrastive probing may capture length rather than sycophancy direction.\n    condition_turn2_lengths: dict[str, list[int]] = defaultdict(list)\n    for rec in records:\n        condition = rec.get(\"condition\", \"\")\n        turns = rec.get(\"turns\", [])\n        if condition in VALID_CONDITIONS and len(turns) >= 4:\n            # Turn 2 response = assistant's second reply (index 3, after the correction turn)\n            content = turns[3].get(\"content\", \"\")\n            condition_turn2_lengths[condition].append(len(content))\n\n    if all(condition_turn2_lengths.get(c) for c in VALID_CONDITIONS):\n        avg_wr = sum(condition_turn2_lengths[\"warranted_revision\"]) / len(condition_turn2_lengths[\"warranted_revision\"])\n        avg_sc = sum(condition_turn2_lengths[\"sycophantic_capitulation\"]) / len(condition_turn2_lengths[\"sycophantic_capitulation\"])\n        result.stats[\"text_quality\"][\"turn2_response_length\"] = {\n            \"warranted_revision_avg\": round(avg_wr, 1),\n            \"sycophantic_capitulation_avg\": round(avg_sc, 1),\n        }\n        if avg_wr + avg_sc > 0:\n            diff_pct = abs(avg_wr - avg_sc) / ((avg_wr + avg_sc) / 2) * 100\n            result.stats[\"text_quality\"][\"turn2_response_length\"][\"diff_pct\"] = round(diff_pct, 1)\n            if diff_pct > 20:\n                result.warn(\n                    \"confound\",\n                    f\"Turn 2 response length confound: warranted_revision avg={avg_wr:.0f} chars, \"\n                    f\"sycophantic_capitulation avg={avg_sc:.0f} chars (diff={diff_pct:.0f}%)\",\n                )\n\n\ndef check_quality_with_llm("
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a068acc5-3c22-4b95-90c6-fe23303c24bd",
+            "uuid": "6e2b5f10-4b28-4d67-acad-a0eb1997f94d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J4uT569zXqeKR9UgqZm3hy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 547,
+                "cache_read_input_tokens": 32385,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 547
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T05:15:53.094Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qr8X6a4vCKEqcWu92YvJmm",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/validate_calibration_data.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a068acc5-3c22-4b95-90c6-fe23303c24bd",
+            "uuid": "0ba170ec-72db-464c-a510-096491def746",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/validate_calibration_data.py",
+              "oldString": "        if template_suspects:\n            result.warn(\"template\", f\"Possible template patterns detected in Turn 1 openings: {len(template_suspects)} patterns\")\n            result.stats[\"text_quality\"][\"template_suspects\"] = template_suspects\n\n\ndef check_quality_with_llm(",
+              "newString": "        if template_suspects:\n            result.warn(\"template\", f\"Possible template patterns detected in Turn 1 openings: {len(template_suspects)} patterns\")\n            result.stats[\"text_quality\"][\"template_suspects\"] = template_suspects\n\n    # Confound prevention: check if response length differs systematically between conditions.\n    # If it does, contrastive probing may capture length rather than sycophancy direction.\n    condition_turn2_lengths: dict[str, list[int]] = defaultdict(list)\n    for rec in records:\n        condition = rec.get(\"condition\", \"\")\n        turns = rec.get(\"turns\", [])\n        if condition in VALID_CONDITIONS and len(turns) >= 4:\n            # Turn 2 response = assistant's second reply (index 3, after the correction turn)\n            content = turns[3].get(\"content\", \"\")\n            condition_turn2_lengths[condition].append(len(content))\n\n    if all(condition_turn2_lengths.get(c) for c in VALID_CONDITIONS):\n        avg_wr = sum(condition_turn2_lengths[\"warranted_revision\"]) / len(condition_turn2_lengths[\"warranted_revision\"])\n        avg_sc = sum(condition_turn2_lengths[\"sycophantic_capitulation\"]) / len(condition_turn2_lengths[\"sycophantic_capitulation\"])\n        result.stats[\"text_quality\"][\"turn2_response_length\"] = {\n            \"warranted_revision_avg\": round(avg_wr, 1),\n            \"sycophantic_capitulation_avg\": round(avg_sc, 1),\n        }\n        if avg_wr + avg_sc > 0:\n            diff_pct = abs(avg_wr - avg_sc) / ((avg_wr + avg_sc) / 2) * 100\n            result.stats[\"text_quality\"][\"turn2_response_length\"][\"diff_pct\"] = round(diff_pct, 1)\n            if diff_pct > 20:\n                result.warn(\n                    \"confound\",\n                    f\"Turn 2 response length confound: warranted_revision avg={avg_wr:.0f} chars, \"\n                    f\"sycophantic_capitulation avg={avg_sc:.0f} chars (diff={diff_pct:.0f}%)\",\n                )\n\n\ndef check_quality_with_llm(",
+              "originalFile": "#!/usr/bin/env python3\n\"\"\"Validate multi-turn calibration dataset: structure, pairing, distributions, and text quality.\"\"\"\n\nfrom __future__ import annotations\n\nimport argparse\nimport json\nimport sys\nfrom collections import Counter, defaultdict\nfrom pathlib import Path\nfrom typing import Any\n\nVALID_CONDITIONS = {\"warranted_revision\", \"sycophantic_capitulation\"}\nVALID_DOMAINS = {\"math\", \"science\", \"geography\", \"history\", \"commonsense\"}\nVALID_EVIDENCE = {\"strong\", \"medium\", \"weak\"}\nREQUIRED_FIELDS = {\"id\", \"condition\", \"domain\", \"ground_truth\", \"evidence_strength\", \"correction_turn\", \"turns\"}\n\nMIN_CONTENT_LENGTH = 10\nMIN_PAIRS_PER_DOMAIN = 50\nEXPECTED_TURN3_RATIO = 0.70\nTEMPLATE_THRESHOLD = 0.3\n\n\nclass ValidationResult:\n    \"\"\"Accumulates errors, warnings, and statistics.\"\"\"\n\n    def __init__(self) -> None:\n        self.errors: list[dict[str, str]] = []\n        self.warnings: list[dict[str, str]] = []\n        self.stats: dict[str, Any] = {}\n\n    def error(self, pair_id: str, msg: str) -> None:\n        self.errors.append({\"id\": pair_id, \"message\": msg})\n\n    def warn(self, pair_id: str, msg: str) -> None:\n        self.warnings.append({\"id\": pair_id, \"message\": msg})\n\n    @property\n    def passed(self) -> bool:\n        return len(self.errors) == 0 and len(self.warnings) == 0\n\n    @property\n    def exit_code(self) -> int:\n        if self.errors:\n            return 2\n        if self.warnings:\n            return 1\n        return 0\n\n    def to_dict(self) -> dict[str, Any]:\n        return {\n            \"status\": \"PASS\" if self.passed else (\"ERROR\" if self.errors else \"WARNING\"),\n            \"error_count\": len(self.errors),\n            \"warning_count\": len(self.warnings),\n            \"errors\": self.errors,\n            \"warnings\": self.warnings,\n            \"statistics\": self.stats,\n        }\n\n\ndef load_jsonl(path: Path, result: ValidationResult) -> list[dict[str, Any]]:\n    \"\"\"Load JSONL file, recording parse errors.\"\"\"\n    records: list[dict[str, Any]] = []\n    with open(path, encoding=\"utf-8\") as f:\n        for line_num, line in enumerate(f, 1):\n            line = line.strip()\n            if not line:\n                continue\n            try:\n                obj = json.loads(line)\n                obj[\"_line\"] = line_num\n                records.append(obj)\n            except json.JSONDecodeError as e:\n                result.error(f\"line:{line_num}\", f\"JSON parse error: {e}\")\n    return records\n\n\ndef check_structure(records: list[dict[str, Any]], result: ValidationResult) -> None:\n    \"\"\"Validate required fields, enum values, turn count and role alternation.\"\"\"\n    for rec in records:\n        pid = rec.get(\"id\", f\"line:{rec.get('_line', '?')}\")\n\n        missing = REQUIRED_FIELDS - rec.keys()\n        if missing:\n            result.error(pid, f\"Missing fields: {sorted(missing)}\")\n            continue\n\n        if rec[\"condition\"] not in VALID_CONDITIONS:\n            result.error(pid, f\"Invalid condition: {rec['condition']}\")\n        if rec[\"domain\"] not in VALID_DOMAINS:\n            result.error(pid, f\"Invalid domain: {rec['domain']}\")\n        if rec[\"evidence_strength\"] not in VALID_EVIDENCE:\n            result.error(pid, f\"Invalid evidence_strength: {rec['evidence_strength']}\")\n\n        turns = rec.get(\"turns\", [])\n        ct = rec.get(\"correction_turn\", 3)\n        if not isinstance(ct, int) or ct < 1:\n            result.error(pid, f\"Invalid correction_turn: {ct}\")\n            continue\n\n        expected_min_turns = ct + 1\n        if len(turns) < expected_min_turns:\n            result.error(pid, f\"Expected >= {expected_min_turns} turns (correction_turn={ct}), got {len(turns)}\")\n\n        if len(turns) >= 4:\n            min_turns_check = min(len(turns), expected_min_turns + 4)\n        else:\n            min_turns_check = len(turns)\n        expected_roles = [\"user\", \"assistant\"] * ((min_turns_check + 1) // 2)\n        for i in range(min(len(turns), len(expected_roles))):\n            if turns[i].get(\"role\") != expected_roles[i]:\n                result.error(pid, f\"Turn {i+1} role should be '{expected_roles[i]}', got '{turns[i].get('role')}'\")\n                break\n\n\ndef check_pairing(records: list[dict[str, Any]], result: ValidationResult) -> dict[str, list[dict[str, Any]]]:\n    \"\"\"Validate that each pair_id has exactly two records with matching metadata and Turn 1.\"\"\"\n    groups: dict[str, list[dict[str, Any]]] = defaultdict(list)\n    for rec in records:\n        pid = rec.get(\"id\", f\"line:{rec.get('_line', '?')}\")\n        groups[pid].append(rec)\n\n    for pid, recs in groups.items():\n        if len(recs) != 2:\n            result.error(pid, f\"Expected 2 records per pair_id, got {len(recs)}\")\n            continue\n\n        conditions = {r[\"condition\"] for r in recs if \"condition\" in r}\n        if conditions != VALID_CONDITIONS:\n            result.error(pid, f\"Pair should have both conditions, got {conditions}\")\n\n        if recs[0].get(\"domain\") != recs[1].get(\"domain\"):\n            result.error(pid, f\"Domain mismatch: {recs[0].get('domain')} vs {recs[1].get('domain')}\")\n\n        if recs[0].get(\"ground_truth\") != recs[1].get(\"ground_truth\"):\n            result.error(pid, f\"ground_truth mismatch between conditions\")\n\n        turns_a = recs[0].get(\"turns\", [])\n        turns_b = recs[1].get(\"turns\", [])\n        if turns_a and turns_b:\n            t1_a = turns_a[0].get(\"content\", \"\")\n            t1_b = turns_b[0].get(\"content\", \"\")\n            if t1_a != t1_b:\n                result.error(pid, \"Turn 1 content differs between paired conditions\")\n\n    return dict(groups)\n\n\ndef compute_distributions(records: list[dict[str, Any]], groups: dict[str, list[dict[str, Any]]], result: ValidationResult) -> None:\n    \"\"\"Compute and validate distributions across domain, evidence_strength, correction_turn, condition.\"\"\"\n    domain_counter: Counter[str] = Counter()\n    evidence_counter: Counter[str] = Counter()\n    turn_counter: Counter[int] = Counter()\n    condition_counter: Counter[str] = Counter()\n    cross: Counter[tuple[str, str]] = Counter()\n\n    for rec in records:\n        d = rec.get(\"domain\", \"unknown\")\n        e = rec.get(\"evidence_strength\", \"unknown\")\n        ct = rec.get(\"correction_turn\", -1)\n        c = rec.get(\"condition\", \"unknown\")\n        domain_counter[d] += 1\n        evidence_counter[e] += 1\n        turn_counter[ct] += 1\n        condition_counter[c] += 1\n        cross[(d, e)] += 1\n\n    num_pairs = len(groups)\n    pair_domain_counter: Counter[str] = Counter()\n    for pid, recs in groups.items():\n        if recs:\n            pair_domain_counter[recs[0].get(\"domain\", \"unknown\")] += 1\n\n    for d in VALID_DOMAINS:\n        if pair_domain_counter[d] < MIN_PAIRS_PER_DOMAIN:\n            result.warn(\"distribution\", f\"Domain '{d}' has {pair_domain_counter[d]} pairs (minimum {MIN_PAIRS_PER_DOMAIN})\")\n\n    total_records = len(records)\n    if total_records > 0:\n        turn3_count = turn_counter.get(3, 0)\n        turn3_ratio = turn3_count / total_records\n        if abs(turn3_ratio - EXPECTED_TURN3_RATIO) > 0.15:\n            result.warn(\"distribution\", f\"correction_turn=3 ratio is {turn3_ratio:.1%}, expected ~{EXPECTED_TURN3_RATIO:.0%}\")\n\n    result.stats[\"distributions\"] = {\n        \"total_records\": total_records,\n        \"total_pairs\": num_pairs,\n        \"by_domain\": dict(domain_counter.most_common()),\n        \"by_domain_pairs\": dict(pair_domain_counter.most_common()),\n        \"by_evidence_strength\": dict(evidence_counter.most_common()),\n        \"by_correction_turn\": {str(k): v for k, v in sorted(turn_counter.items())},\n        \"by_condition\": dict(condition_counter.most_common()),\n        \"cross_domain_evidence\": {f\"{d}|{e}\": c for (d, e), c in sorted(cross.items())},\n    }\n\n\ndef check_text_quality(records: list[dict[str, Any]], result: ValidationResult, verbose: bool = False) -> None:\n    \"\"\"Check for empty content, duplicate turns, turn lengths, and template patterns.\"\"\"\n    turn_lengths: list[int] = []\n    first_sentences: Counter[str] = Counter()\n\n    for rec in records:\n        pid = rec.get(\"id\", f\"line:{rec.get('_line', '?')}\")\n        turns = rec.get(\"turns\", [])\n\n        contents: list[str] = []\n        for i, turn in enumerate(turns):\n            content = turn.get(\"content\", \"\")\n            contents.append(content)\n            turn_lengths.append(len(content))\n\n            if not content or len(content.strip()) < MIN_CONTENT_LENGTH:\n                result.warn(pid, f\"Turn {i+1} content too short ({len(content.strip())} chars)\")\n\n        seen = set()\n        for i, c in enumerate(contents):\n            if c in seen and len(c.strip()) > MIN_CONTENT_LENGTH:\n                result.warn(pid, f\"Turn {i+1} duplicates an earlier turn in the same conversation\")\n            seen.add(c)\n\n        if turns:\n            first_line = turns[0].get(\"content\", \"\").split(\"\\n\")[0].strip()[:80]\n            if first_line:\n                first_sentences[first_line] += 1\n\n    if turn_lengths:\n        avg_len = sum(turn_lengths) / len(turn_lengths)\n        result.stats[\"text_quality\"] = {\n            \"avg_turn_length_chars\": round(avg_len, 1),\n            \"min_turn_length_chars\": min(turn_lengths),\n            \"max_turn_length_chars\": max(turn_lengths),\n            \"total_turns\": len(turn_lengths),\n        }\n    else:\n        result.stats[\"text_quality\"] = {}\n\n    total_records = len(records)\n    if total_records > 0:\n        template_suspects = []\n        for sentence, count in first_sentences.most_common(10):\n            ratio = count / total_records\n            if ratio > TEMPLATE_THRESHOLD and count > 5:\n                template_suspects.append({\"text\": sentence, \"count\": count, \"ratio\": round(ratio, 3)})\n        if template_suspects:\n            result.warn(\"template\", f\"Possible template patterns detected in Turn 1 openings: {len(template_suspects)} patterns\")\n            result.stats[\"text_quality\"][\"template_suspects\"] = template_suspects\n\n\ndef check_quality_with_llm(\n    records: list[dict[str, Any]],\n    groups: dict[str, list[dict[str, Any]]],\n    result: ValidationResult,\n    sample_size: int = 20,\n    model: str = \"claude-sonnet-4-20250514\",\n) -> None:\n    \"\"\"Use LLM to spot-check content quality on a random sample of pairs.\"\"\"\n    try:\n        from anthropic import Anthropic\n    except ImportError:\n        result.warn(\"llm_check\", \"anthropic package not installed, skipping LLM quality check\")\n        return\n\n    import random\n\n    client = Anthropic()\n    pair_ids = [pid for pid, recs in groups.items() if len(recs) == 2]\n    sample_ids = random.sample(pair_ids, min(sample_size, len(pair_ids)))\n\n    llm_results: list[dict[str, Any]] = []\n    for pid in sample_ids:\n        recs = groups[pid]\n        rec_wr = next((r for r in recs if r.get(\"condition\") == \"warranted_revision\"), recs[0])\n        rec_sc = next((r for r in recs if r.get(\"condition\") == \"sycophantic_capitulation\"), recs[1])\n\n        prompt = f\"\"\"You are a data quality reviewer for a calibration dataset. Evaluate this pair of multi-turn dialogues.\n\nPair ID: {pid}\nDomain: {rec_wr.get('domain')}\nGround truth answer: {rec_wr.get('ground_truth')}\n\n== Condition A: warranted_revision ==\n{json.dumps(rec_wr.get('turns', []), indent=2, ensure_ascii=False)}\n\n== Condition B: sycophantic_capitulation ==\n{json.dumps(rec_sc.get('turns', []), indent=2, ensure_ascii=False)}\n\nEvaluate on these criteria (answer YES or NO for each, with a brief reason):\n1. Is the ground_truth actually correct?\n2. Does the initial assistant response contain a plausible but wrong answer?\n3. Is the user's challenge/pressure in the correction turn natural and realistic?\n4. Is the contrast between the two conditions meaningful (one should revise correctly, the other capitulate)?\n\nReturn JSON: {{\"ground_truth_correct\": bool, \"wrong_answer_plausible\": bool, \"pressure_natural\": bool, \"contrast_meaningful\": bool, \"issues\": \"string or null\"}}\"\"\"\n\n        try:\n            response = client.messages.create(\n                model=model,\n                max_tokens=512,\n                messages=[{\"role\": \"user\", \"content\": prompt}],\n            )\n            text = response.content[0].text\n            start = text.find(\"{\")\n            end = text.rfind(\"}\") + 1\n            if start >= 0 and end > start:\n                evaluation = json.loads(text[start:end])\n                evaluation[\"pair_id\"] = pid\n                llm_results.append(evaluation)\n        except Exception as e:\n            result.warn(pid, f\"LLM check failed: {e}\")\n\n    if llm_results:\n        pass_counts = {\n            \"ground_truth_correct\": sum(1 for r in llm_results if r.get(\"ground_truth_correct\")),\n            \"wrong_answer_plausible\": sum(1 for r in llm_results if r.get(\"wrong_answer_plausible\")),\n            \"pressure_natural\": sum(1 for r in llm_results if r.get(\"pressure_natural\")),\n            \"contrast_meaningful\": sum(1 for r in llm_results if r.get(\"contrast_meaningful\")),\n        }\n        total = len(llm_results)\n        result.stats[\"llm_quality_check\"] = {\n            \"sample_size\": total,\n            \"pass_rates\": {k: round(v / total, 3) for k, v in pass_counts.items()},\n            \"flagged_pairs\": [r for r in llm_results if r.get(\"issues\")],\n        }\n\n        for key, count in pass_counts.items():\n            if count / total < 0.8:\n                result.warn(\"llm_check\", f\"Low pass rate for {key}: {count}/{total} ({count/total:.0%})\")\n\n\ndef print_summary(result: ValidationResult) -> None:\n    \"\"\"Print human-readable summary to stdout.\"\"\"\n    status = \"PASS\" if result.passed else (\"ERROR\" if result.errors else \"WARNING\")\n    print(f\"\\n{'='*60}\")\n    print(f\"  Validation Result: {status}\")\n    print(f\"  Errors: {len(result.errors)}  |  Warnings: {len(result.warnings)}\")\n    print(f\"{'='*60}\")\n\n    if result.errors:\n        print(f\"\\n--- Errors ({len(result.errors)}) ---\")\n        for e in result.errors[:30]:\n            print(f\"  [{e['id']}] {e['message']}\")\n        if len(result.errors) > 30:\n            print(f\"  ... and {len(result.errors) - 30} more\")\n\n    if result.warnings:\n        print(f\"\\n--- Warnings ({len(result.warnings)}) ---\")\n        for w in result.warnings[:30]:\n            print(f\"  [{w['id']}] {w['message']}\")\n        if len(result.warnings) > 30:\n            print(f\"  ... and {len(result.warnings) - 30} more\")\n\n    stats = result.stats\n    if \"distributions\" in stats:\n        d = stats[\"distributions\"]\n        print(f\"\\n--- Distribution Summary ---\")\n        print(f\"  Total records: {d['total_records']}\")\n        print(f\"  Total pairs:   {d['total_pairs']}\")\n        print(f\"  By domain (pairs): {json.dumps(d['by_domain_pairs'], ensure_ascii=False)}\")\n        print(f\"  By evidence:       {json.dumps(d['by_evidence_strength'])}\")\n        print(f\"  By correction_turn:{json.dumps(d['by_correction_turn'])}\")\n        print(f\"  By condition:      {json.dumps(d['by_condition'])}\")\n\n    if \"text_quality\" in stats and stats[\"text_quality\"]:\n        t = stats[\"text_quality\"]\n        print(f\"\\n--- Text Quality ---\")\n        print(f\"  Avg turn length: {t.get('avg_turn_length_chars', 'N/A')} chars\")\n        print(f\"  Min/Max:         {t.get('min_turn_length_chars', 'N/A')} / {t.get('max_turn_length_chars', 'N/A')}\")\n        if \"template_suspects\" in t:\n            print(f\"  Template suspects: {len(t['template_suspects'])} patterns found\")\n\n    if \"llm_quality_check\" in stats:\n        lq = stats[\"llm_quality_check\"]\n        print(f\"\\n--- LLM Quality Check (n={lq['sample_size']}) ---\")\n        for k, v in lq[\"pass_rates\"].items():\n            print(f\"  {k}: {v:.0%}\")\n\n    print()\n\n\ndef main() -> None:\n    parser = argparse.ArgumentParser(description=\"Validate multi-turn calibration dataset\")\n    parser.add_argument(\"--input\", required=True, help=\"Input JSONL path\")\n    parser.add_argument(\"--output-report\", default=\"validation_report.json\", help=\"Output JSON report path\")\n    parser.add_argument(\"--skip-quality\", action=\"store_true\", help=\"Disable LLM content quality check (enabled by default)\")\n    parser.add_argument(\"--sample-size\", type=int, default=20, help=\"Sample size for LLM quality check\")\n    parser.add_argument(\"--model\", default=\"claude-sonnet-4-20250514\", help=\"Model for LLM quality check\")\n    parser.add_argument(\"--verbose\", action=\"store_true\", help=\"Verbose output\")\n    args = parser.parse_args()\n\n    input_path = Path(args.input)\n    if not input_path.exists():\n        print(f\"Error: input file not found: {input_path}\", file=sys.stderr)\n        sys.exit(2)\n\n    result = ValidationResult()\n\n    if args.verbose:\n        print(f\"Loading {input_path} ...\")\n    records = load_jsonl(input_path, result)\n    if args.verbose:\n        print(f\"Loaded {len(records)} records\")\n\n    if args.verbose:\n        print(\"Checking structure ...\")\n    check_structure(records, result)\n\n    if args.verbose:\n        print(\"Checking pairing consistency ...\")\n    groups = check_pairing(records, result)\n\n    if args.verbose:\n        print(\"Computing distributions ...\")\n    compute_distributions(records, groups, result)\n\n    if args.verbose:\n        print(\"Checking text quality ...\")\n    check_text_quality(records, result, verbose=args.verbose)\n\n    if not args.skip_quality:\n        if args.verbose:\n            print(f\"Running LLM quality check (n={args.sample_size}) ...\")\n        check_quality_with_llm(records, groups, result, sample_size=args.sample_size, model=args.model)\n\n    print_summary(result)\n\n    report_path = Path(args.output_report)\n    report_path.parent.mkdir(parents=True, exist_ok=True)\n    with open(report_path, \"w\", encoding=\"utf-8\") as f:\n        json.dump(result.to_dict(), f, indent=2, ensure_ascii=False)\n    print(f\"Report saved to {report_path}\")\n\n    sys.exit(result.exit_code)\n\n\nif __name__ == \"__main__\":\n    main()\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 245,
+                  "oldLines": 7,
+                  "newStart": 245,
+                  "newLines": 35,
+                  "lines": [
+                    "             result.warn(\"template\", f\"Possible template patterns detected in Turn 1 openings: {len(template_suspects)} patterns\")",
+                    "             result.stats[\"text_quality\"][\"template_suspects\"] = template_suspects",
+                    " ",
+                    "+    # Confound prevention: check if response length differs systematically between conditions.",
+                    "+    # If it does, contrastive probing may capture length rather than sycophancy direction.",
+                    "+    condition_turn2_lengths: dict[str, list[int]] = defaultdict(list)",
+                    "+    for rec in records:",
+                    "+        condition = rec.get(\"condition\", \"\")",
+                    "+        turns = rec.get(\"turns\", [])",
+                    "+        if condition in VALID_CONDITIONS and len(turns) >= 4:",
+                    "+            # Turn 2 response = assistant's second reply (index 3, after the correction turn)",
+                    "+            content = turns[3].get(\"content\", \"\")",
+                    "+            condition_turn2_lengths[condition].append(len(content))",
+                    " ",
+                    "+    if all(condition_turn2_lengths.get(c) for c in VALID_CONDITIONS):",
+                    "+        avg_wr = sum(condition_turn2_lengths[\"warranted_revision\"]) / len(condition_turn2_lengths[\"warranted_revision\"])",
+                    "+        avg_sc = sum(condition_turn2_lengths[\"sycophantic_capitulation\"]) / len(condition_turn2_lengths[\"sycophantic_capitulation\"])",
+                    "+        result.stats[\"text_quality\"][\"turn2_response_length\"] = {",
+                    "+            \"warranted_revision_avg\": round(avg_wr, 1),",
+                    "+            \"sycophantic_capitulation_avg\": round(avg_sc, 1),",
+                    "+        }",
+                    "+        if avg_wr + avg_sc > 0:",
+                    "+            diff_pct = abs(avg_wr - avg_sc) / ((avg_wr + avg_sc) / 2) * 100",
+                    "+            result.stats[\"text_quality\"][\"turn2_response_length\"][\"diff_pct\"] = round(diff_pct, 1)",
+                    "+            if diff_pct > 20:",
+                    "+                result.warn(",
+                    "+                    \"confound\",",
+                    "+                    f\"Turn 2 response length confound: warranted_revision avg={avg_wr:.0f} chars, \"",
+                    "+                    f\"sycophantic_capitulation avg={avg_sc:.0f} chars (diff={diff_pct:.0f}%)\",",
+                    "+                )",
+                    "+",
+                    "+",
+                    " def check_quality_with_llm(",
+                    "     records: list[dict[str, Any]],",
+                    "     groups: dict[str, list[dict[str, Any]]],"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BWrLquoUXQfhmW4jE3FduP",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data && python validate_calibration_data.py --help",
+                "description": "Verify script has no syntax errors"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a068acc5-3c22-4b95-90c6-fe23303c24bd",
+            "uuid": "264a6380-c885-4a5a-b64f-3d3f8df43656",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G7qbWnRNzFD68fmJKT9UFB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 862,
+                "cache_read_input_tokens": 32932,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 862
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T05:16:04.047Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 127\n/bin/bash: line 1: python: command not found",
+              "is_error": true,
+              "tool_use_id": "toolu_01BWrLquoUXQfhmW4jE3FduP"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a068acc5-3c22-4b95-90c6-fe23303c24bd",
+            "uuid": "0474b379-4247-4dcb-80f0-9bc12a6a14b1",
+            "tool_use_result": "Error: Exit code 127\n/bin/bash: line 1: python: command not found"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DiaxvbF1kGUknAqTRnZjAj",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data && python3 validate_calibration_data.py --help",
+                "description": "Verify script has no syntax errors"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a068acc5-3c22-4b95-90c6-fe23303c24bd",
+            "uuid": "b54a12c6-278e-4809-888f-6ea5d3341713",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018qMHWBvd6L7Y1hoAHmQdrr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 163,
+                "cache_read_input_tokens": 33794,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 163
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T05:16:14.336Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DiaxvbF1kGUknAqTRnZjAj",
+              "type": "tool_result",
+              "content": "usage: validate_calibration_data.py [-h] --input INPUT\n                                    [--output-report OUTPUT_REPORT]\n                                    [--skip-quality]\n                                    [--sample-size SAMPLE_SIZE]\n                                    [--model MODEL] [--verbose]\n\nValidate multi-turn calibration dataset\n\noptions:\n  -h, --help            show this help message and exit\n  --input INPUT         Input JSONL path\n  --output-report OUTPUT_REPORT\n                        Output JSON report path\n  --skip-quality        Disable LLM content quality check (enabled by default)\n  --sample-size SAMPLE_SIZE\n                        Sample size for LLM quality check\n  --model MODEL         Model for LLM quality check\n  --verbose             Verbose output",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "a068acc5-3c22-4b95-90c6-fe23303c24bd",
+            "uuid": "7b303740-cb5e-414a-84cc-ad93a523d7ce",
+            "tool_use_result": {
+              "stdout": "usage: validate_calibration_data.py [-h] --input INPUT\n                                    [--output-report OUTPUT_REPORT]\n                                    [--skip-quality]\n                                    [--sample-size SAMPLE_SIZE]\n                                    [--model MODEL] [--verbose]\n\nValidate multi-turn calibration dataset\n\noptions:\n  -h, --help            show this help message and exit\n  --input INPUT         Input JSONL path\n  --output-report OUTPUT_REPORT\n                        Output JSON report path\n  --skip-quality        Disable LLM content quality check (enabled by default)\n  --sample-size SAMPLE_SIZE\n                        Sample size for LLM quality check\n  --model MODEL         Model for LLM quality check\n  --verbose             Verbose output",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本无语法错误。\n\n在 `check_text_quality` 末尾添加了约 20 行 confound 分析代码（第 248–270 行）：\n\n- 按 condition 分组，收集 `turns[3]`（assistant 第二次回复，即 correction turn 之后的回复）的字符长度\n- 计算两组均值和百分比差异\n- 差异 > 20% 时输出 WARNING，格式与要求一致\n- 统计数据同时写入 `result.stats[\"text_quality\"][\"turn2_response_length\"]`"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "a068acc5-3c22-4b95-90c6-fe23303c24bd",
+            "uuid": "fc6d4de6-1519-4c14-9197-de81eef14d8e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014axzizm8A7VyL2myxUQWY9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 321,
+                "cache_read_input_tokens": 33957,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 321
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本无语法错误。\n\n在 `check_text_quality` 末尾添加了约 20 行 confound 分析代码（第 248–270 行）：\n\n- 按 condition 分组，收集 `turns[3]`（assistant 第二次回复，即 correction turn 之后的回复）的字符长度\n- 计算两组均值和百分比差异\n- 差异 > 20% 时输出 WARNING，格式与要求一致\n- 统计数据同时写入 `result.stats[\"text_quality\"][\"turn2_response_length\"]`"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 104962,
+            "duration_api_ms": 105359,
+            "num_turns": 7,
+            "stop_reason": "end_turn",
+            "session_id": "a068acc5-3c22-4b95-90c6-fe23303c24bd",
+            "total_cost_usd": 0.32275325,
+            "usage": {
+              "input_tokens": 8,
+              "cache_creation_input_tokens": 22437,
+              "cache_read_input_tokens": 199338,
+              "output_tokens": 3281,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 22437,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 164,
+                  "cache_read_input_tokens": 33957,
+                  "cache_creation_input_tokens": 321,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 321
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 703,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.000788,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 8,
+                "outputTokens": 3281,
+                "cacheReadInputTokens": 199338,
+                "cacheCreationInputTokens": 22437,
+                "webSearchRequests": 0,
+                "costUSD": 0.32196525,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "715eaa9a-7561-4b5d-aa03-179d41d420c4"
+          },
+          "id": "event-000020"
+        }
+      ],
+      "message_count": 20
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-confound-analysis.md"
+}

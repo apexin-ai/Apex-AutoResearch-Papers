@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8db3085a117f95648b8f",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "cleanup westd29046 old logs",
+  "task_key": "worker_cleanup_westd29046-old-logs_20260518T170959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_westd29046-old-logs_20260518T170959_result.json",
+    "occurrence": 1,
+    "bytes": 129,
+    "sha256": "46edc06be3ab305eedd8e2c48ca69a44497284b924f17d2260b11e33b2a0e935"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已删除：\n- `restart_run.log`\n- `restart2_run.log`\n\n`exp002/` 目录现在为空，无其他文件残留。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cleanup-westd29046-old-logs.md"
+}

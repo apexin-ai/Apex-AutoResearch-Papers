@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be6051eeba09b242a5b3",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code llama probe ablation",
+  "task_key": "worker_code_llama-probe-ablation_20260520T082413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-probe-ablation_20260520T082413_result.json",
+    "occurrence": 1,
+    "bytes": 962,
+    "sha256": "d3369452cdae1024b20a49f293735a7063568e13f6b41334f370767cc0887211"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行完成。结果已保存到 `/root/contrastive_entrain_calib/results/exp012_probe_ablation/results.json`。\n\n## 结果\n\n| Metric | Llama-3-8B | Qwen | \n|---|---|---|\n| d_syc best layer | L16 | L19 |\n| d_syc best layer AUROC | 0.778 | 0.817 |\n| d_syc multi-layer AUROC | 0.813 | 0.835 |\n| Random direction AUROC | 0.530 ± 0.054 | 0.727 ± 0.017 |\n| **Gap (d_syc − random)** | **+0.248** | **+0.108** |\n\n关键发现：\n\n1. **Llama 的 probe ablation gap 比 Qwen 更大** (+0.248 vs +0.108)——d_syc 方向的信息特异性在 Llama 上更强。\n\n2. **随机方向在 Llama 上接近 chance** (0.53)，而 Qwen 上随机方向自带较高 baseline (0.73)。这说明 Qwen 的激活空间更均匀地编码了 sycophancy 信号，而 Llama 的 sycophancy 信号更集中在特定方向上。\n\n3. d_syc 方向本身的绝对判别力 Llama (0.778) 略低于 Qwen (0.817)，但相对于 random baseline 的优势更大。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama-probe-ablation.md"
+}

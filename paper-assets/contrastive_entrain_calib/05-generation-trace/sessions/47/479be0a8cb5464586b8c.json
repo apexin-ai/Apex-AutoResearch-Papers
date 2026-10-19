@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "479be0a8cb5464586b8c",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops post restart4 status 28034",
+  "task_key": "worker_ops_post-restart4-status-28034_20260519T135144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_post-restart4-status-28034_20260519T135144_result.json",
+    "occurrence": 1,
+    "bytes": 1848,
+    "sha256": "ba8fdee624b6ff35b3bbcef407b9e3131e50f3b773fe394e813fc3ab342a0ad4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-28034 任务状态汇总\n\n### GPU 状态\n| GPU | 利用率 | 显存 | 任务 |\n|-----|--------|------|------|\n| 0 | 13% | 17660/32607 MiB | exp-004 eval |\n| 1 | 100% | 31432/32607 MiB | exp-008v3 training |\n| 2 | 0% | 30670/32607 MiB | exp-008v3 training (DeepSpeed rank 1) |\n| 3 | 0% | 16508/32607 MiB | exp-016 re-eval |\n\n---\n\n### 1. exp-004 eval (GPU 0) — 运行中\n- **PID**: 136205，进程存活\n- **当前**: checkpoint-500, **140/362** pairs (~39%)\n- **启动**: 21:35 UTC\n- **每 checkpoint 约 60 min**，还有 checkpoint-2000 和 checkpoint-8000 待跑\n- **结果目录**: `eval/results/` 不存在，结果尚未保存（每个 checkpoint 完成后才写）\n- **ETA**: 约 3 小时完成全部 3 个 checkpoint\n\n### 2. exp-016 ActAdd re-eval (GPU 3) — 运行中\n- **5 个 alpha**: [0.0, 0.5, 1.0, 2.0, 5.0]，每个约 60 min\n- **已完成**: alpha=0.0, 0.5, 1.0（3/5）\n- **当前**: alpha=2.0, **80/362** (~22%), 开始于 21:33 UTC\n- **待跑**: alpha=5.0\n- **结果目录**: `results/exp016_unified_reeval/` 空——脚本在全部 alpha 跑完后才统一保存\n- **ETA**: alpha=2.0 剩余~45min + alpha=5.0 ~60min ≈ **~105 min**（约 23:35 UTC）\n\n### 3. exp-008v3 training (GPU 1+2) — 运行中\n- **PID**: 103925 (deepspeed), tmux session `exp-008v3` 存活\n- **进度**: step **1277/8000** (16%)\n- **速度**: ~21s/step\n- **启动**: 14:40 UTC（已跑 ~7h10m）\n- **Rewards (最近)**:\n  - combined_mean 在 0.34–0.66 区间波动\n  - r1_mean: 0.0–0.5, r2_mean: 持续 0.0, r3_mean: 0.32–0.84\n- **ETA**: 剩余 6723 steps × 21s ≈ **~39 小时**（约 5月21日 13:00 UTC）\n\n---\n\n**总结**: 3 个任务全部在服务重启后存活。exp-016 最快完成（~1.5h），exp-004 约 3h，exp-008v3 约 39h。r2_mean 持续为 0 值得关注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-post-restart4-status-28034.md"
+}

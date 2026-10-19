@@ -1,0 +1,364 @@
+{
+  "schema_version": "1.0",
+  "id": "58038b6d372adc84e197",
+  "project": "contrastive_entrain_calib",
+  "kind": "conversation",
+  "title": "paper writing cosine failure",
+  "task_key": "worker_paper_writing_cosine_failure_20260520T074932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_writing_cosine_failure_20260520T074932.jsonl",
+    "occurrence": 1,
+    "bytes": 24627,
+    "sha256": "26577fd07229c47b373520bc3f23764faec628406de2a7257e98071ac8456c07"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T07:51:03.215590+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_cosine_failure_20260520T074932",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T07:51:03.216221+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 5709 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_cosine_failure_20260520T074932",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T07:51:03.216430+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_cosine_failure_20260520T074932",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T07:51:03.216808+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: latex-paper\n3\tdescription: ML 顶会论文 LaTeX 写作全流程——Claim-Evidence 方法论、引用防幻觉、顶会模板速查、投稿工程链、会议转投。写论文/投稿时参考。\n4\tscope: global\n5\ttags:\n6\t- latex\n7\t- paper-writing\n8\t- academic\n9\t- citation\n10\t- submission\n11\tversion: 1\n12\troles:\n13\t- agent\n14\t- worker\n15\t---\n16\t\n17\t# LaTeX 论文写作全流程\n18\t\n19\tML/AI 顶会论文从草稿到投稿的完整指南。整合 Orchestra Research、VibeSkills、claim2evidence 三方最佳实践。\n20\t\n21\t---\n22\t\n23\t## 1. 工作模式\n24\t\n25\t开始前选择模式：\n26\t\n27\t| 模式 | 说明 | 适用 |\n28\t|------|------|------|\n29\t| **Build** | 从实验笔记/结果/代码生成论文 | 新稿 |\n30\t| **Improve** | 改写已有章节，强化论证 | 修改稿 |\n31\t| **Audit** | 输出风险列表 + 缺失证据 + 修复建议 | 投前检查 |\n32\t\n33\t---\n34\t\n35\t## 2. Claim-Evidence 方法论\n36\t\n37\t**核心原则：论文是一个有中心贡献的故事，不是实验的堆砌。**\n38\t\n39\t### 2.1 一句话贡献\n40\t\n41\t在写任何内容之前，必须能用一句话说清贡献。如果不能，说明还没准备好写论文。\n42\t\n43\t### 2.2 Claim-Evidence Map\n44\t\n45\t为每个 contribution 建立 claim→evidence 映射表：\n46\t\n47\t| Contribution | Claim | Evidence | Table/Figure |\n48\t|-------------|-------|----------|-------------|\n49\t| C1: 方法 X 在 Y 上 SOTA | 比所有 baseline 高 ≥2% | 5-seed 平均，p<0.05 | Table 1 |\n50\t| C2: 消融证明 Z 是关键 | 去掉 Z 后掉 >5% | 消融实验 | Table 2 |\n51\t| C3: 计算效率 | 比 baseline 快 3× | FLOPs + wall-clock | Figure 3 |\n52\t\n53\t**没有直接证据支撑的 claim 必须删除或降级为 discussion。**\n54\t\n55\t### 2.3 章节起草顺序\n56\t\n57\t```\n58\t1. Introduction + Experiments（先确定 claim 和 evidence）\n59\t2. Method（评估问题稳定后再写细节）\n60\t3. Related Work\n61\t4. Abstract + Title（核心 claim 定型后最后写）\n62\t```\n63\t\n64\t### 2.4 Quality Gates\n65\t\n66\t投稿前必须通过：\n67\t- [ ] 前两段出现显式 novelty 声明\n68\t- [ ] 每个 contribution 有可验证的 evidence\n69\t- [ ] Abstract / Intro / Conclusion 的 claim 一致\n70\t- [ ] Limitations 真实且技术性诚实\n71\t- [ ] 审稿人两分钟内能识别 delta\n72\t\n73\t---\n74\t\n75\t## 3. 引用防幻觉（CRITICAL）\n76\t\n77\t**AI 生成引用有 ~40% 错误率。绝对禁止凭记忆写 BibTeX。**\n78\t\n79\t### 3.1 黄金法则\n80\t\n81\t```\n82\tIF 无法程序化获取引用:\n83\t    → 标记 [CITATION NEEDED] 或 \\cite{PLACEHOLDER_verify}\n84\t    → 明确告知用户\n85\t    → 绝不编造看似合理的引用\n86\t```\n87\t\n88\t### 3.2 五步验证流程\n89\t\n90\t```\n91\t1. SEARCH  → Semantic Scholar API 搜索关键词\n92\t2. VERIFY  → 至少 2 个来源确认论文存在（S2 + arXiv/CrossRef）\n93\t3. RETRIEVE → 通过 DOI 获取 BibTeX（程序化，非记忆）\n94\t4. CHECK   → 确认\n…[truncated 7201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_cosine_failure_20260520T074932",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T07:51:03.217070+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_cosine_failure_20260520T074932",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/*.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T07:51:03.217269+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/sections/framework.tex\ndocs/paper/sections/direction_quality.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_cosine_failure_20260520T074932",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T07:51:03.217460+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_cosine_failure_20260520T074932",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/framework.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T07:51:03.217652+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experimental Framework}\n2\t\\label{sec:framework}\n3\t\n4\tThis section establishes the notation, experimental components, and evaluation protocol used throughout the paper.\n5\tWe first describe how the contrastive sycophancy direction $\\dsyc$ is extracted (\\S\\ref{ssec:extraction}), then define three reward formulations that incorporate $\\dsyc$ into GRPO training (\\S\\ref{ssec:reward}), explain the online recalibration procedure (\\S\\ref{ssec:recalib}), and finally specify the evaluation metrics (\\S\\ref{ssec:eval}).\n6\t\n7\t\\subsection{Direction Extraction}\n8\t\\label{ssec:extraction}\n9\t\n10\tWe extract a linear sycophancy direction $\\dsyc$ from the residual stream of a target model using contrastive activation pairs.\n11\tEach pair consists of two model responses to the same user challenge: a \\emph{valid correction}, in which the model appropriately revises its earlier answer upon receiving well-supported counter-evidence, and a \\emph{sycophantic capitulation}, in which the model abandons a correct answer under social pressure without adequate evidential warrant.\n12\t\n13\tTo isolate the cognitive signal from surface-level linguistic variation, we apply style control: both responses in each pair are generated with matched hedging patterns, politeness markers, and response length, so that $\\dsyc$ reflects the distinction between warranted and unwarranted belief change rather than stylistic differences.\n14\tConcretely, we construct 362 style-controlled contrastive activations from 181 paired examples stratified across three evidence-strength levels (weak, medium, strong).\n15\t\n16\tGiven a target layer $\\ell$, let $\\mathbf{h}^{+}_i$ denote the residual-stream activation for the $i$-th valid correction and $\\mathbf{h}^{-}_i$ for the corresponding sycophantic capitulation.\n17\tThe sycophancy direction is the mean difference:\n18\t\\begin{equation}\n19\t\\label{eq:dsyc}\n20\t\\dsyc = \\frac{1}{N}\\sum_{i=1}^{N}\\left(\\mathbf{h}^{+}_i - \\mathbf{h}^{-}_i\\right)\n21\t\\end{equation}\n22\twhere $N{=}181$ \n…[truncated 4916 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_cosine_failure_20260520T074932",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T07:51:03.217802+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_cosine_failure_20260520T074932",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/direction_quality.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T07:51:03.218035+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Direction Discriminability}\n2\t\\label{sec:direction_quality}\n3\t\n4\tBefore evaluating $\\dsyc$ as a reward signal (\\S\\ref{sec:cosine_failure}--\\S\\ref{sec:probe_trap}), we first establish that it captures a genuine sycophancy-related signal in the residual stream.\n5\tIf the direction failed to discriminate sycophantic from non-sycophantic activations, downstream reward failures would be trivially explained by poor direction quality rather than by a fundamental gap between discriminability and reward utility.\n6\tWe evaluate discriminability along five axes: cross-validated classification accuracy, evidence-strength stratification, cross-model transfer, training stability, and probe ablation.\n7\tFigure~\\ref{fig:direction_quality} summarizes the per-layer AUROC profiles for both models.\n8\t\n9\t\\paragraph{Qwen3-8B layer-wise discriminability.}\n10\tWe evaluate $\\dsyc$ via 5-fold cross-validated AUROC on 181 style-controlled contrastive pairs (\\S\\ref{ssec:extraction}).\n11\tThe direction achieves AUROC $0.827 \\pm 0.028$ at its best layer (L19).\n12\tDiscriminability emerges gradually across depth: layers L0--L8 perform near chance, statistical significance ($p < 0.01$) first appears at L16, and performance peaks at L19.\n13\tThis gradual emergence, with the peak in the upper third of the network, suggests that sycophancy-relevant information is encoded as a late-stage representation rather than an input-level confound.\n14\tThe direction also captures evidential granularity.\n15\tAUROC rises monotonically from 0.675 on weak-evidence pairs to 0.883 on medium and 0.929 on strong pairs.\n16\tThis gradient indicates that $\\dsyc$ encodes the degree of evidential warrant, not merely a binary sycophancy label.\n17\t\n18\t\\paragraph{Cross-model generalization.}\n19\tTo rule out that these results are specific to Qwen3-8B's representation geometry, we repeat the full extraction and evaluation pipeline on Llama-3-8B-Instruct.\n20\tTable~\\ref{tab:cross_model} compares the two models.\n21\tLlama-3-8B achi\n…[truncated 2874 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_cosine_failure_20260520T074932",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T07:51:03.218259+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_cosine_failure_20260520T074932",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/cosine_failure.tex",
+              "content": "\\section{Cosine \\texorpdfstring{$\\rone$}{R1}: Structural Failure}\n\\label{sec:cosine_failure}\n\nSection~\\ref{sec:direction_quality} established that $\\dsyc$ achieves AUROC 0.827 on Qwen3-8B and generalizes across models.\nWe now test whether this discriminability translates into a viable GRPO reward signal.\nThis section reports four configurations (F1a--F1d) that form a systematic diagnostic chain: each configuration resolves the failure mode of its predecessor but exposes a deeper structural limitation.\nTable~\\ref{tab:cosine_chain} summarizes the chain; Figure~\\ref{fig:cosine_failure} visualizes the training dynamics.\n\n\\begin{table}[t]\n\\centering\n\\caption{Cosine $\\rone$ failure chain. Each configuration addresses the preceding failure but reveals a more fundamental limitation. All experiments use Qwen3-8B with LoRA (rank$=$64) and GRPO with $R = w_1 \\cdot \\rone + w_3 \\cdot \\rthree$.}\n\\label{tab:cosine_chain}\n\\begin{tabular}{lllll}\n\\toprule\nConfig & $\\rone$ Formula & $w_1$ & Outcome & Root Cause \\\\\n\\midrule\nF1a & $\\tanh(\\mathbf{h}\\cdot\\dsyc/20)$ & 0.25 & Gate saturation & Norm mismatch \\\\\nF1b & $\\cos(\\mathbf{h},\\, \\dsyc)$ & 0.25 & $\\rone \\approx 0$ & Gap too small \\\\\nF1c & +recalibration & 0.25 & Mode collapse & Reward discontinuity \\\\\nF1d & $5\\cos(\\mathbf{h},\\, \\dsyc)$ & 0.40 & Mode collapse & $\\rthree$ saturation + noise \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{F1a: Tanh gate saturation (exp-002).}\nThe initial configuration defines $\\rone = \\tanh(\\mathbf{h} \\cdot \\dsyc / 20)$ with $w_1{=}0.25$, $w_3{=}0.75$.\nThe dot product formulation preserves directional sensitivity but is not scale-invariant: activation norms in the residual stream range from $100{\\times}$ to $1{,}200{\\times}$ the direction norm across layers.\nThis norm mismatch drives the pre-activation into the saturated tails of tanh, where the gradient vanishes.\nBy step 955, $\\rone$ contributes effectively zero gradient to the combined reward, and training was terminated.\nSubsequent weight adjustments ($w_1{=}0.15$, $w_3{=}0.65$) did not resolve the saturation because the pre-activation magnitude, not the weight, controls the gate.\nThe diagnostic conclusion is clear: any formulation that passes raw dot products through a bounded nonlinearity will saturate in high-norm activation spaces.\nCosine similarity, which normalizes by both norms, is the natural alternative.\n\n\\paragraph{F1b: Raw cosine signal too weak (exp-002v2).}\nReplacing the dot product with cosine similarity ($\\rone = \\cos(\\mathbf{h},\\, \\dsyc)$) eliminates the norm dependence.\nHowever, the cosine gap between valid corrections and sycophantic capitulations is only 0.098 when averaged across the seven highest-AUROC layers.\nWith $w_1{=}0.25$, this yields an effective $\\rone$ contribution of approximately $0.025$ per token, a signal that is negligible relative to $\\rthree$ variance.\nThroughout training, $\\rone \\approx 0$, and the combined reward $R$ is functionally equivalent to $w_3 \\cdot \\rthree$ alone.\nTraining was terminated after confirming that the sycophancy component exerts no measurable influence on policy updates.\nThe failure isolates a quantitative limitation: the cosine projection of $\\dsyc$ onto individual activations produces a gap too narrow to generate meaningful reward contrast between sycophantic and non-sycophantic completions.\n\n\\paragraph{F1c: Recalibration induces mode collapse (exp002v2-recalib).}\nOne hypothesis for the weak signal in F1b is that $\\dsyc$ drifts during LoRA training, eroding the already-small gap.\nTo test this, we resume from the exp-002v2 checkpoint at step 500 and enable the online recalibration procedure described in \\S\\ref{ssec:recalib}, re-extracting $\\dsyc$ every 500 steps.\nRecalibration increases the offline AUROC from 0.82 to 0.91, confirming that the refreshed direction better separates the updated activations.\nTraining collapses nonetheless.\nWithin 300 steps of the first recalibration event, the policy degenerates into a low-entropy mode: generation entropy drops to 0.069, and mean response length contracts to 62 tokens.\nThe mechanism is a reward discontinuity at the recalibration boundary.\nWhen $\\dsyc$ is replaced by a fresh direction, the cosine projection of every cached rollout shifts abruptly.\nCompletions that were mildly rewarded under the stale direction may become penalized under the fresh one, and vice versa.\nThis discontinuity destabilizes the GRPO advantage estimates and drives the policy toward a narrow region of activation space that remains low-risk under both the old and new directions.\nThe result is a degenerate policy that produces short, hedged responses regardless of the input.\nImproving direction quality via recalibration, paradoxically, makes the reward landscape less stable.\n\n\\paragraph{F1d: Scaling amplifies noise (exp-002v3).}\nConfiguration F1d addresses the magnitude problem directly: $\\rone = 5 \\cdot \\cos(\\mathbf{h},\\, \\dsyc)$ with $w_1{=}0.4$, $w_3{=}0.6$.\nThe $5{\\times}$ scaling lifts the $\\rone$ contribution above the $\\rthree$ noise floor, but it simultaneously amplifies the noise in the cosine projection.\nTraining proceeds in three phases.\nIn the first phase (steps 100--300), $\\rthree$ saturates at 0.9998 as the policy rapidly learns to produce NLI-consistent answers; mean response length drops from 247 to 80 tokens and entropy falls from 0.45 to 0.10.\nIn the second phase (steps 300--2150), the combined reward degenerates to $R \\approx w_1 \\cdot \\rone + \\text{const}$ because the saturated $\\rthree$ provides no gradient.\n$\\rone$ is now the sole learning signal, but its mean oscillates between $-0.46$ and $+0.41$ with no sustained positive trend, because the cosine projection conflates warranted belief revision with unwarranted capitulation (both shift activations toward the user's position along $\\dsyc$).\nIn the third phase (step 2160), the policy collapses terminally: entropy drops from 0.056 to 0.026, and the fraction of completions with zero reward standard deviation rises from 0.125 to 0.419, indicating that the policy has converged to a near-deterministic mode.\n\n\\paragraph{Unified diagnosis.}\nThe four configurations converge on a single structural limitation.\nThe cosine gap between valid and sycophantic activations (0.098 across layers) is too narrow to serve as a reward signal, and this narrowness is not a calibration artifact.\nRecalibration raises offline AUROC to 0.91 yet rewards still fail (F1c), confirming that direction quality is not the bottleneck.\nThe root cause is semantic: $\\dsyc$ encodes the \\emph{direction} of belief change (toward or away from the user's position) but does not encode whether that change is \\emph{warranted}.\nA model that appropriately revises an incorrect answer in response to strong evidence and a model that capitulates under social pressure both shift their activations toward the user's position along $\\dsyc$.\nThe cosine projection assigns similar scores to both behaviors.\nScaling the projection (F1d) amplifies this conflation rather than resolving it.\nAny reward formulation that uses $\\dsyc$ as a continuous scalar will inherit this ambiguity.\nSection~\\ref{sec:probe_trap} examines whether discretizing the signal via a binary probe can escape this limitation.\n"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T07:51:03.218477+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/cosine_failure.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_cosine_failure_20260520T074932",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T07:51:03.218617+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_cosine_failure_20260520T074932",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T07:51:03.218740+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_cosine_failure_20260520T074932",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T07:51:03.218861+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_cosine_failure_20260520T074932",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "cosine_failure_section",
+              "type": "paper",
+              "description": "§4 Cosine R1: Structural Failure - complete LaTeX section covering 4-experiment failure chain (F1a-F1d) with diagnostic table and unified root cause analysis",
+              "project": "contrastive_entrain_calib",
+              "source_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/cosine_failure.tex",
+              "tags": "['paper', 'section4', 'cosine-failure', 'latex']"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T07:51:03.219039+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_7e9360\\\", \\\"name\\\": \\\"cosine_failure_section\\\", \\\"type\\\": \\\"paper\\\", \\\"description\\\": \\\"§4 Cosine R1: Structural Failure - complete LaTeX section covering 4-experiment failure chain (F1a-F1d) with diagnostic table and unified root cause analysis\\\", \\\"path\\\": \\\"projects/contrastive_entrain_calib/artifacts/_project/paper/cosine_failure.tex\\\", \\\"url\\\": null, \\\"project\\\": \\\"contrastive_entrain_calib\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T07:50:50.856319+00:00\\\", \\\"tags\\\": [\\\"paper\\\", \\\"section4\\\", \\\"cosine-failure\\\", \\\"latex\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_cosine_failure_20260520T074932",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T07:51:03.219205+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "§4 已写入 `docs/paper/sections/cosine_failure.tex`，约 700 words。\n\n结构：\n- **开头**：从 §3 的 discriminability 结果过渡，预告 4-experiment diagnostic chain\n- **Table 1** (`tab:cosine_chain`)：4 行总结 F1a--F1d 的配置、公式、outcome、root cause\n- **F1a**：tanh gate saturation，norm mismatch 导致梯度消失\n- **F1b**：raw cosine gap 仅 0.098，信号被 R3 方差淹没\n- **F1c**：recalibration 把 AUROC 提到 0.91 但引入 reward discontinuity，导致 mode collapse\n- **F1d**：5x scaling 放大 noise，R3 step 100 饱和后 R1 独撑但 oscillate，终端 collapse\n- **Unified diagnosis**：cosine projection 把 warranted revision 和 unwarranted capitulation 混为一谈，方向编码 belief change direction 但不编码 warrant；过渡到 §5 binary probe"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_writing_cosine_failure_20260520T074932"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/paper-writing-cosine-failure.md"
+}

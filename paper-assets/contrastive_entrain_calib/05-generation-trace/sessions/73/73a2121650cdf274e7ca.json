@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73a2121650cdf274e7ca",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code dcgrpo trainer fix",
+  "task_key": "worker_code_dcgrpo_trainer_fix_20260518T113412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dcgrpo_trainer_fix_20260518T113412_result.json",
+    "occurrence": 1,
+    "bytes": 1565,
+    "sha256": "9df87f1035176ed77a9477fe8f750ea9f4725caaf79fa92225deab30cf8b63d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 修复汇报\n\n### 修复了什么\n\n3 个 critical 问题导致训练时 R1=0, R2=0，退化为纯 R3。根因：reward 计算管道未接入 TRL 训练循环。\n\n### 具体修改\n\n**问题 1：`generate_completions()` 激活提取被注释**\n- 取消注释并完成实现（`dcgrpo_trainer.py:620-663`）\n- 处理 string 和 tensor 两种 prompt/completion 格式\n- 带 try/except 保护，不影响主流程\n\n**问题 2：缺失方法**\n- `_find_asst_first_positions`、`_extract_activations`、`ActivationCache` 均已存在且实现完整，无需修改\n\n**问题 3：`_noop_reward_fn` 返回全零，未接入 TRL 循环**\n- 新增 `_DCRewardCallable` 类（L133-182），作为 TRL reward_funcs 的实际实现\n- 在 `__init__` 中 `super().__init__()` 后替换 `self.reward_funcs = [_DCRewardCallable(self)]`（L250-253）\n- `_DCRewardCallable.__call__` 接收 TRL 传入的 `prompts`、`completions` 和 dataset 列（`condition`、`pair_id`），执行 forward pass 提取激活，计算 R1+R2+R3\n- R1/R2 的 forward pass 在 `torch.no_grad()` 下运行，不反传梯度\n\n### 冒烟测试结果\n\n```\nR1: ['-0.0186', '-0.2187', '0.1115', '-0.1111']   ← 非零 ✓\nR2: ['0.0499', '0.0499', '0.0554', '0.0554']       ← 非零 ✓\nR3: ['0.4640', '0.4640', '0.4640', '0.4640']       ← 非零 ✓\nCombined: [0.1493, -0.0900, 0.2477, 0.0520]\n```\n\n### 产出文件\n1. `artifacts/training/dcgrpo_trainer.py` — 修复后的 trainer\n2. `artifacts/training/smoke_test_dcgrpo.py` — 冒烟测试脚本"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-dcgrpo-trainer-fix.md"
+}

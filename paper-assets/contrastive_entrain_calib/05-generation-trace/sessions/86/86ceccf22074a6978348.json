@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86ceccf22074a6978348",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analyze exp 003 eval s2 ckpt7500",
+  "task_key": "worker_analyze_exp-003-eval-s2-ckpt7500_20260522T172657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_exp-003-eval-s2-ckpt7500_20260522T172657_result.json",
+    "occurrence": 1,
+    "bytes": 442,
+    "sha256": "dafb4eca0e9a63360e845af1980a9168666a6542ed2b74b5e47fef5a13a65cee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE (negative)。\n\n**exp-003-eval-s2-ckpt7500 结果汇总：**\n\n| 指标 | 值 |\n|------|-----|\n| SYCONScore | 0.1241 |\n| ToF | 0.0663 |\n| NoF | 0.9724 |\n| n_valid / n_total | 181 / 362 |\n| vs vanilla | -0.0094 (-7.0%) |\n\nSYCONScore 0.1241 < vanilla 0.1335，与 seed 1 ckpt-7500 (0.1046) 同为 negative，但 seed 2 表现略好。R3-only 两个 seed 在 ckpt-7500 均未超过 baseline。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-exp-003-eval-s2-ckpt7500.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b52ebd0adccf8baef638",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "run phase5 v2 lora perturbation",
+  "task_key": "worker_run_phase5_v2_lora_perturbation_20260518T102024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_phase5_v2_lora_perturbation_20260518T102024_result.json",
+    "occurrence": 1,
+    "bytes": 854,
+    "sha256": "4b9962af98d9d14ce69fb472d7d6b29b25433967a863ea175a01487c30bed36d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Phase 5 Robustness Report\n\n| 指标 | 值 |\n|---|---|\n| **Original AUROC** | 0.9985 |\n| **Perturbed AUROC** | 0.9941 |\n| **Delta** | 0.0044 (< 0.05 threshold) |\n| **Verdict** | **ROBUST** |\n| **Polarity Reversed** | false |\n| **Best Layer (perturbed)** | 24 |\n| **LoRA Rank** | 16 |\n| **Samples** | 640 |\n\n**关键观察**：\n- AUROC 仅下降 0.0044，远低于 0.05 阈值\n- 无极性反转\n- Layer 16-35 在扰动后全部保持 AUROC > 0.985，高层方向高度稳定\n- 最佳层从原始的 Layer 27 微移至 Layer 24（AUROC 差异仅 0.001），属于正常波动\n- Layer 0 扰动后 AUROC = 0.6927，与原始 0.6897 基本一致\n\n**结论**：Sycophancy direction 在随机 LoRA 扰动下具有鲁棒性，确认其捕获的是模型的稳定内部特征而非权重值的偶然产物。Go/No-Go 通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-phase5-v2-lora-perturbation.md"
+}

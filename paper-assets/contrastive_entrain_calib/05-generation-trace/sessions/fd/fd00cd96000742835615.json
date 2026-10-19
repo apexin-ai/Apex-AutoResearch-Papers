@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd00cd96000742835615",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp008v3 ckpt1000 28034",
+  "task_key": "worker_eval_exp008v3-ckpt1000-28034_20260520T001909",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp008v3-ckpt1000-28034_20260520T001909_result.json",
+    "occurrence": 1,
+    "bytes": 324,
+    "sha256": "491e4cae336c68888335a5f2e49cfda76966f1f04138397f19f048312acb9f24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval 已在 GPU 1 上启动：\n- **PID**: 171048\n- **Checkpoint**: `/root/contrastive_entrain_calib/checkpoints/exp008v3_binary_probe_grpo/checkpoint-1000`\n- **数据**: 362 samples，已开始推理\n- **GPU 状态**: GPU 0/3 在用，GPU 1/2 空闲（eval 在 GPU 1）\n\n2 分钟后自动轮询进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp008v3-ckpt1000-28034.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59d0bd78679721ec0f47",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "fix exp003 logging",
+  "task_key": "worker_fix_exp003-logging_20260518T164945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp003-logging_20260518T164945_result.json",
+    "occurrence": 1,
+    "bytes": 1226,
+    "sha256": "fc7bbcde78d12b8204a6a3e37caee0dea13948a46718b682672467d451dced8e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部确认完毕。\n\n---\n\n### 产出总结\n\n**1. exp-003 当前日志（修复前最后 30 行）**：每步只有 `d_syc not loaded; returning R3-only rewards` 警告和进度条，无任何 R3 数值。训练正常推进到 step 16。\n\n**2. R3 日志缺失根因**：`dcgrpo_trainer.py` 的 `_DCRewardCallable.__call__` 方法中，当 `d_syc is None` 时（line 128），计算 R3 后直接 `return`，跳过了后续所有 reward 日志代码（原 lines 159-184）。\n\n**3. 修复措施**：在 `d_syc is None` 分支的 `return` 前添加：\n   - 每步记录 `reward/r3_mean` 和 `reward/combined_mean`\n   - 每 10 步记录详细统计（mean/std/min/max），与 else 分支格式一致\n   - 递增 `_reward_step` 计数器\n\n**4. 需要重启**：已重启。\n   - 旧 PID 69094 → 新 PID **70649**（cuda:1, tmux session: exp003）\n   - exp-002（PID 69020, cuda:0）未受影响，日志正常记录 R1/R3\n\n**5. 修复后日志样例**：\n```\n[step 0] reward/r3  mean=0.2551  std=0.4345  min=0.0008  max=0.9994\n[step 0] reward/combined  mean=0.2551  std=0.4345\nreward/r3_mean=0.2551\nreward/combined_mean=0.2551\n...\nreward/r3_mean=0.5609\nreward/combined_mean=0.5609\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp003-logging.md"
+}

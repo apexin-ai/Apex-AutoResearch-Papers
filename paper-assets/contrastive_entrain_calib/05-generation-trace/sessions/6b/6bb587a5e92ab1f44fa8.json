@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6bb587a5e92ab1f44fa8",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "monitor 29046 ongoing training",
+  "task_key": "worker_monitor_29046-ongoing-training_20260523T142521",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_29046-ongoing-training_20260523T142521_result.json",
+    "occurrence": 1,
+    "bytes": 1319,
+    "sha256": "2bae439a1e48d0a5792b5cb86668a06d6ee63f9dc13a76b1cd00a0f2fede412c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态汇总\n\n### exp-004-heldout (GPU 0)\n| 项目 | 值 |\n|------|-----|\n| 进度 | **3290 / 8000 steps** (41.1%) |\n| GPU | RTX PRO 6000 Black, 22.9GB / 97.9GB, **3% util**（刚跑完一个 step，间歇期） |\n| 最新 checkpoint | `checkpoint-3000` |\n| step 速度 | ~93s/step |\n| 已耗时 | ~30,396s (8.4h)，从 13:58 开始 |\n| 剩余 steps | 4710 |\n| **ETA** | ~4710 × 93s ≈ **121.6h (约 5.1 天)** → 预计 **5/29 凌晨** |\n| loss | sft≈0, l2≈0.0013, total≈0.0001 |\n\n### exp-003-len512-r3only (GPU 1)\n| 项目 | 值 |\n|------|-----|\n| 进度 | **916 / 8000 steps** (11.5%) |\n| GPU | RTX PRO 6000 Black, 41.3GB / 97.9GB, **97% util** |\n| 最新 checkpoint | `checkpoint-500` |\n| step 速度 | ~47s/step |\n| 已耗时 | ~12h，从 10:17 开始 |\n| 剩余 steps | 7084 |\n| **ETA** | ~7084 × 47s ≈ **92.5h (约 3.9 天)** → 预计 **5/27 晚间** |\n| reward | ~0.54, kl≈0.012, epoch≈20 |\n\n### 磁盘\n| 挂载点 | 总量 | 已用 | 剩余 | 使用率 |\n|--------|------|------|------|--------|\n| `/root` | 30G | 25G | 5.5G | **82%** |\n| `/root/autodl-tmp` | 250G | 76G | 175G | 31% |\n\n**注意**: 根分区 82% 偏高，随着 checkpoint 增加需关注。两个实验的 checkpoint 都存在 autodl-tmp 上（31%），暂无压力。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-29046-ongoing-training.md"
+}

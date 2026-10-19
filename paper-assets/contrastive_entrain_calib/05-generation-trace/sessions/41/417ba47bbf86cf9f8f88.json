@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "417ba47bbf86cf9f8f88",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnose exp 014",
+  "task_key": "worker_diagnose_exp-014_20260518T180356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp-014_20260518T180356_result.json",
+    "occurrence": 1,
+    "bytes": 839,
+    "sha256": "efba811069748eae0277ae41942ba92c9691b291ce518cbbfac658655bf2ca76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n## 结论\n\n**EXIT_CODE=127 只是表象**，实际有两个问题叠加：\n\n1. **环境未激活**: `deepspeed` 在 `/root/miniconda3/bin/deepspeed`，原始命令缺少 `source /root/miniconda3/bin/activate`\n\n2. **GPU 分配冲突**: `deepspeed --num_gpus 2` 会**忽略** `CUDA_VISIBLE_DEVICES=1,2`，强制使用 GPU 0,1。GPU 0 被 exp-004 占用 21.8GB，导致 GRPO 训练初始化时 OOM 崩溃\n\n## 正确的重试命令\n\n```bash\nsource /root/miniconda3/bin/activate && cd /root/contrastive_entrain_calib/training && deepspeed --include localhost:1,2 run_exp014_continuous_probe.py\n```\n\n关键改动：\n- 加 `source activate` 解决 PATH 问题\n- 用 `--include localhost:1,2` 替代 `--num_gpus 2`，精确指定空闲 GPU\n\n报告已保存到 `artifacts/exp-014/diagnosis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-014.md"
+}

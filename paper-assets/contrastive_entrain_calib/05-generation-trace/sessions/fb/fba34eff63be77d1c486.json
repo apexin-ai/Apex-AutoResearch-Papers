@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fba34eff63be77d1c486",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnose exp 002v2",
+  "task_key": "worker_diagnose_exp-002v2_20260519T021132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp-002v2_20260519T021132_result.json",
+    "occurrence": 1,
+    "bytes": 724,
+    "sha256": "a1be447162e926e19d2577fae8a28616a9f85fe9614f9a5ac66ec2d687cdeee2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**结论：exp-002v2 是被手动 kill 的（D021 决策执行），不是异常崩溃。**\n\n关键发现：\n- `logs/exp002v2.log` 在 step 256 干净截断，无 traceback、无 OOM、无 CUDA error\n- Adaptive gate 在 step 9 就激活了（`R1=0 for weak samples after step 100`），D021 判定这不利于训练，决定 kill 后禁用 gate 重启\n- 旧 run 无 checkpoint 保存\n- **exp-002v2 已按 D021 成功重启**（无 adaptive gate），PID 130467 正在 GPU 0 运行，当前 step ~4+，52GB VRAM，95% utilization，运行正常\n- GPU 0 不空闲，已被新 run 占用\n\ncron 报告的 \"process dead 5x\" 可能是 kill 后到重启之间的窗口期检测到的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-002v2.md"
+}

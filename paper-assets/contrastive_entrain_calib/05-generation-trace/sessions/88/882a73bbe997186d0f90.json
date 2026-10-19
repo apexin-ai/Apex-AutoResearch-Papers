@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "882a73bbe997186d0f90",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "paper figure trajectory",
+  "task_key": "worker_paper_figure_trajectory_20260520T161633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_trajectory_20260520T161633_result.json",
+    "occurrence": 1,
+    "bytes": 681,
+    "sha256": "37af02b3daecf843bb5738f6fe1bb5ab71bc687d16d392a678727e162d4f4035"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure generated and registered.\n\n**Output files:**\n- PDF: `artifacts/figures/fig_trajectory.pdf`\n- PNG: `artifacts/figures/fig_trajectory.png`\n- Script: `scripts/fig_trajectory.py`\n- Artifact ID: `art_20260520_285a3b`\n\n**Design choices:**\n- Okabe-Ito palette: blue (#0072B2) for ACT, vermillion (#D55E00) for R3-only — colorblind-safe, semantically distinct\n- Gray shaded band below vanilla baseline visually anchors the \"below vanilla\" zone\n- Annotations: \"stubbornness episode\" with arrow at ACT's ckpt-4000 dip; \"plateau\" near R3-only's ckpt-4000/5000 flatline\n- 3.5×2.5 inch single-column width, 300 DPI, no top/right spines, font ≥ 7.5pt"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-trajectory.md"
+}

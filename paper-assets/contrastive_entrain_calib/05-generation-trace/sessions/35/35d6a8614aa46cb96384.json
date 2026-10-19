@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35d6a8614aa46cb96384",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval restart recovery",
+  "task_key": "worker_eval_restart-recovery_20260522T021002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_restart-recovery_20260522T021002_result.json",
+    "occurrence": 1,
+    "bytes": 973,
+    "sha256": "8a04bd062363c021f7a91167cb41faa31bb687989d7edfec2f6075d5e4572cd6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态总结\n\n### 已完成\n- **Seed2 ckpt-4000**: 已在 GPU 1 上启动（PID 439037, 16.9GB VRAM），模型和 LoRA 加载完毕，正在 eval 362 pairs。Registry 新建条目 `exp-003-eval-s2-ckpt4000-v2` (RUNNING)。\n\n### 阻塞：ACT ckpt-500/2000/8000\n3 个 ACT eval 无法提交。原因：\n\n- 原始 checkpoint 路径 `/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-{500,2000,8000}` 在 **westd-28034** 上\n- 当前服务器 **westd-29046** 的 `/root/autodl-tmp/` 下没有任何 exp-004 相关目录\n- westd-29046 只有 `exp003_r3only_seed1` 和 `exp003_r3only_seed2` 的 checkpoints\n\n### GPU 状态\n| GPU | VRAM | 进程 |\n|-----|------|------|\n| 0 | 38GB/98GB | PID 237437 (未知任务) |\n| 1 | 17GB/98GB | PID 439037 (seed2 ckpt-4000 eval) |\n\n### 需要你确认\n1. westd-28034 是否还能访问？需要从那边拷贝 ACT checkpoints 过来\n2. 或者 ACT checkpoints 是否有其他副本/备份位置？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-restart-recovery.md"
+}

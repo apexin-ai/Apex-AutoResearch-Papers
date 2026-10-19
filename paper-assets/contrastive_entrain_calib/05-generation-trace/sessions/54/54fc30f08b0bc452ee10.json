@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54fc30f08b0bc452ee10",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops d023 kill exp014 deploy exp008v3",
+  "task_key": "worker_ops_d023-kill-exp014-deploy-exp008v3_20260519T063452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d023-kill-exp014-deploy-exp008v3_20260519T063452_result.json",
+    "occurrence": 1,
+    "bytes": 366,
+    "sha256": "3dc5d1c9d84985f73fa37e66a56c684d240e0d3ecd61f8589a1df084f377ca11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练稳定运行，已到 step 10（首次日志输出）：\n\n- **Step**: 10/8000, ~19.5s/step\n- **Loss**: -0.0019\n- **Combined reward**: 0.526 (mean), std=0.250\n- **Grad norm**: 0.047\n- **Completion**: avg 246.6 tokens, 77.8% clipped at max_length=256\n- **Entropy**: 0.451\n- tmux `exp-008v3` 存活，GPU 1+2 占用稳定\n\n一切正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d023-kill-exp014-deploy-exp008v3.md"
+}

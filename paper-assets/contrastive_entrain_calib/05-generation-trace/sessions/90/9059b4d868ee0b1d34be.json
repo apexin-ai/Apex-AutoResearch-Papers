@@ -1,0 +1,1692 @@
+{
+  "schema_version": "1.0",
+  "id": "9059b4d868ee0b1d34be",
+  "project": "contrastive_entrain_calib",
+  "kind": "conversation",
+  "title": "code exp008 gs8 prepare",
+  "task_key": "worker_code_exp008-gs8-prepare_20260522T130720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_exp008-gs8-prepare_20260522T130720.jsonl",
+    "occurrence": 1,
+    "bytes": 62323,
+    "sha256": "bf3738ca7cf020ce8bf51ef6053fd09bdb2ab041cd8ab3a5b1ddfa87b670847b"
+  },
+  "statistics": {
+    "messages": 83,
+    "user_turns": 0,
+    "tool_calls": 41,
+    "roles": {
+      "tool_call": 41,
+      "tool_result": 41,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T13:15:04.091534+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T13:15:04.091917+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T13:15:04.092096+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "ls /root/contrastive_entrain_calib/training/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T13:15:04.092261+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "find /root/contrastive_entrain_calib/training/ -name \"*exp008*\" -o -name \"*binary_probe*\" -o -name \"*probe*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T13:15:04.092423+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"diag_r1_output.log\\\\ndiag_r1_projection.py\\\\nmeasure_direction_stability.py\\\\nrecalibrate_offline_test.py\\\\nrun_exp002_dcgrpo.py\\\\nrun_exp002v2_dcgrpo_cosine.py\\\\nrun_exp002v2_dcgrpo_cosine.py.bak\\\\nrun_exp002v3_dcgrpo_scaled_cosine.py\\\\nrun_exp003_r3only.py\\\\nrun_exp003s2_r3only.py\\\\nrun_exp004s2_act.py\\\\nrun_exp004s2_act_resume.py\\\\nrun_exp008_binary_probe_penalty.py\\\\nrun_exp016_actadd_steering.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.27}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T13:15:04.092562+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/contrastive_entrain_calib/training/run_exp008_binary_probe_penalty.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T13:15:04.092704+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "cat /root/contrastive_entrain_calib/training/run_exp008_binary_probe_penalty.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T13:15:04.093003+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp-008: Binary Probe Penalty baseline for sycophancy calibration.\\\\n\\\\nSFT-style LoRA training on Qwen3-8B with a frozen binary probe penalty.\\\\nDesigned to run on a single RTX 5090 (32 GB) without GRPO's memory overhead.\\\\n\\\\nLoss:\\\\n    L = L_sft - lambda_reward * (R3 - lambda_probe * S(t))\\\\n      = L_sft + lambda_reward * lambda_probe * S(t) - lambda_reward * R3\\\\n\\\\n    L_sft:  cross-entropy on last-assistant-turn tokens (standard SFT)\\\\n    S(t):   frozen logistic probe sycophancy score, differentiable through hidden states\\\\n    R3:     NLI behavioral reward, precomputed on training data (constant, for monitoring)\\\\n\\\\nInput:\\\\n    Model:       /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\n    Data:        calibration_v2_1_expanded.jsonl (362 samples, v2.1 style-controlled)\\\\n    Activations: results/exp001/activations.pt (for probe pretraining)\\\\n\\\\nOutput:\\\\n    LoRA checkpoints every 500 steps + final in output_dir\\\\n\\\\nDependencies: torch, transformers, peft\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nfrom dataclasses import dataclass, field\\\\nfrom functools import partial\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nimport torch.nn as nn\\\\nimport torch.nn.functional as F\\\\nfrom torch.utils.data import DataLoader\\\\nfrom torch.utils.data import Dataset as TorchDataset\\\\n\\\\nfrom peft import LoraConfig, get_peft_model\\\\nfrom transformers import (\\\\n    AutoModelForCausalLM,\\\\n    AutoModelForSequenceClassification,\\\\n    AutoTokenizer,\\\\n    get_linear_schedule_with_warmup,\\\\n)\\\\n\\\\nCONDITION_MAP = {\\\\n    \\\\\\\"warranted_revision\\\\\\\": \\\\\\\"valid_correction\\\\\\\",\\\\n    \\\\\\\"sycophantic_capitulation\\\\\\\": \\\\\\\"invalid_pressure\\\\\\\",\\\\n    \\\\\\\"valid_correction\\\\\\\": \\\\\\\"valid_correction\\\\\\\",\\\\n    \\\\\\\"invalid_pressure\\\\\\\": \\\\\\\"invalid_pressure\\\\\\\",\\\\n}\\\\n\\\\n\\\\n# ----------------------------------------------------------\n…[truncated 6954 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T13:15:04.093235+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "wc -l /root/contrastive_entrain_calib/training/run_exp008_binary_probe_penalty.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T13:15:04.093380+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"727 /root/contrastive_entrain_calib/training/run_exp008_binary_probe_penalty.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T13:15:04.093506+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "grep -n \"group_size\\|num_generations\\|num_gen\\|group\\|generation\" /root/contrastive_entrain_calib/training/run_exp008_binary_probe_penalty.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T13:15:04.093635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T13:15:04.093761+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "grep -n \"group_size\" /root/contrastive_entrain_calib/training/run_exp008_binary_probe_penalty.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T13:15:04.093909+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T13:15:04.094100+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "grep -n \"num_generations\" /root/contrastive_entrain_calib/training/run_exp008_binary_probe_penalty.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T13:15:04.094310+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T13:15:04.094453+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "grep -n \"group\" /root/contrastive_entrain_calib/training/run_exp008_binary_probe_penalty.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T13:15:04.094579+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T13:15:04.094731+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "head -200 /root/contrastive_entrain_calib/training/run_exp008_binary_probe_penalty.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T13:15:04.095003+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp-008: Binary Probe Penalty baseline for sycophancy calibration.\\\\n\\\\nSFT-style LoRA training on Qwen3-8B with a frozen binary probe penalty.\\\\nDesigned to run on a single RTX 5090 (32 GB) without GRPO's memory overhead.\\\\n\\\\nLoss:\\\\n    L = L_sft - lambda_reward * (R3 - lambda_probe * S(t))\\\\n      = L_sft + lambda_reward * lambda_probe * S(t) - lambda_reward * R3\\\\n\\\\n    L_sft:  cross-entropy on last-assistant-turn tokens (standard SFT)\\\\n    S(t):   frozen logistic probe sycophancy score, differentiable through hidden states\\\\n    R3:     NLI behavioral reward, precomputed on training data (constant, for monitoring)\\\\n\\\\nInput:\\\\n    Model:       /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\n    Data:        calibration_v2_1_expanded.jsonl (362 samples, v2.1 style-controlled)\\\\n    Activations: results/exp001/activations.pt (for probe pretraining)\\\\n\\\\nOutput:\\\\n    LoRA checkpoints every 500 steps + final in output_dir\\\\n\\\\nDependencies: torch, transformers, peft\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nfrom dataclasses import dataclass, field\\\\nfrom functools import partial\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nimport torch.nn as nn\\\\nimport torch.nn.functional as F\\\\nfrom torch.utils.data import DataLoader\\\\nfrom torch.utils.data import Dataset as TorchDataset\\\\n\\\\nfrom peft import LoraConfig, get_peft_model\\\\nfrom transformers import (\\\\n    AutoModelForCausalLM,\\\\n    AutoModelForSequenceClassification,\\\\n    AutoTokenizer,\\\\n    get_linear_schedule_with_warmup,\\\\n)\\\\n\\\\nCONDITION_MAP = {\\\\n    \\\\\\\"warranted_revision\\\\\\\": \\\\\\\"valid_correction\\\\\\\",\\\\n    \\\\\\\"sycophantic_capitulation\\\\\\\": \\\\\\\"invalid_pressure\\\\\\\",\\\\n    \\\\\\\"valid_correction\\\\\\\": \\\\\\\"valid_correction\\\\\\\",\\\\n    \\\\\\\"invalid_pressure\\\\\\\": \\\\\\\"invalid_pressure\\\\\\\",\\\\n}\\\\n\\\\n\\\\n# ----------------------------------------------------------\n…[truncated 5996 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T13:15:04.095194+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "head -400 /root/contrastive_entrain_calib/training/run_exp008_binary_probe_penalty.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T13:15:04.095608+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp-008: Binary Probe Penalty baseline for sycophancy calibration.\\\\n\\\\nSFT-style LoRA training on Qwen3-8B with a frozen binary probe penalty.\\\\nDesigned to run on a single RTX 5090 (32 GB) without GRPO's memory overhead.\\\\n\\\\nLoss:\\\\n    L = L_sft - lambda_reward * (R3 - lambda_probe * S(t))\\\\n      = L_sft + lambda_reward * lambda_probe * S(t) - lambda_reward * R3\\\\n\\\\n    L_sft:  cross-entropy on last-assistant-turn tokens (standard SFT)\\\\n    S(t):   frozen logistic probe sycophancy score, differentiable through hidden states\\\\n    R3:     NLI behavioral reward, precomputed on training data (constant, for monitoring)\\\\n\\\\nInput:\\\\n    Model:       /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\n    Data:        calibration_v2_1_expanded.jsonl (362 samples, v2.1 style-controlled)\\\\n    Activations: results/exp001/activations.pt (for probe pretraining)\\\\n\\\\nOutput:\\\\n    LoRA checkpoints every 500 steps + final in output_dir\\\\n\\\\nDependencies: torch, transformers, peft\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nfrom dataclasses import dataclass, field\\\\nfrom functools import partial\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nimport torch.nn as nn\\\\nimport torch.nn.functional as F\\\\nfrom torch.utils.data import DataLoader\\\\nfrom torch.utils.data import Dataset as TorchDataset\\\\n\\\\nfrom peft import LoraConfig, get_peft_model\\\\nfrom transformers import (\\\\n    AutoModelForCausalLM,\\\\n    AutoModelForSequenceClassification,\\\\n    AutoTokenizer,\\\\n    get_linear_schedule_with_warmup,\\\\n)\\\\n\\\\nCONDITION_MAP = {\\\\n    \\\\\\\"warranted_revision\\\\\\\": \\\\\\\"valid_correction\\\\\\\",\\\\n    \\\\\\\"sycophantic_capitulation\\\\\\\": \\\\\\\"invalid_pressure\\\\\\\",\\\\n    \\\\\\\"valid_correction\\\\\\\": \\\\\\\"valid_correction\\\\\\\",\\\\n    \\\\\\\"invalid_pressure\\\\\\\": \\\\\\\"invalid_pressure\\\\\\\",\\\\n}\\\\n\\\\n\\\\n# ----------------------------------------------------------\n…[truncated 7040 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T13:15:04.095796+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "tail -330 /root/contrastive_entrain_calib/training/run_exp008_binary_probe_penalty.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T13:15:04.096091+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        loss.backward()\\\\n        opt.step()\\\\n\\\\n    new_probe.eval()\\\\n    with torch.no_grad():\\\\n        preds = new_probe(X)\\\\n        acc = ((preds > 0.5).float() == y).float().mean().item()\\\\n\\\\n    try:\\\\n        from sklearn.metrics import roc_auc_score\\\\n        auroc = roc_auc_score(y.numpy(), preds.numpy())\\\\n    except ImportError:\\\\n        sorted_pairs = sorted(zip(preds.tolist(), y.tolist()), reverse=True)\\\\n        tp, auc_sum = 0, 0.0\\\\n        p_total = int(y.sum().item())\\\\n        n_total = len(y) - p_total\\\\n        for _, label in sorted_pairs:\\\\n            if label == 1.0:\\\\n                tp += 1\\\\n            else:\\\\n                auc_sum += tp\\\\n        auroc = auc_sum / (p_total * n_total) if (p_total * n_total) > 0 else 0.0\\\\n\\\\n    for p in new_probe.parameters():\\\\n        p.requires_grad_(False)\\\\n    new_probe.to(device)\\\\n\\\\n    model.train()\\\\n    return new_probe, acc, auroc\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# NLI / R3 Scoring\\\\n# ---------------------------------------------------------------------------\\\\ndef _extract_last_response(text: str) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Strip chat template markers and return last assistant response.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    clean = re.sub(\\\\n        r\\\\\\\"<\\\\\\\\|im_start\\\\\\\\|>|<\\\\\\\\|im_end\\\\\\\\|>|<think>|</think>|<\\\\\\\\|endoftext\\\\\\\\|>\\\\\\\", \\\\\\\"\\\\\\\", text\\\\n    )\\\\n    parts = clean.split(\\\\\\\"assistant\\\\\\\")\\\\n    response = parts[-1].strip() if len(parts) > 1 else clean.strip()\\\\n    if len(response) > 1000:\\\\n        response = response[:1000]\\\\n    return response if response else text[:500]\\\\n\\\\n\\\\n@torch.no_grad()\\\\ndef precompute_r3(\\\\n    samples: list[dict], nli_model_name: str, batch_size: int = 16\\\\n) -> list[float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute R3 for every sample using a frozen NLI model, then free GPU memory.\\\\n\\\\n    R3 = P(entailment) for valid_correction (changing answer is correct),\\\n…[truncated 6901 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T13:15:04.096312+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "tail -230 /root/contrastive_entrain_calib/training/run_exp008_binary_probe_penalty.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T13:15:04.096581+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def main():\\\\n    config = parse_args()\\\\n    os.makedirs(config.output_dir, exist_ok=True)\\\\n\\\\n    logging.basicConfig(\\\\n        level=logging.INFO,\\\\n        format=\\\\\\\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\\\\\\\",\\\\n        handlers=[\\\\n            logging.StreamHandler(),\\\\n            logging.FileHandler(os.path.join(config.output_dir, \\\\\\\"train.log\\\\\\\")),\\\\n        ],\\\\n    )\\\\n    log = logging.getLogger(\\\\\\\"exp008\\\\\\\")\\\\n    torch.manual_seed(config.seed)\\\\n\\\\n    if \\\\\\\"HF_ENDPOINT\\\\\\\" not in os.environ:\\\\n        os.environ[\\\\\\\"HF_ENDPOINT\\\\\\\"] = \\\\\\\"https://hf-mirror.com\\\\\\\"\\\\n\\\\n    log.info(\\\\\\\"=== exp-008: Binary Probe Penalty Baseline ===\\\\\\\")\\\\n    log.info(\\\\\\\"Config: lr=%s lambda_reward=%s lambda_probe=%s max_steps=%d retrain_interval=%d\\\\\\\",\\\\n             config.lr, config.lambda_reward, config.lambda_probe, config.max_steps,\\\\n             config.retrain_interval)\\\\n\\\\n    # --- Resolve model path ---\\\\n    model_path = config.model_path\\\\n    if not Path(model_path).exists():\\\\n        model_path = \\\\\\\"Qwen/Qwen3-8B\\\\\\\"\\\\n        log.info(\\\\\\\"Local model not found, using HF hub: %s\\\\\\\", model_path)\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True)\\\\n    if tokenizer.pad_token_id is None:\\\\n        tokenizer.pad_token_id = tokenizer.eos_token_id\\\\n\\\\n    # --- Dataset ---\\\\n    dataset = CalibrationSFTDataset(config.data_path, tokenizer, config.max_seq_len)\\\\n    log.info(\\\\\\\"Dataset: %d samples from %s\\\\\\\", len(dataset), config.data_path)\\\\n    if not dataset.samples:\\\\n        log.error(\\\\n            \\\\\\\"No valid samples. Data must have at least 2 turns \\\\\\\"\\\\n            \\\\\\\"(user + assistant).\\\\\\\"\\\\n        )\\\\n        sys.exit(1)\\\\n\\\\n    # --- Probe: train or load ---\\\\n    probe_path = os.path.join(config.output_dir, \\\\\\\"probe.pt\\\\\\\")\\\\n    if Path(probe_path).exists():\\\\n        probe = load_probe(probe_path)\\\\n        log.info(\\\\\\\"Lo\n…[truncated 6890 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T13:15:04.096808+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "grep -rn \"group_size\\|num_generations\" /root/contrastive_entrain_calib/training/",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T13:15:04.096976+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T13:15:04.097105+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "grep -rn \"group_size\\|num_generations\" /root/contrastive_entrain_calib/configs/",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T13:15:04.097230+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T13:15:04.097350+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "grep -rn \"num_generations\" /root/contrastive_entrain_calib/training/",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-22T13:15:04.097470+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "grep -rn \"group_size\" /root/contrastive_entrain_calib/training/",
+              "account": "root"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-22T13:15:04.097596+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/contrastive_entrain_calib/training/run_exp003_r3only.py:81:        num_generations=2,\\\\n/root/contrastive_entrain_calib/training/run_exp002_dcgrpo.py:190:        num_generations=2,\\\\n/root/contrastive_entrain_calib/training/run_exp002v2_dcgrpo_cosine.py:158:        num_generations=2,\\\\n/root/contrastive_entrain_calib/training/run_exp002v2_dcgrpo_cosine.py.bak:157:        num_generations=2,\\\\n/root/contrastive_entrain_calib/training/run_exp003s2_r3only.py:81:        num_generations=2,\\\\n/root/contrastive_entrain_calib/training/run_exp002v3_dcgrpo_scaled_cosine.py:173:        num_generations=2,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-22T13:15:04.097720+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-22T13:15:04.097966+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "cat /root/contrastive_entrain_calib/training/run_exp008_binary_probe_penalty.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-22T13:15:04.098293+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-22T13:15:04.098577+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp-008: Binary Probe Penalty baseline for sycophancy calibration.\\\\n\\\\nSFT-style LoRA training on Qwen3-8B with a frozen binary probe penalty.\\\\nDesigned to run on a single RTX 5090 (32 GB) without GRPO's memory overhead.\\\\n\\\\nLoss:\\\\n    L = L_sft - lambda_reward * (R3 - lambda_probe * S(t))\\\\n      = L_sft + lambda_reward * lambda_probe * S(t) - lambda_reward * R3\\\\n\\\\n    L_sft:  cross-entropy on last-assistant-turn tokens (standard SFT)\\\\n    S(t):   frozen logistic probe sycophancy score, differentiable through hidden states\\\\n    R3:     NLI behavioral reward, precomputed on training data (constant, for monitoring)\\\\n\\\\nInput:\\\\n    Model:       /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\n    Data:        calibration_v2_1_expanded.jsonl (362 samples, v2.1 style-controlled)\\\\n    Activations: results/exp001/activations.pt (for probe pretraining)\\\\n\\\\nOutput:\\\\n    LoRA checkpoints every 500 steps + final in output_dir\\\\n\\\\nDependencies: torch, transformers, peft\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nfrom dataclasses import dataclass, field\\\\nfrom functools import partial\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nimport torch.nn as nn\\\\nimport torch.nn.functional as F\\\\nfrom torch.utils.data import DataLoader\\\\nfrom torch.utils.data import Dataset as TorchDataset\\\\n\\\\nfrom peft import LoraConfig, get_peft_model\\\\nfrom transformers import (\\\\n    AutoModelForCausalLM,\\\\n    AutoModelForSequenceClassification,\\\\n    AutoTokenizer,\\\\n    get_linear_schedule_with_warmup,\\\\n)\\\\n\\\\nCONDITION_MAP = {\\\\n    \\\\\\\"warranted_revision\\\\\\\": \\\\\\\"valid_correction\\\\\\\",\\\\n    \\\\\\\"sycophantic_capitulation\\\\\\\": \\\\\\\"invalid_pressure\\\\\\\",\\\\n    \\\\\\\"valid_correction\\\\\\\": \\\\\\\"valid_correction\\\\\\\",\\\\n    \\\\\\\"invalid_pressure\\\\\\\": \\\\\\\"invalid_pressure\\\\\\\",\\\\n}\\\\n\\\\n\\\\n# ----------------------------------------------------------\n…[truncated 6953 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-22T13:15:04.098746+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 38049 MiB, 97887 MiB, 95 %\\\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 46546 MiB, 97887 MiB, 99 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.62}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-22T13:15:04.098949+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "head -250 /root/contrastive_entrain_calib/training/run_exp008_binary_probe_penalty.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-22T13:15:04.099233+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp-008: Binary Probe Penalty baseline for sycophancy calibration.\\\\n\\\\nSFT-style LoRA training on Qwen3-8B with a frozen binary probe penalty.\\\\nDesigned to run on a single RTX 5090 (32 GB) without GRPO's memory overhead.\\\\n\\\\nLoss:\\\\n    L = L_sft - lambda_reward * (R3 - lambda_probe * S(t))\\\\n      = L_sft + lambda_reward * lambda_probe * S(t) - lambda_reward * R3\\\\n\\\\n    L_sft:  cross-entropy on last-assistant-turn tokens (standard SFT)\\\\n    S(t):   frozen logistic probe sycophancy score, differentiable through hidden states\\\\n    R3:     NLI behavioral reward, precomputed on training data (constant, for monitoring)\\\\n\\\\nInput:\\\\n    Model:       /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\n    Data:        calibration_v2_1_expanded.jsonl (362 samples, v2.1 style-controlled)\\\\n    Activations: results/exp001/activations.pt (for probe pretraining)\\\\n\\\\nOutput:\\\\n    LoRA checkpoints every 500 steps + final in output_dir\\\\n\\\\nDependencies: torch, transformers, peft\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nfrom dataclasses import dataclass, field\\\\nfrom functools import partial\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nimport torch.nn as nn\\\\nimport torch.nn.functional as F\\\\nfrom torch.utils.data import DataLoader\\\\nfrom torch.utils.data import Dataset as TorchDataset\\\\n\\\\nfrom peft import LoraConfig, get_peft_model\\\\nfrom transformers import (\\\\n    AutoModelForCausalLM,\\\\n    AutoModelForSequenceClassification,\\\\n    AutoTokenizer,\\\\n    get_linear_schedule_with_warmup,\\\\n)\\\\n\\\\nCONDITION_MAP = {\\\\n    \\\\\\\"warranted_revision\\\\\\\": \\\\\\\"valid_correction\\\\\\\",\\\\n    \\\\\\\"sycophantic_capitulation\\\\\\\": \\\\\\\"invalid_pressure\\\\\\\",\\\\n    \\\\\\\"valid_correction\\\\\\\": \\\\\\\"valid_correction\\\\\\\",\\\\n    \\\\\\\"invalid_pressure\\\\\\\": \\\\\\\"invalid_pressure\\\\\\\",\\\\n}\\\\n\\\\n\\\\n# ----------------------------------------------------------\n…[truncated 7059 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-22T13:15:04.099410+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "head -130 /root/contrastive_entrain_calib/training/run_exp008_binary_probe_penalty.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-22T13:15:04.099603+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp-008: Binary Probe Penalty baseline for sycophancy calibration.\\\\n\\\\nSFT-style LoRA training on Qwen3-8B with a frozen binary probe penalty.\\\\nDesigned to run on a single RTX 5090 (32 GB) without GRPO's memory overhead.\\\\n\\\\nLoss:\\\\n    L = L_sft - lambda_reward * (R3 - lambda_probe * S(t))\\\\n      = L_sft + lambda_reward * lambda_probe * S(t) - lambda_reward * R3\\\\n\\\\n    L_sft:  cross-entropy on last-assistant-turn tokens (standard SFT)\\\\n    S(t):   frozen logistic probe sycophancy score, differentiable through hidden states\\\\n    R3:     NLI behavioral reward, precomputed on training data (constant, for monitoring)\\\\n\\\\nInput:\\\\n    Model:       /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\n    Data:        calibration_v2_1_expanded.jsonl (362 samples, v2.1 style-controlled)\\\\n    Activations: results/exp001/activations.pt (for probe pretraining)\\\\n\\\\nOutput:\\\\n    LoRA checkpoints every 500 steps + final in output_dir\\\\n\\\\nDependencies: torch, transformers, peft\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nfrom dataclasses import dataclass, field\\\\nfrom functools import partial\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nimport torch.nn as nn\\\\nimport torch.nn.functional as F\\\\nfrom torch.utils.data import DataLoader\\\\nfrom torch.utils.data import Dataset as TorchDataset\\\\n\\\\nfrom peft import LoraConfig, get_peft_model\\\\nfrom transformers import (\\\\n    AutoModelForCausalLM,\\\\n    AutoModelForSequenceClassification,\\\\n    AutoTokenizer,\\\\n    get_linear_schedule_with_warmup,\\\\n)\\\\n\\\\nCONDITION_MAP = {\\\\n    \\\\\\\"warranted_revision\\\\\\\": \\\\\\\"valid_correction\\\\\\\",\\\\n    \\\\\\\"sycophantic_capitulation\\\\\\\": \\\\\\\"invalid_pressure\\\\\\\",\\\\n    \\\\\\\"valid_correction\\\\\\\": \\\\\\\"valid_correction\\\\\\\",\\\\n    \\\\\\\"invalid_pressure\\\\\\\": \\\\\\\"invalid_pressure\\\\\\\",\\\\n}\\\\n\\\\n\\\\n# ----------------------------------------------------------\n…[truncated 2997 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-22T13:15:04.100103+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "cp /root/contrastive_entrain_calib/training/run_exp008_binary_probe_penalty.py /root/contrastive_entrain_calib/training/run_exp008_gs8_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-22T13:15:04.100251+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-22T13:15:04.100392+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "cd /root/contrastive_entrain_calib/training && sed -i '1,3 s|^#!/usr/bin/env python3|#!/usr/bin/env python3\\n# exp-008-gs8: group_size=8 ablation of exp-008 (Binary Probe Penalty).\\n# Validates that probe reward trap is NOT caused by small group_size.\\n# Change from exp-008: batch_size 1->8, grad_accum 16->2 (effective bs=16 unchanged).|' run_exp008_gs8_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-22T13:15:04.100522+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-22T13:15:04.100653+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "cd /root/contrastive_entrain_calib/training && sed -i 's|max_steps: int = 8000|max_steps: int = 800|' run_exp008_gs8_ablation.py && sed -i 's|batch_size: int = 1|batch_size: int = 8|' run_exp008_gs8_ablation.py && sed -i 's|grad_accum: int = 16|grad_accum: int = 2|' run_exp008_gs8_ablation.py && sed -i 's|save_steps: int = 500|save_steps: int = 200|' run_exp008_gs8_ablation.py && sed -i 's|output_dir: str = (|output_dir: str = \"|' run_exp008_gs8_ablation.py && sed -i 's|        \"/root/contrastive_entrain_calib/checkpoints/exp008_binary_probe_penalty\"|/root/autodl-tmp/contrastive_entrain_calib/outputs/exp008_gs8_ablation/\"|' run_exp008_gs8_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-22T13:15:04.100787+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-22T13:15:04.100961+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "grep -n \"output_dir\\|max_steps\\|batch_size\\|grad_accum\\|save_steps\" /root/contrastive_entrain_calib/training/run_exp008_gs8_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-22T13:15:04.101093+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-22T13:15:04.101212+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "grep -n \"output_dir\" /root/contrastive_entrain_calib/training/run_exp008_gs8_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-22T13:15:04.101337+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "grep -n \"max_steps\" /root/contrastive_entrain_calib/training/run_exp008_gs8_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-22T13:15:04.101457+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "grep -n \"batch_size\" /root/contrastive_entrain_calib/training/run_exp008_gs8_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-22T13:15:04.101570+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "grep -n \"save_steps\" /root/contrastive_entrain_calib/training/run_exp008_gs8_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-22T13:15:04.102518+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"24:    LoRA checkpoints every 500 steps + final in output_dir\\\\n70:    output_dir: str = \\\\\\\"\\\\n129:    p.add_argument(\\\\\\\"--output_dir\\\\\\\", type=str, default=None)\\\\n503:    os.makedirs(config.output_dir, exist_ok=True)\\\\n510:            logging.FileHandler(os.path.join(config.output_dir, \\\\\\\"train.log\\\\\\\")),\\\\n545:    probe_path = os.path.join(config.output_dir, \\\\\\\"probe.pt\\\\\\\")\\\\n714:                        config.output_dir, f\\\\\\\"checkpoint-{step}\\\\\\\"\\\\n722:    final_dir = os.path.join(config.output_dir, \\\\\\\"final\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-22T13:15:04.102762+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "grep -n \"grad_accum\" /root/contrastive_entrain_calib/training/run_exp008_gs8_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-22T13:15:04.102979+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"86:    max_steps: int = 800\\\\n119:    p.add_argument(\\\\\\\"--max_steps\\\\\\\", type=int, default=8000)\\\\n520:    log.info(\\\\\\\"Config: lr=%s lambda_reward=%s lambda_probe=%s max_steps=%d retrain_interval=%d\\\\\\\",\\\\n521:             config.lr, config.lambda_reward, config.lambda_probe, config.max_steps,\\\\n616:        optimizer, config.warmup_steps, config.max_steps\\\\n621:        \\\\\\\"Starting training: max_steps=%d, batch=%d, grad_accum=%d, effective_batch=%d\\\\\\\",\\\\n622:        config.max_steps, config.batch_size, config.grad_accum,\\\\n629:    while step < config.max_steps:\\\\n631:            if step >= config.max_steps:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-22T13:15:04.103144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4:# Change from exp-008: batch_size 1->8, grad_accum 16->2 (effective bs=16 unchanged).\\\\n87:    batch_size: int = 8\\\\n122:    p.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=1)\\\\n449:    samples: list[dict], nli_model_name: str, batch_size: int = 86\\\\n477:    for i in range(0, len(premises), batch_size):\\\\n478:        bp = premises[i : i + batch_size]\\\\n479:        bc = conditions[i : i + batch_size]\\\\n603:        batch_size=config.batch_size,\\\\n622:        config.max_steps, config.batch_size, config.grad_accum,\\\\n623:        config.batch_size * config.grad_accum,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-22T13:15:04.103287+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"110:    save_steps: int = 200\\\\n712:                if step % config.save_steps == 0:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-22T13:15:04.103433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4:# Change from exp-008: batch_size 1->8, grad_accum 16->2 (effective bs=16 unchanged).\\\\n88:    grad_accum: int = 2\\\\n123:    p.add_argument(\\\\\\\"--grad_accum\\\\\\\", type=int, default=16)\\\\n621:        \\\\\\\"Starting training: max_steps=%d, batch=%d, grad_accum=%d, effective_batch=%d\\\\\\\",\\\\n622:        config.max_steps, config.batch_size, config.grad_accum,\\\\n623:        config.batch_size * config.grad_accum,\\\\n667:            (loss / config.grad_accum).backward()\\\\n675:            if acc_n >= config.grad_accum:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-22T13:15:04.103635+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "cp /root/contrastive_entrain_calib/training/run_exp008_binary_probe_penalty.py /root/contrastive_entrain_calib/training/run_exp008_gs8_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-22T13:15:04.104436+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-22T13:15:04.104688+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport re\n\npath = '/root/contrastive_entrain_calib/training/run_exp008_gs8_ablation.py'\nwith open(path) as f:\n    content = f.read()\n\n# 1. Replace docstring first line\ncontent = content.replace(\n    '\\\"\\\"\\\"exp-008: Binary Probe Penalty baseline for sycophancy calibration.',\n    '\\\"\\\"\\\"exp-008-gs8: group_size=8 ablation of exp-008 (Binary Probe Penalty).\\n\\nValidates that probe reward trap is NOT caused by small group_size.\\nChange from exp-008: batch_size 1->8, grad_accum 16->2 (effective bs=16 unchanged).\\n\\nOriginal exp-008: Binary Probe Penalty baseline for sycophancy calibration.',\n    1\n)\n\n# 2. Config defaults - use exact multi-line matches to avoid false positives\n# output_dir (spans 3 lines)\ncontent = content.replace(\n    '''    output_dir: str = (\n        \\\"/root/contrastive_entrain_calib/checkpoints/exp008_binary_probe_penalty\\\"\n    )''',\n    '    output_dir: str = \\\"/root/autodl-tmp/contrastive_entrain_calib/outputs/exp008_gs8_ablation/\\\"'\n)\n\n# max_steps in config\ncontent = content.replace('    max_steps: int = 8000', '    max_steps: int = 800', 1)\n\n# batch_size in config (exact line match with 4 spaces indent)\ncontent = content.replace('    batch_size: int = 1\\n', '    batch_size: int = 8\\n', 1)\n\n# grad_accum in config\ncontent = content.replace('    grad_accum: int = 16\\n', '    grad_accum: int = 2\\n', 1)\n\n# save_steps in config\ncontent = content.replace('    save_steps: int = 500', '    save_steps: int = 200', 1)\n\n# 3. argparse defaults\ncontent = content.replace(\\\"default=8000\\\", \\\"default=800\\\", 1)\ncontent = content.replace(\n    'p.add_argument(\\\"--batch_size\\\", type=int, default=1)',\n    'p.add_argument(\\\"--batch_size\\\", type=int, default=8)',\n    1\n)\ncontent = content.replace(\n    'p.add_argument(\\\"--grad_accum\\\", type=int, default=16)',\n    'p.add_argument(\\\"--grad_accum\\\", type=int, default=2)',\n    1\n)\n\n# 4. Update logger name\ncontent = content.replace('\\\"exp008\\\"', '\\\"exp008_gs8\\\"')\n\n# 5. Update log banner\ncontent = content.replace(\n    '\\\"=== exp-008: Binary Probe Penalty Baseline ===\\\"',\n    '\\\"=== exp-008-gs8: Binary Probe Penalty (group_size=8 ablation) ===\\\"'\n)\n\nwith open(path, 'w') as f:\n    f.write(content)\n\nprint('OK')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-22T13:15:04.104890+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-22T13:15:04.105065+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "head -10 /root/contrastive_entrain_calib/training/run_exp008_gs8_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-22T13:15:04.105231+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp-008-gs8: group_size=8 ablation of exp-008 (Binary Probe Penalty).\\\\n\\\\nValidates that probe reward trap is NOT caused by small group_size.\\\\nChange from exp-008: batch_size 1->8, grad_accum 16->2 (effective bs=16 unchanged).\\\\n\\\\nOriginal exp-008: Binary Probe Penalty baseline for sycophancy calibration.\\\\n\\\\nSFT-style LoRA training on Qwen3-8B with a frozen binary probe penalty.\\\\nDesigned to run on a single RTX 5090 (32 GB) without GRPO's memory overhead.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-22T13:15:04.105370+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "grep -n \"output_dir\" /root/contrastive_entrain_calib/training/run_exp008_gs8_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-22T13:15:04.105514+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"26:    LoRA checkpoints every 500 steps + final in output_dir\\\\n72:    output_dir: str = \\\\\\\"/root/autodl-tmp/contrastive_entrain_calib/outputs/exp008_gs8_ablation/\\\\\\\"\\\\n129:    p.add_argument(\\\\\\\"--output_dir\\\\\\\", type=str, default=None)\\\\n503:    os.makedirs(config.output_dir, exist_ok=True)\\\\n510:            logging.FileHandler(os.path.join(config.output_dir, \\\\\\\"train.log\\\\\\\")),\\\\n545:    probe_path = os.path.join(config.output_dir, \\\\\\\"probe.pt\\\\\\\")\\\\n714:                        config.output_dir, f\\\\\\\"checkpoint-{step}\\\\\\\"\\\\n722:    final_dir = os.path.join(config.output_dir, \\\\\\\"final\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-22T13:15:04.105676+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "grep -n \"batch_size\" /root/contrastive_entrain_calib/training/run_exp008_gs8_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-22T13:15:04.105829+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5:Change from exp-008: batch_size 1->8, grad_accum 16->2 (effective bs=16 unchanged).\\\\n87:    batch_size: int = 8\\\\n122:    p.add_argument(\\\\\\\"--batch_size\\\\\\\", type=int, default=8)\\\\n449:    samples: list[dict], nli_model_name: str, batch_size: int = 16\\\\n477:    for i in range(0, len(premises), batch_size):\\\\n478:        bp = premises[i : i + batch_size]\\\\n479:        bc = conditions[i : i + batch_size]\\\\n603:        batch_size=config.batch_size,\\\\n622:        config.max_steps, config.batch_size, config.grad_accum,\\\\n623:        config.batch_size * config.grad_accum,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-22T13:15:04.106095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "grep -n \"grad_accum\" /root/contrastive_entrain_calib/training/run_exp008_gs8_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-22T13:15:04.106268+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5:Change from exp-008: batch_size 1->8, grad_accum 16->2 (effective bs=16 unchanged).\\\\n88:    grad_accum: int = 2\\\\n123:    p.add_argument(\\\\\\\"--grad_accum\\\\\\\", type=int, default=2)\\\\n621:        \\\\\\\"Starting training: max_steps=%d, batch=%d, grad_accum=%d, effective_batch=%d\\\\\\\",\\\\n622:        config.max_steps, config.batch_size, config.grad_accum,\\\\n623:        config.batch_size * config.grad_accum,\\\\n667:            (loss / config.grad_accum).backward()\\\\n675:            if acc_n >= config.grad_accum:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-22T13:15:04.106416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "grep -n \"max_steps\" /root/contrastive_entrain_calib/training/run_exp008_gs8_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-22T13:15:04.106552+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "grep -n \"save_steps\" /root/contrastive_entrain_calib/training/run_exp008_gs8_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-22T13:15:04.106696+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"86:    max_steps: int = 800\\\\n119:    p.add_argument(\\\\\\\"--max_steps\\\\\\\", type=int, default=800)\\\\n520:    log.info(\\\\\\\"Config: lr=%s lambda_reward=%s lambda_probe=%s max_steps=%d retrain_interval=%d\\\\\\\",\\\\n521:             config.lr, config.lambda_reward, config.lambda_probe, config.max_steps,\\\\n616:        optimizer, config.warmup_steps, config.max_steps\\\\n621:        \\\\\\\"Starting training: max_steps=%d, batch=%d, grad_accum=%d, effective_batch=%d\\\\\\\",\\\\n622:        config.max_steps, config.batch_size, config.grad_accum,\\\\n629:    while step < config.max_steps:\\\\n631:            if step >= config.max_steps:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-22T13:15:04.106832+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"110:    save_steps: int = 200\\\\n712:                if step % config.save_steps == 0:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-22T13:15:04.107014+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "mkdir -p /root/autodl-tmp/contrastive_entrain_calib/outputs/exp008_gs8_ablation/",
+              "account": "root"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-22T13:15:04.107154+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-22T13:15:04.107293+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory,name --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-22T13:15:04.107431+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"237437, GPU-08d8e8b9-f62b-ebeb-bf67-9f31ce79bba5, 38040 MiB, /root/miniconda3/bin/python\\\\n494017, GPU-b85fe8f9-c447-fa47-fb40-37fb400998d2, 23268 MiB, /root/miniconda3/bin/python\\\\n502516, GPU-b85fe8f9-c447-fa47-fb40-37fb400998d2, 23264 MiB, /root/miniconda3/bin/python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-22T13:15:04.107604+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29046",
+              "command": "head -115 /root/contrastive_entrain_calib/training/run_exp008_gs8_ablation.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-22T13:15:04.107800+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp-008-gs8: group_size=8 ablation of exp-008 (Binary Probe Penalty).\\\\n\\\\nValidates that probe reward trap is NOT caused by small group_size.\\\\nChange from exp-008: batch_size 1->8, grad_accum 16->2 (effective bs=16 unchanged).\\\\n\\\\nOriginal exp-008: Binary Probe Penalty baseline for sycophancy calibration.\\\\n\\\\nSFT-style LoRA training on Qwen3-8B with a frozen binary probe penalty.\\\\nDesigned to run on a single RTX 5090 (32 GB) without GRPO's memory overhead.\\\\n\\\\nLoss:\\\\n    L = L_sft - lambda_reward * (R3 - lambda_probe * S(t))\\\\n      = L_sft + lambda_reward * lambda_probe * S(t) - lambda_reward * R3\\\\n\\\\n    L_sft:  cross-entropy on last-assistant-turn tokens (standard SFT)\\\\n    S(t):   frozen logistic probe sycophancy score, differentiable through hidden states\\\\n    R3:     NLI behavioral reward, precomputed on training data (constant, for monitoring)\\\\n\\\\nInput:\\\\n    Model:       /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\n    Data:        calibration_v2_1_expanded.jsonl (362 samples, v2.1 style-controlled)\\\\n    Activations: results/exp001/activations.pt (for probe pretraining)\\\\n\\\\nOutput:\\\\n    LoRA checkpoints every 500 steps + final in output_dir\\\\n\\\\nDependencies: torch, transformers, peft\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport os\\\\nimport re\\\\nimport sys\\\\nfrom dataclasses import dataclass, field\\\\nfrom functools import partial\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nimport torch.nn as nn\\\\nimport torch.nn.functional as F\\\\nfrom torch.utils.data import DataLoader\\\\nfrom torch.utils.data import Dataset as TorchDataset\\\\n\\\\nfrom peft import LoraConfig, get_peft_model\\\\nfrom transformers import (\\\\n    AutoModelForCausalLM,\\\\n    AutoModelForSequenceClassification,\\\\n    AutoTokenizer,\\\\n    get_linear_schedule_with_warmup,\\\\n)\\\\n\\\\nCONDITION_MAP = {\\\\n    \\\\\\\"warranted_revision\\\\\\\": \\\\\\\"valid_correction\\\\\\\",\\\\n    \\\\\\\"s\n…[truncated 2198 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-22T13:15:04.108058+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已就绪。最终核对：\n\n## 新脚本 `run_exp008_gs8_ablation.py` 关键配置对比\n\n| 参数 | exp-008 原值 | gs8 ablation |\n|------|-------------|-------------|\n| `batch_size` | 1 | **8** |\n| `grad_accum` | 16 | **2** |\n| effective batch size | 16 | 16 (不变) |\n| `max_steps` | 8000 | **800** |\n| `save_steps` | 500 | **200** (checkpoint at 200/400/600/800) |\n| `output_dir` | `.../checkpoints/exp008_binary_probe_penalty` | **`/root/autodl-tmp/.../exp008_gs8_ablation/`** |\n| `lr` | 5e-5 | 5e-5 (不变) |\n| `lora_rank/alpha` | 64/128 | 64/128 (不变) |\n| `lambda_reward/probe` | 0.1/1.0 | 0.1/1.0 (不变) |\n| `seed` | 42 | 42 (不变) |\n| `retrain_interval` | 500 | 500 (不变) |\n| `warmup_steps` | 200 | 200 (不变) |\n\n## 说明\n\n**关于 group_size 的实现**：exp-008 是纯 SFT 脚本，没有 GRPO 的 `num_generations` 参数。在 SFT 上下文中，\"group_size\" 映射到 `batch_size`——每次前向传播中 probe penalty S(t) 基于多少个样本的均值计算。原来 batch_size=1 (每个 probe 分数只看一个样本)，现在 batch_size=8 (S(t) 是 8 个样本的均值，信号更平滑)。`grad_accum` 从 16 降到 2，保持有效 batch size = 16 不变。\n\n## Dry run 状态\n\nGPU 0 被占用（PID 237437, 38GB/98GB, 95% util），**跳过 dry run**。GPU 0 有 ~60GB 空闲，Qwen3-8B (bf16 ~16GB) + batch_size=8 + `output_hidden_states=True` (所有层 hidden states) 估算需要 35-45GB，应该能放下，但需要等当前任务完成后验证。\n\n## 需要注意\n\n`warmup_steps=200` 在 `max_steps=800` 下占比 25%（原来在 8000 步中只占 2.5%）。如果你认为这会影响实验公平性，需要按比例缩小为 `warmup_steps=20`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp008-gs8-prepare_20260522T130720"
+          },
+          "id": "event-000083"
+        }
+      ],
+      "message_count": 83
+    }
+  ],
+  "readable_path": "readable/conversations/code-exp008-gs8-prepare.md"
+}

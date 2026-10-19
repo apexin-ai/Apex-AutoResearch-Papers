@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5350150b9526f4b13bb",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval ckpt8000 scp submit and gpu check",
+  "task_key": "worker_eval_ckpt8000-scp-submit-and-gpu-check_20260521T101944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_ckpt8000-scp-submit-and-gpu-check_20260521T101944_result.json",
+    "occurrence": 1,
+    "bytes": 1232,
+    "sha256": "d89b55d838bc596b422bc83c204398190477fa532e60ba1e9e6083118de2e1f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n---\n\n## 1. seed1 ckpt-8000 状态\n**存在** ✓ — 29046 上 `/root/autodl-tmp/checkpoints/exp003_r3only_seed1/checkpoint-8000/adapter_model.safetensors`，245,405,936 bytes。已保存到 checkpoint-8000（共 16 个 checkpoint: 500~8000）。\n\n## 2. SCP 结果\n29046 → 28034 直传完成 ✓ — 28034 上 `/root/autodl-tmp/checkpoints/exp003/checkpoint-8000/adapter_model.safetensors` 大小验证通过（245,405,936 bytes）。\n\n## 3. 28034 四卡状态\n\n| GPU | VRAM | Util | 进程 | PID |\n|-----|------|------|------|-----|\n| 0 | 16884 MiB | 50% | **s2-ckpt-3500** eval | 867046 |\n| 1 | 16764 MiB | 48% | **ckpt-8000** eval (刚提交) | 868607 |\n| 2 | 2 MiB | 0% | 空闲 | — |\n| 3 | 16884 MiB | 44% | **s2-ckpt-2500** eval | 865026 |\n\n- GPU 0: s2-ckpt-3500 仍在跑（启动 18:02，已运行 ~21 min）\n- GPU 1: ckpt-8000 eval 已启动 ✓\n- GPU 2: 空闲\n- GPU 3: s2-ckpt-2500 仍在跑（启动 17:29，已运行 ~54 min）\n- ckpt-6000 eval 的 tmux session 残留但 GPU 已释放（已完成）\n\n## 4. ckpt-8000 eval 提交结果\n**已成功提交** ✓ — tmux session `eval-ckpt8000`，PID 868607，GPU 1，VRAM 16754 MiB，运行正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-ckpt8000-scp-submit-and-gpu-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3ade9007022fa70abe4",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code l2 ablation prep",
+  "task_key": "worker_code_l2-ablation-prep_20260523T151054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_l2-ablation-prep_20260523T151054_result.json",
+    "occurrence": 1,
+    "bytes": 1322,
+    "sha256": "405f0b6b0edd40b2fdbe7d2739babb7ddcd0280fb33ac5f916586b12e17daac5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。产出汇总：\n\n### 1. 脚本路径\n- `/root/contrastive_entrain_calib/train/run_l2_ablation_lambda0.sh` — λ=0 (Simple SFT)\n- `/root/contrastive_entrain_calib/train/run_l2_ablation_lambda05.sh` — λ=0.5\n\n### 2. 与 ACT 原始脚本的 diff\n两个 shell wrapper 都调用同一个 `training/run_exp004s2_act.py`，仅覆盖两个参数：\n\n| 参数 | ACT (原始) | λ=0 | λ=0.5 |\n|------|-----------|-----|-------|\n| `--lambda-l2` | 0.1 | **0.0** | **0.5** |\n| `--output-dir` | `outputs/exp-004-act-baseline-s2` | `outputs/exp004_l2_lambda0` | `outputs/exp004_l2_lambda05` |\n\n其余超参完全相同：LoRA r=64 α=128, 7 modules, lr=5e-5, grad_accum=16, max_steps=8000, save_steps=500, seed=43。\n\n### 3. 预计训练时间\ndry-run 1 step ≈ 10s，grad_accum=16，每 step = 16 micro-steps。8000 steps × 10s ≈ **22 小时/每个实验**。\n\n### 4. Dry-run 验证\n- λ=0: `total=2.4728 = sft(2.4728) + 0.0×l2(2.6144)` — L2 项归零，纯 SFT\n- λ=0.5: `total=3.7800 = sft(2.4728) + 0.5×l2(2.6144)` — 数值正确\n\n启动方式：\n```bash\n# GPU 释放后\nCUDA_VISIBLE_DEVICES=0 bash /root/contrastive_entrain_calib/train/run_l2_ablation_lambda0.sh\nCUDA_VISIBLE_DEVICES=1 bash /root/contrastive_entrain_calib/train/run_l2_ablation_lambda05.sh\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-l2-ablation-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3382d6de8fa7f1add92b",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ssh verify 29046 and pipeline",
+  "task_key": "worker_ssh_verify-29046-and-pipeline_20260522T112258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify-29046-and-pipeline_20260522T112258_result.json",
+    "occurrence": 1,
+    "bytes": 1237,
+    "sha256": "d518556717a9b0ac9ac899d2b00db2421029919b5106bfa4b7755dd7b849c3d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### exp-003-s2 (R3-only seed 2)\n- **PID**: 237437（GPU0，97% 利用率，38GB 显存）\n- **当前 step**: 7424/8000，~25.5s/step\n- **ckpt-7500 ETA**: ~19:55 服务器时间（距现在约 30 分钟）\n- **训练完成 ETA**: ~23:30 服务器时间（约 4 小时后）\n- **Checkpoint 路径**: `/root/autodl-tmp/checkpoints/exp003_r3only_seed2/`（最新 ckpt-7000）\n\n### exp-004-s2 (ACT seed 2 resume)\n- **PID**: 494017（GPU1，34% 利用率，23GB 显存）\n- **状态**: 已自动重启，从 ckpt-2000 恢复，18:49 开始\n- **当前 step**: 2230/8000，~9s/step\n- **ckpt-2500 ETA**: ~20:05 服务器时间（约 40 分钟后）\n- **训练完成 ETA**: ~09:45 May 23\n- **Checkpoint 路径**: `/root/autodl-tmp/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2/`（数据盘，不会再磁盘满）\n- **崩溃原因**: 前一次运行保存到根分区（93% 满），在 step 2500 保存时 \"No space left on device\"。resume 脚本已改为写入 autodl-tmp。\n\n### SCP / Eval\n- **ckpt-7500 和 ckpt-2500 均尚未生成**，无法立即 SCP 和提交 eval\n- 两个 checkpoint 预计 30-40 分钟后可用\n\n需要我稍后回来检查并执行 SCP + eval 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-29046-and-pipeline.md"
+}

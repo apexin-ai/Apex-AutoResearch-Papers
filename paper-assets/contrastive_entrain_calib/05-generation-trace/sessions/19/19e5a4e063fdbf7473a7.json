@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19e5a4e063fdbf7473a7",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "fix westd29046 install trl",
+  "task_key": "worker_fix_westd29046_install_trl_20260518T134112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_westd29046_install_trl_20260518T134112_result.json",
+    "occurrence": 1,
+    "bytes": 481,
+    "sha256": "0ec2179c5e25f56a293ef50c3a349e0ce66eab899bdaffeabc0226e64cf83f6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "安装完成。conda base 环境 (Python 3.12) 依赖清单：\n\n| 库 | 版本 |\n|---|---|\n| torch | 2.8.0+cu128 |\n| transformers | 5.8.1 |\n| **trl** | **1.4.0** |\n| peft | 0.19.1 |\n| datasets | 4.8.5 |\n| accelerate | 1.13.0 |\n| CUDA | True, 2 GPUs |\n\n注意：系统 Python (`/usr/bin/python3`, 3.10) 和 conda 环境 (`/root/miniconda3/bin/python3`, 3.12) 是两套独立环境。TRL 安装在 conda 环境中，使用时需先 `conda activate base`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-westd29046-install-trl.md"
+}

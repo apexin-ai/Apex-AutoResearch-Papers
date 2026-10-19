@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "id": "631b7bf6f4a24aa2fbda",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "eval acts2 ckpt5000 scp eval",
+  "task_key": "worker_eval_acts2-ckpt5000-scp-eval_20260522T184657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_acts2-ckpt5000-scp-eval_20260522T184657.log",
+    "occurrence": 1,
+    "bytes": 1871151,
+    "sha256": "364ae15aa042d47f908492a75cba68fe24e99000d36bcb2177d5429b14ba9a8f"
+  },
+  "statistics": {
+    "messages": 1529,
+    "user_turns": 2,
+    "tool_calls": 690,
+    "roles": {
+      "log": 1,
+      "system": 16,
+      "record": 1,
+      "assistant": 128,
+      "tool_call": 690,
+      "tool_result": 690,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 35,
+      "chunks": [
+        {
+          "path": "631b7bf6f4a24aa2fbda-part-0001.json",
+          "message_count": 35
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 967,
+      "chunks": [
+        {
+          "path": "631b7bf6f4a24aa2fbda-part-0001.json",
+          "message_count": 145
+        },
+        {
+          "path": "631b7bf6f4a24aa2fbda-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "631b7bf6f4a24aa2fbda-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "631b7bf6f4a24aa2fbda-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "631b7bf6f4a24aa2fbda-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "631b7bf6f4a24aa2fbda-part-0006.json",
+          "message_count": 102
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 527,
+      "chunks": [
+        {
+          "path": "631b7bf6f4a24aa2fbda-part-0006.json",
+          "message_count": 78
+        },
+        {
+          "path": "631b7bf6f4a24aa2fbda-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "631b7bf6f4a24aa2fbda-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "631b7bf6f4a24aa2fbda-part-0009.json",
+          "message_count": 89
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-acts2-ckpt5000-scp-eval.md"
+}

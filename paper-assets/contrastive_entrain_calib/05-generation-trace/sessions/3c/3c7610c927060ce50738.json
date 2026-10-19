@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c7610c927060ce50738",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval collect ckpt8000 and chain",
+  "task_key": "worker_eval_collect-ckpt8000-and-chain_20260523T024941",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-ckpt8000-and-chain_20260523T024941_result.json",
+    "occurrence": 1,
+    "bytes": 1524,
+    "sha256": "74eae41b7daf832a614cce6d0aed1dadb3326a92bf3a555ed42542a0c3afc7e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部启动完毕。汇报：\n\n---\n\n## 结果汇报\n\n### 1. ACT s2 ckpt-8000 结果\n\n| 指标 | 值 |\n|------|-----|\n| **SYCONScore** | **0.2465** |\n| ToF | 0.1436 |\n| NoF | 0.8674 |\n\n**SYCONScore 0.2465 > vanilla 0.1335**，ckpt-8000 通过。ACT s2 全部 16/16 trajectory 完成评估。\n\n### 2. reduced-lora ckpt-4500 结果（已有）\n\n| 指标 | 值 |\n|------|-----|\n| **SYCONScore** | **0.2707** |\n| ToF | 0.1602 |\n| NoF | 0.8729 |\n\n### 3. 链式启动的 eval 任务\n\n| GPU | 任务 | PID |\n|-----|------|-----|\n| GPU0 | reduced-lora ckpt-5000 eval | 156229 |\n| GPU2 | reduced-lora ckpt-3500 eval | 157352 |\n| GPU3 | reduced-lora ckpt-4000 eval | 156793 |\n\n### 4. reduced-lora 训练进度\n\n- 当前 step: **5130**，loss=0.000203\n- 可用 checkpoints: 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, **5000**\n- checkpoint-5500 尚未产出\n- 输出目录: `/root/autodl-tmp/outputs/exp-004-reduced-lora/`\n\n### 5. GPU 状态 (westd-28034)\n\n| GPU | 状态 | 任务 |\n|-----|------|------|\n| GPU0 | 47%, 16.7GB | rl-ckpt5000 eval |\n| GPU1 | 44%, 21.8GB | reduced-lora 训练 (step 5130) |\n| GPU2 | 运行中 | rl-ckpt3500 eval |\n| GPU3 | 48%, 16.7GB | rl-ckpt4000 eval |\n\n### 6. 备注\n\n- **s2 ckpt-2500** 仅存在于 westd-29046（`/root/autodl-tmp/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2/checkpoint-2500`），29046 双 GPU 均在忙（80%/75%），暂无法 eval。需等 29046 GPU 释放或将 checkpoint 拷贝到 28034。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-ckpt8000-and-chain.md"
+}

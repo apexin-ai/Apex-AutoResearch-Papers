@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "194922d2e61c897bd3e6",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "run v2 1 activation and auroc",
+  "task_key": "worker_run_v2_1_activation_and_auroc_20260518T105311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_v2_1_activation_and_auroc_20260518T105311_result.json",
+    "occurrence": 1,
+    "bytes": 1629,
+    "sha256": "4ec5a30ebff82e0c6d2197c96a0e0c4e3d4eea4173ce879ea14839968ea20a58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 全部结果汇报\n\n### 1. V2 → V2.1 迁移测试（最关键）\n\n| 指标 | 值 |\n|------|-----|\n| Best AUROC | **0.7724** (Layer 32, asst_first) |\n| Layer 0 AUROC | 0.5360 |\n| Delta(best - layer0) | +0.2364 |\n\n**Top 5 layers（全部 asst_first）：**\n| Layer | AUROC |\n|-------|-------|\n| 32 | 0.7724 |\n| 35 | 0.7720 |\n| 33 | 0.7704 |\n| 31 | 0.7692 |\n| 34 | 0.7684 |\n\nAUROC 从 layer 0 的 ~0.53 单调上升到中层 ~0.73（layer 19-23），继续到后层 ~0.77（layer 27-35），呈现清晰的层次分化。\n\n### 2. V2.1 5-Fold CV\n\n| 指标 | 值 |\n|------|-----|\n| Mean AUROC | **0.8260 ± 0.0543** |\n| Mean Layer 0 AUROC | 0.5120 |\n\n| Fold | Best Layer | Position | AUROC | L0 AUROC |\n|------|-----------|----------|-------|----------|\n| 0 | 18 | asst_first | 0.77 | 0.52 |\n| 1 | 21 | asst_first | 0.91 | 0.54 |\n| 2 | 18 | asst_first | 0.79 | 0.56 |\n| 3 | 17 | user_last | 0.79 | 0.46 |\n| 4 | 32 | asst_first | 0.87 | 0.48 |\n\n### 3. 判定\n\n**迁移 AUROC = 0.77 → 灰色区间（0.65-0.80）**\n\n具体解读：\n- v2 方向在 style-matched 的 v2.1 数据上仍有 0.77 的区分能力，说明 d_syc **不仅仅是风格编码**，确实捕获了部分认知信号\n- 但未达到 0.80 的 PASS 阈值，说明 v2 方向中混入了一定程度的风格成分\n- 5-fold CV 的 0.826 显著高于迁移的 0.77，表明在 style-matched 数据上重新训练方向能获得更纯的信号\n- Layer 0 始终 ~0.5（随机），确认 baseline 无信息泄漏\n- 最佳层集中在中后层（17-32），符合\"高层编码语义/决策信息\"的预期"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-v2-1-activation-and-auroc.md"
+}

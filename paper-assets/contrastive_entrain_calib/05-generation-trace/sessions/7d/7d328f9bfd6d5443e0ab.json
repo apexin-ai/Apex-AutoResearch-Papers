@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d328f9bfd6d5443e0ab",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval batch1 collect and batch2 prep",
+  "task_key": "worker_eval_batch1-collect-and-batch2-prep_20260521T080813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_batch1-collect-and-batch2-prep_20260521T080813_result.json",
+    "occurrence": 1,
+    "bytes": 1347,
+    "sha256": "a9336515cddb6f7ae7df41c969a92674760669794cfa670f10a9cd2fb2003e15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 3 已确认启动（PID 191750, 16834MiB）。汇总如下：\n\n---\n\n## 28034 Eval 状态\n\n### 第一批（进行中）\n| GPU | Eval | 进度 | 预计完成 |\n|-----|------|------|---------|\n| 0 | ckpt5000-v2 | 200/362 (55%) | ~16:36 |\n| 1 | ckpt6000 | 180/362 (50%) | ~16:45 |\n| 2 | ckpt6500 | 180/362 (50%) | ~16:44 |\n\n### 第二批（已提交 1/4）\n| GPU | Eval | 状态 |\n|-----|------|------|\n| 3 | **exp003s2-ckpt3000** | **已启动** (PID 191750, 16.8GB VRAM) |\n| 0 | exp003-ckpt7000-v3 | 等 GPU 0 释放（~16:36） |\n| 1 | exp003s2-ckpt2000 | 等 GPU 1 释放（~16:45） |\n| 2 | exp003s2-ckpt2500 | 等 GPU 2 释放（~16:44） |\n\n所有第二批 checkpoint 文件已验证存在（245MB adapter_model.safetensors）。\n\n---\n\n## 29046 训练状态\n\n| 实验 | GPU | 当前 step | 进度 | 速度 | ETA |\n|------|-----|----------|------|------|-----|\n| seed1 (exp003) | cuda:1 | 7737/8000 | 97% | ~31s/step | ~18:25 今天 |\n| seed2 (exp-003-s2) | cuda:0 | 3636/8000 | 45% | ~30s/step | ~5月23日 04:00 |\n\n### Checkpoint 就绪情况\n- **seed1**: ckpt-7500 已生成（14:10 今天），**ckpt-8000 未生成**（预计 ~18:25）\n- **seed2**: ckpt-3500 已生成（15:00 今天），下一个 ckpt-4000 预计 ~19:15\n\n**ckpt-7500/8000 尚未 SCP 到 28034，等 Agent 安排。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-batch1-collect-and-batch2-prep.md"
+}

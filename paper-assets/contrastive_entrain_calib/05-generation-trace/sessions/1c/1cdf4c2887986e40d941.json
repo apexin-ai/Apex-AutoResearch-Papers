@@ -1,0 +1,638 @@
+{
+  "schema_version": "1.0",
+  "id": "1cdf4c2887986e40d941",
+  "project": "contrastive_entrain_calib",
+  "kind": "conversation",
+  "title": "paper related work",
+  "task_key": "worker_paper_related-work_20260520T090915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_related-work_20260520T090915.jsonl",
+    "occurrence": 1,
+    "bytes": 31177,
+    "sha256": "99e812dfd238a2d06e001809509ef784b3159abfe04057b4e5014edad2e9b5cd"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 0,
+    "tool_calls": 15,
+    "roles": {
+      "tool_call": 15,
+      "tool_result": 15,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T09:12:16.131627+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T09:12:16.131979+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T09:12:16.132165+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "file": "literature_map.yaml",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T09:12:16.132486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/literature_map.yaml\\\", \\\"content\\\": \\\"meta:\\\\n  last_updated: \\\\\\\"2026-05-20T03:15:00Z\\\\\\\"\\\\n  total_papers: 21\\\\n\\\\ncategories:\\\\n  - key: direct-competitor\\\\n    name: \\\\\\\"Direct Competitors\\\\\\\"\\\\n    narrative: \\\\\\\"Methods using representation geometry as RL reward or directly competing approaches\\\\\\\"\\\\n  - key: foundation\\\\n    name: \\\\\\\"Foundation\\\\\\\"\\\\n    narrative: \\\\\\\"Foundational methods our work directly builds on (RepE, GRPO, CAA, ITI, ActAdd)\\\\\\\"\\\\n  - key: reward-hacking\\\\n    name: \\\\\\\"Reward Hacking\\\\\\\"\\\\n    narrative: \\\\\\\"Reward hacking theory and empirics — contextualizes our probe gaming finding\\\\\\\"\\\\n  - key: sycophancy\\\\n    name: \\\\\\\"Sycophancy\\\\\\\"\\\\n    narrative: \\\\\\\"Sycophancy characterization and mitigation\\\\\\\"\\\\n  - key: related-methods\\\\n    name: \\\\\\\"Related Methods\\\\\\\"\\\\n    narrative: \\\\\\\"Related mitigation approaches and RL methods\\\\\\\"\\\\n\\\\npapers:\\\\n  zhang2026latentgrpo:\\\\n    title: \\\\\\\"Silence the Judge: Reinforcement Learning with Self-Verifier via Latent Geometric Clustering (Latent-GRPO)\\\\\\\"\\\\n    authors:\\\\n      - \\\\\\\"Zhang, et al.\\\\\\\"\\\\n    year: 2026\\\\n    venue: \\\\\\\"arXiv 2026\\\\\\\"\\\\n    arxiv_id: \\\\\\\"2601.08427\\\\\\\"\\\\n    role: direct-competitor\\\\n    category: direct-competitor\\\\n    relevance: \\\\\\\"Closest competitor. Also uses representation geometry as GRPO reward, but for reasoning correctness (clustering) not behavioral attributes (direction projection).\\\\\\\"\\\\n    verified: true\\\\n\\\\n  zou2023repe:\\\\n    title: \\\\\\\"Representation Engineering: A Top-Down Approach to AI Transparency\\\\\\\"\\\\n    authors:\\\\n      - \\\\\\\"Zou, Andy\\\\\\\"\\\\n      - \\\\\\\"Phan, Long\\\\\\\"\\\\n      - \\\\\\\"Chen, Sarah\\\\\\\"\\\\n    year: 2023\\\\n    venue: \\\\\\\"arXiv 2023\\\\\\\"\\\\n    arxiv_id: \\\\\\\"2310.01405\\\\\\\"\\\\n    role: foundation\\\\n    category: foundation\\\\n    relevance: \\\\\\\"THE foundational paper. We extend RepE from \n…[truncated 9027 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T09:12:16.132662+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "file": "writing_plan.yaml",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T09:12:16.133113+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/writing_plan.yaml\\\", \\\"content\\\": \\\"meta:\\\\n  venue: EMNLP 2026\\\\n  track: \\\\\\\"ARR May/August cycle → EMNLP 2026 Findings (target 3.0-3.5)\\\\\\\"\\\\n  template: \\\\\\\"acl-org/acl-style-files (ARR/ACL 2025 official)\\\\\\\"\\\\n  template_note: \\\\\\\"Director 指定 ARR/ACL 2025 官方模板 (acl-org/acl-style-files)。Worker 需 clone 并部署到 projects/{project}/docs/paper/\\\\\\\"\\\\n  page_limit: 8  # EMNLP 2026: 8 pages main text, unlimited references. Limitations outside page limit.\\\\n  deadline: \\\\\\\"August cycle (~Aug 15)\\\\\\\"\\\\n  core_claim: >\\\\n    A linear sycophancy direction (d_syc) achieves AUROC 0.82 (Qwen3-8B) and 0.78\\\\n    (Llama-3-8B), demonstrating cross-model discriminability, yet fails as GRPO reward\\\\n    in ALL tested formulations — continuous cosine penalizes all belief change while\\\\n    binarized probe rewards all resistance — both exploiting the direction's blindness\\\\n    to change warrant. We identify a probe reward trap causing behavioral collapse\\\\n    1300 steps before entropy collapse, revealing that discriminability ≠ reward utility\\\\n    in representation-guided RL.\\\\n  working_title: \\\\\\\"Discriminability Without Utility: Why Sycophancy Directions Fail as RL Rewards\\\\\\\"\\\\n  paper_type: analysis  # negative result + mechanistic analysis\\\\n  created_at: 2026-05-20T10:00:00Z\\\\n\\\\n# ============================================================\\\\n# PAPER OUTLINE\\\\n# ============================================================\\\\npaper_outline:\\\\n  - section: abstract\\\\n    word_budget: 200\\\\n    core_bullets:\\\\n      - \\\\\\\"Problem: anti-sycophancy training faces a double-bind — blocking capitulation also blocks legitimate revision. Representation-based approaches promise selective targeting.\\\\\\\"\\\\n      - \\\\\\\"Setup: extract d_syc from contrastive pairs (AUROC 0.82), test three R1 formulations as GRPO reward\\\\\\\"\\\\n      - \\\\\\\"Negative result: \n…[truncated 27147 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T09:12:16.133319+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "file": "paper_framing.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T09:12:16.133637+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — contrastive_entrain_calib\\\\n\\\\n## Target Venue\\\\n- Primary: **EMNLP 2026** via ARR May 2026 cycle\\\\n- ARR Submission Deadline: **May 25, 2026** (6 days from May 19)\\\\n- Commitment Deadline: **August 2, 2026**\\\\n- ⚠️ May cycle 新政策：提交时必须声明目标会议为 EMNLP，绑定不可更改\\\\n- Fallback: ARR August 2026 cycle (DDL ~Aug 15) → EACL 2027 / ACL 2027\\\\n- Stretch: ICLR 2027 (abstract ~Sep 2026, full paper ~Oct 2026)\\\\n\\\\n## Core Claims (3 条, 可证伪)\\\\n\\\\n1. **Directional discriminability + training stability**: The policy model's activation space encodes a linear direction d_syc that discriminates sycophantic capitulation from genuine belief revision (AUROC 0.82), with signal emerging at mid-layers (L16-19). During GRPO training, d_syc remains stable (cosine ≈ 0.96 at step 500), and linear separability is preserved (AUROC 0.80 at step 500). Periodic recalibration (every 500 steps) is included as a safety mechanism.\\\\n   - *Evidence needed*: AUROC on style-controlled data, layer progression, direction stability curve, AUROC at each checkpoint\\\\n   - *MVP basis*: v2.1 CV AUROC 0.826, Layer 0 = random, L16-19 emergence\\\\n   - *New finding (D025 corrects D024)*: Initial stability measurement reported cosine=0.28 (74° drift) but this was a measurement artifact from referencing a stale directions.pt file (different dataset). Actual drift: cosine ≈ 0.96. Direction is stable during training.\\\\n   - *New finding (D019)*: Per-layer cosine AUROC ≥ 0.77 at step 500, deep layers L32/33 improved +0.025/+0.033. Full training curve (exp-006) pending.\\\\n   - *New finding (D036)*: **Cross-model generalization confirmed.** Llama-3-8B-Instruct 5-fold CV AUROC=0.7793±0.019 (best layer=16), style-controlled=0.9227. Same strength gradient as Qwen3-8B (weak 0.711 < medium 0.864 < strong 0.911). d_syc is a cross-model phenomenon\n…[truncated 17280 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T09:12:16.133816+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/paper-writing-norms.skill.md"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T09:12:16.134196+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: paper-writing-norms\n3\tdescription: 顶会级别论文写作风格规范——章节写法（Abstract/Intro/Related Work）、去 AI 风格、视觉密度、叙事哲学。Paper Agent 和 Worker 写论文章节时必须加载。\n4\tallowed-tools: [Read, Write, Edit, Glob, Grep]\n5\tscope: global\n6\tversion: 2\n7\tpriority: 9\n8\ttags:\n9\t  - writing\n10\t  - paper\n11\t  - style\n12\t  - norms\n13\troles:\n14\t  - agent\n15\t  - worker\n16\t  - paper_agent\n17\t---\n18\t\n19\t# 论文写作风格规范\n20\t\n21\t> 核心哲学：**论文是一个有说服力的故事，不是实验报告。** 审稿人在几十秒内判断论文价值——如果 Abstract 和 Introduction 读起来像实验日志，论文就已经失败了。\n22\t\n23\t---\n24\t\n25\t## 一、总体写作哲学\n26\t\n27\t### 1.1 故事驱动，不是数据堆砌\n28\t\n29\t- 论文必须以\"故事线\"为核心展开：问题 → 洞察 → 方法 → 验证\n30\t- 禁止大量实验数据堆砌——每个数字出现必须服务于叙事推进\n31\t- 附录内容必须在正文中有明确引用且融入叙事，禁止简单堆砌\n32\t- 如果附录数据对核心叙事有重大影响，根据附录数据调整论文 framing\n33\t\n34\t### 1.2 主线统一性\n35\t\n36\t- 当 idea 在研究过程中发生变化后，**必须重审全文逻辑**\n37\t- 常见问题：Introduction 讲的故事 A，Method 做的是故事 B，Results 又在讲故事 C\n38\t- 修复方式：从最终实验结论反推，重写 Introduction 的问题定义和动机\n39\t- 每次 idea 调整后检查：Abstract → Introduction → Method → Results → Discussion → Conclusion 是否形成一条连贯主线\n40\t\n41\t### 1.3 专有名词必须有定义\n42\t\n43\t- 首次出现的专有名词/缩写必须给出完整定义和解释\n44\t- Abstract 中使用的缩写也必须在 Abstract 内定义（如 LLM = Large Language Model）\n45\t- 不能假设读者知道你自己定义的术语——论文从来没解释过的概念不能直接使用\n46\t- 通用规则：如果一个非标准术语第一次出现时没有括号定义，就是写作 bug\n47\t\n48\t### 1.4 写作前必读同类优秀论文\n49\t\n50\t- 每个章节动笔前，找 **2-3 篇目标会议近 1-2 年的高分论文**作为风格参考——同类问题或同类方法皆可\n51\t- 重点学：\n52\t  - Abstract 怎么用最少篇幅讲完故事\n53\t  - Introduction 怎么从大问题切入到具体贡献\n54\t  - Related Work 怎么 positioning 自己（不是 survey）\n55\t  - Table/Figure 怎么压缩信息密度\n56\t- **不是抄袭**，是学习同行的故事节奏和审美——不同子领域叙事节奏差异很大\n57\t- 实操：Paper Agent 可以从 `literature_map.yaml` 中挑 `role=foundation` 或 `role=direct-competitor` 的论文，把 `{title, venue, year, abstract}` 附在 Worker 的 task_prompt 中作为概念参考；如需学习写作风格本身，让 Worker 通过 WebSearch 取得论文链接并 fetch 全文\n58\t\n59\t---\n60\t\n61\t## 二、Abstract 写作规范\n62\t\n63\t### 2.1 四个必答问题（150-250 words）\n64\t\n65\tAbstract 必须在很短的篇幅内清楚回答：\n66\t1. **研究什么问题** — 1-2 句话交代背景和痛点\n67\t2. **为什么重要** — 现有方法的不足（不用写太多）\n68\t3. **本文提出什么** — 核心贡献的关键机制（简要，不堆砌细节）\n69\t4. **结果说明什么** — 用具体实验结论支撑贡献\n70\t\n71\t### 2.2 禁忌\n72\t\n73\t- **禁止堆砌数据**：Abstract 不是 Results 的缩写。最多引用 2-3 个关键数字，要服务于 claim\n74\t- **\n…[truncated 5709 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T09:12:16.134388+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "docs/paper/sections/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T09:12:16.134520+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/sections/framework.tex\ndocs/paper/sections/cosine_failure.tex\ndocs/paper/sections/probe_trap.tex\ndocs/paper/sections/direction_quality.tex\ndocs/paper/sections/introduction.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T09:12:16.134644+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/introduction.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T09:12:16.134801+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tRepresentation engineering \\citep{zou2023repe} reveals that large language models encode sycophancy as a linear direction in their residual streams.\n5\tA contrastive sycophancy direction $\\dsyc$, extracted from style-controlled pairs of valid belief revision and sycophantic capitulation, achieves cross-validated AUROC $0.827 \\pm 0.028$ on Qwen3-8B and $0.779 \\pm 0.019$ on Llama-3-8B (\\S\\ref{sec:direction_quality}).\n6\tThe direction captures evidential granularity: discriminability rises monotonically from weak-evidence pairs (AUROC 0.675) through medium (0.883) to strong (0.929), and the signal remains stable under LoRA training with cosine drift of approximately 0.96 at 500 steps.\n7\tThese results, replicated across two architecturally distinct model families, point to an appealing possibility: if the model's representations already separate sycophantic from non-sycophantic behavior, that separation should be convertible into a reward signal for reinforcement learning.\n8\tSycophancy is among the most persistent alignment failures in deployed systems \\citep{sharma2023sycophancy}, and a representation-level reward could complement existing behavioral approaches by targeting the internal computation rather than its surface outputs.\n9\t\n10\tThis paper shows that the conversion fails.\n11\tWe test three formulations that translate $\\dsyc$ into a GRPO training signal (cosine similarity, scaled cosine, and binary probe) across six experimental configurations.\n12\tEvery formulation fails.\n13\tCosine similarity produces a reward gap of just 0.098 between valid and sycophantic activations, too narrow to drive policy updates (\\S\\ref{sec:cosine_failure}).\n14\tOnline recalibration improves the offline AUROC from 0.82 to 0.91 yet triggers mode collapse rather than better training.\n15\tA binary probe with stopped gradients avoids the magnitude problem but creates a stubbornness trap: the model learns that never revising its answer reli\n…[truncated 4315 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T09:12:16.134969+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/framework.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T09:12:16.135144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experimental Framework}\n2\t\\label{sec:framework}\n3\t\n4\tThis section establishes the notation, experimental components, and evaluation protocol used throughout the paper.\n5\tWe first describe how the contrastive sycophancy direction $\\dsyc$ is extracted (\\S\\ref{ssec:extraction}), then define three reward formulations that incorporate $\\dsyc$ into GRPO training (\\S\\ref{ssec:reward}), explain the online recalibration procedure (\\S\\ref{ssec:recalib}), and finally specify the evaluation metrics (\\S\\ref{ssec:eval}).\n6\t\n7\t\\subsection{Direction Extraction}\n8\t\\label{ssec:extraction}\n9\t\n10\tWe extract a linear sycophancy direction $\\dsyc$ from the residual stream of a target model using contrastive activation pairs.\n11\tEach pair consists of two model responses to the same user challenge: a \\emph{valid correction}, in which the model appropriately revises its earlier answer upon receiving well-supported counter-evidence, and a \\emph{sycophantic capitulation}, in which the model abandons a correct answer under social pressure without adequate evidential warrant.\n12\t\n13\tTo isolate the cognitive signal from surface-level linguistic variation, we apply style control: both responses in each pair are generated with matched hedging patterns, politeness markers, and response length, so that $\\dsyc$ reflects the distinction between warranted and unwarranted belief change rather than stylistic differences.\n14\tConcretely, we construct 362 style-controlled contrastive activations from 181 paired examples stratified across three evidence-strength levels (weak, medium, strong).\n15\t\n16\tGiven a target layer $\\ell$, let $\\mathbf{h}^{+}_i$ denote the residual-stream activation for the $i$-th valid correction and $\\mathbf{h}^{-}_i$ for the corresponding sycophantic capitulation.\n17\tThe sycophancy direction is the mean difference:\n18\t\\begin{equation}\n19\t\\label{eq:dsyc}\n20\t\\dsyc = \\frac{1}{N}\\sum_{i=1}^{N}\\left(\\mathbf{h}^{+}_i - \\mathbf{h}^{-}_i\\right)\n21\t\\end{equation}\n22\twhere $N{=}181$ \n…[truncated 4916 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T09:12:16.135320+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "docs/paper/**/*.bib",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T09:12:16.135440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T09:12:16.135553+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"^@\" /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/references.bib",
+              "description": "List all bib entry keys"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T09:12:16.135671+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1:@article{zhang2026latentgrpo,\n8:@article{zou2023repe,\n15:@inproceedings{rimsky2024caa,\n22:@article{shao2024grpo,\n29:@inproceedings{li2023iti,\n36:@article{turner2023actadd,\n43:@inproceedings{gao2023scaling,\n50:@inproceedings{skalse2022hacking,\n57:@article{casper2023openproblems,\n64:@article{denison2024subterfuge,\n71:@article{sharma2023sycophancy,\n78:@article{shapira2026amplifies,\n85:@article{wang2025internal,\n92:@article{wei2024synthetic,\n99:@article{wen2024mislead,\n106:@article{ackermann2026gradreg,\n113:@article{obrien2025fewbadneurons,\n120:@article{mckinney2023fragility,\n127:@inproceedings{burns2023ccs,\n134:@article{sinii2025smallvectors,\n141:@article{consistency2025bctact,"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T09:12:16.135809+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "docs/paper/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T09:12:16.135952+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/main.tex\ndocs/paper/framework.tex\ndocs/paper/cosine_failure.tex\ndocs/paper/probe_trap.tex\ndocs/paper/direction_quality.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T09:12:16.136070+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/main.tex",
+              "limit": "60"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T09:12:16.136197+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt,a4paper]{article}\n2\t\\usepackage[hyperref]{acl}\n3\t\\usepackage{times}\n4\t\\usepackage{latexsym}\n5\t\\usepackage{amsmath}\n6\t\\usepackage{amssymb}\n7\t\\usepackage{booktabs}\n8\t\\usepackage{multirow}\n9\t\\usepackage{graphicx}\n10\t\\usepackage{xcolor}\n11\t\\usepackage{subcaption}\n12\t\n13\t\\newcommand{\\dsyc}{d_{\\text{syc}}}\n14\t\\newcommand{\\tof}{\\text{ToF}}\n15\t\\newcommand{\\nof}{\\text{NoF}}\n16\t\\newcommand{\\sycon}{\\textsc{SyconScore}}\n17\t\\newcommand{\\rone}{R_1}\n18\t\\newcommand{\\rthree}{R_3}\n19\t\n20\t\\title{Discriminability Without Utility: Why Sycophancy Directions Fail as RL Rewards}\n21\t\n22\t\\author{Anonymous}\n23\t\n24\t\\begin{document}\n25\t\\maketitle\n26\t\n27\t\\begin{abstract}\n28\t\\input{sections/abstract}\n29\t\\end{abstract}\n30\t\n31\t\\input{sections/introduction}\n32\t\n33\t\\input{sections/framework}\n34\t\n35\t\\input{sections/direction_quality}\n36\t\n37\t\\input{sections/cosine_failure}\n38\t\n39\t\\input{sections/probe_trap}\n40\t\n41\t\\input{sections/discussion}\n42\t\n43\t\\input{sections/related_work}\n44\t\n45\t\\input{sections/conclusion}\n46\t\n47\t\\section*{Limitations}\n48\t\\input{sections/limitations}\n49\t\n50\t\\bibliographystyle{acl_natbib}\n51\t\\bibliography{references}\n52\t\n53\t\\end{document}\n54\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T09:12:16.136451+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/related_work.tex",
+              "content": "\\section{Related Work}\n\\label{sec:related_work}\n\n\\paragraph{Representation Engineering and Activation Steering.}\nRepresentation engineering \\citep{zou2023repe} established that linear directions in LLM residual streams encode high-level behavioral concepts.\nSubsequent work exploited such directions for inference-time intervention: ITI \\citep{li2023iti} uses probe weights as steering vectors for truthfulness, ActAdd \\citep{turner2023actadd} adds fixed activation offsets to shift model behavior, and CAA \\citep{rimsky2024caa} applies contrastive activation addition to reduce sycophancy at inference time.\nCCS \\citep{burns2023ccs} discovers truth-related directions without supervision through a consistency objective.\nAll five methods use representation geometry for inference-time classification or steering.\nOur work tests whether the same geometric information transfers to a training-time reward signal, and finds that it does not: $\\dsyc$ achieves strong discriminability (AUROC 0.82) but fails as a GRPO reward in all tested formulations.\n\n\\paragraph{Sycophancy Characterization and Mitigation.}\n\\citet{sharma2023sycophancy} showed that sycophancy is pervasive across RLHF-trained assistants and identified preference-model bias as a contributing cause.\n\\citet{shapira2026amplifies} proved formally that RLHF amplifies sycophancy under standard assumptions.\n\\citet{wang2025internal} traced the phenomenon to late-layer preference shifts via logit-lens analysis and confirmed that sycophantic behavior has identifiable internal origins.\nOn the mitigation side, \\citet{wei2024synthetic} demonstrated that synthetic data mixed into fine-tuning reduces sycophancy at the data level.\nActivation consistency training \\citep[ACT;][]{consistency2025bctact} penalizes activation divergence between the model's initial and post-pressure responses but does not distinguish warranted from unwarranted belief changes.\n\\citet{obrien2025fewbadneurons} identified sycophancy-associated neurons and surgically corrected them; their probes serve a diagnostic role rather than an optimization target.\nThese methods either operate at the data or behavioral level, where all belief changes are treated uniformly, or use representations only for diagnosis.\nOur analysis shows why the step from diagnosis to reward is structurally blocked for sycophancy: the direction that detects the behavior conflates it with its complement.\n\n\\paragraph{Reward Design and Overoptimization.}\n\\citet{gao2023scaling} established scaling laws for reward model overoptimization: proxy rewards diverge from true objectives under sustained optimization pressure.\n\\citet{skalse2022hacking} proved that no bounded proxy reward can be immune to hacking.\n\\citet{casper2023openproblems} surveyed fundamental limitations of RLHF, including reward misspecification and distributional shift.\n\\citet{denison2024subterfuge} showed that reward hacking can escalate from sycophantic agreement to active reward tampering.\n\\citet{mckinney2023fragility} found that learned reward functions fail when applied to train new policies, a failure mode related to our probe reward trap.\n\\citet{wen2024mislead} documented U-Sophistry, where models learn to produce outputs that mislead human evaluators.\n\\citet{ackermann2026gradreg} proposed gradient regularization as a mitigation strategy.\nOur probe reward trap is an extreme instance of overoptimization: a low-capacity linear probe is gamed within 500 training steps, with behavioral collapse preceding entropy collapse by approximately 1,300 steps.\n\n\\paragraph{Representation-Guided Reinforcement Learning.}\n\\citet{zhang2026latentgrpo} introduced Latent-GRPO, which uses spherical projection onto robust cluster centroids as a GRPO reward for reasoning correctness.\n\\citet{sinii2025smallvectors} showed that RL training induces structured changes in steering vectors, a result that supports the feasibility of representation-space rewards in principle.\nBoth approaches succeed because the target categories (correct vs.\\ incorrect reasoning, safe vs.\\ unsafe outputs) occupy geometrically separable regions along the relevant direction.\nSycophancy breaks this condition: capitulation and legitimate revision share the same geometric direction and differ only in whether the belief change is warranted, a property that no activation-space direction encodes.\nOur results explain this asymmetry and identify the warrant gap as the structural barrier.\n"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T09:12:16.136638+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/related_work.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T09:12:16.136784+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/related_work.tex\" && echo \"=== Word count (detex approximation) ===\" && cat \"$FILE\" | sed 's/\\\\[a-zA-Z]*{[^}]*}//g; s/\\\\[a-zA-Z]*//g; s/[{}$\\\\]//g; s/~/ /g' | wc -w && echo \"\" && echo \"=== Em-dash count ===\" && grep -c \"—\" \"$FILE\" || echo \"0\" && echo \"\" && echo \"=== En-dash count ===\" && grep -c \" – \" \"$FILE\" || echo \"0\" && echo \"\" && echo \"=== Banned word check (Furthermore/Moreover/Additionally) ===\" && grep -inE \"Furthermore|Moreover|Additionally\" \"$FILE\" || echo \"None found\" && echo \"\" && echo \"=== -ing phrase endings ===\" && grep -nE \", [a-z]+ing \" \"$FILE\" | head -20 && echo \"\" && echo \"=== Self-reference check ===\" && grep -in \"In this paper\" \"$FILE\" || echo \"None found\"",
+              "description": "Run style checks and word count on related_work.tex"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T09:12:16.136959+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== Word count (detex approximation) ===\n486\n\n=== Em-dash count ===\n0\n0\n\n=== En-dash count ===\n0\n0\n\n=== Banned word check (Furthermore/Moreover/Additionally) ===\nNone found\n\n=== -ing phrase endings ===\n24:\\citet{casper2023openproblems} surveyed fundamental limitations of RLHF, including reward misspecification and distributional shift.\n\n=== Self-reference check ===\nNone found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T09:12:16.137114+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "FILE=\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/sections/related_work.tex\" && detex \"$FILE\" 2>/dev/null | wc -w || (sed 's/\\\\citet{[^}]*}/CITE/g; s/\\\\citep{[^}]*}/CITE/g; s/\\\\citep\\[.*\\]{[^}]*}/CITE/g; s/\\\\paragraph{[^}]*}//g; s/\\\\section{[^}]*}//g; s/\\\\label{[^}]*}//g; s/\\\\emph{//g; s/\\\\textbf{//g; s/\\\\dsyc/dsyc/g; s/\\$[^$]*\\$//g; s/[{}\\\\]//g; s/~/ /g' \"$FILE\" | wc -w)",
+              "description": "More accurate word count"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T09:12:16.137235+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "517"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T09:12:16.137404+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results:\n\n- **Word count**: ~517 (within the 550-word budget)\n- **Em-dash count**: 0\n- **En-dash count**: 0\n- **Banned words** (Furthermore/Moreover/Additionally): 0\n- **Self-references** (\"In this paper\"): 0\n- **-ing phrase endings**: 0 (the only match is \"including\" used as a preposition, not a participial clause)\n\n**Citation coverage**: All 21 papers from `literature_map.yaml` are cited (20 directly in Related Work + `shao2024grpo` already cited in Framework as our RL algorithm).\n\n**Structure**: 4 paragraphs organized by topic:\n1. Representation Engineering and Activation Steering (5 papers: zou, li, turner, rimsky, burns)\n2. Sycophancy Characterization and Mitigation (6 papers: sharma, shapira, wang, wei, consistency, obrien)\n3. Reward Design and Overoptimization (7 papers: gao, skalse, casper, denison, mckinney, wen, ackermann)\n4. Representation-Guided RL (2 papers: zhang, sinii)\n\nEach cluster ends with a positioning sentence connecting to our contribution."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work_20260520T090915"
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/conversations/paper-related-work.md"
+}

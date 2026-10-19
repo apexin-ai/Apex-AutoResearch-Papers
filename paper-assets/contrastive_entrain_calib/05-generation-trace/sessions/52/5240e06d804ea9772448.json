@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5240e06d804ea9772448",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "run exp001 auroc evaluation",
+  "task_key": "worker_run_exp001_auroc_evaluation_20260518T113345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_exp001_auroc_evaluation_20260518T113345_result.json",
+    "occurrence": 1,
+    "bytes": 1621,
+    "sha256": "c68762dd532eed54ebf6df839e12937f1c12a0c0b227567268795716bcbaa6b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## EXP-001 扩展数据 AUROC 评估 — 完整结果\n\n### 0. Ground Truth 校验\n- 原始 200 pairs，LLM 校验发现 **19 pairs 存在 GT 错误**（9.5%），已移除\n- 最终保留 **181 pairs**（362 条记录），domain 分布：math 34, science 37, geography 38, history 35, commonsense 37\n\n### 1. 5-Fold Stratified CV\n\n| Fold | Test Pairs | Best AUROC | Best Layer | Position | L0 AUROC |\n|------|-----------|------------|------------|----------|----------|\n| 0 | 37 | 0.8189 | L21 | asst_first | 0.5391 |\n| 1 | 36 | 0.8056 | L19 | asst_first | 0.5556 |\n| 2 | 36 | 0.8565 | L19 | asst_first | 0.5440 |\n| 3 | 36 | 0.8619 | L32 | asst_first | 0.5293 |\n| 4 | 36 | 0.7917 | L35 | asst_first | 0.5054 |\n\n**Mean AUROC: 0.8269 ± 0.0278**\n\n### 2. Bootstrap 95% CI (full data)\n- Best layer: L19, position: asst_first\n- AUROC = **0.8159**, 95% CI [**0.7698**, **0.8576**]\n\n### 3. V2 → Expanded Transfer\n- v2 directions applied to expanded data: AUROC = **0.7989** (L27, asst_first)\n- L0 baseline: 0.5190\n- Delta: +0.2799\n\n### 4. Layer 0 Baseline\n- 所有 fold 的 L0 AUROC 在 0.50-0.56 范围，接近随机（符合预期，浅层无区分力）\n\n### 5. STOP-GATE 判定\n\n**PASS** ✓ (mean CV AUROC 0.8269 ≥ 0.80 threshold)\n\n关键观察：\n- 所有 fold 一致选择 **asst_first** position，信号集中在中深层 (L19-L35)\n- Bootstrap CI 下界 0.77，上界 0.86，置信区间不跨 0.80 很远但 mean 稳过线\n- V2 directions 迁移到扩展数据 AUROC=0.80，说明方向向量具有一定泛化性，但不如重新训练（0.83 vs 0.80）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-exp001-auroc-evaluation.md"
+}

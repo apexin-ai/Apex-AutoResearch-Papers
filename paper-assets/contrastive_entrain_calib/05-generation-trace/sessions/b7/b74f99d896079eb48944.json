@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b74f99d896079eb48944",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval act supplement 3gpu",
+  "task_key": "worker_eval_act-supplement-3gpu_20260521T114353",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_act-supplement-3gpu_20260521T114353_result.json",
+    "occurrence": 1,
+    "bytes": 652,
+    "sha256": "d8c9bfe6f8bcae7729edc6b96a7ceed078db1b96b860bfe83761ada59a6a3fe0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**已提交 3 个 ACT eval（westd-28034）：**\n\n| Eval | Checkpoint | GPU | PID | Registry |\n|------|-----------|-----|-----|----------|\n| exp-004-eval-ckpt500 | checkpoint-500 | cuda:3 | 915193 | RUNNING |\n| exp-004-eval-ckpt2000 | checkpoint-2000 | cuda:1 | 915690 | RUNNING |\n| exp-004-eval-ckpt8000 | checkpoint-8000 | cuda:2 | 916215 | RUNNING |\n\n**调整说明**：GPU 0 被 exp003-s2-ckpt4000 eval 占用（14944 MiB），ckpt-500 改到 GPU 3（原计划给 seed2 ckpt-4000，但该任务已在 GPU 0 运行）。\n\nCron 监控已设置（每 8 分钟检查），完成后自动更新 registry。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-act-supplement-3gpu.md"
+}

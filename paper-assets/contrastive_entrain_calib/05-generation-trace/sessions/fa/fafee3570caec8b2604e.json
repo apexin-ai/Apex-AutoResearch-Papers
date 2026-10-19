@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fafee3570caec8b2604e",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "paper writing direction quality",
+  "task_key": "worker_paper_writing_direction_quality_20260520T074123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_direction_quality_20260520T074123_result.json",
+    "occurrence": 1,
+    "bytes": 668,
+    "sha256": "222bdf3e2dc1ff6ef66738a5a94ef1e970b364f749f6cc687a4a52cbaec9e412"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "§3 已写入 `docs/paper/sections/direction_quality.tex`。\n\n**覆盖内容**:\n- Qwen3-8B: CV AUROC 0.827±0.028 (L19), 层级渐进式 emergence (L0 chance → L16 significant → L19 peak)\n- 证据强度梯度: weak 0.675 → medium 0.883 → strong 0.929\n- Cross-model: Llama-3-8B CV AUROC 0.779±0.019 (L16), style-controlled 0.923, domain AUROCs 0.751–0.844\n- 内联 Table~\\ref{tab:cross_model} 对比两模型\n- Training stability: cosine sim ≈0.96 at step 500, per-layer AUROC ≥0.77\n- Probe ablation: 0.835 vs random 0.727 (Δ=+0.108)\n- Verdict: direction quality is not the bottleneck,为 §4–§5 failure 分析铺设 contrast"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-direction-quality.md"
+}

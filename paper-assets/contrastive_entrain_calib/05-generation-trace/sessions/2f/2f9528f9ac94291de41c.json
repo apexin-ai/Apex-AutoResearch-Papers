@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f9528f9ac94291de41c",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code datagen validator",
+  "task_key": "worker_code_datagen_validator_20260518T045356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_datagen_validator_20260518T045356_result.json",
+    "occurrence": 1,
+    "bytes": 716,
+    "sha256": "767dfb2852fb5693902768ca75674a72f475b45247c9b4c12305ccf815137bf2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写入指定路径。覆盖全部 5 类检查：\n\n1. **结构完整性** — JSON 解析、必填字段、枚举值、turn 数量与角色交替\n2. **配对一致性** — pair_id 恰好 2 行、双 condition、Turn 1 / domain / ground_truth 一致\n3. **分布统计** — domain/evidence/correction_turn/condition 分布 + 交叉分布，domain 不足 50 对或 turn=3 比例偏离时 warn\n4. **LLM 抽样检查** — `--check-quality` 启用，调 Anthropic API 评估 ground_truth 正确性、错误答案合理性、施压自然度、对比有效性\n5. **文本质量** — 空内容、重复 turn、turn 长度统计、模板痕迹检测\n\nexit code: 0=PASS, 1=WARNING, 2=ERROR。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-datagen-validator.md"
+}

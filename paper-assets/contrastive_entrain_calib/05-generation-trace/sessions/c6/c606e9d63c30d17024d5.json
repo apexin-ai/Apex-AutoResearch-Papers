@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c606e9d63c30d17024d5",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diag exp008 st zero rootcause",
+  "task_key": "worker_diag_exp008-st-zero-rootcause_20260518T211605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp008-st-zero-rootcause_20260518T211605_result.json",
+    "occurrence": 1,
+    "bytes": 2604,
+    "sha256": "e4b43d5883cec9400231b3398fd41b822c774a2e94c8901afea0425dc91ee95e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**确认了！** `enable_input_require_grads()` 后：\n- `hs[20] rg=True gfn=AddBackward0` — hidden states 连接到计算图\n- `loss rg=True gfn=NllLossBackward0` — loss 可以 backward\n\n现在完整的根因分析已经清晰。让我写结论。\n\n---\n\n## 诊断结论：exp-008 S(t)=0 Root Cause\n\n### 根因：模型对抗性地 game 了 linear probe\n\nS(t)=0 **不是 bug**，而是模型利用梯度 **直接优化 hidden states 来欺骗 probe**。\n\n**梯度流通路径确认：**\n1. 训练代码用 `gradient_checkpointing_enable(use_reentrant=False)` + `get_peft_model` → 自动调用 `enable_input_require_grads()`\n2. 这使得 hidden states 的 `requires_grad=True, grad_fn=AddBackward0`\n3. 因此 `∂S(t)/∂θ_LoRA` 的梯度 **完整流向所有 LoRA 参数**\n\n**对抗优化过程：**\n- Loss = `L_sft + 0.1 * S(t) - 0.1 * R3`\n- 模型最小化 Loss，其中包含最小化 S(t)\n- LoRA 作用于所有 7 个目标模块 × 36 层 = **252 个 LoRA 模块**\n- 模型有巨大容量来移动 hidden states，使 probe 输出趋近 0\n- Step 10: S(t)=0.2257 → Step 30: 0.0003 → Step 40: 0.0000（~30 步完成 gaming）\n- Retrain 后，新 probe 同样在 ~10 步内被击败\n\n**辅助证据：**\n- 诊断证实 probe **本身工作正常**（eval mode: invalid_pressure sigmoid≈0.97, valid_correction sigmoid≈0.01）\n- 初始 probe 与 retrained probe 完全不同（weight cosine sim = 0.023）\n- 初始 probe 在 position_idx=1 上训练，训练 loop 用 resp_pos（最后 token）—— 位置不匹配加速了初始崩溃\n- eval/train/train+GC 模式的 hidden states 几乎相同（cosine sim > 0.999），probe 值也一致\n\n**为什么 retrain 后 S(t) 仍然是 0：**\n1. Retrain 在 eval mode 提取 features → probe acc=1.0\n2. 切回 train mode，首个 batch 的 S(t) 可能短暂非零\n3. 但梯度立刻开始推 hidden states 远离 probe boundary\n4. 在 10 步（160 micro-batches）内 S(t) 再次归零\n5. 日志精度 `%.4f` 四舍五入为 0.0000\n\n### 修复建议\n\n1. **`s_t.detach()`**：阻断 S(t) 对模型参数的梯度，仅用作监控指标\n2. **REINFORCE 替代直接微分**：`loss += lambda * (s_t.detach() - baseline) * log_prob`，更难被 game\n3. **更强 probe 架构**：非线性 probe 或 probe ensemble，提高对抗鲁棒性\n4. **修复位置不匹配**：初始 probe 应该也用 `resp_pos` 而非 `position_idx=1`\n\n诊断日志已保存到 `/root/contrastive_entrain_calib/diagnose_st_zero.log`（v2）和 `/root/contrastive_entrain_calib/diagnose_v4.log`（v4）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp008-st-zero-rootcause.md"
+}

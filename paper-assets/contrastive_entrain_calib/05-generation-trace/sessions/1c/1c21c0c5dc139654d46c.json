@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c21c0c5dc139654d46c",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "knowledge d047 reliability gap",
+  "task_key": "worker_knowledge_d047-reliability-gap_20260521T114444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_d047-reliability-gap_20260521T114444_result.json",
+    "occurrence": 1,
+    "bytes": 965,
+    "sha256": "6606fa5b6af85d5990dddcdd58b75bea35c60c40fa53e2105a78438adde210ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper_framing.md 第 150 行的 \"near its ceiling\" 指的是 R3 reward 饱和到 ~1.0 的上限，不是 \"vanilla ceiling\" 叙事，保留不动。\n\nROADMAP.md 第 3/29/68 行出现的 \"vanilla ceiling\" 都在描述 D047 修正本身的历史记录（\"从 vanilla ceiling 改为...\"），是决策日志的忠实记录，保留不动。\n\n所有 4 项修改完成：\n\n1. **\"vanilla ceiling\" 替换** — paper_framing.md 全部改为\"围绕 vanilla 不稳定振荡 + reliability gap\"；ROADMAP.md 6 处已更新\n2. **Reliability gap 对比框架** — 在三层区分总结后新增 ACT 13/13、R3-only s1 3/12、s2 0/7、效率差 ~16x\n3. **论文 Table 报告方式** — R3-only 轨迹表后新增 blockquote 注释（附 late-training range 和 mean）\n4. **不稳定性发作时间泛化** — spike-regression 段落中新增跨 seed 发作时间描述（seed 1 ~step 6000, seed 2 ~step 3500），强调是方法固有特征"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-d047-reliability-gap.md"
+}

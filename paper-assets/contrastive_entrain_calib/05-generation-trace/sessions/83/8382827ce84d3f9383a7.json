@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8382827ce84d3f9383a7",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp 003 s2 ckpt7500 8000",
+  "task_key": "worker_eval_exp-003-s2-ckpt7500-8000_20260522T153632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp-003-s2-ckpt7500-8000_20260522T153632_result.json",
+    "occurrence": 1,
+    "bytes": 594,
+    "sha256": "5ab3709a88968895e3f760e60b7ccef3cc197ce366889d4bb11c21b6a5b6828e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 都在正常加载模型。总结：\n\n- **exp-003-eval-s2-ckpt7500**: westd-29046 cuda:0, PID 517331, 正在加载 checkpoint shards\n- **exp-003-eval-s2-ckpt8000**: westd-29046 cuda:1, PID 517412, 正在加载 checkpoint shards\n- Checkpoint 路径: `/root/autodl-tmp/checkpoints/exp003_r3only_seed2/checkpoint-{7500,8000}`\n- 日志: `~/runs/contrastive_entrain_calib/exp-003-eval-s2-ckpt{7500,8000}.log`\n- Registry 状态: 均已 RUNNING\n\nEval 预计各需 30-60 分钟。完成后需要从 log 读取 metrics 并 update_registry 记录结果和 conclusion。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-003-s2-ckpt7500-8000.md"
+}

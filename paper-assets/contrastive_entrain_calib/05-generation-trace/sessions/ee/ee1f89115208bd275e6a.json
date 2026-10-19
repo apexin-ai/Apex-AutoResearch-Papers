@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee1f89115208bd275e6a",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval act s2 ckpt500 submit",
+  "task_key": "worker_eval_act-s2-ckpt500-submit_20260522T061019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_act-s2-ckpt500-submit_20260522T061019_result.json",
+    "occurrence": 1,
+    "bytes": 278,
+    "sha256": "b5e84a93a04c94512198b1dcf013e01ec6251c98e1941bfb449803d2a02ac957"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已成功启动：\n\n- **GPU 0**: 16884 MiB（ckpt-6500 eval 在跑）\n- **GPU 1**: 14944 MiB（ckpt-500 eval 已加载，正在运行）\n- **GPU 2/3**: 空闲\n\n`exp-004-s2-eval-ckpt500` 在 28034 GPU1 上运行中，tmux session: `exp004-s2-ckpt500`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-act-s2-ckpt500-submit.md"
+}

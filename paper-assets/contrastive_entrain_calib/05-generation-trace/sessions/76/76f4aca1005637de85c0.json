@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76f4aca1005637de85c0",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ssh act s2 restart v3 verified",
+  "task_key": "worker_ssh_act-s2-restart-v3-verified_20260522T122319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_act-s2-restart-v3-verified_20260522T122319_result.json",
+    "occurrence": 1,
+    "bytes": 163,
+    "sha256": "e22cb5db98e6edc6d053c79d0728e487c28156fb7b6499fa74dc71b24b81a037"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台等待已完成。Step 5 验证已在上面完成——训练正常运行中，输出写入数据盘，根分区稳定。无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-act-s2-restart-v3-verified.md"
+}

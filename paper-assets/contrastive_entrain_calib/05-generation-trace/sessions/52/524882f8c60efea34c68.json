@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "524882f8c60efea34c68",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnosis gpu status 29046",
+  "task_key": "worker_diagnosis_gpu-status-29046_20260519T165907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_gpu-status-29046_20260519T165907_result.json",
+    "occurrence": 1,
+    "bytes": 805,
+    "sha256": "91c9a88613de49c93fc021d9e0b4598e5f6cbdb6592c46ab614081f97dce6f60"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 实时状态\n\n| GPU | 型号 | 利用率 | 显存占用 | 进程 |\n|-----|------|--------|----------|------|\n| 0 | RTX PRO 6000 Blackwell Server Edition | **83%** | 66907 / 97887 MiB (68%) | PID 172844 — `run_exp002v2_dcgrpo_cosine.py` |\n| 1 | RTX PRO 6000 Blackwell Server Edition | **95%** | 38161 / 97887 MiB (39%) | PID 70649 — `run_exp003_r3only.py` |\n\n## 训练实验存活状态\n\n| 实验 | 状态 | 说明 |\n|------|------|------|\n| exp002v2-recalib | **存活** | PID 172838（wrapper bash）→ PID 172844（python），tmux session `exp002v2-recalib` 正常 |\n| exp-003 | **存活** | PID 70649（python），tmux session `exp003` 正常 |\n\n## 空闲 GPU\n\n**无空闲 GPU。** 两张卡均在高负载运行（83%、95%），各有训练进程占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-gpu-status-29046.md"
+}

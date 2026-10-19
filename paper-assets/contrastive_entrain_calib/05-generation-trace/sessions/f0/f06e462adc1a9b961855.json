@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f06e462adc1a9b961855",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "infra kill exp008 pid42424",
+  "task_key": "worker_infra_kill-exp008-pid42424_20260518T191103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill-exp008-pid42424_20260518T191103_result.json",
+    "occurrence": 1,
+    "bytes": 269,
+    "sha256": "b934fdce091b56c8e07e5367800656e1f9e38c0fdc3ddc7e0d8eec2c8dd2ff68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- **PID 42424** — 已 kill（`kill` 正常终止，无需 `-9`）\n- **exit 文件** — `/tmp/agent-ml-exit/exp-008.exit` 已删除\n- **tmux 会话** — exp-008 无残留会话\n- **GPU 3** — 显存占用 4 MiB，已完全释放"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-exp008-pid42424.md"
+}

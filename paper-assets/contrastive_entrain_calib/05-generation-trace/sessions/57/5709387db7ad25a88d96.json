@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5709387db7ad25a88d96",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "paper writing abs",
+  "task_key": "worker_paper_writing_abs_20260520T161703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_abs_20260520T161703_result.json",
+    "occurrence": 1,
+    "bytes": 500,
+    "sha256": "2f07c67c99ac8d6cfebf3a218038de81bd5427d95e450a4b64ab7f63144438e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Abstract written to `docs/paper/sections/abstract.tex`. ~210 words, covering problem (representation directions detect sycophancy), method (three GRPO reward formulations tested), negative result (all fail, including behavioral-only), mechanism (discriminability does not equal reward utility), and implication (detection geometry is not optimization geometry). Two key numbers: AUROC 0.82, 500 steps. All abbreviations defined. No dashes, no -ing phrase endings, no blacklisted words."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-abs.md"
+}

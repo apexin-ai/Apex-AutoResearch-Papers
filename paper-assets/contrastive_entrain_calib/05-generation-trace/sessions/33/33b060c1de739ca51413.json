@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33b060c1de739ca51413",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp003 ckpt4000 rerun",
+  "task_key": "worker_eval_exp003-ckpt4000-rerun_20260520T141102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp003-ckpt4000-rerun_20260520T141102_result.json",
+    "occurrence": 1,
+    "bytes": 594,
+    "sha256": "a99e628d2d7983edaacc8d366090cf58f0af068d50971c6162383adfde2e6272"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪，eval 正在运行。\n\n**汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| **ckpt-4000 SCP** | 从 29046 传至 28034，718M，路径 `/root/autodl-tmp/checkpoints/exp003/checkpoint-4000/`，软链接已创建 |\n| **eval job** | PID `591330`，tmux session `exp-003-eval-ckpt4000`，GPU 0 占用 14.9GB |\n| **输出路径** | `/root/contrastive_entrain_calib/results/exp003_d027_eval/exp003-ckpt4000_preset_eval.json` |\n| **日志** | `~/runs/contrastive_entrain_calib/exp-003-eval-ckpt4000.log` |\n\n模型正在加载 checkpoint shards，运行正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp003-ckpt4000-rerun.md"
+}

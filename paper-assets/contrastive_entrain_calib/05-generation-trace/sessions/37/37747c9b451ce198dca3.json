@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "37747c9b451ce198dca3",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "test exp004 single gpu vram",
+  "task_key": "worker_test_exp004_single_gpu_vram_20260518T153642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_test_exp004_single_gpu_vram_20260518T153642_result.json",
+    "occurrence": 1,
+    "bytes": 305,
+    "sha256": "389e92c5cdcb46f84eb9d198550d680f2334f0749b969ea6c445bddac05caf07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**SINGLE GPU OK**，peak 24.1GB / 32GB，余量约 8GB。\n\n细分：\n- 模型加载后：16.6GB\n- Forward 1 后：19.1GB\n- Forward 2 后：21.6GB\n- Backward peak：24.1GB\n\n单卡 32GB RTX 5090 跑 ACT baseline（batch=1, seq=2048, LoRA r=64, gradient_checkpointing）没有问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/test-exp004-single-gpu-vram.md"
+}

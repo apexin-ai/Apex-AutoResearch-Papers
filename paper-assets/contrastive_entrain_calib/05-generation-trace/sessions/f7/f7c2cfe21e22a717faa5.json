@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7c2cfe21e22a717faa5",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval collect s2 ckpt2500",
+  "task_key": "worker_eval_collect-s2-ckpt2500_20260521T104658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-s2-ckpt2500_20260521T104658_result.json",
+    "occurrence": 1,
+    "bytes": 573,
+    "sha256": "f80ea76dce1e5bd22cedeb53c559a385fba817e6cad38296ff8b0f805fef28df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。Cron 列表为空（本 session 无 cron），无需删除。\n\n**结果汇总：**\n\n| 指标 | 值 |\n|------|-----|\n| ToF | 0.0552 |\n| NoF | 0.9724 |\n| **SYCONScore** | **0.1046** |\n| n_total | 362 |\n\n**Seed 2 trajectory 对比：**\n- ckpt-2000: SYCONScore = 0.0846\n- **ckpt-2500: SYCONScore = 0.1046** ← 新\n- ckpt-3000: SYCONScore = 0.0945\n\nSeed 2 ckpt-2500 (0.1046) 高于两端 (0.0846, 0.0945)，呈非单调趋势。与 seed 1 一致——R3-only 训练 trajectory 均远低于 vanilla baseline (0.134)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-s2-ckpt2500.md"
+}

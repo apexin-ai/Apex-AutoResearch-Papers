@@ -1,0 +1,442 @@
+{
+  "schema_version": "1.0",
+  "id": "97a726c5c1c7c22a5840",
+  "project": "contrastive_entrain_calib",
+  "kind": "conversation",
+  "title": "code compute evaluate directions",
+  "task_key": "worker_code_compute_evaluate_directions_20260518T064026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_compute_evaluate_directions_20260518T064026.jsonl",
+    "occurrence": 1,
+    "bytes": 29185,
+    "sha256": "944e5b859b43afde01f1ca8571e2571346e72d09d8f0aba750403c1a3a72e8f0"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T06:42:27.176786+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_compute_evaluate_directions_20260518T064026",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/ 2>/dev/null || echo \"directory not found\"",
+              "description": "List existing data artifacts"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T06:42:27.177270+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "__pycache__\ncalibration_data.jsonl\nextract_activations.py\ngenerate_calibration_data.py\nvalidate_calibration_data.py\nvalidation_report.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_compute_evaluate_directions_20260518T064026",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T06:42:27.177482+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_compute_evaluate_directions_20260518T064026",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/ 2>/dev/null || echo \"directory not found\"",
+              "description": "List artifacts directory"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T06:42:27.177631+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "_project\ndata\nmanifest.yaml"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_compute_evaluate_directions_20260518T064026",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T06:42:27.178207+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_compute_evaluate_directions_20260518T064026",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/extract_activations.py"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T06:42:27.178973+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t#!/usr/bin/env python3\n2\t\"\"\"Extract hidden-state activations at critical turns from Qwen3-8B.\n3\t\n4\tInput:  Phase 1 calibration JSONL — each line has fields:\n5\t        {id, condition, domain, evidence_strength, correction_turn, turns, ...}\n6\t        where turns = [{\"role\": \"user\"|\"assistant\", \"content\": \"...\"}, ...]\n7\tOutput: activations.pt         — list[dict] with metadata + (num_layers, 2, hidden_dim) tensor\n8\t        activations_meta.jsonl  — metadata only (no tensors), for quick inspection\n9\tDeps:   transformers, torch, tqdm\n10\t\"\"\"\n11\t\n12\timport argparse\n13\timport json\n14\timport logging\n15\timport sys\n16\tfrom pathlib import Path\n17\t\n18\timport torch\n19\tfrom tqdm import tqdm\n20\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\n21\t\n22\tlogger = logging.getLogger(__name__)\n23\t\n24\t\n25\tdef load_samples(path: str, max_samples: int | None = None) -> list[dict]:\n26\t    \"\"\"Load calibration samples from JSONL file.\"\"\"\n27\t    samples = []\n28\t    with open(path) as f:\n29\t        for line in f:\n30\t            line = line.strip()\n31\t            if not line:\n32\t                continue\n33\t            samples.append(json.loads(line))\n34\t            if max_samples and len(samples) >= max_samples:\n35\t                break\n36\t    return samples\n37\t\n38\t\n39\tdef _apply_template(tokenizer, messages: list[dict], **kwargs) -> list[int]:\n40\t    \"\"\"apply_chat_template with Qwen3 thinking mode disabled when supported.\"\"\"\n41\t    try:\n42\t        return tokenizer.apply_chat_template(\n43\t            messages, enable_thinking=False, tokenize=True, **kwargs\n44\t        )\n45\t    except TypeError:\n46\t        return tokenizer.apply_chat_template(messages, tokenize=True, **kwargs)\n47\t\n48\t\n49\tdef find_critical_positions(\n50\t    tokenizer, turns: list[dict], correction_turn: int\n51\t) -> tuple[int, int, list[int]]:\n52\t    \"\"\"Locate user-last-token and assistant-first-token positions in the tokenized conversation.\n53\t\n54\t    Token boundary detection strategy:\n55\t      Step 1: Tokenize through e\n…[truncated 12519 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_compute_evaluate_directions_20260518T064026",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T06:42:27.179260+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_compute_evaluate_directions_20260518T064026",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/compute_directions.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"Compute contrastive direction vectors (d_syc, d_gen) from paired activations.\n\nInput:  .pt file from extract_activations.py — list[dict] with keys:\n        {pair_id, condition, domain, evidence_strength, correction_turn,\n         activations: Tensor(num_layers, 2, hidden_dim)}\n        Each pair_id has two entries: condition=\"warranted_revision\" and\n        condition=\"sycophantic_capitulation\".\n\nOutput: directions.pt — dict with keys:\n        d_syc              (num_layers, 2, hidden_dim) — L2-normalized\n        d_gen              (num_layers, 2, hidden_dim) — L2-normalized\n        train_pair_ids     list[str]\n        test_pair_ids      list[str]\n        metadata           dict\n\nDeps:   torch, numpy, sklearn (for StratifiedShuffleSplit)\n\"\"\"\n\nimport argparse\nimport logging\nimport sys\nfrom collections import defaultdict\nfrom pathlib import Path\n\nimport numpy as np\nimport torch\nfrom sklearn.model_selection import StratifiedShuffleSplit\n\nlogger = logging.getLogger(__name__)\n\n\ndef load_and_group(path: str) -> dict[str, dict[str, dict]]:\n    \"\"\"Load activation records and group by pair_id.\n\n    Returns {pair_id: {\"warranted_revision\": record, \"sycophantic_capitulation\": record}}.\n    \"\"\"\n    records = torch.load(path, map_location=\"cpu\", weights_only=False)\n    logger.info(\"Loaded %d records from %s\", len(records), path)\n\n    grouped: dict[str, dict[str, dict]] = defaultdict(dict)\n    for rec in records:\n        pid = rec[\"pair_id\"]\n        cond = rec[\"condition\"]\n        if cond in grouped[pid]:\n            logger.warning(\"Duplicate condition '%s' for pair_id '%s'; overwriting\", cond, pid)\n        grouped[pid][cond] = rec\n\n    complete = {}\n    for pid, conds in grouped.items():\n        if \"warranted_revision\" in conds and \"sycophantic_capitulation\" in conds:\n            complete[pid] = conds\n        else:\n            logger.warning(\n                \"Pair '%s' incomplete (conditions: %s); skipping\", pid, list(conds.keys())\n            )\n\n    logger.info(\"Complete pairs: %d\", len(complete))\n    return complete\n\n\ndef stratified_split(\n    pairs: dict[str, dict[str, dict]], test_ratio: float, seed: int\n) -> tuple[list[str], list[str]]:\n    \"\"\"Split pair_ids into train/test with stratification by domain.\n\n    Uses StratifiedShuffleSplit so each domain's proportion is preserved\n    across the split. The split unit is the pair (both conditions stay together).\n    \"\"\"\n    pair_ids = sorted(pairs.keys())\n    domains = [pairs[pid][\"warranted_revision\"][\"domain\"] for pid in pair_ids]\n\n    # Check if stratification is feasible (need >= 2 samples per domain for split)\n    domain_counts = defaultdict(int)\n    for d in domains:\n        domain_counts[d] += 1\n\n    min_count = min(domain_counts.values())\n    if min_count < 2:\n        logger.warning(\n            \"Some domains have < 2 pairs (min=%d); falling back to unstratified shuffle\",\n            min_count,\n        )\n        rng = np.random.RandomState(seed)\n        idx = rng.permutation(len(pair_ids))\n        n_test = max(1, int(len(pair_ids) * test_ratio))\n        test_idx = set(idx[:n_test])\n        train_ids = [pair_ids[i] for i in range(len(pair_ids)) if i not in test_idx]\n        test_ids = [pair_ids[i] for i in range(len(pair_ids)) if i in test_idx]\n        return train_ids, test_ids\n\n    splitter = StratifiedShuffleSplit(n_splits=1, test_size=test_ratio, random_state=seed)\n    pair_ids_arr = np.array(pair_ids)\n    domains_arr = np.array(domains)\n\n    train_idx, test_idx = next(splitter.split(pair_ids_arr, domains_arr))\n    train_ids = pair_ids_arr[train_idx].tolist()\n    test_ids = pair_ids_arr[test_idx].tolist()\n\n    logger.info(\"Split: %d train, %d test\", len(train_ids), len(test_ids))\n    return train_ids, test_ids\n\n\ndef compute_direction(\n    pairs: dict[str, dict[str, dict]],\n    pair_ids: list[str],\n    positive_condition: str,\n    negative_condition: str,\n) -> torch.Tensor:\n    \"\"\"Compute difference-in-means direction: mean(positive) - mean(negative).\n\n    Returns L2-normalized direction of shape (num_layers, 2, hidden_dim).\n    \"\"\"\n    pos_acts = []\n    neg_acts = []\n    for pid in pair_ids:\n        pos_acts.append(pairs[pid][positive_condition][\"activations\"])\n        neg_acts.append(pairs[pid][negative_condition][\"activations\"])\n\n    # Stack: (N, num_layers, 2, hidden_dim)\n    pos_mean = torch.stack(pos_acts).mean(dim=0)\n    neg_mean = torch.stack(neg_acts).mean(dim=0)\n\n    direction = pos_mean - neg_mean\n\n    # L2 normalize per (layer, token_position) slice\n    norms = direction.norm(dim=-1, keepdim=True).clamp(min=1e-8)\n    direction = direction / norms\n\n    return direction\n\n\ndef main() -> None:\n    parser = argparse.ArgumentParser(\n        description=\"Compute contrastive direction vectors from paired activations.\"\n    )\n    parser.add_argument(\"input\", help=\"Path to activations .pt file (Phase 2 output)\")\n    parser.add_argument(\"--output-dir\", default=\".\", help=\"Output directory (default: .)\")\n    parser.add_argument(\n        \"--test-ratio\", type=float, default=0.2, help=\"Test set ratio (default: 0.2)\"\n    )\n    parser.add_argument(\"--seed\", type=int, default=42, help=\"Random seed (default: 42)\")\n    args = parser.parse_args()\n\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n    )\n\n    pairs = load_and_group(args.input)\n    if not pairs:\n        logger.error(\"No complete pairs found; exiting\")\n        sys.exit(1)\n\n    train_ids, test_ids = stratified_split(pairs, args.test_ratio, args.seed)\n\n    # d_syc: sycophantic_capitulation - warranted_revision (on train set)\n    logger.info(\"Computing d_syc from %d train pairs\", len(train_ids))\n    d_syc = compute_direction(\n        pairs, train_ids,\n        positive_condition=\"sycophantic_capitulation\",\n        negative_condition=\"warranted_revision\",\n    )\n\n    # d_gen: warranted_revision - sycophantic_capitulation (on train set)\n    # Currently d_gen = -d_syc, but stored separately for future extensibility.\n    logger.info(\"Computing d_gen from %d train pairs\", len(train_ids))\n    d_gen = compute_direction(\n        pairs, train_ids,\n        positive_condition=\"warranted_revision\",\n        negative_condition=\"sycophantic_capitulation\",\n    )\n\n    num_layers, _, hidden_dim = d_syc.shape\n    metadata = {\n        \"num_layers\": num_layers,\n        \"hidden_dim\": hidden_dim,\n        \"test_ratio\": args.test_ratio,\n        \"seed\": args.seed,\n        \"num_train_pairs\": len(train_ids),\n        \"num_test_pairs\": len(test_ids),\n        \"num_total_pairs\": len(pairs),\n    }\n\n    out_dir = Path(args.output_dir)\n    out_dir.mkdir(parents=True, exist_ok=True)\n    out_path = out_dir / \"directions.pt\"\n\n    payload = {\n        \"d_syc\": d_syc,\n        \"d_gen\": d_gen,\n        \"train_pair_ids\": train_ids,\n        \"test_pair_ids\": test_ids,\n        \"metadata\": metadata,\n    }\n    torch.save(payload, out_path)\n    logger.info(\"Saved directions to %s\", out_path)\n    logger.info(\"Metadata: %s\", metadata)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T06:42:27.179565+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/compute_directions.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_compute_evaluate_directions_20260518T064026",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T06:42:27.179776+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_compute_evaluate_directions_20260518T064026",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/evaluate_directions.py",
+              "content": "#!/usr/bin/env python3\n\"\"\"Evaluate contrastive direction vectors on held-out test pairs.\n\nInput:\n  --directions  directions.pt from compute_directions.py\n  --activations activations.pt from extract_activations.py\n  --output-dir  directory for JSON report\n\nOutput:\n  evaluation_report.json — per-layer AUROC, cosine similarity, stratified\n                           breakdown, Go/No-Go verdict\n  Human-readable summary printed to stdout\n\nDeps: torch, numpy, sklearn\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport sys\nfrom collections import defaultdict\nfrom pathlib import Path\n\nimport numpy as np\nimport torch\nfrom sklearn.metrics import roc_auc_score\n\nlogger = logging.getLogger(__name__)\n\n\ndef load_test_samples(\n    activations_path: str, test_pair_ids: list[str]\n) -> list[dict]:\n    \"\"\"Load activation records and keep only those in the test set.\"\"\"\n    records = torch.load(activations_path, map_location=\"cpu\", weights_only=False)\n    test_set = set(test_pair_ids)\n    filtered = [r for r in records if r[\"pair_id\"] in test_set]\n    logger.info(\n        \"Loaded %d total records; %d belong to test set (%d test pair_ids)\",\n        len(records), len(filtered), len(test_set),\n    )\n    return filtered\n\n\ndef compute_auroc_per_layer(\n    samples: list[dict], d_syc: torch.Tensor\n) -> dict[int, dict[int, float]]:\n    \"\"\"Compute AUROC per layer and token position.\n\n    For each sample, project its activation onto d_syc (dot product) to get a\n    scalar score. Label: 1=sycophantic_capitulation, 0=warranted_revision.\n\n    Returns {layer_idx: {token_pos: auroc}}.\n    \"\"\"\n    num_layers = d_syc.shape[0]\n    num_positions = d_syc.shape[1]\n\n    labels = []\n    # scores[layer][pos] -> list of floats\n    scores: dict[int, dict[int, list]] = {\n        l: {p: [] for p in range(num_positions)} for l in range(num_layers)\n    }\n\n    for sample in samples:\n        label = 1 if sample[\"condition\"] == \"sycophantic_capitulation\" else 0\n        labels.append(label)\n        acts = sample[\"activations\"]  # (num_layers, 2, hidden_dim)\n\n        for layer in range(num_layers):\n            for pos in range(num_positions):\n                score = torch.dot(acts[layer, pos], d_syc[layer, pos]).item()\n                scores[layer][pos].append(score)\n\n    labels_arr = np.array(labels)\n    results = {}\n    for layer in range(num_layers):\n        results[layer] = {}\n        for pos in range(num_positions):\n            scores_arr = np.array(scores[layer][pos])\n            if len(np.unique(labels_arr)) < 2:\n                results[layer][pos] = float(\"nan\")\n            else:\n                results[layer][pos] = roc_auc_score(labels_arr, scores_arr)\n\n    return results\n\n\ndef compute_cosine_per_layer(\n    d_syc: torch.Tensor, d_gen: torch.Tensor\n) -> dict[int, dict[int, float]]:\n    \"\"\"Compute cosine similarity between d_syc and d_gen per layer and token position.\"\"\"\n    num_layers = d_syc.shape[0]\n    num_positions = d_syc.shape[1]\n\n    results = {}\n    for layer in range(num_layers):\n        results[layer] = {}\n        for pos in range(num_positions):\n            cos = torch.nn.functional.cosine_similarity(\n                d_syc[layer, pos].unsqueeze(0),\n                d_gen[layer, pos].unsqueeze(0),\n            ).item()\n            results[layer][pos] = cos\n\n    return results\n\n\ndef compute_stratified_auroc(\n    samples: list[dict], d_syc: torch.Tensor, group_key: str, best_layer: int\n) -> dict[str, dict[int, float]]:\n    \"\"\"Compute AUROC broken down by a metadata field (domain, evidence_strength, etc.).\n\n    Uses the best layer only, across all token positions.\n    \"\"\"\n    num_positions = d_syc.shape[1]\n\n    groups: dict[str, list[dict]] = defaultdict(list)\n    for s in samples:\n        groups[str(s[group_key])].append(s)\n\n    results = {}\n    for group_val, group_samples in sorted(groups.items()):\n        labels = []\n        scores_by_pos: dict[int, list] = {p: [] for p in range(num_positions)}\n\n        for sample in group_samples:\n            label = 1 if sample[\"condition\"] == \"sycophantic_capitulation\" else 0\n            labels.append(label)\n            for pos in range(num_positions):\n                score = torch.dot(\n                    sample[\"activations\"][best_layer, pos], d_syc[best_layer, pos]\n                ).item()\n                scores_by_pos[pos].append(score)\n\n        labels_arr = np.array(labels)\n        if len(np.unique(labels_arr)) < 2:\n            results[group_val] = {p: float(\"nan\") for p in range(num_positions)}\n        else:\n            results[group_val] = {\n                p: roc_auc_score(labels_arr, np.array(scores_by_pos[p]))\n                for p in range(num_positions)\n            }\n\n    return results\n\n\ndef go_nogo_verdict(best_auroc: float, best_cosine: float) -> dict:\n    \"\"\"Determine Go/No-Go based on thresholds.\n\n    Criteria:\n      PASS: AUROC >= 0.85 AND cosine(d_syc, d_gen) < 0.3\n      GRAY: AUROC in [0.80, 0.85)\n      FAIL: AUROC < 0.80\n\n    Note: In the current binary setup d_gen = -d_syc, so cosine is always -1.\n    The cosine check becomes meaningful when d_gen is independently defined.\n    \"\"\"\n    cosine_ok = best_cosine < 0.3\n\n    if best_auroc >= 0.85 and cosine_ok:\n        verdict = \"PASS\"\n        reason = f\"AUROC={best_auroc:.4f} >= 0.85 and cosine={best_cosine:.4f} < 0.3\"\n    elif best_auroc >= 0.80:\n        verdict = \"GRAY\"\n        reason = f\"AUROC={best_auroc:.4f} in [0.80, 0.85); needs further investigation\"\n        if not cosine_ok:\n            reason += f\"; cosine={best_cosine:.4f} >= 0.3 (unexpected)\"\n    else:\n        verdict = \"FAIL\"\n        reason = f\"AUROC={best_auroc:.4f} < 0.80\"\n\n    return {\"verdict\": verdict, \"reason\": reason, \"auroc\": best_auroc, \"cosine\": best_cosine}\n\n\ndef main() -> None:\n    parser = argparse.ArgumentParser(\n        description=\"Evaluate contrastive direction vectors on test set.\"\n    )\n    parser.add_argument(\n        \"--directions\", required=True, help=\"Path to directions.pt from compute_directions.py\"\n    )\n    parser.add_argument(\n        \"--activations\", required=True, help=\"Path to activations.pt from extract_activations.py\"\n    )\n    parser.add_argument(\"--output-dir\", default=\".\", help=\"Output directory (default: .)\")\n    args = parser.parse_args()\n\n    logging.basicConfig(\n        level=logging.INFO,\n        format=\"%(asctime)s [%(levelname)s] %(name)s: %(message)s\",\n    )\n\n    logger.info(\"Loading directions from %s\", args.directions)\n    directions = torch.load(args.directions, map_location=\"cpu\", weights_only=False)\n    d_syc = directions[\"d_syc\"]\n    d_gen = directions[\"d_gen\"]\n    test_pair_ids = directions[\"test_pair_ids\"]\n    metadata = directions[\"metadata\"]\n\n    if not test_pair_ids:\n        logger.error(\"No test pair IDs in directions file; exiting\")\n        sys.exit(1)\n\n    test_samples = load_test_samples(args.activations, test_pair_ids)\n    if not test_samples:\n        logger.error(\"No test samples found; exiting\")\n        sys.exit(1)\n\n    # Per-layer AUROC\n    logger.info(\"Computing per-layer AUROC\")\n    auroc_per_layer = compute_auroc_per_layer(test_samples, d_syc)\n\n    # Find best layer (max AUROC across token positions)\n    best_layer = -1\n    best_auroc = -1.0\n    best_pos = -1\n    for layer, pos_dict in auroc_per_layer.items():\n        for pos, auc in pos_dict.items():\n            if not np.isnan(auc) and auc > best_auroc:\n                best_auroc = auc\n                best_layer = layer\n                best_pos = pos\n\n    logger.info(\"Best layer=%d, pos=%d, AUROC=%.4f\", best_layer, best_pos, best_auroc)\n\n    # Cosine similarity\n    logger.info(\"Computing per-layer cosine similarity\")\n    cosine_per_layer = compute_cosine_per_layer(d_syc, d_gen)\n    best_cosine = cosine_per_layer[best_layer][best_pos]\n\n    # Stratified analysis at best layer\n    logger.info(\"Computing stratified AUROC breakdown\")\n    breakdown_domain = compute_stratified_auroc(test_samples, d_syc, \"domain\", best_layer)\n    breakdown_evidence = compute_stratified_auroc(\n        test_samples, d_syc, \"evidence_strength\", best_layer\n    )\n    breakdown_turn = compute_stratified_auroc(\n        test_samples, d_syc, \"correction_turn\", best_layer\n    )\n\n    # Go/No-Go\n    verdict = go_nogo_verdict(best_auroc, best_cosine)\n\n    # Build report\n    report = {\n        \"metadata\": metadata,\n        \"num_test_samples\": len(test_samples),\n        \"num_test_pairs\": len(test_pair_ids),\n        \"best_layer\": best_layer,\n        \"best_token_position\": best_pos,\n        \"best_auroc\": best_auroc,\n        \"best_cosine\": best_cosine,\n        \"per_layer_auroc\": {\n            str(l): {str(p): v for p, v in pos_dict.items()}\n            for l, pos_dict in auroc_per_layer.items()\n        },\n        \"per_layer_cosine\": {\n            str(l): {str(p): v for p, v in pos_dict.items()}\n            for l, pos_dict in cosine_per_layer.items()\n        },\n        \"stratified_auroc\": {\n            \"by_domain\": {\n                k: {str(p): v for p, v in pos_dict.items()}\n                for k, pos_dict in breakdown_domain.items()\n            },\n            \"by_evidence_strength\": {\n                k: {str(p): v for p, v in pos_dict.items()}\n                for k, pos_dict in breakdown_evidence.items()\n            },\n            \"by_correction_turn\": {\n                k: {str(p): v for p, v in pos_dict.items()}\n                for k, pos_dict in breakdown_turn.items()\n            },\n        },\n        \"go_nogo\": verdict,\n        \"note\": (\n            \"In the current binary setup d_gen = -d_syc, so cosine(d_syc, d_gen) = -1.0. \"\n            \"The cosine threshold check (< 0.3) becomes meaningful only when d_gen is \"\n            \"independently defined.\"\n        ),\n    }\n\n    # Save JSON report\n    out_dir = Path(args.output_dir)\n    out_dir.mkdir(parents=True, exist_ok=True)\n    report_path = out_dir / \"evaluation_report.json\"\n    with open(report_path, \"w\") as f:\n        json.dump(report, f, indent=2, ensure_ascii=False)\n    logger.info(\"Saved report to %s\", report_path)\n\n    # Print human-readable summary\n    token_pos_names = {0: \"user_last\", 1: \"asst_first\"}\n    print(\"\\n\" + \"=\" * 60)\n    print(\"DIRECTION EVALUATION SUMMARY\")\n    print(\"=\" * 60)\n    print(f\"Test pairs: {len(test_pair_ids)}  |  Test samples: {len(test_samples)}\")\n    print(f\"Layers: {metadata['num_layers']}  |  Hidden dim: {metadata['hidden_dim']}\")\n    print()\n\n    print(f\"Best layer: {best_layer}  |  Token position: {best_pos} ({token_pos_names.get(best_pos, '?')})\")\n    print(f\"Best AUROC: {best_auroc:.4f}\")\n    print(f\"Cosine(d_syc, d_gen) at best: {best_cosine:.4f}  (expected: -1.0 in binary setup)\")\n    print()\n\n    # Top 5 layers\n    all_layer_auc = []\n    for layer, pos_dict in auroc_per_layer.items():\n        for pos, auc in pos_dict.items():\n            if not np.isnan(auc):\n                all_layer_auc.append((layer, pos, auc))\n    all_layer_auc.sort(key=lambda x: x[2], reverse=True)\n\n    print(\"Top 5 (layer, position, AUROC):\")\n    for layer, pos, auc in all_layer_auc[:5]:\n        print(f\"  Layer {layer:2d}, {token_pos_names.get(pos, f'pos{pos}'):10s}: {auc:.4f}\")\n    print()\n\n    # Stratified breakdown\n    print(\"AUROC by domain (best layer, all positions):\")\n    for domain, pos_dict in sorted(breakdown_domain.items()):\n        vals = [f\"{token_pos_names.get(p, f'pos{p}')}={v:.4f}\" for p, v in sorted(pos_dict.items())]\n        print(f\"  {domain:25s}  {', '.join(vals)}\")\n    print()\n\n    print(\"AUROC by evidence_strength (best layer, all positions):\")\n    for es, pos_dict in sorted(breakdown_evidence.items()):\n        vals = [f\"{token_pos_names.get(p, f'pos{p}')}={v:.4f}\" for p, v in sorted(pos_dict.items())]\n        print(f\"  {es:25s}  {', '.join(vals)}\")\n    print()\n\n    # Go/No-Go\n    print(\"-\" * 60)\n    print(f\"GO/NO-GO VERDICT: {verdict['verdict']}\")\n    print(f\"  {verdict['reason']}\")\n    print(\"=\" * 60)\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T06:42:27.180412+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/evaluate_directions.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_compute_evaluate_directions_20260518T064026",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T06:42:27.180611+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_compute_evaluate_directions_20260518T064026",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data && python3 compute_directions.py --help",
+              "description": "Verify compute_directions.py syntax"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T06:42:27.180989+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_compute_evaluate_directions_20260518T064026",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data && python3 evaluate_directions.py --help",
+              "description": "Verify evaluate_directions.py syntax"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T06:42:27.181712+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data/compute_directions.py\", line 27, in <module>\n    import torch\nModuleNotFoundError: No module named 'torch'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_compute_evaluate_directions_20260518T064026",
+            "tool": "Bash",
+            "elapsed_ms": 1
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T06:42:27.181904+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(cd /home/ubuntu/.agent-ml-research-be-id…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_compute_evaluate_directions_20260518T064026",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T06:42:27.182071+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_compute_evaluate_directions_20260518T064026",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/data && python3 -c \"import py_compile; py_compile.compile('compute_directions.py', doraise=True)\" && echo \"OK\"",
+              "description": "Syntax check compute_directions.py"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T06:42:27.182216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "OK"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_compute_evaluate_directions_20260518T064026",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T06:42:27.182960+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_compute_evaluate_directions_20260518T064026",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"import py_compile; py_compile.compile('evaluate_directions.py', doraise=True)\" && echo \"OK\"",
+              "description": "Syntax check evaluate_directions.py"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T06:42:27.184787+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "OK"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_compute_evaluate_directions_20260518T064026",
+            "tool": "Bash",
+            "elapsed_ms": 1
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T06:42:27.185623+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_compute_evaluate_directions_20260518T064026",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport ast, sys\nfor f in ['compute_directions.py', 'evaluate_directions.py']:\n    tree = ast.parse(open(f).read())\n    # check argparse parse_args exists\n    src = open(f).read()\n    assert 'argparse' in src\n    assert 'parse_args' in src\n    print(f'{f}: valid')\n\"",
+              "description": "Verify argparse setup in both scripts"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T06:42:27.185946+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "compute_directions.py: valid\nevaluate_directions.py: valid"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_compute_evaluate_directions_20260518T064026",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T06:42:27.186536+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已编写完成，语法验证通过。\n\n**compute_directions.py**：加载 Phase 2 激活 `.pt` → 按 `pair_id` 配对 → `StratifiedShuffleSplit` 按 domain 分层 80/20 划分 → 在 train set 上 difference-in-means 计算 `d_syc` 和 `d_gen` → L2 归一化 → 保存 `directions.pt`。\n\n**evaluate_directions.py**：加载方向和激活 → 过滤 test set → per-layer/per-position AUROC（投影到 `d_syc` 的 dot product 作为分数）→ cosine(d_syc, d_gen) → 按 domain/evidence_strength/correction_turn 分层 AUROC → Go/No-Go 判定（PASS/GRAY/FAIL）→ 输出 JSON 报告 + stdout 摘要。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_compute_evaluate_directions_20260518T064026"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/code-compute-evaluate-directions.md"
+}

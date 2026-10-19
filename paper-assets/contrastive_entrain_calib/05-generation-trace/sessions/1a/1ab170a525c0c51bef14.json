@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1ab170a525c0c51bef14",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "research bootstrap ci verification",
+  "task_key": "worker_research_bootstrap-ci-verification_20260523T105029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_bootstrap-ci-verification_20260523T105029_result.json",
+    "occurrence": 1,
+    "bytes": 1932,
+    "sha256": "c3e84b403919a707c407a857367db206c7dfb5f1512a7b22b4a27446815a4625"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部关键数据已收集。以下是分析结论：\n\n---\n\n## Bootstrap CI 来源分析\n\n### 1. Registry 值 [0.770, 0.859] 是对 `full_auroc` 做的\n\n来自 `results/exp001/run_eval.py`（原始 eval 脚本）：\n- 用 **全量数据** 计算 d_syc 方向，在全量数据上选最佳 layer/pos，得到 `full_auroc = 0.8159`\n- Bootstrap 对这个 full_auroc 的 scores 重采样（**不是 CV**），n=2000, seed=42\n- 得到 CI = **[0.7698, 0.8589]**，即 registry 中的 `[0.770, 0.859]`\n\n**问题：** 这个 CI 有数据泄漏——方向和最佳层都在全量数据上选定，bootstrap 只对 scoring 做重采样，低估了不确定性。\n\n### 2. 论文值 [0.795, 0.857] 是对 `cv_auroc_mean` 做的\n\n来自 `analysis/bootstrap_auroc_ci.py`（后续更严格的分析脚本）：\n- **Full CV bootstrap**：每次 bootstrap 重采样 181 对 pairs，重新跑完整 5-fold CV，n=2000, seed=42\n- 得到 CI = **[0.7952, 0.8572]**，即论文中的 `[0.795, 0.857]`\n- 这个 CI 围绕 `cv_auroc_mean = 0.827`（bootstrap mean = 0.825）\n\n### 3. 差异原因总结\n\n| | Registry | 论文 |\n|---|---|---|\n| CI | [0.770, 0.859] | [0.795, 0.857] |\n| 来源指标 | full_auroc (0.816) | cv_auroc_mean (0.827) |\n| Bootstrap 方法 | 重采样 scores（方向/层固定） | 重采样 pairs → 重跑整个 5-fold CV |\n| n_bootstrap | 2000 | 2000 |\n| 数据泄漏 | 有（train=test 选方向/层） | 无（CV 隔离） |\n\nRegistry CI 更宽（下界更低），因为 full_auroc 本身点估计更低（0.816 vs 0.827），且方向/层的 overfitting 增加了方差。\n\n### 4. 论文应该报告哪个值\n\n**论文值 [0.795, 0.857] 是正确的选择。** 它对应 5-fold CV AUROC，方法论上更严格（无数据泄漏），CI 通过 full CV bootstrap 计算。Registry 值应更新为 `bootstrap_ci_95: [0.795, 0.857]`，并标注 `method: full_cv_bootstrap`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-bootstrap-ci-verification.md"
+}

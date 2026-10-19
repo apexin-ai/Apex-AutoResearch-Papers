@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c390b345661e739318f",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "prep exp008v3 mideval",
+  "task_key": "worker_prep_exp008v3-mideval_20260519T184445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_exp008v3-mideval_20260519T184445_result.json",
+    "occurrence": 1,
+    "bytes": 1078,
+    "sha256": "d49055cdaea60ffa3b29be897a17e600765bb5ffeadd5b19b14b37fae5c076cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息收集完毕。\n\n```\n=== 1. exp-008v3 checkpoint 配置 (westd-28034) ===\nsave_steps: 500\n当前已有 checkpoint: checkpoint-500, checkpoint-1000, checkpoint-1500, checkpoint-2000\n当前步数: 2145/8000 (27%)\nstep 4000 是否会保存: 是（500 是 4000 的因数，step 4000 会保存）\n预计到达 step 4000 时间: 当前 ~37.7s/step，还需 ~1855 步，约 19.4 小时（≈5月20日 22:00 UTC+8）\n\n=== 2. eval_unified_preset.py (westd-29046) ===\n存在: 是（10837 bytes, 2026-05-19 18:20）\nD027 NLI 分类: 已应用（cross-encoder/nli-deberta-v3-base, NLIChecker, SYCONScore）\nCUDA 设置 bug: 无（使用 CUDA_VISIBLE_DEVICES 环境变量前缀，未在 import 前硬编码）\n版本判断: 可用\n\n=== 3. 数据和模型 (westd-29046) ===\ncalibration_v2_1_expanded.jsonl: 存在（路径: /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl，362 行）\n  备用路径 /root/contrastive_entrain_calib/data/ 下: 缺失\nbase model cache: 存在（路径: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B）\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-exp008v3-mideval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aee9209d068828225d76",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code eval pipeline",
+  "task_key": "worker_code_eval_pipeline_20260518T073439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval_pipeline_20260518T073439_result.json",
+    "occurrence": 1,
+    "bytes": 563,
+    "sha256": "1e20c41f3e54b1cb3abcc0fc3ad932794885437b65f8afb6c20c06fadc347283"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`--help` 正常输出，无语法错误。\n\n文件已创建在 `artifacts/eval/eval_pipeline.py`。框架包含：\n\n- `BenchmarkBase` 抽象基类（`load_data` / `run_inference` / `compute_metrics` / `evaluate` / `dry_run`）\n- 4 个 benchmark 骨架类，每个方法标注 TODO 及预期数据格式\n- `EvalPipeline` 统一管线（注册、批量运行、报告生成）\n- `load_model_and_tokenizer` 工具函数\n- 完整 CLI（`--model-path`、`--benchmarks`、`--output-dir`、`--device`、`--dry-run` 及各 benchmark 专属参数）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-pipeline.md"
+}

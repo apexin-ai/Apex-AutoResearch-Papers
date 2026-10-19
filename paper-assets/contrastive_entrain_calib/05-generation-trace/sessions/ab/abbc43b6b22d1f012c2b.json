@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "abbc43b6b22d1f012c2b",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval acts2 ckpt6500 7000 batch",
+  "task_key": "worker_eval_acts2-ckpt6500-7000-batch_20260522T235543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_acts2-ckpt6500-7000-batch_20260522T235543_result.json",
+    "occurrence": 1,
+    "bytes": 96,
+    "sha256": "86ac8cb743c317e345ea60c661bf2aabd973a153d175cebcda35aa3c67824b97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 已在 GPU2/GPU3 并行运行，约 15 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-acts2-ckpt6500-7000-batch.md"
+}

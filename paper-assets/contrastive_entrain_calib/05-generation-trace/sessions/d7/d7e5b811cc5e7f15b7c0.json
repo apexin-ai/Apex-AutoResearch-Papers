@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "d7e5b811cc5e7f15b7c0",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "fix task1 trainer fix restart",
+  "task_key": "worker_fix_task1-trainer-fix-restart_20260518T163237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_task1-trainer-fix-restart_20260518T163237.log",
+    "occurrence": 1,
+    "bytes": 651641,
+    "sha256": "f2cfd458039275c3b51ddbe450f7d07f47640d0094a1c7db087b84d2afcad3ea"
+  },
+  "statistics": {
+    "messages": 155,
+    "user_turns": 0,
+    "tool_calls": 51,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 49,
+      "tool_call": 51,
+      "tool_result": 51,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 155,
+      "chunks": [
+        {
+          "path": "d7e5b811cc5e7f15b7c0-part-0001.json",
+          "message_count": 140
+        },
+        {
+          "path": "d7e5b811cc5e7f15b7c0-part-0002.json",
+          "message_count": 15
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-task1-trainer-fix-restart.md"
+}

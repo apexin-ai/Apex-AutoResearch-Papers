@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2d2ac8fa31dea70ce2b",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "run phase5 check results",
+  "task_key": "worker_run_phase5_check_results_20260518T092606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_phase5_check_results_20260518T092606_result.json",
+    "occurrence": 1,
+    "bytes": 987,
+    "sha256": "1f1cb168cf7e0a853a3b5095dbd5f7cfd8d2060bfe4bcaaf4fdb721bc78f16c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Phase 5 LoRA Perturbation Test 结果\n\n**判定: ROBUST**\n\n| 指标 | 值 |\n|---|---|\n| Original AUROC | 1.0000 |\n| Perturbed AUROC | 0.9997 |\n| Delta | 0.0003 |\n| Polarity Reversed | false |\n| Threshold | 0.05 |\n| Best Layer | 22 |\n| LoRA Rank | 16 |\n| Samples | 640 |\n\n### Per-Layer AUROC 分布\n\n所有 36 层在 LoRA 扰动后 AUROC 均 > 0.995：\n\n- **最低**: Layer 5 = 0.9954\n- **最高**: Layer 22 = 0.9997 (best layer)\n- **趋势**: Layer 0-17 在 0.995-0.998 范围；Layer 18+ 跃升至 0.999+ 区间，中高层表现更稳定\n\n### 结论\n\n对比方向在 rank-16 随机 LoRA 扰动 (0.09% 参数) 下几乎不受影响，delta 仅 0.0003，远低于 0.05 阈值。polarity 未反转。分类器对模型权重微扰具有高鲁棒性。\n\n---\n\n注：原始运行失败原因是服务器网络不通无法从 HuggingFace 下载模型。已改用本地缓存路径 `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B` 重新运行成功。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-phase5-check-results.md"
+}

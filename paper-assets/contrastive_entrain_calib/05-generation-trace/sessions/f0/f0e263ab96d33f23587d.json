@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0e263ab96d33f23587d",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diag recalib offline test",
+  "task_key": "worker_diag_recalib-offline-test_20260518T230408",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_recalib-offline-test_20260518T230408_result.json",
+    "occurrence": 1,
+    "bytes": 1347,
+    "sha256": "c815a931043ad0e75b6b81d06d54519327a47d139327d55a724426ea4e9afb24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整结果如下：\n\n**Per-Layer Analysis:**\n\n| Layer | Cosine | OldNorm | NewNorm |\n|-------|--------|---------|---------|\n| 19 | 0.9069 | 1.0000 | 3.9438 |\n| 20 | 0.8803 | 1.0000 | 5.4734 |\n| 24 | 0.8786 | 1.0000 | 17.0951 |\n| 27 | 0.8798 | 1.0000 | 36.4849 |\n| 32 | 0.8247 | 1.0000 | 66.9615 |\n| 33 | 0.8203 | 1.0000 | 70.9664 |\n| 35 | 0.7507 | 1.0000 | 84.2601 |\n\n**Summary:**\n- **Mean cosine(old, new): 0.8487**\n- AUROC (original d_syc): **0.7771**\n- AUROC (recalibrated d_syc): **0.7964**\n- AUROC delta: **+0.0194**\n\n**解读：**\n\n整体方向稳定（mean cosine 0.85 > 0.8 阈值），recalibration 不紧迫。但有两个值得注意的趋势：\n\n1. **深层 drift 更大**：浅层 (19-27) cosine 0.88-0.91，深层 (32-35) 降到 0.75-0.82。Layer 35 的 0.7507 已接近中度漂移区间。\n2. **NewNorm 急剧增长**：从 layer 19 的 3.9 到 layer 35 的 84.3，说明 LoRA 训练后深层的 valid/invalid 激活差异被显著放大。\n3. **AUROC 仍可用**：原始 d_syc 的 AUROC 0.777 > 0.7 阈值，判别力尚存。Recalibrated 仅提升 +0.019，增益不大。\n\n**结论**：当前 step-500 的 d_syc 漂移尚在可控范围，R1 震荡的主因可能不是方向漂移。但如果训练继续推进到 step 700+，深层 drift 可能加剧，建议届时再测一次。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-recalib-offline-test.md"
+}

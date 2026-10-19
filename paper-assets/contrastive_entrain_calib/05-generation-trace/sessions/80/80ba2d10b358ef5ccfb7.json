@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80ba2d10b358ef5ccfb7",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval submit gpu1 gpu2 with precheck",
+  "task_key": "worker_eval_submit-gpu1-gpu2-with-precheck_20260521T085010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_submit-gpu1-gpu2-with-precheck_20260521T085010_result.json",
+    "occurrence": 1,
+    "bytes": 1015,
+    "sha256": "493d8025c29e8a1bb74580d70b9425abd517d7c7a1c21103f03915a0c1c51c7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出\n\n### 1. GPU VRAM 检查 (28034)\n| GPU | VRAM Used | 判定 |\n|-----|-----------|------|\n| GPU 1 | **2 MiB** | ✅ 通过 |\n| GPU 2 | **2 MiB** | ✅ 通过 |\n\n### 2. 已提交 Eval\n| tmux session | PID | GPU | 任务 | 状态 |\n|---|---|---|---|---|\n| `eval-ckpt7500` | 862178 | GPU 1 (16764 MiB) | exp003-ckpt7500 | ✅ 运行中 |\n| `eval-s2-ckpt2000` | 862245 | GPU 2 (16764 MiB) | exp003s2-ckpt2000 | ✅ 运行中 |\n\n### 3. 未提交\n无。两个 checkpoint 文件均存在，两个 GPU 均空闲，全部成功提交。\n\n### 4. 29046 seed1 训练状态\n- **进程**: PID 70649, `run_exp003_r3only.py`, GPU 1 (38161 MiB), 自 May 19 持续运行\n- **最新 checkpoint**: checkpoint-7500（保存于 May 21 14:10）\n- **ckpt-8000**: 未就绪\n- **预估当前 step**: ~7810（基于 500 steps ≈ 4.3h 的速率）\n- **预计 ckpt-8000 到达**: 约 1.5–2 小时后\n\n另外 29046 GPU 0 上还在跑 `run_exp003s2_r3only.py`（seed2 训练，May 20 启动）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-submit-gpu1-gpu2-with-precheck.md"
+}

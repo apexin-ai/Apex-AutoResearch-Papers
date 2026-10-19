@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "377d995d79e981a8d723",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ssh check 28034 after reboot",
+  "task_key": "worker_ssh_check-28034-after-reboot_20260522T121827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-28034-after-reboot_20260522T121827_result.json",
+    "occurrence": 1,
+    "bytes": 2248,
+    "sha256": "2b8ce647689f2d09ab5ec8704088e97d21152902ae348f113388251b607f7a82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-28034 重启后环境检查报告\n\n### 1. 连通性\n✅ **正常** — SSH 连接成功，服务器已启动约 6 分钟（从进程启动时间 20:13 推断）\n\n### 2. GPU 状态\n✅ **正常** — 4× RTX 5090 (32GB each)，利用率 0%，显存空闲\n\n| GPU | 型号 | 利用率 | 显存使用 |\n|-----|------|--------|----------|\n| 0 | RTX 5090 | 0% | 2/32607 MiB |\n| 1 | RTX 5090 | 0% | 2/32607 MiB |\n| 2 | RTX 5090 | 0% | 2/32607 MiB |\n| 3 | RTX 5090 | 0% | 2/32607 MiB |\n\n### 3. Python/conda 环境\n✅ **正常** — `/root/miniconda3/bin/python` Python 3.12.3 可用（需 conda activate，裸 `python3` 不在 PATH）。从正在运行的进程看，torch/transformers 可正常 import。\n\n### 4. 项目代码目录\n✅ **正常** — `/root/contrastive_entrain_calib/` 完整，`eval/eval_unified_preset.py` 存在 (10837 bytes)\n\n### 5. Eval 结果完整性\n⚠️ **eval_results 目录为空壳** — 两个结果目录存在但内部无任何文件：\n- `exp-003-s2-ckpt7500/` — 空目录（0 files）\n- `exp-004-s2-ckpt2000/` — 空目录（0 files）\n- 注意：任务提到的 `exp-004-s2-ckpt2500-v2/` 不存在，实际是 `exp-004-s2-ckpt2000`\n\n**结论：重启前正在运行的 eval 结果已丢失，需要重新跑。**\n\n### 6. Checkpoint 文件\n✅ **完好**\n- `checkpoints_r3only_s2/checkpoint-7500` — 完整（adapter_model.safetensors 245MB + optimizer.pt 491MB + tokenizer）\n- `checkpoints_act_s2/checkpoint-2000` — 完整（adapter_model.safetensors 698MB + tokenizer，无 optimizer）\n\n### 7. 进程状态\n⚠️ **有活跃进程** — `analysis/bootstrap_auroc_ci.py` 正在运行（PID 1656，CPU 114%），似乎是重启后被自动启动或手动提交的。无 tmux session，无 eval 进程。\n\n### 8. 磁盘空间\n✅ **正常**\n- 根分区：30G 用了 8G（27%）\n- 数据盘 `/root/autodl-tmp`：350G 用了 100G（29%）\n\n---\n\n### 总结\n\n| 项目 | 状态 |\n|------|------|\n| 能否立即提交新 eval | ✅ 可以（GPU 空闲，环境完好） |\n| eval 结果丢失 | ⚠️ 是 — `exp-003-s2-ckpt7500` 和 `exp-004-s2-ckpt2000` 结果为空，需重跑 |\n| checkpoint 完好 | ✅ 两个 checkpoint 文件完整 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-28034-after-reboot.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49cc8eb831202f4c86e0",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code held out split script",
+  "task_key": "worker_code_held-out-split-script_20260523T000249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_held-out-split-script_20260523T000249_result.json",
+    "occurrence": 1,
+    "bytes": 1309,
+    "sha256": "0f60a06095ce782e7033182391584016292a94c0c005b26e22594e05d2198072"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== 原始数据结构 ===\n字段: [pair_id, condition, domain, ground_truth, wrong_answer, pressure_answer, evidence_strength, turns, gt_verified]\npair_id 数: 181\nDomain × Strength 交叉表 (pair counts):\n  commonsense × medium: 10, commonsense × strong: 10, commonsense × weak: 17\n    geography × medium: 10, geography × strong: 10, geography × weak: 18\n      history × medium: 10, history × strong: 10, history × weak: 15\n         math × medium: 10, math × strong: 10, math × weak: 14\n      science × medium: 14, science × strong: 12, science × weak: 11\n\n=== Split 结果 ===\nTrain: 146 pairs, 292 lines\nHeld-out: 35 pairs, 70 lines\n\n=== Train 分布 ===\nDomain: {commonsense: 60, geography: 62, history: 56, math: 54, science: 60}\nStrength: {medium: 88, strong: 84, weak: 120}\n\n=== Held-out 分布 ===\nDomain: {commonsense: 14, geography: 14, history: 14, math: 14, science: 14}\nStrength: {medium: 20, strong: 20, weak: 30}\n\n=== 验证 ===\nOverlap: 无\n文件已生成到 28034: 是（直接在 28034 上跑脚本生成，结果一致）\n```\n\n两台服务器（29046、28034）均已生成 `train_split.jsonl`（292 lines）和 `eval_held_out.jsonl`（70 lines），分层抽样覆盖全部 15 个 domain × strength 组合，无 overlap。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-held-out-split-script.md"
+}

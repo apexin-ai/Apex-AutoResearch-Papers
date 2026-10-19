@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5388e839a289c9f1efa7",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diag westd28034 gpu0",
+  "task_key": "worker_diag_westd28034_gpu0_20260518T134142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_westd28034_gpu0_20260518T134142_result.json",
+    "occurrence": 1,
+    "bytes": 820,
+    "sha256": "c38924fe74e308ceeffed0b271dc25272888b3663198626f7435f5d40f026977"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**GPU 0 已自行恢复正常。** 执行 CUDA 计算后，GPU 0 从异常状态（P0 / 100% util / 121W / 无进程）回落到正常空闲状态（P8 / 0% util / 12W）。\n\n| GPU | 状态 | 计算测试 | 显存测试 (2.1GB) |\n|-----|------|---------|-----------------|\n| 0 | 已恢复正常 (P8, 0%, 12W) | PASSED | PASSED |\n| 1 | 正常 | PASSED | — |\n| 2 | 正常 | PASSED | — |\n| 3 | 正常 | PASSED | — |\n\n**原因分析**：GPU 0 之前可能有进程异常退出（crash/kill），导致 GPU 卡在 P0 高功耗状态但无实际进程。执行新的 CUDA 操作触发了驱动状态重置，GPU 恢复正常。\n\n**结论**：4 张 GPU 全部可用，无需排除 GPU 0。如果此问题反复出现，可考虑 `nvidia-smi -r -i 0` 手动重置 GPU 状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-westd28034-gpu0.md"
+}

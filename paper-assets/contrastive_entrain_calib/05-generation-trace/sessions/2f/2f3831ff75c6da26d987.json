@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f3831ff75c6da26d987",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnosis 29046 28034 status check",
+  "task_key": "worker_diagnosis_29046-28034-status-check_20260520T110649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_29046-28034-status-check_20260520T110649_result.json",
+    "occurrence": 1,
+    "bytes": 803,
+    "sha256": "0e508d2fc95811fc6a8752e7e01b465c5626bc4355910a67c007c56aa0891447"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型加载中，已正常启动。\n\n---\n\n## 29046 进程状态\nexp-003 seed 1 (PID 70649): **存活** — 运行 1天18小时15分，GPU 1，95% 利用率，38152MiB\nexp-003-s2 seed 2 (PID 237432→237437): **存活** — 运行 10小时49分，GPU 0，98% 利用率，38040MiB\n两块 RTX PRO 6000 (96GB) 均满载正常，此前异常报告为误报。\n\n## 28034 状态\nvanilla reeval: **完成**\nToF: 0.0718 | NoF: 0.9448 | **SYCONScore: 0.1335**\n⚠️ 注意：SYCONScore 0.1335 显著低于之前记录的 0.197 baseline，D027 unified preset 重跑结果不一致。\n\nexp-009 ckpt-1000 eval: **进行中** — 260/362 (72%)，预计 ~25 分钟完成，GPU 3\n\nGPU 0: **空闲** (5MiB/32607MiB)\nexp-003 ckpt-5000 eval: **已启动** (PID 576346, GPU 0, westd-28034)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-29046-28034-status-check.md"
+}

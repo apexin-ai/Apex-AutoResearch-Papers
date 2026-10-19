@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ea6d30b22afb10ce155",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "setup westd28034 file sync",
+  "task_key": "worker_setup_westd28034_file_sync_20260518T134041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_westd28034_file_sync_20260518T134041_result.json",
+    "occurrence": 1,
+    "bytes": 545,
+    "sha256": "a18cc7f50a9403229bab913c608ee020df18633f58f42ca434619ef9c4295aa8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成，全部验证通过：\n\n| 目录 | 文件 |\n|------|------|\n| `training/` | `dcgrpo_trainer.py` (含 tanh 修复), `gpu_smoke_test.py` |\n| `data/` | `calibration_v2_1_expanded.jsonl`, `calibration_v2.jsonl`, `activations_meta.jsonl`, `directions.pt` (2.3M) |\n| `eval/` | `evaluate_directions.py` |\n| `results/` | `evaluation_report.json`, `robustness_report.json`, `cv_auroc.json`, `transfer_auroc.json` |\n\n共 11 个文件，通过 westd-29046 → westd-28034 SSH 直连传输（临时密钥已部署）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-westd28034-file-sync.md"
+}

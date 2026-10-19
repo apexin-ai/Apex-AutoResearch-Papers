@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44ffd4a6da5bac011f8c",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis r3 reward final collect",
+  "task_key": "worker_analysis_r3-reward-final-collect_20260520T202911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r3-reward-final-collect_20260520T202911_result.json",
+    "occurrence": 1,
+    "bytes": 111,
+    "sha256": "844d61370f0f811d86cebd618dce336e8e9761e9836d1b57d729109e5b08d841"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已设置 3 分钟后轮询。当前状态：ckpt-4500 生成 300/362，进程正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r3-reward-final-collect.md"
+}

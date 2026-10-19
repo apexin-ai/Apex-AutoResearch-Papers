@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc1c2d2c47fbca81ed29",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis collect llama bootstrap final",
+  "task_key": "worker_analysis_collect-llama-bootstrap-final_20260522T125217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_collect-llama-bootstrap-final_20260522T125217_result.json",
+    "occurrence": 1,
+    "bytes": 921,
+    "sha256": "f1004b564644d65bd51cf2940452646eef2d2deb2ce6e2d3fe110d209820589e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整结果已收集。以下是 **Llama-3-8B** 部分的 bootstrap AUROC CI 最终结果：\n\n### Llama-3-8B (style-controlled, 181 pairs)\n\n| 指标 | AUROC | 95% CI |\n|------|-------|--------|\n| **5-fold CV mean** | 0.7793 | std=0.0189, folds=[0.757, 0.773, 0.779, 0.814, 0.774] |\n| **OOF bootstrap** (n=10000) | 0.7745 | [0.7418, 0.8094] |\n| **Full CV bootstrap** (n=2000) | **0.7811** | **[0.7448, 0.8189]** |\n| weak (n=75) | 0.7028 | [0.6484, 0.7625] |\n| medium (n=54) | 0.8594 | [0.8097, 0.9119] |\n| strong (n=52) | 0.9079 | [0.8617, 0.9508] |\n\n### 附：Qwen3-8B 对比 & Random Baseline\n\n- Qwen3-8B Full CV bootstrap: **0.8253 [0.7952, 0.8572]**\n- Random baseline (200 dirs): mean=0.6853, max=0.7980\n- d_syc vs random diff: −0.0094 [−0.0427, 0.0240], P(d_syc > random)=0.2908\n\n结果已保存至服务器 `/root/contrastive_entrain_calib/artifacts/bootstrap_auroc_ci.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-collect-llama-bootstrap-final.md"
+}

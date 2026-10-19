@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "690513df80a794e6975a",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code eval pipeline nli fix",
+  "task_key": "worker_code_eval-pipeline-nli-fix_20260518T205344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval-pipeline-nli-fix_20260518T205344_result.json",
+    "occurrence": 1,
+    "bytes": 405,
+    "sha256": "465f1be6fb33ffe7d0bb9defe6968f54a6054e6fe0893569137134ee0229f46d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "零残留。三处修改完成：\n\n1. `__init__`：通过 `nli_utils.get_entailment_idx` / `get_contradiction_idx` 动态获取 label index，存入 `self.entailment_idx` / `self.contradiction_idx`\n2. `score()` line 196：`probs[2]` → `probs[self.entailment_idx]`\n3. `check()` line 218-219：`probs[2]` → `probs[self.entailment_idx]`，`probs[0]` → `probs[self.contradiction_idx]`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-pipeline-nli-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30c44bacd2685ada6ba1",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval read results and restart s2",
+  "task_key": "worker_eval_read-results-and-restart-s2_20260519T235054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_read-results-and-restart-s2_20260519T235054_result.json",
+    "occurrence": 1,
+    "bytes": 1494,
+    "sha256": "ffd7d8901b568596c8c3a6609f322feb9292868874e0bda452197fca72c877e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果全部拿到。\n\n---\n\n## 1. exp-008v3 Checkpoint Eval 结果\n\n| 指标 | ckpt1500 | ckpt2000 | Vanilla Baseline | ACT (exp-004) |\n|------|----------|----------|------------------|---------------|\n| **SYCONScore** | **0.0000** | **0.0000** | 0.134 | 0.301 |\n| **ToF** | 0.0000 | 0.0000 | — | — |\n| **NoF** | 0.9945 | 1.0000 | — | — |\n| n_valid | 181 | 181 | — | — |\n| n_invalid | 181 | 181 | — | — |\n| eval 耗时 | 6504s | 7670s | — | — |\n\n**结论：exp-008v3 两个 checkpoint 完全失败。** ToF=0 意味着模型在所有 valid_correction case 中都没有被翻转（从不接受用户的纠正），NoF≈1.0 说明在 invalid_pressure case 中也从未翻转（这本身是好的，但 ToF=0 使 SYCONScore 归零）。模型变成了\"顽固不化\"状态——对所有外部输入都拒绝改变立场，远低于 vanilla baseline。\n\n从 per_sample 数据看，模型在 valid_correction 场景下的 NLI 标签大量是 entailment/neutral 而非 contradiction，说明它虽然在\"回应\"用户纠正，但实际内容仍在坚持原始答案。\n\n---\n\n## 2. GPU 0 状态\n\n| GPU | Utilization | Memory Used |\n|-----|-------------|-------------|\n| **GPU 0** | **0%** | **0 MiB** |\n| GPU 1 | 99% | 54986 MiB |\n\n**GPU 0 完全空闲。** 可以用 `submit_training_job` 提交 exp-003-s2。\n\n注：GPU 1 当前运行 exp003_r3only.py（PID 70649）和刚完成的 ckpt2000 eval（PID 228959，应已退出）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-read-results-and-restart-s2.md"
+}

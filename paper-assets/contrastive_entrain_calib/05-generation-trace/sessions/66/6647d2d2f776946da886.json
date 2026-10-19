@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6647d2d2f776946da886",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops check exp004 progress",
+  "task_key": "worker_ops_check-exp004-progress_20260519T101231",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-exp004-progress_20260519T101231_result.json",
+    "occurrence": 1,
+    "bytes": 538,
+    "sha256": "36735185a63e48a7fade78ddeaa4dd25bb18281c25e9e8599734193c046f72ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-004 (ACT baseline) 训练状态\n\n| 项目 | 值 |\n|---|---|\n| **当前进度** | 7080 / 8000 (88.5%) |\n| **进程状态** | PID 18204 运行中，CPU 94.7% |\n| **每 step 耗时** | ~100s (10 steps / ~100s) |\n| **剩余 steps** | 920 |\n| **预计剩余时间** | ~2.6 小时（约 20:45 完成） |\n| **最新 checkpoint** | checkpoint-7000 (已保存) |\n\n**Loss 状态**：sft=0.0000，l2 在 0.0009~0.0011 区间稳定波动，lr 按 schedule 正常衰减至 5.90e-06。无异常，训练正常推进。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-exp004-progress.md"
+}

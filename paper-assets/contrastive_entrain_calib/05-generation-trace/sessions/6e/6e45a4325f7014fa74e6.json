@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e45a4325f7014fa74e6",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "research emnlp2026 deadline",
+  "task_key": "worker_research_emnlp2026-deadline_20260519T062327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_emnlp2026-deadline_20260519T062327_result.json",
+    "occurrence": 1,
+    "bytes": 1561,
+    "sha256": "9b8e96734ca35145ca84e0f5a4f03e3918c82671a4c28a25bf665cc53895e5b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## EMNLP 2026 投稿关键信息\n\n### 投稿流程\n- **全部走 ARR**，无 direct submission track\n- 必须通过 **ARR 2026 May cycle** 提交\n- **重要**：提交时必须显式选择目标会议为 EMNLP 2026，该选择具有约束力（binding）。未选择 EMNLP 2026 的论文无法后续 commit 到 EMNLP\n- EMNLP 2026 与 AACL 共享 ARR May cycle，提交时需二选一\n\n### 关键日期（所有截止时间为 AoE，即 UTC-12 23:59:59）\n\n| 事项 | 日期 |\n|------|------|\n| ARR 论文提交截止 | **2026-05-25** |\n| 作者注册截止（所有作者） | 2026-05-27 |\n| Reviews due | 2026-06-29 |\n| Author response & discussion | 2026-07-07 ~ 07-13 |\n| Meta-review 发布 | 2026-07-30 |\n| EMNLP commitment deadline | **2026-08-02** |\n| 录用通知 | 2026-08-20 |\n| Camera-ready | 2026-09-20 |\n| 主会议 | **2026-10-22 ~ 10-26** |\n\n### 会议地点\nBudapest, Hungary\n\n### 对项目时间线的影响\n距 ARR 提交截止（5月25日）仅剩 **6 天**。如果目标是本轮投稿，时间极其紧张。下一个 ARR cycle 是 August 3，但届时无法 commit 到 EMNLP 2026（因为 EMNLP 只接受 May cycle）。\n\nSources:\n- [EMNLP 2026 Call for Main Conference Papers](https://2026.emnlp.org/calls/main_conference_papers/)\n- [ACL Rolling Review Dates](http://aclrollingreview.org/dates)\n- [EMNLP 2026 官方 Twitter 公告](https://x.com/emnlpmeeting/status/2029508292637061462)\n- [EMNLP 2026 关于 AACL 共享 cycle 的公告](https://x.com/emnlpmeeting/status/2047754845919031450)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-emnlp2026-deadline.md"
+}

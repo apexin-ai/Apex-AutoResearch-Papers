@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a73f88aaa397ffb9ff7",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "monitor len512 v3 progress",
+  "task_key": "worker_monitor_len512-v3-progress_20260523T150850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_len512-v3-progress_20260523T150850_result.json",
+    "occurrence": 1,
+    "bytes": 57,
+    "sha256": "195a89bc01912e3bf318f8286128b26e228ee8c7280ea67d68824e31c199b22d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "15 分钟后自动进行第 2 次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-len512-v3-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa57113d9d2bf7c97a85",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval 28034 collect rl7500 chain8000",
+  "task_key": "worker_eval_28034-collect-rl7500-chain8000_20260523T074141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_28034-collect-rl7500-chain8000_20260523T074141_result.json",
+    "occurrence": 1,
+    "bytes": 881,
+    "sha256": "bd3aba9b1307da276b7f65b9e8985e50eb1e09acbc478380323c7dc63b75408f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部结果已收集。\n\n## 汇报\n\n| Eval | SYCONScore | ToF | NoF | 状态 |\n|------|-----------|------|------|------|\n| vanilla baseline | 0.1335 | — | — | 基线 |\n| rl-ckpt-7000 | 0.3257 | — | — | 已完成 |\n| **rl-ckpt-7500** | **0.3043** | 0.1878 | 0.8011 | 已完成 |\n| **rl-ckpt-8000** | **0.2673** | 0.1602 | 0.8066 | 已完成 |\n\n**关键发现：**\n\n- **ckpt-7000 的 0.3257 是 noise spike，不是 real surge。** ckpt-7500 回落到 0.3043，ckpt-8000 进一步下降到 0.2673，呈单调递减趋势。\n- 训练已完成（step 8000, lr=0.0），ckpt-7000 是这条训练曲线的峰值。\n- NoF 在三个 checkpoint 间基本持平（~0.80），说明拒绝无效前提的能力稳定；SYCONScore 下降主要来自 ToF 下降（0.1878 → 0.1602），模型在后期训练中逐渐丧失对有效观点的顺从能力。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-28034-collect-rl7500-chain8000.md"
+}

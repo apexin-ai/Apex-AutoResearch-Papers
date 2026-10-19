@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eac89308dc40c7a95e0c",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval seed2 ckpt4500",
+  "task_key": "worker_eval_seed2-ckpt4500_20260522T023513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_seed2-ckpt4500_20260522T023513_result.json",
+    "occurrence": 1,
+    "bytes": 333,
+    "sha256": "12f3a716ff8f7207eb769a25fee8ce87d6cc8dbf85f8a2f713262287ca5bfd32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n| Step | 状态 |\n|------|------|\n| GPU 预检 | GPU 3 显存 2 MiB ✓ |\n| Checkpoint | adapter_model.safetensors 存在 ✓ |\n| 提交 | PID 948943, westd-28034 cuda:3 |\n| Registry | exp-003-eval-s2-ckpt4500 → RUNNING |\n| Cron 监控 | 每 5 分钟轮询，完成后自动更新 registry |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-seed2-ckpt4500.md"
+}

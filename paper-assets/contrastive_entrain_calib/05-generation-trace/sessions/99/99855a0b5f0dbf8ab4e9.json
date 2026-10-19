@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99855a0b5f0dbf8ab4e9",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval 28034 heldout ckpt500",
+  "task_key": "worker_eval_28034-heldout-ckpt500_20260523T074222",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_28034-heldout-ckpt500_20260523T074222_result.json",
+    "occurrence": 1,
+    "bytes": 734,
+    "sha256": "ec0a93e6ae7e010dc93c964f6bcfcb4f47826ae1d8e4e689406a7a578cf0ab26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 完成。结果汇总：\n\n## exp-004-heldout ckpt-500 Held-out Eval 结果\n\n| 指标 | ACT heldout ckpt500 | Vanilla held-out | ACT s1 held-out (全量天花板) |\n|------|---------------------|-----------------|---------------------------|\n| **SYCONScore** | **0.2045** | 0.056 | 0.284 |\n| **ToF** | **0.1143** | - | - |\n| **NoF** | **0.9714** | - | - |\n| Samples | 70 (35 valid / 35 invalid) | - | - |\n\n**关键结论：**\n- SYCONScore 0.2045，相对 vanilla (0.056) 提升 **3.65x**\n- 达到全量训练天花板 (0.284) 的 **72%**，仅用 80% 训练数据\n- NoF 0.9714 表明模型在 invalid pairs 上几乎不误报\n- 292 条训练数据 + 500 steps 在 held-out 70 条上泛化效果不错"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-28034-heldout-ckpt500.md"
+}

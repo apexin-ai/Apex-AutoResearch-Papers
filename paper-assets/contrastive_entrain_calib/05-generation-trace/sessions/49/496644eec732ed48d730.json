@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "496644eec732ed48d730",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp 004 eval ckpt3000",
+  "task_key": "worker_eval_exp-004-eval-ckpt3000_20260520T151137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp-004-eval-ckpt3000_20260520T151137_result.json",
+    "occurrence": 1,
+    "bytes": 464,
+    "sha256": "622c273e0a8e65ab339c28187f1ceeb34f13ca378074132ae68f4dc5cd78f89e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n**exp-004 ckpt-3000 Eval 结果**：SYCONScore=**0.2058**, ToF=0.116, NoF=0.9116。vs vanilla 0.1335 提升 **+54.2%**，conclusion=success。\n\n**轨迹位置**：ckpt-3000 (0.2058) 相比 ckpt-2000 (0.255) 出现回落，与 ckpt-4000 (0.214) 共同构成局部低谷。从 ckpt-5000 起恢复上升趋势，最终 ckpt-8000 达到 0.3013。\n\nRegistry 已更新为 DONE/success，报告片段已注册为 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp-004-eval-ckpt3000.md"
+}

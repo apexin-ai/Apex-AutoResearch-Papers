@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "a7f578f56799083e2b90",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "audit server output verify",
+  "task_key": "worker_audit_server-output-verify_20260523T191630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_server-output-verify_20260523T191630.log",
+    "occurrence": 1,
+    "bytes": 3469961,
+    "sha256": "c6ea0b9d7a3cc9db1a8a49803086da90cf7bf0ebd932ed8710c195064f4328da"
+  },
+  "statistics": {
+    "messages": 348,
+    "user_turns": 0,
+    "tool_calls": 148,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 48,
+      "tool_call": 148,
+      "tool_result": 148,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 348,
+      "chunks": [
+        {
+          "path": "a7f578f56799083e2b90-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a7f578f56799083e2b90-part-0002.json",
+          "message_count": 87
+        },
+        {
+          "path": "a7f578f56799083e2b90-part-0003.json",
+          "message_count": 1
+        },
+        {
+          "path": "a7f578f56799083e2b90-part-0004.json",
+          "message_count": 80
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-server-output-verify.md"
+}

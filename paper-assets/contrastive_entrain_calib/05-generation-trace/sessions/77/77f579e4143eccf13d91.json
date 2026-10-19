@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77f579e4143eccf13d91",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops anon repo final push",
+  "task_key": "worker_ops_anon-repo-final-push_20260524T095525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_anon-repo-final-push_20260524T095525_result.json",
+    "occurrence": 1,
+    "bytes": 765,
+    "sha256": "601d632963c859a1687435f40f5fe6138354180a665f80f0ea415360709c4146"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### 结果汇总\n\n**推送**: 成功 (`1a26880..5ece92b`)\n\n**文件变化** (46 → 54 文件):\n- **新增 8 个**: `analysis/bootstrap_auroc_ci.py`, `analyze_activation_drift.py`, `data/generate_dpo_pairs.py`, `scripts/analyze_stubbornness_cases.py`, `scripts/fig_trajectory.py`, `scripts/finalize_taxonomy.py`, `training/run_dpo.py`, `training/run_exp012_llama_direction.py`\n- **修改 1 个**: `eval/run_lm_eval.sh`\n\n**PII 检查**: 干净\n- 作者/机构信息: 无\n- API key/token: 仅环境变量引用，无硬编码\n- 绝对路径: 已将所有 `/root/` 路径替换为相对路径或 `os.environ.get()` 形式\n- wandb 实体: 无\n\n**仓库地址**: https://github.com/anonymous-nlp-2026-2/contrastive_entrain_calib"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-anon-repo-final-push.md"
+}

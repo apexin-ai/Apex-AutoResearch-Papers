@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "42e095d05572955014ef",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "code exp005 eval pipeline v2",
+  "task_key": "worker_code_exp005-eval-pipeline-v2_20260518T203010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp005-eval-pipeline-v2_20260518T203010.log",
+    "occurrence": 1,
+    "bytes": 1000284,
+    "sha256": "8d11e7556a3b6e784a955dd95f900300049fed6fe2f3fdff1f525bb30c690400"
+  },
+  "statistics": {
+    "messages": 84,
+    "user_turns": 1,
+    "tool_calls": 26,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 22,
+      "tool_call": 26,
+      "tool_result": 26,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 9,
+      "chunks": [
+        {
+          "path": "42e095d05572955014ef-part-0001.json",
+          "message_count": 9
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 75,
+      "chunks": [
+        {
+          "path": "42e095d05572955014ef-part-0001.json",
+          "message_count": 32
+        },
+        {
+          "path": "42e095d05572955014ef-part-0002.json",
+          "message_count": 43
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp005-eval-pipeline-v2.md"
+}

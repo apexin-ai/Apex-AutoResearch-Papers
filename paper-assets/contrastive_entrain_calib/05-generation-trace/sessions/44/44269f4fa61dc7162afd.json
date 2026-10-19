@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44269f4fa61dc7162afd",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval acts2 checkpoint inventory",
+  "task_key": "worker_eval_acts2-checkpoint-inventory_20260522T175645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_acts2-checkpoint-inventory_20260522T175645_result.json",
+    "occurrence": 1,
+    "bytes": 1567,
+    "sha256": "69f22afbb5f171e463ce0b8d7aa57d2d4aad18aef9129fbeba8656121a5c78e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### Checkpoint 列表（按修改时间）\n\n| Checkpoint | 修改时间 |\n|-----------|---------|\n| checkpoint-2000 | May 22 20:24 *(resume 起点)* |\n| checkpoint-3000 | May 22 21:20 |\n| checkpoint-2500 | May 22 21:41 |\n| checkpoint-3500 | May 22 22:36 |\n| checkpoint-4000 | May 22 23:54 |\n| checkpoint-4500 | May 23 01:11 |\n\n共 6 个 checkpoint。注意 ckpt-2000 和 ckpt-3000 的时间早于 ckpt-2500，可能是 resume 前遗留的旧 checkpoint，新训练从 ckpt-2500 开始写入。\n\n### 当前训练状态\n\n- **最新日志 step: 4800** (train_log.jsonl 最后一行)\n- **进程 PID 494017 仍在运行**，已运行 7h07m，CPU 96%\n- **GPU 1** 占用 23270MiB / 97887MiB，但当前 GPU-Util 0%（可能正处于 checkpoint 保存或 log flush 间隙）\n- 训练速度：约 **9.1s/step**（从日志推算）\n\n### save_steps 推断\n\ncheckpoint 间距为 500（2000→2500→3000→3500→4000→4500），**save_steps = 500**。\n\n### 下一个 checkpoint 预估\n\n- checkpoint-5000 预计在 step 4800 基础上再跑 200 步 ≈ 200 × 9.1s ≈ **30 分钟后**（约 02:27 服务器时间）\n\n### 之前步数不一致的解释\n\n之前报告的 step 3360 可能是另一个 worker 读到了旧日志或未刷新的状态。实际训练已推进到 **step 4800/8000（60%）**，与 ckpt-4500 的存在一致。\n\n### 补充说明\n\n- 命令行写的 `--device cuda:0`，但 nvidia-smi 显示 PID 494017 实际在 **GPU 1** 上\n- GPU 0 上另有一个进程 PID 516696（占 38188MiB）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-acts2-checkpoint-inventory.md"
+}

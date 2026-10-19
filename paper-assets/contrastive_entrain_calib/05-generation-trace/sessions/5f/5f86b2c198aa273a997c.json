@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f86b2c198aa273a997c",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops verify eval running 28034",
+  "task_key": "worker_ops_verify-eval-running-28034_20260521T072314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-eval-running-28034_20260521T072314_result.json",
+    "occurrence": 1,
+    "bytes": 1173,
+    "sha256": "027d55761146034cd4325779bef464c0dcbdc88ce033ed5d4e794d5f5511d2d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n```\n实际 GPU 状态:\n  cuda:0: PID 497834 running exp-003-eval-ckpt5000-v2 (16.8GB, 48% util)\n  cuda:1: PID 498446 running exp-003-eval-ckpt6000 (16.8GB, 48% util)\n  cuda:2: PID 498584 running exp-003-eval-ckpt6500 (16.8GB, 49% util)\n  cuda:3: PID 498666 running exp-003-eval-ckpt7000 (16.8GB, 50% util)\n\nRegistry 修复:\n  exp-003-eval-ckpt5000-v2: DONE(failed) → RUNNING, PID=497834 (nohup, 无 tmux)\n  exp-003-eval-ckpt6000:    DONE(failed) → RUNNING, PID=498446 (tmux session)\n  exp-003-eval-ckpt6500:    DONE(failed) → RUNNING, PID=498584 (tmux session)\n  exp-003-eval-ckpt7000:    ALLOCATED    → RUNNING, PID=498666 (tmux session)\n\nCron 注册:\n  全部 4 个 eval: cron eba2e700 (每8分钟), 监控 PID 存活 + 自动收割结果\n```\n\n**根因**：kill-cleanup-restart worker 用 SIGHUP 杀掉了 batch-submit worker 提交的旧进程（PID 495833/495906/496116/496266），触发 cron 将 3 个 eval 标记为 DONE(failed, EXIT_CODE=129)。随后重新提交了新进程，但 registry 状态未从 DONE 恢复到 RUNNING。ckpt7000 卡在 ALLOCATED 是因为提交后未完成状态转换。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-eval-running-28034.md"
+}

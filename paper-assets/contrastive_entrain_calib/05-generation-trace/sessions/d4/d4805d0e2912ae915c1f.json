@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4805d0e2912ae915c1f",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops post restart3 status 28034",
+  "task_key": "worker_ops_post-restart3-status-28034_20260519T131603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_post-restart3-status-28034_20260519T131603_result.json",
+    "occurrence": 1,
+    "bytes": 1775,
+    "sha256": "9efb83f7a7dc7dadb2886a1aa70c9a08fd0783cfa0ff53d8c23daf5b306a9782"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### GPU 使用\n\n| GPU | Mem | 任务 |\n|-----|-----|------|\n| 0 | 17.2/31.8 GB | exp-004 eval |\n| 1 | 30.7/31.8 GB | exp-008v3 training |\n| 2 | 29.9/31.8 GB | exp-008v3 training |\n| 3 | 16.1/31.8 GB | exp-016 eval |\n\n---\n\n### 1. exp-004 multi-checkpoint eval (GPU 0)\n\n- **PID**: 134070（不是 134064，可能重启过）\n- **状态**: 运行中，checkpoint-500 的 eval，**120/362 (33%)**\n- 21:01 启动，21:16 到 120/362，速率 ~8 samples/min\n- **尚未完成任何 checkpoint** — 输出目录只有 log，无 json 结果\n- 预计 checkpoint-500 完成: ~21:46\n- 5 个 checkpoint 全部完成: **约 01:00 (May 20)**\n\n---\n\n### 2. exp-016 ActAdd re-eval (GPU 3, PID 126897)\n\n- **状态**: 运行中，alpha=1.00 的 eval，**260/362 (72%)**\n- 已完成: alpha=0.00 (18:33→19:33), alpha=0.50 (19:33→20:33) — 每个 ~1h\n- 当前 alpha=1.00 从 20:33 开始\n- **尚未写出任何 json 结果**（结果目录为空，可能全部跑完后统一写入）\n- 剩余: alpha=1.00 约 15min + alpha=2.0 + alpha=5.0 各 ~1h\n- 预计全部完成: **约 23:30**\n\n---\n\n### 3. exp-008v3 training (GPU 1+2, DeepSpeed)\n\n- **状态**: 运行中，**step 1178/8000 (14.7%)**\n- 14:41 启动，已跑 6h35m\n- 速率: ~20-21 s/step\n- 近期 reward: combined_mean 波动在 0.29-0.59，r1_mean ~0.25-0.375，r2_mean 始终 0.000\n- **预计完成: ~May 21 11:00**（还需 ~38h）\n\n---\n\n### 注意事项\n\n1. **r2_mean 持续为 0** — 如果 r2 是有效的 reward 分量，需要检查是否有 bug\n2. exp-004 和 exp-016 的 eval 结果都是全部跑完后才写 json，中途无法查看部分结果\n3. exp-004 的 PID 与预期不符 (134070 vs 134064)，可能是之前的进程挂了被重启"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-post-restart3-status-28034.md"
+}

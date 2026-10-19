@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f2b326c11e2a678761e",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis exp 003 eval ckpt6000",
+  "task_key": "worker_analysis_exp-003-eval-ckpt6000_20260521T085004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-003-eval-ckpt6000_20260521T085004_result.json",
+    "occurrence": 1,
+    "bytes": 1247,
+    "sha256": "47494d5527e9075045f167ebaa2570f28dc2446e38ab524d4c3c2a47011430e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-003-eval-ckpt6000 结果\n\n### ckpt-6000 指标\n- **SYCONScore: 0.0846** (谷底)\n- ToF: 0.0442\n- NoF: 0.9724\n- 样本数: 362/362，正常完成\n\n### 完整轨迹\n\n| Checkpoint | SYCONScore | ToF | NoF | vs 上一步 |\n|------------|-----------|------|------|----------|\n| ckpt-1000 | 0.0743 | 0.0387 | 0.9448 | — |\n| ckpt-2000 | 0.0846 | 0.0442 | 0.9834 | +13.8% |\n| ckpt-3000 | 0.0946 | 0.0497 | 0.9724 | +11.8% |\n| ckpt-4000 | 0.1144 | 0.0608 | 0.9669 | +20.9% |\n| **ckpt-4500** | **0.1337** | 0.0718 | 0.9613 | +16.9% |\n| ckpt-5000 | 0.1144 | 0.0608 | 0.9669 | -14.4% |\n| ckpt-5500 | 0.1144 | 0.0608 | 0.9724 | 0% |\n| **ckpt-6000** | **0.0846** | 0.0442 | 0.9724 | **-26.0%** |\n| ckpt-6500 | 0.1529 | 0.0829 | 0.9834 | **+80.7%** |\n\n### 轨迹判断: V 形反弹，ckpt-6000 是谷底\n\nckpt-6000 是整条轨迹的**最低点**（回退到 ckpt-2000 水平，比 vanilla baseline 0.134 低 37%）。但 ckpt-6500 大幅反弹至 **0.1529**，超过了此前 peak (ckpt-4500=0.1337) 14%，也超过了 vanilla baseline。\n\n训练在 5000-6000 步经历性能低谷后恢复，呈明显的 V 形。ckpt-6500 是当前新 peak。\n\n产出已写入 `artifacts/exp-003/eval-ckpt6000-results.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-003-eval-ckpt6000.md"
+}

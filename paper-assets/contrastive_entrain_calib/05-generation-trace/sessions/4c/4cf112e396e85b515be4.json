@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4cf112e396e85b515be4",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code prepare exp003 s2",
+  "task_key": "worker_code_prepare-exp003-s2_20260519T065333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare-exp003-s2_20260519T065333_result.json",
+    "occurrence": 1,
+    "bytes": 1130,
+    "sha256": "4c25e93388b6b47d2561c86a194042ca6a807ba8a4daecd0a0fdc99d346ae336"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总如下：\n\n**脚本路径**: `/root/contrastive_entrain_calib/training/run_exp003s2_r3only.py` (westd-29046)\n\n**配置摘要** (与 exp-003 仅 seed 和输出目录不同):\n\n| 参数 | exp-003 | exp-003-s2 |\n|------|---------|------------|\n| seed | 42 | **43** |\n| output_dir | `exp003_r3only_seed1` | **`exp003s2_r3only`** |\n| r1/r2/r3 | 0.0 / 0.0 / 1.0 | 0.0 / 0.0 / 1.0 |\n| r3_model | cross-encoder/nli-deberta-v3-base | cross-encoder/nli-deberta-v3-base |\n| data_path | `/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl` | 同左 |\n| LoRA r/alpha | 64/64 | 64/64 |\n| max_completion_length | 256 | 256 |\n| num_generations | 2 | 2 |\n| lr / beta | 5e-5 / 0.04 | 5e-5 / 0.04 |\n\n**数据路径验证**: `/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl` 存在 (367KB)\n\n**Dry-run**: Syntax OK\n\n注意：westd-28034 上已有的 `run_exp003_r3only_seed2.py` 与原版 exp-003 存在配置差异（r3_model_name、max_completion_length=512、num_generations=4），不是纯 seed 复现。westd-29046 上新建的版本严格只改了 seed 和 output_dir。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-exp003-s2.md"
+}

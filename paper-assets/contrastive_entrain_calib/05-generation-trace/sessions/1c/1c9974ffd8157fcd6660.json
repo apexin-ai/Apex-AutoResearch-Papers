@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1c9974ffd8157fcd6660",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ssh cleanup 29046 root",
+  "task_key": "worker_ssh_cleanup-29046-root_20260522T125108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cleanup-29046-root_20260522T125108_result.json",
+    "occurrence": 1,
+    "bytes": 847,
+    "sha256": "ddb120dbfa6070fc012be913821ab4ab05b8be069b51114f927f8567a782bec6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "根分区从 **93% (2.4G 可用) → 83% (5.3G 可用)**，腾出约 **2.9G** 空间。\n\n清理明细：\n| 项目 | 释放空间 |\n|------|---------|\n| HF datasets arrow 缓存 | ~2.9G |\n| `/tmp` 临时文件（日志、旧脚本、tmp 目录） | ~20M |\n| `__pycache__` | ~几十K |\n| apt/pip/conda cache | 已为空 |\n\n**未删除（安全约束）：**\n- `/tmp/exp003_s2_ckpts.tar.gz` (661M) — checkpoint 存档\n- `/tmp/test_c1_v2/checkpoint-5` (961M) — checkpoint 数据\n- `/root/.cache/huggingface/hub/` 下的模型权重 (DeBERTa ~1.4G) — 可能用于评估\n- 所有训练日志、实验数据、运行中的进程\n\n如果需要进一步释放空间，可以考虑清理 HF hub 中不再使用的 dataset 下载（ultrachat_200k 1.6G + ShareGPT 151M），或确认 DeBERTa 模型权重是否还需要。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cleanup-29046-root.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1bf1433bdb955e92571",
+  "project": "contrastive_entrain_calib",
+  "kind": "history",
+  "title": "agent / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2.md",
+    "occurrence": 1,
+    "bytes": 4000,
+    "sha256": "b46de05db573b2e0ce1b2d8656355a7ac9941c6aaf266f1e897ca4e7f389ae99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-21T04:38:48+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-28034 GPU 分配需 Director 确认，当前 `get_project_resource_usage` 显示 `allocated_gpus=[]`（配置缺失），实际在跑的 GPU 靠 registry RUNNING 状态追踪\n- westd-28034 根分区仅 ~5GB，所有 checkpoint/output 必须写 `/root/autodl-tmp/`，否则磁盘写满崩溃（exp002v2-recalib 已因此丢数据）\n- 两台服务器无外网：所有命令必须带 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`\n- eval 脚本用 `--lora_path`（非 `--adapter_path`），无 `--enable_thinking` 参数\n- ARR 提交截止 **2026-05-25 (AoE)**，距今 4 天\n\n### 2. 🖥️ 基础设施快照\n- **westd-28034** (4× RTX 5090 32GB): 工作目录 `/root/contrastive_entrain_calib`，Python `/root/miniconda3/bin/python` (3.12)，DeepSpeed 用 `--include localhost:X,Y`。Qwen3-8B: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B`，Llama-3-8B: `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3-8B-Instruct`，数据: `/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl` (362 pairs)\n- **westd-29046** (2× A100 96GB): 同结构，Python 同路径。28034↔29046 不可直连（NAT），需 agent 中转\n- **活跃进程**: exp-003 (PID 70649, 29046 cuda:1), exp-003-s2 (PID 237432, 29046 cuda:0), exp-009-eval-ckpt1000 (PID 234111, 28034 cuda:3)\n- **Cron 监控**: exp-003 和 exp-003-s2 有活跃 cron（reconcile 已确认）\n\n### 3. 📊 当前状态\n刚处理完 exp-009 失败回调：确认为 D040 intentional kill（进程在 step 1535 正常运行时被外部终止，无技术错误），已将 conclusion 从 \"failed\" 修正为 \"killed\"，更新 registry/memory.md，发送飞书卡片，向 Director 汇报。\n\n**RUNNING**:\n- `exp-003` — R3-only GRPO seed 1, ~step 5000+, ETA May 21 ~17:00\n- `exp-003-s2` — R3-only GRPO seed 2, ETA May 23\n- `exp-009-eval-ckpt1000` — 已有 metrics (SYCONScore=0.114)，可能已完成但状态未更新\n\n**PREPARING** (已有 spec/PID 但状态卡在 PREPARING):\n- `vanilla-d027-reeval` — 已有 conclusion=success + metrics，状态不一致需修复\n- `exp-003-eval-ckpt4000` — 待 GPU\n- `exp-003-eval-ckpt5000` — 待 GPU\n\n**空闲 GPU**: westd-28034 GPU 0/1/2 (exp-009 释放了 1+2)。已向 Director 建议用于 exp-003 eval，等回复。\n\n### 4. 📋 待办\n- Director 回复 GPU 分配 → 提交 exp-003-eval-ckpt4000 + ckpt5000 到 28034 GPU 0/1\n- exp-009-eval-ckpt1000 cron 回调 → 确认 SYCONScore=0.114 最终结论，更新为 DONE/negative\n- exp-003 训练完成 cron 回调 → spawn worker 跑 ckpt-8000 final eval（Claim 2 关键正面对照）\n- exp-003-s2 训练完成 → seed 2 eval，验证 R3-only 可复现性\n- vanilla-d027-reeval 状态不一致 → 修复为 DONE（已有 metrics + conclusion=success）\n- Paper Agent: Results section blocked on exp-003 final eval; Related Work + Conclusion 可并行推进\n- **Worker 池 = 0（违规！）** → 下一轮应立即派 CPU Worker 推进论文写作或文献工作\n\n### 5. 🎯 战略上下文\n- **核心叙事**: \"Discriminability Without Utility\" — d_syc AUROC=0.835 但 7 种 reward formulation 全部失败。论文是 analysis paper 不是 method paper\n- **Claim 强度 Medium-High (D037)**: 升级条件是 exp-003 SYCONScore ≥ 0.20（证明 R3-only 行为奖励有效，而表征方向奖励无效）\n- **exp-003 是论文的 MUST**: 没有 R3-only positive control，Claim 2 (\"all formulations fail\") 缺正面对照。如果 exp-003 SYCONScore < 0.15 则 claim 强度降回 Medium\n- **易错点**: (1) 不要混淆 vanilla baseline 数字——旧 eval_pipeline.py 给的 SYCONScore=0.197，D027 统一 preset eval 是 0.134；(2) exp-003 有 seed 1 和 seed 2，log/metrics 不要混；(3) 28034 多个 DeepSpeed 实验必须用不同 master_port\n- **决策链**: D029(Path B 转 analysis)→D031(probe trap 即时)→D033(claim Medium)→D037(升 Medium-High)→D040(kill exp-009, 完成 7 formulation 证据链)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-copy-2.md"
+}

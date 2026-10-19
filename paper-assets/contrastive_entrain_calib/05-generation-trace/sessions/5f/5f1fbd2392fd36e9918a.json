@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f1fbd2392fd36e9918a",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ssh check act s2 ckpt1000",
+  "task_key": "worker_ssh_check-act-s2-ckpt1000_20260522T070257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-act-s2-ckpt1000_20260522T070257_result.json",
+    "occurrence": 1,
+    "bytes": 500,
+    "sha256": "71349e09ac82a438311e8b1e62cc0d4dc1044cc632fe460c89b1e9aa76514161"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n| 实验 | 当前 step | 目标 ckpt | 状态 | SCP |\n|------|----------|-----------|------|-----|\n| **exp-004-s2** | 1080/8000 | checkpoint-1000 | **已生成** (adapter ~698MB) | **已传到 28034** `/root/autodl-tmp/checkpoints/exp004_s2/checkpoint-1000/` |\n| **exp-003-s2** | 6820/8000 (85%) | checkpoint-7000 | **未生成** | — |\n\nexp-003-s2 预计还需 ~8.5 小时到 step 8000，checkpoint-7000 应在约 ~4.7 小时后生成（按 ~25.5s/step 估算）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-act-s2-ckpt1000.md"
+}

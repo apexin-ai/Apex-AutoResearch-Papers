@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "e9ae7a21a7979ecc5def",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval vanilla baseline real",
+  "task_key": "worker_eval_vanilla-baseline-real_20260519T080014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_vanilla-baseline-real_20260519T080014_result.json",
+    "occurrence": 1,
+    "bytes": 2475823,
+    "sha256": "f6385986d31f4bafd1b12197a6a8194bda332fa548ebcde389bc077787051de8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "e9ae7a21a7979ecc5def-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/eval-vanilla-baseline-real.md"
+}

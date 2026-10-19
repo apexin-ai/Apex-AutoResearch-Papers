@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6b9d9fb3989199ba1fa",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops sync eval fix to 29046",
+  "task_key": "worker_ops_sync-eval-fix-to-29046_20260519T093954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync-eval-fix-to-29046_20260519T093954_result.json",
+    "occurrence": 1,
+    "bytes": 1339,
+    "sha256": "0022fac9c2f02e3f05c6ca593c4be5cf2973c79db3baaa06bce1775e5da70648"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "发现情况与预期相反。两边 `generate_single_response` 的关键差异：\n\n**28034（1838行）**：\n```python\nprompt_text = tokenizer.apply_chat_template(\n    messages, tokenize=False, add_generation_prompt=True,\n    enable_thinking=False,\n)\n...\nreturn tokenizer.decode(new_tokens, skip_special_tokens=True).strip()\n```\n- `enable_thinking=False` 直接调用，无 try/except\n- **无** regex 后处理\n\n**29046（1845行）**：\n```python\ntry:\n    prompt_text = tokenizer.apply_chat_template(\n        messages, tokenize=False, add_generation_prompt=True,\n        enable_thinking=False,\n    )\nexcept TypeError:\n    prompt_text = tokenizer.apply_chat_template(\n        messages, tokenize=False, add_generation_prompt=True,\n    )\n...\ntext = tokenizer.decode(new_tokens, skip_special_tokens=True).strip()\ntext = re.sub(r'<think>.*?</think>', '', text, flags=re.DOTALL).strip()\nreturn text\n```\n- `enable_thinking=False` 有 try/except 兜底（兼容不支持该参数的 tokenizer）\n- **有** regex 后处理（strip `<think>` 标签）\n\n**结论：29046 版本实际上更完善（多了 try/except 兼容 + regex 后处理）。28034 版本反而缺少 regex 后处理。**\n\n你确定要用 28034 的版本覆盖 29046 吗？还是反过来，把 29046 的版本同步到 28034？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-eval-fix-to-29046.md"
+}

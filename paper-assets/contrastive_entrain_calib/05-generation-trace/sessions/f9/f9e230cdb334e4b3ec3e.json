@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9e230cdb334e4b3ec3e",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops s2v2 exit diag and len512",
+  "task_key": "worker_ops_s2v2-exit-diag-and-len512_20260523T020618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_s2v2-exit-diag-and-len512_20260523T020618_result.json",
+    "occurrence": 1,
+    "bytes": 1164,
+    "sha256": "079c70c1950aaa9d78441bdde67ef2fa92f9f18adaef514c1dbaa66ca90ca202"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报如下：\n\n---\n\n## 诊断结果\n\n### 1. 训练状态：**SUCCESS**\n- 最终 step: **8000/8000**，lr=0.0（cosine schedule 走完）\n- 最终 loss: sft_loss=2e-06, l2_loss=0.00078, total_loss=8e-05\n- Checkpoints: ckpt-2000 到 ckpt-8000（每 500 步），共 13 个\n- 总训练耗时: ~54831s (~15.2h)\n\n### 2. Registry & Cron\n- Registry: status=DONE, conclusion=success, checkpoint_path 和 log_path 已更新\n- Cron: exp-004-s2-v2 已删除\n\n### 3. SCP 状态\n- **ckpt-8000**: 已 SCP 到 28034，验证通过（698MB adapter_model.safetensors）\n- **ckpt-7500**: 28034 上缺失，已补 SCP，验证通过\n\n### 4. len512 启动\n- **cuda:1 不空闲** — `run_exp003_len512_r3only.py` (PID 552217) **已经在 cuda:1 上运行**\n- 无需重新启动，已有人提交了 len512 任务\n\n### 5. 异常/注意事项\n- 日志文件实际路径是 `train_exp004s2v2.log`，非 `exp-004-s2-resume.log`（registry spec 中的旧路径）\n- 29046 上没有 SSH config，SCP 到 28034 需要用 `connect.westd.seetacloud.com -P 28034` 全路径\n- cuda:0 上还跑着 `run_exp003_gs8_r3only.py` (PID 516696)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-s2v2-exit-diag-and-len512.md"
+}

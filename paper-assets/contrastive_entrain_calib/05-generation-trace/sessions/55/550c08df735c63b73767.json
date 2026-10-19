@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "550c08df735c63b73767",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "knowledge update framing ckpt8000",
+  "task_key": "worker_knowledge_update-framing-ckpt8000_20260521T114200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_update-framing-ckpt8000_20260521T114200_result.json",
+    "occurrence": 1,
+    "bytes": 234,
+    "sha256": "fc907c7ab37295bc9f440fff902d234c11c3631464168f23589b766a32e2770a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "四处修改完成：R3-only 轨迹表扩展到 13 行（vanilla + 12 checkpoints），spike-regression 叙事更新为振荡描述，seed 2 表扩展到 7 点并更新总结，三层区分中 R3-only 描述已替换。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-update-framing-ckpt8000.md"
+}

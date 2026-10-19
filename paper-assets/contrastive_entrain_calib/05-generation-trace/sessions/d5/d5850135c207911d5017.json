@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5850135c207911d5017",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops exp004 completion check",
+  "task_key": "worker_ops_exp004-completion-check_20260519T125857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp004-completion-check_20260519T125857_result.json",
+    "occurrence": 1,
+    "bytes": 1147,
+    "sha256": "76b2839d3a009b8b00656d0a5402b405f5c888dfe7d45a08fef48e926d8ba580"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-004 (ACT baseline) 训练状态报告\n\n**状态：SUCCESS**\n\n| 项目 | 结果 |\n|------|------|\n| 最终 step | **8000/8000** |\n| 完成时间 | 2026-05-19 20:57:26 |\n| 总耗时 | 75,722s (~21h) |\n| 最终 loss | sft=0.0000, l2=0.000980, total=0.0001 |\n| 可训练参数 | 174,587,904 / 8,365,323,264 (2.09%) |\n| GPU 0 | **已释放** (5 MiB, 0% utilization) |\n\n### Checkpoint 列表\n\n路径前缀: `/root/contrastive_entrain_calib/outputs/exp-004-act-baseline/`\n\n| Checkpoint | 时间 |\n|------------|------|\n| checkpoint-500 | 01:05 |\n| checkpoint-1000 | 02:16 |\n| checkpoint-1500 | 03:36 |\n| checkpoint-2000 | 05:00 |\n| checkpoint-2500 | 06:25 |\n| checkpoint-3000 | 07:43 |\n| checkpoint-3500 | 08:59 |\n| checkpoint-4000 | 10:13 |\n| checkpoint-4500 | 11:26 |\n| checkpoint-5000 | 12:40 |\n| checkpoint-5500 | 13:53 |\n| checkpoint-6000 | 15:11 |\n| checkpoint-6500 | 16:34 |\n| checkpoint-7000 | 17:58 |\n| checkpoint-7500 | 19:28 |\n| **checkpoint-8000** | **20:57** |\n| **final** | **20:57** |\n\n最终 checkpoint 路径: `/root/contrastive_entrain_calib/outputs/exp-004-act-baseline/final`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp004-completion-check.md"
+}

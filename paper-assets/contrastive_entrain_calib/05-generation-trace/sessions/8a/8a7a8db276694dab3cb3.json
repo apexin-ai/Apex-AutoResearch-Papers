@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a7a8db276694dab3cb3",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops verify all eval scripts skip logic",
+  "task_key": "worker_ops_verify-all-eval-scripts-skip-logic_20260519T103718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-all-eval-scripts-skip-logic_20260519T103718_result.json",
+    "occurrence": 1,
+    "bytes": 832,
+    "sha256": "249e9764d4dbe36ae37f2ebd519603003c3f8c7d88ef10aaa795671a1f3b790c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修复完成，语法验证通过。\n\n### 报告\n\n| 脚本 | 服务器 | skip 检查文件名 | 状态 |\n|---|---|---|---|\n| `run_exp004_unified_eval.sh` | westd-28034 | `${EXP_ID}_preset_eval.json` | 已正确 |\n| `run_exp008v3_unified_eval.sh` | westd-28034 | ~~`_results.json`~~ → `_preset_eval.json` (2处) | **已修复** |\n| `run_exp003_unified_eval.sh` | westd-29046 | ~~`_metrics.json`~~ → `_preset_eval.json` (1处) | **已修复** |\n| `run_exp002v2recalib_unified_eval.sh` | westd-29046 | `${EXP_ID}_preset_eval.json` | 已正确 |\n\n修复内容：\n- **exp008v3**: 行37 `${EXP_ID}_results.json` → `${EXP_ID}_preset_eval.json`，行63 `${FINAL_EXP_ID}_results.json` → `${FINAL_EXP_ID}_preset_eval.json`\n- **exp003**: 行30 `${exp_id}_metrics.json` → `${exp_id}_preset_eval.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-all-eval-scripts-skip-logic.md"
+}

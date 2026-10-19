@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc6e9aa33bfb183f8a4a",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnosis exp003 29046 status",
+  "task_key": "worker_diagnosis_exp003-29046-status_20260520T161550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_exp003-29046-status_20260520T161550_result.json",
+    "occurrence": 1,
+    "bytes": 930,
+    "sha256": "ecf17c7622f053a64a58aa1dad3276ebf0c7f0a1e964f9873bf4c680ef76e0c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nexp-003 seed 1 (PID 70649):\n  PID: 存活，已运行 1天23小时25分\n  当前 step: ~5900/8000（最新 checkpoint 5500，保存于 20:55，按 ~30s/step 估算）\n  已有 checkpoint: 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500\n  未 eval 的 checkpoint（>5000）: 5500\n  预计完成: ~May 21 18:00（剩余 ~2100 steps，~17.5h）\n\nexp-003-s2 seed 2 (PID 237432):\n  PID: 存活，已运行 15小时59分\n  当前 step: 1749/8000（日志实时，~27s/step）\n  已有 checkpoint: 500, 1000, 1500\n  预计完成: ~May 23 00:00（剩余 ~6250 steps，~47h）\n\nGPU 状态:\n  GPU 0: 利用率 100%, 显存 38049/97887 MiB\n  GPU 1: 利用率 98%,  显存 38161/97887 MiB\n```\n\n注意：seed 1 无独立日志文件（`~/runs/` 下没有对应 log），当前 step 是基于 checkpoint 时间间隔推算的。下次 checkpoint-6000 预计在 ~May 21 01:00 左右保存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-exp003-29046-status.md"
+}

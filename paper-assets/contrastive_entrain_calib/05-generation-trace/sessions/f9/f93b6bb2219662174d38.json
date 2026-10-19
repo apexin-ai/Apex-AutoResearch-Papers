@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f93b6bb2219662174d38",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval collect act s2 ckpt1000",
+  "task_key": "worker_eval_collect-act-s2-ckpt1000_20260522T082224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-act-s2-ckpt1000_20260522T082224_result.json",
+    "occurrence": 1,
+    "bytes": 352,
+    "sha256": "d9a14eabe5777bd309a9bbd800c997fc074b563d1b680eebe8ec6296c3a5493b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。\n\n**ACT seed2 ckpt-1000 结果汇总：**\n- SYCONScore = **0.2564**（+92% vs vanilla 0.1335）\n- ToF = 0.1492, NoF = 0.9116\n- 362 samples (181 valid / 181 invalid)\n\nSeed 2 从 ckpt-500 (0.223) 到 ckpt-1000 (0.256) 继续提升，且显著优于 seed1 ckpt-1000 (0.205)。目前所有配置中最佳。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-act-s2-ckpt1000.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e6d10d170d577b07315",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp003 batch submit 28034",
+  "task_key": "worker_eval_exp003-batch-submit-28034_20260521T071737",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp003-batch-submit-28034_20260521T071737_result.json",
+    "occurrence": 1,
+    "bytes": 549,
+    "sha256": "d3211729be9ec684eed67f94a987107141f0938d517d138bab57772bdc06cc03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n| 实验 | GPU | 显存占用 | PID | 状态 |\n|------|-----|---------|-----|------|\n| `exp-003-eval-ckpt5000-v2` | cuda:0 | 16764 MiB | 495833 | RUNNING |\n| `exp-003-eval-ckpt6000` | cuda:1 | 16764 MiB | 495906 | RUNNING |\n| `exp-003-eval-ckpt6500` | cuda:2 | 16152 MiB | 496116 | RUNNING |\n| `exp-003-eval-ckpt7000` | cuda:3 | 14944 MiB | 496266 | RUNNING |\n\n4 张 RTX 5090 全部占用，tmux session 和 torch compile workers 均已启动。每次 eval 约 1-1.5 小时，timeout 设为 4 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp003-batch-submit-28034.md"
+}

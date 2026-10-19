@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b660acc14e29f5cb41e",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diag exp016 final results",
+  "task_key": "worker_diag_exp016-final-results_20260519T061013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp016-final-results_20260519T061013_result.json",
+    "occurrence": 1,
+    "bytes": 750,
+    "sha256": "9ada4b6caa994ee4d8365da08dd1b54ca7b57d698096780cbf909520ec0d2786"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**exp-016 ActAdd Steering 已完成，判定 success。**\n\n| Alpha | NoF | WRR | vs baseline |\n|-------|------|------|-------------|\n| 0.0 (baseline) | 69.6% | 27.1% | — |\n| 0.5 | 69.1% | 25.4% | NoF -0.6pp |\n| 1.0 | 71.3% | 26.5% | NoF +1.7pp |\n| 2.0 | 68.5% | 25.4% | NoF -1.1pp |\n| **5.0** | **78.5%** | **21.5%** | **NoF +8.8pp, WRR -5.5pp** |\n\n- PID 85457 已结束，GPU 3 空闲（4MiB，0%利用率）\n- Registry 已更新：status=DONE, conclusion=success, metrics 已录入\n- Hook 修复后各 alpha 结果确实不同，确认 steering 生效\n- 注意非单调性：alpha=0.5/2.0 无明显改善，仅 alpha=5.0 跳跃式提升，可能需要更细粒度搜索 alpha∈[3,8] 区间"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp016-final-results.md"
+}

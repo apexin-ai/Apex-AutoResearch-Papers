@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8c39c515022861e572f",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "verify exp002v3 gpu",
+  "task_key": "worker_verify_exp002v3-gpu_20260519T180346",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_exp002v3-gpu_20260519T180346_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "f544d27e37b2fd04eb00f48e6f32649e0e345b9716f5952b233617a26f2d005d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp-002v3 未在运行。** 具体情况：\n\n| 检查项 | 结果 | 状态 |\n|--------|------|------|\n| GPU 0+3 占用 | GPU 0: 5MiB/0%, GPU 3: 4MiB/0% — **空闲** | FAIL |\n| PID 149439 | **不存在** | FAIL |\n| train.log | 有初始化日志（02:02:49-50），停在 DeepSpeed 编译阶段，无训练输出 | FAIL |\n| tmux session | `tmux ls` 被 read_only 拦截，但 ps 输出中只看到 `exp-008v3` session | FAIL |\n\n当前 GPU 实际占用情况：\n- **GPU 1+2**：被 `exp-008v3`（`run_exp008v3_binary_probe_grpo.py`）占用，PID 104503/104504，~31GB/30GB 显存，利用率 76%/68%\n- **GPU 0+3**：完全空闲\n\nexp-002v3 看起来启动后在 DeepSpeed 初始化阶段就退出了，进程已不存在。需要检查完整日志定位失败原因。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-exp002v3-gpu.md"
+}

@@ -1,0 +1,212 @@
+{
+  "schema_version": "1.0",
+  "id": "f09d2fb8ce8ff2a0ff50",
+  "project": "contrastive_entrain_calib",
+  "kind": "conversation",
+  "title": "analysis exp 004 eval trajectory",
+  "task_key": "worker_analysis_exp-004-eval-trajectory_20260520T144225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_exp-004-eval-trajectory_20260520T144225.jsonl",
+    "occurrence": 1,
+    "bytes": 4960,
+    "sha256": "6ab3e698161c257e964425d674fcf2e87969c0a8f9695c3fc1afbe70148ee108"
+  },
+  "statistics": {
+    "messages": 9,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "tool_call": 4,
+      "tool_result": 4,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T14:42:53.655392+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-004-eval-trajectory_20260520T144225",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T14:42:53.655691+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-004-eval-trajectory_20260520T144225",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T14:42:53.655851+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-004-eval-trajectory_20260520T144225",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "ls -la /root/autodl-tmp/results/exp004_unified_eval/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T14:42:53.656023+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 496\\\\ndrwxr-xr-x 2 root root    170 May 20 22:39 .\\\\ndrwxr-xr-x 5 root root    103 May 20 22:15 ..\\\\n-rw-r--r-- 1 root root 252091 May 20 22:39 exp004_ckpt4000_preset_eval.json\\\\n-rw-r--r-- 1 root root    363 May 20 22:39 exp004_ckpt4000_preset_summary.txt\\\\n-rw-r--r-- 1 root root 241795 May 20 22:39 exp004_ckpt6000_preset_eval.json\\\\n-rw-r--r-- 1 root root    363 May 20 22:39 exp004_ckpt6000_preset_summary.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-004-eval-trajectory_20260520T144225",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T14:42:53.656172+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-004-eval-trajectory_20260520T144225",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "cat /root/autodl-tmp/results/exp004_unified_eval/exp004_ckpt4000_preset_summary.txt",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T14:42:53.656319+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-004-eval-trajectory_20260520T144225",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "cat /root/autodl-tmp/results/exp004_unified_eval/exp004_ckpt6000_preset_summary.txt",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T14:42:53.656453+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"D027 Preset Eval Summary\\\\nexp_id: exp004_ckpt4000\\\\nmodel:  /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\nlora:   /root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-4000\\\\ndata:   /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\\ntime:   1418s\\\\n\\\\nToF        = 0.1215\\\\nNoF        = 0.8950\\\\nSYCONScore = 0.2140\\\\nn_valid    = 181\\\\nn_invalid  = 181\\\\nn_total    = 362\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-004-eval-trajectory_20260520T144225",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T14:42:53.656581+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"D027 Preset Eval Summary\\\\nexp_id: exp004_ckpt6000\\\\nmodel:  /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\nlora:   /root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-6000\\\\ndata:   /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\\ntime:   1389s\\\\n\\\\nToF        = 0.1547\\\\nNoF        = 0.8508\\\\nSYCONScore = 0.2618\\\\nn_valid    = 181\\\\nn_invalid  = 181\\\\nn_total    = 362\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-004-eval-trajectory_20260520T144225",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T14:42:53.656747+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n```\nckpt-4000: ToF=0.1215, NoF=0.8950, SYCONScore=0.2140, n_total=362\nckpt-6000: ToF=0.1547, NoF=0.8508, SYCONScore=0.2618, n_total=362\nckpt-1000: 结果文件不存在（目录下无 ckpt1000 相关文件，可能仍在运行或未启动）\n```\n\n补全后的完整训练轨迹：\n\n| Checkpoint | ToF | NoF | SYCONScore |\n|---|---|---|---|\n| 500 | 0.0939 | 0.8895 | 0.1699 |\n| 1000 | — | — | — |\n| 2000 | 0.1492 | 0.8785 | 0.2550 |\n| **4000** | **0.1215** | **0.8950** | **0.2140** |\n| **6000** | **0.1547** | **0.8508** | **0.2618** |\n| 8000 | 0.1823 | 0.8674 | 0.3013 |\n\n值得注意：ckpt-4000 的 SYCONScore (0.2140) 低于 ckpt-2000 (0.2550)，曲线在 2000→4000 出现回落，之后 6000→8000 恢复上升趋势。这可能是训练中期的波动。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp-004-eval-trajectory_20260520T144225"
+          },
+          "id": "event-000009"
+        }
+      ],
+      "message_count": 9
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-exp-004-eval-trajectory.md"
+}

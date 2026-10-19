@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "820f51fd398d592f6ef0",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops kill dup eval",
+  "task_key": "worker_ops_kill-dup-eval_20260525T133659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-dup-eval_20260525T133659_result.json",
+    "occurrence": 1,
+    "bytes": 431,
+    "sha256": "f42020bac0275434a57da1c6e63e91aad581e2cb938a8b8628ee2cea52cb7f63"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **PID 34154 / 34156**：已不存在（`No such process`），可能已自行退出或之前已被 kill\n- **PID 33822**：正常运行中，执行 `eval_unified_preset.py`（exp003s2-ckpt2500），占用 GPU 0\n- **GPU 0**：16,947 MiB / 97,887 MiB（仅 33822 在用，已释放）\n- **GPU 1**：38,191 MiB / 97,887 MiB（PID 31718，训练进程）\n\nGPU 0 内存状态正常，无重复进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-dup-eval.md"
+}

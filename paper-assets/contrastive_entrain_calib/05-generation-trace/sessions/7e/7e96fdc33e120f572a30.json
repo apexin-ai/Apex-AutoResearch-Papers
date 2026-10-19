@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e96fdc33e120f572a30",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnosis exp009 eval check",
+  "task_key": "worker_diagnosis_exp009-eval-check_20260520T082738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_exp009-eval-check_20260520T082738_result.json",
+    "occurrence": 1,
+    "bytes": 388,
+    "sha256": "3b3dd10e238b3aebee44b5b5623efec008e0b70c0ece21159ce3797a585bcb67"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Eval 仍在运行中，尚未完成。**\n\n| 项目 | 状态 |\n|------|------|\n| PID 227017 | 运行中，已运行 1h09m，状态 `Ss+` |\n| 进度 | **180/362** (~49.7%)，最后一条日志 16:20:59 |\n| 结果文件 | 输出目录为空，尚无 JSON 结果 |\n\n按当前速度（每 20 条约 6-7 分钟），剩余 182 条预计还需 **约 60 分钟**完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-exp009-eval-check.md"
+}

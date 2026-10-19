@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e02667417ae21f13ea95",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ssh kill oom experiments 28034",
+  "task_key": "worker_ssh_kill-oom-experiments-28034_20260522T163920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill-oom-experiments-28034_20260522T163920_result.json",
+    "occurrence": 1,
+    "bytes": 1071,
+    "sha256": "b0e1540d44f733dcd4223a2cca4e2d0e91aae804efa44b84225b242331458310"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n```\nexp-003-s3 (PID 24760): KILLED ✓ (SIGTERM 成功)\nexp-003-len512: NOT_FOUND — 无匹配进程，无对应 tmux session\nexp-004-reduced-lora: NOT_FOUND — 无匹配进程\n```\n\n**注意：服务器是 westd-29046（2x ~98GB GPU），不是 28034 RTX 5090。** 当前实际运行的实验：\n\n| 进程 | PID | GPU | 说明 |\n|------|-----|-----|------|\n| exp-003-gs8 (`run_exp003_gs8_r3only.py`) | 516696 | cuda:0 | 训练中，345% CPU |\n| exp-003-eval-s2-ckpt7500 | 517336 | cuda:0 | eval，178% CPU |\n| exp-003-eval-s2-ckpt8000 | 517417 | cuda:1 | eval，201% CPU |\n| exp-004-s2 (`run_exp004s2_act_resume.py`, 从 ckpt-2000 恢复) | 494017 | cuda:1 | 训练中，96% CPU |\n\n**GPU 状态：**\n```\nGPU 0: 55140 / 97887 MiB, 99% util  (exp-003-gs8 + eval-ckpt7500)\nGPU 1: 40222 / 97887 MiB, 100% util (exp-004-s2 + eval-ckpt8000)\n```\n\n服务器上没有 \"reduced-lora\" 或 \"len512\" 相关实验。exp-004 实际跑的是 `exp-004-s2 act_resume`，不是 reduced-lora。需要确认是否要操作这些实验？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-oom-experiments-28034.md"
+}

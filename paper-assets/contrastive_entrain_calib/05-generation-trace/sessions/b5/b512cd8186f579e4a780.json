@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b512cd8186f579e4a780",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "viz fig trajectory final",
+  "task_key": "worker_viz_fig-trajectory-final_20260522T082254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_fig-trajectory-final_20260522T082254_result.json",
+    "occurrence": 1,
+    "bytes": 384,
+    "sha256": "6e6a1c02f223f286d87b94bff80edf6c5477d1df8c03b61d51e339888d60ea68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个文件已生成：\n\n- `artifacts/fig_trajectory.pdf` (21.5 KB)\n- `artifacts/fig_trajectory.png` (228 KB)\n\n脚本位于 `scripts/plot_trajectory.py`，按 D048 规格绘制了 ACT s1 蓝实线、R3-only s1 橙实线、R3-only s2 橙虚线、Vanilla 灰点线，右上角标注框含 reliability 对比，serif 字体，无标题，legend 右下角。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-fig-trajectory-final.md"
+}

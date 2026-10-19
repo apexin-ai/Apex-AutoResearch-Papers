@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29e62853026c2f110033",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code grpo framework",
+  "task_key": "worker_code_grpo_framework_20260518T075453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grpo_framework_20260518T075453_result.json",
+    "occurrence": 1,
+    "bytes": 1070,
+    "sha256": "2f1b4e63dafcaba55ab15fb77bcf28f8ec82280f2174a8e5c3da1cc88cce4f58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法验证通过。文件已写入 `artifacts/training/grpo_framework.py`。\n\n骨架包含 7 个核心组件：\n\n| 组件 | 职责 |\n|------|------|\n| `ActivationExtractionHook` | 训练时 forward hook，捕获目标层 hidden states |\n| `MultiTurnRolloutGenerator` | 多轮对话 rollout 生成 + 关键 turn 激活提取 |\n| `DirectionAlignmentReward` | R1: 激活沿 d_syc/d_gen 的 cosine 投影 |\n| `ContrastiveConsistencyReward` | R2: 跨 condition 投影差对比 |\n| `BehavioralReward` | R3: DeBERTa NLI 行为评分 |\n| `DCGRPOTrainer` | 完整训练循环（rollout → 激活提取 → 三路 reward → GRPO 更新 → 方向重校准） |\n| `DCGRPOConfig` | 全部超参数（LoRA rank 64, reward weights, 方向重校准间隔 500 步等） |\n\n所有具体实现标注 `TODO`，接口签名、参数类型、返回值类型、数学公式注释均已定义。方向格式与 `compute_directions.py` 输出对齐 `(num_layers, 2, hidden_dim)`，token 位置检测逻辑预留了从 `extract_activations.py` 移植的接口。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-grpo-framework.md"
+}

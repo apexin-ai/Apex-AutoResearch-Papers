@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f94e250b6ad86638ac0",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "check exp008v3 step",
+  "task_key": "worker_check_exp008v3-step_20260519T211707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp008v3-step_20260519T211707_result.json",
+    "occurrence": 1,
+    "bytes": 396,
+    "sha256": "3c3adefc873dbfd49e97c4d4456ebb59b6c518a458b51060bd2dd9e56266096e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前 **step 2502**（截至 2026-05-20 05:17，进度 31%）。\n\n关键指标（step 2500 汇总）：\n- loss: 0.0214\n- reward/combined: 0.76–0.81\n- probe accuracy: 0.9972–1.0000\n- step_time: 18.94s/step\n\n**距 step 4000 的预估**：\n- 剩余 1498 步 × 18.94s ≈ 28,372s ≈ **7小时53分钟**\n- 预计到达时间：约 **2026-05-20 13:10**（北京时间）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp008v3-step.md"
+}

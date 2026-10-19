@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68dc9c2ca0256b37a956",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diag exp002v2 step50 check",
+  "task_key": "worker_diag_exp002v2-step50-check_20260519T012608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp002v2-step50-check_20260519T012608_result.json",
+    "occurrence": 1,
+    "bytes": 2089,
+    "sha256": "819b9f509f72b04b16c5dc9b308b443a3d744ef9b8c094810fd1d889ac89f9ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-002v2 Sanity Check @ ~Step 183\n\n### 1. 当前进度\n- **当前步数**: ~183 steps（183 条 R1 记录）\n- **训练速度**: ~27s/step（08:02 → 09:25，83 分钟 183 步）\n- **预计 checkpoint-500 时间**: 还需 ~317 步 × 27s ≈ 2.4 小时\n\n### 2. R1 分布（cosine similarity reward）\n基于 step 11–183 的 batch-level 统计（n=173）：\n\n| 指标 | 值 |\n|------|-----|\n| mean | **-0.0412** |\n| std  | 0.0285 |\n| min  | -0.1237 |\n| max  | +0.0385 |\n\n早期详细步（step 1–10）的 per-sample 范围: min=-0.2208, max=+0.1587\n\n**R1 持续偏负**。初始 3 步 [-0.16, +0.11] 范围内，但 183 步后 batch mean 几乎没有正值（max 仅 +0.04）。cosine 信号在 [-0.2, +0.2] 范围内稳定，但系统性负偏。\n\n### 3. R3 分布（correctness reward）\n| 指标 | 值 |\n|------|-----|\n| mean | **0.4917** |\n| std  | 0.1613 |\n| min  | 0.0363 |\n| max  | 0.9969 |\n\nR3 健康，高方差表明有区分度。\n\n### 4. R2 分布\nR2 近零（大部分 batch 为 0.0000 或极小负值），符合预期。\n\n### 5. valid_correction vs invalid_pressure 区分\n**日志中无 per-condition R1 数据**。无法直接从日志判断 valid/invalid 的 R1 差异。\n\n### 6. 异常检查\n- **无 NaN/Inf/Error**\n- **无 loss 爆炸**\n- **ADAPTIVE GATE 在 step 10 触发**: weak R1 mean=-0.0256, std=0.1052 → 决定 step 100 后对 weak 样本 gate R1=0\n- **Checkpoint**: 尚无（save_steps=500）\n\n### 7. 关注点\n\n**R1 系统性负偏是主要信号**。183 步的 batch mean 均值 -0.04，极少出现正值。这意味着 cosine similarity reward 在整体上略微惩罚模型，而非提供正向对比信号。可能原因：\n- cosine baseline 偏移（模型初始隐层表征方向与 reward 期望方向不对齐）\n- 或 valid/invalid 两类都产生负 R1，只是程度不同（需要 per-condition 数据确认）\n\nR3（权重 0.75）主导训练方向，R1（权重 0.25 × -0.04 ≈ -0.01）影响较小，训练不会崩但 contrastive 信号可能没起到设计作用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp002v2-step50-check.md"
+}

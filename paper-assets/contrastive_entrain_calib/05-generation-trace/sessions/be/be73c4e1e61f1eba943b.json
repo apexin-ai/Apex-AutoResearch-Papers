@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be73c4e1e61f1eba943b",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops mmlu final v2",
+  "task_key": "worker_ops_mmlu-final-v2_20260524T095001",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_mmlu-final-v2_20260524T095001_result.json",
+    "occurrence": 1,
+    "bytes": 298,
+    "sha256": "2925e1e7abbe7b89dfa27aefe738bc4827d94aec1d7957a992029b3d877f5507"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**R3-only s1 ckpt-6500 GSM8K 结果：**\n\n| 指标 | 分数 |\n|------|------|\n| **exact_match, strict-match** | **87.57%** (±0.91%) |\n| **exact_match, flexible-extract** | **88.02%** (±0.89%) |\n\n5-shot，1319 样本，Qwen3-8B + LoRA (exp003_r3only_seed1/checkpoint-6500)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-mmlu-final-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee90fd58c36ae2f88d6a",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops cleanup 28034 gpu contention",
+  "task_key": "worker_ops_cleanup-28034-gpu-contention_20260521T071808",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup-28034-gpu-contention_20260521T071808_result.json",
+    "occurrence": 1,
+    "bytes": 1131,
+    "sha256": "5788f3a5ea5003f0f825d54ffaf1790058ce48f69909e2aa586cf97c08232762"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报结果：\n\n### GPU 状态\n**无需清理。** 所有 eval 进程已经自行结束，4 块 RTX 5090 全部空闲（每块仅 2MiB 占用，0% 利用率）。没有 tmux session 在运行。\n\n### Checkpoints（`/root/autodl-tmp/checkpoints/exp003/`）\n10 个 checkpoint 存在：\n- checkpoint-1000 ~ checkpoint-3000（5/20 20:49）\n- checkpoint-4000（5/20 22:13）\n- checkpoint-4500（5/20 12:33）\n- checkpoint-5000（5/20 18:10）\n- checkpoint-5500（5/21 00:21）\n- checkpoint-6000, 6500, 7000（5/21 12:38）\n\n项目目录下有 5 个 symlink 指向数据盘（1000-4000, 5000），缺 4500/5500/6000/6500/7000 的 symlink。\n\n### Eval 结果（`results/exp003_d027_eval/`）\n已产出 6 个 checkpoint 的评估结果：\n| Checkpoint | 状态 |\n|---|---|\n| ckpt1000 | ✅ 完成 |\n| ckpt2000 | ✅ 完成 |\n| ckpt3000 | ✅ 完成 |\n| ckpt4000 | ✅ 完成 |\n| ckpt4500 | ✅ 完成 |\n| ckpt5500 | ✅ 完成 |\n\n**缺失**：ckpt5000、ckpt6000、ckpt6500、ckpt7000 的 eval 结果尚未产出（可能是进程在竞争中崩溃，未完成这几个 checkpoint 的评估）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-28034-gpu-contention.md"
+}

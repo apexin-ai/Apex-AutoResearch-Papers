@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "214361bf49771afbb47f",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "research bootstrap script analysis",
+  "task_key": "worker_research_bootstrap-script-analysis_20260522T130058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_bootstrap-script-analysis_20260522T130058_result.json",
+    "occurrence": 1,
+    "bytes": 2219,
+    "sha256": "f128d007b12bf83d7622a9f27b23cf13fb4ef1a3c146281f3ce5b62c5b96e66b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 分析结果\n\n对比方式是 **d_syc vs best-of-200**（200 个随机方向中 CV AUROC 最高的那一个），不是 per-iteration max，也不是 mean。\n\n### 具体逻辑\n\n**1. `random_direction_oof` (L156-205)：** 生成 200 个随机方向，每个方向跑完整 5-fold CV，记录 mean CV AUROC。**只保留 AUROC 最高的那个方向的 OOF scores：**\n\n```python\nif mean_a > best_overall:\n    best_overall = mean_a\n    best_oof_syc = tmp_syc.copy()\n    best_oof_wr = tmp_wr.copy()\n```\n\n返回值：`rand_stats`（200 个方向的统计量）+ `best_oof_syc, best_oof_wr`（最佳随机方向的 OOF 投影分数）\n\n**2. `bootstrap_auroc_difference` (L133-155)：** 用同一组 bootstrap indices 分别算 d_syc 和 best-random 的 AUROC，取差值：\n\n```python\nfor _ in range(n_bootstrap):\n    idx = rng.choice(n, size=n, replace=True)\n    scores_d = np.concatenate([oof_syc_d[idx], oof_wr_d[idx]])  # d_syc 的 OOF\n    scores_r = np.concatenate([oof_syc_r[idx], oof_wr_r[idx]])  # best random 的 OOF\n    a_d = roc_auc_score(labels, scores_d)\n    a_r = roc_auc_score(labels, scores_r)\n    diffs.append(a_d - a_r)\n```\n\n**3. main() 调用链：**\n\n```python\nrand_stats, rand_oof_syc, rand_oof_wr = random_direction_oof(syc_q, wr_q, ...)\ndiff_ci = bootstrap_auroc_difference(q_oof_syc, q_oof_wr, rand_oof_syc, rand_oof_wr, ...)\n```\n\n### 结论\n\n| 项 | 值 | 含义 |\n|---|---|---|\n| d_syc OOF AUROC | 0.7588 | d_syc 方向的 OOF 点估计 |\n| random mean AUROC | 0.6853 | 200 个随机方向的 CV AUROC 均值 |\n| random max AUROC | 0.7980 | 200 个随机方向中最好的一个 |\n| diff = -0.0094 | d_syc OOF - **best random OOF** | 对比的是最强随机方向，不是平均 |\n| P(d_syc > random) = 0.29 | bootstrap 中 d_syc 赢 best random 的比例 | |\n\n**问题在于：** JSON 里 `random_auroc = 0.6853` 是 200 个方向的 mean CV AUROC，但 diff 实际是拿 d_syc 的 OOF scores 和 best random 的 OOF scores 做的 paired bootstrap。这两个数字口径不一致——报告里看起来像 d_syc (0.7588) 比 random (0.6853) 高很多，但 diff 却是 -0.0094，原因就是 diff 比的是 max 方向而非 mean。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-bootstrap-script-analysis.md"
+}

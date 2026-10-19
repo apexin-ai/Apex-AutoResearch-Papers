@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd34b6d5a30edf4ca221",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval heldout ckpt2000 poll and run",
+  "task_key": "worker_eval_heldout-ckpt2000-poll-and-run_20260523T105323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_heldout-ckpt2000-poll-and-run_20260523T105323_result.json",
+    "occurrence": 1,
+    "bytes": 161,
+    "sha256": "aa186723e6d15181e2cb572d909b235a90c2098b44edd5a28fe5287d47ae3318"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前 step 1930/8000，每 10 步约 93 秒。预计约 11 分钟后到达 step 2000 并生成 checkpoint-2000。3 分钟后自动轮询检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-heldout-ckpt2000-poll-and-run.md"
+}

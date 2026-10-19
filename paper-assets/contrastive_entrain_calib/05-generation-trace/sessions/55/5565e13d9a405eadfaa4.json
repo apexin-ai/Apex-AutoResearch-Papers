@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5565e13d9a405eadfaa4",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis exp 012",
+  "task_key": "worker_analysis_exp-012_20260520T072338",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-012_20260520T072338_result.json",
+    "occurrence": 1,
+    "bytes": 2078,
+    "sha256": "7c56ad1d77764f49e14fc64de7ad00c1efdd84510be95d3cf0f31b18b2f85acf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。以下是分析报告：\n\n---\n\n## 结论\n**success** — Llama-3-8B CV AUROC = 0.779 > 0.75 阈值，跨模型泛化确认。\n\n## 核心指标\n- **CV AUROC**: 0.7793 ± 0.0189 (5-fold, all folds best at layer 16)\n- **Full AUROC**: 0.7779\n- **Best layer**: 16 (Llama 32层模型的第16层，即中间层)\n- **Style-controlled AUROC**: 0.9227\n- **Bootstrap CI 95%**: 未单独输出，但 5-fold std=0.019 表明稳定性好\n\n## 与 Qwen3-8B 对比\n\n| 指标 | Qwen3-8B (exp-001) | Llama-3-8B (exp-012) |\n|------|-----|-----|\n| CV AUROC | 0.827 | 0.779 |\n| Best layer | 19 (of 40) | 16 (of 32) |\n| Best layer 相对位置 | ~48% depth | ~50% depth |\n| Style-controlled AUROC | — | 0.923 |\n| Strong evidence | — | 0.911 |\n| Weak evidence | — | 0.711 |\n\n两个模型的最佳层都在网络中间（~50% depth），模式一致。Llama 绝对 AUROC 低约 0.05，但仍然显著高于 chance (0.5)。\n\n## 对论文的意义\n\nd_syc 线性方向在两个架构族（Qwen/Llama）上均可提取且 AUROC 显著高于 chance，支持 \"discriminability is a general property of instruction-tuned LLMs\" 的 claim。这强化了 \"discriminability ≠ reward utility\" 的核心论点——模型内部能区分 sycophantic vs. faithful responses，但这种信号并未被 reward model 利用。\n\n## 意外发现\n\n1. **Layer 16 独占最佳**：所有 5 个 fold 最佳层都是 16，与 Qwen 的 layer 19 一样集中在网络中层，但 Llama 的其余层 AUROC 衰减更快（次优层 31 仅 0.747 vs best 0.779），说明 Llama 的 d_syc 信号更集中于单一层。\n2. **Evidence strength 分层清晰**：strong (0.911) > medium (0.864) > weak (0.711)，说明 d_syc 方向对\"更明显的 sycophancy\"区分度更高，符合直觉。\n3. **`std_auroc_per_layer` 字段有 bug**：报告中所有层的 std 值均为 0.743（实际是 fold 4 的 AUROC），应为各层各 fold AUROC 的标准差。不影响最终结果（`best_std_auroc` 字段正确计算为 0.0189），但代码需修复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-012.md"
+}

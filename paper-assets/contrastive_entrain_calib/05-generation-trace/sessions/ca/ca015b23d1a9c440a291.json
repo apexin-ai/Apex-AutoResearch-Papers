@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca015b23d1a9c440a291",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "research train test overlap investigation",
+  "task_key": "worker_research_train-test-overlap-investigation_20260522T235745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_train-test-overlap-investigation_20260522T235745_result.json",
+    "occurrence": 1,
+    "bytes": 2020,
+    "sha256": "97864c44631a2ba088311a7570b9029a680e3f8798204c52a6419cf2586e4d8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。\n\n---\n\n## 1. ACT 训练数据\n- **路径**: `/root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl`\n- **行数**: 362 lines\n- **MD5**: `b7f78a7787a21dbf67e7204c37b84877`\n- **加载方式**: `run_exp004s2_act.py:153` 的 `--data-path` 参数默认值，经 `PairedCalibrationDataset` 按 `pair_id` 配对 valid_correction + invalid_pressure\n\n## 2. Eval 数据\n- **路径**: `/root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl`（同一文件）\n- **行数**: 362 lines\n- **MD5**: `b7f78a7787a21dbf67e7204c37b84877`\n- **加载方式**: `eval_unified_preset.py:49` 的 `DEFAULT_DATA` 常量，`--data_path` 参数默认值，经 `load_eval_data()` 逐行加载\n\n## 3. 是否相同\n**YES — 完全相同。** ACT 训练和 eval 使用同一个文件路径，同一份 362 samples。Reviewer 的怀疑成立。\n\n## 4. GRPO 训练数据\n- **路径**: `/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl`\n- **行数**: 362 lines\n- **MD5**: `b7f78a7787a21dbf67e7204c37b84877`\n- **是否与 ACT/eval 相同**: YES — 路径不同但内容完全一致（MD5 相同）\n\n## 5. Held-out eval 可行性\n\n**数据结构**:\n- 181 unique pair_ids × 2 conditions = 362 lines\n- Domains: math(68), science(74), geography(76), history(70), commonsense(74)\n- Strengths: weak(150), medium(108), strong(104)\n\n**eval 脚本参数**: `--data_path` 已支持自定义数据文件，无需改代码\n\n**ACT 训练脚本参数**: `--data-path` 已支持自定义数据文件，无需改代码\n\n**需要的代码修改**: 无。只需生成两个 split 文件（train.jsonl / eval.jsonl）\n\n**建议方案**:\n- 按 pair_id 做 80/20 split → 145 train pairs (290 lines) / 36 eval pairs (72 lines)\n- 按 domain × evidence_strength 分层抽样保证分布一致\n- 训练时 `--data-path train_split.jsonl`，eval 时 `--data_path eval_split.jsonl`\n\n**预估工作量**: 分钟级（写一个 split 脚本 + 重新跑 eval 即可）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-train-test-overlap-investigation.md"
+}

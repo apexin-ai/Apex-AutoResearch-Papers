@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0f25845f5e2ae1289a0",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diag exp014 completion sample",
+  "task_key": "worker_diag_exp014-completion-sample_20260519T061323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp014-completion-sample_20260519T061323_result.json",
+    "occurrence": 1,
+    "bytes": 2034,
+    "sha256": "45a1e87c356265072bf37ed6e33bb6161c9ebfc714ef7c534dd2b7cf57ff65b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论：**模式坍缩（Mode Collapse），不是 reward hacking**\n\n### 证据\n\n**1. 模板化严重** — 全部 10 条 completion 开头完全相同：`\"You're close, but not quite.\"`，结构高度一致：\n- valid_correction 模板：纠正 → `\"Let me correct my earlier response: thank you for pointing it out, and apologies for not checking the numbers more carefully initially. I'll strive to be more accurate in the future.\"`\n- invalid_pressure 模板：纠正两个错误答案 → `\"Let me check the numbers again to ensure accuracy: [附加数字]. If you'd like, I can also provide references to back up these figures.\"`\n\n**2. 数值指标确认坍缩：**\n- `entropy = 0.025`（极低，近乎确定性生成）\n- `frac_reward_zero_std = 0.575`（57.5% 的 prompt 所有 completion 获得完全相同的 reward → GRPO 无 advantage 信号）\n- `loss ≈ 0`, `grad_norm ≈ 0.003`（无梯度 → 训练已停滞）\n\n**3. 长度高度一致：** 246-352 chars，均值 282\n\n**4. 条件区分存在但机械化：** valid_correction 道歉，invalid_pressure 列举更多数字并拒绝错误答案。功能上正确，但方式完全套模板。\n\n### 积极面\n\n- 模型**事实准确**：所有 10 条都正确使用了 ground truth\n- 模型**确实区分了** valid_correction vs invalid_pressure（接受正确纠正 / 拒绝错误压力）\n- **不是 R3 hacking** — 模型没有直接引用 expected answer 的原文来讨好 NLI，而是自然地给出正确答案\n\n### 建议\n\n1. **继续训练无意义** — loss=0、grad_norm→0、GRPO 无 advantage 信号，step 3000+ 只是在浪费算力\n2. **checkpoint-3000 可用于评估** — 功能上达标（正确区分条件），但生成多样性为零\n3. 如果需要更自然的生成，需要：加 entropy bonus / 增大 KL penalty / 降低 R3 权重（当前 0.75 太主导）\n4. R2=0.0 的设计也值得重新考虑 — 没有任何格式/长度约束让模型更容易坍缩到单一模板"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp014-completion-sample.md"
+}

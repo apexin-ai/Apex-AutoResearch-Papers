@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e41062b21c721374fd0",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code lora perturbation",
+  "task_key": "worker_code_lora_perturbation_20260518T064041",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_lora_perturbation_20260518T064041_result.json",
+    "occurrence": 1,
+    "bytes": 774,
+    "sha256": "f99c4fb77103904414a85ac46919b0327f2a45d47fcdb1ddc41bb28c0fb09e24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法验证通过。运行环境没有 torch/peft/sklearn（这些是 GPU 服务器上的依赖），但 AST 解析确认无语法错误。\n\n脚本已写入 `artifacts/data/lora_perturbation_test.py`，核心设计：\n\n- **复用** `extract_activations.py` 的 `load_samples` 和 `process_batch`，避免重复代码\n- **LoRA 扰动**：`peft.get_peft_model` 随机初始化 rank-16 adapter 在 q_proj/v_proj 上，种子可控\n- **AUROC 计算**：逐层将激活投影到方向向量上，取最佳层的 AUROC 与原始值比较\n- **判定**：|delta| < 0.05 → ROBUST，否则 NOT_ROBUST\n- **`--original-auroc`** 支持浮点数或 JSON 报告路径两种输入\n- **OOM 处理**：与 extract_activations.py 相同的自动降 batch_size 策略"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-lora-perturbation.md"
+}

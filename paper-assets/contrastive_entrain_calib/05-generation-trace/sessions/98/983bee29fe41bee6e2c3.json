@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "983bee29fe41bee6e2c3",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "viz teaser fix blindspot label",
+  "task_key": "worker_viz_teaser-fix-blindspot-label_20260523T134744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_teaser-fix-blindspot-label_20260523T134744_result.json",
+    "occurrence": 1,
+    "bytes": 170,
+    "sha256": "ee5164c944a43cdbc9d263217d429ac956c34e4609e05b4f1a26ac3b3ae2173d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Panel (b) 中标注已修正为 **\"1,300-step blind spot\"**。PDF 和 PNG 均已从服务器重新生成并下载覆盖到本地 `docs/paper/figures/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-teaser-fix-blindspot-label.md"
+}

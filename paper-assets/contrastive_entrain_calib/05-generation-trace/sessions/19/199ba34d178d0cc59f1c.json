@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "199ba34d178d0cc59f1c",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "diag exp008 st zero rootcause",
+  "task_key": "worker_diag_exp008-st-zero-rootcause_20260518T211605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp008-st-zero-rootcause_20260518T211605.log",
+    "occurrence": 1,
+    "bytes": 709823,
+    "sha256": "e518836e6c1665983fde95a10756def4b7a779a4a87fcadacdc4259271b394b7"
+  },
+  "statistics": {
+    "messages": 194,
+    "user_turns": 0,
+    "tool_calls": 65,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 60,
+      "tool_call": 65,
+      "tool_result": 65,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 194,
+      "chunks": [
+        {
+          "path": "199ba34d178d0cc59f1c-part-0001.json",
+          "message_count": 159
+        },
+        {
+          "path": "199ba34d178d0cc59f1c-part-0002.json",
+          "message_count": 35
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diag-exp008-st-zero-rootcause.md"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "ddfef8e147d0e4e49411",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "research seed2 server consistency",
+  "task_key": "worker_research_seed2-server-consistency_20260525T151343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_seed2-server-consistency_20260525T151343.log",
+    "occurrence": 1,
+    "bytes": 698513,
+    "sha256": "a0698366d6b41ffc0e0ca1d10d310e572fe06a6486a1e6374cbe2b5e34124edf"
+  },
+  "statistics": {
+    "messages": 291,
+    "user_turns": 1,
+    "tool_calls": 106,
+    "roles": {
+      "log": 1,
+      "system": 21,
+      "record": 1,
+      "assistant": 54,
+      "tool_call": 106,
+      "tool_result": 106,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 102,
+      "chunks": [
+        {
+          "path": "ddfef8e147d0e4e49411-part-0001.json",
+          "message_count": 102
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 189,
+      "chunks": [
+        {
+          "path": "ddfef8e147d0e4e49411-part-0001.json",
+          "message_count": 78
+        },
+        {
+          "path": "ddfef8e147d0e4e49411-part-0002.json",
+          "message_count": 111
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-seed2-server-consistency.md"
+}

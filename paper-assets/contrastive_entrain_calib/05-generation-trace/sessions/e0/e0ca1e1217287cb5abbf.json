@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0ca1e1217287cb5abbf",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops kill gs8 start heldout",
+  "task_key": "worker_ops_kill-gs8-start-heldout_20260523T055705",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-gs8-start-heldout_20260523T055705_result.json",
+    "occurrence": 1,
+    "bytes": 472,
+    "sha256": "6e70e9dfa24a267f04336cb888dfd489f0420f695a6cacb66e45640dec09954c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**gs8 杀死确认：** PID 516691/516695/516696 已 kill -9，GPU 0 已释放。\n\n**heldout 启动确认：**\n- PID: 571918（python training/run_exp004_heldout.py）\n- GPU: cuda:0，已占用 17590 MiB\n- tmux session: `heldout`\n- 日志: `/root/runs/contrastive_entrain_calib/exp-004-heldout.log`\n- 训练配置: 146 pairs, max_steps=8000, grad_accum=16, lr=5e-05, lambda_l2=0.1\n- GPU 1 上原有进程 (PID 553700) 不受影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-gs8-start-heldout.md"
+}

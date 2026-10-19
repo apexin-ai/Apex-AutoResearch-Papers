@@ -1,0 +1,3625 @@
+{
+  "schema_version": "1.0",
+  "session_id": "2c35ef9cee1661f01607",
+  "rounds": [
+    {
+      "number": 714,
+      "messages": [
+        {
+          "source_line": 7741,
+          "timestamp": "2026-05-22T16:02:10.675303+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-004-s2-eval-ckpt4000\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:02:04.263Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:02:10.444Z\\\", \\\"hypothesis\\\": \\\"Eval exp-004-s2-v2 (ACT seed 2) checkpoint-4000 with D027 unified preset. Seed 2 trajectory so far: 500=0.223, 1000=0.256, 1500=0.214, 2000=0.214, 3000=0.254. Seed 1 ckpt-4000=0.214. Vanilla baseline SYCONScore=0.1335.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4083}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-007741"
+        },
+        {
+          "source_line": 7742,
+          "timestamp": "2026-05-22T16:02:10.725911+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-004-s2-eval-ckpt4000",
+              "field": "parent",
+              "value": "exp-004-s2-v2",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007742"
+        },
+        {
+          "source_line": 7743,
+          "timestamp": "2026-05-22T16:02:11.142130+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-004-s2-eval-ckpt4000\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:02:04.263Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:02:10.962Z\\\", \\\"hypothesis\\\": \\\"Eval exp-004-s2-v2 (ACT seed 2) checkpoint-4000 with D027 unified preset. Seed 2 trajectory so far: 500=0.223, 1000=0.256, 1500=0.214, 2000=0.214, 3000=0.254. Seed 1 ckpt-4000=0.214. Vanilla baseline SYCONScore=0.1335.\\\", \\\"parent\\\": \\\"exp-004-s2-v2\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4399}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 416
+          },
+          "id": "event-007743"
+        },
+        {
+          "source_line": 7744,
+          "timestamp": "2026-05-22T16:02:22.802933+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/ROADMAP.md"
+            }
+          },
+          "id": "event-007744"
+        },
+        {
+          "source_line": 7745,
+          "timestamp": "2026-05-22T16:02:22.861121+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File unchanged since last read. The content from the earlier Read tool_result in this conversation is still current — refer to that instead of re-reading."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "Read",
+            "elapsed_ms": 58
+          },
+          "id": "event-007745"
+        },
+        {
+          "source_line": 7746,
+          "timestamp": "2026-05-22T16:02:25.884917+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__save_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-007746"
+        },
+        {
+          "source_line": 7747,
+          "timestamp": "2026-05-22T16:02:25.885333+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-007747"
+        },
+        {
+          "source_line": 7748,
+          "timestamp": "2026-05-22T16:02:28.998541+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-007748"
+        },
+        {
+          "source_line": 7749,
+          "timestamp": "2026-05-22T16:02:28.998954+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-007749"
+        },
+        {
+          "source_line": 7750,
+          "timestamp": "2026-05-22T16:02:35.925353+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/ROADMAP.md",
+              "old_string": "> 最后更新: 2026-05-22 13:40 UTC | 更新原因: eval 结果批量更新 + bootstrap AUROC CI 完成",
+              "new_string": "> 最后更新: 2026-05-22 16:02 UTC | 更新原因: kill 重复进程 + exp-002v3-gs8 OOM + ACT s2 step 4000"
+            }
+          },
+          "id": "event-007750"
+        },
+        {
+          "source_line": 7751,
+          "timestamp": "2026-05-22T16:02:35.976042+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-007751"
+        },
+        {
+          "source_line": 7752,
+          "timestamp": "2026-05-22T16:02:43.053866+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/ROADMAP.md",
+              "old_string": "- **ACT seed 2**: 4/16 eval done (均 > vanilla), 训练第三次重启成功 (step 2470/8000), ckpt-2500/3000 已产出待 eval",
+              "new_string": "- **ACT seed 2**: 6/16 eval done (均 > vanilla), 训练 step 4000/8000 (50%), ckpt-4000 eval 启动中。重复进程已杀(ckpt-3000 被污染但 eval 数据来自早期 SCP 仍有效)"
+            }
+          },
+          "id": "event-007752"
+        },
+        {
+          "source_line": 7753,
+          "timestamp": "2026-05-22T16:02:43.104755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-007753"
+        },
+        {
+          "source_line": 7754,
+          "timestamp": "2026-05-22T16:02:48.224503+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/ROADMAP.md",
+              "old_string": "- **R3-only seed 2**: 15/16 done (1/15 > vanilla), ckpt-7500=0.114, 待 ckpt-8000 (~2h)",
+              "new_string": "- **R3-only seed 2**: 15/16 done (1/15 > vanilla), ckpt-7500=0.114, ckpt-8000 eval 在 28034 运行中"
+            }
+          },
+          "id": "event-007754"
+        },
+        {
+          "source_line": 7755,
+          "timestamp": "2026-05-22T16:02:48.325430+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "Edit",
+            "elapsed_ms": 100
+          },
+          "id": "event-007755"
+        },
+        {
+          "source_line": 7756,
+          "timestamp": "2026-05-22T16:02:56.195295+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/ROADMAP.md",
+              "old_string": "**westd-28034** (4× RTX 5090 32GB): ACT s2 ckpt-2500/3000 eval 提交中, GPU2/3 待后续 checkpoint\n**westd-29046** (2× RTX PRO 6000 96GB): GPU0 exp-003-s2 训练 (97%), GPU1 exp-004-s2-v2 训练 (31%, step 2470)",
+              "new_string": "**westd-28034** (4× RTX 5090 32GB): GPU0 ACT s2 ckpt-4000 eval, GPU3 R3-only s2 ckpt-8000 eval, GPU1/2 待后续 checkpoint. exp-002v3-gs8 OOM (32GB 不够 gs=8)\n**westd-29046** (2× RTX PRO 6000 96GB): GPU0 exp-003-gs8 训练 (刚启动, ~20h), GPU1 exp-004-s2-v2 训练 (50%, step 4000/8000)"
+            }
+          },
+          "id": "event-007756"
+        },
+        {
+          "source_line": 7757,
+          "timestamp": "2026-05-22T16:02:56.246053+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-007757"
+        },
+        {
+          "source_line": 7758,
+          "timestamp": "2026-05-22T16:03:01.769521+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/ROADMAP.md",
+              "old_string": "- [ ] seed2 R3-only ckpt-8000: 训练 step 7737/8000, ~2h\n- [ ] ACT seed 2 checkpoint eval 持续推进 (ckpt-2500/3000 SCP+eval 中)",
+              "new_string": "- [ ] seed2 R3-only ckpt-8000: eval 在 28034 运行中 (~1h)\n- [ ] ACT seed 2 checkpoint eval 持续推进 (ckpt-4000 eval 启动中, 训练 step 4000/8000)"
+            }
+          },
+          "id": "event-007758"
+        },
+        {
+          "source_line": 7759,
+          "timestamp": "2026-05-22T16:03:01.820335+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-007759"
+        },
+        {
+          "source_line": 7760,
+          "timestamp": "2026-05-22T16:03:16.457577+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/ROADMAP.md",
+              "old_string": "- **ACT seed 2**: 6/16 eval done (均 > vanilla), 训练 step 4000/8000 (50%), ckpt-4000 eval 启动中。重复进程已杀(ckpt-3000 被污染但 eval 数据来自早期 SCP 仍有效)",
+              "new_string": "- **ACT seed 2**: 5/16 eval done (均 > vanilla), 训练 step 4000/8000 (50%), ckpt-4000 eval 启动中。重复进程已杀(ckpt-3000 被污染但 eval 数据来自早期 SCP 仍有效)"
+            }
+          },
+          "id": "event-007760"
+        },
+        {
+          "source_line": 7761,
+          "timestamp": "2026-05-22T16:03:16.508420+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "Edit",
+            "elapsed_ms": 50
+          },
+          "id": "event-007761"
+        },
+        {
+          "source_line": 7762,
+          "timestamp": "2026-05-22T16:03:25.451336+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/ROADMAP.md",
+              "old_string": "| ACT (2 seeds) | 20/20 | 100% |",
+              "new_string": "| ACT (2 seeds) | 21/21 | 100% |"
+            }
+          },
+          "id": "event-007762"
+        },
+        {
+          "source_line": 7763,
+          "timestamp": "2026-05-22T16:03:25.451852+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/ROADMAP.md has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-007763"
+        },
+        {
+          "source_line": 7764,
+          "timestamp": "2026-05-22T16:03:33.369760+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "ROADMAP 已更新。当前状态：\n- **29046**: 两卡满载（GPU0 exp-003-gs8 训练 ~20h, GPU1 ACT s2 step 4000/8000）\n- **28034**: GPU0/3 跑 eval（ACT s2 ckpt-4000 + R3-only s2 ckpt-8000），GPU1/2 待后续 checkpoint eval\n- **Workers**: 3 个运行中（gs8+scp 收尾中, ACT s2 ckpt-4000 SCP+eval, R3-only s2 final eval 收集）\n- **待 Director 决策**: exp-002v3-gs8 OOM，建议放弃（只看 exp-003-gs8 结果）\n\n等待 Worker 回调和 Director 回复。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712"
+          },
+          "id": "event-007764"
+        }
+      ]
+    },
+    {
+      "number": 715,
+      "messages": [
+        {
+          "source_line": 7765,
+          "timestamp": "2026-05-22T16:03:33.935232+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_code_exp002v3-gs8-dryrun_20260522T153430 已完成（status=done）。用 `get_worker_status('worker_code_exp002v3-gs8-dryrun_20260522T153430')` 读取结果，然后处理。\n\n- worker_id: worker_code_exp002v3-gs8-dryrun_20260522T153430\n- project: contrastive_entrain_calib\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "source": "worker:done"
+          },
+          "id": "event-007765"
+        },
+        {
+          "source_line": 7766,
+          "timestamp": "2026-05-22T16:03:51.167189+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已处理。这个 Worker 的结果在之前的轮次中已经读取并处理完毕：exp-002v3-gs8 在 RTX 5090 32GB 上 OOM，已更新 registry 并汇报 Director，等待决策。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712"
+          },
+          "id": "event-007766"
+        }
+      ]
+    },
+    {
+      "number": 716,
+      "messages": [
+        {
+          "source_line": 7767,
+          "timestamp": "2026-05-22T16:03:51.730969+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_eval_exp-003-s2-ckpt7500-8000_20260522T153632 已完成（status=done）。用 `get_worker_status('worker_eval_exp-003-s2-ckpt7500-8000_20260522T153632')` 读取结果，然后处理。\n\n- worker_id: worker_eval_exp-003-s2-ckpt7500-8000_20260522T153632\n- project: contrastive_entrain_calib\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "source": "worker:done"
+          },
+          "id": "event-007767"
+        },
+        {
+          "source_line": 7768,
+          "timestamp": "2026-05-22T16:03:57.996292+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_eval_exp-003-s2-ckpt7500-8000_20260522T153632",
+              "verbose": "True"
+            }
+          },
+          "id": "event-007768"
+        },
+        {
+          "source_line": 7769,
+          "timestamp": "2026-05-22T16:03:58.047093+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_eval_exp-003-s2-ckpt7500-8000_20260522T153632\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"eval:exp-003-s2-ckpt7500-8000\\\", \\\"project\\\": \\\"contrastive_entrain_calib\\\", \\\"started_at\\\": \\\"2026-05-22T15:36:32.172844+00:00\\\", \\\"ended_at\\\": \\\"2026-05-22T15:38:52.828138+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"两个 eval 都在正常加载模型。总结：\\\\n\\\\n- **exp-003-eval-s2-ckpt7500**: westd-29046 cuda:0, PID 517331, 正在加载 checkpoint shards\\\\n- **exp-003-eval-s2-ckpt8000**: westd-29046 cuda:1, PID 517412, 正在加载 checkpoint shards\\\\n- Checkpoint 路径: `/root/autodl-tmp/checkpoints/exp003_r3only_seed2/checkpoint-{7500,8000}`\\\\n- 日志: `~/runs/contrastive_entrain_calib/exp-003-eval-s2-ckpt{7500,8000}.log`\\\\n- Registry 状态: 均已 RUNNING\\\\n\\\\nEval 预计各需 30-60 分钟。完成后需要从 log 读取 metrics 并 update_registry 记录结果和 conclusion。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-007769"
+        },
+        {
+          "source_line": 7770,
+          "timestamp": "2026-05-22T16:04:34.117355+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "这个 worker 是早期启动的——它在 29046 上启动了 ckpt-7500/8000 eval（可能与训练冲突）。但 ckpt-8000 eval 也已由后续 worker 在 28034 GPU3 上启动，那边更可靠。ckpt-7500 结果已知 (0.114)。collector worker 正在 28034 上等待最终结果，无需额外操作。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712"
+          },
+          "id": "event-007770"
+        }
+      ]
+    },
+    {
+      "number": 717,
+      "messages": [
+        {
+          "source_line": 7771,
+          "timestamp": "2026-05-22T16:04:34.668522+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_ssh_kill-duplicate-fix-exp004s2_20260522T155341 已完成（status=done）。用 `get_worker_status('worker_ssh_kill-duplicate-fix-exp004s2_20260522T155341')` 读取结果，然后处理。\n\n- worker_id: worker_ssh_kill-duplicate-fix-exp004s2_20260522T155341\n- project: contrastive_entrain_calib\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "source": "worker:done"
+          },
+          "id": "event-007771"
+        },
+        {
+          "source_line": 7772,
+          "timestamp": "2026-05-22T16:04:41.442312+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已在之前处理过这个 worker 的结果（PID 502516 已杀，registry 已更新 checkpoint 污染信息）。无需重复操作。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712"
+          },
+          "id": "event-007772"
+        }
+      ]
+    },
+    {
+      "number": 718,
+      "messages": [
+        {
+          "source_line": 7773,
+          "timestamp": "2026-05-22T16:04:41.998241+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] **决策：放弃 exp-002v3-gs8（选项 D）**\n\n理由：exp-003-gs8 (R₃-only gs=8) 单独已能回答 gs 消融核心问题。28034 32GB 不够跑 gs=8，折中方案（gs=4/双卡）的 ROI 不高。\n\n**28034 任务安排**：\n1. 继续 R3 s2 ckpt-7500/8000 eval（GPU3）\n2. SCP ACT s2 ckpt-4000 → eval（GPU0 或 GPU1）\n3. 后续 ACT s2 checkpoint 持续 SCP + eval\n4. 有空闲 GPU 时可以 eval exp-003-gs8 的 checkpoint（等 29046 产出后 SCP 过来）\n\n**29046 不动**：\n- cuda:0: exp-003-gs8 继续跑\n- cuda:1: exp-004-s2-v2 (ACT s2) 继续跑\n\n**exp-004-s2-v2 checkpoint 完整性**：\n- ckpt-3000 被污染（不可信），ckpt-2500 不确定\n- ckpt-3500 和 ckpt-4000 干净\n- 后续 eval 只用干净 checkpoint（≥3500）\n- 之前 SCP 的 ckpt-3000 eval 结果 (0.254) 保留（是污染前的副本）"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "source": "director"
+          },
+          "id": "event-007773"
+        },
+        {
+          "source_line": 7774,
+          "timestamp": "2026-05-22T16:04:48.302914+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-002v3-gs8",
+              "field": "status",
+              "value": "DONE",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007774"
+        },
+        {
+          "source_line": 7775,
+          "timestamp": "2026-05-22T16:04:48.605994+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2678}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 303
+          },
+          "id": "event-007775"
+        },
+        {
+          "source_line": 7776,
+          "timestamp": "2026-05-22T16:04:51.800683+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-002v3-gs8",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007776"
+        },
+        {
+          "source_line": 7777,
+          "timestamp": "2026-05-22T16:04:52.203721+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-002v3-gs8\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T15:33:37.043Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:04:51.995Z\\\", \\\"hypothesis\\\": \\\"Cosine R1 GRPO group_size=8 消融：如果 gs=8 也 collapse (SYCONScore=0) → d_syc cosine reward 确实不适合做 GRPO reward，即使 group_size 正确；如果 gs=8 不 collapse → gs=2 太小是 cosine R1 failure 的根因。\\\", \\\"parent\\\": \\\"exp-002v3\\\", \\\"notes\\\": \\\"Dry-run OOM on RTX 5090 32GB: PyTorch allocated 26.26 GiB, OOM at generation forward pass (lm_head), needed 2.32 GiB more with only 1.77 GiB free. Even with CPU offload, 8 generations KV cache + logits too large. Options: gs=4, shorter max_completion_length (256→128), dual GPU DeepSpeed, or 4-bit quantization. Awaiting Director decision.\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3967}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 403
+          },
+          "id": "event-007777"
+        },
+        {
+          "source_line": 7778,
+          "timestamp": "2026-05-22T16:04:57.541818+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-002v3-gs8",
+              "field": "notes",
+              "value": "Dry-run OOM on RTX 5090 32GB. Director decision (D057): 放弃 exp-002v3-gs8, exp-003-gs8 单独已能回答 gs 消融问题。28034 32GB 不够跑 gs=8，折中方案 ROI 不高。",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007778"
+        },
+        {
+          "source_line": 7779,
+          "timestamp": "2026-05-22T16:04:57.943759+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-002v3-gs8\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T15:33:37.043Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:04:57.746Z\\\", \\\"hypothesis\\\": \\\"Cosine R1 GRPO group_size=8 消融：如果 gs=8 也 collapse (SYCONScore=0) → d_syc cosine reward 确实不适合做 GRPO reward，即使 group_size 正确；如果 gs=8 不 collapse → gs=2 太小是 cosine R1 failure 的根因。\\\", \\\"parent\\\": \\\"exp-002v3\\\", \\\"notes\\\": \\\"Dry-run OOM on RTX 5090 32GB. Director decision (D057): 放弃 exp-002v3-gs8, exp-003-gs8 单独已能回答 gs 消融问题。28034 32GB 不够跑 gs=8，折中方案 ROI 不高。\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3848}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 401
+          },
+          "id": "event-007779"
+        },
+        {
+          "source_line": 7780,
+          "timestamp": "2026-05-22T16:05:23.879262+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 5/6 在跑 | 29046: 2/2 (GPU0 exp-003-gs8, GPU1 exp-004-s2-v2) | 28034: ~2/4 (GPU0 ACT s2 ckpt-4000 eval 部署中, GPU3 R3 s2 ckpt-8000 eval) | Worker 3 running\n\n收到 Director 指令，已执行：\n\n1. **exp-002v3-gs8 → killed**: registry 已更新，conclusion=killed\n2. **28034 任务按指示推进**:\n   - R3 s2 ckpt-7500/8000 eval 运行中，Worker 在收集结果\n   - ACT s2 ckpt-4000 SCP + eval Worker 已在跑\n3. **Checkpoint 完整性规则已记录**: 后续 ACT s2 只 eval 干净 ckpt (≥3500)，ckpt-3000 eval 结果 (0.254) 保留\n\n等 Worker 回调后继续推进。",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007780"
+        },
+        {
+          "source_line": 7781,
+          "timestamp": "2026-05-22T16:05:28.165043+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_c77a380fad2d0408ce92cd1170d46f6f:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 4285
+          },
+          "id": "event-007781"
+        },
+        {
+          "source_line": 7782,
+          "timestamp": "2026-05-22T16:05:31.706715+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已确认 Director 指令。exp-002v3-gs8 已标记 killed，28034 继续推进 eval pipeline。等待 Worker 回调（ACT s2 ckpt-4000 eval + R3 s2 final eval 收集）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712"
+          },
+          "id": "event-007782"
+        }
+      ]
+    },
+    {
+      "number": 719,
+      "messages": [
+        {
+          "source_line": 7783,
+          "timestamp": "2026-05-22T16:05:32.208356+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_eval_collect-r3s2-final-evals_20260522T160151 已完成（status=done）。用 `get_worker_status('worker_eval_collect-r3s2-final-evals_20260522T160151')` 读取结果，然后处理。\n\n- worker_id: worker_eval_collect-r3s2-final-evals_20260522T160151\n- project: contrastive_entrain_calib\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "source": "worker:done"
+          },
+          "id": "event-007783"
+        },
+        {
+          "source_line": 7784,
+          "timestamp": "2026-05-22T16:05:38.558222+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_eval_collect-r3s2-final-evals_20260522T160151",
+              "verbose": "True"
+            }
+          },
+          "id": "event-007784"
+        },
+        {
+          "source_line": 7785,
+          "timestamp": "2026-05-22T16:05:38.659797+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_eval_collect-r3s2-final-evals_20260522T160151\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"eval:collect-r3s2-final-evals\\\", \\\"project\\\": \\\"contrastive_entrain_calib\\\", \\\"started_at\\\": \\\"2026-05-22T16:01:51.679990+00:00\\\", \\\"ended_at\\\": \\\"2026-05-22T16:03:15.298270+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"ckpt-7500 已完成，ckpt-8000 预计还需约 50 分钟。20 分钟后再检查进度。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-007785"
+        },
+        {
+          "source_line": 7786,
+          "timestamp": "2026-05-22T16:06:00.624056+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "eval:read-r3s2-ckpt7500-result",
+              "project": "contrastive_entrain_calib",
+              "task_prompt": "## 任务：读取 R3-only s2 ckpt-7500 eval 结果 + 监控 ckpt-8000\n\n### 背景\nR3-only seed 2 的 eval 在两个服务器上运行：\n- 29046: ckpt-7500 (cuda:0) 和 ckpt-8000 (cuda:1) 约 15:37 启动\n- 28034: ckpt-8000 (GPU3) 约 15:55 启动\n\nckpt-7500 eval 应该已完成。ckpt-8000 预计还需 ~50 分钟。\n\n### 步骤\n\n1. **读取 ckpt-7500 结果** (先查 28034，再查 29046):\n   - 28034: `ls /root/autodl-tmp/results/exp003s2_r3only_eval/checkpoint-7500/` 或类似路径\n   - 也查: `find /root -path \"*exp003*s2*7500*\" -name \"*.json\" 2>/dev/null | head -20`\n   - 29046: 查 `~/runs/contrastive_entrain_calib/exp-003-eval-s2-ckpt7500.log` 的最后 50 行\n   - 提取: SYCONScore, ToF, NoF\n\n2. **检查 ckpt-8000 eval 进度**:\n   - 28034: `nvidia-smi` 看 GPU3，`tmux ls` 看 session\n   - 29046: `tail -20 ~/runs/contrastive_entrain_calib/exp-003-eval-s2-ckpt8000.log`\n\n3. **如果 ckpt-8000 已完成**: 读取结果\n   - 如果还在跑: 报告进度（已处理多少对/362），每 5 分钟检查一次直到完成\n\n4. **汇报格式**（必须包含具体数字）:\n   ```\n   ckpt-7500: SYCONScore=X.XXXX, ToF=X.XXXX, NoF=X.XXXX, > vanilla(0.1335)? yes/no\n   ckpt-8000: SYCONScore=X.XXXX, ToF=X.XXXX, NoF=X.XXXX, > vanilla(0.1335)? yes/no\n   ```\n\n### 服务器\n- westd-28034 和 westd-29046\n- 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-007786"
+        },
+        {
+          "source_line": 7787,
+          "timestamp": "2026-05-22T16:06:06.649130+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_eval_read-r3s2-ckpt7500-result_20260522T160601\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/logs/workers/worker_eval_read-r3s2-ckpt7500-result_20260522T160601.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_eval_read-r3s2-ckpt7500-result_20260522T160601 started. Use get_worker_status('worker_eval_read-r3s2-ckpt7500-result_20260522T160601') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 6025
+          },
+          "id": "event-007787"
+        },
+        {
+          "source_line": 7788,
+          "timestamp": "2026-05-22T16:06:09.494396+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派出收集 R3-only s2 最终 eval 结果。等回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712"
+          },
+          "id": "event-007788"
+        }
+      ]
+    },
+    {
+      "number": 720,
+      "messages": [
+        {
+          "source_line": 7789,
+          "timestamp": "2026-05-22T16:06:10.072775+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_eval_acts2-ckpt4000-scp-eval_20260522T160140 已完成（status=done）。用 `get_worker_status('worker_eval_acts2-ckpt4000-scp-eval_20260522T160140')` 读取结果，然后处理。\n\n- worker_id: worker_eval_acts2-ckpt4000-scp-eval_20260522T160140\n- project: contrastive_entrain_calib\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "source": "worker:done"
+          },
+          "id": "event-007789"
+        },
+        {
+          "source_line": 7790,
+          "timestamp": "2026-05-22T16:06:17.664709+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_eval_acts2-ckpt4000-scp-eval_20260522T160140",
+              "verbose": "True"
+            }
+          },
+          "id": "event-007790"
+        },
+        {
+          "source_line": 7791,
+          "timestamp": "2026-05-22T16:06:17.766427+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_eval_acts2-ckpt4000-scp-eval_20260522T160140\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"eval:acts2-ckpt4000-scp-eval\\\", \\\"project\\\": \\\"contrastive_entrain_calib\\\", \\\"started_at\\\": \\\"2026-05-22T16:01:40.934983+00:00\\\", \\\"ended_at\\\": \\\"2026-05-22T16:04:51.431360+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"全部完成：\\\\n\\\\n- **SCP**: 成功。checkpoint-4000 (682M) 从 29046 传到 28034，文件完整（adapter_model.safetensors 667M 等 10 个文件均到位）\\\\n- **Eval**: 已在 GPU0 上启动，进程 PID 22909，占用 14934MiB 显存，GPU-Util 12%（模型加载中）\\\\n- **GPU 分配**: GPU0 跑 eval，GPU3 跑原有任务，GPU1/2 空闲\\\\n- **tmux session**: `eval_acts2_ckpt4000`\\\\n- **日志**: `/root/runs/contrastive_entrain_calib/exp-004-s2-eval-ckpt4000.log`\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-007791"
+        },
+        {
+          "source_line": 7792,
+          "timestamp": "2026-05-22T16:06:29.621896+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-004-s2-eval-ckpt4000",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "contrastive_entrain_calib",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=0 python eval_unified_preset.py --checkpoint-path /root/autodl-tmp/checkpoints/exp004s2_act_seed2/checkpoint-4000 --output-dir /root/autodl-tmp/results/exp004s2_act_eval/checkpoint-4000 --preset d027', 'server': 'westd-28034', 'gpu': 'cuda:0', 'pid': '22909', 'data_path': '/root/contrastive_entrain_calib/data/', 'data_count': 362, 'model_name': 'Qwen3-8B + ACT LoRA s2 ckpt-4000', 'seed': 43, 'checkpoint_source': 'westd-29046:/root/autodl-tmp/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2/checkpoint-4000', 'eval_data': 'D027 unified preset (362 pairs)'}"
+            }
+          },
+          "id": "event-007792"
+        },
+        {
+          "source_line": 7793,
+          "timestamp": "2026-05-22T16:06:29.924108+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2596}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 302
+          },
+          "id": "event-007793"
+        },
+        {
+          "source_line": 7794,
+          "timestamp": "2026-05-22T16:06:35.045054+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-004-s2-eval-ckpt4000",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007794"
+        },
+        {
+          "source_line": 7795,
+          "timestamp": "2026-05-22T16:06:35.798028+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-004-s2-eval-ckpt4000\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:02:04.263Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:06:35.222Z\\\", \\\"hypothesis\\\": \\\"Eval exp-004-s2-v2 (ACT seed 2) checkpoint-4000 with D027 unified preset. Seed 2 trajectory so far: 500=0.223, 1000=0.256, 1500=0.214, 2000=0.214, 3000=0.254. Seed 1 ckpt-4000=0.214. Vanilla baseline SYCONScore=0.1335.\\\", \\\"parent\\\": \\\"exp-004-s2-v2\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7373}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 752
+          },
+          "id": "event-007795"
+        },
+        {
+          "source_line": 7796,
+          "timestamp": "2026-05-22T16:06:41.017566+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-004-s2-eval-ckpt4000",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "contrastive_entrain_calib",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=0 python eval_unified_preset.py --checkpoint-path /root/autodl-tmp/checkpoints/exp004s2_act_seed2/checkpoint-4000 --output-dir /root/autodl-tmp/results/exp004s2_act_eval/checkpoint-4000 --preset d027', 'server': 'westd-28034', 'gpu': 'cuda:0', 'pid': '22909', 'data_path': '/root/contrastive_entrain_calib/data/', 'data_count': 362, 'model_name': 'Qwen3-8B + ACT LoRA s2 ckpt-4000', 'seed': 43, 'checkpoint_source': 'westd-29046:/root/autodl-tmp/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2/checkpoint-4000', 'eval_data': 'D027 unified preset (362 pairs)'}"
+            }
+          },
+          "id": "event-007796"
+        },
+        {
+          "source_line": 7797,
+          "timestamp": "2026-05-22T16:06:41.771081+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-004-s2-eval-ckpt4000\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:02:04.263Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:06:41.213Z\\\", \\\"hypothesis\\\": \\\"Eval exp-004-s2-v2 (ACT seed 2) checkpoint-4000 with D027 unified preset. Seed 2 trajectory so far: 500=0.223, 1000=0.256, 1500=0.214, 2000=0.214, 3000=0.254. Seed 1 ckpt-4000=0.214. Vanilla baseline SYCONScore=0.1335.\\\", \\\"parent\\\": \\\"exp-004-s2-v2\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python eval_unified_preset.py --checkpoint-path /root/autodl-tmp/checkpoints/exp004s2_act_seed2/checkpoint-4000 --output-dir /root/autodl-tmp/results/exp004s2_act_eval/checkpoint-4000 --preset d027\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": \\\"22909\\\", \\\"data_path\\\": \\\"/root/contrastive_entrain_calib/data/\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B + ACT LoRA s2 ckpt-4000\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"westd-29046:/root/autodl-tmp/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2/checkpoint-4000\\\", \\\"eval_data\\\": \\\"D027 unified preset (362 pairs)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7364}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 753
+          },
+          "id": "event-007797"
+        },
+        {
+          "source_line": 7798,
+          "timestamp": "2026-05-22T16:06:45.271321+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。当前 28034 GPU0 跑 ACT s2 ckpt-4000 eval，GPU3 跑 R3 s2 ckpt-8000 eval。等 Worker 回调收集结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712"
+          },
+          "id": "event-007798"
+        }
+      ]
+    },
+    {
+      "number": 721,
+      "messages": [
+        {
+          "source_line": 7799,
+          "timestamp": "2026-05-22T16:08:53.570753+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_eval_read-r3s2-ckpt7500-result_20260522T160601 已完成（status=done）。用 `get_worker_status('worker_eval_read-r3s2-ckpt7500-result_20260522T160601')` 读取结果，然后处理。\n\n- worker_id: worker_eval_read-r3s2-ckpt7500-result_20260522T160601\n- project: contrastive_entrain_calib\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "source": "worker:done"
+          },
+          "id": "event-007799"
+        },
+        {
+          "source_line": 7800,
+          "timestamp": "2026-05-22T16:09:01.269749+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_eval_read-r3s2-ckpt7500-result_20260522T160601",
+              "verbose": "True"
+            }
+          },
+          "id": "event-007800"
+        },
+        {
+          "source_line": 7801,
+          "timestamp": "2026-05-22T16:09:01.370851+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_eval_read-r3s2-ckpt7500-result_20260522T160601\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"eval:read-r3s2-ckpt7500-result\\\", \\\"project\\\": \\\"contrastive_entrain_calib\\\", \\\"started_at\\\": \\\"2026-05-22T16:06:01.405445+00:00\\\", \\\"ended_at\\\": \\\"2026-05-22T16:08:52.016279+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"5 分钟后再查。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-007801"
+        },
+        {
+          "source_line": 7802,
+          "timestamp": "2026-05-22T16:09:22.113554+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "eval:r3s2-final-metrics-poll",
+              "project": "contrastive_entrain_calib",
+              "task_prompt": "## 任务：轮询并收集 R3-only s2 ckpt-7500 和 ckpt-8000 的 eval 指标\n\n**你必须拿到具体数字才能退出。不要提前退出说\"稍后再查\"。**\n\n### 背景\n两个 eval 在运行：\n- 29046: ckpt-7500 (log: ~/runs/contrastive_entrain_calib/exp-003-eval-s2-ckpt7500.log), ckpt-8000 (log: ~/runs/contrastive_entrain_calib/exp-003-eval-s2-ckpt8000.log)\n- 28034: ckpt-8000 也在跑 (tmux: eval_r3s2_ckpt8000, 结果目录可能在 /root/autodl-tmp/results/ 下)\n\n每个 eval 处理 362 对，耗时约 30-60 分钟。\n\n### 轮询策略\n1. 先检查两台服务器上的 eval 状态\n2. 读 log 最后 30 行看进度 (已处理多少对/362)\n3. 如果已完成: 读取结果 JSON 或从 log 提取 metrics\n4. 如果未完成: **等 5 分钟后重新检查**，重复直到拿到结果\n5. 两个 checkpoint 的结果都拿到才能退出\n\n### 查找结果的方法\n- 方法 1: `grep -i \"sycon\\|score\\|tof\\|nof\\|result\" <log_file> | tail -20`\n- 方法 2: `find /root -path \"*exp003*s2*\" -name \"*.json\" -newer /tmp -mmin -60 2>/dev/null`\n- 方法 3: 结果目录下的 eval_results.json 或 metrics.json\n\n### 必须汇报的格式\n```\nckpt-7500: SYCONScore=X.XXXX, ToF=X.XXXX, NoF=X.XXXX, > vanilla(0.1335)? yes/no\nckpt-8000: SYCONScore=X.XXXX, ToF=X.XXXX, NoF=X.XXXX, > vanilla(0.1335)? yes/no\n```\n\n**重申：不拿到这两行具体数字不要退出。轮询等待。**",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-007802"
+        },
+        {
+          "source_line": 7803,
+          "timestamp": "2026-05-22T16:09:28.035817+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_eval_r3s2-final-metrics-poll_20260522T160922\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/logs/workers/worker_eval_r3s2-final-metrics-poll_20260522T160922.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_eval_r3s2-final-metrics-poll_20260522T160922 started. Use get_worker_status('worker_eval_r3s2-final-metrics-poll_20260522T160922') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 5922
+          },
+          "id": "event-007803"
+        },
+        {
+          "source_line": 7804,
+          "timestamp": "2026-05-22T16:09:31.432367+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 又没给具体数字就退出了。重新 spawn 一个更明确的收集 worker。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712"
+          },
+          "id": "event-007804"
+        }
+      ]
+    },
+    {
+      "number": 722,
+      "messages": [
+        {
+          "source_line": 7805,
+          "timestamp": "2026-05-22T16:10:53.913940+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_eval_r3s2-final-metrics-poll_20260522T160922 已完成（status=done）。用 `get_worker_status('worker_eval_r3s2-final-metrics-poll_20260522T160922')` 读取结果，然后处理。\n\n- worker_id: worker_eval_r3s2-final-metrics-poll_20260522T160922\n- project: contrastive_entrain_calib\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "source": "worker:done"
+          },
+          "id": "event-007805"
+        },
+        {
+          "source_line": 7806,
+          "timestamp": "2026-05-22T16:11:00.959132+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_eval_r3s2-final-metrics-poll_20260522T160922",
+              "verbose": "True"
+            }
+          },
+          "id": "event-007806"
+        },
+        {
+          "source_line": 7807,
+          "timestamp": "2026-05-22T16:11:01.061445+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_eval_r3s2-final-metrics-poll_20260522T160922\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"eval:r3s2-final-metrics-poll\\\", \\\"project\\\": \\\"contrastive_entrain_calib\\\", \\\"started_at\\\": \\\"2026-05-22T16:09:22.816444+00:00\\\", \\\"ended_at\\\": \\\"2026-05-22T16:10:52.337446+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"Polling scheduled. Will check back in ~4.5 minutes.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 102
+          },
+          "id": "event-007807"
+        },
+        {
+          "source_line": 7808,
+          "timestamp": "2026-05-22T16:11:18.435130+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_cron",
+              "max_results": "1"
+            }
+          },
+          "id": "event-007808"
+        },
+        {
+          "source_line": 7809,
+          "timestamp": "2026-05-22T16:11:18.435687+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-007809"
+        },
+        {
+          "source_line": 7810,
+          "timestamp": "2026-05-22T16:11:22.804990+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "exp-003-eval-s2-ckpt7500",
+              "server": "westd-29046",
+              "pid": "517331",
+              "log_path": "/root/runs/contrastive_entrain_calib/exp-003-eval-s2-ckpt7500.log",
+              "interval_seconds": "180",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007810"
+        },
+        {
+          "source_line": 7811,
+          "timestamp": "2026-05-22T16:11:23.308368+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"exp-003-eval-s2-ckpt7500\\\", \\\"server\\\": \\\"westd-29046\\\", \\\"pid\\\": \\\"517331\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"/root/runs/contrastive_entrain_calib/exp-003-eval-s2-ckpt7500.log\\\", \\\"interval_seconds\\\": 180, \\\"project\\\": \\\"contrastive_entrain_calib\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-22T16:11:22.839Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "elapsed_ms": 503
+          },
+          "id": "event-007811"
+        },
+        {
+          "source_line": 7812,
+          "timestamp": "2026-05-22T16:11:24.713791+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "exp-003-eval-s2-ckpt8000",
+              "server": "westd-29046",
+              "pid": "517412",
+              "log_path": "/root/runs/contrastive_entrain_calib/exp-003-eval-s2-ckpt8000.log",
+              "interval_seconds": "180",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007812"
+        },
+        {
+          "source_line": 7813,
+          "timestamp": "2026-05-22T16:11:25.165823+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"exp-003-eval-s2-ckpt8000\\\", \\\"server\\\": \\\"westd-29046\\\", \\\"pid\\\": \\\"517412\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"/root/runs/contrastive_entrain_calib/exp-003-eval-s2-ckpt8000.log\\\", \\\"interval_seconds\\\": 180, \\\"project\\\": \\\"contrastive_entrain_calib\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-22T16:11:24.739Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "elapsed_ms": 452
+          },
+          "id": "event-007813"
+        },
+        {
+          "source_line": 7814,
+          "timestamp": "2026-05-22T16:11:25.768562+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "exp-004-s2-eval-ckpt4000",
+              "server": "westd-28034",
+              "pid": "22909",
+              "log_path": "/root/runs/contrastive_entrain_calib/exp-004-s2-eval-ckpt4000.log",
+              "interval_seconds": "180",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007814"
+        },
+        {
+          "source_line": 7815,
+          "timestamp": "2026-05-22T16:11:25.919893+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"exp-004-s2-eval-ckpt4000\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"pid\\\": \\\"22909\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"/root/runs/contrastive_entrain_calib/exp-004-s2-eval-ckpt4000.log\\\", \\\"interval_seconds\\\": 180, \\\"project\\\": \\\"contrastive_entrain_calib\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-22T16:11:25.809Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "elapsed_ms": 151
+          },
+          "id": "event-007815"
+        },
+        {
+          "source_line": 7816,
+          "timestamp": "2026-05-22T16:11:34.408133+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_launch-gs8-and-scp-ckpt8000_20260522T155454",
+              "verbose": "True"
+            }
+          },
+          "id": "event-007816"
+        },
+        {
+          "source_line": 7817,
+          "timestamp": "2026-05-22T16:11:34.509039+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_launch-gs8-and-scp-ckpt8000_20260522T155454\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"code:launch-gs8-and-scp-ckpt8000\\\", \\\"project\\\": \\\"contrastive_entrain_calib\\\", \\\"started_at\\\": \\\"2026-05-22T15:54:54.722228+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_execute\\\", \\\"ssh_read_only\\\", \\\"ssh_execute\\\", \\\"ssh_execute\\\", \\\"ssh_read_only\\\"], \\\"last_text\\\": \\\"两边都在正常运行。\\\\n\\\\n## 汇报\\\\n\\\\n### A) SCP + eval\\\\n- ckpt-8000 已从 29046 → 28034 (`/root/autodl-tmp/checkpoints/exp003s2_r3only_seed2/checkpoint-8000/`)，15 个文件完整\\\\n- eval 已在 28034 GPU3 启动，tmux session `eval_r3s2_ckpt8000`，LoRA 加载成功，正在对 362 对数据生成中\\\\n\\\\n### B) exp-003-gs8\\\\n- 脚本 `run_exp003_gs8_r3only.py` 已存在且配置正确（`num_gener\\\", \\\"turn_count\\\": 28}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 100
+          },
+          "id": "event-007817"
+        },
+        {
+          "source_line": 7818,
+          "timestamp": "2026-05-22T16:11:42.938779+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__cancel_worker",
+              "max_results": "1"
+            }
+          },
+          "id": "event-007818"
+        },
+        {
+          "source_line": 7819,
+          "timestamp": "2026-05-22T16:11:43.039703+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-007819"
+        },
+        {
+          "source_line": 7820,
+          "timestamp": "2026-05-22T16:11:45.600337+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cancel_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__cancel_worker",
+            "tool_args": {
+              "worker_id": "worker_code_launch-gs8-and-scp-ckpt8000_20260522T155454"
+            }
+          },
+          "id": "event-007820"
+        },
+        {
+          "source_line": 7821,
+          "timestamp": "2026-05-22T16:11:45.955115+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_launch-gs8-and-scp-ckpt8000_20260522T155454\\\", \\\"status\\\": \\\"cancelled\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__cancel_worker",
+            "elapsed_ms": 354
+          },
+          "id": "event-007821"
+        },
+        {
+          "source_line": 7822,
+          "timestamp": "2026-05-22T16:12:12.499040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-004-s2-eval-ckpt3500",
+              "field": "status",
+              "value": "PREPARING",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007822"
+        },
+        {
+          "source_line": 7823,
+          "timestamp": "2026-05-22T16:12:13.253145+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-004-s2-eval-ckpt3500\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:12:12.710Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:12:12.710Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7329}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 754
+          },
+          "id": "event-007823"
+        },
+        {
+          "source_line": 7824,
+          "timestamp": "2026-05-22T16:12:20.683565+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-004-s2-eval-ckpt3500",
+              "field": "hypothesis",
+              "value": "Eval exp-004-s2-v2 (ACT seed 2) checkpoint-3500 with D027 unified preset. Seed 2 trajectory: 500=0.223, 1000=0.256, 1500=0.214, 2000=0.214, 3000=0.254. Seed 1 ckpt-3500=0.231. Vanilla baseline SYCONScore=0.1335. ckpt-3500 confirmed clean by integrity check.",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007824"
+        },
+        {
+          "source_line": 7825,
+          "timestamp": "2026-05-22T16:12:21.187758+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-004-s2-eval-ckpt3500\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:12:12.710Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:12:20.869Z\\\", \\\"hypothesis\\\": \\\"Eval exp-004-s2-v2 (ACT seed 2) checkpoint-3500 with D027 unified preset. Seed 2 trajectory: 500=0.223, 1000=0.256, 1500=0.214, 2000=0.214, 3000=0.254. Seed 1 ckpt-3500=0.231. Vanilla baseline SYCONScore=0.1335. ckpt-3500 confirmed clean by integrity check.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3664}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 504
+          },
+          "id": "event-007825"
+        },
+        {
+          "source_line": 7826,
+          "timestamp": "2026-05-22T16:12:21.539609+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-004-s2-eval-ckpt3500",
+              "field": "parent",
+              "value": "exp-004-s2-v2",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007826"
+        },
+        {
+          "source_line": 7827,
+          "timestamp": "2026-05-22T16:12:21.942168+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-004-s2-eval-ckpt3500\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:12:12.710Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:12:21.753Z\\\", \\\"hypothesis\\\": \\\"Eval exp-004-s2-v2 (ACT seed 2) checkpoint-3500 with D027 unified preset. Seed 2 trajectory: 500=0.223, 1000=0.256, 1500=0.214, 2000=0.214, 3000=0.254. Seed 1 ckpt-3500=0.231. Vanilla baseline SYCONScore=0.1335. ckpt-3500 confirmed clean by integrity check.\\\", \\\"parent\\\": \\\"exp-004-s2-v2\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3773}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 402
+          },
+          "id": "event-007827"
+        },
+        {
+          "source_line": 7828,
+          "timestamp": "2026-05-22T16:12:36.071051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "eval:acts2-ckpt3500-scp-eval",
+              "project": "contrastive_entrain_calib",
+              "task_prompt": "## 任务：SCP ACT s2 ckpt-3500 到 28034 并启动 eval\n\n### 背景\nexp-004-s2-v2 (ACT seed 2) 的 checkpoint-3500 在 29046 上，经完整性检查确认干净。需要 SCP 到 28034 启动 eval。\n\n### 步骤\n\n1. **SCP checkpoint-3500 从 29046 到 28034**:\n   - 源: `westd-29046:/root/autodl-tmp/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2/checkpoint-3500/`\n   - 目标: `westd-28034:/root/autodl-tmp/checkpoints/exp004s2_act_seed2/checkpoint-3500/`\n   - 先在 28034: `mkdir -p /root/autodl-tmp/checkpoints/exp004s2_act_seed2/checkpoint-3500/`\n   - 从 29046: `scp -r /root/autodl-tmp/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2/checkpoint-3500/* westd-28034:/root/autodl-tmp/checkpoints/exp004s2_act_seed2/checkpoint-3500/`\n   - 验证 adapter_model.safetensors 存在\n\n2. **在 28034 GPU1 启动 eval**:\n   - 先 `nvidia-smi` 确认 GPU1 空闲\n   - 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n   - 命令:\n     ```\n     cd /root/contrastive_entrain_calib && \\\n     tmux new-session -d -s eval_acts2_ckpt3500 \\\n       'CUDA_VISIBLE_DEVICES=1 python eval_unified_preset.py \\\n         --checkpoint-path /root/autodl-tmp/checkpoints/exp004s2_act_seed2/checkpoint-3500 \\\n         --output-dir /root/autodl-tmp/results/exp004s2_act_eval/checkpoint-3500 \\\n         --preset d027 2>&1 | tee /root/runs/contrastive_entrain_calib/exp-004-s2-eval-ckpt3500.log'\n     ```\n   - 如果 eval_unified_preset.py 位置不对，用 `find /root -name \"eval_unified_preset.py\" 2>/dev/null` 查找\n\n3. **验证**: `nvidia-smi` 确认 GPU1 有进程，`tmux ls` 确认 session 存在\n\n4. **汇报**: SCP 结果 + eval PID + GPU 编号",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-007828"
+        },
+        {
+          "source_line": 7829,
+          "timestamp": "2026-05-22T16:12:47.084790+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_eval_acts2-ckpt3500-scp-eval_20260522T161236\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/logs/workers/worker_eval_acts2-ckpt3500-scp-eval_20260522T161236.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_eval_acts2-ckpt3500-scp-eval_20260522T161236 started. Use get_worker_status('worker_eval_acts2-ckpt3500-scp-eval_20260522T161236') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 11013
+          },
+          "id": "event-007829"
+        },
+        {
+          "source_line": 7830,
+          "timestamp": "2026-05-22T16:12:47.235758+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analysis:dedup-acts2-trainlog",
+              "project": "contrastive_entrain_calib",
+              "task_prompt": "## 任务：清洗 exp-004-s2-v2 的 train_log.jsonl（去重）\n\n### 背景\nexp-004-s2-v2 (ACT seed 2) 训练期间有两个进程同时写入同一个 train_log.jsonl，导致重复条目：\n- 585 条记录，仅 399 个 unique step\n- Step 2010-2500: 每个出现 3 次\n- Step 2510-3360: 每个出现 2 次\n\n### 步骤\n\n1. **SSH 到 westd-29046**，读取 log:\n   ```\n   wc -l /root/autodl-tmp/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2/train_log.jsonl\n   head -5 /root/autodl-tmp/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2/train_log.jsonl\n   ```\n\n2. **备份原始 log**:\n   ```\n   cp /root/autodl-tmp/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2/train_log.jsonl \\\n      /root/autodl-tmp/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2/train_log.jsonl.bak\n   ```\n\n3. **去重逻辑** (Python one-liner 或小脚本):\n   - 读取所有 JSONL 行\n   - 按 step 字段分组\n   - 每个 step 只保留**最新的一条**（按时间戳/写入顺序）\n   - 对于 step ≤ 2000: 保留原始训练的记录\n   - 对于 step 2010-3360: 保留 PID 494017（正确进程）的记录。如果无法区分 PID，保留最后一条\n   - 对于 step > 3360: 只有一条，直接保留\n   - 按 step 排序写入新文件\n\n4. **验证**:\n   ```\n   wc -l train_log.jsonl  # 应该接近 399 行\n   python3 -c \"import json; lines=[json.loads(l) for l in open('train_log.jsonl')]; steps=[l['step'] for l in lines]; print(f'unique={len(set(steps))}, total={len(steps)}, sorted={steps==sorted(steps)}')\"\n   ```\n\n5. **汇报**: 原始行数 → 去重后行数，是否有异常",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-007830"
+        },
+        {
+          "source_line": 7831,
+          "timestamp": "2026-05-22T16:12:50.408050+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_dedup-acts2-trainlog_20260522T161247\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/logs/workers/worker_analysis_dedup-acts2-trainlog_20260522T161247.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_dedup-acts2-trainlog_20260522T161247 started. Use get_worker_status('worker_analysis_dedup-acts2-trainlog_20260522T161247') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3172
+          },
+          "id": "event-007831"
+        },
+        {
+          "source_line": 7832,
+          "timestamp": "2026-05-22T16:12:54.850267+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "2 workers 已派出（ACT s2 ckpt-3500 eval + trainlog 去重），加上 5 个 cron 监控。等待回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712"
+          },
+          "id": "event-007832"
+        }
+      ]
+    },
+    {
+      "number": 723,
+      "messages": [
+        {
+          "source_line": 7833,
+          "timestamp": "2026-05-22T16:13:54.507997+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_analysis_dedup-acts2-trainlog_20260522T161247 已完成（status=done）。用 `get_worker_status('worker_analysis_dedup-acts2-trainlog_20260522T161247')` 读取结果，然后处理。\n\n- worker_id: worker_analysis_dedup-acts2-trainlog_20260522T161247\n- project: contrastive_entrain_calib\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "source": "worker:done"
+          },
+          "id": "event-007833"
+        },
+        {
+          "source_line": 7834,
+          "timestamp": "2026-05-22T16:14:04.523047+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_analysis_dedup-acts2-trainlog_20260522T161247",
+              "verbose": "True"
+            }
+          },
+          "id": "event-007834"
+        },
+        {
+          "source_line": 7835,
+          "timestamp": "2026-05-22T16:14:04.624376+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_dedup-acts2-trainlog_20260522T161247\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"analysis:dedup-acts2-trainlog\\\", \\\"project\\\": \\\"contrastive_entrain_calib\\\", \\\"started_at\\\": \\\"2026-05-22T16:12:47.551372+00:00\\\", \\\"ended_at\\\": \\\"2026-05-22T16:13:52.823926+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"去重完成。\\\\n\\\\n- **原始**: 598 行，412 个 unique step\\\\n- **去重后**: 412 行，全部 unique，按 step 排序，范围 10–4120\\\\n- 备份已保存为 `train_log.jsonl.bak`\\\\n\\\\n（注：实际 unique step 数为 412 而非预估的 399，可能是初始统计时遗漏了部分 step。）\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-007835"
+        },
+        {
+          "source_line": 7836,
+          "timestamp": "2026-05-22T16:14:07.223223+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Log 去重完成：598→412 行，全部 unique step。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712"
+          },
+          "id": "event-007836"
+        }
+      ]
+    },
+    {
+      "number": 724,
+      "messages": [
+        {
+          "source_line": 7837,
+          "timestamp": "2026-05-22T16:14:40.420626+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] **用户批准：28034 全铺 3 个新实验（D058），立即启动**\n\n28034 有 4 张 RTX 5090 (32GB)，GPU3 在跑 eval 快完了。三个实验并行：\n\n## 实验 A：max_completion_length=512 R₃-only GRPO（28034 cuda:0）\n- **基线**：exp-003 配置（R3=1.0, r1=r2=0, num_generations=2, seed=42）\n- **唯一变量**：max_completion_length=256 → 512\n- **目的**：测试 truncation 是否是 reward failure 的 contributing factor。如果 512 下 R₃-only 改善 → truncation confound 被实证确认\n- 其他超参完全不变。8000 steps, save_steps=500\n- 注意：512 tokens 会导致训练变慢（更长 generation），预计 ~25-30h\n\n## 实验 B：ACT reduced-LoRA（28034 cuda:1）\n- **基线**：exp-004 ACT 配置（per-token SFT + R3 + probe penalty）\n- **唯一变量**：LoRA 配置从 ACT 标准 (r=64, alpha=128, 7 modules: qkvo+gate+up+down) 降为 GRPO 匹配 (r=64, alpha=64, 4 modules: qkvo)\n- **目的**：隔离 supervision granularity vs LoRA capacity。如果 reduced-LoRA ACT 仍成功 → supervision granularity 是关键，不是 LoRA 容量\n- 其他超参（lr, data, loss formula）与 exp-004 完全一致。seed=42, 8000 steps, save_steps=500\n\n## 实验 C：Seed 3 R₃-only gs=2（28034 cuda:2）\n- **基线**：exp-003 配置完全复制\n- **唯一变量**：seed=42 → seed=44（seed 1=42, seed 2=43, seed 3=44）\n- **目的**：增加统计覆盖，3 seeds mean ± std 比 2 seeds 更可信\n- 8000 steps, save_steps=500\n\n## 执行要求\n1. 三个实验脚本独立写，放在 training/ 目录下\n2. 每个实验注册独立 exp_id（如 exp-003-len512, exp-004-reduced-lora, exp-003-s3）\n3. CUDA_VISIBLE_DEVICES 分别设为 0, 1, 2\n4. 三个实验用 tmux session 启动，互不干扰\n5. 每个实验注册 cron（300s interval）\n6. 启动前先确认 28034 GPU0/1/2 空闲（nvidia-smi）\n7. ACT reduced-LoRA 实验需要仔细核对：只改 LoRA config，不改 loss function / data / lr / 其他任何东西\n\n**并行启动，不串行等。**"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "source": "director"
+          },
+          "id": "event-007837"
+        },
+        {
+          "source_line": 7838,
+          "timestamp": "2026-05-22T16:15:02.033290+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-003-len512",
+              "field": "status",
+              "value": "PREPARING",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007838"
+        },
+        {
+          "source_line": 7839,
+          "timestamp": "2026-05-22T16:15:02.989866+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-len512\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:15:02.338Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:15:02.338Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9234}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 956
+          },
+          "id": "event-007839"
+        },
+        {
+          "source_line": 7840,
+          "timestamp": "2026-05-22T16:15:02.990402+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-004-reduced-lora",
+              "field": "status",
+              "value": "PREPARING",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007840"
+        },
+        {
+          "source_line": 7841,
+          "timestamp": "2026-05-22T16:15:03.394110+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-003-s3",
+              "field": "status",
+              "value": "PREPARING",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007841"
+        },
+        {
+          "source_line": 7842,
+          "timestamp": "2026-05-22T16:15:03.846299+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-004-reduced-lora\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:15:03.252Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:15:03.252Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8327}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 855
+          },
+          "id": "event-007842"
+        },
+        {
+          "source_line": 7843,
+          "timestamp": "2026-05-22T16:15:04.601424+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-s3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:15:04.053Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:15:04.053Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7179}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1207
+          },
+          "id": "event-007843"
+        },
+        {
+          "source_line": 7844,
+          "timestamp": "2026-05-22T16:15:10.078387+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-003-len512",
+              "field": "hypothesis",
+              "value": "R3-only GRPO with max_completion_length=512 (vs 256 in exp-003). Tests whether truncation is a contributing factor to reward failure. If 512 improves R3-only trajectory → truncation confound empirically confirmed. All other params identical to exp-003 (R3=1.0, r1=r2=0, gs=2, seed=42, 8000 steps).",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007844"
+        },
+        {
+          "source_line": 7845,
+          "timestamp": "2026-05-22T16:15:10.531656+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-len512\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:15:02.338Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:15:10.283Z\\\", \\\"hypothesis\\\": \\\"R3-only GRPO with max_completion_length=512 (vs 256 in exp-003). Tests whether truncation is a contributing factor to reward failure. If 512 improves R3-only trajectory → truncation confound empirically confirmed. All other params identical to exp-003 (R3=1.0, r1=r2=0, gs=2, seed=42, 8000 steps).\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3788}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 453
+          },
+          "id": "event-007845"
+        },
+        {
+          "source_line": 7846,
+          "timestamp": "2026-05-22T16:15:10.983460+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-003-len512",
+              "field": "parent",
+              "value": "exp-003",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007846"
+        },
+        {
+          "source_line": 7847,
+          "timestamp": "2026-05-22T16:15:11.535821+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-len512\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:15:02.338Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:15:11.219Z\\\", \\\"hypothesis\\\": \\\"R3-only GRPO with max_completion_length=512 (vs 256 in exp-003). Tests whether truncation is a contributing factor to reward failure. If 512 improves R3-only trajectory → truncation confound empirically confirmed. All other params identical to exp-003 (R3=1.0, r1=r2=0, gs=2, seed=42, 8000 steps).\\\", \\\"parent\\\": \\\"exp-003\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4413}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 552
+          },
+          "id": "event-007847"
+        },
+        {
+          "source_line": 7848,
+          "timestamp": "2026-05-22T16:15:12.932040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-004-reduced-lora",
+              "field": "hypothesis",
+              "value": "ACT with GRPO-matching LoRA config (r=64, alpha=64, 4 modules: qkvo) instead of standard ACT LoRA (r=64, alpha=128, 7 modules: qkvo+gate+up+down). Isolates supervision granularity vs LoRA capacity. If reduced-LoRA ACT still succeeds → supervision granularity (per-token SFT) is the key factor, not LoRA capacity.",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007848"
+        },
+        {
+          "source_line": 7849,
+          "timestamp": "2026-05-22T16:15:13.384003+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-004-reduced-lora\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:15:03.252Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:15:13.164Z\\\", \\\"hypothesis\\\": \\\"ACT with GRPO-matching LoRA config (r=64, alpha=64, 4 modules: qkvo) instead of standard ACT LoRA (r=64, alpha=128, 7 modules: qkvo+gate+up+down). Isolates supervision granularity vs LoRA capacity. If reduced-LoRA ACT still succeeds → supervision granularity (per-token SFT) is the key factor, not LoRA capacity.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4034}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 451
+          },
+          "id": "event-007849"
+        },
+        {
+          "source_line": 7850,
+          "timestamp": "2026-05-22T16:15:13.839001+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-004-reduced-lora",
+              "field": "parent",
+              "value": "exp-004",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007850"
+        },
+        {
+          "source_line": 7851,
+          "timestamp": "2026-05-22T16:15:14.342860+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-004-reduced-lora\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:15:03.252Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:15:14.088Z\\\", \\\"hypothesis\\\": \\\"ACT with GRPO-matching LoRA config (r=64, alpha=64, 4 modules: qkvo) instead of standard ACT LoRA (r=64, alpha=128, 7 modules: qkvo+gate+up+down). Isolates supervision granularity vs LoRA capacity. If reduced-LoRA ACT still succeeds → supervision granularity (per-token SFT) is the key factor, not LoRA capacity.\\\", \\\"parent\\\": \\\"exp-004\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4146}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 503
+          },
+          "id": "event-007851"
+        },
+        {
+          "source_line": 7852,
+          "timestamp": "2026-05-22T16:15:15.752278+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-003-s3",
+              "field": "hypothesis",
+              "value": "R3-only GRPO seed 3 (seed=44). Third seed to increase statistical coverage: 3-seed mean±std more credible than 2-seed. Configuration identical to exp-003 (R3=1.0, r1=r2=0, gs=2, 8000 steps, save_steps=500).",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007852"
+        },
+        {
+          "source_line": 7853,
+          "timestamp": "2026-05-22T16:15:16.364374+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-s3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:15:04.053Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:15:16.017Z\\\", \\\"hypothesis\\\": \\\"R3-only GRPO seed 3 (seed=44). Third seed to increase statistical coverage: 3-seed mean±std more credible than 2-seed. Configuration identical to exp-003 (R3=1.0, r1=r2=0, gs=2, 8000 steps, save_steps=500).\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4599}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 612
+          },
+          "id": "event-007853"
+        },
+        {
+          "source_line": 7854,
+          "timestamp": "2026-05-22T16:15:16.364893+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-003-s3",
+              "field": "parent",
+              "value": "exp-003",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007854"
+        },
+        {
+          "source_line": 7855,
+          "timestamp": "2026-05-22T16:15:16.867637+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-s3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:15:04.053Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:15:16.622Z\\\", \\\"hypothesis\\\": \\\"R3-only GRPO seed 3 (seed=44). Third seed to increase statistical coverage: 3-seed mean±std more credible than 2-seed. Configuration identical to exp-003 (R3=1.0, r1=r2=0, gs=2, 8000 steps, save_steps=500).\\\", \\\"parent\\\": \\\"exp-003\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4803}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 502
+          },
+          "id": "event-007855"
+        },
+        {
+          "source_line": 7856,
+          "timestamp": "2026-05-22T16:15:43.323680+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "code:exp-003-len512-launch",
+              "project": "contrastive_entrain_calib",
+              "task_prompt": "## 任务：在 28034 cuda:0 启动 exp-003-len512（R3-only GRPO, max_completion_length=512）\n\n### 背景\n这是 exp-003 的消融：唯一变量是 max_completion_length 从 256→512。测试 truncation 是否是 reward failure 的 contributing factor。\n\n### 参考脚本\n28034 上应该有 exp-003 的训练脚本。查找：\n```\nfind /root -name \"run_exp003*r3only*\" -o -name \"*dcgrpo*r3*\" 2>/dev/null | head -10\nls /root/contrastive_entrain_calib/training/\n```\n如果找不到，也检查 29046 上的 `/root/contrastive_entrain_calib/training/run_exp003_r3only.py` 并 SCP 过来。\n\n### 脚本修改\n复制 exp-003 脚本为 `run_exp003_len512_r3only.py`，做以下修改：\n1. `max_completion_length`: 256 → **512**（这是唯一的实质性变量）\n2. `output_dir`: 改为 `/root/autodl-tmp/outputs/exp-003-len512/`（数据盘，避免根分区满）\n3. `seed`: 保持 42\n4. 其他参数**完全不变**: R3=1.0, r1=0, r2=0, num_generations=2, max_steps=8000, save_steps=500, lr 等\n\n### 启动\n1. 先 `nvidia-smi` 确认 GPU0 状态。如果有 eval 进程在跑，等它完成（每 2 分钟检查一次）\n2. 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n3. 用 submit_training_job 提交：\n   - exp_id: exp-003-len512\n   - server: westd-28034\n   - gpu_idx: 0\n   - command: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=0 python training/run_exp003_len512_r3only.py`\n   - 如果 submit_training_job 不可用，用 tmux: `tmux new-session -d -s exp003_len512 '...'`\n\n4. 验证启动：nvidia-smi + tmux ls\n\n### 汇报\n- 脚本路径\n- PID\n- GPU 编号\n- 关键参数确认（max_completion_length=512, seed=42, R3=1.0, gs=2, max_steps=8000）",
+              "tool_groups": "['ssh', 'registry']",
+              "tools": "['submit_training_job']"
+            }
+          },
+          "id": "event-007856"
+        },
+        {
+          "source_line": 7857,
+          "timestamp": "2026-05-22T16:15:56.181332+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_exp-003-len512-launch_20260522T161544\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/logs/workers/worker_code_exp-003-len512-launch_20260522T161544.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_code_exp-003-len512-launch_20260522T161544 started. Use get_worker_status('worker_code_exp-003-len512-launch_20260522T161544') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 12857
+          },
+          "id": "event-007857"
+        },
+        {
+          "source_line": 7858,
+          "timestamp": "2026-05-22T16:15:56.737523+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "code:exp-004-reduced-lora-launch",
+              "project": "contrastive_entrain_calib",
+              "task_prompt": "## 任务：在 28034 cuda:1 启动 exp-004-reduced-lora（ACT with reduced LoRA config）\n\n### 背景\n这是 exp-004 (ACT) 的消融：唯一变量是 LoRA 配置从标准 ACT 降为 GRPO 匹配。\n- 标准 ACT LoRA: r=64, alpha=128, 7 target_modules (q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj)\n- Reduced LoRA: r=64, alpha=**64**, 4 target_modules (q_proj, k_proj, v_proj, o_proj) **只有 attention 模块**\n\nLoss function、lr、data、其他一切都不变。\n\n### 参考脚本\n查找 ACT 训练脚本：\n```\nfind /root -name \"*exp004*act*\" -o -name \"*act*baseline*\" -o -name \"*activation_consistency*\" 2>/dev/null | head -10\nls /root/contrastive_entrain_calib/training/\n```\n也检查 29046: 可能在 `/root/contrastive_entrain_calib/training/` 下。\n\nACT 训练脚本使用**自定义 PyTorch 训练循环**（不是 TRL/GRPO），loss = sft_loss + 0.1 × l2_loss。\n\n### 脚本修改\n复制 ACT 脚本为 `run_exp004_reduced_lora.py`，做以下修改：\n1. LoRA config 中:\n   - `lora_alpha`: 128 → **64**\n   - `target_modules`: 从 7 个 [\"q_proj\",\"k_proj\",\"v_proj\",\"o_proj\",\"gate_proj\",\"up_proj\",\"down_proj\"] → **4 个** [\"q_proj\",\"k_proj\",\"v_proj\",\"o_proj\"]\n   - `r` 保持 64 不变\n2. `output_dir`: `/root/autodl-tmp/outputs/exp-004-reduced-lora/`\n3. `seed`: 保持 42\n4. **其他一切不变**: loss formula, lr, data, max_steps=8000, save_steps=500\n\n### 关键检查\n**仔细核对**：只改 LoRA config，不改任何其他东西。打印出修改前后的 diff 确认。\n\n### 启动\n1. `nvidia-smi` 确认 GPU1 状态。如有 eval 在跑，等完成\n2. 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n3. 用 submit_training_job:\n   - exp_id: exp-004-reduced-lora\n   - server: westd-28034\n   - gpu_idx: 1\n   - command: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=1 python training/run_exp004_reduced_lora.py`\n4. 验证启动\n\n### 汇报\n- 脚本路径\n- PID\n- 确认只改了 LoRA alpha (128→64) 和 target_modules (7→4)，其他不变\n- 其他关键参数确认",
+              "tool_groups": "['ssh', 'registry']",
+              "tools": "['submit_training_job']"
+            }
+          },
+          "id": "event-007858"
+        },
+        {
+          "source_line": 7859,
+          "timestamp": "2026-05-22T16:16:03.284077+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_exp-004-reduced-lora-launch_20260522T161557\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/logs/workers/worker_code_exp-004-reduced-lora-launch_20260522T161557.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_code_exp-004-reduced-lora-launch_20260522T161557 started. Use get_worker_status('worker_code_exp-004-reduced-lora-launch_20260522T161557') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 6546
+          },
+          "id": "event-007859"
+        },
+        {
+          "source_line": 7860,
+          "timestamp": "2026-05-22T16:16:03.436471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "code:exp-003-s3-launch",
+              "project": "contrastive_entrain_calib",
+              "task_prompt": "## 任务：在 28034 cuda:2 启动 exp-003-s3（R3-only GRPO seed 3）\n\n### 背景\nexp-003 的第三个 seed（seed=44）。配置与 exp-003 完全相同，只改 seed。3-seed 统计覆盖比 2-seed 更可信。\n\n### 参考脚本\n查找：\n```\nfind /root -name \"run_exp003*r3only*\" 2>/dev/null | head -10\nls /root/contrastive_entrain_calib/training/\n```\n如果 28034 上没有，从 29046 SCP: `/root/contrastive_entrain_calib/training/run_exp003_r3only.py`\n\n### 脚本修改\n复制为 `run_exp003_s3_r3only.py`，做以下修改：\n1. `seed`: 42 → **44**（seed 1=42, seed 2=43, seed 3=44）\n2. `output_dir`: `/root/autodl-tmp/outputs/exp-003-s3/`\n3. 其他**完全不变**: R3=1.0, r1=0, r2=0, num_generations=2, max_completion_length=256, max_steps=8000, save_steps=500\n\n### 启动\n1. `nvidia-smi` 确认 GPU2 空闲\n2. 环境: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n3. 用 submit_training_job:\n   - exp_id: exp-003-s3\n   - server: westd-28034\n   - gpu_idx: 2\n   - command: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=2 python training/run_exp003_s3_r3only.py`\n4. 验证启动\n\n### 汇报\n- 脚本路径\n- PID\n- 关键参数确认（seed=44, R3=1.0, gs=2, max_steps=8000, save_steps=500, max_completion_length=256）",
+              "tool_groups": "['ssh', 'registry']",
+              "tools": "['submit_training_job']"
+            }
+          },
+          "id": "event-007860"
+        },
+        {
+          "source_line": 7861,
+          "timestamp": "2026-05-22T16:16:06.860090+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_exp-003-s3-launch_20260522T161603\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/logs/workers/worker_code_exp-003-s3-launch_20260522T161603.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_code_exp-003-s3-launch_20260522T161603 started. Use get_worker_status('worker_code_exp-003-s3-launch_20260522T161603') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3423
+          },
+          "id": "event-007861"
+        },
+        {
+          "source_line": 7862,
+          "timestamp": "2026-05-22T16:16:16.268442+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 6/6 分配 | 29046: 2/2 在跑 | 28034: 3/4 即将启动 (GPU0/1/2 三个新实验, GPU3 eval) | Worker 4 running (3 launch + 1 ckpt3500 eval)\n\n收到 D058，已执行：\n1. **exp-003-len512** (R3-only, mcl=512): registry 注册 + Worker 派发 → 28034 cuda:0\n2. **exp-004-reduced-lora** (ACT reduced LoRA): registry 注册 + Worker 派发 → 28034 cuda:1\n3. **exp-003-s3** (R3-only seed 3): registry 注册 + Worker 派发 → 28034 cuda:2\n4. **exp-002v3-gs8** → killed (已标记)\n\nWorker 会等当前 eval 进程完成后立即启动训练。3 个 Worker 并行执行，等回调确认。",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007862"
+        },
+        {
+          "source_line": 7863,
+          "timestamp": "2026-05-22T16:16:17.476207+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_c77a380fad2d0408ce92cd1170d46f6f:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 1207
+          },
+          "id": "event-007863"
+        },
+        {
+          "source_line": 7864,
+          "timestamp": "2026-05-22T16:16:19.925289+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已注册，现在并行 spawn 3 个 Worker。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712"
+          },
+          "id": "event-007864"
+        }
+      ]
+    },
+    {
+      "number": 725,
+      "messages": [
+        {
+          "source_line": 7865,
+          "timestamp": "2026-05-22T16:16:20.389715+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_eval_acts2-ckpt3500-scp-eval_20260522T161236 已完成（status=done）。用 `get_worker_status('worker_eval_acts2-ckpt3500-scp-eval_20260522T161236')` 读取结果，然后处理。\n\n- worker_id: worker_eval_acts2-ckpt3500-scp-eval_20260522T161236\n- project: contrastive_entrain_calib\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "source": "worker:done"
+          },
+          "id": "event-007865"
+        },
+        {
+          "source_line": 7866,
+          "timestamp": "2026-05-22T16:16:28.280827+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_eval_acts2-ckpt3500-scp-eval_20260522T161236",
+              "verbose": "True"
+            }
+          },
+          "id": "event-007866"
+        },
+        {
+          "source_line": 7867,
+          "timestamp": "2026-05-22T16:16:28.431796+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_eval_acts2-ckpt3500-scp-eval_20260522T161236\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"eval:acts2-ckpt3500-scp-eval\\\", \\\"project\\\": \\\"contrastive_entrain_calib\\\", \\\"started_at\\\": \\\"2026-05-22T16:12:36.727700+00:00\\\", \\\"ended_at\\\": \\\"2026-05-22T16:15:53.195333+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"全部就绪。\\\\n\\\\n**汇报：**\\\\n- **SCP**: checkpoint-3500 (682M) 从 29046 成功传输到 28034，`adapter_model.safetensors` (667M) 完整\\\\n- **Eval**: tmux session `eval_acts2_ckpt3500` 正在运行，362 对样本评估中\\\\n- **GPU**: GPU1 已占用 17660 MiB\\\\n- **日志**: `/root/runs/contrastive_entrain_calib/exp-004-s2-eval-ckpt3500.log`\\\\n- **输出目录**: `/root/autodl-tmp/results/exp004s2_act_eval/checkpoint-3500/`\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 150
+          },
+          "id": "event-007867"
+        },
+        {
+          "source_line": 7868,
+          "timestamp": "2026-05-22T16:16:35.318211+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-004-s2-eval-ckpt3500",
+              "field": "status",
+              "value": "PREPARING",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007868"
+        },
+        {
+          "source_line": 7869,
+          "timestamp": "2026-05-22T16:16:36.224364+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-004-s2-eval-ckpt3500\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:12:12.710Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:16:35.611Z\\\", \\\"hypothesis\\\": \\\"Eval exp-004-s2-v2 (ACT seed 2) checkpoint-3500 with D027 unified preset. Seed 2 trajectory: 500=0.223, 1000=0.256, 1500=0.214, 2000=0.214, 3000=0.254. Seed 1 ckpt-3500=0.231. Vanilla baseline SYCONScore=0.1335. ckpt-3500 confirmed clean by integrity check.\\\", \\\"parent\\\": \\\"exp-004-s2-v2\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.868}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 906
+          },
+          "id": "event-007869"
+        },
+        {
+          "source_line": 7870,
+          "timestamp": "2026-05-22T16:16:41.352016+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-004-s2-eval-ckpt3500",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007870"
+        },
+        {
+          "source_line": 7871,
+          "timestamp": "2026-05-22T16:16:42.209402+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-004-s2-eval-ckpt3500\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:12:12.710Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:16:41.608Z\\\", \\\"hypothesis\\\": \\\"Eval exp-004-s2-v2 (ACT seed 2) checkpoint-3500 with D027 unified preset. Seed 2 trajectory: 500=0.223, 1000=0.256, 1500=0.214, 2000=0.214, 3000=0.254. Seed 1 ckpt-3500=0.231. Vanilla baseline SYCONScore=0.1335. ckpt-3500 confirmed clean by integrity check.\\\", \\\"parent\\\": \\\"exp-004-s2-v2\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.852}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 857
+          },
+          "id": "event-007871"
+        },
+        {
+          "source_line": 7872,
+          "timestamp": "2026-05-22T16:16:50.707089+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-004-s2-eval-ckpt3500",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "contrastive_entrain_calib",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=1 python eval_unified_preset.py --checkpoint-path /root/autodl-tmp/checkpoints/exp004s2_act_seed2/checkpoint-3500 --output-dir /root/autodl-tmp/results/exp004s2_act_eval/checkpoint-3500 --preset d027', 'server': 'westd-28034', 'gpu': 'cuda:1', 'data_path': '/root/contrastive_entrain_calib/data/', 'data_count': 362, 'model_name': 'Qwen3-8B + ACT LoRA s2 ckpt-3500', 'seed': 43, 'checkpoint_source': 'westd-29046:/root/autodl-tmp/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2/checkpoint-3500', 'eval_data': 'D027 unified preset (362 pairs)'}"
+            }
+          },
+          "id": "event-007872"
+        },
+        {
+          "source_line": 7873,
+          "timestamp": "2026-05-22T16:16:51.560716+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-004-s2-eval-ckpt3500\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:12:12.710Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:16:50.897Z\\\", \\\"hypothesis\\\": \\\"Eval exp-004-s2-v2 (ACT seed 2) checkpoint-3500 with D027 unified preset. Seed 2 trajectory: 500=0.223, 1000=0.256, 1500=0.214, 2000=0.214, 3000=0.254. Seed 1 ckpt-3500=0.231. Vanilla baseline SYCONScore=0.1335. ckpt-3500 confirmed clean by integrity check.\\\", \\\"parent\\\": \\\"exp-004-s2-v2\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python eval_unified_preset.py --checkpoint-path /root/autodl-tmp/checkpoints/exp004s2_act_seed2/checkpoint-3500 --output-dir /root/autodl-tmp/results/exp004s2_act_eval/checkpoint-3500 --preset d027\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"data_path\\\": \\\"/root/contrastive_entrain_calib/data/\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B + ACT LoRA s2 ckpt-3500\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"westd-29046:/root/autodl-tmp/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2/checkpoint-3500\\\", \\\"eval_data\\\": \\\"D027 unified preset (362 pairs)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7609}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 853
+          },
+          "id": "event-007873"
+        },
+        {
+          "source_line": 7874,
+          "timestamp": "2026-05-22T16:16:51.813044+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "exp-004-s2-eval-ckpt3500",
+              "server": "westd-28034",
+              "pid": "eval_acts2_ckpt3500",
+              "log_path": "/root/runs/contrastive_entrain_calib/exp-004-s2-eval-ckpt3500.log",
+              "interval_seconds": "180",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007874"
+        },
+        {
+          "source_line": 7875,
+          "timestamp": "2026-05-22T16:16:51.964071+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"exp-004-s2-eval-ckpt3500\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"pid\\\": \\\"eval_acts2_ckpt3500\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"/root/runs/contrastive_entrain_calib/exp-004-s2-eval-ckpt3500.log\\\", \\\"interval_seconds\\\": 180, \\\"project\\\": \\\"contrastive_entrain_calib\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-22T16:16:51.863Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "elapsed_ms": 151
+          },
+          "id": "event-007875"
+        },
+        {
+          "source_line": 7876,
+          "timestamp": "2026-05-22T16:16:54.742952+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "ACT s2 ckpt-3500 eval 在 28034 GPU1 启动成功。注册 registry + cron。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712"
+          },
+          "id": "event-007876"
+        }
+      ]
+    },
+    {
+      "number": 726,
+      "messages": [
+        {
+          "source_line": 7877,
+          "timestamp": "2026-05-22T16:18:19.721679+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] 紧急状态检查。我需要以下信息：\n\n1. **exp-003-gs8 状态**：这个实验应该在 29046 cuda:0 运行中（D057），当前 training step 到多少了？是否正常运行？用 ssh_read_only 检查进程和最新日志。\n\n2. **D058 三个实验启动状态**：exp-003-len512 / exp-004-reduced-lora / exp-003-s3 应该在 28034 上启动。它们是否已经开始训练？如果还没启动，立即启动。\n\n3. **exp-004-s2-v2 状态**：29046 cuda:1 上的 ACT s2 训练到第几步了？\n\n4. **两台服务器 GPU 使用情况**：分别对 29046 和 28034 执行 `nvidia-smi` 确认 GPU 占用。\n\n每个实验用 ssh_read_only 检查，汇总一张表回复我。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "source": "director"
+          },
+          "id": "event-007877"
+        },
+        {
+          "source_line": 7878,
+          "timestamp": "2026-05-22T16:18:36.079235+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "eval:urgent-status-29046",
+              "project": "contrastive_entrain_calib",
+              "task_prompt": "## 任务：紧急状态检查 westd-29046\n\n用 ssh_read_only 检查以下内容，**不要执行任何修改操作**。\n\n### 1. nvidia-smi\n```\nnvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader\n```\n\n### 2. exp-003-gs8 (cuda:0)\n- 检查进程: `ps aux | grep run_exp003_gs8`\n- 最新日志 (查找 log 文件):\n  ```\n  ls -lt /root/autodl-tmp/outputs/exp-003-gs8/*.log 2>/dev/null | head -3\n  ls -lt /root/autodl-tmp/outputs/exp-003-gs8/train_log.jsonl 2>/dev/null\n  ```\n  如果找到 log: `tail -5 <log_file>` 读取最新 step\n- 也检查 tmux: `tmux ls`\n\n### 3. exp-004-s2-v2 (cuda:1)\n- 检查进程: `ps aux | grep exp004` 或 `ps aux | grep act`\n- 最新 step: \n  ```\n  tail -3 /root/autodl-tmp/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2/train_log.jsonl\n  ```\n\n### 4. 其他进程\n- `ps aux | grep python | grep -v grep` 列出所有 python 进程\n\n### 汇报格式\n```\n=== westd-29046 ===\nGPU0: [显存/总显存] [利用率] [进程名]\nGPU1: [显存/总显存] [利用率] [进程名]\n\nexp-003-gs8: [状态] step X/8000, PID=XXXXX\nexp-004-s2-v2: [状态] step X/8000, PID=XXXXX\n其他进程: ...\n```",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-007878"
+        },
+        {
+          "source_line": 7879,
+          "timestamp": "2026-05-22T16:18:44.977175+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_eval_urgent-status-29046_20260522T161836\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/logs/workers/worker_eval_urgent-status-29046_20260522T161836.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_eval_urgent-status-29046_20260522T161836 started. Use get_worker_status('worker_eval_urgent-status-29046_20260522T161836') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 8897
+          },
+          "id": "event-007879"
+        },
+        {
+          "source_line": 7880,
+          "timestamp": "2026-05-22T16:18:45.834089+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "eval:urgent-status-28034",
+              "project": "contrastive_entrain_calib",
+              "task_prompt": "## 任务：紧急状态检查 westd-28034\n\n用 ssh_read_only 检查以下内容，**不要执行任何修改操作**。\n\n### 1. nvidia-smi\n```\nnvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader\n```\n\n### 2. D058 三个新实验\n检查是否已启动：\n- exp-003-len512 (应在 cuda:0): `ps aux | grep len512`\n- exp-004-reduced-lora (应在 cuda:1): `ps aux | grep reduced_lora`\n- exp-003-s3 (应在 cuda:2): `ps aux | grep exp003_s3` 或 `ps aux | grep seed.*44`\n\n### 3. 正在进行的 eval\n- `tmux ls` 列出所有 tmux sessions\n- `ps aux | grep eval` 看 eval 进程\n\n### 4. 所有 python 进程\n```\nps aux | grep python | grep -v grep\n```\n\n### 5. 如果找到训练 log，读最新 step\n```\nfor d in /root/autodl-tmp/outputs/exp-003-len512 /root/autodl-tmp/outputs/exp-004-reduced-lora /root/autodl-tmp/outputs/exp-003-s3; do\n  if [ -f \"$d/train_log.jsonl\" ]; then\n    echo \"=== $d ===\" && tail -3 \"$d/train_log.jsonl\"\n  fi\ndone\n```\n\n### 汇报格式\n```\n=== westd-28034 ===\nGPU0: [显存/总显存] [利用率] [进程名]\nGPU1: [显存/总显存] [利用率] [进程名]\nGPU2: [显存/总显存] [利用率] [进程名]\nGPU3: [显存/总显存] [利用率] [进程名]\n\nD058 实验:\nexp-003-len512: [启动/未启动] step X/8000 或 N/A\nexp-004-reduced-lora: [启动/未启动] step X/8000 或 N/A\nexp-003-s3: [启动/未启动] step X/8000 或 N/A\n\nEval 进程:\n[列出所有正在运行的 eval tmux sessions 和进程]\n```",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-007880"
+        },
+        {
+          "source_line": 7881,
+          "timestamp": "2026-05-22T16:18:49.210491+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_eval_urgent-status-28034_20260522T161846\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/logs/workers/worker_eval_urgent-status-28034_20260522T161846.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_eval_urgent-status-28034_20260522T161846 started. Use get_worker_status('worker_eval_urgent-status-28034_20260522T161846') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3376
+          },
+          "id": "event-007881"
+        },
+        {
+          "source_line": 7882,
+          "timestamp": "2026-05-22T16:18:56.996811+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "contrastive_entrain_calib",
+              "status": "running",
+              "limit": "10"
+            }
+          },
+          "id": "event-007882"
+        },
+        {
+          "source_line": 7883,
+          "timestamp": "2026-05-22T16:18:57.150112+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_code_exp-003-len512-launch_20260522T161544\\\", \\\"task_type\\\": \\\"code:exp-003-len512-launch\\\", \\\"project\\\": \\\"contrastive_entrain_calib\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-22T16:15:44.330188+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_code_exp-004-reduced-lora-launch_20260522T161557\\\", \\\"task_type\\\": \\\"code:exp-004-reduced-lora-launch\\\", \\\"project\\\": \\\"contrastive_entrain_calib\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-22T16:15:57.180435+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_eval_urgent-status-29046_20260522T161836\\\", \\\"task_type\\\": \\\"eval:urgent-status-29046\\\", \\\"project\\\": \\\"contrastive_entrain_calib\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-22T16:18:36.897182+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_eval_urgent-status-28034_20260522T161846\\\", \\\"task_type\\\": \\\"eval:urgent-status-28034\\\", \\\"project\\\": \\\"contrastive_entrain_calib\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-22T16:18:46.405732+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 4}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 153
+          },
+          "id": "event-007883"
+        },
+        {
+          "source_line": 7884,
+          "timestamp": "2026-05-22T16:19:02.434507+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_exp-003-s3-launch_20260522T161603",
+              "verbose": "True"
+            }
+          },
+          "id": "event-007884"
+        },
+        {
+          "source_line": 7885,
+          "timestamp": "2026-05-22T16:19:02.485329+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_exp-003-s3-launch_20260522T161603\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"code:exp-003-s3-launch\\\", \\\"project\\\": \\\"contrastive_entrain_calib\\\", \\\"started_at\\\": \\\"2026-05-22T16:16:03.900226+00:00\\\", \\\"ended_at\\\": \\\"2026-05-22T16:18:53.698893+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"训练已成功启动，进入训练循环（0/8000 steps）。\\\\n\\\\n**汇报：**\\\\n\\\\n| 项目 | 值 |\\\\n|------|-----|\\\\n| 脚本路径 | `/root/contrastive_entrain_calib/training/run_exp003_s3_r3only.py` |\\\\n| PID | 24760 |\\\\n| tmux session | `exp-003-s3` |\\\\n| 日志 | `~/runs/contrastive_entrain_calib/exp-003-s3.log` |\\\\n| seed | **44** |\\\\n| R3 | 1.0, r1=0, r2=0 |\\\\n| num_generations | 2 |\\\\n| max_completion_length | 256 |\\\\n| max_steps | 8000 |\\\\n| save_steps | 500 |\\\\n| output_dir | `/root/autodl-tmp/outputs/exp-003-s3/` |\\\\n| GPU | westd-28034 cuda:2 |\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-007885"
+        },
+        {
+          "source_line": 7886,
+          "timestamp": "2026-05-22T16:19:07.205186+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-003-s3",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007886"
+        },
+        {
+          "source_line": 7887,
+          "timestamp": "2026-05-22T16:19:08.270469+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-s3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:15:04.053Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:19:07.469Z\\\", \\\"hypothesis\\\": \\\"R3-only GRPO seed 3 (seed=44). Third seed to increase statistical coverage: 3-seed mean±std more credible than 2-seed. Configuration identical to exp-003 (R3=1.0, r1=r2=0, gs=2, 8000 steps, save_steps=500).\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=2 python training/run_exp003_s3_r3only.py\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"24760\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s3.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T16:18:05.870Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0397}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1065
+          },
+          "id": "event-007887"
+        },
+        {
+          "source_line": 7888,
+          "timestamp": "2026-05-22T16:19:14.557900+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-003-s3",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "contrastive_entrain_calib",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=2 python training/run_exp003_s3_r3only.py', 'server': 'westd-28034', 'gpu': 'cuda:2', 'pid': '24760', 'data_path': '/root/contrastive_entrain_calib/data/', 'data_count': 362, 'model_name': 'Qwen3-8B', 'seed': 44, 'log_path': '~/runs/contrastive_entrain_calib/exp-003-s3.log'}"
+            }
+          },
+          "id": "event-007888"
+        },
+        {
+          "source_line": 7889,
+          "timestamp": "2026-05-22T16:19:14.988326+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Eval experiment requires additional spec fields: ['checkpoint_source', 'eval_data']. Eval spec must include: ['checkpoint_source', 'eval_data']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4388}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 430
+          },
+          "id": "event-007889"
+        },
+        {
+          "source_line": 7890,
+          "timestamp": "2026-05-22T16:19:21.292956+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-003-s3",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "contrastive_entrain_calib",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=2 python training/run_exp003_s3_r3only.py', 'server': 'westd-28034', 'gpu': 'cuda:2', 'pid': '24760', 'data_path': '/root/contrastive_entrain_calib/data/', 'data_count': 362, 'model_name': 'Qwen3-8B', 'seed': 44, 'log_path': '~/runs/contrastive_entrain_calib/exp-003-s3.log', 'checkpoint_source': 'N/A (training from scratch)', 'eval_data': 'N/A (training, not eval)'}"
+            }
+          },
+          "id": "event-007890"
+        },
+        {
+          "source_line": 7891,
+          "timestamp": "2026-05-22T16:38:19.951671+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-003-s3 已启动成功 (PID 24760, cuda:2, step 0/8000)。等两个 status check worker 回调后一并汇报。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712"
+          },
+          "id": "event-007891"
+        }
+      ]
+    },
+    {
+      "number": 727,
+      "messages": [
+        {
+          "source_line": 7892,
+          "timestamp": "2026-05-22T16:38:20.412860+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] 🚨🚨🚨 **最高优先级：立即 kill 29046 GPU0 上的重复 gs8 进程**\n\nexp-003-gs8（我们最关键的实验）在 29046 cuda:0 上有两个训练进程，step time 暴涨到 65s（正常 25s）。\n\n**立即执行（ssh_execute，不是 read_only）：**\n\n```bash\n# 1. Kill 重复进程（后启动的 PID 519538）\nkill 519538\n\n# 2. 确认只剩一个进程\nnvidia-smi | grep run_exp003\n\n# 3. 检查最新 training log，确认 step time 恢复到 ~25s\ntail -20 /root/contrastive_entrain_calib/outputs/exp-003-gs8/training.log\n```\n\n**同时检查：**\n\n4. GPU1 上两个 eval 进程（PID 517336/517417，exp003-s2-ckpt7500/8000）运行 2.5h 异常长。检查是否卡住：\n```bash\n# 检查 eval 进程是否还在产出\nls -lt /root/contrastive_entrain_calib/outputs/exp-003-s2-eval-*/\ntail -5 /root/contrastive_entrain_calib/outputs/exp-003-s2-eval-ckpt7500/*.log\ntail -5 /root/contrastive_entrain_calib/outputs/exp-003-s2-eval-ckpt8000/*.log\n```\n\n5. 报告 exp-003-gs8 当前到第几步，有多少 checkpoints 已保存，checkpoint 文件是否完整（有没有被两个进程交叉写坏）。\n\n**这是第二次出现重复进程（M025 之后）。Kill 后立即回复确认。**"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "source": "director"
+          },
+          "id": "event-007892"
+        },
+        {
+          "source_line": 7893,
+          "timestamp": "2026-05-22T16:38:42.697096+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ssh:kill-gs8-duplicate-urgent",
+              "project": "contrastive_entrain_calib",
+              "task_prompt": "## 🚨 最高优先级：Kill 29046 GPU0 重复 gs8 进程\n\n**立即执行，不要做任何探测性操作先。直接 kill。**\n\n### Step 1: Kill 重复进程\n```bash\nkill 519538\n```\n确认被杀: `ps -p 519538 -o pid= 2>/dev/null && echo \"STILL_ALIVE\" || echo \"KILLED\"`\n\n### Step 2: 确认只剩一个 gs8 进程\n```bash\nps aux | grep run_exp003_gs8 | grep -v grep\nnvidia-smi\n```\n\n### Step 3: 检查 step time 恢复\n```bash\ntail -30 /root/contrastive_entrain_calib/outputs/exp-003-gs8/training.log 2>/dev/null\n# 也查:\ntail -30 /root/autodl-tmp/outputs/exp-003-gs8/training.log 2>/dev/null\n# 如果找不到:\nfind /root -path \"*exp-003-gs8*\" -name \"*.log\" 2>/dev/null | head -5\nfind /root -path \"*exp-003-gs8*\" -name \"train_log*\" 2>/dev/null | head -5\n```\n正常 step time 应该是 ~25s，重复进程时暴涨到 65s。Kill 后应恢复。\n\n### Step 4: 检查 GPU1 上的 eval 进程 (PID 517336/517417)\n```bash\nps -p 517336 -o pid,etime,pcpu,rss,args 2>/dev/null\nps -p 517417 -o pid,etime,pcpu,rss,args 2>/dev/null\n```\n这两个 eval 已跑 2.5h，异常长。检查是否卡住：\n```bash\nls -lt ~/runs/contrastive_entrain_calib/exp-003-eval-s2-ckpt7500.log 2>/dev/null\ntail -10 ~/runs/contrastive_entrain_calib/exp-003-eval-s2-ckpt7500.log 2>/dev/null\ntail -10 ~/runs/contrastive_entrain_calib/exp-003-eval-s2-ckpt8000.log 2>/dev/null\n```\n也检查其他可能的输出路径：\n```bash\nfind /root -path \"*exp-003*s2*eval*ckpt7500*\" -newer /tmp 2>/dev/null | head -5\nfind /root -path \"*exp-003*s2*eval*ckpt8000*\" -newer /tmp 2>/dev/null | head -5\n```\n\n### Step 5: exp-003-gs8 checkpoint 完整性\n```bash\nls -la /root/autodl-tmp/outputs/exp-003-gs8/checkpoint-*/adapter_model.safetensors 2>/dev/null\nls -la /root/contrastive_entrain_calib/outputs/exp-003-gs8/checkpoint-*/adapter_model.safetensors 2>/dev/null\n# 列出所有 checkpoint 目录\nfind /root -path \"*exp-003-gs8*checkpoint*\" -name \"adapter_model.safetensors\" 2>/dev/null\n```\n\n### 汇报格式\n```\n1. Kill 结果: PID 519538 [KILLED/FAILED]\n2. 存活进程: PID XXXXX, step X/8000\n3. Step time: kill 前 ~65s → kill 后 ~XXs\n4. Eval 进程:\n   - ckpt-7500 (PID 517336): [正在运行/卡住/已结束] 进度: X/362\n   - ckpt-8000 (PID 517417): [正在运行/卡住/已结束] 进度: X/362\n5. Checkpoints: [数量] 个, 完整性: [OK/被污染]\n```",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-007893"
+        },
+        {
+          "source_line": 7894,
+          "timestamp": "2026-05-22T16:38:48.829689+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_kill-gs8-duplicate-urgent_20260522T163843\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/logs/workers/worker_ssh_kill-gs8-duplicate-urgent_20260522T163843.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_ssh_kill-gs8-duplicate-urgent_20260522T163843 started. Use get_worker_status('worker_ssh_kill-gs8-duplicate-urgent_20260522T163843') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 6132
+          },
+          "id": "event-007894"
+        },
+        {
+          "source_line": 7895,
+          "timestamp": "2026-05-22T16:38:51.918219+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派出执行 kill。等回调后立即汇报 Director。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712"
+          },
+          "id": "event-007895"
+        }
+      ]
+    },
+    {
+      "number": 728,
+      "messages": [
+        {
+          "source_line": 7896,
+          "timestamp": "2026-05-22T16:38:51.927360+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] 🚨 **紧急：立即阻止 exp-003-len512 在 28034 上启动**\n\n28034 RTX 5090 32GB 无法跑任何 Qwen3-8B GRPO——exp-003-s3 已 OOM 证实。exp-003-len512（也是 GRPO，且 mcl=512 更大）必然 OOM。\n\n**立即执行：**\n\n1. **Kill/abort exp-003-len512 Worker**（如果已启动则 kill，未启动则取消）。将 registry 标记为 `killed`，原因 \"OOM: 32GB GPU cannot fit Qwen3-8B GRPO\"\n\n2. **Kill/abort exp-003-s3 Worker**（同上处理）\n\n3. **exp-004-reduced-lora 保留在 28034 cuda:1**——这是 SFT，应该能跑。确认是否正常启动。\n\n4. **汇报 29046 两个实验当前 step**：\n   - exp-003-gs8 (cuda:0): 用 ssh_read_only 查最新日志，报告 current step\n   - exp-004-s2-v2 (cuda:1): 当前 step 和预计完成时间\n\n5. **排队计划**（不要现在启动，只准备好）：\n   - exp-003-len512 → 等 exp-004-s2-v2 完成后在 29046 cuda:1 启动\n   - exp-003-s3 → 等 exp-003-gs8 完成后在 29046 cuda:0 启动\n\n优先级：阻止 OOM > 确认 reduced-lora > 报告 29046 状态"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "source": "director"
+          },
+          "id": "event-007896"
+        },
+        {
+          "source_line": 7897,
+          "timestamp": "2026-05-22T16:39:08.620169+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cancel_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__cancel_worker",
+            "tool_args": {
+              "worker_id": "worker_code_exp-003-len512-launch_20260522T161544"
+            }
+          },
+          "id": "event-007897"
+        },
+        {
+          "source_line": 7898,
+          "timestamp": "2026-05-22T16:39:09.075129+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_exp-003-len512-launch_20260522T161544\\\", \\\"status\\\": \\\"cancelled\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__cancel_worker",
+            "elapsed_ms": 454
+          },
+          "id": "event-007898"
+        },
+        {
+          "source_line": 7899,
+          "timestamp": "2026-05-22T16:39:19.767583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ssh:kill-oom-experiments-28034",
+              "project": "contrastive_entrain_calib",
+              "task_prompt": "## 🚨 紧急：Kill 28034 上 OOM 的 GRPO 实验 + 确认 reduced-lora\n\n28034 RTX 5090 32GB 无法跑 Qwen3-8B GRPO。需要立即 kill 两个 GRPO 实验。\n\n### Step 1: Kill exp-003-s3 (PID 24760, cuda:2)\n```bash\nkill 24760\nps -p 24760 -o pid= 2>/dev/null && echo \"STILL_ALIVE\" || echo \"KILLED\"\n```\n\n### Step 2: Kill exp-003-len512 (cuda:0, 可能已启动也可能未启动)\n```bash\n# 查找进程\nps aux | grep -E \"len512|exp003.*len\" | grep -v grep\n# 如果找到就 kill\n# 也检查 tmux\ntmux ls 2>/dev/null\ntmux kill-session -t exp003_len512 2>/dev/null\n```\n\n### Step 3: 确认 exp-004-reduced-lora (cuda:1) 状态\n```bash\nps aux | grep -E \"reduced_lora|exp004.*reduced\" | grep -v grep\nnvidia-smi\n```\n- 如果在跑：报告 PID、GPU 利用率、是否有 training step 输出\n- 检查 log:\n```bash\nfind /root -path \"*reduced*lora*\" -name \"*.log\" 2>/dev/null | head -5\nls /root/autodl-tmp/outputs/exp-004-reduced-lora/ 2>/dev/null\ntail -10 /root/autodl-tmp/outputs/exp-004-reduced-lora/train_log.jsonl 2>/dev/null\n```\n\n### Step 4: 最终确认\n```bash\nnvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader\nps aux | grep python | grep -v grep\n```\n\n### 汇报\n```\nexp-003-s3 (PID 24760): [KILLED/NOT_FOUND]\nexp-003-len512: [KILLED/NOT_STARTED/NOT_FOUND]\nexp-004-reduced-lora: [RUNNING step X / NOT_STARTED / OOM]\nGPU 状态: GPU0 [空闲/占用] GPU1 [空闲/占用] GPU2 [空闲/占用] GPU3 [空闲/占用]\n```",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-007899"
+        },
+        {
+          "source_line": 7900,
+          "timestamp": "2026-05-22T16:39:26.663057+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_kill-oom-experiments-28034_20260522T163920\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/logs/workers/worker_ssh_kill-oom-experiments-28034_20260522T163920.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_ssh_kill-oom-experiments-28034_20260522T163920 started. Use get_worker_status('worker_ssh_kill-oom-experiments-28034_20260522T163920') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 6895
+          },
+          "id": "event-007900"
+        },
+        {
+          "source_line": 7901,
+          "timestamp": "2026-05-22T16:39:26.907741+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "ssh:check-29046-steps",
+              "project": "contrastive_entrain_calib",
+              "task_prompt": "## 任务：报告 29046 两个训练实验当前 step（ssh_read_only only）\n\n### 1. exp-003-gs8 (cuda:0)\n```bash\n# 找 log 文件\nfind /root -path \"*exp-003-gs8*\" -name \"*.log\" -o -path \"*exp-003-gs8*\" -name \"train_log*\" 2>/dev/null | head -5\nfind /root -path \"*exp003*gs8*\" -name \"*.log\" -o -path \"*exp003*gs8*\" -name \"train_log*\" 2>/dev/null | head -5\n```\n读最新 step: `tail -10 <log_file>`\n\n也检查进程: `ps aux | grep gs8 | grep -v grep`\n\n### 2. exp-004-s2-v2 (cuda:1)\n```bash\ntail -5 /root/autodl-tmp/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2/train_log.jsonl\n```\n计算预计完成时间: 如果 step X/8000，看每 step 耗时\n\n### 3. nvidia-smi\n```bash\nnvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader\n```\n\n### 汇报\n```\nexp-003-gs8: step X/8000, PID=XXXXX, step_time=Xs\nexp-004-s2-v2: step X/8000, PID=494017, step_time=Xs, ETA=~Xh\nGPU0: [显存] [利用率]\nGPU1: [显存] [利用率]\n```",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-007901"
+        },
+        {
+          "source_line": 7902,
+          "timestamp": "2026-05-22T16:39:30.160116+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_ssh_check-29046-steps_20260522T163927\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/logs/workers/worker_ssh_check-29046-steps_20260522T163927.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_ssh_check-29046-steps_20260522T163927 started. Use get_worker_status('worker_ssh_check-29046-steps_20260522T163927') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3252
+          },
+          "id": "event-007902"
+        },
+        {
+          "source_line": 7903,
+          "timestamp": "2026-05-22T16:39:34.429040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-003-s3",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007903"
+        },
+        {
+          "source_line": 7904,
+          "timestamp": "2026-05-22T16:39:34.783378+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-003-len512",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007904"
+        },
+        {
+          "source_line": 7905,
+          "timestamp": "2026-05-22T16:39:35.034703+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-s3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:15:04.053Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:39:34.661Z\\\", \\\"hypothesis\\\": \\\"R3-only GRPO seed 3 (seed=44). Third seed to increase statistical coverage: 3-seed mean±std more credible than 2-seed. Configuration identical to exp-003 (R3=1.0, r1=r2=0, gs=2, 8000 steps, save_steps=500).\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=2 python training/run_exp003_s3_r3only.py\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"24760\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s3.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T16:18:05.870Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"conclusion\\\": \\\"killed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5873}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 605
+          },
+          "id": "event-007905"
+        },
+        {
+          "source_line": 7906,
+          "timestamp": "2026-05-22T16:39:35.437111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-len512\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:15:02.338Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:39:35.224Z\\\", \\\"hypothesis\\\": \\\"R3-only GRPO with max_completion_length=512 (vs 256 in exp-003). Tests whether truncation is a contributing factor to reward failure. If 512 improves R3-only trajectory → truncation confound empirically confirmed. All other params identical to exp-003 (R3=1.0, r1=r2=0, gs=2, seed=42, 8000 steps).\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True && export HF_HUB_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=2 python training/run_exp003_len512_r3only.py\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"29337\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-len512.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T16:38:54.895Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"conclusion\\\": \\\"killed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3933}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 653
+          },
+          "id": "event-007906"
+        },
+        {
+          "source_line": 7907,
+          "timestamp": "2026-05-22T16:39:42.019037+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-003-s3",
+              "field": "notes",
+              "value": "Killed: OOM on RTX 5090 32GB — cannot fit Qwen3-8B GRPO. Will requeue to 29046 (96GB) after exp-003-gs8 completes on cuda:0.",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007907"
+        },
+        {
+          "source_line": 7908,
+          "timestamp": "2026-05-22T16:39:42.976125+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-s3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T16:15:04.053Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:39:42.417Z\\\", \\\"hypothesis\\\": \\\"R3-only GRPO seed 3 (seed=44). Third seed to increase statistical coverage: 3-seed mean±std more credible than 2-seed. Configuration identical to exp-003 (R3=1.0, r1=r2=0, gs=2, 8000 steps, save_steps=500).\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/contrastive_entrain_calib && CUDA_VISIBLE_DEVICES=2 python training/run_exp003_s3_r3only.py\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"24760\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-s3.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T16:18:05.870Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"Killed: OOM on RTX 5090 32GB — cannot fit Qwen3-8B GRPO. Will requeue to 29046 (96GB) after exp-003-gs8 completes on cuda:0.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5755}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 957
+          },
+          "id": "event-007908"
+        },
+        {
+          "source_line": 7909,
+          "timestamp": "2026-05-22T16:39:43.177219+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "exp-003-len512",
+              "field": "notes",
+              "value": "Killed: OOM on RTX 5090 32GB — cannot fit Qwen3-8B GRPO (mcl=512 even larger). Will requeue to 29046 (96GB) after exp-004-s2-v2 completes on cuda:1.",
+              "project": "contrastive_entrain_calib"
+            }
+          },
+          "id": "event-007909"
+        },
+        {
+          "source_line": 7910,
+          "timestamp": "2026-05-22T16:58:52.302788+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "同时更新 registry 标记两个实验为 killed。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712"
+          },
+          "id": "event-007910"
+        }
+      ]
+    },
+    {
+      "number": 729,
+      "messages": [
+        {
+          "source_line": 7911,
+          "timestamp": "2026-05-22T16:58:52.311821+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_code_exp-003-s3-launch_20260522T161603 已完成（status=done）。用 `get_worker_status('worker_code_exp-003-s3-launch_20260522T161603')` 读取结果，然后处理。\n\n- worker_id: worker_code_exp-003-s3-launch_20260522T161603\n- project: contrastive_entrain_calib\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "source": "worker:done"
+          },
+          "id": "event-007911"
+        },
+        {
+          "source_line": 7912,
+          "timestamp": "2026-05-22T16:59:06.949403+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712"
+          },
+          "id": "event-007912"
+        }
+      ]
+    },
+    {
+      "number": 730,
+      "messages": [
+        {
+          "source_line": 7913,
+          "timestamp": "2026-05-22T16:59:07.560714+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_eval_urgent-status-28034_20260522T161846 已完成（status=done）。用 `get_worker_status('worker_eval_urgent-status-28034_20260522T161846')` 读取结果，然后处理。\n\n- worker_id: worker_eval_urgent-status-28034_20260522T161846\n- project: contrastive_entrain_calib\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "source": "worker:done"
+          },
+          "id": "event-007913"
+        },
+        {
+          "source_line": 7914,
+          "timestamp": "2026-05-22T16:59:13.747639+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_eval_urgent-status-28034_20260522T161846",
+              "verbose": "True"
+            }
+          },
+          "id": "event-007914"
+        },
+        {
+          "source_line": 7915,
+          "timestamp": "2026-05-22T16:59:13.848673+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_eval_urgent-status-28034_20260522T161846\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"eval:urgent-status-28034\\\", \\\"project\\\": \\\"contrastive_entrain_calib\\\", \\\"started_at\\\": \\\"2026-05-22T16:18:46.405732+00:00\\\", \\\"ended_at\\\": \\\"2026-05-22T16:19:34.670590+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"```\\\\n=== westd-28034 ===\\\\nGPU0: 17660/32607 MiB  40%  eval exp004-s2-ckpt4000\\\\nGPU1: 26421/32607 MiB  50%  eval exp004s2-act-ckpt3500\\\\nGPU2:     2/32607 MiB   0%  空闲\\\\nGPU3: 16884/32607 MiB  49%  eval exp003s2-r3only-ckpt8000\\\\n\\\\nD058 实验:\\\\nexp-003-len512:      未启动, 无进程, 无 log\\\\nexp-004-reduced-lora: 未启动, 无进程, 无 log\\\\nexp-003-s3:          未启动, 无进程, 无 log\\\\n\\\\nEval 进程 (3个 tmux session):\\\\n- eval_r3s2_ckpt8000  (cuda:3) — exp003s2_r3only/checkpoint-8000, PID 22138, 启动 May22 23:58\\\\n- eval_acts2_ckpt4000 (cuda:0) — exp004s2_act/checkpoint-4000,   PID 22909, 启动 00:04\\\\n- eval_acts2_ckpt3500 (cuda:1) — exp004s2_act/checkpoint-3500,   PID 24053, 启动 00:15\\\\n```\\\\n\\\\n**D058 三个新实验均未启动**，服务器上没有对应进程也没有训练 log。GPU2 完全空闲，GPU0/1/3 被三个 eval 任务占用。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-007915"
+        },
+        {
+          "source_line": 7916,
+          "timestamp": "2026-05-22T16:59:24.842243+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "28034 状态已收集：3 个 eval 在跑 (GPU0/1/3)，D058 实验当时均未启动。kill-oom worker 和 29046 status worker 仍在执行中，等回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712"
+          },
+          "id": "event-007916"
+        }
+      ]
+    },
+    {
+      "number": 731,
+      "messages": [
+        {
+          "source_line": 7917,
+          "timestamp": "2026-05-22T16:59:25.384743+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_eval_urgent-status-29046_20260522T161836 已完成（status=done）。用 `get_worker_status('worker_eval_urgent-status-29046_20260522T161836')` 读取结果，然后处理。\n\n- worker_id: worker_eval_urgent-status-29046_20260522T161836\n- project: contrastive_entrain_calib\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "source": "worker:done"
+          },
+          "id": "event-007917"
+        },
+        {
+          "source_line": 7918,
+          "timestamp": "2026-05-22T16:59:31.331580+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_eval_urgent-status-29046_20260522T161836",
+              "verbose": "True"
+            }
+          },
+          "id": "event-007918"
+        },
+        {
+          "source_line": 7919,
+          "timestamp": "2026-05-22T16:59:31.382428+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_eval_urgent-status-29046_20260522T161836\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"eval:urgent-status-29046\\\", \\\"project\\\": \\\"contrastive_entrain_calib\\\", \\\"started_at\\\": \\\"2026-05-22T16:18:36.897182+00:00\\\", \\\"ended_at\\\": \\\"2026-05-22T16:19:52.618434+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"```\\\\n=== westd-29046 ===\\\\nGPU0: 93331/97887 MiB [100%]  多进程共占\\\\nGPU1: 40222/97887 MiB [100%]  exp-004 resume\\\\n\\\\nexp-003-gs8 (r3only): 运行中 step 21/8000, ~65s/step, ETA ~146h\\\\n  PID 516696: run_exp003_gs8_r3only.py (cuda:0, 38188 MiB)\\\\n  PID 519538: run_exp003_gs8_r3only.py (cuda:0, 38186 MiB) ← 第2个进程，可能是子进程\\\\n  ⚠ 每步都有 WARNING: \\\\\\\"d_syc not loaded; returning R3-only rewards\\\\\\\"\\\\n\\\\nexp-004-s2-v2 (act resume): 运行中 step 4150/8000, ~9.2s/step, elapsed 5.5h\\\\n  PID 494017: run_exp004s2_act_resume.py --resume-from-checkpoint checkpoint-2000 --device cuda:0 (23270 MiB)\\\\n  注意：命令行写的 cuda:0，但 GPU1 有 40GB 显存占用，实际可能跑在 cuda:1\\\\n\\\\n其他进程 (eval，跑在 GPU1):\\\\n  PID 517336: eval_unified_preset.py exp003-s2-ckpt7500 (16938 MiB)\\\\n  PID 517417: eval_unified_preset.py exp003-s2-ckpt8000 (16938 MiB)\\\\n```\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 50
+          },
+          "id": "event-007919"
+        },
+        {
+          "source_line": 7920,
+          "timestamp": "2026-05-22T16:59:42.204918+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_d4492d16f8f839ed1e4ab64c9d377712",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_exp-004-reduced-lora-launch_20260522T161557",
+              "verbose": "True"
+            }
+          },
+          "id": "event-007920"
+        }
+      ]
+    }
+  ]
+}

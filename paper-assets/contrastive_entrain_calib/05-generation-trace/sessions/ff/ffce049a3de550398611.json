@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffce049a3de550398611",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval resubmit ckpt7500 after reboot",
+  "task_key": "worker_eval_resubmit-ckpt7500-after-reboot_20260522T122129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_resubmit-ckpt7500-after-reboot_20260522T122129_result.json",
+    "occurrence": 1,
+    "bytes": 685,
+    "sha256": "986816aca249f02fb46bf65b1c4bee81558934ed817e83a3906307fc46c90cdb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 都已正常运行：\n\n**28034 GPU0** — `exp-003-eval-s2-ckpt7500`：已加载 LoRA adapter，正在对 362 pairs 执行 eval。\n\n**28034 GPU1** — `exp-002v3-eval-ckpt2000`：模型加载中（checkpoint shards loading）。\n\n总结：\n- exp-002v3 的 checkpoints 在 29046 上不存在，但 **28034 上已有副本** (`/root/autodl-tmp/checkpoints/exp002v3_dcgrpo_scaled_cosine/`)，包含 checkpoint-500 到 checkpoint-2500，无需 SCP。\n- 原始命令参数有误（`--checkpoint-dir` / `--n-valid` / `--n-invalid` 不是脚本参数），已修正为 `--model_path` + `--lora_path`。\n- 两个 eval 分别在 GPU0 和 GPU1 并行运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-resubmit-ckpt7500-after-reboot.md"
+}

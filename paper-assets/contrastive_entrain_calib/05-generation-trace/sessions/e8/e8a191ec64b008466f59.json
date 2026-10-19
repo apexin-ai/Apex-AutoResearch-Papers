@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8a191ec64b008466f59",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diag exp008 oom v2",
+  "task_key": "worker_diag_exp008-oom-v2_20260518T184442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp008-oom-v2_20260518T184442_result.json",
+    "occurrence": 1,
+    "bytes": 428,
+    "sha256": "ae7f4f1d15fbb765c5ac3305bdbae68086918c534e3d19c72213474a21b1f866"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断报告已写入 `/root/contrastive_entrain_calib/artifacts/exp-008/diag_oom_v2.md`。\n\n**结论**：exp-008 实际并未失败。PID 42424 是第一次正常启动的实例，仍在 GPU 3 上活跃训练（step 80+，22658 MiB，47% util）。OOM 来自第二次重复启动的实例，因 GPU 3 已被第一次运行占用 22 GB 而无法再加载 Qwen3-8B。无需干预，当前训练正常进行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp008-oom-v2.md"
+}

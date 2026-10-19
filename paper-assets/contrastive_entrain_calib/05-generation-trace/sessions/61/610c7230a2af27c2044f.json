@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "610c7230a2af27c2044f",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval acts2 ckpt4000 scp eval",
+  "task_key": "worker_eval_acts2-ckpt4000-scp-eval_20260522T160140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_acts2-ckpt4000-scp-eval_20260522T160140_result.json",
+    "occurrence": 1,
+    "bytes": 489,
+    "sha256": "1fcf4dd52f88ec2fb072c26d61ab167bc9d8cf1e857d9addb92f1282b6f4abea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- **SCP**: 成功。checkpoint-4000 (682M) 从 29046 传到 28034，文件完整（adapter_model.safetensors 667M 等 10 个文件均到位）\n- **Eval**: 已在 GPU0 上启动，进程 PID 22909，占用 14934MiB 显存，GPU-Util 12%（模型加载中）\n- **GPU 分配**: GPU0 跑 eval，GPU3 跑原有任务，GPU1/2 空闲\n- **tmux session**: `eval_acts2_ckpt4000`\n- **日志**: `/root/runs/contrastive_entrain_calib/exp-004-s2-eval-ckpt4000.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-acts2-ckpt4000-scp-eval.md"
+}

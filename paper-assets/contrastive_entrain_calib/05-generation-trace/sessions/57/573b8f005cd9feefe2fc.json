@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "573b8f005cd9feefe2fc",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis exp 003 s2 eval batch",
+  "task_key": "worker_analysis_exp-003-s2-eval-batch_20260520T182425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-003-s2-eval-batch_20260520T182425_result.json",
+    "occurrence": 1,
+    "bytes": 967,
+    "sha256": "574cc1a4a34db0f1c467a90a5e76115c244be71a14fc81f19d6f0f96200cb727"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-003-s2 Seed 2 Early Trajectory Results\n\n| checkpoint | ToF | NoF | SYCONScore | vs vanilla (0.134) | vs seed1 |\n|-----------|------|--------|------------|---------------------|----------|\n| ckpt-500  | 0.0442 | 0.9503 | 0.0845 | -37.0% (negative) | s1-ckpt1000: 0.074 → +14.1% |\n| ckpt-1000 | 0.0442 | 0.9448 | 0.0844 | -37.0% (negative) | s1-ckpt1000: 0.074 → +14.1% |\n| ckpt-1500 | 0.0552 | 0.9503 | 0.1044 | -22.1% (negative) | s1-ckpt2000: 0.085 → +22.8% |\n\n**Seed 2 vs Seed 1 可复现性：方向一致**\n\n- 两个 seed 的 SYCONScore 均远低于 vanilla baseline (0.134)，均随训练步数增加而上升\n- Seed 2 绝对值略高于 seed 1 对应阶段，但在同一数量级\n- 三个 checkpoint 结论均为 **negative**——R3-only contrastive training 跨 seed 可复现地未能超过 vanilla baseline，说明方法本身有效性存疑\n\nRegistry 已全部更新为 DONE + negative，产出摘要已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-003-s2-eval-batch.md"
+}

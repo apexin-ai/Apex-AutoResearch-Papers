@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa8b9677e21e5528f904",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis collect bootstrap results",
+  "task_key": "worker_analysis_collect-bootstrap-results_20260522T124937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_collect-bootstrap-results_20260522T124937_result.json",
+    "occurrence": 1,
+    "bytes": 1333,
+    "sha256": "e965f0909dc64387d60ad31accd71e14804b0fe66e3f19d552c50c4ad5fa594d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程仍在运行。脚本依次跑 Qwen3-8B 和 Llama-3-8B 两个模型，Qwen 已完成，Llama 的 full CV bootstrap 进行到 1000/2000（ETA ~5.5min）。\n\n## 已完成结果\n\n### Qwen3-8B\n| 指标 | AUROC | 95% CI |\n|------|-------|--------|\n| **5-fold CV Mean** | 0.8269 | — |\n| **Full CV bootstrap (n=2000)** | **0.8253** | **[0.7952, 0.8572]** |\n| OOF | 0.7588 | [0.7251, 0.7958] |\n| Per-strength: weak (n=75) | 0.6464 | [0.6060, 0.6978] |\n| Per-strength: medium (n=54) | 0.8371 | [0.7850, 0.8933] |\n| Per-strength: strong (n=52) | 0.8828 | [0.8262, 0.9401] |\n\nFold-level: [0.8188, 0.8056, 0.8565, 0.8619, 0.7917]\n\n### Llama-3-8B（OOF/per-strength 已完成，full CV bootstrap 进行中）\n| 指标 | AUROC | 95% CI |\n|------|-------|--------|\n| **5-fold CV Mean** | 0.7793 | — |\n| OOF | 0.7745 | [0.7418, 0.8094] |\n| Per-strength: weak (n=75) | 0.7028 | [0.6484, 0.7625] |\n| Per-strength: medium (n=54) | 0.8594 | [0.8097, 0.9119] |\n| Per-strength: strong (n=52) | 0.9079 | [0.8617, 0.9508] |\n\nFold-level: [0.7568, 0.7731, 0.7785, 0.8140, 0.7739]\n\nLlama full CV bootstrap 按当前速率（~0.33s/iter）约 5-6 分钟完成。之前看到的 OOF AUROC = 0.7588 [0.7251, 0.7958] 是 Qwen 的最终值，已确认。需要等 Llama bootstrap 跑完才有全部最终结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-collect-bootstrap-results.md"
+}

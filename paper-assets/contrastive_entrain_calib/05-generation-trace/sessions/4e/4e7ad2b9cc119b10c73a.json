@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e7ad2b9cc119b10c73a",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "viz teaser figure",
+  "task_key": "worker_viz_teaser-figure_20260523T131958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_viz_teaser-figure_20260523T131958_result.json",
+    "occurrence": 1,
+    "bytes": 712,
+    "sha256": "cab4ade944c62569651f2ea429f24b0829d28ada6c0e0f127a931555d66bb3db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF (52KB) 和 PNG (172KB) 已生成到本地目标路径，与远程服务器生成的文件大小一致。\n\n图表内容确认：\n- **Panel (a)**：蓝色散点（non-sycophantic）和绿/红散点（sycophantic: valid revision vs capitulation）两簇分布，AUROC=0.83 标注，d_syc 方向箭头，\"indistinguishable\"标注\n- **Panel (b)**：ToF flip rate（蓝实线）和 generation entropy（橙虚线）随训练步数变化，灰色 blind spot 区域（500–1800 步），红色 \"Reward = +0.72 throughout\" 标注，collapse 箭头\n\n文件位置：`/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper/figures/fig_teaser.{pdf,png}`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/viz-teaser-figure.md"
+}

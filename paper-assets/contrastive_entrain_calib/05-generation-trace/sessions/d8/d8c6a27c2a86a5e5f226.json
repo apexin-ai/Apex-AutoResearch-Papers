@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8c6a27c2a86a5e5f226",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval acts2 ckpt4500 result",
+  "task_key": "worker_eval_acts2-ckpt4500-result_20260522T182649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_acts2-ckpt4500-result_20260522T182649_result.json",
+    "occurrence": 1,
+    "bytes": 548,
+    "sha256": "41f10bbaa1f7e1f4bba80ec35bfca2b672eeba273e13d43d31239c7173a2bb70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## ACT s2 ckpt-4500 Eval 结果\n\n| 指标 | 值 |\n|------|-----|\n| **SYCONScore** | **0.2229** |\n| ToF | 0.1271 |\n| NoF | 0.9061 |\n| n_valid / n_invalid | 181 / 181 |\n| 耗时 | 1407s (~23min) |\n\n### vs Vanilla (0.1335)\n\n- **差值**: +0.0894 (+66.9%)\n- **是否 > vanilla**: **YES**\n\nckpt-4500 的 SYCONScore 0.2229 大幅超过 vanilla baseline 0.1335。ToF 从 vanilla 水平略有下降（0.1271），但 NoF 很高（0.9061），说明模型在 invalid pressure 场景下几乎不被带偏，抗压能力很强。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-acts2-ckpt4500-result.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee2ca1c6dadf313d7e4a",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops training status check all",
+  "task_key": "worker_ops_training-status-check-all_20260519T081532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_training-status-check-all_20260519T081532_result.json",
+    "occurrence": 1,
+    "bytes": 3226,
+    "sha256": "6191fc09ef535f00fd55a62c1de68b01f186b637d1d65b46ebf7736fae7704d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 实验状态报告 (2026-05-19 16:16 UTC)\n\n### 1. exp002v2-recalib\n```\nexp_id:             exp002v2-recalib (DC-GRPO cosine + recalibration)\nserver/GPU:         westd-29046 / GPU 0 (66.9/97.9 GiB)\ncurrent_step:       741 / 8000\nETA:                ~52h → May 21 ~20:30 UTC\nkey_metrics (近 20 步):\n  R1 mean:          -0.06 ~ +0.01 (围绕 0 波动，信号极弱)\n  R2 mean:          -0.02 ~ +0.01\n  R3 mean:          0.43 ~ 0.88\n  combined mean:    0.32 ~ 0.65\n  loss:             0.014 ~ 0.037\n  grad_norm:        0.19 ~ 0.88\n  entropy:          0.18 ~ 0.40\n  step_time:        ~25s/step\nanomalies:          ⚠️ R1 仍然接近 0，未见改善趋势。GPU util 显示 0%（可能在 step 间 idle）\n```\n\n### 2. exp-003\n```\nexp_id:             exp-003 (R3-only GRPO baseline)\nserver/GPU:         westd-29046 / GPU 1 (38.2/97.9 GiB, 69% util)\ncurrent_step:       1894 / 8000\nETA:                ~49h → May 21 ~17:20 UTC (tqdm 估计)\nkey_metrics (近 20 步):\n  R3 mean:          0.25 ~ 0.87 (高方差)\n  combined mean:    = R3 (R3-only)\n  step_time:        ~28-47s/step (波动较大)\nanomalies:          R3 波动大但属正常范围；WARNING \"d_syc not loaded\" 每步都出现（expected for R3-only）\n```\n\n### 3. exp-004\n```\nexp_id:             exp-004 (ACT baseline)\nserver/GPU:         westd-28034 / GPU 0 (21.8/32.6 GiB, 43% util)\ncurrent_step:       6390 / 8000\nETA:                ~4.4h → May 19 ~20:40 UTC ← 今晚完成！\nkey_metrics (近 50 步):\n  SFT loss:         0.0000 (自 step ~850 起归零，严重过拟合)\n  L2 loss:          0.001 ~ 0.0014 (缓慢上升趋势)\n  total loss:       0.0001\n  lr:               1.03e-05 (衰减中)\n  step_time:        ~9.8s/step (每 10 步 log)\nanomalies:          ⚠️ SFT loss 早已归零 → 模型过拟合。L2 近期有微弱上升趋势。\n                    ✅ 今晚完成，GPU 0 可交给 exp-002v3\n```\n\n### 4. exp-008v3\n```\nexp_id:             exp-008v3 (Binary Probe GRPO, DeepSpeed)\nserver/GPU:         westd-28034 / GPU 1+2 (31.4+30.6 / 32.6 GiB, 97%+86% util)\ncurrent_step:       291 / 8000\nETA:                ~41h → May 21 ~09:30 UTC\nkey_metrics (近 10 步):\n  R1 mean:          0.375 ~ 1.0 ← 🔥 Binary Probe R1 远强于 exp002v2 的连续 R1！\n  R2 mean:          0.0\n  R3 mean:          0.19 ~ 0.81\n  combined mean:    0.38 ~ 0.75\n  loss:             0.001\n  grad_norm:        0.112\n  entropy:          1.31\n  step_time:        ~19.4s/step\nanomalies:          每步输出两次 reward（两个 DeepSpeed rank 各报一次），正常行为。\n                    仍在编译 torch._inductor workers（刚启动 1.5h），正在产出有效训练步。\n```\n\n### 额外发现\n- **westd-28034 GPU 3** 正在跑 `vanilla_baseline_eval`（sycon_bench 评估），不影响上述实验。\n\n### 关键结论\n1. **exp-004 今晚完成**（~20:40 UTC），GPU 0 可释放给 exp-002v3\n2. **exp-008v3 的 Binary Probe R1 (0.375-1.0) 远优于 exp002v2 的连续 R1 (~0)**，验证了 binary probe 方案的信号传递优势\n3. exp002v2 的 R1 信号仍无改善趋势，recalibration 未能解决连续 R1 弱信号问题"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-training-status-check-all.md"
+}

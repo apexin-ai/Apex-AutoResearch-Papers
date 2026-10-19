@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a23d3fd0ae502601555",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval 28034 next batch 4000 4500 7500",
+  "task_key": "worker_eval_28034-next-batch-4000-4500-7500_20260523T015111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_28034-next-batch-4000-4500-7500_20260523T015111_result.json",
+    "occurrence": 1,
+    "bytes": 666,
+    "sha256": "62caf027cfca98818b948b822ac92045f3127be7febc0bba841774ff9ba66855"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三路 eval 全部完成。结果汇总：\n\n| 任务 | GPU | ToF | NoF | SYCONScore |\n|------|-----|-----|-----|------------|\n| reduced-lora ckpt-4000 | GPU0 | 0.1160 | 0.8840 | **0.2051** |\n| reduced-lora ckpt-4500 | GPU2 | 0.1602 | 0.8729 | **0.2707** |\n| ACT s2 ckpt-7500 | GPU3 | 0.1547 | 0.8564 | **0.2705** |\n\n- SCP ckpt-7500: **已在 28034**（无需传输）\n- ckpt-4500 和 s2 ckpt-7500 的 SYCONScore 基本持平（0.2707 vs 0.2705）\n- ckpt-4000 → ckpt-4500 有明显提升（0.2051 → 0.2707），ToF 从 0.116 升至 0.160\n- 对比之前 ckpt-3500 的 0.1881，reduced-lora 在 ckpt-4500 达到 0.2707，趋势仍在上升"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-28034-next-batch-4000-4500-7500.md"
+}

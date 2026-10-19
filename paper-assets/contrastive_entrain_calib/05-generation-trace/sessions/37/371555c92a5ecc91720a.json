@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "371555c92a5ecc91720a",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "run phase5 lora perturbation",
+  "task_key": "worker_run_phase5_lora_perturbation_20260518T090632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_phase5_lora_perturbation_20260518T090632_result.json",
+    "occurrence": 1,
+    "bytes": 121,
+    "sha256": "eb3dd2a649172c64aad4b9d45ac172820c1bebcc01815aeaefb1ae9e5f11a406"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase 5 后台运行中。模型加载 + 640 samples 推理预计 5-10 分钟，2 分钟后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-phase5-lora-perturbation.md"
+}

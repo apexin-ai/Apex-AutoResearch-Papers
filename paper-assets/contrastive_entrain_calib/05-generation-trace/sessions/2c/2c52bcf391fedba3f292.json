@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c52bcf391fedba3f292",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops check act256v2 alive",
+  "task_key": "worker_ops_check-act256v2-alive_20260525T172248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-act256v2-alive_20260525T172248_result.json",
+    "occurrence": 1,
+    "bytes": 671,
+    "sha256": "876be5f865c878e1504a1af2cdae4b038603f34ebe7cf2755cb22ec65a685834"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n**exp-act-256-v2 已死，被外部 kill。**\n\n| 项目 | 详情 |\n|------|------|\n| 死因 | 外部 kill（日志无 error/OOM/exception） |\n| 停止位置 | step 690/8000，01:09 UTC |\n| 最新 checkpoint | checkpoint-500（完好） |\n| Loss 趋势 | 收敛良好：sft 0.64 → 0.0085 |\n| 模式 | v1 在 step 200 被 kill，v2 在 step 690 被 kill，同一台机器同一块卡 |\n\nRegistry 已更新为 DONE/killed。\n\n**需要你决定**：是否立即重跑 v3？如果重跑，建议：\n1. 从 checkpoint-500 resume（省 ~56 分钟）\n2. 考虑用 cuda:1 而非 cuda:0，排除是否有其他 worker/cron 在抢 cuda:0"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-act256v2-alive.md"
+}

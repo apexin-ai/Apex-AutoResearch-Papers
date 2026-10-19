@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "551597269f45216de303",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnosis urgent status check",
+  "task_key": "worker_diagnosis_urgent-status-check_20260521T042953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_urgent-status-check_20260521T042953_result.json",
+    "occurrence": 1,
+    "bytes": 1820,
+    "sha256": "cdb8ab788645f20068cca8399602f55858fc440559a0c3883c50f5866406b9e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查 1: exp-003 seed 1（westd-29046）\n- **进程状态**: running（GPU 0: RTX PRO 6000, 95% util, 38049/97887 MiB）\n- **当前 step**: 日志（exp003_v2.log）停在 step 3760（May 20 05:55 后未继续写入），但 checkpoint 持续生成。根据 ckpt-7000 创建于 09:53、每 500 步约 4.5h，估算当前 **~7300**\n- **checkpoint 列表**: 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000\n- **ckpt-6000+ 存在**: **yes**（6000/6500/7000 均已生成）\n\n## 检查 2: exp-003-s2 seed 2（westd-29046）\n- **进程状态**: running（GPU 1: RTX PRO 6000, 98% util, 38161/97887 MiB）\n- **当前 step**: **3206**（May 21 12:31 实时日志，40%|████ 3206/8000）\n- **checkpoint 列表**: 500, 1000, 1500, 2000, 2500, 3000\n\n## 检查 3: auto-pipeline cron（westd-28034）\n- **cron 日志最近条目**: r3_pipeline.log（May 21 07:04）— 正在对 ckpt_5000 做 eval 生成，20/362 样本已完成\n- **28034 已有 checkpoint**:\n  - exp003 seed1: 1000, 2000, 3000, 4000, 4500, 5000, 5500（已 SCP 到位）\n  - exp003_s2: 500, 1000, 1500\n- **新 checkpoint 检测到**: 最近一次处理的是 ckpt_5000\n- **SCP/eval 是否触发**: eval 曾触发（ckpt_5000 生成），但**当前已无 GPU 进程**运行 → eval 已结束或中断。ckpt_5500/6000/6500/7000 尚未被 pipeline 拉取\n\n## 检查 4: 28034 GPU\n- **GPU 0-3**: 全部 **idle**（4× RTX 5090 32GB，0% util，2 MiB/32607 MiB）\n\n---\n\n**关注点**:\n1. Seed1 日志 exp003_v2.log 在 step 3760 后停止写入，但训练仍在跑（有新 ckpt）。可能是日志文件句柄在某次 restart 后丢失。\n2. 28034 pipeline 停滞在 ckpt_5000 eval 后，ckpt_5500~7000 共 4 个新 checkpoint 未被拉取和评估，28034 GPU 完全空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-urgent-status-check.md"
+}

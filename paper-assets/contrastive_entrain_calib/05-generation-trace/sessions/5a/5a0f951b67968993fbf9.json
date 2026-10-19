@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "5a0f951b67968993fbf9",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "paper fig1a aspect ratio fix",
+  "task_key": "worker_paper_fig1a-aspect-ratio-fix_20260525T165254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig1a-aspect-ratio-fix_20260525T165254.log",
+    "occurrence": 1,
+    "bytes": 487826,
+    "sha256": "4a7a3cde5fef49f3617e3ebf128b81478dc7c75afbbf6d1fe2daf17d99adcb64"
+  },
+  "statistics": {
+    "messages": 399,
+    "user_turns": 1,
+    "tool_calls": 160,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 68,
+      "tool_call": 160,
+      "tool_result": 160,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 277,
+      "chunks": [
+        {
+          "path": "5a0f951b67968993fbf9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5a0f951b67968993fbf9-part-0002.json",
+          "message_count": 97
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 122,
+      "chunks": [
+        {
+          "path": "5a0f951b67968993fbf9-part-0002.json",
+          "message_count": 83
+        },
+        {
+          "path": "5a0f951b67968993fbf9-part-0003.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-fig1a-aspect-ratio-fix.md"
+}

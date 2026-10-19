@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5117a25bcd5e6d5e0cc",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops fix stale sessions",
+  "task_key": "worker_ops_fix-stale-sessions_20260521T071751",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-stale-sessions_20260521T071751_result.json",
+    "occurrence": 1,
+    "bytes": 1372,
+    "sha256": "a4d7f1e1451827e554b9611fee067fbeb7290cde081d0abdc4fbc1a583deaea0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报结果：\n\n### westd-28034 状态\n\n**tmux sessions**: 没有任何 tmux sessions（已经是干净状态，无需清理）。之前的 stale sessions 可能已被手动清理或服务器重启过。\n\n**GPU 进程**: 无 GPU 进程运行，4 张 A100 32GB 全部空闲。\n\n**eval 进程**: 无残留 eval_unified_preset 进程。\n\n### Checkpoint 存在性（westd-28034）\n\n**exp003** (`/root/autodl-tmp/checkpoints/exp003/`):\n- checkpoint-1000 ✓\n- checkpoint-2000 ✓\n- checkpoint-3000 ✓\n- checkpoint-4000 ✓\n- checkpoint-4500 ✓\n- checkpoint-5000 ✓\n- checkpoint-5500 ✓\n- checkpoint-6000 ✓\n- checkpoint-6500 ✓\n- checkpoint-7000 ✓\n\n任务要求的 2000/3000/5000/6000/6500/7000 全部存在。\n\n**exp009** (`/root/autodl-tmp/checkpoints/exp009_continuous_probe_grpo/`):\n- checkpoint-500 ✓\n- checkpoint-1000 ✓\n- checkpoint-1500 ✓\n\n### westd-29046 训练状态\n\nwestd-29046 上没有 `exp003` 原始目录的 checkpoint。有的是两个 seed 变体：\n- `exp003_r3only_seed1`: 最新 checkpoint-7500\n- `exp003_r3only_seed2`: 最新 checkpoint-3500\n\n两张 GPU 都在使用中（各约 38GB），说明训练仍在进行。\n\n### 结论\n\nwestd-28034 已经是干净状态，无需额外清理。duplicate session 错误现在不会再出现，4 张 GPU 空闲可以直接提交 eval 任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-stale-sessions.md"
+}

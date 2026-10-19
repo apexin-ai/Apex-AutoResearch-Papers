@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d41de7d4631a7a6ada1e",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis cross seed pearson",
+  "task_key": "worker_analysis_cross-seed-pearson_20260522T090310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross-seed-pearson_20260522T090310_result.json",
+    "occurrence": 1,
+    "bytes": 434,
+    "sha256": "8c7e10241a0f61c0eb2b20b0100738f934cac6cb899036e1a229f99fe1e3e714"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n```\nPearson r = 0.5245  (p = 0.182)\nSpearman rho = 0.8583  (p = 0.006)\nBootstrap 95% CI for r: [0.080, 0.957]\nn = 8\n```\n\n- **Pearson r=0.525**，moderate correlation，但 p=0.182 不显著（n=8 太小）\n- **Spearman rho=0.858**，p=0.006 显著——说明两个 seed 的 rank order 高度一致，只是幅度不同\n- Bootstrap 95% CI 很宽 [0.08, 0.96]，反映样本量不足的不确定性"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cross-seed-pearson.md"
+}

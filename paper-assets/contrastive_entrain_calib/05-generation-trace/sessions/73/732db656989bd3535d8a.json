@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "732db656989bd3535d8a",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnosis 28034 full status",
+  "task_key": "worker_diagnosis_28034-full-status_20260520T071500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_28034-full-status_20260520T071500_result.json",
+    "occurrence": 1,
+    "bytes": 1795,
+    "sha256": "aa061ea3592fcc9cb457d68903fcdf6b55ddad99d829555fd39dfb5336d4e8d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-28034 全面状态报告\n\n### GPU 状态\n| GPU | 型号 | 利用率 | 显存占用 |\n|-----|------|--------|---------|\n| 0 | RTX 5090 | 0% | 5 MiB / 32607 MiB |\n| 1 | RTX 5090 | 100% | 31432 MiB / 32607 MiB |\n| 2 | RTX 5090 | 62% | 30668 MiB / 32607 MiB |\n| 3 | RTX 5090 | 100% | 4 MiB / 32607 MiB |\n\n**GPU 进程**: PID 200881 占 GPU1 (31422 MiB), PID 200882 占 GPU2 (30658 MiB) — 均为 exp-009 训练进程。\n\n### Llama-3-8B 下载\n- **PID 214625**: 存活，已运行 **2h52m**\n- **下载速度**: ~400 KB/s（ModelScope）\n- **进度**:\n  - model-00001-of-00004.safetensors: **97%** (4.51G/4.63G), 剩余 ~5min\n  - model-00002-of-00004.safetensors: **98%** (4.56G/4.66G), 剩余 ~4min\n  - model-00003-of-00004.safetensors: **99%** (4.55G/4.58G), 剩余 ~1.5min\n  - model-00004-of-00004.safetensors: **已完成** (1.17GB, 已落盘到正式目录)\n- **config.json**: 已存在于 `/root/autodl-tmp/models/LLM-Research/Meta-Llama-3-8B-Instruct/`\n- 其余 3 个 shard 仍在 `._____temp/` 临时目录，下载完成后会自动移入正式目录\n- **预计 5-10 分钟内全部完成**\n\n### EXP-009 训练\n- **PID 200283**: 存活，已运行 **4h08m**\n- **进度**: step **714/8000** (9%)，~19.2s/step\n- **最新 reward**:\n  - r1_mean (格式): 0.57~0.87\n  - r2_mean (探针): 0.00\n  - r3_mean (校准): 0.47~0.84\n  - combined_mean: 0.49~0.85\n- **Checkpoint**: checkpoint-500 已保存，含 adapter_model.safetensors (117MB)、tokenizer、DeepSpeed 状态\n- **使用 GPU 1,2**，通过 DeepSpeed 启动，master_port=29502\n- **r2_mean 持续为 0**，探针 reward 可能存在问题\n\n### 其他进程\n- exp-008v3 的 tmux session 仍在，但无活跃 GPU 占用（已完成或已停止）\n- GPU 0 和 GPU 3 空闲可用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-28034-full-status.md"
+}

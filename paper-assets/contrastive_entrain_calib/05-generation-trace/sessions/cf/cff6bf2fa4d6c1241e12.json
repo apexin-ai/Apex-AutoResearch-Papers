@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cff6bf2fa4d6c1241e12",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "paper writing framework",
+  "task_key": "worker_paper_writing_framework_20260520T073815",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_framework_20260520T073815_result.json",
+    "occurrence": 1,
+    "bytes": 902,
+    "sha256": "08af615aa231c3b17ee1f6d8d000af6db97ad771c68285d60ccf8a6355c5374f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "§2 `framework.tex` 已写入并注册。内容概要：\n\n- **§2.1 Direction Extraction**: 定义 $d_{\\text{syc}}$ 的 mean-difference 提取方法，362 style-controlled contrastive activations (181 pairs)，5-fold CV AUROC 0.827±0.028，best layer=19 (Qwen3-8B)\n- **§2.2 GRPO Reward Formulation**: 组合奖励 $R = w_1 \\cdot R_1 + w_3 \\cdot R_3$，三种 R1 公式化 (F1 cosine, F2 scaled cosine, F3 binary probe)，DeBERTa NLI 作为 R3\n- **§2.3 Online Recalibration**: 每 500 步重提取 $d_{\\text{syc}}$，cosine similarity ≈ 0.96\n- **§2.4 Evaluation Protocol**: ToF / NoF / SYCONScore (harmonic mean) 定义，NLI-based classification，模型配置 (LoRA rank=64, α=128, ZeRO-2)\n\n所有要求的符号 (`\\dsyc`, `\\tof`, `\\nof`, `\\sycon`, `\\rone`, `\\rthree`) 均使用自定义命令。无 em-dash、无 -ing 结尾、无过度分段。约 730 words。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-framework.md"
+}

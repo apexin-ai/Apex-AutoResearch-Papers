@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8bd1c0b7a12bf3c6add",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code exp004 unified eval prep",
+  "task_key": "worker_code_exp004-unified-eval-prep_20260519T102457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp004-unified-eval-prep_20260519T102457_result.json",
+    "occurrence": 1,
+    "bytes": 677,
+    "sha256": "f532c5bd9f36387001d101efdddbe6f48ff1e76c7bdd356cbe416b8258a11dd0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法检查通过。脚本已创建：`/root/contrastive_entrain_calib/eval/run_exp004_unified_eval.sh`\n\n要点：\n- 对 checkpoint 500, 1000, 2000, 4000, 8000 依次调用 `eval_unified_preset.py`（D027 标准：ToF/NoF/SYCONScore）\n- 使用 `--model_path` (Qwen3-8B base) + `--lora_path` (adapter checkpoint)\n- 输出到 `/root/contrastive_entrain_calib/results/exp004_unified_eval/exp004-ckptNNNN/`\n- GPU 通过 `CUDA_VISIBLE_DEVICES` 环境变量传入（脚本未硬编码）\n- 自动跳过不存在的 checkpoint 和已完成的评估\n\n运行方式：`CUDA_VISIBLE_DEVICES=X bash /root/contrastive_entrain_calib/eval/run_exp004_unified_eval.sh`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp004-unified-eval-prep.md"
+}

@@ -1,0 +1,254 @@
+{
+  "phase1": {
+    "figure_check": {
+      "passed": true,
+      "critical": [],
+      "warning": [
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "0 critical, 1 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper",
+      "sections": [],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "no_paper_tex",
+          "message": "No section .tex files found under /home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper",
+          "location": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/paper"
+        }
+      ],
+      "info": [],
+      "summary": {
+        "critical": 0,
+        "warning": 1,
+        "info": 0
+      }
+    },
+    "compile_result": {
+      "success": true,
+      "passed": true,
+      "compiled": {
+        "success": true,
+        "pdf_path": "<compiled-in-isolated-tmpdir>",
+        "paper_dir": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/docs/_audit_compile_ywiph8u5",
+        "main_tex": "main.tex",
+        "log_tail": "ML/cmm/m/it/10.95 :\\OT1/cmr/m/n/10.95 40$\\T1/ptm/m/n/10.95 (+20) , scale$\\OT1/c\nmr/m/n/10.95 =$\\T1/ptm/m/n/10.95 (+20) 5.0, $\\OML/cmm/m/it/10.95 w[][]\\OT1/cmr/\nm/n/10.95 0\\OML/cmm/m/it/10.95 :\\OT1/cmr/m/n/10.95 60$\\T1/ptm/m/n/10.95 (+20) ;\n re-\n []\n\n\nUnderfull \\hbox (badness 3364) in paragraph at lines 60--63\n\\T1/ptm/m/n/10.95 (+20) ward com-puted at lay-ers [19, 20, 24, 27,\n []\n\n\nUnderfull \\hbox (badness 3281) in paragraph at lines 60--63\n\\T1/ptm/m/n/10.95 (+20) 32, 33, 35]; re-cal-i-bra-tion ev-ery 500 steps\n []\n\n\nUnderfull \\hbox (badness 7925) in paragraph at lines 60--63\n\\T1/ptm/m/n/10.95 (+20) (�[][]3.3[][]). $\\OML/cmm/m/it/10.95 R[]$\\T1/ptm/m/n/10\n.95 (+20) -only: $\\OML/cmm/m/it/10.95 w[][]\\OT1/cmr/m/n/10.95 1\\OML/cmm/m/it/10\n.95 :\\OT1/cmr/m/n/10.95 0$\\T1/ptm/m/n/10.95 (+20) ; NLI model\n []\n\n\nUnderfull \\hbox (badness 10000) in paragraph at lines 60--63\n\\T1/pcr/m/n/10.95 cross-encoder/nli-deberta-v3-base\\T1/ptm/m/n/10.95 (+20) .\n []\n\n\nUnderfull \\hbox (badness 5064) in paragraph at lines 72--73\n[]\\T1/ptm/m/it/10.95 (+20) Acknowledge-but-maintain \\T1/ptm/m/n/10.95 (+20) (23\n.8%): the\n []\n\n[11]) [12\n\n] (./main.aux)\n ***********\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n ***********\nPackage rerunfilecheck Info: File `main.out' has not changed.\n(rerunfilecheck)             Checksum: 32B41EB92CE4783D2EACF7D84E231C81;2423.\n ) \nHere is how much of TeX's memory you used:\n 16265 strings out of 469438\n 256120 string characters out of 5468411\n 726325 words of memory out of 5000000\n 44085 multiletter control sequences out of 15000+600000\n 737483 words of font info for 432 fonts, out of 8000000 for 9000\n 59 hyphenation exceptions out of 8191\n 84i,14n,93p,1501b,698s stack positions out of 10000i,1000n,20000p,200000b,200000s\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/shar\ne/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl\nive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/te\nxmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dis\nt/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts\n/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/\npublic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/\namsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts\n/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8\n.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></u\nsr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sha\nre/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texl\nive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/tex\nmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist\n/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/\ntype1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/t\nype1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helv\netic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb\n></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/te\nxlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (12 pages, 4199811 bytes).\nPDF statistics:\n 914 PDF objects out of 1000 (max. 8388607)\n 598 compressed objects within 6 object streams\n 110 named destinations out of 1000 (max. 500000)\n 87703 words of extra memory for PDF output out of 89155 (max. 10000000)\n",
+        "error": "",
+        "pages": 12,
+        "warnings": [
+          "`h' float specifier changed to `ht'."
+        ]
+      },
+      "pages": 12,
+      "page_status": "ok",
+      "max_pages": null,
+      "min_pages": null,
+      "critical_warnings": [],
+      "minor_warnings": [
+        "`h' float specifier changed to `ht'.",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 1--1",
+        "Underfull \\hbox (badness 1648) in paragraph at lines 39--40",
+        "Underfull \\hbox (badness 5077) in paragraph at lines 25--31",
+        "Underfull \\vbox (badness 1303) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1199) in paragraph at lines 24--29",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 42--48",
+        "Underfull \\hbox (badness 1275) in paragraph at lines 79--84",
+        "Underfull \\hbox (badness 1584) in paragraph at lines 79--84",
+        "Underfull \\hbox (badness 1389) in paragraph at lines 166--170",
+        "Underfull \\hbox (badness 2050) in paragraph at lines 280--284",
+        "Underfull \\hbox (badness 2913) in paragraph at lines 312--316",
+        "Underfull \\hbox (badness 3199) in paragraph at lines 56--58",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 60--63",
+        "Underfull \\hbox (badness 4353) in paragraph at lines 60--63",
+        "Underfull \\hbox (badness 3364) in paragraph at lines 60--63",
+        "Underfull \\hbox (badness 3281) in paragraph at lines 60--63",
+        "Underfull \\hbox (badness 7925) in paragraph at lines 60--63",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 60--63",
+        "Underfull \\hbox (badness 5064) in paragraph at lines 72--73"
+      ],
+      "issues": [],
+      "summary": "PASS"
+    },
+    "refs_result": null,
+    "internal_leak": {
+      "passed": true,
+      "critical": [],
+      "warning": [],
+      "info": [],
+      "summary": "0 critical, 0 warning, 0 info"
+    }
+  },
+  "content_findings": [
+    {
+      "severity": "info",
+      "dimension": "叙事一致性",
+      "message": "Abstract/Intro/Method/Results/Conclusion 主线高度一致：问题（dsyc 能否从诊断工具变为 RL reward）→ 发现（probe reward trap + discriminability≠utility）→ 对比（per-token SFT 一致性成功）贯穿全文，无漂移"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "related_work.tex:10 LaTeX em-dash (---): \"500 steps---an order of magnitude faster...---and a 1,300-step lag\"，应改为逗号或括号"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "probe_trap.tex:64 LaTeX em-dash (---): \"challenge---a dimension absent\"，应拆为两个句子或用逗号"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "conclusion.tex:3 LaTeX em-dash (---): \"capitulation---behavioral death\"，应改为分号或句号拆分"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "discussion.tex:7 LaTeX em-dash (---): \"step 500)---dual consequences\"，应改为逗号或括号"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "无 Unicode em-dash (—) 或 en-dash ( – )；无 filler words；无 AI 用词黑名单词汇；无连续 Furthermore/Moreover/Additionally；无 -ing 分词短语结尾。整体 AI 痕迹极低"
+    },
+    {
+      "severity": "warning",
+      "dimension": "Claim强度",
+      "message": "introduction.tex:39 + discussion.tex:59 \"$1.7{\\times}$ higher $\\sycon$\" 的计算基础不明确。Table 3 数据：ACT reduced-LoRA peak = 0.326, GRPO gs=2 peak = 0.153, ratio = 2.13×（非 1.7×）。若使用 ACT final checkpoint (0.267) / GRPO peak (0.153) = 1.75×≈1.7×，但 peak-vs-final 比较方法不对等。应明确注明比较基准（peak vs peak / mean vs mean / final vs final），或修正数值"
+    },
+    {
+      "severity": "warning",
+      "dimension": "章节结构",
+      "message": "\"SFT with $\\dsyc$ probe penalty\" 出现在 Table 2 (discussion.tex:33-35) 但未在 Framework (Section 3) 中描述其方法定义（训练目标、probe penalty 集成方式）。读者首次在结果表中遇到该方法时缺乏上下文"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Discussion (Section 7) 包含主结果表 (Table 2) 和消融表 (Table 3)，将结果综合与讨论合并。结构功能性完整，但与传统 \"Results→Discussion\" 分节惯例不同，部分审稿人可能期望独立 Results section"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Abstract 四要素完整（问题/方法/结果/意义），~152 words，结构紧凑"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Introduction 采用 4 段+贡献列表结构（背景→核心发现→扩展发现→论文定位→贡献），逻辑清晰"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Related Work 采用 4 个主题段落（RepE / Reward Design / Sycophancy / Probe-Based），归纳式而非堆砌式，positioning 明确"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献对齐",
+      "message": "C1（supervision paradigm gap）→ Table 2 + Table 3 + Figure 3b ✓; C2（probe reward trap）→ Section 6 + Table 3 + Figure 3a ✓; C3（discriminability-utility gap）→ Section 4 + Section 7 ✓。无孤儿章节，无遗漏贡献"
+    },
+    {
+      "severity": "warning",
+      "dimension": "叙事一致性",
+      "message": "cosine_failure.tex:4 首段说 \"256-token truncation reduces $\\dsyc$ AUROC from 0.827 (offline CV) to approximately 0.60\"，将整个 AUROC 下降归因于 truncation；但同节 line 30 揭示 truncation 仅导致 0.76→0.60 的下降，0.827→0.76 另有原因（训练分布偏移）。首段的归因过于简化，可能误导读者"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "AUROC 报告有 5-fold CV ±std (0.827±0.028, 0.779±0.019) ✓; 主结果表报告个体 seed 结果而非 mean±std，对负向结果论文可接受（展示每个 seed 比聚合更透明）"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "1,300-step behavioral-distributional lag 来自 n=1（Limitations 已声明）；gradient gaming 复现于 3 seeds"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "GRPO group size=2 低于典型 8-64 范围（已声明并做 gs=8 消融，但 gs=8 仅 3 checkpoints 即终止，证据有限）"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现性",
+      "message": "GPU 型号 (L20 48GB)、总计算量 (~120 GPU-hours)、超参表 (Table 5)、数据集规模 (181 pairs)、生成流程、代码链接均已提供 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "符号",
+      "message": "$\\dsyc$, $\\tof$, $\\nof$, $\\sycon$, $\\rone$, $\\rthree$, F1-F3 在全文中定义和使用完全一致 ✓; AUROC 在 Abstract/Intro 中用 0.83（合理四舍五入），正文用精确值 0.827"
+    },
+    {
+      "severity": "info",
+      "dimension": "过渡",
+      "message": "Direction Quality→Cosine Failure 有 \"Implications for reward design\" 桥接段 ✓; Cosine Failure→Probe Trap 有 \"Section 6 examines whether discretizing...\" ✓; Discussion 提供高层解读而非重复数字 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "Limitations",
+      "message": "66 words, 3 个实质性限制点（单架构训练 / ACT-GRPO 对比多维混杂 / 关键发现 n=1）。用户规则允许简短覆盖 3 点，符合 EMNLP 2026 要求。每点均为实质限制而非回避式表述"
+    },
+    {
+      "severity": "info",
+      "dimension": "内部信息",
+      "message": "无内部实验编号、服务器名、IP 地址、内部路径泄露 ✓; 无隐含内部流程表述 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "Abstract ~152 words < 200 words ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "Limitations 为正文中单一 section (main.tex:56 \\section*{Limitations})，appendix 无 limitations section ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "ARR Checklist 未出现在 PDF 中 ✓（应在 OpenReview 表单中填写）"
+    },
+    {
+      "severity": "info",
+      "dimension": "审稿规则",
+      "message": "编译 12 页（含 appendix + references），正文 main text 在 8 页限制内（limitations 和 references 不计入页数）✓"
+    }
+  ],
+  "visual_findings": [
+    {
+      "severity": "critical",
+      "dimension": "写作规则",
+      "message": "[pages 8-9] 论文缺少独立的 Limitations section。Section 8 Conclusion（page 8）之后直接是 References（page 9），中间无 Limitations 章节。Conclusion 中虽有 limitation 相关内容（compute constraints、单模型限制），但未作为独立 section。EMNLP 2026 要求正文中必须有一个独立的 Limitations section（不计入 8 页页数限制）。缺失可能导致 desk reject。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 12",
+      "message": "Appendix B 仅有约 6 行文字在页面顶部，剩余约 85% 页面空白。建议将 Appendix B 内容整合压缩，或在该页补充有价值的附录内容（如更多 ablation、case study 示例），避免空间浪费。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Figure 2 框架图中部分注释文字（如 panel 内的小字标签 \"31/31 checkpoints > vanilla\"、\"SYCON = 0.301\"）字号偏小，估计约 6-7pt，接近正文字号 70% 下限。建议适当放大或移入 caption。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Figure 2 使用红色 ✗ / 绿色 ✓ 标注失败/成功方法。虽然 ✗/✓ 形状提供冗余编码（色盲友好），但纯色觉辨识度可进一步优化（如改用 Okabe-Ito 色板中的 vermillion/bluish-green）。"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Figure 4(a) 三个子图垂直堆叠，单个子图高度较窄，y 轴刻度标签略密。如有空间可考虑适当增加子图高度以提升可读性。"
+    }
+  ],
+  "counts": {
+    "critical": 1,
+    "warning": 30,
+    "info": 22
+  },
+  "error": "",
+  "timestamp": "2026-05-25T19:12:52.933254+00:00"
+}

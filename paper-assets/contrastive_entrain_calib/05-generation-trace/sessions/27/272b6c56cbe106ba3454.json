@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "272b6c56cbe106ba3454",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops disk check 29046",
+  "task_key": "worker_ops_disk-check-29046_20260523T161243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-check-29046_20260523T161243_result.json",
+    "occurrence": 1,
+    "bytes": 2930,
+    "sha256": "8340acdec7d600b1621ca4b1cf15dc2fd161274964af99bb2d77e769bc1b9bbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 磁盘空间检查结果\n\n### 1. 整体磁盘使用\n\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| `/`（根分区） | 30G | 25G | **5.5G** | 82% |\n| `/dev/sda2`（数据盘，autodl-tmp） | 439G | 16G | **400G** | 4% |\n\n### 2. 大目录 Top 10\n\n| 目录 | 大小 | 位置 |\n|------|------|------|\n| `/root/autodl-tmp/checkpoints/` (exp003 seed1+seed2) | 23G | 数据盘 |\n| `/root/autodl-tmp/contrastive_entrain_calib/outputs/` | 18G | 数据盘 |\n| `/root/contrastive_entrain_calib/checkpoints/` | 7.5G | **根分区** |\n| `/root/.cache/huggingface/` | 3.1G | **根分区** |\n| `/root/contrastive_entrain_calib/output/` | 1.5G | **根分区** |\n| `/root/contrastive_entrain_calib/backups/` | 1.5G | **根分区** |\n| `/root/contrastive_entrain_calib/outputs/` | 682M | **根分区** |\n| `/root/contrastive_entrain_calib/results/` | 415M | **根分区** |\n| `/root/autodl-tmp/eval_checkpoints/` | 235M | 数据盘 |\n\n### 3. 空间判断\n\n- **数据盘（autodl-tmp）：400G 可用，远超 35GB 需求，完全充足。**\n- **根分区：仅 5.5G 可用，已经很紧张。** 根分区上有 ~14GB 的项目数据（checkpoints/output/backups），如果后续实验误写根分区会立刻满。\n\n### 4. 可安全清理的候选目录\n\n**根分区上（释放空间优先级高）：**\n\n| 目录 | 大小 | 说明 |\n|------|------|------|\n| `/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine` | 5.4G | 旧实验 exp002v2 的 checkpoints |\n| `/root/contrastive_entrain_calib/checkpoints/exp002_dcgrpo_seed1` | 719M | 旧实验 exp002 |\n| `/root/contrastive_entrain_calib/checkpoints/exp008_dryrun` | 682M | dryrun checkpoint |\n| `/root/contrastive_entrain_calib/checkpoints/exp008_dryrun_v4` | 682M | dryrun v4 checkpoint |\n| `/root/contrastive_entrain_calib/output/activations.pt` | 721M | 旧 activations 文件 |\n| `/root/contrastive_entrain_calib/output/phase5/` | 721M | 旧 phase5 输出 |\n| `/root/contrastive_entrain_calib/backups/act-s1` | 682M | 旧备份 |\n| `/root/contrastive_entrain_calib/backups/reduced-lora` | 748M | 旧备份 |\n\n清理以上可释放约 **10.3GB**，使根分区可用空间达到 ~15.8G。\n\n**数据盘上（非紧急，但可释放空间）：**\n\n| 目录 | 大小 | 说明 |\n|------|------|------|\n| `/root/autodl-tmp/checkpoints/exp003_r3only_seed1` | 12G | 如果 seed1 实验已完成且结果已记录 |\n| `/root/autodl-tmp/checkpoints/exp003_r3only_seed2` | 12G | 同上 |\n| `/root/autodl-tmp/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2` | 9.4G | 如果 baseline s2 已完成 |\n\n### 5. 结论\n\n**数据盘空间充足（400G），后续实验只要确保 outputs 写到 `/root/autodl-tmp/` 下即可。根分区偏紧（5.5G），建议清理根分区上的旧 checkpoints 和 backups（可释放 ~10G）。未删除任何文件。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-check-29046.md"
+}

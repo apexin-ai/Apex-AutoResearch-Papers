@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d317f1548cd7c52b1272",
+  "project": "contrastive_entrain_calib",
+  "kind": "history",
+  "title": "agent / loop_2_1779358542.md",
+  "task_key": "loop_2_1779358542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1779358542.md",
+    "occurrence": 1,
+    "bytes": 5100,
+    "sha256": "77724063a5cae66cb611d608ef76eb04c77d38791adc72417c6715e6e1543654"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-21T08:13:38+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-28034 分配 GPU: cuda:0,1,2,3（4× A100 32GB）；westd-29046 分配 GPU: cuda:0,1（2× A100 96GB）。超出这些卡号必须 push back Director\n- exp-003 R3-only baseline 是论文 Claim 2 的 MUST 实验——不可 kill、不可降优先级\n- D027 unified eval 是唯一合法 eval 标准（eval_unified_preset.py），旧 eval_pipeline.py 数字不可引用（vanilla 0.197 是旧数字，正确 baseline=0.1335）\n- 所有 R1 formulation 均已失败（cosine/scaled-cosine/binary-probe/continuous-probe/ActAdd）——不要再尝试新 R1 变体，论文 framing 已转为 analysis paper \"Discriminability Without Utility\"\n- exp-003 eval 系列（ckpt1000-5000）是画训练轨迹图用的，即使单个 checkpoint 低于 baseline 也不算\"实验失败\"，是数据点收集\n\n### 2. 🖥️ 基础设施快照\n- **westd-28034**（4× A100 32GB）：工作目录 `/root/contrastive_entrain_calib`，Python `/root/miniconda3/bin/python`，conda base 环境\n  - 模型：`/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B`，Llama：`/root/autodl-tmp/models/LLM-Research/Meta-Llama-3-8B-Instruct`\n  - 数据：`/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl`（362 pairs）\n  - Checkpoints：exp-003 在 `/root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-{1000..5000}`，exp-004 ACT 在 `/root/contrastive_entrain_calib/outputs/exp-004-act-baseline/`\n  - 磁盘：根分区 22%，数据盘 `/autodl-tmp` 23%\n- **westd-29046**（2× A100 96GB）：同结构，exp-003 seed1 训练中（cuda:1, PID 70649），exp-003-s2 seed2 训练中（cuda:0, PID 237432）\n- 活跃进程：\n  - exp-003 训练：westd-29046 cuda:1, PID 70649（预计 May 21 ~17:00 完成）\n  - exp-003-s2 训练：westd-29046 cuda:0, PID 237432（预计 May 23 完成）\n  - exp-009-eval-ckpt1000：westd-28034 cuda:3, PID 234111（RUNNING，registry 有结果但状态未更新）\n\n### 3. 📊 当前状态\nSession 刚启动。收到 exp-003-eval-ckpt3000 完成回调（ANALYZING）。reconcile 同时发现 exp-003-eval-ckpt2000 也完成（ANALYZING）。已 spawn Worker `worker_eval_exp003-ckpt2000-ckpt3000-results_20260520T140841` 去 SSH 读取两个 eval 结果 + 检查 ckpt-4000 状态——**Worker 尚未返回，下一个\"我\"必须等这个回调再处理结果**。\n\nRegistry 关键状态：\n- **RUNNING**: exp-003（训练）、exp-003-s2（训练）、exp-009-eval-ckpt1000（eval，可能已完成但 cron 未触发）\n- **ANALYZING**: exp-003-eval-ckpt3000、exp-003-eval-ckpt2000（Worker 正在读结果）\n- **PREPARING（疑似已完成但状态未更新）**: exp-003-eval-ckpt4000（PID 235058）、vanilla-d027-reeval（已有 metrics+conclusion=success）、exp-009-eval-ckpt500（已有 metrics+conclusion=negative）\n- **已完成的 eval 轨迹数据点**: ckpt-1000 SYCONScore=0.0743, ckpt-5000 SYCONScore=0.1144。缺 ckpt-2000/3000/4000\n\n### 4. 📋 待办（条件触发式）\n- Worker `worker_eval_exp003-ckpt2000-ckpt3000-results` 回调 → 提取 metrics → update_registry 两个实验到 DONE → 刷新 report.md\n- ckpt-4000 如果也已完成 → 同样更新 registry → 至此 exp-003 eval 轨迹（1000-5000）5 个点齐全\n- exp-003 训练完成（~May 21 17:00）→ 立即 spawn eval ckpt-6000/7000/8000 系列，同时 ckpt-8000 是 final eval\n- exp-003-s2 训练完成（~May 23）→ 同理跑 seed2 eval 系列\n- 5 个轨迹点齐全 → 汇报 Director，同时通知 Paper Agent 可以写 Results 章节中 R3-only baseline 部分\n- westd-28034 GPU 0/1/2 目前应该空闲（eval 完了）→ 检查后如有实验可铺立即铺上，否则汇报 Director\n- exp-009-eval-ckpt1000 状态异常（registry=RUNNING 但 exp-009 已被 kill）→ Worker 检查后若已完成需手动推进\n\n### 5. 🎯 战略上下文\n- 论文是 analysis paper：\"Discriminability Without Utility: Why Sycophancy Directions Fail as RL Rewards\"\n- **核心叙事**：d_syc 方向能判别 sycophancy（AUROC 0.82+ 跨模型），但所有将其转化为 RL reward 的 formulation 都失败。exp-004 ACT（SFT 方法）反而成功（SYCONScore=0.301），说明问题不在表征而在 reward 转化\n- **Claim 强度 Medium-High**（D037）。升级到 High 的条件：exp-003 R3-only 某个 checkpoint SYCONScore ≥ 0.20\n- **exp-003 early checkpoints（1000/5000）都低于 vanilla baseline**——这本身是重要数据点，说明 R3-only 早期也不 work，但可能后期（ckpt-8000）会追上。不要过早下结论\n- **易错点**：vanilla baseline 用 D027 unified eval 是 0.1335，不是旧 eval_pipeline 的 0.1974。所有对比必须用 D027 数字\n- Paper 写作进度：Framework/Direction Quality/Cosine Failure/Probe Trap/Introduction/fig_layer_auroc 已完成，Results（blocked on exp-003 完整轨迹）、Conclusion、Related Work 待写\n- 决策链关键节点：D037（claim 强度）、D039（D027 统一基线）、D040（kill exp-009 完成 all-formulations-fail 论证）、D041（exp-004 是 SFT 非 RL）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1779358542.md"
+}

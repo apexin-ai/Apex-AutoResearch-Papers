@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4aa50bddd384819e2a4a",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp016 reeval monitor v2",
+  "task_key": "worker_eval_exp016-reeval-monitor-v2_20260519T103518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp016-reeval-monitor-v2_20260519T103518_result.json",
+    "occurrence": 1,
+    "bytes": 170,
+    "sha256": "7b25f551ff76bb8378d333bf5e6d96f6a6e465d15efb553e0312d802317851c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitoring started. Process running for ~2 min, evaluating alpha=0.00 first. I'll check back in ~4.5 minutes and continue every 5 minutes until completion."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp016-reeval-monitor-v2.md"
+}

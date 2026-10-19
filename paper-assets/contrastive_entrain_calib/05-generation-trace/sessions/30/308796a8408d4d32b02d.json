@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "308796a8408d4d32b02d",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "diag westd 29046 progress",
+  "task_key": "worker_diag_westd-29046-progress_20260518T231441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_westd-29046-progress_20260518T231441.log",
+    "occurrence": 1,
+    "bytes": 676891,
+    "sha256": "284b4d42b876455c04304a1209858699f9d9f912b50ef06d3bd6b22bb3e66b77"
+  },
+  "statistics": {
+    "messages": 289,
+    "user_turns": 1,
+    "tool_calls": 103,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 75,
+      "tool_call": 103,
+      "tool_result": 103,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 162,
+      "chunks": [
+        {
+          "path": "308796a8408d4d32b02d-part-0001.json",
+          "message_count": 162
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 127,
+      "chunks": [
+        {
+          "path": "308796a8408d4d32b02d-part-0001.json",
+          "message_count": 18
+        },
+        {
+          "path": "308796a8408d4d32b02d-part-0002.json",
+          "message_count": 109
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diag-westd-29046-progress.md"
+}

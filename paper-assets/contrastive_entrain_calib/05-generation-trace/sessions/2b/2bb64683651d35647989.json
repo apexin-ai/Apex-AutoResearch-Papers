@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2bb64683651d35647989",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "paper paperbanana fig1 v2",
+  "task_key": "worker_paper_paperbanana-fig1-v2_20260525T152554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_paperbanana-fig1-v2_20260525T152554_result.json",
+    "occurrence": 1,
+    "bytes": 631,
+    "sha256": "60b707093d737e8ebd204132bfad3794eb60672d63bbb8fac106f49030cf7a91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 1 完成。\n\n**输出文件：**\n- PNG: `docs/paper/figures/fig_teaser.png`\n- PDF: `docs/paper/figures/fig_teaser.pdf`\n- LaTeX 编译通过（13 页，main.pdf）\n\n**相比 matplotlib 旧版的改进：**\n- PaperBanana v2 准确渲染了两个 panel 的所有元素\n- Panel (a): \"Non-sycophantic\" 标签正确使用 navy blue，Valid revision / Capitulation 子类区分清晰\n- Panel (b): ToF 从 ~0.45 下降到 0（step 500），entropy 从 ~0.78 缓慢下降，1,300-step lag 标注清晰，Reward ≈ +0.72 标注在右下角\n- 配色与 Figure 2 一致（navy / vermillion / green / gold）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-paperbanana-fig1-v2.md"
+}

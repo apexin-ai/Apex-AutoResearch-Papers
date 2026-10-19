@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc20775af110f192a279",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code exp002v3 final adjustments",
+  "task_key": "worker_code_exp002v3-final-adjustments_20260519T073451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp002v3-final-adjustments_20260519T073451_result.json",
+    "occurrence": 1,
+    "bytes": 1395,
+    "sha256": "bbc282148bfee282610e78ad391fc4ca09a2e344b44df6856e1ee01ba9cf9c0e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 最终配置确认表\n\n| 参数 | 要求值 | 实际值 | 状态 |\n|---|---|---|---|\n| `R1_WEIGHT` | 0.4 | 0.4 | OK |\n| `R2_WEIGHT` | 0.0 | 0.0 | OK |\n| `R3_WEIGHT` | 0.6 | 0.6 | OK |\n| `R1_SCALE_FACTOR` | 5.0 | 5.0 | OK |\n| `lora_alpha` | 64 | 64 | OK |\n| `recalibration_interval` | 500 | 500 | OK |\n| `max_steps` | 8000 | 8000 | OK |\n| `seed` | 42 | 42 | OK |\n| `resume_from_checkpoint` | 删除 | 已删除，`trainer.train()` 无参数 | OK |\n\n## Dry-run 结果\n\n`py_compile` → **PASS**\n\n## Trainer import 路径确认\n\n- Run script: `sys.path.insert(0, \"/root/mvp_v2_1_expanded/training\")`\n- 导入: `from dcgrpo_trainer import DCGRPOConfig, DCGRPOTrainer`\n- 实际路径: `/root/mvp_v2_1_expanded/training/dcgrpo_trainer.py`\n- `/root/contrastive_entrain_calib/training/dcgrpo_trainer.py` **不存在**，无歧义\n- `r1_scale_factor` 在该 trainer 第130/271/674行正确实现（config default=1.0，run script 传入 5.0）\n\n## 修改摘要\n\n1. 删除 `resume_from_checkpoint`，从 base model 从头训练\n2. 添加顶部异常阈值监控注释\n3. 增强 `compute_rewards`：step 1-50 每步打印 R1/R3 mean+std、combined reward std、按 strength 分组的 R1；step 50+ 恢复每 10 步打印\n4. `grad_norm`/`entropy` 由 HF trainer 内置 `logging_steps=10` 自动记录，无需额外代码\n5. 远程 + 本地文件已同步"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp002v3-final-adjustments.md"
+}

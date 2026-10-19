@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e2def5b43814f74b231",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops find act s1 ckpt8000",
+  "task_key": "worker_ops_find-act-s1-ckpt8000_20260523T130144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_find-act-s1-ckpt8000_20260523T130144_result.json",
+    "occurrence": 1,
+    "bytes": 513,
+    "sha256": "b77385ff70ad3e418864e51ed6e5c658b5230b3c6049bead0c3c1bcdd396c6ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ACT s1 ckpt-8000 完整路径：\n\n```\n/root/contrastive_entrain_calib/backups/act-s1/checkpoint-8000/\n```\n\n- 大小：682MB（adapter_model.safetensors 666MB + tokenizer 等）\n- 包含 `adapter_config.json` + `adapter_model.safetensors`，是完整的 LoRA checkpoint\n- 迁移日期：May 19（非 outputs/ 目录，在 backups/ 下）\n\n另外 29046 上还有一个 ACT s2 的 ckpt-8000 在 `/root/autodl-tmp/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2/checkpoint-8000/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-find-act-s1-ckpt8000.md"
+}

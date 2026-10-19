@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41e0e7aa101e530f94a3",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops fix tmp and verify",
+  "task_key": "worker_ops_fix-tmp-and-verify_20260521T044228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-tmp-and-verify_20260521T044228_result.json",
+    "occurrence": 1,
+    "bytes": 1219,
+    "sha256": "fd6a0fb9a736785dd33e5c2d4a859edb455832061f276de7a609c7f9dbd52ffe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部诊断完成。报告如下：\n\n---\n\n### 1. Checkpoint 修复状态：**无需修复**\n\n`_tmp` 目录（6000、6500、7000）均不存在，说明 rename 已经完成（或 SCP 直接写入了主目录）。主目录内容完整。\n\n### 2. 文件完整性验证：**全部通过**\n\n| Checkpoint | 文件数 | 总大小 | adapter_model.safetensors | 状态 |\n|------------|--------|--------|--------------------------|------|\n| 5000 | 17 | 718M | 245MB | OK |\n| 5500 (参考) | 17 | 719M | 245MB | OK |\n| 6000 | 17 | 719M | 245MB | OK |\n| 6500 | 17 | 719M | 245MB | OK |\n| 7000 | 17 | 719M | 245MB | OK |\n\n所有 checkpoint 大小一致（718-719M），文件结构完全相同，关键文件（adapter_model.safetensors ~245MB, optimizer.pt ~491MB）齐全。\n\n### 3. ckpt-5000 eval：**需要重跑**\n\n`results/exp003_d027_eval/` 中没有 `exp003-ckpt5000_*` 文件。已有 eval 的 checkpoint：1000, 2000, 3000, 4000, 4500, 5500。**ckpt-5000 eval 缺失，需要重跑。**\n\n### 4. Seed 2 _tmp 问题：**无问题**\n\n- 无 `_tmp` 目录\n- checkpoint-500/1000/1500：250M（无 optimizer，正常——早期 checkpoint）\n- checkpoint-2000/2500：718M（完整）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-tmp-and-verify.md"
+}

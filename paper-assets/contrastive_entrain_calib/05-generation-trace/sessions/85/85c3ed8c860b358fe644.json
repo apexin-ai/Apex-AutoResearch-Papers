@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85c3ed8c860b358fe644",
+  "project": "contrastive_entrain_calib",
+  "kind": "history",
+  "title": "agent / loop_2_1779350924.md",
+  "task_key": "loop_2_1779350924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1779350924.md",
+    "occurrence": 1,
+    "bytes": 5406,
+    "sha256": "9c8453ccc0914abd2bdfefebc3916a60a25d3fdc274f3b2168317cc9538ba014"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-21T07:52:47+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-29046:cuda:0,cuda:1 + westd-28034:cuda:0,cuda:1,cuda:2,cuda:3，共 6 张\n- exp-004 是 SFT（ACT）不是 RL，汇报/写论文时不能混淆（D041 教训）\n- exp-003 R3-only 也算\"失败\"——plateau 后恢复极慢（D043 降 Claim 至 Medium），不能当正面对照\n- D040 已 kill exp-009 训练（continuous probe = \"慢性 binary probe trap\"），不要再提交 exp-009 新 checkpoint 训练\n- vanilla baseline SYCONScore=0.134（D039 统一 eval 校正后），旧值 0.197 已废弃，所有对比必须用 0.134\n\n### 2. 🖥️ 基础设施快照\n- **westd-29046**：2× A100 96GB，项目路径 /root/contrastive_entrain_calib，Python /root/miniconda3/bin/python\n  - cuda:0 → exp-003-s2 (pid=237432, R3-only seed 2 训练)\n  - cuda:1 → exp-003 (pid=70649, R3-only seed 1 训练)\n  - 磁盘：根分区 4% used，数据盘 24% used\n- **westd-28034**：4× A100 32GB，同路径同 Python\n  - cuda:0 → exp-004-eval-ckpt4500 (pid=601614)\n  - cuda:1 → exp-004-eval-ckpt7500 (pid=601971)\n  - cuda:2 → exp-004-eval-ckpt5500 (pid=601752)\n  - cuda:3 → exp-004-eval-ckpt6500 (pid=601831)\n  - 磁盘：根分区 2% used，数据盘 24% used\n- 模型：/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\n- exp-004 checkpoints：/root/autodl-tmp/outputs/exp-004-act-baseline/checkpoint-{500..8000}\n- exp-003 checkpoints：westd-29046 上（路径需 SSH 确认，训练仍在跑）\n- eval 输出：/root/autodl-tmp/results/exp004_unified_eval/（28034）、/root/contrastive_entrain_calib/results/（28034）\n- 数据：/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl（362 pairs）\n\n### 3. 📊 当前状态\n**刚做完**：收到 exp-004-eval-ckpt1500 的 cron 完成回调，补全了 hypothesis/parent，派 Worker 读取真实 metrics（registry 中的 metrics 可能是从 parent 自动填充的错误值——与 ckpt-500 完全一致，需验证）。\n\n**等待中的 Worker 回调**：\n1. `worker_analysis_exp-004-eval-ckpt1500_20260520T154443` — SSH 读 westd-28034 上 exp004_ckpt1500 eval 结果，更新 registry\n2. `worker_analysis_exp-009-eval-ckpt1000_20260520T154825` — 检查 exp-009-eval-ckpt1000 进程状态（registry 仍 RUNNING 但已 6h+，进程大概率已死），读取结果并更新 registry\n\n**RUNNING 实验**：\n- exp-003 (westd-29046:cuda:1) — R3-only GRPO seed 1，ETA 训练完成 May 21 ~17:00\n- exp-003-s2 (westd-29046:cuda:0) — R3-only GRPO seed 2，ETA May 23\n- exp-004-eval-ckpt4500/5500/6500/7500 (westd-28034 4 GPU) — 约 15:41 提交，每个 ~30min，预计 16:10 左右完成。registry 状态仍为 PREPARING（未走完状态机），cron 应会自动回调\n\n**PREPARING 待提交**：\n- exp-003-eval-ckpt2000, exp-003-eval-ckpt3000 — blocked on westd-29046 GPU（被训练占满）\n- vanilla-d027-reeval — 可在 westd-28034 跑但当前 4 GPU 都在跑 exp-004 eval\n- exp-009-eval-ckpt500 — 可能已有 D039 数据(SYCONScore=0.124)，需确认是否冗余\n\n**尚未汇报 Director**：等两个 Worker 回调后一并汇报。\n\n### 4. 📋 待办\n- Worker exp-004-eval-ckpt1500 回调 → 用真实 metrics 更新 registry，判断 conclusion(success expected，SYCONScore 应在 0.205~0.255 之间)\n- Worker exp-009-eval-ckpt1000 回调 → 更新 registry 到 DONE，D040 kill 决策可能需要这个数据点确认\n- exp-004-eval-ckpt4500/5500/6500/7500 cron 回调（预计 ~16:10 UTC）→ 批量分析结果，完成 ACT 全轨迹（500 步间隔 16 个点）\n- 上述 eval 全部完成 → 向 Director 汇报完整 ACT 训练轨迹，附 SYCONScore vs steps 数据表\n- westd-28034 GPU 释放后 → 提交 vanilla-d027-reeval（baseline 一致性校验）+ exp-003-eval-ckpt2000/3000（如果 checkpoint 已在 28034 上或可拷贝）\n- exp-003 训练完成（~May 21 17:00）→ ckpt-8000 final eval，这是 Claim 2 的关键数据\n- 所有 eval 数据就绪 → Paper Agent 可以写 Results section（当前 blocked on exp-003）\n\n### 5. 🎯 战略上下文\n**论文**：\"Discriminability Without Utility: Why Sycophancy Directions Fail as RL Rewards\"。核心结论：d_syc 方向能判别 sycophancy（AUROC 0.82）但所有 reward formulation 均失败。唯一\"成功\"的是 exp-004 ACT（SFT-based，非 RL），这反而支撑论文的 negative 叙事。\n\n**Claim 强度**：Medium-High (D037)，升 High 需要 exp-003 SYCONScore≥0.20 + exp-009 也 fail。D043 已降回 Medium（exp-003 plateau）。\n\n**ACT 轨迹当前数据**（exp-004，按 step 排序，SYCONScore）：\n500→0.170, 1000→0.205, 1500→待确认, 2000→0.255, 2500→0.239, 3000→0.206, 3500→0.231, 4000→0.214, 5000→0.263, 6000→0.262, 7000→0.286, 8000→0.301\n注意 2500-4000 区间有 dip，不是单调递增。论文叙事已考虑这点。\n\n**易踩的坑**：\n- exp-004-eval-ckpt1500 的 registry metrics 可能是错误的自动填充（ToF/NoF/SYCONScore 与 ckpt-500 完全一致），必须等 Worker 返回真实值后再用\n- exp-004-eval-ckpt4500/5500/6500/7500 的 registry status 是 PREPARING 但进程已在跑（有 PID），cron 回调时需要手动走状态机 PREPARING→...→ANALYZING→DONE\n- exp-003 checkpoint 在 westd-29046 上，eval 如果要在 westd-28034 跑需要先拷贝 checkpoint，或在 29046 上跑（但 GPU 被训练占满）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1779350924.md"
+}

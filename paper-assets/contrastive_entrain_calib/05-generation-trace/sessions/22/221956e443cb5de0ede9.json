@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "221956e443cb5de0ede9",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "eval 28034 rl8000 and heldout monitor",
+  "task_key": "worker_eval_28034-rl8000-and-heldout-monitor_20260523T082852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_28034-rl8000-and-heldout-monitor_20260523T082852.log",
+    "occurrence": 1,
+    "bytes": 629647,
+    "sha256": "1df99186248582ce2ff316840562ccc856e3f96dd4a3d2d15b8240f1aa2b6364"
+  },
+  "statistics": {
+    "messages": 439,
+    "user_turns": 0,
+    "tool_calls": 173,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 89,
+      "tool_call": 173,
+      "tool_result": 173,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 439,
+      "chunks": [
+        {
+          "path": "221956e443cb5de0ede9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "221956e443cb5de0ede9-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "221956e443cb5de0ede9-part-0003.json",
+          "message_count": 79
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-28034-rl8000-and-heldout-monitor.md"
+}

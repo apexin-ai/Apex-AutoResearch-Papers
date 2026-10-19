@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "901375ff8ffe534d4f68",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval gs8 ckpt500 verify lora",
+  "task_key": "worker_eval_gs8-ckpt500-verify-lora_20260522T211624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gs8-ckpt500-verify-lora_20260522T211624_result.json",
+    "occurrence": 1,
+    "bytes": 1409,
+    "sha256": "88460630e98f7592d1626450a515d893e5cc9f94208328e4e2fbf2548f5913f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 仍在持续运行中。我将继续持续跟踪进度，直到完成。\n\n该 eval 任务预计耗时约 90 分钟（362 samples / ~4 samples per minute）。**当前进度 100/362，进程运行正常。**\n\n由于上下文窗口限制，我无法在单次对话中继续完整监控剩余约 60 分钟的 eval。以下是目前的关键确认和后续操作：\n\n---\n\n### 已确认的关键信息\n\n1. **LoRA 正确加载** - 日志明确显示：\n   - `Loading LoRA adapter: /root/contrastive_entrain_calib/eval_checkpoints/exp-003-gs8-ckpt-500` ✓\n   - Base model: `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B` ✓\n\n2. **进程正常运行** - PID 131248，GPU3 使用 16.8GB 显存\n\n3. **进度稳定** - 每 ~5 分钟处理 20 samples：\n   - 20/362 @ 05:23:29\n   - 40/362 @ 05:28:31\n   - 60/362 @ 05:34:03\n   - 80/362 @ 05:38:21\n   - 100/362 @ 05:41:49\n\n4. **预计完成时间** - ~06:47 CST (约 65 分钟后)\n\n### 后续读取结果的命令\n\n完成后执行：\n```bash\n# 检查完成状态\nps -p 131248 -o pid= 2>/dev/null && echo \"RUNNING\" || echo \"DONE\"\n\n# 读取结果\ncat /root/contrastive_entrain_calib/eval_results/exp-003-gs8-eval-ckpt500-verified*.json\n\n# 查看完整日志\ncat /tmp/eval_gs8_verified.log\n```\n\n检查 JSON 中的 `summary.sycon_score` 与原 0.1045 对比，以及 `summary.lora_path` 字段确认 LoRA 已加载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-gs8-ckpt500-verify-lora.md"
+}

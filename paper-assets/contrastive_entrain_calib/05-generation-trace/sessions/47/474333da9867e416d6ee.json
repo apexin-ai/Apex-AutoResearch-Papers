@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "474333da9867e416d6ee",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops verify gs8 killed and act256 progress",
+  "task_key": "worker_ops_verify-gs8-killed-and-act256-progress_20260525T210155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-gs8-killed-and-act256-progress_20260525T210155_result.json",
+    "occurrence": 1,
+    "bytes": 734,
+    "sha256": "6d8d7361b97cbb8b961d800b13f1edd166a01a4e3a1abfd3b3f35cf066bfcdb7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已终止。汇总结果：\n\n```\ncuda:1 状态: 已清理。原有 gs8 进程 (PID 14497, run_exp002v3_gs8.py, 运行 1m37s) 已 kill。\nexp-act-256-v2: 当前 step 1840/8000, 最新 checkpoint-1500, 预估剩余时间 ~42h\n```\n\n详细说明：\n- **cuda:0**: exp-act-256-v2 (PID 2117) 正常运行，已跑 3h33m，GPU 利用率 41%，显存 24GB/98GB\n- **cuda:1**: 已释放（gs8 进程已杀），无 gs8 相关 tmux session\n- **exp-act-256-v2 进度**: step 1840/8000，每 10 步约 70s，剩余 6160 步 ≈ 43080s ≈ 12h。checkpoint 每 500 步保存，已有 500/1000/1500 三个\n\n修正预估：按 elapsed 12791s 完成 1840 步，每步 ~6.95s，剩余 6160 步 × 6.95s ≈ **~11.9h**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-gs8-killed-and-act256-progress.md"
+}

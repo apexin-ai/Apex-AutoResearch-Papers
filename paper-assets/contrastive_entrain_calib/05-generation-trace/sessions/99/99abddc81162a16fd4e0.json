@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99abddc81162a16fd4e0",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "fix deberta download and restart",
+  "task_key": "worker_fix_deberta_download_and_restart_20260518T152525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_deberta_download_and_restart_20260518T152525_result.json",
+    "occurrence": 1,
+    "bytes": 845,
+    "sha256": "e9e5507db4f514c92e270be00256b9c0af7dbfe410ddf3a7882b263b083a6489"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**修复内容**：\n1. **根因**：`microsoft/deberta-v3-base` 是 base 模型（2 labels），不是 NLI 模型（3 labels），R3 reward 计算时 `probs[:, 2]` 越界\n2. **附加问题**：transformers 5.8.1 有 DeBERTa tokenizer 转换 bug → 降级到 4.57.6 + 安装 sentencepiece/tiktoken\n3. **修复**：\n   - 两台服务器 transformers 降级到 4.57.x\n   - NLI 模型换为 `cross-encoder/nli-deberta-v3-base`（3 labels）\n   - `dcgrpo_trainer.py` patch：`DebertaV2Tokenizer` 替代 `AutoTokenizer` + 动态查找 entailment label index\n   - 两台服务器预缓存新 NLI 模型\n\n**当前状态**：\n- **exp-002** (cuda:0): RUNNING, step 1/8000 ✓, PID 63704, tmux `exp-002`\n- **exp-003** (cuda:1): RUNNING, step 1/8000 ✓, PID 63563, tmux `exp-003`\n- Registry 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-deberta-download-and-restart.md"
+}

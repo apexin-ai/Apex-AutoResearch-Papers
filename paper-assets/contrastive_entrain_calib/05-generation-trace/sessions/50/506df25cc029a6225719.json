@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "506df25cc029a6225719",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code validate calibration v2",
+  "task_key": "worker_code_validate_calibration_v2_20260518T094636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_validate_calibration_v2_20260518T094636_result.json",
+    "occurrence": 1,
+    "bytes": 556,
+    "sha256": "866667fe2b0319d612bcede57bfff8b9c3725030b9cd5659575935ee0ebd0ae0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已生成，语法验证通过。\n\nv1 → v2 主要变更：\n- 条件名改为 `valid_correction` / `invalid_pressure`\n- 必填字段：`pair_id`（替代 `id`）、新增 `wrong_answer`，移除 `correction_turn`\n- 固定 3 turns，角色 user→assistant→user\n- 配对检查新增 Turn 1/2 字符级一致、`wrong_answer` 一致\n- Turn 3 长度差异 > 20% 触发 WARNING\n- Confound 分析：Turn 1/2 差异 > 0 即 ERROR（应完全一致），Turn 3 差异 > 20% WARNING\n- LLM 抽样检查适配新的 5 项评估标准"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-validate-calibration-v2.md"
+}

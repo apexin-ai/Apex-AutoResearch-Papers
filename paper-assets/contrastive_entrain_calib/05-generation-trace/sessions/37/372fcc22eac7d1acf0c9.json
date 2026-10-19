@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "372fcc22eac7d1acf0c9",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "run exp 002 dcgrpo",
+  "task_key": "worker_run_exp-002_dcgrpo_20260518T150603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_exp-002_dcgrpo_20260518T150603_result.json",
+    "occurrence": 1,
+    "bytes": 634,
+    "sha256": "4e54b139ad8787299d3d49fa4334077c8c359e1b3ae553b6f8115af2ea3e0bc6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "exp-002 已成功提交并运行中。\n\n**汇总：**\n- **脚本**: `/root/contrastive_entrain_calib/training/run_exp002_dcgrpo.py`\n- **tmux 会话**: `exp002` on westd-29046\n- **3 处修改全部落地**:\n  1. R1=0.15, R2=0.2, R3=0.65\n  2. reward_layers=[19, 20, 24, 27, 32, 33, 35]\n  3. Per-strength R1 自适应门控：前 10 步统计 weak pairs R1，step 100 后按条件（|mean|<0.05 或 std>|mean|）自动将 weak pairs R1 贡献归零\n- **日志确认**: d_syc 已加载 (shape=[36,2,4096])，hooks 注册在 7 层，训练已开始\n- **Registry**: exp-002 状态 RUNNING，含完整 spec 和超参"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-exp-002-dcgrpo.md"
+}

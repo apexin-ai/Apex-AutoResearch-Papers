@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d09c995350d6b18d1ce6",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp016 reeval monitor collect",
+  "task_key": "worker_eval_exp016-reeval-monitor-collect_20260519T102444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp016-reeval-monitor-collect_20260519T102444_result.json",
+    "occurrence": 1,
+    "bytes": 49,
+    "sha256": "f32242b8768a4fd8ae54ddcf1192446bf7796a0e2b16fa8cef8dbb3b36a2cb04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4.5 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp016-reeval-monitor-collect.md"
+}

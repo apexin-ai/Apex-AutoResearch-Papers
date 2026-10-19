@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97c43f100e711182db5b",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops d020 kill restart exp002v2",
+  "task_key": "worker_ops_d020-kill-restart-exp002v2_20260518T235500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d020-kill-restart-exp002v2_20260518T235500_result.json",
+    "occurrence": 1,
+    "bytes": 1228,
+    "sha256": "42712004409c2b8b33ac2705b96b0420123031cff43085f87c94240163a857c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "前 3 步全部正常运行：\n\n| Step | R1 mean | R1 range | R3 mean | Combined |\n|------|---------|----------|---------|----------|\n| 1 | -0.0026 | [-0.10, +0.11] | 0.28 | 0.21 |\n| 2 | -0.0544 | [-0.16, +0.07] | 0.57 | 0.41 |\n| 3 | -0.0601 | [-0.12, +0.05] | 0.84 | 0.61 |\n\nR1 在 [-0.2, +0.2] 范围内稳定运行，tanh saturation 问题已修复。约 26s/step，50 步约 22 分钟后回来做完整 sanity check。\n\n---\n\n**D020 执行总结**：\n\n1. **exp-002 kill**: PID 69020 已 SIGTERM 终止\n2. **dcgrpo_trainer.py 同步**: compute_r1 从 `dot product + tanh(raw/20)` 改为 `cosine similarity (dot/||h||)`，已验证无残留 tanh\n3. **exp-002v2 训练脚本**: `/root/contrastive_entrain_calib/training/run_exp002v2_dcgrpo_cosine.py`\n   - OUTPUT_DIR: `exp002v2_dcgrpo_cosine`\n   - R1=0.25, R2=0, R3=0.75, lr=5e-5, max_steps=8000, seed=42, LoRA r=64, num_gen=2\n   - recalibration_interval=0\n   - 修复了 `compute_rewards` 签名不匹配 bug\n4. **训练启动**: PID 122450, GPU 0, tmux session `exp002v2`\n5. **初步 sanity check (前 3 步)**: R1 range [-0.16, +0.11]，不再是 ±1 震荡，修复成功\n\n需要约 20 分钟后回来检查前 50 步的完整数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d020-kill-restart-exp002v2.md"
+}

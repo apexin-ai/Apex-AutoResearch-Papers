@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2f312ff62f473fa675c",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval status 29046 full",
+  "task_key": "worker_eval_status-29046-full_20260522T133709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_status-29046-full_20260522T133709_result.json",
+    "occurrence": 1,
+    "bytes": 1292,
+    "sha256": "542a062f745b5bf3d255ba8e1c852c7ea585b046b4c94a2e87dd4b51f785f03d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### GPU 状态\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| GPU 0 | 98% | 38,049 / 97,887 MiB |\n| GPU 1 | 98% | 46,548 / 97,887 MiB |\n\n两卡满载运行。\n\n---\n\n### exp-003-s2 (R3-only seed2)\n- **当前进度**: step **7737/8000** (96.7%)\n- **速度**: ~25.5s/step\n- **剩余**: 263 steps × 25.5s ≈ **1h52m**\n- **预计完成**: 约 **5/22 23:30** (北京时间)\n- **Checkpoint**: 最新 **checkpoint-7500** (19:55 产出)，ckpt-8000 尚未产出，预计训练结束时生成\n\n---\n\n### exp-004-s2-v2 (ACT baseline s2)\n- **当前进度**: step **2470/8000** (30.9%)\n- **速度**: ~91s/10steps → 9.1s/step\n- **剩余**: 5530 steps × 9.1s ≈ **14h**\n- **预计完成**: 约 **5/23 11:30** (北京时间)\n- **Loss**: sft loss 已降至 ~0.0000，total loss 稳定在 ~0.0003 (l2 主导)\n- **Checkpoint**: checkpoint-2000, checkpoint-3000 已产出，output_dir 在数据盘 ✓\n\n---\n\n### 磁盘\n| 分区 | 容量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| / (根) | 30G | 24G | 6.9G | 78% |\n| /root/autodl-tmp (数据盘) | 250G | 59G | 192G | 24% |\n\n数据盘充裕。根分区 78% 偏高但 exp-003 的 checkpoint 和 exp-004 的 output 都在数据盘，暂无风险。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-status-29046-full-copy-2.md"
+}

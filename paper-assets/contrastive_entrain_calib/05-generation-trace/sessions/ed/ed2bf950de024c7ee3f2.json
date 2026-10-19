@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed2bf950de024c7ee3f2",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis truncation dsyc",
+  "task_key": "worker_analysis_truncation-dsyc_20260522T144256",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_truncation-dsyc_20260522T144256_result.json",
+    "occurrence": 1,
+    "bytes": 136,
+    "sha256": "038dc05e3b7a8fe15efa18fb27c0fa05289fcb9005081828b1b54d8242a5da5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行中，101/362 (~28%)，平均速率在加快。预计还需 ~40 分钟完成，到时自动检查结果并汇报。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-truncation-dsyc.md"
+}

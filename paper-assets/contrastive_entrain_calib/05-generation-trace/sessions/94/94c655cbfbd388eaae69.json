@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94c655cbfbd388eaae69",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code heldout prep 28034",
+  "task_key": "worker_code_heldout-prep-28034_20260523T035439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_heldout-prep-28034_20260523T035439_result.json",
+    "occurrence": 1,
+    "bytes": 1064,
+    "sha256": "9d8c09ce58657cac969becd884806b08107b4adc57260a6c92c9bd560d57a51f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。验证结果：\n\n| 项目 | 状态 |\n|------|------|\n| 训练脚本 `run_exp004_heldout.py` | ✅ 已写入 28034 |\n| `train_split.jsonl` | ✅ 292 行 |\n| `eval_split.jsonl` | ✅ 70 行（从 29046 SCP 过来） |\n| 合计 | 362 行 = calibration_v2_1_expanded 总量 ✓ |\n| 模型 Qwen3-8B | ✅ `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B/` |\n| 输出目录 | ✅ `/root/contrastive_entrain_calib/outputs/exp004_heldout/` 已创建可写 |\n| GPU 设置 | ✅ `CUDA_VISIBLE_DEVICES=\"1\"` (line 11) |\n| 超参 | ✅ seed=42, r=64, alpha=128, 7 modules, lr=5e-5, warmup=200, 8000 steps, grad_accum=16, λ_l2=0.1, save_steps=500 |\n\n**脚本修改点（相对 29046 原版）：**\n- 添加 `os.environ[\"CUDA_VISIBLE_DEVICES\"] = \"1\"` (line 11，在 `import torch` 之前)\n- `--output-dir` 默认值从 `/root/autodl-tmp/...` 改为 `/root/contrastive_entrain_calib/outputs/exp004_heldout/`\n- `device = torch.device(\"cuda:0\")` 保持不变（CUDA_VISIBLE_DEVICES=1 会将物理 GPU 1 映射为进程内的 cuda:0）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-heldout-prep-28034.md"
+}

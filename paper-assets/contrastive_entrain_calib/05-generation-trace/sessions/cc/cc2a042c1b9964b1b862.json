@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc2a042c1b9964b1b862",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "fix exp016 reeval syspath bug",
+  "task_key": "worker_fix_exp016-reeval-syspath-bug_20260519T090158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp016-reeval-syspath-bug_20260519T090158_result.json",
+    "occurrence": 1,
+    "bytes": 466,
+    "sha256": "1b383b5cd17fbf6e7708e5cc00d1ded8eb5098176cc12cdeea809cb9563a607e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "### 汇报\n\n| 项目 | 结果 |\n|------|------|\n| **修复前** | `sys.path.insert(0, str(Path(__file__).resolve().parent.parent / \"eval\"))` → 解析为 `/root/contrastive_entrain_calib/results/eval/`（不存在） |\n| **修复后** | `sys.path.insert(0, \"/root/contrastive_entrain_calib/eval\")` |\n| **sklearn** | 已安装，版本 1.8.0 |\n| **import 验证** | `from nli_utils import get_entailment_idx, get_contradiction_idx` → OK |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp016-reeval-syspath-bug.md"
+}

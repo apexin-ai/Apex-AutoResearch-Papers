@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e686a77ce5e0b311b5b8",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval acts2 ckpt5000 pipeline",
+  "task_key": "worker_eval_acts2-ckpt5000-pipeline_20260522T175158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_acts2-ckpt5000-pipeline_20260522T175158_result.json",
+    "occurrence": 1,
+    "bytes": 465,
+    "sha256": "c91bd0572e07d25133cf9fd0b64135da82b1dbfe01a54503c6cc3e37f90119c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前 step=3360/8000，远低于 4900。\n\nckpt-5000 尚未就绪，当前 step=3360/8000。按照指示，step < 4900 直接退出。\n\n**状态汇报：** exp-004-s2-v2 当前在 step 3360/8000（约 42%），每 step 约 100 秒。预计 ckpt-5000 还需约 **4.5 小时**（~1640 steps × ~100s/10steps）。实际训练路径在 `/root/autodl-tmp/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2/`，与任务描述的路径不同。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-acts2-ckpt5000-pipeline.md"
+}

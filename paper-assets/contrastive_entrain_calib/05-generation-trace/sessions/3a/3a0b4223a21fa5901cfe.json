@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "3a0b4223a21fa5901cfe",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "audit server output verify",
+  "task_key": "worker_audit_server-output-verify_20260523T191630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_server-output-verify_20260523T191630_result.json",
+    "occurrence": 1,
+    "bytes": 2724054,
+    "sha256": "ce557e88e0274d1b7825aede2374b1c17bab1c7c3cb9faae7001e5e1b9b2ab34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "3a0b4223a21fa5901cfe-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/audit-server-output-verify.md"
+}

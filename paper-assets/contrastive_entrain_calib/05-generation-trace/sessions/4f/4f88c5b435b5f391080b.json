@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f88c5b435b5f391080b",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "fix exp002v3 output dir to datadisk",
+  "task_key": "worker_fix_exp002v3-output-dir-to-datadisk_20260519T133514",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp002v3-output-dir-to-datadisk_20260519T133514_result.json",
+    "occurrence": 1,
+    "bytes": 748,
+    "sha256": "4994a044079995efd01cae591c1fb5c46e258665e722d2d6e7ef030184e09801"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。汇总：\n\n**OUTPUT_DIR 已修改** — 两个文件都已从根分区改到数据盘：\n- `launch_exp002v3.sh` 第 9 行: `LOG_DIR=/root/autodl-tmp/checkpoints/exp002v3_dcgrpo_scaled_cosine`\n- `run_exp002v3_dcgrpo_scaled_cosine.py` 第 28 行: `OUTPUT_DIR = \"/root/autodl-tmp/checkpoints/exp002v3_dcgrpo_scaled_cosine\"`\n\n**新目录已创建**，可写验证通过。\n\n**根分区 checkpoint 占用（共 7.5GB）**：\n\n| 目录 | 大小 |\n|------|------|\n| `exp014_probe_baseline` | 5.6G |\n| `exp008v3_binary_probe_grpo` | 1.9G |\n| `exp016_actadd` | 2.4M |\n| `exp003_r3only_seed2` | 0 (空) |\n\n如果 exp014 和 exp008v3 的 checkpoint 已不需要，清理后可释放约 7.5GB 根分区空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp002v3-output-dir-to-datadisk.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "631f4f1bc479e2ad25b7",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnosis exp009 ckpt1000 eval",
+  "task_key": "worker_diagnosis_exp009-ckpt1000-eval_20260520T093147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_exp009-ckpt1000-eval_20260520T093147_result.json",
+    "occurrence": 1,
+    "bytes": 487,
+    "sha256": "36d984f1bbb525471ebd31cdaaeefc2714da6393f9c0ac3d3cd0c6cc9f3b6c19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| exp-009 训练 | 运行中，step 1093/8000，PID 200283（已运行 6h25m） |\n| checkpoint-1000 | 已保存（17:01），路径 `/root/autodl-tmp/checkpoints/exp009_continuous_probe_grpo/checkpoint-1000` |\n| D027 eval | 已启动，PID **234111**，westd-28034 GPU 3 |\n| Registry exp_id | `exp-009-eval-ckpt1000`（parent: exp-009） |\n| 日志 | `~/runs/contrastive_entrain_calib/exp-009-eval-ckpt1000.log` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-exp009-ckpt1000-eval.md"
+}

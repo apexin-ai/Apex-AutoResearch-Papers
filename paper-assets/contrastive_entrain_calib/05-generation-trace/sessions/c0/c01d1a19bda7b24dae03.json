@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c01d1a19bda7b24dae03",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp016 reeval persistent monitor",
+  "task_key": "worker_eval_exp016-reeval-persistent-monitor_20260519T102706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp016-reeval-persistent-monitor_20260519T102706_result.json",
+    "occurrence": 1,
+    "bytes": 598,
+    "sha256": "005642d2c4d62e4e7ac88994f786c9e30d3f4e48846a64994f1cc831a6d5065e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Initial status (23:30 UTC):**\n- PID 125723 alive, running 5h23m, state R, 93.5% CPU\n- Actually on **physical GPU 0** (8160 MiB), not GPU 3 — `CUDA_VISIBLE_DEVICES=3` was set after `import torch` so CUDA init ignored it\n- Model partially offloaded to CPU (accelerate warning in log), hence high CPU + low GPU memory\n- Log buffered — last write 5h ago, only 20 lines\n- Output dir empty — results written at end\n- 362 pairs × 5 alphas = 1810 generations total, likely much slower than 90min estimate due to CPU offloading\n\nMonitoring loop set. Next check in ~4 minutes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp016-reeval-persistent-monitor.md"
+}

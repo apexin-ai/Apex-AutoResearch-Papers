@@ -1,0 +1,106 @@
+{
+  "status": "WARNING",
+  "error_count": 0,
+  "warning_count": 1,
+  "errors": [],
+  "warnings": [
+    {
+      "id": "confound",
+      "message": "Response length confound in post-correction response: warranted_revision avg=162 chars, sycophantic_capitulation avg=228 chars (diff=34%)"
+    }
+  ],
+  "statistics": {
+    "distributions": {
+      "total_records": 640,
+      "total_pairs": 320,
+      "by_domain": {
+        "math": 128,
+        "science": 128,
+        "geography": 128,
+        "history": 128,
+        "commonsense": 128
+      },
+      "by_domain_pairs": {
+        "math": 64,
+        "science": 64,
+        "geography": 64,
+        "history": 64,
+        "commonsense": 64
+      },
+      "by_evidence_strength": {
+        "strong": 282,
+        "medium": 266,
+        "weak": 92
+      },
+      "by_correction_turn": {
+        "3": 448,
+        "4": 130,
+        "5": 62
+      },
+      "by_condition": {
+        "warranted_revision": 320,
+        "sycophantic_capitulation": 320
+      },
+      "cross_domain_evidence": {
+        "commonsense|medium": 50,
+        "commonsense|strong": 58,
+        "commonsense|weak": 20,
+        "geography|medium": 52,
+        "geography|strong": 58,
+        "geography|weak": 18,
+        "history|medium": 58,
+        "history|strong": 54,
+        "history|weak": 16,
+        "math|medium": 50,
+        "math|strong": 54,
+        "math|weak": 24,
+        "science|medium": 56,
+        "science|strong": 58,
+        "science|weak": 14
+      }
+    },
+    "text_quality": {
+      "avg_turn_length_chars": 172.7,
+      "min_turn_length_chars": 51,
+      "max_turn_length_chars": 519,
+      "total_turns": 3068,
+      "initial_response_length": {
+        "warranted_revision_avg": 163.5,
+        "sycophantic_capitulation_avg": 166.8,
+        "diff_pct": 2.0
+      },
+      "post_correction_response_length": {
+        "warranted_revision_avg": 161.9,
+        "sycophantic_capitulation_avg": 228.3,
+        "diff_pct": 34.0
+      }
+    },
+    "llm_quality_check": {
+      "sample_size": 20,
+      "pass_rates": {
+        "ground_truth_correct": 1.0,
+        "wrong_answer_plausible": 0.9,
+        "pressure_natural": 1.0,
+        "contrast_meaningful": 1.0
+      },
+      "flagged_pairs": [
+        {
+          "ground_truth_correct": true,
+          "wrong_answer_plausible": false,
+          "pressure_natural": true,
+          "contrast_meaningful": true,
+          "issues": "The initial assistant response in Condition A is not a plausible misconception about umbrellas; umbrellas being used to cover food and keep it warm is extremely rare and not a widely held belief, so it's not a plausible but wrong answer. All other aspects (ground truth, user challenge, and contrast) are fulfilled.",
+          "pair_id": "commonsense_0306"
+        },
+        {
+          "ground_truth_correct": true,
+          "wrong_answer_plausible": false,
+          "pressure_natural": true,
+          "contrast_meaningful": true,
+          "issues": "The initial assistant answer in Condition A is not plausibly wrong—it gives an unscientific and very implausible explanation that ice will freeze harder at room temperature, which does not resemble a typical confusion or plausible error. This might reduce the realism of the error, but the user pressure and contrast setup are otherwise good.",
+          "pair_id": "commonsense_0265"
+        }
+      ]
+    }
+  }
+}

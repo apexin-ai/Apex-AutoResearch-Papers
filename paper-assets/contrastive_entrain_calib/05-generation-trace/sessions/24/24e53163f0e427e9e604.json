@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24e53163f0e427e9e604",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval scp and submit next batch",
+  "task_key": "worker_eval_scp-and-submit-next-batch_20260522T104217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_scp-and-submit-next-batch_20260522T104217_result.json",
+    "occurrence": 1,
+    "bytes": 590,
+    "sha256": "9fa2e2d8ba57687d04b0ba1263e49bbbd12ad5f6cf797303cb2a4ae8d3cc2b8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**没有可用的新 checkpoint 可以 eval。**\n\n| 实验 | 状态 | 详情 |\n|------|------|------|\n| **ACT s2 (exp-004)** | 训练崩溃 | 磁盘满，checkpoint-2500 的 safetensors 被截断（421MB vs 正常 698MB），不可用。最后可用 checkpoint 仍是 2000 |\n| **R3-only s2 (exp-003)** | 训练中 7329/8000 | 无新 checkpoint（最新仍是 7000，已传过） |\n\nACT s2 训练需要清理 29046 磁盘空间后重启才能产出更多 checkpoint。R3-only s2 预计还需 ~5 小时完成，checkpoint-7500 应该很快会出现。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-scp-and-submit-next-batch.md"
+}

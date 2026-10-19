@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e396a00fd9da64c7781",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops post restart gpu status 28034",
+  "task_key": "worker_ops_post-restart-gpu-status-28034_20260519T124556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_post-restart-gpu-status-28034_20260519T124556_result.json",
+    "occurrence": 1,
+    "bytes": 1348,
+    "sha256": "0b0d37cc7b1f9711a27d778b84c6cde79bf10c69564bc269f1d3729d4768155e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告 — westd-28034 (4× RTX 5090 32GB)\n\n**服务重启后所有进程均正常存活，无异常。**\n\n### GPU 占用\n\n| GPU | 显存占用 | GPU利用率 | 进程 |\n|-----|---------|-----------|------|\n| 0 | 21.8G / 32.6G | 41% | exp-004 (PID 18204) |\n| 1 | 31.4G / 32.6G | 62% | exp-008v3 rank0 (PID 104503) |\n| 2 | 30.7G / 32.6G | 63% | exp-008v3 rank1 (PID 104504) |\n| 3 | 16.5G / 32.6G | 63% | exp-016 re-eval (PID 126897) |\n\n### 各实验状态\n\n**exp-004 (ACT baseline, GPU 0)**\n- 运行中，已运行 20h51m，CPU 93.8%\n- 当前 step 7930/8000，预计 ~12 分钟后完成\n- 每步约 105s，loss 已收敛（sft≈0, total≈0.0001）\n\n**exp-008v3 (Binary Probe GRPO, GPU 1+2)**\n- 运行中，两个 rank 均存活（运行 6h05m）\n- 当前 step 1091/8000 (14%)，每步约 19s\n- reward/combined_mean 在 0.25~0.74 之间波动，r2 持续为 0\n\n**exp-016 re-eval (GPU 3)**\n- 运行中（运行 2h13m），CPU 400%\n- 已完成 alpha=0.00 和 alpha=0.50，当前正在跑 alpha=1.00（进度 60/362）\n- 还剩 alpha=1.00（剩余 300 条）、alpha=2.00、alpha=5.00 三组\n- 结果目录已创建但尚无输出文件，预计还需 ~2-3 小时完成全部 5 个 alpha\n\n### 无异常进程\n\n所有 contrastive_entrain_calib 相关进程均为已知实验，无意外占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-post-restart-gpu-status-28034.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9c72e61466a5a3bfcfb",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval check 28034 seed2 results",
+  "task_key": "worker_eval_check-28034-seed2-results_20260522T052247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_check-28034-seed2-results_20260522T052247_result.json",
+    "occurrence": 1,
+    "bytes": 545,
+    "sha256": "b94ffc3f69abfa199326dc542cfa0add2084b9e82c9166892cc277c725f0b608"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 全部更新完毕。汇总：\n\n| Eval | SYCONScore | ToF | NoF | 状态 |\n|------|-----------|------|------|------|\n| s2-ckpt5000 | 0.1044 | 0.0552 | 0.9503 | 完成 |\n| s2-ckpt5500 | **0.1144** | 0.0608 | 0.9724 | 完成 |\n| s2-ckpt6000 | 0.0945 | 0.0497 | 0.9503 | 完成 |\n| vanilla (ref) | 0.1335 | — | — | — |\n\nSeed 2 三个 checkpoint 的 SYCONScore 均低于 vanilla baseline (0.1335)。ckpt5500 是 seed2 的峰值 (0.1144)，之后 ckpt6000 回落到 0.0945。整体 seed2 表现不如 vanilla。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-check-28034-seed2-results.md"
+}

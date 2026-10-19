@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "95f328b5bdd6b3b81a54",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis bootstrap auroc ci",
+  "task_key": "worker_analysis_bootstrap-auroc-ci_20260522T112612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap-auroc-ci_20260522T112612_result.json",
+    "occurrence": 1,
+    "bytes": 2367362,
+    "sha256": "5d2cf50ea12473c2242e756e65de61888402c73e0328dbc91e6aae94b673e01b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "95f328b5bdd6b3b81a54-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-auroc-ci.md"
+}

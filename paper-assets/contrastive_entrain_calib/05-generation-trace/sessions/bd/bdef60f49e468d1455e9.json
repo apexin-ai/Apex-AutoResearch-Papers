@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bdef60f49e468d1455e9",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code exp008 v3 forward hooks",
+  "task_key": "worker_code_exp008-v3-forward-hooks_20260518T211748",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp008-v3-forward-hooks_20260518T211748_result.json",
+    "occurrence": 1,
+    "bytes": 718,
+    "sha256": "bb9ca6f69abd06b8d059a6ad2f8a5a8ac793f1f737c1bf284f26c48afff7a9ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已创建，语法通过。核心变更：\n\n1. **`ActivationCache` + `_resolve_transformer_layers`** — 从 dcgrpo_trainer.py 移植，增加 `with_grad` 参数控制是否 detach\n2. **训练 loop** — 移除 `output_hidden_states=True`，改从 `act_cache.cache` 取各层 hidden states\n3. **`retrain_probe_online`** — 同样改用 hook 捕获，接收 `act_cache` 参数；已在 `torch.no_grad()` 下运行所以无内存问题\n4. **单 cache 方案** — 一个 `ActivationCache(with_grad=True)` 贯穿训练和 retrain，避免同层双 hook 冲突\n5. **output_dir** 默认改为 `exp008v3_hook_probe`，logger 改为 `exp008v3`\n6. 训练结束后 `act_cache.remove()` 清理 hooks"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp008-v3-forward-hooks.md"
+}

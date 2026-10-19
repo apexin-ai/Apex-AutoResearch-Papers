@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "9cff52ee75eb2ba1e921",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "ops eval dryrun exp004",
+  "task_key": "worker_ops_eval-dryrun-exp004_20260519T061428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-dryrun-exp004_20260519T061428.log",
+    "occurrence": 1,
+    "bytes": 619099,
+    "sha256": "0d8360f193f9f735f373b1091b72152985c1132ade7eef8bf65671afbbb3374d"
+  },
+  "statistics": {
+    "messages": 204,
+    "user_turns": 2,
+    "tool_calls": 64,
+    "roles": {
+      "log": 1,
+      "system": 20,
+      "record": 1,
+      "assistant": 51,
+      "tool_call": 64,
+      "tool_result": 64,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 77,
+      "chunks": [
+        {
+          "path": "9cff52ee75eb2ba1e921-part-0001.json",
+          "message_count": 77
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 48,
+      "chunks": [
+        {
+          "path": "9cff52ee75eb2ba1e921-part-0001.json",
+          "message_count": 48
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 79,
+      "chunks": [
+        {
+          "path": "9cff52ee75eb2ba1e921-part-0001.json",
+          "message_count": 55
+        },
+        {
+          "path": "9cff52ee75eb2ba1e921-part-0002.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-eval-dryrun-exp004.md"
+}

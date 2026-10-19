@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "594426df283ef9c36503",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops check 28034 and s2 ckpt3000",
+  "task_key": "worker_ops_check-28034-and-s2-ckpt3000_20260523T103013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-28034-and-s2-ckpt3000_20260523T103013_result.json",
+    "occurrence": 1,
+    "bytes": 558,
+    "sha256": "5831542364569be17da9cbd7411f8c66966f16bae150ed09cdb8cc99bdf2c481"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n1. **28034 连通性：OFFLINE**（端口无法连接）\n2. **s2 ckpt-3000：NOT_FOUND**\n   - 29046 上无任何包含 `s2` 的 checkpoint-3000 目录\n   - 29046 上现有的 checkpoint-3000 均为其他实验：\n     - `/root/autodl-tmp/checkpoints/exp003_r3only_seed1/checkpoint-3000`\n     - `/root/autodl-tmp/checkpoints/exp003_r3only_seed2/checkpoint-3000`\n     - `/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/checkpoint-3000`\n\ns2 ckpt-3000 留在了已下线的 28034 上，未迁移到 29046。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-28034-and-s2-ckpt3000.md"
+}

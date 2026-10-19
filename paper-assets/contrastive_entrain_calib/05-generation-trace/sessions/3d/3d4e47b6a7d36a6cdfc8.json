@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d4e47b6a7d36a6cdfc8",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops relaunch act256v2 and s3",
+  "task_key": "worker_ops_relaunch-act256v2-and-s3_20260525T172530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_relaunch-act256v2-and-s3_20260525T172530_result.json",
+    "occurrence": 1,
+    "bytes": 714,
+    "sha256": "dc7897a204a92850a6b60739dc3889ad854aebc51f6c01faa8f0989ce16ef10b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都已成功启动：\n\n**exp-act-256-v2** (cuda:0, PID 2112):\n- 从头开始训练，模型已加载，128 pairs 已读取，training loop 已启动\n- 脚本已修改：checkpoint 现在会保存 optimizer/scheduler/training_state（下次被 kill 可 resume）\n\n**exp-003-s3** (cuda:1, PID 2191):\n- 成功从 checkpoint-500 resume，进度条显示已跳到 step 501/8000 开始继续训练\n- 速度 ~8.26 it/s（每 step 含生成 + reward 计算）\n\n预估完成时间：\n- exp-act-256-v2: 8000 steps × ~6.6s/step ≈ 14.7h\n- exp-003-s3: 剩余 7500 steps，按当前速度 ≈ 15min（TRL 的 it/s 是 micro-batch 级别，实际 optimizer step 约 19s，总计 ~2.5h）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-relaunch-act256v2-and-s3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b95b024cf9eb1027698",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp009 ckpt500 d027",
+  "task_key": "worker_eval_exp009-ckpt500-d027_20260520T071717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp009-ckpt500-d027_20260520T071717_result.json",
+    "occurrence": 1,
+    "bytes": 654,
+    "sha256": "828d20ca6159d3acdb76bc6e5576f8d36b35a30945d7451cb0143d628101cfec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已成功启动，模型和 LoRA adapter 都在加载中。\n\n**汇报：**\n- **状态**: 运行中\n- **服务器**: westd-28034, GPU 3\n- **PID**: 227017\n- **tmux session**: `exp-009-eval-ckpt500`\n- **日志**: `~/runs/contrastive_entrain_calib/exp-009-eval-ckpt500.log`\n- **输出目录**: `/root/contrastive_entrain_calib/results/exp009_ckpt500_eval/`\n- **预计完成**: 1-2 小时（362 pairs 逐条生成）\n\n注意事项：\n- 脚本路径实际为 `eval/eval_unified_preset.py`（非 `evaluation/`）\n- 脚本无 `--enable_thinking` 参数，已省略\n- 已通过 `submit_training_job` 提交，cron 可自动监控"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp009-ckpt500-d027.md"
+}

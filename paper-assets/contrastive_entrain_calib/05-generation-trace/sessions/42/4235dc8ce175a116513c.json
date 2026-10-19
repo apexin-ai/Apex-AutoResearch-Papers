@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4235dc8ce175a116513c",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval gs8 ckpt1000 scp eval",
+  "task_key": "worker_eval_gs8-ckpt1000-scp-eval_20260522T233457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gs8-ckpt1000-scp-eval_20260522T233457_result.json",
+    "occurrence": 1,
+    "bytes": 310,
+    "sha256": "f89cad17f1414b7cfef8e60740359f80881bcfa8aa2bafe6ab7c231e797c652d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已启动，等待完成中：\n\n| 项目 | 状态 |\n|------|------|\n| SCP | 成功 (adapter_model.safetensors 245MB) |\n| Eval GPU | GPU0 (16844 MiB, 48%) |\n| Eval PID | 140553 |\n| LoRA 加载确认 | 是 (路径正确) |\n| 数据 | 362 samples |\n\n~5 分钟后自动轮询进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-gs8-ckpt1000-scp-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb752326a3b32213674a",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diag 28034 retry",
+  "task_key": "worker_diag_28034-retry_20260522T233340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_28034-retry_20260522T233340_result.json",
+    "occurrence": 1,
+    "bytes": 1540,
+    "sha256": "099127b84229bc23e0bf7aaf2ca26c80aa4cbeb2eb1e8e7bd6a9178f3d12bbbc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n服务器确认: autodl-container-9574k3gu86-7ce04d21, NVIDIA GeForce RTX 5090, 4张\n\nGPU状态:\nGPU0: 空闲 (2MiB)\nGPU1: reduced-lora 训练中 (PID 30011, 21758MiB/32607MiB, 40% util)\nGPU2: 空闲 (2MiB)\nGPU3: 空闲 (2MiB)\n\nEval 结果 (全部完成):\n┌─────────────────────────────┬────────┬────────┬────────────┐\n│ Eval                        │ ToF    │ NoF    │ SYCONScore │\n├─────────────────────────────┼────────┼────────┼────────────┤\n│ gs8 ckpt-500 verify         │ 0.0442 │ 0.9392 │ 0.0844     │\n│ reduced-lora ckpt-1500      │ 0.0884 │ 0.9171 │ 0.1613     │\n│ reduced-lora ckpt-2000      │ 0.1160 │ 0.8840 │ 0.2051     │\n│ exp003s2 r3only ckpt-8000*  │ 0.0608 │ 0.9613 │ 0.1143     │\n└─────────────────────────────┴────────┴────────┴────────────┘\n* exp003s2 ckpt-8000 eval 是在 tmux session 中跑的，也已完成\n\nreduced-lora 训练:\n当前 step: 3400/8000 (42.5%)\n最新 loss: l2=0.002641, total=0.0003, lr=2.95e-05\n可用 checkpoint: 500, 1000, 1500, 2000, 2500, 3000\n速度: ~67s/10steps → 预计剩余 ~8.5 小时\n\n空闲 GPU: GPU0, GPU2, GPU3\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-28034-retry.md"
+}

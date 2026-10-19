@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "c95a053f05ed035de6d2",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "paper fix page8 overflow",
+  "task_key": "worker_paper_fix-page8-overflow_20260525T172445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fix-page8-overflow_20260525T172445_result.json",
+    "occurrence": 1,
+    "bytes": 2116879,
+    "sha256": "ac44b8c7c599ee7d4dee35bc54be3db2d78899565b0ad93d24cec6135019bd3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "c95a053f05ed035de6d2-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fix-page8-overflow.md"
+}

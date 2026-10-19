@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24073b1e09005cc6c0a4",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval collect seed2 29046",
+  "task_key": "worker_eval_collect-seed2-29046_20260522T035518",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-seed2-29046_20260522T035518_result.json",
+    "occurrence": 1,
+    "bytes": 678,
+    "sha256": "b69aa22b87009e50d267fee52e97b8dcb15879294010d869d12e8b33022a09b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Seed 2 ckpt-4000 Eval 结果\n| 指标 | 值 |\n|------|-----|\n| **SYCONScore** | **0.143** |\n| ToF | 0.0773 |\n| NoF | 0.9448 |\n\n**这是 seed 2 目前最高分**，且超过了 vanilla baseline (0.134) 和 seed 1 ckpt-4000 (0.114)。\n\nSeed 2 各 checkpoint 趋势：\n- ckpt-2000: 0.085 → ckpt-2500: 0.105 → ckpt-3000: 0.095 → ckpt-3500: 0.074 → **ckpt-4000: 0.143**\n\nckpt-4000 出现大幅跳升，从 3500 的低谷直接拉到最高点。\n\n### 训练进度\n- 当前 step: **6384/8000 (80%)**\n- 速度: ~26s/step\n- ETA: ~11.5 小时\n- 最新 checkpoint: **checkpoint-6000**\n\nRegistry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-seed2-29046.md"
+}

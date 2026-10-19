@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6da5d0e6f4f5e9ba47d7",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diag exp016 results check",
+  "task_key": "worker_diag_exp016-results-check_20260519T045653",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp016-results-check_20260519T045653_result.json",
+    "occurrence": 1,
+    "bytes": 1003,
+    "sha256": "02b3216ae74b2566f10fe186f93abbc32943e508e3761b027411600c2b90f847"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态总结\n\n**exp-016 修复版仍在运行，预计约 12 分钟后完成。**\n\n### 关键发现\n\n| 项目 | 状态 |\n|------|------|\n| PID 85457 | 运行中 |\n| 当前进度 | alpha=5.0, 240/362 samples |\n| Hook 修复 | **已生效** |\n| 结果文件 | **过期**（09:45 旧版产物，当前 run 10:07 启动） |\n\n### Hook 触发统计（当前修复版）\n\n| Alpha | Hooks fired |\n|-------|-------------|\n| 0.0 | 0 ✓ |\n| 0.5 | 617,904 ✓ |\n| 1.0 | 610,855 ✓ |\n| 2.0 | 611,702 ✓ |\n| 5.0 | 运行中 |\n\nHooks 确认生效。脚本在所有 alpha 完成后才写入 `results_summary.json`，所以当前文件是旧 run 的残留（所有 alpha 相同的那个 bug 版本）。\n\n### 预计完成时间\n\nalpha=5.0 以 ~2min/20samples 的速率推进，剩余 ~122 samples ≈ 12 分钟后完成写入新结果。\n\n### 下一步\n\n等 ~15 分钟后重新检查结果文件时间戳和内容，验证不同 alpha 是否产生不同的 NoF/WRR。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp016-results-check.md"
+}

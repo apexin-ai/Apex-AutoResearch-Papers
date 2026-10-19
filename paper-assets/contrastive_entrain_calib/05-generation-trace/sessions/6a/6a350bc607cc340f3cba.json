@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a350bc607cc340f3cba",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops sync stability script",
+  "task_key": "worker_ops_sync-stability-script_20260519T014634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync-stability-script_20260519T014634_result.json",
+    "occurrence": 1,
+    "bytes": 586,
+    "sha256": "d51f01833005326312fd9c3abf77ba39014a6c7b0d246f14a8865a768e9f725e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n1. **脚本同步** — 已写入 `/root/contrastive_entrain_calib/training/measure_direction_stability.py`，语法验证通过 (OK)。\n\n2. **Checkpoint 不可用** — `exp002v2_dcgrpo_cosine/` 目录下没有 `checkpoint-*` 子目录。当前约 step 216（基于 log 中 combined_mean 条目计数），`save_steps=500` 尚未触发首次保存。\n\n3. **无法运行诊断** — 需等到 step 500 产生第一个 checkpoint 后再执行。按当前约 30s/step 的速度，预计还需约 **2.5 小时**（284 steps × ~30s）才会有 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-stability-script.md"
+}

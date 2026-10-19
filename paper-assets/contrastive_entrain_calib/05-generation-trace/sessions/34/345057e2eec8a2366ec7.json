@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "345057e2eec8a2366ec7",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "deploy exp008 final dryrun v4",
+  "task_key": "worker_deploy_exp008-final-dryrun-v4_20260518T175556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_deploy_exp008-final-dryrun-v4_20260518T175556_result.json",
+    "occurrence": 1,
+    "bytes": 989,
+    "sha256": "e75f29a203aa7d0e6cc1e42f556525215e144fd8b8aab96484964869888188b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "log_steps 已恢复。进程已结束，GPU 1 内存回到 38GB（训练前基线）。\n\n## Dry-run v4 结果\n\n| 指标 | 值 | 判定 |\n|------|-----|------|\n| **Probe accuracy** | 0.9945 | PASS (>0.95) |\n| **S(t)** | 0.5694 | PASS (合理中间值，不是 0 或 1) |\n| **loss** | 2.0469 | PASS |\n| **sft** | 2.0488 | PASS |\n| **R3** | mean=0.5000, step1=0.5881 | PASS (min=0.0001, max=0.9999, 有分布) |\n| **VRAM** | 训练完成后已释放，训练期间 ~98GB 卡内完成 | PASS |\n| **数据** | 362 samples | PASS |\n\n**Dry-run v4: PASS**\n\n关键改进确认：probe 归一化后 accuracy 从之前的问题值恢复到 0.9945，S(t)=0.5694 是合理的非退化值（不是恒 0/1），说明 feat_mean/feat_std buffers 正确工作。\n\n注意：当前服务器是 westd-29046，配备 2x RTX PRO 6000 Blackwell (98GB)，不是任务中写的 westd-28034 / RTX 5090 32GB。正式训练应使用 `CUDA_VISIBLE_DEVICES=1`（GPU 1 空闲更多）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-exp008-final-dryrun-v4.md"
+}

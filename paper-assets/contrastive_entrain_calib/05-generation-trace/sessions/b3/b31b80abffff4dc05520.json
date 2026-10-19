@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "b31b80abffff4dc05520",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "eval collect and submit ckpt2000",
+  "task_key": "worker_eval_collect-and-submit-ckpt2000_20260522T094333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-and-submit-ckpt2000_20260522T094333.log",
+    "occurrence": 1,
+    "bytes": 544731,
+    "sha256": "0c158154d65f93a579390602a00cc6ec8cb703298a19899f8848f43f459ab40b"
+  },
+  "statistics": {
+    "messages": 387,
+    "user_turns": 0,
+    "tool_calls": 165,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 53,
+      "tool_call": 165,
+      "tool_result": 165,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 387,
+      "chunks": [
+        {
+          "path": "b31b80abffff4dc05520-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b31b80abffff4dc05520-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b31b80abffff4dc05520-part-0003.json",
+          "message_count": 27
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-collect-and-submit-ckpt2000.md"
+}

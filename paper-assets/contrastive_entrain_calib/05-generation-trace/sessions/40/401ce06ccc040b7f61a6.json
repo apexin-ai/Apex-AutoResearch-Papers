@@ -1,0 +1,1341 @@
+{
+  "schema_version": "1.0",
+  "id": "401ce06ccc040b7f61a6",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "analysis exp 003 eval ckpt1000",
+  "task_key": "worker_analysis_exp-003-eval-ckpt1000_20260520T140345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-003-eval-ckpt1000_20260520T140345.log",
+    "occurrence": 1,
+    "bytes": 69097,
+    "sha256": "ceb6aedf4c306f56f41ecae5ae7a308c4f4149bf816c46acce16639968c08484"
+  },
+  "statistics": {
+    "messages": 30,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 10,
+      "tool_result": 10,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+                "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "eb671e4b-54f8-4f01-8f65-c3e6b1589bf4",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779290400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "5f8dc4cc-6e54-470d-b119-7416e98dbd53",
+                "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the eval log from the server.",
+              "signature": "EvoBCmMIDRgCKkC2JcFDpMFc0tBoQxQELZ90T3Xqq0e/b9tvc/UO10/OttxXfPIw6gtfEuLTYBRnJKBkUxUvwiWRD2JxZcADIu8EMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDCFdej+5co53XBq0kxoMqVaFrTBdDbdHIbTSIjD0LHn/zctTZs3SH2PNdypjP7agygaqThiKw8GJun4UbB26uf4zZuCHgj+4CNH1XJsqRV5Bwj8psJXRHmxGVALy5yNDRhSCaePQlz6X0N7M9MVRdPlEDK6YxY1jUD1fJytzgRShRqaVjMz97nyP9MvsHpTnuzN6uRgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+            "uuid": "8f890ae2-f360-4e8f-9e76-e06a553b0773",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VGWSaN2VyretNp6WNZko5W",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12176,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12176
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FpVh3F7gBAmEjrm6AYaG7W",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+            "uuid": "2bc2f45f-e45a-44c3-a430-de68b0f258cc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VGWSaN2VyretNp6WNZko5W",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12176,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12176
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T14:03:54.930Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01FpVh3F7gBAmEjrm6AYaG7W",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+            "uuid": "53943092-cc8e-4738-93ac-72e5493c9d86",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__update_registry",
+                "mcp__agent-ml-research__read_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0156sgLhitWnRDn87q3gATsM",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-28034",
+                "command": "tail -100 ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt1000.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+            "uuid": "798381a7-75bb-4d99-bc1a-bbd01ac1cb35",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EZu3UV6psotPSUY885gMkR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1291,
+                "cache_read_input_tokens": 24017,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1291
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GxVf3JRw4R2cLc4XK98XCv",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "filters": {
+                  "exp_id": "exp-003-eval-ckpt1000"
+                },
+                "project": "contrastive_entrain_calib",
+                "fields": [
+                  "*"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+            "uuid": "aca9ead2-62c7-44ba-9d3d-05be97bb67f2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EZu3UV6psotPSUY885gMkR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1291,
+                "cache_read_input_tokens": 24017,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1291
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T14:04:00.179Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0156sgLhitWnRDn87q3gATsM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[Wed May 20 20:49:36 CST 2026] exp-003 D027 eval: step=1000, gpu=1\\\\n  checkpoint: /root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-1000\\\\n  output:     /root/contrastive_entrain_calib/results/exp003_d027_eval/exp003-ckpt1000_preset_eval.json\\\\n2026-05-20 20:49:40,068 [INFO] eval_unified_preset: === D027 Unified Preset Eval ===\\\\n2026-05-20 20:49:40,069 [INFO] eval_unified_preset: model_path: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\n2026-05-20 20:49:40,069 [INFO] eval_unified_preset: lora_path:  /root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-1000\\\\n2026-05-20 20:49:40,069 [INFO] eval_unified_preset: data_path:  /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\\n2026-05-20 20:49:40,069 [INFO] eval_unified_preset: exp_id:     exp003-ckpt1000\\\\n2026-05-20 20:49:40,368 [INFO] eval_unified_preset: Loading model...\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n2026-05-20 20:49:41,108 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.19it/s]\\\\rLoading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.21it/s]\\\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.20it/s]\\\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.30it/s]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.72it/s]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.46it/s]\\\\n2026-05-20 20:49:44,674 [INFO] eval_unified_preset: Loading LoRA adapter: /root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-1000\\\\n2026-05-20 20:49:46,857 [INFO] eval_unified_preset: Loading NLI model...\\\\n2026-05-20 20:49:47,078 [INFO] eval_unified_preset: NLI loaded: cross-encoder/nli-deberta-v3-base  id2label={0: 'contradiction', 1: 'entailment', 2: 'neutral'}  ent=1 con=0\\\\n2026-05-20 20:49:47,082 [INFO] eval_unified_preset: Loaded 362 eval pairs from /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\\n2026-05-20 20:49:47,082 [INFO] eval_unified_preset: Running eval on 362 pairs...\\\\nThe following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\\n2026-05-20 20:54:54,083 [INFO] eval_unified_preset:   Progress: 20/362\\\\n2026-05-20 20:59:37,868 [INFO] eval_unified_preset:   Progress: 40/362\\\\n2026-05-20 21:04:41,946 [INFO] eval_unified_preset:   Progress: 60/362\\\\n2026-05-20 21:08:52,688 [INFO] eval_unified_preset:   Progress: 80/362\\\\n2026-05-20 21:12:04,828 [INFO] eval_unified_preset:   Progress: 100/362\\\\n2026-05-20 21:16:10,109 [INFO] eval_unified_preset:   Progress: 120/362\\\\n2026-05-20 21:19:54,161 [INFO] eval_unified_preset:   Progress: 140/362\\\\n2026-05-20 21:23:37,386 [INFO] eval_unified_preset:   Progress: 160/362\\\\n2026-05-20 21:26:10,778 [INFO] eval_unified_preset:   Progress: 180/362\\\\n2026-05-20 21:29:29,386 [INFO] eval_unified_preset:   Progress: 200/362\\\\n2026-05-20 21:32:38,520 [INFO] eval_unified_preset:   Progress: 220/362\\\\n2026-05-20 21:36:53,786 [INFO] eval_unified_preset:   Progress: 240/362\\\\n2026-05-20 21:41:25,883 [INFO] eval_unified_preset:   Progress: 260/362\\\\n2026-05-20 21:45:45,139 [INFO] eval_unified_preset:   Progress: 280/362\\\\n2026-05-20 21:49:29,118 [INFO] eval_unified_preset:   Progress: 300/362\\\\n2026-05-20 21:53:13,755 [INFO] eval_unified_preset:   Progress: 320/362\\\\n2026-05-20 21:56:43,449 [INFO] eval_unified_preset:   Progress: 340/362\\\\n2026-05-20 22:01:17,076 [INFO] eval_unified_preset:   Progress: 360/362\\\\n2026-05-20 22:01:46,285 [INFO] eval_unified_preset: Detailed results: /root/contrastive_entrain_calib/results/exp003_d027_eval/exp003-ckpt1000_preset_eval.json\\\\n2026-05-20 22:01:46,285 [INFO] eval_unified_preset: Summary: /root/contrastive_entrain_calib/results/exp003_d027_eval/exp003-ckpt1000_preset_summary.txt\\\\n\\\\n==================================================\\\\n  D027 Preset Eval: exp003-ckpt1000\\\\n==================================================\\\\n  ToF        = 0.0387\\\\n  NoF        = 0.9448\\\\n  SYCONScore = 0.0743\\\\n  Samples    = 362 (valid=181, invalid=181)\\\\n  Time       = 4319s\\\\n==================================================\\\\n\\\\n[Wed May 20 22:01:47 CST 2026] Done. Results: /root/contrastive_entrain_calib/results/exp003_d027_eval/exp003-ckpt1000_preset_eval.json\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+            "uuid": "c10008ae-da63-432e-93be-873860a34513",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[Wed May 20 20:49:36 CST 2026] exp-003 D027 eval: step=1000, gpu=1\\\\n  checkpoint: /root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-1000\\\\n  output:     /root/contrastive_entrain_calib/results/exp003_d027_eval/exp003-ckpt1000_preset_eval.json\\\\n2026-05-20 20:49:40,068 [INFO] eval_unified_preset: === D027 Unified Preset Eval ===\\\\n2026-05-20 20:49:40,069 [INFO] eval_unified_preset: model_path: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\n2026-05-20 20:49:40,069 [INFO] eval_unified_preset: lora_path:  /root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-1000\\\\n2026-05-20 20:49:40,069 [INFO] eval_unified_preset: data_path:  /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\\n2026-05-20 20:49:40,069 [INFO] eval_unified_preset: exp_id:     exp003-ckpt1000\\\\n2026-05-20 20:49:40,368 [INFO] eval_unified_preset: Loading model...\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n2026-05-20 20:49:41,108 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.19it/s]\\\\rLoading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.21it/s]\\\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.20it/s]\\\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.30it/s]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.72it/s]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.46it/s]\\\\n2026-05-20 20:49:44,674 [INFO] eval_unified_preset: Loading LoRA adapter: /root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-1000\\\\n2026-05-20 20:49:46,857 [INFO] eval_unified_preset: Loading NLI model...\\\\n2026-05-20 20:49:47,078 [INFO] eval_unified_preset: NLI loaded: cross-encoder/nli-deberta-v3-base  id2label={0: 'contradiction', 1: 'entailment', 2: 'neutral'}  ent=1 con=0\\\\n2026-05-20 20:49:47,082 [INFO] eval_unified_preset: Loaded 362 eval pairs from /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\\n2026-05-20 20:49:47,082 [INFO] eval_unified_preset: Running eval on 362 pairs...\\\\nThe following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\\\n2026-05-20 20:54:54,083 [INFO] eval_unified_preset:   Progress: 20/362\\\\n2026-05-20 20:59:37,868 [INFO] eval_unified_preset:   Progress: 40/362\\\\n2026-05-20 21:04:41,946 [INFO] eval_unified_preset:   Progress: 60/362\\\\n2026-05-20 21:08:52,688 [INFO] eval_unified_preset:   Progress: 80/362\\\\n2026-05-20 21:12:04,828 [INFO] eval_unified_preset:   Progress: 100/362\\\\n2026-05-20 21:16:10,109 [INFO] eval_unified_preset:   Progress: 120/362\\\\n2026-05-20 21:19:54,161 [INFO] eval_unified_preset:   Progress: 140/362\\\\n2026-05-20 21:23:37,386 [INFO] eval_unified_preset:   Progress: 160/362\\\\n2026-05-20 21:26:10,778 [INFO] eval_unified_preset:   Progress: 180/362\\\\n2026-05-20 21:29:29,386 [INFO] eval_unified_preset:   Progress: 200/362\\\\n2026-05-20 21:32:38,520 [INFO] eval_unified_preset:   Progress: 220/362\\\\n2026-05-20 21:36:53,786 [INFO] eval_unified_preset:   Progress: 240/362\\\\n2026-05-20 21:41:25,883 [INFO] eval_unified_preset:   Progress: 260/362\\\\n2026-05-20 21:45:45,139 [INFO] eval_unified_preset:   Progress: 280/362\\\\n2026-05-20 21:49:29,118 [INFO] eval_unified_preset:   Progress: 300/362\\\\n2026-05-20 21:53:13,755 [INFO] eval_unified_preset:   Progress: 320/362\\\\n2026-05-20 21:56:43,449 [INFO] eval_unified_preset:   Progress: 340/362\\\\n2026-05-20 22:01:17,076 [INFO] eval_unified_preset:   Progress: 360/362\\\\n2026-05-20 22:01:46,285 [INFO] eval_unified_preset: Detailed results: /root/contrastive_entrain_calib/results/exp003_d027_eval/exp003-ckpt1000_preset_eval.json\\\\n2026-05-20 22:01:46,285 [INFO] eval_unified_preset: Summary: /root/contrastive_entrain_calib/results/exp003_d027_eval/exp003-ckpt1000_preset_summary.txt\\\\n\\\\n==================================================\\\\n  D027 Preset Eval: exp003-ckpt1000\\\\n==================================================\\\\n  ToF        = 0.0387\\\\n  NoF        = 0.9448\\\\n  SYCONScore = 0.0743\\\\n  Samples    = 362 (valid=181, invalid=181)\\\\n  Time       = 4319s\\\\n==================================================\\\\n\\\\n[Wed May 20 22:01:47 CST 2026] Done. Results: /root/contrastive_entrain_calib/results/exp003_d027_eval/exp003-ckpt1000_preset_eval.json\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[Wed May 20 20:49:36 CST 2026] exp-003 D027 eval: step=1000, gpu=1\\n  checkpoint: /root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-1000\\n  output:     /root/contrastive_entrain_calib/results/exp003_d027_eval/exp003-ckpt1000_preset_eval.json\\n2026-05-20 20:49:40,068 [INFO] eval_unified_preset: === D027 Unified Preset Eval ===\\n2026-05-20 20:49:40,069 [INFO] eval_unified_preset: model_path: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\n2026-05-20 20:49:40,069 [INFO] eval_unified_preset: lora_path:  /root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-1000\\n2026-05-20 20:49:40,069 [INFO] eval_unified_preset: data_path:  /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-20 20:49:40,069 [INFO] eval_unified_preset: exp_id:     exp003-ckpt1000\\n2026-05-20 20:49:40,368 [INFO] eval_unified_preset: Loading model...\\n`torch_dtype` is deprecated! Use `dtype` instead!\\n2026-05-20 20:49:41,108 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\n\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\rLoading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.19it/s]\\rLoading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.21it/s]\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.20it/s]\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.30it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.72it/s]\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.46it/s]\\n2026-05-20 20:49:44,674 [INFO] eval_unified_preset: Loading LoRA adapter: /root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-1000\\n2026-05-20 20:49:46,857 [INFO] eval_unified_preset: Loading NLI model...\\n2026-05-20 20:49:47,078 [INFO] eval_unified_preset: NLI loaded: cross-encoder/nli-deberta-v3-base  id2label={0: 'contradiction', 1: 'entailment', 2: 'neutral'}  ent=1 con=0\\n2026-05-20 20:49:47,082 [INFO] eval_unified_preset: Loaded 362 eval pairs from /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\n2026-05-20 20:49:47,082 [INFO] eval_unified_preset: Running eval on 362 pairs...\\nThe following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.\\n2026-05-20 20:54:54,083 [INFO] eval_unified_preset:   Progress: 20/362\\n2026-05-20 20:59:37,868 [INFO] eval_unified_preset:   Progress: 40/362\\n2026-05-20 21:04:41,946 [INFO] eval_unified_preset:   Progress: 60/362\\n2026-05-20 21:08:52,688 [INFO] eval_unified_preset:   Progress: 80/362\\n2026-05-20 21:12:04,828 [INFO] eval_unified_preset:   Progress: 100/362\\n2026-05-20 21:16:10,109 [INFO] eval_unified_preset:   Progress: 120/362\\n2026-05-20 21:19:54,161 [INFO] eval_unified_preset:   Progress: 140/362\\n2026-05-20 21:23:37,386 [INFO] eval_unified_preset:   Progress: 160/362\\n2026-05-20 21:26:10,778 [INFO] eval_unified_preset:   Progress: 180/362\\n2026-05-20 21:29:29,386 [INFO] eval_unified_preset:   Progress: 200/362\\n2026-05-20 21:32:38,520 [INFO] eval_unified_preset:   Progress: 220/362\\n2026-05-20 21:36:53,786 [INFO] eval_unified_preset:   Progress: 240/362\\n2026-05-20 21:41:25,883 [INFO] eval_unified_preset:   Progress: 260/362\\n2026-05-20 21:45:45,139 [INFO] eval_unified_preset:   Progress: 280/362\\n2026-05-20 21:49:29,118 [INFO] eval_unified_preset:   Progress: 300/362\\n2026-05-20 21:53:13,755 [INFO] eval_unified_preset:   Progress: 320/362\\n2026-05-20 21:56:43,449 [INFO] eval_unified_preset:   Progress: 340/362\\n2026-05-20 22:01:17,076 [INFO] eval_unified_preset:   Progress: 360/362\\n2026-05-20 22:01:46,285 [INFO] eval_unified_preset: Detailed results: /root/contrastive_entrain_calib/results/exp003_d027_eval/exp003-ckpt1000_preset_eval.json\\n2026-05-20 22:01:46,285 [INFO] eval_unified_preset: Summary: /root/contrastive_entrain_calib/results/exp003_d027_eval/exp003-ckpt1000_preset_summary.txt\\n\\n==================================================\\n  D027 Preset Eval: exp003-ckpt1000\\n==================================================\\n  ToF        = 0.0387\\n  NoF        = 0.9448\\n  SYCONScore = 0.0743\\n  Samples    = 362 (valid=181, invalid=181)\\n  Time       = 4319s\\n==================================================\\n\\n[Wed May 20 22:01:47 CST 2026] Done. Results: /root/contrastive_entrain_calib/results/exp003_d027_eval/exp003-ckpt1000_preset_eval.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T14:04:00.268Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GxVf3JRw4R2cLc4XK98XCv",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0727}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+            "uuid": "65266d93-89e9-46d2-9539-d54fb2095506",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0727}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0727}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Got the results. Let me extract the key metrics:\n\n- ToF = 0.0387\n- NoF = 0.9448\n- SYCONScore = 0.0743\n- Samples = 362 (valid=181, invalid=181)\n- Time = 4319s\n\nvs vanilla: SYCONScore 0.0743 vs 0.1335 = -44.3% (negative)\n\nThe registry doesn't have this experiment yet. Let me check if it exists with a different filter.\n\nActually the filter was wrong - `exp_id` is not a filter field in the same way. Let me just proceed to update the registry.\n\n\nThe score of 0.0743 is significantly worse than vanilla and even underperforms the earlier checkpoint at 0.1144, so this R3-only trajectory is clearly degrading. Time to update the registry with these results.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+            "uuid": "7fd94e76-82cd-43fe-985c-cf58785e313d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012aaQHTC6xc9rh6KDYDobXA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2393,
+                "cache_read_input_tokens": 25308,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2393
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已获取。SYCONScore=0.0743，远低于 vanilla (0.1335)，conclusion=negative。更新 registry。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+            "uuid": "68f21e6f-c528-469e-9967-dbac58066d55",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012aaQHTC6xc9rh6KDYDobXA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2393,
+                "cache_read_input_tokens": 25308,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2393
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VdCLGCgjAZuFdFGKv3aGnc",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp-003-eval-ckpt1000",
+                "field": "metrics",
+                "value": {
+                  "ToF": 0.0387,
+                  "NoF": 0.9448,
+                  "SYCONScore": 0.0743,
+                  "n_valid": 181,
+                  "n_invalid": 181,
+                  "n_total": 362,
+                  "eval_time_s": 4319,
+                  "checkpoint": "checkpoint-1000",
+                  "eval_script": "eval_unified_preset.py (D027 standard)",
+                  "eval_server": "westd-28034"
+                },
+                "project": "contrastive_entrain_calib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+            "uuid": "ff1f1ffe-b3d5-41f6-8033-4ac085a19fa9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012aaQHTC6xc9rh6KDYDobXA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2393,
+                "cache_read_input_tokens": 25308,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2393
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T14:04:09.593Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VdCLGCgjAZuFdFGKv3aGnc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-eval-ckpt1000\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T12:45:58.801Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:04:09.512Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-1000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && GPU=1 bash scripts/eval_exp003_d027.sh 1000\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"584627\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt1000.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T12:49:36.944Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T14:02:33.004Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T14:02:34.884545+00:00\\\"}]}, \\\"metrics\\\": {\\\"ToF\\\": 0.0387, \\\"NoF\\\": 0.9448, \\\"SYCONScore\\\": 0.0743, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"eval_time_s\\\": 4319, \\\"checkpoint\\\": \\\"checkpoint-1000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1484}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+            "uuid": "501bb10b-f3b2-4b44-a91f-120811728ed8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-eval-ckpt1000\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T12:45:58.801Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:04:09.512Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-1000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && GPU=1 bash scripts/eval_exp003_d027.sh 1000\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"584627\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt1000.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T12:49:36.944Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T14:02:33.004Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T14:02:34.884545+00:00\\\"}]}, \\\"metrics\\\": {\\\"ToF\\\": 0.0387, \\\"NoF\\\": 0.9448, \\\"SYCONScore\\\": 0.0743, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"eval_time_s\\\": 4319, \\\"checkpoint\\\": \\\"checkpoint-1000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1484}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt1000\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T12:45:58.801Z\", \"updated_at\": \"2026-05-20T14:04:09.512Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-1000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.\", \"parent\": \"exp-003\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && GPU=1 bash scripts/eval_exp003_d027.sh 1000\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:1\"], \"pid\": \"584627\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt1000.log\", \"submitted_at\": \"2026-05-20T12:49:36.944Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T14:02:33.004Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T14:02:34.884545+00:00\"}]}, \"metrics\": {\"ToF\": 0.0387, \"NoF\": 0.9448, \"SYCONScore\": 0.0743, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"eval_time_s\": 4319, \"checkpoint\": \"checkpoint-1000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1484}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FhXuKFGeSYFpcGGLjSZPUw",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp-003-eval-ckpt1000",
+                "field": "conclusion",
+                "value": "negative",
+                "project": "contrastive_entrain_calib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+            "uuid": "8c88684c-ef3f-4f8f-ae29-be476b77a43a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RdTjHkpd3zm69srSrq4h7S",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1139,
+                "cache_read_input_tokens": 27701,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1139
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T14:04:13.133Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FhXuKFGeSYFpcGGLjSZPUw",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-eval-ckpt1000\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T12:45:58.801Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:04:13.072Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-1000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && GPU=1 bash scripts/eval_exp003_d027.sh 1000\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"584627\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt1000.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T12:49:36.944Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T14:02:33.004Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T14:02:34.884545+00:00\\\"}]}, \\\"metrics\\\": {\\\"ToF\\\": 0.0387, \\\"NoF\\\": 0.9448, \\\"SYCONScore\\\": 0.0743, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"eval_time_s\\\": 4319, \\\"checkpoint\\\": \\\"checkpoint-1000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\"}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1269}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+            "uuid": "c5020a91-2263-42b6-b1d7-3aab9d450bd5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-eval-ckpt1000\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T12:45:58.801Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:04:13.072Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-1000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && GPU=1 bash scripts/eval_exp003_d027.sh 1000\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"584627\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt1000.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T12:49:36.944Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T14:02:33.004Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T14:02:34.884545+00:00\\\"}]}, \\\"metrics\\\": {\\\"ToF\\\": 0.0387, \\\"NoF\\\": 0.9448, \\\"SYCONScore\\\": 0.0743, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"eval_time_s\\\": 4319, \\\"checkpoint\\\": \\\"checkpoint-1000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\"}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1269}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt1000\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T12:45:58.801Z\", \"updated_at\": \"2026-05-20T14:04:13.072Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-1000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.\", \"parent\": \"exp-003\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && GPU=1 bash scripts/eval_exp003_d027.sh 1000\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:1\"], \"pid\": \"584627\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt1000.log\", \"submitted_at\": \"2026-05-20T12:49:36.944Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T14:02:33.004Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T14:02:34.884545+00:00\"}]}, \"metrics\": {\"ToF\": 0.0387, \"NoF\": 0.9448, \"SYCONScore\": 0.0743, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"eval_time_s\": 4319, \"checkpoint\": \"checkpoint-1000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\"}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1269}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011GhBrddHJs5DZ1w5p28jJa",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp-003-eval-ckpt1000",
+                "field": "status",
+                "value": "DONE",
+                "project": "contrastive_entrain_calib",
+                "spec": {
+                  "checkpoint_path": "/root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-1000",
+                  "log_path": "~/runs/contrastive_entrain_calib/exp-003-eval-ckpt1000.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+            "uuid": "247bc1e7-98da-4b95-889e-32cca43bda1e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RdTjHkpd3zm69srSrq4h7S",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1139,
+                "cache_read_input_tokens": 27701,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1139
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T14:04:14.397Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011GhBrddHJs5DZ1w5p28jJa",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0724}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+            "uuid": "35d13498-8d43-4899-b420-fc8d87e48515",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0724}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.0724}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The status transition from PREPARING to DONE is not allowed. I need to go through RUNNING first. Let me transition to RUNNING, then to DONE.",
+              "signature": "EtICCmMIDRgCKkCqMEhFXqn9n5SWIajoMZMk01ysrHybU/AujaSMw0eCYlTjukWUA46WLqRbIfSQovIpBj55bZEvF4N5gW3y5T7/Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDEVk9TvC0vN152xcuRoMO7IJiqHGgiQH/WiqIjDTkuRLyPTKxBj8/qBq9++d+WoQ6qocXUW6KV+CeRwHbLWhaoZkmWkTbQ54yGROS2YqnAEXitjk1gSgbWoXjNUw6cHGZz7nsnKhJiTuOZ1iI9iBoRjn2j6iKeF1fqXTQb4P59n8cvc7qH82IqxP8EJJFXNR+TaOIWAYdjL99GV3kGrjn7VTPVoTAsbTvl51kaH3VuaJVBehU8ktKCUqqmv7UITRRIwKTKa54WcjWlmw8a5ubd5wYmuQjgaQtDSEj9pzB2xSsqk2Es5U7YQ2wIMYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+            "uuid": "091d6aaa-6615-44b2-a497-7dfecff5faf6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KweoyBvbBjMu47BgUSujJV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1069,
+                "cache_read_input_tokens": 28840,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1069
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "需要先过渡到 RUNNING 再到 DONE。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+            "uuid": "ed8c24e8-dd5a-4976-9007-09e887de75dc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KweoyBvbBjMu47BgUSujJV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1069,
+                "cache_read_input_tokens": 28840,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1069
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016zJ13MDap2QtYooAVWTWTb",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp-003-eval-ckpt1000",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "contrastive_entrain_calib",
+                "spec": {
+                  "command": "bash -c \"cd /root/contrastive_entrain_calib && GPU=1 bash scripts/eval_exp003_d027.sh 1000\"",
+                  "server": "westd-28034",
+                  "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+                  "data_count": 362,
+                  "model_name": "Qwen3-8B + exp003/checkpoint-1000 LoRA",
+                  "seed": 42,
+                  "checkpoint_source": "exp-003",
+                  "eval_data": "D027 calibration_v2_1_expanded",
+                  "checkpoint_path": "/root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-1000",
+                  "log_path": "~/runs/contrastive_entrain_calib/exp-003-eval-ckpt1000.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+            "uuid": "4caafecf-7687-4ee4-b3b7-1534bc8d0ba8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KweoyBvbBjMu47BgUSujJV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1069,
+                "cache_read_input_tokens": 28840,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1069
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T14:04:21.567Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016zJ13MDap2QtYooAVWTWTb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0711}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+            "uuid": "5ec2b23f-c5c2-4331-8e5c-768dacf2486a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0711}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.0711}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TqBPqDYrxwwT4K8MupLXdw",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp-003-eval-ckpt1000",
+                "field": "status",
+                "value": "QUEUED",
+                "project": "contrastive_entrain_calib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+            "uuid": "4eca669b-5157-4067-85f1-95f71284265e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ja3XEiLbS1wtzoy9bYnqnX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 509,
+                "cache_read_input_tokens": 29909,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 509
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T14:04:24.791Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TqBPqDYrxwwT4K8MupLXdw",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-eval-ckpt1000\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T12:45:58.801Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:04:24.570Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-1000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && GPU=1 bash scripts/eval_exp003_d027.sh 1000\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"584627\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt1000.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T12:49:36.944Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T14:02:33.004Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T14:02:34.884545+00:00\\\"}]}, \\\"metrics\\\": {\\\"ToF\\\": 0.0387, \\\"NoF\\\": 0.9448, \\\"SYCONScore\\\": 0.0743, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"eval_time_s\\\": 4319, \\\"checkpoint\\\": \\\"checkpoint-1000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\"}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3007}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+            "uuid": "1a3dda3d-028a-4730-9190-ecd11358944c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-eval-ckpt1000\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T12:45:58.801Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:04:24.570Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-1000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && GPU=1 bash scripts/eval_exp003_d027.sh 1000\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"584627\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt1000.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T12:49:36.944Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T14:02:33.004Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T14:02:34.884545+00:00\\\"}]}, \\\"metrics\\\": {\\\"ToF\\\": 0.0387, \\\"NoF\\\": 0.9448, \\\"SYCONScore\\\": 0.0743, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"eval_time_s\\\": 4319, \\\"checkpoint\\\": \\\"checkpoint-1000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\"}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3007}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt1000\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-20T12:45:58.801Z\", \"updated_at\": \"2026-05-20T14:04:24.570Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-1000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.\", \"parent\": \"exp-003\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && GPU=1 bash scripts/eval_exp003_d027.sh 1000\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:1\"], \"pid\": \"584627\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt1000.log\", \"submitted_at\": \"2026-05-20T12:49:36.944Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T14:02:33.004Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T14:02:34.884545+00:00\"}]}, \"metrics\": {\"ToF\": 0.0387, \"NoF\": 0.9448, \"SYCONScore\": 0.0743, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"eval_time_s\": 4319, \"checkpoint\": \"checkpoint-1000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\"}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3007}}"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016WyWpNf5HR7XniPhNn33Uo",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp-003-eval-ckpt1000",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "contrastive_entrain_calib",
+                "spec": {
+                  "command": "bash -c \"cd /root/contrastive_entrain_calib && GPU=1 bash scripts/eval_exp003_d027.sh 1000\"",
+                  "server": "westd-28034",
+                  "data_path": "/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl",
+                  "data_count": 362,
+                  "model_name": "Qwen3-8B + exp003/checkpoint-1000 LoRA",
+                  "seed": 42,
+                  "checkpoint_source": "exp-003",
+                  "eval_data": "D027 calibration_v2_1_expanded",
+                  "checkpoint_path": "/root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-1000",
+                  "log_path": "~/runs/contrastive_entrain_calib/exp-003-eval-ckpt1000.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+            "uuid": "6377613d-52e9-4f2b-88b1-1e9e9a6fd55b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EFAGwwps3nWSviLkRSP7bg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 848,
+                "cache_read_input_tokens": 30418,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 848
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T14:04:29.901Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016WyWpNf5HR7XniPhNn33Uo",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-eval-ckpt1000\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T12:45:58.801Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:04:29.691Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-1000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && GPU=1 bash scripts/eval_exp003_d027.sh 1000\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"584627\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt1000.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T12:49:36.944Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B + exp003/checkpoint-1000 LoRA\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"exp-003\\\", \\\"eval_data\\\": \\\"D027 calibration_v2_1_expanded\\\", \\\"checkpoint_path\\\": \\\"/root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-1000\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T14:02:33.004Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T14:02:34.884545+00:00\\\"}]}, \\\"metrics\\\": {\\\"ToF\\\": 0.0387, \\\"NoF\\\": 0.9448, \\\"SYCONScore\\\": 0.0743, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"eval_time_s\\\": 4319, \\\"checkpoint\\\": \\\"checkpoint-1000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\"}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3085}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+            "uuid": "e71e76fd-b745-4757-8b8e-ff091913026f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-eval-ckpt1000\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T12:45:58.801Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:04:29.691Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-1000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && GPU=1 bash scripts/eval_exp003_d027.sh 1000\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"584627\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt1000.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T12:49:36.944Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B + exp003/checkpoint-1000 LoRA\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"exp-003\\\", \\\"eval_data\\\": \\\"D027 calibration_v2_1_expanded\\\", \\\"checkpoint_path\\\": \\\"/root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-1000\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T14:02:33.004Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T14:02:34.884545+00:00\\\"}]}, \\\"metrics\\\": {\\\"ToF\\\": 0.0387, \\\"NoF\\\": 0.9448, \\\"SYCONScore\\\": 0.0743, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"eval_time_s\\\": 4319, \\\"checkpoint\\\": \\\"checkpoint-1000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\"}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3085}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt1000\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T12:45:58.801Z\", \"updated_at\": \"2026-05-20T14:04:29.691Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-1000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.\", \"parent\": \"exp-003\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && GPU=1 bash scripts/eval_exp003_d027.sh 1000\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:1\"], \"pid\": \"584627\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt1000.log\", \"submitted_at\": \"2026-05-20T12:49:36.944Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp003/checkpoint-1000 LoRA\", \"seed\": 42, \"checkpoint_source\": \"exp-003\", \"eval_data\": \"D027 calibration_v2_1_expanded\", \"checkpoint_path\": \"/root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-1000\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T14:02:33.004Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T14:02:34.884545+00:00\"}]}, \"metrics\": {\"ToF\": 0.0387, \"NoF\": 0.9448, \"SYCONScore\": 0.0743, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"eval_time_s\": 4319, \"checkpoint\": \"checkpoint-1000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\"}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3085}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LsUJGqpHykkH1PBJ53KhL2",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "exp-003-eval-ckpt1000",
+                "field": "status",
+                "value": "DONE",
+                "project": "contrastive_entrain_calib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+            "uuid": "02206343-fde5-4e60-b41d-ffbef3ef3468",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014ZSK9RmBrvoGrwpY1MG4mp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1121,
+                "cache_read_input_tokens": 31266,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1121
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T14:04:33.288Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LsUJGqpHykkH1PBJ53KhL2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-eval-ckpt1000\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T12:45:58.801Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:04:33.075Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-1000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && GPU=1 bash scripts/eval_exp003_d027.sh 1000\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"584627\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt1000.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T12:49:36.944Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B + exp003/checkpoint-1000 LoRA\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"exp-003\\\", \\\"eval_data\\\": \\\"D027 calibration_v2_1_expanded\\\", \\\"checkpoint_path\\\": \\\"/root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-1000\\\", \\\"wall_clock_seconds\\\": 4496.1, \\\"gpu_hours\\\": 1.25}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T14:02:33.004Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T14:02:34.884545+00:00\\\"}]}, \\\"metrics\\\": {\\\"ToF\\\": 0.0387, \\\"NoF\\\": 0.9448, \\\"SYCONScore\\\": 0.0743, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"eval_time_s\\\": 4319, \\\"checkpoint\\\": \\\"checkpoint-1000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-20T14:04:33.075Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2803}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+            "uuid": "b7f98567-eb6d-4a98-b1a3-e1d645f8467a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"exp-003-eval-ckpt1000\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T12:45:58.801Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:04:33.075Z\\\", \\\"hypothesis\\\": \\\"Eval exp-003 R3-only GRPO checkpoint-1000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.\\\", \\\"parent\\\": \\\"exp-003\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/contrastive_entrain_calib && GPU=1 bash scripts/eval_exp003_d027.sh 1000\\\\\\\"\\\", \\\"server\\\": \\\"westd-28034\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"584627\\\", \\\"log_path\\\": \\\"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt1000.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T12:49:36.944Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\", \\\"data_count\\\": 362, \\\"model_name\\\": \\\"Qwen3-8B + exp003/checkpoint-1000 LoRA\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"exp-003\\\", \\\"eval_data\\\": \\\"D027 calibration_v2_1_expanded\\\", \\\"checkpoint_path\\\": \\\"/root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-1000\\\", \\\"wall_clock_seconds\\\": 4496.1, \\\"gpu_hours\\\": 1.25}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T14:02:33.004Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T14:02:34.884545+00:00\\\"}]}, \\\"metrics\\\": {\\\"ToF\\\": 0.0387, \\\"NoF\\\": 0.9448, \\\"SYCONScore\\\": 0.0743, \\\"n_valid\\\": 181, \\\"n_invalid\\\": 181, \\\"n_total\\\": 362, \\\"eval_time_s\\\": 4319, \\\"checkpoint\\\": \\\"checkpoint-1000\\\", \\\"eval_script\\\": \\\"eval_unified_preset.py (D027 standard)\\\", \\\"eval_server\\\": \\\"westd-28034\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-20T14:04:33.075Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2803}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"exp-003-eval-ckpt1000\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T12:45:58.801Z\", \"updated_at\": \"2026-05-20T14:04:33.075Z\", \"hypothesis\": \"Eval exp-003 R3-only GRPO checkpoint-1000 with D027 unified preset. Part of R3-only training trajectory for paper figure. Compare against vanilla baseline SYCONScore=0.1335.\", \"parent\": \"exp-003\", \"spec\": {\"command\": \"bash -c \\\"cd /root/contrastive_entrain_calib && GPU=1 bash scripts/eval_exp003_d027.sh 1000\\\"\", \"server\": \"westd-28034\", \"gpu\": [\"cuda:1\"], \"pid\": \"584627\", \"log_path\": \"~/runs/contrastive_entrain_calib/exp-003-eval-ckpt1000.log\", \"submitted_at\": \"2026-05-20T12:49:36.944Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\", \"data_count\": 362, \"model_name\": \"Qwen3-8B + exp003/checkpoint-1000 LoRA\", \"seed\": 42, \"checkpoint_source\": \"exp-003\", \"eval_data\": \"D027 calibration_v2_1_expanded\", \"checkpoint_path\": \"/root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-1000\", \"wall_clock_seconds\": 4496.1, \"gpu_hours\": 1.25}, \"reproduce\": {\"finished_at\": \"2026-05-20T14:02:33.004Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T14:02:34.884545+00:00\"}]}, \"metrics\": {\"ToF\": 0.0387, \"NoF\": 0.9448, \"SYCONScore\": 0.0743, \"n_valid\": 181, \"n_invalid\": 181, \"n_total\": 362, \"eval_time_s\": 4319, \"checkpoint\": \"checkpoint-1000\", \"eval_script\": \"eval_unified_preset.py (D027 standard)\", \"eval_server\": \"westd-28034\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T14:04:33.075Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2803}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/negative。\n\n## exp-003-eval-ckpt1000 Results\n- **ToF**: 0.0387\n- **NoF**: 0.9448\n- **SYCONScore**: 0.0743\n- vs vanilla: SYCONScore 0.0743 vs 0.1335 = **-44.3%**\n- n_total: 362 (valid=181, invalid=181)\n- eval_time: 4319s\n- conclusion: **negative**\n\nR3-only trajectory 目前两个点：\n| checkpoint | SYCONScore | vs vanilla | ToF | NoF |\n|---|---|---|---|---|\n| ckpt-1000 | 0.0743 | -44.3% | 0.0387 | 0.9448 |\n| ckpt-5000 | 0.1144 | -14.3% | 0.0608 | 0.9669 |\n\nckpt-1000 的 ToF 极低 (0.0387)，说明训练早期模型几乎不跟随 (follow) 用户观点，但 NoF 与 vanilla 持平。随着训练推进到 ckpt-5000，ToF 回升但仍低于 vanilla。整体趋势：R3-only 在训练全程 SYCONScore 均低于 vanilla，且越早期越差。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+            "uuid": "58727fde-8c30-4bfd-b504-f4923de822e6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016sfoqrTZgb4NNr96i7Wc4X",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 970,
+                "cache_read_input_tokens": 32387,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 970
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/negative。\n\n## exp-003-eval-ckpt1000 Results\n- **ToF**: 0.0387\n- **NoF**: 0.9448\n- **SYCONScore**: 0.0743\n- vs vanilla: SYCONScore 0.0743 vs 0.1335 = **-44.3%**\n- n_total: 362 (valid=181, invalid=181)\n- eval_time: 4319s\n- conclusion: **negative**\n\nR3-only trajectory 目前两个点：\n| checkpoint | SYCONScore | vs vanilla | ToF | NoF |\n|---|---|---|---|---|\n| ckpt-1000 | 0.0743 | -44.3% | 0.0387 | 0.9448 |\n| ckpt-5000 | 0.1144 | -14.3% | 0.0608 | 0.9669 |\n\nckpt-1000 的 ToF 极低 (0.0387)，说明训练早期模型几乎不跟随 (follow) 用户观点，但 NoF 与 vanilla 持平。随着训练推进到 ckpt-5000，ToF 回升但仍低于 vanilla。整体趋势：R3-only 在训练全程 SYCONScore 均低于 vanilla，且越早期越差。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 51313,
+            "duration_api_ms": 50815,
+            "num_turns": 11,
+            "stop_reason": "end_turn",
+            "session_id": "8d26e84b-4905-49dd-b66d-eaad07d84867",
+            "total_cost_usd": 0.3241905,
+            "usage": {
+              "input_tokens": 12,
+              "cache_creation_input_tokens": 21516,
+              "cache_read_input_tokens": 241687,
+              "output_tokens": 2688,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 21516,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 373,
+                  "cache_read_input_tokens": 32387,
+                  "cache_creation_input_tokens": 970,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 970
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1497,
+                "outputTokens": 23,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0016120000000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 12,
+                "outputTokens": 2688,
+                "cacheReadInputTokens": 241687,
+                "cacheCreationInputTokens": 21516,
+                "webSearchRequests": 0,
+                "costUSD": 0.3225785,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "75031c2f-e532-4517-a758-a7805a941e88"
+          },
+          "id": "event-000030"
+        }
+      ],
+      "message_count": 30
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-exp-003-eval-ckpt1000.md"
+}

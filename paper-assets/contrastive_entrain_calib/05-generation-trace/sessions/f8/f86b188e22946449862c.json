@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f86b188e22946449862c",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diag exp002 r1 dot product analysis",
+  "task_key": "worker_diag_exp002-r1-dot-product-analysis_20260518T233004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp002-r1-dot-product-analysis_20260518T233004_result.json",
+    "occurrence": 1,
+    "bytes": 2288,
+    "sha256": "f23f3365d72f94208a19f1b8fd208e549e85df886b96dc543e3923411806bd32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整结果如下：\n\n---\n\n## 诊断结果\n\n### 1. Activation Norms — 远超预期\n\n| Layer | Mean ||h|| | Min | Max |\n|-------|-----------|-----|-----|\n| 19 | 108.6 | 106.9 | 111.1 |\n| 20 | 120.7 | 118.6 | 123.4 |\n| 24 | 268.5 | 263.1 | 274.0 |\n| 27 | 420.2 | 411.8 | 426.1 |\n| 32 | 856.8 | 838.9 | 875.0 |\n| 33 | 1001.9 | 980.8 | 1023.8 |\n| **35** | **1182.6** | 1117.9 | 1275.4 |\n\n深层 activation norm 达到 **1000+**，d_syc 是单位向量，所以 dot product 的量级完全由 ||h|| 决定。\n\n### 2. Raw Dot Products — 深层严重饱和\n\n| Layer | Mean | Std | Min | Max | \\|val\\|>20 |\n|-------|------|-----|-----|-----|-----------|\n| 19 | 9.92 | 3.94 | 2.61 | 17.54 | 0/20 |\n| 20 | 11.02 | 5.97 | -2.27 | 20.46 | 1/20 |\n| 24 | -5.16 | 18.58 | -46.17 | 14.98 | 3/20 |\n| 27 | 12.16 | 34.60 | -55.86 | 54.68 | **15/20** |\n| 32 | 107.82 | 56.06 | -9.68 | 176.08 | **17/20** |\n| 33 | 70.40 | 58.96 | -53.64 | 142.95 | **19/20** |\n| 35 | 43.89 | 66.16 | -92.71 | 127.65 | **16/20** |\n\nLayer 32 的 dot product 最大值达 **176**，除以 scale=20 后是 8.8，tanh(8.8) ≈ 1.0000。\n\n### 3. tanh(dot/20) — 深层完全饱和\n\n| Layer | Mean | |val|>0.9 |\n|-------|------|-----------|\n| 19 | 0.4464 | 0/20 |\n| 20 | 0.4742 | 0/20 |\n| 24 | -0.0843 | 3/20 |\n| 27 | 0.3439 | **13/20** |\n| 32 | 0.8832 | **17/20** |\n| 33 | 0.6764 | **17/20** |\n| 35 | 0.4667 | **16/20** |\n\nLayer 27-35 的 R1 基本是 {-1, +1} 二值信号。\n\n### 4. Cosine Similarity — 数值合理但区分度有限\n\nCosine 值在 [-0.17, +0.21] 范围内，不饱和，但两组的 mean 差异小（valid=0.044 vs invalid=0.078），std 也大。AUROC: dot=0.69, cosine=0.67，几乎无差。\n\n### 5. 诊断结论\n\n**CONFIRMED: tanh 饱和是 R1 震荡的根因。**\n\n- 平均 activation norm = **565.6**\n- **50.7%** 的 dot product 绝对值 > 20（tanh 饱和阈值）\n- 深层（L27-35）几乎全部饱和，R1 退化为 ±1 噪声\n- 浅层（L19-20）还在 tanh 线性区，但信号本身也弱\n\n**但 cosine similarity 直接替换也不够**：AUROC 仅 0.67-0.69，说明单靠 asst_first 位置的方向投影区分 valid/invalid 的能力本身就弱。问题不止是 scale，方向信号本身也需要增强。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp002-r1-dot-product-analysis.md"
+}

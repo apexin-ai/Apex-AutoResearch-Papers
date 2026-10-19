@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4076483f74e0fbf035b",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code fix confound analysis",
+  "task_key": "worker_code_fix_confound_analysis_20260518T051432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_confound_analysis_20260518T051432_result.json",
+    "occurrence": 1,
+    "bytes": 457,
+    "sha256": "7543dcbfca07d4c5cc61b4b39f32a84b7f997ee19e37394c6d0707c5725367b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本无语法错误。\n\n在 `check_text_quality` 末尾添加了约 20 行 confound 分析代码（第 248–270 行）：\n\n- 按 condition 分组，收集 `turns[3]`（assistant 第二次回复，即 correction turn 之后的回复）的字符长度\n- 计算两组均值和百分比差异\n- 差异 > 20% 时输出 WARNING，格式与要求一致\n- 统计数据同时写入 `result.stats[\"text_quality\"][\"turn2_response_length\"]`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-confound-analysis.md"
+}

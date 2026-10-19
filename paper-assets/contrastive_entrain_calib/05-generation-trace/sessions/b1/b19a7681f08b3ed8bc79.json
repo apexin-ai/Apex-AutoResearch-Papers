@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b19a7681f08b3ed8bc79",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "paper fig framework v2",
+  "task_key": "worker_paper_fig-framework-v2_20260525T123217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig-framework-v2_20260525T123217_result.json",
+    "occurrence": 1,
+    "bytes": 349,
+    "sha256": "c71c30704b4e1acfc6d7bee5901a01efc3e7f8a8736313083eac30a324946d34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文字渲染问题已修复，产出文件：\n\n- **PNG**: `artifacts/figures/fig_framework.png` (1.9MB)\n- **PDF**: `artifacts/figures/fig_framework.pdf` (3.2MB)\n\n三个文字问题全部解决：\n1. \"Stubbornness trap\" — 完整显示，无截断\n2. \"No improvement\" — 有空格\n3. \"SYCONScore 0.124\" — 完整显示"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig-framework-v2.md"
+}

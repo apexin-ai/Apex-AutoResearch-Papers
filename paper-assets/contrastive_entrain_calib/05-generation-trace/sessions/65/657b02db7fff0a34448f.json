@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "657b02db7fff0a34448f",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ssh check westb 13953",
+  "task_key": "worker_ssh_check-westb-13953_20260522T184704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-westb-13953_20260522T184704_result.json",
+    "occurrence": 1,
+    "bytes": 575,
+    "sha256": "3334523c2194c017d506ab171251e26136cf88f21677fe3bee5168d4befbb68e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n| 项目 | 结果 |\n|------|------|\n| **连接状态** | **失败** — `Authentication failed.`（耗时 5.77s） |\n| **错误信息** | SSH 认证失败，服务器拒绝了当前凭据 |\n| **本地 SSH config** | **无配置** — `~/.ssh/config` 中没有 westb-13953 的条目 |\n\n认证失败 + SSH config 中无此服务器配置，说明该服务器的 SSH 密钥/端口信息未配置到当前环境。需要用户提供 westb-13953 的连接信息（主机地址、端口、密钥），或者确认该实例是否已过期/释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-westb-13953.md"
+}

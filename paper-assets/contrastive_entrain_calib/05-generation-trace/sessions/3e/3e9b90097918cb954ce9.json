@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e9b90097918cb954ce9",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval check 29046 status",
+  "task_key": "worker_eval_check-29046-status_20260522T124804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_check-29046-status_20260522T124804_result.json",
+    "occurrence": 1,
+    "bytes": 1763,
+    "sha256": "e650dde141be6294f95f7ddb9bff4d9efcb266cbfc8842a22159d2f6736be624"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到了 exp-003 的实际存储路径。汇总如下：\n\n---\n\n## westd-29046 状态汇总 (2026-05-22 20:48 UTC+8)\n\n### GPU\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| GPU0 (exp-003-s2) | 95% | 38GB / 96GB |\n| GPU1 (exp-004-s2-v2) | 94% | 46GB / 96GB |\n\n两卡都在满负载训练。\n\n### exp-003-s2 (R3-only seed2)\n- **当前进度**: step **7623/8000** (95.3%)\n- **速度**: ~25s/step\n- **剩余**: ~377 steps → **约 2.6 小时**完成（预计 ~23:20）\n- **checkpoint-8000**: **尚未产出**\n- checkpoint 保存在 `/root/autodl-tmp/checkpoints/exp003_r3only_seed2/`，目前最新到 **checkpoint-7500**\n- 注意：之前给的 `exp-003-r3only-s2` 目录名不对，实际目录是 `exp003_r3only_seed2`（下划线命名）\n- seed1 的 checkpoint-8000 已存在\n\n### exp-004-s2-v2 (ACT seed2 第三次重启)\n- **当前进度**: step **2150/8000** (26.9%)，从 ckpt-2000 resume\n- **速度**: ~90s/10 steps → ~9s/step（比 exp-003 快很多，因为是 LoRA SFT）\n- **loss 趋势**: sft_loss 在 0.001~0.018 波动，l2_loss ~0.0026，正常范围\n- 输出路径: `/root/autodl-tmp/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2/`\n- 启动时间: 20:25，运行约 23 分钟\n- **预估完成**: ~5850 steps 剩余 × 9s ≈ **14.6 小时**（明天上午 ~11:00）\n\n### 磁盘\n| 分区 | 用量 | 剩余 | 状态 |\n|------|------|------|------|\n| / (根) | 28G/30G (93%) | **2.4G** | **危险** |\n| /root/autodl-tmp (数据盘) | 59G/250G (24%) | 192G | 正常 |\n\n**根分区只剩 2.4G，需要关注。** 如果训练过程中有任何日志/临时文件写入根分区，可能会撑满导致训练中断。建议清理根分区或确保新文件都写入 autodl-tmp。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-check-29046-status.md"
+}

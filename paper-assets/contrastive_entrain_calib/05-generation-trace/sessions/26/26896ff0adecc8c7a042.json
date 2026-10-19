@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26896ff0adecc8c7a042",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "infra fix deepspeed path and submit exp014",
+  "task_key": "worker_infra_fix-deepspeed-path-and-submit-exp014_20260518T180330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fix-deepspeed-path-and-submit-exp014_20260518T180330_result.json",
+    "occurrence": 1,
+    "bytes": 1369,
+    "sha256": "11594de7028045159e5ae06b3f3a1cb9fcff64ce9d3213e6c51f19b337cff03b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果清晰了。\n\n## 报告\n\n**1. Python 绝对路径**\n`/root/miniconda3/bin/python` → 符号链接到 `python3.12`\n\n**2. deepspeed 绝对路径**\n`/root/miniconda3/bin/deepspeed`\n\nshebang 为 `#!/root/miniconda3/bin/python`，内容就是调用 `deepspeed.launcher.runner.main()`。\n\n**3. 问题根因**\nSSH 登录时的 PATH 是：\n```\n/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin\n```\n**不包含 `/root/miniconda3/bin/`**。`.bashrc` 中也没有 conda 初始化。所以 tmux 里的 sh 找不到 `deepspeed`。\n\nexp-004 能跑是因为 `python` 碰巧不在这个 PATH 里也行（或者用了别的 python），但 `deepspeed` 只存在于 miniconda3/bin 下。\n\n**4. 推荐启动命令**\n\n最可靠的方案是直接用绝对路径（方案B），无需任何 conda activate：\n\n```bash\ncd /root/contrastive_entrain_calib/training && /root/miniconda3/bin/deepspeed --num_gpus 2 run_exp014_continuous_probe.py\n```\n\n或等价的方案C（通过 python -m）：\n\n```bash\ncd /root/contrastive_entrain_calib/training && /root/miniconda3/bin/python -m deepspeed.launcher.runner --num_gpus 2 run_exp014_continuous_probe.py\n```\n\n两者效果完全一致（deepspeed 脚本本身就是调 `deepspeed.launcher.runner.main()`）。方案B更简洁，推荐使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-fix-deepspeed-path-and-submit-exp014.md"
+}

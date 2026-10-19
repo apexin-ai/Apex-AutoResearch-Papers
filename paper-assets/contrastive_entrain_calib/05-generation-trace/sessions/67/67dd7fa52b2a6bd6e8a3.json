@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67dd7fa52b2a6bd6e8a3",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval 28034 triple urgent",
+  "task_key": "worker_eval_28034-triple-urgent_20260523T061702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_28034-triple-urgent_20260523T061702_result.json",
+    "occurrence": 1,
+    "bytes": 872,
+    "sha256": "86bea5f433669f3a52af1232e850f1bbc466d5285e7cbca93d95ae6bda5fb7b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 eval 全部正常运行中，都在处理 362 对数据。\n\n| GPU | PID | 任务 | Checkpoint | 输出目录 |\n|-----|-----|------|------------|----------|\n| 0 | 51827 | ACT s2 ckpt-2500 | `/root/contrastive_entrain_calib/outputs/exp-004-act-baseline-s2/checkpoint-2500` | `eval_results/exp004_s2_ckpt2500_v2/` |\n| 1 | 30011 | reduced-lora 训练（不碰） | — | — |\n| 2 | 52330 | reduced-lora ckpt-6000 | `/root/autodl-tmp/outputs/exp-004-reduced-lora/checkpoint-6000` | `eval_results/exp004_reduced_lora_ckpt6000_v2/` |\n| 3 | 52840 | reduced-lora ckpt-6500 | `/root/autodl-tmp/outputs/exp-004-reduced-lora/checkpoint-6500` | `eval_results/exp004_reduced_lora_ckpt6500/` |\n\nGPU 0 已跑到 20/362，GPU 2/3 刚开始推理。日志分别在 `/tmp/eval_s2_ckpt2500_v2.log`、`/tmp/eval_rl_ckpt6000.log`、`/tmp/eval_rl_ckpt6500.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-28034-triple-urgent.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "391ed2608a0750f031ce",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval 28034 rl ckpt7500",
+  "task_key": "worker_eval_28034-rl-ckpt7500_20260523T073720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_28034-rl-ckpt7500_20260523T073720_result.json",
+    "occurrence": 1,
+    "bytes": 573,
+    "sha256": "4b92f130adedef48c0e97f2f70aeb5dbddd616a097261868631bcf17de74d4ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 正常运行中，已加载模型和 LoRA adapter，正在对 362 个 eval pairs 推理。\n\n**汇报：**\n\n| 项目 | 状态 |\n|------|------|\n| ckpt-7500 eval | **PID 59600**，GPU0，正在运行（已加载模型，362 pairs 推理中） |\n| 训练 (PID 30011) | **仍在运行**，已运行约15小时，最新 checkpoint-7500，无 checkpoint-8000 |\n| ckpt-8000 eval | 训练未完成，checkpoint-8000 不存在，暂不启动 |\n\n日志路径：`/tmp/eval_rl_ckpt7500.log`，输出目录：`eval_results/exp004_reduced_lora_ckpt7500/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-28034-rl-ckpt7500.md"
+}

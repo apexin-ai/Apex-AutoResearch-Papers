@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "40f24980eecfec8f5477",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "code exp 003 len512 launch",
+  "task_key": "worker_code_exp-003-len512-launch_20260522T161544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-003-len512-launch_20260522T161544.log",
+    "occurrence": 1,
+    "bytes": 708333,
+    "sha256": "b2f0844e805ad4ee8a5288267c2f7ad4ea94dc3719fccd82e49b4ee60856fe8e"
+  },
+  "statistics": {
+    "messages": 507,
+    "user_turns": 0,
+    "tool_calls": 214,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 3,
+      "assistant": 72,
+      "tool_call": 214,
+      "tool_result": 214
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 507,
+      "chunks": [
+        {
+          "path": "40f24980eecfec8f5477-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "40f24980eecfec8f5477-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "40f24980eecfec8f5477-part-0003.json",
+          "message_count": 147
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp-003-len512-launch.md"
+}

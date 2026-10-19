@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba42ebb70ef0fa8bc8b0",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code exp003 len512 v3 check",
+  "task_key": "worker_code_exp003-len512-v3-check_20260525T073550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp003-len512-v3-check_20260525T073550_result.json",
+    "occurrence": 1,
+    "bytes": 1323,
+    "sha256": "8b6754c1f2b5122b6ad817b19d7a341019dc55034bb28691eb5c3ce6a632a27b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n---\n\n## 报告：exp-003-len512-v3\n\n| 项目 | 结果 |\n|------|------|\n| **状态** | **被 kill**（PID 553700 已不存在，日志无 error/traceback） |\n| **进度** | 3830/8000 步（48%），运行 ~49.7 小时 |\n| **最后 checkpoint** | checkpoint-3500（2026-05-25 07:49） |\n| **日志中断时间** | 2026-05-25 12:10:04 |\n\n**Checkpoint 列表：** 500, 1000, 1500, 2000, 2500, 3000, 3500\n\n**关键 Metrics（最近 window）：**\n- `reward_mean`: 0.47~0.64，均值约 0.54，**与 step 100 时的 0.52 基本持平，无上升趋势**\n- `kl`: 0.014（从初始 0.0005 涨上来，说明 policy 已偏移）\n- `clipped_ratio`: 0.95-0.98（绝大多数生成撞 512 上限）\n- `entropy`: 0.30-0.33（较低）\n- `loss`: ~0.001（接近零）\n\n**结论：killed**\n\n进程在 step 3830 处被外部 kill（可能是之前 SSH 断连期间服务器重启或手动终止）。之前 registry 记录的 \"SSH check failed\" 实际上是监控连不上服务器，而非训练本身报错。\n\n从 metrics 看，即使训练未被中断，效果也不乐观——3800 步后 reward 无明显提升，clipped_ratio 极高说明模型几乎总是生成到最大长度。假设\"加长 max_completion_length 能缓解 reward 失败\"**暂时不成立**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp003-len512-v3-check.md"
+}

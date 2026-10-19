@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "962dbd75b90c60187304",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code exp008 binary probe",
+  "task_key": "worker_code_exp008-binary-probe_20260518T164612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp008-binary-probe_20260518T164612_result.json",
+    "occurrence": 1,
+    "bytes": 1343,
+    "sha256": "125ae0236ed90cfea6fb0208837b3b9da284c8fedb4ec43aa14bd11f6a620d5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Syntax verified. Summary of what was written:\n\n**`run_exp008_binary_probe_penalty.py`** — self-contained SFT-style training script for the binary probe penalty baseline.\n\n**Architecture:**\n- Qwen3-8B + LoRA (rank=16, alpha=32, target: q/k/v/o_proj)\n- Gradient checkpointing (`use_reentrant=False`) for memory efficiency\n- `output_hidden_states=True` to extract differentiable hidden states for the probe penalty\n\n**Pipeline (3 phases before training):**\n1. Load dataset from `calibration_data.jsonl` (640 samples, 4-turn conversations with target responses, condition mapping handled automatically)\n2. Train/load frozen `LinearProbe` from `activations.pt` (exp-001 pre-extracted hidden states)\n3. Precompute R3 scores using DeBERTa NLI model (freed after precomputation to save GPU memory)\n\n**Training loop:**\n- `L = L_sft + lambda_reward * lambda_probe * S(t) - lambda_reward * R3`\n- S(t) is differentiable through hidden states at asst_first position (averaged across layers [19,20,24,27,32,33,35])\n- R3 is precomputed (constant per sample, doesn't affect gradients, used for monitoring)\n- AdamW + cosine schedule with warmup, grad accumulation=16, logging every 10 steps, checkpoints every 500 steps\n- Key hyperparams exposed via argparse: `--lr`, `--lambda_reward`, `--lambda_probe`, `--max_steps`, etc."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp008-binary-probe.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d34b55c934169b4185da",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops post restart2 status 29046",
+  "task_key": "worker_ops_post-restart2-status-29046_20260519T131052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_post-restart2-status-29046_20260519T131052_result.json",
+    "occurrence": 1,
+    "bytes": 685,
+    "sha256": "fd2a461275cc05be7f1cba4976f382195c8175cc4aeb489dc1f392c6767ed811"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均在正常运行。\n\n### GPU 状态\n| GPU | 利用率 | 显存占用 | 温度 |\n|-----|--------|----------|------|\n| 0 | 93% | 66.9 GB / 96 GB | 65°C |\n| 1 | 98% | 38.2 GB / 96 GB | 68°C |\n\n### exp-003 (R3-only GRPO, GPU 1)\n- **进度**: 2561 / 8000 (32%)\n- **已运行**: ~20h 19m\n- **ETA**: ~40h\n- **最近 R3 reward**: 0.56 ~ 0.68，step 2560 汇总 mean=0.6795, std=0.4722\n\n### exp002v2-recalib (Cosine + Recalib, GPU 0)\n- **进度**: 1615 / 8000 (20%)\n- **已运行**: ~6h 30m\n- **ETA**: ~31h 30m\n- **最近 R1 值**: -0.06 ~ -0.16（仍为负，尚未转正）\n- **R3**: 0.81 ~ 0.99（稳定高位）\n- **combined**: 0.57 ~ 0.73"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-post-restart2-status-29046.md"
+}

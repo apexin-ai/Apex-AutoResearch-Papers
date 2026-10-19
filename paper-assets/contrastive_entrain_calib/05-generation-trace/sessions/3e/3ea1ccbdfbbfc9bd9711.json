@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ea1ccbdfbbfc9bd9711",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis trajectory data compile",
+  "task_key": "worker_analysis_trajectory-data-compile_20260521T112144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_trajectory-data-compile_20260521T112144_result.json",
+    "occurrence": 1,
+    "bytes": 652,
+    "sha256": "2421fc0fbf6ddf7aca25e07341106836c8c59b2e04ce49774787ddca51eec742"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入并注册。\n\n产出：`artifacts/trajectory_data_compiled.md` (art_20260521_e457b3)\n\n内容覆盖：\n- **Condition 1** (R3-only Seed 1): 11 个 checkpoint (1000–7500)，ckpt-8000 标注 RUNNING\n- **Condition 2** (R3-only Seed 2): 7 个 checkpoint (500–3500)，训练仍在继续\n- **Condition 3** (SFT ACT): 14 个 checkpoint (1000–8000)，ckpt-8000 仅有 SYCONScore=0.301（来自 parent summary）\n- Cross-seed comparison: 3 个重叠步数 (1000/2000/3000) 差异极小 (max Δ=0.01)，确认可复现性\n- 所有已知数据点与提供的交叉验证值完全吻合\n- Data Gaps 表列出 6 项缺失"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-trajectory-data-compile.md"
+}

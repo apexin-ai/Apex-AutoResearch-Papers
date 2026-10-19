@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b3b2ce91e5ae18f7034",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "monitor exp002 step500 check",
+  "task_key": "worker_monitor_exp002-step500-check_20260518T184959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_exp002-step500-check_20260518T184959_result.json",
+    "occurrence": 1,
+    "bytes": 175,
+    "sha256": "2ca70e12bea814117ac2d0d4132c2d4f6504cee7c46aed880e803d0e5d9e8c45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已设置 1 小时后自动检查。当前 step 263，预计 step 500 约在 ~2 小时后。届时会再次检查并在到达 500 后收集完整诊断数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-exp002-step500-check.md"
+}

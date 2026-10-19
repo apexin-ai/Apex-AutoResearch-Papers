@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc007a49c91f9a582a46",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops exp016 reeval midcheck",
+  "task_key": "worker_ops_exp016-reeval-midcheck_20260519T113821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_exp016-reeval-midcheck_20260519T113821_result.json",
+    "occurrence": 1,
+    "bytes": 801,
+    "sha256": "15b397f1c62882cd15c8b41d149c92c2d61324f51dfac3beb7e7b5d218b2ce40"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-016 统一 re-eval 中期状态\n\n| 项目 | 状态 |\n|---|---|\n| PID | 126897, 运行 1h05m, CPU 418% |\n| GPU 3 | 62% util, 16508 MiB |\n| Alpha 列表 | `[0.0, 0.5, 1.0, 2.0, 5.0]` — 共 5 个 |\n| 每个 alpha | 362 pairs |\n\n### 进度\n\n| Alpha | 状态 |\n|---|---|\n| 0.00 | **已完成** (~60 min, hooks fired 0 次 — baseline) |\n| 0.50 | **进行中** 20/362 (5.5%) |\n| 1.0 / 2.0 / 5.0 | 待运行 |\n\n### 预估\n\n- alpha=0.00 (baseline, 无 hook 介入): ~60 min/轮\n- alpha=0.50 的前 20 pairs 耗时 ~4.5 min，推算 ~82 min/轮（hooks 生效后略慢）\n- 剩余: alpha 0.50 还剩 ~78 min + 3 轮 × ~82 min ≈ **~5h 20min**\n- 预计完成: **~01:00 AM (May 20)**\n\n输出目录目前为空，结果应在全部 alpha 跑完后统一写入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-exp016-reeval-midcheck.md"
+}

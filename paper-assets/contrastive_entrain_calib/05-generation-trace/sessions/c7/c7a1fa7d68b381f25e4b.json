@@ -1,0 +1,332 @@
+{
+  "schema_version": "1.0",
+  "id": "c7a1fa7d68b381f25e4b",
+  "project": "contrastive_entrain_calib",
+  "kind": "conversation",
+  "title": "eval exp003 ckpt2000 ckpt3000 results",
+  "task_key": "worker_eval_exp003-ckpt2000-ckpt3000-results_20260520T140841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_exp003-ckpt2000-ckpt3000-results_20260520T140841.jsonl",
+    "occurrence": 1,
+    "bytes": 13397,
+    "sha256": "fbb366cc01f3f4499e67c58f4dc535410260482526c69bff45f6d0d5dea7e050"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T14:09:12.671039+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-ckpt2000-ckpt3000-results_20260520T140841",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T14:09:12.671506+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-ckpt2000-ckpt3000-results_20260520T140841",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T14:09:12.671827+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-ckpt2000-ckpt3000-results_20260520T140841",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "tail -100 ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt3000.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T14:09:12.672080+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-ckpt2000-ckpt3000-results_20260520T140841",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "tail -100 ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt2000.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T14:09:12.672823+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[Wed May 20 20:49:38 CST 2026] exp-003 D027 eval: step=3000, gpu=3\\\\n  checkpoint: /root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-3000\\\\n  output:     /root/contrastive_entrain_calib/results/exp003_d027_eval/exp003-ckpt3000_preset_eval.json\\\\n2026-05-20 20:49:42,420 [INFO] eval_unified_preset: === D027 Unified Preset Eval ===\\\\n2026-05-20 20:49:42,420 [INFO] eval_unified_preset: model_path: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\n2026-05-20 20:49:42,420 [INFO] eval_unified_preset: lora_path:  /root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-3000\\\\n2026-05-20 20:49:42,420 [INFO] eval_unified_preset: data_path:  /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\\n2026-05-20 20:49:42,420 [INFO] eval_unified_preset: exp_id:     exp003-ckpt3000\\\\n2026-05-20 20:49:42,706 [INFO] eval_unified_preset: Loading model...\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n2026-05-20 20:49:43,434 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.13it/s]\\\\rLoading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.19it/s]\\\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.19it/s]\\\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.20it/s]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.59it/s]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.38it/s]\\\\n2026-05-20 20:49:47,267 [INFO] eval_unified_preset: Loading LoRA adapter: /root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-3000\\\\n2026-05-20 20:49:49,515 [INFO] eval_unified_preset: Loading NLI model...\\\\n2026-05-20 20:49:49,721 [INFO] eval_unifie\n…[truncated 2757 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-ckpt2000-ckpt3000-results_20260520T140841",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T14:09:12.673111+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-ckpt2000-ckpt3000-results_20260520T140841",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "tail -50 ~/runs/contrastive_entrain_calib/exp-003-eval-ckpt4000.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T14:09:12.673823+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[Wed May 20 20:49:37 CST 2026] exp-003 D027 eval: step=2000, gpu=2\\\\n  checkpoint: /root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-2000\\\\n  output:     /root/contrastive_entrain_calib/results/exp003_d027_eval/exp003-ckpt2000_preset_eval.json\\\\n2026-05-20 20:49:41,083 [INFO] eval_unified_preset: === D027 Unified Preset Eval ===\\\\n2026-05-20 20:49:41,083 [INFO] eval_unified_preset: model_path: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\n2026-05-20 20:49:41,083 [INFO] eval_unified_preset: lora_path:  /root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-2000\\\\n2026-05-20 20:49:41,083 [INFO] eval_unified_preset: data_path:  /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\\n2026-05-20 20:49:41,083 [INFO] eval_unified_preset: exp_id:     exp003-ckpt2000\\\\n2026-05-20 20:49:41,372 [INFO] eval_unified_preset: Loading model...\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n2026-05-20 20:49:42,037 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.18it/s]\\\\rLoading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.21it/s]\\\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.20it/s]\\\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:03<00:00,  1.31it/s]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.73it/s]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:03<00:00,  1.47it/s]\\\\n2026-05-20 20:49:45,601 [INFO] eval_unified_preset: Loading LoRA adapter: /root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-2000\\\\n2026-05-20 20:49:47,909 [INFO] eval_unified_preset: Loading NLI model...\\\\n2026-05-20 20:49:48,161 [INFO] eval_unifie\n…[truncated 2757 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-ckpt2000-ckpt3000-results_20260520T140841",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T14:09:12.674216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[Wed May 20 17:35:06 CST 2026] exp-003 D027 eval: step=4000, gpu=0\\\\n  checkpoint: /root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-4000\\\\n  output:     /root/contrastive_entrain_calib/results/exp003_d027_eval/exp003-ckpt4000_preset_eval.json\\\\n2026-05-20 17:35:10,507 [INFO] eval_unified_preset: === D027 Unified Preset Eval ===\\\\n2026-05-20 17:35:10,507 [INFO] eval_unified_preset: model_path: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\n2026-05-20 17:35:10,507 [INFO] eval_unified_preset: lora_path:  /root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-4000\\\\n2026-05-20 17:35:10,507 [INFO] eval_unified_preset: data_path:  /root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl\\\\n2026-05-20 17:35:10,507 [INFO] eval_unified_preset: exp_id:     exp003-ckpt4000\\\\n2026-05-20 17:35:10,816 [INFO] eval_unified_preset: Loading model...\\\\n`torch_dtype` is deprecated! Use `dtype` instead!\\\\n2026-05-20 17:35:11,384 [INFO] accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).\\\\n\\\\rLoading checkpoint shards:   0%|          | 0/5 [00:00<?, ?it/s]\\\\rLoading checkpoint shards:  20%|██        | 1/5 [00:00<00:03,  1.16it/s]\\\\rLoading checkpoint shards:  40%|████      | 2/5 [00:01<00:02,  1.15it/s]\\\\rLoading checkpoint shards:  60%|██████    | 3/5 [00:02<00:01,  1.15it/s]\\\\rLoading checkpoint shards:  80%|████████  | 4/5 [00:02<00:00,  1.69it/s]\\\\rLoading checkpoint shards: 100%|██████████| 5/5 [00:02<00:00,  1.80it/s]\\\\n2026-05-20 17:35:14,228 [WARNING] accelerate.big_modeling: Some parameters are on the meta device because they were offloaded to the cpu.\\\\n2026-05-20 17:35:14,327 [INFO] eval_unified_preset: Loading LoRA adapter: /root/contrastive_entrain_calib/checkpoints/exp003/checkpoint-4000\\\\n2026-05-20 17:35:16,226 [INFO] accelerate.utils.mode\n…[truncated 1367 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-ckpt2000-ckpt3000-results_20260520T140841",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T14:09:12.674476+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-ckpt2000-ckpt3000-results_20260520T140841",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "ps -p 235058 -o pid,etime,cmd",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T14:09:12.674699+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-ckpt2000-ckpt3000-results_20260520T140841",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "ps -p 234111 -o pid,etime,cmd",
+              "account": "root"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T14:09:12.675251+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED CMD\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-ckpt2000-ckpt3000-results_20260520T140841",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T14:09:12.675489+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED CMD\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-ckpt2000-ckpt3000-results_20260520T140841",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T14:09:12.675809+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-ckpt2000-ckpt3000-results_20260520T140841",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-28034",
+              "command": "tail -20 ~/runs/contrastive_entrain_calib/exp-009-eval-ckpt1000.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T14:09:12.676135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 19:03:31,679 [INFO] eval_unified_preset:   Progress: 260/362\\\\n2026-05-20 19:08:48,853 [INFO] eval_unified_preset:   Progress: 280/362\\\\n2026-05-20 19:14:36,127 [INFO] eval_unified_preset:   Progress: 300/362\\\\n2026-05-20 19:18:48,455 [INFO] eval_unified_preset:   Progress: 320/362\\\\n2026-05-20 19:22:35,797 [INFO] eval_unified_preset:   Progress: 340/362\\\\n2026-05-20 19:28:17,334 [INFO] eval_unified_preset:   Progress: 360/362\\\\n2026-05-20 19:28:53,932 [INFO] eval_unified_preset: Detailed results: /root/contrastive_entrain_calib/results/exp009_ckpt1000_eval/exp009_ckpt1000_preset_eval.json\\\\n2026-05-20 19:28:53,934 [INFO] eval_unified_preset: Summary: /root/contrastive_entrain_calib/results/exp009_ckpt1000_eval/exp009_ckpt1000_preset_summary.txt\\\\n\\\\n==================================================\\\\n  D027 Preset Eval: exp009_ckpt1000\\\\n==================================================\\\\n  ToF        = 0.0608\\\\n  NoF        = 0.9337\\\\n  SYCONScore = 0.1141\\\\n  Samples    = 362 (valid=181, invalid=181)\\\\n  Time       = 6946s\\\\n==================================================\\\\n\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-ckpt2000-ckpt3000-results_20260520T140841",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T14:09:12.676486+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### exp-003 D027 Eval 结果\n\n| Checkpoint | ToF | NoF | SYCONScore |\n|---|---|---|---|\n| ckpt-1000 | 0.0387 | 0.9448 | 0.0743 |\n| **ckpt-2000** | **0.0442** | **0.9834** | **0.0846** |\n| **ckpt-3000** | **0.0497** | **0.9724** | **0.0946** |\n| ckpt-4000 | **失败 (Terminated)** | — | — |\n| ckpt-5000 | 0.0608 | 0.9669 | 0.1144 |\n| vanilla baseline | 0.0718 | 0.9448 | 0.1335 |\n\n所有完成的 eval 均为 362 samples (valid=181, invalid=181)。\n\n### ckpt-4000 状态：失败\n\nLog 显示加载 LoRA adapter 后出现内存不足警告（`no modules could be assigned to the following devices due to insufficient memory: 2489319424 bytes required`），随后进程被 `Terminated`（OOM killed）。PID 235058 已不存在。\n\n需要重跑 ckpt-4000 eval，建议指定显存更空闲的 GPU 或清理 GPU 0 上的其他进程。\n\n### exp-009-eval-ckpt1000 状态：已完成\n\n| 指标 | 值 |\n|---|---|\n| ToF | 0.0608 |\n| NoF | 0.9337 |\n| SYCONScore | 0.1141 |\n| Samples | 362 (valid=181, invalid=181) |\n| Time | 6946s |\n\nPID 234111 已退出，EXIT_CODE=0。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_exp003-ckpt2000-ckpt3000-results_20260520T140841"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/conversations/eval-exp003-ckpt2000-ckpt3000-results.md"
+}

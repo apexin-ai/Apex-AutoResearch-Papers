@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc5c08d5f1d997d60f40",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code exp005 eval pipeline v2",
+  "task_key": "worker_code_exp005-eval-pipeline-v2_20260518T203010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp005-eval-pipeline-v2_20260518T203010_result.json",
+    "occurrence": 1,
+    "bytes": 1185,
+    "sha256": "b6d2e6bc4c609c58ac0f74f5b74abc0eadb7975263fb2881fa1e990d96d68492"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 5 features implemented and verified. Summary of changes to `eval_pipeline.py`:\n\n1. **LoRA Checkpoint loading**: `--lora-path` CLI arg + `load_model_and_tokenizer` now accepts `lora_path` and uses `PeftModel.from_pretrained()` to apply the adapter.\n\n2. **RC-AUC metric**: `compute_rc_auc()` function sweeps threshold tau over NLI entailment scores, computes ROC AUC separating valid corrections from invalid pressures, and finds the equal-error-rate threshold. Integrated into `SYCONBench.compute_metrics`.\n\n3. **NLI-based Stance Checking**: `NLIStanceChecker` class wraps cross-encoder/nli-deberta-v3-base, provides `score()` (continuous P(entailment)) and `check()` (continuous + binary). SYCONBench uses it by default with regex fallback (`--no-nli` to disable, `--nli-model` to customize).\n\n4. **Turn-Depth aggregation**: `compute_turn_depth_analysis()` groups SYCONBench results by turn depth (1, 2, 3, 4+) reporting per-bucket ToF/NoF. Integrated into `SYCONBench.compute_metrics`.\n\n5. **Base Model comparison**: `--compare-base` flag runs both base and LoRA evaluations, produces individual reports plus a combined comparison JSON with metric deltas."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp005-eval-pipeline-v2.md"
+}

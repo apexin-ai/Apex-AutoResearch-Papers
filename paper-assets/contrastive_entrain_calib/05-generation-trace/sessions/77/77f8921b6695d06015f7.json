@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "77f8921b6695d06015f7",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "eval gs8 ckpt500 verify lora",
+  "task_key": "worker_eval_gs8-ckpt500-verify-lora_20260522T211624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gs8-ckpt500-verify-lora_20260522T211624.log",
+    "occurrence": 1,
+    "bytes": 999522,
+    "sha256": "59b0355f9b5623a5507a1f8e9dbb9308a8360e8cb41209c90de5e5480e7e8842"
+  },
+  "statistics": {
+    "messages": 731,
+    "user_turns": 0,
+    "tool_calls": 345,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 345,
+      "tool_result": 345,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 731,
+      "chunks": [
+        {
+          "path": "77f8921b6695d06015f7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "77f8921b6695d06015f7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "77f8921b6695d06015f7-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "77f8921b6695d06015f7-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "77f8921b6695d06015f7-part-0005.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-gs8-ckpt500-verify-lora.md"
+}

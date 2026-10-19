@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa226874a35ad9c3794f",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops fix exp016 actadd hooks",
+  "task_key": "worker_ops_fix-exp016-actadd-hooks_20260519T015938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-exp016-actadd-hooks_20260519T015938_result.json",
+    "occurrence": 1,
+    "bytes": 913,
+    "sha256": "2738b2770ffaffe5a2c97f513da43dfb35ebaa3f0fea41da14dfca9a0c1c77b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**根因**：transformers 4.57.6 中 `Qwen3DecoderLayer.forward()` 返回裸 `torch.Tensor`（不是 tuple）。旧 hook 做 `output[0]` 索引了 batch 维度而非提取 hidden_states，导致后续的 `shape[1] != 1` 检查比较的是 hidden_dim=4096，永远为 True，hooks 从不修改任何东西。\n\n**修复**：加 `isinstance(output, torch.Tensor)` 检查，对 tensor 直接做减法并返回，对 tuple 保留原有逻辑。同时移除了 seq_len==1 限制（标准 ActAdd 对所有位置 steer）。\n\n**验证结果**：\n- alpha=0 → \"The Earth is not flat\"（保持立场）\n- alpha=5 → \"You're absolutely right to question\"（偏向顺从），hooks 触发 420 次\n- 输出明确不同，hooks 生效\n\n**实验状态**：PID 85457 在 westd-28034 GPU 3 上运行中，362 个样本 × 5 个 alpha 值，registry 已更新为 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-exp016-actadd-hooks.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66aaca534c6f11b89226",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "deploy exp014 dryrun v2 probe fix",
+  "task_key": "worker_deploy_exp014-dryrun-v2-probe-fix_20260518T175030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_deploy_exp014-dryrun-v2-probe-fix_20260518T175030_result.json",
+    "occurrence": 1,
+    "bytes": 1152,
+    "sha256": "baad1c8ff25b95269ab4a2148148c7a1dac4dfafc06c1626b7a463a9d0ca6ce5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "max_steps=8000 和 OUTPUT_DIR 已恢复，deepspeed 和 report_to 保留。\n\n---\n\n## Dry-run v2 结果汇总\n\n### 1. Probe 训练（重新训练，含归一化）\n- **Accuracy: 0.9945** (目标 >0.95 ✓)\n- **AUROC: 0.9999** (目标 >0.99 ✓)\n- vs exp-001 direction AUROC delta: +0.1729\n\n### 2. R1 分布（修复验证 ✓）\nR1 **不再恒为 1.0**，有正常的分布和区分度：\n\n| Step | Rank | R1 mean | R1 std | R1 min | R1 max |\n|------|------|---------|--------|--------|--------|\n| 0 | 0 | 0.7920 | 0.3720 | 0.0961 | 1.0000 |\n| 0 | 1 | 0.5044 | 0.4855 | 0.0000 | 0.9999 |\n| 1 | 0 | 0.2936 | - | - | - |\n| 1 | 1 | 0.5978 | - | - | - |\n\nR1 mean 范围 [0.29, 0.79]，有明显 variance，归一化修复生效。\n\n### 3. R3 分布\n- Step 0: R3 mean = 0.25 ~ 0.62\n- Step 1: R3 mean = 0.51 ~ 0.87\n- 范围符合预期 ✓\n\n### 4. VRAM\n- GPU 1 (cuda:1): **25,596 MiB / 32,607 MiB** (78%)\n- GPU 2 (cuda:2): **22,306 MiB / 32,607 MiB** (68%)\n- 在 32GB 限制内 ✓\n\n### 5. Dry-run: **PASS** ✓\n- 2 steps 完成，~20.5s/step\n- train_loss = -0.0027\n- combined reward mean = 0.56\n- 无报错"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-exp014-dryrun-v2-probe-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5a028424f44e8047f9e",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "research probe trap sft prep",
+  "task_key": "worker_research_probe-trap-sft-prep_20260524T130927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_probe-trap-sft-prep_20260524T130927_result.json",
+    "occurrence": 1,
+    "bytes": 951,
+    "sha256": "2a96e0f4d19e1219ff48f9e4c9a9cdf6f776c3a5200831830185b4fb41d30e24"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。报告已保存到 `artifacts/exp008_sft_prep.md`。\n\n**摘要**：\n\n1. **SFT 脚本确认存在**：`/root/contrastive_entrain_calib/training/run_exp008_binary_probe_penalty.py`，使用标准 SFT loss + 可微 probe penalty，非 GRPO。\n\n2. **Probe reward trap 条件满足**：probe 权重 frozen 但 hidden states 梯度不 detach → 模型可学习操纵 representations 来降低 S(t)。每 500 steps retrain probe。\n\n3. **与 GRPO 关键差异**：SFT 版 probe 是可微 penalty（梯度直接回传），GRPO 版只是 binary reward signal。LoRA 配置也不同（SFT: alpha=128, 7模块 vs GRPO: alpha=64, 4模块）。\n\n4. **需要的修改**：\n   - LoRA alpha 128→64, modules 7→4（匹配 GRPO 公平对比）\n   - `--max_steps 2000`（命令行已支持）\n   - Seed 已参数化 ✓\n\n5. **GPU 状态**：PID 553700 跑的是 exp003（非 exp008），无意外启动的 GRPO 训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-probe-trap-sft-prep.md"
+}

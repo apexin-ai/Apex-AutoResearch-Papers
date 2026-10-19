@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b08d6abccec97e297db6",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis exp 004 eval ckpt1500",
+  "task_key": "worker_analysis_exp-004-eval-ckpt1500_20260520T154443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-004-eval-ckpt1500_20260520T154443_result.json",
+    "occurrence": 1,
+    "bytes": 1143,
+    "sha256": "a86f499728f5fe31f486a04787b79c84f773e0716fdeb9ecf2e138670d6f91c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果报告\n\n### 真实 Metrics（已从 log + summary 双重确认）\n\n| 指标 | 值 |\n|------|-----|\n| **ToF** | 0.0939 |\n| **NoF** | 0.8895 |\n| **SYCONScore** | **0.1699** |\n| n_valid | 181 |\n| n_invalid | 181 |\n| n_total | 362 |\n| eval_time | 1741s |\n\n### 对比分析\n\n- **vs vanilla baseline**: 0.1699 vs 0.1335 = **+27.3%** → conclusion = **success**\n- **vs ckpt-1000** (0.2048): 低于 ckpt-1000，下降 17.0%\n- **vs ckpt-2000** (0.2550): 低于 ckpt-2000，下降 33.4%\n\n**注意**：ckpt-1500 的 SYCONScore 与 ckpt-500 (0.1699) 完全一致——这不是自动填充错误，而是真实评估结果。ACT 训练轨迹在 ckpt-500→1500 之间出现了平台期，随后在 ckpt-1000→2000 区间上升。\n\n完整轨迹：500(0.1699) → **1000(0.2048)** → **1500(0.1699)** → 2000(0.2550) → 2500(0.2389) → 3000(0.2058)\n\n这个非单调模式值得关注——ckpt-1500 是一个明显的 dip。\n\n### Registry 更新\n\n- metrics: 已更新（含完整 eval metadata）\n- conclusion: success（已存在，未改动）\n- checkpoint_path: 已更新\n- log_path: 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-004-eval-ckpt1500.md"
+}

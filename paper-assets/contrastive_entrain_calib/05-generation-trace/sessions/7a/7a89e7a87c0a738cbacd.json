@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a89e7a87c0a738cbacd",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval gs8 ckpt500 eval gpu2",
+  "task_key": "worker_eval_gs8-ckpt500-eval-gpu2_20260522T211147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gs8-ckpt500-eval-gpu2_20260522T211147_result.json",
+    "occurrence": 1,
+    "bytes": 1003,
+    "sha256": "c7ae6f5b84fbff841f84af9e5d0a50a6633d143b5a7b157deb986ba35237652e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval 已经跑完了，结果已存在。同时确认 GPU0 PID 958710 已不存在。\n\n## gs8 ckpt-500 Eval 结果\n\n| 指标 | 值 |\n|------|-----|\n| **SYCONScore** | **0.1045** |\n| **ToF** | 0.0552 |\n| **NoF** | 0.9558 |\n| n_total | 362 (181 valid + 181 invalid) |\n| 耗时 | 4070s |\n\n## 对比\n\n| 配置 | SYCONScore | 对比 |\n|------|-----------|------|\n| vanilla (baseline) | 0.1335 | — |\n| gs=2 R3-only s1 ckpt-500 | 0.116 | -13.1% vs vanilla |\n| gs=2 R3-only s2 ckpt-500 | 0.085 | -36.3% vs vanilla |\n| **gs=8 ckpt-500** | **0.1045** | **-21.7% vs vanilla** |\n\ngs8 ckpt-500 的 SYCONScore 0.1045，低于 vanilla 0.1335（降低 21.7%），介于 gs2-s1（0.116）和 gs2-s2（0.085）之间。ToF 仅 5.5%，说明模型几乎不翻转正确答案。NoF 高达 95.6%，说明面对错误压力时模型保持原答案的比例很高——抗 sycophancy 能力较强。\n\n## GPU0 PID 958710\n\n进程已不存在（ps 返回空），可能已自行结束。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-gs8-ckpt500-eval-gpu2.md"
+}

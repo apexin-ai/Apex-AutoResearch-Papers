@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9557f854ffab1d32fa2b",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "paper fig probe trap v2",
+  "task_key": "worker_paper_fig-probe-trap-v2_20260525T123203",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_fig-probe-trap-v2_20260525T123203_result.json",
+    "occurrence": 1,
+    "bytes": 942,
+    "sha256": "099c5d6b1c9bb85d64cbbbc0813c10261eb80bb5b800305695095cd2e9d2fb58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出：\n\n- **PNG**: `/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/figures/fig_probe_trap_mechanism.png` (2752×1536px, 300 DPI)\n- **PDF**: `/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/figures/fig_probe_trap_mechanism.pdf`\n\n**视觉质量评估**：\n- 概念机制图，非数据折线图 ✓\n- 四区域布局正确：Phase 1 Probe Gaming (0–60, 窄amber) → Phase 2 Behavioral Death (60–500, red) → Phase 3 Monitoring Blind Spot (500–1840, 宽orange) → Collapse (1840–2000, gray) ✓\n- \"1,300-STEP BLIND SPOT\" 大号加粗红色虚线框，全图最醒目 ✓\n- Phase 2 矛盾可视化：ToF=0 (红✗) vs Entropy=0.70 (绿✓) + ⚡闪电 ✓\n- 底部 takeaway box 完整呈现 ✓\n- Reward 条带 +0.72 constant ✓\n- 文字缩至 column width 后可读 ✓\n- 达到顶会级别美观度 ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-fig-probe-trap-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc12d51316833a445e8b",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp004 checkpoint discovery",
+  "task_key": "worker_eval_exp004-checkpoint-discovery_20260520T141134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp004-checkpoint-discovery_20260520T141134_result.json",
+    "occurrence": 1,
+    "bytes": 1974,
+    "sha256": "727993001788d1dbd230fc6ed5ea2a93be243d0a5e52f9f0d183ee6d96545cb0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总结果\n\n### 1. exp-004 Checkpoint 列表\n\n全部 16 个 checkpoint 在 **westd-28034**：`/root/autodl-tmp/outputs/exp-004-act-baseline/`\n\n| Checkpoint | 大小 | 状态 |\n|------------|------|------|\n| checkpoint-500 | 682M | **已 eval** |\n| checkpoint-1000 | 682M | 需补充 eval |\n| checkpoint-1500 | 682M | 需补充 eval |\n| checkpoint-2000 | 682M | **已 eval** |\n| checkpoint-2500 | 682M | 需补充 eval |\n| checkpoint-3000 | 682M | 需补充 eval |\n| checkpoint-3500 | 682M | 需补充 eval |\n| checkpoint-4000 | 682M | 需补充 eval |\n| checkpoint-4500 | 682M | 需补充 eval |\n| checkpoint-5000 | 682M | 需补充 eval |\n| checkpoint-5500 | 682M | 需补充 eval |\n| checkpoint-6000 | 682M | 需补充 eval |\n| checkpoint-6500 | 682M | 需补充 eval |\n| checkpoint-7000 | 682M | 需补充 eval |\n| checkpoint-7500 | 682M | 需补充 eval |\n| checkpoint-8000 | 682M | **已 eval** |\n\n每个 checkpoint 是 LoRA adapter（~698MB safetensors + tokenizer）。**13 个需要补充 eval。**\n\nwestd-29046 上**无 exp-004 checkpoint**。\n\n### 2. exp-003 训练状态（westd-29046）\n\n| 进程 | PID | 状态 | 已运行时间 |\n|------|-----|------|-----------|\n| seed 1 | 70649 | **Rl+ (运行中)** | 1天21小时21分 |\n| seed 2 | 237432 | **Ss+ (运行中)** | 13小时54分 |\n\n两个 GPU 均满载（GPU 0: 38049 MiB / 95%, GPU 1: 38161 MiB / 95%）。\n\n### 3. westd-28034 GPU 状态\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| 0 | 2 MiB | 0% |\n| 1 | 2 MiB | 0% |\n| 2 | 2 MiB | 0% |\n| 3 | 2 MiB | 0% |\n\n**4 个 GPU 全部空闲。** 无 Python 训练进程在跑。ckpt-4000 rerun **未在运行**（可能已完成或未启动）。\n\n### 4. SCP 计划\n\n**不需要 SCP。** 13 个待 eval checkpoint 已在 28034 上，且 28034 四个 GPU 全部空闲——直接在 28034 上跑补充 eval 是最优方案。29046 两个 GPU 被 exp-003 占满，不可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp004-checkpoint-discovery.md"
+}

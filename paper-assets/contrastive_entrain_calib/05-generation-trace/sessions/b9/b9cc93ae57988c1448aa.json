@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b9cc93ae57988c1448aa",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnosis exp003 ckpt4000 results and status",
+  "task_key": "worker_diagnosis_exp003-ckpt4000-results-and-status_20260520T100332",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_exp003-ckpt4000-results-and-status_20260520T100332_result.json",
+    "occurrence": 1,
+    "bytes": 1702,
+    "sha256": "25acc7b453a820747675d531897bdb76798774e13e79798e479a36b8e5a93941"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-003 ckpt-4000 Eval\n状态：**进行中（异常慢）**\n- PID 235058，已运行 28 min\n- 模型已加载但出现内存不足警告：`no modules could be assigned to device 0: 2489319424 bytes required`\n- LoRA 加载后部分层 offload 到 CPU，eval 已启动但 **0/362 无任何 progress 输出**（29 min 无进度）\n- ⚠️ 可能因 CPU offload 导致推理极慢，需关注\n\n## exp-009 ckpt-1000 Eval\n状态：**进行中** (40/362, ~11%)\n- PID 234111，已运行 31 min\n- 速率：~20 samples / 10.5 min\n- 预计完成：~20:42 (约 1.7 h 后)\n\n## 28034 GPU 状态\n| GPU | Util | Mem Used | Mem Total |\n|-----|------|----------|-----------|\n| 0 | 63% | 29799 MiB | 32607 MiB |\n| 1 | 100% | 31432 MiB | 32607 MiB |\n| 2 | 44% | 30668 MiB | 32607 MiB |\n| 3 | 39% | 16746 MiB | 32607 MiB |\n\nGPU 0: exp-003 eval + vanilla reeval 共用（内存紧张）\nGPU 1: 100% 满载\nGPU 3: exp-009 eval\n\n## exp-003 训练进度 (29046)\n当前 step: **990/8000** (12.4%)\n速率：~30 s/step\n剩余：7010 steps × 30s ≈ **58 h (约 2.4 天)**\n预计完成：~5/22 晚间\n\n注：checkpoint 目录已有 ckpt-500 ~ ckpt-5000（来自前序阶段），当前 `exp-003-s2.log` 是第二阶段训练。\n\n## Vanilla Reeval\n状态：**进行中** (100/362, ~28%)\n- PID 234327，已运行 31 min\n- 速率：100 samples / 28 min\n- 预计完成：~19:14 (约 1.2 h 后)\n\n---\n\n**关注点**：exp-003 eval 的内存不足问题——GPU 0 同时跑两个 eval（exp-003 + vanilla），内存接近满载，LoRA 部分 offload 到 CPU 导致推理可能极慢。如果长时间无进度，可能需要等 vanilla reeval 结束释放显存后重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-exp003-ckpt4000-results-and-status.md"
+}

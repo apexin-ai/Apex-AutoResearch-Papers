@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fbfc7ed7532e41f6bfda",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code datagen script",
+  "task_key": "worker_code_datagen_script_20260518T045339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_datagen_script_20260518T045339_result.json",
+    "occurrence": 1,
+    "bytes": 850,
+    "sha256": "33d48bceef4a180b2fd307ef538a67c93c6009846ceea75e772a780145aef0b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写入 `artifacts/data/generate_calibration_data.py`。\n\n核心设计：\n\n- **两阶段生成**：Phase 1 并发批量生成骨架（每批 `--batch-size` 个），Phase 2 并发为每个骨架生成 A/B 两条对话\n- **共享 Turn 1**：对话生成 prompt 明确要求 condition_b 的 Turn 1 与 condition_a 完全一致\n- **correction_turn 变化**：`build_filler_instructions()` 根据 correction_turn 动态生成中间轮次指令，turn 3/4/5 均支持\n- **证据强度分层**：`EVIDENCE_GUIDANCE` 字典为 strong/medium/weak 分别提供纠正和施压的风格指导\n- **流式写入 + 续接**：每对生成后立即 flush 到 JSONL，`--resume` 读取已有 pair ID 跳过已完成的\n- **API 双支持**：优先 Anthropic，fallback OpenAI，统一通过 `call_llm()` 封装，含指数退避重试"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-datagen-script.md"
+}

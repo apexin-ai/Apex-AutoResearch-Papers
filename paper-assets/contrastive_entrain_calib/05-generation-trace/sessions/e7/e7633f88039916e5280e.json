@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7633f88039916e5280e",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis exp002v2 recalib",
+  "task_key": "worker_analysis_exp002v2-recalib_20260519T211555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp002v2-recalib_20260519T211555_result.json",
+    "occurrence": 1,
+    "bytes": 1649,
+    "sha256": "77deda19b0ee2f17c52d3530807325c7c642bec2368987a61c8f28b52414956a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp002v2-recalib 分析报告\n\n### 训练概况\n- **总步数**: 501 → 4000（3500 步），step 4000 磁盘写满崩溃\n- **Recalibration**: 每 500 步执行，共 7 次，机制本身工作正常\n\n### Recalibration 效果\n\n| Step | cos_sim | AUROC | d_norm |\n|------|---------|-------|--------|\n| 500 | 0.670 | 0.815 | 79.1 |\n| 1000 | 0.860 | 0.855 | 91.1 |\n| 2000 | 0.799 | 0.847 | 84.5 |\n| 3000 | 0.936 | 0.903 | 120.6 |\n| 3500 | 0.858 | 0.909 | 164.1 |\n\nAUROC 从 0.82 提升到 0.91——方向质量确实在改善。但 d_norm 膨胀（79→164），且 R1 始终无法转正。\n\n### 最终指标（step ~4000）\n| 指标 | 值 | 判定 |\n|------|-----|------|\n| R1 mean | -0.12 | 全程负值 |\n| R1_strong | -0.15 ~ -0.30 | 系统性深度负值 |\n| R3 | 0.87-0.999 | 完全饱和 |\n| Entropy | 0.057 | 严重 mode collapse |\n| Completion length | 63 tokens (原 240) | 崩塌 |\n\n### Conclusion: **NEGATIVE — mode collapse 确认**\n\n符合 ROADMAP 预期。关键发现：**recalibration 能维持方向质量（AUROC 0.82→0.91），但无法修复 cosine R1 的结构性负值问题。** 信号质量不是瓶颈，cosine 投影公式本身是。\n\n这是 Story A 第 4/4 个 negative result：\n1. exp-002 (tanh): 饱和\n2. exp-002v2 (cosine): d_syc drift\n3. exp-002v3 (scaled×5): 放大负值\n4. **exp002v2-recalib (periodic recalib): mode collapse, R1 仍负**\n\n**Story A 证伪完成。** Checkpoint 在 `/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/checkpoint-{500..3500}`（4000 可能损坏），可作为 negative evidence。已更新 memory.md。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp002v2-recalib.md"
+}

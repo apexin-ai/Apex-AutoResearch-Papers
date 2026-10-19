@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8ebddce8156b7c878a2",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "fix westd28034 model download v2",
+  "task_key": "worker_fix_westd28034_model_download_v2_20260518T152749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_westd28034_model_download_v2_20260518T152749_result.json",
+    "occurrence": 1,
+    "bytes": 341,
+    "sha256": "e147365fffd7b13cb4a47542ccf6764f2d0bfc95605c967ae6c16242203a4d0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过。\n\n**结果汇总**：\n- **方案**：方案 B（ModelScope 国内 CDN）\n- **模型路径**：`/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B`\n- **验证**：\n  - Tokenizer: vocab=151643 ✓\n  - Config: 36 layers, 4096 hidden ✓\n  - 5 个 safetensors 分片，总计 16.38 GB，399 tensors，全部可读 ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-westd28034-model-download-v2.md"
+}

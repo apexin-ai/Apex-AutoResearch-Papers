@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "529b50fa42bba2133471",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ssh check 29046 and scp act ckpt500",
+  "task_key": "worker_ssh_check-29046-and-scp-act-ckpt500_20260522T060635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-29046-and-scp-act-ckpt500_20260522T060635_result.json",
+    "occurrence": 1,
+    "bytes": 831,
+    "sha256": "1ca3efce125232a6a95461b2f93172d045e611438596f50819ae9c1567a2a75a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "682M，完整匹配。汇总：\n\n---\n\n## 训练进度\n\n| 实验 | 当前 step | 进度 | 速度 | 预计剩余 |\n|------|----------|------|------|---------|\n| **exp-003-s2** (R3-only seed2, GPU0) | **6690/8000** | 83.6% | ~26s/step | ~9.5h |\n| **exp-004-s2** (ACT seed2, GPU1) | **720/8000** | 9.0% | ~9.5s/step | ~19.2h |\n\n**GPU 状态：** GPU0 38049 MiB (0% util 瞬时), GPU1 23365 MiB (10% util)\n\n## Checkpoint 情况\n\n- **exp-004-s2 checkpoint-500**: 已存在 (682M, adapter LoRA checkpoint)\n- **exp-003-s2**: 无 checkpoint 输出（输出目录 `exp-003-r3only-s2` 不存在，可能 checkpoint 存在其他路径或未配置 save）\n\n## SCP 结果\n\ncheckpoint-500 已成功 SCP 到 28034：\n`/root/autodl-tmp/checkpoints/exp004_s2/checkpoint-500/` (682M, 10 文件, 完整匹配源端)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-29046-and-scp-act-ckpt500.md"
+}

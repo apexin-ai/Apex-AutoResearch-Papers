@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "200829d147a53d084738",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "research exp014 framework search",
+  "task_key": "worker_research_exp014-framework-search_20260522T133109",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_exp014-framework-search_20260522T133109_result.json",
+    "occurrence": 1,
+    "bytes": 1531,
+    "sha256": "ec5067189b91d13fb9fef7188b3cc581d5b7823e9ada3c79d9c713b5a0788321"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认：远程服务器 `/root/contrastive_entrain_calib/training/` 目录中**没有** exp-014 脚本（已被删除或从未部署到该位置）。脚本仅存在于本地 artifacts 目录。\n\n## 结论\n\n**exp-014 使用 GRPOTrainer + continuous probe reward，不是 SFT + probe penalty。**\n\n关键证据：\n\n### 框架：`DCGRPOTrainer`（基于 `trl.GRPOTrainer`）\n- 训练脚本：`artifacts/training/run_exp014_continuous_probe.py`\n- 自定义类 `ProbeTrainer(DCGRPOTrainer)`，继承 DCGRPOTrainer（第 58 行）\n- 从 `/root/mvp_v2_1_expanded/training/dcgrpo_trainer.py` 导入（第 26-27 行）\n\n### R1 reward 实现：frozen logistic probe\n- `compute_r1()` 方法（第 73-94 行）：取 reward layers `[19,20,24,27,32,33,35]` 的 mean hidden state，输入冻结的 `LinearProbe`，输出 `R1 = 1.0 - P(sycophantic)`\n- probe 是单层 logistic regression（`probe_module.py:LinearProbe`），在 exp-001 的 activations 上训练 200 epochs\n- 训练后冻结（`probe.eval()` + `requires_grad_(False)`），作为 reward signal 不参与梯度更新\n\n### Reward 权重配置\n- R1=0.25（probe）, R2=0.0（禁用）, R3=0.75（NLI coherence）\n- 与 exp-002（DC-GRPO）相同的 R3 权重，仅 R1 信号源不同\n\n### 训练配置\n- Qwen3-8B + LoRA (r=64, alpha=64)\n- max_steps=8000, lr=5e-5, batch=1×16 grad_accum\n- DeepSpeed ZeRO-2, 2×RTX 5090\n\n### 结局\nstep 3243 mode collapse（R3 饱和→0.999, entropy→0.025, 输出退化为单一模板），被 kill。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-exp014-framework-search.md"
+}

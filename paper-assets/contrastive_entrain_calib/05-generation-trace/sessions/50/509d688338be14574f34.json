@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "509d688338be14574f34",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops check exp003s3 result",
+  "task_key": "worker_ops_check-exp003s3-result_20260525T172040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-exp003s3-result_20260525T172040_result.json",
+    "occurrence": 1,
+    "bytes": 659,
+    "sha256": "5fec1ea9dab8eba5c90ac5e6e12c5a69222351e44d654240cf1ff21f8ddb02c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n**exp-003-s3 状态：killed**\n\n| 项目 | 值 |\n|------|-----|\n| 进度 | 610/8000 步 (7.6%) |\n| Checkpoint | 仅 checkpoint-500 |\n| 最后日志时间 | 2026-05-26 01:10:04 |\n| 错误信息 | 无（日志中无 error/traceback/OOM） |\n| 原因推断 | 外部终止（tmux session 不在，无错误痕迹） |\n| cuda:1 | 已释放（0 MiB / 97887 MiB, 0% util） |\n| cuda:0 | 同样空闲 |\n\nRegistry 已更新 metrics，cron 已删除。\n\n**seed 3 需要重跑才能凑齐 3-seed 统计。** checkpoint-500 可用于断点续训（如果需要）。两块 GPU 当前均空闲，等待 Director 指示。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-exp003s3-result.md"
+}

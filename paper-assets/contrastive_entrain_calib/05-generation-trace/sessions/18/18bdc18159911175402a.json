@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "18bdc18159911175402a",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "analysis r3 reward distribution",
+  "task_key": "worker_analysis_r3-reward-distribution_20260520T194634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r3-reward-distribution_20260520T194634.log",
+    "occurrence": 1,
+    "bytes": 1227028,
+    "sha256": "0c617035d1a0fbc5d82ee1903594787b37dfe3cd7c9c47861051dad404afc904"
+  },
+  "statistics": {
+    "messages": 1037,
+    "user_turns": 1,
+    "tool_calls": 478,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 73,
+      "tool_call": 478,
+      "tool_result": 478,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1024,
+      "chunks": [
+        {
+          "path": "18bdc18159911175402a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "18bdc18159911175402a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "18bdc18159911175402a-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "18bdc18159911175402a-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "18bdc18159911175402a-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "18bdc18159911175402a-part-0006.json",
+          "message_count": 124
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "18bdc18159911175402a-part-0006.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-r3-reward-distribution.md"
+}

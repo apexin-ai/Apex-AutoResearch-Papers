@@ -1,0 +1,1322 @@
+{
+  "schema_version": "1.0",
+  "id": "2206b4d77d563931c4e7",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "ops sync stability script",
+  "task_key": "worker_ops_sync-stability-script_20260519T014634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync-stability-script_20260519T014634.log",
+    "occurrence": 1,
+    "bytes": 69669,
+    "sha256": "c3c8c1c73b7b4c06c461d9d7aee4d997fe8ea225d260c5c6b4cc796be92ba386"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 10,
+      "tool_result": 10,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+                "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "2d7b0fe7-7624-4111-b19c-6b490724b33d",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779159000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "3557c297-0b03-49c5-b939-3308f8d711fa",
+                "session_id": "7aab01fe-b82e-40df-b218-881f9e367940"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the local script file, then sync it to the remote server.",
+              "signature": "EowCClkIDRgCKkCoeFxO6lS5bdeipRZ4uV+9ipK0QqHvETtzm7jlUUt3VY8VWqgLzNsAecaeGj+Xt9mmZW6bKmb0DFss4ZYvFm7EMg9jbGF1ZGUtb3B1cy00LTY4ABIMarIwr8Q5IcCnOtm0Ggzhj8HhZy4NpDMyKBkiMMm8EjvnoP/UPaMcXvlwylcjF9A3aYZKpeWkUKi1cwP2NwLDo9TdPiW+t/O5MMcgDSphSt7GRfXoorvvrprGswtQKWZ8uqTk9UwdfhJUtCesIfATu75ODXCFLAoJw8G5zMApQFygwpkx3IBacQ6174xXdKlXha5fWiISbihw6bVNqqCMrgAbnWDA4/m2friI0a0o0RgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "uuid": "a9bdc9e3-ce0d-432f-8a1d-ad58b1754ce7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ES9ZZxD5heY7gCokbu3qMc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12722,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12722
+                },
+                "output_tokens": 19,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "读取本地脚本并同步到服务器。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "uuid": "e299c964-6f9d-4e2e-8871-8c99332cb040",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ES9ZZxD5heY7gCokbu3qMc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12722,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12722
+                },
+                "output_tokens": 19,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BRe79YibJe8kX6dUzyqSyD",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/training/measure_direction_stability.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "uuid": "a6be2302-025c-4574-b053-eb3f7f26a1ce",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ES9ZZxD5heY7gCokbu3qMc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12722,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12722
+                },
+                "output_tokens": 19,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T01:46:52.564Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BRe79YibJe8kX6dUzyqSyD",
+              "type": "tool_result",
+              "content": "1\t#!/usr/bin/env python3\n2\t\"\"\"exp-006: Measure d_syc direction stability at a given checkpoint.\n3\t\n4\tLoads a checkpoint (base model + LoRA), runs forward passes on calibration\n5\tdata, and reports per-layer direction drift, AUROC, and activation norms.\n6\t\n7\tUsage:\n8\t    python measure_direction_stability.py \\\n9\t        --checkpoint /path/to/checkpoint-500 \\\n10\t        --directions /path/to/directions.pt \\\n11\t        --data /path/to/calibration_v2_1_expanded.jsonl \\\n12\t        --output /path/to/stability_step500.json\n13\t\"\"\"\n14\timport argparse\n15\timport json\n16\timport logging\n17\timport sys\n18\tfrom pathlib import Path\n19\t\n20\timport numpy as np\n21\timport torch\n22\timport torch.nn.functional as F\n23\tfrom peft import PeftModel\n24\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\n25\t\n26\tlogging.basicConfig(\n27\t    level=logging.INFO,\n28\t    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n29\t)\n30\tlogger = logging.getLogger(\"direction_stability\")\n31\t\n32\tREWARD_LAYERS = [19, 20, 24, 27, 32, 33, 35]\n33\tPOS_IDX = 1\n34\t\n35\t\n36\tdef find_layers(model):\n37\t    candidate = model\n38\t    if hasattr(candidate, \"base_model\"):\n39\t        candidate = candidate.base_model\n40\t    if hasattr(candidate, \"model\"):\n41\t        inner = candidate.model\n42\t        if hasattr(inner, \"layers\"):\n43\t            return inner.layers\n44\t        if hasattr(inner, \"model\") and hasattr(inner.model, \"layers\"):\n45\t            return inner.model.layers\n46\t    if hasattr(candidate, \"layers\"):\n47\t        return candidate.layers\n48\t    raise AttributeError(\"Cannot find transformer layers\")\n49\t\n50\t\n51\tdef extract_activations(model, tokenizer, prompts, device, batch_size=4):\n52\t    layers = find_layers(model)\n53\t    cache = {}\n54\t    hooks = []\n55\t\n56\t    def make_hook(idx):\n57\t        def fn(module, inp, out):\n58\t            hidden = out[0] if isinstance(out, tuple) else out\n59\t            cache[idx] = hidden.detach()\n60\t        return fn\n61\t\n62\t    for idx in REWARD_LAYERS:\n63\t        hooks.append(layers[idx].register_forward_hook(make_hook(idx)))\n64\t\n65\t    all_acts = []\n66\t    for i in range(0, len(prompts), batch_size):\n67\t        batch = prompts[i:i + batch_size]\n68\t        prompt_lengths = [\n69\t            len(tokenizer.encode(p, add_special_tokens=False)) for p in batch\n70\t        ]\n71\t        encoded = tokenizer(\n72\t            batch, padding=True, truncation=True,\n73\t            max_length=512, return_tensors=\"pt\",\n74\t        ).to(device)\n75\t\n76\t        cache.clear()\n77\t        with torch.no_grad():\n78\t            model(\n79\t                input_ids=encoded.input_ids,\n80\t                attention_mask=encoded.attention_mask,\n81\t            )\n82\t\n83\t        for sample_idx in range(len(batch)):\n84\t            pos = min(\n85\t                prompt_lengths[sample_idx] - 1,\n86\t                encoded.input_ids.shape[1] - 1,\n87\t            )\n88\t            acts = {}\n89\t            for layer_idx in REWARD_LAYERS:\n90\t                cached = cache.get(layer_idx)\n91\t                if cached is not None and sample_idx < cached.shape[0]:\n92\t                    acts[layer_idx] = cached[sample_idx, pos].float().cpu()\n93\t            all_acts.append(acts)\n94\t        cache.clear()\n95\t\n96\t    for h in hooks:\n97\t        h.remove()\n98\t    return all_acts\n99\t\n100\t\n101\tdef compute_auroc(scores, labels):\n102\t    scores_arr = np.array(scores)\n103\t    labels_arr = np.array(labels)\n104\t    if len(np.unique(labels_arr)) < 2:\n105\t        return float(\"nan\")\n106\t    try:\n107\t        from sklearn.metrics import roc_auc_score\n108\t        return roc_auc_score(labels_arr, scores_arr)\n109\t    except ImportError:\n110\t        paired = sorted(zip(scores, labels), reverse=True)\n111\t        tp, auc_sum = 0, 0.0\n112\t        p_total = sum(labels)\n113\t        n_total = len(labels) - p_total\n114\t        for _, label in paired:\n115\t            if label == 1:\n116\t                tp += 1\n117\t            else:\n118\t                auc_sum += tp\n119\t        return auc_sum / (p_total * n_total) if (p_total * n_total) > 0 else 0.0\n120\t\n121\t\n122\tdef main():\n123\t    parser = argparse.ArgumentParser()\n124\t    parser.add_argument(\"--model-path\", default=\"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\")\n125\t    parser.add_argument(\"--checkpoint\", required=True)\n126\t    parser.add_argument(\"--directions\", required=True)\n127\t    parser.add_argument(\"--data\", required=True)\n128\t    parser.add_argument(\"--output\", default=None)\n129\t    parser.add_argument(\"--device\", default=\"cuda:0\")\n130\t    parser.add_argument(\"--n-samples\", type=int, default=0,\n131\t                        help=\"Max samples per condition (0 = all)\")\n132\t    args = parser.parse_args()\n133\t\n134\t    device = torch.device(args.device)\n135\t    step = \"unknown\"\n136\t    ckpt_name = Path(args.checkpoint).name\n137\t    if ckpt_name.startswith(\"checkpoint-\"):\n138\t        step = ckpt_name.split(\"-\")[1]\n139\t\n140\t    orig_data = torch.load(args.directions, map_location=\"cpu\", weights_only=True)\n141\t    orig_d_syc = orig_data[\"d_syc\"]\n142\t    logger.info(\"Original d_syc shape: %s\", orig_d_syc.shape)\n143\t\n144\t    records = []\n145\t    with open(args.data) as f:\n146\t        for line in f:\n147\t            records.append(json.loads(line))\n148\t\n149\t    if args.n_samples > 0:\n150\t        valid = [r for r in records if r[\"condition\"] == \"valid_correction\"][:args.n_samples]\n151\t        invalid = [r for r in records if r[\"condition\"] == \"invalid_pressure\"][:args.n_samples]\n152\t        records = valid + invalid\n153\t    logger.info(\"Using %d calibration records\", len(records))\n154\t\n155\t    logger.info(\"Loading model from %s\", args.model_path)\n156\t    model = AutoModelForCausalLM.from_pretrained(\n157\t        args.model_path, torch_dtype=torch.bfloat16, trust_remote_code=True,\n158\t    ).to(device)\n159\t    if Path(args.checkpoint).exists():\n160\t        logger.info(\"Loading LoRA from %s\", args.checkpoint)\n161\t        model = PeftModel.from_pretrained(model, args.checkpoint).to(device)\n162\t    model.eval()\n163\t\n164\t    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)\n165\t\n166\t    prompts = []\n167\t    conditions = []\n168\t    for rec in records:\n169\t        msgs = [{\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in rec[\"turns\"]]\n170\t        try:\n171\t            prompt = tokenizer.apply_chat_template(\n172\t                msgs, tokenize=False, add_generation_prompt=True,\n173\t                enable_thinking=False,\n174\t            )\n175\t        except TypeError:\n176\t            prompt = tokenizer.apply_chat_template(\n177\t                msgs, tokenize=False, add_generation_prompt=True,\n178\t            )\n179\t        prompts.append(prompt)\n180\t        conditions.append(rec[\"condition\"])\n181\t\n182\t    logger.info(\"Extracting activations from %d samples...\", len(prompts))\n183\t    all_acts = extract_activations(model, tokenizer, prompts, device)\n184\t\n185\t    valid_acts = {l: [] for l in REWARD_LAYERS}\n186\t    invalid_acts = {l: [] for l in REWARD_LAYERS}\n187\t    for acts, cond in zip(all_acts, conditions):\n188\t        target = valid_acts if cond == \"valid_correction\" else invalid_acts\n189\t        for l in REWARD_LAYERS:\n190\t            if l in acts:\n191\t                target[l].append(acts[l])\n192\t\n193\t    n_valid = len(valid_acts[REWARD_LAYERS[0]])\n194\t    n_invalid = len(invalid_acts[REWARD_LAYERS[0]])\n195\t    logger.info(\"Valid: %d, Invalid: %d\", n_valid, n_invalid)\n196\t\n197\t    labels = (\n198\t        [0] * n_valid + [1] * n_invalid\n199\t    )\n200\t\n201\t    results = {\"step\": step, \"checkpoint\": args.checkpoint, \"per_layer\": {}}\n202\t\n203\t    print(f\"\\n{'='*90}\")\n204\t    print(f\"Direction Stability Report — step {step}\")\n205\t    print(f\"{'='*90}\")\n206\t    print(f\"{'Layer':>6} {'cosine':>8} {'dot AUROC':>10} {'cos AUROC':>10} \"\n207\t          f\"{'||h|| mean':>10} {'||h|| std':>10} {'new ||d||':>10}\")\n208\t    print(\"-\" * 75)\n209\t\n210\t    all_cosines = []\n211\t    for l in REWARD_LAYERS:\n212\t        mean_valid = torch.stack(valid_acts[l]).mean(0)\n213\t        mean_invalid = torch.stack(invalid_acts[l]).mean(0)\n214\t        new_dir = mean_invalid - mean_valid\n215\t        new_norm = new_dir.norm().item()\n216\t        if new_norm > 0:\n217\t            new_dir_normed = new_dir / new_dir.norm()\n218\t        else:\n219\t            new_dir_normed = new_dir\n220\t\n221\t        old_dir = orig_d_syc[l, POS_IDX].float()\n222\t        cos = F.cosine_similarity(\n223\t            old_dir.unsqueeze(0), new_dir_normed.unsqueeze(0)\n224\t        ).item()\n225\t        all_cosines.append(cos)\n226\t\n227\t        dot_scores = []\n228\t        cos_scores = []\n229\t        h_norms = []\n230\t        for i in range(n_valid):\n231\t            h = valid_acts[l][i]\n232\t            h_norms.append(h.norm().item())\n233\t            dot_scores.append(torch.dot(h, old_dir).item())\n234\t            cos_scores.append(\n235\t                torch.dot(h, old_dir).item() / (h.norm().item() + 1e-8)\n236\t            )\n237\t        for i in range(n_invalid):\n238\t            h = invalid_acts[l][i]\n239\t            h_norms.append(h.norm().item())\n240\t            dot_scores.append(torch.dot(h, old_dir).item())\n241\t            cos_scores.append(\n242\t                torch.dot(h, old_dir).item() / (h.norm().item() + 1e-8)\n243\t            )\n244\t\n245\t        dot_auroc = compute_auroc(dot_scores, labels)\n246\t        cos_auroc = compute_auroc(cos_scores, labels)\n247\t        h_norm_mean = np.mean(h_norms)\n248\t        h_norm_std = np.std(h_norms)\n249\t\n250\t        print(f\"{l:>6} {cos:>8.4f} {dot_auroc:>10.4f} {cos_auroc:>10.4f} \"\n251\t              f\"{h_norm_mean:>10.1f} {h_norm_std:>10.1f} {new_norm:>10.4f}\")\n252\t\n253\t        results[\"per_layer\"][str(l)] = {\n254\t            \"cosine_with_original\": round(cos, 4),\n255\t            \"dot_auroc\": round(dot_auroc, 4),\n256\t            \"cosine_auroc\": round(cos_auroc, 4),\n257\t            \"h_norm_mean\": round(h_norm_mean, 1),\n258\t            \"h_norm_std\": round(h_norm_std, 1),\n259\t            \"new_direction_norm\": round(new_norm, 4),\n260\t        }\n261\t\n262\t    mean_cos = np.mean(all_cosines)\n263\t    mean_cos_auroc = np.mean([\n264\t        results[\"per_layer\"][str(l)][\"cosine_auroc\"] for l in REWARD_LAYERS\n265\t    ])\n266\t\n267\t    print(f\"\\nMean cosine(old, new): {mean_cos:.4f}\")\n268\t    print(f\"Mean cosine AUROC: {mean_cos_auroc:.4f}\")\n269\t\n270\t    if mean_cos > 0.8:\n271\t        verdict = \"STABLE\"\n272\t        print(\"Verdict: STABLE — direction drift minimal\")\n273\t    elif mean_cos > 0.5:\n274\t        verdict = \"MODERATE_DRIFT\"\n275\t        print(\"Verdict: MODERATE DRIFT — monitor closely\")\n276\t    else:\n277\t        verdict = \"SIGNIFICANT_DRIFT\"\n278\t        print(\"Verdict: SIGNIFICANT DRIFT — recalibration recommended\")\n279\t\n280\t    results[\"summary\"] = {\n281\t        \"mean_cosine\": round(mean_cos, 4),\n282\t        \"mean_cosine_auroc\": round(mean_cos_auroc, 4),\n283\t        \"verdict\": verdict,\n284\t        \"n_valid\": n_valid,\n285\t        \"n_invalid\": n_invalid,\n286\t    }\n287\t\n288\t    if args.output:\n289\t        out_path = Path(args.output)\n290\t        out_path.parent.mkdir(parents=True, exist_ok=True)\n291\t        with open(out_path, \"w\") as f:\n292\t            json.dump(results, f, indent=2)\n293\t        logger.info(\"Results saved to %s\", out_path)\n294\t    else:\n295\t        default_out = (\n296\t            Path(args.checkpoint).parent / f\"stability_step{step}.json\"\n297\t        )\n298\t        default_out.parent.mkdir(parents=True, exist_ok=True)\n299\t        with open(default_out, \"w\") as f:\n300\t            json.dump(results, f, indent=2)\n301\t        logger.info(\"Results saved to %s\", default_out)\n302\t\n303\t\n304\tif __name__ == \"__main__\":\n305\t    main()\n306\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "uuid": "de4a8e68-8c0f-47fe-bcd6-48843a009643",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib/artifacts/training/measure_direction_stability.py",
+                "content": "#!/usr/bin/env python3\n\"\"\"exp-006: Measure d_syc direction stability at a given checkpoint.\n\nLoads a checkpoint (base model + LoRA), runs forward passes on calibration\ndata, and reports per-layer direction drift, AUROC, and activation norms.\n\nUsage:\n    python measure_direction_stability.py \\\n        --checkpoint /path/to/checkpoint-500 \\\n        --directions /path/to/directions.pt \\\n        --data /path/to/calibration_v2_1_expanded.jsonl \\\n        --output /path/to/stability_step500.json\n\"\"\"\nimport argparse\nimport json\nimport logging\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\nimport torch\nimport torch.nn.functional as F\nfrom peft import PeftModel\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n)\nlogger = logging.getLogger(\"direction_stability\")\n\nREWARD_LAYERS = [19, 20, 24, 27, 32, 33, 35]\nPOS_IDX = 1\n\n\ndef find_layers(model):\n    candidate = model\n    if hasattr(candidate, \"base_model\"):\n        candidate = candidate.base_model\n    if hasattr(candidate, \"model\"):\n        inner = candidate.model\n        if hasattr(inner, \"layers\"):\n            return inner.layers\n        if hasattr(inner, \"model\") and hasattr(inner.model, \"layers\"):\n            return inner.model.layers\n    if hasattr(candidate, \"layers\"):\n        return candidate.layers\n    raise AttributeError(\"Cannot find transformer layers\")\n\n\ndef extract_activations(model, tokenizer, prompts, device, batch_size=4):\n    layers = find_layers(model)\n    cache = {}\n    hooks = []\n\n    def make_hook(idx):\n        def fn(module, inp, out):\n            hidden = out[0] if isinstance(out, tuple) else out\n            cache[idx] = hidden.detach()\n        return fn\n\n    for idx in REWARD_LAYERS:\n        hooks.append(layers[idx].register_forward_hook(make_hook(idx)))\n\n    all_acts = []\n    for i in range(0, len(prompts), batch_size):\n        batch = prompts[i:i + batch_size]\n        prompt_lengths = [\n            len(tokenizer.encode(p, add_special_tokens=False)) for p in batch\n        ]\n        encoded = tokenizer(\n            batch, padding=True, truncation=True,\n            max_length=512, return_tensors=\"pt\",\n        ).to(device)\n\n        cache.clear()\n        with torch.no_grad():\n            model(\n                input_ids=encoded.input_ids,\n                attention_mask=encoded.attention_mask,\n            )\n\n        for sample_idx in range(len(batch)):\n            pos = min(\n                prompt_lengths[sample_idx] - 1,\n                encoded.input_ids.shape[1] - 1,\n            )\n            acts = {}\n            for layer_idx in REWARD_LAYERS:\n                cached = cache.get(layer_idx)\n                if cached is not None and sample_idx < cached.shape[0]:\n                    acts[layer_idx] = cached[sample_idx, pos].float().cpu()\n            all_acts.append(acts)\n        cache.clear()\n\n    for h in hooks:\n        h.remove()\n    return all_acts\n\n\ndef compute_auroc(scores, labels):\n    scores_arr = np.array(scores)\n    labels_arr = np.array(labels)\n    if len(np.unique(labels_arr)) < 2:\n        return float(\"nan\")\n    try:\n        from sklearn.metrics import roc_auc_score\n        return roc_auc_score(labels_arr, scores_arr)\n    except ImportError:\n        paired = sorted(zip(scores, labels), reverse=True)\n        tp, auc_sum = 0, 0.0\n        p_total = sum(labels)\n        n_total = len(labels) - p_total\n        for _, label in paired:\n            if label == 1:\n                tp += 1\n            else:\n                auc_sum += tp\n        return auc_sum / (p_total * n_total) if (p_total * n_total) > 0 else 0.0\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--model-path\", default=\"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\")\n    parser.add_argument(\"--checkpoint\", required=True)\n    parser.add_argument(\"--directions\", required=True)\n    parser.add_argument(\"--data\", required=True)\n    parser.add_argument(\"--output\", default=None)\n    parser.add_argument(\"--device\", default=\"cuda:0\")\n    parser.add_argument(\"--n-samples\", type=int, default=0,\n                        help=\"Max samples per condition (0 = all)\")\n    args = parser.parse_args()\n\n    device = torch.device(args.device)\n    step = \"unknown\"\n    ckpt_name = Path(args.checkpoint).name\n    if ckpt_name.startswith(\"checkpoint-\"):\n        step = ckpt_name.split(\"-\")[1]\n\n    orig_data = torch.load(args.directions, map_location=\"cpu\", weights_only=True)\n    orig_d_syc = orig_data[\"d_syc\"]\n    logger.info(\"Original d_syc shape: %s\", orig_d_syc.shape)\n\n    records = []\n    with open(args.data) as f:\n        for line in f:\n            records.append(json.loads(line))\n\n    if args.n_samples > 0:\n        valid = [r for r in records if r[\"condition\"] == \"valid_correction\"][:args.n_samples]\n        invalid = [r for r in records if r[\"condition\"] == \"invalid_pressure\"][:args.n_samples]\n        records = valid + invalid\n    logger.info(\"Using %d calibration records\", len(records))\n\n    logger.info(\"Loading model from %s\", args.model_path)\n    model = AutoModelForCausalLM.from_pretrained(\n        args.model_path, torch_dtype=torch.bfloat16, trust_remote_code=True,\n    ).to(device)\n    if Path(args.checkpoint).exists():\n        logger.info(\"Loading LoRA from %s\", args.checkpoint)\n        model = PeftModel.from_pretrained(model, args.checkpoint).to(device)\n    model.eval()\n\n    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)\n\n    prompts = []\n    conditions = []\n    for rec in records:\n        msgs = [{\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in rec[\"turns\"]]\n        try:\n            prompt = tokenizer.apply_chat_template(\n                msgs, tokenize=False, add_generation_prompt=True,\n                enable_thinking=False,\n            )\n        except TypeError:\n            prompt = tokenizer.apply_chat_template(\n                msgs, tokenize=False, add_generation_prompt=True,\n            )\n        prompts.append(prompt)\n        conditions.append(rec[\"condition\"])\n\n    logger.info(\"Extracting activations from %d samples...\", len(prompts))\n    all_acts = extract_activations(model, tokenizer, prompts, device)\n\n    valid_acts = {l: [] for l in REWARD_LAYERS}\n    invalid_acts = {l: [] for l in REWARD_LAYERS}\n    for acts, cond in zip(all_acts, conditions):\n        target = valid_acts if cond == \"valid_correction\" else invalid_acts\n        for l in REWARD_LAYERS:\n            if l in acts:\n                target[l].append(acts[l])\n\n    n_valid = len(valid_acts[REWARD_LAYERS[0]])\n    n_invalid = len(invalid_acts[REWARD_LAYERS[0]])\n    logger.info(\"Valid: %d, Invalid: %d\", n_valid, n_invalid)\n\n    labels = (\n        [0] * n_valid + [1] * n_invalid\n    )\n\n    results = {\"step\": step, \"checkpoint\": args.checkpoint, \"per_layer\": {}}\n\n    print(f\"\\n{'='*90}\")\n    print(f\"Direction Stability Report — step {step}\")\n    print(f\"{'='*90}\")\n    print(f\"{'Layer':>6} {'cosine':>8} {'dot AUROC':>10} {'cos AUROC':>10} \"\n          f\"{'||h|| mean':>10} {'||h|| std':>10} {'new ||d||':>10}\")\n    print(\"-\" * 75)\n\n    all_cosines = []\n    for l in REWARD_LAYERS:\n        mean_valid = torch.stack(valid_acts[l]).mean(0)\n        mean_invalid = torch.stack(invalid_acts[l]).mean(0)\n        new_dir = mean_invalid - mean_valid\n        new_norm = new_dir.norm().item()\n        if new_norm > 0:\n            new_dir_normed = new_dir / new_dir.norm()\n        else:\n            new_dir_normed = new_dir\n\n        old_dir = orig_d_syc[l, POS_IDX].float()\n        cos = F.cosine_similarity(\n            old_dir.unsqueeze(0), new_dir_normed.unsqueeze(0)\n        ).item()\n        all_cosines.append(cos)\n\n        dot_scores = []\n        cos_scores = []\n        h_norms = []\n        for i in range(n_valid):\n            h = valid_acts[l][i]\n            h_norms.append(h.norm().item())\n            dot_scores.append(torch.dot(h, old_dir).item())\n            cos_scores.append(\n                torch.dot(h, old_dir).item() / (h.norm().item() + 1e-8)\n            )\n        for i in range(n_invalid):\n            h = invalid_acts[l][i]\n            h_norms.append(h.norm().item())\n            dot_scores.append(torch.dot(h, old_dir).item())\n            cos_scores.append(\n                torch.dot(h, old_dir).item() / (h.norm().item() + 1e-8)\n            )\n\n        dot_auroc = compute_auroc(dot_scores, labels)\n        cos_auroc = compute_auroc(cos_scores, labels)\n        h_norm_mean = np.mean(h_norms)\n        h_norm_std = np.std(h_norms)\n\n        print(f\"{l:>6} {cos:>8.4f} {dot_auroc:>10.4f} {cos_auroc:>10.4f} \"\n              f\"{h_norm_mean:>10.1f} {h_norm_std:>10.1f} {new_norm:>10.4f}\")\n\n        results[\"per_layer\"][str(l)] = {\n            \"cosine_with_original\": round(cos, 4),\n            \"dot_auroc\": round(dot_auroc, 4),\n            \"cosine_auroc\": round(cos_auroc, 4),\n            \"h_norm_mean\": round(h_norm_mean, 1),\n            \"h_norm_std\": round(h_norm_std, 1),\n            \"new_direction_norm\": round(new_norm, 4),\n        }\n\n    mean_cos = np.mean(all_cosines)\n    mean_cos_auroc = np.mean([\n        results[\"per_layer\"][str(l)][\"cosine_auroc\"] for l in REWARD_LAYERS\n    ])\n\n    print(f\"\\nMean cosine(old, new): {mean_cos:.4f}\")\n    print(f\"Mean cosine AUROC: {mean_cos_auroc:.4f}\")\n\n    if mean_cos > 0.8:\n        verdict = \"STABLE\"\n        print(\"Verdict: STABLE — direction drift minimal\")\n    elif mean_cos > 0.5:\n        verdict = \"MODERATE_DRIFT\"\n        print(\"Verdict: MODERATE DRIFT — monitor closely\")\n    else:\n        verdict = \"SIGNIFICANT_DRIFT\"\n        print(\"Verdict: SIGNIFICANT DRIFT — recalibration recommended\")\n\n    results[\"summary\"] = {\n        \"mean_cosine\": round(mean_cos, 4),\n        \"mean_cosine_auroc\": round(mean_cos_auroc, 4),\n        \"verdict\": verdict,\n        \"n_valid\": n_valid,\n        \"n_invalid\": n_invalid,\n    }\n\n    if args.output:\n        out_path = Path(args.output)\n        out_path.parent.mkdir(parents=True, exist_ok=True)\n        with open(out_path, \"w\") as f:\n            json.dump(results, f, indent=2)\n        logger.info(\"Results saved to %s\", out_path)\n    else:\n        default_out = (\n            Path(args.checkpoint).parent / f\"stability_step{step}.json\"\n        )\n        default_out.parent.mkdir(parents=True, exist_ok=True)\n        with open(default_out, \"w\") as f:\n            json.dump(results, f, indent=2)\n        logger.info(\"Results saved to %s\", default_out)\n\n\nif __name__ == \"__main__\":\n    main()\n",
+                "numLines": 306,
+                "startLine": 1,
+                "totalLines": 306
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011STVRDSQ3PJZgLzSamjvsR",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "uuid": "f08eebd3-bb07-442c-a4dc-23602894bc19",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015iyrXysF3CruisEZ6Uk4go",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4228,
+                "cache_read_input_tokens": 24563,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4228
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T01:46:55.350Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_011STVRDSQ3PJZgLzSamjvsR",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "uuid": "ea6b50c7-eb0d-487c-a56c-fad52cd559b0",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I need to sync the script to the remote server. Let me write the file content via ssh_execute using a heredoc, then verify it.",
+              "signature": "Er4CClkIDRgCKkD9Hir3kHAW5g1lQIAeEHxmH+rdce9BFwIIsdh07gyJVZBhn0/4jzIRdqGGVawj+vL0WwrHro3lBbQUUe4AxCNkMg9jbGF1ZGUtb3B1cy00LTY4ABIMuo5TwqHGp5CW+q3dGgxB5LgB1KaX4osVodAiMHWb8zfNojkIB8/7FsuHuJCUQgi+/k4MsAj1eg6BZQxd64QPE0Qdb5CjkeVFeIX9ViqSAZEYd9s4ir9O93URbC+8g8X1UUoG4AFxXoFRhs3DLpR1kd4fWtSL/O9epIL8B9dCxqL1goePLc9joxP2UDjJw2JlU7YAYOXw/+EXMYhf/7t8ufJ2QnME6nzoRGPpQ8BJMKj8niI5xPOuy+dqkAfmAyqaDrJjyeyzMQA/N3saWyl5F7vwpKvXupnQJT6hWYq9tZMvGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "uuid": "24a7e35a-5e6e-4111-b2f3-7f469624f999",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BcBZbyeWrahrSUExLW14Eu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 344,
+                "cache_read_input_tokens": 28791,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 344
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步脚本到服务器。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "uuid": "e4a4db20-96bf-419a-bb77-f454d58bde11",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BcBZbyeWrahrSUExLW14Eu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 344,
+                "cache_read_input_tokens": 28791,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 344
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LJotTCMT1wkL2M7dTPaJMf",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29046",
+                "account": "root",
+                "command": "cat > /root/contrastive_entrain_calib/training/measure_direction_stability.py << 'HEREDOC_EOF'\n#!/usr/bin/env python3\n\"\"\"exp-006: Measure d_syc direction stability at a given checkpoint.\n\nLoads a checkpoint (base model + LoRA), runs forward passes on calibration\ndata, and reports per-layer direction drift, AUROC, and activation norms.\n\nUsage:\n    python measure_direction_stability.py \\\n        --checkpoint /path/to/checkpoint-500 \\\n        --directions /path/to/directions.pt \\\n        --data /path/to/calibration_v2_1_expanded.jsonl \\\n        --output /path/to/stability_step500.json\n\"\"\"\nimport argparse\nimport json\nimport logging\nimport sys\nfrom pathlib import Path\n\nimport numpy as np\nimport torch\nimport torch.nn.functional as F\nfrom peft import PeftModel\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n)\nlogger = logging.getLogger(\"direction_stability\")\n\nREWARD_LAYERS = [19, 20, 24, 27, 32, 33, 35]\nPOS_IDX = 1\n\n\ndef find_layers(model):\n    candidate = model\n    if hasattr(candidate, \"base_model\"):\n        candidate = candidate.base_model\n    if hasattr(candidate, \"model\"):\n        inner = candidate.model\n        if hasattr(inner, \"layers\"):\n            return inner.layers\n        if hasattr(inner, \"model\") and hasattr(inner.model, \"layers\"):\n            return inner.model.layers\n    if hasattr(candidate, \"layers\"):\n        return candidate.layers\n    raise AttributeError(\"Cannot find transformer layers\")\n\n\ndef extract_activations(model, tokenizer, prompts, device, batch_size=4):\n    layers = find_layers(model)\n    cache = {}\n    hooks = []\n\n    def make_hook(idx):\n        def fn(module, inp, out):\n            hidden = out[0] if isinstance(out, tuple) else out\n            cache[idx] = hidden.detach()\n        return fn\n\n    for idx in REWARD_LAYERS:\n        hooks.append(layers[idx].register_forward_hook(make_hook(idx)))\n\n    all_acts = []\n    for i in range(0, len(prompts), batch_size):\n        batch = prompts[i:i + batch_size]\n        prompt_lengths = [\n            len(tokenizer.encode(p, add_special_tokens=False)) for p in batch\n        ]\n        encoded = tokenizer(\n            batch, padding=True, truncation=True,\n            max_length=512, return_tensors=\"pt\",\n        ).to(device)\n\n        cache.clear()\n        with torch.no_grad():\n            model(\n                input_ids=encoded.input_ids,\n                attention_mask=encoded.attention_mask,\n            )\n\n        for sample_idx in range(len(batch)):\n            pos = min(\n                prompt_lengths[sample_idx] - 1,\n                encoded.input_ids.shape[1] - 1,\n            )\n            acts = {}\n            for layer_idx in REWARD_LAYERS:\n                cached = cache.get(layer_idx)\n                if cached is not None and sample_idx < cached.shape[0]:\n                    acts[layer_idx] = cached[sample_idx, pos].float().cpu()\n            all_acts.append(acts)\n        cache.clear()\n\n    for h in hooks:\n        h.remove()\n    return all_acts\n\n\ndef compute_auroc(scores, labels):\n    scores_arr = np.array(scores)\n    labels_arr = np.array(labels)\n    if len(np.unique(labels_arr)) < 2:\n        return float(\"nan\")\n    try:\n        from sklearn.metrics import roc_auc_score\n        return roc_auc_score(labels_arr, scores_arr)\n    except ImportError:\n        paired = sorted(zip(scores, labels), reverse=True)\n        tp, auc_sum = 0, 0.0\n        p_total = sum(labels)\n        n_total = len(labels) - p_total\n        for _, label in paired:\n            if label == 1:\n                tp += 1\n            else:\n                auc_sum += tp\n        return auc_sum / (p_total * n_total) if (p_total * n_total) > 0 else 0.0\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--model-path\", default=\"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\")\n    parser.add_argument(\"--checkpoint\", required=True)\n    parser.add_argument(\"--directions\", required=True)\n    parser.add_argument(\"--data\", required=True)\n    parser.add_argument(\"--output\", default=None)\n    parser.add_argument(\"--device\", default=\"cuda:0\")\n    parser.add_argument(\"--n-samples\", type=int, default=0,\n                        help=\"Max samples per condition (0 = all)\")\n    args = parser.parse_args()\n\n    device = torch.device(args.device)\n    step = \"unknown\"\n    ckpt_name = Path(args.checkpoint).name\n    if ckpt_name.startswith(\"checkpoint-\"):\n        step = ckpt_name.split(\"-\")[1]\n\n    orig_data = torch.load(args.directions, map_location=\"cpu\", weights_only=True)\n    orig_d_syc = orig_data[\"d_syc\"]\n    logger.info(\"Original d_syc shape: %s\", orig_d_syc.shape)\n\n    records = []\n    with open(args.data) as f:\n        for line in f:\n            records.append(json.loads(line))\n\n    if args.n_samples > 0:\n        valid = [r for r in records if r[\"condition\"] == \"valid_correction\"][:args.n_samples]\n        invalid = [r for r in records if r[\"condition\"] == \"invalid_pressure\"][:args.n_samples]\n        records = valid + invalid\n    logger.info(\"Using %d calibration records\", len(records))\n\n    logger.info(\"Loading model from %s\", args.model_path)\n    model = AutoModelForCausalLM.from_pretrained(\n        args.model_path, torch_dtype=torch.bfloat16, trust_remote_code=True,\n    ).to(device)\n    if Path(args.checkpoint).exists():\n        logger.info(\"Loading LoRA from %s\", args.checkpoint)\n        model = PeftModel.from_pretrained(model, args.checkpoint).to(device)\n    model.eval()\n\n    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)\n\n    prompts = []\n    conditions = []\n    for rec in records:\n        msgs = [{\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in rec[\"turns\"]]\n        try:\n            prompt = tokenizer.apply_chat_template(\n                msgs, tokenize=False, add_generation_prompt=True,\n                enable_thinking=False,\n            )\n        except TypeError:\n            prompt = tokenizer.apply_chat_template(\n                msgs, tokenize=False, add_generation_prompt=True,\n            )\n        prompts.append(prompt)\n        conditions.append(rec[\"condition\"])\n\n    logger.info(\"Extracting activations from %d samples...\", len(prompts))\n    all_acts = extract_activations(model, tokenizer, prompts, device)\n\n    valid_acts = {l: [] for l in REWARD_LAYERS}\n    invalid_acts = {l: [] for l in REWARD_LAYERS}\n    for acts, cond in zip(all_acts, conditions):\n        target = valid_acts if cond == \"valid_correction\" else invalid_acts\n        for l in REWARD_LAYERS:\n            if l in acts:\n                target[l].append(acts[l])\n\n    n_valid = len(valid_acts[REWARD_LAYERS[0]])\n    n_invalid = len(invalid_acts[REWARD_LAYERS[0]])\n    logger.info(\"Valid: %d, Invalid: %d\", n_valid, n_invalid)\n\n    labels = (\n        [0] * n_valid + [1] * n_invalid\n    )\n\n    results = {\"step\": step, \"checkpoint\": args.checkpoint, \"per_layer\": {}}\n\n    print(f\"\\n{'='*90}\")\n    print(f\"Direction Stability Report — step {step}\")\n    print(f\"{'='*90}\")\n    print(f\"{'Layer':>6} {'cosine':>8} {'dot AUROC':>10} {'cos AUROC':>10} \"\n          f\"{'||h|| mean':>10} {'||h|| std':>10} {'new ||d||':>10}\")\n    print(\"-\" * 75)\n\n    all_cosines = []\n    for l in REWARD_LAYERS:\n        mean_valid = torch.stack(valid_acts[l]).mean(0)\n        mean_invalid = torch.stack(invalid_acts[l]).mean(0)\n        new_dir = mean_invalid - mean_valid\n        new_norm = new_dir.norm().item()\n        if new_norm > 0:\n            new_dir_normed = new_dir / new_dir.norm()\n        else:\n            new_dir_normed = new_dir\n\n        old_dir = orig_d_syc[l, POS_IDX].float()\n        cos = F.cosine_similarity(\n            old_dir.unsqueeze(0), new_dir_normed.unsqueeze(0)\n        ).item()\n        all_cosines.append(cos)\n\n        dot_scores = []\n        cos_scores = []\n        h_norms = []\n        for i in range(n_valid):\n            h = valid_acts[l][i]\n            h_norms.append(h.norm().item())\n            dot_scores.append(torch.dot(h, old_dir).item())\n            cos_scores.append(\n                torch.dot(h, old_dir).item() / (h.norm().item() + 1e-8)\n            )\n        for i in range(n_invalid):\n            h = invalid_acts[l][i]\n            h_norms.append(h.norm().item())\n            dot_scores.append(torch.dot(h, old_dir).item())\n            cos_scores.append(\n                torch.dot(h, old_dir).item() / (h.norm().item() + 1e-8)\n            )\n\n        dot_auroc = compute_auroc(dot_scores, labels)\n        cos_auroc = compute_auroc(cos_scores, labels)\n        h_norm_mean = np.mean(h_norms)\n        h_norm_std = np.std(h_norms)\n\n        print(f\"{l:>6} {cos:>8.4f} {dot_auroc:>10.4f} {cos_auroc:>10.4f} \"\n              f\"{h_norm_mean:>10.1f} {h_norm_std:>10.1f} {new_norm:>10.4f}\")\n\n        results[\"per_layer\"][str(l)] = {\n            \"cosine_with_original\": round(cos, 4),\n            \"dot_auroc\": round(dot_auroc, 4),\n            \"cosine_auroc\": round(cos_auroc, 4),\n            \"h_norm_mean\": round(h_norm_mean, 1),\n            \"h_norm_std\": round(h_norm_std, 1),\n            \"new_direction_norm\": round(new_norm, 4),\n        }\n\n    mean_cos = np.mean(all_cosines)\n    mean_cos_auroc = np.mean([\n        results[\"per_layer\"][str(l)][\"cosine_auroc\"] for l in REWARD_LAYERS\n    ])\n\n    print(f\"\\nMean cosine(old, new): {mean_cos:.4f}\")\n    print(f\"Mean cosine AUROC: {mean_cos_auroc:.4f}\")\n\n    if mean_cos > 0.8:\n        verdict = \"STABLE\"\n        print(\"Verdict: STABLE — direction drift minimal\")\n    elif mean_cos > 0.5:\n        verdict = \"MODERATE_DRIFT\"\n        print(\"Verdict: MODERATE DRIFT — monitor closely\")\n    else:\n        verdict = \"SIGNIFICANT_DRIFT\"\n        print(\"Verdict: SIGNIFICANT DRIFT — recalibration recommended\")\n\n    results[\"summary\"] = {\n        \"mean_cosine\": round(mean_cos, 4),\n        \"mean_cosine_auroc\": round(mean_cos_auroc, 4),\n        \"verdict\": verdict,\n        \"n_valid\": n_valid,\n        \"n_invalid\": n_invalid,\n    }\n\n    if args.output:\n        out_path = Path(args.output)\n        out_path.parent.mkdir(parents=True, exist_ok=True)\n        with open(out_path, \"w\") as f:\n            json.dump(results, f, indent=2)\n        logger.info(\"Results saved to %s\", out_path)\n    else:\n        default_out = (\n            Path(args.checkpoint).parent / f\"stability_step{step}.json\"\n        )\n        default_out.parent.mkdir(parents=True, exist_ok=True)\n        with open(default_out, \"w\") as f:\n            json.dump(results, f, indent=2)\n        logger.info(\"Results saved to %s\", default_out)\n\n\nif __name__ == \"__main__\":\n    main()\nHEREDOC_EOF"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "uuid": "cb883563-6908-47fe-a888-65831c4cb947",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BcBZbyeWrahrSUExLW14Eu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 344,
+                "cache_read_input_tokens": 28791,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 344
+                },
+                "output_tokens": 21,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T01:47:45.470Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LJotTCMT1wkL2M7dTPaJMf",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.72}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "uuid": "904ccb5b-7fb7-4326-9986-efd8d8b8623c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.72}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.72}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写入。验证语法并检查 checkpoint。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "uuid": "b7fbf87e-1dd5-409d-8d35-904a5d32f07c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bv75EvYzygqYLoem4sxwvj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3681,
+                "cache_read_input_tokens": 29135,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3681
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GCRkFXzFi7CBStpyjgnBqv",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29046",
+                "account": "root",
+                "command": "python -c \"import ast; ast.parse(open('/root/contrastive_entrain_calib/training/measure_direction_stability.py').read()); print('OK')\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "uuid": "8b566d74-ab4a-4c5a-80ab-853b0a4a36e4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bv75EvYzygqYLoem4sxwvj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3681,
+                "cache_read_input_tokens": 29135,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3681
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T01:47:51.799Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GCRkFXzFi7CBStpyjgnBqv",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python -c \\\\\\\"import ast; ast.parse(open(\\\\\\\\'/root/contrastive_entrain_calib/training/measure_direction_stability.py\\\\\\\\').read()); print(\\\\\\\\'OK\\\\\\\\')\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "uuid": "e1150db1-e73d-466c-b029-23803a371463",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python -c \\\\\\\"import ast; ast.parse(open(\\\\\\\\'/root/contrastive_entrain_calib/training/measure_direction_stability.py\\\\\\\\').read()); print(\\\\\\\\'OK\\\\\\\\')\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'python -c \\\"import ast; ast.parse(open(\\\\'/root/contrastive_entrain_calib/training/measure_direction_stability.py\\\\').read()); print(\\\\'OK\\\\')\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016oPLRp8AGkJr5dbLUproQ6",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29046",
+                "account": "root",
+                "command": "ls -la /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/checkpoint-*/",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "uuid": "3b7787c4-08eb-4cd2-afa2-19b3cd2da0da",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bv75EvYzygqYLoem4sxwvj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3681,
+                "cache_read_input_tokens": 29135,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3681
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T01:47:53.974Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016oPLRp8AGkJr5dbLUproQ6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/checkpoint-*/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "uuid": "3779296a-af9a-475b-958b-410bd9e8b971",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/checkpoint-*/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.33}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/checkpoint-*/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.33}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XcyRQSc1JLspWcT2dByoyM",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29046",
+                "account": "root",
+                "command": "python3 -c \"import ast; ast.parse(open('/root/contrastive_entrain_calib/training/measure_direction_stability.py').read()); print('OK')\""
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "uuid": "b40df114-4e91-4e97-b5b5-b691234c48b5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YKh49H7z5XthaRrfKRmGRZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 641,
+                "cache_read_input_tokens": 32816,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 641
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015VSUzkrE5aTJUVskDFFyLu",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29046",
+                "account": "root",
+                "command": "ls -la /root/contrastive_entrain_calib/checkpoints/",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "uuid": "e078fc23-2bc7-447c-8051-3f9488ca065a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YKh49H7z5XthaRrfKRmGRZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 641,
+                "cache_read_input_tokens": 32816,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 641
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T01:47:57.345Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XcyRQSc1JLspWcT2dByoyM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "uuid": "f408e59e-3f39-4954-a8ea-7d8225995b08",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T01:47:57.880Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015VSUzkrE5aTJUVskDFFyLu",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x 6 root root  128 May 19 08:00 .\\\\ndrwxr-xr-x 9 root root 4096 May 19 07:40 ..\\\\ndrwxr-xr-x 4 root root  120 May 19 04:39 exp002_dcgrpo_seed1\\\\ndrwxr-xr-x 3 root root   47 May 19 08:02 exp002v2_dcgrpo_cosine\\\\ndrwxr-xr-x 3 root root   89 May 19 03:00 exp008_dryrun\\\\ndrwxr-xr-x 3 root root   68 May 19 02:06 exp008_dryrun_v4\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "uuid": "2fdc4f58-c1ef-47d9-a44b-34561c8af739",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x 6 root root  128 May 19 08:00 .\\\\ndrwxr-xr-x 9 root root 4096 May 19 07:40 ..\\\\ndrwxr-xr-x 4 root root  120 May 19 04:39 exp002_dcgrpo_seed1\\\\ndrwxr-xr-x 3 root root   47 May 19 08:02 exp002v2_dcgrpo_cosine\\\\ndrwxr-xr-x 3 root root   89 May 19 03:00 exp008_dryrun\\\\ndrwxr-xr-x 3 root root   68 May 19 02:06 exp008_dryrun_v4\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x 6 root root  128 May 19 08:00 .\\ndrwxr-xr-x 9 root root 4096 May 19 07:40 ..\\ndrwxr-xr-x 4 root root  120 May 19 04:39 exp002_dcgrpo_seed1\\ndrwxr-xr-x 3 root root   47 May 19 08:02 exp002v2_dcgrpo_cosine\\ndrwxr-xr-x 3 root root   89 May 19 03:00 exp008_dryrun\\ndrwxr-xr-x 3 root root   68 May 19 02:06 exp008_dryrun_v4\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018gqKBz7BZR4d5jmKpN9KUb",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29046",
+                "account": "root",
+                "command": "ls -la /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "uuid": "ae4f5296-a13b-49c1-ac5b-8705630e5a94",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0175KTcysTp7sxW1RLPTFaG8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 776,
+                "cache_read_input_tokens": 33457,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 776
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T01:48:00.582Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018gqKBz7BZR4d5jmKpN9KUb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 132\\\\ndrwxr-xr-x 3 root root    47 May 19 08:02 .\\\\ndrwxr-xr-x 6 root root   128 May 19 08:00 ..\\\\ndrwxr-xr-x 5 root root  4096 May 19 08:02 runs\\\\n-rw-r--r-- 1 root root 67315 May 19 09:47 train.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "uuid": "f362b0d0-a1aa-473a-8951-7bf515e31e10",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 132\\\\ndrwxr-xr-x 3 root root    47 May 19 08:02 .\\\\ndrwxr-xr-x 6 root root   128 May 19 08:00 ..\\\\ndrwxr-xr-x 5 root root  4096 May 19 08:02 runs\\\\n-rw-r--r-- 1 root root 67315 May 19 09:47 train.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 132\\ndrwxr-xr-x 3 root root    47 May 19 08:02 .\\ndrwxr-xr-x 6 root root   128 May 19 08:00 ..\\ndrwxr-xr-x 5 root root  4096 May 19 08:02 runs\\n-rw-r--r-- 1 root root 67315 May 19 09:47 train.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有 checkpoint 子目录。确认当前训练步数。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "uuid": "d61eeb7f-9ec4-4823-ad8c-3e6abb38c86a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019Cz3pALKBU83jPvrtneUpU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 323,
+                "cache_read_input_tokens": 34233,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 323
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Njimj757GrEHuqU3ZkFdUZ",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29046",
+                "account": "root",
+                "command": "tail -20 /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "uuid": "af1db15d-7c1c-4743-8247-812265b45880",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019Cz3pALKBU83jPvrtneUpU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 323,
+                "cache_read_input_tokens": 34233,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 323
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T01:48:03.889Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Njimj757GrEHuqU3ZkFdUZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 09:45:44,348 [INFO] dcgrpo_trainer: reward/r1_mean=-0.0197\\\\n2026-05-19 09:45:44,348 [INFO] dcgrpo_trainer: reward/r2_mean=-0.0380\\\\n2026-05-19 09:45:44,348 [INFO] dcgrpo_trainer: reward/r3_mean=0.7495\\\\n2026-05-19 09:45:44,348 [INFO] dcgrpo_trainer: reward/combined_mean=0.5523\\\\n2026-05-19 09:46:14,421 [INFO] dcgrpo_trainer: reward/r1_mean=-0.0574\\\\n2026-05-19 09:46:14,421 [INFO] dcgrpo_trainer: reward/r2_mean=-0.0245\\\\n2026-05-19 09:46:14,421 [INFO] dcgrpo_trainer: reward/r3_mean=0.4131\\\\n2026-05-19 09:46:14,421 [INFO] dcgrpo_trainer: reward/combined_mean=0.2962\\\\n2026-05-19 09:46:45,539 [INFO] dcgrpo_trainer: reward/r1_mean=-0.0112\\\\n2026-05-19 09:46:45,539 [INFO] dcgrpo_trainer: reward/r2_mean=-0.0138\\\\n2026-05-19 09:46:45,540 [INFO] dcgrpo_trainer: reward/r3_mean=0.5007\\\\n2026-05-19 09:46:45,540 [INFO] dcgrpo_trainer: reward/combined_mean=0.3681\\\\n2026-05-19 09:47:15,918 [INFO] dcgrpo_trainer: reward/r1_mean=-0.0365\\\\n2026-05-19 09:47:15,918 [INFO] dcgrpo_trainer: reward/r2_mean=-0.0331\\\\n2026-05-19 09:47:15,918 [INFO] dcgrpo_trainer: reward/r3_mean=0.3748\\\\n2026-05-19 09:47:15,918 [INFO] dcgrpo_trainer: reward/combined_mean=0.2711\\\\n2026-05-19 09:47:48,020 [INFO] dcgrpo_trainer: reward/r1_mean=-0.0590\\\\n2026-05-19 09:47:48,020 [INFO] dcgrpo_trainer: reward/r2_mean=-0.0167\\\\n2026-05-19 09:47:48,020 [INFO] dcgrpo_trainer: reward/r3_mean=0.5010\\\\n2026-05-19 09:47:48,020 [INFO] dcgrpo_trainer: reward/combined_mean=0.3598\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "uuid": "84688854-c1c6-45c2-9974-21d67661c9da",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 09:45:44,348 [INFO] dcgrpo_trainer: reward/r1_mean=-0.0197\\\\n2026-05-19 09:45:44,348 [INFO] dcgrpo_trainer: reward/r2_mean=-0.0380\\\\n2026-05-19 09:45:44,348 [INFO] dcgrpo_trainer: reward/r3_mean=0.7495\\\\n2026-05-19 09:45:44,348 [INFO] dcgrpo_trainer: reward/combined_mean=0.5523\\\\n2026-05-19 09:46:14,421 [INFO] dcgrpo_trainer: reward/r1_mean=-0.0574\\\\n2026-05-19 09:46:14,421 [INFO] dcgrpo_trainer: reward/r2_mean=-0.0245\\\\n2026-05-19 09:46:14,421 [INFO] dcgrpo_trainer: reward/r3_mean=0.4131\\\\n2026-05-19 09:46:14,421 [INFO] dcgrpo_trainer: reward/combined_mean=0.2962\\\\n2026-05-19 09:46:45,539 [INFO] dcgrpo_trainer: reward/r1_mean=-0.0112\\\\n2026-05-19 09:46:45,539 [INFO] dcgrpo_trainer: reward/r2_mean=-0.0138\\\\n2026-05-19 09:46:45,540 [INFO] dcgrpo_trainer: reward/r3_mean=0.5007\\\\n2026-05-19 09:46:45,540 [INFO] dcgrpo_trainer: reward/combined_mean=0.3681\\\\n2026-05-19 09:47:15,918 [INFO] dcgrpo_trainer: reward/r1_mean=-0.0365\\\\n2026-05-19 09:47:15,918 [INFO] dcgrpo_trainer: reward/r2_mean=-0.0331\\\\n2026-05-19 09:47:15,918 [INFO] dcgrpo_trainer: reward/r3_mean=0.3748\\\\n2026-05-19 09:47:15,918 [INFO] dcgrpo_trainer: reward/combined_mean=0.2711\\\\n2026-05-19 09:47:48,020 [INFO] dcgrpo_trainer: reward/r1_mean=-0.0590\\\\n2026-05-19 09:47:48,020 [INFO] dcgrpo_trainer: reward/r2_mean=-0.0167\\\\n2026-05-19 09:47:48,020 [INFO] dcgrpo_trainer: reward/r3_mean=0.5010\\\\n2026-05-19 09:47:48,020 [INFO] dcgrpo_trainer: reward/combined_mean=0.3598\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-19 09:45:44,348 [INFO] dcgrpo_trainer: reward/r1_mean=-0.0197\\n2026-05-19 09:45:44,348 [INFO] dcgrpo_trainer: reward/r2_mean=-0.0380\\n2026-05-19 09:45:44,348 [INFO] dcgrpo_trainer: reward/r3_mean=0.7495\\n2026-05-19 09:45:44,348 [INFO] dcgrpo_trainer: reward/combined_mean=0.5523\\n2026-05-19 09:46:14,421 [INFO] dcgrpo_trainer: reward/r1_mean=-0.0574\\n2026-05-19 09:46:14,421 [INFO] dcgrpo_trainer: reward/r2_mean=-0.0245\\n2026-05-19 09:46:14,421 [INFO] dcgrpo_trainer: reward/r3_mean=0.4131\\n2026-05-19 09:46:14,421 [INFO] dcgrpo_trainer: reward/combined_mean=0.2962\\n2026-05-19 09:46:45,539 [INFO] dcgrpo_trainer: reward/r1_mean=-0.0112\\n2026-05-19 09:46:45,539 [INFO] dcgrpo_trainer: reward/r2_mean=-0.0138\\n2026-05-19 09:46:45,540 [INFO] dcgrpo_trainer: reward/r3_mean=0.5007\\n2026-05-19 09:46:45,540 [INFO] dcgrpo_trainer: reward/combined_mean=0.3681\\n2026-05-19 09:47:15,918 [INFO] dcgrpo_trainer: reward/r1_mean=-0.0365\\n2026-05-19 09:47:15,918 [INFO] dcgrpo_trainer: reward/r2_mean=-0.0331\\n2026-05-19 09:47:15,918 [INFO] dcgrpo_trainer: reward/r3_mean=0.3748\\n2026-05-19 09:47:15,918 [INFO] dcgrpo_trainer: reward/combined_mean=0.2711\\n2026-05-19 09:47:48,020 [INFO] dcgrpo_trainer: reward/r1_mean=-0.0590\\n2026-05-19 09:47:48,020 [INFO] dcgrpo_trainer: reward/r2_mean=-0.0167\\n2026-05-19 09:47:48,020 [INFO] dcgrpo_trainer: reward/r3_mean=0.5010\\n2026-05-19 09:47:48,020 [INFO] dcgrpo_trainer: reward/combined_mean=0.3598\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BQx3SUiocp1Aa2t8fnAAF6",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29046",
+                "account": "root",
+                "command": "grep -c \"reward/combined_mean\" /root/contrastive_entrain_calib/checkpoints/exp002v2_dcgrpo_cosine/train.log"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "uuid": "10fee5dd-aaa6-4fad-b09f-d33bf8dbabee",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UtDGwL95ynMCJVgRQfyM4a",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 961,
+                "cache_read_input_tokens": 34556,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 961
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T01:48:07.477Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BQx3SUiocp1Aa2t8fnAAF6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"216\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "uuid": "ff663354-bced-4847-83bb-cc96c2e92a38",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"216\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"216\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n1. **脚本同步** — 已写入 `/root/contrastive_entrain_calib/training/measure_direction_stability.py`，语法验证通过 (OK)。\n\n2. **Checkpoint 不可用** — `exp002v2_dcgrpo_cosine/` 目录下没有 `checkpoint-*` 子目录。当前约 step 216（基于 log 中 combined_mean 条目计数），`save_steps=500` 尚未触发首次保存。\n\n3. **无法运行诊断** — 需等到 step 500 产生第一个 checkpoint 后再执行。按当前约 30s/step 的速度，预计还需约 **2.5 小时**（284 steps × ~30s）才会有 checkpoint。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "uuid": "976aa70b-0ed4-46e6-a563-1cb22fee68fd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WoysehvgAJfvgiPiS2aLaT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 216,
+                "cache_read_input_tokens": 35517,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 216
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n1. **脚本同步** — 已写入 `/root/contrastive_entrain_calib/training/measure_direction_stability.py`，语法验证通过 (OK)。\n\n2. **Checkpoint 不可用** — `exp002v2_dcgrpo_cosine/` 目录下没有 `checkpoint-*` 子目录。当前约 step 216（基于 log 中 combined_mean 条目计数），`save_steps=500` 尚未触发首次保存。\n\n3. **无法运行诊断** — 需等到 step 500 产生第一个 checkpoint 后再执行。按当前约 30s/step 的速度，预计还需约 **2.5 小时**（284 steps × ~30s）才会有 checkpoint。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 89453,
+            "duration_api_ms": 85731,
+            "num_turns": 11,
+            "stop_reason": "end_turn",
+            "session_id": "7aab01fe-b82e-40df-b218-881f9e367940",
+            "total_cost_usd": 0.4091655,
+            "usage": {
+              "input_tokens": 13,
+              "cache_creation_input_tokens": 23892,
+              "cache_read_input_tokens": 264909,
+              "output_tokens": 5038,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 23892,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 221,
+                  "cache_read_input_tokens": 35517,
+                  "cache_creation_input_tokens": 216,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 216
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1291,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001371,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 13,
+                "outputTokens": 5038,
+                "cacheReadInputTokens": 264909,
+                "cacheCreationInputTokens": 23892,
+                "webSearchRequests": 0,
+                "costUSD": 0.4077945,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "95ad3935-d39f-4273-b4b2-da05e494ed87"
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-sync-stability-script.md"
+}

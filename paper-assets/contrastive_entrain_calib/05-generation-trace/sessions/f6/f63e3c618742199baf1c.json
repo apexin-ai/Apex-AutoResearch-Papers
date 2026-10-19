@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f63e3c618742199baf1c",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval reduced lora ckpt1000 gpu3",
+  "task_key": "worker_eval_reduced-lora-ckpt1000-gpu3_20260522T191614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_reduced-lora-ckpt1000-gpu3_20260522T191614_result.json",
+    "occurrence": 1,
+    "bytes": 104,
+    "sha256": "30c058aee9e5858391d5365656e6d696f154acea9da73d41c547cd2c42142f14"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval is running on 28034 GPU3 (PID 170552). Will check back in ~4.5 minutes for progress."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-reduced-lora-ckpt1000-gpu3.md"
+}

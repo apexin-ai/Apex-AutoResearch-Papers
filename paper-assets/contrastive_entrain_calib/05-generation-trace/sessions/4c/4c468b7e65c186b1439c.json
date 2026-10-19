@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c468b7e65c186b1439c",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "fix westd28034 deberta and exp004",
+  "task_key": "worker_fix_westd28034_deberta_and_exp004_20260518T153826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_westd28034_deberta_and_exp004_20260518T153826_result.json",
+    "occurrence": 1,
+    "bytes": 955,
+    "sha256": "7273393287fab6d8af4e798540b40088aa3b63aa0ccbfbf2b96f71e06b0e411a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练稳定运行中。\n\n## 完成状态\n\n### Task A: DeBERTa 预下载 ✅\n- `microsoft/deberta-v3-base` tokenizer + model 已通过 hf-mirror 下载\n- tiktoken 依赖已安装\n\n### Task B: exp-004 ACT baseline ✅\n- 脚本：`/root/contrastive_entrain_calib/training/run_exp004_act_baseline.py`\n- 训练已启动，step 10/8000 正常输出：\n  - `sft=2.59, l2=2.43, total=2.83`\n  - GPU 0: 21.4GB / 32.6GB (充裕)\n  - 10 steps 用时 85s → 预计 ~19h 完成\n- Registry 已更新为 RUNNING\n\n**关键设计**：\n- L2 consistency 在 generation prompt 位置（第4轮 assistant 起始）提取 hidden states，此时模型已处理完不同的 user2（valid vs invalid），确保比较有意义\n- SFT labels 仅覆盖 assistant1 content tokens（用 `<|im_end|>` 搜索定位，避免 Qwen3 `<think>` 标签干扰 `apply_chat_template` prefix 不匹配问题）\n- Hooks 不 detach，梯度可穿过 L2 loss 回传"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-westd28034-deberta-and-exp004.md"
+}

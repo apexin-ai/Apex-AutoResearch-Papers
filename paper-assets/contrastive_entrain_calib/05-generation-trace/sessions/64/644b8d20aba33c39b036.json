@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "644b8d20aba33c39b036",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops gpu status check",
+  "task_key": "worker_ops_gpu-status-check_20260525T134154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-check_20260525T134154_result.json",
+    "occurrence": 1,
+    "bytes": 1001,
+    "sha256": "bdd52ad3fc6277c7698538be9a0bdacbce12d8c1f3eae2a1fd0b6bb2090bc97b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Status Summary\n\n### GPU Usage\n| GPU | Process | VRAM | Util |\n|-----|---------|------|------|\n| cuda:0 | PID 33822 (exp-003-s2 eval) | 16.9 / 97.9 GB | 52% |\n| cuda:1 | PID 31718 (exp-003-s3 training) | 38.2 / 97.9 GB | 98% |\n\n### exp-003-s3 Training (cuda:1)\n- **Status: Running** — step **124 / 8000** (~1.6%)\n- ~26s/step, ETA ~56 hours\n- Still in LR warmup phase (lr=4.95e-05), reward oscillating 0.42–0.57\n- Checkpoint dir `exp003_r3only_seed3/` exists but is **empty** — no checkpoints saved yet\n- `d_syc not loaded; returning R3-only rewards` warnings are expected (R3-only config)\n\n### exp-003-s2-eval (cuda:0)\n- **Status: Running** — currently evaluating **ckpt-2500** (first checkpoint)\n- Output dir `results/exp003s2_d027_eval/` is still empty — ckpt-2500 eval hasn't finished yet\n- No ckpt-2500 or ckpt-3000 results available yet\n- Previous eval results exist in `results/exp003_d027_eval/` for ckpt4000, ckpt7500, ckpt8000 (from earlier runs)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64bd64d1e4cedff98d3b",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops rename stale directions",
+  "task_key": "worker_ops_rename-stale-directions_20260519T072435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_rename-stale-directions_20260519T072435_result.json",
+    "occurrence": 1,
+    "bytes": 269,
+    "sha256": "648c00a9cffe9b6003eadcb7bd5fa50211c1bf3a1fbdb33183d6bae49313761c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证结果：\n\n- `directions_STALE_DO_NOT_USE.pt` 存在（2.3MB，May 18 17:04）\n- `directions.pt` 已不存在（`No such file or directory`）\n- `training/` 目录下无脚本引用 `output/directions.pt`\n\n全部完成，无需后续处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-rename-stale-directions.md"
+}

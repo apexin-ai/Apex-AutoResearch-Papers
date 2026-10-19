@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7e7b145fd22c026e30b",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code exp 009",
+  "task_key": "worker_code_exp-009_20260520T022531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-009_20260520T022531_result.json",
+    "occurrence": 1,
+    "bytes": 1201,
+    "sha256": "67d5f6ba3ff042d17018e15b1004fac0f6eab053ab0c279f5d05994297d38bf9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "345 行，`IMPORT_OK`，dry-run 通过。\n\n---\n\n## 产出总结\n\n### 1. 脚本文件\n`/root/contrastive_entrain_calib/training/run_exp009_continuous_probe_grpo.py`（28034 服务器）\n\n### 2. 与 exp-008v3 的 diff\n\n| 位置 | exp-008v3 | exp-009 |\n|------|-----------|---------|\n| 类名 | `BinaryProbeTrainer` | `ContinuousProbeTrainer` |\n| `compute_r1` 返回值 | `1.0 if p_syc <= 0.5 else 0.0` | `1.0 - p_syc` |\n| OUTPUT_DIR | `/root/contrastive_entrain_calib/checkpoints/exp008v3_binary_probe_grpo` | `/root/autodl-tmp/checkpoints/exp009_continuous_probe_grpo` |\n| logger name | `exp008v3` | `exp009` |\n| 日志标识 | `\"Binary Probe GRPO\"` | `\"Continuous Probe Probability GRPO\"` |\n\n其余完全相同：R1/R3 权重 (0.25/0.75)、REWARD_LAYERS、probe retrain 每 500 步、max_steps=8000、LoRA r=64、DeepSpeed ZeRO-2、2 GPU。\n\n### 3. Dry-run 验证\n`IMPORT_OK` — 模块导入无报错。\n\n### 4. 提交命令\n```bash\nbash -c \"unset CUDA_VISIBLE_DEVICES && cd /root/contrastive_entrain_calib/training && MASTER_PORT=29502 /root/miniconda3/bin/deepspeed --include localhost:1,2 --master_port 29502 run_exp009_continuous_probe_grpo.py\"\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-009.md"
+}

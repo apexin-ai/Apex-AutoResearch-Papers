@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "990644f42858fc5cac70",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops westd 29046 sync",
+  "task_key": "worker_ops_westd-29046-sync_20260518T223141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-29046-sync_20260518T223141_result.json",
+    "occurrence": 1,
+    "bytes": 1167,
+    "sha256": "455c028e80b5f0cd54b7f3629f41e4b4bb2f44c46329bf38cd4b039c006a9a25"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All verification passed. Here's the full summary of both steps:\n\n**Step 1 — exp-002 recalibration at step 500:**\n- Direction recalibration was **never implemented**. The training code loads d_syc statically from `results/exp001/directions.pt` (shape [36, 2, 4096]) and never updates it during training.\n- No `recalib`, `direction_update`, or similar logic exists in any training file.\n- R1 oscillation (step 500: -0.23, step 650: -0.50, step 760: +0.21) is not caused by direction recalibration — the directions are fixed throughout training.\n\n**Step 2 — eval file sync to westd-29046:**\n- `nli_utils.py` — already matched (2712 bytes both sides), no transfer needed.\n- `eval_pipeline.py` — transferred successfully (70585 bytes).\n- Verification results:\n  - `ls -la`: both files present in `/root/contrastive_entrain_calib/eval/`\n  - `from nli_utils import get_entailment_idx` → `nli_utils OK`\n  - `import eval_pipeline` → `eval_pipeline OK`\n  - `python3 eval_pipeline.py --help` → outputs full CLI usage with all expected flags (`--model-path`, `--lora-path`, `--compare-base`, `--benchmarks`, `--sycon-max-turns`, etc.)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-29046-sync.md"
+}

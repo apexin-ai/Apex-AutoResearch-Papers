@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea556664a1455e378f89",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops fix gpu02 and chain",
+  "task_key": "worker_ops_fix-gpu02-and-chain_20260523T053733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-gpu02-and-chain_20260523T053733_result.json",
+    "occurrence": 1,
+    "bytes": 1320,
+    "sha256": "8367efa7c0f6efdf38e523a8f87f01c006bf8fba214fff1f0b098a327638c69d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 已 Kill\n| PID | GPU | 原因 | 状态 |\n|-----|-----|------|------|\n| 165317 | GPU2 | s2-ckpt2500 卡住 | force killed ✓ |\n| 842515 | GPU0 | duplicate reduced-lora ckpt-5000 | killed ✓ |\n\n### 已启动\n| GPU | Checkpoint | PID | Log |\n|-----|-----------|-----|-----|\n| GPU0 | reduced-lora ckpt-6500 | 49380 | `/tmp/eval_reduced_lora_ckpt6500_v2.log` |\n\n### 发现的问题\n- **ckpt-6500 之前在 GPU3 的 eval 实际失败了**——用了不存在的 `--preset sycon` 参数。已在 GPU0 用正确参数重启。\n- **29046 上没有 gs8 checkpoints**——`exp003_gs8_r3only` 路径不存在。29046 的 outputs 目录只有 `exp-004-act-baseline-s2/checkpoint-2000`。\n\n### 当前 GPU 状态 (westd-28034)\n| GPU | 显存 | 任务 |\n|-----|------|------|\n| 0 | 16.7GB / 32GB | eval ckpt-6500 (PID 49380) |\n| 1 | 21.8GB / 32GB | 训练中 (PID 30011, step 6570/8000) |\n| 2 | **空闲** | — |\n| 3 | **空闲** | — |\n\n### GPU2 状态\n没有可立即启动的 eval 任务：\n- Reduced-lora 最高 checkpoint 是 6500（已在 GPU0 eval）\n- **ckpt-7000 预计 ~49 分钟后出现**（每 500 步 ~57 分钟，训练总共 8000 步，还剩 7000/7500/8000 三个 checkpoint）\n- 29046 无 gs8 可 SCP\n\n需要你决定 GPU2（和 GPU3）怎么安排。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-gpu02-and-chain.md"
+}

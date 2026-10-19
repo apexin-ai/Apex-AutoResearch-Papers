@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da2c8d936b25efe0f634",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ssh seed2 training check",
+  "task_key": "worker_ssh_seed2-training-check_20260522T021055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_seed2-training-check_20260522T021055_result.json",
+    "occurrence": 1,
+    "bytes": 951,
+    "sha256": "54e65f4202428bbfa1c09b0e6a06f230cc40b11b9b658f41c8112ca607a803d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-003-s2 训练状态\n\n**进程**: 存活，已运行 2天1小时54分钟\n\n**当前进度**: step **6143/8000** (77%)，比之前的 4106 前进了 ~2037 步\n\n**速度**: ~25.0s/step\n\n**ETA**: 剩余 1857 步 × 25s ≈ **12.9 小时**，预计约 5月22日 23:00 完成\n\n**关键指标** (最近几个 logging step):\n- loss: 0.0007–0.0008\n- reward mean: 0.58–0.67\n- kl: 0.017–0.019\n- entropy: 0.30–0.32\n\n**Checkpoint 列表** (29046 上):\n\n| Checkpoint | 时间 | 状态 |\n|---|---|---|\n| ckpt-500 ~ ckpt-4000 | 5/20–5/21 | 旧 |\n| **ckpt-4500** | 5/21 22:30 | **新** |\n| **ckpt-5000** | 5/22 02:04 | **新** |\n| **ckpt-5500** | 5/22 05:36 | **新** |\n| **ckpt-6000** | 5/22 09:10 | **新** |\n\nckpt-4000 之后新增了 4 个 checkpoint（4500/5000/5500/6000）。ckpt-6500 预计约 5月22日 12:40 生成。\n\n需要我检查 28034 上是否已有这些 checkpoint，或准备 SCP 命令？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-seed2-training-check.md"
+}

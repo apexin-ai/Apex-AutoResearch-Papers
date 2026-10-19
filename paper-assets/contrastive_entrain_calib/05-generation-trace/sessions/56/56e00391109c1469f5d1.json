@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56e00391109c1469f5d1",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "paper redraw fig teaser v3",
+  "task_key": "worker_paper_redraw-fig-teaser-v3_20260525T142556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_redraw-fig-teaser-v3_20260525T142556_result.json",
+    "occurrence": 1,
+    "bytes": 545,
+    "sha256": "03ab7cd161a676e54fb1fe150c3b963e6a0b5a0fc46b1a746ef8d49cef412ea4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 1 重画完成。\n\n- **Panel (a)**: KDE 半小提琴图，蓝色 non-sycophantic 在上、橙色 sycophantic 在下，\"Valid revision\" 和 \"Capitulation\" 箭头标注在分布外侧空白区，AUROC=0.83 右上角\n- **Panel (b)**: ToF 实线 + Entropy 虚线，图例移到 panel 外顶部不再与标题重叠，1,300-step lag 双头箭头在下方空白区，step 500/1840 灰色竖虚线 + 淡灰 axvspan 盲区\n- LaTeX 编译通过，page 2 渲染确认无文字/图形重叠\n\n脚本: `/tmp/draw_teaser_v3.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-redraw-fig-teaser-v3.md"
+}

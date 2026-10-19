@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0",
+  "id": "a48da5bb7981a1ae9086",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "fix r3 reward nli scoring",
+  "task_key": "worker_fix_r3-reward-nli-scoring_20260520T212910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_r3-reward-nli-scoring_20260520T212910.log",
+    "occurrence": 1,
+    "bytes": 2041334,
+    "sha256": "281247f87c189ef8d0bd1dfd23dfe487ea8d56eae9ad7b1ac7540c615c9b889e"
+  },
+  "statistics": {
+    "messages": 1698,
+    "user_turns": 2,
+    "tool_calls": 762,
+    "roles": {
+      "log": 1,
+      "system": 43,
+      "record": 1,
+      "assistant": 127,
+      "tool_call": 762,
+      "tool_result": 762,
+      "user": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 48,
+      "chunks": [
+        {
+          "path": "a48da5bb7981a1ae9086-part-0001.json",
+          "message_count": 48
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1002,
+      "chunks": [
+        {
+          "path": "a48da5bb7981a1ae9086-part-0001.json",
+          "message_count": 132
+        },
+        {
+          "path": "a48da5bb7981a1ae9086-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a48da5bb7981a1ae9086-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "a48da5bb7981a1ae9086-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "a48da5bb7981a1ae9086-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "a48da5bb7981a1ae9086-part-0006.json",
+          "message_count": 150
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 648,
+      "chunks": [
+        {
+          "path": "a48da5bb7981a1ae9086-part-0006.json",
+          "message_count": 30
+        },
+        {
+          "path": "a48da5bb7981a1ae9086-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "a48da5bb7981a1ae9086-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "a48da5bb7981a1ae9086-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "a48da5bb7981a1ae9086-part-0010.json",
+          "message_count": 78
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-r3-reward-nli-scoring.md"
+}

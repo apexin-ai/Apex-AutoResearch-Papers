@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f1fa6fd5579bcfc8c88",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "sync directions to 28034",
+  "task_key": "worker_sync_directions_to_28034_20260518T150611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_sync_directions_to_28034_20260518T150611_result.json",
+    "occurrence": 1,
+    "bytes": 117,
+    "sha256": "f2997ad396b4c2c996bfe460adf78a6dc3b0bf87c75d9131ba3432c17d84f17d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成。MD5 校验一致：`64164d1544677e837b4cc86e3d269e1e`，文件大小 2,366,013 bytes。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/sync-directions-to-28034.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "daef2566f2e42f255684",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval s2 ckpt3500 scp and submit gpu0",
+  "task_key": "worker_eval_s2-ckpt3500-scp-and-submit-gpu0_20260521T095947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_s2-ckpt3500-scp-and-submit-gpu0_20260521T095947_result.json",
+    "occurrence": 1,
+    "bytes": 790,
+    "sha256": "bc700e4c9f0c5d91f13f852a184d0e4e83b64751a190cdcf18d4a4c8db2a2f91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个任务全部完成。\n\n## 产出\n\n**1. s2-ckpt-3500 SCP 状态：新传**\n- 29046 → 28034 直传成功（通过 SSH 密钥建立服务器间连接）\n- 验证：`adapter_model.safetensors` = 245,405,936 bytes (~245MB) ✓\n- 完整文件列表（15 个文件）已到位\n\n**2. GPU 0 VRAM 预检 + eval 提交**\n- 预检 VRAM：2 MiB（远 < 1000 阈值）✓\n- eval 已提交：PID **867046**，tmux session `eval-s2-ckpt3500`\n- RTX 5090 GPU 0 已加载模型：16,764 MiB / 32,607 MiB，GPU-Util 49%\n\n**3. seed1 ckpt-8000：不存在**\n- 29046 上 `exp003_r3only_seed1/` 最新 checkpoint 为 **7500**（共 15 个 ckpt: 500~7500）\n- tmux `exp-003` session 输出为空（训练可能已结束或 session 过期）\n- 未执行 SCP（无 ckpt-8000）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-s2-ckpt3500-scp-and-submit-gpu0.md"
+}

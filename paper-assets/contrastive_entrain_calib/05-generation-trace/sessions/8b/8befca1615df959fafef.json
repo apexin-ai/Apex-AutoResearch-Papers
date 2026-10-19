@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8befca1615df959fafef",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops check eval s2 ckpt2500",
+  "task_key": "worker_ops_check-eval-s2-ckpt2500_20260525T144459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-eval-s2-ckpt2500_20260525T144459_result.json",
+    "occurrence": 1,
+    "bytes": 672,
+    "sha256": "857416e25fb557ba0a66686ef9485c8cc51a1c5efb7e31b2e9c0cfd5965d9c0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n**exp-003-s2-eval-ckpt2500 结果：**\n\n| 指标 | 值 |\n|------|-----|\n| ToF | 0.0663 |\n| NoF | 0.9669 |\n| SYCONScore | **0.1241** |\n| n_total | 362 |\n| 耗时 | 4896s |\n\n**对比参考：** seed 1 ckpt-3000 SYCONScore=0.095 → seed 2 ckpt-2500 为 0.1241，略高但同一量级，符合 R3-only GRPO 的低 SYCONScore 预期。\n\n**ckpt-3000 eval：** 未在输出中找到。原始 spec 显示 ckpt2500+ckpt3000 chained，但进程只完成了 ckpt-2500 就退出了。如果需要 ckpt-3000 eval 需单独重跑。\n\n**日志路径：** `/root/contrastive_entrain_calib/results/exp003s2_d027_eval/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-eval-s2-ckpt2500.md"
+}

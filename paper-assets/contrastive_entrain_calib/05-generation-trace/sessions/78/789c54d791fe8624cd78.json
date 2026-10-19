@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "789c54d791fe8624cd78",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "fix exp016 reeval gpu fix restart",
+  "task_key": "worker_fix_exp016-reeval-gpu-fix-restart_20260519T103104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp016-reeval-gpu-fix-restart_20260519T103104_result.json",
+    "occurrence": 1,
+    "bytes": 511,
+    "sha256": "e6233ba085895529c7f897f1519e60c152ee58db82bc84d885993d2ec2dd48b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**GPU 3 显存 16456 MiB，52% 利用率** — 模型已正确加载到 GPU 3 上。其他 GPU 未受影响（GPU 0: 21846 MiB = exp-004 不变，GPU 1+2: exp-008v3 不变）。\n\neval 已在正常运行，正在处理 362 个 eval pairs，alpha=0.00 开始。\n\n| 项目 | 状态 |\n|------|------|\n| 新 PID | **126895** |\n| GPU | **cuda:3**（16456 MiB） |\n| 进度 | Alpha=0.00，362 pairs |\n| 日志 | `/root/contrastive_entrain_calib/results/exp016_unified_reeval.log` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp016-reeval-gpu-fix-restart.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "515b9d624cfa58463871",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnosis gpu status 28034",
+  "task_key": "worker_diagnosis_gpu-status-28034_20260519T165902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_gpu-status-28034_20260519T165902_result.json",
+    "occurrence": 1,
+    "bytes": 984,
+    "sha256": "655c5388ccc6b42f55ea933a4f61ea6c9763300c77a0b63ba86d440b1d9417b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 实时状态 — westd-28034\n\n### 各 GPU 状态\n\n| GPU | 型号 | 利用率 | 显存占用 | 进程 |\n|-----|------|--------|----------|------|\n| 0 | RTX 5090 | **0%** | 5 / 32607 MiB | 无 |\n| 1 | RTX 5090 | **66%** | 31432 / 32607 MiB | `run_exp008v3_binary_probe_grpo.py --local_rank=0` (PID 104503) |\n| 2 | RTX 5090 | **65%** | 30670 / 32607 MiB | `run_exp008v3_binary_probe_grpo.py --local_rank=1` (PID 104504) |\n| 3 | RTX 5090 | **0%** | 4 / 32607 MiB | 无 |\n\n### 实验存活状态\n\n| 实验 | 状态 | 说明 |\n|------|------|------|\n| exp-008v3 训练 (GPU 1+2) | **存活** | DeepSpeed 双卡运行中，tmux session `exp-008v3` 存在，两个 worker 进程正常 |\n| exp-004 eval (GPU 0) | **不存在** | GPU 0 空闲，无 tmux session `exp-004` |\n| exp-016 re-eval (GPU 3) | **不存在** | GPU 3 空闲，无相关进程 |\n\n### 空闲 GPU\n\n**GPU 0 和 GPU 3** 完全空闲（利用率 0%，无进程），可立即使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-gpu-status-28034.md"
+}

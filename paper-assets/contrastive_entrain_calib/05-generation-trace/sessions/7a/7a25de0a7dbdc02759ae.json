@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a25de0a7dbdc02759ae",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval 28034 rl8000 and heldout monitor",
+  "task_key": "worker_eval_28034-rl8000-and-heldout-monitor_20260523T082852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_28034-rl8000-and-heldout-monitor_20260523T082852_result.json",
+    "occurrence": 1,
+    "bytes": 854,
+    "sha256": "38b342a96ea330ac62b537e5ab2e0003a8e253762f49ea89e77b8c74a3909c4f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 都完成了。\n\n## 汇报\n\n### 1. rl-ckpt-8000 (reduced-lora 16/16, 28034)\n| 指标 | 值 |\n|------|-----|\n| ToF | 0.1602 |\n| NoF | 0.8066 |\n| **SYCONScore** | **0.2673** |\n| Samples | 362 (valid=181, invalid=181) |\n\n### 2. heldout 训练进度 (29046)\n- 当前 step: 1000/8000（已过 checkpoint-1000）\n- 训练持续中，~91s/10步\n\n### 3. heldout ckpt-1000 eval (29046 本地运行)\n\n由于两台服务器间无法直连 SCP，改为在 29046 本地用 GPU 0 运行 eval。\n\n| 指标 | 值 |\n|------|-----|\n| ToF | 0.1143 |\n| NoF | 0.9429 |\n| **SYCONScore** | **0.2039** |\n| Samples | 70 (valid=35, invalid=35) |\n\n**注意**: heldout eval 使用的是 `eval_held_out.jsonl` (70 pairs)，与 rl-ckpt-8000 的 `calibration_v2_1_expanded.jsonl` (362 pairs) 数据集不同，不能直接对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-28034-rl8000-and-heldout-monitor.md"
+}

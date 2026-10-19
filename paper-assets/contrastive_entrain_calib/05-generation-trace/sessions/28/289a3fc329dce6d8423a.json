@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "289a3fc329dce6d8423a",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "eval 28034 collect and gpu2",
+  "task_key": "worker_eval_28034-collect-and-gpu2_20260523T040346",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_28034-collect-and-gpu2_20260523T040346.log",
+    "occurrence": 1,
+    "bytes": 1203169,
+    "sha256": "74f354426f150bf03261d449d3de9bf9b1a530db8a74e280c9f5f7d922fbbcd7"
+  },
+  "statistics": {
+    "messages": 940,
+    "user_turns": 1,
+    "tool_calls": 366,
+    "roles": {
+      "log": 1,
+      "system": 25,
+      "record": 1,
+      "assistant": 175,
+      "tool_call": 366,
+      "tool_result": 366,
+      "user": 1,
+      "result": 5
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 802,
+      "chunks": [
+        {
+          "path": "289a3fc329dce6d8423a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "289a3fc329dce6d8423a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "289a3fc329dce6d8423a-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "289a3fc329dce6d8423a-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "289a3fc329dce6d8423a-part-0005.json",
+          "message_count": 82
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 138,
+      "chunks": [
+        {
+          "path": "289a3fc329dce6d8423a-part-0005.json",
+          "message_count": 98
+        },
+        {
+          "path": "289a3fc329dce6d8423a-part-0006.json",
+          "message_count": 40
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-28034-collect-and-gpu2.md"
+}

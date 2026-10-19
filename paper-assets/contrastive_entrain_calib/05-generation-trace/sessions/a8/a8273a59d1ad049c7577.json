@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8273a59d1ad049c7577",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval 28034 ckpt8000 and next",
+  "task_key": "worker_eval_28034-ckpt8000-and-next_20260523T022308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_28034-ckpt8000-and-next_20260523T022308_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "470ccbe56e1986d63e081d0627a76f5b77aec9e66010fc0a00dc0b6b3a75976f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 路 eval 已启动，等待结果中。当前状态：\n\n| GPU | 任务 | PID | 状态 |\n|-----|------|-----|------|\n| GPU0 | reduced-lora ckpt-4500 eval | 153655 | 运行中 (362 pairs) |\n| GPU1 | reduced-lora 训练 | 30011 | step 4900, 接近 ckpt-5000 |\n| GPU2 | ACT s2 ckpt-3000 eval | 154152 | 运行中 (362 pairs) |\n| GPU3 | ACT s2 ckpt-8000 eval | 153143 | 运行中 (20/362) |\n\n**与任务指令的差异**：\n- ckpt-2500 不存在于任何 s2 路径，改用 ckpt-3000（`/root/autodl-tmp/checkpoints/exp004s2_act_baseline_s2/checkpoint-3000`）\n- ckpt-5000 未产出，改用 ckpt-4500（reduced-lora 当前 step 4900）\n- eval 脚本路径是 `eval/eval_unified_preset.py`（不是 `evaluation/`）\n- 基础模型是 Qwen3-8B（不是 Qwen2.5-7B-Instruct）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-28034-ckpt8000-and-next.md"
+}

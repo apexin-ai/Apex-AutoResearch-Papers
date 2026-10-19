@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d420a9fd9cd86ec5af9d",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code exp 008 seed2 final",
+  "task_key": "worker_code_exp-008-seed2-final_20260524T133348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp-008-seed2-final_20260524T133348_result.json",
+    "occurrence": 1,
+    "bytes": 488,
+    "sha256": "df83543c8794c635c1a86c594ddbdd054c9e35160c465d9d3a656111bbc95921"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行，结果汇总：\n\n- **step 10** (21:44:01): loss=2.0705, sft=2.0698, R3=0.6247, S(t)=0.6317\n- **step 20** (21:44:36): loss=1.7959, sft=1.8070, R3=0.4335, S(t)=0.3215\n- **Step 耗时**: ~3.5s/step（10 steps 用了 ~35s）\n- S(t) 从 0.63 降到 0.32（probe score 快速下降，符合预期）\n\n**预估完成时间**: 2000 steps × 3.5s ≈ 117 min ≈ 2 小时（不含 probe retrain 间歇，retrain 每100步一次会额外增加时间）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp-008-seed2-final.md"
+}

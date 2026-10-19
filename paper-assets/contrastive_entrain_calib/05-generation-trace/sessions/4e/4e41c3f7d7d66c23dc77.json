@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e41c3f7d7d66c23dc77",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval 28034 collect v3",
+  "task_key": "worker_eval_28034-collect-v3_20260523T070258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_28034-collect-v3_20260523T070258_result.json",
+    "occurrence": 1,
+    "bytes": 1270,
+    "sha256": "074293aa73e31832770b75480a4f4d98391ad600ca9575e84e7514040068727d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ckpt-7000 eval 已在 GPU0 上运行。训练在 step 7290，ckpt-7500 尚未生成，GPU2/GPU3 暂无新任务。\n\n## 汇总\n\n### 已完成 Eval 结果\n\n| GPU | Eval | SYCONScore | ToF | NoF | > vanilla (0.1335)? |\n|-----|------|-----------|------|------|---------------------|\n| 0 | ACT s2 ckpt-2500 | **0.2132** | 0.1215 | 0.8674 | Yes (+59.7%) |\n| 2 | reduced-lora ckpt-6000 | **0.2129** | 0.1215 | 0.8564 | Yes (+59.5%) |\n| 3 | reduced-lora ckpt-6500 | **0.2368** | 0.1381 | 0.8287 | Yes (+77.4%) |\n\n**ckpt-6500 是 reduced-lora 目前最好的 checkpoint**，SYCONScore 0.2368。\n\n### 新启动的 Eval\n\n| GPU | Eval | PID | 状态 |\n|-----|------|-----|------|\n| 0 | reduced-lora ckpt-7000 | 55429 | 运行中，已加载模型开始推理 |\n| 2 | — | — | 空闲，等 ckpt-7500 |\n| 3 | — | — | 空闲，等 ckpt-7500 |\n\n### Reduced-lora 训练状态\n- **当前 step**: 7290\n- **最新 checkpoint**: checkpoint-7000 (14:29 生成)\n- **Loss**: total_loss ≈ 0.000156，lr ≈ 4.55e-6（在衰减）\n- **预计 ckpt-7500**: 按 ~57min/500步，约 15:40 左右生成\n- **可用 checkpoints**: 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000\n\nGPU1 训练 (PID 30011) 未触碰。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-28034-collect-v3.md"
+}

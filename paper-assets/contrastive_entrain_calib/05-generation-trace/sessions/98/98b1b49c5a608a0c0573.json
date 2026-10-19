@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98b1b49c5a608a0c0573",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp008v3 ckpt500 28034",
+  "task_key": "worker_eval_exp008v3-ckpt500-28034_20260520T002646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp008v3-ckpt500-28034_20260520T002646_result.json",
+    "occurrence": 1,
+    "bytes": 124,
+    "sha256": "c577c698d7225ff85d8a0dd2e2fec217238de7facd1db25e8e8ec931f9d2a70e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval running steady at 210% CPU. Log buffer should flush around 120-140/362 in the next few minutes. Waiting."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp008v3-ckpt500-28034.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbe20a6af8d39343da52",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "infra transfer nli model to westd28034",
+  "task_key": "worker_infra_transfer-nli-model-to-westd28034_20260518T183536",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_transfer-nli-model-to-westd28034_20260518T183536_result.json",
+    "occurrence": 1,
+    "bytes": 715,
+    "sha256": "0a5f79c5d1ebd1aefcc8ed590345866603166847936a4a44d8c051df0cdaad33"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**1. 模型传输 — 无需传输**\n\n`cross-encoder/nli-deberta-v3-base` 已完整缓存在 westd-28034 上：\n- 路径: `/root/.cache/huggingface/hub/models--cross-encoder--nli-deberta-v3-base/`\n- 7 个 blob 文件大小与 westd-29046 完全一致（含 737MB model.safetensors）\n- refs/main → `6c749ce3425cd33b46d187e45b92bbf96ee12ec7`，symlinks 正确\n\n**2. 离线加载验证 — 通过**\n\n`HF_HUB_OFFLINE=1` 模式下 Tokenizer 和 Model 均加载成功。\n\n**3. exp-008 tmux 状态 — 已退出**\n\n`exp-008` session 存在但当前只有一个空闲 bash shell（PID 41744），原始进程已崩溃退出，scrollback 为空。**需要重新提交 exp-008。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-transfer-nli-model-to-westd28034.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aba35b8242616bf73258",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "paper figure fig layer auroc",
+  "task_key": "worker_paper_figure_fig_layer_auroc_20260520T080959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig_layer_auroc_20260520T080959_result.json",
+    "occurrence": 1,
+    "bytes": 854,
+    "sha256": "fb66e971585ebfad06a5058153176a03475245d8656039f68e0ea3125aff6dfb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并注册。\n\n**输出文件：**\n- PDF: `artifacts/figures/fig_layer_auroc.pdf`\n- PNG: `artifacts/figures/fig_layer_auroc.png`\n- 数据: `artifacts/figures/fig_layer_auroc_data.json`\n\n**数据来源说明：**\n- **Qwen3-8B**: v2→v2.1 transfer test 全 36 层 per-layer AUROC（100 samples）。完整展示从 L0 (~0.53, near chance) 到 L19 处急升、到 L32 (~0.77) 的 emergence 曲线。\n- **Llama-3-8B**: 5-fold CV mean per layer，仅 L16-31（提取脚本只覆盖了这些层）。L16 为 CV best (0.779)，与 Qwen L19 的 ~50% depth 一致。\n\n**局限性：** 两模型使用不同评估方法（transfer vs CV），绝对值不可直接比较。若需完全一致的评估方法，需要 SSH 到服务器重新运行全层 per-layer 5-fold CV。Llama L0-15 缺失，需加载模型重新提取。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig-layer-auroc.md"
+}

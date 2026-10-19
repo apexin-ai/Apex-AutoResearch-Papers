@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5aaeabf7fd1d1c0913a5",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diag exp002 clipped ratio",
+  "task_key": "worker_diag_exp002-clipped-ratio_20260518T174410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp002-clipped-ratio_20260518T174410_result.json",
+    "occurrence": 1,
+    "bytes": 862,
+    "sha256": "649c92589d8c303eba913df078abd175193c992e138fa3be207bed241314d9ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n### exp-002 (`exp002_v2.log`)\n\n`completions/clipped_ratio` 指标存在，共 10 个 step 的记录：\n\n| 指标 | 值 |\n|------|------|\n| **mean** | **0.8031** |\n| min | 0.7438 |\n| max | 0.8500 |\n\n逐 step 值：0.775, 0.775, 0.844, 0.744, 0.806, 0.775, 0.850, 0.819, 0.831, 0.813\n\n### exp-003 (`exp003_v2.log`)\n\n日志中 **没有 `clipped_ratio` 指标**。exp-003 使用的是自定义 `dcgrpo_trainer`，日志只记录 reward 相关指标（`reward/r3_mean`, `reward/combined_mean`），没有 completion length/truncation 统计。\n\n### 结论\n\nexp-002 的 clipped_ratio 均值 ~80%，与 exp-014 dry-run 的 84% 处于同一水平。**这是共同问题（max_completion_length=256 对当前任务普遍偏短），不是 exp-014 特有的。** 两个实验的截断率差异在正常波动范围内。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp002-clipped-ratio.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c20c9e76373ca4f9c03",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval gs8 speed confirm",
+  "task_key": "worker_eval_gs8-speed-confirm_20260522T191623",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gs8-speed-confirm_20260522T191623_result.json",
+    "occurrence": 1,
+    "bytes": 514,
+    "sha256": "864b9fe38cfe3d820b25ad04dd46c1b724c64b2a8f91521e0b96dc66ebe84c0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## gs8 训练状态汇报\n\n| 指标 | 值 |\n|------|-----|\n| 当前 step | **412** / 8000 |\n| step time | **~24.0 s/step**（稳定在 23.9–24.7 范围） |\n| 已运行 | 3h 41min |\n| ckpt-500 状态 | **NOT_YET** |\n\n输出目录 `/root/autodl-tmp/contrastive_entrain_calib/outputs/exp003_gs8_r3only/` 内尚无 checkpoint，只有 `train.log`。\n\n**ckpt-500 预计时间**：还差 88 steps × 24s ≈ **35 分钟**后保存（约 03:52 UTC）。\n\nSCP 待 ckpt-500 落盘后执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-gs8-speed-confirm.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b43acf51a945d14f9395",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code eval pipeline impl",
+  "task_key": "worker_code_eval_pipeline_impl_20260518T111418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval_pipeline_impl_20260518T111418_result.json",
+    "occurrence": 1,
+    "bytes": 2517,
+    "sha256": "d869130acd9b26802ab61e9a0f5b0338ef801a920b444f6f7adc623cd95e7718"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部实现完成，dry-run 和指标计算均验证通过。各 benchmark 实现状态和关键设计决策：\n\n---\n\n### 1. SYCONBench (多轮 sycophancy)\n- **指标**: ToF (valid correction 后修改率), NoF (invalid pressure 下坚持率), SYCONScore (调和平均)\n- **设计**: 多轮对话循环，每轮用 `classify_behavior()` 判断 revise/maintain/ambiguous。分 `valid_correction` 和 `invalid_pressure` 两类 scenario 分别计算\n- **数据**: 支持 JSONL 文件输入 (`--sycon-data-path`)，dry-run 用内置 mock（3 valid + 2 invalid）\n- **关键决策**: 复用 `extract_activations_v2.py` 的 heuristic 分类器而非 NLI 模型，保持评估管线轻量\n\n### 2. SycophancyEval (单轮 sycophancy, meg-tong 数据集)\n- **三个子任务**: `answer` (Answer Priming), `are_you_sure` (Follow-up Doubt), `feedback` (Ownership Bias)\n- **数据源**: HuggingFace `meg-tong/sycophancy-eval` 或本地 JSONL (`--sycophancy-eval-data-dir`)\n- **分类逻辑**: 按子任务差异化判断。answer/are_you_sure 用 correct answer 匹配 + behavior 分类；feedback 用 uncritical praise 模式检测\n- **关键决策**: HF 数据格式中 prompt 是 `{\"type\": \"human\", \"content\": ...}` 格式，转换为标准 `role/content` 格式\n\n### 3. MT-Bench (通用对话质量)\n- **协议**: 两轮对话生成 → GPT-4 judge 打分 1-10\n- **Judge**: 通过 OpenAI API 调用，支持 `--judge-model` 切换。从 response 中提取 `[[score]]` 格式分数\n- **数据**: 优先从 FastChat 包加载完整 80 题，fallback 用内置 5 题子集\n- **关键决策**: judge 不可用时返回 null scores 而非报错，允许在无 API key 环境下验证管线\n\n### 4. MMLU (知识保留)\n- **双模式**: 优先用 `lm_eval.simple_evaluate()` (标准化、可复现)；fallback 用 native logit-based 评分\n- **配置**: 5-shot，支持 `--mmlu-subjects` 筛选子集，`--no-lm-eval` 强制 native 模式\n- **指标**: overall accuracy + by_category (STEM/Humanities/Social Sciences/Other) + by_subject\n- **关键决策**: lm-eval 模式下将 model 对象直接传给 `HFLM`，避免重复加载\n\n### 统一设计\n- 所有结果格式: `{benchmark_name, metrics, per_sample, metadata}`\n- `--dry-run` 每个 benchmark 加载 mock 数据验证管线连通性\n- `BenchmarkBase` 新增 `dry_run_mode` 属性，子类据此决定数据源\n- 新增 CLI 参数: `--sycon-data-path`, `--sycophancy-eval-data-dir`, `--mt-bench-data-path`, `--no-lm-eval`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-pipeline-impl.md"
+}

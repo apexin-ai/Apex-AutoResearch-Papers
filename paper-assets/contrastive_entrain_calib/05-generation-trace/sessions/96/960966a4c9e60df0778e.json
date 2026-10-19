@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "960966a4c9e60df0778e",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval check 28034 status",
+  "task_key": "worker_eval_check-28034-status_20260522T123155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_check-28034-status_20260522T123155_result.json",
+    "occurrence": 1,
+    "bytes": 1309,
+    "sha256": "eebe07d486acc4c06e617cf10358d57c15b9ba0a4cf0e83ca208e7b73f00990e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### GPU 状态\n| GPU | Util | VRAM | 任务 |\n|-----|------|------|------|\n| 0 | 47% | 16.5/32 GB | ckpt-7500 eval (运行中) |\n| 1 | 48% | 16.3/32 GB | exp-002v3-ckpt2000 eval (运行中) |\n| 2 | 0% | 空闲 | — |\n| 3 | 0% | 空闲 | — |\n\n### Eval 进度\n- **ckpt-7500 (exp-003-s2, R3-only seed2)**: 20/362 pairs，刚开始不久（~20:28 打印第一个 progress）。输出目录为空，尚未产出结果。\n- **exp-002v3-ckpt2000 (Cosine R1 pre-collapse)**: 140/362 pairs（~39% 完成），速度约 20 pairs/66s。预计还需 ~15 分钟完成。输出目录同样为空。\n\n### Bootstrap AUROC CI (CPU)\n正在运行，已有中间结果：\n- **Qwen3 5-fold CV Mean AUROC = 0.8269**\n- **OOF AUROC = 0.7588 [0.7251, 0.7958]** (95% CI)\n- Per-strength: weak=0.6464, medium=0.8371, strong=0.8828\n- Full CV bootstrap 进度: 1000/2000 (约 50%)，ETA ~13 min\n\n### ckpt-8000\n无 ckpt-8000 相关文件或 eval 结果，GPU 2/3 也未在运行任何任务。\n\n### 磁盘\n- 根分区: 8.0/30G (27%)\n- 数据盘: 100/350G (29%)\n- 均充足。\n\n**结论**: 两个 eval 任务和 bootstrap 分析都在正常运行，exp-002v3-ckpt2000 最先完成（~15min），ckpt-7500 还需更久。GPU 2/3 空闲，可以安排 ckpt-8000 eval 或其他任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-check-28034-status.md"
+}

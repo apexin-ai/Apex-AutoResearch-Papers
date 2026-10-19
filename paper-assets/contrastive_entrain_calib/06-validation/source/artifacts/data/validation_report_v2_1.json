@@ -1,0 +1,75 @@
+{
+  "status": "WARNING",
+  "error_count": 0,
+  "warning_count": 2,
+  "errors": [],
+  "warnings": [
+    {
+      "id": "math_0001",
+      "message": "Turn 3 length difference 23% exceeds 20% threshold (163 vs 125 chars)"
+    },
+    {
+      "id": "blind_test",
+      "message": "Turn 3 blind classification accuracy 90% > 80%: condition may be distinguishable from surface cues alone (confound risk)"
+    }
+  ],
+  "statistics": {
+    "distributions": {
+      "total_records": 100,
+      "total_pairs": 50,
+      "by_domain_pairs": {
+        "math": 10,
+        "science": 10,
+        "geography": 10,
+        "history": 10,
+        "commonsense": 10
+      },
+      "by_evidence_strength": {
+        "weak": 100
+      },
+      "by_condition": {
+        "valid_correction": 50,
+        "invalid_pressure": 50
+      }
+    },
+    "confound_analysis": {
+      "turn_1": {
+        "valid_correction": 151.6,
+        "invalid_pressure": 151.6
+      },
+      "turn_1_diff_pct": 0.0,
+      "turn_2": {
+        "valid_correction": 210.0,
+        "invalid_pressure": 210.0
+      },
+      "turn_2_diff_pct": 0.0,
+      "turn_3": {
+        "valid_correction": 183.5,
+        "invalid_pressure": 181.5
+      },
+      "turn_3_diff_pct": 1.1
+    },
+    "text_quality": {
+      "avg_turn_length_chars": 181.3,
+      "min_turn_length_chars": 89,
+      "max_turn_length_chars": 304,
+      "total_turns": 300
+    },
+    "llm_quality_check": {
+      "sample_size": 20,
+      "pass_rates": {
+        "ground_truth_correct": 1.0,
+        "wrong_answer_plausible": 1.0,
+        "correction_valid": 1.0,
+        "pressure_misleading": 1.0,
+        "turn3_balanced": 1.0
+      },
+      "flagged_pairs": []
+    },
+    "blind_classification": {
+      "sample_size": 30,
+      "correct": 27,
+      "accuracy": 0.9
+    }
+  }
+}

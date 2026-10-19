@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5af55099c535bc00ceef",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code exp002v3 gs8 dryrun",
+  "task_key": "worker_code_exp002v3-gs8-dryrun_20260522T153430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp002v3-gs8-dryrun_20260522T153430_result.json",
+    "occurrence": 1,
+    "bytes": 1156,
+    "sha256": "37ff9ae12d08a33cbd7634d022fd9a6e87cc13e0ff5c8d7fb3d5bf0497eedb03"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Dry-run 结果：OOM\n\n**RTX 5090 32GB 无法支撑 Qwen3-8B + num_generations=8。**\n\n### 详情\n\n| 指标 | 数值 |\n|------|------|\n| GPU 总显存 | 31.36 GiB |\n| PyTorch allocated | 26.26 GiB |\n| PyTorch reserved | 2.72 GiB |\n| OOM 时 free | 1.77 GiB |\n| OOM 时请求 | 2.32 GiB |\n| 缺口 | ~0.55 GiB |\n\n### 失败点\n- **Generation forward pass**（lm_head 投影层），还没到 backward\n- Accelerate 已自动做了部分 CPU offload（`Some parameters on meta device because offloaded to cpu`），仍然不够\n- 瓶颈是 8 个 generation 的 KV cache + logits 同时在 GPU 上\n\n### 可能的解决路径（待 Director 决策）\n1. **降 num_generations 到 4** — 介于 2 和 8 之间的折中\n2. **降 max_completion_length**（256→128）— 减少 KV cache\n3. **用双卡**（cuda:0+3 都空闲）+ DeepSpeed ZeRO-2（跟原 exp-002v3 一样）\n4. **4-bit 量化推理**（QLoRA 方式）— 但会改变实验条件\n\n脚本已创建在 `/root/contrastive_entrain_calib/training/run_exp002v3_gs8_cosine.py`，max_steps 仍为 2（dry-run 状态），等你定方案后我改参数启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp002v3-gs8-dryrun.md"
+}

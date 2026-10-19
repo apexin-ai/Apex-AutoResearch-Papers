@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec54cf68d1fbc26a3a78",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diag exp008v3 single gpu feasibility",
+  "task_key": "worker_diag_exp008v3-single-gpu-feasibility_20260519T061025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp008v3-single-gpu-feasibility_20260519T061025_result.json",
+    "occurrence": 1,
+    "bytes": 2491,
+    "sha256": "596d331878ba51cb1ead2f759f502461021a5b04bede225cd0943324de7b1583"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕，给出评估。\n\n## 评估结果\n\n### 1. GPU 状态确认\n\n4× RTX 5090 (32GB)，当前：\n| GPU | 显存占用 | 状态 |\n|-----|---------|------|\n| 0 | 21.8/32.6 GB | exp-004 运行中 |\n| 1 | 31.4/32.6 GB | 满载运行中 |\n| 2 | 30.6/32.6 GB | 满载运行中 |\n| **3** | **4 MB / 32.6 GB** | **空闲** |\n\n### 2. 单卡 GRPO 可行性：**不可行**\n\n脚本关键参数：\n- `per_device_train_batch_size=1`, `gradient_checkpointing=True`, `num_generations=2`, `max_completion_length=256`\n- LoRA r=64, target = q/k/v/o_proj\n- 额外：DeBERTa NLI (~400MB) + Binary Probe + 7 层 activation cache\n\n**显存估算**：\n- Qwen3-8B bf16 = ~16 GB\n- LoRA 参数 + optimizer states = ~1-2 GB\n- GRPO num_gen=2: 需要同时 forward 2 条生成序列的 KV cache + logprobs = ~6-8 GB\n- Gradient checkpointing backward pass = ~4-6 GB\n- DeBERTa + probe + activation cache = ~1.5 GB\n- **总计 ~29-34 GB**\n\n即使最乐观估计也会卡在 32GB 边界。exp-002v2 在 96GB 卡上用了 52GB（那个是完整 DC-GRPO，此处虽然 R1 更轻但整体框架一样）。\n\n**可能的 workaround**：\n- **QLoRA 4-bit**：模型从 16GB 降到 ~5GB，总体可降至 ~18-22GB，**理论上可行**。但需要修改脚本（加 `BitsAndBytesConfig`），且 probe retrain 逻辑中 `unwrap_model` 提取 activations 在 4-bit 模型上需要验证兼容性。**风险较大，不建议在 exp-004 完成前折腾。**\n- 降 `num_generations=1`：GRPO 至少需要 2 条生成做对比，降到 1 无意义。\n- `max_completion_length` 从 256 降到 128：省 ~1-2GB，不够。\n\n**结论：等双卡 DeepSpeed ZeRO-2 是正确策略。** ds_config_zero2.json 已就绪，双卡各分担一半 optimizer states，显存充裕。\n\n### 3. GPU 3 空闲期间建议\n\n按价值排序：\n\n**推荐：(b) Eval dry-run**\n- 用 exp-004 的中间 checkpoint 跑一次完整 eval pipeline\n- 好处：提前验证 eval 脚本无 bug，exp-004 完成后可以立即出结果而不用 debug eval\n- 只需单卡推理，32GB 绑绑有余\n- 如果 eval 包含 NLI scoring，也可以一并验证 DeBERTa 在 28034 上加载正常\n\n**次选：其他推理型预检**\n- 验证 Qwen3-8B 在 28034 上 tokenizer / chat template 正常\n- 预跑 probe_module 的 `train_probe` 确保 exp-001 activations 读取无误\n\n**不推荐 (a)**：Direction stability 不需要 GPU，浪费。\n\n是否需要我准备 eval dry-run 的命令？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp008v3-single-gpu-feasibility.md"
+}

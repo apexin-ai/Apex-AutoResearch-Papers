@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "476467891e50f5172362",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "analysis exp 003 eval ckpt5500",
+  "task_key": "worker_analysis_exp-003-eval-ckpt5500_20260520T173836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp-003-eval-ckpt5500_20260520T173836_result.json",
+    "occurrence": 1,
+    "bytes": 1076,
+    "sha256": "b184c72fd84ce7f4367fa4ead017d0604be72ca5f2804de7f36dc65d3732cd04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-003-eval-ckpt5500 结果\n\n| 指标 | ckpt-4000 | ckpt-5000 | **ckpt-5500** | vanilla baseline |\n|------|-----------|-----------|---------------|-----------------|\n| **SYCONScore** | 0.114 | 0.114 | **0.1144** | 0.134 |\n| **ToF** | — | — | **0.0608** | 0.072 |\n| **NoF** | — | — | **0.9724** | 0.945 |\n\n### 关键结论\n\n- **SYCONScore = 0.1144**，与 ckpt-4000/5000 的 0.114 几乎一致 → **确认 plateau**，继续训练无收益。\n- **ToF = 0.0608**，低于 vanilla baseline 的 0.072 → R3-only GRPO 训练反而降低了 turn-on 能力。\n- **NoF = 0.9724**，高于 vanilla 的 0.945 → 模型变得更\"固执\"，更不容易被说服翻转立场，但这不是有效的 calibration improvement。\n- 评估正常完成：362 样本（valid=181, invalid=181），耗时 4484s，EXIT_CODE=0，无 OOM/NaN/异常。\n- 进程已退出（clean exit）。\n\n**结论：exp-003 R3-only baseline 在 ckpt-4000 后完全 plateau，SYCONScore 停在 ~0.114，低于 vanilla 的 0.134。该训练方向无进一步价值。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp-003-eval-ckpt5500.md"
+}

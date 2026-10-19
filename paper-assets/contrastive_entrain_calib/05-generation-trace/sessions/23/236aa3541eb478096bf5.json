@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "236aa3541eb478096bf5",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code extract activations v2",
+  "task_key": "worker_code_extract_activations_v2_20260518T095045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_extract_activations_v2_20260518T095045_result.json",
+    "occurrence": 1,
+    "bytes": 1090,
+    "sha256": "7ada1a7a7c9306b3ede3c7383e5d31c18d454c53dfe1efa0d6eae7547a631b4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法正确，所有参数都在。环境没装 torch 所以无法直接 `--help`，但 AST 解析通过。\n\nv2 主要变更：\n\n1. **`find_critical_positions`** 简化为固定 3-turn 结构，不再接受 `correction_turn` 参数。校验 `[user, assistant, user]` 角色顺序。\n2. **`user_last_pos`**：tokenize 3 turns（无 generation prompt），从末尾找 `<|im_end|>` 前一个 token。\n3. **`asst_first_pos`**：tokenize 3 turns + `add_generation_prompt=True`，取 `len(ids_with_gen) - 1`（prompt 最后一个 token 的 hidden state 预测 Turn 4 第一个 content token）。forward pass 输入为 `ids_with_gen`。\n4. **`--generate-responses`**：独立于激活提取流程，在提取完成后逐样本 `model.generate(temperature=0.7)`，采样 `--num-samples` 次，`classify_behavior` 用正则 heuristic 分类 revise/maintain/ambiguous，输出到 `behavioral_responses.jsonl`。\n5. 输出 metadata 中不再包含 `correction_turn` 字段。\n6. 保留了 v1 的 `return_dict=False` 兼容、OOM 自动降级、右 padding 批处理逻辑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-extract-activations-v2.md"
+}

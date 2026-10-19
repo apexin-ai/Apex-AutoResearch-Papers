@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ba3ffe5bdeabfb2b504",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diag 28034 gpu and eval results",
+  "task_key": "worker_diag_28034-gpu-and-eval-results_20260522T220009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_28034-gpu-and-eval-results_20260522T220009_result.json",
+    "occurrence": 1,
+    "bytes": 1252,
+    "sha256": "16baeec9243bbaa5b88b62dc3da31a297dc9b305abe615a56e33cb6fb1d0cac2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 eval 全部仍在运行中，均未完成。以下是当前状态：\n\n```\nGPU状态:\n- GPU0: PID 133996 — eval exp-004-s2-v2-ckpt6000 (运行 19min, 17660MiB/32607MiB, 42%)\n- GPU1: PID 30011  — training run_exp004_reduced_lora.py (运行 5h20m, 21768MiB/32607MiB, 61%)\n- GPU2: PID 134523 — eval exp-004-s2-v2-ckpt5500 (运行 19min, 17660MiB/32607MiB, 39%)\n- GPU3: PID 131250 — eval exp-003-gs8-ckpt500-verified (运行 43min, 16874MiB/32607MiB, 44%)\n\nEval 结果:\n- ACT s2 ckpt-5500: 仍在运行 (260/362, ~72%, 预计 ~6min 后完成)\n- ACT s2 ckpt-6000: 仍在运行 (300/362, ~83%, 预计 ~4min 后完成)\n- gs8 ckpt-500 verify: 仍在运行 (200/362, ~55%, 预计 ~35min 后完成，速度较慢)\n\n额外发现:\n- GPU1 在跑 exp004_reduced_lora 训练（已跑 5h20m）\n- /tmp/eval_reduced_lora_ckpt500_v2.log 已完成，结果在:\n  eval_results/exp-004-reduced-lora-ckpt500_preset_eval.json\n- gs8 eval 速度明显慢于另两个（batch_size 相同但每 20 样本耗时 ~4min vs ~1.2min），\n  可能是与 GPU1 训练共享 PCIe 带宽导致\n```\n\nckpt-5500 和 ckpt-6000 的 eval 再等几分钟就能出结果，gs8 还需要约半小时。要等它们完成后再来收集结果吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-28034-gpu-and-eval-results.md"
+}

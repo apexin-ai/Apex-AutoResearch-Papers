@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "913ec50512f13c942b1a",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops urgent gpu status check 28034",
+  "task_key": "worker_ops_urgent-gpu-status-check-28034_20260519T110749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent-gpu-status-check-28034_20260519T110749_result.json",
+    "occurrence": 1,
+    "bytes": 1217,
+    "sha256": "ec8f9a6aa290150ae496cdad56ec61550d14387ed236d52a76cceeefbe4f5aaf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集。汇报如下：\n\n```\nGPU 0: 运行中  PID=18204  显存=21836/32607 MiB  Util=25%  Temp=64°C\nGPU 1: 运行中  PID=104503 显存=31422/32607 MiB  Util=66%  Temp=68°C\nGPU 2: 运行中  PID=104504 显存=30660/32607 MiB  Util=76%  Temp=67°C\nGPU 3: 运行中  PID=126897 显存=16498/32607 MiB  Util=63%  Temp=69°C\n\nexp-004: 运行中  PID=18204  已运行 19h13m\n  step=7390/8000  剩余 610 steps\n  ~105s/10steps → 预计还需 ~107 分钟（约 1.8h，~20:55 完成）\n  loss: sft=0.0000  l2≈0.0009  total=0.0001  lr=3.91e-06\n  训练正常，无异常\n\nexp-008v3: 运行中  PIDs=104503,104504 (DeepSpeed rank0+rank1)  已运行 4h27m\n  脚本: run_exp008v3_binary_probe_grpo.py\n  GPU 1+2 双卡，显存几乎占满，GPU 利用率 66-76%\n  训练正常\n\nexp-016 re-eval: 运行中  PID=126897 (bash wrapper PID=126895)  已运行 35m\n  alpha=0.0 阶段，已完成 200/362 pairs\n  还有 5 个 alpha 值要跑 (0.0 当前, 0.5, 1.0, 2.0, 5.0)\n  alpha=0.0 速率 ~3.3min/20pairs → 当前 alpha 还需 ~27min\n  全部 5 个 alpha 预计还需 ~2.5-3h\n```\n\n**无异常。** 4 张卡全部满载运行，无 zombie 进程，无显存泄漏。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-gpu-status-check-28034.md"
+}

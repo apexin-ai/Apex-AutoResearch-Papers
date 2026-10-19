@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c5efb8c337d7725c9b0",
+  "project": "contrastive_entrain_calib",
+  "kind": "history",
+  "title": "agent / loop_2_1779347636.md",
+  "task_key": "loop_2_1779347636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2_1779347636.md",
+    "occurrence": 1,
+    "bytes": 4890,
+    "sha256": "e3387552f8f965a726969e0b75f38435c98f56bb45d87835197da7567e49ad1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-21T07:13:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-28034 GPU 白名单需通过 `get_project_status` 的 `execution.gpu_ids` 确认，不要假设\n- exp-004 是 **SFT（ACT）** 不是 RL（D041 已确认），汇报/写论文时不要说成 RL 方法\n- exp-003 R3-only 轨迹全面低于 vanilla baseline（截至 ckpt-5000），这是 **negative** 结果——不要在论文中将其描述为\"R3-only 也有效\"\n- D027 统一 eval baseline 是 SYCONScore=0.134（不是旧 eval_pipeline.py 的 0.197），所有对比必须用 D027 数字\n- 论文方向已锁定 analysis paper：\"Discriminability Without Utility\"——d_syc 能判别但所有 RL reward formulation 均失败。不要偏离此 framing\n\n### 2. 🖥️ 基础设施快照\n- **westd-28034**（4×A100 32GB）：工作目录 `/root/contrastive_entrain_calib`，Python `/root/miniconda3/bin/python`，conda base env\n  - 模型缓存：`/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B`\n  - 数据：`/root/mvp_v2_1_expanded/data/calibration_v2_1_expanded.jsonl`（362 pairs）\n  - 结果目录：`/root/autodl-tmp/results/`（各实验子目录）\n  - Checkpoints：`/root/autodl-tmp/outputs/exp-004-act-baseline/`（ckpt 500-8000）、`/root/autodl-tmp/checkpoints/`（exp-003/008v3/009 等）\n  - 活跃进程：exp-003-eval-ckpt4000 (PID 591330, cuda:0)、exp-004-eval-ckpt1000 (PID 591967, cuda:1)。**GPU 2+3 空闲**\n- **westd-29046**（2×A100 96GB）：同结构\n  - 活跃进程：exp-003-s2 (PID 237432, cuda:0, seed 2 训练)、exp-003 (PID 70649, cuda:1, 主训练)\n- eval 脚本：`eval/eval_unified_preset.py`（D027 标准），eval_exp003 有 `scripts/eval_exp003_d027.sh` 包装\n\n### 3. 📊 当前状态\n**刚完成**：exp-004-eval-ckpt6000 和 exp-004-eval-ckpt4000 结果分析，已更新 registry 为 DONE(success)，已向 Director 汇报。\n\n**exp-004 ACT 轨迹**（5/6 数据点就绪）：\n| ckpt | SYCONScore | 状态 |\n|------|-----------|------|\n| 500 | 0.170 | ✅ |\n| 1000 | — | 在跑 (28034 cuda:1) |\n| 2000 | 0.255 | ✅ |\n| 4000 | 0.214 | ✅ (非单调 dip) |\n| 6000 | 0.262 | ✅ |\n| 8000 | 0.301 | ✅ |\n\n**RUNNING 实验**：\n- exp-003：R3-only GRPO 训练（29046 cuda:1），目标 8000 步，ETA ~May 21 17:00\n- exp-003-s2：R3-only seed 2（29046 cuda:0），ETA ~May 23\n- exp-003-eval-ckpt4000：R3-only ckpt-4000 eval（28034 cuda:0）\n- exp-004-eval-ckpt1000：ACT ckpt-1000 eval（28034 cuda:1）\n\n**exp-003 R3-only 已完成轨迹**（全部 negative，低于 vanilla 0.134）：\nckpt-1000=0.074 → 2000=0.085 → 3000=0.095 → 5000=0.114（U 型缓慢恢复 +0.010/1000steps，D042）\n\n**等待中**：\n- exp-004-eval-ckpt1000 和 exp-003-eval-ckpt4000 的 cron 完成回调\n- exp-003 训练完成 → 需要 ckpt-8000 final eval\n- Director 对 exp-004 轨迹报告的反馈（刚发出）\n\n### 4. 📋 待办（条件触发式）\n- exp-004-eval-ckpt1000 cron 回调 → 读结果更新 registry → ACT 6/6 轨迹全部就绪 → 通知 Director 可画图\n- exp-003-eval-ckpt4000 cron 回调 → 读结果 → 更新 R3-only 轨迹（预期继续 negative，~0.10）\n- exp-003 训练完成 → 立即提交 ckpt-8000 eval（28034 空闲 GPU）→ R3-only 最终数据点\n- exp-003-s2 训练完成 → 提交 seed 2 的 eval → 验证 R3-only 趋势可复现\n- 两条轨迹（ACT + R3-only）全部就绪 → 派 Worker 画 paper figure（SYCONScore vs training steps）\n- Director 审批 Results section → 派 Paper Agent Worker 写 Results（blocked on exp-003 最终数据）\n\n### 5. 🎯 战略上下文\n**核心叙事**：d_syc 方向在 hidden states 中成功判别 sycophancy（AUROC 0.82 Qwen, 0.81 Llama），但所有将其转为 RL reward 的尝试均失败——cosine×4 变体、binary probe（即刻 stubbornness trap）、continuous probe（慢性 binary trap）、ActAdd（破坏 ToF）。Analysis paper 论证 \"discriminability ≠ reward utility\"。\n\n**Claim 强度 Medium-High**（D037）：升级到 High 的条件是 exp-003 SYCONScore ≥ 0.20（目前趋势看不太可能——ckpt-5000 才 0.114）。\n\n**exp-004 ACT 的角色已变**：D041 确认 exp-004 是 SFT 不是 RL。ACT 作为 \"positive control\"（SFT 能改善 sycophancy）出现在论文中，对比 RL 方向的全面失败。这是叙事关键对比。\n\n**易错点**：\n- exp-003 R3-only 结果看似 negative 但有 U 型恢复趋势——不要过早下结论说\"R3 完全无效\"，等 ckpt-8000 最终结果\n- 论文 sections done: Framework, Direction Quality, Cosine Failure, Probe Trap, Introduction, fig_layer_auroc；pending: Results, Conclusion, Related Work\n- exp-003-eval 的 ckpt-2000/3000 registry 状态卡在 PREPARING（已有 metrics 和 conclusion），和本次 ckpt-4000/6000 同样问题——都是 submit_training_job 后状态没自动推进，需要手动走状态机 PREPARING→...→DONE\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1779347636.md"
+}

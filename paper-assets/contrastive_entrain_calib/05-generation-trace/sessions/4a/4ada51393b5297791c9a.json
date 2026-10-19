@@ -1,0 +1,939 @@
+{
+  "schema_version": "1.0",
+  "id": "4ada51393b5297791c9a",
+  "project": "contrastive_entrain_calib",
+  "kind": "worker",
+  "title": "diag exp004 data loading",
+  "task_key": "worker_diag_exp004-data-loading_20260518T173821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp004-data-loading_20260518T173821.log",
+    "occurrence": 1,
+    "bytes": 97757,
+    "sha256": "250a74fbed36fb97c00347ee7b4ffbc1fb6f26ae5d29cea870ea78dc5c2733d8"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 5,
+      "tool_result": 5,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-be-idea-gen-0515-3/projects/contrastive_entrain_calib",
+                "session_id": "ad0527b5-26b9-40b7-b149-9e8337e1d68d",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "e94368ef-77ad-4c5b-827c-f650b7343c99",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-4/projects/-home-ubuntu--agent-ml-research-be-idea-gen-0515-3-projects-contrastive-entrain-calib/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779143400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "92a0489e-f88f-4e37-931b-d617eb5e6b03",
+                "session_id": "ad0527b5-26b9-40b7-b149-9e8337e1d68d"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to SSH to westd-28034 and read the exp-004 training script to understand its data loading logic. Let me do that.",
+              "signature": "Er4CClkIDRgCKkCDGwJOOSS+dvd/BNmYow/ehH4pgTXaZEB/NanDT4FLoomP95sXjyzARr0zBj0JkjFbW3r2rdko5tWC90VD6JvRMg9jbGF1ZGUtb3B1cy00LTY4ABIMZmiucCdVmdQfrGYwGgyziFmmXArJqwCEwfEiMA7/TaaKqhm/7YTgcGNezw3Z/tBHEaaSwelHh1hw6ToM/KeEI3gE308m28Uo6IkEBSqSATPxAIW5Px2WGzRAETCN46yuxiVGukvdoftJME4j15lQaAghIsTp/ntRwP6tikX2s6SCxZv4HleAGj8vj3sa5uhC4h02bKZHCnzHbvwdxLLCyIAWAW5jircCdHnQAETqfdCEfRC+yyX2nTYKaJF8ZAAew/rsFnnnMb6Pq5BdovjaFqvU8wtuzpqKO3+No2AMsh/LGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ad0527b5-26b9-40b7-b149-9e8337e1d68d",
+            "uuid": "55de803b-a033-4c84-979d-2352b9d7fbde",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0172o44jNre7iZQD89pQkedf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12493,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12493
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "读取 exp-004 训练脚本。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ad0527b5-26b9-40b7-b149-9e8337e1d68d",
+            "uuid": "b2d88c17-6b68-437a-8615-db60b5b6887a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0172o44jNre7iZQD89pQkedf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12493,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12493
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KYzb9A3qSqQ9qkX1WmCzk4",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ad0527b5-26b9-40b7-b149-9e8337e1d68d",
+            "uuid": "a6fe4ca8-331c-4f41-8a4f-3bcf4ae5d4fb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0172o44jNre7iZQD89pQkedf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12493,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12493
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T17:38:33.087Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01KYzb9A3qSqQ9qkX1WmCzk4",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ad0527b5-26b9-40b7-b149-9e8337e1d68d",
+            "uuid": "8f84ad9c-287d-4add-8f6a-8eac1fb3ec28",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EcPN7dVpKYt5qouWRePXxo",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-28034",
+                "command": "cat /root/contrastive_entrain_calib/training/run_exp004_act_baseline.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ad0527b5-26b9-40b7-b149-9e8337e1d68d",
+            "uuid": "ca777fb6-3814-4add-9732-51b8581daec7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0148KGALu7a24SPQ7fqBM6ue",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 489,
+                "cache_read_input_tokens": 24334,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 489
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T17:38:37.392Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EcPN7dVpKYt5qouWRePXxo",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp-004: ACT (Activation Consistency Training) baseline.\\\\n\\\\nSFT on paired calibration data + L2 consistency loss on hidden states\\\\nat target transformer layers between valid_correction and invalid_pressure pairs.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport sys\\\\nimport os\\\\nimport json\\\\nimport logging\\\\nimport argparse\\\\nimport random\\\\nimport time\\\\nfrom collections import defaultdict\\\\n\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom torch.utils.data import Dataset, DataLoader\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, get_linear_schedule_with_warmup\\\\nfrom peft import LoraConfig, get_peft_model\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/contrastive_entrain_calib/training\\\\\\\")\\\\nfrom dcgrpo_trainer import _resolve_transformer_layers\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n)\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nTARGET_LAYERS = [19, 20, 24, 27, 32, 33, 35]\\\\n\\\\n\\\\nclass GradActivationCache:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Forward-hook cache that preserves gradients for L2 loss backprop.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, layers):\\\\n        self.layers = sorted(layers)\\\\n        self._cache = {}\\\\n        self._hooks = []\\\\n\\\\n    def register(self, model):\\\\n        self.remove()\\\\n        all_layers = _resolve_transformer_layers(model)\\\\n        for idx in self.layers:\\\\n            assert idx < len(all_layers), f\\\\\\\"Layer {idx} >= {len(all_layers)}\\\\\\\"\\\\n            self._hooks.append(all_layers[idx].register_forward_hook(self._fn(idx)))\\\\n        logger.info(\\\\\\\"Activation hooks on layers %s\\\\\\\", self.layers)\\\\n\\\\n    def _fn(self, idx):\\\\n        def hook(mod, inp, out):\\\\n            self._cache[idx] = out[0] if isinstance(out, tuple) else out\\\\n        return hook\\\\n\\\\n    def extract(self):\\\\n        r = dict(self._cache)\\\\n        self._cache.clear()\\\\n        return r\\\\n\\\\n    def remove(self):\\\\n        for h in self._hooks:\\\\n            h.remove()\\\\n        self._hooks.clear()\\\\n        self._cache.clear()\\\\n\\\\n\\\\nclass PairedCalibrationDataset(Dataset):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Pairs valid_correction + invalid_pressure by pair_id.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, path, tokenizer, max_len=1024):\\\\n        self.tokenizer = tokenizer\\\\n        self.max_len = max_len\\\\n        self.im_end_id = tokenizer.convert_tokens_to_ids(\\\\\\\"<|im_end|>\\\\\\\")\\\\n\\\\n        groups = defaultdict(dict)\\\\n        with open(path) as f:\\\\n            for line in f:\\\\n                d = json.loads(line)\\\\n                groups[d[\\\\\\\"pair_id\\\\\\\"]][d[\\\\\\\"condition\\\\\\\"]] = d\\\\n\\\\n        self.pairs = []\\\\n        for pid in sorted(groups):\\\\n            g = groups[pid]\\\\n            if \\\\\\\"valid_correction\\\\\\\" in g and \\\\\\\"invalid_pressure\\\\\\\" in g:\\\\n                self.pairs.append((g[\\\\\\\"valid_correction\\\\\\\"], g[\\\\\\\"invalid_pressure\\\\\\\"]))\\\\n        logger.info(\\\\\\\"Loaded %d pairs from %s\\\\\\\", len(self.pairs), path)\\\\n\\\\n    def __len__(self):\\\\n        return len(self.pairs)\\\\n\\\\n    def _tokenize_sample(self, sample):\\\\n        msgs = [{\\\\\\\"role\\\\\\\": t[\\\\\\\"role\\\\\\\"], \\\\\\\"content\\\\\\\": t[\\\\\\\"content\\\\\\\"]} for t in sample[\\\\\\\"turns\\\\\\\"]]\\\\n\\\\n        full_ids = self.tokenizer.apply_chat_template(\\\\n            msgs, tokenize=True, add_generation_prompt=True\\\\n        )\\\\n\\\\n        pre_asst_ids = self.tokenizer.apply_chat_template(\\\\n            msgs[:1], tokenize=True, add_generation_prompt=True\\\\n        )\\\\n        asst_start = len(pre_asst_ids)\\\\n\\\\n        asst_end = asst_start\\\\n        while asst_end < len(full_ids) and full_ids[asst_end] != self.im_end_id:\\\\n            asst_end += 1\\\\n        asst_end += 1\\\\n\\\\n        resp_pos = len(full_ids) - 1\\\\n        full_ids = full_ids[: self.max_len]\\\\n        resp_pos = min(resp_pos, len(full_ids) - 1)\\\\n\\\\n        labels = [-100] * len(full_ids)\\\\n        for i in range(asst_start, min(asst_end, len(full_ids))):\\\\n            labels[i] = full_ids[i]\\\\n\\\\n        return (\\\\n            torch.tensor(full_ids, dtype=torch.long),\\\\n            torch.tensor(labels, dtype=torch.long),\\\\n            torch.ones(len(full_ids), dtype=torch.long),\\\\n            resp_pos,\\\\n        )\\\\n\\\\n    def __getitem__(self, idx):\\\\n        valid, invalid = self.pairs[idx]\\\\n        v_ids, v_labels, v_mask, v_pos = self._tokenize_sample(valid)\\\\n        i_ids, i_labels, i_mask, i_pos = self._tokenize_s\\\\n\\\\n... [截断: 输出过长，省略 3240 字符] ...\\\\n\\\\ners() if p.requires_grad]\\\\n    optimizer = torch.optim.AdamW(trainable, lr=args.lr, weight_decay=0.01)\\\\n    scheduler = get_linear_schedule_with_warmup(\\\\n        optimizer, args.warmup_steps, args.max_steps\\\\n    )\\\\n\\\\n    logger.info(\\\\n        \\\\\\\"Training: max_steps=%d grad_accum=%d lr=%s lambda_l2=%s pairs=%d\\\\\\\",\\\\n        args.max_steps, args.grad_accum, args.lr, args.lambda_l2, len(dataset),\\\\n    )\\\\n\\\\n    log_path = os.path.join(args.output_dir, \\\\\\\"train_log.jsonl\\\\\\\")\\\\n    step = 0\\\\n    micro = 0\\\\n    acc_sft = acc_l2 = acc_total = 0.0\\\\n    acc_n = 0\\\\n    t0 = time.time()\\\\n    model.train()\\\\n\\\\n    while step < args.max_steps:\\\\n        for batch in loader:\\\\n            if step >= args.max_steps:\\\\n                break\\\\n\\\\n            v_ids = batch[\\\\\\\"v_ids\\\\\\\"].unsqueeze(0).to(device)\\\\n            v_labels = batch[\\\\\\\"v_labels\\\\\\\"].unsqueeze(0).to(device)\\\\n            v_mask = batch[\\\\\\\"v_mask\\\\\\\"].unsqueeze(0).to(device)\\\\n            v_pos = batch[\\\\\\\"v_pos\\\\\\\"]\\\\n\\\\n            i_ids = batch[\\\\\\\"i_ids\\\\\\\"].unsqueeze(0).to(device)\\\\n            i_labels = batch[\\\\\\\"i_labels\\\\\\\"].unsqueeze(0).to(device)\\\\n            i_mask = batch[\\\\\\\"i_mask\\\\\\\"].unsqueeze(0).to(device)\\\\n            i_pos = batch[\\\\\\\"i_pos\\\\\\\"]\\\\n\\\\n            v_out = model(input_ids=v_ids, attention_mask=v_mask, labels=v_labels)\\\\n            v_h = act_cache.extract()\\\\n\\\\n            i_out = model(input_ids=i_ids, attention_mask=i_mask, labels=i_labels)\\\\n            i_h = act_cache.extract()\\\\n\\\\n            l2_parts = []\\\\n            for li in TARGET_LAYERS:\\\\n                if li in v_h and li in i_h:\\\\n                    hv = v_h[li][0, v_pos, :]\\\\n                    hi = i_h[li][0, i_pos, :]\\\\n                    l2_parts.append(torch.mean((hv - hi) ** 2))\\\\n\\\\n            l2_loss = torch.stack(l2_parts).mean() if l2_parts else torch.tensor(0.0, device=device)\\\\n            sft_loss = (v_out.loss + i_out.loss) / 2\\\\n            total_loss = sft_loss + args.lambda_l2 * l2_loss\\\\n\\\\n            (total_loss / args.grad_accum).backward()\\\\n\\\\n            acc_sft += sft_loss.item()\\\\n            acc_l2 += l2_loss.item()\\\\n            acc_total += total_loss.item()\\\\n            acc_n += 1\\\\n            micro += 1\\\\n\\\\n            if micro % args.grad_accum == 0:\\\\n                nn.utils.clip_grad_norm_(model.parameters(), 1.0)\\\\n                optimizer.step()\\\\n                scheduler.step()\\\\n                optimizer.zero_grad()\\\\n                step += 1\\\\n\\\\n                if step % args.logging_steps == 0:\\\\n                    n = max(acc_n, 1)\\\\n                    elapsed = time.time() - t0\\\\n                    logger.info(\\\\n                        \\\\\\\"step=%d/%d sft=%.4f l2=%.6f total=%.4f lr=%.2e elapsed=%.0fs\\\\\\\",\\\\n                        step, args.max_steps,\\\\n                        acc_sft / n, acc_l2 / n, acc_total / n,\\\\n                        scheduler.get_last_lr()[0], elapsed,\\\\n                    )\\\\n                    with open(log_path, \\\\\\\"a\\\\\\\") as f:\\\\n                        json.dump({\\\\n                            \\\\\\\"step\\\\\\\": step,\\\\n                            \\\\\\\"sft_loss\\\\\\\": round(acc_sft / n, 6),\\\\n                            \\\\\\\"l2_loss\\\\\\\": round(acc_l2 / n, 8),\\\\n                            \\\\\\\"total_loss\\\\\\\": round(acc_total / n, 6),\\\\n                            \\\\\\\"lr\\\\\\\": scheduler.get_last_lr()[0],\\\\n                            \\\\\\\"elapsed_s\\\\\\\": round(elapsed, 1),\\\\n                        }, f)\\\\n                        f.write(\\\\\\\"\\\\\\\\n\\\\\\\")\\\\n                    acc_sft = acc_l2 = acc_total = 0.0\\\\n                    acc_n = 0\\\\n\\\\n                if step % args.save_steps == 0:\\\\n                    ckpt_dir = os.path.join(args.output_dir, f\\\\\\\"checkpoint-{step}\\\\\\\")\\\\n                    model.save_pretrained(ckpt_dir)\\\\n                    tokenizer.save_pretrained(ckpt_dir)\\\\n                    logger.info(\\\\\\\"Saved checkpoint: %s\\\\\\\", ckpt_dir)\\\\n\\\\n    final_dir = os.path.join(args.output_dir, \\\\\\\"final\\\\\\\")\\\\n    model.save_pretrained(final_dir)\\\\n    tokenizer.save_pretrained(final_dir)\\\\n    elapsed = time.time() - t0\\\\n    logger.info(\\\\\\\"Training complete. %d steps in %.0fs. Final: %s\\\\\\\", step, elapsed, final_dir)\\\\n    act_cache.remove()\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ad0527b5-26b9-40b7-b149-9e8337e1d68d",
+            "uuid": "a829052e-ba5c-406f-972a-8117a1cd7f89",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp-004: ACT (Activation Consistency Training) baseline.\\\\n\\\\nSFT on paired calibration data + L2 consistency loss on hidden states\\\\nat target transformer layers between valid_correction and invalid_pressure pairs.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport sys\\\\nimport os\\\\nimport json\\\\nimport logging\\\\nimport argparse\\\\nimport random\\\\nimport time\\\\nfrom collections import defaultdict\\\\n\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom torch.utils.data import Dataset, DataLoader\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, get_linear_schedule_with_warmup\\\\nfrom peft import LoraConfig, get_peft_model\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/contrastive_entrain_calib/training\\\\\\\")\\\\nfrom dcgrpo_trainer import _resolve_transformer_layers\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n)\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nTARGET_LAYERS = [19, 20, 24, 27, 32, 33, 35]\\\\n\\\\n\\\\nclass GradActivationCache:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Forward-hook cache that preserves gradients for L2 loss backprop.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, layers):\\\\n        self.layers = sorted(layers)\\\\n        self._cache = {}\\\\n        self._hooks = []\\\\n\\\\n    def register(self, model):\\\\n        self.remove()\\\\n        all_layers = _resolve_transformer_layers(model)\\\\n        for idx in self.layers:\\\\n            assert idx < len(all_layers), f\\\\\\\"Layer {idx} >= {len(all_layers)}\\\\\\\"\\\\n            self._hooks.append(all_layers[idx].register_forward_hook(self._fn(idx)))\\\\n        logger.info(\\\\\\\"Activation hooks on layers %s\\\\\\\", self.layers)\\\\n\\\\n    def _fn(self, idx):\\\\n        def hook(mod, inp, out):\\\\n            self._cache[idx] = out[0] if isinstance(out, tuple) else out\\\\n        return hook\\\\n\\\\n    def extract(self):\\\\n        r = dict(self._cache)\\\\n        self._cache.clear()\\\\n        return r\\\\n\\\\n    def remove(self):\\\\n        for h in self._hooks:\\\\n            h.remove()\\\\n        self._hooks.clear()\\\\n        self._cache.clear()\\\\n\\\\n\\\\nclass PairedCalibrationDataset(Dataset):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Pairs valid_correction + invalid_pressure by pair_id.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, path, tokenizer, max_len=1024):\\\\n        self.tokenizer = tokenizer\\\\n        self.max_len = max_len\\\\n        self.im_end_id = tokenizer.convert_tokens_to_ids(\\\\\\\"<|im_end|>\\\\\\\")\\\\n\\\\n        groups = defaultdict(dict)\\\\n        with open(path) as f:\\\\n            for line in f:\\\\n                d = json.loads(line)\\\\n                groups[d[\\\\\\\"pair_id\\\\\\\"]][d[\\\\\\\"condition\\\\\\\"]] = d\\\\n\\\\n        self.pairs = []\\\\n        for pid in sorted(groups):\\\\n            g = groups[pid]\\\\n            if \\\\\\\"valid_correction\\\\\\\" in g and \\\\\\\"invalid_pressure\\\\\\\" in g:\\\\n                self.pairs.append((g[\\\\\\\"valid_correction\\\\\\\"], g[\\\\\\\"invalid_pressure\\\\\\\"]))\\\\n        logger.info(\\\\\\\"Loaded %d pairs from %s\\\\\\\", len(self.pairs), path)\\\\n\\\\n    def __len__(self):\\\\n        return len(self.pairs)\\\\n\\\\n    def _tokenize_sample(self, sample):\\\\n        msgs = [{\\\\\\\"role\\\\\\\": t[\\\\\\\"role\\\\\\\"], \\\\\\\"content\\\\\\\": t[\\\\\\\"content\\\\\\\"]} for t in sample[\\\\\\\"turns\\\\\\\"]]\\\\n\\\\n        full_ids = self.tokenizer.apply_chat_template(\\\\n            msgs, tokenize=True, add_generation_prompt=True\\\\n        )\\\\n\\\\n        pre_asst_ids = self.tokenizer.apply_chat_template(\\\\n            msgs[:1], tokenize=True, add_generation_prompt=True\\\\n        )\\\\n        asst_start = len(pre_asst_ids)\\\\n\\\\n        asst_end = asst_start\\\\n        while asst_end < len(full_ids) and full_ids[asst_end] != self.im_end_id:\\\\n            asst_end += 1\\\\n        asst_end += 1\\\\n\\\\n        resp_pos = len(full_ids) - 1\\\\n        full_ids = full_ids[: self.max_len]\\\\n        resp_pos = min(resp_pos, len(full_ids) - 1)\\\\n\\\\n        labels = [-100] * len(full_ids)\\\\n        for i in range(asst_start, min(asst_end, len(full_ids))):\\\\n            labels[i] = full_ids[i]\\\\n\\\\n        return (\\\\n            torch.tensor(full_ids, dtype=torch.long),\\\\n            torch.tensor(labels, dtype=torch.long),\\\\n            torch.ones(len(full_ids), dtype=torch.long),\\\\n            resp_pos,\\\\n        )\\\\n\\\\n    def __getitem__(self, idx):\\\\n        valid, invalid = self.pairs[idx]\\\\n        v_ids, v_labels, v_mask, v_pos = self._tokenize_sample(valid)\\\\n        i_ids, i_labels, i_mask, i_pos = self._tokenize_s\\\\n\\\\n... [截断: 输出过长，省略 3240 字符] ...\\\\n\\\\ners() if p.requires_grad]\\\\n    optimizer = torch.optim.AdamW(trainable, lr=args.lr, weight_decay=0.01)\\\\n    scheduler = get_linear_schedule_with_warmup(\\\\n        optimizer, args.warmup_steps, args.max_steps\\\\n    )\\\\n\\\\n    logger.info(\\\\n        \\\\\\\"Training: max_steps=%d grad_accum=%d lr=%s lambda_l2=%s pairs=%d\\\\\\\",\\\\n        args.max_steps, args.grad_accum, args.lr, args.lambda_l2, len(dataset),\\\\n    )\\\\n\\\\n    log_path = os.path.join(args.output_dir, \\\\\\\"train_log.jsonl\\\\\\\")\\\\n    step = 0\\\\n    micro = 0\\\\n    acc_sft = acc_l2 = acc_total = 0.0\\\\n    acc_n = 0\\\\n    t0 = time.time()\\\\n    model.train()\\\\n\\\\n    while step < args.max_steps:\\\\n        for batch in loader:\\\\n            if step >= args.max_steps:\\\\n                break\\\\n\\\\n            v_ids = batch[\\\\\\\"v_ids\\\\\\\"].unsqueeze(0).to(device)\\\\n            v_labels = batch[\\\\\\\"v_labels\\\\\\\"].unsqueeze(0).to(device)\\\\n            v_mask = batch[\\\\\\\"v_mask\\\\\\\"].unsqueeze(0).to(device)\\\\n            v_pos = batch[\\\\\\\"v_pos\\\\\\\"]\\\\n\\\\n            i_ids = batch[\\\\\\\"i_ids\\\\\\\"].unsqueeze(0).to(device)\\\\n            i_labels = batch[\\\\\\\"i_labels\\\\\\\"].unsqueeze(0).to(device)\\\\n            i_mask = batch[\\\\\\\"i_mask\\\\\\\"].unsqueeze(0).to(device)\\\\n            i_pos = batch[\\\\\\\"i_pos\\\\\\\"]\\\\n\\\\n            v_out = model(input_ids=v_ids, attention_mask=v_mask, labels=v_labels)\\\\n            v_h = act_cache.extract()\\\\n\\\\n            i_out = model(input_ids=i_ids, attention_mask=i_mask, labels=i_labels)\\\\n            i_h = act_cache.extract()\\\\n\\\\n            l2_parts = []\\\\n            for li in TARGET_LAYERS:\\\\n                if li in v_h and li in i_h:\\\\n                    hv = v_h[li][0, v_pos, :]\\\\n                    hi = i_h[li][0, i_pos, :]\\\\n                    l2_parts.append(torch.mean((hv - hi) ** 2))\\\\n\\\\n            l2_loss = torch.stack(l2_parts).mean() if l2_parts else torch.tensor(0.0, device=device)\\\\n            sft_loss = (v_out.loss + i_out.loss) / 2\\\\n            total_loss = sft_loss + args.lambda_l2 * l2_loss\\\\n\\\\n            (total_loss / args.grad_accum).backward()\\\\n\\\\n            acc_sft += sft_loss.item()\\\\n            acc_l2 += l2_loss.item()\\\\n            acc_total += total_loss.item()\\\\n            acc_n += 1\\\\n            micro += 1\\\\n\\\\n            if micro % args.grad_accum == 0:\\\\n                nn.utils.clip_grad_norm_(model.parameters(), 1.0)\\\\n                optimizer.step()\\\\n                scheduler.step()\\\\n                optimizer.zero_grad()\\\\n                step += 1\\\\n\\\\n                if step % args.logging_steps == 0:\\\\n                    n = max(acc_n, 1)\\\\n                    elapsed = time.time() - t0\\\\n                    logger.info(\\\\n                        \\\\\\\"step=%d/%d sft=%.4f l2=%.6f total=%.4f lr=%.2e elapsed=%.0fs\\\\\\\",\\\\n                        step, args.max_steps,\\\\n                        acc_sft / n, acc_l2 / n, acc_total / n,\\\\n                        scheduler.get_last_lr()[0], elapsed,\\\\n                    )\\\\n                    with open(log_path, \\\\\\\"a\\\\\\\") as f:\\\\n                        json.dump({\\\\n                            \\\\\\\"step\\\\\\\": step,\\\\n                            \\\\\\\"sft_loss\\\\\\\": round(acc_sft / n, 6),\\\\n                            \\\\\\\"l2_loss\\\\\\\": round(acc_l2 / n, 8),\\\\n                            \\\\\\\"total_loss\\\\\\\": round(acc_total / n, 6),\\\\n                            \\\\\\\"lr\\\\\\\": scheduler.get_last_lr()[0],\\\\n                            \\\\\\\"elapsed_s\\\\\\\": round(elapsed, 1),\\\\n                        }, f)\\\\n                        f.write(\\\\\\\"\\\\\\\\n\\\\\\\")\\\\n                    acc_sft = acc_l2 = acc_total = 0.0\\\\n                    acc_n = 0\\\\n\\\\n                if step % args.save_steps == 0:\\\\n                    ckpt_dir = os.path.join(args.output_dir, f\\\\\\\"checkpoint-{step}\\\\\\\")\\\\n                    model.save_pretrained(ckpt_dir)\\\\n                    tokenizer.save_pretrained(ckpt_dir)\\\\n                    logger.info(\\\\\\\"Saved checkpoint: %s\\\\\\\", ckpt_dir)\\\\n\\\\n    final_dir = os.path.join(args.output_dir, \\\\\\\"final\\\\\\\")\\\\n    model.save_pretrained(final_dir)\\\\n    tokenizer.save_pretrained(final_dir)\\\\n    elapsed = time.time() - t0\\\\n    logger.info(\\\\\\\"Training complete. %d steps in %.0fs. Final: %s\\\\\\\", step, elapsed, final_dir)\\\\n    act_cache.remove()\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.41}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"exp-004: ACT (Activation Consistency Training) baseline.\\n\\nSFT on paired calibration data + L2 consistency loss on hidden states\\nat target transformer layers between valid_correction and invalid_pressure pairs.\\n\\\"\\\"\\\"\\n\\nimport sys\\nimport os\\nimport json\\nimport logging\\nimport argparse\\nimport random\\nimport time\\nfrom collections import defaultdict\\n\\nimport torch\\nimport torch.nn as nn\\nfrom torch.utils.data import Dataset, DataLoader\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, get_linear_schedule_with_warmup\\nfrom peft import LoraConfig, get_peft_model\\n\\nsys.path.insert(0, \\\"/root/contrastive_entrain_calib/training\\\")\\nfrom dcgrpo_trainer import _resolve_transformer_layers\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n)\\nlogger = logging.getLogger(__name__)\\n\\nTARGET_LAYERS = [19, 20, 24, 27, 32, 33, 35]\\n\\n\\nclass GradActivationCache:\\n    \\\"\\\"\\\"Forward-hook cache that preserves gradients for L2 loss backprop.\\\"\\\"\\\"\\n\\n    def __init__(self, layers):\\n        self.layers = sorted(layers)\\n        self._cache = {}\\n        self._hooks = []\\n\\n    def register(self, model):\\n        self.remove()\\n        all_layers = _resolve_transformer_layers(model)\\n        for idx in self.layers:\\n            assert idx < len(all_layers), f\\\"Layer {idx} >= {len(all_layers)}\\\"\\n            self._hooks.append(all_layers[idx].register_forward_hook(self._fn(idx)))\\n        logger.info(\\\"Activation hooks on layers %s\\\", self.layers)\\n\\n    def _fn(self, idx):\\n        def hook(mod, inp, out):\\n            self._cache[idx] = out[0] if isinstance(out, tuple) else out\\n        return hook\\n\\n    def extract(self):\\n        r = dict(self._cache)\\n        self._cache.clear()\\n        return r\\n\\n    def remove(self):\\n        for h in self._hooks:\\n            h.remove()\\n        self._hooks.clear()\\n        self._cache.clear()\\n\\n\\nclass PairedCalibrationDataset(Dataset):\\n    \\\"\\\"\\\"Pairs valid_correction + invalid_pressure by pair_id.\\\"\\\"\\\"\\n\\n    def __init__(self, path, tokenizer, max_len=1024):\\n        self.tokenizer = tokenizer\\n        self.max_len = max_len\\n        self.im_end_id = tokenizer.convert_tokens_to_ids(\\\"<|im_end|>\\\")\\n\\n        groups = defaultdict(dict)\\n        with open(path) as f:\\n            for line in f:\\n                d = json.loads(line)\\n                groups[d[\\\"pair_id\\\"]][d[\\\"condition\\\"]] = d\\n\\n        self.pairs = []\\n        for pid in sorted(groups):\\n            g = groups[pid]\\n            if \\\"valid_correction\\\" in g and \\\"invalid_pressure\\\" in g:\\n                self.pairs.append((g[\\\"valid_correction\\\"], g[\\\"invalid_pressure\\\"]))\\n        logger.info(\\\"Loaded %d pairs from %s\\\", len(self.pairs), path)\\n\\n    def __len__(self):\\n        return len(self.pairs)\\n\\n    def _tokenize_sample(self, sample):\\n        msgs = [{\\\"role\\\": t[\\\"role\\\"], \\\"content\\\": t[\\\"content\\\"]} for t in sample[\\\"turns\\\"]]\\n\\n        full_ids = self.tokenizer.apply_chat_template(\\n            msgs, tokenize=True, add_generation_prompt=True\\n        )\\n\\n        pre_asst_ids = self.tokenizer.apply_chat_template(\\n            msgs[:1], tokenize=True, add_generation_prompt=True\\n        )\\n        asst_start = len(pre_asst_ids)\\n\\n        asst_end = asst_start\\n        while asst_end < len(full_ids) and full_ids[asst_end] != self.im_end_id:\\n            asst_end += 1\\n        asst_end += 1\\n\\n        resp_pos = len(full_ids) - 1\\n        full_ids = full_ids[: self.max_len]\\n        resp_pos = min(resp_pos, len(full_ids) - 1)\\n\\n        labels = [-100] * len(full_ids)\\n        for i in range(asst_start, min(asst_end, len(full_ids))):\\n            labels[i] = full_ids[i]\\n\\n        return (\\n            torch.tensor(full_ids, dtype=torch.long),\\n            torch.tensor(labels, dtype=torch.long),\\n            torch.ones(len(full_ids), dtype=torch.long),\\n            resp_pos,\\n        )\\n\\n    def __getitem__(self, idx):\\n        valid, invalid = self.pairs[idx]\\n        v_ids, v_labels, v_mask, v_pos = self._tokenize_sample(valid)\\n        i_ids, i_labels, i_mask, i_pos = self._tokenize_s\\n\\n... [截断: 输出过长，省略 3240 字符] ...\\n\\ners() if p.requires_grad]\\n    optimizer = torch.optim.AdamW(trainable, lr=args.lr, weight_decay=0.01)\\n    scheduler = get_linear_schedule_with_warmup(\\n        optimizer, args.warmup_steps, args.max_steps\\n    )\\n\\n    logger.info(\\n        \\\"Training: max_steps=%d grad_accum=%d lr=%s lambda_l2=%s pairs=%d\\\",\\n        args.max_steps, args.grad_accum, args.lr, args.lambda_l2, len(dataset),\\n    )\\n\\n    log_path = os.path.join(args.output_dir, \\\"train_log.jsonl\\\")\\n    step = 0\\n    micro = 0\\n    acc_sft = acc_l2 = acc_total = 0.0\\n    acc_n = 0\\n    t0 = time.time()\\n    model.train()\\n\\n    while step < args.max_steps:\\n        for batch in loader:\\n            if step >= args.max_steps:\\n                break\\n\\n            v_ids = batch[\\\"v_ids\\\"].unsqueeze(0).to(device)\\n            v_labels = batch[\\\"v_labels\\\"].unsqueeze(0).to(device)\\n            v_mask = batch[\\\"v_mask\\\"].unsqueeze(0).to(device)\\n            v_pos = batch[\\\"v_pos\\\"]\\n\\n            i_ids = batch[\\\"i_ids\\\"].unsqueeze(0).to(device)\\n            i_labels = batch[\\\"i_labels\\\"].unsqueeze(0).to(device)\\n            i_mask = batch[\\\"i_mask\\\"].unsqueeze(0).to(device)\\n            i_pos = batch[\\\"i_pos\\\"]\\n\\n            v_out = model(input_ids=v_ids, attention_mask=v_mask, labels=v_labels)\\n            v_h = act_cache.extract()\\n\\n            i_out = model(input_ids=i_ids, attention_mask=i_mask, labels=i_labels)\\n            i_h = act_cache.extract()\\n\\n            l2_parts = []\\n            for li in TARGET_LAYERS:\\n                if li in v_h and li in i_h:\\n                    hv = v_h[li][0, v_pos, :]\\n                    hi = i_h[li][0, i_pos, :]\\n                    l2_parts.append(torch.mean((hv - hi) ** 2))\\n\\n            l2_loss = torch.stack(l2_parts).mean() if l2_parts else torch.tensor(0.0, device=device)\\n            sft_loss = (v_out.loss + i_out.loss) / 2\\n            total_loss = sft_loss + args.lambda_l2 * l2_loss\\n\\n            (total_loss / args.grad_accum).backward()\\n\\n            acc_sft += sft_loss.item()\\n            acc_l2 += l2_loss.item()\\n            acc_total += total_loss.item()\\n            acc_n += 1\\n            micro += 1\\n\\n            if micro % args.grad_accum == 0:\\n                nn.utils.clip_grad_norm_(model.parameters(), 1.0)\\n                optimizer.step()\\n                scheduler.step()\\n                optimizer.zero_grad()\\n                step += 1\\n\\n                if step % args.logging_steps == 0:\\n                    n = max(acc_n, 1)\\n                    elapsed = time.time() - t0\\n                    logger.info(\\n                        \\\"step=%d/%d sft=%.4f l2=%.6f total=%.4f lr=%.2e elapsed=%.0fs\\\",\\n                        step, args.max_steps,\\n                        acc_sft / n, acc_l2 / n, acc_total / n,\\n                        scheduler.get_last_lr()[0], elapsed,\\n                    )\\n                    with open(log_path, \\\"a\\\") as f:\\n                        json.dump({\\n                            \\\"step\\\": step,\\n                            \\\"sft_loss\\\": round(acc_sft / n, 6),\\n                            \\\"l2_loss\\\": round(acc_l2 / n, 8),\\n                            \\\"total_loss\\\": round(acc_total / n, 6),\\n                            \\\"lr\\\": scheduler.get_last_lr()[0],\\n                            \\\"elapsed_s\\\": round(elapsed, 1),\\n                        }, f)\\n                        f.write(\\\"\\\\n\\\")\\n                    acc_sft = acc_l2 = acc_total = 0.0\\n                    acc_n = 0\\n\\n                if step % args.save_steps == 0:\\n                    ckpt_dir = os.path.join(args.output_dir, f\\\"checkpoint-{step}\\\")\\n                    model.save_pretrained(ckpt_dir)\\n                    tokenizer.save_pretrained(ckpt_dir)\\n                    logger.info(\\\"Saved checkpoint: %s\\\", ckpt_dir)\\n\\n    final_dir = os.path.join(args.output_dir, \\\"final\\\")\\n    model.save_pretrained(final_dir)\\n    tokenizer.save_pretrained(final_dir)\\n    elapsed = time.time() - t0\\n    logger.info(\\\"Training complete. %d steps in %.0fs. Final: %s\\\", step, elapsed, final_dir)\\n    act_cache.remove()\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.41}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The output was truncated. Let me get the full file - I need to see the `_tokenize_sample` method more carefully, and also check what data file it uses. Let me also check the arguments/defaults for the data path. Let me read the truncated middle part.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ad0527b5-26b9-40b7-b149-9e8337e1d68d",
+            "uuid": "7bedbd40-db61-4841-b060-8dca795f8e2e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A42B1uReVtjRufJFPwiDNU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3254,
+                "cache_read_input_tokens": 24823,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3254
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "输出被截断了，读取中间部分。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ad0527b5-26b9-40b7-b149-9e8337e1d68d",
+            "uuid": "f8752a68-ad73-48ad-bbc0-7254437fc31c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A42B1uReVtjRufJFPwiDNU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3254,
+                "cache_read_input_tokens": 24823,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3254
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GJsYBtefDTzepKFCDEYri3",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-28034",
+                "command": "head -150 /root/contrastive_entrain_calib/training/run_exp004_act_baseline.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ad0527b5-26b9-40b7-b149-9e8337e1d68d",
+            "uuid": "0f3ddcf9-aeae-46bb-ab66-afb0b1d50bad",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A42B1uReVtjRufJFPwiDNU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3254,
+                "cache_read_input_tokens": 24823,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3254
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T17:38:43.427Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GJsYBtefDTzepKFCDEYri3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp-004: ACT (Activation Consistency Training) baseline.\\\\n\\\\nSFT on paired calibration data + L2 consistency loss on hidden states\\\\nat target transformer layers between valid_correction and invalid_pressure pairs.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport sys\\\\nimport os\\\\nimport json\\\\nimport logging\\\\nimport argparse\\\\nimport random\\\\nimport time\\\\nfrom collections import defaultdict\\\\n\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom torch.utils.data import Dataset, DataLoader\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, get_linear_schedule_with_warmup\\\\nfrom peft import LoraConfig, get_peft_model\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/contrastive_entrain_calib/training\\\\\\\")\\\\nfrom dcgrpo_trainer import _resolve_transformer_layers\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n)\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nTARGET_LAYERS = [19, 20, 24, 27, 32, 33, 35]\\\\n\\\\n\\\\nclass GradActivationCache:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Forward-hook cache that preserves gradients for L2 loss backprop.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, layers):\\\\n        self.layers = sorted(layers)\\\\n        self._cache = {}\\\\n        self._hooks = []\\\\n\\\\n    def register(self, model):\\\\n        self.remove()\\\\n        all_layers = _resolve_transformer_layers(model)\\\\n        for idx in self.layers:\\\\n            assert idx < len(all_layers), f\\\\\\\"Layer {idx} >= {len(all_layers)}\\\\\\\"\\\\n            self._hooks.append(all_layers[idx].register_forward_hook(self._fn(idx)))\\\\n        logger.info(\\\\\\\"Activation hooks on layers %s\\\\\\\", self.layers)\\\\n\\\\n    def _fn(self, idx):\\\\n        def hook(mod, inp, out):\\\\n            self._cache[idx] = out[0] if isinstance(out, tuple) else out\\\\n        return hook\\\\n\\\\n    def extract(self):\\\\n        r = dict(self._cache)\\\\n        self._cache.clear()\\\\n        return r\\\\n\\\\n    def remove(self):\\\\n        for h in self._hooks:\\\\n            h.remove()\\\\n        self._hooks.clear()\\\\n        self._cache.clear()\\\\n\\\\n\\\\nclass PairedCalibrationDataset(Dataset):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Pairs valid_correction + invalid_pressure by pair_id.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, path, tokenizer, max_len=1024):\\\\n        self.tokenizer = tokenizer\\\\n        self.max_len = max_len\\\\n        self.im_end_id = tokenizer.convert_tokens_to_ids(\\\\\\\"<|im_end|>\\\\\\\")\\\\n\\\\n        groups = defaultdict(dict)\\\\n        with open(path) as f:\\\\n            for line in f:\\\\n                d = json.loads(line)\\\\n                groups[d[\\\\\\\"pair_id\\\\\\\"]][d[\\\\\\\"condition\\\\\\\"]] = d\\\\n\\\\n        self.pairs = []\\\\n        for pid in sorted(groups):\\\\n            g = groups[pid]\\\\n            if \\\\\\\"valid_correction\\\\\\\" in g and \\\\\\\"invalid_pressure\\\\\\\" in g:\\\\n                self.pairs.append((g[\\\\\\\"valid_correction\\\\\\\"], g[\\\\\\\"invalid_pressure\\\\\\\"]))\\\\n        logger.info(\\\\\\\"Loaded %d pairs from %s\\\\\\\", len(self.pairs), path)\\\\n\\\\n    def __len__(self):\\\\n        return len(self.pairs)\\\\n\\\\n    def _tokenize_sample(self, sample):\\\\n        msgs = [{\\\\\\\"role\\\\\\\": t[\\\\\\\"role\\\\\\\"], \\\\\\\"content\\\\\\\": t[\\\\\\\"content\\\\\\\"]} for t in sample[\\\\\\\"turns\\\\\\\"]]\\\\n\\\\n        full_ids = self.tokenizer.apply_chat_template(\\\\n            msgs, tokenize=True, add_generation_prompt=True\\\\n        )\\\\n\\\\n        pre_asst_ids = self.tokenizer.apply_chat_template(\\\\n            msgs[:1], tokenize=True, add_generation_prompt=True\\\\n        )\\\\n        asst_start = len(pre_asst_ids)\\\\n\\\\n        asst_end = asst_start\\\\n        while asst_end < len(full_ids) and full_ids[asst_end] != self.im_end_id:\\\\n            asst_end += 1\\\\n        asst_end += 1\\\\n\\\\n        resp_pos = len(full_ids) - 1\\\\n        full_ids = full_ids[: self.max_len]\\\\n        resp_pos = min(resp_pos, len(full_ids) - 1)\\\\n\\\\n        labels = [-100] * len(full_ids)\\\\n        for i in range(asst_start, min(asst_end, len(full_ids))):\\\\n            labels[i] = full_ids[i]\\\\n\\\\n        return (\\\\n            torch.tensor(full_ids, dtype=torch.long),\\\\n            torch.tensor(labels, dtype=torch.long),\\\\n            torch.ones(len(full_ids), dtype=torch.long),\\\\n            resp_pos,\\\\n        )\\\\n\\\\n    def __getitem__(self, idx):\\\\n        valid, invalid = self.pairs[idx]\\\\n        v_ids, v_labels, v_mask, v_pos = self._tokenize_sample(valid)\\\\n        i_ids, i_labels, i_mask, i_pos = self._tokenize_sample(invalid)\\\\n        return dict(\\\\n            v_ids=v_ids, v_labels=v_labels, v_mask=v_mask, v_pos=v_pos,\\\\n            i_ids=i_ids, i_labels=i_labels, i_mask=i_mask, i_pos=i_pos,\\\\n        )\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"exp-004 ACT baseline\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model-path\\\\\\\", default=\\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data-path\\\\\\\", default=\\\\\\\"/root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", default=\\\\\\\"/root/contrastive_entrain_calib/outputs/exp-004-act-baseline\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max-steps\\\\\\\", type=int, default=8000)\\\\n    parser.add_argument(\\\\\\\"--grad-accum\\\\\\\", type=int, default=16)\\\\n    parser.add_argument(\\\\\\\"--lr\\\\\\\", type=float, default=5e-5)\\\\n    parser.add_argument(\\\\\\\"--warmup-steps\\\\\\\", type=int, default=200)\\\\n    parser.add_argument(\\\\\\\"--lambda-l2\\\\\\\", type=float, default=0.1)\\\\n    parser.add_argument(\\\\\\\"--max-seq-len\\\\\\\", type=int, default=1024)\\\\n    parser.add_argument(\\\\\\\"--logging-steps\\\\\\\", type=int, default=10)\\\\n    parser.add_argument(\\\\\\\"--save-steps\\\\\\\", type=int, default=500)\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    parser.add_argument(\\\\\\\"--lora-rank\\\\\\\", type=int, default=64)\\\\n    args = parser.parse_args()\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ad0527b5-26b9-40b7-b149-9e8337e1d68d",
+            "uuid": "0b88f1fd-d3f3-488c-924b-bb2be10b597f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/usr/bin/env python3\\\\n\\\\\\\"\\\\\\\"\\\\\\\"exp-004: ACT (Activation Consistency Training) baseline.\\\\n\\\\nSFT on paired calibration data + L2 consistency loss on hidden states\\\\nat target transformer layers between valid_correction and invalid_pressure pairs.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport sys\\\\nimport os\\\\nimport json\\\\nimport logging\\\\nimport argparse\\\\nimport random\\\\nimport time\\\\nfrom collections import defaultdict\\\\n\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom torch.utils.data import Dataset, DataLoader\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, get_linear_schedule_with_warmup\\\\nfrom peft import LoraConfig, get_peft_model\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/contrastive_entrain_calib/training\\\\\\\")\\\\nfrom dcgrpo_trainer import _resolve_transformer_layers\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n)\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\nTARGET_LAYERS = [19, 20, 24, 27, 32, 33, 35]\\\\n\\\\n\\\\nclass GradActivationCache:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Forward-hook cache that preserves gradients for L2 loss backprop.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, layers):\\\\n        self.layers = sorted(layers)\\\\n        self._cache = {}\\\\n        self._hooks = []\\\\n\\\\n    def register(self, model):\\\\n        self.remove()\\\\n        all_layers = _resolve_transformer_layers(model)\\\\n        for idx in self.layers:\\\\n            assert idx < len(all_layers), f\\\\\\\"Layer {idx} >= {len(all_layers)}\\\\\\\"\\\\n            self._hooks.append(all_layers[idx].register_forward_hook(self._fn(idx)))\\\\n        logger.info(\\\\\\\"Activation hooks on layers %s\\\\\\\", self.layers)\\\\n\\\\n    def _fn(self, idx):\\\\n        def hook(mod, inp, out):\\\\n            self._cache[idx] = out[0] if isinstance(out, tuple) else out\\\\n        return hook\\\\n\\\\n    def extract(self):\\\\n        r = dict(self._cache)\\\\n        self._cache.clear()\\\\n        return r\\\\n\\\\n    def remove(self):\\\\n        for h in self._hooks:\\\\n            h.remove()\\\\n        self._hooks.clear()\\\\n        self._cache.clear()\\\\n\\\\n\\\\nclass PairedCalibrationDataset(Dataset):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Pairs valid_correction + invalid_pressure by pair_id.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, path, tokenizer, max_len=1024):\\\\n        self.tokenizer = tokenizer\\\\n        self.max_len = max_len\\\\n        self.im_end_id = tokenizer.convert_tokens_to_ids(\\\\\\\"<|im_end|>\\\\\\\")\\\\n\\\\n        groups = defaultdict(dict)\\\\n        with open(path) as f:\\\\n            for line in f:\\\\n                d = json.loads(line)\\\\n                groups[d[\\\\\\\"pair_id\\\\\\\"]][d[\\\\\\\"condition\\\\\\\"]] = d\\\\n\\\\n        self.pairs = []\\\\n        for pid in sorted(groups):\\\\n            g = groups[pid]\\\\n            if \\\\\\\"valid_correction\\\\\\\" in g and \\\\\\\"invalid_pressure\\\\\\\" in g:\\\\n                self.pairs.append((g[\\\\\\\"valid_correction\\\\\\\"], g[\\\\\\\"invalid_pressure\\\\\\\"]))\\\\n        logger.info(\\\\\\\"Loaded %d pairs from %s\\\\\\\", len(self.pairs), path)\\\\n\\\\n    def __len__(self):\\\\n        return len(self.pairs)\\\\n\\\\n    def _tokenize_sample(self, sample):\\\\n        msgs = [{\\\\\\\"role\\\\\\\": t[\\\\\\\"role\\\\\\\"], \\\\\\\"content\\\\\\\": t[\\\\\\\"content\\\\\\\"]} for t in sample[\\\\\\\"turns\\\\\\\"]]\\\\n\\\\n        full_ids = self.tokenizer.apply_chat_template(\\\\n            msgs, tokenize=True, add_generation_prompt=True\\\\n        )\\\\n\\\\n        pre_asst_ids = self.tokenizer.apply_chat_template(\\\\n            msgs[:1], tokenize=True, add_generation_prompt=True\\\\n        )\\\\n        asst_start = len(pre_asst_ids)\\\\n\\\\n        asst_end = asst_start\\\\n        while asst_end < len(full_ids) and full_ids[asst_end] != self.im_end_id:\\\\n            asst_end += 1\\\\n        asst_end += 1\\\\n\\\\n        resp_pos = len(full_ids) - 1\\\\n        full_ids = full_ids[: self.max_len]\\\\n        resp_pos = min(resp_pos, len(full_ids) - 1)\\\\n\\\\n        labels = [-100] * len(full_ids)\\\\n        for i in range(asst_start, min(asst_end, len(full_ids))):\\\\n            labels[i] = full_ids[i]\\\\n\\\\n        return (\\\\n            torch.tensor(full_ids, dtype=torch.long),\\\\n            torch.tensor(labels, dtype=torch.long),\\\\n            torch.ones(len(full_ids), dtype=torch.long),\\\\n            resp_pos,\\\\n        )\\\\n\\\\n    def __getitem__(self, idx):\\\\n        valid, invalid = self.pairs[idx]\\\\n        v_ids, v_labels, v_mask, v_pos = self._tokenize_sample(valid)\\\\n        i_ids, i_labels, i_mask, i_pos = self._tokenize_sample(invalid)\\\\n        return dict(\\\\n            v_ids=v_ids, v_labels=v_labels, v_mask=v_mask, v_pos=v_pos,\\\\n            i_ids=i_ids, i_labels=i_labels, i_mask=i_mask, i_pos=i_pos,\\\\n        )\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"exp-004 ACT baseline\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model-path\\\\\\\", default=\\\\\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data-path\\\\\\\", default=\\\\\\\"/root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output-dir\\\\\\\", default=\\\\\\\"/root/contrastive_entrain_calib/outputs/exp-004-act-baseline\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max-steps\\\\\\\", type=int, default=8000)\\\\n    parser.add_argument(\\\\\\\"--grad-accum\\\\\\\", type=int, default=16)\\\\n    parser.add_argument(\\\\\\\"--lr\\\\\\\", type=float, default=5e-5)\\\\n    parser.add_argument(\\\\\\\"--warmup-steps\\\\\\\", type=int, default=200)\\\\n    parser.add_argument(\\\\\\\"--lambda-l2\\\\\\\", type=float, default=0.1)\\\\n    parser.add_argument(\\\\\\\"--max-seq-len\\\\\\\", type=int, default=1024)\\\\n    parser.add_argument(\\\\\\\"--logging-steps\\\\\\\", type=int, default=10)\\\\n    parser.add_argument(\\\\\\\"--save-steps\\\\\\\", type=int, default=500)\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    parser.add_argument(\\\\\\\"--lora-rank\\\\\\\", type=int, default=64)\\\\n    args = parser.parse_args()\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"#!/usr/bin/env python3\\n\\\"\\\"\\\"exp-004: ACT (Activation Consistency Training) baseline.\\n\\nSFT on paired calibration data + L2 consistency loss on hidden states\\nat target transformer layers between valid_correction and invalid_pressure pairs.\\n\\\"\\\"\\\"\\n\\nimport sys\\nimport os\\nimport json\\nimport logging\\nimport argparse\\nimport random\\nimport time\\nfrom collections import defaultdict\\n\\nimport torch\\nimport torch.nn as nn\\nfrom torch.utils.data import Dataset, DataLoader\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer, get_linear_schedule_with_warmup\\nfrom peft import LoraConfig, get_peft_model\\n\\nsys.path.insert(0, \\\"/root/contrastive_entrain_calib/training\\\")\\nfrom dcgrpo_trainer import _resolve_transformer_layers\\n\\nlogging.basicConfig(\\n    level=logging.INFO,\\n    format=\\\"%(asctime)s [%(levelname)s] %(message)s\\\",\\n)\\nlogger = logging.getLogger(__name__)\\n\\nTARGET_LAYERS = [19, 20, 24, 27, 32, 33, 35]\\n\\n\\nclass GradActivationCache:\\n    \\\"\\\"\\\"Forward-hook cache that preserves gradients for L2 loss backprop.\\\"\\\"\\\"\\n\\n    def __init__(self, layers):\\n        self.layers = sorted(layers)\\n        self._cache = {}\\n        self._hooks = []\\n\\n    def register(self, model):\\n        self.remove()\\n        all_layers = _resolve_transformer_layers(model)\\n        for idx in self.layers:\\n            assert idx < len(all_layers), f\\\"Layer {idx} >= {len(all_layers)}\\\"\\n            self._hooks.append(all_layers[idx].register_forward_hook(self._fn(idx)))\\n        logger.info(\\\"Activation hooks on layers %s\\\", self.layers)\\n\\n    def _fn(self, idx):\\n        def hook(mod, inp, out):\\n            self._cache[idx] = out[0] if isinstance(out, tuple) else out\\n        return hook\\n\\n    def extract(self):\\n        r = dict(self._cache)\\n        self._cache.clear()\\n        return r\\n\\n    def remove(self):\\n        for h in self._hooks:\\n            h.remove()\\n        self._hooks.clear()\\n        self._cache.clear()\\n\\n\\nclass PairedCalibrationDataset(Dataset):\\n    \\\"\\\"\\\"Pairs valid_correction + invalid_pressure by pair_id.\\\"\\\"\\\"\\n\\n    def __init__(self, path, tokenizer, max_len=1024):\\n        self.tokenizer = tokenizer\\n        self.max_len = max_len\\n        self.im_end_id = tokenizer.convert_tokens_to_ids(\\\"<|im_end|>\\\")\\n\\n        groups = defaultdict(dict)\\n        with open(path) as f:\\n            for line in f:\\n                d = json.loads(line)\\n                groups[d[\\\"pair_id\\\"]][d[\\\"condition\\\"]] = d\\n\\n        self.pairs = []\\n        for pid in sorted(groups):\\n            g = groups[pid]\\n            if \\\"valid_correction\\\" in g and \\\"invalid_pressure\\\" in g:\\n                self.pairs.append((g[\\\"valid_correction\\\"], g[\\\"invalid_pressure\\\"]))\\n        logger.info(\\\"Loaded %d pairs from %s\\\", len(self.pairs), path)\\n\\n    def __len__(self):\\n        return len(self.pairs)\\n\\n    def _tokenize_sample(self, sample):\\n        msgs = [{\\\"role\\\": t[\\\"role\\\"], \\\"content\\\": t[\\\"content\\\"]} for t in sample[\\\"turns\\\"]]\\n\\n        full_ids = self.tokenizer.apply_chat_template(\\n            msgs, tokenize=True, add_generation_prompt=True\\n        )\\n\\n        pre_asst_ids = self.tokenizer.apply_chat_template(\\n            msgs[:1], tokenize=True, add_generation_prompt=True\\n        )\\n        asst_start = len(pre_asst_ids)\\n\\n        asst_end = asst_start\\n        while asst_end < len(full_ids) and full_ids[asst_end] != self.im_end_id:\\n            asst_end += 1\\n        asst_end += 1\\n\\n        resp_pos = len(full_ids) - 1\\n        full_ids = full_ids[: self.max_len]\\n        resp_pos = min(resp_pos, len(full_ids) - 1)\\n\\n        labels = [-100] * len(full_ids)\\n        for i in range(asst_start, min(asst_end, len(full_ids))):\\n            labels[i] = full_ids[i]\\n\\n        return (\\n            torch.tensor(full_ids, dtype=torch.long),\\n            torch.tensor(labels, dtype=torch.long),\\n            torch.ones(len(full_ids), dtype=torch.long),\\n            resp_pos,\\n        )\\n\\n    def __getitem__(self, idx):\\n        valid, invalid = self.pairs[idx]\\n        v_ids, v_labels, v_mask, v_pos = self._tokenize_sample(valid)\\n        i_ids, i_labels, i_mask, i_pos = self._tokenize_sample(invalid)\\n        return dict(\\n            v_ids=v_ids, v_labels=v_labels, v_mask=v_mask, v_pos=v_pos,\\n            i_ids=i_ids, i_labels=i_labels, i_mask=i_mask, i_pos=i_pos,\\n        )\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"exp-004 ACT baseline\\\")\\n    parser.add_argument(\\\"--model-path\\\", default=\\\"/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\\\")\\n    parser.add_argument(\\\"--data-path\\\", default=\\\"/root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl\\\")\\n    parser.add_argument(\\\"--output-dir\\\", default=\\\"/root/contrastive_entrain_calib/outputs/exp-004-act-baseline\\\")\\n    parser.add_argument(\\\"--max-steps\\\", type=int, default=8000)\\n    parser.add_argument(\\\"--grad-accum\\\", type=int, default=16)\\n    parser.add_argument(\\\"--lr\\\", type=float, default=5e-5)\\n    parser.add_argument(\\\"--warmup-steps\\\", type=int, default=200)\\n    parser.add_argument(\\\"--lambda-l2\\\", type=float, default=0.1)\\n    parser.add_argument(\\\"--max-seq-len\\\", type=int, default=1024)\\n    parser.add_argument(\\\"--logging-steps\\\", type=int, default=10)\\n    parser.add_argument(\\\"--save-steps\\\", type=int, default=500)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n    parser.add_argument(\\\"--lora-rank\\\", type=int, default=64)\\n    args = parser.parse_args()\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0195dNpVU33HmCsDUES8EaHs",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-28034",
+                "command": "tail -150 /root/contrastive_entrain_calib/training/run_exp004_act_baseline.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ad0527b5-26b9-40b7-b149-9e8337e1d68d",
+            "uuid": "6ce7606e-b60b-4cbe-bea1-121f92ad0dd9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01A42B1uReVtjRufJFPwiDNU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3254,
+                "cache_read_input_tokens": 24823,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3254
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T17:38:44.027Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0195dNpVU33HmCsDUES8EaHs",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    model = AutoModelForCausalLM.from_pretrained(\\\\n        args.model_path,\\\\n        torch_dtype=torch.bfloat16,\\\\n        trust_remote_code=True,\\\\n    ).to(device)\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    lora_config = LoraConfig(\\\\n        r=args.lora_rank,\\\\n        lora_alpha=args.lora_rank * 2,\\\\n        target_modules=[\\\\\\\"q_proj\\\\\\\", \\\\\\\"k_proj\\\\\\\", \\\\\\\"v_proj\\\\\\\", \\\\\\\"o_proj\\\\\\\", \\\\\\\"gate_proj\\\\\\\", \\\\\\\"up_proj\\\\\\\", \\\\\\\"down_proj\\\\\\\"],\\\\n        lora_dropout=0.05,\\\\n        bias=\\\\\\\"none\\\\\\\",\\\\n        task_type=\\\\\\\"CAUSAL_LM\\\\\\\",\\\\n    )\\\\n    model = get_peft_model(model, lora_config)\\\\n    model.print_trainable_parameters()\\\\n    model.gradient_checkpointing_enable(\\\\n        gradient_checkpointing_kwargs={\\\\\\\"use_reentrant\\\\\\\": False}\\\\n    )\\\\n\\\\n    act_cache = GradActivationCache(TARGET_LAYERS)\\\\n    act_cache.register(model)\\\\n\\\\n    dataset = PairedCalibrationDataset(args.data_path, tokenizer, args.max_seq_len)\\\\n    loader = DataLoader(\\\\n        dataset, batch_size=1, shuffle=True, num_workers=0,\\\\n        collate_fn=lambda b: b[0],\\\\n    )\\\\n\\\\n    s0 = dataset[0]\\\\n    vp = s0[\\\\\\\"v_pos\\\\\\\"]\\\\n    logger.info(\\\\n        \\\\\\\"Sample 0: v_len=%d i_len=%d v_pos=%d i_pos=%d sft_tokens=%d\\\\\\\",\\\\n        len(s0[\\\\\\\"v_ids\\\\\\\"]), len(s0[\\\\\\\"i_ids\\\\\\\"]),\\\\n        s0[\\\\\\\"v_pos\\\\\\\"], s0[\\\\\\\"i_pos\\\\\\\"],\\\\n        (s0[\\\\\\\"v_labels\\\\\\\"] != -100).sum().item(),\\\\n    )\\\\n    logger.info(\\\\n        \\\\\\\"Tokens around resp_pos: ...%s\\\\\\\",\\\\n        tokenizer.decode(s0[\\\\\\\"v_ids\\\\\\\"][max(0, vp - 5) : vp + 1]),\\\\n    )\\\\n\\\\n    trainable = [p for p in model.parameters() if p.requires_grad]\\\\n    optimizer = torch.optim.AdamW(trainable, lr=args.lr, weight_decay=0.01)\\\\n    scheduler = get_linear_schedule_with_warmup(\\\\n        optimizer, args.warmup_steps, args.max_steps\\\\n    )\\\\n\\\\n    logger.info(\\\\n        \\\\\\\"Training: max_steps=%d grad_accum=%d lr=%s lambda_l2=%s pairs=%d\\\\\\\",\\\\n        args.max_steps, args.grad_accum, args.lr, args.lambda_l2, len(dataset),\\\\n    )\\\\n\\\\n    log_path = os.path.join(args.output_dir, \\\\\\\"train_log.jsonl\\\\\\\")\\\\n    step = 0\\\\n    micro = 0\\\\n    acc_sft = acc_l2 = acc_total = 0.0\\\\n    acc_n = 0\\\\n    t0 = time.time()\\\\n    model.train()\\\\n\\\\n    while step < args.max_steps:\\\\n        for batch in loader:\\\\n            if step >= args.max_steps:\\\\n                break\\\\n\\\\n            v_ids = batch[\\\\\\\"v_ids\\\\\\\"].unsqueeze(0).to(device)\\\\n            v_labels = batch[\\\\\\\"v_labels\\\\\\\"].unsqueeze(0).to(device)\\\\n            v_mask = batch[\\\\\\\"v_mask\\\\\\\"].unsqueeze(0).to(device)\\\\n            v_pos = batch[\\\\\\\"v_pos\\\\\\\"]\\\\n\\\\n            i_ids = batch[\\\\\\\"i_ids\\\\\\\"].unsqueeze(0).to(device)\\\\n            i_labels = batch[\\\\\\\"i_labels\\\\\\\"].unsqueeze(0).to(device)\\\\n            i_mask = batch[\\\\\\\"i_mask\\\\\\\"].unsqueeze(0).to(device)\\\\n            i_pos = batch[\\\\\\\"i_pos\\\\\\\"]\\\\n\\\\n            v_out = model(input_ids=v_ids, attention_mask=v_mask, labels=v_labels)\\\\n            v_h = act_cache.extract()\\\\n\\\\n            i_out = model(input_ids=i_ids, attention_mask=i_mask, labels=i_labels)\\\\n            i_h = act_cache.extract()\\\\n\\\\n            l2_parts = []\\\\n            for li in TARGET_LAYERS:\\\\n                if li in v_h and li in i_h:\\\\n                    hv = v_h[li][0, v_pos, :]\\\\n                    hi = i_h[li][0, i_pos, :]\\\\n                    l2_parts.append(torch.mean((hv - hi) ** 2))\\\\n\\\\n            l2_loss = torch.stack(l2_parts).mean() if l2_parts else torch.tensor(0.0, device=device)\\\\n            sft_loss = (v_out.loss + i_out.loss) / 2\\\\n            total_loss = sft_loss + args.lambda_l2 * l2_loss\\\\n\\\\n            (total_loss / args.grad_accum).backward()\\\\n\\\\n            acc_sft += sft_loss.item()\\\\n            acc_l2 += l2_loss.item()\\\\n            acc_total += total_loss.item()\\\\n            acc_n += 1\\\\n            micro += 1\\\\n\\\\n            if micro % args.grad_accum == 0:\\\\n                nn.utils.clip_grad_norm_(model.parameters(), 1.0)\\\\n                optimizer.step()\\\\n                scheduler.step()\\\\n                optimizer.zero_grad()\\\\n                step += 1\\\\n\\\\n                if step % args.logging_steps == 0:\\\\n                    n = max(acc_n, 1)\\\\n                    elapsed = time.time() - t0\\\\n                    logger.info(\\\\n                        \\\\\\\"step=%d/%d sft=%.4f l2=%.6f total=%.4f lr=%.2e elapsed=%.0fs\\\\\\\",\\\\n                        step, args.max_steps,\\\\n                        acc_sft / n, acc_l2 / n, acc_total / n,\\\\n                        scheduler.get_last_lr()[0], elapsed,\\\\n                    )\\\\n                    with open(log_path, \\\\\\\"a\\\\\\\") as f:\\\\n                        json.dump({\\\\n                            \\\\\\\"step\\\\\\\": step,\\\\n                            \\\\\\\"sft_loss\\\\\\\": round(acc_sft / n, 6),\\\\n                            \\\\\\\"l2_loss\\\\\\\": round(acc_l2 / n, 8),\\\\n                            \\\\\\\"total_loss\\\\\\\": round(acc_total / n, 6),\\\\n                            \\\\\\\"lr\\\\\\\": scheduler.get_last_lr()[0],\\\\n                            \\\\\\\"elapsed_s\\\\\\\": round(elapsed, 1),\\\\n                        }, f)\\\\n                        f.write(\\\\\\\"\\\\\\\\n\\\\\\\")\\\\n                    acc_sft = acc_l2 = acc_total = 0.0\\\\n                    acc_n = 0\\\\n\\\\n                if step % args.save_steps == 0:\\\\n                    ckpt_dir = os.path.join(args.output_dir, f\\\\\\\"checkpoint-{step}\\\\\\\")\\\\n                    model.save_pretrained(ckpt_dir)\\\\n                    tokenizer.save_pretrained(ckpt_dir)\\\\n                    logger.info(\\\\\\\"Saved checkpoint: %s\\\\\\\", ckpt_dir)\\\\n\\\\n    final_dir = os.path.join(args.output_dir, \\\\\\\"final\\\\\\\")\\\\n    model.save_pretrained(final_dir)\\\\n    tokenizer.save_pretrained(final_dir)\\\\n    elapsed = time.time() - t0\\\\n    logger.info(\\\\\\\"Training complete. %d steps in %.0fs. Final: %s\\\\\\\", step, elapsed, final_dir)\\\\n    act_cache.remove()\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ad0527b5-26b9-40b7-b149-9e8337e1d68d",
+            "uuid": "1f6e023c-e3ca-4819-8ada-1d5fb9f72c1d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    model = AutoModelForCausalLM.from_pretrained(\\\\n        args.model_path,\\\\n        torch_dtype=torch.bfloat16,\\\\n        trust_remote_code=True,\\\\n    ).to(device)\\\\n\\\\n    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)\\\\n    if tokenizer.pad_token is None:\\\\n        tokenizer.pad_token = tokenizer.eos_token\\\\n\\\\n    lora_config = LoraConfig(\\\\n        r=args.lora_rank,\\\\n        lora_alpha=args.lora_rank * 2,\\\\n        target_modules=[\\\\\\\"q_proj\\\\\\\", \\\\\\\"k_proj\\\\\\\", \\\\\\\"v_proj\\\\\\\", \\\\\\\"o_proj\\\\\\\", \\\\\\\"gate_proj\\\\\\\", \\\\\\\"up_proj\\\\\\\", \\\\\\\"down_proj\\\\\\\"],\\\\n        lora_dropout=0.05,\\\\n        bias=\\\\\\\"none\\\\\\\",\\\\n        task_type=\\\\\\\"CAUSAL_LM\\\\\\\",\\\\n    )\\\\n    model = get_peft_model(model, lora_config)\\\\n    model.print_trainable_parameters()\\\\n    model.gradient_checkpointing_enable(\\\\n        gradient_checkpointing_kwargs={\\\\\\\"use_reentrant\\\\\\\": False}\\\\n    )\\\\n\\\\n    act_cache = GradActivationCache(TARGET_LAYERS)\\\\n    act_cache.register(model)\\\\n\\\\n    dataset = PairedCalibrationDataset(args.data_path, tokenizer, args.max_seq_len)\\\\n    loader = DataLoader(\\\\n        dataset, batch_size=1, shuffle=True, num_workers=0,\\\\n        collate_fn=lambda b: b[0],\\\\n    )\\\\n\\\\n    s0 = dataset[0]\\\\n    vp = s0[\\\\\\\"v_pos\\\\\\\"]\\\\n    logger.info(\\\\n        \\\\\\\"Sample 0: v_len=%d i_len=%d v_pos=%d i_pos=%d sft_tokens=%d\\\\\\\",\\\\n        len(s0[\\\\\\\"v_ids\\\\\\\"]), len(s0[\\\\\\\"i_ids\\\\\\\"]),\\\\n        s0[\\\\\\\"v_pos\\\\\\\"], s0[\\\\\\\"i_pos\\\\\\\"],\\\\n        (s0[\\\\\\\"v_labels\\\\\\\"] != -100).sum().item(),\\\\n    )\\\\n    logger.info(\\\\n        \\\\\\\"Tokens around resp_pos: ...%s\\\\\\\",\\\\n        tokenizer.decode(s0[\\\\\\\"v_ids\\\\\\\"][max(0, vp - 5) : vp + 1]),\\\\n    )\\\\n\\\\n    trainable = [p for p in model.parameters() if p.requires_grad]\\\\n    optimizer = torch.optim.AdamW(trainable, lr=args.lr, weight_decay=0.01)\\\\n    scheduler = get_linear_schedule_with_warmup(\\\\n        optimizer, args.warmup_steps, args.max_steps\\\\n    )\\\\n\\\\n    logger.info(\\\\n        \\\\\\\"Training: max_steps=%d grad_accum=%d lr=%s lambda_l2=%s pairs=%d\\\\\\\",\\\\n        args.max_steps, args.grad_accum, args.lr, args.lambda_l2, len(dataset),\\\\n    )\\\\n\\\\n    log_path = os.path.join(args.output_dir, \\\\\\\"train_log.jsonl\\\\\\\")\\\\n    step = 0\\\\n    micro = 0\\\\n    acc_sft = acc_l2 = acc_total = 0.0\\\\n    acc_n = 0\\\\n    t0 = time.time()\\\\n    model.train()\\\\n\\\\n    while step < args.max_steps:\\\\n        for batch in loader:\\\\n            if step >= args.max_steps:\\\\n                break\\\\n\\\\n            v_ids = batch[\\\\\\\"v_ids\\\\\\\"].unsqueeze(0).to(device)\\\\n            v_labels = batch[\\\\\\\"v_labels\\\\\\\"].unsqueeze(0).to(device)\\\\n            v_mask = batch[\\\\\\\"v_mask\\\\\\\"].unsqueeze(0).to(device)\\\\n            v_pos = batch[\\\\\\\"v_pos\\\\\\\"]\\\\n\\\\n            i_ids = batch[\\\\\\\"i_ids\\\\\\\"].unsqueeze(0).to(device)\\\\n            i_labels = batch[\\\\\\\"i_labels\\\\\\\"].unsqueeze(0).to(device)\\\\n            i_mask = batch[\\\\\\\"i_mask\\\\\\\"].unsqueeze(0).to(device)\\\\n            i_pos = batch[\\\\\\\"i_pos\\\\\\\"]\\\\n\\\\n            v_out = model(input_ids=v_ids, attention_mask=v_mask, labels=v_labels)\\\\n            v_h = act_cache.extract()\\\\n\\\\n            i_out = model(input_ids=i_ids, attention_mask=i_mask, labels=i_labels)\\\\n            i_h = act_cache.extract()\\\\n\\\\n            l2_parts = []\\\\n            for li in TARGET_LAYERS:\\\\n                if li in v_h and li in i_h:\\\\n                    hv = v_h[li][0, v_pos, :]\\\\n                    hi = i_h[li][0, i_pos, :]\\\\n                    l2_parts.append(torch.mean((hv - hi) ** 2))\\\\n\\\\n            l2_loss = torch.stack(l2_parts).mean() if l2_parts else torch.tensor(0.0, device=device)\\\\n            sft_loss = (v_out.loss + i_out.loss) / 2\\\\n            total_loss = sft_loss + args.lambda_l2 * l2_loss\\\\n\\\\n            (total_loss / args.grad_accum).backward()\\\\n\\\\n            acc_sft += sft_loss.item()\\\\n            acc_l2 += l2_loss.item()\\\\n            acc_total += total_loss.item()\\\\n            acc_n += 1\\\\n            micro += 1\\\\n\\\\n            if micro % args.grad_accum == 0:\\\\n                nn.utils.clip_grad_norm_(model.parameters(), 1.0)\\\\n                optimizer.step()\\\\n                scheduler.step()\\\\n                optimizer.zero_grad()\\\\n                step += 1\\\\n\\\\n                if step % args.logging_steps == 0:\\\\n                    n = max(acc_n, 1)\\\\n                    elapsed = time.time() - t0\\\\n                    logger.info(\\\\n                        \\\\\\\"step=%d/%d sft=%.4f l2=%.6f total=%.4f lr=%.2e elapsed=%.0fs\\\\\\\",\\\\n                        step, args.max_steps,\\\\n                        acc_sft / n, acc_l2 / n, acc_total / n,\\\\n                        scheduler.get_last_lr()[0], elapsed,\\\\n                    )\\\\n                    with open(log_path, \\\\\\\"a\\\\\\\") as f:\\\\n                        json.dump({\\\\n                            \\\\\\\"step\\\\\\\": step,\\\\n                            \\\\\\\"sft_loss\\\\\\\": round(acc_sft / n, 6),\\\\n                            \\\\\\\"l2_loss\\\\\\\": round(acc_l2 / n, 8),\\\\n                            \\\\\\\"total_loss\\\\\\\": round(acc_total / n, 6),\\\\n                            \\\\\\\"lr\\\\\\\": scheduler.get_last_lr()[0],\\\\n                            \\\\\\\"elapsed_s\\\\\\\": round(elapsed, 1),\\\\n                        }, f)\\\\n                        f.write(\\\\\\\"\\\\\\\\n\\\\\\\")\\\\n                    acc_sft = acc_l2 = acc_total = 0.0\\\\n                    acc_n = 0\\\\n\\\\n                if step % args.save_steps == 0:\\\\n                    ckpt_dir = os.path.join(args.output_dir, f\\\\\\\"checkpoint-{step}\\\\\\\")\\\\n                    model.save_pretrained(ckpt_dir)\\\\n                    tokenizer.save_pretrained(ckpt_dir)\\\\n                    logger.info(\\\\\\\"Saved checkpoint: %s\\\\\\\", ckpt_dir)\\\\n\\\\n    final_dir = os.path.join(args.output_dir, \\\\\\\"final\\\\\\\")\\\\n    model.save_pretrained(final_dir)\\\\n    tokenizer.save_pretrained(final_dir)\\\\n    elapsed = time.time() - t0\\\\n    logger.info(\\\\\\\"Training complete. %d steps in %.0fs. Final: %s\\\\\\\", step, elapsed, final_dir)\\\\n    act_cache.remove()\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"    model = AutoModelForCausalLM.from_pretrained(\\n        args.model_path,\\n        torch_dtype=torch.bfloat16,\\n        trust_remote_code=True,\\n    ).to(device)\\n\\n    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)\\n    if tokenizer.pad_token is None:\\n        tokenizer.pad_token = tokenizer.eos_token\\n\\n    lora_config = LoraConfig(\\n        r=args.lora_rank,\\n        lora_alpha=args.lora_rank * 2,\\n        target_modules=[\\\"q_proj\\\", \\\"k_proj\\\", \\\"v_proj\\\", \\\"o_proj\\\", \\\"gate_proj\\\", \\\"up_proj\\\", \\\"down_proj\\\"],\\n        lora_dropout=0.05,\\n        bias=\\\"none\\\",\\n        task_type=\\\"CAUSAL_LM\\\",\\n    )\\n    model = get_peft_model(model, lora_config)\\n    model.print_trainable_parameters()\\n    model.gradient_checkpointing_enable(\\n        gradient_checkpointing_kwargs={\\\"use_reentrant\\\": False}\\n    )\\n\\n    act_cache = GradActivationCache(TARGET_LAYERS)\\n    act_cache.register(model)\\n\\n    dataset = PairedCalibrationDataset(args.data_path, tokenizer, args.max_seq_len)\\n    loader = DataLoader(\\n        dataset, batch_size=1, shuffle=True, num_workers=0,\\n        collate_fn=lambda b: b[0],\\n    )\\n\\n    s0 = dataset[0]\\n    vp = s0[\\\"v_pos\\\"]\\n    logger.info(\\n        \\\"Sample 0: v_len=%d i_len=%d v_pos=%d i_pos=%d sft_tokens=%d\\\",\\n        len(s0[\\\"v_ids\\\"]), len(s0[\\\"i_ids\\\"]),\\n        s0[\\\"v_pos\\\"], s0[\\\"i_pos\\\"],\\n        (s0[\\\"v_labels\\\"] != -100).sum().item(),\\n    )\\n    logger.info(\\n        \\\"Tokens around resp_pos: ...%s\\\",\\n        tokenizer.decode(s0[\\\"v_ids\\\"][max(0, vp - 5) : vp + 1]),\\n    )\\n\\n    trainable = [p for p in model.parameters() if p.requires_grad]\\n    optimizer = torch.optim.AdamW(trainable, lr=args.lr, weight_decay=0.01)\\n    scheduler = get_linear_schedule_with_warmup(\\n        optimizer, args.warmup_steps, args.max_steps\\n    )\\n\\n    logger.info(\\n        \\\"Training: max_steps=%d grad_accum=%d lr=%s lambda_l2=%s pairs=%d\\\",\\n        args.max_steps, args.grad_accum, args.lr, args.lambda_l2, len(dataset),\\n    )\\n\\n    log_path = os.path.join(args.output_dir, \\\"train_log.jsonl\\\")\\n    step = 0\\n    micro = 0\\n    acc_sft = acc_l2 = acc_total = 0.0\\n    acc_n = 0\\n    t0 = time.time()\\n    model.train()\\n\\n    while step < args.max_steps:\\n        for batch in loader:\\n            if step >= args.max_steps:\\n                break\\n\\n            v_ids = batch[\\\"v_ids\\\"].unsqueeze(0).to(device)\\n            v_labels = batch[\\\"v_labels\\\"].unsqueeze(0).to(device)\\n            v_mask = batch[\\\"v_mask\\\"].unsqueeze(0).to(device)\\n            v_pos = batch[\\\"v_pos\\\"]\\n\\n            i_ids = batch[\\\"i_ids\\\"].unsqueeze(0).to(device)\\n            i_labels = batch[\\\"i_labels\\\"].unsqueeze(0).to(device)\\n            i_mask = batch[\\\"i_mask\\\"].unsqueeze(0).to(device)\\n            i_pos = batch[\\\"i_pos\\\"]\\n\\n            v_out = model(input_ids=v_ids, attention_mask=v_mask, labels=v_labels)\\n            v_h = act_cache.extract()\\n\\n            i_out = model(input_ids=i_ids, attention_mask=i_mask, labels=i_labels)\\n            i_h = act_cache.extract()\\n\\n            l2_parts = []\\n            for li in TARGET_LAYERS:\\n                if li in v_h and li in i_h:\\n                    hv = v_h[li][0, v_pos, :]\\n                    hi = i_h[li][0, i_pos, :]\\n                    l2_parts.append(torch.mean((hv - hi) ** 2))\\n\\n            l2_loss = torch.stack(l2_parts).mean() if l2_parts else torch.tensor(0.0, device=device)\\n            sft_loss = (v_out.loss + i_out.loss) / 2\\n            total_loss = sft_loss + args.lambda_l2 * l2_loss\\n\\n            (total_loss / args.grad_accum).backward()\\n\\n            acc_sft += sft_loss.item()\\n            acc_l2 += l2_loss.item()\\n            acc_total += total_loss.item()\\n            acc_n += 1\\n            micro += 1\\n\\n            if micro % args.grad_accum == 0:\\n                nn.utils.clip_grad_norm_(model.parameters(), 1.0)\\n                optimizer.step()\\n                scheduler.step()\\n                optimizer.zero_grad()\\n                step += 1\\n\\n                if step % args.logging_steps == 0:\\n                    n = max(acc_n, 1)\\n                    elapsed = time.time() - t0\\n                    logger.info(\\n                        \\\"step=%d/%d sft=%.4f l2=%.6f total=%.4f lr=%.2e elapsed=%.0fs\\\",\\n                        step, args.max_steps,\\n                        acc_sft / n, acc_l2 / n, acc_total / n,\\n                        scheduler.get_last_lr()[0], elapsed,\\n                    )\\n                    with open(log_path, \\\"a\\\") as f:\\n                        json.dump({\\n                            \\\"step\\\": step,\\n                            \\\"sft_loss\\\": round(acc_sft / n, 6),\\n                            \\\"l2_loss\\\": round(acc_l2 / n, 8),\\n                            \\\"total_loss\\\": round(acc_total / n, 6),\\n                            \\\"lr\\\": scheduler.get_last_lr()[0],\\n                            \\\"elapsed_s\\\": round(elapsed, 1),\\n                        }, f)\\n                        f.write(\\\"\\\\n\\\")\\n                    acc_sft = acc_l2 = acc_total = 0.0\\n                    acc_n = 0\\n\\n                if step % args.save_steps == 0:\\n                    ckpt_dir = os.path.join(args.output_dir, f\\\"checkpoint-{step}\\\")\\n                    model.save_pretrained(ckpt_dir)\\n                    tokenizer.save_pretrained(ckpt_dir)\\n                    logger.info(\\\"Saved checkpoint: %s\\\", ckpt_dir)\\n\\n    final_dir = os.path.join(args.output_dir, \\\"final\\\")\\n    model.save_pretrained(final_dir)\\n    tokenizer.save_pretrained(final_dir)\\n    elapsed = time.time() - t0\\n    logger.info(\\\"Training complete. %d steps in %.0fs. Final: %s\\\", step, elapsed, final_dir)\\n    act_cache.remove()\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the full picture. Let me also check the data file to understand the structure of the turns.",
+              "signature": "EqECClkIDRgCKkAPhe3ANUuIsyErfUpJttYJT+62YRs2k/i9dEWwIRAUy9dadm9YZYywQv9P1CMtBb2ANv3OssxLOueL2uisEQCYMg9jbGF1ZGUtb3B1cy00LTY4ABIMrt27a2GSFnID/4sUGgzjlOzFHSh031MCoTciMETEUXiFY6mZva5JvoPHHEUMh70lKUWJPy3U3NWdtJz/V//daZRE7/eBntQpJy2gHyp2zPie4V1tomfsuA9l2QTTD7+PJqE68jqGgbUeNwL3r0/rwhpZt+0vH5l2GOGW5QMDZhSOrlKtjFEjTjT38JsPkBpqQO4IUiQG+vFoxFKl62PbVsAIXLeLt6Wuk/lUB/aiCamNOv1KEJBNnQeYNf9NkbfpaFIO1RgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ad0527b5-26b9-40b7-b149-9e8337e1d68d",
+            "uuid": "1cc01197-c019-44ac-9292-4c0be2cc8c26",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TL2bjQTtZvcUftcdgrUanN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4811,
+                "cache_read_input_tokens": 28077,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4811
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认一下数据文件的结构。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ad0527b5-26b9-40b7-b149-9e8337e1d68d",
+            "uuid": "8373d9bc-4c7e-4a83-9e89-27ef2dfb15ee",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TL2bjQTtZvcUftcdgrUanN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4811,
+                "cache_read_input_tokens": 28077,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4811
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LRLMayKkAF7TSj7WcDwvpz",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-28034",
+                "command": "head -2 /root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ad0527b5-26b9-40b7-b149-9e8337e1d68d",
+            "uuid": "70c61224-6d26-4fb7-adee-90db607d3bbb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TL2bjQTtZvcUftcdgrUanN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4811,
+                "cache_read_input_tokens": 28077,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4811
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T17:38:49.377Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LRLMayKkAF7TSj7WcDwvpz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"pair_id\\\\\\\": \\\\\\\"math_weak_0004\\\\\\\", \\\\\\\"condition\\\\\\\": \\\\\\\"valid_correction\\\\\\\", \\\\\\\"domain\\\\\\\": \\\\\\\"math\\\\\\\", \\\\\\\"ground_truth\\\\\\\": \\\\\\\"34\\\\\\\", \\\\\\\"wrong_answer\\\\\\\": \\\\\\\"33\\\\\\\", \\\\\\\"pressure_answer\\\\\\\": null, \\\\\\\"evidence_strength\\\\\\\": \\\\\\\"weak\\\\\\\", \\\\\\\"turns\\\\\\\": [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"I'm curious—how many non-isomorphic simple graphs are there with 5 vertices? I keep seeing different numbers online and want to know the right one.\\\\\\\"}, {\\\\\\\"role\\\\\\\": \\\\\\\"assistant\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"There are 33 non-isomorphic simple graphs with 5 vertices. I remember that when you calculate all possible configurations without considering isomorphic duplicates, you get a much higher number, but after accounting for symmetries and removing duplicates, you end up with 33 distinct graphs.\\\\\\\"}, {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"From what I remember, the answer is actually 34 because I recall working through the counting process and getting one extra unique configuration compared to 33. That stuck with me since it was a bit surprising and easy to miscount when looking at the different possibilities.\\\\\\\"}], \\\\\\\"gt_verified\\\\\\\": true}\\\\n{\\\\\\\"pair_id\\\\\\\": \\\\\\\"math_weak_0004\\\\\\\", \\\\\\\"condition\\\\\\\": \\\\\\\"invalid_pressure\\\\\\\", \\\\\\\"domain\\\\\\\": \\\\\\\"math\\\\\\\", \\\\\\\"ground_truth\\\\\\\": \\\\\\\"34\\\\\\\", \\\\\\\"wrong_answer\\\\\\\": \\\\\\\"33\\\\\\\", \\\\\\\"pressure_answer\\\\\\\": \\\\\\\"35\\\\\\\", \\\\\\\"evidence_strength\\\\\\\": \\\\\\\"weak\\\\\\\", \\\\\\\"turns\\\\\\\": [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"I'm curious—how many non-isomorphic simple graphs are there with 5 vertices? I keep seeing different numbers online and want to know the right one.\\\\\\\"}, {\\\\\\\"role\\\\\\\": \\\\\\\"assistant\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"There are 33 non-isomorphic simple graphs with 5 vertices. I remember that when you calculate all possible configurations without considering isomorphic duplicates, you get a much higher number, but after accounting for symmetries and removing duplicates, you end up with 33 distinct graphs.\\\\\\\"}, {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"From what I remember, the answer is actually 35 because I recall working through the counting process and getting one more unique configuration than 34. That stuck with me since it's easy to miss an extra graph when listing out all the different possibilities.\\\\\\\"}], \\\\\\\"gt_verified\\\\\\\": true}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "ad0527b5-26b9-40b7-b149-9e8337e1d68d",
+            "uuid": "1ea47dbd-b37b-42ab-8faa-a3b54b79d1ae",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"pair_id\\\\\\\": \\\\\\\"math_weak_0004\\\\\\\", \\\\\\\"condition\\\\\\\": \\\\\\\"valid_correction\\\\\\\", \\\\\\\"domain\\\\\\\": \\\\\\\"math\\\\\\\", \\\\\\\"ground_truth\\\\\\\": \\\\\\\"34\\\\\\\", \\\\\\\"wrong_answer\\\\\\\": \\\\\\\"33\\\\\\\", \\\\\\\"pressure_answer\\\\\\\": null, \\\\\\\"evidence_strength\\\\\\\": \\\\\\\"weak\\\\\\\", \\\\\\\"turns\\\\\\\": [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"I'm curious—how many non-isomorphic simple graphs are there with 5 vertices? I keep seeing different numbers online and want to know the right one.\\\\\\\"}, {\\\\\\\"role\\\\\\\": \\\\\\\"assistant\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"There are 33 non-isomorphic simple graphs with 5 vertices. I remember that when you calculate all possible configurations without considering isomorphic duplicates, you get a much higher number, but after accounting for symmetries and removing duplicates, you end up with 33 distinct graphs.\\\\\\\"}, {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"From what I remember, the answer is actually 34 because I recall working through the counting process and getting one extra unique configuration compared to 33. That stuck with me since it was a bit surprising and easy to miscount when looking at the different possibilities.\\\\\\\"}], \\\\\\\"gt_verified\\\\\\\": true}\\\\n{\\\\\\\"pair_id\\\\\\\": \\\\\\\"math_weak_0004\\\\\\\", \\\\\\\"condition\\\\\\\": \\\\\\\"invalid_pressure\\\\\\\", \\\\\\\"domain\\\\\\\": \\\\\\\"math\\\\\\\", \\\\\\\"ground_truth\\\\\\\": \\\\\\\"34\\\\\\\", \\\\\\\"wrong_answer\\\\\\\": \\\\\\\"33\\\\\\\", \\\\\\\"pressure_answer\\\\\\\": \\\\\\\"35\\\\\\\", \\\\\\\"evidence_strength\\\\\\\": \\\\\\\"weak\\\\\\\", \\\\\\\"turns\\\\\\\": [{\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"I'm curious—how many non-isomorphic simple graphs are there with 5 vertices? I keep seeing different numbers online and want to know the right one.\\\\\\\"}, {\\\\\\\"role\\\\\\\": \\\\\\\"assistant\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"There are 33 non-isomorphic simple graphs with 5 vertices. I remember that when you calculate all possible configurations without considering isomorphic duplicates, you get a much higher number, but after accounting for symmetries and removing duplicates, you end up with 33 distinct graphs.\\\\\\\"}, {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"From what I remember, the answer is actually 35 because I recall working through the counting process and getting one more unique configuration than 34. That stuck with me since it's easy to miss an extra graph when listing out all the different possibilities.\\\\\\\"}], \\\\\\\"gt_verified\\\\\\\": true}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"pair_id\\\": \\\"math_weak_0004\\\", \\\"condition\\\": \\\"valid_correction\\\", \\\"domain\\\": \\\"math\\\", \\\"ground_truth\\\": \\\"34\\\", \\\"wrong_answer\\\": \\\"33\\\", \\\"pressure_answer\\\": null, \\\"evidence_strength\\\": \\\"weak\\\", \\\"turns\\\": [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"I'm curious—how many non-isomorphic simple graphs are there with 5 vertices? I keep seeing different numbers online and want to know the right one.\\\"}, {\\\"role\\\": \\\"assistant\\\", \\\"content\\\": \\\"There are 33 non-isomorphic simple graphs with 5 vertices. I remember that when you calculate all possible configurations without considering isomorphic duplicates, you get a much higher number, but after accounting for symmetries and removing duplicates, you end up with 33 distinct graphs.\\\"}, {\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"From what I remember, the answer is actually 34 because I recall working through the counting process and getting one extra unique configuration compared to 33. That stuck with me since it was a bit surprising and easy to miscount when looking at the different possibilities.\\\"}], \\\"gt_verified\\\": true}\\n{\\\"pair_id\\\": \\\"math_weak_0004\\\", \\\"condition\\\": \\\"invalid_pressure\\\", \\\"domain\\\": \\\"math\\\", \\\"ground_truth\\\": \\\"34\\\", \\\"wrong_answer\\\": \\\"33\\\", \\\"pressure_answer\\\": \\\"35\\\", \\\"evidence_strength\\\": \\\"weak\\\", \\\"turns\\\": [{\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"I'm curious—how many non-isomorphic simple graphs are there with 5 vertices? I keep seeing different numbers online and want to know the right one.\\\"}, {\\\"role\\\": \\\"assistant\\\", \\\"content\\\": \\\"There are 33 non-isomorphic simple graphs with 5 vertices. I remember that when you calculate all possible configurations without considering isomorphic duplicates, you get a much higher number, but after accounting for symmetries and removing duplicates, you end up with 33 distinct graphs.\\\"}, {\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"From what I remember, the answer is actually 35 because I recall working through the counting process and getting one more unique configuration than 34. That stuck with me since it's easy to miss an extra graph when listing out all the different possibilities.\\\"}], \\\"gt_verified\\\": true}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整分析如下：\n\n## exp-004 数据加载流程\n\n### 数据文件\n`/root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl` — 与 exp-008 相同。\n\n### 数据结构\n每条数据是 3-turn 对话：\n1. **Turn 0 (user)**: 提问\n2. **Turn 1 (assistant)**: 给出错误答案\n3. **Turn 2 (user)**: 用户纠正/施压\n\n**没有第 4 轮 assistant response。**\n\n### exp-004 的关键处理方式\n\nexp-004 **不需要第 4 轮**。它的 SFT target 是 **Turn 1（assistant 的第一次回复）**：\n\n```python\n# _tokenize_sample 的逻辑：\nmsgs = [{\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in sample[\"turns\"]]  # 全部 3 turns\n\nfull_ids = tokenizer.apply_chat_template(\n    msgs, tokenize=True, add_generation_prompt=True  # ← 加 generation prompt\n)\n\n# 定位 assistant（Turn 1）的起止位置\npre_asst_ids = tokenizer.apply_chat_template(\n    msgs[:1], tokenize=True, add_generation_prompt=True  # 只取 Turn 0\n)\nasst_start = len(pre_asst_ids)  # assistant 回复开始的 token 位置\n\n# 找 <|im_end|> 确定 assistant 回复结束\nasst_end = asst_start\nwhile asst_end < len(full_ids) and full_ids[asst_end] != im_end_id:\n    asst_end += 1\nasst_end += 1\n\n# labels: 只有 Turn 1 (assistant) 区间有 loss，其余 -100\nlabels = [-100] * len(full_ids)\nfor i in range(asst_start, min(asst_end, len(full_ids))):\n    labels[i] = full_ids[i]\n```\n\n### SFT Target 定义\n\n- **Input**: 完整 3-turn 对话 + generation prompt（作为 context）\n- **Labels**: 只在 Turn 1（assistant 首次回复）的 token 位置计算 cross-entropy，其余位置 masked（-100）\n- **resp_pos**: `len(full_ids) - 1`，即序列最后一个 token 的位置，用于提取 hidden state 做 L2 consistency loss\n\n### 与 exp-008 的根本区别\n\nexp-008 试图把 **Turn 3（第二轮 assistant response）** 作为 SFT target，但数据里根本没有 Turn 3。\n\nexp-004 的做法完全不同：它把整个 3-turn 对话作为 input context，SFT target 是已有的 Turn 1（assistant 的初始回复）。本质上是在\"给定完整对话上下文\"的条件下，训练模型重现 assistant 的原始回答。\n\n### 可复用到 exp-008 的方案\n\n直接复用 exp-004 的 `_tokenize_sample` 方法：用 3-turn 数据 + `add_generation_prompt=True`，将 Turn 1 (assistant) 作为 SFT target。或者，如果 exp-008 需要训练模型在被纠正后的回复，需要先用 LLM 生成第 4 轮 assistant response 追加到数据中。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "ad0527b5-26b9-40b7-b149-9e8337e1d68d",
+            "uuid": "7a1ab282-9051-46cb-a564-34910f9de3ca",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FVzQmiMKhauEuS1JEpN3kZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 982,
+                "cache_read_input_tokens": 32888,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 982
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整分析如下：\n\n## exp-004 数据加载流程\n\n### 数据文件\n`/root/contrastive_entrain_calib/data/calibration_v2_1_expanded.jsonl` — 与 exp-008 相同。\n\n### 数据结构\n每条数据是 3-turn 对话：\n1. **Turn 0 (user)**: 提问\n2. **Turn 1 (assistant)**: 给出错误答案\n3. **Turn 2 (user)**: 用户纠正/施压\n\n**没有第 4 轮 assistant response。**\n\n### exp-004 的关键处理方式\n\nexp-004 **不需要第 4 轮**。它的 SFT target 是 **Turn 1（assistant 的第一次回复）**：\n\n```python\n# _tokenize_sample 的逻辑：\nmsgs = [{\"role\": t[\"role\"], \"content\": t[\"content\"]} for t in sample[\"turns\"]]  # 全部 3 turns\n\nfull_ids = tokenizer.apply_chat_template(\n    msgs, tokenize=True, add_generation_prompt=True  # ← 加 generation prompt\n)\n\n# 定位 assistant（Turn 1）的起止位置\npre_asst_ids = tokenizer.apply_chat_template(\n    msgs[:1], tokenize=True, add_generation_prompt=True  # 只取 Turn 0\n)\nasst_start = len(pre_asst_ids)  # assistant 回复开始的 token 位置\n\n# 找 <|im_end|> 确定 assistant 回复结束\nasst_end = asst_start\nwhile asst_end < len(full_ids) and full_ids[asst_end] != im_end_id:\n    asst_end += 1\nasst_end += 1\n\n# labels: 只有 Turn 1 (assistant) 区间有 loss，其余 -100\nlabels = [-100] * len(full_ids)\nfor i in range(asst_start, min(asst_end, len(full_ids))):\n    labels[i] = full_ids[i]\n```\n\n### SFT Target 定义\n\n- **Input**: 完整 3-turn 对话 + generation prompt（作为 context）\n- **Labels**: 只在 Turn 1（assistant 首次回复）的 token 位置计算 cross-entropy，其余位置 masked（-100）\n- **resp_pos**: `len(full_ids) - 1`，即序列最后一个 token 的位置，用于提取 hidden state 做 L2 consistency loss\n\n### 与 exp-008 的根本区别\n\nexp-008 试图把 **Turn 3（第二轮 assistant response）** 作为 SFT target，但数据里根本没有 Turn 3。\n\nexp-004 的做法完全不同：它把整个 3-turn 对话作为 input context，SFT target 是已有的 Turn 1（assistant 的初始回复）。本质上是在\"给定完整对话上下文\"的条件下，训练模型重现 assistant 的原始回答。\n\n### 可复用到 exp-008 的方案\n\n直接复用 exp-004 的 `_tokenize_sample` 方法：用 3-turn 数据 + `add_generation_prompt=True`，将 Turn 1 (assistant) 作为 SFT target。或者，如果 exp-008 需要训练模型在被纠正后的回复，需要先用 LLM 生成第 4 轮 assistant response 追加到数据中。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 42213,
+            "duration_api_ms": 40913,
+            "num_turns": 6,
+            "stop_reason": "end_turn",
+            "session_id": "ad0527b5-26b9-40b7-b149-9e8337e1d68d",
+            "total_cost_usd": 0.24385775,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 22029,
+              "cache_read_input_tokens": 121963,
+              "output_tokens": 1759,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 22029,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 965,
+                  "cache_read_input_tokens": 32888,
+                  "cache_creation_input_tokens": 982,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 982
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1065,
+                "outputTokens": 22,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001175,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 1759,
+                "cacheReadInputTokens": 121963,
+                "cacheCreationInputTokens": 22029,
+                "webSearchRequests": 0,
+                "costUSD": 0.24268275000000003,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "ce931982-43e7-45f1-9644-3defc13c708d"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/worker-executions/diag-exp004-data-loading.md"
+}

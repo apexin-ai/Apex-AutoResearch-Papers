@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "24d99bc6da19c392ed11",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops sync eval to 29046",
+  "task_key": "worker_ops_sync-eval-to-29046_20260519T070326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync-eval-to-29046_20260519T070326_result.json",
+    "occurrence": 1,
+    "bytes": 434,
+    "sha256": "2e065fef00721b052bb29a53d3d8a3e00e9055e51b74cd65ee414667f4ae7e08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成。汇总：\n\n| 项目 | 状态 |\n|------|------|\n| `eval_pipeline.py` (1845行) | 已写入远程 |\n| `nli_utils.py` (64行) | 已写入远程（上轮完成） |\n| 依赖 (transformers, torch, peft) | OK |\n| NLI 模型缓存 (nli-deberta-v3-base) | 已缓存 |\n| 语法检查 | 两个文件均通过 |\n\neval 目录已就绪，exp-002v2-recalib 和 exp-003 训练完成后可直接运行评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-eval-to-29046.md"
+}

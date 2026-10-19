@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d748e2cc8f2e618c79e0",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "research grpo hyperparams sf5",
+  "task_key": "worker_research_grpo-hyperparams-sf5_20260522T121858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_grpo-hyperparams-sf5_20260522T121858_result.json",
+    "occurrence": 1,
+    "bytes": 3496,
+    "sha256": "a2ba220522d25b2554ad171b8b1bd6d1c1690c75b48ca7c08098a9c722ebdc96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here are the hyperparameter tables:\n\n---\n\n## DC-GRPO 超参数（以 exp-002v3 为准）\n\n| 参数 | 值 | 来源 |\n|------|-----|------|\n| Base model | Qwen3-8B | `run_exp002v3_dcgrpo_scaled_cosine.py:46` |\n| learning_rate | 5e-5 | `:74` |\n| per_device_train_batch_size | 1 | `:72` |\n| gradient_accumulation_steps | 16 | `:73` (effective batch = 16) |\n| max_steps | 8,000 | `:79` |\n| warmup_steps | 200 | `:75` |\n| bf16 | True | `:80` |\n| gradient_checkpointing | True | `:74` |\n| max_completion_length | 256 | `:82` |\n| num_generations (group_size) | 2 | `:83` |\n| beta (KL penalty) | 0.04 | GRPOConfig default (exp-003 explicitly sets 0.04) |\n| temperature | 0.7 | exp-003 `:86`; exp-002v3 uses GRPOConfig default (1.0 or 0.9) |\n| num_iterations | 1 | exp-003 `:85`; exp-002v3 uses default |\n| lr_scheduler_type | linear (default) | exp-002v3 未显式设置; exp-003 设为 cosine |\n| seed | 42 | `:49` |\n| **Reward weights** | R1=0.4, R2=0.0, R3=0.6 | `:47-48` |\n| r1_scale_factor | 5.0 | `:50` |\n| reward_layers | [19, 20, 24, 27, 32, 33, 35] | `:51` |\n| reward_position | asst_first | `:68` |\n| R3 NLI model | cross-encoder/nli-deberta-v3-base | `:71` |\n| recalibration_interval | 500 | `:72` |\n| **LoRA r** | 64 | `:89` |\n| **LoRA alpha** | 64 | `:90` |\n| **LoRA target_modules** | q_proj, k_proj, v_proj, o_proj | `:91` |\n| LoRA bias | none | `:92` |\n| LoRA dropout | 0 (default) | 未设置 |\n\n**注意**：exp-002v3 未显式设置 `beta`/`temperature`/`num_iterations`/`lr_scheduler_type`，这些参数继承 TRL `GRPOConfig` 默认值。exp-003 (R3-only baseline) 显式设置了 `beta=0.04, temperature=0.7, lr_scheduler_type=\"cosine\", num_iterations=1, scale_rewards=\"group\"`。需确认 exp-002v3 实际使用的 TRL 版本对应的默认值。\n\n---\n\n## R3-only Baseline (exp-003) 与 DC-GRPO 的差异\n\n| 参数 | 值 |\n|------|-----|\n| R1/R2/R3 weights | 0.0 / 0.0 / 1.0 |\n| direction_path | \"\" (无对比方向) |\n| warmup_steps | 100 |\n| lr_scheduler_type | cosine |\n| beta | 0.04 |\n| temperature | 0.7 |\n| reward_layers | range(19, 36) |\n| 其余参数同 DC-GRPO | — |\n\n---\n\n## ACT (SFT + L2 Consistency) 超参数\n\n| 参数 | 值 | 来源 (`run_exp004s2_act.py`) |\n|------|-----|------|\n| Base model | Qwen3-8B | `:152` |\n| optimizer | AdamW | `:214` |\n| learning_rate | 5e-5 | `:157` |\n| weight_decay | 0.01 | `:214` |\n| per_device_batch_size | 1 | DataLoader batch_size=1 |\n| gradient_accumulation_steps | 16 | `:156` |\n| max_steps | 8,000 | `:155` |\n| warmup_steps | 200 | `:158` |\n| lr_scheduler | linear with warmup | `get_linear_schedule_with_warmup` `:215` |\n| max_seq_len | 1,024 | `:160` |\n| grad_clip | 1.0 | `clip_grad_norm_` in training loop |\n| **lambda_l2** (L2 loss weight) | 0.1 | `:159` |\n| **Loss** | `sft_loss + 0.1 * l2_loss` | sft = avg(valid_loss, invalid_loss) |\n| **L2 target layers** | [19, 20, 24, 27, 32, 33, 35] | `:30` |\n| seed | 43 (s2) / 42 (s1) | `:163` |\n| **LoRA r** | 64 | `:164` → `:190` |\n| **LoRA alpha** | 128 (rank × 2) | `:191` |\n| **LoRA target_modules** | q/k/v/o_proj + gate/up/down_proj | `:192` |\n| LoRA dropout | 0.05 | `:193` |\n| LoRA bias | none | `:194` |\n\n---\n\n**关键差异**：ACT 的 LoRA 配置比 GRPO 更广（多了 gate/up/down_proj，alpha=2r 而非 r，有 dropout=0.05）。论文中需注明这一差异，或说明 ACT 需要更大的适配容量来同时学 SFT + L2 一致性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-grpo-hyperparams-sf5.md"
+}

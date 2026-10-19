@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32284aeddd8c3920920e",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnosis westd28034 sighup batch",
+  "task_key": "worker_diagnosis_westd28034-sighup-batch_20260521T072404",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_westd28034-sighup-batch_20260521T072404_result.json",
+    "occurrence": 1,
+    "bytes": 1124,
+    "sha256": "975e9c3ff901262dd6ad17b672683e9277a473e2e9a9b52cce69627047889bca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**实际情况与报告不符：只有 ckpt5000-v2 真正失败，其余 3 个从未失败。**\n\n### 关键发现\n\n| 实验 | 报告状态 | 实际状态 |\n|------|----------|----------|\n| ckpt5000-v2 | FAILED (129) | ❌ 已失败 → 已重试，PID 497834 在 GPU 0 运行中 |\n| ckpt6000 | FAILED (129) | ✅ 正在运行（PID 498441/498446，GPU 1） |\n| ckpt6500 | FAILED (129) | ✅ 正在运行（PID 498579/498584，GPU 2） |\n| ckpt7000 | ALLOCATED | ✅ 正在运行（PID 498661/498666，GPU 3） |\n\n### ckpt5000-v2 失败根因\n\n- 子进程（PID 495837）在 eval 开始 ~20 秒后被 **SIGKILL**（bash 报 \"Killed\"）\n- wrapper 的 HUP trap 记录了 EXIT_CODE=129\n- **非 OOM**（791GB RAM，761GB 可用）\n- 容器无内核日志，无法确定精确来源。最可能是外部干预或 GPU 残留进程冲突\n- 已自动重试并在 GPU 0 上运行\n\n### 建议\n\n4 个 GPU 全部被活跃 eval 占用，**无需任何操作**，等待完成即可。监控系统可能存在误报问题，建议排查。\n\n报告已存至 `art_20260521_89bbca`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-westd28034-sighup-batch.md"
+}

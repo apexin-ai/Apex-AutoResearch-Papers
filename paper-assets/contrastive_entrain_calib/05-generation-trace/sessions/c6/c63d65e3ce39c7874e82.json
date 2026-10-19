@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c63d65e3ce39c7874e82",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diagnose exp 002v3 failure",
+  "task_key": "worker_diagnose_exp-002v3-failure_20260519T180703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_exp-002v3-failure_20260519T180703_result.json",
+    "occurrence": 1,
+    "bytes": 890,
+    "sha256": "0269391bafaf0c371a07ee7c6cf83ff38249f0977723a1c7384199b788f3612a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。诊断总结：\n\n**错误**: `TypeError: DCGRPOTrainer.compute_rewards() takes 5 positional arguments but 7 were given`\n\n**根因**: `run_exp002v3_dcgrpo_scaled_cosine.py:77` 的 `Exp002v3Trainer.compute_rewards()` 在调用 `super().compute_rewards()` 时传了 `r1_ema` 和 `ema_alpha` 两个额外参数，但服务器上的 `dcgrpo_trainer.py` 已移除了这两个参数。代码版本不同步，第一个训练步就崩溃。\n\n**修复**: 修改 `run_exp002v3_dcgrpo_scaled_cosine.py:77`，将 `super().compute_rewards(completions, conditions, pair_ids, batch_activations, r1_ema, ema_alpha)` 改为 `super().compute_rewards(completions, conditions, pair_ids, batch_activations)`。同时检查 `dcgrpo_trainer.py:185` 的 `_DCRewardCallable.__call__` 是否也传了多余参数。\n\n**不可直接重试，需修代码后重新部署。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-exp-002v3-failure.md"
+}

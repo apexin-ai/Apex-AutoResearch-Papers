@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55659b76aec4897573a6",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "code d027 unified eval script",
+  "task_key": "worker_code_d027-unified-eval-script_20260519T095316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d027-unified-eval-script_20260519T095316_result.json",
+    "occurrence": 1,
+    "bytes": 684,
+    "sha256": "0dd450e653576b02f090ed51f998075baa4e66024baccf4826b9c6923b064cd0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本创建完成，`--help` 验证通过。\n\n`/root/contrastive_entrain_calib/eval/eval_unified_preset.py` 已就绪，核心设计：\n\n- **指标**: ToF / NoF / SYCONScore（调和平均），废弃 WRR\n- **NLI 分类**: `cross-encoder/nli-deberta-v3-base`，通过 `model.config.id2label` 动态映射，contradiction = flipped\n- **thinking 修复**: `enable_thinking=False` + regex 清除残留 `<think>` block\n- **LoRA 可选**: `--lora_path` 不传则评估基座模型\n- **输出**: `{exp_id}_preset_eval.json`（含 metrics + per_sample）和 `{exp_id}_preset_summary.txt`\n- **离线环境**: 自动设置 `HF_HUB_OFFLINE=1` / `TRANSFORMERS_OFFLINE=1`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d027-unified-eval-script.md"
+}

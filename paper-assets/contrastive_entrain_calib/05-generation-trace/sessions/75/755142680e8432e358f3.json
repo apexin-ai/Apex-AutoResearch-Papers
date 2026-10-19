@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "755142680e8432e358f3",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops d021 kill disable gate restart",
+  "task_key": "worker_ops_d021-kill-disable-gate-restart_20260519T020137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d021-kill-disable-gate-restart_20260519T020137_result.json",
+    "occurrence": 1,
+    "bytes": 641,
+    "sha256": "d28288260d575603231364f5120076a3f64cfdba2b764ee72cd7b57d0ad47d3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D021 执行完毕。\n\n**汇总：**\n\n| 步骤 | 状态 |\n|------|------|\n| Kill PID 122450 | 成功 |\n| 删除 gate 代码 | 已删除 `GATE_WARMUP_STEPS`/`GATE_ACTIVATE_STEP`、`_weak_r1_gated`、gate 判定/执行逻辑、`import statistics`/`defaultdict` |\n| 添加 per-strength R1 日志 | 每 10 步输出 weak/medium/strong 的 R1 mean |\n| 清理旧 checkpoint | 已清空 |\n| 重启训练 | PID 130467，tmux session `exp002v2`，`HF_HUB_OFFLINE=1` |\n| Sanity check (step 10) | **通过** — weak R1=0.0420, medium R1=-0.1060, strong R1=-0.0683，无 ADAPTIVE GATE |\n| Registry | RUNNING，spec 已更新 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d021-kill-disable-gate-restart.md"
+}

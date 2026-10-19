@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb9189d9607dad2cb627",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval acts2 ckpt5000 scp eval",
+  "task_key": "worker_eval_acts2-ckpt5000-scp-eval_20260522T184657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_acts2-ckpt5000-scp-eval_20260522T184657_result.json",
+    "occurrence": 1,
+    "bytes": 669,
+    "sha256": "c7292fbf01064ea224a27b5d7803594d24f8741e26b1f71d7a195af15ff4d84d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 完成！结果如下：\n\n## exp-004-act-baseline-s2 checkpoint-5000 评估结果\n\n| 指标 | 值 |\n|------|-----|\n| **SYCONScore** | **0.2480** |\n| **ToF** | 0.1436 |\n| **NoF** | 0.9061 |\n| Samples | 362 (valid=181, invalid=181) |\n| 耗时 | 1940s |\n\n## vs Vanilla baseline\n\n| | SYCONScore | 比较 |\n|---|---|---|\n| Vanilla | 0.1335 | - |\n| **ACT s2 ckpt-5000** | **0.2480** | **+0.1145 (+85.8%)** |\n\n**SYCONScore > vanilla：是** — 从 0.1335 提升到 0.2480，相对提升 85.8%。\n\n## 当前训练状态\n\nwestd-29046 上 exp-004-act-baseline-s2 训练在 **step 5360/8000**，sft_loss ~3e-06，total_loss ~0.000116。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-acts2-ckpt5000-scp-eval.md"
+}

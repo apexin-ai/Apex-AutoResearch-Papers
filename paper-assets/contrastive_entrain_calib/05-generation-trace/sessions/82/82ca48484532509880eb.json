@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82ca48484532509880eb",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval exp004 ckpt8000 immediate",
+  "task_key": "worker_eval_exp004-ckpt8000-immediate_20260519T141710",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_exp004-ckpt8000-immediate_20260519T141710_result.json",
+    "occurrence": 1,
+    "bytes": 599,
+    "sha256": "f3e91715e4fdaf76f6b07e29c860ba5f5123cbc0f99fc56b9b7bf918bd57f30b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0 **不空闲**。当前正在跑 exp004-ckpt2000 的 eval（已运行 ~5 分钟）：\n\n```\nPID 138467 | GPU 0 | 17650 MiB\neval_unified_preset.py --lora_path .../checkpoint-2000 --exp_id exp004-ckpt2000\n```\n\n所有 4 张 GPU 都有进程占用。Checkpoint-8000 路径已确认存在：\n`/root/contrastive_entrain_calib/outputs/exp-004-act-baseline/checkpoint-8000`\n\n**选项**：\n1. 等 ckpt-2000 eval 跑完（预计 ~40-55 min），再在 GPU 0 上跑 ckpt-8000\n2. 现在直接排队：写个脚本等 PID 138467 结束后自动启动 ckpt-8000 eval\n\n选哪个？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-exp004-ckpt8000-immediate.md"
+}

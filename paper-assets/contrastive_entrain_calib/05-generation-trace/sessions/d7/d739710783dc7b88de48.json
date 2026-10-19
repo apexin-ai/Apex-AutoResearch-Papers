@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d739710783dc7b88de48",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "knowledge framing act16",
+  "task_key": "worker_knowledge_framing-act16_20260522T040242",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_framing-act16_20260522T040242_result.json",
+    "occurrence": 1,
+    "bytes": 486,
+    "sha256": "f195f3ae2dd9b775047d08909fd8585fe8dfe4bbc143c9c54f26f6c26af2d7a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改完成：\n\n1. **13/13 → 16/16**: Line 100 和 Line 113 两处已替换\n2. **Reliability gap 对比框架**: ACT 最低点改为 ckpt-500=0.170，终点改为 ckpt-8000=0.301(+126%)；R3-only seed 2 改为 1/9；新增跨 seed 合计行；效率差起点改为 500 步\n3. **ACT trajectory**: 补入 checkpoint 标签和百分比，标注 16/16 checkpoints > vanilla\n4. **三层区分总结**: seed 2 从 0/7 改为 1/9，SFT 描述补入 16/16 > vanilla"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-framing-act16.md"
+}

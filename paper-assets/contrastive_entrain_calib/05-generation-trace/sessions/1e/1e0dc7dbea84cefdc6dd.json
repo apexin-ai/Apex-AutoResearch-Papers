@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e0dc7dbea84cefdc6dd",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "eval collect results and gpu status",
+  "task_key": "worker_eval_collect-results-and-gpu-status_20260521T103110",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect-results-and-gpu-status_20260521T103110_result.json",
+    "occurrence": 1,
+    "bytes": 863,
+    "sha256": "631827d82af827f5a4c3214861a2e08a4308d2e822c1ac0d02778e1b2ed5e1c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Part 1: s2-ckpt-2500 结果\n\n**PID 865026 仍在运行**（已运行 1h2m30s），结果文件尚未生成。\n\n已完成的邻近 s2 checkpoints 供参考：\n\n| checkpoint | ToF | NoF | SYCONScore |\n|---|---|---|---|\n| s2-ckpt2000 | 0.0442 | 0.9779 | 0.0846 |\n| s2-ckpt3000 | 0.0497 | 0.9503 | 0.0945 |\n\n## Part 2: 28034 GPU 状态\n\n| GPU | 显存 | 利用率 | 任务 |\n|---|---|---|---|\n| 0 | 16884/32607 MiB | 50% | eval **exp003s2-ckpt3500** (PID 867046, 29min) |\n| 1 | 16864/32607 MiB | 47% | eval **exp003-ckpt8000** (PID 868607, 8min) |\n| 2 | 2/32607 MiB | 0% | **空闲** |\n| 3 | 16884/32607 MiB | 45% | eval **exp003s2-ckpt2500** (PID 865026, 1h2m) |\n\ns2-ckpt2500 的 eval 时间已超过 1 小时，参考 s2-ckpt2000 耗时 4305s (~72min)、s2-ckpt3000 耗时 4488s (~75min)，预计还需约 10-15 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-results-and-gpu-status.md"
+}

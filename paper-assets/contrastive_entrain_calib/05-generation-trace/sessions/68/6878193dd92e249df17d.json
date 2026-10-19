@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6878193dd92e249df17d",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "ops check exp008v3 training detail",
+  "task_key": "worker_ops_check-exp008v3-training-detail_20260519T113811",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-exp008v3-training-detail_20260519T113811_result.json",
+    "occurrence": 1,
+    "bytes": 1564,
+    "sha256": "e7492161a73afef8ce7a2878745d48a7d17982bbe508d438ea0538d0c7ef6f17"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-008v3 训练状态报告\n\n### 进度\n- **当前 step**: ~894 / 8000 (**11.2%**)\n- **已运行**: 4h 56m\n- **ETA**: ~41h (预计 5/21 中午前后完成)\n- **速度**: ~21-22s/step\n\n### 指标趋势 (step 800-894)\n\n| Step | R1 mean | R3 mean | Combined mean |\n|------|---------|---------|---------------|\n| 800  | 0.50-0.63 | — | 0.44-0.50 |\n| 820  | 0.25-0.38 | — | 0.62-0.65 |\n| 840  | 0.25-0.75 | — | 0.53-0.65 |\n| 860  | 0.38-0.75 | — | 0.56-0.66 |\n| 880  | 0.63-0.75 | — | 0.40-0.72 |\n| 890  | 0.75 | 0.50-0.74 | 0.56-0.74 |\n| 894  | 0.88 | 0.25-0.50 | 0.41-0.59 |\n\n- **R1 (Binary Probe)**: 波动较大 (0.25-1.0)，近期趋势向好，最新几步多在 0.75-1.0 范围，**符合预期 (>0.3)**\n- **R2**: 恒为 0.0（正常，这个阶段未激活）\n- **R3**: 0.25-0.74 范围波动\n- **Combined**: 0.40-0.74，整体在 0.5 附近震荡\n- **Loss**: 0.0（GRPO 典型表现）\n- **Entropy**: 0.58（健康，未崩塌）\n\n### GPU 状态\n- GPU 1: **100%** 利用率, 31432 MiB\n- GPU 2: **100%** 利用率, 30670 MiB\n- 双卡满载运行，正常\n\n### Checkpoints\n- `/root/contrastive_entrain_calib/checkpoints/exp008v3_binary_probe_grpo/checkpoint-500`\n- `probe_step500.pt` (probe 模块单独保存)\n- 目前仅保存了 step 500 的 checkpoint，下一个预计在 step 1000\n\n### 异常信号\n- **无异常**。R1 波动大是 binary probe reward 的固有特性（batch 内只有几个样本，0/0.25/0.5/0.75/1.0 离散值）。宏观趋势向上，entropy 健康，训练稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-exp008v3-training-detail.md"
+}

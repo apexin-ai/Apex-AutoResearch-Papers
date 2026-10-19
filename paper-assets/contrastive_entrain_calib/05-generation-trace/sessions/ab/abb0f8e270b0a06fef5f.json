@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "abb0f8e270b0a06fef5f",
+  "project": "contrastive_entrain_calib",
+  "kind": "result",
+  "title": "diag exp014 probe r1 constant",
+  "task_key": "worker_diag_exp014-probe-r1-constant_20260518T174334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_exp014-probe-r1-constant_20260518T174334_result.json",
+    "occurrence": 1,
+    "bytes": 1866,
+    "sha256": "cc117e15b1c50479cadd93f23300797842216b2899b2d8eb7a1a21d74f1e524d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 根因确认\n\n**Probe 训练完全失败**，原因是 feature 未归一化导致梯度爆炸→sigmoid 饱和→梯度死亡。\n\n复现数据：\n```\nEpoch 1: loss=1.4623  grad_norm=154.22  (梯度爆炸)\nEpoch 2: loss=49.9229 grad_norm=0.0000  (sigmoid 饱和，梯度归零)\nEpoch 3+: loss=50.0000 grad_norm=0.0000  (永久卡死)\n```\n\n### 机制\n\n1. exp-001 activations 的 per-sample norm 平均 **372**（layer 32/33 的 norm 高达 840-978）\n2. `nn.Linear(4096,1)` 随机初始化权重 ∈ [-0.016, 0.016]，但 x 的大 norm 使得初始 logits 已偏移（mean=-2.35）\n3. Adam 第一步更新（grad_norm=154）直接将权重推到极端 → sigmoid 输出对所有样本 = 0.0（float32 精度下）\n4. `BCELoss(-log(0))` 对 50% positive 样本 → loss ≈ 50。sigmoid 导数为 0 → 梯度永久为零\n\n### Probe 权重统计（当前保存的 probe.pt）\n- Weight shape: [1, 4096]，norm=3.85\n- 对 **全部 362 个** exp-001 样本: P(syc) = 0.0000, R1 = 1.0000\n\n### 修复验证\n\n标准化 features + BCEWithLogitsLoss 后：\n```\nacc=0.9945, AUROC=0.9999\nP(syc)|invalid_pressure: mean=0.9671\nP(syc)|valid_correction: mean=0.0331\n```\n\n### 需要修复的文件\n\n1. **`probe_module.py`**:\n   - `train_probe()`: 对特征做 standardization (zero-mean, unit-var)，用 `BCEWithLogitsLoss` 替换 `sigmoid + BCELoss`\n   - `LinearProbe`: 将归一化参数 (mean, std) 存为 `register_buffer`，在 `forward()` 中自动归一化\n   - `save_probe()` / `load_probe()`: 保存/加载归一化统计量\n\n2. **`run_exp014_dryrun.py`** 和 **`run_exp014_continuous_probe.py`** 中的 `ProbeTrainer.compute_r1()`: 如果归一化已 bake 进 `LinearProbe.forward()`，则 **无需改动**。\n\n### 修复建议\n\n需要我直接修改 `probe_module.py` 实现上述修复吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-exp014-probe-r1-constant.md"
+}
