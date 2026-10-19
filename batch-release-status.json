@@ -241,6 +241,38 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39280436179"
+    },
+    "cost-verify-agent-rl/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 300875410,
+        "etag": "\"e142604701b5b166d370af560420b9ca-36\"",
+        "modified": "2026-05-31T17:30:40+00:00"
+      },
+      "archive_sha256": "4f3e927ad042e69600b6f99792576933c8e0bb4054cf41ebd2d69f2e7b0b8d4b",
+      "projects": [
+        "cost-verify-agent-rl",
+        "error_diag_dpo_recovery"
+      ],
+      "counts": [
+        {
+          "project": "cost-verify-agent-rl",
+          "title": "Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction",
+          "paper_pdf": "paper.pdf",
+          "code_count": 495,
+          "data_count": 1236,
+          "trace_count": 2831
+        },
+        {
+          "project": "error_diag_dpo_recovery",
+          "title": "error diag dpo recovery",
+          "paper_pdf": null,
+          "code_count": 76,
+          "data_count": 97,
+          "trace_count": 323
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39280436179"
     }
   }
 }

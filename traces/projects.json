@@ -136,6 +136,22 @@
       }
     },
     {
+      "project": "cost-verify-agent-rl",
+      "title": "Sign Misattribution in Step-Independent Agent RL: Dual Mechanism Diagnosis and Episode-Level Correction",
+      "catalog": "../paper-assets/cost-verify-agent-rl/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 2831,
+        "messages": 209966,
+        "user_turns": 6691,
+        "tool_calls": 82288,
+        "unparsed_lines": 1119,
+        "result": 1062,
+        "worker": 1164,
+        "conversation": 502,
+        "history": 103
+      }
+    },
+    {
       "project": "crosscoder-behavioral-circuit-transplant",
       "title": "crosscoder behavioral circuit transplant",
       "catalog": "../paper-assets/crosscoder-behavioral-circuit-transplant/05-generation-trace/catalog.json",
@@ -195,6 +211,22 @@
         "result": 223,
         "conversation": 99,
         "history": 11
+      }
+    },
+    {
+      "project": "error_diag_dpo_recovery",
+      "title": "error diag dpo recovery",
+      "catalog": "../paper-assets/error_diag_dpo_recovery/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 323,
+        "messages": 25149,
+        "user_turns": 670,
+        "tool_calls": 9694,
+        "unparsed_lines": 140,
+        "worker": 141,
+        "result": 130,
+        "conversation": 47,
+        "history": 5
       }
     },
     {

@@ -1,0 +1,99 @@
+{
+  "project": "error_diag_dpo_recovery",
+  "code_count": 76,
+  "data_count": 97,
+  "env_count": 0,
+  "tex_count": 1,
+  "bib_count": 0,
+  "review_count": 0,
+  "validation_count": 0,
+  "contribution_count": 3,
+  "chat_count": 47,
+  "worker_count": 271,
+  "trace_count": 323,
+  "trace_bytes": 46971659,
+  "maintenance_count": 18,
+  "provenance_count": 0,
+  "submission_count": 0,
+  "license_count": 0,
+  "paper_pdf": null,
+  "paper_sha256": "",
+  "title": "error diag dpo recovery",
+  "pages": 0,
+  "status_marker": "",
+  "version_count": 0,
+  "version_paths": [],
+  "archive_rel": "cost-verify-agent-rl/workspace.tar.gz",
+  "archive_note": "Archive scan completed",
+  "archive_error": null,
+  "source_s3": {
+    "bucket": "agent-ml-research-project-backups-20260531",
+    "key": "cost-verify-agent-rl/workspace.tar.gz",
+    "sha256": "4f3e927ad042e69600b6f99792576933c8e0bb4054cf41ebd2d69f2e7b0b8d4b",
+    "bytes": 300875410,
+    "etag": "\"e142604701b5b166d370af560420b9ca-36\"",
+    "modified": "2026-05-31T17:30:40+00:00"
+  },
+  "academic_record": {
+    "date": "2026-05-31",
+    "record": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified."
+  },
+  "criteria": [
+    {
+      "name": "Manuscript and versions",
+      "status": "Partial",
+      "evidence": "1 source files; 0 PDF candidates",
+      "gap": "Candidate filenames do not establish official submission or publication.",
+      "path": "01-manuscript/"
+    },
+    {
+      "name": "Academic status",
+      "status": "Unverified",
+      "evidence": "Project status documents are included as source evidence; formal submission, acceptance, or publication status is unverified.",
+      "gap": "Official submission, acceptance, and publication were not independently checked.",
+      "path": "07-maintenance/"
+    },
+    {
+      "name": "AI / human contribution",
+      "status": "Partial",
+      "evidence": "3 task/role records",
+      "gap": "User and assistant roles do not identify people or establish author contributions.",
+      "path": "02-contributions/"
+    },
+    {
+      "name": "Generation trace",
+      "status": "Organized",
+      "evidence": "47 conversations; 271 worker logs/results; 323 source files",
+      "gap": "Overlapping snapshots are retained; credentials and binary attachments are redacted.",
+      "path": "05-generation-trace/"
+    },
+    {
+      "name": "Reproduction code",
+      "status": "Available",
+      "evidence": "76 code/configuration files; 0 environment manifests",
+      "gap": "The code is archived; experiments were not rerun for this release.",
+      "path": "03-code/"
+    },
+    {
+      "name": "Experiments and environment",
+      "status": "Partial",
+      "evidence": "97 data/result files",
+      "gap": "Original data permissions and completeness require project-specific review.",
+      "path": "04-experiments/"
+    },
+    {
+      "name": "Validation evidence",
+      "status": "Not found",
+      "evidence": "0 internal review records; 0 other audit records",
+      "gap": "Internal reviews are project evidence, not independently verified external reviews.",
+      "path": "06-validation/"
+    },
+    {
+      "name": "Maintenance",
+      "status": "Partial",
+      "evidence": "18 project documentation files; 0 license files",
+      "gap": "A project license file applies only within its stated scope.",
+      "path": "07-maintenance/"
+    }
+  ]
+}
