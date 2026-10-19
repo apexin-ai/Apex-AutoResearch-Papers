@@ -20,7 +20,7 @@ import urllib.request
 ROOT=Path(__file__).resolve().parents[1]
 REPOSITORY='Zxy-MLlab/Release_examples'
 REMOTE=f'https://github.com/{REPOSITORY}.git'
-PATTERNS='/*\n!/paper-assets/\n/paper-assets/index.html\n/paper-assets/asset-matrix.csv\n/paper-assets/*/README.md\n/paper-assets/*/08-index/\n/paper-assets/*/05-generation-trace/example-session.json\n!/research-snapshots/\n/research-snapshots/*/*/08-index/\n/research-snapshots/*/*/05-generation-trace/example-session.json\n'
+PATTERNS='/*\n!/paper-assets/\n/paper-assets/index.html\n/paper-assets/asset-matrix.csv\n/paper-assets/*/README.md\n/paper-assets/*/08-index/\n/paper-assets/*/05-generation-trace/example-session.json\n!/research-snapshots/\n/research-snapshots/*/*/08-index/\n/research-snapshots/*/*/05-generation-trace/example-session.json\n!/supplementary/\n/supplementary/*/manifest.json\n/supplementary/*/README.md\n/supplementary/*/source-manifest.csv\n'
 
 
 def log(**value):print(json.dumps(value,ensure_ascii=False),flush=True)
@@ -145,6 +145,10 @@ def main():
         key=item['key'];slug=key.split('/')[0];meta=item['metadata']
         log(stage='begin',index=number,total=len(manifest),key=key,free_GiB=round(shutil.disk_usage(temporary).free/1024**3,1))
         current=temporary/'current';current.mkdir();repo=current/'repo';checkout(repo)
+        status_path=repo/'batch-release-status.json'
+        completed=json.loads(status_path.read_text()).get('archives',{}).get(key,{}) if status_path.exists() else {}
+        if completed.get('status')=='uploaded' and completed.get('archive_sha256') and completed.get('source',{}).get('etag')==meta['etag'] and completed.get('source',{}).get('bytes')==meta['bytes']:
+            log(stage='skip-verified-archive-history',key=key);shutil.rmtree(current);continue
         previous=repo/'paper-assets'/slug/'08-index/asset-manifest.json'
         if previous.exists():
             old=json.loads(previous.read_text());source=old.get('source_s3',{})
