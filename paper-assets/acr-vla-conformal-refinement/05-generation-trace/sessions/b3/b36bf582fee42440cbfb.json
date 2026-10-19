@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b36bf582fee42440cbfb",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_14_1778933562.md",
+  "task_key": "loop_14_1778933562",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_14_1778933562.md",
+    "occurrence": 1,
+    "bytes": 4479,
+    "sha256": "40e8465260c2f55679357ce4a997296da60b96acc922edf03b67835cd3ed0a88"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T11:42:27+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb2-40593:cuda:0, bjb1-18228:cuda:0-3, bjb1-32546:cuda:0-5, bjb2-28827:cuda:0-5（共 17 张）。白名单外的 GPU 即使 Director 指令也必须 push back\n- ε=0.2 是唯一可辩护配置（D038）。ε=0.1 已死（pooled +1pp, p=0.44）\n- ROADMAP 中 **norm=0.3 object obs_only = 19%** 疑似幻影数据——registry 无成功实验支撑，诊断 Worker 正在验证 JSON 文件。**在确认前不要引用此数据点**\n- Perdof 在 object 上已死（norm=0.1→11%, norm=0.2→11%），不要再投资源\n- Spatial 结果 LOCKED（obs_only ≈ perdof ≈ argmin），论文 claim 限 object benchmark\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**: 4×4090, /root/acr-vla-conformal-refinement, conda base (/root/miniconda3/bin/python), 4/4 满载\n- **bjb1-32546**: 6×4090, 同上路径/环境, 2/6 在用 (cuda:1, cuda:2)\n- **bjb2-28827**: 6×4090, 同上路径/环境, 4-5/6 在用 (cuda:0-3 确认, cuda:5 刚释放)\n- **bjb2-40593**: 1×4090D, 同上路径/环境, 1/1 满载\n- CRM checkpoint: `/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`\n- HF cache: `/root/autodl-tmp/.hf_cache`\n- 活跃 cron 监控 11 个实验（reconcile_crons 刚跑过，全部 still running）\n\n### 3. 📊 当前状态\n**刚做完**: Session 启动初始化 + 处理 eval-mag-obsonly-norm03-object 失败回调。已派诊断 Worker (`worker_diagnose_eval-mag-obsonly-norm03-object_20260516T073948`) SSH 读日志 + 验证 JSON。已向 Director 汇报失败 + 数据完整性警告。\n\n**RUNNING (11)**:\n| exp_id | server:gpu | 摘要 |\n|--------|-----------|------|\n| eval-mag-obsonly-norm005-object | bjb2-28827:? | magnitude sweep norm=0.05 object (~12% partial 9/10) |\n| eval-mag-perdof-norm003-object | bjb2-28827:cuda:0 | perdof norm=0.03 object |\n| eval-mag-perdof-norm005-object | bjb2-28827:cuda:1 | perdof norm=0.05 object |\n| eval-mag-perdof-norm03-object-r3 | bjb2-28827:cuda:2 | perdof norm=0.3 object |\n| eval-mag-perdof-norm02-seed43-object-r3 | bjb2-28827:cuda:3 | perdof norm=0.2 seed43 object |\n| eval-acr-object-v4-default-r2 | bjb1-18228:cuda:0 | default norm object |\n| eval-perdof-object-seed44 | bjb1-18228:cuda:1 | perdof seed44 object |\n| eval-obs-only-object-norm02-seed44-r2 | bjb1-18228:cuda:2 | **P0** obs_only ε=0.2 seed44 |\n| eval-argmin-object-seed44-r2 | bjb1-18228:cuda:3 | argmin seed44 object |\n| eval-vla-mean-object-seed44 | bjb1-32546:cuda:1 | vla-mean seed44 object |\n| eval-obs-only-object-norm03-seed44 | bjb1-32546:cuda:2 | obs_only norm=0.3 seed44 |\n\n**PREPARING (3)**: eval-obs-only-object-default-seed44, eval-obs-only-object-norm01-seed44, eval-scalar-object-seed44-r2\n\n**等待中**:\n- 诊断 Worker 回调 → 确认 norm=0.3 数据是否有效 → 决定是否重跑\n- Director 回复数据完整性警告\n- P0: seed44 ε=0.2 完成 → 立即做 3-seed pooled Fisher test\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 完成 + JSON 有完整 10-task 数据 → 更新 registry 为 success，ROADMAP 19% 有效，无需重跑\n- 诊断 Worker 完成 + JSON 不完整 → 在 bjb2-28827:cuda:5 或 bjb1-32546 空闲 GPU 重试 norm=0.3 object obs_only seed42\n- eval-obs-only-object-norm02-seed44-r2 完成(P0) → 3-seed pooled Fisher test → 若 p<0.05 claim \"magnitude-tuned correction\"；p=0.05-0.10 部署 seed45；p>0.10 pivot to analysis paper\n- 空闲 GPU (bjb1-32546:cuda:0/3/4/5) → 部署 3 个 PREPARING 实验 + seed45 预备\n- Paper Figure Worker 应该在跑 → 确认状态，CoRL DDL ~May 26 还剩 10 天\n\n### 5. 🎯 战略上下文\n- **核心 story**: sample-then-correct > sample-then-select, obs features > conformal features, 限 object benchmark。倒 U 曲线 peak at ε=0.2\n- **D038 决策链**: ε=0.1 死 → ε=0.2 唯一配置 → 2-seed pooled +4.5pp (p≈0.12) → 需 seed44 拉到 p<0.10\n- **最易判断错的事**: (1) norm=0.3 的 19% 可能是幻影数据，不要直接写进论文；(2) seed43 obs_only=16% vs argmin=17% 是 negative（-1pp），pooled 才勉强正向；(3) spatial 上 obs_only 没优势，不要 overclaim\n- **CoRL 时间线**: abstract ~May 26, full paper ~Jun 2。论文主体已写完（Intro/Method/Experiments/Related Work/Discussion），Figures 进行中，Abstract 待统计结论确定后写\n- **6 张 GPU 空闲是失职信号**——PREPARING 实验应尽快部署，seed45 也应预部署到空闲卡\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1778933562.md"
+}

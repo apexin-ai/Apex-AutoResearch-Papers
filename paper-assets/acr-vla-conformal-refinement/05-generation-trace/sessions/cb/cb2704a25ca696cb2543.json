@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb2704a25ca696cb2543",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis stat pipeline validation",
+  "task_key": "worker_analysis_stat-pipeline-validation_20260515T185718",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_stat-pipeline-validation_20260515T185718_result.json",
+    "occurrence": 1,
+    "bytes": 1667,
+    "sha256": "26311aa78bf53ab47113b50b3661e78164f0dab6c412f4936e702103c62cf87a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 验证结果汇总\n\n### 通过\n\n| 验证项 | 结果 |\n|--------|------|\n| **端到端运行** (`--log-dir logs/`) | 成功，发现 7 个文件（6 methods × 2 seeds），输出比较表、pooled summary、per-task breakdown |\n| **extract_method_seed** | 7/7 case 通过：norm003/norm005/norm0p3/norm02 后缀、seed 提取、.log 格式均正确 |\n| **SR normalization** | 代码仅使用 `successes/total` 整数计数，不依赖 `overall_success_rate` 或 `success_rate` 字段。0-1 和 0-100 格式的 JSON 均得到正确结果 |\n| **Fisher exact test** | obs_only vs vla_only: odds_ratio=1.7202, p=0.1168 (n.s.)，逻辑正确 |\n| **Bootstrap SR CI** | 19/100 → [12.0%, 27.0%]，合理 |\n| **Bootstrap diff CI** | 19/100 vs 12/100 → [-3.0pp, +17.0pp]，合理 |\n| **Log 文件解析** | 完整 log（4 个）正确解析 mode/seed/norm/per_task；中断 log（seed43, 1 task）正确标记 partial |\n| **norm_sensitivity.py** | obs_only norm=0.1→19.0%, norm=0.2→22.0%，baseline 输出正确 |\n| **Explicit --methods 模式** | `--methods obs_only:... obs_only_norm02:... --test-pair obs_only obs_only_norm02` 正确执行 |\n| **Output JSON** | `analysis/results/comparison.json` 格式完整，包含 comparison_table / pooled_summary / fisher_test / per_task |\n\n### 无 bug 发现\n\n3 个修复点均验证通过，端到端无报错，输出格式正确。唯一值得注意的是 `eval_object_obs_only_norm02_seed43.log` 是一个中断的评估（1/10 tasks），被正确标记为 partial 并合入 pooled summary（22/110 而非 22/100），这是预期行为但会稀释该 method 的 pooled SR。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-stat-pipeline-validation.md"
+}

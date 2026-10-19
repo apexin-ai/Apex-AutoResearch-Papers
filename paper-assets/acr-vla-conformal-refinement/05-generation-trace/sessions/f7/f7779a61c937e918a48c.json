@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7779a61c937e918a48c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "investigate pi05 object s43 conflict",
+  "task_key": "worker_investigate_pi05-object-s43-conflict_20260524T192714",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_investigate_pi05-object-s43-conflict_20260524T192714_result.json",
+    "occurrence": 1,
+    "bytes": 344,
+    "sha256": "3afddbe2511b77fdbecccff59d9ebe005d5eae8098c1753b99a7121b8efd54f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact 已注册。\n\n**最终结论：不更新 registry 的 metrics。** r4=98.5% 是 `n_action_steps=10` 范式下的有效结果，v2=86.5% 是 CUDA OOM 崩溃废结果。论文使用时注意评估范式一致性——如果 baseline 表用 closed-loop，则引用 r3=81.5%；如果用 chunked 范式，则用 r4=98.5%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-pi05-object-s43-conflict.md"
+}

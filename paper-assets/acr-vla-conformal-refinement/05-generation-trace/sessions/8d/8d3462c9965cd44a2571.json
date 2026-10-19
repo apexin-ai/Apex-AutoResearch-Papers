@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d3462c9965cd44a2571",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "prep fix plan code sketch",
+  "task_key": "worker_prep_fix-plan-code-sketch_20260514T073852",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_prep_fix-plan-code-sketch_20260514T073852_result.json",
+    "occurrence": 1,
+    "bytes": 900,
+    "sha256": "47e0a9f29be37c19a3feea62589cce613008671e07e2a1fde49de3771d5d8f13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "方案已写入 `artifacts/fix_plan_code_sketch.md` 并注册。\n\n核心内容：\n\n- **C1**: `load_libero_demos` 额外读 `obs/gripper_qpos`，拼接到 `ee_states` 使其从 6D→8D，消除 train/eval state 维度不一致。需重新 precompute。\n- **W2**: CGS `compute_features` 返回 argmin-selected sample 而非 mean 作为 CRM base action，避免多模态下 mean 落入低密度区域。推荐在 CGS 内部改（方案 A）保持训练/评估一致。\n- **W3**: alpha 从 0.1 → 0.3。当前 alpha=0.1+K=10 时 quantile index=9（最大值），conformal radius 退化。alpha=0.3 → index=7，适度保守。\n- **W4**: CRM forward 加 L2 norm clipping (`max_norm=0.5`) 防止灾难性修正。用 `delta * clamp(norm, max) / norm` 实现，训练推理均生效。\n\n执行顺序：C1(重新precompute) → W2+W3(CGS) → W4(CRM) → 重新训练 → 评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-fix-plan-code-sketch.md"
+}

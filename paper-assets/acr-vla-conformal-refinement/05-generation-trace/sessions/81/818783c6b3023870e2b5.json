@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "818783c6b3023870e2b5",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "harvest norm02 missing metrics 20260521T045202 retry2",
+  "task_key": "worker_harvest_norm02-missing-metrics_20260521T045202_retry2",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_norm02-missing-metrics_20260521T045202_retry2.log",
+    "occurrence": 1,
+    "bytes": 716104,
+    "sha256": "9b41f3c8fb6d42bcd1ef04f3a070cb184d1d3a290277326631899119ae5e728b"
+  },
+  "statistics": {
+    "messages": 76,
+    "user_turns": 0,
+    "tool_calls": 28,
+    "roles": {
+      "system": 1,
+      "record": 1,
+      "assistant": 17,
+      "tool_call": 28,
+      "tool_result": 28,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 76,
+      "chunks": [
+        {
+          "path": "818783c6b3023870e2b5-part-0001.json",
+          "message_count": 42
+        },
+        {
+          "path": "818783c6b3023870e2b5-part-0002.json",
+          "message_count": 34
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/harvest-norm02-missing-metrics-20260521t045202-retry2.md"
+}

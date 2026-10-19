@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e473d4cc764e12548502",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis eval mag perdof norm005",
+  "task_key": "worker_analysis_eval-mag-perdof-norm005_20260515T172333",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval-mag-perdof-norm005_20260515T172333_result.json",
+    "occurrence": 1,
+    "bytes": 973,
+    "sha256": "6ca9518c314e7a00840142122adae8f7d78a8a2cce5f3057a16064af39776fe4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果摘要\n\n**eval-mag-perdof-norm005** — perdof CRM v3-norm, spatial, norm=0.05, **完成，NEGATIVE**\n\n| Task | SR |\n|---|---|\n| T0 between_plate_ramekin | 50% |\n| T1 next_to_ramekin | 100% |\n| T2 table_center | 0% |\n| T3 on_cookie_box | 30% |\n| T4 top_drawer | 0% |\n| T5 on_ramekin | 0% |\n| T6 next_to_cookie_box | 100% |\n| T7 on_stove | 0% |\n| T8 next_to_plate | 30% |\n| T9 on_wooden_cabinet | 0% |\n| **10-task avg** | **31%** |\n\n**对比参考值：**\n- perdof norm=0.1 = 35% → norm=0.05 降至 31%，更差\n- obs_only norm=0.05 = 35% → perdof 同 norm 下差 4pp\n- argmin baseline = 34% → perdof norm=0.05 低于 baseline 3pp\n- perdof norm=0.03 = 30% → norm=0.05 仅比 0.03 高 1pp\n\n**结论：negative。** 31% < 33% 阈值，低于 argmin baseline (34%)。perdof 在所有测试 norm 值下均未能超过 argmin baseline，表明 per-DoF correction 方向在 spatial benchmark 上不如 obs_only 和 argmin。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-mag-perdof-norm005-copy-2.md"
+}

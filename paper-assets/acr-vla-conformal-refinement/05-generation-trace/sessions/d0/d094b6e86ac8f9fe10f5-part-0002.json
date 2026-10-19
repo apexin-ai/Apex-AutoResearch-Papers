@@ -1,0 +1,1180 @@
+{
+  "schema_version": "1.0",
+  "session_id": "d094b6e86ac8f9fe10f5",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-20T03:55:10.830Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YXziptyAQyUGqepUHx1BcT",
+              "type": "tool_result",
+              "content": "Error: result (98,824 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/234026bf-3bb5-4446-a09e-d1a78a19b295/tool-results/mcp-agent-ml-research-read_registry-1779249310828.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/234026bf-3bb5-4446-a09e-d1a78a19b295/tool-results/mcp-agent-ml-research-read_registry-1779249310828.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "e98c8440-e6fb-4c6c-b419-ed1082e44286",
+            "tool_use_result": {
+              "content": "Error: result (98,824 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/234026bf-3bb5-4446-a09e-d1a78a19b295/tool-results/mcp-agent-ml-research-read_registry-1779249310828.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/234026bf-3bb5-4446-a09e-d1a78a19b295/tool-results/mcp-agent-ml-research-read_registry-1779249310828.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval-vla-only-goal-seed49\": {\"status\": \"PREPARING\"}, \"eval-perdof-object-norm02-seed45-r3\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.12, \"tasks_completed\": 10, \"total_rollouts\": 100}}, \"eval-obs-only-object-norm005-seed43\": {\"status\": \"DONE\"}, \"eval-perdof-object-norm02-seed48\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.07, \"successes\": 7, \"total\": 100, \"per_task_sr\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.1, \"bbq_sauce\": 0, \"ketchup\": 0, \"tomato_sauce\": 0.1, \"butter\": 0, \"milk\": 0, \"chocolate_pudding\": 0.3, \"orange_juice\": 0.2}}}, \"eval-openvla-object-baseline-seed42\": {\"status\": \"DONE\"}, \"eval-argmin-object-k5-seed44-r2\": {\"status\": \"DONE\", \"metrics\": {\"sr\": 0.11, \"sr_pct\": \"11%\", \"n_tasks\": 10, \"n_rollouts\": 10, \"per_task\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 0, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 0, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 0.1, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0.2, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 0, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 0.1, \"pick_up_the_butter_and_place_it_in_the_basket\": 0, \"pick_up_the_milk_and_place_it_in_the_basket\": 0.3, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 0.2, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 0.2}}}, \"eval-vla-only-goal-seed44-r2\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.73, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_episodes\": 100, \"per_task\": {\"open_the_middle_drawer_of_the_cabinet\": 0.8, \"put_the_bowl_on_the_stove\": 0.9, \"put_the_wine_bottle_on_top_of_the_cabinet\": 0.4, \"open_the_top_drawer_and_put_the_bowl_inside\": 0.6, \"put_the_bowl_on_top_of_the_cabinet\": 0.7, \"push_the_plate_to_the_front_of_the_stove\": 0.9, \"put_the_cream_cheese_in_the_bowl\": 0.3, \"turn_on_the_stove\": 0.9, \"put_the_bowl_on_the_plate\": 1, \"put_the_wine_bottle_on_the_rack\": 0.8}}}, \"eval-obs-only-spatial-norm02-seed46-r2\": {\"status\": \"DONE\", \"metrics\": {\"sr\": 0.33, \"sr_pct\": \"33.0%\", \"n_tasks\": 10, \"n_rollouts\": 10, \"per_task\": {\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\": 0.9, \"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\": 1, \"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\": 0, \"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\": 0.3, \"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\": 0.1, \"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\": 0, \"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\": 0.8, \"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\": 0, \"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\": 0.2, \"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\": 0}}}, \"eval-crm-long-seed50\": {\"status\": \"PREPARING\"}, \"eval-adaptive-k-p25-seed44-r2\": {\"status\": \"PREPARING\"}, \"eval-adaptive-k-p25-seed43\": {\"status\": \"PREPARING\", \"metrics\": {\"success_rate\": 0.13, \"avg_actual_k\": 4.788, \"fast_path_ratio\": 0.6515, \"total_steps\": 28207, \"fast_steps\": 18377, \"full_steps\": 9830}}, \"eval-adaptive-k-p50-seed43\": {\"status\": \"ALLOCATED\", \"metrics\": {\"success_rate\": 0.16, \"avg_actual_k\": 3.81, \"fast_path_ratio\": 0.7737, \"total_steps\": 27813, \"fast_steps\": 21520, \"full_steps\": 6293}}, \"eval-obs-only-spatial-norm02-seed48\": {\"status\": \"PREPARING\", \"metrics\": {\"success_rate\": 0.35, \"per_task\": {\"between_plate_and_ramekin\": 0.8, \"next_to_ramekin\": 1, \"from_table_center\": 0, \"on_cookie_box\": 0.3, \"in_top_drawer\": 0.1, \"on_ramekin\": 0, \"next_to_cookie_box\": 0.9, \"on_stove\": 0, \"next_to_plate\": 0.4, \"on_wooden_cabinet\": 0}}}, \"eval-vla-only-spatial-seed51\": {\"status\": \"PREPARING\"}, \"eval-vla-only-long-seed52\": {\"status\": \"PREPARING\"}, \"eval-crm-spatial-k10-seed51\": {\"status\": \"PREPARING\"}, \"eval-vla-only-long-seed51\": {\"status\": \"PREPARING\"}, \"eval-adaptive-k-p25-seed42\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.15, \"avg_actual_k\": 4.8, \"fast_path_ratio\": 0.65}}, \"eval-vla-only-goal-seed48-r2\": {\"status\": \"DONE\"}, \"eval-vla-only-goal-seed47-r2\": {\"status\": \"DONE\"}, \"eval-crm-goal-seed48\": {\"status\": \"PREPARING\"}, \"eval-adaptive-k-p50-seed42\": {\"status\": \"ALLOCATED\", \"metrics\": {\"success_rate\": 0.16, \"avg_actual_k\": 3.72, \"fast_path_ratio\": 0.785}}, \"eval-adaptive-k-p75-seed43\": {\"status\": \"ALLOCATED\", \"metrics\": {\"success_rate\": 0.13, \"avg_actual_k\": 3.15, \"fast_path_ratio\": 0.856}}, \"eval-crm-goal-seed47\": {\"status\": \"PREPARING\"}, \"eval-crm-goal-seed46\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.72, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_episodes\": 100, \"per_task\": {\"open_the_middle_drawer_of_the_cabinet\": 0.7, \"put_the_bowl_on_the_stove\": 0.9, \"put_the_wine_bottle_on_top_of_the_cabinet\": 0.5, \"open_the_top_drawer_and_put_the_bowl_inside\": 0.5, \"put_the_bowl_on_top_of_the_cabinet\": 0.9, \"push_the_plate_to_the_front_of_the_stove\": 1, \"put_the_cream_cheese_in_the_bowl\": 0.4, \"turn_on_the_stove\": 1, \"put_the_bowl_on_the_plate\": 1, \"put_the_wine_bottle_on_the_rack\": 0.3}}}, \"eval-adaptive-k-p90-seed44\": {\"status\": \"PREPARING\", \"metrics\": {\"success_rate\": 0.14, \"avg_actual_k\": 2.58, \"fast_path_ratio\": 0.928}}, \"eval-adaptive-k-p75-seed42\": {\"status\": \"ALLOCATED\", \"metrics\": {\"success_rate\": 0.12, \"avg_actual_k\": 3.07, \"fast_path_ratio\": 0.866}}, \"calibrate-crm-correction-signal\": {\"status\": \"PREPARING\"}, \"eval-crm-long-seed49\": {\"status\": \"PREPARING\"}, \"eval-crm-long-seed48\": {\"status\": \"PREPARING\"}, \"eval-vla-only-object-seed51\": {\"status\": \"PREPARING\"}, \"eval-crm-spatial-k10-seed50\": {\"status\": \"PREPARING\"}, \"eval-vla-only-long-seed50\": {\"status\": \"PREPARING\"}, \"eval-vla-only-long-seed49\": {\"status\": \"PREPARING\"}, \"eval-crm-spatial-k10-seed49\": {\"status\": \"PREPARING\"}, \"eval-adaptive-k-p50-seed44\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.14, \"avg_actual_k\": 3.909, \"fast_path_ratio\": 0.761, \"total_steps\": 28067, \"fast_steps\": 21368, \"full_steps\": 6699}}, \"eval-adaptive-k-p75-seed44\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.16, \"avg_actual_k\": 3.022, \"fast_path_ratio\": 0.872, \"total_steps\": 27724, \"fast_steps\": 24181, \"full_steps\": 3543}}, \"eval-adaptive-k-p90-seed43\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.14, \"avg_actual_k\": 2.612, \"fast_path_ratio\": 0.923, \"total_steps\": 27935, \"fast_steps\": 25797, \"full_steps\": 2138}}, \"eval-adaptive-k-p90-seed42\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.12, \"avg_actual_k\": 2.672, \"fast_path_ratio\": 0.916, \"total_steps\": 28258, \"fast_steps\": 25886, \"full_steps\": 2372}}, \"eval-adaptive-k-p25-seed44\": {\"status\": \"PREPARING\"}, \"eval-vla-only-spatial-seed50\": {\"status\": \"PREPARING\"}, \"eval-vla-only-spatial-seed47\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.3, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_episodes\": 100, \"successful_rollouts\": 30}}, \"eval-crm-spatial-seed48\": {\"status\": \"PREPARING\"}, \"eval-crm-spatial-seed47\": {\"status\": \"PREPARING\"}, \"eval-vla-only-object-seed49-r2\": {\"status\": \"PREPARING\"}, \"eval-vla-only-object-seed49\": {\"status\": \"DONE\"}, \"eval-crm-long-seed47\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.17, \"n_episodes\": 100, \"per_task\": {\"KITCHEN_SCENE3_turn_on_stove_put_moka_pot\": 0.8, \"KITCHEN_SCENE6_mug_in_microwave_close\": 0.5, \"LIVING_ROOM_SCENE5_mugs_on_plates\": 0.2, \"STUDY_SCENE1_book_in_caddy\": 0.2, \"LIVING_ROOM_SCENE2_soup_sauce_basket\": 0, \"LIVING_ROOM_SCENE2_cheese_butter_basket\": 0, \"KITCHEN_SCENE4_bowl_in_drawer\": 0, \"LIVING_ROOM_SCENE6_mug_pudding\": 0, \"LIVING_ROOM_SCENE1_soup_cheese_basket\": 0, \"KITCHEN_SCENE8_both_moka_pots\": 0}}}, \"eval-vla-only-object-seed48\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.1, \"n_episodes\": 100}}, \"eval-vla-only-long-seed48\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.14, \"n_episodes\": 100, \"per_task\": {\"KITCHEN_SCENE3_turn_on_stove_put_moka_pot\": 0.8, \"LIVING_ROOM_SCENE5_white_mug_left_yellow_right\": 0.3, \"STUDY_SCENE1_book_in_back_compartment\": 0.1, \"LIVING_ROOM_SCENE6_white_mug_pudding\": 0.1, \"KITCHEN_SCENE6_mug_in_microwave_close\": 0.1, \"LIVING_ROOM_SCENE2_alphabet_soup_tomato_sauce\": 0, \"LIVING_ROOM_SCENE2_cream_cheese_butter\": 0, \"KITCHEN_SCENE4_black_bowl_in_drawer\": 0, \"LIVING_ROOM_SCENE1_alphabet_soup_cream_cheese\": 0, \"KITCHEN_SCENE8_both_moka_pots\": 0}}}, \"eval-vla-only-object-seed50\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.09, \"total_rollouts\": 100, \"successes\": 9, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0.1, \"salad_dressing\": 0.1, \"bbq_sauce\": 0.2, \"ketchup\": 0, \"tomato_sauce\": 0.1, \"butter\": 0, \"milk\": 0.1, \"chocolate_pudding\": 0.1, \"orange_juice\": 0.2}}}, \"eval-crm-long-seed46\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.18, \"n_episodes\": 100, \"per_task\": {\"KITCHEN_SCENE3_turn_on_stove_put_moka_pot\": 0.9, \"KITCHEN_SCENE6_mug_in_microwave_close\": 0.5, \"LIVING_ROOM_SCENE5_white_mug_left_yellow_right\": 0.2, \"STUDY_SCENE1_book_in_back_compartment\": 0.2, \"LIVING_ROOM_SCENE2_alphabet_soup_tomato_sauce\": 0, \"LIVING_ROOM_SCENE2_cream_cheese_butter\": 0, \"KITCHEN_SCENE4_black_bowl_in_drawer\": 0, \"LIVING_ROOM_SCENE6_white_mug_pudding\": 0, \"LIVING_ROOM_SCENE1_alphabet_soup_cream_cheese\": 0, \"KITCHEN_SCENE8_both_moka_pots\": 0}}}, \"eval-crm-goal-seed45-r2\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.65, \"n_episodes\": 100, \"per_task\": {\"turn_on_the_stove\": 1, \"put_the_bowl_on_the_plate\": 1, \"push_the_plate_to_the_front_of_the_stove\": 0.9, \"put_the_bowl_on_the_stove\": 0.9, \"put_the_bowl_on_top_of_the_cabinet\": 0.8, \"open_the_middle_drawer_of_the_cabinet\": 0.7, \"put_the_wine_bottle_on_top_of_the_cabinet\": 0.4, \"put_the_wine_bottle_on_the_rack\": 0.4, \"open_the_top_drawer_and_put_the_bowl_inside\": 0.2, \"put_the_cream_cheese_in_the_bowl\": 0.2}}}, \"eval-crm-goal-seed44-r2\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.64, \"n_episodes\": 100, \"per_task\": {\"turn_on_the_stove\": 1, \"put_the_bowl_on_the_plate\": 1, \"put_the_bowl_on_the_stove\": 0.9, \"push_the_plate_to_the_front_of_the_stove\": 0.8, \"put_the_bowl_on_top_of_the_cabinet\": 0.7, \"open_the_middle_drawer_of_the_cabinet\": 0.6, \"put_the_wine_bottle_on_top_of_the_cabinet\": 0.5, \"put_the_wine_bottle_on_the_rack\": 0.4, \"put_the_cream_cheese_in_the_bowl\": 0.3, \"open_the_top_drawer_and_put_the_bowl_inside\": 0.2}}}, \"eval-obs-only-spatial-norm02-seed43-r2\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.34, \"n_tasks\": 10, \"n_rollouts\": 10, \"per_task\": {\"between_plate_and_ramekin\": 0.9, \"next_to_ramekin\": 1, \"from_table_center\": 0, \"on_cookie_box\": 0.3, \"in_top_drawer\": 0, \"on_ramekin\": 0, \"next_to_cookie_box\": 1, \"on_stove\": 0, \"next_to_plate\": 0.2, \"on_wooden_cabinet\": 0}}}, \"eval-openvla-object-baseline-seed42-r2\": {\"status\": \"PREPARING\"}, \"k2-l2-calibration-phase1\": {\"status\": \"DONE\", \"metrics\": {\"k2l2_vs_k10var_rho\": 0.9979, \"k2l2_vs_k10var_pvalue\": 0, \"k2l2_vs_fmvd_rho\": 0.0925, \"k2l2_vs_fmvd_pvalue\": 6.03e-29, \"k10var_vs_fmvd_rho\": 0.0825, \"k10var_vs_fmvd_pvalue\": 2.33e-23, \"n_samples\": 14512, \"k2l2_mean\": 0.0807, \"k2l2_std\": 0.0361, \"go_nogo_k2_proxy\": \"GO (rho=0.9979)\", \"go_nogo_fmvd_signal\": \"NO-GO (rho=0.09)\"}}, \"eval-crm-long-seed45\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.18, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_episodes\": 100, \"total_successes\": 18}}, \"eval-vla-only-spatial-seed49-r2\": {\"status\": \"PREPARING\"}, \"eval-vla-only-spatial-seed49\": {\"status\": \"DONE\"}, \"eval-vla-only-goal-seed48\": {\"status\": \"DONE\"}, \"eval-vla-only-goal-seed47\": {\"status\": \"DONE\"}, \"eval-vla-only-goal-seed43\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.69, \"per_task\": {\"open_the_middle_drawer_of_the_cabinet\": 0.9, \"put_the_bowl_on_the_stove\": 0.9, \"put_the_wine_bottle_on_top_of_the_cabinet\": 0.4, \"open_the_top_drawer_and_put_the_bowl_inside\": 0.5, \"put_the_bowl_on_top_of_the_cabinet\": 0.5, \"push_the_plate_to_the_front_of_the_stove\": 0.8, \"put_the_cream_cheese_in_the_bowl\": 0.4, \"turn_on_the_stove\": 0.9, \"put_the_bowl_on_the_plate\": 1, \"put_the_wine_bottle_on_the_rack\": 0.6}}}, \"eval-vla-only-goal-seed42\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.71, \"per_task\": {\"open_the_middle_drawer_of_the_cabinet\": 0.9, \"put_the_bowl_on_the_stove\": 0.9, \"put_the_wine_bottle_on_top_of_the_cabinet\": 0.6, \"open_the_top_drawer_and_put_the_bowl_inside\": 0.4, \"put_the_bowl_on_top_of_the_cabinet\": 0.7, \"push_the_plate_to_the_front_of_the_stove\": 0.9, \"put_the_cream_cheese_in_the_bowl\": 0.2, \"turn_on_the_stove\": 0.9, \"put_the_bowl_on_the_plate\": 0.9, \"put_the_wine_bottle_on_the_rack\": 0.7}}}, \"eval-vla-only-object-seed47\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.1, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_episodes\": 100, \"per_task\": {\"salad_dressing\": 0.2, \"bbq_sauce\": 0.2, \"milk\": 0.2, \"chocolate_pudding\": 0.2, \"orange_juice\": 0.2, \"alphabet_soup\": 0, \"cream_cheese\": 0, \"ketchup\": 0, \"tomato_sauce\": 0, \"butter\": 0}}}, \"eval-crm-long-seed44\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.2, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_episodes\": 100, \"per_task\": {\"KITCHEN_SCENE3_stove_moka_pot\": 0.8, \"KITCHEN_SCENE6_mug_microwave\": 0.6, \"LIVING_ROOM_SCENE5_mugs_plates\": 0.3, \"STUDY_SCENE1_book_caddy\": 0.2, \"LIVING_ROOM_SCENE6_mug_plate_pudding\": 0.1, \"LIVING_ROOM_SCENE2_alphabet_soup_tomato_sauce\": 0, \"LIVING_ROOM_SCENE2_cream_cheese_butter\": 0, \"KITCHEN_SCENE4_black_bowl_drawer\": 0, \"LIVING_ROOM_SCENE1_alphabet_soup_cream_cheese\": 0, \"KITCHEN_SCENE8_both_moka_pots\": 0}}}, \"eval-crm-long-seed43\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.15, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_episodes\": 100, \"per_task\": {\"KITCHEN_SCENE3_stove_moka_pot\": 0.8, \"KITCHEN_SCENE6_mug_microwave\": 0.3, \"LIVING_ROOM_SCENE5_mugs_plates\": 0.2, \"STUDY_SCENE1_book_caddy\": 0.2, \"LIVING_ROOM_SCENE2_alphabet_soup_tomato_sauce\": 0, \"LIVING_ROOM_SCENE2_cream_cheese_butter\": 0, \"KITCHEN_SCENE4_black_bowl_drawer\": 0, \"LIVING_ROOM_SCENE6_mug_plate_pudding\": 0, \"LIVING_ROOM_SCENE1_alphabet_soup_cream_cheese\": 0, \"KITCHEN_SCENE8_both_moka_pots\": 0}}}, \"eval-crm-long-seed42\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.17, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_episodes\": 100, \"per_task\": {\"KITCHEN_SCENE3_stove_moka_pot\": 0.8, \"KITCHEN_SCENE6_mug_microwave\": 0.4, \"LIVING_ROOM_SCENE5_mugs_plates\": 0.2, \"STUDY_SCENE1_book_caddy\": 0.2, \"LIVING_ROOM_SCENE6_mug_plate_pudding\": 0.1, \"LIVING_ROOM_SCENE2_alphabet_soup_tomato_sauce\": 0, \"LIVING_ROOM_SCENE2_cream_cheese_butter\": 0, \"KITCHEN_SCENE4_black_bowl_drawer\": 0, \"LIVING_ROOM_SCENE1_alphabet_soup_cream_cheese\": 0, \"KITCHEN_SCENE8_both_moka_pots\": 0}}}, \"eval-crm-goal-seed42\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.67, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_episodes\": 100, \"per_task\": {\"open_the_middle_drawer_of_the_cabinet\": 0.8, \"put_the_bowl_on_the_stove\": 0.9, \"put_the_wine_bottle_on_top_of_the_cabinet\": 0.4, \"open_the_top_drawer_and_put_the_bowl_inside\": 0.2, \"put_the_bowl_on_top_of_the_cabinet\": 1, \"push_the_plate_to_the_front_of_the_stove\": 0.9, \"put_the_cream_cheese_in_the_bowl\": 0.2, \"turn_on_the_stove\": 1, \"put_the_bowl_on_the_plate\": 0.9, \"put_the_wine_bottle_on_the_rack\": 0.4}}}, \"eval-crm-goal-seed43\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.72, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_episodes\": 100, \"per_task\": {\"open_the_middle_drawer_of_the_cabinet\": 0.8, \"put_the_bowl_on_the_stove\": 0.9, \"put_the_wine_bottle_on_top_of_the_cabinet\": 0.6, \"open_the_top_drawer_and_put_the_bowl_inside\": 0.5, \"put_the_bowl_on_top_of_the_cabinet\": 0.9, \"push_the_plate_to_the_front_of_the_stove\": 0.8, \"put_the_cream_cheese_in_the_bowl\": 0.3, \"turn_on_the_stove\": 1, \"put_the_bowl_on_the_plate\": 1, \"put_the_wine_bottle_on_the_rack\": 0.4}}}, \"eval-vla-only-spatial-seed46\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.3, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_episodes\": 100, \"successful_rollouts\": 30}}, \"eval-vla-only-long-seed47\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.14, \"n_tasks\": 10, \"n_rollouts\": 100, \"successful_rollouts\": 14, \"per_task\": {\"put_both_alphabet_soup_and_tomato_sauce_in_basket\": 0, \"put_both_cream_cheese_box_and_butter_in_basket\": 0, \"turn_on_stove_put_moka_pot\": 0.8, \"put_black_bowl_in_bottom_drawer\": 0, \"put_white_mug_left_plate_yellow_mug_right_plate\": 0.4, \"pick_up_book_place_in_caddy\": 0.1, \"put_white_mug_on_plate_chocolate_pudding_right\": 0.1, \"put_both_alphabet_soup_and_cream_cheese_in_basket\": 0, \"put_both_moka_pots_on_stove\": 0, \"put_yellow_white_mug_in_microwave\": 0}}}, \"eval-vla-only-spatial-seed48\": {\"status\": \"DONE\"}, \"eval-crm-goal-seed45\": {\"status\": \"DONE\"}, \"eval-crm-goal-seed44\": {\"status\": \"DONE\"}, \"eval-vla-only-goal-seed45\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.63, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_episodes\": 100, \"per_task\": {\"open_the_middle_drawer_of_the_cabinet\": 0.9, \"put_the_bowl_on_the_stove\": 0.9, \"put_the_wine_bottle_on_top_of_the_cabinet\": 0.3, \"open_the_top_drawer_and_put_the_bowl_inside\": 0.4, \"put_the_bowl_on_top_of_the_cabinet\": 0.3, \"push_the_plate_to_the_front_of_the_stove\": 0.9, \"put_the_cream_cheese_in_the_bowl\": 0.1, \"turn_on_the_stove\": 0.8, \"put_the_bowl_on_the_plate\": 0.9, \"put_the_wine_bottle_on_the_rack\": 0.8}}}, \"eval-vla-only-goal-seed46\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.71, \"n_tasks\": 10, \"n_rollouts_per_task\": 10, \"total_rollouts\": 100, \"total_successes\": 71, \"per_task\": {\"open_the_middle_drawer_of_the_cabinet\": 0.9, \"put_the_bowl_on_the_stove\": 0.9, \"put_the_wine_bottle_on_top_of_the_cabinet\": 0.5, \"open_the_top_drawer_and_put_the_bowl_inside\": 0.4, \"put_the_bowl_on_top_of_the_cabinet\": 0.6, \"push_the_plate_to_the_front_of_the_stove\": 0.8, \"put_the_cream_cheese_in_the_bowl\": 0.5, \"turn_on_the_stove\": 0.9, \"put_the_bowl_on_the_plate\": 0.9, \"put_the_wine_bottle_on_the_rack\": 0.7}}}, \"eval-vla-only-long-seed46\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.18, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_episodes\": 100, \"per_task\": {\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\": 0, \"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\": 0, \"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\": 0.9, \"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\": 0, \"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\": 0.5, \"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\": 0.1, \"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\": 0.1, \"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\": 0, \"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\": 0, \"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\": 0.2}}}, \"fmvd-calibration-phase1\": {\"status\": \"DONE\", \"metrics\": {\"spearman_rho\": 0.082528, \"spearman_pvalue\": 2.33e-23, \"n_samples\": 14512, \"go_nogo\": \"NO-GO\", \"threshold\": 0.3, \"fmvd_mean\": 0.054867, \"fmvd_std\": 0.040291, \"fmvd_P25\": 0.027738, \"fmvd_P50\": 0.046693, \"fmvd_P75\": 0.070899, \"fmvd_P90\": 0.093805, \"k10_variance_mean\": 0.004888, \"k10_variance_std\": 0.005635, \"task_success_rate\": 0.06, \"n_tasks\": 10, \"n_episodes\": 50, \"n_successes\": 3}}, \"eval-obs-only-object-norm005-seed48\": {\"status\": \"DONE\", \"metrics\": {\"sr\": 0.17, \"sr_pct\": \"17.0%\", \"n_tasks\": 10, \"n_rollouts\": 10, \"per_task\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 0, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 0.1, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 0.3, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0.3, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 0, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 0.1, \"pick_up_the_butter_and_place_it_in_the_basket\": 0.1, \"pick_up_the_milk_and_place_it_in_the_basket\": 0.2, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 0.3, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 0.3}}}, \"eval-vla-only-long-seed45\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.17, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_episodes\": 100, \"per_task\": {\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\": 0, \"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\": 0, \"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\": 1, \"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\": 0, \"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\": 0.2, \"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\": 0.2, \"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\": 0.1, \"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\": 0, \"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\": 0, \"KITCHEN_SCENE6_put_the_yellow_and_white_mug_in_the_microwave_and_close_it\": 0.2}}}, \"eval-perdof-object-norm003-seed47\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.15, \"n_tasks\": 10, \"n_rollouts\": 10, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.3, \"ketchup\": 0, \"tomato_sauce\": 0.1, \"butter\": 0.2, \"milk\": 0.1, \"chocolate_pudding\": 0.3, \"orange_juice\": 0.3}}}, \"eval-perdof-object-norm005-seed47\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.1, \"n_tasks\": 10, \"n_rollouts\": 10, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.1, \"bbq_sauce\": 0.2, \"ketchup\": 0, \"tomato_sauce\": 0, \"butter\": 0.1, \"milk\": 0, \"chocolate_pudding\": 0.4, \"orange_juice\": 0.2}}}, \"eval-vla-only-long-seed44\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.12, \"n_tasks\": 10, \"n_rollouts\": 10, \"per_task\": {\"LIVING_ROOM_SCENE2_alphabet_soup_tomato_sauce_basket\": 0, \"LIVING_ROOM_SCENE2_cream_cheese_butter_basket\": 0, \"KITCHEN_SCENE3_stove_moka_pot\": 0.8, \"KITCHEN_SCENE4_black_bowl_drawer\": 0, \"LIVING_ROOM_SCENE5_white_mug_left_yellow_mug_right\": 0.2, \"STUDY_SCENE1_book_caddy\": 0.1, \"LIVING_ROOM_SCENE6_white_mug_plate_chocolate_pudding\": 0, \"LIVING_ROOM_SCENE1_alphabet_soup_cream_cheese_basket\": 0, \"KITCHEN_SCENE8_both_moka_pots_stove\": 0, \"KITCHEN_SCENE6_yellow_white_mug_microwave\": 0.1}}}, \"eval-vla-only-long-seed42\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.11, \"n_tasks\": 10, \"n_rollouts\": 10, \"per_task\": {\"LIVING_ROOM_SCENE2_alphabet_soup_tomato_sauce_basket\": 0, \"LIVING_ROOM_SCENE2_cream_cheese_butter_basket\": 0, \"KITCHEN_SCENE3_stove_moka_pot\": 0.8, \"KITCHEN_SCENE4_black_bowl_drawer\": 0, \"LIVING_ROOM_SCENE5_white_mug_left_yellow_mug_right\": 0.1, \"STUDY_SCENE1_book_caddy\": 0.1, \"LIVING_ROOM_SCENE6_white_mug_plate_chocolate_pudding\": 0, \"LIVING_ROOM_SCENE1_alphabet_soup_cream_cheese_basket\": 0, \"KITCHEN_SCENE8_both_moka_pots_stove\": 0, \"KITCHEN_SCENE6_yellow_white_mug_microwave\": 0.1}}}, \"eval-vla-only-long-seed43\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.13, \"n_tasks\": 10, \"n_rollouts\": 10, \"per_task\": {\"LIVING_ROOM_SCENE2_alphabet_soup_tomato_sauce_basket\": 0, \"LIVING_ROOM_SCENE2_cream_cheese_butter_basket\": 0, \"KITCHEN_SCENE3_stove_moka_pot\": 0.7, \"KITCHEN_SCENE4_black_bowl_drawer\": 0, \"LIVING_ROOM_SCENE5_white_mug_left_yellow_mug_right\": 0.3, \"STUDY_SCENE1_book_caddy\": 0, \"LIVING_ROOM_SCENE6_white_mug_plate_chocolate_pudding\": 0.1, \"LIVING_ROOM_SCENE1_alphabet_soup_cream_cheese_basket\": 0, \"KITCHEN_SCENE8_both_moka_pots_stove\": 0, \"KITCHEN_SCENE6_yellow_white_mug_microwave\": 0.2}}}, \"eval-obs-only-spatial-norm02-seed43\": {\"status\": \"DONE\"}, \"eval-obs-only-spatial-norm02-seed47\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.32, \"per_task\": {\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\": 0.8, \"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\": 0.9, \"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\": 0, \"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\": 0.3, \"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\": 0.1, \"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\": 0, \"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\": 0.9, \"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\": 0, \"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\": 0.2, \"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\": 0}}}, \"eval-random-selection-object-seed46-r2\": {\"status\": \"DONE\"}, \"eval-obs-only-spatial-norm02-seed46\": {\"status\": \"DONE\"}, \"eval-argmin-object-k5-seed44\": {\"status\": \"DONE\"}, \"eval-vla-only-goal-seed44\": {\"status\": \"DONE\"}, \"eval-random-selection-object-k5-seed45-r2\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.07, \"successes\": 7, \"total\": 100, \"n_tasks\": 10, \"n_rollouts\": 10}}, \"eval-random-selection-object-k5-seed44-r2\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.1, \"successes\": 10, \"total\": 100, \"n_tasks\": 10, \"n_rollouts\": 10}}, \"eval-random-selection-object-k5-seed43-r2\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.11, \"successes\": 11, \"total\": 100, \"n_tasks\": 10, \"n_rollouts\": 10}}, \"eval-random-selection-object-k5-seed42-r2\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.14, \"successes\": 14, \"total\": 100, \"n_tasks\": 10, \"n_rollouts\": 10}}, \"eval-obs-only-spatial-norm02-k5-seed44-r2\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.37, \"successes\": 37, \"total\": 100, \"n_tasks\": 10, \"n_rollouts\": 10}}, \"eval-obs-only-spatial-norm02-k5-seed45-r2\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.34, \"successes\": 34, \"total\": 100, \"n_tasks\": 10, \"n_rollouts\": 10, \"per_task\": {\"pick_up_bowl_between_plate_ramekin\": 0.9, \"pick_up_bowl_next_to_ramekin\": 1, \"pick_up_bowl_from_table_center\": 0, \"pick_up_bowl_on_cookie_box\": 0.3, \"pick_up_bowl_in_top_drawer\": 0.1, \"pick_up_bowl_on_ramekin\": 0, \"pick_up_bowl_next_to_cookie_box\": 0.9, \"pick_up_bowl_on_stove\": 0, \"pick_up_bowl_next_to_plate\": 0.2, \"pick_up_bowl_on_wooden_cabinet\": 0}}}, \"plan_602-latency-profiling\": {\"status\": \"DONE\", \"metrics\": {\"vla_encode_ms\": 28.4, \"crm_forward_ms\": 0.246, \"preprocess_ms\": 0.96, \"batched_K1_ms\": 180, \"batched_K5_ms\": 182.3, \"batched_K10_ms\": 162.3, \"batched_K20_ms\": 167.4, \"sequential_K1_ms\": 177, \"sequential_K5_ms\": 891.7, \"sequential_K10_ms\": 1638.9, \"sequential_K20_ms\": 3245.8, \"cgs_K10_ms\": 6.3, \"full_pipe_K10_ms\": 200.7, \"full_pipe_K20_ms\": 199.7, \"vla_model_mb\": 884.1, \"crm_model_mb\": 1.8, \"peak_K20_mb\": 1085.1}}, \"eval-vla-only-spatial-seed45\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.27, \"per_task\": {\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\": 0.7, \"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\": 0.9, \"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\": 0, \"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\": 0.2, \"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\": 0, \"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\": 0, \"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\": 0.9, \"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\": 0, \"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\": 0, \"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\": 0}, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100}}, \"eval-perdof-object-norm005-seed45-r2\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.1, \"successes\": 10, \"total\": 100, \"n_tasks\": 10, \"n_rollouts\": 10, \"sr_pct\": \"10%\"}}, \"eval-vla-only-spatial-seed44\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.31, \"successes\": 31, \"total\": 100, \"per_task\": {\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\": 0.6, \"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\": 1, \"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\": 0, \"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\": 0.3, \"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\": 0, \"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\": 0, \"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\": 0.9, \"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\": 0, \"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\": 0.3, \"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\": 0}}}, \"eval-obs-only-object-norm02-k20-seed44\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-norm02-k20-seed43\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-norm02-k20-seed42\": {\"status\": \"PREPARING\"}, \"eval-obs-only-object-default-seed48-r2\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.17, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.4, \"ketchup\": 0.1, \"tomato_sauce\": 0.2, \"butter\": 0.1, \"milk\": 0.1, \"chocolate_pudding\": 0.3, \"orange_juice\": 0.3}}}, \"eval-vla-only-spatial-seed43\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.29, \"successes\": 29, \"total\": 100, \"per_task\": {\"between_plate_and_ramekin\": 0.7, \"next_to_ramekin\": 0.8, \"from_table_center\": 0.1, \"on_cookie_box\": 0.3, \"in_top_drawer\": 0, \"on_ramekin\": 0, \"next_to_cookie_box\": 0.9, \"on_stove\": 0, \"next_to_plate\": 0.1, \"on_wooden_cabinet\": 0}}}, \"eval-vla-only-spatial-seed42\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.3, \"per_task\": {\"between_plate_and_ramekin\": 0.6, \"next_to_ramekin\": 1, \"from_table_center\": 0, \"on_cookie_box\": 0.2, \"in_top_drawer\": 0, \"on_ramekin\": 0, \"next_to_cookie_box\": 0.9, \"on_stove\": 0, \"next_to_plate\": 0.3, \"on_wooden_cabinet\": 0}}}, \"eval-obs-only-spatial-norm02-k5-seed45\": {\"status\": \"DONE\"}, \"eval-obs-only-spatial-norm02-k5-seed44\": {\"status\": \"DONE\"}, \"eval-random-selection-object-k5-seed45\": {\"status\": \"DONE\"}, \"eval-random-selection-object-k5-seed44\": {\"status\": \"DONE\"}, \"eval-random-selection-object-k5-seed43\": {\"status\": \"DONE\"}, \"eval-random-selection-object-k5-seed42\": {\"status\": \"DONE\"}, \"eval-obs-only-spatial-norm02-seed44\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.36, \"successes\": 36, \"total\": 100}}, \"eval-obs-only-object-norm003-seed47-r2\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.15, \"successes\": 15, \"total\": 100}}, \"eval-obs-only-object-norm003-seed48\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.15, \"successes\": 15, \"total\": 100, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 2, \"bbq_sauce\": 4, \"ketchup\": 0, \"tomato_sauce\": 1, \"butter\": 0, \"milk\": 2, \"chocolate_pudding\": 4, \"orange_juice\": 2}}}, \"eval-perdof-object-norm01-seed43\": {\"status\": \"DONE\", \"metrics\": {\"sr\": 0.12, \"sr_pct\": \"12%\", \"n_tasks\": 10, \"n_rollouts\": 10, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.3, \"ketchup\": 0, \"tomato_sauce\": 0, \"butter\": 0, \"milk\": 0, \"chocolate_pudding\": 0.4, \"orange_juice\": 0.3}}}, \"eval-obs-only-object-default-seed45-r2\": {\"status\": \"DONE\", \"metrics\": {\"sr\": 0.18, \"sr_pct\": \"18%\", \"n_tasks\": 10, \"n_rollouts\": 10, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.3, \"bbq_sauce\": 0.3, \"ketchup\": 0.1, \"tomato_sauce\": 0.1, \"butter\": 0.1, \"milk\": 0.2, \"chocolate_pudding\": 0.4, \"orange_juice\": 0.3}}}, \"eval-argmin-object-k5-seed42\": {\"status\": \"DONE\", \"metrics\": {\"sr\": 0.15, \"sr_pct\": \"15%\", \"n_tasks\": 10, \"n_rollouts\": 10, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.4, \"ketchup\": 0, \"tomato_sauce\": 0.1, \"butter\": 0, \"milk\": 0.2, \"chocolate_pudding\": 0.4, \"orange_juice\": 0.2}}}, \"eval-argmin-object-k5-seed45\": {\"status\": \"DONE\", \"metrics\": {\"sr\": 0.13, \"sr_pct\": \"13%\", \"n_tasks\": 10, \"n_rollouts\": 10, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.4, \"ketchup\": 0, \"tomato_sauce\": 0.1, \"butter\": 0.1, \"milk\": 0.1, \"chocolate_pudding\": 0.1, \"orange_juice\": 0.3}}}, \"eval-argmin-object-k5-seed43\": {\"status\": \"DONE\", \"metrics\": {\"sr\": 0.13, \"sr_pct\": \"13%\", \"n_tasks\": 10, \"n_rollouts\": 10, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.3, \"bbq_sauce\": 0.3, \"ketchup\": 0, \"tomato_sauce\": 0, \"butter\": 0.1, \"milk\": 0.1, \"chocolate_pudding\": 0.3, \"orange_juice\": 0.2}}}, \"eval-perdof-object-norm03-seed43\": {\"status\": \"DONE\", \"metrics\": {\"sr\": 5, \"sr_pct\": \"5%\", \"n_tasks\": 10, \"n_rollouts\": 10}}, \"eval-obs-only-spatial-norm02-seed45\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.34, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100, \"successes\": 34}}, \"eval-obs-only-object-norm003-seed44-bjb2\": {\"status\": \"DONE\"}, \"train-crm-k1-accg-object-seed42-full\": {\"status\": \"DONE\"}, \"plan_701-precompute-k1-spatial\": {\"status\": \"DONE\"}, \"plan_701-crm-k1-train\": {\"status\": \"DONE\"}, \"eval_obs_only_norm03_seed48\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.16, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100, \"successes\": 16}}, \"eval_obs_only_norm01_seed48\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.18, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100, \"successes\": 18}}, \"eval-lto-splitA-vla-only-r3\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.14, \"n_tasks\": 5, \"n_rollouts\": 10, \"total_rollouts\": 50, \"successes\": 7}}, \"eval-lto-splitA-vla-only-r2\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.14, \"n_tasks\": 5, \"n_rollouts\": 10, \"total_rollouts\": 50, \"successes\": 7}}, \"eval-lto-splitA-heldout-r2\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.02, \"n_tasks\": 5, \"n_rollouts\": 10, \"total_rollouts\": 50, \"successes\": 1}}, \"crm-lto-splitA-train\": {\"status\": \"DONE\"}, \"eval-perdof-object-norm003-seed48\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.13, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100}}, \"eval-scalar-object-seed45-r2\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.07, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.1, \"bbq_sauce\": 0.1, \"ketchup\": 0, \"tomato_sauce\": 0, \"butter\": 0, \"milk\": 0, \"chocolate_pudding\": 0.2, \"orange_juice\": 0.3}}}, \"eval-obs-only-spatial-norm02-k5-seed43\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.32, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100}}, \"eval-obs-only-object-norm02-k5-seed48\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.18, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100}}, \"eval-obs-only-spatial-norm02-k5-seed42\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.35, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100}}, \"eval-obs-only-object-norm02-k5-seed46\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.16, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100}}, \"eval-lto-splitA-vla-only-v2\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.14, \"n_tasks\": 5, \"n_rollouts\": 10, \"total_rollouts\": 50, \"successes\": 7}}, \"eval-lto-splitA-heldout-v2\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.02, \"n_tasks\": 5, \"n_rollouts\": 10, \"total_rollouts\": 50, \"successes\": 1}}, \"eval-perdof-object-default-seed47\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100}}, \"eval-perdof-object-norm03-seed47\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.05, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100}}, \"eval-obs-only-object-default-seed48\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.17, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100}}, \"eval-perdof-object-norm003-seed46\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.09, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100}}, \"eval-perdof-object-norm005-seed46\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.11, \"total_rollouts\": 100}}, \"eval-perdof-object-norm003-seed45\": {\"status\": \"DONE\"}, \"eval-obs-only-object-norm003-seed46\": {\"status\": \"DONE\"}, \"eval-obs-only-object-norm02-k5-seed47\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.13, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100}}, \"eval-random-selection-object-seed45\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.1, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100}}, \"eval-obs-only-object-norm005-seed47\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.14, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100}}, \"eval-perdof-object-norm01-seed48\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.12, \"total_rollouts\": 100}}, \"eval-obs-only-object-default-seed47\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.16, \"total_rollouts\": 100}}, \"eval-perdof-object-norm03-seed46\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.04, \"total_rollouts\": 100}}, \"eval-obs-only-object-norm03-seed46\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.17, \"total_rollouts\": 100}}, \"eval-scalar-object-seed46\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.09, \"total_rollouts\": 100}}, \"eval-obs-only-object-norm01-seed47\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.17, \"total_rollouts\": 100}}, \"eval-obs-only-object-norm003-seed43-r2\": {\"status\": \"DONE\"}, \"eval-obs-only-object-norm003-seed45-r2\": {\"status\": \"DONE\", \"metrics\": {\"partial\": true, \"tasks_completed\": \"5/10\", \"task6_partial\": \"5/10 rollouts\", \"per_task_sr\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.3, \"ketchup\": 0}, \"partial_avg_sr\": 0.1, \"failure_mode\": \"process killed silently mid-eval, no error in log, no JSON output\"}}, \"eval-lto-splitA-vla-only\": {\"status\": \"DONE\"}, \"eval-lto-splitA-heldout\": {\"status\": \"DONE\"}, \"eval-obs-only-object-norm01-seed45-r2\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.17, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100, \"per_task_sr\": {\"alphabet_soup\": 0, \"cream_cheese\": 0.1, \"salad_dressing\": 0.1, \"bbq_sauce\": 0.4, \"ketchup\": 0.1, \"tomato_sauce\": 0.1, \"butter\": 0.1, \"milk\": 0.2, \"chocolate_pudding\": 0.3, \"orange_juice\": 0.3}}}, \"eval-obs-only-object-norm005-seed46\": {\"status\": \"DONE\"}, \"eval-perdof-object-norm03-seed48\": {\"status\": \"DONE\"}, \"eval-obs-only-object-norm003-seed49\": {\"status\": \"DONE\"}, \"crm-lto-splitA-train-fixed\": {\"status\": \"DONE\"}, \"eval-obs-only-object-norm003-seed47\": {\"status\": \"DONE\"}, \"eval-perdof-object-norm003-seed43\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.13, \"total_rollouts\": 100, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.3, \"ketchup\": 0, \"tomato_sauce\": 0.1, \"butter\": 0.1, \"milk\": 0.1, \"chocolate_pudding\": 0.2, \"orange_juice\": 0.3}}}, \"eval-perdof-object-norm005-seed43\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.13, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.3, \"bbq_sauce\": 0.3, \"ketchup\": 0, \"tomato_sauce\": 0, \"butter\": 0.1, \"milk\": 0.1, \"chocolate_pudding\": 0.2, \"orange_juice\": 0.3}}}, \"eval-perdof-object-default-seed43\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100}}, \"eval-random-selection-object-seed46\": {\"status\": \"DONE\"}, \"eval-obs-only-object-norm02-seed48-r2\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.18, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100}}, \"eval-perdof-object-default-seed45\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100}}, \"eval-obs-only-object-norm02-k5-seed45\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.15, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100}}, \"eval-vla-only-object-seed46\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.13, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100}}, \"eval-obs-only-object-norm01-seed48\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.18, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100}}, \"eval-perdof-object-norm005-seed45\": {\"status\": \"DONE\"}, \"eval-obs-only-object-norm003-seed44\": {\"status\": \"DONE\"}, \"eval-obs-only-object-norm003-seed45\": {\"status\": \"DONE\"}, \"eval-obs-only-object-norm02-k5-seed44\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.17, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100}}, \"eval-obs-only-object-norm003-seed43\": {\"status\": \"DONE\"}, \"eval-random-selection-object-seed44\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.13, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100}}, \"eval-perdof-object-norm003-seed44-r2\": {\"status\": \"DONE\"}, \"eval-perdof-object-norm01-seed42\": {\"status\": \"DEPLOYED\", \"metrics\": {\"success_rate\": 0.11, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100}}, \"eval-obs-only-object-norm01-seed42\": {\"status\": \"DEPLOYED\", \"metrics\": {\"success_rate\": 0.19, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100}}, \"eval-obs-only-object-norm01-seed46-r3\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.18, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100}}, \"eval-obs-only-object-norm005-seed45\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.14, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100}}, \"eval-random-selection-object-seed43\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.09, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100, \"per_task_sr\": [0, 0, 0.1, 0.1, 0, 0.1, 0, 0.1, 0.2, 0.3]}}, \"eval-perdof-object-norm005-seed44\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.09, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100, \"per_task\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 0, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 0, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 0.2, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0.2, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 0, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 0, \"pick_up_the_butter_and_place_it_in_the_basket\": 0, \"pick_up_the_milk_and_place_it_in_the_basket\": 0, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 0.3, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 0.2}}}, \"eval-vla-only-object-seed45-r2\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.11, \"n_tasks\": 10, \"n_rollouts_per_task\": 10, \"total_rollouts\": 100, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0.3, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.2, \"ketchup\": 0, \"tomato_sauce\": 0.1, \"butter\": 0, \"milk\": 0, \"chocolate_pudding\": 0.1, \"orange_juice\": 0.2}}}, \"eval-perdof-object-norm003-seed44\": {\"status\": \"DONE\"}, \"eval-obs-only-object-norm03-seed48\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.16, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100}}, \"eval-obs-only-object-norm005-seed44\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.16, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_episodes\": 100, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.4, \"ketchup\": 0.1, \"tomato_sauce\": 0.1, \"butter\": 0, \"milk\": 0.1, \"chocolate_pudding\": 0.4, \"orange_juice\": 0.3}}}, \"eval-obs-only-object-norm02-k5-seed43\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.19, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0.1, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.3, \"ketchup\": 0.1, \"tomato_sauce\": 0.2, \"butter\": 0.1, \"milk\": 0.1, \"chocolate_pudding\": 0.5, \"orange_juice\": 0.3}}}, \"eval-perdof-object-norm01-seed42-r2\": {\"status\": \"DONE\"}, \"eval-obs-only-object-norm01-seed42-r2\": {\"status\": \"DONE\"}, \"eval-random-selection-object-seed42\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.13, \"n_tasks\": 10, \"n_rollouts\": 10, \"total_rollouts\": 100, \"per_task_sr\": [0, 0.1, 0.1, 0.4, 0, 0.2, 0, 0.1, 0.2, 0.2]}}, \"eval-perdof-object-norm02-seed43\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.09, \"n_tasks\": 10, \"n_rollouts\": 10}}, \"eval-perdof-object-norm01-seed46\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.1}}, \"eval-obs-only-object-norm01-seed45\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.14}}, \"eval-obs-only-object-norm02-k5-seed42\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.14}}, \"eval-perdof-object-default-seed46\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0}}, \"eval-perdof-object-default-seed44\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0, \"total_successes\": 0, \"total_rollouts\": 90, \"tasks_completed\": 9, \"note\": \"Partial 9/10 tasks, 0/90 rollouts. Accepted as collapse evidence per Director decision 2026-05-18.\"}}, \"eval-mag-perdof-norm02\": {\"status\": \"DONE\", \"metrics\": {\"tasks_done\": \"6/10\", \"partial_results\": {\"T0_between_plate_ramekin\": \"60%\", \"T1_next_to_ramekin\": \"90%\", \"T2_table_center\": \"0%\", \"T3_on_cookie_box\": \"20%\", \"T4_top_drawer\": \"0%\", \"T5_on_ramekin\": \"0%\"}, \"running_avg_6task\": \"28.3%\", \"snapshot_time\": \"2026-05-15T09:00:00Z\", \"server\": \"bjb2-28827\", \"process_status\": \"alive\"}}, \"eval-acr-spatial-v4-scalar\": {\"status\": \"DONE\", \"metrics\": {\"tasks_done\": \"3/10\", \"partial_results\": {\"between_plate_and_ramekin\": \"60.0% (6/10)\", \"next_to_ramekin\": \"100.0% (10/10)\", \"from_table_center\": \"10.0% (1/10)\"}, \"running_avg_3tasks\": \"56.7% (17/30)\", \"snapshot_time\": \"2026-05-15T12:00:00Z\", \"server\": \"bjb1-18228\", \"gpu\": \"cuda:2\", \"pid\": 288939}}, \"eval-acr-spatial-v4-small\": {\"status\": \"DONE\", \"metrics\": {\"tasks_done\": \"7/10\", \"partial_results\": {\"between_plate_and_ramekin\": \"60.0% (6/10)\", \"next_to_ramekin\": \"100.0% (10/10)\", \"from_table_center\": \"10.0% (1/10)\", \"on_cookie_box\": \"40.0% (4/10)\", \"in_top_drawer\": \"0.0% (0/10)\", \"on_ramekin\": \"0.0% (0/10)\", \"next_to_cookie_box\": \"90.0% (9/10)\"}, \"running_avg_7tasks\": \"42.9% (30/70)\", \"snapshot_time\": \"2026-05-15T12:00:00Z\", \"server\": \"bjb1-18228\", \"gpu\": \"cuda:3\", \"pid\": 253085}}, \"eval-acr-spatial-v4-obs-only-r2\": {\"status\": \"DONE\", \"metrics\": {\"tasks_done\": \"6/10\", \"partial_results\": {\"between_plate_and_ramekin\": \"90.0% (9/10)\", \"next_to_ramekin\": \"100.0% (10/10)\", \"from_table_center\": \"0.0% (0/10)\", \"on_cookie_box\": \"40.0% (4/10)\", \"in_top_drawer\": \"10.0% (1/10)\", \"on_ramekin\": \"0.0% (0/10)\"}, \"running_avg_6tasks\": \"40.0% (24/60)\", \"snapshot_time\": \"2026-05-15T12:00:00Z\", \"server\": \"bjb1-18228\", \"gpu\": \"cuda:0\", \"pid\": 270097}}, \"eval-argmin-only-spatial\": {\"status\": \"DONE\", \"metrics\": {\"tasks_done\": \"9/10\", \"partial_results\": {\"between_plate_and_ramekin\": \"60.0% (6/10)\", \"next_to_ramekin\": \"100.0% (10/10)\", \"from_table_center\": \"0.0% (0/10)\", \"on_cookie_box\": \"30.0% (3/10)\", \"in_top_drawer\": \"10.0% (1/10)\", \"on_ramekin\": \"10.0% (1/10)\", \"next_to_cookie_box\": \"90.0% (9/10)\", \"on_stove\": \"0.0% (0/10)\", \"next_to_plate\": \"30.0% (3/10)\"}, \"running_avg_9tasks\": \"36.7% (33/90)\", \"snapshot_time\": \"2026-05-15T12:00:00Z\", \"server\": \"bjb1-18228\", \"gpu\": \"cuda:1\", \"pid\": 231421}}, \"eval-acr-spatial-v3\": {\"status\": \"DONE\", \"metrics\": {\"tasks_done\": \"4/10\", \"overall_success_rate\": 0.025, \"total_successes\": 1, \"total_rollouts\": 40, \"per_task_partial\": {\"pick_up_black_bowl_between_plate_and_ramekin\": 0.1, \"pick_up_black_bowl_next_to_ramekin\": 0, \"pick_up_black_bowl_from_table_center\": 0, \"pick_up_black_bowl_on_cookie_box\": 0}, \"snapshot_time\": \"2026-05-14T18:15Z\"}}, \"eval-acr-object-v3\": {\"status\": \"DONE\", \"metrics\": {\"tasks_done\": \"4/10\", \"overall_success_rate\": 0, \"total_successes\": 0, \"total_rollouts\": 40, \"per_task_partial\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0, \"bbq_sauce\": 0}, \"snapshot_time\": \"2026-05-14T18:15Z\"}}, \"eval-openvla-object-vla-only-seed42\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0, \"total_successes\": 0, \"total_rollouts\": 100, \"avg_inference_time_ms\": 178, \"per_task\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 0, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 0, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 0, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 0, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 0, \"pick_up_the_butter_and_place_it_in_the_basket\": 0, \"pick_up_the_milk_and_place_it_in_the_basket\": 0, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 0, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 0}}}, \"eval-perdof-object-norm02-seed47\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.11, \"per_task_sr\": {\"alphabet_soup\": 0, \"cream_cheese\": 0.1, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.1, \"ketchup\": 0, \"tomato_sauce\": 0, \"butter\": 0.1, \"milk\": 0, \"chocolate_pudding\": 0.4, \"orange_juice\": 0.2}}}, \"eval-obs-only-object-norm02-seed48\": {\"status\": \"DONE\"}, \"eval-obs-only-object-default-seed46\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.15, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.4, \"ketchup\": 0.1, \"tomato_sauce\": 0.1, \"butter\": 0.1, \"milk\": 0.1, \"chocolate_pudding\": 0.2, \"orange_juice\": 0.3}}}, \"eval-perdof-object-norm02-seed46\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.09, \"successes\": 9, \"rollouts\": 100, \"per_task_sr\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.1, \"ketchup\": 0, \"tomato_sauce\": 0, \"butter\": 0, \"milk\": 0, \"chocolate_pudding\": 0.4, \"orange_juice\": 0.2}}}, \"eval-obs-only-object-norm01-seed46\": {\"status\": \"DONE\"}, \"eval-obs-only-object-norm005-seed43-r2\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.14, \"successes\": 14, \"rollouts\": 100, \"per_task_sr\": {\"alphabet_soup\": 0, \"cream_cheese\": 0.1, \"salad_dressing\": 0.1, \"bbq_sauce\": 0.2, \"ketchup\": 0, \"tomato_sauce\": 0, \"butter\": 0.1, \"milk\": 0.2, \"chocolate_pudding\": 0.4, \"orange_juice\": 0.3}}}, \"eval-obs-only-object-norm01-seed46-r2\": {\"status\": \"DEPLOYED\"}, \"mag_obs_only_norm01_seed47\": {\"status\": \"DONE\"}, \"mag_obs_only_norm01_seed46\": {\"status\": \"DONE\"}, \"eval-perdof-object-norm02-seed43-r3\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.09, \"successes\": 9, \"total\": 100}}, \"mag_perdof_norm02_seed43_r3\": {\"status\": \"DONE\"}, \"eval-perdof-object-norm01-seed47-bjb1\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.14, \"successes\": 14, \"total\": 100}}, \"eval-openvla-object-vla-only-seed42-v2\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.69, \"n_tasks\": 10, \"n_trials_per_task\": 10, \"total_rollouts\": 100}}, \"eval-k1-crm-multiscale-object-seed44-r2\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.1, \"successes\": 10, \"total\": 100, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.1, \"ketchup\": 0, \"tomato_sauce\": 0.1, \"butter\": 0, \"milk\": 0, \"chocolate_pudding\": 0.4, \"orange_juice\": 0.2}}}, \"eval-k1-crm-multiscale-object-seed44\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.1, \"successes\": 10, \"total\": 100, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.1, \"ketchup\": 0, \"tomato_sauce\": 0.1, \"butter\": 0, \"milk\": 0, \"chocolate_pudding\": 0.4, \"orange_juice\": 0.2}}}, \"eval-k1-crm-multiscale-object-seed43\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.09, \"successes\": 9, \"total\": 100, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.1, \"bbq_sauce\": 0.2, \"ketchup\": 0, \"tomato_sauce\": 0.2, \"butter\": 0, \"milk\": 0, \"chocolate_pudding\": 0.2, \"orange_juice\": 0.2}}}, \"eval-k1-crm-multiscale-object-seed42\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.12, \"successes\": 12, \"total\": 100, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.1, \"bbq_sauce\": 0.2, \"ketchup\": 0, \"tomato_sauce\": 0.3, \"butter\": 0.1, \"milk\": 0, \"chocolate_pudding\": 0.3, \"orange_juice\": 0.2}}}, \"eval-perdof-object-norm01-seed46-r2\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.1, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.1, \"bbq_sauce\": 0.3, \"ketchup\": 0, \"tomato_sauce\": 0, \"butter\": 0, \"milk\": 0.1, \"chocolate_pudding\": 0.2, \"orange_juice\": 0.3}}}, \"eval-k1-crm-multiscale-object-seed43-r2\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.09, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.1, \"bbq_sauce\": 0.2, \"ketchup\": 0, \"tomato_sauce\": 0.2, \"butter\": 0, \"milk\": 0, \"chocolate_pudding\": 0.2, \"orange_juice\": 0.2}}}, \"eval-perdof-object-norm02-seed45-r2\": {\"status\": \"DONE\"}, \"eval-obs-only-object-norm005-seed43-r3\": {\"status\": \"DONE\"}, \"plan_602-latency-profile\": {\"status\": \"DONE\", \"metrics\": {\"vla_encode_prefix_ms\": 33.5, \"vla_sample_K1_ms\": 192.6, \"vla_sample_K5_ms\": 965.3, \"vla_sample_K10_ms\": 1913.7, \"vla_sample_K20_ms\": 3858.2, \"cgs_ms\": 6.2, \"crm_forward_ms\": 0.3, \"full_pipeline_K10_ms\": 1908.2, \"acr_overhead_pct\": 0.34}}, \"train-crm-k1-accg-object-seed42-v2\": {\"status\": \"DONE\", \"metrics\": {\"best_val_loss\": 0.007199, \"total_epochs\": 50, \"train_samples\": 65223, \"obs_dim\": \"4x960D\", \"multi_scale\": true}}, \"eval-k1-crm-accg-object-seed44\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.07, \"n_rollouts\": 100, \"tasks\": {\"salad_dressing\": 0.1, \"bbq_sauce\": 0.1, \"ketchup\": 0.1, \"tomato_sauce\": 0.1, \"chocolate_pudding\": 0.2, \"orange_juice\": 0.1}}}, \"eval-k1-crm-accg-object-seed43\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.12, \"n_rollouts\": 100, \"tasks\": {\"salad_dressing\": 0.2, \"bbq_sauce\": 0.2, \"ketchup\": 0.1, \"tomato_sauce\": 0.2, \"butter\": 0.1, \"milk\": 0.1, \"chocolate_pudding\": 0.2, \"orange_juice\": 0.1}}}, \"eval-k1-crm-accg-object-seed42\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.11, \"n_rollouts\": 100, \"tasks\": {\"salad_dressing\": 0.2, \"bbq_sauce\": 0.2, \"tomato_sauce\": 0.1, \"butter\": 0.1, \"milk\": 0.1, \"chocolate_pudding\": 0.2, \"orange_juice\": 0.2}}}, \"eval-obs-only-object-default-seed45\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.12, \"tasks\": 10, \"rollouts_per_task\": 20, \"total_successes\": 24, \"total_rollouts\": 200}}, \"eval-scalar-object-seed45\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.09, \"successes\": 18, \"total\": 200, \"best_task\": \"chocolate_pudding_0.25\", \"worst_task\": \"alphabet_soup_0.0\"}}, \"eval-perdof-object-norm02-seed45\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.09, \"successes\": 18, \"total\": 200, \"n_tasks\": 10, \"n_rollouts_per_task\": 20}}, \"eval-perdof-object-norm02-seed44\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.1, \"successes\": 10, \"total\": 100, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.1, \"ketchup\": 0, \"tomato_sauce\": 0.1, \"butter\": 0, \"milk\": 0, \"chocolate_pudding\": 0.3, \"orange_juice\": 0.3}}}, \"train-crm-k1-accg-object-seed42-fallback\": {\"status\": \"DONE\", \"metrics\": {\"best_val_loss\": 0.006505, \"best_epoch\": 43, \"total_epochs\": 50, \"train_samples\": 4857, \"obs_dim\": 960, \"multi_scale\": false, \"wall_clock_seconds\": 914.9}}, \"train-crm-k1-accg-object-seed42\": {\"status\": \"DONE\"}, \"eval-perdof-object-norm02-seed45-deploy\": {\"status\": \"DONE\"}, \"eval-obs-only-object-norm01-seed47-r2\": {\"status\": \"DONE\"}, \"eval-perdof-object-norm03-seed45-r2\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.06, \"successes\": 6, \"total\": 100, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.1, \"bbq_sauce\": 0.2, \"ketchup\": 0, \"tomato_sauce\": 0, \"butter\": 0.1, \"milk\": 0, \"chocolate_pudding\": 0.1, \"orange_juice\": 0.1}}}, \"eval-perdof-object-norm03-seed44-r2\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.04, \"n_rollouts\": 10, \"total_rollouts\": 100, \"note\": \"JSON result found by diagnostic worker. Matches original seed44=4%. False positive failure due to no sentinel/W&B in evaluate.py.\"}}, \"eval-obs-only-object-norm03-seed47\": {\"status\": \"DONE\"}, \"eval-perdof-object-norm03-seed46-r2\": {\"status\": \"DONE\"}, \"eval-obs-only-object-norm02-seed47\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.2, \"successes\": 20, \"total\": 100, \"benchmark\": \"object\", \"mode\": \"obs_only\", \"norm\": 0.2, \"seed\": 47}}, \"eval-perdof-object-norm01-seed44\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.08, \"total_successes\": 8, \"total_rollouts\": 100, \"seed\": 44, \"mode\": \"crm_perdof\", \"max_correction_norm\": 0.1}}, \"eval-obs-only-object-norm01-seed47-bjb2\": {\"status\": \"DONE\"}, \"eval-obs-only-object-norm02-seed46\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.15, \"total_episodes\": 100, \"successes\": 15, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 2, \"bbq_sauce\": 3, \"ketchup\": 0, \"tomato_sauce\": 1, \"butter\": 1, \"milk\": 1, \"chocolate_pudding\": 4, \"orange_juice\": 3}}}, \"eval-obs-only-object-norm01-seed46-bjb2\": {\"status\": \"DONE\"}, \"eval-argmin-object-seed47\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.1, \"total_successes\": 10, \"total_rollouts\": 100, \"n_rollouts_per_task\": 10, \"seed\": 47, \"benchmark\": \"object\", \"K\": 10, \"mode\": \"reconvla\", \"baseline_mode\": \"single\", \"per_task_sr\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.1, \"bbq_sauce\": 0.3, \"ketchup\": 0, \"tomato_sauce\": 0.1, \"butter\": 0.1, \"milk\": 0.1, \"chocolate_pudding\": 0.1, \"orange_juice\": 0.2}}}, \"eval-perdof-object-norm01-seed45\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.11, \"per_task_sr\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.3, \"ketchup\": 0, \"tomato_sauce\": 0, \"butter\": 0, \"milk\": 0.1, \"chocolate_pudding\": 0.2, \"orange_juice\": 0.3}, \"seed\": 45, \"benchmark\": \"object\", \"mode\": \"crm_perdof\", \"max_correction_norm\": 0.1}}, \"eval-perdof-object-norm01-seed47\": {\"status\": \"DONE\"}, \"eval-argmin-object-seed46\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.1, \"total_successes\": 10, \"total_rollouts\": 100, \"n_rollouts_per_task\": 10, \"seed\": 46, \"benchmark\": \"object\", \"K\": 10, \"mode\": \"reconvla\", \"baseline_mode\": \"single\", \"per_task_sr\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.1, \"bbq_sauce\": 0.4, \"ketchup\": 0, \"tomato_sauce\": 0.1, \"butter\": 0.1, \"milk\": 0.1, \"chocolate_pudding\": 0.1, \"orange_juice\": 0.1}}}, \"eval-obs-only-object-norm03-seed45-r2\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 14, \"total_successes\": 14, \"total_rollouts\": 100, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 10, \"bbq_sauce\": 30, \"ketchup\": 10, \"tomato_sauce\": 10, \"butter\": 10, \"milk\": 10, \"chocolate_pudding\": 30, \"orange_juice\": 30}, \"max_correction_norm\": 0.3, \"seed\": 45, \"mode\": \"crm_obs_only\", \"benchmark\": \"object\"}}, \"eval-vla-mean-object-seed45\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.13, \"total_success\": 13, \"total_rollouts\": 100, \"per_task_sr\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.1, \"bbq_sauce\": 0.4, \"ketchup\": 0, \"tomato_sauce\": 0.1, \"butter\": 0, \"milk\": 0.1, \"chocolate_pudding\": 0.3, \"orange_juice\": 0.3}, \"multi_seed_summary\": \"seed42=12%, seed43=15%, seed44=10%, seed45=13%, mean=12.5%\"}}, \"eval-argmin-object-seed45\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.12, \"successes\": 12, \"total_rollouts\": 100, \"tasks_completed\": \"10/10\"}}, \"eval-direct-correction-object-seed42-r3\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.14, \"total_episodes\": 100, \"successes\": 14, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 1, \"salad_dressing\": 1, \"bbq_sauce\": 4, \"ketchup\": 0, \"tomato_sauce\": 1, \"butter\": 1, \"milk\": 1, \"chocolate_pudding\": 3, \"orange_juice\": 2}}}, \"eval-perdof-object-norm03-seed44\": {\"status\": \"DONE\", \"metrics\": {\"success_rate\": 0.04, \"total_episodes\": 100, \"successes\": 4, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 1, \"salad_dressing\": 0, \"bbq_sauce\": 1, \"ketchup\": 0, \"tomato_sauce\": 0, \"butter\": 1, \"milk\": 0, \"chocolate_pudding\": 1, \"orange_juice\": 0}}}, \"eval-mag-perdof-norm02-object\": {\"status\": \"DONE\", \"metrics\": {\"tasks_done\": 10, \"tasks_total\": 10, \"overall_sr\": 0.11, \"per_task_sr\": {\"alphabet_soup\": 0, \"cream_cheese\": 0.1, \"salad_dressing\": 0.1, \"bbq_sauce\": 0.1, \"ketchup\": 0, \"tomato_sauce\": 0, \"butter\": 0.1, \"milk\": 0.1, \"chocolate_pudding\": 0.4, \"orange_juice\": 0.2}}}, \"eval-acr-object-v4-scalar\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 9, \"total_success\": 9, \"total_trials\": 100, \"n_tasks\": 10, \"n_rollouts_per_task\": 10, \"per_task\": {\"alphabet_soup\": {\"sr\": 0, \"success\": 0, \"trials\": 10}, \"cream_cheese\": {\"sr\": 0, \"success\": 0, \"trials\": 10}, \"salad_dressing\": {\"sr\": 10, \"success\": 1, \"trials\": 10}, \"bbq_sauce\": {\"sr\": 10, \"success\": 1, \"trials\": 10}, \"ketchup\": {\"sr\": 0, \"success\": 0, \"trials\": 10}, \"tomato_sauce\": {\"sr\": 0, \"success\": 0, \"trials\": 10}, \"butter\": {\"sr\": 10, \"success\": 1, \"trials\": 10}, \"milk\": {\"sr\": 10, \"success\": 1, \"trials\": 10}, \"chocolate_pudding\": {\"sr\": 30, \"success\": 3, \"trials\": 10}, \"orange_juice\": {\"sr\": 20, \"success\": 2, \"trials\": 10}}}}, \"eval-mag-obsonly-norm02\": {\"status\": \"DONE\", \"metrics\": {\"T0_between_plate_ramekin\": 90, \"T1_next_to_ramekin\": 100, \"T2_table_center\": 0, \"T3_on_cookie_box\": 30, \"T4_top_drawer\": 10, \"T5_on_ramekin\": 0, \"T6_next_to_cookie_box\": 90, \"T7_on_stove\": 0, \"T8_next_to_plate\": 30, \"T9_on_wooden_cabinet\": 0, \"overall_sr\": 35, \"total_success\": 35, \"total_rollouts\": 100}}, \"eval-mag-perdof-norm03\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr_10task\": 0.26, \"T0_sr\": 0.7, \"T1_sr\": 0.5, \"T2_sr\": 0.1, \"T3_sr\": 0.1, \"T4_sr\": 0, \"T5_sr\": 0, \"T6_sr\": 0.9, \"T7_sr\": 0.1, \"T8_sr\": 0.2, \"T9_sr\": 0, \"total_successes\": 26, \"total_rollouts\": 100, \"benchmark\": \"spatial\", \"max_correction_norm\": 0.3}}, \"eval-mag-perdof-norm005\": {\"status\": \"DONE\", \"metrics\": {\"T0_between_plate_ramekin\": 50, \"T1_next_to_ramekin\": 100, \"T2_table_center\": 0, \"T3_on_cookie_box\": 30, \"T4_top_drawer\": 0, \"T5_on_ramekin\": 0, \"T6_next_to_cookie_box\": 100, \"T7_on_stove\": 0, \"T8_next_to_plate\": 30, \"T9_on_wooden_cabinet\": 0, \"avg_SR_10task\": 31}}, \"eval-mag-perdof-norm003\": {\"status\": \"DONE\", \"metrics\": {\"benchmark\": \"spatial\", \"mode\": \"acr_vla\", \"max_correction_norm\": 0.03, \"n_rollouts\": 10, \"K\": 10, \"seed\": 42, \"overall_sr\": 30, \"total_success\": 30, \"total_rollouts\": 100, \"tasks_done\": \"10/10\", \"per_task\": {\"T0_between_plate_ramekin\": 60, \"T1_next_to_ramekin\": 100, \"T2_table_center\": 0, \"T3_on_cookie_box\": 30, \"T4_top_drawer\": 10, \"T5_on_ramekin\": 0, \"T6_next_to_cookie_box\": 80, \"T7_on_stove\": 0, \"T8_next_to_plate\": 20, \"T9_on_wooden_cabinet\": 0}}}, \"eval-vla-mean-spatial\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate_10tasks\": 0.32, \"total_successes\": 32, \"total_trials\": 100, \"T1\": 0.7, \"T2\": 1, \"T3\": 0, \"T4\": 0.3, \"T5\": 0, \"T6\": 0, \"T7\": 0.8, \"T8\": 0, \"T9\": 0.3, \"T10\": 0.1}}, \"eval-acr-object-obs-only-norm02\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.22, \"total_success\": 22, \"total_rollouts\": 100, \"tasks_done\": 10, \"tasks_total\": 10, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.3, \"bbq_sauce\": 0.4, \"ketchup\": 0.2, \"tomato_sauce\": 0.1, \"butter\": 0.1, \"milk\": 0.2, \"chocolate_pudding\": 0.6, \"orange_juice\": 0.3}}}, \"eval-spatial-v7-full\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.3, \"total_successes\": 30, \"total_episodes\": 100, \"n_tasks\": 10, \"n_rollouts\": 10, \"per_task\": {\"pick_up_black_bowl_between_plate_and_ramekin\": 0.6, \"pick_up_black_bowl_next_to_ramekin\": 1, \"pick_up_black_bowl_from_table_center\": 0, \"pick_up_black_bowl_on_cookie_box\": 0.2, \"pick_up_black_bowl_in_top_drawer\": 0, \"pick_up_black_bowl_on_ramekin\": 0, \"pick_up_black_bowl_next_to_cookie_box\": 0.9, \"pick_up_black_bowl_on_stove\": 0, \"pick_up_black_bowl_next_to_plate\": 0.3, \"pick_up_black_bowl_on_wooden_cabinet\": 0}}}, \"eval-object-v8-full\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.13, \"total_successes\": 13, \"total_rollouts\": 100, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.3, \"ketchup\": 0, \"tomato_sauce\": 0.1, \"butter\": 0.1, \"milk\": 0.2, \"chocolate_pudding\": 0.2, \"orange_juice\": 0.2}}}, \"precompute-v5-shard2\": {\"status\": \"DONE\"}, \"precompute-v5-shard1\": {\"status\": \"DONE\"}, \"precompute-v5-shard0\": {\"status\": \"DONE\"}, \"precompute-v4-shard2\": {\"status\": \"DONE\"}, \"precompute-v4-shard1\": {\"status\": \"DONE\"}, \"precompute-v4-shard0\": {\"status\": \"DONE\"}, \"eval-obs-only-object-norm01-seed44\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.16, \"total_success\": 16, \"total_rollouts\": 100, \"per_task_sr\": {\"alphabet_soup\": 0, \"cream_cheese\": 0.1, \"salad_dressing\": 0.3, \"bbq_sauce\": 0.2, \"ketchup\": 0, \"tomato_sauce\": 0.1, \"butter\": 0.1, \"milk\": 0.2, \"chocolate_pudding\": 0.3, \"orange_juice\": 0.3}}}, \"eval-vla-only-object-seed45\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.09, \"successes\": 18, \"total\": 200, \"tasks_done\": 10}}, \"eval-vla-only-object-seed43\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.12, \"tasks_done\": 10, \"tasks_total\": 10, \"per_task_sr\": {\"alphabet_soup\": 0, \"cream_cheese\": 0.1, \"salad_dressing\": 0.1, \"bbq_sauce\": 0.3, \"ketchup\": 0, \"tomato_sauce\": 0, \"butter\": 0, \"milk\": 0.1, \"chocolate_pudding\": 0.4, \"orange_juice\": 0.2}, \"source\": \"json_file_verified_by_worker\"}}, \"eval-vla-mean-spatial-t10\": {\"status\": \"DONE\", \"metrics\": {\"T10_on_wooden_shelf\": \"10% (1/10)\", \"note\": \"Only ran task 9 (start_task=9). T10 = wooden shelf task.\"}}, \"eval-reconvla-spatial-v3\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.34, \"total_successes\": 34, \"total_rollouts\": 100, \"per_task\": {\"pick_up_black_bowl_between_plate_and_ramekin\": 0.6, \"pick_up_black_bowl_next_to_ramekin\": 1, \"pick_up_black_bowl_from_table_center\": 0, \"pick_up_black_bowl_on_cookie_box\": 0.3, \"pick_up_black_bowl_in_top_drawer\": 0.1, \"pick_up_black_bowl_on_ramekin\": 0.1, \"pick_up_black_bowl_next_to_cookie_box\": 0.9, \"pick_up_black_bowl_on_stove\": 0, \"pick_up_black_bowl_next_to_plate\": 0.4, \"pick_up_black_bowl_on_wooden_cabinet\": 0}}}, \"eval-obs-only-spatial-v2\": {\"status\": \"DONE\"}, \"crm-train-v2-scalar-unc\": {\"status\": \"DONE\", \"metrics\": {\"best_val_loss\": 0.047202, \"best_epoch\": 48, \"total_epochs\": 50, \"final_train_loss\": 0.069679, \"comparison_vs_old\": \"old_6D_buggy=0.008379, new=0.047202 (loss metric changed with v2 fix)\"}}, \"crm-train-v2-perdof\": {\"status\": \"DONE\", \"metrics\": {\"best_val_loss\": 0.051684, \"best_epoch\": 48, \"total_epochs\": 50, \"final_train_loss\": 0.076748, \"comparison_vs_old\": \"old_6D_buggy=0.009046, new=0.051684 (loss metric changed with v2 fix)\"}}, \"crm-train-v2-obs-only\": {\"status\": \"DONE\", \"metrics\": {\"best_val_loss\": 0.050501, \"best_epoch\": 50, \"total_epochs\": 50, \"final_train_loss\": 0.074839, \"comparison_vs_old\": \"old_6D_buggy=0.018312, new=0.050501 (loss metric changed with v2 fix)\"}}, \"precompute-shard2\": {\"status\": \"DONE\"}, \"precompute-shard1\": {\"status\": \"DONE\"}, \"precompute-shard0\": {\"status\": \"DONE\"}, \"precompute-k5\": {\"status\": \"DONE\", \"metrics\": {\"spatial_samples\": 12167, \"object_samples\": 14570, \"total_samples\": 26737, \"spatial_cache_mb\": 106, \"object_cache_mb\": 127, \"total_cache_mb\": 233, \"runtime_min\": 107}}, \"plan_014-reconvla-baseline\": {\"status\": \"DONE\"}, \"plan_001-crm-smolvla\": {\"status\": \"DONE\"}, \"mvp-point-reaching\": {\"status\": \"DONE\", \"metrics\": {\"group1_oracle\": {\"A_scalar\": {\"mse_x\": 0.180218, \"mse_y\": 0.02497, \"mse_z\": 0.024232, \"total\": 0.076473}, \"B_perDOF\": {\"mse_x\": 0.172652, \"mse_y\": 0.015544, \"mse_z\": 0.01561, \"total\": 0.067935}, \"C_none\": {\"mse_x\": 0.22706, \"mse_y\": 0.025542, \"mse_z\": 0.024753, \"total\": 0.092451}}, \"group2_oracle\": {\"A_scalar\": {\"mse_x\": 0.064642, \"mse_y\": 0.023836, \"mse_z\": 0.022967, \"total\": 0.037148}, \"B_perDOF\": {\"mse_x\": 0.053403, \"mse_y\": 0.015695, \"mse_z\": 0.01573, \"total\": 0.028276}, \"C_none\": {\"mse_x\": 0.084178, \"mse_y\": 0.025427, \"mse_z\": 0.024798, \"total\": 0.044801}}, \"group3_oracle\": {\"A_scalar\": {\"mse_x\": 0.042948, \"mse_y\": 0.023218, \"mse_z\": 0.022365, \"total\": 0.02951}, \"B_perDOF\": {\"mse_x\": 0.033008, \"mse_y\": 0.015621, \"mse_z\": 0.015647, \"total\": 0.021425}, \"C_none\": {\"mse_x\": 0.053043, \"mse_y\": 0.025523, \"mse_z\": 0.024741, \"total\": 0.034436}}, \"group4_K10\": {\"A_scalar\": {\"mse_x\": 0.187418, \"mse_y\": 0.024701, \"mse_z\": 0.024277, \"total\": 0.078799}, \"B_perDOF\": {\"mse_x\": 0.182888, \"mse_y\": 0.019072, \"mse_z\": 0.018475, \"total\": 0.073478}, \"C_none\": {\"mse_x\": 0.21507, \"mse_y\": 0.02496, \"mse_z\": 0.024637, \"total\": 0.088223}}, \"group5_K10\": {\"A_scalar\": {\"mse_x\": 0.064895, \"mse_y\": 0.02386, \"mse_z\": 0.023596, \"total\": 0.037451}, \"B_perDOF\": {\"mse_x\": 0.05851, \"mse_y\": 0.018868, \"mse_z\": 0.018471, \"total\": 0.03195}, \"C_none\": {\"mse_x\": 0.077047, \"mse_y\": 0.024825, \"mse_z\": 0.02464, \"total\": 0.042171}}, \"group6_K10\": {\"A_scalar\": {\"mse_x\": 0.041848, \"mse_y\": 0.02344, \"mse_z\": 0.023207, \"total\": 0.029498}, \"B_perDOF\": {\"mse_x\": 0.036348, \"mse_y\": 0.018736, \"mse_z\": 0.018453, \"total\": 0.024512}, \"C_none\": {\"mse_x\": 0.048365, \"mse_y\": 0.024827, \"mse_z\": 0.024577, \"total\": 0.03259}}, \"pass_criteria\": {\"group1\": \"PASS\", \"group4\": \"PASS\", \"overall\": \"SUCCESS\"}, \"summary_pct_improvements\": {\"reference_group\": \"group4_K10 (sigma=0.5/0.1/0.1, K=10 estimated uncertainty)\", \"perDOF_vs_scalar_total\": 6.75, \"perDOF_vs_none_total\": 16.71, \"perDOF_vs_scalar_y_axis\": 22.79, \"perDOF_vs_scalar_z_axis\": 23.9, \"paper_claims\": {\"6.7_pct_over_scalar\": \"group4 total: (0.078799-0.073478)/0.078799 = 6.75%\", \"16.7_pct_over_none\": \"group4 total: (0.088223-0.073478)/0.088223 = 16.71%\", \"22_24_pct_per_axis\": \"group4 y: 22.79%, z: 23.90%\"}}}}, \"eval-smolvla-libero-spatial\": {\"status\": \"DONE\"}, \"eval-obs-only-spatial\": {\"status\": \"DONE\", \"metrics\": {\"error\": \"size mismatch: obs_only CRM net.0.weight [256,990] vs acr_vla expects [256,1030] — no crm_obs_only mode in evaluate.py\"}}, \"eval-obs-only-object-default-seed44\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.16, \"per_task_sr\": {\"alphabet_soup\": 0, \"cream_cheese\": 0.1, \"salad_dressing\": 0.1, \"bbq_sauce\": 0.4, \"ketchup\": 0, \"tomato_sauce\": 0.1, \"butter\": 0.1, \"milk\": 0.2, \"chocolate_pudding\": 0.3, \"orange_juice\": 0.3}}}, \"eval-mag-perdof-norm005-object\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.14, \"successes\": 14, \"total\": 100, \"tasks_done\": 10, \"tasks_total\": 10}}, \"eval-mag-perdof-norm02-seed43-object-r3\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.09, \"successes\": 9, \"total\": 100, \"tasks_done\": 10, \"tasks_total\": 10, \"per_task_sr\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.1, \"bbq_sauce\": 0.1, \"ketchup\": 0, \"tomato_sauce\": 0, \"butter\": 0, \"milk\": 0, \"chocolate_pudding\": 0.4, \"orange_juice\": 0.3}, \"vs_seed42\": \"-2pp (11% → 9%)\", \"pooled_2seed_perdof_02\": \"10% (20/200)\"}}, \"eval-mag-perdof-norm03-object-r3\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.04, \"successes\": 4, \"total\": 100, \"tasks_done\": 10, \"tasks_total\": 10}}, \"eval-mag-obsonly-norm005\": {\"status\": \"DONE\", \"metrics\": {\"benchmark\": \"spatial\", \"mode\": \"crm_obs_only\", \"max_correction_norm\": 0.05, \"n_rollouts\": 10, \"K\": 10, \"overall_sr\": 35, \"total_success\": 35, \"total_episodes\": 100, \"per_task\": {\"T0_between_plate_ramekin\": 80, \"T1_next_to_ramekin\": 90, \"T2_table_center\": 0, \"T3_on_cookie_box\": 40, \"T4_top_drawer\": 10, \"T5_on_ramekin\": 0, \"T6_next_to_cookie_box\": 80, \"T7_on_stove\": 0, \"T8_next_to_plate\": 50, \"T9_on_wooden_cabinet\": 0}}}, \"eval-mag-obsonly-norm003-b2\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr_10task\": 0.34, \"tasks_done\": 10, \"tasks_total\": 10, \"per_task\": {\"between_plate_and_ramekin\": 0.9, \"next_to_ramekin\": 1, \"from_table_center\": 0, \"on_cookie_box\": 0.3, \"in_top_drawer\": 0.1, \"on_ramekin\": 0, \"next_to_cookie_box\": 0.8, \"on_stove\": 0, \"next_to_plate\": 0.3, \"on_wooden_cabinet\": 0}}}, \"eval-mag-obsonly-norm03-object\": {\"status\": \"DONE\", \"metrics\": {\"tasks_done\": 10, \"tasks_total\": 10, \"overall_sr\": 0.19, \"successes\": 19, \"total\": 100}}, \"eval-mag-obsonly-norm005-object\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.13, \"tasks_completed\": 10, \"total_rollouts\": 100, \"successes\": 13, \"per_task_sr\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.1, \"bbq_sauce\": 0.3, \"ketchup\": 0, \"tomato_sauce\": 0.1, \"butter\": 0.1, \"milk\": 0.2, \"chocolate_pudding\": 0.2, \"orange_juice\": 0.3}}}, \"eval-direct-correction-object-seed42-r2\": {\"status\": \"DONE\"}, \"eval-direct-correction-object-seed42\": {\"status\": \"DONE\"}, \"eval-obs-only-object-norm02-seed45\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.16, \"successes\": 16, \"total_rollouts\": 100, \"tasks_completed\": \"10/10\"}}, \"eval-scalar-object-seed44-r2\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.06, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0, \"bbq_sauce\": 0.1, \"ketchup\": 0, \"tomato_sauce\": 0, \"butter\": 0, \"milk\": 0, \"chocolate_pudding\": 0.2, \"orange_juice\": 0.3}}}, \"eval-perdof-object-seed44\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.08, \"total_success\": 8, \"total_rollouts\": 100, \"per_task_sr\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.1, \"ketchup\": 0, \"tomato_sauce\": 0, \"butter\": 0, \"milk\": 0, \"chocolate_pudding\": 0.2, \"orange_juice\": 0.3}}}, \"eval-obs-only-object-norm03-seed44\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.18, \"total_rollouts\": 100, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0.1, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.4, \"ketchup\": 0.1, \"tomato_sauce\": 0.1, \"butter\": 0.1, \"milk\": 0.2, \"chocolate_pudding\": 0.3, \"orange_juice\": 0.3}}}, \"eval-vla-mean-object-seed44\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.1, \"per_task_sr\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 0, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 0, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 0.1, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0.3, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 0.1, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 0.1, \"pick_up_the_butter_and_place_it_in_the_basket\": 0, \"pick_up_the_milk_and_place_it_in_the_basket\": 0, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 0.2, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 0.2}}}, \"eval-obs-only-object-norm02-seed44-r4\": {\"status\": \"DONE\"}, \"eval-argmin-object-seed44-r2\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.13, \"successes\": 13, \"total\": 100, \"tasks_done\": 10, \"tasks_total\": 10, \"per_task_sr\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.1, \"bbq_sauce\": 0.2, \"ketchup\": 0.1, \"tomato_sauce\": 0.1, \"butter\": 0, \"milk\": 0.1, \"chocolate_pudding\": 0.5, \"orange_juice\": 0.2}, \"note\": \"EXIT_CODE=129 was SIGHUP after completion, results valid. log: logs/eval_object_reconvla_seed44.json\"}}, \"eval-obs-only-object-norm02-seed44-r2\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.16, \"per_task_sr\": {\"alphabet_soup\": 0, \"cream_cheese\": 0.1, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.2, \"ketchup\": 0.1, \"tomato_sauce\": 0.1, \"butter\": 0.2, \"milk\": 0.1, \"chocolate_pudding\": 0.3, \"orange_juice\": 0.3}}}, \"eval-obs-only-object-norm03-seed45\": {\"status\": \"DONE\"}, \"eval-acr-object-v4-default-r2\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0, \"successes\": 0, \"total\": 100, \"tasks_done\": 10, \"tasks_total\": 10, \"per_task_sr\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0, \"bbq_sauce\": 0, \"ketchup\": 0, \"tomato_sauce\": 0, \"butter\": 0, \"milk\": 0, \"chocolate_pudding\": 0, \"orange_juice\": 0}, \"note\": \"actual mode=crm_perdof with default norm (~1.42), NOT crm_default. Confirms catastrophic failure at uncontrolled correction magnitude.\"}}, \"eval-mag-perdof-norm003-object\": {\"status\": \"DONE\", \"metrics\": {\"tasks_done\": 10, \"tasks_total\": 10, \"overall_sr\": 0.14, \"per_task_sr\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.2, \"ketchup\": 0.1, \"tomato_sauce\": 0.1, \"butter\": 0.2, \"milk\": 0.1, \"chocolate_pudding\": 0.4, \"orange_juice\": 0.1}}}, \"eval-obs-only-object-norm02-seed43-r2\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.16, \"successes\": 16, \"total\": 100, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0.1, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.4, \"ketchup\": 0, \"tomato_sauce\": 0.1, \"butter\": 0.1, \"milk\": 0.1, \"chocolate_pudding\": 0.4, \"orange_juice\": 0.2}, \"vs_seed42\": \"-6pp (22% → 16%)\", \"vs_argmin_seed43\": \"-1pp (17% → 16%)\", \"pooled_2seed_obs_only_02\": \"19% (38/200)\", \"pooled_2seed_argmin\": \"14.5% (29/200)\"}}, \"eval-vla-only-object-seed44-r2\": {\"status\": \"DONE\", \"metrics\": {\"tasks_done\": 10, \"tasks_total\": 10, \"overall_sr\": 0.1, \"per_task_sr\": {\"alphabet_soup\": 0, \"cream_cheese\": 0.1, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.2, \"ketchup\": 0, \"tomato_sauce\": 0, \"butter\": 0, \"milk\": 0.1, \"chocolate_pudding\": 0.2, \"orange_juice\": 0.2}}}, \"eval-acr-object-obs-only-default\": {\"status\": \"DONE\", \"metrics\": {\"tasks_done\": 10, \"tasks_total\": 10, \"overall_sr\": 0.17, \"per_task_sr\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.4, \"ketchup\": 0, \"tomato_sauce\": 0.1, \"butter\": 0.1, \"milk\": 0.1, \"chocolate_pudding\": 0.5, \"orange_juice\": 0.3}}}, \"eval-scalar-object-seed43\": {\"status\": \"DONE\", \"metrics\": {\"tasks_done\": 10, \"tasks_total\": 10, \"avg_sr\": 10, \"per_task_sr\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 0, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 0, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 0, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 30, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 0, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 0, \"pick_up_the_butter_and_place_it_in_the_basket\": 0, \"pick_up_the_milk_and_place_it_in_the_basket\": 10, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 30, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 30}}}, \"eval-mag-obsonly-norm003-object\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.16, \"tasks_done\": 100, \"tasks_total\": 100, \"per_task\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 0, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 0.2, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 0.1, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0.4, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 0, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 0, \"pick_up_the_butter_and_place_it_in_the_basket\": 0.1, \"pick_up_the_milk_and_place_it_in_the_basket\": 0.2, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 0.3, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 0.3}}}, \"eval-scalar-object-seed44\": {\"status\": \"DONE\"}, \"eval-obs-only-object-norm02-seed44-r3\": {\"status\": \"DONE\"}, \"eval-argmin-object-seed44-r3\": {\"status\": \"DONE\"}, \"eval-vla-mean-object-seed43\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.15, \"tasks_done\": 10, \"tasks_total\": 10, \"total_success\": 15, \"total_rollouts\": 100, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.3, \"ketchup\": 0.1, \"tomato_sauce\": 0.1, \"butter\": 0.1, \"milk\": 0.3, \"chocolate_pudding\": 0.3, \"orange_juice\": 0.1}}}, \"eval-perdof-object-seed43\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.12, \"tasks_done\": 10, \"tasks_total\": 10, \"total_rollouts\": 100, \"total_successes\": 12, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.3, \"ketchup\": 0, \"tomato_sauce\": 0, \"butter\": 0, \"milk\": 0, \"chocolate_pudding\": 0.4, \"orange_juice\": 0.3}}}, \"eval-vla-only-object-seed44\": {\"status\": \"DONE\"}, \"eval-obs-only-object-norm02-seed44\": {\"status\": \"DONE\"}, \"eval-argmin-object-seed44\": {\"status\": \"DONE\"}, \"eval-obs-only-object-seed43\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.12, \"tasks_done\": 10, \"tasks_total\": 10, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0.1, \"salad_dressing\": 0.1, \"bbq_sauce\": 0.3, \"ketchup\": 0, \"tomato_sauce\": 0, \"butter\": 0, \"milk\": 0.1, \"chocolate_pudding\": 0.4, \"orange_juice\": 0.2}, \"vs_argmin_seed43\": {\"obs_only\": 12, \"argmin\": 17, \"diff\": -5}, \"fisher_pooled\": {\"obs_only_total\": \"31/200\", \"argmin_total\": \"29/200\", \"pooled_obs_only_sr\": 0.155, \"pooled_argmin_sr\": 0.145, \"pooled_delta\": 0.01, \"odds_ratio\": 1.08, \"p_value_one_sided\": 0.4444, \"p_value_two_sided\": 0.8888}, \"source\": \"json_file_verified_by_worker\"}}, \"eval-mag-obsonly-norm03-b2\": {\"status\": \"DONE\"}, \"eval-argmin-object-seed43\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.17, \"total_successes\": 17, \"total_trials\": 100, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.2, \"ketchup\": 0.1, \"tomato_sauce\": 0.1, \"butter\": 0.2, \"milk\": 0.3, \"chocolate_pudding\": 0.4, \"orange_juice\": 0.2}}}, \"eval-mag-perdof-norm02-seed43-object-r2\": {\"status\": \"DONE\"}, \"eval-mag-obsonly-norm03\": {\"status\": \"DONE\"}, \"eval-mag-obsonly-norm02-object\": {\"status\": \"DONE\"}, \"eval-mag-obsonly-norm03-b4\": {\"status\": \"DONE\"}, \"eval-mag-obsonly-norm03-b3\": {\"status\": \"DONE\"}, \"eval-mag-perdof-norm02-seed43-object\": {\"status\": \"DONE\"}, \"eval-mag-perdof-norm03-object-r2\": {\"status\": \"DONE\"}, \"eval-acr-object-v4-scalar-b2\": {\"status\": \"DONE\"}, \"eval-acr-object-v4-obs-only-b2\": {\"status\": \"DONE\"}, \"eval-spatial-v4-full\": {\"status\": \"DONE\"}, \"eval-reconvla-spatial-v1\": {\"status\": \"DONE\"}, \"eval-object-v6-full\": {\"status\": \"DONE\"}, \"precompute-v3-shard2\": {\"status\": \"DONE\"}, \"precompute-v3-shard1\": {\"status\": \"DONE\"}, \"precompute-v3-shard0\": {\"status\": \"DONE\"}, \"precompute-v2-shard2\": {\"status\": \"DONE\"}, \"precompute-v2-shard1\": {\"status\": \"DONE\"}, \"precompute-v2-shard0\": {\"status\": \"DONE\"}, \"eval-mag-perdof-norm0p3-object-r2\": {\"status\": \"DONE\"}, \"eval-mag-perdof-norm0p3-object\": {\"status\": \"DONE\"}, \"eval-obs-only-object-norm02-seed43\": {\"status\": \"DONE\", \"metrics\": {\"pid\": 118214, \"gpu\": 3, \"process_status\": \"alive\", \"log_file\": \"logs/eval_object_obs_only_norm02_seed43.log\"}}, \"eval-acr-object-v4-default\": {\"status\": \"DONE\", \"metrics\": {\"tasks_done\": 3, \"tasks_total\": 10, \"status\": \"DEAD\", \"partial_sr\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0}, \"pid_42311\": \"not_found\", \"needs_restart\": true, \"checked_at\": \"2026-05-16T01:00Z\"}}, \"eval-mag-perdof-norm03-object\": {\"status\": \"DEPLOYED\"}, \"eval-mag-obsonly-norm03-r2\": {\"status\": \"DONE\", \"metrics\": {\"bowl_between\": 0.9, \"next_to_ramekin\": 1, \"table_center\": 0, \"cookie_box\": 0.3, \"top_drawer\": 0.1, \"on_ramekin\": 0, \"next_to_cookie_box\": 1, \"stove\": 0, \"next_to_plate\": 0.3, \"wooden_cabinet\": 0, \"overall_SR\": 0.36}}, \"eval-vla-mean-object\": {\"status\": \"DONE\", \"metrics\": {\"benchmark\": \"object\", \"mode\": \"vla_only\", \"baseline_mode\": \"mean\", \"n_rollouts\": 10, \"K\": 10, \"seed\": 42, \"overall_sr\": 12, \"total_success\": 12, \"total_rollouts\": 100, \"tasks_done\": \"10/10\", \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 10, \"bbq_sauce\": 30, \"ketchup\": 10, \"tomato_sauce\": 10, \"butter\": 0, \"milk\": 20, \"chocolate_pudding\": 30, \"orange_juice\": 10}, \"json_output\": \"/root/acr-vla-conformal-refinement/logs/eval_object_vla_mean.json\"}}, \"eval-reconvla-object\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.12, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0, \"salad_dressing\": 0.1, \"bbq_sauce\": 0.3, \"ketchup\": 0, \"tomato_sauce\": 0, \"butter\": 0.1, \"milk\": 0.1, \"chocolate_pudding\": 0.3, \"orange_juice\": 0.3}, \"n_rollouts\": 10, \"total_episodes\": 100, \"total_successes\": 12}}, \"eval-acr-object-v4-obs-only\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": \"19.0% (19/100)\", \"total_success\": 19, \"total_rollouts\": 100, \"mode\": \"obs_only\", \"benchmark\": \"object\", \"max_correction_norm\": 0.1, \"seed\": 42, \"K\": 10, \"tasks_done\": \"10/10\", \"per_task\": {\"alphabet_soup\": \"0%\", \"cream_cheese\": \"10%\", \"salad_dressing\": \"20%\", \"bbq_sauce\": \"40%\", \"ketchup\": \"10%\", \"tomato_sauce\": \"0%\", \"butter\": \"10%\", \"milk\": \"20%\", \"chocolate_pudding\": \"50%\", \"orange_juice\": \"30%\"}, \"json_output\": \"/root/acr-vla-conformal-refinement/logs/eval_object_obs_only.json\"}}, \"eval-acr-object-v4-perdof\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": \"11.0% (11/100)\", \"total_success\": 11, \"total_rollouts\": 100, \"mode\": \"perdof\", \"benchmark\": \"object\", \"max_correction_norm\": 0.1, \"seed\": 42, \"K\": 10, \"per_task\": {\"alphabet_soup\": \"0%\", \"cream_cheese\": \"0%\", \"salad_dressing\": \"20%\", \"bbq_sauce\": \"30%\", \"ketchup\": \"0%\", \"tomato_sauce\": \"0%\", \"butter\": \"10%\", \"milk\": \"0%\", \"chocolate_pudding\": \"20%\", \"orange_juice\": \"30%\"}, \"note\": \"perdof object 11% vs argmin ~7% (partial). obs_only leads at ~14% (8/10). Confirms perdof not competitive on object.\"}}, \"eval-acr-spatial-v4-scalar-r2\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": \"32.0% (32/100)\", \"total_success\": 32, \"total_rollouts\": 100, \"mode\": \"scalar_unc\", \"benchmark\": \"spatial\", \"max_correction_norm\": 0.1, \"seed\": 42, \"K\": 10, \"per_task\": {\"T0\": \"60%\", \"T1\": \"100%\", \"T2\": \"10%\", \"T3\": \"40%\", \"T4\": \"0%\", \"T5\": \"0%\", \"T6\": \"90%\", \"T7\": \"0%\", \"T8\": \"10%\", \"T9\": \"10%\"}, \"note\": \"D030 confirmed: scalar_unc spatial 32% vs argmin 34% = -2pp. T0-T2 from original eval-acr-spatial-v4-scalar, T3-T9 from r2 restart. All CRM variants dead on spatial.\"}}, \"eval-acr-spatial-v4-obs-only-r3\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": \"35.0% (35/100)\", \"total_success\": 35, \"total_rollouts\": 100, \"mode\": \"crm_obs_only\", \"benchmark\": \"spatial\", \"max_correction_norm\": 0.1, \"seed\": 42, \"K\": 10, \"per_task\": {\"T0\": \"90%\", \"T1\": \"100%\", \"T2\": \"0%\", \"T3\": \"40%\", \"T4\": \"10%\", \"T5\": \"0%\", \"T6\": \"90%\", \"T7\": \"0%\", \"T8\": \"20%\", \"T9\": \"0%\"}, \"r3_subset_T6_T9\": \"27.5% (11/40)\", \"note\": \"D030: obs_only spatial 10-task = 35%. vs argmin 34% = +1pp. Scenario C threshold (>=39%) NOT MET. Earlier T0-T5 advantage (+5pp) wiped out by T6-T9.\"}}, \"eval-obs-only-spatial-seed43\": {\"status\": \"DONE\"}, \"eval-acr-spatial-v4-small-r2\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": \"35.0% (35/100)\", \"total_success\": 35, \"total_rollouts\": 100, \"mode\": \"perdof\", \"benchmark\": \"spatial\", \"max_correction_norm\": 0.1, \"seed\": 42, \"K\": 10, \"per_task\": {\"T0\": \"60%\", \"T1\": \"100%\", \"T2\": \"10%\", \"T3\": \"40%\", \"T4\": \"0%\", \"T5\": \"0%\", \"T6\": \"90%\", \"T7\": \"10%\", \"T8\": \"40%\", \"T9\": \"0%\"}, \"note\": \"D029: perdof spatial complete 10-task = 35%. vs argmin 34% = +1pp. Kill criterion triggered — per-DOF claim dead on spatial.\"}}, \"eval-mag-obsonly-norm-0.3-r3\": {\"status\": \"DONE\"}, \"eval-mag-obsonly-norm-0p3-r3\": {\"status\": \"DONE\"}, \"eval-argmin-only-spatial-r2\": {\"status\": \"DONE\", \"metrics\": {\"overall_success_rate\": 0.34, \"total_successes\": 34, \"total_trials\": 100, \"per_task\": {\"T0_between_plate_and_ramekin\": 0.6, \"T1_next_to_ramekin\": 1, \"T2_from_table_center\": 0, \"T3_on_cookie_box\": 0.3, \"T4_in_top_drawer\": 0.1, \"T5_on_ramekin\": 0.1, \"T6_next_to_cookie_box\": 0.9, \"T7_on_stove\": 0, \"T8_next_to_plate\": 0.3, \"T9_on_wooden_cabinet\": 0.1}, \"note\": \"T0-T8 from original run (eval-argmin-only-spatial), T9 from r2 restart. Combined 10-task result.\"}}, \"eval-mag-obsonly-norm003\": {\"status\": \"DONE\"}, \"eval-vla-only-object-k1\": {\"status\": \"DONE\"}, \"eval-vla-only-object\": {\"status\": \"DONE\", \"metrics\": {\"overall_sr\": 0.12, \"total_success\": 12, \"total_trials\": 100, \"per_task\": {\"alphabet_soup\": 0, \"cream_cheese\": 0.1, \"salad_dressing\": 0.2, \"bbq_sauce\": 0.2, \"ketchup\": 0, \"tomato_sauce\": 0.1, \"butter\": 0, \"milk\": 0.1, \"chocolate_pudding\": 0.2, \"orange_juice\": 0.3}}}, \"eval-acr-spatial-v4-default-r3\": {\"status\": \"DONE\"}, \"eval-tiny-correction-spatial\": {\"status\": \"DONE\", \"metrics\": {\"tasks_done\": \"7/10\", \"partial_results\": {\"T1_between_plate_ramekin\": \"70% (7/10)\", \"T2_next_to_ramekin\": \"90% (9/10)\", \"T3_from_table_center\": \"0% (0/10)\", \"T4_on_cookie_box\": \"30% (3/10)\", \"T5_in_top_drawer\": \"0% (0/10)\", \"T6_on_ramekin\": \"0% (0/10)\", \"T7_next_to_cookie_box\": \"90% (9/10)\"}, \"running_avg_7tasks\": \"40% (28/70)\", \"process_status\": \"ACTUALLY ALIVE - bash wrapper PID 232815 dead but python child PID 232820 still running (07:48h, 139% CPU, 9.1GB RSS, GPU2)\", \"status_correction\": \"Registry incorrectly marked DONE, process is still completing remaining 3 tasks\", \"snapshot_time\": \"2026-05-15T09:40Z\"}}, \"eval-acr-spatial-v4-default-r2\": {\"status\": \"DONE\"}, \"eval-acr-spatial-v4-obs-only\": {\"status\": \"DONE\"}, \"eval-acr-spatial-v4-default\": {\"status\": \"DONE\", \"metrics\": {\"tasks_done\": \"0/10\", \"status_alert\": \"NO PROCESS FOUND - registry says RUNNING but no matching PID or tmux session on bjb1-18228. GPU 0 occupied by stale eval-acr-spatial-v3 tmux + crm-train-obs-only. NEEDS RESTART.\", \"snapshot_time\": \"2026-05-15T05:26Z\"}}, \"crm-train-v3-norm-scalar-unc\": {\"status\": \"DONE\", \"metrics\": {\"best_epoch\": 46, \"best_val_loss\": 0.037354, \"final_train_loss\": 0.053422, \"final_val_loss\": 0.03737}}, \"crm-train-v3-norm-obs-only\": {\"status\": \"DONE\", \"metrics\": {\"best_epoch\": 48, \"best_val_loss\": 0.01645, \"final_train_loss\": 0.025576, \"final_val_loss\": 0.01645, \"total_epochs\": 50}}, \"crm-train-v3-norm\": {\"status\": \"DONE\"}, \"crm-train-v3-scalar-unc\": {\"status\": \"DONE\", \"metrics\": {\"invalidation_reason\": \"Trained on bjb2 crm_cache v4 (6D state, pre-D016). Must retrain on bjb1 crm_cache_v5 (8D state).\", \"original_val_loss\": 1.195}}, \"crm-train-v3-obs-only\": {\"status\": \"DONE\", \"metrics\": {\"invalidation_reason\": \"Trained on bjb2 crm_cache v4 (6D state, pre-D016). Must retrain on bjb1 crm_cache_v5 (8D state).\", \"original_val_loss\": 1.193424}}, \"crm-train-v3-perdof\": {\"status\": \"DONE\", \"metrics\": {\"invalidation_reason\": \"Trained on bjb2 crm_cache v4 (6D state, pre-D016). Must retrain on bjb1 crm_cache_v5 (8D state).\", \"original_val_loss\": 1.191387}}, \"eval-obs-only-spatial-v3\": {\"status\": \"DONE\"}, \"eval-scalar-unc-spatial-v2\": {\"status\": \"DONE\"}, \"crm-train-a4-scalar-unc\": {\"status\": \"DONE\", \"metrics\": {\"best_val_loss\": 0.008379, \"best_epoch\": 48, \"total_epochs\": 50, \"final_val_loss\": 0.008384, \"final_train_loss\": 0.012959}}, \"crm-train-a3-obs-only\": {\"status\": \"DONE\", \"metrics\": {\"best_val_loss\": 0.018312, \"best_epoch\": 4, \"early_stopped_at_epoch\": \"~15-20\", \"early_stop_reason\": \"val_loss plateau at 0.018 for 10+ epochs (full CRM: 0.009, 2x gap confirms conformal features are critical)\", \"input_dim\": 990, \"params\": 327966}}, \"crm-train-v1\": {\"status\": \"DONE\", \"metrics\": {\"best_val_loss\": 0.009046, \"best_epoch\": 50, \"total_epochs\": 50, \"checkpoint\": \"crm_best.pt\", \"checkpoint_path\": \"/root/autodl-tmp/checkpoints/crm/crm_best.pt\", \"exit_code_note\": \"129 was false alarm - SIGHUP after training completed\"}}, \"crm-train-k5\": {\"status\": \"DONE\", \"metrics\": {\"best_val_loss\": 0.008996, \"best_epoch\": 50, \"total_epochs\": 50, \"comparison\": \"K=5 val_loss 0.008996 ≈ K=10 val_loss 0.009046, near identical\"}}, \"eval-scalar-unc-spatial\": {\"status\": \"DONE\"}, \"eval-acr-spatial-v2\": {\"status\": \"DONE\"}, \"eval-k5-spatial\": {\"status\": \"DONE\"}, \"eval-object-v7-full\": {\"status\": \"DONE\"}, \"eval-spatial-v6-full\": {\"status\": \"DONE\"}, \"eval-object-v5-full\": {\"status\": \"DONE\"}, \"eval-acr-vla-spatial-v1\": {\"status\": \"DONE\"}, \"eval-acr-spatial-v1\": {\"status\": \"DONE\"}, \"eval-reconvla-spatial-v2\": {\"status\": \"DONE\"}, \"eval-object-v4-full\": {\"status\": \"DONE\"}, \"eval-spatial-v5-full\": {\"status\": \"DONE\"}, \"eval-spatial-v3-full\": {\"status\": \"DONE\"}, \"eval-spatial-reeval-v2\": {\"status\": \"DONE\"}}, \"count\": 402, \"total\": 402, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9188}}"
+              }
+            }
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me get the remaining adaptive_k data from bjb2-28827 (avoiding `|`), and parse the registry file.",
+              "signature": "EqACClkIDRgCKkDmynMpIhdIjBlB4JqIE4Px5aA5086WuiG7PbMezMW23iALfpZA17J67MRPNLIw7bDghF0slx9u5I9JVD/GyWUkMg9jbGF1ZGUtb3B1cy00LTY4ABIM6z0Red4tLfGJFr7IGgyjxhCvIJchd8dU6ZQiMH5nR63oSIoJMZRv0KZg0N1n5hLIMsyfcKZtJ0+UQ09WNBDNKANK1gEAVEvUupj3iCp1BwwK9dEhYF6FEBi1F1ltqxy45dnUZka2G7Ej8fNb+RAO+EZb/EgEtcXvWQnRri6jpDIH6wYZ4L7AnHuUl5TrJmTKnqLj8L6JilevGdZP8r2Lj8F9vw+8zV0zxJLIXiaceJRTOyfQ0kKIxUJNpqlM8DpMjhg3GAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "b2c4688c-3a80-4d83-a3f0-f42f1c36ff8c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PZSHhwaP8aEWR9qcePDnbD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1546,
+                "cache_read_input_tokens": 68238,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1546
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01R79aFrLPWTYNZJaiVjym7j",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-28827",
+                "command": "grep \"avg_actual_k\" /root/acr-vla-conformal-refinement/logs/eval_adaptive_k_*.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "0cd0df0e-22a3-43b4-99b1-4d83376b36fa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PZSHhwaP8aEWR9qcePDnbD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1546,
+                "cache_read_input_tokens": 68238,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1546
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-20T03:55:15.728Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01R79aFrLPWTYNZJaiVjym7j",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p25_seed43.json:    \\\\\\\"avg_actual_k\\\\\\\": 4.787960435352926,\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p50_seed42.json:    \\\\\\\"avg_actual_k\\\\\\\": 3.722060671333692,\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p75_seed42.json:    \\\\\\\"avg_actual_k\\\\\\\": 3.069946195234435,\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p75_seed43.json:    \\\\\\\"avg_actual_k\\\\\\\": 3.149776927979605,\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p90_seed43.json:    \\\\\\\"avg_actual_k\\\\\\\": 2.612278503669232,\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p90_seed44.json:    \\\\\\\"avg_actual_k\\\\\\\": 2.5790465356038252,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "6fef7f35-6ae7-4e8c-b55d-c2ecd28f85c5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p25_seed43.json:    \\\\\\\"avg_actual_k\\\\\\\": 4.787960435352926,\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p50_seed42.json:    \\\\\\\"avg_actual_k\\\\\\\": 3.722060671333692,\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p75_seed42.json:    \\\\\\\"avg_actual_k\\\\\\\": 3.069946195234435,\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p75_seed43.json:    \\\\\\\"avg_actual_k\\\\\\\": 3.149776927979605,\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p90_seed43.json:    \\\\\\\"avg_actual_k\\\\\\\": 2.612278503669232,\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p90_seed44.json:    \\\\\\\"avg_actual_k\\\\\\\": 2.5790465356038252,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p25_seed43.json:    \\\"avg_actual_k\\\": 4.787960435352926,\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p50_seed42.json:    \\\"avg_actual_k\\\": 3.722060671333692,\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p75_seed42.json:    \\\"avg_actual_k\\\": 3.069946195234435,\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p75_seed43.json:    \\\"avg_actual_k\\\": 3.149776927979605,\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p90_seed43.json:    \\\"avg_actual_k\\\": 2.612278503669232,\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p90_seed44.json:    \\\"avg_actual_k\\\": 2.5790465356038252,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+              }
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HKdNkvojUvibHWe1VPB3Xw",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-28827",
+                "command": "grep \"fast_path_ratio\" /root/acr-vla-conformal-refinement/logs/eval_adaptive_k_*.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "f82ebda0-456b-4aac-bc45-078cfd3a74fe",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PZSHhwaP8aEWR9qcePDnbD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1546,
+                "cache_read_input_tokens": 68238,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1546
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-20T03:55:17.176Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HKdNkvojUvibHWe1VPB3Xw",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p25_seed43.json:    \\\\\\\"fast_path_ratio\\\\\\\": 0.6515049455808842,\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p50_seed42.json:    \\\\\\\"fast_path_ratio\\\\\\\": 0.7847424160832884,\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p75_seed42.json:    \\\\\\\"fast_path_ratio\\\\\\\": 0.8662567255956957,\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p75_seed43.json:    \\\\\\\"fast_path_ratio\\\\\\\": 0.8562778840025494,\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p90_seed43.json:    \\\\\\\"fast_path_ratio\\\\\\\": 0.923465187041346,\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p90_seed44.json:    \\\\\\\"fast_path_ratio\\\\\\\": 0.9276191830495218,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "7073b0c0-d9ae-4bf9-8b5b-0620014d173b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p25_seed43.json:    \\\\\\\"fast_path_ratio\\\\\\\": 0.6515049455808842,\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p50_seed42.json:    \\\\\\\"fast_path_ratio\\\\\\\": 0.7847424160832884,\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p75_seed42.json:    \\\\\\\"fast_path_ratio\\\\\\\": 0.8662567255956957,\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p75_seed43.json:    \\\\\\\"fast_path_ratio\\\\\\\": 0.8562778840025494,\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p90_seed43.json:    \\\\\\\"fast_path_ratio\\\\\\\": 0.923465187041346,\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p90_seed44.json:    \\\\\\\"fast_path_ratio\\\\\\\": 0.9276191830495218,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p25_seed43.json:    \\\"fast_path_ratio\\\": 0.6515049455808842,\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p50_seed42.json:    \\\"fast_path_ratio\\\": 0.7847424160832884,\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p75_seed42.json:    \\\"fast_path_ratio\\\": 0.8662567255956957,\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p75_seed43.json:    \\\"fast_path_ratio\\\": 0.8562778840025494,\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p90_seed43.json:    \\\"fast_path_ratio\\\": 0.923465187041346,\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p90_seed44.json:    \\\"fast_path_ratio\\\": 0.9276191830495218,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.31}}"
+              }
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Aza2EY37qLjsq5yvLkLWdG",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-18228",
+                "command": "grep \"fast_path_ratio\" /root/acr-vla-conformal-refinement/logs/eval_adaptive_k_*.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "33fb67b2-0c56-4c9f-9f51-c18e562759d2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PZSHhwaP8aEWR9qcePDnbD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1546,
+                "cache_read_input_tokens": 68238,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1546
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-20T03:55:18.320Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Aza2EY37qLjsq5yvLkLWdG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    \\\\\\\"fast_path_ratio\\\\\\\": 0.7737388990759717,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "3dd52a3e-c70a-4837-ad24-44018c9de93a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    \\\\\\\"fast_path_ratio\\\\\\\": 0.7737388990759717,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"    \\\"fast_path_ratio\\\": 0.7737388990759717,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+              }
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011NACTbQHf1ZdBFKWbeDtdQ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-32546",
+                "command": "grep \"fast_path_ratio\" /root/acr-vla-conformal-refinement/logs/eval_adaptive_k_*.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "4f069826-5f5c-4a1d-a48d-1ba2afe7eb0e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PZSHhwaP8aEWR9qcePDnbD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1546,
+                "cache_read_input_tokens": 68238,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1546
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-20T03:55:19.096Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011NACTbQHf1ZdBFKWbeDtdQ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p25_seed42.json:    \\\\\\\"fast_path_ratio\\\\\\\": 0.6503401360544218,\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p50_seed44.json:    \\\\\\\"fast_path_ratio\\\\\\\": 0.7613211244522037,\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p75_seed44.json:    \\\\\\\"fast_path_ratio\\\\\\\": 0.8722045880825278,\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p90_seed42.json:    \\\\\\\"fast_path_ratio\\\\\\\": 0.916059169084861,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "84343fc8-3737-4a95-afa6-975ff8a3dada",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p25_seed42.json:    \\\\\\\"fast_path_ratio\\\\\\\": 0.6503401360544218,\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p50_seed44.json:    \\\\\\\"fast_path_ratio\\\\\\\": 0.7613211244522037,\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p75_seed44.json:    \\\\\\\"fast_path_ratio\\\\\\\": 0.8722045880825278,\\\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p90_seed42.json:    \\\\\\\"fast_path_ratio\\\\\\\": 0.916059169084861,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p25_seed42.json:    \\\"fast_path_ratio\\\": 0.6503401360544218,\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p50_seed44.json:    \\\"fast_path_ratio\\\": 0.7613211244522037,\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p75_seed44.json:    \\\"fast_path_ratio\\\": 0.8722045880825278,\\n/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_p90_seed42.json:    \\\"fast_path_ratio\\\": 0.916059169084861,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.35}}"
+              }
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MtpEb6dHhuY5DS5fHsx19P",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/234026bf-3bb5-4446-a09e-d1a78a19b295/tool-results/mcp-agent-ml-research-read_registry-1779249310828.txt') as f:\n    raw = json.load(f)\nresult = json.loads(raw['result'])\nfor exp in result:\n    eid = exp.get('experiment_id','')\n    status = exp.get('status','')\n    m = exp.get('metrics',{}) or {}\n    sr = m.get('overall_success_rate', m.get('success_rate', ''))\n    print(f'{eid} ;; {status} ;; SR={sr}')\n\"",
+                "description": "Parse registry to list registered experiments with SR"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "ceaeb6af-658d-450d-a99a-ae4299c88a38",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PZSHhwaP8aEWR9qcePDnbD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1546,
+                "cache_read_input_tokens": 68238,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1546
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-20T03:55:22.097Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 7, in <module>\n    eid = exp.get('experiment_id','')\n          ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'",
+              "is_error": true,
+              "tool_use_id": "toolu_01MtpEb6dHhuY5DS5fHsx19P"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "80b2aa36-abff-424a-a67a-e7dd46a9468d",
+            "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 7, in <module>\n    eid = exp.get('experiment_id','')\n          ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The registry parsing failed. The structure must be different. Let me look at the file directly.",
+              "signature": "EpoCClkIDRgCKkCGkOVCOxu7NEIZtVcgS8bb9jpYG6uoa6tmQ/Ni0p5BqsvgwwK6pESz/RRjp9/oxQaZDEbK++3YE20pAHOD9BXiMg9jbGF1ZGUtb3B1cy00LTY4ABIMYyh8GSj1pFoy7Rx9GgxmBWmQyRjVYE/13DUiMP20x1SDpjBDYv3k/N+N4fdLlWNhVdyNZKn1axUZ+dEysbF31CzSjau5yu+BYKt/zCpv4Uw+I5tF5U/DF1MOcYEbOoSi/iacrfVC4v4XjTOWbqIMMSiSRFmlCnKlAlXnbEqsOiW/52N7OymoAlRREY0EZYQsR0rhRj57ovEVTnJ7zq4eo6n3lw0GebquI2FYeCEi5Gcyfgxw4/ZLHuTsK8soGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "25e98edf-2deb-4d31-821f-0b826be659e6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B2wjnfU5rZt3MzVYosWbT6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2303,
+                "cache_read_input_tokens": 69784,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2303
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016LCK5swrWBXaGp2KjKq9pe",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/234026bf-3bb5-4446-a09e-d1a78a19b295/tool-results/mcp-agent-ml-research-read_registry-1779249310828.txt",
+                "limit": 30
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "877f872c-0d51-4c4d-b3c7-fc751ce846d3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B2wjnfU5rZt3MzVYosWbT6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2303,
+                "cache_read_input_tokens": 69784,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2303
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-20T03:55:28.702Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (45348 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_016LCK5swrWBXaGp2KjKq9pe"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "bc4c1248-f481-4578-8580-f55261394966",
+            "tool_use_result": "Error: File content (45348 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AoAuR9tW3Uu5RJpbTUy9ds",
+              "name": "Bash",
+              "input": {
+                "command": "head -c 2000 /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/234026bf-3bb5-4446-a09e-d1a78a19b295/tool-results/mcp-agent-ml-research-read_registry-1779249310828.txt | python3 -c \"\nimport sys, json\nraw = sys.stdin.read()\ndata = json.loads(raw[:raw.rfind(',')])  # partial parse attempt\n\" 2>&1; echo \"---\"; python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/234026bf-3bb5-4446-a09e-d1a78a19b295/tool-results/mcp-agent-ml-research-read_registry-1779249310828.txt') as f:\n    raw = json.load(f)\nresult = json.loads(raw['result'])\nprint(type(result), len(result) if isinstance(result, list) else 'not list')\nif isinstance(result, dict):\n    print(list(result.keys())[:10])\n    if 'experiments' in result:\n        exps = result['experiments']\n        print(type(exps), len(exps))\n        for e in exps[:2]:\n            print(type(e), list(e.keys()) if isinstance(e, dict) else e[:100])\n    elif isinstance(result, list):\n        for e in result[:2]:\n            print(type(e))\n\"",
+                "description": "Inspect registry data structure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "0217db60-2aac-4c6d-9946-0ef7651fe70a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UrnpVs599dGho16ssXfeUB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 258,
+                "cache_read_input_tokens": 72087,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 258
+                },
+                "output_tokens": 50,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-20T03:55:37.884Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AoAuR9tW3Uu5RJpbTUy9ds",
+              "type": "tool_result",
+              "content": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n    data = json.loads(raw[:raw.rfind(',')])  # partial parse attempt\n  File \"/usr/lib/python3.14/json/__init__.py\", line 352, in loads\n    return _default_decoder.decode(s)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^\n  File \"/usr/lib/python3.14/json/decoder.py\", line 345, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/json/decoder.py\", line 361, in raw_decode\n    obj, end = self.scan_once(s, idx)\n               ~~~~~~~~~~~~~~^^^^^^^^\njson.decoder.JSONDecodeError: Unterminated string starting at: line 1 column 11 (char 10)\n---\n<class 'dict'> not list\n['success', 'data', 'error', 'metadata']",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "487a4256-e1ee-4536-be89-4b7c817c3aaf",
+            "tool_use_result": {
+              "stdout": "Traceback (most recent call last):\n  File \"<string>\", line 4, in <module>\n    data = json.loads(raw[:raw.rfind(',')])  # partial parse attempt\n  File \"/usr/lib/python3.14/json/__init__.py\", line 352, in loads\n    return _default_decoder.decode(s)\n           ~~~~~~~~~~~~~~~~~~~~~~~^^^\n  File \"/usr/lib/python3.14/json/decoder.py\", line 345, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.14/json/decoder.py\", line 361, in raw_decode\n    obj, end = self.scan_once(s, idx)\n               ~~~~~~~~~~~~~~^^^^^^^^\njson.decoder.JSONDecodeError: Unterminated string starting at: line 1 column 11 (char 10)\n---\n<class 'dict'> not list\n['success', 'data', 'error', 'metadata']",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Q7aDYsyxvWjMVWeB6do6JZ",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/234026bf-3bb5-4446-a09e-d1a78a19b295/tool-results/mcp-agent-ml-research-read_registry-1779249310828.txt') as f:\n    raw = json.load(f)\nresult = json.loads(raw['result'])\ndata = result['data']\nprint(type(data))\nif isinstance(data, list):\n    print(len(data))\n    for e in data[:3]:\n        print(e.get('experiment_id',''), e.get('status',''), (e.get('metrics') or {}).get('overall_success_rate',''))\nelif isinstance(data, dict):\n    print(list(data.keys())[:10])\n\"",
+                "description": "Inspect registry data field"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "6a46238a-82ca-49fc-a721-6bceffa57ec1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0161uTJtpjKk2yTAhZaNHjuR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 768,
+                "cache_read_input_tokens": 72345,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 768
+                },
+                "output_tokens": 62,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-20T03:55:42.333Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Q7aDYsyxvWjMVWeB6do6JZ",
+              "type": "tool_result",
+              "content": "<class 'dict'>\n['experiments', 'count', 'total', 'baseline']",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "8d30a1cf-ebd3-4977-bb4f-49fa69d768df",
+            "tool_use_result": {
+              "stdout": "<class 'dict'>\n['experiments', 'count', 'total', 'baseline']",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LPAR85uyFUhm2nnnRiv4rL",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/234026bf-3bb5-4446-a09e-d1a78a19b295/tool-results/mcp-agent-ml-research-read_registry-1779249310828.txt') as f:\n    raw = json.load(f)\nresult = json.loads(raw['result'])\nexps = result['data']['experiments']\nprint(f'Total experiments: {len(exps)}')\nfor e in exps:\n    eid = e.get('experiment_id','')\n    status = e.get('status','')\n    m = e.get('metrics') or {}\n    sr = m.get('overall_success_rate', m.get('success_rate', ''))\n    print(f'{eid} ;; {status} ;; SR={sr}')\n\"",
+                "description": "Extract registry experiment IDs and metrics"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "1cad500b-f732-4fd3-aa9d-c87e852ad543",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LALqhwsFaYCR9nUwgpn9nR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 337,
+                "cache_read_input_tokens": 73113,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 337
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-20T03:55:47.138Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 9, in <module>\n    eid = e.get('experiment_id','')\n          ^^^^^\nAttributeError: 'str' object has no attribute 'get'\nTotal experiments: 402",
+              "is_error": true,
+              "tool_use_id": "toolu_01LPAR85uyFUhm2nnnRiv4rL"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "e8d199c4-a00a-439a-ace5-745636306fdb",
+            "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 9, in <module>\n    eid = e.get('experiment_id','')\n          ^^^^^\nAttributeError: 'str' object has no attribute 'get'\nTotal experiments: 402"
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01H9XSxzGwfmNGeUtFP7rUne",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/234026bf-3bb5-4446-a09e-d1a78a19b295/tool-results/mcp-agent-ml-research-read_registry-1779249310828.txt') as f:\n    raw = json.load(f)\nresult = json.loads(raw['result'])\nexps = result['data']['experiments']\n# check what type elements are\nprint(type(exps[0]))\nif isinstance(exps[0], str):\n    # maybe it's a list of experiment ID strings\n    for e in exps[:10]:\n        print(e)\nelif isinstance(exps[0], dict):\n    print(list(exps[0].keys()))\n\"",
+                "description": "Check experiment data type"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "6fb680e3-5df4-4671-a049-fcc412192d59",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SSc8Pmcrhx6T2Fjbb4VQzb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 411,
+                "cache_read_input_tokens": 73450,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 411
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-20T03:55:52.370Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 8, in <module>\n    print(type(exps[0]))\n               ~~~~^^^\nKeyError: 0",
+              "is_error": true,
+              "tool_use_id": "toolu_01H9XSxzGwfmNGeUtFP7rUne"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "4ace7855-3936-416c-a36d-79e8e1872551",
+            "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 8, in <module>\n    print(type(exps[0]))\n               ~~~~^^^\nKeyError: 0"
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BM9dA2ZWpQGVFjG8HZEWtC",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/234026bf-3bb5-4446-a09e-d1a78a19b295/tool-results/mcp-agent-ml-research-read_registry-1779249310828.txt') as f:\n    raw = json.load(f)\nresult = json.loads(raw['result'])\nexps = result['data']['experiments']\nprint(type(exps))\nif isinstance(exps, dict):\n    keys = list(exps.keys())[:5]\n    for k in keys:\n        v = exps[k]\n        print(k, type(v))\n        if isinstance(v, dict):\n            m = v.get('metrics') or {}\n            sr = m.get('overall_success_rate', m.get('success_rate', ''))\n            print(f'  status={v.get(\\\"status\\\",\\\"\\\")} SR={sr}')\n\"",
+                "description": "Check experiments dict structure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "8137439e-87c5-4e5f-a09b-4103d8834f84",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01R7ZvpL5XFRjwQ7ZRH4fUK1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 365,
+                "cache_read_input_tokens": 73861,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 365
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-20T03:55:58.891Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BM9dA2ZWpQGVFjG8HZEWtC",
+              "type": "tool_result",
+              "content": "<class 'dict'>\neval-vla-only-goal-seed49 <class 'dict'>\n  status=PREPARING SR=\neval-perdof-object-norm02-seed45-r3 <class 'dict'>\n  status=DONE SR=0.12\neval-obs-only-object-norm005-seed43 <class 'dict'>\n  status=DONE SR=\neval-perdof-object-norm02-seed48 <class 'dict'>\n  status=DONE SR=\neval-openvla-object-baseline-seed42 <class 'dict'>\n  status=DONE SR=",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "baea7707-b10c-4906-aea0-e5ed38f04da6",
+            "tool_use_result": {
+              "stdout": "<class 'dict'>\neval-vla-only-goal-seed49 <class 'dict'>\n  status=PREPARING SR=\neval-perdof-object-norm02-seed45-r3 <class 'dict'>\n  status=DONE SR=0.12\neval-obs-only-object-norm005-seed43 <class 'dict'>\n  status=DONE SR=\neval-perdof-object-norm02-seed48 <class 'dict'>\n  status=DONE SR=\neval-openvla-object-baseline-seed42 <class 'dict'>\n  status=DONE SR=",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012A42S4qtcQWfSJaWu8s5tY",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/234026bf-3bb5-4446-a09e-d1a78a19b295/tool-results/mcp-agent-ml-research-read_registry-1779249310828.txt') as f:\n    raw = json.load(f)\nresult = json.loads(raw['result'])\nexps = result['data']['experiments']\n# Print all with DONE status and their SR\nfor eid, v in exps.items():\n    if v.get('status') == 'DONE':\n        m = v.get('metrics') or {}\n        sr = m.get('overall_success_rate', m.get('success_rate', ''))\n        if sr:\n            print(f'{eid} :: SR={sr}')\n\"",
+                "description": "List all DONE experiments with SR from registry"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "1e0e0408-5100-44f5-ba9a-e5a45745978e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GdcqUzxFzSzWyMtK3yW2ez",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 504,
+                "cache_read_input_tokens": 74226,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 504
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-20T03:56:03.644Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012A42S4qtcQWfSJaWu8s5tY",
+              "type": "tool_result",
+              "content": "eval-perdof-object-norm02-seed45-r3 :: SR=0.12\neval-vla-only-goal-seed44-r2 :: SR=0.73\neval-adaptive-k-p25-seed42 :: SR=0.15\neval-crm-goal-seed46 :: SR=0.72\neval-adaptive-k-p50-seed44 :: SR=0.14\neval-adaptive-k-p75-seed44 :: SR=0.16\neval-adaptive-k-p90-seed43 :: SR=0.14\neval-adaptive-k-p90-seed42 :: SR=0.12\neval-vla-only-spatial-seed47 :: SR=0.3\neval-crm-long-seed47 :: SR=0.17\neval-vla-only-object-seed48 :: SR=0.1\neval-vla-only-long-seed48 :: SR=0.14\neval-vla-only-object-seed50 :: SR=0.09\neval-crm-long-seed46 :: SR=0.18\neval-crm-goal-seed45-r2 :: SR=0.65\neval-crm-goal-seed44-r2 :: SR=0.64\neval-obs-only-spatial-norm02-seed43-r2 :: SR=0.34\neval-crm-long-seed45 :: SR=0.18\neval-vla-only-goal-seed43 :: SR=0.69\neval-vla-only-goal-seed42 :: SR=0.71\neval-vla-only-object-seed47 :: SR=0.1\neval-crm-long-seed44 :: SR=0.2\neval-crm-long-seed43 :: SR=0.15\neval-crm-long-seed42 :: SR=0.17\neval-crm-goal-seed42 :: SR=0.67\neval-crm-goal-seed43 :: SR=0.72\neval-vla-only-spatial-seed46 :: SR=0.3\neval-vla-only-long-seed47 :: SR=0.14\neval-vla-only-goal-seed45 :: SR=0.63\neval-vla-only-goal-seed46 :: SR=0.71\neval-vla-only-long-seed46 :: SR=0.18\neval-vla-only-long-seed45 :: SR=0.17\neval-perdof-object-norm003-seed47 :: SR=0.15\neval-perdof-object-norm005-seed47 :: SR=0.1\neval-vla-only-long-seed44 :: SR=0.12\neval-vla-only-long-seed42 :: SR=0.11\neval-vla-only-long-seed43 :: SR=0.13\neval-obs-only-spatial-norm02-seed47 :: SR=0.32\neval-random-selection-object-k5-seed45-r2 :: SR=0.07\neval-random-selection-object-k5-seed44-r2 :: SR=0.1\neval-random-selection-object-k5-seed43-r2 :: SR=0.11\neval-random-selection-object-k5-seed42-r2 :: SR=0.14\neval-obs-only-spatial-norm02-k5-seed44-r2 :: SR=0.37\neval-obs-only-spatial-norm02-k5-seed45-r2 :: SR=0.34\neval-vla-only-spatial-seed45 :: SR=0.27\neval-perdof-object-norm005-seed45-r2 :: SR=0.1\neval-vla-only-spatial-seed44 :: SR=0.31\neval-obs-only-object-default-seed48-r2 :: SR=0.17\neval-vla-only-spatial-seed43 :: SR=0.29\neval-vla-only-spatial-seed42 :: SR=0.3\neval-obs-only-spatial-norm02-seed44 :: SR=0.36\neval-obs-only-object-norm003-seed47-r2 :: SR=0.15\neval-obs-only-object-norm003-seed48 :: SR=0.15\neval-obs-only-spatial-norm02-seed45 :: SR=0.34\neval_obs_only_norm03_seed48 :: SR=0.16\neval_obs_only_norm01_seed48 :: SR=0.18\neval-lto-splitA-vla-only-r3 :: SR=0.14\neval-lto-splitA-vla-only-r2 :: SR=0.14\neval-lto-splitA-heldout-r2 :: SR=0.02\neval-perdof-object-norm003-seed48 :: SR=0.13\neval-scalar-object-seed45-r2 :: SR=0.07\neval-obs-only-spatial-norm02-k5-seed43 :: SR=0.32\neval-obs-only-object-norm02-k5-seed48 :: SR=0.18\neval-obs-only-spatial-norm02-k5-seed42 :: SR=0.35\neval-obs-only-object-norm02-k5-seed46 :: SR=0.16\neval-lto-splitA-vla-only-v2 :: SR=0.14\neval-lto-splitA-heldout-v2 :: SR=0.02\neval-perdof-object-norm03-seed47 :: SR=0.05\neval-obs-only-object-default-seed48 :: SR=0.17\neval-perdof-object-norm003-seed46 :: SR=0.09\neval-perdof-object-norm005-seed46 :: SR=0.11\neval-obs-only-object-norm02-k5-seed47 :: SR=0.13\neval-random-selection-object-seed45 :: SR=0.1\neval-obs-only-object-norm005-seed47 :: SR=0.14\neval-perdof-object-norm01-seed48 :: SR=0.12\neval-obs-only-object-default-seed47 :: SR=0.16\neval-perdof-object-norm03-seed46 :: SR=0.04\neval-obs-only-object-norm03-seed46 :: SR=0.17\neval-scalar-object-seed46 :: SR=0.09\neval-obs-only-object-norm01-seed47 :: SR=0.17\neval-obs-only-object-norm01-seed45-r2 :: SR=0.17\neval-perdof-object-norm003-seed43 :: SR=0.13\neval-perdof-object-norm005-seed43 :: SR=0.13\neval-obs-only-object-norm02-seed48-r2 :: SR=0.18\neval-obs-only-object-norm02-k5-seed45 :: SR=0.15\neval-vla-only-object-seed46 :: SR=0.13\neval-obs-only-object-norm01-seed48 :: SR=0.18\neval-obs-only-object-norm02-k5-seed44 :: SR=0.17\neval-random-selection-object-seed44 :: SR=0.13\neval-obs-only-object-norm01-seed46-r3 :: SR=0.18\neval-obs-only-object-norm005-seed45 :: SR=0.14\neval-random-selection-object-seed43 :: SR=0.09\neval-perdof-object-norm005-seed44 :: SR=0.09\neval-vla-only-object-seed45-r2 :: SR=0.11\neval-obs-only-object-norm03-seed48 :: SR=0.16\neval-obs-only-object-norm005-seed44 :: SR=0.16\neval-obs-only-object-norm02-k5-seed43 :: SR=0.19\neval-random-selection-object-seed42 :: SR=0.13\neval-perdof-object-norm02-seed43 :: SR=0.09\neval-perdof-object-norm01-seed46 :: SR=0.1\neval-obs-only-object-norm01-seed45 :: SR=0.14\neval-obs-only-object-norm02-k5-seed42 :: SR=0.14\neval-acr-spatial-v3 :: SR=0.025\neval-k1-crm-accg-object-seed44 :: SR=0.07\neval-k1-crm-accg-object-seed43 :: SR=0.12\neval-k1-crm-accg-object-seed42 :: SR=0.11\neval-obs-only-object-default-seed45 :: SR=0.12\neval-scalar-object-seed45 :: SR=0.09\neval-perdof-object-norm02-seed45 :: SR=0.09\neval-perdof-object-norm02-seed44 :: SR=0.1\neval-perdof-object-norm03-seed44-r2 :: SR=0.04\neval-obs-only-object-norm02-seed47 :: SR=0.2\neval-obs-only-object-norm02-seed46 :: SR=0.15\neval-obs-only-object-norm03-seed45-r2 :: SR=14\neval-direct-correction-object-seed42-r3 :: SR=0.14\neval-perdof-object-norm03-seed44 :: SR=0.04\neval-spatial-v7-full :: SR=0.3\neval-object-v8-full :: SR=0.13\neval-reconvla-spatial-v3 :: SR=0.34\neval-perdof-object-seed43 :: SR=0.12\neval-obs-only-object-seed43 :: SR=0.12\neval-argmin-object-seed43 :: SR=0.17\neval-argmin-only-spatial-r2 :: SR=0.34",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "7d0d904e-219b-478a-b2f5-50ae462277f2",
+            "tool_use_result": {
+              "stdout": "eval-perdof-object-norm02-seed45-r3 :: SR=0.12\neval-vla-only-goal-seed44-r2 :: SR=0.73\neval-adaptive-k-p25-seed42 :: SR=0.15\neval-crm-goal-seed46 :: SR=0.72\neval-adaptive-k-p50-seed44 :: SR=0.14\neval-adaptive-k-p75-seed44 :: SR=0.16\neval-adaptive-k-p90-seed43 :: SR=0.14\neval-adaptive-k-p90-seed42 :: SR=0.12\neval-vla-only-spatial-seed47 :: SR=0.3\neval-crm-long-seed47 :: SR=0.17\neval-vla-only-object-seed48 :: SR=0.1\neval-vla-only-long-seed48 :: SR=0.14\neval-vla-only-object-seed50 :: SR=0.09\neval-crm-long-seed46 :: SR=0.18\neval-crm-goal-seed45-r2 :: SR=0.65\neval-crm-goal-seed44-r2 :: SR=0.64\neval-obs-only-spatial-norm02-seed43-r2 :: SR=0.34\neval-crm-long-seed45 :: SR=0.18\neval-vla-only-goal-seed43 :: SR=0.69\neval-vla-only-goal-seed42 :: SR=0.71\neval-vla-only-object-seed47 :: SR=0.1\neval-crm-long-seed44 :: SR=0.2\neval-crm-long-seed43 :: SR=0.15\neval-crm-long-seed42 :: SR=0.17\neval-crm-goal-seed42 :: SR=0.67\neval-crm-goal-seed43 :: SR=0.72\neval-vla-only-spatial-seed46 :: SR=0.3\neval-vla-only-long-seed47 :: SR=0.14\neval-vla-only-goal-seed45 :: SR=0.63\neval-vla-only-goal-seed46 :: SR=0.71\neval-vla-only-long-seed46 :: SR=0.18\neval-vla-only-long-seed45 :: SR=0.17\neval-perdof-object-norm003-seed47 :: SR=0.15\neval-perdof-object-norm005-seed47 :: SR=0.1\neval-vla-only-long-seed44 :: SR=0.12\neval-vla-only-long-seed42 :: SR=0.11\neval-vla-only-long-seed43 :: SR=0.13\neval-obs-only-spatial-norm02-seed47 :: SR=0.32\neval-random-selection-object-k5-seed45-r2 :: SR=0.07\neval-random-selection-object-k5-seed44-r2 :: SR=0.1\neval-random-selection-object-k5-seed43-r2 :: SR=0.11\neval-random-selection-object-k5-seed42-r2 :: SR=0.14\neval-obs-only-spatial-norm02-k5-seed44-r2 :: SR=0.37\neval-obs-only-spatial-norm02-k5-seed45-r2 :: SR=0.34\neval-vla-only-spatial-seed45 :: SR=0.27\neval-perdof-object-norm005-seed45-r2 :: SR=0.1\neval-vla-only-spatial-seed44 :: SR=0.31\neval-obs-only-object-default-seed48-r2 :: SR=0.17\neval-vla-only-spatial-seed43 :: SR=0.29\neval-vla-only-spatial-seed42 :: SR=0.3\neval-obs-only-spatial-norm02-seed44 :: SR=0.36\neval-obs-only-object-norm003-seed47-r2 :: SR=0.15\neval-obs-only-object-norm003-seed48 :: SR=0.15\neval-obs-only-spatial-norm02-seed45 :: SR=0.34\neval_obs_only_norm03_seed48 :: SR=0.16\neval_obs_only_norm01_seed48 :: SR=0.18\neval-lto-splitA-vla-only-r3 :: SR=0.14\neval-lto-splitA-vla-only-r2 :: SR=0.14\neval-lto-splitA-heldout-r2 :: SR=0.02\neval-perdof-object-norm003-seed48 :: SR=0.13\neval-scalar-object-seed45-r2 :: SR=0.07\neval-obs-only-spatial-norm02-k5-seed43 :: SR=0.32\neval-obs-only-object-norm02-k5-seed48 :: SR=0.18\neval-obs-only-spatial-norm02-k5-seed42 :: SR=0.35\neval-obs-only-object-norm02-k5-seed46 :: SR=0.16\neval-lto-splitA-vla-only-v2 :: SR=0.14\neval-lto-splitA-heldout-v2 :: SR=0.02\neval-perdof-object-norm03-seed47 :: SR=0.05\neval-obs-only-object-default-seed48 :: SR=0.17\neval-perdof-object-norm003-seed46 :: SR=0.09\neval-perdof-object-norm005-seed46 :: SR=0.11\neval-obs-only-object-norm02-k5-seed47 :: SR=0.13\neval-random-selection-object-seed45 :: SR=0.1\neval-obs-only-object-norm005-seed47 :: SR=0.14\neval-perdof-object-norm01-seed48 :: SR=0.12\neval-obs-only-object-default-seed47 :: SR=0.16\neval-perdof-object-norm03-seed46 :: SR=0.04\neval-obs-only-object-norm03-seed46 :: SR=0.17\neval-scalar-object-seed46 :: SR=0.09\neval-obs-only-object-norm01-seed47 :: SR=0.17\neval-obs-only-object-norm01-seed45-r2 :: SR=0.17\neval-perdof-object-norm003-seed43 :: SR=0.13\neval-perdof-object-norm005-seed43 :: SR=0.13\neval-obs-only-object-norm02-seed48-r2 :: SR=0.18\neval-obs-only-object-norm02-k5-seed45 :: SR=0.15\neval-vla-only-object-seed46 :: SR=0.13\neval-obs-only-object-norm01-seed48 :: SR=0.18\neval-obs-only-object-norm02-k5-seed44 :: SR=0.17\neval-random-selection-object-seed44 :: SR=0.13\neval-obs-only-object-norm01-seed46-r3 :: SR=0.18\neval-obs-only-object-norm005-seed45 :: SR=0.14\neval-random-selection-object-seed43 :: SR=0.09\neval-perdof-object-norm005-seed44 :: SR=0.09\neval-vla-only-object-seed45-r2 :: SR=0.11\neval-obs-only-object-norm03-seed48 :: SR=0.16\neval-obs-only-object-norm005-seed44 :: SR=0.16\neval-obs-only-object-norm02-k5-seed43 :: SR=0.19\neval-random-selection-object-seed42 :: SR=0.13\neval-perdof-object-norm02-seed43 :: SR=0.09\neval-perdof-object-norm01-seed46 :: SR=0.1\neval-obs-only-object-norm01-seed45 :: SR=0.14\neval-obs-only-object-norm02-k5-seed42 :: SR=0.14\neval-acr-spatial-v3 :: SR=0.025\neval-k1-crm-accg-object-seed44 :: SR=0.07\neval-k1-crm-accg-object-seed43 :: SR=0.12\neval-k1-crm-accg-object-seed42 :: SR=0.11\neval-obs-only-object-default-seed45 :: SR=0.12\neval-scalar-object-seed45 :: SR=0.09\neval-perdof-object-norm02-seed45 :: SR=0.09\neval-perdof-object-norm02-seed44 :: SR=0.1\neval-perdof-object-norm03-seed44-r2 :: SR=0.04\neval-obs-only-object-norm02-seed47 :: SR=0.2\neval-obs-only-object-norm02-seed46 :: SR=0.15\neval-obs-only-object-norm03-seed45-r2 :: SR=14\neval-direct-correction-object-seed42-r3 :: SR=0.14\neval-perdof-object-norm03-seed44 :: SR=0.04\neval-spatial-v7-full :: SR=0.3\neval-object-v8-full :: SR=0.13\neval-reconvla-spatial-v3 :: SR=0.34\neval-perdof-object-seed43 :: SR=0.12\neval-obs-only-object-seed43 :: SR=0.12\neval-argmin-object-seed43 :: SR=0.17\neval-argmin-only-spatial-r2 :: SR=0.34",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the data. Let me also check which experiments from the servers are NOT in the registry. Let me compile a complete list of all files found on servers, then compare to the registry.\n\nLet me also look for experiments that are in PREPARING or RUNNING status.\n\nLet me compile the full results now.\n\nFirst, let me list all the files from the 4 servers and their overall_success_rate values:\n\n**bjb2-28827 (all eval files with SR):**\n- eval_adaptive_k_p25_seed43: SR=0.13, avg_K=4.788, fast_path=0.652\n\n\n- eval_adaptive_k_p50_seed42: SR=0.16, avg_K=3.722, fast_path=0.785\n- eval_adaptive_k_p75_seed42: SR=0.12, avg_K=3.070, fast_path=0.866\n- eval_adaptive_k_p75_seed43: SR=0.13, avg_K=3.150, fast_path=0.856\n- eval_adaptive_k_p90_seed43: SR=0.14, avg_K=2.612, fast_path=0.923\n- eval_adaptive_k_p90_seed44\n\n: SR=0.14, avg_K=2.579, fast_path=0.928\n\nNow I'm looking at the results from the CRM and VLA-based approaches, which show notably higher success rates around 0.64-0.73, along with some longer observation experiments that are tracking lower performance in the 0.12-0.20 range. Looking at the success rates across these different evaluation configurations, I'm seeing a range from 0.00 to 0.19, with the observation-only variants generally performing better than the per-DOF approaches. The norm02 and norm03 configurations seem to be among the stronger performers, while the per-DOF variants are showing more inconsistent results. Looking at the success rates across different evaluation configurations, I'm seeing that the spatial observation-only models perform significantly better, with success rates in the 0.31-0.37 range, while the other variants cluster around 0.09-0.13. Looking at more evaluation results across different configurations and normalization parameters, with success rates ranging from 0.13 to 0.36, showing how various object observation settings and normalization values impact performance. Looking at the success rates across more configuration variants with different normalization parameters and model architectures, I'm seeing a range from near zero to around 0.17, with most clustering in the 0.10-0.15 range. Looking at the additional results for bjb1-32546, the adaptive k experiments show diminishing returns as the fast path percentage increases, while the goal-based evaluations perform significantly better with success rates in the 0.64-0.71 range, and the k1 crm experiments cluster around 0.07-0.12. Looking at the success rates across these object observation-only configurations, most are clustering around 0.15-0.18, with a few dipping to 0.14 and one reaching 0.19 from the earlier set. Looking at the success rates across more evaluation configurations, I'm seeing a range from 0.04 to 0.32, with the spatial observation-only variants performing notably better than the object-based approaches. Looking at the success rates for the remaining experiments, I'm seeing some lower performance on the object-based tasks compared to the spatial ones. Now I need to cross-reference these results with what's already in the registry, mapping the underscore naming convention to the dash-separated format to identify which experiments are new versus already recorded. Looking at the success rates across the remaining evaluation runs, most of the VLA-only long and spatial variants are passing with relatively low success rates in the 0.11 to 0.3 range, with a few slightly higher at 0.17 to 0.18.\n\nNow I need to identify which evaluations are new and not already in the registry, starting with checking eval_adaptive_k_p25_seed43 and eval_adaptive_k_p50_seed42 to see if they're listed. Continuing through the evaluation configs, I'm seeing more entries that aren't registered—several goal observation variants and spatial observation runs across different seeds and model checkpoints. Some spatial configs like the k5 variant and one of the r2 runs do show up in the registry, but most of the others are missing.\n\nNow I'm realizing the naming convention between the file system and registry isn't straightforward—the files use underscores while the registry uses hyphens, and the structure doesn't map one-to-one. I need to look more carefully at how these actually correspond. I see the registry naming doesn't follow a simple pattern—the semantic labels don't directly correspond to the filenames. Let me identify which experiments are actually missing from the registry by checking the seed ranges for each experiment type. Looking at what's registered, I notice VLA-only-Goal has seeds 42-46 plus the r2 variants, but nothing beyond seed46, so seeds 47-50 appear to be unregistered.\n\nFor the spatial experiments, there are gaps like seed46_r2 and seed48 for CRM-Spatial, and seed48-50 for VLA-only-Spatial. The adaptive-k variants are particularly sparse—several percentile-seed combinations like p25_seed43 and p50_seed42 through p75_seed43 aren't showing up in the registry. Now I'm checking whether the Goal-ObsOnly variants with the norm02 suffix represent distinct experiments or if they're just different processing versions of the same underlying runs. Rather than trying to perfectly match everything to the registry, I should just compile the data and flag the uncertain cases. The user asked about eval_adaptive_k_p25_seed44 specifically, which doesn't exist on any server yet. Now I'm organizing everything by benchmark into a comprehensive table as requested, starting with the clearly new entries I've identified across the different experiment types.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "3df90cae-3c8a-4769-940a-fc212b8eafa8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Prz22495CEvLbPRMkVk5No",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2829,
+                "cache_read_input_tokens": 74730,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2829
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据采集完毕。以下是全服务器实验结果汇总：\n\n---\n\n## 一、按 Benchmark 分组汇总\n\n### 1. CRM-Spatial (obs_only_spatial)\n\n| 服务器 | 文件名 | SR | 备注 |\n|--------|--------|-----|------|\n| bjb2-28827 | eval_spatial_obs_only_norm02_seed44 | 0.36 | 已注册 |\n| bjb2-28827 | eval_spatial_obs_only_norm02_seed46_r2 | 0.33 | **未注册** |\n| bjb2-28827 | eval_spatial_obs_only_norm02_k5_seed42 | 0.35 | 已注册 |\n| bjb2-28827 | eval_spatial_obs_only_norm02_k5_seed44 | 0.37 | 已注册 |\n| bjb2-28827 | eval_spatial_obs_only_norm02_k5_seed45 | 0.34 | 已注册 |\n| bjb1-18228 | eval_spatial_obs_only_norm02_seed47 | 0.32 | 已注册 |\n| bjb1-32546 | eval_spatial_obs_only_norm02_seed43_r2 | 0.34 | 已注册 |\n| bjb1-32546 | eval_spatial_obs_only_norm02_seed45 | 0.34 | 已注册 |\n| bjb1-32546 | eval_spatial_obs_only_norm02_seed47 | 0.32 | 已注册 |\n| bjb1-32546 | eval_spatial_obs_only_norm02_seed48 | 0.35 | **未注册** |\n| bjb1-32546 | eval_spatial_obs_only_norm02_k5_seed43 | 0.32 | 已注册 |\n| bjb2-40593 | eval_spatial_obs_only_norm02_seed44 | 0.32 | 重复/不同seed |\n\n### 2. VLA-only-Spatial\n\n| 服务器 | 文件名 | SR | 备注 |\n|--------|--------|-----|------|\n| bjb2-28827 | eval_spatial_vla_only_seed44 | 0.31 | 已注册 |\n| bjb1-18228 | eval_spatial_vla_only_seed43 | 0.29 | 已注册 |\n| bjb1-18228 | eval_spatial_vla_only_seed50 | 0.30 | **未注册** |\n| bjb1-32546 | eval_spatial_vla_only_seed42 | 0.30 | 已注册 |\n| bjb1-32546 | eval_spatial_vla_only_seed45 | 0.27 | 已注册 |\n| bjb1-32546 | eval_spatial_vla_only_seed46 | 0.30 | 已注册 |\n| bjb1-32546 | eval_spatial_vla_only_seed47 | 0.30 | 已注册 |\n| bjb1-32546 | eval_spatial_vla_only_seed48 | 0.30 | **未注册** |\n| bjb1-32546 | eval_spatial_vla_only_seed49 | 0.29 | **未注册** |\n\n### 3. CRM-Long (long_obs_only)\n\n| 服务器 | 文件名 | SR | 备注 |\n|--------|--------|-----|------|\n| bjb2-28827 | eval_long_obs_only_norm02_seed42 | 0.17 | 已注册 |\n| bjb2-28827 | eval_long_obs_only_norm02_seed43 | 0.15 | 已注册 |\n| bjb2-28827 | eval_long_obs_only_norm02_seed44 | 0.20 | 已注册 |\n| bjb2-28827 | eval_crm_long_seed47 | 0.17 | 已注册 |\n| bjb1-18228 | eval_long_obs_only_norm02_seed45 | 0.18 | 已注册 |\n| bjb1-18228 | eval_long_obs_only_norm02_seed46 | 0.18 | 已注册 |\n\n### 4. VLA-only-Long\n\n| 服务器 | 文件名 | SR | 备注 |\n|--------|--------|-----|------|\n| bjb1-18228 | eval_long_vla_only_seed45 | 0.17 | 已注册 |\n| bjb1-18228 | eval_long_vla_only_seed48 | 0.14 | 已注册 |\n| bjb1-32546 | eval_long_vla_only_seed42 | 0.11 | 已注册 |\n| bjb1-32546 | eval_long_vla_only_seed43 | 0.13 | 已注册 |\n| bjb1-32546 | eval_long_vla_only_seed44 | 0.12 | 已注册 |\n| bjb1-32546 | eval_long_vla_only_seed46 | 0.18 | 已注册 |\n| bjb1-32546 | eval_long_vla_only_seed47 | 0.11 | 已注册 |\n\n### 5. CRM-Goal / Goal-ObsOnly\n\n| 服务器 | 文件名 | SR | 备注 |\n|--------|--------|-----|------|\n| bjb2-28827 | eval_crm_goal_seed46 | 0.72 | 已注册 |\n| bjb2-28827 | eval_crm_goal_seed45_r2 | 0.65 | 已注册 |\n| bjb2-28827 | eval_crm_goal_seed44_r2 | 0.64 | 已注册 |\n| bjb1-18228 | eval_goal_obs_only_norm02_seed42 | 0.67 | 可能=crm-goal-seed42(已注册) |\n| bjb1-18228 | eval_goal_obs_only_norm02_seed43 | 0.72 | 可能=crm-goal-seed43(已注册) |\n| bjb1-32546 | eval_goal_obs_only_norm02_seed44 | 0.64 | 可能=crm-goal-seed44-r2(已注册) |\n| bjb1-32546 | eval_goal_obs_only_norm02_seed45 | 0.65 | 可能=crm-goal-seed45-r2(已注册) |\n\n### 6. VLA-only-Goal\n\n| 服务器 | 文件名 | SR | 备注 |\n|--------|--------|-----|------|\n| bjb2-28827 | eval_goal_vla_only_seed44_r2 | 0.73 | 已注册 |\n| bjb2-28827 | eval_goal_vla_only_seed45 | 0.63 | 已注册 |\n| bjb1-32546 | eval_goal_vla_only_seed42 | 0.71 | 已注册 |\n| bjb1-32546 | eval_goal_vla_only_seed43 | 0.69 | 已注册 |\n| bjb1-32546 | eval_goal_vla_only_seed46 | 0.71 | 已注册 |\n\n### 7. Adaptive-K\n\n| 服务器 | 文件名 | SR | avg_K | fast_path | 备注 |\n|--------|--------|-----|-------|-----------|------|\n| bjb2-28827 | eval_adaptive_k_p25_seed43 | 0.13 | 4.788 | 0.652 | **未注册** |\n| bjb2-28827 | eval_adaptive_k_p50_seed42 | 0.16 | 3.722 | 0.785 | **未注册** |\n| bjb2-28827 | eval_adaptive_k_p75_seed42 | 0.12 | 3.070 | 0.866 | **未注册** |\n| bjb2-28827 | eval_adaptive_k_p75_seed43 | 0.13 | 3.150 | 0.856 | **未注册** |\n| bjb2-28827 | eval_adaptive_k_p90_seed43 | 0.14 | 2.612 | 0.923 | 已注册 |\n| bjb2-28827 | eval_adaptive_k_p90_seed44 | 0.14 | 2.579 | 0.928 | **未注册** |\n| bjb1-18228 | eval_adaptive_k_p50_seed43 | 0.16 | 3.810 | 0.774 | **未注册** |\n| bjb1-32546 | eval_adaptive_k_p25_seed42 | 0.15 | 4.797 | 0.650 | 已注册 |\n| bjb1-32546 | eval_adaptive_k_p50_seed44 | 0.14 | 3.909 | 0.761 | 已注册 |\n| bjb1-32546 | eval_adaptive_k_p75_seed44 | 0.16 | 3.022 | 0.872 | 已注册 |\n| bjb1-32546 | eval_adaptive_k_p90_seed42 | 0.12 | 2.672 | 0.916 | 已注册 |\n\n---\n\n## 二、未注册结果汇总\n\n| Benchmark | 文件 | SR | 服务器 |\n|-----------|------|-----|--------|\n| CRM-Spatial | seed46_r2 | 0.33 | bjb2-28827 |\n| CRM-Spatial | seed48 | 0.35 | bjb1-32546 |\n| VLA-Spatial | seed48 | 0.30 | bjb1-32546 |\n| VLA-Spatial | seed49 | 0.29 | bjb1-32546 |\n| VLA-Spatial | seed50 | 0.30 | bjb1-18228 |\n| Adaptive-K | p25_seed43 | 0.13 | bjb2-28827 |\n| Adaptive-K | p50_seed42 | 0.16 | bjb2-28827 |\n| Adaptive-K | p50_seed43 | 0.16 | bjb1-18228 |\n| Adaptive-K | p75_seed42 | 0.12 | bjb2-28827 |\n| Adaptive-K | p75_seed43 | 0.13 | bjb2-28827 |\n| Adaptive-K | p90_seed44 | 0.14 | bjb2-28827 |\n\n**Adaptive-K P25-seed44：四台服务器均未找到此文件。**\n\n---\n\n## 三、关键发现\n\n1. **CRM-Spatial** 全 seed 平均 SR ≈ 0.33-0.37 (k3) / 0.32-0.37 (k5)，一致性好\n2. **VLA-only-Spatial** 平均 SR ≈ 0.29-0.31，低于 CRM-Spatial 约 5pp\n3. **CRM-Long** 平均 SR ≈ 0.15-0.20\n4. **VLA-only-Long** 平均 SR ≈ 0.11-0.18\n5. **CRM-Goal** SR ≈ 0.64-0.72；**VLA-only-Goal** SR ≈ 0.63-0.73 — 差距小\n6. **Adaptive-K** 趋势清晰：p25(avg_K≈4.8, SR≈0.14) → p50(avg_K≈3.8, SR≈0.15) → p75(avg_K≈3.1, SR≈0.14) → p90(avg_K≈2.6, SR≈0.13)，K 随 percentile 下降，SR 差异不大\n7. 共 **11 个实验未注册到 registry**，以 Adaptive-K 新 seed 和 Spatial 高编号 seed 为主"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "uuid": "a24ac4a6-d486-43ea-b334-c4bd6ee94e82",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Prz22495CEvLbPRMkVk5No",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2829,
+                "cache_read_input_tokens": 74730,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2829
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据采集完毕。以下是全服务器实验结果汇总：\n\n---\n\n## 一、按 Benchmark 分组汇总\n\n### 1. CRM-Spatial (obs_only_spatial)\n\n| 服务器 | 文件名 | SR | 备注 |\n|--------|--------|-----|------|\n| bjb2-28827 | eval_spatial_obs_only_norm02_seed44 | 0.36 | 已注册 |\n| bjb2-28827 | eval_spatial_obs_only_norm02_seed46_r2 | 0.33 | **未注册** |\n| bjb2-28827 | eval_spatial_obs_only_norm02_k5_seed42 | 0.35 | 已注册 |\n| bjb2-28827 | eval_spatial_obs_only_norm02_k5_seed44 | 0.37 | 已注册 |\n| bjb2-28827 | eval_spatial_obs_only_norm02_k5_seed45 | 0.34 | 已注册 |\n| bjb1-18228 | eval_spatial_obs_only_norm02_seed47 | 0.32 | 已注册 |\n| bjb1-32546 | eval_spatial_obs_only_norm02_seed43_r2 | 0.34 | 已注册 |\n| bjb1-32546 | eval_spatial_obs_only_norm02_seed45 | 0.34 | 已注册 |\n| bjb1-32546 | eval_spatial_obs_only_norm02_seed47 | 0.32 | 已注册 |\n| bjb1-32546 | eval_spatial_obs_only_norm02_seed48 | 0.35 | **未注册** |\n| bjb1-32546 | eval_spatial_obs_only_norm02_k5_seed43 | 0.32 | 已注册 |\n| bjb2-40593 | eval_spatial_obs_only_norm02_seed44 | 0.32 | 重复/不同seed |\n\n### 2. VLA-only-Spatial\n\n| 服务器 | 文件名 | SR | 备注 |\n|--------|--------|-----|------|\n| bjb2-28827 | eval_spatial_vla_only_seed44 | 0.31 | 已注册 |\n| bjb1-18228 | eval_spatial_vla_only_seed43 | 0.29 | 已注册 |\n| bjb1-18228 | eval_spatial_vla_only_seed50 | 0.30 | **未注册** |\n| bjb1-32546 | eval_spatial_vla_only_seed42 | 0.30 | 已注册 |\n| bjb1-32546 | eval_spatial_vla_only_seed45 | 0.27 | 已注册 |\n| bjb1-32546 | eval_spatial_vla_only_seed46 | 0.30 | 已注册 |\n| bjb1-32546 | eval_spatial_vla_only_seed47 | 0.30 | 已注册 |\n| bjb1-32546 | eval_spatial_vla_only_seed48 | 0.30 | **未注册** |\n| bjb1-32546 | eval_spatial_vla_only_seed49 | 0.29 | **未注册** |\n\n### 3. CRM-Long (long_obs_only)\n\n| 服务器 | 文件名 | SR | 备注 |\n|--------|--------|-----|------|\n| bjb2-28827 | eval_long_obs_only_norm02_seed42 | 0.17 | 已注册 |\n| bjb2-28827 | eval_long_obs_only_norm02_seed43 | 0.15 | 已注册 |\n| bjb2-28827 | eval_long_obs_only_norm02_seed44 | 0.20 | 已注册 |\n| bjb2-28827 | eval_crm_long_seed47 | 0.17 | 已注册 |\n| bjb1-18228 | eval_long_obs_only_norm02_seed45 | 0.18 | 已注册 |\n| bjb1-18228 | eval_long_obs_only_norm02_seed46 | 0.18 | 已注册 |\n\n### 4. VLA-only-Long\n\n| 服务器 | 文件名 | SR | 备注 |\n|--------|--------|-----|------|\n| bjb1-18228 | eval_long_vla_only_seed45 | 0.17 | 已注册 |\n| bjb1-18228 | eval_long_vla_only_seed48 | 0.14 | 已注册 |\n| bjb1-32546 | eval_long_vla_only_seed42 | 0.11 | 已注册 |\n| bjb1-32546 | eval_long_vla_only_seed43 | 0.13 | 已注册 |\n| bjb1-32546 | eval_long_vla_only_seed44 | 0.12 | 已注册 |\n| bjb1-32546 | eval_long_vla_only_seed46 | 0.18 | 已注册 |\n| bjb1-32546 | eval_long_vla_only_seed47 | 0.11 | 已注册 |\n\n### 5. CRM-Goal / Goal-ObsOnly\n\n| 服务器 | 文件名 | SR | 备注 |\n|--------|--------|-----|------|\n| bjb2-28827 | eval_crm_goal_seed46 | 0.72 | 已注册 |\n| bjb2-28827 | eval_crm_goal_seed45_r2 | 0.65 | 已注册 |\n| bjb2-28827 | eval_crm_goal_seed44_r2 | 0.64 | 已注册 |\n| bjb1-18228 | eval_goal_obs_only_norm02_seed42 | 0.67 | 可能=crm-goal-seed42(已注册) |\n| bjb1-18228 | eval_goal_obs_only_norm02_seed43 | 0.72 | 可能=crm-goal-seed43(已注册) |\n| bjb1-32546 | eval_goal_obs_only_norm02_seed44 | 0.64 | 可能=crm-goal-seed44-r2(已注册) |\n| bjb1-32546 | eval_goal_obs_only_norm02_seed45 | 0.65 | 可能=crm-goal-seed45-r2(已注册) |\n\n### 6. VLA-only-Goal\n\n| 服务器 | 文件名 | SR | 备注 |\n|--------|--------|-----|------|\n| bjb2-28827 | eval_goal_vla_only_seed44_r2 | 0.73 | 已注册 |\n| bjb2-28827 | eval_goal_vla_only_seed45 | 0.63 | 已注册 |\n| bjb1-32546 | eval_goal_vla_only_seed42 | 0.71 | 已注册 |\n| bjb1-32546 | eval_goal_vla_only_seed43 | 0.69 | 已注册 |\n| bjb1-32546 | eval_goal_vla_only_seed46 | 0.71 | 已注册 |\n\n### 7. Adaptive-K\n\n| 服务器 | 文件名 | SR | avg_K | fast_path | 备注 |\n|--------|--------|-----|-------|-----------|------|\n| bjb2-28827 | eval_adaptive_k_p25_seed43 | 0.13 | 4.788 | 0.652 | **未注册** |\n| bjb2-28827 | eval_adaptive_k_p50_seed42 | 0.16 | 3.722 | 0.785 | **未注册** |\n| bjb2-28827 | eval_adaptive_k_p75_seed42 | 0.12 | 3.070 | 0.866 | **未注册** |\n| bjb2-28827 | eval_adaptive_k_p75_seed43 | 0.13 | 3.150 | 0.856 | **未注册** |\n| bjb2-28827 | eval_adaptive_k_p90_seed43 | 0.14 | 2.612 | 0.923 | 已注册 |\n| bjb2-28827 | eval_adaptive_k_p90_seed44 | 0.14 | 2.579 | 0.928 | **未注册** |\n| bjb1-18228 | eval_adaptive_k_p50_seed43 | 0.16 | 3.810 | 0.774 | **未注册** |\n| bjb1-32546 | eval_adaptive_k_p25_seed42 | 0.15 | 4.797 | 0.650 | 已注册 |\n| bjb1-32546 | eval_adaptive_k_p50_seed44 | 0.14 | 3.909 | 0.761 | 已注册 |\n| bjb1-32546 | eval_adaptive_k_p75_seed44 | 0.16 | 3.022 | 0.872 | 已注册 |\n| bjb1-32546 | eval_adaptive_k_p90_seed42 | 0.12 | 2.672 | 0.916 | 已注册 |\n\n---\n\n## 二、未注册结果汇总\n\n| Benchmark | 文件 | SR | 服务器 |\n|-----------|------|-----|--------|\n| CRM-Spatial | seed46_r2 | 0.33 | bjb2-28827 |\n| CRM-Spatial | seed48 | 0.35 | bjb1-32546 |\n| VLA-Spatial | seed48 | 0.30 | bjb1-32546 |\n| VLA-Spatial | seed49 | 0.29 | bjb1-32546 |\n| VLA-Spatial | seed50 | 0.30 | bjb1-18228 |\n| Adaptive-K | p25_seed43 | 0.13 | bjb2-28827 |\n| Adaptive-K | p50_seed42 | 0.16 | bjb2-28827 |\n| Adaptive-K | p50_seed43 | 0.16 | bjb1-18228 |\n| Adaptive-K | p75_seed42 | 0.12 | bjb2-28827 |\n| Adaptive-K | p75_seed43 | 0.13 | bjb2-28827 |\n| Adaptive-K | p90_seed44 | 0.14 | bjb2-28827 |\n\n**Adaptive-K P25-seed44：四台服务器均未找到此文件。**\n\n---\n\n## 三、关键发现\n\n1. **CRM-Spatial** 全 seed 平均 SR ≈ 0.33-0.37 (k3) / 0.32-0.37 (k5)，一致性好\n2. **VLA-only-Spatial** 平均 SR ≈ 0.29-0.31，低于 CRM-Spatial 约 5pp\n3. **CRM-Long** 平均 SR ≈ 0.15-0.20\n4. **VLA-only-Long** 平均 SR ≈ 0.11-0.18\n5. **CRM-Goal** SR ≈ 0.64-0.72；**VLA-only-Goal** SR ≈ 0.63-0.73 — 差距小\n6. **Adaptive-K** 趋势清晰：p25(avg_K≈4.8, SR≈0.14) → p50(avg_K≈3.8, SR≈0.15) → p75(avg_K≈3.1, SR≈0.14) → p90(avg_K≈2.6, SR≈0.13)，K 随 percentile 下降，SR 差异不大\n7. 共 **11 个实验未注册到 registry**，以 Adaptive-K 新 seed 和 Spatial 高编号 seed 为主"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 325552,
+            "duration_api_ms": 322384,
+            "num_turns": 45,
+            "stop_reason": "end_turn",
+            "session_id": "234026bf-3bb5-4446-a09e-d1a78a19b295",
+            "total_cost_usd": 1.4482774999999999,
+            "usage": {
+              "input_tokens": 21,
+              "cache_creation_input_tokens": 65718,
+              "cache_read_input_tokens": 914168,
+              "output_tokens": 23158,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 65718,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 9847,
+                  "cache_read_input_tokens": 74730,
+                  "cache_creation_input_tokens": 2829,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2829
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1326,
+                "outputTokens": 15,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001401,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 21,
+                "outputTokens": 23158,
+                "cacheReadInputTokens": 914168,
+                "cacheCreationInputTokens": 65718,
+                "webSearchRequests": 0,
+                "costUSD": 1.4468765,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "6b8e03c4-464c-4df2-bdd6-33fb0581676a"
+          },
+          "id": "event-000111"
+        }
+      ]
+    }
+  ]
+}

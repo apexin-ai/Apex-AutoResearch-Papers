@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df0f70fcf95065b990cf",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diag precompute pi05 object done",
+  "task_key": "worker_diag_precompute-pi05-object-done_20260524T100753",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_precompute-pi05-object-done_20260524T100753_result.json",
+    "occurrence": 1,
+    "bytes": 459,
+    "sha256": "b22c816fd54e26effd92ba3d8fb956aefc69cb5c8b1f93f1d8daacd46eb067ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n1. **Object precompute 已成功完成** — 72,507 samples, manifest 确认维度 obs_dim=2048, K=10, action_dim=6, h_eff=5。三个 merged 文件均存在于 `/root/autodl-tmp/crm_cache_pi05_2048/object/`（生成时间 May 24 17:54）。\n2. **GPU 0 已释放** — 当前占用 558 MiB（idle 状态）。GPU 1-3 仍在使用（eval/precompute-long 等任务）。\n3. **CRON 已删除**，Registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-precompute-pi05-object-done.md"
+}

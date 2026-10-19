@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be1e3677172d04a22f83",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "fix analyzing stuck and metrics",
+  "task_key": "worker_fix_analyzing-stuck-and-metrics_20260519T154613",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_analyzing-stuck-and-metrics_20260519T154613_result.json",
+    "occurrence": 1,
+    "bytes": 318,
+    "sha256": "30b71ecab8e89d4c9b4f555df6eb21258399799769419fe55e6381e783110e73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验 registry 均已修复完成：\n\n| 实验 | Status | Success Rate |\n|------|--------|-------------|\n| eval-vla-only-spatial-seed45 | ANALYZING → **DONE** | 0.27 (spatial, vla_only baseline) |\n| eval-perdof-object-norm005-seed45-r2 | metrics 已补充 | 0.10 (object, perdof ε=0.05) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-analyzing-stuck-and-metrics.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a1a68bf1567a27d372d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis mag obsonly norm003 b2 final",
+  "task_key": "worker_analysis_mag-obsonly-norm003-b2-final_20260516T004545",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_mag-obsonly-norm003-b2-final_20260516T004545_result.json",
+    "occurrence": 1,
+    "bytes": 720,
+    "sha256": "133820d919c21dc940c4da3e2018d6badd4b03ec044d1e9b2309ae45a9f0d879"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整 10-task 结果已获取，进程已结束，GPU 空闲。\n\n## eval-mag-obsonly-norm003-b2 完整结果\n\n| Task | SR |\n|------|-----|\n| between_plate_and_ramekin | 0.9 |\n| next_to_ramekin | 1.0 |\n| from_table_center | 0.0 |\n| on_cookie_box | 0.3 |\n| in_top_drawer | 0.1 |\n| on_ramekin | 0.0 |\n| next_to_cookie_box | 0.8 |\n| on_stove | 0.0 |\n| next_to_plate | 0.3 |\n| on_wooden_cabinet | 0.0 |\n\n**overall_success_rate = 0.34** (10 tasks, 10 rollouts each)\n\n之前 partial 记录的 8 个 task 结果与最终一致，新增的 2 个 task：\n- **next_to_plate**: 0.3\n- **on_wooden_cabinet**: 0.0\n\n**进程状态**: PID 227434 已退出\n**GPU 0**: 无进程占用，空闲可用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mag-obsonly-norm003-b2-final.md"
+}

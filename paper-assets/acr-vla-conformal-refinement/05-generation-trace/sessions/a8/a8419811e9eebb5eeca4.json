@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8419811e9eebb5eeca4",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose bjb2 readiness",
+  "task_key": "worker_diagnose_bjb2-readiness_20260515T014512",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_bjb2-readiness_20260515T014512_result.json",
+    "occurrence": 1,
+    "bytes": 1970,
+    "sha256": "42aec01c869e32af5b7d652a60461d0c5eef686c039af91f8a1abfc6aab66539"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集。以下是结果：\n\n---\n\n## bjb2-40593 Eval 可用性检查结果\n\n### 1. GPU 状态\n- **空闲**: RTX 4090 D, 显存 0/24564 MiB, 利用率 0%, 无 GPU 进程\n\n### 2. evaluate.py 一致性\n- **一致**: `src/evaluate.py` 两台服务器均为 14489 bytes\n- 核心模块 (crm.py, aci.py, cgs.py, utils.py, train_crm.py) 字节数完全相同\n- **差异**:\n  - bjb2 多了: `src/gated_crm.py`, `src/compute_norm_stats.py`\n  - bjb1 多了: `src/sanity_check_reset.py`, `run_eval_gpu.py`, `diagnose_crm_scale.py`\n  - **注意**: bjb1 有 `run_eval_gpu.py`（根目录），bjb2 没有。如果 eval 用的是这个脚本，需要同步过去\n\n### 3. Cache 路径\n- bjb2: `/root/autodl-tmp/crm_cache/spatial/` — **2402 samples**\n- bjb1: `/root/autodl-tmp/crm_cache_v5/spatial/` — **12167 samples**\n- bjb2 上 **不存在** `crm_cache_v5`\n- `train_crm.py` 默认 `--cache_dir` 硬编码为 `/root/autodl-tmp/crm_cache/`\n- **但**: `evaluate.py` 是 LIBERO rollout 脚本，**不读 precompute cache**，只加载 CRM checkpoint + SmolVLA 模型在仿真环境中跑。cache 不兼容只影响训练，不影响 eval\n\n### 4. CRM v3-norm Checkpoints\n- **存在**: `/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt` (1.3MB, 2026-05-15 创建)\n\n### 5. Python 环境\n- Python 3.12.3 (miniconda3)\n- 依赖包列表未能通过 read_only 获取（pip 被 allowlist 拦截），需另外确认 torch/transformers/lerobot/robosuite 是否安装\n\n---\n\n### 结论\n\n**不能立即启动，需要先做准备工作：**\n\n1. **必须**: 确认 robosuite / lerobot / transformers / torch 等依赖已安装（需用 `ssh_execute` 跑 `pip list`）\n2. **必须**: 同步 `run_eval_gpu.py` 到 bjb2（如果 eval 依赖这个入口脚本）\n3. **无需处理**: cache 路径差异不影响 eval（evaluate.py 不读 cache）\n4. **已就绪**: GPU 空闲、CRM checkpoint 存在、核心代码一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-bjb2-readiness.md"
+}

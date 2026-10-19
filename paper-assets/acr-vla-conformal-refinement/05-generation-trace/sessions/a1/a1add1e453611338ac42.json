@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1add1e453611338ac42",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "check crm 4suite training done",
+  "task_key": "worker_check_crm-4suite-training-done_20260523T013151",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_crm-4suite-training-done_20260523T013151_result.json",
+    "occurrence": 1,
+    "bytes": 535,
+    "sha256": "5bf2c36d8b46febd7b741c79c1afdfeb924176a54c4844fc24ced22a6c4a7da4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**train-crm-unified-4suite-r5：killed**\n\n- 完成 32/50 epochs，两次在 epoch 33 中途被外部 kill（无 traceback，怀疑 OOM 或实例中断）\n- Best val_loss = **0.006075**（epoch 32），对比 3-suite 的 0.005878 略高\n- val_loss 在 32 epochs 内仍持续下降，未收敛\n- Checkpoint 可用：`/root/autodl-tmp/checkpoints/crm_unified_4suite_r4/crm_best.pt`（1.3MB）+ `checkpoint_epoch0032.pt`（3.9MB，可恢复训练）\n\nRegistry 已更新为 DONE/killed，cron 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-crm-4suite-training-done.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5243ce4e916a34c948a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "scan tau k sweep k5 status",
+  "task_key": "worker_scan_tau-k-sweep-k5-status_20260524T201027",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_scan_tau-k-sweep-k5-status_20260524T201027_result.json",
+    "occurrence": 1,
+    "bytes": 913,
+    "sha256": "f5b8b54ed6d1336b98dd010ddcbf7f63d6eecb6c8bdd5bbb871206d4f89a9cb7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入并注册（`art_20260524_439d7f`）。\n\n## 关键发现\n\n**τ-sweep（Spatial, seed=42）全部完成**：\n| τ    | SR     | trigger |\n|------|--------|---------|\n| 0.10 | 79.0%  | 75.2%   |\n| 0.15 | 80.5%  | 40.7%   |\n| **0.20** | **81.0%**  | 26.6%   |\n| 0.25 | 79.5%  | 19.6%   |\n| 0.30 | 80.5%  | 16.7%   |\n→ **τ=0.20 是峰值**，触发率随 τ 单调下降，SR 平稳；τ=0.10 高触发率反而降低 SR（过度修正）。\n\n**K-sweep**：\n- K=1：79.5%（= τ=0.25 单样本，共用同名 JSON）\n- K=2：**仅 seed 46 + vla_only mean 版本**（80.0%），缺 seed 42 adaptive_conformal_crm 版本\n- K=5：bjb2 仍在运行，7/10 任务完成，累计 109/140（77.9%），ETA ~50-60min\n\n**资源**：\n- bjb1-32546：6 张 GPU 全空闲，可立即接新任务（建议补 K=2 adaptive seed=42）\n- bjb2-40593：GPU 0 跑 K=5，~1h 后释放"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/scan-tau-k-sweep-k5-status.md"
+}

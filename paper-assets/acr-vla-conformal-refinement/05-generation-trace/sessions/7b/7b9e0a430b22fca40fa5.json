@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b9e0a430b22fca40fa5",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb1 32546 spatial k2 s42s43s44",
+  "task_key": "worker_deploy_bjb1-32546-spatial-k2-s42s43s44_20260525T053939",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb1-32546-spatial-k2-s42s43s44_20260525T053939_result.json",
+    "occurrence": 1,
+    "bytes": 973,
+    "sha256": "e70b9757d6b8964cb73ab427a17863bab6a027f4463142019bedaa12cb20be2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 个实验全部部署完成，registry 已注册为 RUNNING。\n\n**部署摘要**:\n\n| GPU | exp_id | mode | seed | 状态 |\n|-----|--------|------|------|------|\n| cuda:0 | eval-k2-spatial-adapt-s42-paired-r2 | adaptive_conformal_crm | 42 | RUNNING, rollout 5/20 进行中 |\n| cuda:1 | eval-k2-spatial-vla-only-s42-paired-r2 | vla_only | 42 | RUNNING, rollout 5/20 进行中 |\n| cuda:2 | eval-k2-spatial-adapt-s43-paired-r2 | adaptive_conformal_crm | 43 | RUNNING, tasks loaded |\n| cuda:3 | eval-k2-spatial-vla-only-s43-paired-r2 | vla_only | 43 | RUNNING, tasks loaded |\n| cuda:4 | eval-k2-spatial-adapt-s44-paired-r2 | adaptive_conformal_crm | 44 | RUNNING, tasks loaded |\n| cuda:5 | eval-k2-spatial-vla-only-s44-paired-r2 | vla_only | 44 | RUNNING, tasks loaded |\n\n所有 GPU 显存已占用（5.5-6.2 GiB），6 个进程均正常运行。CRM checkpoint 使用默认路径 `/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb1-32546-spatial-k2-s42s43s44.md"
+}

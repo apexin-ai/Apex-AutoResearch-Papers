@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb66803791164302e222",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "audit bjb2 28827 deploy",
+  "task_key": "worker_audit_bjb2-28827-deploy_20260526T154456",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_bjb2-28827-deploy_20260526T154456_result.json",
+    "occurrence": 1,
+    "bytes": 1270,
+    "sha256": "32a253ab549c3cc0bb1a9d6cee3c80a7e0e502480a682c5426e155efd13fef78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "中止部署。所有 6 张 GPU 全部在用，不符合 C001 约束。\n\n## 审计结果\n\n**GPU 状态**：6/6 全部占用（违反 C001，禁止部署）\n\n| GPU | 显存 | 进程 | 运行实验 | 已运行 |\n|---|---|---|---|---|\n| 0 | 12529 MiB | 443692 | pi05 adaptive_conformal_crm spatial s42 tau=0.15 | 1h37m |\n| 1 | 12529 MiB | 444363 | pi05 adaptive_conformal_crm spatial s42 tau=0.35 | 1h36m |\n| 2 | 12593 MiB | 445988 | pi05 adaptive_conformal_crm goal s42 tau=0.15 | 1h34m |\n| 3 | 12593 MiB | 448295 | pi05 adaptive_conformal_crm goal s42 tau=0.35 | 1h32m |\n| 4 | 14045 MiB | 450041 | pi05 adaptive_conformal_crm long s42 tau=0.15 | 1h30m |\n| 5 | 14045 MiB | 451711 | pi05 adaptive_conformal_crm long s42 tau=0.35 | 1h29m |\n\n**部署结果**：未部署任何实验，未执行步骤 2-4。\n\n**说明**：上游\"全部空闲\"报告与实测冲突。bjb2-28827 实为满载，正在跑 6 个 pi05 adaptive conformal CRM 实验（spatial/goal/long × tau=0.15/0.35，全是 s42，K=2，norm=0.2），均已运行 1h29m–1h37m。按 C001 禁止抢占已有实验直接提交。建议：等当前 6 实验完成（按 20 rollout 体量预计还需 1-2h），收割时严格按 C002 审查日志后再做下一轮部署决策。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-bjb2-28827-deploy.md"
+}

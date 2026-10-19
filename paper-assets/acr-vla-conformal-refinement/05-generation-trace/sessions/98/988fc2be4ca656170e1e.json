@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "988fc2be4ca656170e1e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy pi05 goal long baselines r4",
+  "task_key": "worker_deploy_pi05-goal-long-baselines-r4_20260522T151725",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_pi05-goal-long-baselines-r4_20260522T151725_result.json",
+    "occurrence": 1,
+    "bytes": 969,
+    "sha256": "e18015916c9e44179bd6504caddcad530e734a62b9d90d5699b61ef92d918b6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 eval 全部正常启动，正在加载 PI05 模型。\n\n## 汇总\n\n### Kill 旧进程\n| 服务器 | PID | 状态 |\n|--------|-----|------|\n| bjb1-32546 | 326387 (旧 CRM cuda:4) | ✅ KILLED |\n| bjb2-40593 | 23742 (卡住 OFT eval) | ✅ KILLED |\n\n### π0.5 Baseline Eval 部署\n\n| 实验 ID | 服务器 | GPU | PID | tmux session |\n|---------|--------|-----|-----|-------------|\n| eval-pi05-vla-only-goal-seed43-r4 | bjb1-32546 | cuda:4 | 447209 | eval-pi05-vla-only-goal-seed43-r4 |\n| eval-pi05-vla-only-goal-seed44-r4 | bjb1-32546 | cuda:5 | 447496 | eval-pi05-vla-only-goal-seed44-r4 |\n| eval-pi05-vla-only-long-seed43-r4 | bjb1-18228 | cuda:1 | 25428 | eval-pi05-vla-only-long-seed43-r4 |\n| eval-pi05-vla-only-long-seed44-r4 | bjb1-18228 | cuda:2 | 25703 | eval-pi05-vla-only-long-seed44-r4 |\n\n注意：用户命令缺少 `--model pi05`，已自动补上。vla_only 模式下 K=1 (baseline_mode=single)，n_action_steps=10。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-pi05-goal-long-baselines-r4.md"
+}

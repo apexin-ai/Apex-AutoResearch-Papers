@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e34977e9df37ed9e0886",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diag bjb1 18228 seed65 seed66",
+  "task_key": "worker_diag_bjb1-18228-seed65-seed66_20260521T025310",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_bjb1-18228-seed65-seed66_20260521T025310_result.json",
+    "occurrence": 1,
+    "bytes": 1434,
+    "sha256": "5701dc476b542cf2667756f61d3b2ae99a52ae078bcc4a54aff59b7774db3d82"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。汇总如下：\n\n---\n\n### 1. eval-obs-only-object-norm005-seed65\n- **状态**: ✅ **已完成**\n- PID 622479 已退出，JSON 输出完整\n- **SR = 0.14** (14/100)\n- Registry 已正确标记为 `DONE/success`，metrics 已录入，无需修正\n\n### 2. seed66 × 3 — 全部正常运行中\n| 实验 | PID | GPU | 显存 | 运行时间 | Registry |\n|------|-----|-----|------|----------|----------|\n| norm003-seed66 | 642428 | GPU 0 | 4316 MiB | 1h23m | RUNNING ✅ |\n| norm005-seed66 | 642506 | GPU 2 | 4316 MiB | 1h23m | RUNNING ✅ |\n| norm01-seed66 | 642775 | GPU 3 | 3851 MiB | 1h23m | RUNNING ✅ |\n\nCron 误标为 failed，实际全部在跑。Registry 当前状态为 RUNNING，无需修正。\n\n### 3. seed67\n| 实验 | 状态 | 位置 |\n|------|------|------|\n| norm003-seed67 | 不在 bjb1-18228（无进程） | Registry RUNNING，应在其他服务器 |\n| norm005-seed67 | 不在 bjb1-18228 | Registry RUNNING |\n| norm01-seed67 | PID 666593, GPU 1, 5242 MiB, 9min | RUNNING ✅ |\n\n### GPU 占用\n4 张 GPU 全部在用，无冲突：\n- GPU 0: seed66-norm003\n- GPU 1: seed67-norm01（seed65 完成后释放）\n- GPU 2: seed66-norm005\n- GPU 3: seed66-norm01\n\n**结论**: seed65 已正常完成且 registry 已是 success 状态。seed66×3 和 seed67-norm01 正常运行中，cron 标记的 failed 为误报。seed67-norm003 和 norm005 不在本服务器上。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-bjb1-18228-seed65-seed66.md"
+}

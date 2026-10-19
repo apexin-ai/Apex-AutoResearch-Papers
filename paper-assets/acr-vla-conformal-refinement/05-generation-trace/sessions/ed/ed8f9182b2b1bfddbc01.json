@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed8f9182b2b1bfddbc01",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest bjb1 32546 long s46",
+  "task_key": "worker_harvest_bjb1-32546-long-s46_20260524T080112",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_bjb1-32546-long-s46_20260524T080112_result.json",
+    "occurrence": 1,
+    "bytes": 737,
+    "sha256": "d53f1f74c457abd809e360c9c29f515256fb1016dd70b28d96041e065a95a104"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 收割结果\n\n**Long s46（bjb1-32546，4 个全部完成）：**\n\n| Exp ID | SR | successes/total | Registry |\n|---|---|---|---|\n| `eval-supp-long-adapt-tau025-s46` | **58.5%** | 117/200 | 之前已填，无变更 |\n| `eval-supp-long-reconvla-s46` | **56.0%** | 112/200 | ✅ updated, conclusion=success |\n| `eval-supp-long-crm-norm005-s46` | **54.0%** | 108/200 | ✅ updated, conclusion=success |\n| `eval-supp-long-k2mean-s46` | **55.0%** | 110/200 | ✅ updated, conclusion=success |\n\n**Long s47（GPU 4-5，未完成）：**\n- `eval-supp-long-reconvla-s47`：task 3/10（KITCHEN_SCENE3），rollout 15/20 — 还需 ~3-4h\n- `eval-supp-long-crm-norm005-s47`：task 3/10，rollout 15/20 — 还需 ~3-4h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-bjb1-32546-long-s46.md"
+}

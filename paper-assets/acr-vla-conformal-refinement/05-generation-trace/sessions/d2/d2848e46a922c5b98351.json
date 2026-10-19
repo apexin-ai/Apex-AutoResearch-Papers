@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2848e46a922c5b98351",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose pi05 backfill failures",
+  "task_key": "worker_diagnose_pi05-backfill-failures_20260528T113140",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_pi05-backfill-failures_20260528T113140_result.json",
+    "occurrence": 1,
+    "bytes": 2076,
+    "sha256": "b86e04af3cdfadd74c3ab9828bad07e56f584d91b125808e8ac022ff1eefa1f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**根因：CRM checkpoint 与模型初始化维度不匹配。** 3 个实验完全相同的错误。\n\n### Traceback（3 个实验一致）\n\n```\nRuntimeError: Error(s) in loading state_dict for ConformalRefinementModule:\n  size mismatch for input_mean: [2118] vs [990]\n  size mismatch for input_std:  [2118] vs [990]\n  size mismatch for net.0.weight: [256, 2118] vs [256, 990]\n```\n\n### 维度分析\n\nCRM `input_dim = action_dim + uncertainty_dim + obs_dim`\n\n| | action_dim | unc_dim | obs_dim | input_dim |\n|---|---|---|---|---|\n| **当前模型**（crm_obs_only, 默认 obs_dim） | 30 | 0 | 960 | **990** |\n| **Checkpoint**（crm_pi05_unified_3suite） | 30 | 40 | 2048 | **2118** |\n\nCheckpoint 是用 **perdof 模式**（unc_dim=40）+ **PI05 obs_dim=2048** 训练的（30+40+2048=2118）。\n\n但 3 个实验的命令：\n- 实验 1&2：`--mode crm_obs_only` → unc_dim=0\n- 实验 3：`--mode adaptive_conformal_crm` → unc_dim=0\n- 全部：`--obs_dim` 取默认值 960（SmolVLA 的维度，不是 PI05 的 2048）\n\n### 两层不匹配\n\n1. **obs_dim 错误**：PI05 输出 2048D 特征，但命令未指定 `--obs_dim 2048`\n2. **mode 与 checkpoint 不兼容**：obs_only/adaptive 模式 unc_dim=0，但 checkpoint 训练时 unc_dim=40（perdof）\n\n### GPU 状态\n\ncuda:2 和 cuda:3 已空闲（1 MiB），可立即重用。cuda:0/1/4/5 有其他进程。\n\n### 修复方案\n\n**不能直接重试**，命令本身有 bug。需要二选一：\n\n**方案 A**（改命令适配现有 checkpoint）：\n- 实验 1&2：`--mode crm_perdof --obs_dim 2048`（替换 crm_obs_only）\n- 实验 3：需要一个支持 unc_dim=40 的 adaptive 模式，或改用 `--mode acr_vla --obs_dim 2048`\n\n**方案 B**（用 obs_only 专用 checkpoint）：\n- 需要一个用 `unc_dim=0, obs_dim=2048` 训练的 PI05 CRM checkpoint\n- 当前服务器上不存在这样的 checkpoint（`crm_pi05_full/` 下只有 object/ 和 spatial/，没有 long/）\n\n请确认要走哪个方案，我立即修改命令重新提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-pi05-backfill-failures.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1c85ed614b29d7df827",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose perdof norm01 seed46 r2 exit",
+  "task_key": "worker_diagnose_perdof-norm01-seed46-r2-exit_20260517T205949",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_perdof-norm01-seed46-r2-exit_20260517T205949_result.json",
+    "occurrence": 1,
+    "bytes": 663,
+    "sha256": "c5d3bd7221f420f13c0a12d6488579a37564c3fd11bffd9195d3b75b2b393965"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有活跃的 cron（可能在之前 session 中已清理）。\n\n**总结：**\n\n| 字段 | 值 |\n|------|-----|\n| exp_id | eval-perdof-object-norm01-seed46-r2 |\n| status | DONE (success) |\n| overall SR | **10%** |\n| per-task | bbq_sauce=0.3, orange_juice=0.3, chocolate_pudding=0.2, salad_dressing=0.1, milk=0.1, 其余5个=0 |\n| GPU cuda:4 | **已释放**（2MiB, 0% util） |\n\n假设验证：perdof CRM ε=0.1 seed46 = 10%，与 seed42 一致，确认 perdof 在低 norm 下表现显著劣于 obs_only（obs_only ε=0.1 ≈ 22%）。\n\n注：bjb1-32546 上 cuda:5 仍被 `eval-perdof-object-default-seed46`（PID 423767）占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-perdof-norm01-seed46-r2-exit.md"
+}

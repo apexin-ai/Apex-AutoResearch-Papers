@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a0d9b412eeadef30d10",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "paper writing",
+  "task_key": "worker_paper_writing_20260515T202415",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_20260515T202415_result.json",
+    "occurrence": 1,
+    "bytes": 580,
+    "sha256": "f4f7d781e147a88ca19cb4806da8de8ad4c0e60e2f022092d1e19c686555c49c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/_project/paper/abstract.tex`，182 词，符合 CoRL 200 词限制。\n\n结构：\n1. **问题**（2 句）：VLA 在分布偏移下退化 >65pp，现有方法受限于 selection 上界或需要 RL\n2. **方法**（2 句）：ACR-VLA 两阶段 pipeline，frozen VLA + CRM 329K params / 3ms\n3. **结果**（4 句）：Object +7.0pp，per-DOF negative，unbounded → 0%，Spatial null result\n4. **Takeaway**（1 句）：correction benefit is task-dependent\n\n无 \"first\"/\"novel\"/\"state-of-the-art\"/\"significantly\"，无 MetaWorld。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing.md"
+}

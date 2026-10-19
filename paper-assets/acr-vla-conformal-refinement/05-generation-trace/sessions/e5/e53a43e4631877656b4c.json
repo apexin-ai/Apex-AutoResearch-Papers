@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e53a43e4631877656b4c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "eval spatial reeval fixed",
+  "task_key": "worker_eval_spatial-reeval-fixed_20260513T154626",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_spatial-reeval-fixed_20260513T154626_result.json",
+    "occurrence": 1,
+    "bytes": 1818,
+    "sha256": "dade4aea751aa1bc8a9a2490b551725faaa38b6de04aca82cc1c586cadea8935"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 阶段性报告（3/10 tasks 完成，eval 仍在后台运行）\n\n### 1. camera_names 修复\n- **已修复**。evaluate.py 的 env_args 原来缺少 `camera_names`，只渲染 agentview\n- 已添加 `\"camera_names\": [\"agentview\", \"robot0_eye_in_hand\"]`\n- Smoke test 确认 env 现在返回两个 256×256 图像\n\n### 2. 图像管线确认\n- env 渲染 agentview_image + robot0_eye_in_hand_image (256×256)\n- 3 个 action 函数（vla_only / crm / reconvla）都正确提取双摄像头图像\n- wrapper 对每个图像做 flip + resize_with_pad(512×512) + normalize[-1,1]\n- 模型 config 有 3 个 camera slot (camera1/2/3)，`empty_cameras=0`；wrapper 传入 2 个实际图像\n\n### 3. 前 3 个 task 结果（libero_spatial, K=1, 3 rollouts）\n\n| Task | 成功率 |\n|------|--------|\n| pick_up...between_plate_and_ramekin...place_on_plate | **66.7% (2/3)** |\n| pick_up...next_to_ramekin...place_on_plate | **66.7% (2/3)** |\n| pick_up...from_table_center...place_on_plate | **33.3% (1/3)** |\n| **累计** | **55.6% (5/9)** |\n\n### 4. 关键结论\n\n**从 0% → 55.6%，bug 修复有效。** 之前完全失败是因为：\n- 缺少 eye_in_hand 摄像头（本次修复）\n- 图像预处理 6 项错误（之前诊断 Worker 修复）\n\n### 5. 后续\n\n- Eval 仍在后台运行（PID 87385），10 个 task × 3 rollouts，预计还需 ~1.5 小时\n- 结果会写入 `/root/acr-vla-conformal-refinement/artifacts/eval_spatial_k1.json`\n- 当前 55.6% 是 K=1 单样本结果（无 averaging）；K=10 取均值会更稳定\n- SmolVLA 论文报告 libero_spatial 的 baseline 约 78-85%（20 rollouts），当前 3 rollouts 结果波动较大\n\n如需等完整结果，我继续轮询；或者你可以后续手动检查 `tail /tmp/eval_spatial.log` 和 JSON 文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-spatial-reeval-fixed.md"
+}

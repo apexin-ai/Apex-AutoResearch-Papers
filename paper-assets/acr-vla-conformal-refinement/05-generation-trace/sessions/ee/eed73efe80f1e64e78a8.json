@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eed73efe80f1e64e78a8",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh bulk check running experiments",
+  "task_key": "worker_ssh_bulk-check-running-experiments_20260517T095258",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_bulk-check-running-experiments_20260517T095258_result.json",
+    "occurrence": 1,
+    "bytes": 2220,
+    "sha256": "4b39ebdec989da795c0726c2a98a66d1f7989f5570733ed343d96c48bdb074ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All processes checked. Here's the summary:\n\n## 全部 13 个实验仍在运行，无一完成\n\n### bjb1-18228 — 3 experiments, all RUNNING\n\n| PID | Exp ID | Elapsed | Status |\n|-----|--------|---------|--------|\n| 474319 | eval-obs-only-object-norm01-seed45 | **1d 00:50** | Rl |\n| 587763 | eval-obs-only-object-norm01-seed46-r2 | 3:02 | Rl |\n| 588037 | eval-obs-only-object-norm01-seed47-r2 | 3:02 | Rl |\n\nNo JSON output files yet.\n\n### bjb1-32546 — 4 experiments, all RUNNING\n\n| PID | Exp ID | Elapsed | Status |\n|-----|--------|---------|--------|\n| 319128 | eval-obs-only-object-norm02-seed47 | **12:20** | Rl |\n| 319463 | eval-perdof-object-norm03-seed45-r2 | **12:19** | Rl |\n| 322337 | eval-argmin-object-seed47 | **12:14** | Rl |\n| 393646 | eval-perdof-object-norm01-seed46-r2 | 3:02 | Rl |\n\nNo JSON output files yet. Note: PID 322337 is actually running `--mode reconvla` (output: `eval_object_reconvla_seed47.json`), not argmin as labeled in registry.\n\n### bjb2-28827 — 6 processes (5 experiments + 1 extra), all RUNNING\n\n| PID | Exp ID | Elapsed | Status |\n|-----|--------|---------|--------|\n| 242264 | eval-obs-only-object-default-seed45 | **23:09** | Rl |\n| 224623 | eval-scalar-object-seed45 | **1d 01:16** | S (bash wrapper) |\n| 222824 | eval-perdof-object-norm02-seed45 | **1d 01:20** | S (bash wrapper) |\n| 326081 | eval-perdof-object-norm02-seed44 | **9:16** | Rl+ |\n| 363223 | eval-obs-only-object-norm01-seed47-bjb2 | 2:59 | Rl |\n| 365893 | eval-obs-only-object-norm01-seed46-bjb2 | 2:44 | Rl+ |\n\nNo JSON output files for any current runs. (Pre-existing JSONs on this server are from earlier completed experiments.)\n\nNote: PID 365893 outputs to `results/` not `logs/`.\n\n### bjb2-40593 — idle\nGPU 0: 0 MiB, 0% utilization. Fully available.\n\n## 总结\n\n| 状态 | 数量 |\n|------|------|\n| 仍在运行 | 13 |\n| 已完成 | 0 |\n| 已失败 | 0 |\n| 空闲 GPU | bjb2-40593 (1x GPU) |\n\n两个需注意的问题：\n1. **Registry 不一致**: `eval-argmin-object-seed47` (PID 322337) 实际跑的是 `reconvla` 模式\n2. **输出路径不一致**: PID 365893 输出到 `results/` 而非 `logs/`，可能导致后续检查遗漏"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-bulk-check-running-experiments.md"
+}

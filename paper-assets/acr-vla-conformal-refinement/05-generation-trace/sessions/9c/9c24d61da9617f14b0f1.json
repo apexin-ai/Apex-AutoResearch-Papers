@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c24d61da9617f14b0f1",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb2 28827 goal k2 paired s45s46s47",
+  "task_key": "worker_deploy_bjb2-28827-goal-k2-paired-s45s46s47_20260525T060126",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb2-28827-goal-k2-paired-s45s46s47_20260525T060126_result.json",
+    "occurrence": 1,
+    "bytes": 1176,
+    "sha256": "9bca1f6e5d02479b89b0a993a5e2674b5e1df3e4714ba395a7f7f8ab37d767d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 paired Goal K=2 experiments deployed on bjb2-28827.\n\n| GPU | exp_id | mode | seed | PID |\n|-----|--------|------|------|-----|\n| 0 | eval-k2-goal-adapt-s45-paired | adaptive_conformal_crm | 45 | 639192 |\n| 1 | eval-k2-goal-vla-only-s45-paired | vla_only | 45 | 639189 |\n| 2 | eval-k2-goal-adapt-s46-paired | adaptive_conformal_crm | 46 | 639190 |\n| 3 | eval-k2-goal-vla-only-s46-paired | vla_only | 46 | 639199 |\n| 4 | eval-k2-goal-adapt-s47-paired | adaptive_conformal_crm | 47 | 639193 |\n| 5 | eval-k2-goal-vla-only-s47-paired | vla_only | 47 | 639194 |\n\n- CRM checkpoint: `/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt`\n- GPUs occupied: all 6 × ~5.5GB, utilization 15–22% (rollouts active); GPU 4 momentarily at 0% (between rollouts, memory held)\n- Logs: `/root/acr-vla-conformal-refinement/logs/eval_goal_{adaptive_k2_tau025,vla_only}_seed{45,46,47}_paired.{log,json}`\n- Sentinels with `EXIT=...` will write to `/tmp/goal_k2_launch/<exp_id>.sentinel` on completion\n- Registry: all 6 in RUNNING with full spec + hypothesis\n\nNote: scheduled wakeup at 06:08 already fired and was answered; no further wakeups outstanding."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb2-28827-goal-k2-paired-s45s46s47.md"
+}

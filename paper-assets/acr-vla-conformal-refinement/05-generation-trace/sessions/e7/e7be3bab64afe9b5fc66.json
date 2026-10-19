@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e7be3bab64afe9b5fc66",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "harvest bjb2 crm obs only and pi05 20260525T002621 retry1",
+  "task_key": "worker_harvest_bjb2-crm-obs-only-and-pi05_20260525T002621_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_bjb2-crm-obs-only-and-pi05_20260525T002621_retry1.log",
+    "occurrence": 1,
+    "bytes": 941036,
+    "sha256": "6a07c97d241ee8cc8b27d39632f8ea2ad7c0f5299d2b87197b4585208371d918"
+  },
+  "statistics": {
+    "messages": 221,
+    "user_turns": 0,
+    "tool_calls": 93,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 31,
+      "tool_call": 93,
+      "tool_result": 93,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 221,
+      "chunks": [
+        {
+          "path": "e7be3bab64afe9b5fc66-part-0001.json",
+          "message_count": 130
+        },
+        {
+          "path": "e7be3bab64afe9b5fc66-part-0002.json",
+          "message_count": 91
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/harvest-bjb2-crm-obs-only-and-pi05-20260525t002621-retry1.md"
+}

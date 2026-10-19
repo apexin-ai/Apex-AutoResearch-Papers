@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "989c824987a702afca10",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy magnitude sweep bjb2 28827",
+  "task_key": "worker_deploy_magnitude-sweep-bjb2-28827_20260515T031505",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_magnitude-sweep-bjb2-28827_20260515T031505_result.json",
+    "occurrence": 1,
+    "bytes": 819,
+    "sha256": "10aefef63c629b0956b6855eca09f2299db6234296c87862133d326200553fb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 个 GPU 全部在使用中，实验正在加载。\n\n### 部署结果\n\n| exp_id | PID | GPU | mode | norm | 状态 |\n|--------|-----|-----|------|------|------|\n| eval-mag-perdof-norm003 | 13185 | cuda:0 | acr_vla | 0.03 | 运行中 |\n| eval-mag-perdof-norm005 | 13456 | cuda:1 | acr_vla | 0.05 | 运行中 |\n| eval-mag-perdof-norm02 | 13728 | cuda:2 | acr_vla | 0.2 | 运行中 |\n| eval-mag-perdof-norm03 | 14260 | cuda:3 | acr_vla | 0.3 | 运行中 |\n| eval-mag-obsonly-norm005 | 14854 | cuda:4 | crm_obs_only | 0.05 | 运行中 |\n| eval-mag-obsonly-norm02 | 15190 | cuda:5 | crm_obs_only | 0.2 | 运行中 |\n\n6/6 实验全部提交成功。注意 GPU 0-2 之前已有进程占用（各 ~6.2GB），新实验共享了这些 GPU，当前显存用量 11-12GB，4090 有 24GB 应该够用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-magnitude-sweep-bjb2-28827.md"
+}

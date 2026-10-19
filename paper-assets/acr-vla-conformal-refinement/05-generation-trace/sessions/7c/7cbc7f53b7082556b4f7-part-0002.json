@@ -1,0 +1,1279 @@
+{
+  "schema_version": "1.0",
+  "session_id": "7cbc7f53b7082556b4f7",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 138,
+          "timestamp": "2026-05-18T07:05:02.062Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015UBDjSKcLUK7dqM3mR6Qhx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-perdof-object-default-seed46\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:21:54.338Z\\\", \\\"updated_at\\\": \\\"2026-05-18T07:05:01.672Z\\\", \\\"hypothesis\\\": \\\"perdof CRM (default norm, 无裁剪) seed46 on LIBERO-Object. 验证 perdof 在 uncapped norm 下的灾难性崩溃（seed42=0%）是否跨 seed 一致。支撑 obs_only > perdof claim。\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --output_file logs/eval_object_perdof_default_seed46.json\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": 423767, \\\"seed\\\": 46, \\\"model_name\\\": \\\"SmolVLA+CRM_perdof\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_object_perdof_default_seed46.json\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0, \\\"per_task_sr\\\": {\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": 0}}}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-18T01:27:04.768Z\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9406}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "069ff4a2-ddf9-470f-9086-d0d5f35a5c85",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-perdof-object-default-seed46\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T11:21:54.338Z\\\", \\\"updated_at\\\": \\\"2026-05-18T07:05:01.672Z\\\", \\\"hypothesis\\\": \\\"perdof CRM (default norm, 无裁剪) seed46 on LIBERO-Object. 验证 perdof 在 uncapped norm 下的灾难性崩溃（seed42=0%）是否跨 seed 一致。支撑 obs_only > perdof claim。\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --output_file logs/eval_object_perdof_default_seed46.json\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": 423767, \\\"seed\\\": 46, \\\"model_name\\\": \\\"SmolVLA+CRM_perdof\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_object_perdof_default_seed46.json\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0, \\\"per_task_sr\\\": {\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": 0}}}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-18T01:27:04.768Z\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9406}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-perdof-object-default-seed46\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T11:21:54.338Z\", \"updated_at\": \"2026-05-18T07:05:01.672Z\", \"hypothesis\": \"perdof CRM (default norm, 无裁剪) seed46 on LIBERO-Object. 验证 perdof 在 uncapped norm 下的灾难性崩溃（seed42=0%）是否跨 seed 一致。支撑 obs_only > perdof claim。\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=5 python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --output_file logs/eval_object_perdof_default_seed46.json\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:5\"], \"pid\": 423767, \"seed\": 46, \"model_name\": \"SmolVLA+CRM_perdof\", \"data_path\": \"LIBERO-Object\", \"data_count\": 100, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\", \"eval_data\": \"LIBERO-Object\", \"log_path\": \"/root/acr-vla-conformal-refinement/logs/eval_object_perdof_default_seed46.json\", \"checkpoint_path\": \"N/A\", \"metrics\": {\"overall_sr\": 0, \"per_task_sr\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 0, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 0, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 0, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 0, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 0, \"pick_up_the_butter_and_place_it_in_the_basket\": 0, \"pick_up_the_milk_and_place_it_in_the_basket\": 0, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 0, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 0}}}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-18T01:27:04.768Z\", \"metrics\": {\"overall_success_rate\": 0}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9406}}"
+              }
+            }
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018oSFKdiHau3v73xdAXpmQs",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval-obs-only-object-norm01-seed45",
+                "field": "metrics",
+                "value": {
+                  "overall_success_rate": 0.14
+                },
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "8e0bd470-53ac-4555-be7a-44348d675d95",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ETuf4RJ4GjkCayMgEY5mha",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4341,
+                "cache_read_input_tokens": 59082,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4341
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": "2026-05-18T07:05:03.040Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YSeJmGbpLamozrXgaYtW9B",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm02-k5-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-17T13:34:40.971Z\\\", \\\"updated_at\\\": \\\"2026-05-18T07:05:02.646Z\\\", \\\"hypothesis\\\": \\\"obs_only CRM (ε=0.2, K=5) seed42 on LIBERO-Object. K sweep 实验：K=5 vs K=10 (22%) 比较，验证 sample count 对 selection quality 的影响。若 K=5 显著低于 K=10，说明足够的 candidate 多样性对 CRM selection 关键。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-17T18:32:21.424Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=129 (non-zero)\\\", \\\"completed_at\\\": \\\"2026-05-17T18:32:28.770Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T18:32:40.928533+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"killed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 42 --K 5 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02_k5_seed42.json\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"SmolVLA+CRM_obs_only_v3_norm\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object (10 tasks x 10 rollouts)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.14}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9681}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "608fda37-6290-4231-a725-9cf38471f450",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm02-k5-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-17T13:34:40.971Z\\\", \\\"updated_at\\\": \\\"2026-05-18T07:05:02.646Z\\\", \\\"hypothesis\\\": \\\"obs_only CRM (ε=0.2, K=5) seed42 on LIBERO-Object. K sweep 实验：K=5 vs K=10 (22%) 比较，验证 sample count 对 selection quality 的影响。若 K=5 显著低于 K=10，说明足够的 candidate 多样性对 CRM selection 关键。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-17T18:32:21.424Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=129 (non-zero)\\\", \\\"completed_at\\\": \\\"2026-05-17T18:32:28.770Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T18:32:40.928533+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"killed\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 42 --K 5 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02_k5_seed42.json\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"SmolVLA+CRM_obs_only_v3_norm\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object (10 tasks x 10 rollouts)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.14}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9681}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-obs-only-object-norm02-k5-seed42\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-17T13:34:40.971Z\", \"updated_at\": \"2026-05-18T07:05:02.646Z\", \"hypothesis\": \"obs_only CRM (ε=0.2, K=5) seed42 on LIBERO-Object. K sweep 实验：K=5 vs K=10 (22%) 比较，验证 sample count 对 selection quality 的影响。若 K=5 显著低于 K=10，说明足够的 candidate 多样性对 CRM selection 关键。\", \"reproduce\": {\"finished_at\": \"2026-05-17T18:32:21.424Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"completed_at\": \"2026-05-17T18:32:28.770Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T18:32:40.928533+00:00\"}], \"previous_failure\": {\"conclusion\": \"killed\"}}, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 42 --K 5 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02_k5_seed42.json\", \"server\": \"bjb1-18228\", \"data_path\": \"LIBERO-Object\", \"data_count\": 100, \"model_name\": \"SmolVLA+CRM_obs_only_v3_norm\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\", \"eval_data\": \"LIBERO-Object (10 tasks x 10 rollouts)\"}, \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.14}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9681}}"
+              }
+            }
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": "2026-05-18T07:05:04.000Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018oSFKdiHau3v73xdAXpmQs",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed45\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T09:01:52.970Z\\\", \\\"updated_at\\\": \\\"2026-05-18T07:05:03.603Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=0 python src/evaluate.py --mode crm_obs_only --max_correction_norm 0.1 --k 10 --seed 45 --benchmark object --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --output_file logs/eval_object_obs_only_norm01_seed45.json > logs/eval_object_obs_only_norm01_seed45.log 2>&1\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"model_name\\\": \\\"crm_obs_only\\\", \\\"seed\\\": 45, \\\"data_path\\\": \\\"LIBERO object benchmark\\\", \\\"data_count\\\": -1, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO object\\\", \\\"hypothesis\\\": \\\"obs_only CRM norm=0.1 seed=45 on LIBERO object. Multi-seed magnitude curve data point. seed42=19%.\\\"}, \\\"pid\\\": 474319, \\\"hypothesis\\\": \\\"obs_only CRM (ε=0.1) seed=45 on LIBERO Object. 验证 obs_only 在低 norm (0.1) 的稳定性。seed42 在 0.1 为 19%，如果一致则确认 obs_only 全 norm 范围鲁棒。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"PID 474319 died, GPU idle 28h+. Ghost experiment — process dead but registry not updated.\\\", \\\"completed_at\\\": \\\"2026-05-17T13:31:33.316Z\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.14}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9519}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "dd5d9410-4c18-42e0-a56e-6d7852369a80",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm01-seed45\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T09:01:52.970Z\\\", \\\"updated_at\\\": \\\"2026-05-18T07:05:03.603Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=0 python src/evaluate.py --mode crm_obs_only --max_correction_norm 0.1 --k 10 --seed 45 --benchmark object --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --output_file logs/eval_object_obs_only_norm01_seed45.json > logs/eval_object_obs_only_norm01_seed45.log 2>&1\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"model_name\\\": \\\"crm_obs_only\\\", \\\"seed\\\": 45, \\\"data_path\\\": \\\"LIBERO object benchmark\\\", \\\"data_count\\\": -1, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO object\\\", \\\"hypothesis\\\": \\\"obs_only CRM norm=0.1 seed=45 on LIBERO object. Multi-seed magnitude curve data point. seed42=19%.\\\"}, \\\"pid\\\": 474319, \\\"hypothesis\\\": \\\"obs_only CRM (ε=0.1) seed=45 on LIBERO Object. 验证 obs_only 在低 norm (0.1) 的稳定性。seed42 在 0.1 为 19%，如果一致则确认 obs_only 全 norm 范围鲁棒。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"PID 474319 died, GPU idle 28h+. Ghost experiment — process dead but registry not updated.\\\", \\\"completed_at\\\": \\\"2026-05-17T13:31:33.316Z\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.14}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9519}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-obs-only-object-norm01-seed45\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T09:01:52.970Z\", \"updated_at\": \"2026-05-18T07:05:03.603Z\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=0 python src/evaluate.py --mode crm_obs_only --max_correction_norm 0.1 --k 10 --seed 45 --benchmark object --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --output_file logs/eval_object_obs_only_norm01_seed45.json > logs/eval_object_obs_only_norm01_seed45.log 2>&1\", \"server\": \"bjb1-18228\", \"gpu_id\": \"cuda:0\", \"model_name\": \"crm_obs_only\", \"seed\": 45, \"data_path\": \"LIBERO object benchmark\", \"data_count\": -1, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\", \"eval_data\": \"LIBERO object\", \"hypothesis\": \"obs_only CRM norm=0.1 seed=45 on LIBERO object. Multi-seed magnitude curve data point. seed42=19%.\"}, \"pid\": 474319, \"hypothesis\": \"obs_only CRM (ε=0.1) seed=45 on LIBERO Object. 验证 obs_only 在低 norm (0.1) 的稳定性。seed42 在 0.1 为 19%，如果一致则确认 obs_only 全 norm 范围鲁棒。\", \"conclusion\": \"success\", \"notes\": \"PID 474319 died, GPU idle 28h+. Ghost experiment — process dead but registry not updated.\", \"completed_at\": \"2026-05-17T13:31:33.316Z\", \"metrics\": {\"overall_success_rate\": 0.14}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9519}}"
+              }
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RZonNmrHFxoiTf7MorRFXh",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval-perdof-object-norm01-seed46",
+                "field": "status",
+                "value": "DONE",
+                "project": "acr-vla-conformal-refinement",
+                "spec": {
+                  "command": "python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_object_perdof_norm01_seed46.json",
+                  "server": "bjb1-32546",
+                  "data_path": "LIBERO-Object",
+                  "data_count": 100,
+                  "model_name": "SmolVLA+CRM_perdof_v3_norm",
+                  "seed": 46,
+                  "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt",
+                  "eval_data": "LIBERO-Object (10 tasks x 10 rollouts)",
+                  "checkpoint_path": "N/A",
+                  "log_path": "/root/acr-vla-conformal-refinement/logs/eval_object_perdof_norm01_seed46.json"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "3ec5dfc5-5482-4d16-8f58-b8c28dd1edf0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ETuf4RJ4GjkCayMgEY5mha",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4341,
+                "cache_read_input_tokens": 59082,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4341
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": "2026-05-18T07:05:06.793Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RZonNmrHFxoiTf7MorRFXh",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5474}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "7294755c-b1eb-4739-a76e-588b8996ba55",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5474}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.5474}}"
+              }
+            }
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The perdof-norm01-seed46 can't go directly from PREPARING to DONE. I need to transition it through the intermediate states: PREPARING → RUNNING → DONE.\n\nLet me do PREPARING → RUNNING first with the spec, then RUNNING → DONE.\n\nActually, wait - it says allowed transitions from PREPARING are PENDING and QUEUED. That seems backwards. Let me try PREPARING → RUNNING? No, the error says allowed are PENDING and QUEUED.\n\nHmm, maybe the state machine is: PREPARING → QUEUED → RUNNING → DONE?\n\nOr maybe PREPARING → PENDING is a \"cancel back\" and PREPARING → QUEUED means it's ready to run.\n\n\nLet me test the transition chain PREPARING → QUEUED → RUNNING → DONE to see if that's the correct path through the state machine.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "f0dc9e3c-bf99-418f-8202-f8db4cf5b071",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0182QRRHQaDFVXeKXuuHkzZx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3395,
+                "cache_read_input_tokens": 63423,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3395
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Need to transition perdof-norm01-seed46 through the state machine. Let me try PREPARING → QUEUED → RUNNING → DONE."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "064064a1-d774-4200-a7be-369776e95ba1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0182QRRHQaDFVXeKXuuHkzZx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3395,
+                "cache_read_input_tokens": 63423,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3395
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014PfQUF3VWak8sYGXoPMonA",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval-perdof-object-norm01-seed46",
+                "field": "status",
+                "value": "QUEUED",
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "8676762e-27af-4d93-9c91-2d54f77d0fa2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0182QRRHQaDFVXeKXuuHkzZx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3395,
+                "cache_read_input_tokens": 63423,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3395
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": "2026-05-18T07:05:16.010Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014PfQUF3VWak8sYGXoPMonA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-perdof-object-norm01-seed46\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T06:51:19.181Z\\\", \\\"updated_at\\\": \\\"2026-05-18T07:05:14.746Z\\\", \\\"hypothesis\\\": \\\"perdof CRM (ε=0.1) seed=46 on LIBERO Object. Extends perdof low-norm data (seed42=11%, seed44/45 running). At ε=0.1 perdof is in its \\\\\\\"safe zone\\\\\\\" (tight bound masks noisy corrections). Paired with obs_only seed46 for direct comparison at same seed.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=4 python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_object_perdof_norm01_seed46.json 2>&1 | tee logs/eval_object_perdof_norm01_seed46.log\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"393633\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-perdof-object-norm01-seed46.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T06:51:36.171Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8514}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "3288cf6d-e024-4c51-ad0e-c4e258f49942",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-perdof-object-norm01-seed46\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T06:51:19.181Z\\\", \\\"updated_at\\\": \\\"2026-05-18T07:05:14.746Z\\\", \\\"hypothesis\\\": \\\"perdof CRM (ε=0.1) seed=46 on LIBERO Object. Extends perdof low-norm data (seed42=11%, seed44/45 running). At ε=0.1 perdof is in its \\\\\\\"safe zone\\\\\\\" (tight bound masks noisy corrections). Paired with obs_only seed46 for direct comparison at same seed.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=4 python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_object_perdof_norm01_seed46.json 2>&1 | tee logs/eval_object_perdof_norm01_seed46.log\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"393633\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-perdof-object-norm01-seed46.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T06:51:36.171Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8514}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-perdof-object-norm01-seed46\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-17T06:51:19.181Z\", \"updated_at\": \"2026-05-18T07:05:14.746Z\", \"hypothesis\": \"perdof CRM (ε=0.1) seed=46 on LIBERO Object. Extends perdof low-norm data (seed42=11%, seed44/45 running). At ε=0.1 perdof is in its \\\"safe zone\\\" (tight bound masks noisy corrections). Paired with obs_only seed46 for direct comparison at same seed.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=4 python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_object_perdof_norm01_seed46.json 2>&1 | tee logs/eval_object_perdof_norm01_seed46.log\\\"\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:4\"], \"pid\": \"393633\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-perdof-object-norm01-seed46.log\", \"submitted_at\": \"2026-05-17T06:51:36.171Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8514}}"
+              }
+            }
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016FDpuHeJWcZhte995uRMfT",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval-perdof-object-norm01-seed46",
+                "field": "status",
+                "value": "RUNNING",
+                "project": "acr-vla-conformal-refinement",
+                "spec": {
+                  "command": "python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_object_perdof_norm01_seed46.json",
+                  "server": "bjb1-32546",
+                  "data_path": "LIBERO-Object",
+                  "data_count": 100,
+                  "model_name": "SmolVLA+CRM_perdof_v3_norm",
+                  "seed": 46,
+                  "checkpoint_source": "/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt",
+                  "eval_data": "LIBERO-Object (10 tasks x 10 rollouts)"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "86eb0c1f-6cbf-4cd1-bc71-9da34cdcad7c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012LPamgWEtmFvMoGS6Ky4xo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1074,
+                "cache_read_input_tokens": 66818,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1074
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": "2026-05-18T07:05:22.993Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016FDpuHeJWcZhte995uRMfT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-perdof-object-norm01-seed46\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T06:51:19.181Z\\\", \\\"updated_at\\\": \\\"2026-05-18T07:05:21.777Z\\\", \\\"hypothesis\\\": \\\"perdof CRM (ε=0.1) seed=46 on LIBERO Object. Extends perdof low-norm data (seed42=11%, seed44/45 running). At ε=0.1 perdof is in its \\\\\\\"safe zone\\\\\\\" (tight bound masks noisy corrections). Paired with obs_only seed46 for direct comparison at same seed.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_object_perdof_norm01_seed46.json\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"393633\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-perdof-object-norm01-seed46.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T06:51:36.171Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"SmolVLA+CRM_perdof_v3_norm\\\", \\\"seed\\\": 46, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object (10 tasks x 10 rollouts)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7929}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "5153947f-b9f5-42ce-bea1-a7ad417f2444",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-perdof-object-norm01-seed46\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T06:51:19.181Z\\\", \\\"updated_at\\\": \\\"2026-05-18T07:05:21.777Z\\\", \\\"hypothesis\\\": \\\"perdof CRM (ε=0.1) seed=46 on LIBERO Object. Extends perdof low-norm data (seed42=11%, seed44/45 running). At ε=0.1 perdof is in its \\\\\\\"safe zone\\\\\\\" (tight bound masks noisy corrections). Paired with obs_only seed46 for direct comparison at same seed.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_object_perdof_norm01_seed46.json\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"393633\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-perdof-object-norm01-seed46.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T06:51:36.171Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"SmolVLA+CRM_perdof_v3_norm\\\", \\\"seed\\\": 46, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object (10 tasks x 10 rollouts)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7929}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-perdof-object-norm01-seed46\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T06:51:19.181Z\", \"updated_at\": \"2026-05-18T07:05:21.777Z\", \"hypothesis\": \"perdof CRM (ε=0.1) seed=46 on LIBERO Object. Extends perdof low-norm data (seed42=11%, seed44/45 running). At ε=0.1 perdof is in its \\\"safe zone\\\" (tight bound masks noisy corrections). Paired with obs_only seed46 for direct comparison at same seed.\", \"spec\": {\"command\": \"python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_object_perdof_norm01_seed46.json\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:4\"], \"pid\": \"393633\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-perdof-object-norm01-seed46.log\", \"submitted_at\": \"2026-05-17T06:51:36.171Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Object\", \"data_count\": 100, \"model_name\": \"SmolVLA+CRM_perdof_v3_norm\", \"seed\": 46, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\", \"eval_data\": \"LIBERO-Object (10 tasks x 10 rollouts)\"}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7929}}"
+              }
+            }
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ut3iec8dLzPav85F7JTRKd",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval-perdof-object-norm01-seed46",
+                "field": "status",
+                "value": "DONE",
+                "project": "acr-vla-conformal-refinement",
+                "spec": {
+                  "checkpoint_path": "N/A",
+                  "log_path": "/root/acr-vla-conformal-refinement/logs/eval_object_perdof_norm01_seed46.json"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "b7c40072-981f-4701-9bd9-cc969df9cf9e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Wq79G7v7drWrMHUbzDLJy4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 964,
+                "cache_read_input_tokens": 67892,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 964
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": "2026-05-18T07:05:27.339Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ut3iec8dLzPav85F7JTRKd",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5894}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "b51f75d1-339f-4997-8b47-7d8fea953f8b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5894}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 0.5894}}"
+              }
+            }
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BEMghH7BY2SKXzwRWB1R8u",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval-perdof-object-norm01-seed46",
+                "field": "conclusion",
+                "value": "negative",
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "2a7bd8d2-909c-4b74-af53-b339b23f81d1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Rs3t8FP6qQKdVrKkMhP18J",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 269,
+                "cache_read_input_tokens": 68856,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 269
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": "2026-05-18T07:05:31.506Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BEMghH7BY2SKXzwRWB1R8u",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-perdof-object-norm01-seed46\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T06:51:19.181Z\\\", \\\"updated_at\\\": \\\"2026-05-18T07:05:31.116Z\\\", \\\"hypothesis\\\": \\\"perdof CRM (ε=0.1) seed=46 on LIBERO Object. Extends perdof low-norm data (seed42=11%, seed44/45 running). At ε=0.1 perdof is in its \\\\\\\"safe zone\\\\\\\" (tight bound masks noisy corrections). Paired with obs_only seed46 for direct comparison at same seed.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_object_perdof_norm01_seed46.json\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"393633\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-perdof-object-norm01-seed46.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T06:51:36.171Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"SmolVLA+CRM_perdof_v3_norm\\\", \\\"seed\\\": 46, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object (10 tasks x 10 rollouts)\\\"}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9932}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "476f664a-10b7-4fa1-ae4b-88fb58187265",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-perdof-object-norm01-seed46\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T06:51:19.181Z\\\", \\\"updated_at\\\": \\\"2026-05-18T07:05:31.116Z\\\", \\\"hypothesis\\\": \\\"perdof CRM (ε=0.1) seed=46 on LIBERO Object. Extends perdof low-norm data (seed42=11%, seed44/45 running). At ε=0.1 perdof is in its \\\\\\\"safe zone\\\\\\\" (tight bound masks noisy corrections). Paired with obs_only seed46 for direct comparison at same seed.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_object_perdof_norm01_seed46.json\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"393633\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-perdof-object-norm01-seed46.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T06:51:36.171Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"SmolVLA+CRM_perdof_v3_norm\\\", \\\"seed\\\": 46, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object (10 tasks x 10 rollouts)\\\"}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9932}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-perdof-object-norm01-seed46\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T06:51:19.181Z\", \"updated_at\": \"2026-05-18T07:05:31.116Z\", \"hypothesis\": \"perdof CRM (ε=0.1) seed=46 on LIBERO Object. Extends perdof low-norm data (seed42=11%, seed44/45 running). At ε=0.1 perdof is in its \\\"safe zone\\\" (tight bound masks noisy corrections). Paired with obs_only seed46 for direct comparison at same seed.\", \"spec\": {\"command\": \"python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_object_perdof_norm01_seed46.json\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:4\"], \"pid\": \"393633\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-perdof-object-norm01-seed46.log\", \"submitted_at\": \"2026-05-17T06:51:36.171Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Object\", \"data_count\": 100, \"model_name\": \"SmolVLA+CRM_perdof_v3_norm\", \"seed\": 46, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\", \"eval_data\": \"LIBERO-Object (10 tasks x 10 rollouts)\"}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9932}}"
+              }
+            }
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JeEZ6bWA8b32azpjfFY3G9",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval-perdof-object-norm01-seed46",
+                "field": "status",
+                "value": "DONE",
+                "project": "acr-vla-conformal-refinement",
+                "spec": {
+                  "checkpoint_path": "N/A",
+                  "log_path": "/root/acr-vla-conformal-refinement/logs/eval_object_perdof_norm01_seed46.json"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "8a828ee9-3b82-4d38-aa6e-7687bec5fb46",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Nj2woHdthi4hAzwH7djPUr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 735,
+                "cache_read_input_tokens": 69125,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 735
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01An6sHmn7H8fVBWfWXViaoX",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval-perdof-object-norm01-seed46",
+                "field": "metrics",
+                "value": {
+                  "overall_success_rate": 0.1
+                },
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "993b3164-6c6b-45e4-94d6-6999b5a4f22e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Nj2woHdthi4hAzwH7djPUr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 735,
+                "cache_read_input_tokens": 69125,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 735
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": "2026-05-18T07:05:38.001Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JeEZ6bWA8b32azpjfFY3G9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-perdof-object-norm01-seed46\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T06:51:19.181Z\\\", \\\"updated_at\\\": \\\"2026-05-18T07:05:36.145Z\\\", \\\"hypothesis\\\": \\\"perdof CRM (ε=0.1) seed=46 on LIBERO Object. Extends perdof low-norm data (seed42=11%, seed44/45 running). At ε=0.1 perdof is in its \\\\\\\"safe zone\\\\\\\" (tight bound masks noisy corrections). Paired with obs_only seed46 for direct comparison at same seed.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_object_perdof_norm01_seed46.json\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"393633\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_object_perdof_norm01_seed46.json\\\", \\\"submitted_at\\\": \\\"2026-05-17T06:51:36.171Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"SmolVLA+CRM_perdof_v3_norm\\\", \\\"seed\\\": 46, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object (10 tasks x 10 rollouts)\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 87240.0, \\\"gpu_hours\\\": 24.23}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-18T07:05:36.145Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.4296}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "b37096c0-2b95-401a-8375-54561dbc774e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-perdof-object-norm01-seed46\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T06:51:19.181Z\\\", \\\"updated_at\\\": \\\"2026-05-18T07:05:36.145Z\\\", \\\"hypothesis\\\": \\\"perdof CRM (ε=0.1) seed=46 on LIBERO Object. Extends perdof low-norm data (seed42=11%, seed44/45 running). At ε=0.1 perdof is in its \\\\\\\"safe zone\\\\\\\" (tight bound masks noisy corrections). Paired with obs_only seed46 for direct comparison at same seed.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_object_perdof_norm01_seed46.json\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"393633\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_object_perdof_norm01_seed46.json\\\", \\\"submitted_at\\\": \\\"2026-05-17T06:51:36.171Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"SmolVLA+CRM_perdof_v3_norm\\\", \\\"seed\\\": 46, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object (10 tasks x 10 rollouts)\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 87240.0, \\\"gpu_hours\\\": 24.23}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-18T07:05:36.145Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.4296}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-perdof-object-norm01-seed46\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T06:51:19.181Z\", \"updated_at\": \"2026-05-18T07:05:36.145Z\", \"hypothesis\": \"perdof CRM (ε=0.1) seed=46 on LIBERO Object. Extends perdof low-norm data (seed42=11%, seed44/45 running). At ε=0.1 perdof is in its \\\"safe zone\\\" (tight bound masks noisy corrections). Paired with obs_only seed46 for direct comparison at same seed.\", \"spec\": {\"command\": \"python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_object_perdof_norm01_seed46.json\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:4\"], \"pid\": \"393633\", \"log_path\": \"/root/acr-vla-conformal-refinement/logs/eval_object_perdof_norm01_seed46.json\", \"submitted_at\": \"2026-05-17T06:51:36.171Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Object\", \"data_count\": 100, \"model_name\": \"SmolVLA+CRM_perdof_v3_norm\", \"seed\": 46, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\", \"eval_data\": \"LIBERO-Object (10 tasks x 10 rollouts)\", \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 87240.0, \"gpu_hours\": 24.23}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-18T07:05:36.145Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.4296}}"
+              }
+            }
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": "2026-05-18T07:05:39.013Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01An6sHmn7H8fVBWfWXViaoX",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-perdof-object-norm01-seed46\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T06:51:19.181Z\\\", \\\"updated_at\\\": \\\"2026-05-18T07:05:38.605Z\\\", \\\"hypothesis\\\": \\\"perdof CRM (ε=0.1) seed=46 on LIBERO Object. Extends perdof low-norm data (seed42=11%, seed44/45 running). At ε=0.1 perdof is in its \\\\\\\"safe zone\\\\\\\" (tight bound masks noisy corrections). Paired with obs_only seed46 for direct comparison at same seed.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_object_perdof_norm01_seed46.json\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"393633\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_object_perdof_norm01_seed46.json\\\", \\\"submitted_at\\\": \\\"2026-05-17T06:51:36.171Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"SmolVLA+CRM_perdof_v3_norm\\\", \\\"seed\\\": 46, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object (10 tasks x 10 rollouts)\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 87240.0, \\\"gpu_hours\\\": 24.23}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-18T07:05:36.145Z\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.1}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0011}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "2ecf8a6a-0987-46a6-a3ad-6d3399d6286c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-perdof-object-norm01-seed46\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T06:51:19.181Z\\\", \\\"updated_at\\\": \\\"2026-05-18T07:05:38.605Z\\\", \\\"hypothesis\\\": \\\"perdof CRM (ε=0.1) seed=46 on LIBERO Object. Extends perdof low-norm data (seed42=11%, seed44/45 running). At ε=0.1 perdof is in its \\\\\\\"safe zone\\\\\\\" (tight bound masks noisy corrections). Paired with obs_only seed46 for direct comparison at same seed.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_object_perdof_norm01_seed46.json\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"393633\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_object_perdof_norm01_seed46.json\\\", \\\"submitted_at\\\": \\\"2026-05-17T06:51:36.171Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"SmolVLA+CRM_perdof_v3_norm\\\", \\\"seed\\\": 46, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object (10 tasks x 10 rollouts)\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"wall_clock_seconds\\\": 87240.0, \\\"gpu_hours\\\": 24.23}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-18T07:05:36.145Z\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.1}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0011}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-perdof-object-norm01-seed46\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T06:51:19.181Z\", \"updated_at\": \"2026-05-18T07:05:38.605Z\", \"hypothesis\": \"perdof CRM (ε=0.1) seed=46 on LIBERO Object. Extends perdof low-norm data (seed42=11%, seed44/45 running). At ε=0.1 perdof is in its \\\"safe zone\\\" (tight bound masks noisy corrections). Paired with obs_only seed46 for direct comparison at same seed.\", \"spec\": {\"command\": \"python -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 46 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_object_perdof_norm01_seed46.json\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:4\"], \"pid\": \"393633\", \"log_path\": \"/root/acr-vla-conformal-refinement/logs/eval_object_perdof_norm01_seed46.json\", \"submitted_at\": \"2026-05-17T06:51:36.171Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"LIBERO-Object\", \"data_count\": 100, \"model_name\": \"SmolVLA+CRM_perdof_v3_norm\", \"seed\": 46, \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\", \"eval_data\": \"LIBERO-Object (10 tasks x 10 rollouts)\", \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 87240.0, \"gpu_hours\": 24.23}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-18T07:05:36.145Z\", \"metrics\": {\"overall_success_rate\": 0.1}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0011}}"
+              }
+            }
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good, all registry updates done. Now let me also register the k1 experiments that are not in the registry. Let me also check the perdof_norm01_seed47_r2 one.\n\nActually wait, the perdof-object-norm01-seed47 is DONE|killed but there's a r2 file with SR=0.14. Should I create a new registry entry for the r2 run? Or update the existing one? The existing one is \"killed\" so a r2 retry would typically be a separate entry or an update.\n\n\nLet me check if there's a separate registry entry for the r2 version, then focus on registering the k1 experiments that are missing—I've got three of them with success rates around 0.11-0.12 that need to be added. Looking at the registry status, these experiments weren't registered under their current names, so they might have been submitted with different identifiers or skipped entirely. I should search the registry for any k1-related entries to see if they're tracked under alternative names.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "c5295698-3449-4daa-8cc0-8e1d17b72cdf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ECwfZMVBRh1A1yGsv7b4f7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1759,
+                "cache_read_input_tokens": 69860,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1759
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check if there are k1 entries in registry under different names, and also check perdof-norm01-seed47-r2."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "e5f01ae4-f1c6-498d-aecc-93f15deac0e5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ECwfZMVBRh1A1yGsv7b4f7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1759,
+                "cache_read_input_tokens": 69860,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1759
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XxMQQp3GbzsC51DRVnTYbL",
+              "name": "Bash",
+              "input": {
+                "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/fee5bf7a-5bcf-4592-a90a-72678e064643/tool-results/mcp-agent-ml-research-read_registry-1779087652617.txt | python3 -c \"\nimport json, sys\nraw = json.load(sys.stdin)\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\n# Find k1-related entries\nfor eid, e in exps.items():\n    if 'k1' in eid.lower():\n        status = e.get('status','?')\n        conclusion = e.get('conclusion','')\n        metrics = e.get('metrics',{})\n        sr = metrics.get('overall_success_rate','') if metrics else ''\n        print(f'{eid} | {status} | {conclusion} | SR={sr}')\n\nprint()\n# Check perdof-norm01-seed47-r2\nfor eid, e in exps.items():\n    if 'norm01' in eid and 'seed47' in eid:\n        status = e.get('status','?')\n        conclusion = e.get('conclusion','')\n        metrics = e.get('metrics',{})\n        sr = metrics.get('overall_success_rate','') if metrics else ''\n        print(f'{eid} | {status} | {conclusion} | SR={sr}')\n\"\n",
+                "description": "Search for k1 and norm01-seed47 entries in registry"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "47a86d27-e8ec-44bb-a8af-e5c060e59710",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ECwfZMVBRh1A1yGsv7b4f7",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1759,
+                "cache_read_input_tokens": 69860,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1759
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": "2026-05-18T07:06:00.224Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XxMQQp3GbzsC51DRVnTYbL",
+              "type": "tool_result",
+              "content": "train-crm-k1-accg-object-seed42-full | PREPARING | killed | SR=\nplan_701-crm-k1-train | PREPARING | killed | SR=\nplan_701-precompute-k1-spatial | PREPARING | killed | SR=\neval-k1-crm-multiscale-object-seed44-r2 | DONE | negative | SR=\neval-k1-crm-multiscale-object-seed44 | DONE | negative | SR=\neval-k1-crm-multiscale-object-seed43 | DONE | negative | SR=\neval-k1-crm-multiscale-object-seed42 | DONE | negative | SR=\neval-k1-crm-multiscale-object-seed43-r2 | DONE | negative | SR=\ntrain-crm-k1-accg-object-seed42-v2 | DONE | success | SR=\neval-k1-crm-accg-object-seed44 | DONE | negative | SR=0.07\neval-k1-crm-accg-object-seed43 | DONE | negative | SR=0.12\neval-k1-crm-accg-object-seed42 | DONE | negative | SR=0.11\ntrain-crm-k1-accg-object-seed42-fallback | DONE | success | SR=\ntrain-crm-k1-accg-object-seed42 | DONE | failed | SR=\neval-vla-only-object-k1 | DONE | failed | SR=\n\nmag_obs_only_norm01_seed47 | DONE | killed | SR=\neval-perdof-object-norm01-seed47-bjb1 | DONE | success | SR=\neval-obs-only-object-norm01-seed47 | DONE | killed | SR=\neval-obs-only-object-norm01-seed47-r2 | DONE | killed | SR=\neval-obs-only-object-norm01-seed47-bjb2 | DONE | killed | SR=\neval-perdof-object-norm01-seed47 | DONE | killed | SR=",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "b161a9b5-c738-4295-b7c0-d0e5b17f417b",
+            "tool_use_result": {
+              "stdout": "train-crm-k1-accg-object-seed42-full | PREPARING | killed | SR=\nplan_701-crm-k1-train | PREPARING | killed | SR=\nplan_701-precompute-k1-spatial | PREPARING | killed | SR=\neval-k1-crm-multiscale-object-seed44-r2 | DONE | negative | SR=\neval-k1-crm-multiscale-object-seed44 | DONE | negative | SR=\neval-k1-crm-multiscale-object-seed43 | DONE | negative | SR=\neval-k1-crm-multiscale-object-seed42 | DONE | negative | SR=\neval-k1-crm-multiscale-object-seed43-r2 | DONE | negative | SR=\ntrain-crm-k1-accg-object-seed42-v2 | DONE | success | SR=\neval-k1-crm-accg-object-seed44 | DONE | negative | SR=0.07\neval-k1-crm-accg-object-seed43 | DONE | negative | SR=0.12\neval-k1-crm-accg-object-seed42 | DONE | negative | SR=0.11\ntrain-crm-k1-accg-object-seed42-fallback | DONE | success | SR=\ntrain-crm-k1-accg-object-seed42 | DONE | failed | SR=\neval-vla-only-object-k1 | DONE | failed | SR=\n\nmag_obs_only_norm01_seed47 | DONE | killed | SR=\neval-perdof-object-norm01-seed47-bjb1 | DONE | success | SR=\neval-obs-only-object-norm01-seed47 | DONE | killed | SR=\neval-obs-only-object-norm01-seed47-r2 | DONE | killed | SR=\neval-obs-only-object-norm01-seed47-bjb2 | DONE | killed | SR=\neval-perdof-object-norm01-seed47 | DONE | killed | SR=",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The k1 experiments ARE in the registry. Let me check the details:\n\n- eval-k1-crm-accg-object-seed44: DONE | negative | SR=0.07 ✓\n- eval-k1-crm-accg-object-seed43: DONE | negative | SR=0.12 ✓ (but 0.12 >= 0.1075, should this be success?)\n\n\n- eval-k1-crm-accg-object-seed42: DONE | negative | SR=0.11 ✓ (0.11 >= 0.1075, should this be success?)\n\nThe multiscale variants are all marked negative without SR values in their metrics. Looking at the accg results, seed42 and seed43 both have success rates above the threshold of 0.1075, so there's a discrepancy between their marked status and what the numbers suggest. above the baseline of 0.1075 but marked as negative. Should they be success? Actually, looking at the JSON files:\n- seed42: SR=0.11 ≥ 0.1075 → success\n- seed43: SR=0.12 ≥ 0.1075 → success\n- seed44: SR=0.07 < 0.1075 → negative ✓\n\nAnd the multiscale ones don't have metrics in the registry. The files show:\n- seed42: SR=0.12 ≥ 0.1075 → success (currently negative)\n- seed43 (both servers): SR=0.09 < 0.1075 → negative ✓\n- seed44 (both servers): SR=0.10 < 0.1075 → negative ✓\n\nNow I'm wondering about the k1 results too. Several of them are above the 0.1075 VLA-only baseline but currently marked as negative—seed42 and seed43 for the regular k1 experiment, and seed42 for multiscale. But these might have been intentionally marked negative because the k1 experiment overall underperformed compared to the K=10 CRM results, even though they technically exceed the VLA-only baseline.\n\nActually, let me refocus. The user's main task is fixing the DeprecationWarning mismarks—experiments marked as \"failed\" when they have complete JSON data. That's the priority, not reinterpreting the success/negative classifications.\n\nNow I'm checking the registry entries more carefully. I see eval-perdof-object-norm01-seed47 is marked as killed, but there's also a bjb1 variant that's already marked as success. Let me verify which file corresponds to which entry and check the metrics for the bjb1 case.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "ecbdc3f9-6911-490c-bad0-bb76f0244692",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01W9QgL4s58CDw1Tzd6s6Jnx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1680,
+                "cache_read_input_tokens": 71619,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1680
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "K1 和 norm01-seed47 实验已在 registry 中。让我检查 eval-perdof-object-norm01-seed47-bjb1 的 metrics 是否需要补充，然后总结。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "f43e06a9-2ec6-41ee-8d39-90c4988af33c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01W9QgL4s58CDw1Tzd6s6Jnx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1680,
+                "cache_read_input_tokens": 71619,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1680
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JFdct91efe4K4tmnFv5w6y",
+              "name": "Bash",
+              "input": {
+                "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/fee5bf7a-5bcf-4592-a90a-72678e064643/tool-results/mcp-agent-ml-research-read_registry-1779087652617.txt | python3 -c \"\nimport json, sys\nraw = json.load(sys.stdin)\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\ne = exps.get('eval-perdof-object-norm01-seed47-bjb1', {})\nprint(json.dumps({k: e.get(k) for k in ['status','conclusion','metrics']}, indent=2))\n\n# Also check k1 multiscale metrics\nfor name in ['eval-k1-crm-multiscale-object-seed42','eval-k1-crm-multiscale-object-seed43','eval-k1-crm-multiscale-object-seed44']:\n    e2 = exps.get(name, {})\n    print(f'{name}: metrics={e2.get(\\\"metrics\\\")}')\n\"\n",
+                "description": "Check perdof-norm01-seed47-bjb1 and k1 multiscale metrics"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "8a098682-0929-4e52-8ddf-21750a44d826",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01W9QgL4s58CDw1Tzd6s6Jnx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1680,
+                "cache_read_input_tokens": 71619,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1680
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": "2026-05-18T07:06:24.997Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JFdct91efe4K4tmnFv5w6y",
+              "type": "tool_result",
+              "content": "{\n  \"status\": \"DONE\",\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"overall_sr\": 0.14,\n    \"successes\": 14,\n    \"total\": 100\n  }\n}\neval-k1-crm-multiscale-object-seed42: metrics={'overall_sr': 0.12, 'successes': 12, 'total': 100, 'per_task': {'alphabet_soup': 0, 'cream_cheese': 0, 'salad_dressing': 0.1, 'bbq_sauce': 0.2, 'ketchup': 0, 'tomato_sauce': 0.3, 'butter': 0.1, 'milk': 0, 'chocolate_pudding': 0.3, 'orange_juice': 0.2}}\neval-k1-crm-multiscale-object-seed43: metrics={'overall_sr': 0.09, 'successes': 9, 'total': 100, 'per_task': {'alphabet_soup': 0, 'cream_cheese': 0, 'salad_dressing': 0.1, 'bbq_sauce': 0.2, 'ketchup': 0, 'tomato_sauce': 0.2, 'butter': 0, 'milk': 0, 'chocolate_pudding': 0.2, 'orange_juice': 0.2}}\neval-k1-crm-multiscale-object-seed44: metrics={'overall_sr': 0.1, 'successes': 10, 'total': 100, 'per_task': {'alphabet_soup': 0, 'cream_cheese': 0, 'salad_dressing': 0.2, 'bbq_sauce': 0.1, 'ketchup': 0, 'tomato_sauce': 0.1, 'butter': 0, 'milk': 0, 'chocolate_pudding': 0.4, 'orange_juice': 0.2}}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "fadf47c1-2c56-40bc-91a5-6718f94a9560",
+            "tool_use_result": {
+              "stdout": "{\n  \"status\": \"DONE\",\n  \"conclusion\": \"success\",\n  \"metrics\": {\n    \"overall_sr\": 0.14,\n    \"successes\": 14,\n    \"total\": 100\n  }\n}\neval-k1-crm-multiscale-object-seed42: metrics={'overall_sr': 0.12, 'successes': 12, 'total': 100, 'per_task': {'alphabet_soup': 0, 'cream_cheese': 0, 'salad_dressing': 0.1, 'bbq_sauce': 0.2, 'ketchup': 0, 'tomato_sauce': 0.3, 'butter': 0.1, 'milk': 0, 'chocolate_pudding': 0.3, 'orange_juice': 0.2}}\neval-k1-crm-multiscale-object-seed43: metrics={'overall_sr': 0.09, 'successes': 9, 'total': 100, 'per_task': {'alphabet_soup': 0, 'cream_cheese': 0, 'salad_dressing': 0.1, 'bbq_sauce': 0.2, 'ketchup': 0, 'tomato_sauce': 0.2, 'butter': 0, 'milk': 0, 'chocolate_pudding': 0.2, 'orange_juice': 0.2}}\neval-k1-crm-multiscale-object-seed44: metrics={'overall_sr': 0.1, 'successes': 10, 'total': 100, 'per_task': {'alphabet_soup': 0, 'cream_cheese': 0, 'salad_dressing': 0.2, 'bbq_sauce': 0.1, 'ketchup': 0, 'tomato_sauce': 0.1, 'butter': 0, 'milk': 0, 'chocolate_pudding': 0.4, 'orange_juice': 0.2}}",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Good. The perdof-norm01-seed47-bjb1 already has metrics and is correctly marked as success. The k1 multiscale experiments have metrics.\n\nNow I have a complete picture. Let me summarize.\n\n**Summary of all updates:**\n1. eval-perdof-object-default-seed46: failed → negative, metrics set (SR=0.0)\n2. eval-obs-only-object-norm02-k5-seed42: failed → success, metrics set (SR=0.14)\n3. eval-obs-only-object-norm01-seed45: failed → success, metrics set (SR=0.14)\n\n\n4. eval-perdof-object-norm01-seed46: PREPARING → DONE|negative, metrics set (SR=0.1)\n\nAll GPUs on bjb2 are currently occupied with five different experiments running, consuming between 3.3 and 4.7 GB each.\n\nThe second node bjb1-32546 is also fully loaded with six experiments across its GPUs, using 2.4 to 3.8 GB per GPU, while bjb1-18228 has four experiments running on its four GPUs with memory usage between 2.4 and 4.7 GB.\n\nA third machine bjb2-40593 has one GPU occupied by an eval-random-selection-object-seed42 job running in the background. Since all available GPUs are currently in use, there's no capacity to deploy any new experiments, and five experiments are waiting in the queue.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "1b26c9d1-43fd-451e-a039-635206e76ba5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FkXx4k5fWkBXo8CcgTn1hy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2057,
+                "cache_read_input_tokens": 73299,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2057
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部巡检完成。\n\n---\n\n### 服务器状态\n\n| 服务器 | GPU | 显存占用 | 状态 | 运行实验 |\n|--------|-----|----------|------|----------|\n| **bjb2-28827** | 0 | 3768 MiB | 🔴 忙 | eval-obs-only-norm01-s42 |\n| | 1 | 3804 MiB | 🔴 忙 | eval-obs-only-object-norm02-k5-seed43 |\n| | 2 | 4736 MiB | 🔴 忙 | eval-perdof-norm01-s42 |\n| | 3 | 3804 MiB | 🔴 忙 | eval-perdof-object-norm02-seed48 |\n| | 4 | 4700 MiB | 🔴 忙 | eval-random-selection-object-seed43 |\n| | 5 | 3342 MiB | 🔴 忙 | eval-random-selection-object-seed44 |\n| **bjb1-32546** | 0 | 3805 MiB | 🔴 忙 | eval-dc-r2 |\n| | 1 | 3343 MiB | 🔴 忙 | eval-obs-only-object-norm005-seed44 |\n| | 2 | 3343 MiB | 🔴 忙 | eval-obs-only-object-norm005-seed45 |\n| | 3 | 3805 MiB | 🔴 忙 | eval-obs-only-object-norm01-seed46-r2 |\n| | 4 | 2411 MiB | 🔴 忙 | eval-perdof-object-norm005-seed44 |\n| | 5 | 3805 MiB | 🔴 忙 | eval-perdof-object-norm01-seed43 |\n| **bjb1-18228** | 0 | 4735 MiB | 🔴 忙 | eval-obs-only-object-norm02-seed48 |\n| | 1 | 2875 MiB | 🔴 忙 | eval-obs-only-object-norm01-seed48 |\n| | 2 | 3342 MiB | 🔴 忙 | eval-obs-only-object-norm03-seed48 |\n| | 3 | 2410 MiB | 🔴 忙 | eval-perdof-norm02-seed45-r3 |\n| **bjb2-40593** | 0 | 2338 MiB | 🔴 忙 | eval-random-selection-object-seed42 (nohup) |\n\n**空闲 GPU：0**\n\n---\n\n### 新完成实验（误标修正）\n\n| 实验ID | SR | 原标记 | 修正为 |\n|--------|-----|--------|--------|\n| eval-perdof-object-default-seed46 | 0.00 | failed | **negative** ✅ |\n| eval-obs-only-object-norm02-k5-seed42 | 0.14 | failed | **success** ✅ |\n| eval-obs-only-object-norm01-seed45 | 0.14 | failed | **success** ✅ |\n| eval-perdof-object-norm01-seed46 | 0.10 | PREPARING | **DONE/negative** ✅ |\n\n---\n\n### 新部署实验\n\n无。全部 17 张 GPU 均在运行中，无法部署。\n\n---\n\n### 剩余队列（5 个实验等待空闲 GPU）\n\n| 优先级 | 实验 | 命令关键参数 |\n|--------|------|-------------|\n| 1 | K=5 seed44 | obs_only, K=5, norm02, seed44 |\n| 2 | perdof default seed43 | perdof, uncapped, seed43 |\n| 3 | perdof default seed45 | perdof, uncapped, seed45 |\n| 4 | obs_only norm02 seed43 r3 | obs_only, norm02, seed43 重试 |\n| 5 | perdof norm03 seed44 | perdof, norm03, seed44 |"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "uuid": "8ebd0074-2fc9-43f5-991d-75e329add1b9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FkXx4k5fWkBXo8CcgTn1hy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2057,
+                "cache_read_input_tokens": 73299,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2057
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部巡检完成。\n\n---\n\n### 服务器状态\n\n| 服务器 | GPU | 显存占用 | 状态 | 运行实验 |\n|--------|-----|----------|------|----------|\n| **bjb2-28827** | 0 | 3768 MiB | 🔴 忙 | eval-obs-only-norm01-s42 |\n| | 1 | 3804 MiB | 🔴 忙 | eval-obs-only-object-norm02-k5-seed43 |\n| | 2 | 4736 MiB | 🔴 忙 | eval-perdof-norm01-s42 |\n| | 3 | 3804 MiB | 🔴 忙 | eval-perdof-object-norm02-seed48 |\n| | 4 | 4700 MiB | 🔴 忙 | eval-random-selection-object-seed43 |\n| | 5 | 3342 MiB | 🔴 忙 | eval-random-selection-object-seed44 |\n| **bjb1-32546** | 0 | 3805 MiB | 🔴 忙 | eval-dc-r2 |\n| | 1 | 3343 MiB | 🔴 忙 | eval-obs-only-object-norm005-seed44 |\n| | 2 | 3343 MiB | 🔴 忙 | eval-obs-only-object-norm005-seed45 |\n| | 3 | 3805 MiB | 🔴 忙 | eval-obs-only-object-norm01-seed46-r2 |\n| | 4 | 2411 MiB | 🔴 忙 | eval-perdof-object-norm005-seed44 |\n| | 5 | 3805 MiB | 🔴 忙 | eval-perdof-object-norm01-seed43 |\n| **bjb1-18228** | 0 | 4735 MiB | 🔴 忙 | eval-obs-only-object-norm02-seed48 |\n| | 1 | 2875 MiB | 🔴 忙 | eval-obs-only-object-norm01-seed48 |\n| | 2 | 3342 MiB | 🔴 忙 | eval-obs-only-object-norm03-seed48 |\n| | 3 | 2410 MiB | 🔴 忙 | eval-perdof-norm02-seed45-r3 |\n| **bjb2-40593** | 0 | 2338 MiB | 🔴 忙 | eval-random-selection-object-seed42 (nohup) |\n\n**空闲 GPU：0**\n\n---\n\n### 新完成实验（误标修正）\n\n| 实验ID | SR | 原标记 | 修正为 |\n|--------|-----|--------|--------|\n| eval-perdof-object-default-seed46 | 0.00 | failed | **negative** ✅ |\n| eval-obs-only-object-norm02-k5-seed42 | 0.14 | failed | **success** ✅ |\n| eval-obs-only-object-norm01-seed45 | 0.14 | failed | **success** ✅ |\n| eval-perdof-object-norm01-seed46 | 0.10 | PREPARING | **DONE/negative** ✅ |\n\n---\n\n### 新部署实验\n\n无。全部 17 张 GPU 均在运行中，无法部署。\n\n---\n\n### 剩余队列（5 个实验等待空闲 GPU）\n\n| 优先级 | 实验 | 命令关键参数 |\n|--------|------|-------------|\n| 1 | K=5 seed44 | obs_only, K=5, norm02, seed44 |\n| 2 | perdof default seed43 | perdof, uncapped, seed43 |\n| 3 | perdof default seed45 | perdof, uncapped, seed45 |\n| 4 | obs_only norm02 seed43 r3 | obs_only, norm02, seed43 重试 |\n| 5 | perdof norm03 seed44 | perdof, norm03, seed44 |"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 374417,
+            "duration_api_ms": 359762,
+            "num_turns": 67,
+            "stop_reason": "end_turn",
+            "session_id": "fee5bf7a-5bcf-4592-a90a-72678e064643",
+            "total_cost_usd": 1.54464725,
+            "usage": {
+              "input_tokens": 25,
+              "cache_creation_input_tokens": 63515,
+              "cache_read_input_tokens": 1064499,
+              "output_tokens": 24525,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 63515,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 1845,
+                  "cache_read_input_tokens": 73299,
+                  "cache_creation_input_tokens": 2057,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2057
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2094,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002179,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 25,
+                "outputTokens": 24525,
+                "cacheReadInputTokens": 1064499,
+                "cacheCreationInputTokens": 63515,
+                "webSearchRequests": 0,
+                "costUSD": 1.54246825,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "4b3e45a2-3382-44dc-9aaa-476f32a686ba"
+          },
+          "id": "event-000168"
+        }
+      ]
+    }
+  ]
+}

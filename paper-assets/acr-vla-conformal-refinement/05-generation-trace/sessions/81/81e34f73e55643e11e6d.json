@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81e34f73e55643e11e6d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "verify process gone batch",
+  "task_key": "worker_verify_process-gone-batch_20260521T030614",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_process-gone-batch_20260521T030614_result.json",
+    "occurrence": 1,
+    "bytes": 834,
+    "sha256": "dbfca5286a7bdeddee1d342d74cf6ed1d844eac95ffc90dc415715bf3344822d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n```\nexp_id                                    | server      | JSON | SR   | conclusion\n------------------------------------------|-------------|------|------|----------\neval-obs-only-object-norm01-seed71        | bjb2-28827  | YES  | 0.16 | success\neval-obs-only-object-norm005-seed72       | bjb2-28827  | YES  | 0.11 | success\neval-obs-only-object-norm003-seed73       | bjb2-28827  | YES  | 0.16 | success\neval-obs-only-object-norm01-seed74        | bjb2-28827  | YES  | 0.13 | success\neval-obs-only-object-norm005-seed75       | bjb2-28827  | YES  | 0.15 | success\neval-obs-only-object-norm01-seed51-r3     | bjb1-32546  | YES  | 0.11 | success\n```\n\n6/6 实验 JSON 完整，registry 已全部更新为 `status=DONE, conclusion=success, metrics={overall_success_rate: ...}`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-process-gone-batch.md"
+}

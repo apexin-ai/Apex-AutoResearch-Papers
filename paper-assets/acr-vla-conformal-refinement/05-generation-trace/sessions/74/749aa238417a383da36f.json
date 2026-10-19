@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "749aa238417a383da36f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh check argmin seed46 log",
+  "task_key": "worker_ssh_check-argmin-seed46-log_20260517T084155",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_check-argmin-seed46-log_20260517T084155_result.json",
+    "occurrence": 1,
+    "bytes": 739,
+    "sha256": "fe7c7bfac188591c10d327f66d8571c835dbcd60482a9715b5daaf1fedaaf775"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在，无需删除。\n\n**实验结果汇总：eval-argmin-object-seed46**\n\n| 指标 | 值 |\n|---|---|\n| **Overall SR** | **10.0% (10/100)** |\n| 状态 | 成功完成 |\n| 服务器 | bjb1-32546, cuda:1 |\n\n**Per-task SR：**\n\n| Task | SR |\n|---|---|\n| alphabet_soup | 0% |\n| cream_cheese | 0% |\n| salad_dressing | 10% |\n| **bbq_sauce** | **40%** |\n| ketchup | 0% |\n| tomato_sauce | 10% |\n| butter | 10% |\n| milk | 10% |\n| chocolate_pudding | 10% |\n| orange_juice | 10% |\n\nOverall 10.0% 略低于预期的 12-17% 范围。bbq_sauce 是唯一明显高于平均的 task (40%)，alphabet_soup/cream_cheese/ketchup 三个 task 完全失败。Registry 已更新 metrics + conclusion=success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-argmin-seed46-log.md"
+}

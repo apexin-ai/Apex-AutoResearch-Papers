@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cdb92f4287c6c356c9c0",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "fix cqa1 dead tau sweep",
+  "task_key": "worker_fix_cqa1-dead-tau-sweep_20260526T020239",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_cqa1-dead-tau-sweep_20260526T020239_result.json",
+    "occurrence": 1,
+    "bytes": 1283,
+    "sha256": "b597957ba1a5859386bed9077ca3440132c45e3c90ae3523af1c7c8ca5ce031a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务前提与实际状态不符。**6 个 tmux session 都活着，全部 python 进程在跑：**\n\n| Session | GPU | PID | CPU 时间 | log 最后写入 | 进度 |\n|---|---|---|---|---|---|\n| tau005-goal-s42 | 0 | 1569 | 568:53 | 10:02 | task1 rollout 15/20 |\n| tau010-goal-s42 | 1 | 1573 | 568:48 | 10:01 | task1 完成 100% |\n| tau015-goal-s42 | 2 | 1571 | 564:28 | 10:00 | task1 完成 95% |\n| tau020-goal-s42 | 3 | 1577 | 590:16 | 10:00 | task1 完成 90% |\n| tau030-goal-s42 | 4 | 1575 | 558:07 | 10:00 | task1 完成 90% |\n| tau035-goal-s42 | 5 | 1579 | 550:01 | 10:02 | task1 完成 95% |\n\nGPU 使用：6 个 GPU 全部占用 14-32%，每个 ~3.5GB。\n\n**没有 tau040 session**（只剩个 08:23 的旧 log 文件）。所有 6 个进程 CPU% 都在 600%+，明显活跃。\n\n任务描述中\"3 个死掉/停止\"的判断不成立——可能是基于旧状态或日志路径误判（实际日志写到 `/tmp/eval_goal_tauXXX.log`，不是 `/root/acr-vla-conformal-refinement/logs/tau_sweep_goal_*.log`，后者根本不存在）。\n\n**未执行任何 kill 或部署动作**。如确认要按 6 路并发跑到底，无需操作；如要改并发策略，请确认要 kill 哪些 session（精确名称带 dash：`tau005-goal-s42` 等）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-cqa1-dead-tau-sweep.md"
+}

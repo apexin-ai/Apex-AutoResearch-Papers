@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e031631181b1f27fa8ba",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_12_1778892254.md",
+  "task_key": "loop_12_1778892254",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_12_1778892254.md",
+    "occurrence": 1,
+    "bytes": 6262,
+    "sha256": "95b23a7d9da832ffba78e0f766066c5d3cfd213a58f6baa1f3688613b75f6336"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T00:43:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单强制**：只能用 `get_project_status` 返回的 `execution.gpu_ids`。bjb1-18228 有 4 卡 (cuda:0-3)，bjb1-32546 有 6 卡 (cuda:0-5)，bjb2-28827 有 6 卡 (cuda:0-5)，bjb2-40593 仅 cuda:0\n- **submit_training_job 命令必须 bash -c 包裹**：`bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u ...\"`。裸 `python -u` 在 tmux 下 PATH 不可靠，已多次 EXIT_CODE=127\n- **Kill 前逐参数比对**：曾误 kill norm=0.3 当成 norm=0.03。必须 `ps aux | grep` 完整命令行核对 mode/norm/benchmark/seed/output_file\n- **exp_id 命名**：norm 用 `p` 替代小数点（norm0p3 = 0.3），禁止 norm03 歧义写法\n- **eval-obs-only-object-seed43 状态异常**：registry 显示 ANALYZING 但 cron 报 process alive (pid=356495)。接手后先核实——可能是 cron 推进状态后进程仍在跑，或 status 被误改\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**: 4× RTX 4090, `/root/acr-vla-conformal-refinement`, Python `/root/miniconda3/bin/python`, conda base\n- **bjb1-32546**: 6× RTX 4090, 同上路径结构\n- **bjb2-28827**: 6× RTX 4090, 同上路径结构\n- **bjb2-40593**: 1× RTX 4090 D, 同上。无 .git repo，CRM cache 在旧路径 `/root/autodl-tmp/crm_cache/spatial/`\n- **CRM checkpoints**: `/root/autodl-tmp/checkpoints/crm_v3_norm/{obs_only,perdof,scalar_unc}/crm_best.pt`（所有服务器同路径）\n- **数据**: `/root/autodl-tmp/libero_data/`，HF cache `/root/autodl-tmp/.hf_cache`\n- **活跃进程 (16 RUNNING)**:\n  - bjb1-18228: cuda:0 perdof-default-r2 (PID 390936), cuda:1 perdof-seed43 (PID 365930), cuda:2 obs-only-seed43 (PID 356495, ⚠️ ANALYZING 状态)。**cuda:3 可能空闲**（argmin-seed43 已 DONE）\n  - bjb1-32546: cuda:0-5 全占（obsonly-norm003-object / vla-mean-seed43 / scalar-seed43 / obsonly-norm02-seed43-r2 / obsonly-default / perdof-norm02-object）\n  - bjb2-28827: cuda:0-5 全占（perdof-norm003-object / perdof-norm005-object / perdof-norm03-r3 / perdof-norm02-seed43-r3 / obsonly-norm005-object / obsonly-norm03-object）\n  - bjb2-40593: cuda:0 obsonly-norm003-b2 spatial (PID 227426, 8/10 tasks)\n- **Worker 池**: 0 active（全部是 cron 监控的 submit_training_job）\n\n### 3. 📊 当前状态\n**Phase 3: Paper writing + seed=43 statistical validation + object magnitude sweep**\n\n**Seed=43 六方进度（P0，Fisher exact test 关键）**:\n| 方法 | 进度 | partial SR | seed=42 参照 |\n|------|------|-----------|-------------|\n| VLA-only | ✅ DONE | 12% | 12% |\n| argmin | ✅ DONE | **17%** | 12% |\n| obs_only 0.1 | 6/10 ⚠️ ANALYZING | 8.3% | 19% |\n| perdof | 5/10 | 10% | 11% |\n| VLA-mean | 3/10 | 6.7% | 12% |\n| scalar | 3/10 | 0% | 9% |\n\n⚠️ argmin seed=43 = 17% (高于 seed=42 的 12%)，obs_only seed=43 partial 8.3% (低于 seed=42 的 19%)。Fisher test 结果取决于最终 10-task 数字。\n\n**Object magnitude sweep（fig3 数据）**: obs_only 和 perdof 各 4 个 norm 点在跑，均 2/10 tasks。加上已有 norm=0.1 数据，完成后可绘制 5 点曲线。\n\n**Default norm ablation**: obs_only-default 和 perdof-default-r2 各 1-2/10，确认 norm≈1.42 catastrophic failure。\n\n**Paper 状态**: Intro ✅ Method ✅ Experiments ✅ Related Work ✅ Discussion/Conclusion ✅ 引用审计 ✅。待做：fig1 WIP / fig2 / fig3 + seed=43 结果补入 + Abstract 最终版。\n\n**等待中**: 无 Worker 回调。16 个 cron 监控 RUNNING 实验。1 个 PENDING（eval-mag-obsonly-norm03-b2 spatial，已有替代 norm=0.3 数据 36%，可能无需再跑）。\n\n### 4. 📋 待办（条件触发式）\n- **eval-obs-only-object-seed43 完成 (或状态修正)** → spawn Worker 提取 10-task SR → 与 argmin seed43 (17%) 做 Fisher exact test → 若 pooled p<0.05 claim 成立；p=0.05-0.10 加 seed=44；p>0.10 调整 claim 强度\n- **seed=43 六方全部 DONE** → spawn Worker 生成 seed=42+43 combined table + Fisher exact test + bootstrap CI → 更新 paper Experiments section + Abstract\n- **Object magnitude sweep 全 10/10** → spawn Worker 绘制 fig3 norm sensitivity curve (obs_only vs perdof, 5 点) → register_artifact\n- **Default norm ablation 完成** → 确认 0% catastrophic failure → 补入 paper magnitude section\n- **bjb1-18228:cuda:3 确认空闲** → 立即提交下一个排队实验（优先 VLA-mean seed43 或 obs_only norm=0.2 spatial，按优先级选）\n- **eval-mag-obsonly-norm03-b2 PENDING** → 评估是否仍需要（spatial norm=0.3 已有 36% 数据）；如不需要则 kill+DONE\n- **所有数据就绪后** → fig1 pipeline diagram + fig2 per-task breakdown + fig3 magnitude curve → 论文定稿 → Abstract 最终版\n\n### 5. 🎯 战略上下文\n- **唯一存活 claim**: obs_only CRM 在 object benchmark 上 +7-10pp over argmin。Spatial 全死（所有变体 ±1pp of argmin）。论文以 object 为主故事，spatial 作 generalization/robustness。\n- **CoRL DDL**: abstract ~May 26 (10天), full paper ~Jun 2 (17天)。时间充裕但 seed=43 统计结果是 make-or-break gate。\n- **最大风险**: argmin seed=43=17% 而 obs_only seed=43 partial 仅 8.3%。如果最终 obs_only seed=43 < argmin seed=43，pooled Fisher test 可能不显著。**这是目前唯一的项目级风险**。应对方案已在 paper_framing.md: p>0.10 调整 claim 为 \"suggestive evidence\"。\n- **决策链**: D027(perdof=argmin 已死) → D029/D030(obs_only 唯一存活) → D031(seed=43 doubling) → D032(magnitude narrative) → D033(+7pp 超门槛) → D034(ReconVLA 重定位)\n- **易错点**:\n  - 不要把 spatial 结果 (35% obs_only) 和 object 结果 (19% obs_only) 混为一谈——claim 只在 object 上成立\n  - 不要把 partial SR (进行中) 当作 FINAL 结果汇报\n  - obs_only norm=0.03 spatial (bjb2-40593, 8/10) 快完了——这个是 magnitude sweep 的极端点，spatial 44.3%@7tasks 可能因最后 2 tasks 下降\n  - eval-mag-obsonly-norm03-b2 PENDING 是旧实验重试，spatial norm=0.3 已有 36% 数据(10t ✅)，大概率可以取消\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778892254.md"
+}

@@ -1,0 +1,1308 @@
+{
+  "schema_version": "1.0",
+  "id": "7d9546c496e2ef5a9c00",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "analyze pi05 vla only object 3seeds 20260521T114140 retry2",
+  "task_key": "worker_analyze_pi05-vla-only-object-3seeds_20260521T114140_retry2",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_pi05-vla-only-object-3seeds_20260521T114140_retry2.log",
+    "occurrence": 1,
+    "bytes": 140098,
+    "sha256": "cc69c84945dedcc77179e900686e8ba40c5171d65b767bac680a11e17f7f09f9"
+  },
+  "statistics": {
+    "messages": 30,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "system": 1,
+      "record": 2,
+      "assistant": 8,
+      "tool_call": 9,
+      "tool_result": 9,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+                "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "f83426b4-1afe-4cab-b1c2-3697e629799e",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1779584400,
+                  "rateLimitType": "seven_day",
+                  "utilization": 0.86,
+                  "isUsingOverage": false,
+                  "surpassedThreshold": 0.75
+                },
+                "uuid": "1112e0d5-4941-4174-a602-3ee7943e23c6",
+                "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "我来读取 3 个实验的日志文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+            "uuid": "20319e3f-57ae-4d95-b0b0-e1177e20a1ae",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RLkrFrgiWpAbTGznwdfDz9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11731,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11731
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JV8fHGwG1ayGSD1VtfmZcw",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+            "uuid": "632406ef-241a-4773-a529-bb86b39ea8a9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RLkrFrgiWpAbTGznwdfDz9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11731,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11731
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T11:43:33.223Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01JV8fHGwG1ayGSD1VtfmZcw",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+            "uuid": "e871fe08-2953-4b28-aa44-f9d96327e63e",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__update_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the last 100 lines of all 3 log files in parallel.",
+              "signature": "EoMCCmMIDRgCKkDpXKQWszhR2r3vcF7AVlmlY3i3srO4q8CFa1m6/h6f0aA5wNe4YuEfzKkwhvxZEIt9DYjanJHXV2TQTIWIVw27Mg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDAH+0JchtN+EdK2xihoMPV4lwMh0Zvh9K3/pIjBVq7mTy3RZHZ484EXA2ZdtDI/AwKS0ATy3b9wVFMhUgPUOWEKvT1cM++GNg9BSfgkqTsU8BBTmRT4kKW/0k+Uok+9WhnmD3pSQ/ddxW7otTpMaNnuILh7NgCojwSozGwqz4uCxCt37vzc68jFqkV4q9Bwqo53/y6HOn0sKTkJPChgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+            "uuid": "00e2e007-9bdd-4ddf-a957-ac430e4b7ce5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M3AxyeXs6oEAi5JXAWhVSh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 935,
+                "cache_read_input_tokens": 23572,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 935
+                },
+                "output_tokens": 59,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014povr6vZ37so38VRN3E6PN",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-32546",
+                "command": "tail -100 ~/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed42.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+            "uuid": "8dbd07a4-1f94-4ca6-a856-a124fd4b5770",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M3AxyeXs6oEAi5JXAWhVSh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 935,
+                "cache_read_input_tokens": 23572,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 935
+                },
+                "output_tokens": 59,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YY47kmpHXyu9L4QaXqwQWw",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-32546",
+                "command": "tail -100 ~/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed43.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+            "uuid": "4ebb1e2e-0c37-4f41-a899-9c32be0f6194",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M3AxyeXs6oEAi5JXAWhVSh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 935,
+                "cache_read_input_tokens": 23572,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 935
+                },
+                "output_tokens": 59,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T11:43:47.821Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014povr6vZ37so38VRN3E6PN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': None, 'n_rollouts': 20, 'max_steps': 300, 'seed': 42, 'K': 1, 'mode': 'vla_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'obs_dim': 960, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_object_vla_only_pi05_seed42.json', 'max_correction_norm': None, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855}\\\\n[eval] Mode: vla_only, benchmark: object\\\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\\\n✓ Loaded state dict from model.safetensors\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\nMissing keys when loading state dict: 437 keys\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.embeddings.patch_embedding.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.embeddings.patch_embedding.bias\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.embeddings.position_embedding.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.encoder.layers.0.layer_norm1.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.encoder.layers.0.layer_norm1.bias\\\\n  ... and 432 more\\\\nUnexpected keys when loading state dict: 437 keys\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.position_embedding.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.encoder.layers.0.layer_norm1.bias\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.encoder.layers.0.layer_norm1.weight\\\\n  ... and 432 more\\\\n[pi05] Fixed 437 vision tower keys\\\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.k_proj.weight']\\\\n[eval] Loading LIBERO object environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_salad_dressing_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_bbq_sauce_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_ketchup_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n\\\\n============================================================\\\\nOverall success rate (vla_only): 0.0% (0/200)\\\\n============================================================\\\\n[eval] Results saved to logs/eval_object_vla_only_pi05_seed42.json\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+            "uuid": "0bdaa264-2e0f-446c-ad77-13bd03d88fa4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': None, 'n_rollouts': 20, 'max_steps': 300, 'seed': 42, 'K': 1, 'mode': 'vla_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'obs_dim': 960, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_object_vla_only_pi05_seed42.json', 'max_correction_norm': None, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855}\\\\n[eval] Mode: vla_only, benchmark: object\\\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\\\n✓ Loaded state dict from model.safetensors\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\nMissing keys when loading state dict: 437 keys\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.embeddings.patch_embedding.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.embeddings.patch_embedding.bias\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.embeddings.position_embedding.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.encoder.layers.0.layer_norm1.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.encoder.layers.0.layer_norm1.bias\\\\n  ... and 432 more\\\\nUnexpected keys when loading state dict: 437 keys\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.position_embedding.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.encoder.layers.0.layer_norm1.bias\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.encoder.layers.0.layer_norm1.weight\\\\n  ... and 432 more\\\\n[pi05] Fixed 437 vision tower keys\\\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.k_proj.weight']\\\\n[eval] Loading LIBERO object environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_salad_dressing_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_bbq_sauce_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_ketchup_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n\\\\n============================================================\\\\nOverall success rate (vla_only): 0.0% (0/200)\\\\n============================================================\\\\n[eval] Results saved to logs/eval_object_vla_only_pi05_seed42.json\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': None, 'n_rollouts': 20, 'max_steps': 300, 'seed': 42, 'K': 1, 'mode': 'vla_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'obs_dim': 960, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_object_vla_only_pi05_seed42.json', 'max_correction_norm': None, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855}\\n[eval] Mode: vla_only, benchmark: object\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\n✓ Loaded state dict from model.safetensors\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nMissing keys when loading state dict: 437 keys\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.embeddings.patch_embedding.weight\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.embeddings.patch_embedding.bias\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.embeddings.position_embedding.weight\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.encoder.layers.0.layer_norm1.weight\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.encoder.layers.0.layer_norm1.bias\\n  ... and 432 more\\nUnexpected keys when loading state dict: 437 keys\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.position_embedding.weight\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.encoder.layers.0.layer_norm1.bias\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.encoder.layers.0.layer_norm1.weight\\n  ... and 432 more\\n[pi05] Fixed 437 vision tower keys\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.k_proj.weight']\\n[eval] Loading LIBERO object environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_salad_dressing_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_bbq_sauce_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_ketchup_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n\\n============================================================\\nOverall success rate (vla_only): 0.0% (0/200)\\n============================================================\\n[eval] Results saved to logs/eval_object_vla_only_pi05_seed42.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T11:43:48.244Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YY47kmpHXyu9L4QaXqwQWw",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': None, 'n_rollouts': 20, 'max_steps': 300, 'seed': 43, 'K': 1, 'mode': 'vla_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'obs_dim': 960, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_object_vla_only_pi05_seed43.json', 'max_correction_norm': None, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855}\\\\n[eval] Mode: vla_only, benchmark: object\\\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\\\n✓ Loaded state dict from model.safetensors\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\nMissing keys when loading state dict: 437 keys\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.embeddings.patch_embedding.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.embeddings.patch_embedding.bias\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.embeddings.position_embedding.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.encoder.layers.0.layer_norm1.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.encoder.layers.0.layer_norm1.bias\\\\n  ... and 432 more\\\\nUnexpected keys when loading state dict: 437 keys\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.position_embedding.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.encoder.layers.0.layer_norm1.bias\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.encoder.layers.0.layer_norm1.weight\\\\n  ... and 432 more\\\\n[pi05] Fixed 437 vision tower keys\\\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.k_proj.weight']\\\\n[eval] Loading LIBERO object environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_salad_dressing_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_bbq_sauce_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_ketchup_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n\\\\n============================================================\\\\nOverall success rate (vla_only): 0.0% (0/200)\\\\n============================================================\\\\n[eval] Results saved to logs/eval_object_vla_only_pi05_seed43.json\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+            "uuid": "0ff9545c-81ba-4b7d-a338-313ea1374490",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': None, 'n_rollouts': 20, 'max_steps': 300, 'seed': 43, 'K': 1, 'mode': 'vla_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'obs_dim': 960, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_object_vla_only_pi05_seed43.json', 'max_correction_norm': None, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855}\\\\n[eval] Mode: vla_only, benchmark: object\\\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\\\n✓ Loaded state dict from model.safetensors\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\nMissing keys when loading state dict: 437 keys\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.embeddings.patch_embedding.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.embeddings.patch_embedding.bias\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.embeddings.position_embedding.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.encoder.layers.0.layer_norm1.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.encoder.layers.0.layer_norm1.bias\\\\n  ... and 432 more\\\\nUnexpected keys when loading state dict: 437 keys\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.position_embedding.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.encoder.layers.0.layer_norm1.bias\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.encoder.layers.0.layer_norm1.weight\\\\n  ... and 432 more\\\\n[pi05] Fixed 437 vision tower keys\\\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.k_proj.weight']\\\\n[eval] Loading LIBERO object environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_salad_dressing_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_bbq_sauce_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_ketchup_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n\\\\n============================================================\\\\nOverall success rate (vla_only): 0.0% (0/200)\\\\n============================================================\\\\n[eval] Results saved to logs/eval_object_vla_only_pi05_seed43.json\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': None, 'n_rollouts': 20, 'max_steps': 300, 'seed': 43, 'K': 1, 'mode': 'vla_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'obs_dim': 960, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_object_vla_only_pi05_seed43.json', 'max_correction_norm': None, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855}\\n[eval] Mode: vla_only, benchmark: object\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\n✓ Loaded state dict from model.safetensors\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nMissing keys when loading state dict: 437 keys\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.embeddings.patch_embedding.weight\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.embeddings.patch_embedding.bias\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.embeddings.position_embedding.weight\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.encoder.layers.0.layer_norm1.weight\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.encoder.layers.0.layer_norm1.bias\\n  ... and 432 more\\nUnexpected keys when loading state dict: 437 keys\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.position_embedding.weight\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.encoder.layers.0.layer_norm1.bias\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.encoder.layers.0.layer_norm1.weight\\n  ... and 432 more\\n[pi05] Fixed 437 vision tower keys\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.k_proj.weight']\\n[eval] Loading LIBERO object environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_salad_dressing_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_bbq_sauce_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_ketchup_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n\\n============================================================\\nOverall success rate (vla_only): 0.0% (0/200)\\n============================================================\\n[eval] Results saved to logs/eval_object_vla_only_pi05_seed43.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017cTmU3ecqzCNvdVbP5UypK",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-32546",
+                "command": "tail -100 ~/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed44.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+            "uuid": "7ff9f410-e740-4f7c-b61c-8f89f10c30d9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01M3AxyeXs6oEAi5JXAWhVSh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 935,
+                "cache_read_input_tokens": 23572,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 935
+                },
+                "output_tokens": 59,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T11:43:48.741Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017cTmU3ecqzCNvdVbP5UypK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': None, 'n_rollouts': 20, 'max_steps': 300, 'seed': 44, 'K': 1, 'mode': 'vla_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'obs_dim': 960, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_object_vla_only_pi05_seed44.json', 'max_correction_norm': None, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855}\\\\n[eval] Mode: vla_only, benchmark: object\\\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\\\n✓ Loaded state dict from model.safetensors\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\nMissing keys when loading state dict: 437 keys\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.embeddings.patch_embedding.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.embeddings.patch_embedding.bias\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.embeddings.position_embedding.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.encoder.layers.0.layer_norm1.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.encoder.layers.0.layer_norm1.bias\\\\n  ... and 432 more\\\\nUnexpected keys when loading state dict: 437 keys\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.position_embedding.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.encoder.layers.0.layer_norm1.bias\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.encoder.layers.0.layer_norm1.weight\\\\n  ... and 432 more\\\\n[pi05] Fixed 437 vision tower keys\\\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.k_proj.weight']\\\\n[eval] Loading LIBERO object environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_salad_dressing_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_bbq_sauce_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_ketchup_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n\\\\n============================================================\\\\nOverall success rate (vla_only): 0.0% (0/200)\\\\n============================================================\\\\n[eval] Results saved to logs/eval_object_vla_only_pi05_seed44.json\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+            "uuid": "ca72160d-2f7b-4162-9c6b-13f45f318dce",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': None, 'n_rollouts': 20, 'max_steps': 300, 'seed': 44, 'K': 1, 'mode': 'vla_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'obs_dim': 960, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_object_vla_only_pi05_seed44.json', 'max_correction_norm': None, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855}\\\\n[eval] Mode: vla_only, benchmark: object\\\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\\\n✓ Loaded state dict from model.safetensors\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\nMissing keys when loading state dict: 437 keys\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.embeddings.patch_embedding.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.embeddings.patch_embedding.bias\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.embeddings.position_embedding.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.encoder.layers.0.layer_norm1.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.encoder.layers.0.layer_norm1.bias\\\\n  ... and 432 more\\\\nUnexpected keys when loading state dict: 437 keys\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.position_embedding.weight\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.encoder.layers.0.layer_norm1.bias\\\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.encoder.layers.0.layer_norm1.weight\\\\n  ... and 432 more\\\\n[pi05] Fixed 437 vision tower keys\\\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.k_proj.weight']\\\\n[eval] Loading LIBERO object environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_salad_dressing_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_bbq_sauce_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_ketchup_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\\\n\\\\n============================================================\\\\nOverall success rate (vla_only): 0.0% (0/200)\\\\n============================================================\\\\n[eval] Results saved to logs/eval_object_vla_only_pi05_seed44.json\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': None, 'n_rollouts': 20, 'max_steps': 300, 'seed': 44, 'K': 1, 'mode': 'vla_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'obs_dim': 960, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_object_vla_only_pi05_seed44.json', 'max_correction_norm': None, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855}\\n[eval] Mode: vla_only, benchmark: object\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\n✓ Loaded state dict from model.safetensors\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nMissing keys when loading state dict: 437 keys\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.embeddings.patch_embedding.weight\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.embeddings.patch_embedding.bias\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.embeddings.position_embedding.weight\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.encoder.layers.0.layer_norm1.weight\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.encoder.layers.0.layer_norm1.bias\\n  ... and 432 more\\nUnexpected keys when loading state dict: 437 keys\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.position_embedding.weight\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.encoder.layers.0.layer_norm1.bias\\n  - model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.encoder.layers.0.layer_norm1.weight\\n  ... and 432 more\\n[pi05] Fixed 437 vision tower keys\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.k_proj.weight']\\n[eval] Loading LIBERO object environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_salad_dressing_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_salad_dressing_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_bbq_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_bbq_sauce_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_ketchup_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_ketchup_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_tomato_sauce_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_tomato_sauce_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_butter_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_butter_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_milk_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_milk_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_chocolate_pudding_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_chocolate_pudding_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 5/20, success so far: 0/5\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 10/20, success so far: 0/10\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 15/20, success so far: 0/15\\n  pick_up_the_orange_juice_and_place_it_in_the_basket: rollout 20/20, success so far: 0/20\\n[pick_up_the_orange_juice_and_place_it_in_the_basket] success rate: 0.0% (0/20)\\n\\n============================================================\\nOverall success rate (vla_only): 0.0% (0/200)\\n============================================================\\n[eval] Results saved to logs/eval_object_vla_only_pi05_seed44.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.36}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "All 3 seeds show exactly the same result: **0.0% overall success rate (0/200)** across all 10 tasks. Every single task got 0/20 successes. All exited with EXIT_CODE=0 (normal completion). No W&B URLs in the logs. No errors/exceptions.\n\nThis is a dramatic result — the quick verify (D103) showed 72% SR on 50 rollouts, but the full eval shows 0% across all 600 rollouts (3 seeds × 200). This is a clear sign something is wrong with the model loading or inference — the 437 missing/unexpected keys in the vision tower are suspicious. The model loaded but the vision tower keys had to be \"fixed\" and there are still 376 missing keys for the multi_modal_projector and language_model components.\n\n\nThe results are conclusive — all three experiments ran to completion with zero success across every task and seed. Now I need to check for sentinel files and update the registry.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+            "uuid": "7eeae9c0-9c59-452f-8338-80723ad050dd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Az7Mi2qYDdxmPVDpEZKBve",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10584,
+                "cache_read_input_tokens": 24507,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10584
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 3 个实验结果一致：**0.0% SR (0/200)**，每个 task 都是 0/20。EXIT_CODE=0 正常完成，无 W&B URL。\n\n这与 D103 quick verify 的 72% SR 严重矛盾，需要调查。先检查 sentinel 文件，然后更新 registry。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+            "uuid": "ee403403-1be2-41f3-b63a-88a3b2575046",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Az7Mi2qYDdxmPVDpEZKBve",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10584,
+                "cache_read_input_tokens": 24507,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10584
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DYCBipidpLQL5tD8xHC1UR",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-32546",
+                "command": "ls -la ~/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed42.sentinel ~/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed43.sentinel ~/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed44.sentinel",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+            "uuid": "19b13bef-989e-4529-bb7c-7250c6c047bf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Az7Mi2qYDdxmPVDpEZKBve",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10584,
+                "cache_read_input_tokens": 24507,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10584
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1779584400,
+                  "rateLimitType": "seven_day",
+                  "utilization": 0.87,
+                  "isUsingOverage": false,
+                  "surpassedThreshold": 0.75
+                },
+                "uuid": "52faca9f-acd8-4833-8f78-8d1771b0ed38",
+                "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc"
+              }
+            }
+          ],
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T11:44:05.578Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DYCBipidpLQL5tD8xHC1UR",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed42.sentinel': No such file or directory\\\\nls: cannot access '/root/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed43.sentinel': No such file or directory\\\\nls: cannot access '/root/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed44.sentinel': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+            "uuid": "88692c2f-e995-43e3-a073-9ed77ce2f138",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed42.sentinel': No such file or directory\\\\nls: cannot access '/root/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed43.sentinel': No such file or directory\\\\nls: cannot access '/root/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed44.sentinel': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.68}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed42.sentinel': No such file or directory\\nls: cannot access '/root/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed43.sentinel': No such file or directory\\nls: cannot access '/root/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed44.sentinel': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.68}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "No sentinel files. Let me check if there's a different naming pattern for sentinel files.",
+              "signature": "Ep4CCmMIDRgCKkCx9/7lvCdZmYp4Icnwb1X7E6Jkip1OMeN36ca6usqGzSueoWxTE3k6nLoup+7oB7VjNxb4XGuY1QuQ+KKXxAUFMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDGPVAailZIDuWCnUYBoM7VPpSYKf9xEbVMONIjBbyBm12cTDaXsJcKdnLloG6qDNy+FLdCyDqIc9Kep9dqIWOcnK7FXgVP9ATm3KZo4qaTiZ6IIc5/JVAXatPZLFsODUS2h0xJye7FmyWj/RgCGDRF7UyEvG8gr1046o+UlXR3n34ZQcBfzi9Cq3TJMw4J9SefC+LLLWvwp8jpbkbmuKsDaBbHu9YS00z2MdrHDjLDujZ00+o+fpoxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+            "uuid": "34513974-f735-46ba-84bc-541ec7e56b5d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H2L73tmXSkR69viQVUdz7K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 776,
+                "cache_read_input_tokens": 35091,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 776
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017PjCRUM4VHa1yD1ipAsAyz",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-32546",
+                "command": "ls ~/runs/acr-vla-conformal-refinement/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+            "uuid": "bdd12718-0c86-4f6c-a7d2-0cd1d895badf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H2L73tmXSkR69viQVUdz7K",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 776,
+                "cache_read_input_tokens": 35091,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 776
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T11:44:10.466Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017PjCRUM4VHa1yD1ipAsAyz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval-acr-object-obs-only-default.log\\\\neval-acr-object-obs-only-norm02.log\\\\neval-acr-object-v4-default.log\\\\neval-acr-object-v4-obs-only.log\\\\neval-acr-object-v4-scalar.log\\\\neval-adaptive-k-p25-seed42.log\\\\neval-adaptive-k-p50-seed44.log\\\\neval-adaptive-k-p75-seed44.log\\\\neval-adaptive-k-p90-seed42.log\\\\neval-adaptive-k-spatial-p25-seed43.log\\\\neval-adaptive-k-spatial-p50-seed43-r2.log\\\\neval-adaptive-k-spatial-p50-seed43.log\\\\neval-adaptive-k-spatial-p75-seed43.log\\\\neval-argmin-object-k5-seed42.log\\\\neval-argmin-object-k5-seed43.log\\\\neval-argmin-object-k5-seed45.log\\\\neval-argmin-object-seed47.log\\\\neval-argmin-object-seed48.log\\\\neval-argmin-object-seed49.log\\\\neval-argmin-object-seed50.log\\\\neval-crm-long-seed48.log\\\\neval-crm-long-seed49.log\\\\neval-crm-long-seed50.log\\\\neval-crm-long-seed51.log\\\\neval-crm-long-seed54.log\\\\neval-crm-object-k20-seed43.log\\\\neval-crm-spatial-k10-seed50.log\\\\neval-crm-spatial-seed48.log\\\\neval-direct-correction-object-seed42-r2.log\\\\neval-direct-correction-object-seed42.log\\\\neval-mag-obsonly-norm003-object.log\\\\neval-mag-perdof-norm02-object.log\\\\neval-mag-perdof-norm0p3-object.log\\\\neval-obs-only-goal-norm02-seed52.log\\\\neval-obs-only-goal-norm02-seed53.log\\\\neval-obs-only-object-default-seed44.log\\\\neval-obs-only-object-norm003-seed43-r2.log\\\\neval-obs-only-object-norm003-seed44.log\\\\neval-obs-only-object-norm003-seed45.log\\\\neval-obs-only-object-norm003-seed47-r2.log\\\\neval-obs-only-object-norm003-seed62-r3.log\\\\neval-obs-only-object-norm003-seed63-r3.log\\\\neval-obs-only-object-norm003-seed76.log\\\\neval-obs-only-object-norm005-seed44.log\\\\neval-obs-only-object-norm01-seed44.log\\\\neval-obs-only-object-norm01-seed76.log\\\\neval-obs-only-object-norm01-seed77.log\\\\neval-obs-only-object-norm02-k20-seed42.log\\\\neval-obs-only-object-norm02-k5-seed48.log\\\\neval-obs-only-object-norm02-seed43-r2.log\\\\neval-obs-only-object-norm02-seed43-r3.log\\\\neval-obs-only-object-norm02-seed45.log\\\\neval-obs-only-object-norm02-seed47.log\\\\neval-obs-only-object-norm02-seed49.log\\\\neval-obs-only-object-norm02-seed50.log\\\\neval-obs-only-object-norm03-seed44.log\\\\neval-obs-only-spatial-norm02-k5-seed43.log\\\\neval-obs-only-spatial-norm02-seed43-r2.log\\\\neval-obs-only-spatial-norm02-seed47.log\\\\neval-perdof-object-norm003-seed43.log\\\\neval-perdof-object-norm003-seed45.log\\\\neval-perdof-object-norm005-seed43.log\\\\neval-perdof-object-norm005-seed44.log\\\\neval-perdof-object-norm01-seed43.log\\\\neval-perdof-object-norm01-seed46.log\\\\neval-perdof-object-norm02-seed49.log\\\\neval-perdof-object-norm03-seed45-r2.log\\\\neval-pi05-vla-only-object-seed42.log\\\\neval-pi05-vla-only-object-seed43.log\\\\neval-pi05-vla-only-object-seed44.log\\\\neval-pi05-vla-only-spatial-seed42.log\\\\neval-pi05-vla-only-spatial-seed43.log\\\\neval-pi05-vla-only-spatial-seed44.log\\\\neval-random-selection-object-seed42-r3.log\\\\neval-random-selection-object-seed43.log\\\\neval-random-selection-object-seed44.log\\\\neval-random-selection-spatial-seed42.log\\\\neval-scalar-object-seed43.log\\\\neval-scalar-object-seed44-r2.log\\\\neval-vla-mean-object-seed43.log\\\\neval-vla-mean-object-seed44.log\\\\neval-vla-only-goal-seed42.log\\\\neval-vla-only-goal-seed43.log\\\\neval-vla-only-goal-seed46.log\\\\neval-vla-only-goal-seed47-r2.log\\\\neval-vla-only-goal-seed48-r2.log\\\\neval-vla-only-goal-seed51.log\\\\neval-vla-only-goal-seed52.log\\\\neval-vla-only-long-seed42.log\\\\neval-vla-only-long-seed43.log\\\\neval-vla-only-long-seed44.log\\\\neval-vla-only-long-seed46.log\\\\neval-vla-only-long-seed47.log\\\\neval-vla-only-long-seed53.log\\\\neval-vla-only-long-seed54.log\\\\neval-vla-only-object-k1.log\\\\neval-vla-only-object-seed43.log\\\\neval-vla-only-object-seed48-r2.log\\\\neval-vla-only-object-seed49.log\\\\neval-vla-only-object-seed51.log\\\\neval-vla-only-spatial-seed42.log\\\\neval-vla-only-spatial-seed45.log\\\\neval-vla-only-spatial-seed46.log\\\\neval-vla-only-spatial-seed47.log\\\\neval-vla-only-spatial-seed49.log\\\\neval-vla-only-spatial-seed50.log\\\\neval-vla-only-spatial-seed51.log\\\\neval-vla-only-spatial-seed54.log\\\\ntrain-crm-k1-accg-object-seed42-fallback.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+            "uuid": "c3a901c5-1ba0-4801-b1a9-5de0098be4df",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval-acr-object-obs-only-default.log\\\\neval-acr-object-obs-only-norm02.log\\\\neval-acr-object-v4-default.log\\\\neval-acr-object-v4-obs-only.log\\\\neval-acr-object-v4-scalar.log\\\\neval-adaptive-k-p25-seed42.log\\\\neval-adaptive-k-p50-seed44.log\\\\neval-adaptive-k-p75-seed44.log\\\\neval-adaptive-k-p90-seed42.log\\\\neval-adaptive-k-spatial-p25-seed43.log\\\\neval-adaptive-k-spatial-p50-seed43-r2.log\\\\neval-adaptive-k-spatial-p50-seed43.log\\\\neval-adaptive-k-spatial-p75-seed43.log\\\\neval-argmin-object-k5-seed42.log\\\\neval-argmin-object-k5-seed43.log\\\\neval-argmin-object-k5-seed45.log\\\\neval-argmin-object-seed47.log\\\\neval-argmin-object-seed48.log\\\\neval-argmin-object-seed49.log\\\\neval-argmin-object-seed50.log\\\\neval-crm-long-seed48.log\\\\neval-crm-long-seed49.log\\\\neval-crm-long-seed50.log\\\\neval-crm-long-seed51.log\\\\neval-crm-long-seed54.log\\\\neval-crm-object-k20-seed43.log\\\\neval-crm-spatial-k10-seed50.log\\\\neval-crm-spatial-seed48.log\\\\neval-direct-correction-object-seed42-r2.log\\\\neval-direct-correction-object-seed42.log\\\\neval-mag-obsonly-norm003-object.log\\\\neval-mag-perdof-norm02-object.log\\\\neval-mag-perdof-norm0p3-object.log\\\\neval-obs-only-goal-norm02-seed52.log\\\\neval-obs-only-goal-norm02-seed53.log\\\\neval-obs-only-object-default-seed44.log\\\\neval-obs-only-object-norm003-seed43-r2.log\\\\neval-obs-only-object-norm003-seed44.log\\\\neval-obs-only-object-norm003-seed45.log\\\\neval-obs-only-object-norm003-seed47-r2.log\\\\neval-obs-only-object-norm003-seed62-r3.log\\\\neval-obs-only-object-norm003-seed63-r3.log\\\\neval-obs-only-object-norm003-seed76.log\\\\neval-obs-only-object-norm005-seed44.log\\\\neval-obs-only-object-norm01-seed44.log\\\\neval-obs-only-object-norm01-seed76.log\\\\neval-obs-only-object-norm01-seed77.log\\\\neval-obs-only-object-norm02-k20-seed42.log\\\\neval-obs-only-object-norm02-k5-seed48.log\\\\neval-obs-only-object-norm02-seed43-r2.log\\\\neval-obs-only-object-norm02-seed43-r3.log\\\\neval-obs-only-object-norm02-seed45.log\\\\neval-obs-only-object-norm02-seed47.log\\\\neval-obs-only-object-norm02-seed49.log\\\\neval-obs-only-object-norm02-seed50.log\\\\neval-obs-only-object-norm03-seed44.log\\\\neval-obs-only-spatial-norm02-k5-seed43.log\\\\neval-obs-only-spatial-norm02-seed43-r2.log\\\\neval-obs-only-spatial-norm02-seed47.log\\\\neval-perdof-object-norm003-seed43.log\\\\neval-perdof-object-norm003-seed45.log\\\\neval-perdof-object-norm005-seed43.log\\\\neval-perdof-object-norm005-seed44.log\\\\neval-perdof-object-norm01-seed43.log\\\\neval-perdof-object-norm01-seed46.log\\\\neval-perdof-object-norm02-seed49.log\\\\neval-perdof-object-norm03-seed45-r2.log\\\\neval-pi05-vla-only-object-seed42.log\\\\neval-pi05-vla-only-object-seed43.log\\\\neval-pi05-vla-only-object-seed44.log\\\\neval-pi05-vla-only-spatial-seed42.log\\\\neval-pi05-vla-only-spatial-seed43.log\\\\neval-pi05-vla-only-spatial-seed44.log\\\\neval-random-selection-object-seed42-r3.log\\\\neval-random-selection-object-seed43.log\\\\neval-random-selection-object-seed44.log\\\\neval-random-selection-spatial-seed42.log\\\\neval-scalar-object-seed43.log\\\\neval-scalar-object-seed44-r2.log\\\\neval-vla-mean-object-seed43.log\\\\neval-vla-mean-object-seed44.log\\\\neval-vla-only-goal-seed42.log\\\\neval-vla-only-goal-seed43.log\\\\neval-vla-only-goal-seed46.log\\\\neval-vla-only-goal-seed47-r2.log\\\\neval-vla-only-goal-seed48-r2.log\\\\neval-vla-only-goal-seed51.log\\\\neval-vla-only-goal-seed52.log\\\\neval-vla-only-long-seed42.log\\\\neval-vla-only-long-seed43.log\\\\neval-vla-only-long-seed44.log\\\\neval-vla-only-long-seed46.log\\\\neval-vla-only-long-seed47.log\\\\neval-vla-only-long-seed53.log\\\\neval-vla-only-long-seed54.log\\\\neval-vla-only-object-k1.log\\\\neval-vla-only-object-seed43.log\\\\neval-vla-only-object-seed48-r2.log\\\\neval-vla-only-object-seed49.log\\\\neval-vla-only-object-seed51.log\\\\neval-vla-only-spatial-seed42.log\\\\neval-vla-only-spatial-seed45.log\\\\neval-vla-only-spatial-seed46.log\\\\neval-vla-only-spatial-seed47.log\\\\neval-vla-only-spatial-seed49.log\\\\neval-vla-only-spatial-seed50.log\\\\neval-vla-only-spatial-seed51.log\\\\neval-vla-only-spatial-seed54.log\\\\ntrain-crm-k1-accg-object-seed42-fallback.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"eval-acr-object-obs-only-default.log\\neval-acr-object-obs-only-norm02.log\\neval-acr-object-v4-default.log\\neval-acr-object-v4-obs-only.log\\neval-acr-object-v4-scalar.log\\neval-adaptive-k-p25-seed42.log\\neval-adaptive-k-p50-seed44.log\\neval-adaptive-k-p75-seed44.log\\neval-adaptive-k-p90-seed42.log\\neval-adaptive-k-spatial-p25-seed43.log\\neval-adaptive-k-spatial-p50-seed43-r2.log\\neval-adaptive-k-spatial-p50-seed43.log\\neval-adaptive-k-spatial-p75-seed43.log\\neval-argmin-object-k5-seed42.log\\neval-argmin-object-k5-seed43.log\\neval-argmin-object-k5-seed45.log\\neval-argmin-object-seed47.log\\neval-argmin-object-seed48.log\\neval-argmin-object-seed49.log\\neval-argmin-object-seed50.log\\neval-crm-long-seed48.log\\neval-crm-long-seed49.log\\neval-crm-long-seed50.log\\neval-crm-long-seed51.log\\neval-crm-long-seed54.log\\neval-crm-object-k20-seed43.log\\neval-crm-spatial-k10-seed50.log\\neval-crm-spatial-seed48.log\\neval-direct-correction-object-seed42-r2.log\\neval-direct-correction-object-seed42.log\\neval-mag-obsonly-norm003-object.log\\neval-mag-perdof-norm02-object.log\\neval-mag-perdof-norm0p3-object.log\\neval-obs-only-goal-norm02-seed52.log\\neval-obs-only-goal-norm02-seed53.log\\neval-obs-only-object-default-seed44.log\\neval-obs-only-object-norm003-seed43-r2.log\\neval-obs-only-object-norm003-seed44.log\\neval-obs-only-object-norm003-seed45.log\\neval-obs-only-object-norm003-seed47-r2.log\\neval-obs-only-object-norm003-seed62-r3.log\\neval-obs-only-object-norm003-seed63-r3.log\\neval-obs-only-object-norm003-seed76.log\\neval-obs-only-object-norm005-seed44.log\\neval-obs-only-object-norm01-seed44.log\\neval-obs-only-object-norm01-seed76.log\\neval-obs-only-object-norm01-seed77.log\\neval-obs-only-object-norm02-k20-seed42.log\\neval-obs-only-object-norm02-k5-seed48.log\\neval-obs-only-object-norm02-seed43-r2.log\\neval-obs-only-object-norm02-seed43-r3.log\\neval-obs-only-object-norm02-seed45.log\\neval-obs-only-object-norm02-seed47.log\\neval-obs-only-object-norm02-seed49.log\\neval-obs-only-object-norm02-seed50.log\\neval-obs-only-object-norm03-seed44.log\\neval-obs-only-spatial-norm02-k5-seed43.log\\neval-obs-only-spatial-norm02-seed43-r2.log\\neval-obs-only-spatial-norm02-seed47.log\\neval-perdof-object-norm003-seed43.log\\neval-perdof-object-norm003-seed45.log\\neval-perdof-object-norm005-seed43.log\\neval-perdof-object-norm005-seed44.log\\neval-perdof-object-norm01-seed43.log\\neval-perdof-object-norm01-seed46.log\\neval-perdof-object-norm02-seed49.log\\neval-perdof-object-norm03-seed45-r2.log\\neval-pi05-vla-only-object-seed42.log\\neval-pi05-vla-only-object-seed43.log\\neval-pi05-vla-only-object-seed44.log\\neval-pi05-vla-only-spatial-seed42.log\\neval-pi05-vla-only-spatial-seed43.log\\neval-pi05-vla-only-spatial-seed44.log\\neval-random-selection-object-seed42-r3.log\\neval-random-selection-object-seed43.log\\neval-random-selection-object-seed44.log\\neval-random-selection-spatial-seed42.log\\neval-scalar-object-seed43.log\\neval-scalar-object-seed44-r2.log\\neval-vla-mean-object-seed43.log\\neval-vla-mean-object-seed44.log\\neval-vla-only-goal-seed42.log\\neval-vla-only-goal-seed43.log\\neval-vla-only-goal-seed46.log\\neval-vla-only-goal-seed47-r2.log\\neval-vla-only-goal-seed48-r2.log\\neval-vla-only-goal-seed51.log\\neval-vla-only-goal-seed52.log\\neval-vla-only-long-seed42.log\\neval-vla-only-long-seed43.log\\neval-vla-only-long-seed44.log\\neval-vla-only-long-seed46.log\\neval-vla-only-long-seed47.log\\neval-vla-only-long-seed53.log\\neval-vla-only-long-seed54.log\\neval-vla-only-object-k1.log\\neval-vla-only-object-seed43.log\\neval-vla-only-object-seed48-r2.log\\neval-vla-only-object-seed49.log\\neval-vla-only-object-seed51.log\\neval-vla-only-spatial-seed42.log\\neval-vla-only-spatial-seed45.log\\neval-vla-only-spatial-seed46.log\\neval-vla-only-spatial-seed47.log\\neval-vla-only-spatial-seed49.log\\neval-vla-only-spatial-seed50.log\\neval-vla-only-spatial-seed51.log\\neval-vla-only-spatial-seed54.log\\ntrain-crm-k1-accg-object-seed42-fallback.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "No sentinel files found for any of these experiments. The logs exist and all show EXIT_CODE=0 with 0% SR across all tasks and seeds.\n\nThis is a very suspicious result — 0% across all 600 rollouts. The D103 quick verify showed 72%. The key issue is likely the 376 missing keys in the model loading (multi_modal_projector, language_model layers). The model loaded but may be producing garbage actions because vision features aren't being properly processed.\n\nLet me update the registry for all 3 experiments. Given the 0% result which contradicts the D103 quick verify of 72%, this looks like something is fundamentally broken with the model loading or inference. \n\nThe experiments technically completed without errors — all 200 rollouts per seed finished with EXIT_CODE=0 — but the 0% success rate is deeply suspicious given the 72% from the quick verify. This could stem from the missing model keys, an action space mismatch, different environment configuration, or the quick verify running against a different model entirely. I'll mark these as completed successfully in terms of execution, but flag the 0% result as anomalous.\n\nSince these are baseline experiments testing whether pi0.5 VLA-only achieves reasonable performance on LIBERO-Object, a 0% outcome is a negative result for the hypothesis. The massive gap between this and D103's 72% suggests a bug rather than genuine poor performance, but given that everything ran without errors, I'll categorize them as negative with a note about the discrepancy and update all three experiments accordingly.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+            "uuid": "8ae5ef77-289c-4bc9-b874-3b721130233e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AJLcgPy8DcPF2n6bCDuRZT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1985,
+                "cache_read_input_tokens": 35867,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1985
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "无 sentinel 文件。所有 3 个实验 EXIT_CODE=0 正常结束，但 **全部 0% SR**——与 D103 的 72% 严重矛盾。376 个 missing keys（multi_modal_projector、language_model）说明模型可能未正确加载，输出的 action 是垃圾。\n\n更新 registry。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+            "uuid": "35384c49-110a-4919-a33b-eb1f08cc4d8c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AJLcgPy8DcPF2n6bCDuRZT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1985,
+                "cache_read_input_tokens": 35867,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1985
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019JpgxybrVgzk85jQU6zTvJ",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval-pi05-vla-only-object-seed42",
+                "field": "conclusion",
+                "value": "negative",
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+            "uuid": "18fd4752-600a-4555-aa84-36d443bbdb9c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AJLcgPy8DcPF2n6bCDuRZT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1985,
+                "cache_read_input_tokens": 35867,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1985
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TDGMMhcvLQvEfkMU9AYKBW",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval-pi05-vla-only-object-seed43",
+                "field": "conclusion",
+                "value": "negative",
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+            "uuid": "52fa5c76-59cd-4e9a-b3a6-036f83e364f6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AJLcgPy8DcPF2n6bCDuRZT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1985,
+                "cache_read_input_tokens": 35867,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1985
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WMEfkdtMFN2aEZCYSPCkxG",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval-pi05-vla-only-object-seed44",
+                "field": "conclusion",
+                "value": "negative",
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+            "uuid": "f410922d-4715-4307-85df-b65cd107df2b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AJLcgPy8DcPF2n6bCDuRZT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1985,
+                "cache_read_input_tokens": 35867,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1985
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T11:44:44.598Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019JpgxybrVgzk85jQU6zTvJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-pi05-vla-only-object-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:22:14.823Z\\\", \\\"updated_at\\\": \\\"2026-05-21T11:44:43.615Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on LIBERO-Object seed42, cross-VLA validation of CRM\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && TORCH_COMPILE_DISABLE=1 TORCHDYNAMO_DISABLE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --n_rollouts 20 --seed 42 --K 10\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"982849\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T10:18:26.307Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T11:38:56.784Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T11:39:24.095528+00:00\\\"}]}, \\\"log_path\\\": \\\"/root/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed42.log\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0, \\\"n_rollouts\\\": 200, \\\"per_task_sr\\\": {\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": 0}, \\\"failure_reason\\\": \\\"PI05 language model weights not loaded; 376 missing keys after vision tower fix (incl. multi_modal_projector, language_model.embed_tokens, language_model.layers.*.self_attn.q_proj). Regression vs D103 quick verify (72%).\\\"}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.9877}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+            "uuid": "74c728ab-681f-4705-9d0e-d1e8e7a18cbc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-pi05-vla-only-object-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:22:14.823Z\\\", \\\"updated_at\\\": \\\"2026-05-21T11:44:43.615Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on LIBERO-Object seed42, cross-VLA validation of CRM\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && TORCH_COMPILE_DISABLE=1 TORCHDYNAMO_DISABLE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --n_rollouts 20 --seed 42 --K 10\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"982849\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T10:18:26.307Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T11:38:56.784Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T11:39:24.095528+00:00\\\"}]}, \\\"log_path\\\": \\\"/root/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed42.log\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0, \\\"n_rollouts\\\": 200, \\\"per_task_sr\\\": {\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": 0}, \\\"failure_reason\\\": \\\"PI05 language model weights not loaded; 376 missing keys after vision tower fix (incl. multi_modal_projector, language_model.embed_tokens, language_model.layers.*.self_attn.q_proj). Regression vs D103 quick verify (72%).\\\"}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.9877}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-pi05-vla-only-object-seed42\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T08:22:14.823Z\", \"updated_at\": \"2026-05-21T11:44:43.615Z\", \"hypothesis\": \"π0.5 VLA-only baseline on LIBERO-Object seed42, cross-VLA validation of CRM\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && TORCH_COMPILE_DISABLE=1 TORCHDYNAMO_DISABLE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --n_rollouts 20 --seed 42 --K 10\\\"\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:0\"], \"pid\": \"982849\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed42.log\", \"submitted_at\": \"2026-05-21T10:18:26.307Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-21T11:38:56.784Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T11:39:24.095528+00:00\"}]}, \"log_path\": \"/root/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed42.log\", \"checkpoint_path\": \"N/A (eval only)\", \"metrics\": {\"overall_sr\": 0, \"n_rollouts\": 200, \"per_task_sr\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 0, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 0, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 0, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 0, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 0, \"pick_up_the_butter_and_place_it_in_the_basket\": 0, \"pick_up_the_milk_and_place_it_in_the_basket\": 0, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 0, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 0}, \"failure_reason\": \"PI05 language model weights not loaded; 376 missing keys after vision tower fix (incl. multi_modal_projector, language_model.embed_tokens, language_model.layers.*.self_attn.q_proj). Regression vs D103 quick verify (72%).\"}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.9877}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T11:44:49.854Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TDGMMhcvLQvEfkMU9AYKBW",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-pi05-vla-only-object-seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:22:17.435Z\\\", \\\"updated_at\\\": \\\"2026-05-21T11:44:48.694Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on LIBERO-Object seed43, cross-VLA validation of CRM\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && TORCH_COMPILE_DISABLE=1 TORCHDYNAMO_DISABLE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --n_rollouts 20 --seed 43 --K 10\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"983128\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed43.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T10:18:36.208Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T11:39:39.042Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T11:39:59.242083+00:00\\\"}]}, \\\"log_path\\\": \\\"/root/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed43.log\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0, \\\"n_rollouts\\\": 200, \\\"per_task_sr\\\": {\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": 0}, \\\"failure_reason\\\": \\\"PI05 language model weights not loaded; 376 missing keys after vision tower fix (incl. multi_modal_projector, language_model.embed_tokens, language_model.layers.*.self_attn.q_proj). Regression vs D103 quick verify (72%).\\\"}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.2311}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+            "uuid": "454f6499-c223-45da-92a9-57a4534e7af1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-pi05-vla-only-object-seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:22:17.435Z\\\", \\\"updated_at\\\": \\\"2026-05-21T11:44:48.694Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on LIBERO-Object seed43, cross-VLA validation of CRM\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && TORCH_COMPILE_DISABLE=1 TORCHDYNAMO_DISABLE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --n_rollouts 20 --seed 43 --K 10\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"983128\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed43.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T10:18:36.208Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T11:39:39.042Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T11:39:59.242083+00:00\\\"}]}, \\\"log_path\\\": \\\"/root/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed43.log\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0, \\\"n_rollouts\\\": 200, \\\"per_task_sr\\\": {\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": 0}, \\\"failure_reason\\\": \\\"PI05 language model weights not loaded; 376 missing keys after vision tower fix (incl. multi_modal_projector, language_model.embed_tokens, language_model.layers.*.self_attn.q_proj). Regression vs D103 quick verify (72%).\\\"}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.2311}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-pi05-vla-only-object-seed43\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T08:22:17.435Z\", \"updated_at\": \"2026-05-21T11:44:48.694Z\", \"hypothesis\": \"π0.5 VLA-only baseline on LIBERO-Object seed43, cross-VLA validation of CRM\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && TORCH_COMPILE_DISABLE=1 TORCHDYNAMO_DISABLE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --n_rollouts 20 --seed 43 --K 10\\\"\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:1\"], \"pid\": \"983128\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed43.log\", \"submitted_at\": \"2026-05-21T10:18:36.208Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-21T11:39:39.042Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T11:39:59.242083+00:00\"}]}, \"log_path\": \"/root/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed43.log\", \"checkpoint_path\": \"N/A (eval only)\", \"metrics\": {\"overall_sr\": 0, \"n_rollouts\": 200, \"per_task_sr\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 0, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 0, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 0, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 0, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 0, \"pick_up_the_butter_and_place_it_in_the_basket\": 0, \"pick_up_the_milk_and_place_it_in_the_basket\": 0, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 0, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 0}, \"failure_reason\": \"PI05 language model weights not loaded; 376 missing keys after vision tower fix (incl. multi_modal_projector, language_model.embed_tokens, language_model.layers.*.self_attn.q_proj). Regression vs D103 quick verify (72%).\"}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.2311}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T11:44:54.886Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WMEfkdtMFN2aEZCYSPCkxG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-pi05-vla-only-object-seed44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:22:19.985Z\\\", \\\"updated_at\\\": \\\"2026-05-21T11:44:53.805Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on LIBERO-Object seed44, cross-VLA validation of CRM\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && TORCH_COMPILE_DISABLE=1 TORCHDYNAMO_DISABLE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --n_rollouts 20 --seed 44 --K 10\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"983472\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed44.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T10:18:46.979Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T11:40:10.658Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T11:40:31.815288+00:00\\\"}]}, \\\"log_path\\\": \\\"/root/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed44.log\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0, \\\"n_rollouts\\\": 200, \\\"per_task_sr\\\": {\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": 0}, \\\"failure_reason\\\": \\\"PI05 language model weights not loaded; 376 missing keys after vision tower fix (incl. multi_modal_projector, language_model.embed_tokens, language_model.layers.*.self_attn.q_proj). Regression vs D103 quick verify (72%).\\\"}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.0115}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+            "uuid": "c06aa1a7-f3b7-40cb-acc8-6d62c33a6a82",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-pi05-vla-only-object-seed44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T08:22:19.985Z\\\", \\\"updated_at\\\": \\\"2026-05-21T11:44:53.805Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on LIBERO-Object seed44, cross-VLA validation of CRM\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && TORCH_COMPILE_DISABLE=1 TORCHDYNAMO_DISABLE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --n_rollouts 20 --seed 44 --K 10\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"983472\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed44.log\\\", \\\"submitted_at\\\": \\\"2026-05-21T10:18:46.979Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-21T11:40:10.658Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-21T11:40:31.815288+00:00\\\"}]}, \\\"log_path\\\": \\\"/root/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed44.log\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0, \\\"n_rollouts\\\": 200, \\\"per_task_sr\\\": {\\\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_cream_cheese_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_salad_dressing_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_bbq_sauce_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_ketchup_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_tomato_sauce_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_butter_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_milk_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\\\": 0, \\\"pick_up_the_orange_juice_and_place_it_in_the_basket\\\": 0}, \\\"failure_reason\\\": \\\"PI05 language model weights not loaded; 376 missing keys after vision tower fix (incl. multi_modal_projector, language_model.embed_tokens, language_model.layers.*.self_attn.q_proj). Regression vs D103 quick verify (72%).\\\"}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.0115}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-pi05-vla-only-object-seed44\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T08:22:19.985Z\", \"updated_at\": \"2026-05-21T11:44:53.805Z\", \"hypothesis\": \"π0.5 VLA-only baseline on LIBERO-Object seed44, cross-VLA validation of CRM\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && TORCH_COMPILE_DISABLE=1 TORCHDYNAMO_DISABLE=1 HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --n_rollouts 20 --seed 44 --K 10\\\"\", \"server\": \"bjb1-32546\", \"gpu\": [\"cuda:2\"], \"pid\": \"983472\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed44.log\", \"submitted_at\": \"2026-05-21T10:18:46.979Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-21T11:40:10.658Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T11:40:31.815288+00:00\"}]}, \"log_path\": \"/root/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed44.log\", \"checkpoint_path\": \"N/A (eval only)\", \"metrics\": {\"overall_sr\": 0, \"n_rollouts\": 200, \"per_task_sr\": {\"pick_up_the_alphabet_soup_and_place_it_in_the_basket\": 0, \"pick_up_the_cream_cheese_and_place_it_in_the_basket\": 0, \"pick_up_the_salad_dressing_and_place_it_in_the_basket\": 0, \"pick_up_the_bbq_sauce_and_place_it_in_the_basket\": 0, \"pick_up_the_ketchup_and_place_it_in_the_basket\": 0, \"pick_up_the_tomato_sauce_and_place_it_in_the_basket\": 0, \"pick_up_the_butter_and_place_it_in_the_basket\": 0, \"pick_up_the_milk_and_place_it_in_the_basket\": 0, \"pick_up_the_chocolate_pudding_and_place_it_in_the_basket\": 0, \"pick_up_the_orange_juice_and_place_it_in_the_basket\": 0}, \"failure_reason\": \"PI05 language model weights not loaded; 376 missing keys after vision tower fix (incl. multi_modal_projector, language_model.embed_tokens, language_model.layers.*.self_attn.q_proj). Regression vs D103 quick verify (72%).\"}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.0115}}"
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新（已有 metrics 和 failure_reason）。\n\n## 汇总\n\n| Seed | Overall SR | Rollouts | Status |\n|------|-----------|----------|--------|\n| 42 | **0.0%** (0/200) | 200 | EXIT_CODE=0 |\n| 43 | **0.0%** (0/200) | 200 | EXIT_CODE=0 |\n| 44 | **0.0%** (0/200) | 200 | EXIT_CODE=0 |\n| **Mean ± Std** | **0.0% ± 0.0%** | **600 total** | |\n\n所有 10 个 task 在 3 个 seed 上全部 0/20。无 W&B URL，无 sentinel 文件。\n\n**关键问题：与 D103 quick verify (72% SR) 严重矛盾。** 日志显示模型加载后仍有 376 个 missing keys（multi_modal_projector, language_model.embed_tokens, language_model.layers.\\*.self_attn 等），表明 PI05 的 language model 权重实际未被加载——vision tower keys 做了 remap，但其余核心组件的权重是随机初始化的，导致模型输出完全无意义的 action。\n\n需要排查 D103 的加载路径与这次实验的差异，重点看 `model.safetensors` 的 key mapping 逻辑是否在代码更新后 regressed。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+            "uuid": "337c6864-26df-446e-bd59-5f6c7c250331",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LkJNNx89mPuwxie6AMzLrb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4175,
+                "cache_read_input_tokens": 37852,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4175
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新（已有 metrics 和 failure_reason）。\n\n## 汇总\n\n| Seed | Overall SR | Rollouts | Status |\n|------|-----------|----------|--------|\n| 42 | **0.0%** (0/200) | 200 | EXIT_CODE=0 |\n| 43 | **0.0%** (0/200) | 200 | EXIT_CODE=0 |\n| 44 | **0.0%** (0/200) | 200 | EXIT_CODE=0 |\n| **Mean ± Std** | **0.0% ± 0.0%** | **600 total** | |\n\n所有 10 个 task 在 3 个 seed 上全部 0/20。无 W&B URL，无 sentinel 文件。\n\n**关键问题：与 D103 quick verify (72% SR) 严重矛盾。** 日志显示模型加载后仍有 376 个 missing keys（multi_modal_projector, language_model.embed_tokens, language_model.layers.\\*.self_attn 等），表明 PI05 的 language model 权重实际未被加载——vision tower keys 做了 remap，但其余核心组件的权重是随机初始化的，导致模型输出完全无意义的 action。\n\n需要排查 D103 的加载路径与这次实验的差异，重点看 `model.safetensors` 的 key mapping 逻辑是否在代码更新后 regressed。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 97428,
+            "duration_api_ms": 76902,
+            "num_turns": 10,
+            "stop_reason": "end_turn",
+            "session_id": "50e3a1d7-1b8a-40c5-abf1-b7cf777857cc",
+            "total_cost_usd": 0.34026649999999997,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 30186,
+              "cache_read_input_tokens": 168730,
+              "output_tokens": 2627,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 30186,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 407,
+                  "cache_read_input_tokens": 37852,
+                  "cache_creation_input_tokens": 4175,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 4175
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1409,
+                "outputTokens": 22,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0015190000000000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 2627,
+                "cacheReadInputTokens": 168730,
+                "cacheCreationInputTokens": 30186,
+                "webSearchRequests": 0,
+                "costUSD": 0.3387475,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "a251002a-210b-4fcd-a2ae-4fd2459ac5ed"
+          },
+          "id": "event-000030"
+        }
+      ],
+      "message_count": 30
+    }
+  ],
+  "readable_path": "readable/worker-executions/analyze-pi05-vla-only-object-3seeds-20260521t114140-retry2.md"
+}

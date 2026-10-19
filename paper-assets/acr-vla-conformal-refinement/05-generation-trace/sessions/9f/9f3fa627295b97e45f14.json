@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f3fa627295b97e45f14",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "research paper outline prep",
+  "task_key": "worker_research_paper-outline-prep_20260515T132442",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_paper-outline-prep_20260515T132442_result.json",
+    "occurrence": 1,
+    "bytes": 1090,
+    "sha256": "1a423c19368e195816dceeeb5bdb45b23fcc608686c12adf48222731a57d06fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `writing_plan.yaml`。核心结构：\n\n**Title**: \"Sample, Select, Correct: Observation-Conditioned Residual Refinement for Robust VLA Control\"（首选）\n\n**Narrative 主线**: obs_only CRM 在 object perturbation 上 +8pp over argmin selection；per-DOF conformal features 作为 headline negative result 诚实报告。\n\n**7 个 figure**:\n- P0: pipeline overview、object benchmark bar chart、magnitude sweep curve、4-way ablation\n- P1: per-task heatmap、statistical significance CI\n- P2: task difficulty vs CRM improvement scatter\n\n**写作顺序**: experiments → method → intro → related work → abstract → discussion → polish，abstract DDL 5/26 前完成前 5 步。\n\n**关键 blocker**: object T5-T9 eval 和 seed=43 doubling 数据。没有这些数据，fig2/fig5/table1 无法锁定，abstract 无法定稿。\n\n**5 个文献缺口**: supervised（非 RL）residual correction、uncertainty-conditioned negative results 先例、object vs spatial robustness 分类学、compounding error、CP-as-feature-extractor 先例。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-outline-prep-copy-2.md"
+}

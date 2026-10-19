@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cdd571b6f8c4a2c1d9bf",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_22_1779364649.md",
+  "task_key": "loop_22_1779364649",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_22_1779364649.md",
+    "occurrence": 1,
+    "bytes": 4629,
+    "sha256": "98d88a70443707132b2e14c14e98e3afdbaa1964f44ccef1d6bc48b9240a15ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 22\nreason: idle_timeout\nupdated: '2026-05-21T11:57:24+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单严格按 `get_project_status` 的 `execution.gpu_ids`，当前 4 台服务器共 17 张卡全部已分配，不可用白名单外的卡\n- bjb1-32546 上多个实验共享磁盘，清理前必须 `list_large_dirs` 确认，禁止删除其他 seed 的 checkpoint\n- CRM checkpoint 统一路径 `/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`，不同服务器路径一致，不要改\n- evaluate.py 无 W&B/sentinel 输出，cron 会误判 failed——实际需要 Worker SSH 检查 JSON 输出文件确认真实结果。**大量 \"failed\" 实验实际是 cron false positive，必须 SSH 验证再定 conclusion**\n- CoRL 2026 DDL 2026-05-29，剩 8 天，所有决策以此为锚\n\n### 2. 🖥️ 基础设施快照\n- **bjb2-28827** (6 GPU): 工作目录 `/root/autodl-tmp/acr-vla/`，conda base (`/root/miniconda3/bin/python`)\n  - 运行中: D088 adaptive-unc-head ×3 seeds (cuda:0/1/4), norm003-seed45 (cuda:3), norm02-seed53/54\n- **bjb1-32546** (6 GPU): 同上路径结构\n  - 运行中: K=5 seed44 (cuda:2), K=20 seed44 (cuda:5), norm005-seed47, norm003-seed45/46\n  - **失败实验 eval-obs-only-object-norm02-seed51 在此服务器**，实际已 conclusion=success (SR=17%, cron false positive)\n- **bjb2-40593** (1 GPU): random-selection-object-seed48 (cuda:0, pid=759093)\n- **bjb1-18228** (5 GPU): norm01-seed50 (cuda:2, pid=526048) 等多项\n- 模型: `/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`\n- 数据: LIBERO suite (Object/Spatial/Goal/Long)，各 100 rollouts per seed\n- 活跃 cron: 8 个，全部 reconcile 确认 still running\n\n### 3. 📊 当前状态\n- **刚收到 cron 回调**: eval-obs-only-object-norm02-seed51 报 failed，但 registry 已标记 conclusion=success (SR=17%)，是之前已处理的 cron false positive（notes 里有记录）。**无需再处理此实验。**\n- **RUNNING 实验** (11 个): 8 个 cron 确认存活（见 reconcile 结果），另有 3 个在 bjb2-28827 未被 cron 覆盖（D088 seeds）\n- **D088 Learned Uncertainty Head**: 3 seeds 评估中 (bjb2-28827)，这是 **P0 决策点**——GO/NO-GO 决定核心方法是否升级\n  - D090 已记录 NO-GO 决策，但 ROADMAP 仍显示\"等待结果\"——可能是 ROADMAP 未更新，需确认\n- **D090 决策已做出**: Learned Uncertainty Head NO-GO，fallback 到 K=2 Conformal Score + selective CRM (Adaptive K)\n- **OpenVLA precompute**: 87.8% 完成时写入 ROADMAP，plan_802 CRM training 待 precompute 完成后启动\n- 无活跃 Worker 回调在等待\n\n### 4. 📋 待办（条件触发式）\n- D088 eval seeds 完成回调到达 → 确认 D090 NO-GO 已生效，更新 ROADMAP 状态为 closed\n- OpenVLA precompute 完成 → 立即 spawn Worker 启动 plan_802 CRM training + eval（**P0，解决 3 个 review criticals**）\n- eval-random-selection-object-seed48 完成 → 收割结果，补充 Random Selection 数据点，整合入论文\n- K=5/K=20 seed44 完成 → 更新 K-sweep 表格，确认 diminishing returns pattern\n- norm 系列 seeds (003/005/01/02) 完成 → 补充 Figure 2 error bars，锁定 magnitude curve\n- 所有 Object CRM 数据收齐 → 更新 Table 1 统计（当前 n=6→7，mean=16.8%±1.8%）\n- GPU 空出 → 优先铺 Spatial Adaptive K P50 ×3 seeds (P1) 和 Leave-task-out 验证 (P1)\n\n### 5. 🎯 战略上下文\n- **核心结论**: CRM obs_only (ε=0.2, K=10) 在 Object 上 16.8%±1.8% vs VLA 10.9% (p=9.5e-5)；correction > selection 是核心 claim（Random Selection ≈ VLA-only 直接支撑）\n- **D090 NO-GO**: Learned Uncertainty Head 被否决，方法回到 Adaptive K (K=2 L2 conformal score)。ROADMAP 里 D088 段可能显示旧状态，以 D090 决策为准\n- **Round 2 审稿**: weak reject 3/3，7 criticals + 8 warnings。OpenVLA 实验线是解决 3 个 criticals 的关键（跨模型泛化）\n- **易错点 1**: evaluate.py 不输出 W&B metrics，cron 会持续误报 failed。收到 failed 回调时必须 SSH 查 JSON 文件确认真实结果，大量 \"failed\" 实际是 success/negative\n- **易错点 2**: D088/D090 状态可能混淆——D088 提出 Learned Uncertainty Head，D090 否决了它。不要再启动相关实验\n- **易错点 3**: norm02-seed42 (SR=20%) 被 D084 排除出 Table 1（outlier），不要重新纳入\n- **决策链**: D081(Long OOD cautious)→D082(batched inference)→D083(Spatial n=8 clean)→D084(seed42 outlier排除)→D085(跨benchmark P50)→D086→D087(OpenVLA恢复)→D088(Uncertainty Head提出)→D089(Round 2 holistic)→D090(Uncertainty Head NO-GO)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-22-1779364649.md"
+}

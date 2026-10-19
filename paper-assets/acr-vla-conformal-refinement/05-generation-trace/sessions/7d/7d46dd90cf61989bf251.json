@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d46dd90cf61989bf251",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze westd pi05 vla only object paired",
+  "task_key": "worker_analyze_westd-pi05-vla-only-object-paired_20260526T115819",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_westd-pi05-vla-only-object-paired_20260526T115819_result.json",
+    "occurrence": 1,
+    "bytes": 1073,
+    "sha256": "833f511ddae541e19cd77bc500d163f9bcba7262c06f6aba7d8744f403780220"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。Registry 已更新 checkpoint_path 和 log_path。\n\n## π0.5 VLA-only Object Baseline (westd Blackwell, 10 tasks × 20 rollouts)\n\n| Seed | Success Rate | 失败 task |\n|------|-------------|-----------|\n| 42 | **99.5%** | bbq_sauce 19/20 |\n| 43 | **100.0%** | 无 |\n| 44 | **99.5%** | bbq_sauce 19/20 |\n\n**Mean ± Std: 99.7% ± 0.3%**\n\n## 与 registry 中其他 π0.5 Object 结果对比\n\n| 实验 | Server | Mode | Success Rate |\n|------|--------|------|-------------|\n| westd VLA-only (本次) | westd-49937 (Blackwell) | vla_only | **99.7 ± 0.3%** |\n| westd Adaptive Conformal s42 | westd-49937 (Blackwell) | adaptive_conformal_crm | 83.5% |\n| 4090 Adaptive Conformal s42 | cqa1 (4090) | adaptive_conformal_crm | 85.5% |\n| 4090 Adaptive Object s43 | bjb2-24035 (4090) | adaptive_conformal_crm | 83.0% |\n\nπ0.5 VLA-only 在 Object suite 上接近完美（仅 bbq_sauce 偶发失败），Adaptive Conformal 在该 suite 上反而降低约 15pp — 对于 near-ceiling baseline，correction 引入的扰动大于收益。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-westd-pi05-vla-only-object-paired.md"
+}

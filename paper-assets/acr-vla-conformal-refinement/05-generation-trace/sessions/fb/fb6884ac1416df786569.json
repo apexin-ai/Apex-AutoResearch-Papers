@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb6884ac1416df786569",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze bjb1 32546 batch",
+  "task_key": "worker_analyze_bjb1-32546-batch_20260520T103702",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_bjb1-32546-batch_20260520T103702_result.json",
+    "occurrence": 1,
+    "bytes": 1001,
+    "sha256": "467a6aafaebc187aea86831822c9cd9543116bd239b75739fc4254cd2413f36f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实验全部已完成，registry 已更新为 DONE。\n\n## 汇总\n\n| 实验 | SR | 100 rollouts | 结论 | 备注 |\n|------|-----|-------------|------|------|\n| eval-adaptive-k-spatial-p75-seed43 | **34.0%** | 34/100 | success | vs baseline 34.4±1.5% — 匹配，fast_path=62.2%, avg_k=5.0 |\n| eval-obs-only-object-norm003-seed43-r2 | **14.0%** | 14/100 | success | ε=0.03 Object seed43 数据点，Figure 2 补充 |\n| eval-obs-only-object-norm005-seed44 | **12.0%** | 12/100 | success | ε=0.05 Object seed44 数据点，Figure 2 补充 |\n\n**关键发现：**\n- Adaptive K P75 在 Spatial seed43 上 SR=34.0%，与 CRM K=10 baseline (34.4%) 基本持平，同时 62.2% 的步骤走了 fast path（k<10），验证了 adaptive 策略在跨 benchmark 迁移时保持性能。\n- 两个 obs_only 低 norm 实验（ε=0.03/0.05）SR 都很低（14%/12%），符合预期——小 ε 限制了 CRM 纠正幅度，为 Figure 2 的 ε-SR 曲线提供了多 seed 数据点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-bjb1-32546-batch.md"
+}

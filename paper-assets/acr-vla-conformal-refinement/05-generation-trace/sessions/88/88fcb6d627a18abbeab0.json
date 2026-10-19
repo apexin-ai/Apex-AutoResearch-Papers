@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88fcb6d627a18abbeab0",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops replace failed bjb1 18228",
+  "task_key": "worker_ops_replace-failed-bjb1-18228_20260518T165233",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_replace-failed-bjb1-18228_20260518T165233_result.json",
+    "occurrence": 1,
+    "bytes": 282,
+    "sha256": "81e05fb59bf23579a002c26f7909298d365853b3e233cb4006990bde769b0cb1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n1. **eval-random-selection-object-seed46** → status=DONE, conclusion=failed, failure_reason 已设置\n2. **eval-obs-only-object-norm005-seed46** → tmux session 已启动，进程确认运行中（PID 874915, cuda:2），registry 状态 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-replace-failed-bjb1-18228.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90933559a9adff6051f2",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops check seed43 obs only progress",
+  "task_key": "worker_ops_check-seed43-obs-only-progress_20260516T003855",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-seed43-obs-only-progress_20260516T003855_result.json",
+    "occurrence": 1,
+    "bytes": 1414,
+    "sha256": "612f6c496dbd5c2a0ebd17abdffd8d0ab8cfed6a445fa942a726ed57df09fcbd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 1. obs_only ε=0.1 seed43 (bjb1-18228) — 已完成 ✓\n\n进程 356495 已退出，JSON 完整（10/10 tasks）。**Overall SR = 12%**\n\n| Task | SR | Successes |\n|------|-----|-----------|\n| alphabet_soup | 0% | 0/10 |\n| cream_cheese | 10% | 1/10 |\n| salad_dressing | 10% | 1/10 |\n| bbq_sauce | 30% | 3/10 |\n| ketchup | 0% | 0/10 |\n| tomato_sauce | 0% | 0/10 |\n| butter | 0% | 0/10 |\n| milk | 10% | 1/10 |\n| chocolate_pudding | 40% | 4/10 |\n| orange_juice | 20% | 2/10 |\n\n### 2. obs_only ε=0.2 seed43-r2 (bjb1-32546) — 运行中\n\n进程 148797 存活，已运行 **5h41m**。当前进度 **4.5/10 tasks**。\n\n已完成 4 个 task，第 5 个 (ketchup) 进行到 rollout 5/10：\n\n| Task | SR | Status |\n|------|-----|--------|\n| alphabet_soup | 0% (0/10) | ✓ done |\n| cream_cheese | 10% (1/10) | ✓ done |\n| salad_dressing | 20% (2/10) | ✓ done |\n| bbq_sauce | 40% (4/10) | ✓ done |\n| ketchup | 0/5 so far | in progress |\n| tasks 6-10 | — | pending |\n\n**Partial SR (4 tasks)**: 7/40 = **17.5%**\n\n**ETA 估算**: ~85 min/task × 5.5 remaining ≈ **~7.5-8 小时**（约今晚 23:00-24:00 完成）\n\n### 关键发现\n\n- ε=0.1 seed43 SR=12%，与 seed42 的 12% 一致，obs_only baseline 稳定\n- ε=0.2 seed43 部分结果 17.5%（4 tasks），比 ε=0.1 高——但 bbq_sauce 40% 拉高了均值，后续 task 可能回落"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-seed43-obs-only-progress.md"
+}

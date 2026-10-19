@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "afee410b67eea53d5cc2",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose eval supp obj reconvla s47",
+  "task_key": "worker_diagnose_eval-supp-obj-reconvla-s47_20260524T123937",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval-supp-obj-reconvla-s47_20260524T123937_result.json",
+    "occurrence": 1,
+    "bytes": 692,
+    "sha256": "9d3f59a68025675ceb7a29b9d05e7acc306f37e18833ba00bf67a3122587956a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断结论：**伪失败**。\n\n- 脚本实际跑完 10 task × 20 rollout，overall **76.5% (153/200)**，结果 JSON 已写入 `logs/eval_object_reconvla_seed47.json`（20:26）\n- 日志无 Error/Exception/Traceback；GPU 4 显存释放（1 MiB / 24564 MiB，0% util）；`/root/autodl-tmp` 46% 充足，根分区 86% 偏紧但未满\n- cron 误判原因：脚本没发 sentinel/W&B 心跳\n\n**无需重试**，直接用现有 JSON。诊断报告已写入 `worker_output.md`（save_project_file 白名单不含该文件，改用本地 Write）。\n\n注：`tmux ls` 与含管道的 `grep` 在 `ssh_read_only` 白名单外被拒——tmux 状态从 GPU 利用率推断。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-supp-obj-reconvla-s47.md"
+}

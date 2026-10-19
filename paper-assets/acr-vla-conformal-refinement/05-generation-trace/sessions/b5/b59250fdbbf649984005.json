@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b59250fdbbf649984005",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis eval acr object v4 obs only",
+  "task_key": "worker_analysis_eval-acr-object-v4-obs-only_20260515T160113",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval-acr-object-v4-obs-only_20260515T160113_result.json",
+    "occurrence": 1,
+    "bytes": 1087,
+    "sha256": "8bd5fdfb9e920d58d4805e3ff8118630933d411b19c934d41bdac5f446150602"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果：obs_only object 10-task = **19.0%** — 项目存活\n\n### Per-Task\n\n| Task | obs_only | VLA-only | Δ |\n|------|----------|----------|---|\n| alphabet_soup | 0% | 0% | 0 |\n| cream_cheese | 10% | 10% | 0 |\n| salad_dressing | 20% | 20% | 0 |\n| bbq_sauce | **40%** | 20% | **+20** |\n| ketchup | 10% | 0% | +10 |\n| tomato_sauce | 0% | 10% | -10 |\n| butter | 10% | 0% | +10 |\n| milk | 20% | 10% | +10 |\n| chocolate_pudding | **50%** | 20% | **+30** |\n| orange_juice | 30% | 30% | 0 |\n| **Average** | **19.0%** | **12.0%** | **+7.0pp** |\n\n### Baseline 对比\n\n| Method | SR | vs obs_only |\n|--------|-----|-------------|\n| **obs_only** | **19.0%** | — |\n| VLA-only | 12.0% | -7pp |\n| perdof | 11.0% | -8pp |\n| argmin (6/10 partial) | ~6.7% | ~-12pp |\n\n### 判定\n\n**SUCCESS**。obs_only 在 object 上 19% vs VLA-only 12%，+7pp 改进显著超过 +6pp 门槛。chocolate_pudding (+30pp) 和 bbq_sauce (+20pp) 是最大赢家。后 4 个 task 将均值从 13.3% 拉到 19.0%。\n\nRegistry 已更新为 DONE/success，报告已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-acr-object-v4-obs-only.md"
+}

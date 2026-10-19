@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7907ba491e06f840151a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze r4 seed42 result",
+  "task_key": "worker_analyze_r4-seed42-result_20260522T112512",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_r4-seed42-result_20260522T112512_result.json",
+    "occurrence": 1,
+    "bytes": 695,
+    "sha256": "990d13fc1d3164f02e3749e9dfd0809553024e57a1ca648c048b2f894b1d9563"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。\n\n## 结果汇总\n\n| 指标 | r3 (n_action_steps=50) | r4 (n_action_steps=10) |\n|------|----------------------|----------------------|\n| **Overall** | **81.5%** ± 0.5% | **100.0%** (200/200) |\n| 每个 task | 有失败 | 全部 20/20 |\n\n**+18.5pp**。所有 10 个 Object task 均完美通过。\n\n核心原因：`n_action_steps=10` 让 PI0.5 每 10 步重新规划一次（r3 是 50 步），更高频的 re-planning 在 Object 这类简单任务上彻底消除了累积误差。Object benchmark 已达天花板 100%，conformal refinement 在此 benchmark 上无提升空间，需在更难的 benchmark（Spatial/Goal）上验证价值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-r4-seed42-result.md"
+}

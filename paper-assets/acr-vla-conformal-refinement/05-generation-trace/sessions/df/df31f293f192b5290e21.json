@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df31f293f192b5290e21",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose eval crm goal seed45 r2",
+  "task_key": "worker_diagnose_eval-crm-goal-seed45-r2_20260519T232457",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval-crm-goal-seed45-r2_20260519T232457_result.json",
+    "occurrence": 1,
+    "bytes": 1479,
+    "sha256": "5bbc01f810111d7e352004b8027598a20d83a48e881ad3e08c53758eb6670cae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n**结论：两个实验实际上已成功完成，监控系统误报。**\n\n### 发现\n\n1. **实验实际完成了**，结果文件在项目目录下：\n   - `seed44-r2`: 64.0% overall success (64/100) → `/root/acr-vla-conformal-refinement/logs/eval_crm_goal_seed44_r2.json`\n   - `seed45-r2`: 65.0% overall success (65/100) → `/root/acr-vla-conformal-refinement/logs/eval_crm_goal_seed45_r2.json`\n   - 两个实验都完整跑完了 10 tasks × 10 rollouts，日志和 JSON 结果都齐全。\n\n2. **误报原因**：这两个实验没有通过 `submit_training_job` 提交，而是直接用 `ssh_execute` 跑的 `python -u src/evaluate.py ...`。因此：\n   - `~/runs/acr-vla-conformal-refinement/` 下无对应 log 文件\n   - `/tmp/agent-ml-exit/` 下无 sentinel/exit 文件\n   - 无 W&B run\n   - 监控系统在这三个位置都找不到存活信号，判定为 \"process dead 5× → failed\"\n\n3. **`--checkpoint` 参数无问题**：`--checkpoint` 和 `--crm_checkpoint` 是等价的（后者是前者的 alias，见 evaluate.py:320-322）。当前正在运行的 seed46/seed47 也用的 `--checkpoint`，正常工作。\n\n4. **GPU 状态正常**：GPU 2 已空闲（seed45-r2 早已跑完退出），GPU 1/3 分别在跑 seed46 和 seed47。\n\n### 建议\n- **不需要修复**，结果已经存在，可以直接使用。\n- 后续 CRM eval 实验统一用 `submit_training_job` 提交，避免监控系统误报。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-crm-goal-seed45-r2.md"
+}

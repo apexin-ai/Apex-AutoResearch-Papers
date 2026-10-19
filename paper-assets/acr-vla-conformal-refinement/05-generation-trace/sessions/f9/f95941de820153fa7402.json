@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f95941de820153fa7402",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest spatial k2mean s47",
+  "task_key": "worker_harvest_spatial-k2mean-s47_20260524T132224",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_spatial-k2mean-s47_20260524T132224_result.json",
+    "occurrence": 1,
+    "bytes": 380,
+    "sha256": "58b366bdc58415966e7683e8475e2eb9cb6e9221589c3e4c883db790db07e981"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n**结果汇总：**\n\n| 指标 | 值 |\n|------|-----|\n| success_rate | **81.0% (162/200)** |\n| benchmark | LIBERO-Spatial |\n| mode | vla_only (K=2 mean baseline) |\n| seed | 47 |\n\nPer-task 亮点：table_center / cookie_box / next_to_cookie_box 达 100%；on_ramekin 为 0%（和其他 seed 一致的难点 task）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-spatial-k2mean-s47.md"
+}

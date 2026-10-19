@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3120f9fdd728c2b1ef0",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "eval cqa1 k10 spatial s45 s46 s47",
+  "task_key": "worker_eval_cqa1-k10-spatial-s45-s46-s47_20260525T002553",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_cqa1-k10-spatial-s45-s46-s47_20260525T002553_result.json",
+    "occurrence": 1,
+    "bytes": 49,
+    "sha256": "2ad6c135c9072f1938e124cc992e7c746f7759ecc14a380235efd82cfdf25770"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-cqa1-k10-spatial-s45-s46-s47.md"
+}

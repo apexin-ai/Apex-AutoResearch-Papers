@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bd4c3c60b4f6cb22f6b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops progress check all running",
+  "task_key": "worker_ops_progress-check-all-running_20260515T051719",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_progress-check-all-running_20260515T051719_result.json",
+    "occurrence": 1,
+    "bytes": 3381,
+    "sha256": "5ba1aab74f65873f3ff7180ee76cea4a8c56887c94110f711efd889bf0fd4977"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据收集完毕。汇总如下：\n\n## GPU 状态\n\n| Server | GPU 0 | GPU 1 | GPU 2 | GPU 3 | GPU 4 | GPU 5 |\n|--------|-------|-------|-------|-------|-------|-------|\n| bjb1-32546 | 22%, 5165M | 23%, 5201M | 22%, 5201M | 23%, 5201M | 23%, 5629M | 21%, 5165M |\n| bjb2-28827 | 19%, 5183M | 22%, 5183M | 18%, 5183M | 19%, 5183M | 19%, 5183M | 19%, 5182M |\n\n全部 12 GPU 在用，负载正常。\n\n---\n\n## Server 1: bjb1-32546 — Object Eval（6 个实验）\n\n| exp_id | gpu | tasks_done | per_task_results | process_alive | elapsed | ETA |\n|--------|-----|------------|------------------|---------------|---------|-----|\n| eval-reconvla-object | 0 | 1/10 | T1: **0%** | 是 (PID 9659) | 2h41m | ~24h |\n| eval-acr-object-v4-perdof | 1 | 1/10 | T1: **0%** | 是 (PID 11116) | 2h39m | ~24h |\n| eval-acr-object-v4-obs-only | 2 | 1/10 | T1: **0%** | 是 (PID 13806) | 2h25m | ~22h |\n| eval-acr-object-v4-scalar | 3 | 1/10 | T1: **0%** | 是 (PID 14003) | 2h25m | ~22h |\n| eval-vla-only-object-k1 | 4 | **0/10** | 进行中(T1 r5/10, 0/5) | 是 (PID 39397) | **7m** | 刚启动 |\n| eval-vla-mean-object | 5 | 1/10 | T1: **0%** | 是 (PID 18808) | 2h18m | ~21h |\n\n所有 object eval 都在 task 1 (alphabet_soup) 得到 **0%**，当前正在跑 task 2 (cream_cheese)。`eval-vla-only-object-k1` 刚启动 7 分钟。\n\n日志路径修正：reconvla → `/root/acr-vla-conformal-refinement/logs/eval_object_reconvla.log`，perdof → `/root/acr-vla-conformal-refinement/logs/eval_object_perdof.log`\n\n---\n\n## Server 2: bjb2-28827 — Magnitude Sweep（6 个实验）\n\n**注意：这些实验实际跑的是 spatial benchmark，不是 object。**\n\n| exp_id | gpu | norm | mode | tasks_done | T1 (bowl_between) | T2 (bowl_next_to) | avg | process_alive | elapsed | ETA |\n|--------|-----|------|------|------------|-------|-------|-----|---------------|---------|-----|\n| eval-mag-perdof-norm003 | 0 | 0.03 | acr_vla | 2/10 | 60% | 100% | **80%** | 是 | 2h02m | ~8h |\n| eval-mag-perdof-norm005 | 1 | 0.05 | acr_vla | 2/10 | 50% | 100% | **75%** | 是 | 2h02m | ~8h |\n| eval-mag-perdof-norm02 | 2 | 0.2 | acr_vla | 2/10 | 60% | 90% | **75%** | 是 | 2h02m | ~8h |\n| eval-mag-perdof-norm03 | 3 | 0.3 | acr_vla | 2/10 | 70% | 50% | **60%** | 是 | 2h02m | ~8h |\n| eval-mag-obsonly-norm005 | 4 | 0.05 | crm_obs_only | 2/10 | 80% | 90% | **85%** | 是 | 2h02m | ~8h |\n| eval-mag-obsonly-norm02 | 5 | 0.2 | crm_obs_only | 2/10 | 90% | 100% | **95%** | 是 | 2h02m | ~8h |\n\n---\n\n## Magnitude Sweep 早期趋势（前 2 tasks, spatial）\n\n| 方法 | norm=0.03 | norm=0.05 | norm=0.2 | norm=0.3 |\n|------|-----------|-----------|----------|----------|\n| **perdof (acr_vla)** | 80% | 75% | 75% | 60% |\n| **obs_only (crm_obs_only)** | — | 85% | **95%** | — |\n\n**关键发现：**\n- **obs_only norm=0.2 当前 95% 均值，远超 argmin baseline 42.9%**（但仅 2/10 tasks，spatial benchmark，后续 tasks 可能更难）\n- perdof 在小 norm (0.03) 时表现最好 (80%)，norm 增大到 0.3 反而下降到 60%，task 2 只有 50%\n- obs_only 整体优于 perdof，且 norm=0.2 > norm=0.05\n- **norm=0.3 对 perdof 有害** — task 2 (bowl_next_to) 从其他 norm 的 90-100% 骤降到 50%\n\n⚠️ 只有 2/10 tasks 完成，且 spatial 前两个 task 通常较简单，完整结论需等全部跑完（~8h 后）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-progress-check-all-running.md"
+}

@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "6fb02210fdb41b400d19",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "setup pi05 env bjb2 28827",
+  "task_key": "worker_setup_pi05-env-bjb2-28827_20260521T080911",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_setup_pi05-env-bjb2-28827_20260521T080911.log",
+    "occurrence": 1,
+    "bytes": 812867,
+    "sha256": "df7018e515c16c2b75b7fe245e0edc09f0e9274694d8a043a01b3ec980cd4c60"
+  },
+  "statistics": {
+    "messages": 416,
+    "user_turns": 1,
+    "tool_calls": 144,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "record": 3,
+      "assistant": 111,
+      "tool_call": 144,
+      "tool_result": 144,
+      "user": 1,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 381,
+      "chunks": [
+        {
+          "path": "6fb02210fdb41b400d19-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6fb02210fdb41b400d19-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6fb02210fdb41b400d19-part-0003.json",
+          "message_count": 21
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 35,
+      "chunks": [
+        {
+          "path": "6fb02210fdb41b400d19-part-0003.json",
+          "message_count": 35
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/setup-pi05-env-bjb2-28827.md"
+}

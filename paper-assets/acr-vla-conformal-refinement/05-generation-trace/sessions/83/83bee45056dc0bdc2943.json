@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "83bee45056dc0bdc2943",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze bjb2 28827 batch",
+  "task_key": "worker_analyze_bjb2-28827-batch_20260520T121702",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_bjb2-28827-batch_20260520T121702_result.json",
+    "occurrence": 1,
+    "bytes": 1378,
+    "sha256": "c250ac6805668ebe2c8aac2d31dfb81ab99dd56eea96414090f88a624d5774b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**这 3 个实验仍在运行中，尚未完成。**\n\n从 `ps aux` 可以确认：\n\n| 实验 | PID | 启动时间 | CPU 时间 | 状态 |\n|------|-----|---------|---------|------|\n| eval-vla-only-spatial-seed48 | 336826 | 20:07 | 58min | 运行中，完成 1/10 tasks（task0: 7/10 = 70%），正在跑 task1 |\n| eval-vla-only-goal-seed47 | 336621 | 20:07 | 63min | 运行中，完成 1/10 tasks（task0: 8/10 = 80%） |\n| eval-obs-only-spatial-norm02-seed42 | 340026 | 20:08 | 53min | 运行中，完成 1/10 tasks（task0: 9/10 = 90%），正在跑 task1 |\n\n每个实验需要跑 10 tasks × 10 rollouts = 100 个 episode，目前每个只完成了约 10-20 个。按当前速度估计还需要 **1-2 小时**才能全部完成。\n\n**当前部分结果（仅 task 0）：**\n\n| 实验 | Task 0 | 成功率 |\n|------|--------|--------|\n| vla-only-spatial-seed48 | pick_up_the_black_bowl_between_plate_and_ramekin... | 70% (7/10) |\n| vla-only-goal-seed47 | open_the_middle_drawer_of_the_cabinet | 80% (8/10) |\n| obs-only-spatial-norm02-seed42 | pick_up_the_black_bowl_between_plate_and_ramekin... | 90% (9/10) |\n\nJSON 结果文件尚未生成（实验结束时才会写入）。无错误信息，实验运行正常。\n\n服务器上同时还有 2 个 adaptive-k 实验在跑（spatial-p75-seed44 和 spatial-p90-seed42，从 18:45 开始）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-bjb2-28827-batch.md"
+}

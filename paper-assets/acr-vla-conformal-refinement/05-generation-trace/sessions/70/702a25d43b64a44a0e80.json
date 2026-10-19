@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "702a25d43b64a44a0e80",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "cleanup stale exit file bjb1 32546",
+  "task_key": "worker_cleanup_stale-exit-file-bjb1-32546_20260520T121148",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_cleanup_stale-exit-file-bjb1-32546_20260520T121148_result.json",
+    "occurrence": 1,
+    "bytes": 45,
+    "sha256": "d6387ac6234c7b3734fddd26e8607b8754554d19b48451d159ef767cc55e2dd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已清理，文件已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cleanup-stale-exit-file-bjb1-32546.md"
+}

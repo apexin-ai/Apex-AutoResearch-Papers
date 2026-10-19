@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "891fd15e2ac4d1bdfe86",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy mag obsonly object bjb2",
+  "task_key": "worker_deploy_mag-obsonly-object-bjb2_20260515T162927",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_mag-obsonly-object-bjb2_20260515T162927_result.json",
+    "occurrence": 1,
+    "bytes": 461,
+    "sha256": "8c48102dbcf82165f3048a6074f825088711c756d7cc037c6a50405d175cdef2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n| 实验 | GPU | PID | 显存占用 | Registry 状态 |\n|------|-----|-----|---------|--------------|\n| eval-mag-obsonly-norm005-object | cuda:4 | 101610 | 5664 MiB | RUNNING |\n| eval-mag-obsonly-norm03-object | cuda:5 | 103028 | 5664 MiB | RUNNING |\n\n日志文件：\n- `/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm005.log`\n- `/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm03.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-mag-obsonly-object-bjb2.md"
+}

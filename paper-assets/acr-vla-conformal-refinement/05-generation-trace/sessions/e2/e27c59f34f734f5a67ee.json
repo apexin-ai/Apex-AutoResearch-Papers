@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "e27c59f34f734f5a67ee",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "diag precompute bjb1 status",
+  "task_key": "worker_diag_precompute-bjb1-status_20260521T161716",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_diag_precompute-bjb1-status_20260521T161716.jsonl",
+    "occurrence": 1,
+    "bytes": 183,
+    "sha256": "d29f0d189fe5317a668bb8437e829d8248c141f34e6691486d5af52bfe9845ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T16:17:25.244207+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 22, 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_precompute-bjb1-status_20260521T161716"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/diag-precompute-bjb1-status.md"
+}

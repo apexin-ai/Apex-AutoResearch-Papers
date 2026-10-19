@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f844fd8522fae7a16ad7",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "infra precompute verify",
+  "task_key": "worker_infra_precompute-verify_20260513T115807",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_precompute-verify_20260513T115807_result.json",
+    "occurrence": 1,
+    "bytes": 633,
+    "sha256": "6c76c94a5118a50653bf7c709525931f50ca142ca8865355ccd025668de13eda"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**3 个 precompute 进程状态报告：**\n\n| 项目 | 状态 |\n|------|------|\n| **进程存活** | 3/3 全部存活（PID 46966/47044/47186，运行约 40 秒） |\n| **GPU 显存** | cuda:1 1439MB, cuda:2 1439MB, cuda:3 1439MB — 符合预期（SmolVLA ~1.4GB） |\n| **cuda:0** | 1389MB 占用，GPU utilization 22% |\n| **启动错误** | 无 |\n\n**日志确认：** 3 个 shard 均已完成模型加载（hidden_size=960），加载了 spatial benchmark 的 12167 samples / 100 trajectories，各自分到 ~4056 samples，正在从 sample 1000 处恢复处理（有之前的 checkpoint）。一切正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-precompute-verify.md"
+}

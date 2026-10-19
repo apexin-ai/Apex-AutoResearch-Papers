@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b77f96e7ebdbf5bc5c00",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis eval vla mean object seed45",
+  "task_key": "worker_analysis_eval-vla-mean-object-seed45_20260517T033117",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval-vla-mean-object-seed45_20260517T033117_result.json",
+    "occurrence": 1,
+    "bytes": 555,
+    "sha256": "9f84c96cbb5fa5851f25a69350f5f6eef5a27104660300d812225beb49410ad3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## eval-vla-mean-object-seed45 结果\n\n**Overall success rate: 13/100 = 13%**\n\nPer-task breakdown:\n\n| Task | Success | Rate |\n|------|---------|------|\n| alphabet_soup | 0/10 | 0% |\n| cream_cheese | 0/10 | 0% |\n| salad_dressing | 1/10 | 10% |\n| bbq_sauce | 4/10 | 40% |\n| ketchup | 0/10 | 0% |\n| tomato_sauce | 1/10 | 10% |\n| butter | 0/10 | 0% |\n| milk | 1/10 | 10% |\n| chocolate_pudding | 3/10 | 30% |\n| orange_juice | 3/10 | 30% |\n\n4 seeds 汇总: seed42=12%, seed43=15%, seed44=10%, seed45=13%。均值 = **12.5%**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-vla-mean-object-seed45.md"
+}

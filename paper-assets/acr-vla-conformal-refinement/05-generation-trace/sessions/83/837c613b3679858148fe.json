@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "837c613b3679858148fe",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose eval obs only object norm01 seed74",
+  "task_key": "worker_diagnose_eval-obs-only-object-norm01-seed74_20260521T031336",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval-obs-only-object-norm01-seed74_20260521T031336_result.json",
+    "occurrence": 1,
+    "bytes": 1076,
+    "sha256": "035f47ccd6ed763ddb5156af9a63dff88e4960fa7f86bcc78dd48c0ec57090e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**两个实验都没有失败。** 它们正常跑完了全部 10 tasks × 10 rollouts，并保存了完整的 JSON 结果文件。\n\n### 实验 1: eval-obs-only-object-norm01-seed74\n- **状态**: 正常完成，return_code=0\n- **结果**: overall_success_rate = **13%** (13/100)\n- **JSON 文件**: `/root/acr-vla-conformal-refinement/logs/norm01_seed74.json` ✓ 完整\n\n### 实验 2: eval-obs-only-object-norm01-seed71\n- **状态**: 正常完成，return_code=0\n- **结果**: overall_success_rate = **16%** (16/100)\n- **JSON 文件**: `/root/acr-vla-conformal-refinement/logs/norm01_seed71.json` ✓ 完整\n\n### 根因\n\n实验本身没有崩溃/OOM/异常。\"Process exited without valid W&B metrics\" 说明问题出在 **W&B 上传环节**——评估脚本没有将结果 log 到 W&B（脚本里可能根本没有 `wandb.log()` 调用，或者 wandb 未初始化），导致监控系统认为实验失败。\n\n**结果数据完好可恢复**，不需要重跑。只需从 JSON 文件读取 `overall_success_rate` 即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-obs-only-object-norm01-seed74.md"
+}

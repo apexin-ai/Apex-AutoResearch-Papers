@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "cd52dcd3032474d431a5",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "infra sync and precompute 4090x4",
+  "task_key": "worker_infra_sync-and-precompute-4090x4_20260513T074527",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_sync-and-precompute-4090x4_20260513T074527.log",
+    "occurrence": 1,
+    "bytes": 854971,
+    "sha256": "a3cb0fc2a677f4e436ac626cb59fee58bfb3aeade71517d599a2de680a1c6b8f"
+  },
+  "statistics": {
+    "messages": 448,
+    "user_turns": 1,
+    "tool_calls": 154,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 132,
+      "tool_call": 154,
+      "tool_result": 154,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 435,
+      "chunks": [
+        {
+          "path": "cd52dcd3032474d431a5-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "cd52dcd3032474d431a5-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "cd52dcd3032474d431a5-part-0003.json",
+          "message_count": 75
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "cd52dcd3032474d431a5-part-0003.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-sync-and-precompute-4090x4.md"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "f070f03aa3f55823bdb1",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "test api check",
+  "task_key": "worker_test_api-check_20260527T131840",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_test_api-check_20260527T131840.jsonl",
+    "occurrence": 1,
+    "bytes": 155,
+    "sha256": "328a0a886a3f779694ad184e97eed5d36fccc895ec8923c5cae8ff9aadc695cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-27T13:18:50.383108+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_test_api-check_20260527T131840"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/test-api-check.md"
+}

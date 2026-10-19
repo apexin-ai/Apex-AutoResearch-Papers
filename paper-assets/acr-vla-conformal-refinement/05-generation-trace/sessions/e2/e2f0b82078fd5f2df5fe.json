@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2f0b82078fd5f2df5fe",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_3_1778782364.md",
+  "task_key": "loop_3_1778782364",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_3_1778782364.md",
+    "occurrence": 1,
+    "bytes": 5122,
+    "sha256": "3e6a0191293ad99027ec79a9227326a9882cf1719c9bad20d1cdd4c082c2260c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_messages\nupdated: '2026-05-14T18:12:43+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: `bjb1-18228:cuda:0-3`, `bjb2-40593:cuda:0`，严禁使用白名单外 GPU\n- eval-acr-spatial-v3 和 eval-acr-object-v3 用的是 **CRM v2（无 normalization）**，其结果注定 negative——不要用这两个实验的数据做 ACR-VLA 结论判定。核心 claim 判定必须等 CRM v3（normalized）的 eval\n- \"SampleConsensus\" ≠ ReconVLA。当前 reconvla 模式实现的是 raw argmin Euclidean，挂 ReconVLA 之名是 strawman（D014）。论文中必须如实描述为 SampleConsensus\n- CRM v3 retrain **不需要重新 precompute**（D018 明确说\"无需重新 precompute\"），只需在现有 precompute 数据上加 per-feature standardization\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228** (4× RTX 4090): 工作目录 `/root/acr-vla-conformal-refinement`，Python `/root/miniconda3/bin/python`，conda base\n- **bjb2-40593** (1× RTX 4090 D): 同上路径和环境\n- 模型: `/root/autodl-tmp/checkpoints/crm_v2/` (perdof/scalar_unc/obs_only)，VLA = `lerobot/smolvla_libero`，VLM = `SmolVLM2-500M-Video-Instruct`\n- 数据: `/root/autodl-tmp/libero_data/` (spatial + object, 10 tasks × 10 demos each)\n- Precompute 缓存: `/root/autodl-tmp/precompute/` (基于修复后 wrapper，D016 后有效)\n- HF cache: `/root/autodl-tmp/.hf_cache`\n- 活跃进程:\n  - eval-acr-spatial-v3: PID 197057, bjb1:cuda:0, tmux session\n  - eval-argmin-only-spatial: PID 231421, bjb1:cuda:1, tmux session\n  - eval-tiny-correction-spatial: PID 232815, bjb1:cuda:2, tmux session\n  - eval-acr-object-v3: PID 197803, bjb1:cuda:3, tmux session\n  - eval-vla-mean-spatial: PID 143106, bjb2:cuda:0, tmux session, **cron 在监控中**\n\n### 3. 📊 当前状态\n**关键转折点**: D017/D018 确认 CRM correction 全面拖累 baseline（per-DOF 3.3%, scalar 0%, obs-only 0% vs VLA mean 40%）。根因是 CRM 1030D 输入未做 normalization（log_volume ≈ -25 vs per_dof_std ≈ 0.017，差 1500x），MLP 训练无效。\n\n**5 路 eval 在跑**:\n- eval-acr-spatial-v3 (bjb1:cuda:0) — CRM v2 per-DOF spatial，预期 negative（无 normalization）\n- eval-argmin-only-spatial (bjb1:cuda:1) — **诊断实验**: 纯 argmin selection 无 CRM correction，量化 CRM 损害\n- eval-tiny-correction-spatial (bjb1:cuda:2) — **诊断实验**: max_norm=0.05 极保守 correction\n- eval-acr-object-v3 (bjb1:cuda:3) — CRM v2 object benchmark，预期 negative\n- eval-vla-mean-spatial (bjb2:cuda:0) — VLA K=10 mean baseline（cron 监控中）\n\n**PREPARING 待启动**: crm-train-v3-perdof / scalar-unc / obs-only（加 normalization 重训），多批 precompute shards（可能不再需要）\n\n**等待中**: 无 Worker 回调。Cron 只监控 eval-vla-mean-spatial。\n\n### 4. 📋 待办（条件触发式）\n- eval-argmin-only-spatial 完成 → 如果 argmin-only ≈ SampleConsensus (34%) 或 ≈ VLA mean，说明 CRM correction 是唯一罪魁；如果 argmin-only << VLA mean，说明 argmin selection 本身也有问题\n- eval-tiny-correction-spatial 完成 → 如果 tiny >> full correction，说明 compounding error from large delta 是主因，Gated CRM 方向正确；如果 tiny ≈ full correction (both bad)，说明 correction 方向本身就错\n- 两个诊断实验都完成 → 汇报 Director + 建议 CRM v3 (normalized) 训练方案，申请 GPU 重训\n- eval-vla-mean-spatial cron 回调 → 记录 VLA K=10 mean baseline 数值（预期 30-34% 之间），更新 report.md\n- eval-acr-spatial-v3 / eval-acr-object-v3 完成 → 记录结果但标注\"CRM v2 无 normalization，仅供参考\"\n- CRM v3 训练完成 → 立即启动新一轮 eval（spatial + object），这才是核心 claim 判定实验\n- 如果 CRM v3 eval 仍 negative → 触发 red-section Framing 调整提案，考虑 pivot 到 \"uncertainty-guided selection\" 方向（放弃 correction，用 per-DOF conformal 做更精细的 sample selection）\n\n### 5. 🎯 战略上下文\n- **投稿目标**: ICLR 2027 (DDL Sep-Oct 2026)，时间充裕\n- **核心假设链**: MVP 验证 per-DOF conformal 特征有信息优势 (D003 PASS) → CRM 训练成功 (val_loss 好) → 但闭环 eval 全面 negative (D017) → 根因是 input normalization (D018)\n- **决策链**: D001-D003 (MVP) → D004-D007 (架构) → D008-D013 (wrapper 修复) → D014 (ReconVLA naming) → D015 (30% baseline 继续) → D016 (state dim bug) → D017-D018 (CRM normalization)\n- **最容易判断错的事**: 看到 eval-acr-spatial-v3 结果（预期很差）就认为 ACR-VLA 方向失败——那是 CRM v2 没有 normalization 的结果，不能下结论。必须等 CRM v3 normalized 版本的 eval\n- **容易踩的坑**:\n  - PREPARING 状态的 precompute-v2/v3/v4 shards 可能不再需要（D018 说 CRM v3 不需要重新 precompute）\n  - Gated CRM 代码已写好但 D018 说暂缓，等 normalization 先验证\n  - bjb1 和 bjb2 代码必须保持同步（历史上多次因不同步导致 eval 不一致）\n  - EXIT_CODE=129 或 EXIT_CODE=1 不一定是真失败（tmux SIGHUP / Python SWIG cleanup），看 log 末尾\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778782364.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aaa52d14ded24317225a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "director / loop_25.md",
+  "task_key": "loop_25",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/director/loop_25.md",
+    "occurrence": 1,
+    "bytes": 3800,
+    "sha256": "7e0d55e8de325d30a892d4364e7370b4770e8349b82a065fa487be591187dfcd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 25\nreason: max_messages\nupdated: '2026-05-28T06:05:24+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-18228(4卡), bjb1-32546(6卡), bjb2-28827(6卡), cqa1-32758(6卡)，共 22 张。严禁用白名单外 GPU\n- westd-49937 数据系统性偏低 4-5pp（D175），该服务器数据不可用于论文\n- Table 2 Pi05 全部为 single-seed s42，不得混用 3-seed mean 或其他 seed\n- Table 1 SmolVLA 用 matched-seed 统计（D172），CRM checkpoint 是 3suite（不含 Long）\n- Long suite 是 CRM OOD（CRM 只训练了 Object/Spatial/Goal），论文必须标注\n- DDL: CoRL 2026，2026-05-28 20:00 北京时间（今天）\n\n### 2. 🖥️ 基础设施快照\n- 4 台服务器全部 AutoDL，代码路径 `/root/acr-vla-conformal-refinement`\n- bjb1-18228: 4×GPU，跑 Pi05 precompute 任务\n- bjb1-32546: 6×GPU，跑 Pi05 CRM always-on seeds + K-sweep + random selection baseline\n- bjb2-28827: 6×GPU，跑 τ-sweep + supp seeds + Long VLA-only\n- cqa1-32758: 6×GPU，跑 τ=0.15 Object 3-seed + supp seeds；cuda:5 保留给 pi05-crm-always-on-long-s42（已完成 SR=77.0%）\n- CRM checkpoint: `crm_smolvla_3suite_v1`（3 suites, 30 tasks, ~88K samples）\n- 4suite checkpoint 存在（`crm_unified_4suite`）但主实验未使用\n\n### 3. 📊 当前状态\n**刚完成**：\n- Pi05 Long CRM always-on 结果确认（77.0%），Table 2 四行完整\n- Pi05 Long VLA-only baseline 修正为 s42 matched（94.0%, Δ=-17.0pp）\n- Paper Agent 完成全文 -18.0→-17.0 级联修正 + 跨服务器配对注释\n- 22 张 GPU 全部在跑，Agent 按 P0→P3 优先级部署 184 个 pending 实验中的首批\n\n**运行中实验**（~29 个，含首批 backfill 的 10 个新部署）：\n- Pi05 CRM always-on bonus seeds (bjb1-32546)\n- τ=0.15 Object 3-seed sweep (cqa1)\n- τ=0.45 Spatial, supp seeds (bjb2)\n- K-sweep K=20 obs-only, random selection baseline (bjb1-32546)\n- 完成后自动 backfill 下一批\n\n**等待中**：\n- 用户确认 title（D179: \"Knowing When Not to Correct: Adaptive Test-Time Refinement for Vision-Language-Action Models\"）+ CoRL 提交决定——**已催 3 次，用户尚未明确回复**\n- Paper Agent 跨服务器注释 patch 已完成\n- Reviewer 刚 reset，需要新 session\n\n### 4. 📋 待办\n- 用户回复确认 title + CoRL 提交 → 立即进入最终提交流程（submit_paper_to_review 或直接提交）\n- 用户说\"提交\" → 检查论文最终版编译 + 附录 + supplementary 完整性 → 提交\n- 实验 cron 回调（backfill 实验完成）→ Agent 自动部署下一批，不需要逐个审批\n- 如果 backfill 实验产出论文可用数据 → 评估是否值得 last-minute 加入 supplementary\n\n### 5. 🎯 战略上下文\n- **核心结论**：CRM always-on 在 4/4 suites 有害（SmolVLA + Pi05 跨模型一致），Adaptive conformal gating 恢复性能。Long 退化最严重（SmolVLA -14.8pp, Pi05 -17.0pp）因为 CRM 对 Long 是 OOD\n- **论文 narrative**（D170/D177/D178）：\"CRM 修正是双刃剑，gating 正确决定何时不干预\"\n- **MC1**: 4/4 suites 跨模型有害；**MC2**: trigger_rate ↔ Δ 单调正相关；**MC3**: SmolVLA 0.4B + Pi05 3.6B 泛化\n- **Table 1**: K-matched 3 列（VLA-only K=1 / K=2 CRM always-on / K=2 Adaptive），SmolVLA 4 suites × 3 seeds\n- **Table 2**: Pi05 degradation-only 2 列（VLA-only / CRM always-on），4 suites，single-seed s42\n- **易错点**：Pi05 数据全是 single-seed，论文中标了 \"preliminary single-seed\" caveat；分析报告中 Goal baseline 有幽灵数字 97.8%（不对应任何实验），不要引用分析报告的 auto-populated baseline\n- **决策链关键节点**：D172(matched-seed) → D175(westd偏差) → D177(K-matched Table 1) → D178(4/4 harmful) → D181(Table 2 degradation-only) → D182(Pi05 Long -17.0pp)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-25.md"
+}

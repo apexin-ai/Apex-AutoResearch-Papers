@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3dcb1720180ffdd2661",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops norm003 fix and diagnose",
+  "task_key": "worker_ops_norm003-fix-and-diagnose_20260519T125648",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_norm003-fix-and-diagnose_20260519T125648_result.json",
+    "occurrence": 1,
+    "bytes": 703,
+    "sha256": "da4082ef077ea259190a0fc1c6f7e9fe3af04c0516b3d23c6364eb25c516d480"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n| 实验 | 状态 | 详情 |\n|------|------|------|\n| **seed47** (bjb1-32546 GPU3) | **ALIVE**, PID 894900 | 5/10 tasks 完成，预计 ~3.5h 后出结果 |\n| **seed48** (bjb1-18228 GPU1) | **ALIVE**, PID 67825 | 5/10 tasks + T6 进行中，略快于 seed47 |\n| **seed44-bjb2** (bjb2-28827) | **已成功完成** | SR=17% (10/10 tasks), JSON 在 `/root/logs/`。误标 failed 已修正为 success |\n\nRegistry 已更新：seed47-r2 恢复为 RUNNING，seed44-bjb2 conclusion 改为 success。seed47/seed48 的 conclusion=failed 因 registry 不支持 null 值无法清除，已在 notes 中标注为误报。\n\n报告已写入 `artifacts/norm003_diagnosis_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-norm003-fix-and-diagnose.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3555397dafb3d020ef4",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh kill deploy bjb1 32546 cuda0",
+  "task_key": "worker_ssh_kill-deploy-bjb1-32546-cuda0_20260517T113858",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_kill-deploy-bjb1-32546-cuda0_20260517T113858_result.json",
+    "occurrence": 1,
+    "bytes": 306,
+    "sha256": "042628815b94a3646a2c98e176428e519ca630dc225d6810f7e3140b007c6c3d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。\n\n**Kill 确认**: PID 421086 已强制终止\n\n**新实验部署成功**:\n- **Python PID**: 429284\n- **GPU**: cuda:0 占用 5645MiB\n- **启动日志**: CRM 模型已加载 (327,198 params)，max_correction_norm=0.05，10 个 LIBERO object tasks 已加载，正在运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-deploy-bjb1-32546-cuda0.md"
+}

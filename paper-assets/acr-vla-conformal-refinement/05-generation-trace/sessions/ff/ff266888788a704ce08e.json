@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff266888788a704ce08e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis pi05 spatial bjb2 batch",
+  "task_key": "worker_analysis_pi05-spatial-bjb2-batch_20260526T133923",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_pi05-spatial-bjb2-batch_20260526T133923_result.json",
+    "occurrence": 1,
+    "bytes": 1204,
+    "sha256": "e8e31704825eb68f91bb0289b780c8963d4e806139f8b127f8a6d95e66ca8096"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 6 个实验已更新为 DONE。汇总：\n\n## π0.5 Spatial 实验结果汇总\n\n| exp_id | mode | seed | success_rate | trigger_rate | conclusion |\n|--------|------|------|-------------|-------------|------------|\n| pi05-crm-k2-spatial-s42-bjb2-r2 | CRM K=2 obs_only | 42 | 96.5% (193/200) | — | success |\n| pi05-crm-k2-spatial-s43-bjb2-r2 | CRM K=2 obs_only | 43 | 97.0% (194/200) | — | success |\n| pi05-crm-k2-spatial-s44-bjb2-r2 | CRM K=2 obs_only | 44 | 97.0% (194/200) | — | success |\n| pi05-adaptive-spatial-s42-bjb2-r2 | Adaptive (τ=0.25) | 42 | 96.5% (193/200) | 4.8% | success |\n| pi05-adaptive-spatial-s43-bjb2-r2 | Adaptive (τ=0.25) | 43 | 98.0% (196/200) | 4.4% | success |\n| pi05-adaptive-spatial-s44-bjb2-r2 | Adaptive (τ=0.25) | 44 | 97.0% (194/200) | 3.9% | success |\n\n**聚合统计：**\n- **CRM K=2 Spatial**: mean=96.83%, std=0.29%\n- **Adaptive Spatial**: mean=97.17%, std=0.76%, mean trigger_rate=4.37%\n\n两种方法均与 VLA-only baseline (~96%) 持平，CRM 未引入性能退化。Adaptive 模式 trigger rate 极低 (~4.4%)，说明 Spatial 任务上 π0.5 的 uncertainty 普遍较低，conformal gate 几乎不触发 CRM 修正。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-pi05-spatial-bjb2-batch.md"
+}

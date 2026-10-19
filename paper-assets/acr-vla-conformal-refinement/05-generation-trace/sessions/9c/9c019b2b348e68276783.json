@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "9c019b2b348e68276783",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "check cqa1 32758 process gone",
+  "task_key": "worker_check_cqa1-32758-process-gone_20260526T084716",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_check_cqa1-32758-process-gone_20260526T084716.jsonl",
+    "occurrence": 1,
+    "bytes": 170,
+    "sha256": "5069eddb28c2a60f1d30607073acfa21290abce298828bff7f81b8cdf4156252"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-26T08:47:24.719312+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_cqa1-32758-process-gone_20260526T084716"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/check-cqa1-32758-process-gone.md"
+}

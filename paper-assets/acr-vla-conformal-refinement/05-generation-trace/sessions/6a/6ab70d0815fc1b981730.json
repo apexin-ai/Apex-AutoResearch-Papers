@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ab70d0815fc1b981730",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code plan 602 latency profiling",
+  "task_key": "worker_code_plan_602-latency-profiling_20260519T160742",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_plan_602-latency-profiling_20260519T160742_result.json",
+    "occurrence": 1,
+    "bytes": 1067,
+    "sha256": "744a996fb1b296354cafd6a343b5f96742b1f150a65e4c44b5bc0815df9d9045"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Profiling 完成。完整结果：\n\n### 论文级 Latency Table（RTX 4090）\n\n| Component | K=1 | K=5 | K=10 | K=20 |\n|---|---|---|---|---|\n| **VLA Sampling (batched)** | 180.0ms | 182.3ms | 162.3ms | 167.4ms |\n| VLA Sampling (sequential) | 177.0ms | 891.7ms | 1638.9ms | 3245.8ms |\n| CGS Features | - | 6.6ms | 6.3ms | 6.2ms |\n| CRM Forward | 0.25ms | 0.25ms | 0.25ms | 0.25ms |\n| Argmin Selection | - | 0.03ms | 0.03ms | 0.03ms |\n| **Full Pipeline (batched)** | ~210ms | 216.0ms | **200.7ms** | **199.7ms** |\n\n### 关键发现\n\n1. **Batched sampling 近乎常数时间** — K=1→K=20 仅 ~180ms，因为 KV cache 扩展后 GPU 并行计算\n2. **CRM overhead 极小** — 仅 0.25ms（MLP forward），加上 CGS 也只有 ~6.5ms，占 full pipeline 的 3.2%\n3. **Sequential sampling 线性增长** — batched 比 sequential 快 20× (K=20)\n4. **内存开销可控** — CRM 仅 1.8MB；K=20 peak 1085MB（VLA 本身 884MB）\n\nJSON 结果已保存在 `bjb1-18228:/root/acr-vla-conformal-refinement/logs/latency_profile.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-602-latency-profiling.md"
+}

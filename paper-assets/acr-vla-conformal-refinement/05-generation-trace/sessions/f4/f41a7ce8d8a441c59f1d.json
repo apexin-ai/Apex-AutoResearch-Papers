@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "id": "f41a7ce8d8a441c59f1d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "deploy precompute goal long bjb1",
+  "task_key": "worker_deploy_precompute-goal-long-bjb1_20260522T055613",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_deploy_precompute-goal-long-bjb1_20260522T055613.jsonl",
+    "occurrence": 1,
+    "bytes": 368,
+    "sha256": "9f9a33225f865c850f4394b87333ad44edbf34d6f0752b1b9b1150f37c361c8d"
+  },
+  "statistics": {
+    "messages": 2,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T05:56:22.358135+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_precompute-goal-long-bjb1_20260522T055613"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T05:56:34.058550+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 24, 1am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_precompute-goal-long-bjb1_20260522T055613"
+          },
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/deploy-precompute-goal-long-bjb1.md"
+}

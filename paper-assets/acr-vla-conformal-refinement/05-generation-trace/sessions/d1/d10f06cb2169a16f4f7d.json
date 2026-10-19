@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d10f06cb2169a16f4f7d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "infra deploy wrapper autodl4090",
+  "task_key": "worker_infra_deploy-wrapper-autodl4090_20260513T190638",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_deploy-wrapper-autodl4090_20260513T190638_result.json",
+    "occurrence": 1,
+    "bytes": 972,
+    "sha256": "1d5554573fbc8bb52a0bbd60a19ac2a8a21d4a6bc7de6918594e38772a866d8e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报如下：\n\n## 部署状态汇报\n\n### Wrapper (smolvla_wrapper.py)\n- **部署成功**，281 行（末尾无空行，与 282 行源文件一致）\n- 关键修复验证：flip=2, resize_with_pad=3, _unnormalize_action=2\n- **import 测试通过**，split_action 输出正确（6D + 1D）\n\n### evaluate.py 状态\n- **已包含全部修复**：\n  - `camera_names`: `[\"agentview\", \"robot0_eye_in_hand\"]` (line 108)\n  - `eye_in_hand`: 7 处引用，正确传递\n  - `get_robot_state`: 8D (eef_pos + eef_axisangle via quat2axisangle + gripper_qpos) (lines 73-78)\n  - 无需额外修改\n\n### GPU 状态\n- **RTX 4090 D**, 24564 MiB 总显存，3508 MiB 已用（基本空闲）\n\n### 模型状态\n- SmolVLA LIBERO 模型已下载，model.safetensors 865MB，normalizer stats 齐全\n\n**结论：bjb2-40593 就绪，wrapper + evaluate.py 均为修复版，GPU 空闲，模型可用。等待主 Agent 指令启动实验。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-deploy-wrapper-autodl4090.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "984f7c1bbc63cfceb6b7",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops sync random mode and deploy",
+  "task_key": "worker_ops_sync-random-mode-and-deploy_20260517T231313",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_sync-random-mode-and-deploy_20260517T231313_result.json",
+    "occurrence": 1,
+    "bytes": 578,
+    "sha256": "9faeacdce636796f06784082dbdff86b665f4beb9b4a3c331c44a2d9572a723e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| 实验 | 服务器 | GPU | PID | exp_id |\n|------|--------|-----|-----|--------|\n| random_selection seed43 | bjb2-28827 | cuda:0 | 492536 (tmux) / 492545 (GPU) | `eval-random-selection-object-seed43` |\n| obs_only norm005 seed44 | bjb1-32546 | cuda:1 | 549432 (GPU) | `eval-obs-only-object-norm005-seed44` |\n\n- `random_selection` 代码已同步到 bjb2-28827，import 验证通过\n- bjb2-28827 实验刚启动，正在加载 LIBERO 环境\n- bjb1-32546 实验此前已提交且正在运行（模型已加载，进入 rollout）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-random-mode-and-deploy.md"
+}

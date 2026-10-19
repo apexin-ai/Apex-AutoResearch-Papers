@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "747ed44d1de58ba43d82",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops bjb1 18228 utilization check",
+  "task_key": "worker_ops_bjb1-18228-utilization-check_20260519T054953",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_bjb1-18228-utilization-check_20260519T054953_result.json",
+    "occurrence": 1,
+    "bytes": 953,
+    "sha256": "693d4c085117aedd240d770abf116608e59dc8f71fe018f928ff73c0ea9c5edb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| GPU | 利用率 | 显存占用 | 显存剩余 | 运行实验 (tmux session) | 状态 |\n|-----|--------|----------|----------|------------------------|------|\n| 0 | 23% | 4269/24564 MiB | ~20.3 GB | `eval-obs-only-object-norm02-k5-seed47` | 正常运行 |\n| 1 | 22% | 2875/24564 MiB | ~21.7 GB | `eval-lto-splitA-heldout-r2` | 正常运行 |\n| 2 | 21% | 4700/24564 MiB | ~19.9 GB | `eval-argmin-object-k5-seed43` | 正常运行 |\n| 3 | 23% | 4269/24564 MiB | ~20.3 GB | `eval-obs-only-object-norm02-k5-seed46` | 正常运行 |\n\n**发现的问题：**\n\n- `eval-lto-splitA-vla-only-r2` **未在运行**，没有对应的 tmux session。预期在 cuda:2 上跑，但 cuda:2 当前只有 argmin-k5-seed43。\n- 所有 GPU 利用率都在 19-23%，属于 eval 推理的正常水平（间歇性推理，非持续计算）。\n- 每张 GPU 剩余显存 ~20 GB，**每张卡都有空间加跑实验**（eval 任务通常占 3-5 GB）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb1-18228-utilization-check.md"
+}

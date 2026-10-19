@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca1b2e97433ad0bee1e6",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "audit deploy bjb2 40593 fill",
+  "task_key": "worker_audit-deploy_bjb2-40593-fill_20260520T152936",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit-deploy_bjb2-40593-fill_20260520T152936_result.json",
+    "occurrence": 1,
+    "bytes": 409,
+    "sha256": "8bfc9d541fd739e5ae8f97bb46051414a2a1392de0bcf21299d3d1b2aed9e58e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**审计结果：**\n\n- **cuda:0** 被 PID 707407 占用（random-sel-object-seed43），正在运行中\n- 进度：完成 3/10 个 task，当前第3个 task 刚跑完\n- 无已完成的 JSON 输出（`eval_random_selection_object_seed43.json` 尚未生成）\n\n服务器只有 1x 4090，cuda:0 被占满，无法部署 eval-random-selection-spatial-seed45。等 seed43 完成后再部署。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-deploy-bjb2-40593-fill.md"
+}

@@ -1,0 +1,838 @@
+{
+  "schema_version": "1.0",
+  "id": "d64722a5c4355335153c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "diagnose pi05 crm k2 long s43 cqa1 20260526T131123 retry2",
+  "task_key": "worker_diagnose_pi05-crm-k2-long-s43-cqa1_20260526T131123_retry2",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_pi05-crm-k2-long-s43-cqa1_20260526T131123_retry2.log",
+    "occurrence": 1,
+    "bytes": 61939,
+    "sha256": "1d67910b96351771f37102b8e7bb2f8233f40f147611c1621b66b25f6a9aad58"
+  },
+  "statistics": {
+    "messages": 18,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "system": 1,
+      "record": 1,
+      "assistant": 3,
+      "tool_call": 6,
+      "tool_result": 6,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+                "session_id": "2fbcda8a-c372-47d3-920b-38a4504018ce",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "cfb771ed-7674-4640-9566-34b1d57da0e9",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1780063200,
+                  "rateLimitType": "seven_day",
+                  "utilization": 0.92,
+                  "isUsingOverage": false,
+                  "surpassedThreshold": 0.75
+                },
+                "uuid": "694d39dd-7a1c-49d9-8ccd-cb540cd06bd3",
+                "session_id": "2fbcda8a-c372-47d3-920b-38a4504018ce"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to diagnose why an experiment failed on server cqa1-32758. Let me start by loading the SSH tools and then executing the diagnostic commands.",
+              "signature": "EuQCCmMIDhgCKkCAY8s0tnzK6Ow+vU+pWnB9BnvEAajRi4LFkAJAs4+TglgCiDEYZfcjtu5BEDp0zAboLpI6/GhdbK9DH8FbKEuNMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDNvvfSc9spIeI0whFhoMGDDMit1oCLVxobMZIjAKigWQ/2HKwbJCZWRDIGNORl8cqYNpqvxJr7X/6h3E+iPSyjqMp86AmakXs8yczLUqrgETM1P+1hzeSnVk1inFnnN/eP+ITDnmJ0rAWg8Nbhe5tjSuKIzMpd4kpJtrNVsv4HHOlVPSjxHR8p+/416PsRqdElSu8yHIk5LFt1XqgzlBWtPemL5Ljj/YZ4n9rCtFHoQwZcnMvE87cI/C0bkCmG93P5WNJBZJXZsmeuID1FbNMpAvuL3qPAaz+Rwwug3foyTPUUMQHqLB8Xgmjnc/NDj3xE/9y+uMqCPisX29GnoYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2fbcda8a-c372-47d3-920b-38a4504018ce",
+            "uuid": "67d25f6a-5ae0-43b1-afb4-7286b29d2d78",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P2kV4AcPuqkY2oHU1jhNE8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11682,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11682
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014916e5Te1WiFMAnSj8AKtH",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2fbcda8a-c372-47d3-920b-38a4504018ce",
+            "uuid": "9ddc1995-0d7d-4b50-86f9-e71c4bdea09c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P2kV4AcPuqkY2oHU1jhNE8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11682,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11682
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-26T13:13:03.875Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_014916e5Te1WiFMAnSj8AKtH",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2fbcda8a-c372-47d3-920b-38a4504018ce",
+            "uuid": "96627f44-345d-4a7c-9cfc-21017e1c128d",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ryv1fRdR15CFkGpu8C6EMu",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-32758",
+                "command": "tail -50 ~/runs/acr-vla-conformal-refinement/pi05-crm-k2-long-s43-cqa1.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2fbcda8a-c372-47d3-920b-38a4504018ce",
+            "uuid": "3a06b7f9-0e69-4769-bcbe-ae1fb5c74a18",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CA2UzWjhGXdG5cHJtyoT9N",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 475,
+                "cache_read_input_tokens": 23523,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 475
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WeDXftgtwWjyJfrHf15hx6",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-32758",
+                "command": "grep -n \"checkpoint\" /root/acr-vla-conformal-refinement/src/evaluate.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2fbcda8a-c372-47d3-920b-38a4504018ce",
+            "uuid": "37c74917-73d1-4b6d-bcff-624d7ccda591",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CA2UzWjhGXdG5cHJtyoT9N",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 475,
+                "cache_read_input_tokens": 23523,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 475
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-26T13:13:07.390Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ryv1fRdR15CFkGpu8C6EMu",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n[evaluate] args: {'benchmark': 'long', 'checkpoint': None, 'crm_checkpoint': None, 'n_rollouts': 20, 'max_steps': 300, 'seed': 43, 'K': 2, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_long_crm_obs_only_norm0.05_seed43_pi05_K2_cqa1.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\\\n[eval] Mode: crm_obs_only, benchmark: long\\\\n[eval] max_steps set to 520 for benchmark long\\\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\\\n✓ Loaded state dict from model.safetensors\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\nAll keys loaded successfully!\\\\n[pi05] Fixed 437 vision tower keys\\\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.lm_head.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight']\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/acr-vla-conformal-refinement/src/evaluate.py\\\\\\\", line 869, in <module>\\\\n    main()\\\\n  File \\\\\\\"/root/acr-vla-conformal-refinement/src/evaluate.py\\\\\\\", line 864, in main\\\\n    evaluate(args)\\\\n  File \\\\\\\"/root/acr-vla-conformal-refinement/src/evaluate.py\\\\\\\", line 583, in evaluate\\\\n    raise ValueError(\\\\\\\"--checkpoint required for CRM modes\\\\\\\")\\\\nValueError: --checkpoint required for CRM modes\\\\nEXIT_CODE=1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2fbcda8a-c372-47d3-920b-38a4504018ce",
+            "uuid": "810627c2-bbe9-48f5-9db4-087bfb8dca52",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n[evaluate] args: {'benchmark': 'long', 'checkpoint': None, 'crm_checkpoint': None, 'n_rollouts': 20, 'max_steps': 300, 'seed': 43, 'K': 2, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_long_crm_obs_only_norm0.05_seed43_pi05_K2_cqa1.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\\\n[eval] Mode: crm_obs_only, benchmark: long\\\\n[eval] max_steps set to 520 for benchmark long\\\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\\\n✓ Loaded state dict from model.safetensors\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\\\nAll keys loaded successfully!\\\\n[pi05] Fixed 437 vision tower keys\\\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.lm_head.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight']\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/acr-vla-conformal-refinement/src/evaluate.py\\\\\\\", line 869, in <module>\\\\n    main()\\\\n  File \\\\\\\"/root/acr-vla-conformal-refinement/src/evaluate.py\\\\\\\", line 864, in main\\\\n    evaluate(args)\\\\n  File \\\\\\\"/root/acr-vla-conformal-refinement/src/evaluate.py\\\\\\\", line 583, in evaluate\\\\n    raise ValueError(\\\\\\\"--checkpoint required for CRM modes\\\\\\\")\\\\nValueError: --checkpoint required for CRM modes\\\\nEXIT_CODE=1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[robosuite WARNING] No private macro file found! (__init__.py:7)\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\n[evaluate] args: {'benchmark': 'long', 'checkpoint': None, 'crm_checkpoint': None, 'n_rollouts': 20, 'max_steps': 300, 'seed': 43, 'K': 2, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'pi05', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_long_crm_obs_only_norm0.05_seed43_pi05_K2_cqa1.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\n[eval] Mode: crm_obs_only, benchmark: long\\n[eval] max_steps set to 520 for benchmark long\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\nThe PI05 model is a direct port of the OpenPI implementation. \\nThis implementation follows the original OpenPI structure for compatibility. \\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\nLoading model from: /root/autodl-tmp/models/pi05_libero_finetuned/\\n✓ Loaded state dict from model.safetensors\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.bias\\nWARNING:root:Vision embedding key might need handling: model.paligemma_with_expert.paligemma.model.vision_tower.vision_model.embeddings.patch_embedding.weight\\nAll keys loaded successfully!\\n[pi05] Fixed 437 vision tower keys\\n[pi05] Vision tower missing_keys (376): ['model.paligemma_with_expert.paligemma.lm_head.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.weight', 'model.paligemma_with_expert.paligemma.model.multi_modal_projector.linear.bias', 'model.paligemma_with_expert.paligemma.model.language_model.embed_tokens.weight', 'model.paligemma_with_expert.paligemma.model.language_model.layers.0.self_attn.q_proj.weight']\\nTraceback (most recent call last):\\n  File \\\"/root/acr-vla-conformal-refinement/src/evaluate.py\\\", line 869, in <module>\\n    main()\\n  File \\\"/root/acr-vla-conformal-refinement/src/evaluate.py\\\", line 864, in main\\n    evaluate(args)\\n  File \\\"/root/acr-vla-conformal-refinement/src/evaluate.py\\\", line 583, in evaluate\\n    raise ValueError(\\\"--checkpoint required for CRM modes\\\")\\nValueError: --checkpoint required for CRM modes\\nEXIT_CODE=1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-26T13:13:08.052Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WeDXftgtwWjyJfrHf15hx6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"29:  python evaluate.py --benchmark object --checkpoint /path/to/crm_best.pt --n_rollouts 20\\\\n32:  python evaluate.py --benchmark spatial --mode acr_vla --crm_checkpoint /path/to/crm_best.pt --n_rollouts 10\\\\n69:    p.add_argument(\\\\\\\"--checkpoint\\\\\\\", type=str, default=None,\\\\n70:                   help=\\\\\\\"Path to CRM checkpoint (crm_best.pt)\\\\\\\")\\\\n71:    p.add_argument(\\\\\\\"--crm_checkpoint\\\\\\\", type=str, default=None,\\\\n72:                   help=\\\\\\\"Alias for --checkpoint (used with --mode acr_vla)\\\\\\\")\\\\n103:                   help='Override CRM max_correction_norm (default: use checkpoint value)')\\\\n112:    p.add_argument(\\\\\\\"--unc_head_checkpoint\\\\\\\", type=str, default=None,\\\\n113:                   help=\\\\\\\"Path to trained UncertaintyHead model checkpoint\\\\\\\")\\\\n535:    # --crm_checkpoint is an alias for --checkpoint\\\\n536:    if args.crm_checkpoint and not args.checkpoint:\\\\n537:        args.checkpoint = args.crm_checkpoint\\\\n539:    # Default checkpoint for adaptive_k mode\\\\n540:    if args.mode in (\\\\\\\"adaptive_k\\\\\\\", \\\\\\\"adaptive_unc_head\\\\\\\", \\\\\\\"adaptive_conformal_crm\\\\\\\") and args.checkpoint is None:\\\\n541:        args.checkpoint = \\\\\\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\\\\\"\\\\n542:        print(f\\\\\\\"[eval] {args.mode}: using default CRM checkpoint {args.checkpoint}\\\\\\\")\\\\n582:        if args.checkpoint is None:\\\\n583:            raise ValueError(\\\\\\\"--checkpoint required for CRM modes\\\\\\\")\\\\n601:        crm.load_state_dict(torch.load(args.checkpoint, map_location=device,\\\\n604:        print(f\\\\\\\"[eval] CRM loaded from {args.checkpoint} \\\\\\\"\\\\n623:                f\\\\\\\"or pass --obs_dim {pi05_feat_dim} if checkpoint matches.\\\\\\\"\\\\n631:        if args.unc_head_checkpoint is None:\\\\n632:            raise ValueError(\\\\\\\"--unc_head_checkpoint required for adaptive_unc_head mode\\\\\\\")\\\\n634:        unc_head = UncertaintyHead.load(args.unc_head_checkpoint).to(device).eval()\\\\n635:        print(f\\\\\\\"[eval] UncertaintyHead loaded from {args.unc_head_checkpoint}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2fbcda8a-c372-47d3-920b-38a4504018ce",
+            "uuid": "3dba8e82-a768-47af-b7bc-82bdf4c5b5d3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"29:  python evaluate.py --benchmark object --checkpoint /path/to/crm_best.pt --n_rollouts 20\\\\n32:  python evaluate.py --benchmark spatial --mode acr_vla --crm_checkpoint /path/to/crm_best.pt --n_rollouts 10\\\\n69:    p.add_argument(\\\\\\\"--checkpoint\\\\\\\", type=str, default=None,\\\\n70:                   help=\\\\\\\"Path to CRM checkpoint (crm_best.pt)\\\\\\\")\\\\n71:    p.add_argument(\\\\\\\"--crm_checkpoint\\\\\\\", type=str, default=None,\\\\n72:                   help=\\\\\\\"Alias for --checkpoint (used with --mode acr_vla)\\\\\\\")\\\\n103:                   help='Override CRM max_correction_norm (default: use checkpoint value)')\\\\n112:    p.add_argument(\\\\\\\"--unc_head_checkpoint\\\\\\\", type=str, default=None,\\\\n113:                   help=\\\\\\\"Path to trained UncertaintyHead model checkpoint\\\\\\\")\\\\n535:    # --crm_checkpoint is an alias for --checkpoint\\\\n536:    if args.crm_checkpoint and not args.checkpoint:\\\\n537:        args.checkpoint = args.crm_checkpoint\\\\n539:    # Default checkpoint for adaptive_k mode\\\\n540:    if args.mode in (\\\\\\\"adaptive_k\\\\\\\", \\\\\\\"adaptive_unc_head\\\\\\\", \\\\\\\"adaptive_conformal_crm\\\\\\\") and args.checkpoint is None:\\\\n541:        args.checkpoint = \\\\\\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\\\\\"\\\\n542:        print(f\\\\\\\"[eval] {args.mode}: using default CRM checkpoint {args.checkpoint}\\\\\\\")\\\\n582:        if args.checkpoint is None:\\\\n583:            raise ValueError(\\\\\\\"--checkpoint required for CRM modes\\\\\\\")\\\\n601:        crm.load_state_dict(torch.load(args.checkpoint, map_location=device,\\\\n604:        print(f\\\\\\\"[eval] CRM loaded from {args.checkpoint} \\\\\\\"\\\\n623:                f\\\\\\\"or pass --obs_dim {pi05_feat_dim} if checkpoint matches.\\\\\\\"\\\\n631:        if args.unc_head_checkpoint is None:\\\\n632:            raise ValueError(\\\\\\\"--unc_head_checkpoint required for adaptive_unc_head mode\\\\\\\")\\\\n634:        unc_head = UncertaintyHead.load(args.unc_head_checkpoint).to(device).eval()\\\\n635:        print(f\\\\\\\"[eval] UncertaintyHead loaded from {args.unc_head_checkpoint}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"29:  python evaluate.py --benchmark object --checkpoint /path/to/crm_best.pt --n_rollouts 20\\n32:  python evaluate.py --benchmark spatial --mode acr_vla --crm_checkpoint /path/to/crm_best.pt --n_rollouts 10\\n69:    p.add_argument(\\\"--checkpoint\\\", type=str, default=None,\\n70:                   help=\\\"Path to CRM checkpoint (crm_best.pt)\\\")\\n71:    p.add_argument(\\\"--crm_checkpoint\\\", type=str, default=None,\\n72:                   help=\\\"Alias for --checkpoint (used with --mode acr_vla)\\\")\\n103:                   help='Override CRM max_correction_norm (default: use checkpoint value)')\\n112:    p.add_argument(\\\"--unc_head_checkpoint\\\", type=str, default=None,\\n113:                   help=\\\"Path to trained UncertaintyHead model checkpoint\\\")\\n535:    # --crm_checkpoint is an alias for --checkpoint\\n536:    if args.crm_checkpoint and not args.checkpoint:\\n537:        args.checkpoint = args.crm_checkpoint\\n539:    # Default checkpoint for adaptive_k mode\\n540:    if args.mode in (\\\"adaptive_k\\\", \\\"adaptive_unc_head\\\", \\\"adaptive_conformal_crm\\\") and args.checkpoint is None:\\n541:        args.checkpoint = \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\"\\n542:        print(f\\\"[eval] {args.mode}: using default CRM checkpoint {args.checkpoint}\\\")\\n582:        if args.checkpoint is None:\\n583:            raise ValueError(\\\"--checkpoint required for CRM modes\\\")\\n601:        crm.load_state_dict(torch.load(args.checkpoint, map_location=device,\\n604:        print(f\\\"[eval] CRM loaded from {args.checkpoint} \\\"\\n623:                f\\\"or pass --obs_dim {pi05_feat_dim} if checkpoint matches.\\\"\\n631:        if args.unc_head_checkpoint is None:\\n632:            raise ValueError(\\\"--unc_head_checkpoint required for adaptive_unc_head mode\\\")\\n634:        unc_head = UncertaintyHead.load(args.unc_head_checkpoint).to(device).eval()\\n635:        print(f\\\"[eval] UncertaintyHead loaded from {args.unc_head_checkpoint}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.64}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KL9j59HKspABfLAU18kiZ5",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-32758",
+                "command": "ls -la /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2fbcda8a-c372-47d3-920b-38a4504018ce",
+            "uuid": "abf5a23b-b23c-4ad5-bddc-3459ca6b2960",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018EkdMiDF5wLQhZowMX6aVJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2200,
+                "cache_read_input_tokens": 23998,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2200
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-26T13:13:11.742Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KL9j59HKspABfLAU18kiZ5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 2484379 May 25 16:41 /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2fbcda8a-c372-47d3-920b-38a4504018ce",
+            "uuid": "59d7fca3-4643-4f37-b140-65eb232ecdf2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 2484379 May 25 16:41 /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 2484379 May 25 16:41 /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011LryvDyfCDoZRCu7YxTmXL",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-32758",
+                "command": "git -C /root/acr-vla-conformal-refinement log --oneline -3",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2fbcda8a-c372-47d3-920b-38a4504018ce",
+            "uuid": "77b09a8b-11f4-473c-b08f-708e948cd7ac",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018EkdMiDF5wLQhZowMX6aVJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2200,
+                "cache_read_input_tokens": 23998,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2200
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-26T13:13:12.306Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011LryvDyfCDoZRCu7YxTmXL",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'git' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2fbcda8a-c372-47d3-920b-38a4504018ce",
+            "uuid": "32d45c18-ad1d-4088-ac04-d860239a562d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'git' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'git' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0127ByRijiysKsFpZaL5tSm2",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "cqa1-32758",
+                "command": "ps aux",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2fbcda8a-c372-47d3-920b-38a4504018ce",
+            "uuid": "c383bd7a-b11b-40bf-a43e-3d0f704d27af",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018EkdMiDF5wLQhZowMX6aVJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2200,
+                "cache_read_input_tokens": 23998,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2200
+                },
+                "output_tokens": 44,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-26T13:13:13.484Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0127ByRijiysKsFpZaL5tSm2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\\\nroot          1  0.0  0.0   4476  3344 ?        Ss   08:29   0:00 bash /init/boot/boot.sh\\\\nroot        800  3.1  0.0 724128 24620 ?        Sl   08:29  24:17 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        818  0.0  0.0 4147820 81432 ?       Sl   08:29   0:41 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        820  0.0  0.0 189160 104156 ?       S    08:29   0:02 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        821  0.0  0.0  15444  9476 ?        S    08:29   0:06 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot        822  0.0  0.0 2425836 20524 ?       Sl   08:29   0:43 proxy -c /init/proxy/proxy.ini\\\\nroot        824  0.0  0.0 2425836 20016 ?       Sl   08:29   0:25 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot        825  0.4  0.0 6155280 103668 ?      Sl   08:29   3:19 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        920  0.0  0.0 26177944 12096 ?      Sl   08:29   0:41 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_cwriqj9r/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_cwriqj9r/startup_error\\\\nroot       1351  0.0  0.0  16692 10552 ?        Ss   08:30   0:07 sshd: root@notty\\\\nroot     110354  0.0  0.0   6360  4044 ?        Ss   10:54   0:00 tmux new-session -d -s pi05-tau050 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.50 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark goal --seed 42 --n_rollouts 20 --output_file logs/eval_goal_adaptive_pi05_tau050_seed42.json 2>&1 | tee /tmp/eval_pi05_tau050.log\\\\nroot     216644  0.0  0.0   4496  3520 pts/0    Ss+  14:52   0:00 bash -c rm -f /tmp/agent-ml-exit/pi05-crm-k2-long-s44-cqa1.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/acr-vla-conformal-refinement/pi05-crm-k2-long-s44-cqa1.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/pi05-crm-k2-long-s44-cqa1.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark long --seed 44 --n_rollouts 20 --output_file logs/eval_long_crm_k2_pi05_seed44.json\\\\\\\"'; } > ~/runs/acr-vla-conformal-refinement/pi05-crm-k2-long-s44-cqa1.log 2>&1\\\\nroot     216648  0.0  0.0   2800   984 pts/0    S    14:52   0:00 timeout 86400 env bash -c bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark long --seed 44 --n_rollouts 20 --output_file logs/eval_long_crm_k2_pi05_seed44.json\\\\\\\"\\\\nroot     216649  539  1.1 75557616 12116852 pts/0 Rl 14:52 2050:37 python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim \\\\n\\\\n... [截断: 输出过长，省略 81080 字符] ...\\\\n\\\\nn /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     393944  0.0  0.0 11251988 367700 pts/6 Sl   21:03   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     393946  0.0  0.0 11251988 367700 pts/6 Sl   21:03   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     393948  0.0  0.0 11251988 367700 pts/6 Sl   21:03   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     393950  0.0  0.0 11251988 367700 pts/6 Sl   21:03   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     393952  0.0  0.0 11251988 367700 pts/6 Sl   21:03   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     393954  0.0  0.0 11251988 367700 pts/6 Sl   21:03   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     393956  0.0  0.0 11251988 367700 pts/6 Sl   21:03   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     393958  0.0  0.0 11251988 367700 pts/6 Sl   21:03   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     393960  0.0  0.0 11251988 367700 pts/6 Sl   21:03   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     398787  0.0  0.0  16692 10456 ?        Ss   21:08   0:00 sshd: root@notty\\\\nroot     402719  0.0  0.0  16692 10776 ?        Ss   21:12   0:00 sshd: root@notty\\\\nroot     403428  0.6  0.0  16692 10808 ?        Ss   21:13   0:00 sshd: root@notty\\\\nroot     403543  0.0  0.0   7064  1592 ?        Rs   21:13   0:00 ps aux\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2fbcda8a-c372-47d3-920b-38a4504018ce",
+            "uuid": "479328bd-a3a2-4df8-8819-9bc786568492",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\\\nroot          1  0.0  0.0   4476  3344 ?        Ss   08:29   0:00 bash /init/boot/boot.sh\\\\nroot        800  3.1  0.0 724128 24620 ?        Sl   08:29  24:17 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        818  0.0  0.0 4147820 81432 ?       Sl   08:29   0:41 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        820  0.0  0.0 189160 104156 ?       S    08:29   0:02 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        821  0.0  0.0  15444  9476 ?        S    08:29   0:06 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot        822  0.0  0.0 2425836 20524 ?       Sl   08:29   0:43 proxy -c /init/proxy/proxy.ini\\\\nroot        824  0.0  0.0 2425836 20016 ?       Sl   08:29   0:25 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot        825  0.4  0.0 6155280 103668 ?      Sl   08:29   3:19 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        920  0.0  0.0 26177944 12096 ?      Sl   08:29   0:41 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_cwriqj9r/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_cwriqj9r/startup_error\\\\nroot       1351  0.0  0.0  16692 10552 ?        Ss   08:30   0:07 sshd: root@notty\\\\nroot     110354  0.0  0.0   6360  4044 ?        Ss   10:54   0:00 tmux new-session -d -s pi05-tau050 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.50 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark goal --seed 42 --n_rollouts 20 --output_file logs/eval_goal_adaptive_pi05_tau050_seed42.json 2>&1 | tee /tmp/eval_pi05_tau050.log\\\\nroot     216644  0.0  0.0   4496  3520 pts/0    Ss+  14:52   0:00 bash -c rm -f /tmp/agent-ml-exit/pi05-crm-k2-long-s44-cqa1.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/acr-vla-conformal-refinement/pi05-crm-k2-long-s44-cqa1.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/pi05-crm-k2-long-s44-cqa1.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark long --seed 44 --n_rollouts 20 --output_file logs/eval_long_crm_k2_pi05_seed44.json\\\\\\\"'; } > ~/runs/acr-vla-conformal-refinement/pi05-crm-k2-long-s44-cqa1.log 2>&1\\\\nroot     216648  0.0  0.0   2800   984 pts/0    S    14:52   0:00 timeout 86400 env bash -c bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark long --seed 44 --n_rollouts 20 --output_file logs/eval_long_crm_k2_pi05_seed44.json\\\\\\\"\\\\nroot     216649  539  1.1 75557616 12116852 pts/0 Rl 14:52 2050:37 python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim \\\\n\\\\n... [截断: 输出过长，省略 81080 字符] ...\\\\n\\\\nn /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     393944  0.0  0.0 11251988 367700 pts/6 Sl   21:03   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     393946  0.0  0.0 11251988 367700 pts/6 Sl   21:03   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     393948  0.0  0.0 11251988 367700 pts/6 Sl   21:03   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     393950  0.0  0.0 11251988 367700 pts/6 Sl   21:03   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     393952  0.0  0.0 11251988 367700 pts/6 Sl   21:03   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     393954  0.0  0.0 11251988 367700 pts/6 Sl   21:03   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     393956  0.0  0.0 11251988 367700 pts/6 Sl   21:03   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     393958  0.0  0.0 11251988 367700 pts/6 Sl   21:03   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     393960  0.0  0.0 11251988 367700 pts/6 Sl   21:03   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\\\nroot     398787  0.0  0.0  16692 10456 ?        Ss   21:08   0:00 sshd: root@notty\\\\nroot     402719  0.0  0.0  16692 10776 ?        Ss   21:12   0:00 sshd: root@notty\\\\nroot     403428  0.6  0.0  16692 10808 ?        Ss   21:13   0:00 sshd: root@notty\\\\nroot     403543  0.0  0.0   7064  1592 ?        Rs   21:13   0:00 ps aux\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\nroot          1  0.0  0.0   4476  3344 ?        Ss   08:29   0:00 bash /init/boot/boot.sh\\nroot        800  3.1  0.0 724128 24620 ?        Sl   08:29  24:17 /bin/supervisord -c /init/supervisor/supervisor.ini\\nroot        818  0.0  0.0 4147820 81432 ?       Sl   08:29   0:41 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        820  0.0  0.0 189160 104156 ?       S    08:29   0:02 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        821  0.0  0.0  15444  9476 ?        S    08:29   0:06 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\nroot        822  0.0  0.0 2425836 20524 ?       Sl   08:29   0:43 proxy -c /init/proxy/proxy.ini\\nroot        824  0.0  0.0 2425836 20016 ?       Sl   08:29   0:25 proxy -c /init/proxy/proxy-hot-backup.ini\\nroot        825  0.4  0.0 6155280 103668 ?      Sl   08:29   3:19 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\nroot        920  0.0  0.0 26177944 12096 ?      Sl   08:29   0:41 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_cwriqj9r/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_cwriqj9r/startup_error\\nroot       1351  0.0  0.0  16692 10552 ?        Ss   08:30   0:07 sshd: root@notty\\nroot     110354  0.0  0.0   6360  4044 ?        Ss   10:54   0:00 tmux new-session -d -s pi05-tau050 source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.50 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark goal --seed 42 --n_rollouts 20 --output_file logs/eval_goal_adaptive_pi05_tau050_seed42.json 2>&1 | tee /tmp/eval_pi05_tau050.log\\nroot     216644  0.0  0.0   4496  3520 pts/0    Ss+  14:52   0:00 bash -c rm -f /tmp/agent-ml-exit/pi05-crm-k2-long-s44-cqa1.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/acr-vla-conformal-refinement/pi05-crm-k2-long-s44-cqa1.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/pi05-crm-k2-long-s44-cqa1.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=0 && timeout 86400 env bash -c 'bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark long --seed 44 --n_rollouts 20 --output_file logs/eval_long_crm_k2_pi05_seed44.json\\\"'; } > ~/runs/acr-vla-conformal-refinement/pi05-crm-k2-long-s44-cqa1.log 2>&1\\nroot     216648  0.0  0.0   2800   984 pts/0    S    14:52   0:00 timeout 86400 env bash -c bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark long --seed 44 --n_rollouts 20 --output_file logs/eval_long_crm_k2_pi05_seed44.json\\\"\\nroot     216649  539  1.1 75557616 12116852 pts/0 Rl 14:52 2050:37 python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim \\n\\n... [截断: 输出过长，省略 81080 字符] ...\\n\\nn /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     393944  0.0  0.0 11251988 367700 pts/6 Sl   21:03   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     393946  0.0  0.0 11251988 367700 pts/6 Sl   21:03   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     393948  0.0  0.0 11251988 367700 pts/6 Sl   21:03   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     393950  0.0  0.0 11251988 367700 pts/6 Sl   21:03   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     393952  0.0  0.0 11251988 367700 pts/6 Sl   21:03   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     393954  0.0  0.0 11251988 367700 pts/6 Sl   21:03   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     393956  0.0  0.0 11251988 367700 pts/6 Sl   21:03   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     393958  0.0  0.0 11251988 367700 pts/6 Sl   21:03   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     393960  0.0  0.0 11251988 367700 pts/6 Sl   21:03   0:00 /root/miniconda3/bin/python /root/miniconda3/lib/python3.12/site-packages/torch/_inductor/compile_worker/__main__.py --pickler=torch._inductor.compile_worker.subproc_pool.SubprocPickler --kind=fork --workers=32 --parent=392699 --read-fd=15 --write-fd=18 --torch-key=H4QweOk00IXhifNSBFt33pU0hqEJ8U7VJTQvH3venIU=\\nroot     398787  0.0  0.0  16692 10456 ?        Ss   21:08   0:00 sshd: root@notty\\nroot     402719  0.0  0.0  16692 10776 ?        Ss   21:12   0:00 sshd: root@notty\\nroot     403428  0.6  0.0  16692 10808 ?        Ss   21:13   0:00 sshd: root@notty\\nroot     403543  0.0  0.0   7064  1592 ?        Rs   21:13   0:00 ps aux\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me analyze the findings:\n\n1. **Failed experiment (pi05-crm-k2-long-s43-cqa1)**: The log confirms the error. Looking at the args printed in the log:\n   - `'checkpoint': None, 'crm_checkpoint': None` — both are None\n   - The original command used `--checkpoint` but didn't pass the value. Wait, looking again at the failed command:\n   ```\n   python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --benchmark long --seed 43 --n_rollouts 20 --output_file logs/eval_long_crm_obs_only_norm0.05_seed43_pi05_K2_cqa1.json\n   ```\n   Neither `--checkpoint` nor `--crm_checkpoint` was passed at all, and the observation dimension flags `--obs_dim 2048 --unified_obs_dim 2088` are also missing.\n\n2. **Looking at evaluate.py's argparse setup**: The checkpoint argument is defined on line 69, with `--crm_checkpoint` as an alias on line 71. The code aliases `crm_checkpoint` to `checkpoint` and requires it to be set for CRM modes, so either flag should work if provided.\n\n3. **The checkpoint file does exist** at `/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt` (2.4MB from May 25), but it's not being referenced in the failing command.\n\n4. **A sibling experiment is running successfully** with the same checkpoint path and the missing observation dimension arguments included in its command.\n   ```\n   python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark long --seed 44 --n_rollouts 20 --output_file logs/eval_long_crm_k2_pi05_seed44.\n   ```\n\nSo the s43 command is missing three critical arguments that the working s44 command has: the `--crm_checkpoint` path, `--obs_dim 2048`, and `--unified_obs_dim 2088`. That's why it's failing.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2fbcda8a-c372-47d3-920b-38a4504018ce",
+            "uuid": "a6b81569-1611-458b-bbdf-9e9f1a9b6590",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013XvNVq3n2MbhQ3WDnzWLtz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4354,
+                "cache_read_input_tokens": 26198,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4354
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 失败原因\n\ns43 实验命令**缺少三个关键参数**：\n- `--crm_checkpoint`（或 `--checkpoint`）\n- `--obs_dim 2048`\n- `--unified_obs_dim 2088`\n\n日志确认 args 中 `checkpoint: None, crm_checkpoint: None`，触发 line 583 的 ValueError。\n\n### s44 实验状态\n\n**s44 正在正常运行**（PID 216649，CPU 539%），它的命令包含了所有必要参数：\n```\n--crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088\n```\ns44 没有同样的风险。\n\n### Checkpoint 确认\n\n`/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt` 存在（2.4MB，May 25 16:41）。\n\n### 参数说明\n\nevaluate.py 支持 `--checkpoint` 和 `--crm_checkpoint`（line 69-72），后者是前者的别名（line 535-537）。两者均可。\n\n### 重新提交的完整命令\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/acr-vla-conformal-refinement && \\\nCUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py \\\n  --model pi05 \\\n  --mode crm_obs_only \\\n  --K 2 \\\n  --max_correction_norm 0.05 \\\n  --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt \\\n  --obs_dim 2048 \\\n  --unified_obs_dim 2088 \\\n  --benchmark long \\\n  --seed 43 \\\n  --n_rollouts 20 \\\n  --output_file logs/eval_long_crm_k2_pi05_seed43.json\n```\n\n注意：output_file 名也建议对齐 s44 的命名格式（`eval_long_crm_k2_pi05_seed43.json` 而非原来的 `eval_long_crm_obs_only_norm0.05_seed43_pi05_K2_cqa1.json`），方便后续批量分析。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2fbcda8a-c372-47d3-920b-38a4504018ce",
+            "uuid": "19472345-728d-4285-be31-409028d62444",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013XvNVq3n2MbhQ3WDnzWLtz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4354,
+                "cache_read_input_tokens": 26198,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4354
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 失败原因\n\ns43 实验命令**缺少三个关键参数**：\n- `--crm_checkpoint`（或 `--checkpoint`）\n- `--obs_dim 2048`\n- `--unified_obs_dim 2088`\n\n日志确认 args 中 `checkpoint: None, crm_checkpoint: None`，触发 line 583 的 ValueError。\n\n### s44 实验状态\n\n**s44 正在正常运行**（PID 216649，CPU 539%），它的命令包含了所有必要参数：\n```\n--crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088\n```\ns44 没有同样的风险。\n\n### Checkpoint 确认\n\n`/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt` 存在（2.4MB，May 25 16:41）。\n\n### 参数说明\n\nevaluate.py 支持 `--checkpoint` 和 `--crm_checkpoint`（line 69-72），后者是前者的别名（line 535-537）。两者均可。\n\n### 重新提交的完整命令\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\ncd /root/acr-vla-conformal-refinement && \\\nCUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py \\\n  --model pi05 \\\n  --mode crm_obs_only \\\n  --K 2 \\\n  --max_correction_norm 0.05 \\\n  --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt \\\n  --obs_dim 2048 \\\n  --unified_obs_dim 2088 \\\n  --benchmark long \\\n  --seed 43 \\\n  --n_rollouts 20 \\\n  --output_file logs/eval_long_crm_k2_pi05_seed43.json\n```\n\n注意：output_file 名也建议对齐 s44 的命名格式（`eval_long_crm_k2_pi05_seed43.json` 而非原来的 `eval_long_crm_obs_only_norm0.05_seed43_pi05_K2_cqa1.json`），方便后续批量分析。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 39889,
+            "duration_api_ms": 39691,
+            "num_turns": 7,
+            "stop_reason": "end_turn",
+            "session_id": "2fbcda8a-c372-47d3-920b-38a4504018ce",
+            "total_cost_usd": 0.21468674999999998,
+            "usage": {
+              "input_tokens": 7,
+              "cache_creation_input_tokens": 18711,
+              "cache_read_input_tokens": 85560,
+              "output_tokens": 2137,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 18711,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 1419,
+                  "cache_read_input_tokens": 26198,
+                  "cache_creation_input_tokens": 4354,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 4354
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1413,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001503,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 7,
+                "outputTokens": 2137,
+                "cacheReadInputTokens": 85560,
+                "cacheCreationInputTokens": 18711,
+                "webSearchRequests": 0,
+                "costUSD": 0.21318375,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "b3877e16-367c-4a46-9dfd-60de877151b9"
+          },
+          "id": "event-000018"
+        }
+      ],
+      "message_count": 18
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-pi05-crm-k2-long-s43-cqa1-20260526t131123-retry2.md"
+}

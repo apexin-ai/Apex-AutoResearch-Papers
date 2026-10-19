@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2b2332b4c4598973bd0",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "fix bjb1 duplicate deploy long",
+  "task_key": "worker_fix_bjb1-duplicate-deploy-long_20260526T144114",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_bjb1-duplicate-deploy-long_20260526T144114_result.json",
+    "occurrence": 1,
+    "bytes": 950,
+    "sha256": "86dccbdeb33bfc5a8736eaaf0c4df1ed09ce6e29c948b445bfd05a0c384ae949"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "bjb1-18228 cuda:0 (13765 MiB) 和 cuda:1 (9545 MiB) 已上 GPU，cuda:3 还在加载中。bjb1-32546 两个也在加载中。模型加载正常推进。\n\n## 部署完成总结\n\n### bjb1-18228（已 kill 重复，部署 3 个 Long VLA-only）\n\n| exp_id | GPU | PID | 状态 |\n|--------|-----|-----|------|\n| pi05-vla-only-long-s42-4090-r3 | cuda:0 | 338021 | 运行中，13765 MiB |\n| pi05-vla-only-long-s43-4090 | cuda:1 | 338482 | 运行中，9545 MiB |\n| pi05-vla-only-long-s44-4090 | cuda:3 | 339339 | 模型加载中 |\n\n- cuda:2 未动\n\n### bjb1-32546（部署 2 个）\n\n| exp_id | GPU | PID | 状态 |\n|--------|-----|-----|------|\n| pi05-vla-only-goal-s44-4090 | cuda:3 | 872072 | 模型加载中 |\n| pi05-vla-only-object-s43-4090 | cuda:5 | 872361 | 模型加载中 |\n\n- 原有 cuda:3 上的 spatial k2mean 实验 (PID 268191) 已 kill\n- bjb1-32546 所有 GPU 均空闲，仅在 cuda:3/5 部署了新实验"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-bjb1-duplicate-deploy-long.md"
+}

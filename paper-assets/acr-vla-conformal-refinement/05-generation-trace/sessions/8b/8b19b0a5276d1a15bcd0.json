@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b19b0a5276d1a15bcd0",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "verify goal vla only d163",
+  "task_key": "worker_verify_goal-vla-only-d163_20260526T161800",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_goal-vla-only-d163_20260526T161800_result.json",
+    "occurrence": 1,
+    "bytes": 2662,
+    "sha256": "377530c0583957507de9b5f4ea2d7b367db880330b9dffea57ff0b9e4cbb258c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# 结论：两组数据都不是 D163 (a594db5) 版本\n\n## 证据：runtime args 都包含 `unified_obs_dim`\n\n两组实验的 `[evaluate] args:` 行都打印了 `'unified_obs_dim': None, 'n_action_steps': 10`。但 a594db5 的 evaluate.py **不包含** `unified_obs_dim` / `openvla_oft` / `SUITE_MAX_STEPS`（已在 bjb1-18228 上验证：`git show a594db5:src/evaluate.py` 的 grep counts 全为 0，现行 evaluate.py 分别为 3/6/2）。a594db5 与当前 c15065ec 相差 +82/-19 行。\n\n## 详细对比\n\n| Group | exp_id | Date (UTC) | Server | Runtime args | SR | D163? |\n|---|---|---|---|---|---|---|\n| **May 22 r4** | seed42-r4 | 05-22 12:22 | bjb1-18228 | has `unified_obs_dim`, `n_action_steps` | 98.0 | ❌ |\n| | seed43-r4 | 05-22 15:19 | bjb1-32546 | 同上 | 98.0 | ❌ |\n| | seed44-r4 | 05-22 15:19 | bjb1-32546 | 同上 | 97.5 | ❌ |\n| **May 24** | s42 | 05-24 18:17 | bjb1-32546 | 与 r4 完全一致 | 95.5 | ❌ |\n| | s43 | 05-24 18:17 | bjb1-32546 | 与 r4 完全一致 | 97.0 | ❌ |\n| | s44 | 05-25 09:10 | bjb2-28827 (HEAD=446587c, 非 a594db5) | 与 r4 完全一致 | 97.5 | ❌ |\n\n两组的 args dict 字段、值完全一致 → **使用的是同一族 evaluate.py**（带 `unified_obs_dim`/`openvla_oft` 补丁的后续版本，非 a594db5）。\n\na594db5 commit 时间 = 05-22 05:02 UTC；r4 实验 05-22 12:22 UTC 启动时，bjb1-18228 working copy 已 modified（`git status -s src/evaluate.py` 显示 `M`），且 args 中有 a594db5 不存在的 `unified_obs_dim` 字段——所以即便最贴近 commit 时间的 r4 也不是 a594db5 版本。\n\n## 真正的 D163-compliant Goal VLA-only 数据\n\n只有 `westd-pi05-vla-only-goal-s4X-paired`（05-26，westd-49937 = RTX PRO 6000 Blackwell）在 registry 中显式记录了 `reproduce.code_commit = a594db578deeeeddc0ab068549e315c5a3bb4d6a`：\n- s42-paired: 97.5%\n- s43-paired: 96.5%\n- s44-paired: 95.5%\n- mean ≈ 96.5%\n\n但这批数据是 **Blackwell 系统性偏差 ~3pp**（loop_26/27 已警告），不能与 4090 集群其它行混表。\n\n## 建议\n\n如果 D163 严格要求 = a594db5，**两组都不达标**，4090 上的 Goal VLA-only 需重跑。如果实际可接受的是\"两组之间 evaluate.py 一致\"，则：\n- 两组的 effective args 完全相同 → **可以选其中一组**；\n- 1.1pp 差异（96.7% vs 97.8%）几乎全部来自 seed42——s42-r4=98.0% vs s42=95.5%，差 2.5pp，更像是 bjb1-18228 与 bjb1-32546 跨服务器的偶然漂移；\n- 建议向 Director 确认 D163 红线的严格度，再决定是否需要派 Worker 在 4090 集群上 revert 到 a594db5 后重跑 Goal VLA-only 3 seeds。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-goal-vla-only-d163.md"
+}

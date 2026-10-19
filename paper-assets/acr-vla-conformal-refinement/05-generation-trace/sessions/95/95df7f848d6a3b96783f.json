@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95df7f848d6a3b96783f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops kill v4 default r3 bjb2",
+  "task_key": "worker_ops_kill-v4-default-r3-bjb2_20260515T044255",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_kill-v4-default-r3-bjb2_20260515T044255_result.json",
+    "occurrence": 1,
+    "bytes": 575,
+    "sha256": "73c9e6298a8ef19f0f369932486a26f75ada002631bee41925847a3de6da11b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：bjb2-40593 上没有 v4-default-r3 相关进程。**\n\n当前状态：\n- **唯一 GPU 进程**：PID 211962 — `reconvla-object` 实验（`evaluate.py --benchmark object --mode reconvla --K 10 --n_rollouts 20`），占用 5573MiB，正在运行中 → **已保留**\n- **tmux session**：`eval-reconvla-object`（PID 211951）— 就是上面这个实验的 session\n- **v4-default-r3 进程**：不存在，已经没有了。无需 kill 任何东西。\n\nGPU 使用 5592MiB / 24564MiB，利用率 12%，全部是 reconvla-object 实验在用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-v4-default-r3-bjb2.md"
+}

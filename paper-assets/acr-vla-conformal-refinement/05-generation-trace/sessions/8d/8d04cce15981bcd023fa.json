@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d04cce15981bcd023fa",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy smolvla long reseed",
+  "task_key": "worker_deploy_smolvla-long-reseed_20260522T141707",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_smolvla-long-reseed_20260522T141707_result.json",
+    "occurrence": 1,
+    "bytes": 714,
+    "sha256": "a91592509fba396ded39512148d78703daf67f6c81b6e4024392a1e4bacc7869"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 eval 全部正常启动，正在加载 LIBERO long 环境。\n\n**提交确认：**\n\n| Seed | GPU | tmux session | PID | log |\n|------|-----|-------------|-----|-----|\n| 0 | cuda:0 | eval-vla-only-long-seed0 | 232609 | eval-vla-only-long-seed0.log |\n| 1 | cuda:1 | eval-vla-only-long-seed1 | 232884 | eval-vla-only-long-seed1.log |\n| 2 | cuda:2 | eval-vla-only-long-seed2 | 233564 | eval-vla-only-long-seed2.log |\n\n**配置：** `--mode vla_only --benchmark long --n_rollouts 10`，`max_steps` 自动设为 520（long suite 官方值）。\n\n**预计完成时间：** 参考之前 seed49/50/51 的运行时间，每个 eval 跑 10 tasks × 10 rollouts × 520 steps，约 2-4 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-smolvla-long-reseed.md"
+}

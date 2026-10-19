@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8dba6e2d2a98b59245f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "pipeline openvla crm bjb2 28827",
+  "task_key": "worker_pipeline_openvla-crm-bjb2-28827_20260520T132403",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_pipeline_openvla-crm-bjb2-28827_20260520T132403_result.json",
+    "occurrence": 1,
+    "bytes": 724,
+    "sha256": "845d926763d410416495d734f8e7ad9a0649dfd3be62327942eb9496661b3d6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All tasks complete. Summary:\n\n**Precompute job running on cuda:3** (`openvla-precompute-k1`, PID 365142):\n- Processing 74,507 timesteps from 500 LIBERO-Object demos\n- Output: `/root/autodl-tmp/crm_cache_k1_openvla/object/sample_XXXXXX.pt`\n- Each sample: `multi_scale_obs (4,4096)`, `obs_features (4096)`, `vla_action (6)`, `expert_action (6)`, `task_name`\n- ETA: ~10-14 hours\n- Log: `~/runs/acr-vla-conformal-refinement/openvla-precompute-k1.log`\n\n**After precompute finishes**, CRM training command for cuda:4:\n```bash\npython train_crm_k1.py --action_dim 6 --obs_dim 4096 \\\n  --cache_dir /root/autodl-tmp/crm_cache_k1_openvla/ \\\n  --output_dir /root/autodl-tmp/checkpoints/crm_k1_openvla/\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/pipeline-openvla-crm-bjb2-28827.md"
+}

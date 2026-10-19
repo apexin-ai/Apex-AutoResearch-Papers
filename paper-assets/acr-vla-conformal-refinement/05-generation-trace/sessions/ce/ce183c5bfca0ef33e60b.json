@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "id": "ce183c5bfca0ef33e60b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "harvest tau sweep analyzing batch",
+  "task_key": "worker_harvest_tau-sweep-analyzing-batch_20260527T023659",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_harvest_tau-sweep-analyzing-batch_20260527T023659.jsonl",
+    "occurrence": 1,
+    "bytes": 741,
+    "sha256": "2eb5112ce4bf543c65fb551b91e78379591da77beb4850d4fb60e44b59efdf9d"
+  },
+  "statistics": {
+    "messages": 4,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 4
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-27T02:37:07.891906+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_tau-sweep-analyzing-batch_20260527T023659"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-27T02:37:16.178874+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 29, 2pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_tau-sweep-analyzing-batch_20260527T023659"
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-27T02:37:24.435703+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 29, 2pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_tau-sweep-analyzing-batch_20260527T023659"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-27T02:37:33.940776+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 29, 2pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_tau-sweep-analyzing-batch_20260527T023659"
+          },
+          "id": "event-000004"
+        }
+      ],
+      "message_count": 4
+    }
+  ],
+  "readable_path": "readable/conversations/harvest-tau-sweep-analyzing-batch.md"
+}

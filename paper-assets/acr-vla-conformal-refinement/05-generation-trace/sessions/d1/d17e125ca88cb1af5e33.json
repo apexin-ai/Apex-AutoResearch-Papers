@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "d17e125ca88cb1af5e33",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "diag pi05 crm k2 long s44 20260526T031425 retry1",
+  "task_key": "worker_diag_pi05-crm-k2-long-s44_20260526T031425_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_pi05-crm-k2-long-s44_20260526T031425_retry1.log",
+    "occurrence": 1,
+    "bytes": 1515774,
+    "sha256": "7f9d304a2ad13a4a396be31fea07f30fcb608f2769cb7e53715048abee8a1c37"
+  },
+  "statistics": {
+    "messages": 30,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 10,
+      "tool_result": 10,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 30,
+      "chunks": [
+        {
+          "path": "d17e125ca88cb1af5e33-part-0001.json",
+          "message_count": 18
+        },
+        {
+          "path": "d17e125ca88cb1af5e33-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "d17e125ca88cb1af5e33-part-0003.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diag-pi05-crm-k2-long-s44-20260526t031425-retry1.md"
+}

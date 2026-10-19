@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd015dad6fa30f460635",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval obs only spatial norm02 seed42 r2 cron",
+  "task_key": "worker_analyze_eval-obs-only-spatial-norm02-seed42-r2-cron_20260520T175000",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-obs-only-spatial-norm02-seed42-r2-cron_20260520T175000_result.json",
+    "occurrence": 1,
+    "bytes": 686,
+    "sha256": "0df5f75da395926975fc22e0b74585a22483957fedb5d31b1f292708c6b4dc7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能已被之前的处理删除）。\n\n**诊断结论**：\n\n- **状态**: 成功完成\n- **JSON 完整性**: 完整 — 10/10 tasks 全部评估，共 100 rollouts\n- **Overall SR**: 33%（高于 baseline ~29.5%）\n- **Registry**: 已正确记录为 DONE/success, metrics.sr=33\n- **Cron**: 已清理\n\nPer-task 明细：\n| Task | SR |\n|------|-----|\n| between_plate_ramekin | 90% |\n| next_to_ramekin | 90% |\n| next_to_cookie_box | 90% |\n| on_cookie_box | 20% |\n| next_to_plate | 20% |\n| from_table_center | 10% |\n| in_top_drawer | 10% |\n| on_ramekin | 0% |\n| on_stove | 0% |\n| on_wooden_cabinet | 0% |\n\n无需进一步操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-obs-only-spatial-norm02-seed42-r2-cron.md"
+}

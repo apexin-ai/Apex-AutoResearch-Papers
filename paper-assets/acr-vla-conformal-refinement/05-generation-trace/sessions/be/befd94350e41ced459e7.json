@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "befd94350e41ced459e7",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "status gpu scan all servers",
+  "task_key": "worker_status_gpu-scan-all-servers_20260522T135208",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_status_gpu-scan-all-servers_20260522T135208_result.json",
+    "occurrence": 1,
+    "bytes": 2173,
+    "sha256": "5aa0161ea0f47b10deacce05e28a0c61969c65184043208108dd3237237e899a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## bjb1-32546 (6× RTX 4090)\n| GPU | 状态 | PID | 显存 | GPU利用率 |\n|-----|------|-----|------|----------|\n| cuda:0 | **占用** | 218144 (python) | 11316/24564 MiB | 28% |\n| cuda:1 | **占用** | 218433 (python) | 11316/24564 MiB | 27% |\n| cuda:2 | **占用** | 218713 (python) | 11783/24564 MiB | 25% |\n| cuda:3 | **占用** | 322367 (python) | 532/24564 MiB | 10% |\n| cuda:4 | **占用** | 326387 (python) | 546/24564 MiB | 9% |\n| cuda:5 | **空闲** | — | 2 MiB | 0% |\n\n**重点：cuda:0-2 仍有 python 进程在跑（各占 ~11GB，GPU util 25-28%），旧 CRM Object eval 尚未结束。** cuda:3-4 有轻量进程（~500MB，可能是 unified CRM r4 相关）。cuda:5 完全空闲。\n\n## bjb1-18228 (4× RTX 4090)\n| GPU | 状态 | PID | 显存 | GPU利用率 |\n|-----|------|-----|------|----------|\n| cuda:0 | **占用** | 883211 (python) | 9874/24564 MiB | 27% |\n| cuda:1 | **空闲** | — | 0 MiB | 0% |\n| cuda:2 | **空闲** | — | 0 MiB | 0% |\n| cuda:3 | **空闲** | — | 0 MiB | 0% |\n\n**异常：预期 cuda:1-3 跑 π0.5 Spatial r4 baseline，实际只有 cuda:0 有进程。cuda:1-3 全部空闲。** 可能训练已结束或异常退出。\n\n## bjb2-28827 (6× RTX 4090)\n| GPU | 状态 | PID | 显存 | GPU利用率 |\n|-----|------|-----|------|----------|\n| cuda:0 | **空闲** | — | 0 MiB | 0% |\n| cuda:1 | **空闲** | — | 0 MiB | 0% |\n| cuda:2 | **空闲** | — | 0 MiB | 0% |\n| cuda:3 | **占用** | 206132 (python) | 9874/24564 MiB | 22% |\n| cuda:4 | **占用** | 206279 (python) | 9874/24564 MiB | 20% |\n| cuda:5 | **占用** | 206558 (python) | 9874/24564 MiB | 20% |\n\ncuda:3-5 在跑任务（可能是 SmolVLA Long eval），cuda:0-2 完全空闲。\n\n## bjb2-40593 (1× RTX 4090 D)\n| GPU | 状态 | PID | 显存 | GPU利用率 |\n|-----|------|-----|------|----------|\n| cuda:0 | **空闲** | — | 0 MiB | 0% |\n\nOFT eval 已结束，完全空闲。\n\n---\n\n**总结可用卡：** bjb1-32546 cuda:5、bjb1-18228 cuda:1-3、bjb2-28827 cuda:0-2、bjb2-40593 cuda:0 — 共 **8 张空闲 4090**。bjb1-18228 情况需关注，π0.5 Spatial r4 baseline 可能已异常退出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/status-gpu-scan-all-servers.md"
+}

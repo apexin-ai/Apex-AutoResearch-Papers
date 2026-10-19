@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f9d933da1d509b33e32",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy pi05 adaptive spatial s42 bjb1",
+  "task_key": "worker_deploy_pi05-adaptive-spatial-s42-bjb1_20260525T045341",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_pi05-adaptive-spatial-s42-bjb1_20260525T045341_result.json",
+    "occurrence": 1,
+    "bytes": 744,
+    "sha256": "a205f36dc196ec4ca64325eb29d221c7788e02aea074064871c34992cf98af06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "π0.5 模型正在加载中（`Loading PI05 from ...`），GPU 显存尚未增长（模型先在 CPU 加载再移到 GPU）。进程运行正常。\n\n实验已部署完成：\n\n- **exp_id**: `eval-pi05-adaptive-spatial-s42`\n- **server**: bjb1-18228 cuda:0\n- **tmux session**: `eval-pi05-adaptive-spatial-s42`\n- **CRM checkpoint**: `/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt`\n- **参数**: `--mode adaptive_conformal_crm --benchmark spatial --seed 42 --n_rollouts 20 --K 2 --conformal_threshold 0.25`\n- **日志**: `logs/eval_spatial_adaptive_pi05_seed42.log`\n- **输出**: `logs/eval_spatial_adaptive_pi05_seed42.json`\n\nπ0.5 模型正在加载，后续会占用 cuda:0 显存并开始 rollout。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-pi05-adaptive-spatial-s42-bjb1.md"
+}

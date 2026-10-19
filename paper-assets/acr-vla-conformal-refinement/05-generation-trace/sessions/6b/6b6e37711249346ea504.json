@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b6e37711249346ea504",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest pi05 vla only baseline all6",
+  "task_key": "worker_harvest_pi05-vla-only-baseline-all6_20260521T122006",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_pi05-vla-only-baseline-all6_20260521T122006_result.json",
+    "occurrence": 1,
+    "bytes": 486,
+    "sha256": "e8dd00bddf93762a8ea3b5b9b3cbe3573168e90ac2d6e5705444328b528d1ad2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已存在且数据完整准确，无需更新。汇总：\n\n| Benchmark | Mean SR | Std |\n|---|---|---|\n| **Object** (seed 42/43/44) | **81.50%** | ±0.50 |\n| **Spatial** (seed 42/43/45) | **84.17%** | ±1.04 |\n\n跨 seed 方差很低，结果稳定。瓶颈任务：Object `tomato_sauce` 56.7%、`salad_dressing` 65.0%；Spatial `on_ramekin` 25.0%、`top_drawer` 68.3%。无 W&B run ID，无错误/异常。报告已在 `artifacts/pi05_baseline_harvest.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-pi05-vla-only-baseline-all6.md"
+}

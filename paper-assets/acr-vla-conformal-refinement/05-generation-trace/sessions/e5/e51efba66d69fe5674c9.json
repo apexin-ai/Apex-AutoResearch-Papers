@@ -1,0 +1,1871 @@
+{
+  "schema_version": "1.0",
+  "id": "e51efba66d69fe5674c9",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "code pi05 n action steps fix",
+  "task_key": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_code_pi05-n-action-steps-fix_20260522T105018.jsonl",
+    "occurrence": 1,
+    "bytes": 77743,
+    "sha256": "7e946fee153e31c6dbcd7886a83a6ff4ac48d79399523f5f96a54dbd7e730bac"
+  },
+  "statistics": {
+    "messages": 91,
+    "user_turns": 0,
+    "tool_calls": 45,
+    "roles": {
+      "tool_call": 45,
+      "tool_result": 45,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T10:57:39.437928+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T10:57:39.438284+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T10:57:39.438470+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "cat /root/acr-vla-conformal-refinement/src/pi05_wrapper.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T10:57:39.438610+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "cat /root/acr-vla-conformal-refinement/src/evaluate.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T10:57:39.438837+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nPi05 (π0.5) wrapper for ACR-VLA.\\\\n\\\\nProvides:\\\\n  1. obs_features extraction (mean-pooled VLM hidden states, 2048D)\\\\n  2. K-sample flow-matching generation with sequential denoising\\\\n  3. LIBERO data preprocessing (image, language, state → PI05 inputs)\\\\n\\\\nPreprocessing follows the official lerobot PI05 pipeline:\\\\n  - Images: resize_with_pad to 224×224 → float [0,1]\\\\n  - State: MEAN_STD normalize → discretize 256 bins → embed in text prompt\\\\n  - Action output: MEAN_STD unnormalize with mean/std stats\\\\n\\\\nKey differences from SmolVLA wrapper:\\\\n  - VLM backbone: PaliGemma 2B (hidden_size=2048) vs Idefics3 (960D)\\\\n  - State: embedded in text prompt (not as separate tensor)\\\\n  - Normalization: MEAN_STD\\\\n  - KV cache: HuggingFace DynamicCache (deep-copied per denoise step internally)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport copy\\\\nimport math\\\\nfrom collections import deque\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nimport torch.nn.functional as F\\\\nimport numpy as np\\\\nfrom torchvision import transforms as T\\\\nfrom safetensors.torch import load_file\\\\n\\\\nfrom lerobot.policies.pi05.modeling_pi05 import (\\\\n    PI05Policy,\\\\n    make_att_2d_masks,\\\\n    resize_with_pad_torch,\\\\n)\\\\n\\\\ntry:\\\\n    from utils import FULL_ACTION_DIM, CORRECTION_DIM\\\\nexcept ImportError:\\\\n    from .utils import FULL_ACTION_DIM, CORRECTION_DIM\\\\n\\\\nNORM_EPS = 1e-8\\\\n\\\\n\\\\ndef split_action(action_7d):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Split LIBERO 7D action into 6D pose and 1D gripper.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return action_7d[..., :CORRECTION_DIM], action_7d[..., CORRECTION_DIM:FULL_ACTION_DIM]\\\\n\\\\n\\\\nclass Pi05Wrapper:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Frozen π0.5 for obs_features and K-sample generation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    VLM_HIDDEN_SIZE = 2048\\\\n\\\\n    def __init__(self, pretrained_path: str = \\\\\\\"/root/autodl-tmp/models/pi05_libero_finetuned/\\\\\\\",\\\\n                 device: str = \\\\\\\"cuda\\\\\\\"):\\\\n        self.device = torch.device(device)\\\\n        # Ope\n…[truncated 6812 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T10:57:39.439000+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "ls /root/autodl-tmp/models/pi05_libero_finetuned/",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T10:57:39.439380+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLIBERO evaluation script for ACR-VLA.\\\\n\\\\nRollout loop:\\\\n  1. Load LIBERO env + task suite\\\\n  2. Load SmolVLA (frozen) + CRM\\\\n  3. For each task, rollout N times:\\\\n     a. Reset env\\\\n     b. Each step: obs → SmolVLA K=10 samples → CGS on 6D pose → CRM\\\\n        → combine refined pose with gripper → execute 7D action\\\\n     c. Record success/failure\\\\n  4. Report per-task and overall success rate\\\\n\\\\nBaselines:\\\\n  - \\\\\\\"vla_only\\\\\\\": SmolVLA mean of K=10, no CRM refinement\\\\n  - \\\\\\\"crm_scalar\\\\\\\": CRM with scalar uncertainty (single std, not per-DOF)\\\\n  - \\\\\\\"crm_perdof\\\\\\\": CRM with full per-DOF uncertainty (ours)\\\\n  - \\\\\\\"acr_vla\\\\\\\": alias for crm_perdof — the full ACR-VLA pipeline\\\\n  - \\\\\\\"reconvla\\\\\\\": ReconVLA baseline — scalar Euclidean argmin selection (plan_014)\\\\n  - \\\\\\\"adaptive_k\\\\\\\": Adaptive K — K=2 L2 probe, expand to K=10 + CRM obs_only if uncertain\\\\n\\\\nAdaptive K mode (--mode adaptive_k):\\\\n  Each step: generate K=2 samples, compute pairwise L2 distance.\\\\n  If L2 > threshold (high uncertainty): generate 8 more (total K=10),\\\\n    select argmin(L2 to mean), apply CRM obs_only correction (epsilon=0.2).\\\\n  If L2 <= threshold (low uncertainty): use mean of K=2, skip CRM.\\\\n\\\\nUsage:\\\\n  python evaluate.py --benchmark object --checkpoint /path/to/crm_best.pt --n_rollouts 20\\\\n  python evaluate.py --benchmark object --mode vla_only --n_rollouts 20\\\\n  python evaluate.py --benchmark spatial --mode reconvla --n_rollouts 20\\\\n  python evaluate.py --benchmark spatial --mode acr_vla --crm_checkpoint /path/to/crm_best.pt --n_rollouts 10\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport functools\\\\nbuiltins_print = print\\\\nprint = functools.partial(builtins_print, flush=True)\\\\nimport os\\\\nos.environ.setdefault(\\\\\\\"HF_HUB_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nimport sys\\\\nimport json\\\\nimport time\\\\nimport signal\\\\nimport traceback\\\\n\n…[truncated 7289 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T10:57:39.439591+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nconfig.json\\\\nmodel.safetensors\\\\npolicy_postprocessor.json\\\\npolicy_postprocessor_step_0_unnormalizer_processor.safetensors\\\\npolicy_preprocessor.json\\\\npolicy_preprocessor_step_2_normalizer_processor.safetensors\\\\ntrain_config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T10:57:39.439764+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "grep -n \"Pi05Wrapper\\|pi05_wrapper\\|n_action_steps\" /root/acr-vla-conformal-refinement/src/evaluate.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T10:57:39.439896+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T10:57:39.440020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "grep -n \"Pi05Wrapper\" /root/acr-vla-conformal-refinement/src/evaluate.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T10:57:39.440284+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"543:        from pi05_wrapper import Pi05Wrapper\\\\n545:        wrapper = Pi05Wrapper(args.pi05_path, device=str(device))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T10:57:39.440484+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "head -120 /root/acr-vla-conformal-refinement/src/evaluate.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T10:57:39.440711+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLIBERO evaluation script for ACR-VLA.\\\\n\\\\nRollout loop:\\\\n  1. Load LIBERO env + task suite\\\\n  2. Load SmolVLA (frozen) + CRM\\\\n  3. For each task, rollout N times:\\\\n     a. Reset env\\\\n     b. Each step: obs → SmolVLA K=10 samples → CGS on 6D pose → CRM\\\\n        → combine refined pose with gripper → execute 7D action\\\\n     c. Record success/failure\\\\n  4. Report per-task and overall success rate\\\\n\\\\nBaselines:\\\\n  - \\\\\\\"vla_only\\\\\\\": SmolVLA mean of K=10, no CRM refinement\\\\n  - \\\\\\\"crm_scalar\\\\\\\": CRM with scalar uncertainty (single std, not per-DOF)\\\\n  - \\\\\\\"crm_perdof\\\\\\\": CRM with full per-DOF uncertainty (ours)\\\\n  - \\\\\\\"acr_vla\\\\\\\": alias for crm_perdof — the full ACR-VLA pipeline\\\\n  - \\\\\\\"reconvla\\\\\\\": ReconVLA baseline — scalar Euclidean argmin selection (plan_014)\\\\n  - \\\\\\\"adaptive_k\\\\\\\": Adaptive K — K=2 L2 probe, expand to K=10 + CRM obs_only if uncertain\\\\n\\\\nAdaptive K mode (--mode adaptive_k):\\\\n  Each step: generate K=2 samples, compute pairwise L2 distance.\\\\n  If L2 > threshold (high uncertainty): generate 8 more (total K=10),\\\\n    select argmin(L2 to mean), apply CRM obs_only correction (epsilon=0.2).\\\\n  If L2 <= threshold (low uncertainty): use mean of K=2, skip CRM.\\\\n\\\\nUsage:\\\\n  python evaluate.py --benchmark object --checkpoint /path/to/crm_best.pt --n_rollouts 20\\\\n  python evaluate.py --benchmark object --mode vla_only --n_rollouts 20\\\\n  python evaluate.py --benchmark spatial --mode reconvla --n_rollouts 20\\\\n  python evaluate.py --benchmark spatial --mode acr_vla --crm_checkpoint /path/to/crm_best.pt --n_rollouts 10\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport functools\\\\nbuiltins_print = print\\\\nprint = functools.partial(builtins_print, flush=True)\\\\nimport os\\\\nos.environ.setdefault(\\\\\\\"HF_HUB_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nimport sys\\\\nimport json\\\\nimport time\\\\nimport signal\\\\nimport traceback\\\\n\n…[truncated 4941 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T10:57:39.440864+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "tail -n +535 /root/acr-vla-conformal-refinement/src/evaluate.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T10:57:39.441106+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n    # Override max_steps with per-suite official values unless user explicitly set it\\\\n    if args.max_steps == 300:\\\\n        args.max_steps = SUITE_MAX_STEPS.get(args.benchmark, 300)\\\\n        print(f\\\\\\\"[eval] max_steps set to {args.max_steps} for benchmark {args.benchmark}\\\\\\\")\\\\n\\\\n    # Load VLA model\\\\n    if args.model == \\\\\\\"pi05\\\\\\\":\\\\n        from pi05_wrapper import Pi05Wrapper\\\\n        print(f\\\\\\\"[eval] Loading PI05 from {args.pi05_path}...\\\\\\\")\\\\n        wrapper = Pi05Wrapper(args.pi05_path, device=str(device))\\\\n    else:\\\\n        from smolvla_wrapper import SmolVLAWrapper\\\\n        print(f\\\\\\\"[eval] Loading SmolVLA from {args.smolvla_path}...\\\\\\\")\\\\n        wrapper = SmolVLAWrapper(args.smolvla_path, device=str(device))\\\\n\\\\n    # CGS — operates on 6D pose only (CORRECTION_DIM)\\\\n    cgs = ConformilizedGaussianScoring(K=args.K, horizon=H_EFF, action_dim=CORRECTION_DIM)\\\\n\\\\n    all_adaptive_meta = []\\\\n    all_unc_head_meta = []\\\\n    cgs_map = {}\\\\n    if getattr(args, \\\\\\\"adaptive_k\\\\\\\", False):\\\\n        cgs_map[args.k_init] = ConformilizedGaussianScoring(\\\\n            K=args.k_init, horizon=H_EFF, action_dim=CORRECTION_DIM)\\\\n        cgs_map[args.k_full] = ConformilizedGaussianScoring(\\\\n            K=args.k_full, horizon=H_EFF, action_dim=CORRECTION_DIM)\\\\n        print(f\\\\\\\"[eval] Adaptive K: k_init={args.k_init}, k_full={args.k_full}, \\\\\\\"\\\\n              f\\\\\\\"threshold={args.adaptive_threshold}\\\\\\\")\\\\n\\\\n    # CRM (if needed)\\\\n    crm = None\\\\n    if args.mode in (\\\\\\\"crm_scalar\\\\\\\", \\\\\\\"crm_perdof\\\\\\\", \\\\\\\"acr_vla\\\\\\\", \\\\\\\"crm_obs_only\\\\\\\", \\\\\\\"adaptive_k\\\\\\\", \\\\\\\"adaptive_unc_head\\\\\\\", \\\\\\\"adaptive_conformal_crm\\\\\\\"):\\\\n        if args.checkpoint is None:\\\\n            raise ValueError(\\\\\\\"--checkpoint required for CRM modes\\\\\\\")\\\\n\\\\n        if args.mode in (\\\\\\\"crm_obs_only\\\\\\\", \\\\\\\"adaptive_k\\\\\\\", \\\\\\\"adaptive_unc_head\\\\\\\", \\\\\\\"adaptive_conformal_crm\\\\\\\"):\\\\n            unc_\n…[truncated 7123 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T10:57:39.441321+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "grep -n \"predict_action\\|reset_action_queue\\|_action_queue\\|vla_only\" /root/acr-vla-conformal-refinement/src/evaluate.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T10:57:39.441465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T10:57:39.441591+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "grep -n \"predict_action\" /root/acr-vla-conformal-refinement/src/evaluate.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T10:57:39.441718+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"171:    For chunk-emitting policies (PI05) that expose predict_action(), we replay\\\\n180:    if hasattr(wrapper, \\\\\\\"predict_action\\\\\\\"):\\\\n181:        return wrapper.predict_action(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T10:57:39.441847+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "grep -n \"reset_action_queue\" /root/acr-vla-conformal-refinement/src/evaluate.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T10:57:39.441970+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"500:    if wrapper is not None and hasattr(wrapper, \\\\\\\"reset_action_queue\\\\\\\"):\\\\n501:        wrapper.reset_action_queue()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T10:57:39.442087+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "tail -n +165 /root/acr-vla-conformal-refinement/src/evaluate.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T10:57:39.442343+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    return task_envs\\\\n\\\\n\\\\ndef select_action_vla_only(wrapper, obs, task_name, K, cgs):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Baseline: mean of K samples (full 7D), no CRM.\\\\n\\\\n    For chunk-emitting policies (PI05) that expose predict_action(), we replay\\\\n    the cached chunk open-loop instead of re-running inference every env step\\\\n    and only consuming action[0]. The latter starves multi-step behaviors like\\\\n    the gripper close at chunk step ~20 -- the root cause of 0% SR on PI05.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    agentview = obs[\\\\\\\"agentview_image\\\\\\\"]\\\\n    eye_in_hand = obs.get(\\\\\\\"robot0_eye_in_hand_image\\\\\\\", None)\\\\n    robot_state = get_robot_state(obs)\\\\n\\\\n    if hasattr(wrapper, \\\\\\\"predict_action\\\\\\\"):\\\\n        return wrapper.predict_action(\\\\n            agentview_rgb=agentview,\\\\n            task_name=task_name,\\\\n            robot_state=robot_state,\\\\n            eye_in_hand_rgb=eye_in_hand,\\\\n            K=K,\\\\n        )\\\\n\\\\n    obs_feat, samples = wrapper.get_obs_features_and_samples(\\\\n        agentview_rgb=agentview,\\\\n        task_name=task_name,\\\\n        robot_state=robot_state,\\\\n        eye_in_hand_rgb=eye_in_hand,\\\\n        K=K,\\\\n    )\\\\n    # samples: (1, K, chunk_size, FULL_ACTION_DIM)\\\\n    k_trunc = samples[0, :, :H_EFF, :]  # (K, H_eff, 7)\\\\n    mean_action = k_trunc.mean(dim=0)  # (H_eff, 7)\\\\n    return mean_action[0].cpu().numpy()\\\\n\\\\n\\\\ndef _to_scalar_uf(uf):\\\\n    return torch.stack([\\\\n        uf[:, :30].norm(dim=1),\\\\n        uf[:, 30:35].mean(dim=1),\\\\n        uf[:, 35:40].mean(dim=1),\\\\n    ], dim=1)\\\\n\\\\n\\\\n\\\\n# ── Unified obs_dim padding ─────────────────────────────────────────\\\\n_UNIFIED_OBS_DIM = None  # set from args in main()\\\\n\\\\ndef _pad_obs(obs_feat):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Zero-pad obs_feat to _UNIFIED_OBS_DIM if needed.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if _UNIFIED_OBS_DIM is None:\\\\n        return obs_feat\\\\n    current_dim = obs_feat.shape[-1]\\\\n    if current_dim < _UNIFIED_OBS_DIM:\\\\n      \n…[truncated 7095 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T10:57:39.442563+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "cd /root/acr-vla-conformal-refinement && python -c \"\nimport re\n\n# === Fix pi05_wrapper.py ===\nwith open('src/pi05_wrapper.py', 'r') as f:\n    code = f.read()\n\n# 1. Add n_action_steps parameter to __init__\ncode = code.replace(\n    'def __init__(self, pretrained_path: str = \\\"/root/autodl-tmp/models/pi05_libero_finetuned/\\\",\\n                 device: str = \\\"cuda\\\"):',\n    'def __init__(self, pretrained_path: str = \\\"/root/autodl-tmp/models/pi05_libero_finetuned/\\\",\\n                 device: str = \\\"cuda\\\", n_action_steps: int = 10):'\n)\n\n# 2. Add self.n_action_steps after self.device\ncode = code.replace(\n    'self.device = torch.device(device)\\n        # Open-loop action chunk queue',\n    'self.device = torch.device(device)\\n        self.n_action_steps = n_action_steps\\n        # Open-loop action chunk queue'\n)\n\n# 3. Change predict_action to only use first n_action_steps\ncode = code.replace(\n    'chunk_np = chunk.detach().cpu().numpy()\\n            for i in range(chunk_np.shape[0]):\\n                self._action_queue.append(chunk_np[i])',\n    'chunk_np = chunk.detach().cpu().numpy()\\n            for i in range(min(self.n_action_steps, chunk_np.shape[0])):\\n                self._action_queue.append(chunk_np[i])'\n)\n\nwith open('src/pi05_wrapper.py', 'w') as f:\n    f.write(code)\n\nprint('pi05_wrapper.py updated')\n\n# === Fix evaluate.py ===\nwith open('src/evaluate.py', 'r') as f:\n    code = f.read()\n\n# 1. Add --n_action_steps argument after --conformal_threshold\ncode = code.replace(\n    '''    p.add_argument(\\\"--conformal_threshold\\\", type=float, default=0.074855,\n                   help=\\\"Conformal threshold tau for K=2 L2 distance (P50)\\\")\n    return p.parse_args()''',\n    '''    p.add_argument(\\\"--conformal_threshold\\\", type=float, default=0.074855,\n                   help=\\\"Conformal threshold tau for K=2 L2 distance (P50)\\\")\n    p.add_argument(\\\"--n_action_steps\\\", type=int, default=10,\n                   help=\\\"Number of action steps to replay from PI05 chunk (default: 10)\\\")\n    return p.parse_args()'''\n)\n\n# 2. Pass n_action_steps to Pi05Wrapper\ncode = code.replace(\n    'wrapper = Pi05Wrapper(args.pi05_path, device=str(device))',\n    'wrapper = Pi05Wrapper(args.pi05_path, device=str(device), n_action_steps=args.n_action_steps)'\n)\n\nwith open('src/evaluate.py', 'w') as f:\n    f.write(code)\n\nprint('evaluate.py updated')\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T10:57:39.442773+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/acr-vla-conformal-refinement && python -c \\\\\\\"\\\\\\\\nimport re\\\\\\\\n\\\\\\\\n# === Fix pi05_wrapper.py ===\\\\\\\\nwith open(\\\\\\\\'src/pi05_wrapper.py\\\\\\\\', \\\\\\\\'r\\\\\\\\') as f:\\\\\\\\n    code = f.read()\\\\\\\\n\\\\\\\\n# 1. Add n_action_steps parameter to __init__\\\\\\\\ncode = code.replace(\\\\\\\\n    \\\\\\\\'def __init__(self, pretrained_path: str = \\\\\\\\\\\\\\\\\\\\\\\"/root/autodl-tmp/models/pi05_libero_finetuned/\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\n                 device: str = \\\\\\\\\\\\\\\\\\\\\\\"cuda\\\\\\\\\\\\\\\\\\\\\\\"):\\\\\\\\',\\\\\\\\n    \\\\\\\\'def __init__(self, pretrained_path: str = \\\\\\\\\\\\\\\\\\\\\\\"/root/autodl-tmp/models/pi05_libero_finetuned/\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\n                 device: str = \\\\\\\\\\\\\\\\\\\\\\\"cuda\\\\\\\\\\\\\\\\\\\\\\\", n_action_steps: int = 10):\\\\\\\\'\\\\\\\\n)\\\\\\\\n\\\\\\\\n# 2. Add self.n_action_steps after self.device\\\\\\\\ncode = code.replace(\\\\\\\\n    \\\\\\\\'self.device = torch.device(device)\\\\\\\\\\\\\\\\n        # Open-loop action chunk queue\\\\\\\\',\\\\\\\\n    \\\\\\\\'self.device = torch.device(device)\\\\\\\\\\\\\\\\n        self.n_action_steps = n_action_steps\\\\\\\\\\\\\\\\n        # Open-loop action chunk queue\\\\\\\\'\\\\\\\\n)\\\\\\\\n\\\\\\\\n# 3. Change predict_action to only use first n_action_steps\\\\\\\\ncode = code.replace(\\\\\\\\n    \\\\\\\\'chunk_np = chunk.detach().cpu().numpy()\\\\\\\\\\\\\\\\n            for i in range(chunk_np.shape[0]):\\\\\\\\\\\\\\\\n                self._action_queue.append(chunk_np[i])\\\\\\\\',\\\\\\\\n    \\\\\\\\'chunk_np = chunk.detach().cpu().numpy()\\\\\\\\\\\\\\\\n            for i in range(min(self.n_action_steps, chunk_np.shape[0])):\\\\\\\\\\\\\\\\n                self._action_queue.append(chunk_np[i])\\\\\\\\'\\\\\\\\n)\\\\\\\\n\\\\\\\\nwith open(\\\\\\\\'src/pi05_wrapper.py\\\\\\\\', \\\\\\\\'w\\\\\\\\') as f:\\\\\\\\n    f.write(code)\\\\\\\\n\\\\\\\\nprint(\\\\\\\\'pi05_wrapper.py updated\\\\\\\\')\\\\\\\\n\\\\\\\\n# === Fix evaluate.py ===\\\\\\\\nwith open(\\\\\\\\'src/evaluate.py\\\\\\\\', \\\\\\\\'r\\\\\\\\') as f:\\\\\\\\n    code = f.read()\\\\\\\\n\\\\\\\\n# 1. Add --n_action_steps argument after --conformal_threshold\\\\\\\\ncode = code.replace\n…[truncated 1313 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T10:57:39.442947+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "ls /root/miniconda3/bin/python",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T10:57:39.443079+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.61}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T10:57:39.443244+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "cat > /tmp/patch_code.py << 'PYEOF'\nimport os\nos.chdir('/root/acr-vla-conformal-refinement')\n\n# === Fix pi05_wrapper.py ===\nwith open('src/pi05_wrapper.py', 'r') as f:\n    code = f.read()\n\n# 1. Add n_action_steps parameter to __init__\nold_init = 'def __init__(self, pretrained_path: str = \"/root/autodl-tmp/models/pi05_libero_finetuned/\",\\n                 device: str = \"cuda\"):'\nnew_init = 'def __init__(self, pretrained_path: str = \"/root/autodl-tmp/models/pi05_libero_finetuned/\",\\n                 device: str = \"cuda\", n_action_steps: int = 10):'\nassert old_init in code, \"Cannot find __init__ signature\"\ncode = code.replace(old_init, new_init)\n\n# 2. Add self.n_action_steps after self.device\nold_device = 'self.device = torch.device(device)\\n        # Open-loop action chunk queue'\nnew_device = 'self.device = torch.device(device)\\n        self.n_action_steps = n_action_steps\\n        # Open-loop action chunk queue'\nassert old_device in code, \"Cannot find self.device line\"\ncode = code.replace(old_device, new_device)\n\n# 3. Change predict_action to only use first n_action_steps\nold_loop = '            chunk_np = chunk.detach().cpu().numpy()\\n            for i in range(chunk_np.shape[0]):\\n                self._action_queue.append(chunk_np[i])'\nnew_loop = '            chunk_np = chunk.detach().cpu().numpy()\\n            for i in range(min(self.n_action_steps, chunk_np.shape[0])):\\n                self._action_queue.append(chunk_np[i])'\nassert old_loop in code, \"Cannot find chunk loop\"\ncode = code.replace(old_loop, new_loop)\n\nwith open('src/pi05_wrapper.py', 'w') as f:\n    f.write(code)\nprint('pi05_wrapper.py updated')\n\n# === Fix evaluate.py ===\nwith open('src/evaluate.py', 'r') as f:\n    code = f.read()\n\n# 1. Add --n_action_steps argument\nold_arg = '    p.add_argument(\"--conformal_threshold\", type=float, default=0.074855,\\n                   help=\"Conformal threshold tau for K=2 L2 distance (P50)\")\\n    return p.parse_args()'\nnew_arg = '    p.add_argument(\"--conformal_threshold\", type=float, default=0.074855,\\n                   help=\"Conformal threshold tau for K=2 L2 distance (P50)\")\\n    p.add_argument(\"--n_action_steps\", type=int, default=10,\\n                   help=\"Number of action steps to replay from PI05 chunk (default: 10)\")\\n    return p.parse_args()'\nassert old_arg in code, \"Cannot find conformal_threshold arg\"\ncode = code.replace(old_arg, new_arg)\n\n# 2. Pass n_action_steps to Pi05Wrapper\nold_wrapper = 'wrapper = Pi05Wrapper(args.pi05_path, device=str(device))'\nnew_wrapper = 'wrapper = Pi05Wrapper(args.pi05_path, device=str(device), n_action_steps=args.n_action_steps)'\nassert old_wrapper in code, \"Cannot find Pi05Wrapper construction\"\ncode = code.replace(old_wrapper, new_wrapper)\n\nwith open('src/evaluate.py', 'w') as f:\n    f.write(code)\nprint('evaluate.py updated')\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/patch_code.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T10:57:39.443426+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"pi05_wrapper.py updated\\\\nevaluate.py updated\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T10:57:39.443572+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -c \"import ast; ast.parse(open('src/pi05_wrapper.py').read()); print('pi05_wrapper OK')\" && python -c \"import ast; ast.parse(open('src/evaluate.py').read()); print('evaluate OK')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-22T10:57:39.443701+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"pi05_wrapper OK\\\\nevaluate OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-22T10:57:39.443845+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "cat > /tmp/patch_code.py << 'PYEOF'\nimport os\nos.chdir('/root/acr-vla-conformal-refinement')\n\nwith open('src/pi05_wrapper.py', 'r') as f:\n    code = f.read()\n\nold_init = 'def __init__(self, pretrained_path: str = \"/root/autodl-tmp/models/pi05_libero_finetuned/\",\\n                 device: str = \"cuda\"):'\nnew_init = 'def __init__(self, pretrained_path: str = \"/root/autodl-tmp/models/pi05_libero_finetuned/\",\\n                 device: str = \"cuda\", n_action_steps: int = 10):'\nassert old_init in code, \"Cannot find __init__ signature\"\ncode = code.replace(old_init, new_init)\n\nold_device = 'self.device = torch.device(device)\\n        # Open-loop action chunk queue'\nnew_device = 'self.device = torch.device(device)\\n        self.n_action_steps = n_action_steps\\n        # Open-loop action chunk queue'\nassert old_device in code, \"Cannot find self.device line\"\ncode = code.replace(old_device, new_device)\n\nold_loop = '            chunk_np = chunk.detach().cpu().numpy()\\n            for i in range(chunk_np.shape[0]):\\n                self._action_queue.append(chunk_np[i])'\nnew_loop = '            chunk_np = chunk.detach().cpu().numpy()\\n            for i in range(min(self.n_action_steps, chunk_np.shape[0])):\\n                self._action_queue.append(chunk_np[i])'\nassert old_loop in code, \"Cannot find chunk loop\"\ncode = code.replace(old_loop, new_loop)\n\nwith open('src/pi05_wrapper.py', 'w') as f:\n    f.write(code)\nprint('pi05_wrapper.py updated')\n\nwith open('src/evaluate.py', 'r') as f:\n    code = f.read()\n\nold_arg = '    p.add_argument(\"--conformal_threshold\", type=float, default=0.074855,\\n                   help=\"Conformal threshold tau for K=2 L2 distance (P50)\")\\n    return p.parse_args()'\nnew_arg = '    p.add_argument(\"--conformal_threshold\", type=float, default=0.074855,\\n                   help=\"Conformal threshold tau for K=2 L2 distance (P50)\")\\n    p.add_argument(\"--n_action_steps\", type=int, default=10,\\n                   help=\"Number of action steps to replay from PI05 chunk (default: 10)\")\\n    return p.parse_args()'\nassert old_arg in code, \"Cannot find conformal_threshold arg\"\ncode = code.replace(old_arg, new_arg)\n\nold_wrapper = 'wrapper = Pi05Wrapper(args.pi05_path, device=str(device))'\nnew_wrapper = 'wrapper = Pi05Wrapper(args.pi05_path, device=str(device), n_action_steps=args.n_action_steps)'\nassert old_wrapper in code, \"Cannot find Pi05Wrapper construction\"\ncode = code.replace(old_wrapper, new_wrapper)\n\nwith open('src/evaluate.py', 'w') as f:\n    f.write(code)\nprint('evaluate.py updated')\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/patch_code.py && python -c \"import ast; ast.parse(open('/root/acr-vla-conformal-refinement/src/pi05_wrapper.py').read()); ast.parse(open('/root/acr-vla-conformal-refinement/src/evaluate.py').read()); print('SYNTAX OK')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-22T10:57:39.443997+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"pi05_wrapper.py updated\\\\nevaluate.py updated\\\\nSYNTAX OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-22T10:57:39.444130+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "cat > /tmp/patch_code.py << 'PYEOF'\nimport os\nos.chdir('/root/acr-vla-conformal-refinement')\n\nwith open('src/pi05_wrapper.py', 'r') as f:\n    code = f.read()\n\nold_init = 'def __init__(self, pretrained_path: str = \"/root/autodl-tmp/models/pi05_libero_finetuned/\",\\n                 device: str = \"cuda\"):'\nnew_init = 'def __init__(self, pretrained_path: str = \"/root/autodl-tmp/models/pi05_libero_finetuned/\",\\n                 device: str = \"cuda\", n_action_steps: int = 10):'\nassert old_init in code, \"Cannot find __init__ signature\"\ncode = code.replace(old_init, new_init)\n\nold_device = 'self.device = torch.device(device)\\n        # Open-loop action chunk queue'\nnew_device = 'self.device = torch.device(device)\\n        self.n_action_steps = n_action_steps\\n        # Open-loop action chunk queue'\nassert old_device in code, \"Cannot find self.device line\"\ncode = code.replace(old_device, new_device)\n\nold_loop = '            chunk_np = chunk.detach().cpu().numpy()\\n            for i in range(chunk_np.shape[0]):\\n                self._action_queue.append(chunk_np[i])'\nnew_loop = '            chunk_np = chunk.detach().cpu().numpy()\\n            for i in range(min(self.n_action_steps, chunk_np.shape[0])):\\n                self._action_queue.append(chunk_np[i])'\nassert old_loop in code, \"Cannot find chunk loop\"\ncode = code.replace(old_loop, new_loop)\n\nwith open('src/pi05_wrapper.py', 'w') as f:\n    f.write(code)\nprint('pi05_wrapper.py updated')\n\nwith open('src/evaluate.py', 'r') as f:\n    code = f.read()\n\nold_arg = '    p.add_argument(\"--conformal_threshold\", type=float, default=0.074855,\\n                   help=\"Conformal threshold tau for K=2 L2 distance (P50)\")\\n    return p.parse_args()'\nnew_arg = '    p.add_argument(\"--conformal_threshold\", type=float, default=0.074855,\\n                   help=\"Conformal threshold tau for K=2 L2 distance (P50)\")\\n    p.add_argument(\"--n_action_steps\", type=int, default=10,\\n                   help=\"Number of action steps to replay from PI05 chunk (default: 10)\")\\n    return p.parse_args()'\nassert old_arg in code, \"Cannot find conformal_threshold arg\"\ncode = code.replace(old_arg, new_arg)\n\nold_wrapper = 'wrapper = Pi05Wrapper(args.pi05_path, device=str(device))'\nnew_wrapper = 'wrapper = Pi05Wrapper(args.pi05_path, device=str(device), n_action_steps=args.n_action_steps)'\nassert old_wrapper in code, \"Cannot find Pi05Wrapper construction\"\ncode = code.replace(old_wrapper, new_wrapper)\n\nwith open('src/evaluate.py', 'w') as f:\n    f.write(code)\nprint('evaluate.py updated')\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/patch_code.py && python -c \"import ast; ast.parse(open('/root/acr-vla-conformal-refinement/src/pi05_wrapper.py').read()); ast.parse(open('/root/acr-vla-conformal-refinement/src/evaluate.py').read()); print('SYNTAX OK')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-22T10:57:39.444310+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"pi05_wrapper.py updated\\\\nevaluate.py updated\\\\nSYNTAX OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-22T10:57:39.444451+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "cat > /tmp/patch_code.py << 'PYEOF'\nimport os\nos.chdir('/root/acr-vla-conformal-refinement')\n\nwith open('src/pi05_wrapper.py', 'r') as f:\n    code = f.read()\n\nold_init = 'def __init__(self, pretrained_path: str = \"/root/autodl-tmp/models/pi05_libero_finetuned/\",\\n                 device: str = \"cuda\"):'\nnew_init = 'def __init__(self, pretrained_path: str = \"/root/autodl-tmp/models/pi05_libero_finetuned/\",\\n                 device: str = \"cuda\", n_action_steps: int = 10):'\nassert old_init in code, \"Cannot find __init__ signature\"\ncode = code.replace(old_init, new_init)\n\nold_device = 'self.device = torch.device(device)\\n        # Open-loop action chunk queue'\nnew_device = 'self.device = torch.device(device)\\n        self.n_action_steps = n_action_steps\\n        # Open-loop action chunk queue'\nassert old_device in code, \"Cannot find self.device line\"\ncode = code.replace(old_device, new_device)\n\nold_loop = '            chunk_np = chunk.detach().cpu().numpy()\\n            for i in range(chunk_np.shape[0]):\\n                self._action_queue.append(chunk_np[i])'\nnew_loop = '            chunk_np = chunk.detach().cpu().numpy()\\n            for i in range(min(self.n_action_steps, chunk_np.shape[0])):\\n                self._action_queue.append(chunk_np[i])'\nassert old_loop in code, \"Cannot find chunk loop\"\ncode = code.replace(old_loop, new_loop)\n\nwith open('src/pi05_wrapper.py', 'w') as f:\n    f.write(code)\nprint('pi05_wrapper.py updated')\n\nwith open('src/evaluate.py', 'r') as f:\n    code = f.read()\n\nold_arg = '    p.add_argument(\"--conformal_threshold\", type=float, default=0.074855,\\n                   help=\"Conformal threshold tau for K=2 L2 distance (P50)\")\\n    return p.parse_args()'\nnew_arg = '    p.add_argument(\"--conformal_threshold\", type=float, default=0.074855,\\n                   help=\"Conformal threshold tau for K=2 L2 distance (P50)\")\\n    p.add_argument(\"--n_action_steps\", type=int, default=10,\\n                   help=\"Number of action steps to replay from PI05 chunk (default: 10)\")\\n    return p.parse_args()'\nassert old_arg in code, \"Cannot find conformal_threshold arg\"\ncode = code.replace(old_arg, new_arg)\n\nold_wrapper = 'wrapper = Pi05Wrapper(args.pi05_path, device=str(device))'\nnew_wrapper = 'wrapper = Pi05Wrapper(args.pi05_path, device=str(device), n_action_steps=args.n_action_steps)'\nassert old_wrapper in code, \"Cannot find Pi05Wrapper construction\"\ncode = code.replace(old_wrapper, new_wrapper)\n\nwith open('src/evaluate.py', 'w') as f:\n    f.write(code)\nprint('evaluate.py updated')\nPYEOF\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python /tmp/patch_code.py && python -c \"import ast; ast.parse(open('/root/acr-vla-conformal-refinement/src/pi05_wrapper.py').read()); ast.parse(open('/root/acr-vla-conformal-refinement/src/evaluate.py').read()); print('SYNTAX OK')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-22T10:57:39.444601+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"pi05_wrapper.py updated\\\\nevaluate.py updated\\\\nSYNTAX OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.97}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-22T10:57:39.444740+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "filters": "{'exp_id': 'eval-pi05-vla-only-object-seed42-r3'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-22T10:57:39.444864+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-22T10:57:39.444983+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.604}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-22T10:57:39.445095+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-22T10:57:39.445223+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "filters": "{'model': 'pi05'}",
+              "limit": "10"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-22T10:57:39.445371+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4983}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-22T10:57:39.445500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "limit": "20"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-22T10:57:39.445764+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval-loss-perdof-object-seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T06:44:22.703Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:51:37.131Z\\\", \\\"hypothesis\\\": \\\"Per-DOF weighted MSE loss for CRM training produces corrections that improve downstream task success rate over VLA-only baseline by weighting each action dimension proportionally to its error magnitude.\\\", \\\"parent\\\": \\\"crm-loss-perdof\\\", \\\"metrics\\\": {\\\"success_rate\\\": 4, \\\"total_success\\\": 8, \\\"total_rollouts\\\": 200, \\\"per_task\\\": {\\\"alphabet_soup\\\": 0, \\\"cream_cheese\\\": 5, \\\"salad_dressing\\\": 0, \\\"bbq_sauce\\\": 5, \\\"ketchup\\\": 5, \\\"tomato_sauce\\\": 0, \\\"butter\\\": 10, \\\"milk\\\": 5, \\\"chocolate_pudding\\\": 5, \\\"orange_juice\\\": 5}}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"eval-loss-combined-object-seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T06:44:27.563Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:41:20.547Z\\\", \\\"hypothesis\\\": \\\"Combined loss (per-DOF weighted + conformal-guided) for CRM training produces corrections that improve downstream task success rate over VLA-only baseline by jointly leveraging dimension-wise weighting and conformal prediction guidance.\\\", \\\"parent\\\": \\\"crm-loss-combined\\\", \\\"metrics\\\": {\\\"avg_success_rate\\\": 9, \\\"total_successes\\\": 18, \\\"total_episodes\\\": 200, \\\"per_task\\\": {\\\"alphabet_soup\\\": 0, \\\"cream_cheese\\\": 10, \\\"salad_dressing\\\": 10, \\\"bbq_sauce\\\": 15, \\\"ketchup\\\": 0, \\\"tomato_sauce\\\": 5, \\\"butter\\\": 5, \\\"milk\\\": 10, \\\"chocolate_pudding\\\": 25, \\\"orange_juice\\\": 10}}, \\\"conclusion\\\": \\\"negative\\\"}, \\\"eval-loss-conformal-object-seed42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-22T06:44:25.081Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:40:44.234Z\\\", \\\"hypothesis\\\": \\\"Conformal-guided loss for CRM training produces corrections that improve downstream task success rate over VLA-only baseline by incorporating conformal prediction scores into the training objective.\\\", \\\"parent\\\": \\\"crm-loss-conformal\\\", \\\"metrics\\\n…[truncated 7456 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-22T10:57:39.446012+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-22T10:57:39.446182+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA GeForce RTX 4090, 9883 MiB, 24564 MiB, 22 %\\\\n1, NVIDIA GeForce RTX 4090, 555 MiB, 24564 MiB, 10 %\\\\n2, NVIDIA GeForce RTX 4090, 0 MiB, 24564 MiB, 0 %\\\\n3, NVIDIA GeForce RTX 4090, 0 MiB, 24564 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-22T10:57:39.446385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-pi05-vla-only-object-seed42-r4",
+              "field": "hypothesis",
+              "value": "π0.5 VLA-only baseline re-test with official settings: n_action_steps=10, 10 dummy steps with gripper-open, per-suite max_steps=280",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-22T10:57:39.446534+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-pi05-vla-only-object-seed43-r4",
+              "field": "hypothesis",
+              "value": "π0.5 VLA-only baseline re-test with official settings: n_action_steps=10, 10 dummy steps with gripper-open, per-suite max_steps=280",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-22T10:57:39.446671+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-pi05-vla-only-object-seed44-r4",
+              "field": "hypothesis",
+              "value": "π0.5 VLA-only baseline re-test with official settings: n_action_steps=10, 10 dummy steps with gripper-open, per-suite max_steps=280",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-22T10:57:39.446814+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-pi05-vla-only-object-seed42-r4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:54:01.041Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:54:01.041Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline re-test with official settings: n_action_steps=10, 10 dummy steps with gripper-open, per-suite max_steps=280\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.2307}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-22T10:57:39.446949+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-pi05-vla-only-object-seed43-r4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:54:05.881Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:54:05.881Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline re-test with official settings: n_action_steps=10, 10 dummy steps with gripper-open, per-suite max_steps=280\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.0006}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-22T10:57:39.447081+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-pi05-vla-only-object-seed44-r4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:54:08.543Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:54:08.543Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline re-test with official settings: n_action_steps=10, 10 dummy steps with gripper-open, per-suite max_steps=280\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-22T10:57:39.447205+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-pi05-vla-only-object-seed42-r4",
+              "field": "parent",
+              "value": "eval-pi05-vla-only-object-seed42-r3",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-22T10:57:39.447350+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-pi05-vla-only-object-seed43-r4",
+              "field": "parent",
+              "value": "eval-pi05-vla-only-object-seed43-r3",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-22T10:57:39.447470+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-pi05-vla-only-object-seed44-r4",
+              "field": "parent",
+              "value": "eval-pi05-vla-only-object-seed44-r3",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-22T10:57:39.447608+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-pi05-vla-only-object-seed42-r4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:54:01.041Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:54:15.598Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline re-test with official settings: n_action_steps=10, 10 dummy steps with gripper-open, per-suite max_steps=280\\\", \\\"parent\\\": \\\"eval-pi05-vla-only-object-seed42-r3\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.6856}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-22T10:57:39.447745+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-pi05-vla-only-object-seed43-r4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:54:05.881Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:54:18.398Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline re-test with official settings: n_action_steps=10, 10 dummy steps with gripper-open, per-suite max_steps=280\\\", \\\"parent\\\": \\\"eval-pi05-vla-only-object-seed43-r3\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.6964}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-22T10:57:39.447878+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-pi05-vla-only-object-seed44-r4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:54:08.543Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:54:21.078Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline re-test with official settings: n_action_steps=10, 10 dummy steps with gripper-open, per-suite max_steps=280\\\", \\\"parent\\\": \\\"eval-pi05-vla-only-object-seed44-r3\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.6648}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-22T10:57:39.448016+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && nohup bash -c 'CUDA_VISIBLE_DEVICES=1 TORCHDYNAMO_DISABLE=1 python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 42 --n_rollouts 20 --K 10 --n_action_steps 10' > /tmp/eval_pi05_seed42_r4.log 2>&1 &\necho \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-22T10:57:39.448139+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && nohup bash -c 'CUDA_VISIBLE_DEVICES=2 TORCHDYNAMO_DISABLE=1 python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 43 --n_rollouts 20 --K 10 --n_action_steps 10' > /tmp/eval_pi05_seed43_r4.log 2>&1 &\necho \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-22T10:57:39.448296+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && nohup bash -c 'CUDA_VISIBLE_DEVICES=3 TORCHDYNAMO_DISABLE=1 python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 44 --n_rollouts 20 --K 10 --n_action_steps 10' > /tmp/eval_pi05_seed44_r4.log 2>&1 &\necho \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-22T10:57:39.448452+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PID=905242\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-22T10:57:39.448581+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && nohup bash -c \\\\\\\\'CUDA_VISIBLE_DEVICES=2 TORCHDYNAMO_DISABLE=1 python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 43 --n_rollouts 20 --K 10 --n_action_steps 10\\\\\\\\' > /tmp/eval_pi05_seed43_r4.log 2>&1 &\\\\\\\\necho \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=905874\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-22T10:57:39.448729+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && nohup bash -c \\\\\\\\'CUDA_VISIBLE_DEVICES=3 TORCHDYNAMO_DISABLE=1 python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 44 --n_rollouts 20 --K 10 --n_action_steps 10\\\\\\\\' > /tmp/eval_pi05_seed44_r4.log 2>&1 &\\\\\\\\necho \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=906424\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.83}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-22T10:57:39.448881+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "tail -5 /tmp/eval_pi05_seed42_r4.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-22T10:57:39.449006+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[eval] max_steps set to 280 for benchmark object\\\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-22T10:57:39.449124+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "tail -5 /tmp/eval_pi05_seed43_r4.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-22T10:57:39.449251+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[eval] max_steps set to 280 for benchmark object\\\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-22T10:57:39.449456+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "tail -5 /tmp/eval_pi05_seed44_r4.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-22T10:57:39.449594+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[eval] max_steps set to 280 for benchmark object\\\\n[eval] Loading PI05 from /root/autodl-tmp/models/pi05_libero_finetuned/...\\\\nThe PI05 model is a direct port of the OpenPI implementation. \\\\nThis implementation follows the original OpenPI structure for compatibility. \\\\nOriginal implementation: https://github.com/Physical-Intelligence/openpi\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-22T10:57:39.449735+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-pi05-vla-only-object-seed42-r4",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=1 TORCHDYNAMO_DISABLE=1 python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 42 --n_rollouts 20 --K 10 --n_action_steps 10', 'server': 'bjb1-18228', 'data_path': 'LIBERO-Object', 'data_count': 200, 'model_name': 'pi05_libero_finetuned', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'eval_data': 'LIBERO-Object 10 tasks x 20 rollouts', 'log_path': '/tmp/eval_pi05_seed42_r4.log', 'pid': 905242}"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-22T10:57:39.449874+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.221}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-22T10:57:39.450000+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-pi05-vla-only-object-seed43-r4",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=2 TORCHDYNAMO_DISABLE=1 python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 43 --n_rollouts 20 --K 10 --n_action_steps 10', 'server': 'bjb1-18228', 'data_path': 'LIBERO-Object', 'data_count': 200, 'model_name': 'pi05_libero_finetuned', 'seed': 43, 'checkpoint_source': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'eval_data': 'LIBERO-Object 10 tasks x 20 rollouts', 'log_path': '/tmp/eval_pi05_seed43_r4.log', 'pid': 905874}"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-22T10:57:39.450141+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5509}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-22T10:57:39.450286+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-pi05-vla-only-object-seed44-r4",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=3 TORCHDYNAMO_DISABLE=1 python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 44 --n_rollouts 20 --K 10 --n_action_steps 10', 'server': 'bjb1-18228', 'data_path': 'LIBERO-Object', 'data_count': 200, 'model_name': 'pi05_libero_finetuned', 'seed': 44, 'checkpoint_source': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'eval_data': 'LIBERO-Object 10 tasks x 20 rollouts', 'log_path': '/tmp/eval_pi05_seed44_r4.log', 'pid': 906424}"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-22T10:57:39.450449+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4406}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-22T10:57:39.450574+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-pi05-vla-only-object-seed42-r4",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-22T10:57:39.450692+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-pi05-vla-only-object-seed43-r4",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-22T10:57:39.450805+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-pi05-vla-only-object-seed44-r4",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-22T10:57:39.450933+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-pi05-vla-only-object-seed42-r4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:54:01.041Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:56:32.529Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline re-test with official settings: n_action_steps=10, 10 dummy steps with gripper-open, per-suite max_steps=280\\\", \\\"parent\\\": \\\"eval-pi05-vla-only-object-seed42-r3\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.2819}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-22T10:57:39.451066+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-pi05-vla-only-object-seed43-r4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:54:05.881Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:56:37.847Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline re-test with official settings: n_action_steps=10, 10 dummy steps with gripper-open, per-suite max_steps=280\\\", \\\"parent\\\": \\\"eval-pi05-vla-only-object-seed43-r3\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.6476}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-22T10:57:39.451202+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-pi05-vla-only-object-seed44-r4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:54:08.543Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:56:45.697Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline re-test with official settings: n_action_steps=10, 10 dummy steps with gripper-open, per-suite max_steps=280\\\", \\\"parent\\\": \\\"eval-pi05-vla-only-object-seed44-r3\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 10.8906}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-22T10:57:39.451351+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-pi05-vla-only-object-seed42-r4",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=1 TORCHDYNAMO_DISABLE=1 python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 42 --n_rollouts 20 --K 10 --n_action_steps 10', 'server': 'bjb1-18228', 'data_path': 'LIBERO-Object', 'data_count': 200, 'model_name': 'pi05_libero_finetuned', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'eval_data': 'LIBERO-Object 10 tasks x 20 rollouts', 'log_path': '/tmp/eval_pi05_seed42_r4.log', 'pid': 905242}"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-22T10:57:39.451520+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-pi05-vla-only-object-seed43-r4",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=2 TORCHDYNAMO_DISABLE=1 python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 43 --n_rollouts 20 --K 10 --n_action_steps 10', 'server': 'bjb1-18228', 'data_path': 'LIBERO-Object', 'data_count': 200, 'model_name': 'pi05_libero_finetuned', 'seed': 43, 'checkpoint_source': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'eval_data': 'LIBERO-Object 10 tasks x 20 rollouts', 'log_path': '/tmp/eval_pi05_seed43_r4.log', 'pid': 905874}"
+            }
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-22T10:57:39.451705+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-pi05-vla-only-object-seed44-r4",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=3 TORCHDYNAMO_DISABLE=1 python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 44 --n_rollouts 20 --K 10 --n_action_steps 10', 'server': 'bjb1-18228', 'data_path': 'LIBERO-Object', 'data_count': 200, 'model_name': 'pi05_libero_finetuned', 'seed': 44, 'checkpoint_source': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'eval_data': 'LIBERO-Object 10 tasks x 20 rollouts', 'log_path': '/tmp/eval_pi05_seed44_r4.log', 'pid': 906424}"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-22T10:57:39.451864+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-pi05-vla-only-object-seed42-r4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:54:01.041Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:57:05.565Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline re-test with official settings: n_action_steps=10, 10 dummy steps with gripper-open, per-suite max_steps=280\\\", \\\"parent\\\": \\\"eval-pi05-vla-only-object-seed42-r3\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 TORCHDYNAMO_DISABLE=1 python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 42 --n_rollouts 20 --K 10 --n_action_steps 10\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models/pi05_libero_finetuned/\\\", \\\"eval_data\\\": \\\"LIBERO-Object 10 tasks x 20 rollouts\\\", \\\"log_path\\\": \\\"/tmp/eval_pi05_seed42_r4.log\\\", \\\"pid\\\": 905242}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.7595}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-22T10:57:39.452028+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-pi05-vla-only-object-seed43-r4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:54:05.881Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:57:14.618Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline re-test with official settings: n_action_steps=10, 10 dummy steps with gripper-open, per-suite max_steps=280\\\", \\\"parent\\\": \\\"eval-pi05-vla-only-object-seed43-r3\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 TORCHDYNAMO_DISABLE=1 python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 43 --n_rollouts 20 --K 10 --n_action_steps 10\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models/pi05_libero_finetuned/\\\", \\\"eval_data\\\": \\\"LIBERO-Object 10 tasks x 20 rollouts\\\", \\\"log_path\\\": \\\"/tmp/eval_pi05_seed43_r4.log\\\", \\\"pid\\\": 905874}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.1819}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-22T10:57:39.452178+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-pi05-vla-only-object-seed44-r4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:54:08.543Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:57:24.123Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline re-test with official settings: n_action_steps=10, 10 dummy steps with gripper-open, per-suite max_steps=280\\\", \\\"parent\\\": \\\"eval-pi05-vla-only-object-seed44-r3\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 TORCHDYNAMO_DISABLE=1 python -u src/evaluate.py --model pi05 --mode vla_only --benchmark object --seed 44 --n_rollouts 20 --K 10 --n_action_steps 10\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"pi05_libero_finetuned\\\", \\\"seed\\\": 44, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/models/pi05_libero_finetuned/\\\", \\\"eval_data\\\": \\\"LIBERO-Object 10 tasks x 20 rollouts\\\", \\\"log_path\\\": \\\"/tmp/eval_pi05_seed44_r4.log\\\", \\\"pid\\\": 906424}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.6343}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-22T10:57:39.452422+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**代码修改（4 台服务器均已部署并验证语法）：**\n- `pi05_wrapper.py`: `__init__` 新增 `n_action_steps=10` 参数，`predict_action()` 中 action queue 只取前 `n_action_steps` 步（原来取全部 50 步）\n- `evaluate.py`: 新增 `--n_action_steps` CLI 参数，传递给 `Pi05Wrapper` 构造函数\n\n**已部署服务器：** bjb1-18228, bjb1-32546, bjb2-28827, bjb2-40593\n\n**已提交实验（bjb1-18228，GPU 1/2/3）：**\n\n| 实验 ID | Seed | GPU | PID | 日志 |\n|---------|------|-----|-----|------|\n| eval-pi05-vla-only-object-seed42-r4 | 42 | cuda:1 | 905242 | /tmp/eval_pi05_seed42_r4.log |\n| eval-pi05-vla-only-object-seed43-r4 | 43 | cuda:2 | 905874 | /tmp/eval_pi05_seed43_r4.log |\n| eval-pi05-vla-only-object-seed44-r4 | 44 | cuda:3 | 906424 | /tmp/eval_pi05_seed44_r4.log |\n\n配置：`n_action_steps=10, K=10, max_steps=280, 20 rollouts/task, vla_only mode`。因 GPU 0 有占用，改用 GPU 1/2/3。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-n-action-steps-fix_20260522T105018"
+          },
+          "id": "event-000091"
+        }
+      ],
+      "message_count": 91
+    }
+  ],
+  "readable_path": "readable/conversations/code-pi05-n-action-steps-fix.md"
+}

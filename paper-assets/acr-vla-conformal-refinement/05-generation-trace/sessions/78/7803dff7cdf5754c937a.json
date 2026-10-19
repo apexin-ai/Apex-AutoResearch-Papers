@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7803dff7cdf5754c937a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code analysis pipeline",
+  "task_key": "worker_code_analysis-pipeline_20260515T132601",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_analysis-pipeline_20260515T132601_result.json",
+    "occurrence": 1,
+    "bytes": 577,
+    "sha256": "49da0d3e393d5cb758f5407f519a1a21839f099d1e7872dc46e9335c9a296cb9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个脚本全部通过语法验证，已在 `/root/acr-vla-conformal-refinement/scripts/` 创建完成：\n\n| 脚本 | 功能 |\n|------|------|\n| `analyze_fisher_exact.py` | 合并两个 seed 的成功/失败 counts，Fisher exact test + bootstrap 95% CI |\n| `plot_magnitude_curve.py` | obs_only vs perdof 两条线 + argmin baseline，输出学术风格 PDF |\n| `summarize_object_table.py` | 10 tasks × N methods LaTeX 表格，bold 最佳，含 avg±std |\n\n`figures/` 目录也已创建。所有依赖（scipy 1.17.1, matplotlib 3.10.5）已就绪。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-analysis-pipeline.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d144c3b2c8cc6964105d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "check gpu utilization recheck",
+  "task_key": "worker_check_gpu-utilization-recheck_20260521T154131",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_gpu-utilization-recheck_20260521T154131_result.json",
+    "occurrence": 1,
+    "bytes": 1236,
+    "sha256": "02092e2ba72f62f8d94febe6bf9355877117d4d1d0dd6fd6916f29cc8a5c89b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### bjb2-28827（6 GPU，Spatial precompute shard 0-5）\n\n| GPU | 利用率 | 显存 | 状态 |\n|-----|--------|------|------|\n| 0 | 21% | 9883/24564 MiB | shard 0 运行中 |\n| 1 | 21% | 9883/24564 MiB | shard 1 运行中 |\n| 2 | 20% | 9883/24564 MiB | shard 2 运行中 |\n| 3 | 20% | 9883/24564 MiB | shard 3 运行中 |\n| 4 | 21% | 9883/24564 MiB | shard 4 运行中 |\n| 5 | 19% | 9883/24564 MiB | shard 5 运行中 |\n\n**6 个 train_crm 进程全部存活**，CPU 均在 154%+。利用率 19-21% 属于 I/O bound，正常。\n\n### bjb2-40593（1 GPU，Object precompute shard 0）\n\n| GPU | 利用率 | 显存 | 状态 |\n|-----|--------|------|------|\n| 0 | 14% | 9839/24564 MiB | shard 0 运行中 |\n\n**进程存活**（PID 872656，CPU 140%）。\n\n**注意**：旧任务（`runs/` 下的日志，num_shards=7）在 2900/7251 时被 SIGHUP 终止（EXIT_CODE=129）。当前跑的是**新任务**（num_shards=10，日志写到 `/root/precompute_pi05_shard0.log`），进度 **3600/7251**，预计剩余 ~12200s（~3.4h），速度 3.34s/sample。\n\n### 结论\n\n两台服务器全部正常运行，无进程死亡。GPU 利用率偏低（14-21%）为 I/O bound 导致，可接受。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpu-utilization-recheck.md"
+}

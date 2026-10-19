@@ -1,0 +1,1893 @@
+{
+  "schema_version": "1.0",
+  "id": "f027a6ebba2086452b3f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "cron hook eval obs only object norm003 seed48",
+  "task_key": "cron_hook_eval-obs-only-object-norm003-seed48",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/cron_hook_eval-obs-only-object-norm003-seed48.jsonl",
+    "occurrence": 1,
+    "bytes": 85404,
+    "sha256": "f7e6e4b4f06a3e3457f794c2836fc91928f8af60aa25bb0176f0bc9136eb71be"
+  },
+  "statistics": {
+    "messages": 94,
+    "user_turns": 3,
+    "tool_calls": 44,
+    "roles": {
+      "user": 3,
+      "tool_call": 44,
+      "tool_result": 44,
+      "assistant": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T12:51:31.446055+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: eval-obs-only-object-norm003-seed48\n- project: acr-vla-conformal-refinement\n- server: bjb1-18228\n- log_path: ~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed48.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T12:51:46.841425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T12:51:46.841875+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T12:51:49.784784+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T12:51:50.296957+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T12:51:50.748441+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T12:51:50.754257+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T12:51:53.424615+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (462,688 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-70f4b47a/f5c55489-776b-4637-97bb-3defb268fc94/tool-results/mcp-agent-ml-research-read_registry-1779195113225.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-70f4b47a/f5c55489-776b-4637-97bb-3defb268fc94/tool-results/mcp-agent-ml-research-read_registry-1779195113225.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-70f4b47a/f5c55489-776b-4637-97bb-3defb268fc94/tool-results/mcp-agent-ml-research-read_registry-1779195113225.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 3639
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T12:53:23.094998+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 11, \\\"results\\\": [{\\\"exp_id\\\": \\\"eval-random-selection-object-seed46-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=eval-random-selection-seed46-t16)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-spatial-norm02-seed43\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=eval-spatial-obs-only-norm02-seq)\\\"]}, {\\\"exp_id\\\": \\\"eval-perdof-object-norm005-seed45-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=eval-perdof-norm005-seed45-t16)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-default-seed48-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=eval-obs-only-default-seed48-t16)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-spatial-norm02-seed44\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=eval-spatial-obs-only-norm02-seed44)\\\"]}, {\\\"exp_id\\\": \\\"eval-argmin-object-k5-seed42\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=eval-argmin-object-k5-seed42)\\\"]}, {\\\"exp_id\\\": \\\"eval-argmin-object-k5-seed43\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=eval-argmin-object-k5-seed43)\\\"]}, {\\\"exp_id\\\": \\\"eval-argmin-object-k5-seed45\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=eval-argmin-object-k5-seed45)\\\"]}, {\\\"exp_id\\\": \\\"eval-argmin-object-k5-seed44\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=eval-argmin-object-k5-seed44)\\\"]}, {\\\"exp_id\\\": \\\"eval-perdof-object-norm005-seed47\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=eval-perdof-object-norm005-seed47)\\\"]}, {\\\"exp_id\\\": \\\"eval-perdof-object-norm003-seed47\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=eval-perdof-object-norm003-seed47)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 92798
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T12:53:23.150563+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-19T12:52:26Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 301 个实验 — ANALYZING 2, DEPLOYED 4, DONE 281, PREPARING 2, RUNNING 12\\\\n**DONE 分布**: failed 33, killed 81, negative 30, success 137\\\\n\\\\n### GPU 占用\\\\n- **实际运行**: 12 张 — bjb2-40593:cuda:0(eval-random-selection-object-seed46-r2), bjb2-40593:cuda:0(eval-obs-only-spatial-norm02-seed43), bjb2-28827:cuda:3(eval-obs-only-spatial-norm02-seed44), bjb1-32546:cuda:4(eval-perdof-object-norm005-seed45-r2), bjb1-32546:cuda:4(eval-obs-only-object-default-seed48-r2), bjb1-32546:cuda:2(eval-argmin-object-k5-seed43), bjb1-32546:cuda:0(eval-argmin-object-k5-seed42), bjb1-18228:cuda:0(eval-obs-only-object-norm005-seed48), bjb1-18228:cuda:2(eval-perdof-object-norm005-seed47), bjb1-18228:cuda:3(eval-perdof-object-norm003-seed47), bjb2-28827:cuda:1(eval-argmin-object-k5-seed44), bjb1-32546:cuda:5(eval-argmin-object-k5-seed45)\\\\n\\\\n### 💾 磁盘余量\\\\n- **bjb2-40593**:\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\\\n  - `/usr/bin/nvidia-smi`: 44G/437G 可用（已用 90%） ⚠️\\\\n- **bjb1-18228**:\\\\n  - `/autodl-pub`: 1.2T/7.0T 可用（已用 85%）\\\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\\\n  - `/usr/bin/nvidia-smi`: 400G/438G 可用（已用 4%）\\\\n- **bjb1-32546**:\\\\n  - `/autodl-pub`: 794G/7.0T 可用（已用 89%）\\\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\\\n  - `/usr/bin/nvidia-smi`: 400G/438G 可用（已用 4%）\\\\n- **bjb2-28827**:\\\\n  - `/autodl-pub`: 4.4T/14T 可用（已用 69%）\\\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\\\n  - `/usr/bin/nvidia-smi`: 399G/439G 可用（已用 5%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `eval-random-selection-object-seed46-r2` | bjb2-40593 | cuda:0 | ? | `—` |\\\\n| `eval-obs-only-spatial-norm02-s\n…[truncated 9678 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 92402
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T12:53:23.208846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\\\", \\\"content\\\": \\\"# acr-vla-conformal-refinement — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-19 11:40 UTC | 更新原因: K=5 数据 JSON-verified 修正 16.0%±2.2% + 统一失败框架\\\\n\\\\n> 详见 paper_framing.md（D069: LTO negative + unified failure framework）\\\\n\\\\n## 核心方向\\\\n**Analysis paper — inference-time correction dissection + mechanism insights**\\\\nTitle: \\\\\\\"Correction Over Selection: Dissecting Inference-Time Action Refinement for Frozen VLAs\\\\\\\"\\\\n\\\\n## 投稿目标\\\\n**CoRL 2026**（DDL **2026-05-29** — ⚠️ 待用户确认，paper_framing 旧版写 Jun 2）。\\\\n\\\\n## 关键进展\\\\n\\\\n### D069: LTO + 统一失败框架\\\\n- CRM on held-out tasks: **2% (1/50)** vs VLA-only **14% (7/50)** — CRM OOD 有害\\\\n- **三种失败模式统一归因**：CRM correction = bounded task-specific residual\\\\n  - Input shift (K=1): 10.3% < baseline\\\\n  - Task shift (LTO): 2% vs 14%\\\\n  - Feature shift (perdof): →0% collapse\\\\n- 论文定位：放入 Analysis section（0.75-1页），不仅是 Limitation\\\\n\\\\n### D067: Batched Inference ✅\\\\n- ~314ms for all K (~3 Hz), CRM overhead 0.32ms\\\\n\\\\n### K=5 vs K=10 Primary — 待用户确认\\\\n- K=5: **16.0%±2.2% (n=7, JSON-verified)** [14,19,17,15,16,13,18]\\\\n- K=10: 17.6%±2.6% (n=7), p=0.0025\\\\n- Batched 下延迟相同。已推荐 K=10\\\\n\\\\n## 统计证据\\\\n| Evidence | 结果 | Status |\\\\n|----------|------|--------|\\\\n| K=5 obs_only (n=7) | 16.0%±2.2% vs VLA 11.6%, U=34.5 | ✅ JSON-verified |\\\\n| K=10 obs_only (n=7) | 17.6% vs VLA 11.6%, p=0.0025 | ✅ |\\\\n| Component decomposition (K=10) | selection ≈ 0, correction +5.2pp | ✅ |\\\\n| K=5 argmin decomposition | seed42/43/44 部署中 | 🔄 P1 |\\\\n| K-value curve | K=1(10.3%)→K=5(16.0%)→K=10(17.6%) | ✅ |\\\\n| Magnitude obs_only | stable 14-18% all ε (⚠️ ε=0.03 n=1) | ✅ |\\\\n| Magnitude perdof | collapse at high ε | ✅ |\\\\n| LTO generalization | CRM 2% vs VLA 14% — harmful OOD | ✅ D069 |\\\\n| Spatial K=5 | seed42=35%, seed43=32%, mean=33.5% | ✅ |\\\\n| Spatial K=10 | seed43/44/45 运行中 | 🔄 |\\\\n| Batched latency | ~314ms ind\n…[truncated 2335 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 92454
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T12:53:34.480652+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-70f4b47a/f5c55489-776b-4637-97bb-3defb268fc94/tool-results/mcp-agent-ml-research-read_registry-1779195113225.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor e in exps:\n    if e.get('exp_id') == 'eval-obs-only-object-norm003-seed48':\n        print(json.dumps(e, indent=2))\n        break\n\"",
+              "description": "Extract failed experiment details from registry"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T12:53:34.835130+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 7, in <module>\n    if e.get('exp_id') == 'eval-obs-only-object-norm003-seed48':\n       ^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "Bash",
+            "elapsed_ms": 354
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T12:53:43.335479+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-70f4b47a/f5c55489-776b-4637-97bb-3defb268fc94/tool-results/mcp-agent-ml-research-read_registry-1779195113225.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult_str = data['result']\nresult = json.loads(result_str)\n# Check structure\nif isinstance(result, dict) and 'data' in result:\n    d = result['data']\n    if isinstance(d, dict):\n        print('keys:', list(d.keys())[:5])\n        if 'experiments' in d:\n            exps = d['experiments']\n            print('type of exps:', type(exps))\n            if isinstance(exps, list) and len(exps) > 0:\n                print('type of first:', type(exps[0]))\n                if isinstance(exps[0], str):\n                    # maybe each is a JSON string\n                    print('first 200 chars:', exps[0][:200])\n    elif isinstance(d, str):\n        d2 = json.loads(d)\n        print('parsed d2 type:', type(d2))\n        print('d2 keys:', list(d2.keys())[:5] if isinstance(d2, dict) else 'not dict')\nelif isinstance(result, str):\n    r2 = json.loads(result)\n    print('r2 type:', type(r2))\n\"",
+              "description": "Probe registry JSON structure"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T12:53:43.436197+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "keys: ['experiments', 'count', 'total', 'baseline']\ntype of exps: <class 'dict'>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T12:53:52.380135+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-70f4b47a/f5c55489-776b-4637-97bb-3defb268fc94/tool-results/mcp-agent-ml-research-read_registry-1779195113225.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# exps is a dict keyed by exp_id\nif 'eval-obs-only-object-norm003-seed48' in exps:\n    print(json.dumps(exps['eval-obs-only-object-norm003-seed48'], indent=2))\nelse:\n    print('NOT FOUND')\n    # check similar names\n    for k in exps:\n        if 'norm003-seed48' in k:\n            print('Found similar:', k)\n\"",
+              "description": "Extract eval-obs-only-object-norm003-seed48 from registry"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T12:53:52.626897+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"status\": \"PREPARING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-19T11:56:04.999Z\",\n  \"updated_at\": \"2026-05-19T12:51:44.624Z\",\n  \"hypothesis\": \"obs_only CRM (\\u03b5=0.03) seed48 on LIBERO-Object. \\u65b0 seed, 16h timeout\\u3002C2 magnitude curve \\u03b5=0.03 \\u7aef\\u5f53\\u524d n=1 (seed42=16%), \\u9700 n\\u22653 \\u624d\\u6709 error bars\\u3002\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"cd /root/acr-vla-conformal-refinement && timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 48 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_obs_only_norm003_seed48.json\\\"\",\n    \"server\": \"bjb1-18228\",\n    \"gpu\": [\n      \"cuda:1\"\n    ],\n    \"pid\": \"67819\",\n    \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed48.log\",\n    \"submitted_at\": \"2026-05-19T11:59:23.808Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\"\n  },\n  \"reproduce\": {\n    \"finished_at\": \"2026-05-19T12:51:31.065Z\"\n  },\n  \"failure_reason\": \"EXIT_CODE=129 (non-zero)\",\n  \"conclusion\": \"failed\"\n}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "Bash",
+            "elapsed_ms": 246
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T12:54:00.513924+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T12:54:00.579775+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "ToolSearch",
+            "elapsed_ms": 65
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T12:54:01.183935+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/skills/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T12:54:01.245495+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/sessions/agent_70f4b47a."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "Read",
+            "elapsed_ms": 61
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T12:54:15.098262+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/skills/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T12:54:15.148999+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/sessions/agent_70f4b47a."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T12:54:17.809438+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/on-experiment-failed.skill.md",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T12:54:17.861200+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "Glob",
+            "elapsed_ms": 51
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T12:54:20.471143+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/on-experiment-failed*",
+              "path": "/home/ubuntu"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T12:54:20.723713+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "Glob",
+            "elapsed_ms": 252
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T12:54:23.137431+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T12:54:23.240852+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: on-experiment-failed\n3\tdescription: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。\n4\tscope: global\n5\ttags:\n6\t- workflow\n7\t- diagnosis\n8\t- cron-hook\n9\ttools:\n10\t- read_registry\n11\t- tail_training_logs\n12\t- update_registry\n13\t- append_idea\n14\t- feishu_send_result_card\n15\t- spawn_worker\n16\t- check_job_status\n17\tversion: 4\n18\theavy: true\n19\troles:\n20\t- agent\n21\t---\n22\t\n23\t# 实验失败诊断工作流\n24\t\n25\t## 触发方式\n26\t由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。\n27\t\n28\t## 步骤\n29\t\n30\t### Step 0: 读取项目上下文（诊断前必须执行）\n31\t先读文档，再看日志——否则诊断方向可能完全错误：\n32\t\n33\t- `read_project_file(\"memory.md\")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案\n34\t- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构\n35\t\n36\t读完后检查：\n37\t- memory.md 里有没有\"此类实验曾失败，原因是 X\"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程\n38\t- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）\n39\t\n40\t### Step 1: 了解失败背景\n41\t- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path\n42\t\n43\t### Step 2: 浅层日志诊断\n44\t有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)\n45\t- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback\n46\t- 没找到 → 增加行数再查\n47\t\n48\t### Step 2.5: 深查（满足以下任一条件时 spawn_worker）\n49\t- 运行时长 < 5 分钟（初始化阶段崩溃）\n50\t- tail 日志中未见明确 Traceback 或错误行\n51\t- 同类实验连续失败 ≥ 2 次\n52\t\n53\t```python\n54\tspawn_worker(\n55\t    task_type=\"diagnose:{exp_id}\",\n56\t    task_prompt=\"\"\"SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。\n57\t\n58\t项目路径：{project_path}（绝对路径）\n59\t日志路径：{log_path}（可能为空）\n60\t\n61\t执行步骤（按顺序，有结论就停）：\n62\t\n63\t1. 如果有日志路径：\n64\t   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）\n65\t   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）\n66\t   - 日志文件不存在：说明任务启动即失败，跳到步骤 2\n67\t\n68\t2. 日志无错误或无日志时，检查基础设施：\n69\t   - 入口文件是否存在\n70\t   - 激活环境并验证 import\n71\t   - 检查 configs/ 目录\n72\t\n73\t3. 检查磁盘/内存（OOM 类）\n74\t\n75\t最后输出一行 JSON：\n76\t{\"root_cause\":\"<引用具体报错行>\",\"error_type\":\"infrastructure|hyperparameter|resource|data\",\"fix_steps\":[\"步骤1\",\"步骤2\"],\"can_auto_fix\":true}\"\"\",\n77\t    tool_groups=[\"ssh\"],\n78\t)\n79\t```\n80\t\n81\tWorker 返回后，以其结论作为 Step 3 的诊断依据。\n82\t\n83\t### \n…[truncated 1766 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "Read",
+            "elapsed_ms": 103
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T12:54:30.421043+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "memory.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T12:54:30.722516+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\\\", \\\"content\\\": \\\"# Project Memory\\\\n\\\\n## plan_802 可行性分析结论 (2026-05-17)\\\\n\\\\nOpenVLA 7B (Llama-2-7b, hidden=4096) 与 SmolVLA CRM (obs_dim=960) 完全不兼容：\\\\n- Feature dim: 4096 vs 960\\\\n- Action 机制: deterministic token gen vs K-sample flow matching\\\\n- CRM 核心依赖的多 sample + CGS 在 OpenVLA 中不存在\\\\n\\\\n如果要做 OpenVLA + CRM，必须重新设计（放弃 conformal 保证，变成 obs_only residual correction）。\\\\n预估 precompute 2-4h/benchmark，训练 <30min，存储 ~200MB 全部 benchmark。\\\\n\\\\n## bjb1-18228 实验被调度系统抢占 (2026-05-19)\\\\n\\\\n`eval-perdof-object-norm003-seed44-r2` 及同时段运行的多个 eval 实验在 2026-05-19 03:13 UTC+8 被批量 SIGTERM (EXIT_CODE=143)。原因是 agent-ml 调度系统杀掉旧实验为新实验腾 GPU：03:14 立即创建了新 tmux session（seed47/seed48/norm03-seed48）。\\\\n\\\\n教训：bjb1-18228 上 4×RTX4090 共 8 个 GPU slot，当调度器分配新任务时会 SIGTERM 占用 slot 的旧进程。长时间 eval（10 tasks × 10 rollouts × 300 steps，预计 ~14h）容易被抢占。如需保证完成，应在专用 GPU slot 上运行或拆分为更小的任务。\\\\n\\\\n## [失败模式] Timeout: eval 实验 timeout_hours 过低 (2026-05-18)\\\\n\\\\nLIBERO-Object 全量 eval（10 tasks × 10 rollouts × 300 steps, K=10）实际需要 ~12-14h 完成。当 submit_training_job 的 timeout_hours 设置为 6h 时，实验在 ~task 5 处被 EXIT_CODE=124 杀掉。受影响实验：eval-obs-only-object-norm003-seed44/seed45, eval-perdof-object-norm03-seed43。修复方案：重提交时设置 timeout_hours=16（或更高）。同类 norm02 实验成功完成时间为 8-14h。\\\\n\\\", \\\"total_chars\\\": 1160, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 301
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T12:54:30.773295+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__check_job_status",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T12:54:30.823815+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T12:54:42.927596+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "log_path": "~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed48.log",
+              "n": "80"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T12:54:43.078384+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__check_job_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "pid": "67819"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T12:54:43.317819+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"[robosuite WARNING] No private macro file found! (__init__.py:7)\\\", \\\"[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\", \\\"[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\", \\\"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'n_rollouts': 10, 'max_steps': 300, 'seed': 48, 'K': 10, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_object_obs_only_norm003_seed48.json', 'max_correction_norm': 0.03, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5}\\\", \\\"[eval] Mode: crm_obs_only, benchmark: object\\\", \\\"[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\", \\\"Loading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\", \\\"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\", \\\"\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  61%|██████    | 298/489 [00:00<00:00, 2974.49it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3324.42it/s]\\\", \\\"Reducing the number of VLM layers to 16 ...\\\", \\\"Loading weights from local directory\\\", \\\"[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\\", \\\"[eval] Override max_correction_norm = 0.03\\\", \\\"[eval] Loading LIBERO object environments...\\\", \\\"[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\", \\\"[eval] 10 tasks loaded.\\\", \\\"  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/10, success so far: 0/5\\\", \\\"  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/10, success so far: 0/10\\\", \\\"[pick_up_the_alphabet_soup_and_place_it_in_the_ba\n…[truncated 1316 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 390
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-19T12:54:43.920050+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"running\\\", \\\"running\\\": true, \\\"pid\\\": \\\"67819\\\", \\\"detection\\\": \\\"ps\\\", \\\"process_state\\\": \\\"Ss+\\\", \\\"elapsed_time\\\": \\\"55:20\\\", \\\"tmux_session_alive\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.63}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "elapsed_ms": 841
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-19T12:55:13.559446+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm003-seed48",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'command': 'bash -c \"cd /root/acr-vla-conformal-refinement && timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 48 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_obs_only_norm003_seed48.json\"', 'server': 'bjb1-18228', 'gpu': ['cuda:1'], 'pid': '67819', 'log_path': '~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed48.log', 'data_path': 'LIBERO-Object', 'data_count': '10 tasks x 10 rollouts', 'model_name': 'crm_obs_only (max_correction_norm=0.03)', 'seed': 48}"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T12:55:14.557083+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9918}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 997
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-19T12:55:22.545577+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm003-seed48",
+              "field": "conclusion",
+              "value": "",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-19T12:55:23.298263+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion ''. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7096}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 752
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-19T12:55:27.262794+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm003-seed48",
+              "field": "failure_reason",
+              "value": "FALSE ALARM: tmux session died but process PID 67819 still running (55min elapsed, 5/10 tasks done). Restoring to RUNNING.",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-19T12:55:29.226610+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed48\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:56:04.999Z\\\", \\\"updated_at\\\": \\\"2026-05-19T12:55:28.674Z\\\", \\\"hypothesis\\\": \\\"obs_only CRM (ε=0.03) seed48 on LIBERO-Object. 新 seed, 16h timeout。C2 magnitude curve ε=0.03 端当前 n=1 (seed42=16%), 需 n≥3 才有 error bars。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 48 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_obs_only_norm003_seed48.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"67819\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed48.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T11:59:23.808Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T12:51:31.065Z\\\"}, \\\"failure_reason\\\": \\\"FALSE ALARM: tmux session died but process PID 67819 still running (55min elapsed, 5/10 tasks done). Restoring to RUNNING.\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T12:52:32.889342+00:00\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.9173}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1963
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-19T12:55:39.919965+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_cron",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-19T12:55:40.021420+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "ToolSearch",
+            "elapsed_ms": 101
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-19T12:55:43.664439+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm003-seed48",
+              "server": "bjb1-18228",
+              "pid": "67819",
+              "log_path": "~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed48.log",
+              "interval_seconds": "120",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-19T12:55:43.866474+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed48\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"pid\\\": \\\"67819\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed48.log\\\", \\\"interval_seconds\\\": 120, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-19T12:55:43.747Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "elapsed_ms": 202
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-19T12:55:55.362311+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm003-seed48",
+              "field": "status",
+              "value": "PENDING",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-19T12:55:57.669548+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed48\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:56:04.999Z\\\", \\\"updated_at\\\": \\\"2026-05-19T12:55:56.036Z\\\", \\\"hypothesis\\\": \\\"obs_only CRM (ε=0.03) seed48 on LIBERO-Object. 新 seed, 16h timeout。C2 magnitude curve ε=0.03 端当前 n=1 (seed42=16%), 需 n≥3 才有 error bars。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 48 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_obs_only_norm003_seed48.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"67819\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed48.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T11:59:23.808Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T12:51:31.065Z\\\"}, \\\"failure_reason\\\": \\\"FALSE ALARM: tmux session died but process PID 67819 still running (55min elapsed, 5/10 tasks done). Restoring to RUNNING.\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T12:52:32.889342+00:00\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.3217}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2307
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-19T12:56:00.678995+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm003-seed48",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-19T12:56:02.936494+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed48\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:56:04.999Z\\\", \\\"updated_at\\\": \\\"2026-05-19T12:56:01.377Z\\\", \\\"hypothesis\\\": \\\"obs_only CRM (ε=0.03) seed48 on LIBERO-Object. 新 seed, 16h timeout。C2 magnitude curve ε=0.03 端当前 n=1 (seed42=16%), 需 n≥3 才有 error bars。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 48 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_obs_only_norm003_seed48.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"67819\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed48.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T11:59:23.808Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T12:51:31.065Z\\\"}, \\\"failure_reason\\\": \\\"FALSE ALARM: tmux session died but process PID 67819 still running (55min elapsed, 5/10 tasks done). Restoring to RUNNING.\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T12:52:32.889342+00:00\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.2623}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2257
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-19T12:56:06.038617+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm003-seed48",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-19T12:56:09.468191+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed48\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:56:04.999Z\\\", \\\"updated_at\\\": \\\"2026-05-19T12:56:07.158Z\\\", \\\"hypothesis\\\": \\\"obs_only CRM (ε=0.03) seed48 on LIBERO-Object. 新 seed, 16h timeout。C2 magnitude curve ε=0.03 端当前 n=1 (seed42=16%), 需 n≥3 才有 error bars。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 48 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_obs_only_norm003_seed48.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"67819\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed48.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T11:59:23.808Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T12:51:31.065Z\\\"}, \\\"failure_reason\\\": \\\"FALSE ALARM: tmux session died but process PID 67819 still running (55min elapsed, 5/10 tasks done). Restoring to RUNNING.\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T12:52:32.889342+00:00\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.4155}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 3429
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-19T12:56:16.002207+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm003-seed48",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'command': 'bash -c \"cd /root/acr-vla-conformal-refinement && timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 48 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_obs_only_norm003_seed48.json\"', 'server': 'bjb1-18228', 'gpu': ['cuda:1'], 'pid': '67819', 'log_path': '~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed48.log', 'data_path': 'LIBERO-Object', 'data_count': '10 tasks x 10 rollouts', 'model_name': 'crm_obs_only (max_correction_norm=0.03)', 'seed': 48}"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-19T12:56:20.485801+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed48\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:56:04.999Z\\\", \\\"updated_at\\\": \\\"2026-05-19T12:56:16.919Z\\\", \\\"hypothesis\\\": \\\"obs_only CRM (ε=0.03) seed48 on LIBERO-Object. 新 seed, 16h timeout。C2 magnitude curve ε=0.03 端当前 n=1 (seed42=16%), 需 n≥3 才有 error bars。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 48 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_obs_only_norm003_seed48.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"67819\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed48.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T11:59:23.808Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": \\\"10 tasks x 10 rollouts\\\", \\\"model_name\\\": \\\"crm_obs_only (max_correction_norm=0.03)\\\", \\\"seed\\\": 48}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T12:51:31.065Z\\\"}, \\\"failure_reason\\\": \\\"FALSE ALARM: tmux session died but process PID 67819 still running (55min elapsed, 5/10 tasks done). Restoring to RUNNING.\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T12:52:32.889342+00:00\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.4454}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 4483
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-19T12:56:33.201944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm003-seed48",
+              "field": "notes",
+              "value": "2026-05-19 12:55 UTC: Cron 误报 — tmux session 死亡(EXIT_CODE=129/SIGHUP)但进程 PID 67819 仍存活。日志显示 5/10 tasks 已完成(6/50 successes=12%)。已重注册 PID 监控 cron，registry 恢复为 RUNNING。",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-19T12:56:33.856228+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md",
+              "limit": "30"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-19T12:56:34.459365+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed48\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:56:04.999Z\\\", \\\"updated_at\\\": \\\"2026-05-19T12:56:33.906Z\\\", \\\"hypothesis\\\": \\\"obs_only CRM (ε=0.03) seed48 on LIBERO-Object. 新 seed, 16h timeout。C2 magnitude curve ε=0.03 端当前 n=1 (seed42=16%), 需 n≥3 才有 error bars。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 48 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_obs_only_norm003_seed48.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"67819\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed48.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T11:59:23.808Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": \\\"10 tasks x 10 rollouts\\\", \\\"model_name\\\": \\\"crm_obs_only (max_correction_norm=0.03)\\\", \\\"seed\\\": 48}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T12:51:31.065Z\\\"}, \\\"failure_reason\\\": \\\"FALSE ALARM: tmux session died but process PID 67819 still running (55min elapsed, 5/10 tasks done). Restoring to RUNNING.\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T12:52:32.889342+00:00\\\"}]}, \\\"notes\\\": \\\"2026-05-19 12:55 UTC: Cron 误报 — tmux session 死亡(EXIT_CODE=129/SIGHUP)但进程 PID 67819 仍存活。日志显示 5/10 tasks 已完成(6/50 successes=12%)。已重注册 PID 监控 cron，registry 恢复为 RUNNING。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2495}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1257
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-19T12:56:34.459919+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "Read",
+            "elapsed_ms": 603
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-19T12:56:46.237044+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__get_project_resource_usage",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-19T12:56:46.287591+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-19T12:56:49.350447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-19T12:56:50.760625+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [], \\\"actually_running_gpus\\\": [{\\\"server\\\": \\\"bjb2-40593\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"eval-random-selection-object-seed46-r2\\\"}, {\\\"server\\\": \\\"bjb2-40593\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"eval-obs-only-spatial-norm02-seed43\\\"}, {\\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu_id\\\": \\\"cuda:3\\\", \\\"exp_id\\\": \\\"eval-obs-only-spatial-norm02-seed44\\\"}, {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu_id\\\": \\\"cuda:4\\\", \\\"exp_id\\\": \\\"eval-perdof-object-norm005-seed45-r2\\\"}, {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu_id\\\": \\\"cuda:4\\\", \\\"exp_id\\\": \\\"eval-obs-only-object-default-seed48-r2\\\"}, {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu_id\\\": \\\"cuda:2\\\", \\\"exp_id\\\": \\\"eval-argmin-object-k5-seed43\\\"}, {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"eval-argmin-object-k5-seed42\\\"}, {\\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"eval-obs-only-object-norm005-seed48\\\"}, {\\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu_id\\\": \\\"cuda:2\\\", \\\"exp_id\\\": \\\"eval-perdof-object-norm005-seed47\\\"}, {\\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu_id\\\": \\\"cuda:3\\\", \\\"exp_id\\\": \\\"eval-perdof-object-norm003-seed47\\\"}, {\\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"exp_id\\\": \\\"eval-argmin-object-k5-seed44\\\"}, {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu_id\\\": \\\"cuda:5\\\", \\\"exp_id\\\": \\\"eval-argmin-object-k5-seed45\\\"}, {\\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed48\\\"}], \\\"allocated_but_idle\\\": [], \\\"registered_but_hw_idle\\\": [], \\\"unregistered_but_hw_active\\\": [], \\\"running_experiments\\\": [{\\\"exp_id\\\": \\\"eval-random-selection-object-seed46-r2\\\", \\\"gpus\\\": [\\\"cuda:0\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"eval-obs-only-spatial-norm02-seed43\\\", \\\"gpus\\\": [\\\"cuda:0\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"eval-obs-only-spatial-norm02-seed44\\\", \\\"gpus\\\": [\\\"cuda:3\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"eval-perdof-object-norm005-seed45-r2\\\", \\\"gpus\\\": [\\\"cuda:4\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"ev\n…[truncated 1147 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "elapsed_ms": 1410
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-19T12:57:04.427582+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 13/13 全在跑 | Worker 1 (CPU 1) | 磁盘: bjb1-18228 4%用/400GB可用, bjb2-40593 90%用/44GB可用 ⚠️\n\n**[误报恢复] eval-obs-only-object-norm003-seed48**\n\nCron 报 EXIT_CODE=129(SIGHUP)判定失败，实际诊断：\n- tmux session 死亡，但 Python 进程(PID 67819)仍存活\n- 日志确认已完成 5/10 tasks（6/50 successes = 12%），正常推进中\n- 原因：tmux 收到 SIGHUP 断开，子进程未受影响继续执行\n\n已执行恢复：\n1. Registry 状态恢复为 RUNNING\n2. 重注册 PID 监控 cron（每 120s 轮询）\n3. 预计剩余 ~5 tasks，约 5-7h 完成\n\n无需 Director 操作，仅通知。",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-19T12:57:04.931536+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "memory.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-19T12:57:09.330392+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 4902
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-19T12:57:09.330880+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\\\", \\\"content\\\": \\\"# Project Memory\\\\n\\\\n## plan_802 可行性分析结论 (2026-05-17)\\\\n\\\\nOpenVLA 7B (Llama-2-7b, hidden=4096) 与 SmolVLA CRM (obs_dim=960) 完全不兼容：\\\\n- Feature dim: 4096 vs 960\\\\n- Action 机制: deterministic token gen vs K-sample flow matching\\\\n- CRM 核心依赖的多 sample + CGS 在 OpenVLA 中不存在\\\\n\\\\n如果要做 OpenVLA + CRM，必须重新设计（放弃 conformal 保证，变成 obs_only residual correction）。\\\\n预估 precompute 2-4h/benchmark，训练 <30min，存储 ~200MB 全部 benchmark。\\\\n\\\\n## bjb1-18228 实验被调度系统抢占 (2026-05-19)\\\\n\\\\n`eval-perdof-object-norm003-seed44-r2` 及同时段运行的多个 eval 实验在 2026-05-19 03:13 UTC+8 被批量 SIGTERM (EXIT_CODE=143)。原因是 agent-ml 调度系统杀掉旧实验为新实验腾 GPU：03:14 立即创建了新 tmux session（seed47/seed48/norm03-seed48）。\\\\n\\\\n教训：bjb1-18228 上 4×RTX4090 共 8 个 GPU slot，当调度器分配新任务时会 SIGTERM 占用 slot 的旧进程。长时间 eval（10 tasks × 10 rollouts × 300 steps，预计 ~14h）容易被抢占。如需保证完成，应在专用 GPU slot 上运行或拆分为更小的任务。\\\\n\\\\n## [失败模式] Timeout: eval 实验 timeout_hours 过低 (2026-05-18)\\\\n\\\\nLIBERO-Object 全量 eval（10 tasks × 10 rollouts × 300 steps, K=10）实际需要 ~12-14h 完成。当 submit_training_job 的 timeout_hours 设置为 6h 时，实验在 ~task 5 处被 EXIT_CODE=124 杀掉。受影响实验：eval-obs-only-object-norm003-seed44/seed45, eval-perdof-object-norm03-seed43。修复方案：重提交时设置 timeout_hours=16（或更高）。同类 norm02 实验成功完成时间为 8-14h。\\\\n\\\", \\\"total_chars\\\": 1160, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 4399
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-19T12:57:28.775165+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "memory.md",
+              "content": "# Project Memory\n\n## plan_802 可行性分析结论 (2026-05-17)\n\nOpenVLA 7B (Llama-2-7b, hidden=4096) 与 SmolVLA CRM (obs_dim=960) 完全不兼容：\n- Feature dim: 4096 vs 960\n- Action 机制: deterministic token gen vs K-sample flow matching\n- CRM 核心依赖的多 sample + CGS 在 OpenVLA 中不存在\n\n如果要做 OpenVLA + CRM，必须重新设计（放弃 conformal 保证，变成 obs_only residual correction）。\n预估 precompute 2-4h/benchmark，训练 <30min，存储 ~200MB 全部 benchmark。\n\n## bjb1-18228 实验被调度系统抢占 (2026-05-19)\n\n`eval-perdof-object-norm003-seed44-r2` 及同时段运行的多个 eval 实验在 2026-05-19 03:13 UTC+8 被批量 SIGTERM (EXIT_CODE=143)。原因是 agent-ml 调度系统杀掉旧实验为新实验腾 GPU：03:14 立即创建了新 tmux session（seed47/seed48/norm03-seed48）。\n\n教训：bjb1-18228 上 4×RTX4090 共 8 个 GPU slot，当调度器分配新任务时会 SIGTERM 占用 slot 的旧进程。长时间 eval（10 tasks × 10 rollouts × 300 steps，预计 ~14h）容易被抢占。如需保证完成，应在专用 GPU slot 上运行或拆分为更小的任务。\n\n## [失败模式] Timeout: eval 实验 timeout_hours 过低 (2026-05-18)\n\nLIBERO-Object 全量 eval（10 tasks × 10 rollouts × 300 steps, K=10）实际需要 ~12-14h 完成。当 submit_training_job 的 timeout_hours 设置为 6h 时，实验在 ~task 5 处被 EXIT_CODE=124 杀掉。受影响实验：eval-obs-only-object-norm003-seed44/seed45, eval-perdof-object-norm03-seed43。修复方案：重提交时设置 timeout_hours=16（或更高）。同类 norm02 实验成功完成时间为 8-14h。\n\n## [失败模式] tmux SIGHUP 误报: 进程存活但 cron 判定失败 (2026-05-19)\n\n`eval-obs-only-object-norm003-seed48` 在 bjb1-18228 收到 EXIT_CODE=129 (SIGHUP)。原因：tmux session 死亡，但 Python 子进程（PID 67819）以孤儿进程继续运行。Cron 通过 tmux session 状态检测到\"死亡\"，误判为实验失败。\n\n诊断方法：`check_job_status` 用 PID 检测发现进程仍存活 + `tail_training_logs` 确认日志正常推进。\n\n修复方案：\n1. 用 `register_cron` 重注册基于 PID 的监控（而非 tmux session）\n2. Registry 状态链恢复：PREPARING → PENDING → QUEUED → ALLOCATED → RUNNING（逐步推进）\n3. conclusion 字段无法清除（只接受有效值），但 status=RUNNING + cron 监控可正确追踪后续\n\n预防：cron 检测到 tmux 死亡时，应先用 PID 二次确认进程是否真死，再判定 failed。（当前 cron 逻辑无此二次确认，属系统缺陷。）\n"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-19T12:57:28.785777+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 10
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-19T12:57:33.766621+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**总结**：`eval-obs-only-object-norm003-seed48` 是 cron 误报，不是真失败。tmux session 收到 SIGHUP 死亡，但 Python 进程（PID 67819）仍在正常执行（已完成 5/10 tasks）。已恢复 registry 为 RUNNING、重注册 PID 监控 cron、向 Director 汇报、并将此失败模式记录到 memory.md。实验预计还需 5-7h 完成。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48"
+          },
+          "id": "event-000070"
+        }
+      ],
+      "message_count": 70
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-19T12:57:33.779580+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: eval-obs-only-object-norm003-seed48\n- project: acr-vla-conformal-refinement\n- server: bjb1-18228\n- log_path: ~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed48.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "source": "cron:hook"
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-19T12:57:43.114292+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__check_job_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "pid": "67819"
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-19T12:57:43.669858+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "log_path": "~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed48.log",
+              "n": "50"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-19T12:57:44.490535+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"running\\\", \\\"running\\\": true, \\\"pid\\\": \\\"67819\\\", \\\"detection\\\": \\\"ps\\\", \\\"process_state\\\": \\\"Ss+\\\", \\\"elapsed_time\\\": \\\"58:20\\\", \\\"tmux_session_alive\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__check_job_status",
+            "elapsed_ms": 1376
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-19T12:57:44.894586+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"[robosuite WARNING] No private macro file found! (__init__.py:7)\\\", \\\"[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\", \\\"[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\", \\\"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'n_rollouts': 10, 'max_steps': 300, 'seed': 48, 'K': 10, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_object_obs_only_norm003_seed48.json', 'max_correction_norm': 0.03, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5}\\\", \\\"[eval] Mode: crm_obs_only, benchmark: object\\\", \\\"[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\", \\\"Loading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\", \\\"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\", \\\"\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  61%|██████    | 298/489 [00:00<00:00, 2974.49it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3324.42it/s]\\\", \\\"Reducing the number of VLM layers to 16 ...\\\", \\\"Loading weights from local directory\\\", \\\"[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\\", \\\"[eval] Override max_correction_norm = 0.03\\\", \\\"[eval] Loading LIBERO object environments...\\\", \\\"[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\", \\\"[eval] 10 tasks loaded.\\\", \\\"  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/10, success so far: 0/5\\\", \\\"  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/10, success so far: 0/10\\\", \\\"[pick_up_the_alphabet_soup_and_place_it_in_the_ba\n…[truncated 1316 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 1224
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-19T12:57:51.681748+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "与上次完全一致：PID 67819 仍存活（58 min elapsed），进程状态 `Ss+`，5/10 tasks 已完成，日志正常推进。tmux session 仍然是死的，cron 再次误判。\n\n这是重复误报，无需额外操作。上一轮已完成：\n- Registry 恢复为 RUNNING\n- PID 监控 cron 已重注册\n- memory.md 已记录此失败模式\n- Director 已收到通知\n\ncron 反复触发是因为 tmux_session_alive=false 持续为真。进程正常运行中，预计还需 ~5-7h 完成剩余 5 个 tasks。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48"
+          },
+          "id": "event-000076"
+        }
+      ],
+      "message_count": 6
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-19T13:45:56.073084+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: eval-obs-only-object-norm003-seed48\n- project: acr-vla-conformal-refinement\n- server: bjb1-18228\n- log_path: ~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed48.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "source": "cron:hook"
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-19T13:46:07.895370+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__tail_training_logs"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "log_path": "~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed48.log",
+              "n": "80"
+            }
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-19T13:46:08.548169+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "fields": "['*']",
+              "filters": "{'exp_id': 'eval-obs-only-object-norm003-seed48'}"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-19T13:46:08.850574+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"lines\\\": [\\\"[robosuite WARNING] No private macro file found! (__init__.py:7)\\\", \\\"[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\", \\\"[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\", \\\"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'n_rollouts': 10, 'max_steps': 300, 'seed': 48, 'K': 10, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_object_obs_only_norm003_seed48.json', 'max_correction_norm': 0.03, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5}\\\", \\\"[eval] Mode: crm_obs_only, benchmark: object\\\", \\\"[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\", \\\"Loading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\", \\\"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\", \\\"\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  61%|██████    | 298/489 [00:00<00:00, 2974.49it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3324.42it/s]\\\", \\\"Reducing the number of VLM layers to 16 ...\\\", \\\"Loading weights from local directory\\\", \\\"[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\\", \\\"[eval] Override max_correction_norm = 0.03\\\", \\\"[eval] Loading LIBERO object environments...\\\", \\\"[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\", \\\"[eval] 10 tasks loaded.\\\", \\\"  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/10, success so far: 0/5\\\", \\\"  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/10, success so far: 0/10\\\", \\\"[pick_up_the_alphabet_soup_and_place_it_in_the_ba\n…[truncated 3040 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__tail_training_logs",
+            "elapsed_ms": 955
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-19T13:46:09.603240+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7336}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1055
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-19T13:46:27.136199+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm003-seed48",
+              "field": "metrics",
+              "value": "{'success_rate': 0.15, 'successes': 15, 'total': 100, 'per_task': {'alphabet_soup': 0, 'cream_cheese': 0, 'salad_dressing': 2, 'bbq_sauce': 4, 'ketchup': 0, 'tomato_sauce': 1, 'butter': 0, 'milk': 2, 'chocolate_pudding': 4, 'orange_juice': 2}}",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-19T13:46:27.891167+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm003-seed48",
+              "field": "conclusion",
+              "value": "success",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-19T13:46:28.597572+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed48\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:56:04.999Z\\\", \\\"updated_at\\\": \\\"2026-05-19T13:46:27.904Z\\\", \\\"hypothesis\\\": \\\"obs_only CRM (ε=0.03) seed48 on LIBERO-Object. 新 seed, 16h timeout。C2 magnitude curve ε=0.03 端当前 n=1 (seed42=16%), 需 n≥3 才有 error bars。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 48 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_obs_only_norm003_seed48.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"67819\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed48.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T11:59:23.808Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": \\\"10 tasks x 10 rollouts\\\", \\\"model_name\\\": \\\"crm_obs_only (max_correction_norm=0.03)\\\", \\\"seed\\\": 48}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T13:45:46.466Z\\\"}, \\\"failure_reason\\\": \\\"FALSE ALARM: tmux session died but process PID 67819 still running (55min elapsed, 5/10 tasks done). Restoring to RUNNING.\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T12:52:32.889342+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T13:45:55.262627+00:00\\\"}]}, \\\"notes\\\": \\\"2026-05-19 12:58 UTC: FALSE ALARM 确认 — PID 67825 在 bjb1-18228 GPU 1 正常运行中。已完成 5/10 tasks + T6 进行中 (T1=0%, T2=0%, T3=20%, T4=40%, T5=0%, T6 doing 5/10=1/5)。conclusion=failed 为误标(cron 误报)，无法设 null。\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.15, \\\"successes\\\": 15, \\\"total\\\": 1\n…[truncated 282 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1461
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-19T13:46:31.107134+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed48\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:56:04.999Z\\\", \\\"updated_at\\\": \\\"2026-05-19T13:46:29.961Z\\\", \\\"hypothesis\\\": \\\"obs_only CRM (ε=0.03) seed48 on LIBERO-Object. 新 seed, 16h timeout。C2 magnitude curve ε=0.03 端当前 n=1 (seed42=16%), 需 n≥3 才有 error bars。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 48 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_obs_only_norm003_seed48.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"67819\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed48.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T11:59:23.808Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": \\\"10 tasks x 10 rollouts\\\", \\\"model_name\\\": \\\"crm_obs_only (max_correction_norm=0.03)\\\", \\\"seed\\\": 48}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T13:45:46.466Z\\\"}, \\\"failure_reason\\\": \\\"FALSE ALARM: tmux session died but process PID 67819 still running (55min elapsed, 5/10 tasks done). Restoring to RUNNING.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T12:52:32.889342+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T13:45:55.262627+00:00\\\"}]}, \\\"notes\\\": \\\"2026-05-19 12:58 UTC: FALSE ALARM 确认 — PID 67825 在 bjb1-18228 GPU 1 正常运行中。已完成 5/10 tasks + T6 进行中 (T1=0%, T2=0%, T3=20%, T4=40%, T5=0%, T6 doing 5/10=1/5)。conclusion=failed 为误标(cron 误报)，无法设 null。\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.15, \\\"successes\\\": 15, \\\"total\\\": \n…[truncated 559 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 3215
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-19T13:46:37.599057+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm003-seed48",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'checkpoint_path': 'N/A (eval only)', 'log_path': '~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed48.log'}"
+            }
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-19T13:46:40.006842+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed48\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:56:04.999Z\\\", \\\"updated_at\\\": \\\"2026-05-19T13:46:38.276Z\\\", \\\"hypothesis\\\": \\\"obs_only CRM (ε=0.03) seed48 on LIBERO-Object. 新 seed, 16h timeout。C2 magnitude curve ε=0.03 端当前 n=1 (seed42=16%), 需 n≥3 才有 error bars。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/acr-vla-conformal-refinement && timeout 57600 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 48 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.03 --output_file logs/eval_object_obs_only_norm003_seed48.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"67819\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm003-seed48.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T11:59:23.808Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": \\\"10 tasks x 10 rollouts\\\", \\\"model_name\\\": \\\"crm_obs_only (max_correction_norm=0.03)\\\", \\\"seed\\\": 48, \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"wall_clock_seconds\\\": 6434.5, \\\"gpu_hours\\\": 1.79}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T13:45:46.466Z\\\"}, \\\"failure_reason\\\": \\\"FALSE ALARM: tmux session died but process PID 67819 still running (55min elapsed, 5/10 tasks done). Restoring to RUNNING.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T12:52:32.889342+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T13:45:55.262627+00:00\\\"}]}, \\\"notes\\\": \\\"2026-05-19 12:58 UTC: FALSE ALARM 确认 — PID 67825 在 bjb1-18228 GPU 1 正常运行中。已完成 5/10 tasks + T6 进行中 (T1=0%, T2=0%, T3=20%, T4=40%, T5=0%, T6 doing 5/10=1/5)。conclusion=failed 为误标(\n…[truncated 471 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2407
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-19T13:46:50.526420+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-19T13:46:51.180432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-19T13:46:51.383643+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [], \\\"actually_running_gpus\\\": [{\\\"server\\\": \\\"bjb2-40593\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"eval-random-selection-object-seed46-r2\\\"}, {\\\"server\\\": \\\"bjb2-40593\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"eval-obs-only-spatial-norm02-seed43\\\"}, {\\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu_id\\\": \\\"cuda:3\\\", \\\"exp_id\\\": \\\"eval-obs-only-spatial-norm02-seed44\\\"}, {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu_id\\\": \\\"cuda:4\\\", \\\"exp_id\\\": \\\"eval-perdof-object-norm005-seed45-r2\\\"}, {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu_id\\\": \\\"cuda:4\\\", \\\"exp_id\\\": \\\"eval-obs-only-object-default-seed48-r2\\\"}, {\\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"eval-obs-only-object-norm005-seed48\\\"}, {\\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu_id\\\": \\\"cuda:2\\\", \\\"exp_id\\\": \\\"eval-perdof-object-norm005-seed47\\\"}, {\\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu_id\\\": \\\"cuda:3\\\", \\\"exp_id\\\": \\\"eval-perdof-object-norm003-seed47\\\"}, {\\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"exp_id\\\": \\\"eval-argmin-object-k5-seed44\\\"}, {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu_id\\\": \\\"cuda:3\\\", \\\"exp_id\\\": \\\"eval-obs-only-object-norm003-seed47-r2\\\"}, {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"exp_id\\\": \\\"eval-vla-only-spatial-seed42\\\"}, {\\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"exp_id\\\": \\\"eval-vla-only-spatial-seed43\\\"}, {\\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu_id\\\": \\\"cuda:4\\\", \\\"exp_id\\\": \\\"eval-vla-only-spatial-seed44\\\"}, {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"eval-vla-only-spatial-seed45\\\"}], \\\"allocated_but_idle\\\": [], \\\"registered_but_hw_idle\\\": [], \\\"unregistered_but_hw_active\\\": [], \\\"running_experiments\\\": [{\\\"exp_id\\\": \\\"eval-random-selection-object-seed46-r2\\\", \\\"gpus\\\": [\\\"cuda:0\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"eval-obs-only-spatial-norm02-seed43\\\", \\\"gpus\\\": [\\\"cuda:0\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"eval-obs-only-spatial-norm02-seed44\\\", \\\"gpus\\\": [\\\"cuda:3\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\n…[truncated 1229 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "elapsed_ms": 857
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-19T13:46:51.384105+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "ToolSearch",
+            "elapsed_ms": 203
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-19T13:47:12.717407+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 14/14 全在跑 | Worker 0 | 磁盘: bjb1-18228 4%, bjb2-40593 90% ⚠️\n\n**[成功] eval-obs-only-object-norm003-seed48 — 15.0% (15/100)**\n\n事实：\n- obs_only CRM (ε=0.03) seed48 on LIBERO-Object: **15%**\n- 此前有 tmux SIGHUP 误报（进程存活，已自动恢复监控），最终正常完成\n\n对比：\n- ε=0.03 magnitude curve: seed42=16%, seed48=15% → mean=15.5% (n=2)\n- VLA baseline 11.6% → +3.9pp\n- 与 obs_only 全 ε 稳定 14-18% 模式一致（ε 对 obs_only 几乎无影响，符合预期）\n\n进展：\n- `eval-obs-only-object-norm003-seed47-r2` 已在 bjb1-32546:cuda:3 运行中 → 完成后 ε=0.03 达 n=3，可出 error bars\n- 同时还有 4 个 vla-only-spatial baseline seeds + argmin K=5 + perdof/obs_only 多 seed 并行推进\n\n无需 Director 操作。",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-19T13:47:16.483192+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3765
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-19T13:47:21.296420+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "`eval-obs-only-object-norm003-seed48` 分析完成。\n\n- **结果**: 15.0% (15/100)，conclusion=success，已写入 registry\n- **ε=0.03 magnitude curve**: n=2 (seed42=16%, seed48=15%)，seed47-r2 运行中将补到 n=3\n- **GPU**: 14/14 全满，已自动部署新实验到释放的卡\n- 已向 Director 汇报"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm003-seed48"
+          },
+          "id": "event-000094"
+        }
+      ],
+      "message_count": 18
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-eval-obs-only-object-norm003-seed48.md"
+}

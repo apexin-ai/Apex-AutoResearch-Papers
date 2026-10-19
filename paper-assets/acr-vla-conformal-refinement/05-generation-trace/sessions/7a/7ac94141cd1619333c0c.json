@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ac94141cd1619333c0c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "audit bjb2 28827 cleanup",
+  "task_key": "worker_audit_bjb2-28827-cleanup_20260519T120344",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_bjb2-28827-cleanup_20260519T120344_result.json",
+    "occurrence": 1,
+    "bytes": 2360,
+    "sha256": "e66f3322a275ca2c89dd4f2e0e08f6c3c17f735d8c51ff066565dbf51c98ef7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审计报告：bjb2-40593 (原 bjb2-28827)\n\n**重要说明**：项目配置绑定的是 **bjb2-40593**（单 GPU 机器），与任务描述的多 GPU 机器 bjb2-28827 不一致。任务中提到的 GPU 0/2/4/5 分配在当前服务器上不存在。以下是当前服务器的实际状态。\n\n---\n\n### 任务中指定的 5 个实验 — 全部不存在\n\n| 实验 | 状态 |\n|------|------|\n| reconvla K=5 seed42 (原 GPU 4) | **进程不存在，无输出文件** |\n| perdof norm005 seed45 (原 GPU 0) | **进程不存在，无输出文件** |\n| obs_only norm003 seed44 (原 GPU 2) | **进程不存在，无输出文件** |\n| random_selection seed46 (原 GPU 2) | 见下方（不同配置在跑） |\n| perdof norm03 seed43 (原 GPU 5) | **进程不存在，无输出文件** |\n\n---\n\n### 当前服务器实际运行中的 2 个进程（共享 GPU 0）\n\n**1. random_selection seed46 (object benchmark)**\n- tmux: `eval-random-selection-seed46-t16`，PID 503784，启动 09:38\n- 进度：**4/10 tasks 完成**（~10h 运行中）\n- 已完成 tasks：\n  - alphabet_soup: 0/10, cream_cheese: 0/10, salad_dressing: 2/10, bbq_sauce: 2/10\n\n**2. crm_obs_only spatial norm02 seed43（顺序跑 seed43→44→45）**\n- tmux: `eval-spatial-obs-only-norm02-seq`，PID 508930，启动 09:44\n- 进度：**5/10 tasks 完成**（seed43 第一轮，~10h 运行中）\n- 已完成 tasks：\n  - between_plate_and_ramekin: 8/10, next_to_ramekin: 10/10, table_center: 1/10, cookie_box: 3/10, top_drawer: 0/10\n\n---\n\n### 已完成的实验结果（服务器上现存 JSON）\n\n| 文件 | mode | benchmark | SR |\n|------|------|-----------|----|\n| eval_object_scalar_seed45_r2.json | crm_scalar | object | **0.07** |\n| eval_object_random_selection_seed42.json | random_selection | object | **0.13** |\n| eval_object_obs_only.json | crm_obs_only | object | **0.19** |\n| eval_object_vla_only_seed44.json | vla_only | object | **0.10** |\n| eval_mag_obsonly_norm003.json | crm_obs_only | spatial | **0.34** |\n\n---\n\n### 结论\n\n任务描述中 5 个实验的进程和输出文件在当前服务器上均不存在。可能原因：\n1. bjb2-28827 是之前的实例，已被 bjb2-40593 替换，数据未迁移\n2. 这些实验在不同服务器上运行\n\n需要确认 bjb2-28827 是否仍然可达，还是已经被释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-bjb2-28827-cleanup.md"
+}

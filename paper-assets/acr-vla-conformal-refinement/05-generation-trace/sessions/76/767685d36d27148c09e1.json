@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "767685d36d27148c09e1",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "ops sync fixes to bjb2",
+  "task_key": "worker_ops_sync-fixes-to-bjb2_20260514T075428",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_sync-fixes-to-bjb2_20260514T075428.log",
+    "occurrence": 1,
+    "bytes": 1173902,
+    "sha256": "466147cc8489c55d8f971a1f50b92d1b783f5d4192b7910f8b995d95c074375c"
+  },
+  "statistics": {
+    "messages": 246,
+    "user_turns": 1,
+    "tool_calls": 88,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 62,
+      "tool_call": 88,
+      "tool_result": 88,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 98,
+      "chunks": [
+        {
+          "path": "767685d36d27148c09e1-part-0001.json",
+          "message_count": 98
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 148,
+      "chunks": [
+        {
+          "path": "767685d36d27148c09e1-part-0001.json",
+          "message_count": 17
+        },
+        {
+          "path": "767685d36d27148c09e1-part-0002.json",
+          "message_count": 131
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-sync-fixes-to-bjb2.md"
+}

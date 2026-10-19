@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dad0eae115460b037761",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval random sel spatial seed43 r2 cron",
+  "task_key": "worker_analyze_eval-random-sel-spatial-seed43-r2-cron_20260520T172038",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-random-sel-spatial-seed43-r2-cron_20260520T172038_result.json",
+    "occurrence": 1,
+    "bytes": 186,
+    "sha256": "bda90807b890b5ab21f3671aad46f8686713fcbeeb0840aae3b7d1766f37308f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **eval-random-selection-spatial-seed43-r2**: 成功，SR=26%，10 tasks 全部完成\n- Registry 已更新为 DONE/success，metrics.sr=26\n- Cron 已删除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-random-sel-spatial-seed43-r2-cron.md"
+}

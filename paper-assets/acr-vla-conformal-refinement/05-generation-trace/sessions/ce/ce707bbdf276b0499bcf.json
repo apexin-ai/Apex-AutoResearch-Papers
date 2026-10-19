@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "ce707bbdf276b0499bcf",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "sync oom fix to all servers 20260525T111559 retry1",
+  "task_key": "worker_sync_oom-fix-to-all-servers_20260525T111559_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_sync_oom-fix-to-all-servers_20260525T111559_retry1.log",
+    "occurrence": 1,
+    "bytes": 1056390,
+    "sha256": "6641c5ea685a6ddd4a3d52309a14bc67e406dc138d72a80f2d66912da4d73222"
+  },
+  "statistics": {
+    "messages": 530,
+    "user_turns": 0,
+    "tool_calls": 190,
+    "roles": {
+      "log": 2,
+      "record": 2,
+      "assistant": 49,
+      "tool_call": 190,
+      "tool_result": 198,
+      "result": 2,
+      "system": 87
+    },
+    "unparsed_lines_preserved": 2,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 530,
+      "chunks": [
+        {
+          "path": "ce707bbdf276b0499bcf-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ce707bbdf276b0499bcf-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ce707bbdf276b0499bcf-part-0003.json",
+          "message_count": 170
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/sync-oom-fix-to-all-servers-20260525t111559-retry1.md"
+}

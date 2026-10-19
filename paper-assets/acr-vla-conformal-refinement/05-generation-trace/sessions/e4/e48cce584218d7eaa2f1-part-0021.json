@@ -1,0 +1,3536 @@
+{
+  "schema_version": "1.0",
+  "session_id": "e48cce584218d7eaa2f1",
+  "rounds": [
+    {
+      "number": 286,
+      "messages": [
+        {
+          "source_line": 3601,
+          "timestamp": "2026-05-20T07:07:44.162967+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1062}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1811
+          },
+          "id": "event-003601"
+        },
+        {
+          "source_line": 3602,
+          "timestamp": "2026-05-20T07:07:46.023159+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8502}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 3069
+          },
+          "id": "event-003602"
+        },
+        {
+          "source_line": 3603,
+          "timestamp": "2026-05-20T07:07:53.302312+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'FAILED'}",
+              "project": "acr-vla-conformal-refinement",
+              "fields": "['exp_id', 'status', 'updated_at', 'notes']",
+              "limit": "10"
+            }
+          },
+          "id": "event-003603"
+        },
+        {
+          "source_line": 3604,
+          "timestamp": "2026-05-20T07:07:53.454691+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "ls -la /root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive*"
+            }
+          },
+          "id": "event-003604"
+        },
+        {
+          "source_line": 3605,
+          "timestamp": "2026-05-20T07:07:55.212003+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8802}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1909
+          },
+          "id": "event-003605"
+        },
+        {
+          "source_line": 3606,
+          "timestamp": "2026-05-20T07:07:56.369205+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/acr-vla-conformal-refinement/logs/eval_spatial_adaptive*': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2914
+          },
+          "id": "event-003606"
+        },
+        {
+          "source_line": 3607,
+          "timestamp": "2026-05-20T07:08:01.038199+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "ps aux --no-headers -o pid,cmd -C python -C python3"
+            }
+          },
+          "id": "event-003607"
+        },
+        {
+          "source_line": 3608,
+          "timestamp": "2026-05-20T07:08:01.540996+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"error: conflicting format options\\\\n\\\\nUsage:\\\\n ps [options]\\\\n\\\\n Try 'ps --help <simple|list|output|threads|misc|all>'\\\\n  or 'ps --help <s|l|o|t|m|a>'\\\\n for additional help text.\\\\n\\\\nFor more details see ps(1).\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-003608"
+        },
+        {
+          "source_line": 3609,
+          "timestamp": "2026-05-20T07:08:01.943433+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-003609"
+        },
+        {
+          "source_line": 3610,
+          "timestamp": "2026-05-20T07:08:02.446738+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 24 %, 4914 MiB, 24564 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 503
+          },
+          "id": "event-003610"
+        },
+        {
+          "source_line": 3611,
+          "timestamp": "2026-05-20T07:08:02.598428+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "fields": "['exp_id', 'status', 'updated_at']",
+              "limit": "30"
+            }
+          },
+          "id": "event-003611"
+        },
+        {
+          "source_line": 3612,
+          "timestamp": "2026-05-20T07:08:04.507704+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval-adaptive-k-spatial-p50-seed44-r2\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"updated_at\\\": \\\"2026-05-20T07:08:00.822Z\\\"}, \\\"eval-adaptive-k-spatial-p50-seed43-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-20T07:07:55.807Z\\\"}, \\\"eval-random-selection-object-seed44\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-20T07:06:16.041Z\\\"}, \\\"eval-random-selection-object-seed42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-20T07:06:14.249Z\\\"}, \\\"eval-obs-only-object-norm02-seed42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-20T07:06:12.562Z\\\"}, \\\"eval-obs-only-spatial-norm02-seed48\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T07:02:24.551Z\\\"}, \\\"eval-adaptive-k-p90-seed44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T06:53:17.867Z\\\"}, \\\"eval-adaptive-k-spatial-p50-seed44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T06:41:33.139Z\\\"}, \\\"eval-adaptive-k-spatial-p50-seed43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T06:39:48.803Z\\\"}, \\\"eval-adaptive-k-spatial-p50-seed42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-20T06:02:05.549Z\\\"}, \\\"eval-vla-only-long-seed54\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-20T05:59:13.545Z\\\"}, \\\"eval-adaptive-k-p25-seed43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T05:56:34.512Z\\\"}, \\\"eval-crm-spatial-k10-seed51\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T05:56:30.173Z\\\"}, \\\"eval-vla-only-goal-seed49\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T05:56:26.105Z\\\"}, \\\"eval-vla-only-long-seed52\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T05:56:21.658Z\\\"}, \\\"eval-vla-only-long-seed51\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T05:56:16.817Z\\\"}, \\\"eval-vla-only-long-seed50\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T05:56:11.186Z\\\"}, \\\"eval-crm-long-seed50\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-20T05:56:05.404Z\\\"}, \\\"eval\n…[truncated 1366 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1909
+          },
+          "id": "event-003612"
+        },
+        {
+          "source_line": 3613,
+          "timestamp": "2026-05-20T07:08:16.240240+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'eval-adaptive-k-spatial-p50-seed43'}",
+              "project": "acr-vla-conformal-refinement",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-003613"
+        },
+        {
+          "source_line": 3614,
+          "timestamp": "2026-05-20T07:08:16.240720+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'eval-adaptive-k-spatial-p50-seed44'}",
+              "project": "acr-vla-conformal-refinement",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-003614"
+        },
+        {
+          "source_line": 3615,
+          "timestamp": "2026-05-20T07:08:16.240982+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'eval-adaptive-k-spatial-p50-seed43-r2'}",
+              "project": "acr-vla-conformal-refinement",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-003615"
+        },
+        {
+          "source_line": 3616,
+          "timestamp": "2026-05-20T07:08:16.241175+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'eval-adaptive-k-spatial-p50-seed44-r2'}",
+              "project": "acr-vla-conformal-refinement",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-003616"
+        },
+        {
+          "source_line": 3617,
+          "timestamp": "2026-05-20T07:08:16.945741+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'eval-adaptive-k-spatial-p50-seed42'}",
+              "project": "acr-vla-conformal-refinement",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-003617"
+        },
+        {
+          "source_line": 3618,
+          "timestamp": "2026-05-20T07:08:17.247164+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0221}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1006
+          },
+          "id": "event-003618"
+        },
+        {
+          "source_line": 3619,
+          "timestamp": "2026-05-20T07:08:18.352453+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0595}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 2111
+          },
+          "id": "event-003619"
+        },
+        {
+          "source_line": 3620,
+          "timestamp": "2026-05-20T07:08:19.306100+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9694}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 3065
+          },
+          "id": "event-003620"
+        },
+        {
+          "source_line": 3621,
+          "timestamp": "2026-05-20T07:08:20.309797+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9908}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 4068
+          },
+          "id": "event-003621"
+        },
+        {
+          "source_line": 3622,
+          "timestamp": "2026-05-20T07:08:21.313624+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9778}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 4367
+          },
+          "id": "event-003622"
+        },
+        {
+          "source_line": 3623,
+          "timestamp": "2026-05-20T07:08:26.634551+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-003623"
+        },
+        {
+          "source_line": 3624,
+          "timestamp": "2026-05-20T07:08:26.635016+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-003624"
+        },
+        {
+          "source_line": 3625,
+          "timestamp": "2026-05-20T07:08:31.553925+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "eval-adaptive-k-spatial-p50-seed4",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+              "glob": "registry.yaml",
+              "output_mode": "content",
+              "-A": "15"
+            }
+          },
+          "id": "event-003625"
+        },
+        {
+          "source_line": 3626,
+          "timestamp": "2026-05-20T07:08:31.604786+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (24.4KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-reviewer-4966e04b/a170e608-4994-46dd-a641-2b162776808a/tool-results/toolu_01KqZ7hPrMpFPxEkQT3KpM57.txt\n\nPreview (first 2KB):\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml:15432:  eval-adaptive-k-spatial-p50-seed42:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15433-    status: PREPARING\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15434-    retry_count: 0\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15435-    created_at: '2026-05-20T06:01:50.026Z'\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15436-    updated_at: '2026-05-20T06:02:05.549Z'\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15437-    hypothesis: Adaptive K with τ=P50 (0.074855, Object-calibrated) on LIBERO-Spatial\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15438-      seed42. 验证 Adaptive K 方法在第二个 benchmark 上的泛化：使用 Object 上校准的阈值直接应用到 Spatial（无\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15439-      per-benchmark tuning）。如果 SR 接近 CRM K=10 (34.3%) 且 fast_path >50%，则证明方法跨 benchmark\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15440-      通用。\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15441-    spec:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15442-      command: bash -c \"source /root/miniconda3/bin/activ\n…[truncated 264 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-003626"
+        },
+        {
+          "source_line": 3627,
+          "timestamp": "2026-05-20T07:08:34.566412+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-reviewer-4966e04b/a170e608-4994-46dd-a641-2b162776808a/tool-results/toolu_01KqZ7hPrMpFPxEkQT3KpM57.txt"
+            }
+          },
+          "id": "event-003627"
+        },
+        {
+          "source_line": 3628,
+          "timestamp": "2026-05-20T07:08:34.817934+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml:15432:  eval-adaptive-k-spatial-p50-seed42:\n2\t/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15433-    status: PREPARING\n3\t/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15434-    retry_count: 0\n4\t/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15435-    created_at: '2026-05-20T06:01:50.026Z'\n5\t/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15436-    updated_at: '2026-05-20T06:02:05.549Z'\n6\t/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15437-    hypothesis: Adaptive K with τ=P50 (0.074855, Object-calibrated) on LIBERO-Spatial\n7\t/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15438-      seed42. 验证 Adaptive K 方法在第二个 benchmark 上的泛化：使用 Object 上校准的阈值直接应用到 Spatial（无\n8\t/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15439-      per-benchmark tuning）。如果 SR 接近 CRM K=10 (34.3%) 且 fast_path >50%，则证明方法跨 benchmark\n9\t/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15440-      通用。\n10\t/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15441-    spec:\n11\t/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15442-      command: bash -c \"source /root/miniconda3/bin/activate base && cd /root/acr-vla-conformal-refinement\n12\t/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15443-        && python -u src/evaluate.py --mode adaptive_k --adaptive_threshold 0.074855\n13\t/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-\n…[truncated 23595 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 251
+          },
+          "id": "event-003628"
+        },
+        {
+          "source_line": 3629,
+          "timestamp": "2026-05-20T07:08:54.901445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-003629"
+        },
+        {
+          "source_line": 3630,
+          "timestamp": "2026-05-20T07:08:55.408420+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-003630"
+        },
+        {
+          "source_line": 3631,
+          "timestamp": "2026-05-20T07:08:55.860418+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-003631"
+        },
+        {
+          "source_line": 3632,
+          "timestamp": "2026-05-20T07:08:55.911747+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"235076, GPU-d7423c53-447e-0c0f-dd10-076e4989d991, 4745 MiB\\\\n249554, GPU-d7423c53-447e-0c0f-dd10-076e4989d991, 6241 MiB\\\\n204921, GPU-3ca0dfcc-ade3-2eb8-0f77-59f6aae6ac44, 2403 MiB\\\\n235343, GPU-cd6008a7-b242-51e0-5f10-49dfd6d5651d, 4745 MiB\\\\n235678, GPU-a0d22891-1964-0f75-4962-81994416abaf, 4783 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1010
+          },
+          "id": "event-003632"
+        },
+        {
+          "source_line": 3633,
+          "timestamp": "2026-05-20T07:08:56.870202+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"266707, GPU-220671b6-4e9c-db2d-1361-6ed090a1f3af, 1953 MiB\\\\n303843, GPU-220671b6-4e9c-db2d-1361-6ed090a1f3af, 6241 MiB\\\\n254517, GPU-ade291cb-7e13-f292-1714-09ef80919436, 1950 MiB\\\\n254789, GPU-4f00bf04-f4ff-96b6-3f56-723337f44abf, 1850 MiB\\\\n266979, GPU-00ae24f3-53b1-cd05-f561-fe7adbb64e72, 1796 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.97}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1461
+          },
+          "id": "event-003633"
+        },
+        {
+          "source_line": 3634,
+          "timestamp": "2026-05-20T07:08:57.272778+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"675831, GPU-a7c79137-3a96-7036-cedf-aaeda2b1fd1d, 4895 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1412
+          },
+          "id": "event-003634"
+        },
+        {
+          "source_line": 3635,
+          "timestamp": "2026-05-20T07:09:13.092444+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "nvidia-smi --query-gpu=index,uuid,memory.used --format=csv,noheader"
+            }
+          },
+          "id": "event-003635"
+        },
+        {
+          "source_line": 3636,
+          "timestamp": "2026-05-20T07:09:13.143228+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "tail -30 /root/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p50-seed42.log"
+            }
+          },
+          "id": "event-003636"
+        },
+        {
+          "source_line": 3637,
+          "timestamp": "2026-05-20T07:09:13.143823+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "tail -20 /root/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p50-seed43-r2.log"
+            }
+          },
+          "id": "event-003637"
+        },
+        {
+          "source_line": 3638,
+          "timestamp": "2026-05-20T07:09:13.495456+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, GPU-d7423c53-447e-0c0f-dd10-076e4989d991, 11019 MiB\\\\n1, GPU-3ca0dfcc-ade3-2eb8-0f77-59f6aae6ac44, 2422 MiB\\\\n2, GPU-cd6008a7-b242-51e0-5f10-49dfd6d5651d, 4763 MiB\\\\n3, GPU-a0d22891-1964-0f75-4962-81994416abaf, 4801 MiB\\\\n4, GPU-54175474-0aa4-3553-ee7c-968cb4b0f9ad, 1 MiB\\\\n5, GPU-e78bc8c3-4047-7933-7882-9f404fae347f, 1 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 403
+          },
+          "id": "event-003638"
+        },
+        {
+          "source_line": 3639,
+          "timestamp": "2026-05-20T07:09:13.847195+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n[evaluate] args: {'benchmark': 'spatial', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'n_rollouts': 10, 'max_steps': 300, 'seed': 42, 'K': 10, 'mode': 'adaptive_k', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_adaptive_k_spatial_p50_seed42.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.074855, 'k_init': 2, 'k_full': 10}\\\\n[eval] Mode: adaptive_k, benchmark: spatial\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.2\\\\n[eval] Loading LIBERO spatial environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 3/5\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 7/10\\\\n[pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate] success rate: 70.0% (7/10)\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 10/10\\\\n[pick_up_the_black_bowl_next_to_the_ramekin_and_place_i\n…[truncated 462 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 703
+          },
+          "id": "event-003639"
+        },
+        {
+          "source_line": 3640,
+          "timestamp": "2026-05-20T07:09:14.198879+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'spatial', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'n_rollouts': 10, 'max_steps': 300, 'seed': 43, 'K': 10, 'mode': 'adaptive_k', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_adaptive_k_spatial_p50_seed43.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.074855, 'k_init': 2, 'k_full': 10}\\\\n[eval] Mode: adaptive_k, benchmark: spatial\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  68%|██████▊   | 333/489 [00:00<00:00, 3265.06it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3586.15it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.2\\\\n[eval] Loading LIBERO spatial environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1055
+          },
+          "id": "event-003640"
+        },
+        {
+          "source_line": 3641,
+          "timestamp": "2026-05-20T07:09:31.970652+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "tail -20 /root/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p50-seed44-r2.log"
+            }
+          },
+          "id": "event-003641"
+        },
+        {
+          "source_line": 3642,
+          "timestamp": "2026-05-20T07:09:32.322492+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'spatial', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'n_rollouts': 10, 'max_steps': 300, 'seed': 44, 'K': 10, 'mode': 'adaptive_k', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_adaptive_k_spatial_p50_seed44.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.074855, 'k_init': 2, 'k_full': 10}\\\\n[eval] Mode: adaptive_k, benchmark: spatial\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  30%|███       | 147/489 [00:00<00:00, 1415.25it/s]\\\\rLoading weights:  79%|███████▉  | 388/489 [00:00<00:00, 1990.50it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 1949.47it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.2\\\\n[eval] Loading LIBERO spatial environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 351
+          },
+          "id": "event-003642"
+        },
+        {
+          "source_line": 3643,
+          "timestamp": "2026-05-20T07:10:00.226689+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — Spatial Adaptive K P50 部署状态核实\n\n**结论**: WARNING\n\n### 发现\n\n- [severity: info] **seed42 (bjb2-40593)**: 实际在运行中，进度 3/10 tasks（task1=70%, task2=100%, task3=0%）。命令正确（`src/evaluate.py --mode adaptive_k --adaptive_threshold 0.074855 --benchmark spatial --seed 42`）。GPU 0 占用 4895 MiB。\n\n- [severity: warning] **seed42 Registry 状态卡在 PREPARING**：进程 PID 675831 活跃、日志在输出，但 registry 从 06:02 UTC 起一直是 PREPARING，从未转为 RUNNING。这意味着 cron 系统不会追踪其完成状态，实验结束后结果不会被自动 harvest。需要 Agent 手动将 status 更新为 RUNNING 并确保 cron 能捕获完成事件。\n\n- [severity: info] **seed43-r2 (bjb1-32546 cuda:0)**: r2 重试已成功启动，模型和环境加载完成，使用正确的 `cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py` 路径。PID 303843 在 GPU 上活跃（6241 MiB）。\n\n- [severity: info] **seed44-r2 (bjb2-28827 cuda:0)**: r2 重试已成功启动，模型和环境加载完成，路径正确。PID 249554 在 GPU 上活跃（6241 MiB）。\n\n- [severity: warning] **bjb2-28827 GPU 0 双实验共享**：seed44-r2（6241 MiB）和 random-selection-object-seed42（4745 MiB）同时占用 cuda:0，合计 ~11 GiB / 24 GiB。物理上可容纳不会 OOM，但 GPU 4 和 GPU 5 完全空闲（1 MiB）。调度器应将 seed44-r2 分配到空闲 GPU 以避免 compute 竞争导致两个实验都变慢。当前不 block 但建议 Agent 后续部署注意 GPU 分配。\n\n### 总结\n\nSpatial Adaptive K P50 三个 seed 现在全部在运行中：\n- seed42: ~30% 完成（3/10 tasks），预计 ~2h 完成\n- seed43-r2: 刚启动\n- seed44-r2: 刚启动\n\n**需要 Agent 行动**：将 seed42 的 registry 从 PREPARING 手动更新为 RUNNING，否则完成后结果无法被自动 harvest。",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-003643"
+        },
+        {
+          "source_line": 3644,
+          "timestamp": "2026-05-20T07:10:04.496772+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 4270
+          },
+          "id": "event-003644"
+        },
+        {
+          "source_line": 3645,
+          "timestamp": "2026-05-20T07:10:11.416410+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已发送。当前状态：\n\n- **Spatial Adaptive K P50 全部 3 seed 在跑**：seed42 进度最快（3/10 tasks），seed43-r2 和 seed44-r2 刚启动\n- 两个 WARNING：seed42 registry 卡在 PREPARING（需手动修复否则无法 harvest），bjb2-28827 GPU 0 双实验共享（GPU 4/5 空闲未利用）\n- 其他 RUNNING 实验：random-selection-object-seed42/44（bjb2-28827 GPU 0/2）、obs-only-object-norm02-seed42（bjb2-28827 GPU 3）\n\n等实验完成后需要核实 Spatial Adaptive K 的数据是否可以支撑论文中对 adaptive pipeline 跨 benchmark 泛化的 claim。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer"
+          },
+          "id": "event-003645"
+        }
+      ]
+    },
+    {
+      "number": 287,
+      "messages": [
+        {
+          "source_line": 3646,
+          "timestamp": "2026-05-20T07:10:11.991391+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ssh_check-running-experiments_20260520T070451]:\nWorker worker_ssh_check-running-experiments_20260520T070451 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "source": "system"
+          },
+          "id": "event-003646"
+        },
+        {
+          "source_line": 3647,
+          "timestamp": "2026-05-20T07:10:27.687049+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_name,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-003647"
+        },
+        {
+          "source_line": 3648,
+          "timestamp": "2026-05-20T07:10:27.687532+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "tail -20 /root/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p50-seed44-r2.log"
+            }
+          },
+          "id": "event-003648"
+        },
+        {
+          "source_line": 3649,
+          "timestamp": "2026-05-20T07:10:27.737990+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "tail -10 /root/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p50-seed42.log"
+            }
+          },
+          "id": "event-003649"
+        },
+        {
+          "source_line": 3650,
+          "timestamp": "2026-05-20T07:10:28.692438+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"235076, NVIDIA GeForce RTX 4090, 4745 MiB\\\\n249554, NVIDIA GeForce RTX 4090, 6241 MiB\\\\n204921, NVIDIA GeForce RTX 4090, 2403 MiB\\\\n235343, NVIDIA GeForce RTX 4090, 4745 MiB\\\\n235678, NVIDIA GeForce RTX 4090, 4783 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1005
+          },
+          "id": "event-003650"
+        },
+        {
+          "source_line": 3651,
+          "timestamp": "2026-05-20T07:10:29.094341+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'spatial', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'n_rollouts': 10, 'max_steps': 300, 'seed': 44, 'K': 10, 'mode': 'adaptive_k', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_adaptive_k_spatial_p50_seed44.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.074855, 'k_init': 2, 'k_full': 10}\\\\n[eval] Mode: adaptive_k, benchmark: spatial\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  30%|███       | 147/489 [00:00<00:00, 1415.25it/s]\\\\rLoading weights:  79%|███████▉  | 388/489 [00:00<00:00, 1990.50it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 1949.47it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.2\\\\n[eval] Loading LIBERO spatial environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1406
+          },
+          "id": "event-003651"
+        },
+        {
+          "source_line": 3652,
+          "timestamp": "2026-05-20T07:10:29.947924+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 3/5\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 7/10\\\\n[pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate] success rate: 70.0% (7/10)\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 10/10\\\\n[pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate] success rate: 100.0% (10/10)\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 5/10, success so far: 1/5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 2209
+          },
+          "id": "event-003652"
+        },
+        {
+          "source_line": 3653,
+          "timestamp": "2026-05-20T07:10:41.040595+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_bus_id,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-003653"
+        },
+        {
+          "source_line": 3654,
+          "timestamp": "2026-05-20T07:10:41.040998+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "nvidia-smi --query-gpu=index,gpu_bus_id,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-003654"
+        },
+        {
+          "source_line": 3655,
+          "timestamp": "2026-05-20T07:10:41.592869+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"235076, 00000000:52:00.0, 4745 MiB\\\\n249554, 00000000:52:00.0, 6241 MiB\\\\n204921, 00000000:56:00.0, 2403 MiB\\\\n235343, 00000000:57:00.0, 4745 MiB\\\\n235678, 00000000:D1:00.0, 4783 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 552
+          },
+          "id": "event-003655"
+        },
+        {
+          "source_line": 3656,
+          "timestamp": "2026-05-20T07:10:42.196299+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 00000000:52:00.0, 11019 MiB, 24564 MiB\\\\n1, 00000000:56:00.0, 2422 MiB, 24564 MiB\\\\n2, 00000000:57:00.0, 4763 MiB, 24564 MiB\\\\n3, 00000000:D1:00.0, 4801 MiB, 24564 MiB\\\\n4, 00000000:D5:00.0, 1 MiB, 24564 MiB\\\\n5, 00000000:D6:00.0, 1 MiB, 24564 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.59}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1155
+          },
+          "id": "event-003656"
+        },
+        {
+          "source_line": 3657,
+          "timestamp": "2026-05-20T07:11:03.811468+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "ls -lt /root/runs/acr-vla-conformal-refinement/"
+            }
+          },
+          "id": "event-003657"
+        },
+        {
+          "source_line": 3658,
+          "timestamp": "2026-05-20T07:11:03.811839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "cat /proc/204921/cmdline"
+            }
+          },
+          "id": "event-003658"
+        },
+        {
+          "source_line": 3659,
+          "timestamp": "2026-05-20T07:11:04.163159+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 840\\\\n-rw-r--r-- 1 root root   1445 May 20 15:08 eval-adaptive-k-spatial-p50-seed44-r2.log\\\\n-rw-r--r-- 1 root root   3951 May 20 15:07 eval-crm-long-seed52.log\\\\n-rw-r--r-- 1 root root   1775 May 20 15:06 eval-random-selection-object-seed44.log\\\\n-rw-r--r-- 1 root root   1771 May 20 15:06 eval-random-selection-object-seed42.log\\\\n-rw-r--r-- 1 root root   1966 May 20 15:06 eval-obs-only-object-norm02-seed42.log\\\\n-rw-r--r-- 1 root root   3827 May 20 14:58 eval-crm-goal-seed49.log\\\\n-rw-r--r-- 1 root root   3829 May 20 14:57 eval-crm-goal-seed50.log\\\\n-rw-r--r-- 1 root root    122 May 20 14:38 eval-adaptive-k-spatial-p50-seed44.log\\\\n-rw-r--r-- 1 root root   3592 May 20 14:37 eval-vla-only-goal-seed50.log\\\\n-rw-r--r-- 1 root root   3597 May 20 14:33 eval-vla-only-goal-seed51.log\\\\n-rw-r--r-- 1 root root   4989 May 20 13:24 eval-vla-only-long-seed51.log\\\\n-rw-r--r-- 1 root root   4906 May 20 12:56 eval-vla-only-long-seed50.log\\\\n-rw-r--r-- 1 root root   4985 May 20 12:56 eval-vla-only-long-seed49.log\\\\n-rw-r--r-- 1 root root   4877 May 20 12:37 eval-crm-spatial-k10-seed49.log\\\\n-rw-r--r-- 1 root root   3834 May 20 12:21 eval-crm-goal-seed48.log\\\\n-rw-r--r-- 1 root root   3745 May 20 12:16 eval-crm-goal-seed47.log\\\\n-rw-r--r-- 1 root root   4446 May 20 11:05 eval-adaptive-k-p25-seed43.log\\\\n-rw-r--r-- 1 root root   1461 May 20 10:57 eval-crm-goal-seed46.log\\\\n-rw-r--r-- 1 root root   4445 May 20 10:36 eval-adaptive-k-p90-seed44.log\\\\n-rw-r--r-- 1 root root   4433 May 20 10:34 eval-adaptive-k-p50-seed42.log\\\\n-rw-r--r-- 1 root root   4441 May 20 10:30 eval-adaptive-k-p75-seed43.log\\\\n-rw-r--r-- 1 root root   4443 May 20 10:29 eval-adaptive-k-p75-seed42.log\\\\n-rw-r--r-- 1 root root   4444 May 20 10:25 eval-adaptive-k-p90-seed43.log\\\\n-rw-r--r-- 1 root root   2196 May 20 07:07 eval-openvla-object-baseline-seed42-r2.log\\\\n-rw-r--r-- 1 root root 283024 May 20 07:03 eval-openvla-object-baseline-seed42.log\\\\n-rw-r-\n…[truncated 4928 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 351
+          },
+          "id": "event-003659"
+        },
+        {
+          "source_line": 3660,
+          "timestamp": "2026-05-20T07:11:04.815598+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python\\\\u0000-u\\\\u0000src/evaluate.py\\\\u0000--mode\\\\u0000crm_obs_only\\\\u0000--benchmark\\\\u0000long\\\\u0000--seed\\\\u000052\\\\u0000--K\\\\u000010\\\\u0000--crm_checkpoint\\\\u0000/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\\u0000--max_correction_norm\\\\u00000.2\\\\u0000--n_rollouts\\\\u000010\\\\u0000--output_file\\\\u0000logs/eval_long_obs_only_norm02_seed52.json\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.65}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1003
+          },
+          "id": "event-003660"
+        },
+        {
+          "source_line": 3661,
+          "timestamp": "2026-05-20T07:11:45.824905+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — Spatial Adaptive K P50 部署状态 + check-running-experiments worker\n\n**结论**: WARNING\n\n### Spatial Adaptive K P50 三个 seed 状态\n\n| Seed | Exp ID | 服务器 | GPU | 状态 | 进度 |\n|------|--------|--------|-----|------|------|\n| 42 | eval-adaptive-k-spatial-p50-seed42 | bjb2-40593 | cuda:0 | **实际 RUNNING，registry 卡在 PREPARING** | task 4/10 (70%, 100%, 0%, task4 进行中 1/5) |\n| 43 | eval-adaptive-k-spatial-p50-seed43-r2 | bjb1-32546 | cuda:0 | RUNNING | 刚启动，model 已加载，尚未开始 rollout |\n| 44 | eval-adaptive-k-spatial-p50-seed44-r2 | bjb2-28827 | cuda:0 | RUNNING | 刚启动，model 已加载，尚未开始 rollout |\n\n原始 seed43/44 均因路径错误 FAILED（`evaluate.py` 而非 `src/evaluate.py`），r2 重试已修复路径（`cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py`）。\n\n### 发现\n\n- [severity: warning] **seed42 registry 状态卡在 PREPARING**：实验实际已运行 1h+（task 4/10），但 registry 从未转为 RUNNING。风险：完成时 completion hook 可能无法正确触发，导致结果无法自动收割。Agent 需手动将 registry 状态更新为 RUNNING。证据：`bjb2-40593` 上 PID 675831 活跃，日志显示 task4 rollout 进行中，GPU 使用 4895 MiB。\n\n- [severity: info] **bjb2-28827 GPU 0 双实验共享**：seed44-r2（PID 249554, 6241 MiB）与 random-selection-object-seed42（PID 235076, 4745 MiB）共用 GPU 0，合计 ~11GB/24GB。VRAM 充足不会 OOM，但计算资源竞争会拖慢两者。非 critical（4090 有 24GB 裕量），但如果 GPU 4/5 空闲可考虑迁移。\n\n- [severity: info] **bjb2-28827 GPU 1 进程确认**：PID 204921 = `eval-crm-long-seed52`（CRM Long benchmark），2403 MiB，日志 15:07 活跃。已识别，非越界。\n\n- [severity: info] **r2 重试命令已修正**：seed43-r2/seed44-r2 的 spec.command 均包含正确的 `cd /root/acr-vla-conformal-refinement && ... python -u src/evaluate.py`，路径问题已解决。\n\n### 建议\n- 优先修复 seed42 registry 状态（PREPARING → RUNNING），确保 completion hook 正常触发\n- 监控 seed42 进度（目前 task 4/10，预计 ~2-3h 完成全部 10 tasks）\n- seed43-r2 / seed44-r2 刚启动，预计 ~4-5h 完成",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-003661"
+        },
+        {
+          "source_line": 3662,
+          "timestamp": "2026-05-20T07:11:51.067566+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 5242
+          },
+          "id": "event-003662"
+        },
+        {
+          "source_line": 3663,
+          "timestamp": "2026-05-20T07:11:58.466132+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/fig3_kvalue*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-003663"
+        },
+        {
+          "source_line": 3664,
+          "timestamp": "2026-05-20T07:11:58.517459+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/_project/chart/fig3_kvalue_ca63e5.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/_project/chart/fig3_kvalue_948585.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/_project/chart/fig3_kvalue.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/_project/chart/fig3_kvalue_465226.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/figures/paper/fig3_kvalue.pdf\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/figures/paper/fig3_kvalue.png\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/docs/paper/figures/fig3_kvalue.pdf"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Glob",
+            "elapsed_ms": 51
+          },
+          "id": "event-003664"
+        },
+        {
+          "source_line": 3665,
+          "timestamp": "2026-05-20T07:12:02.082792+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/figures/paper/fig3_kvalue.pdf /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/docs/paper/figures/fig3_kvalue.pdf",
+              "description": "Check timestamps of fig3_kvalue in both locations"
+            }
+          },
+          "id": "event-003665"
+        },
+        {
+          "source_line": 3666,
+          "timestamp": "2026-05-20T07:12:02.234381+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "-rw-r--r-- 1 ubuntu ubuntu 42689 May 20 07:11 /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/figures/paper/fig3_kvalue.pdf\n-rw-r--r-- 1 ubuntu ubuntu 42689 May 20 07:11 /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/docs/paper/figures/fig3_kvalue.pdf"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Bash",
+            "elapsed_ms": 151
+          },
+          "id": "event-003666"
+        },
+        {
+          "source_line": 3667,
+          "timestamp": "2026-05-20T07:12:10.986492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/figures/paper/fig3_kvalue.pdf"
+            }
+          },
+          "id": "event-003667"
+        },
+        {
+          "source_line": 3668,
+          "timestamp": "2026-05-20T07:12:11.068771+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF file read: /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/figures/paper/fig3_kvalue.pdf (41.7KB)"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Read",
+            "elapsed_ms": 82
+          },
+          "id": "event-003668"
+        },
+        {
+          "source_line": 3669,
+          "timestamp": "2026-05-20T07:12:31.662756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — fig3_kvalue 修正确认\n\n**结论**: PASS\n\n之前标记的 WARNING（fig3_kvalue VLA-only 参考线 = 10.9% 应为 11.3%）**已解决**。\n\n当前版本（07:11 UTC）核对：\n- VLA-only baseline: 11.3% ✓（与 Table 1 n=6 一致）\n- K=1 CRM: ~10.3% ✓（与正文 \"K=1 correction degrades below baseline (10.3%)\" 一致）\n- K=5 CRM obs_only: 16.0%, n=7 标注 ✓（与 Table 1 一致）\n- K=10 CRM obs_only: 16.8% ✓（与 Table 1 一致）\n- Argmin K=10: 12.3% ✓（与 Table 1 一致）\n\n图已同步到 `docs/paper/figures/fig3_kvalue.pdf`（42689 bytes, 07:11 UTC）。\n\n[severity: info] 此项关闭。",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-003669"
+        },
+        {
+          "source_line": 3670,
+          "timestamp": "2026-05-20T07:12:33.218490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 1555
+          },
+          "id": "event-003670"
+        },
+        {
+          "source_line": 3671,
+          "timestamp": "2026-05-20T07:12:40.984815+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前所有已知问题状态：\n- **fig3_kvalue 参考线**: ✅ 已修正 (11.3%)\n- **D083 Spatial CRM 数据**: ✅ 已修正 (34.4±1.5%, n=8)\n- **255ms 延迟统一**: ✅ 全文已统一\n- **OOD 全量数据更新**: ✅ Long p=0.061, Goal 68.0% vs 68.7%\n- **P25 n=3 更新**: ✅ 14.3±1.2%\n- **seed42 registry PREPARING**: ⚠️ WARNING 已上报，等待 Agent 修复\n- **Spatial Adaptive K P50**: ⏳ seed42 at task 4/10, seed43-r2/44-r2 刚启动"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer"
+          },
+          "id": "event-003671"
+        }
+      ]
+    },
+    {
+      "number": 288,
+      "messages": [
+        {
+          "source_line": 3672,
+          "timestamp": "2026-05-20T07:15:39.634247+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ssh_deploy-seed42-and-latency_20260520T071349]:\nWorker worker_ssh_deploy-seed42-and-latency_20260520T071349 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "source": "system"
+          },
+          "id": "event-003672"
+        },
+        {
+          "source_line": 3673,
+          "timestamp": "2026-05-20T07:15:48.807454+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "limit": "10",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-003673"
+        },
+        {
+          "source_line": 3674,
+          "timestamp": "2026-05-20T07:15:49.862078+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval-adaptive-k-spatial-p50-seed42\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T06:01:50.026Z\\\", \\\"updated_at\\\": \\\"2026-05-20T07:13:28.888Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P50 (0.074855, Object-calibrated) on LIBERO-Spatial seed42. 验证 Adaptive K 方法在第二个 benchmark 上的泛化：使用 Object 上校准的阈值直接应用到 Spatial（无 per-benchmark tuning）。如果 SR 接近 CRM K=10 (34.3%) 且 fast_path >50%，则证明方法跨 benchmark 通用。\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode adaptive_k --adaptive_threshold 0.074855 --k_full 10 --benchmark spatial --seed 42 --n_rollouts 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_adaptive_k_spatial_p50_seed42.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb2-40593\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"675826\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p50-seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T06:02:04.565Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"eval-adaptive-k-spatial-p50-seed44-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T06:42:09.659Z\\\", \\\"updated_at\\\": \\\"2026-05-20T07:08:10.524Z\\\", \\\"hypothesis\\\": \\\"K=2 L2 divergence-based adaptive K allocation (P50 threshold τ=0.074855) transfers from Object to Spatial benchmark, achieving comparable SR to fixed K=10 with ~62% compute savings. Cross-benchmark validation of adaptive K as core method.\\\", \\\"parent\\\": \\\"eval-adaptive-k-spatial-p50-seed44\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode adaptive_k\n…[truncated 13491 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1054
+          },
+          "id": "event-003674"
+        },
+        {
+          "source_line": 3675,
+          "timestamp": "2026-05-20T07:16:05.654103+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "tail -15 /root/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p50-seed42.log"
+            }
+          },
+          "id": "event-003675"
+        },
+        {
+          "source_line": 3676,
+          "timestamp": "2026-05-20T07:16:06.206474+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "nvidia-smi --query-compute-apps=pid,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-003676"
+        },
+        {
+          "source_line": 3677,
+          "timestamp": "2026-05-20T07:16:06.658586+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.2\\\\n[eval] Loading LIBERO spatial environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 3/5\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 7/10\\\\n[pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate] success rate: 70.0% (7/10)\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 10/10\\\\n[pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate] success rate: 100.0% (10/10)\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 5/10, success so far: 1/5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1004
+          },
+          "id": "event-003677"
+        },
+        {
+          "source_line": 3678,
+          "timestamp": "2026-05-20T07:16:07.113110+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"681823, 6483 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 906
+          },
+          "id": "event-003678"
+        },
+        {
+          "source_line": 3679,
+          "timestamp": "2026-05-20T07:16:20.349367+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "cat /proc/681823/cmdline"
+            }
+          },
+          "id": "event-003679"
+        },
+        {
+          "source_line": 3680,
+          "timestamp": "2026-05-20T07:16:20.485465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "cat /proc/675831/cmdline"
+            }
+          },
+          "id": "event-003680"
+        },
+        {
+          "source_line": 3681,
+          "timestamp": "2026-05-20T07:16:20.709970+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python\\\\u0000-u\\\\u0000src/evaluate.py\\\\u0000--mode\\\\u0000adaptive_k\\\\u0000--adaptive_threshold\\\\u00000.074855\\\\u0000--k_full\\\\u000010\\\\u0000--benchmark\\\\u0000spatial\\\\u0000--seed\\\\u000042\\\\u0000--n_rollouts\\\\u000010\\\\u0000--crm_checkpoint\\\\u0000/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\\u0000--max_correction_norm\\\\u00000.2\\\\u0000--output_file\\\\u0000logs/eval_adaptive_k_spatial_p50_seed42.json\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 360
+          },
+          "id": "event-003681"
+        },
+        {
+          "source_line": 3682,
+          "timestamp": "2026-05-20T07:16:21.082304+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /proc/675831/cmdline: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 596
+          },
+          "id": "event-003682"
+        },
+        {
+          "source_line": 3683,
+          "timestamp": "2026-05-20T07:16:38.228191+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "wc -l /root/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p50-seed42.log"
+            }
+          },
+          "id": "event-003683"
+        },
+        {
+          "source_line": 3684,
+          "timestamp": "2026-05-20T07:16:38.228668+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "head -5 /root/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p50-seed42.log"
+            }
+          },
+          "id": "event-003684"
+        },
+        {
+          "source_line": 3685,
+          "timestamp": "2026-05-20T07:16:38.580517+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"23 /root/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p50-seed42.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 352
+          },
+          "id": "event-003685"
+        },
+        {
+          "source_line": 3686,
+          "timestamp": "2026-05-20T07:16:38.932442+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n[evaluate] args: {'benchmark': 'spatial', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'n_rollouts': 10, 'max_steps': 300, 'seed': 42, 'K': 10, 'mode': 'adaptive_k', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_adaptive_k_spatial_p50_seed42.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.074855, 'k_init': 2, 'k_full': 10}\\\\n[eval] Mode: adaptive_k, benchmark: spatial\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 703
+          },
+          "id": "event-003686"
+        },
+        {
+          "source_line": 3687,
+          "timestamp": "2026-05-20T07:17:10.925252+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — worker deploy-seed42-and-latency 结果\n\n**结论**: WARNING\n\n### 发现\n\n- [severity: warning] **seed42 被重启，约 1.5h 进度丢失**：Worker 杀掉了原进程 PID 675831（已完成 task 1-3：70%/100%/0%，task 4 进行中），启动新进程 PID 681823。新进程正在加载模型（6483 MiB on GPU），日志尚无新输出（仍显示旧 run 的 23 行）。\n\n  **原因分析**：registry 卡在 PREPARING 状态，worker 误判为未启动，选择了\"杀掉重部署\"而非\"仅更新 registry 状态\"。正确做法应该是 `registry.status = RUNNING` + 更新 PID，无需重启。\n\n  **影响**：bjb2-40593 只有 1 张 4090，seed42 需要从头跑 10 tasks（约 3-4h），而非继续跑剩余 6-7 tasks（约 2-2.5h）。多浪费约 1-1.5h GPU 时间。\n\n  **当前状态**：registry 从 PREPARING → QUEUED（仍非 RUNNING），PID 681823 活跃但可能尚未被 cron 监控识别。\n\n- [severity: info] **seed42 registry 状态仍不正确**：当前为 QUEUED，实际进程已在运行。需手动更新为 RUNNING 以确保 completion hook 正常触发。\n\n- [severity: info] **三个 seed 当前 ETA**：\n  - seed42 (bjb2-40593): 从头重跑，预计 ~3-4h（约 11:00-11:30 UTC）\n  - seed43-r2 (bjb1-32546): 刚启动 ~30min 前，预计 ~3-4h（约 11:00-11:30 UTC）\n  - seed44-r2 (bjb2-28827): 刚启动 ~30min 前，预计 ~3-4h（约 11:00-11:30 UTC，受 GPU 共享影响可能更慢）\n\n### 建议\n- 不需要进一步干预（重启已发生无法回滚），但请 Agent 确保 seed42 registry 状态从 QUEUED → RUNNING\n- 未来避免对 PREPARING 状态的活跃进程执行 kill+redeploy，先验证进程是否存活",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-003687"
+        },
+        {
+          "source_line": 3688,
+          "timestamp": "2026-05-20T07:17:14.892452+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 3967
+          },
+          "id": "event-003688"
+        },
+        {
+          "source_line": 3689,
+          "timestamp": "2026-05-20T07:17:17.714177+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "日志仍然是旧进程的 23 行输出（old run）。新进程 681823 可能还在加载模型阶段，尚未写入日志。这意味着 worker 杀掉旧进程重新部署，丢失了 ~1.5h 进度（3/10 tasks 完成）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer"
+          },
+          "id": "event-003689"
+        }
+      ]
+    },
+    {
+      "number": 289,
+      "messages": [
+        {
+          "source_line": 3690,
+          "timestamp": "2026-05-20T07:19:41.039519+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ssh_check-evaluate-params_20260520T071903]:\nWorker worker_ssh_check-evaluate-params_20260520T071903 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "source": "system"
+          },
+          "id": "event-003690"
+        },
+        {
+          "source_line": 3691,
+          "timestamp": "2026-05-20T07:19:50.154339+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "tail -15 /root/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p50-seed42.log"
+            }
+          },
+          "id": "event-003691"
+        },
+        {
+          "source_line": 3692,
+          "timestamp": "2026-05-20T07:19:50.657091+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "tail -15 /root/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p50-seed43-r2.log"
+            }
+          },
+          "id": "event-003692"
+        },
+        {
+          "source_line": 3693,
+          "timestamp": "2026-05-20T07:19:51.260183+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.2\\\\n[eval] Loading LIBERO spatial environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 3/5\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 7/10\\\\n[pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate] success rate: 70.0% (7/10)\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 10/10\\\\n[pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate] success rate: 100.0% (10/10)\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 5/10, success so far: 1/5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1105
+          },
+          "id": "event-003693"
+        },
+        {
+          "source_line": 3694,
+          "timestamp": "2026-05-20T07:19:51.260640+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "tail -15 /root/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p50-seed44-r2.log"
+            }
+          },
+          "id": "event-003694"
+        },
+        {
+          "source_line": 3695,
+          "timestamp": "2026-05-20T07:19:52.264616+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  68%|██████▊   | 333/489 [00:00<00:00, 3265.06it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3586.15it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.2\\\\n[eval] Loading LIBERO spatial environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 4/5\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 8/10\\\\n[pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate] success rate: 80.0% (8/10)\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1607
+          },
+          "id": "event-003695"
+        },
+        {
+          "source_line": 3696,
+          "timestamp": "2026-05-20T07:19:52.998847+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'spatial', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'n_rollouts': 10, 'max_steps': 300, 'seed': 44, 'K': 10, 'mode': 'adaptive_k', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_adaptive_k_spatial_p50_seed44.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.074855, 'k_init': 2, 'k_full': 10}\\\\n[eval] Mode: adaptive_k, benchmark: spatial\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  30%|███       | 147/489 [00:00<00:00, 1415.25it/s]\\\\rLoading weights:  79%|███████▉  | 388/489 [00:00<00:00, 1990.50it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 1949.47it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.2\\\\n[eval] Loading LIBERO spatial environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 2/5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.67}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1738
+          },
+          "id": "event-003696"
+        },
+        {
+          "source_line": 3697,
+          "timestamp": "2026-05-20T07:20:26.368052+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 Spatial Adaptive K P50 实验均在运行，参数已核验。\n\n**seed42** (bjb2-40593): task 4/10 进行中（日志仍显示旧 run 输出）\n**seed43-r2** (bjb1-32546): task 1 完成 (80%), task 2 进行中 (5/5 at rollout 5)\n**seed44-r2** (bjb2-28827): task 1 进行中 (2/5 at rollout 5)\n\n参数一致性确认（三个 seed 均一致）：\n- mode=adaptive_k, threshold=0.074855 (P50), k_full=10, k_init=2, spatial, ε=0.2, CRM checkpoint 路径正确\n\n无异常，不发报告。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer"
+          },
+          "id": "event-003697"
+        }
+      ]
+    },
+    {
+      "number": 290,
+      "messages": [
+        {
+          "source_line": 3698,
+          "timestamp": "2026-05-20T07:24:43.133114+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_research_full-benchmark-audit_20260520T071731]:\nWorker worker_research_full-benchmark-audit_20260520T071731 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "source": "system"
+          },
+          "id": "event-003698"
+        },
+        {
+          "source_line": 3699,
+          "timestamp": "2026-05-20T07:24:53.888900+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "limit": "5",
+              "fields": "['status', 'updated_at', 'conclusion', 'metrics', 'notes']"
+            }
+          },
+          "id": "event-003699"
+        },
+        {
+          "source_line": 3700,
+          "timestamp": "2026-05-20T07:24:55.054510+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"latency-profile-n1000\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-20T07:21:28.620Z\\\"}, \\\"eval-adaptive-k-spatial-p50-seed42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-20T07:20:24.661Z\\\"}, \\\"eval-adaptive-k-spatial-p50-seed44-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-20T07:08:10.524Z\\\"}, \\\"eval-adaptive-k-spatial-p50-seed43-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-20T07:07:55.807Z\\\"}, \\\"eval-random-selection-object-seed44\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"updated_at\\\": \\\"2026-05-20T07:06:16.041Z\\\", \\\"notes\\\": \\\"2026-05-20 15:06 确认进程活跃: PID 235343, cuda:2, tmux session active, 进度 task 2/10 (~15%). 启动时间 14:40 UTC. 旧 seed44 JSON (SR=0.13) 在磁盘上但会被新运行覆盖.\\\"}}, \\\"count\\\": 5, \\\"total\\\": 423, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1682}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1165
+          },
+          "id": "event-003700"
+        },
+        {
+          "source_line": 3701,
+          "timestamp": "2026-05-20T07:25:05.452438+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'latency-profile-n1000'}",
+              "project": "acr-vla-conformal-refinement",
+              "fields": "['*']",
+              "limit": "1"
+            }
+          },
+          "id": "event-003701"
+        },
+        {
+          "source_line": 3702,
+          "timestamp": "2026-05-20T07:25:05.905431+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "report.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-003702"
+        },
+        {
+          "source_line": 3703,
+          "timestamp": "2026-05-20T07:25:06.558678+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.071}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1106
+          },
+          "id": "event-003703"
+        },
+        {
+          "source_line": 3704,
+          "timestamp": "2026-05-20T07:25:06.559252+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-20\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| latency-profile-n1000 | Formal latency profiling (N=1000) for all inference modes. Measure per-step wall-clock time to populate Table 3 latency column. | — | — | — |\\\\n\\\\n## 待处理\\\\n- eval-adaptive-k-p50-seed43: Adaptive K with τ=P50 (0.074855) on LIBERO-Object seed43. ~50% steps trigger K=10+CRM, rest use K=2 fast path. P50 sweep 第二个 seed。（已分配 ? GPU:?，等待提交）\\\\n- eval-adaptive-k-p50-seed42: Adaptive K with τ=P50 (0.074855) on LIBERO-Object seed42. ~50% steps trigger K=10+CRM, rest use K=2 fast path. 测试 SR vs avg_K 的 Pareto 最优阈值。（已分配 ? GPU:?，等待提交）\\\\n- …另有 35 项\\\\n\\\\n## 近期结论\\\\n- **eval-obs-only-spatial-norm02-seed48** (success): CRM obs_only norm02 (ε=0.2) K=10 on LIBERO-Spatial seed48. Complement Spatial cross-seed consistency data.\\\\n\\\\n## 趋势\\\\n成功 208 / 负向 32 / 失败 48 / 共 375\\\\nsuccess_rate: 0.35 ↑（近 3 次 success）\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nbjb1-18228: 无 GPU 信息\\\\nbjb1-32546: 空闲 cuda:0, cuda:1, cuda:2, cuda:3, cuda:4, cuda:5\\\\nbjb2-28827: 空闲 cuda:0, cuda:1, cuda:2, cuda:3, cuda:4, cuda:5\\\\nbjb2-40593: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- plan_001-crm-smolvla: 训练失败 — unknown\\\\n- plan_014-reconvla-baseline: 训练失败 — unknown\\\\n- eval-smolvla-libero-spatial: 训练失败 — unknown\\\\n- eval-spatial-reeval-v2: 已被终止 — unknown\\\\n- precompute-v2-shard0: 已被终止 — unknown\\\\n- precompute-v2-shard1: 已被终止 — unknown\\\\n- precompute-v2-shard2: 已被终止 — unknown\\\\n- eval-spatial-v3-full: 已被终止 — unknown\\\\n- precompute-v3-shard0: 已被终止 — unknown\\\\n- precompute-v3-shard1: 已被终止 — unknown\\\\n- precompute-v3-shard2: 已被终止 — unknown\\\\n- eval-spatial-v4-full: 已被终止 — unknown\\\\n- eval-object-v4-full: 已被终止 — unknown\\\\n- eval-spatial-v5-full: 已被终止 — unknown\\\\n- crm-train-v1: 已被终止 — u\n…[truncated 5355 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 653
+          },
+          "id": "event-003704"
+        },
+        {
+          "source_line": 3705,
+          "timestamp": "2026-05-20T07:25:22.138758+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "latency-profile-n1000",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+              "glob": "registry.yaml",
+              "output_mode": "content",
+              "-A": "25"
+            }
+          },
+          "id": "event-003705"
+        },
+        {
+          "source_line": 3706,
+          "timestamp": "2026-05-20T07:25:22.189611+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml:15656:  latency-profile-n1000:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15657-    status: RUNNING\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15658-    retry_count: 0\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15659-    created_at: '2026-05-20T07:21:06.879Z'\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15660-    updated_at: '2026-05-20T07:21:28.620Z'\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15661-    hypothesis: Formal latency profiling (N=1000) for all inference modes. Measure\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15662-      per-step wall-clock time to populate Table 3 latency column.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15663-    spec:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15664-      command: python -u src/profile_latency.py --n_measure 1000 --n_warmup 100 --output\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15665-        logs/latency_profile_n1000.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15666-      server: bjb2-28827\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15667-      gpu:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15668-      - cuda:4\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml-15669-      pid: '252933'\n/home/\n…[truncated 518 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-003706"
+        },
+        {
+          "source_line": 3707,
+          "timestamp": "2026-05-20T07:25:34.426637+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "head -60 /root/acr-vla-conformal-refinement/src/profile_latency.py"
+            }
+          },
+          "id": "event-003707"
+        },
+        {
+          "source_line": 3708,
+          "timestamp": "2026-05-20T07:25:35.398531+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Latency profiling for ACR-VLA pipeline components.\\\\n\\\\nMeasures each pipeline stage with CUDA synchronization, reports mean/std/p95/p99.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os\\\\nos.environ.setdefault(\\\\\\\"HF_HUB_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"MUJOCO_GL\\\\\\\", \\\\\\\"egl\\\\\\\")\\\\n\\\\nimport argparse\\\\nimport sys\\\\nimport time\\\\nimport json\\\\nimport torch\\\\nimport numpy as np\\\\nfrom pathlib import Path\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom smolvla_wrapper import SmolVLAWrapper\\\\nfrom cgs import ConformilizedGaussianScoring\\\\nfrom crm import ConformalRefinementModule\\\\nfrom utils import set_seed, CORRECTION_DIM, FULL_ACTION_DIM, H_EFF, OBS_DIM\\\\nfrom robosuite.utils.transform_utils import quat2axisangle\\\\n\\\\n\\\\ndef parse_args():\\\\n    p = argparse.ArgumentParser(description=\\\\\\\"Latency profiling for ACR-VLA\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--n_warmup\\\\\\\", type=int, default=100)\\\\n    p.add_argument(\\\\\\\"--n_measure\\\\\\\", type=int, default=1000)\\\\n    p.add_argument(\\\\\\\"--dry_run\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n                   help=\\\\\\\"Quick validation: 10 warmup, 20 measure\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--smolvla_path\\\\\\\", type=str,\\\\n                   default=\\\\\\\"/root/autodl-tmp/models/smolvla_libero/\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--crm_checkpoint\\\\\\\", type=str,\\\\n                   default=\\\\\\\"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\\\\\")\\\\n    p.add_argument(\\\\\\\"--output\\\\\\\", type=str, default=None)\\\\n    p.add_argument(\\\\\\\"--adaptive_threshold\\\\\\\", type=float, default=0.1)\\\\n    return p.parse_args()\\\\n\\\\n\\\\ndef get_robot_state(obs):\\\\n    eef_pos = obs[\\\\\\\"robot0_eef_pos\\\\\\\"]\\\\n    eef_axisangle = quat2axisangle(obs[\\\\\\\"robot0_eef_quat\\\\\\\"])\\\\n    gripper_qpos = obs[\\\\\\\"robot0_gripper_qpos\\\\\\\"]\\\\n    return np.concatenate([eef_pos, eef_axisangle, gripper_qpos]).astype(np.fl\n…[truncated 499 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 971
+          },
+          "id": "event-003708"
+        },
+        {
+          "source_line": 3709,
+          "timestamp": "2026-05-20T07:25:39.542525+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "grep -n \"generate_k_samples\\|batched\\|K=1\\|K=2\\|K=10\\|k_samples\\|def main\\|def profile\" /root/acr-vla-conformal-refinement/src/profile_latency.py"
+            }
+          },
+          "id": "event-003709"
+        },
+        {
+          "source_line": 3710,
+          "timestamp": "2026-05-20T07:25:39.542947+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-003710"
+        },
+        {
+          "source_line": 3711,
+          "timestamp": "2026-05-20T07:25:43.323429+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "grep -n \"batched\" /root/acr-vla-conformal-refinement/src/profile_latency.py"
+            }
+          },
+          "id": "event-003711"
+        },
+        {
+          "source_line": 3712,
+          "timestamp": "2026-05-20T07:25:43.825721+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"164:    # 2. VLA generate_k_samples (batched) for K=1,2,5,10\\\\n168:            return wrapper.generate_k_samples_batched(kv_cache, pad_masks, K=K)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 502
+          },
+          "id": "event-003712"
+        },
+        {
+          "source_line": 3713,
+          "timestamp": "2026-05-20T07:25:43.826092+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "grep -n \"generate_k_samples\" /root/acr-vla-conformal-refinement/src/profile_latency.py"
+            }
+          },
+          "id": "event-003713"
+        },
+        {
+          "source_line": 3714,
+          "timestamp": "2026-05-20T07:25:44.278000+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"164:    # 2. VLA generate_k_samples (batched) for K=1,2,5,10\\\\n168:            return wrapper.generate_k_samples_batched(kv_cache, pad_masks, K=K)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-003714"
+        },
+        {
+          "source_line": 3715,
+          "timestamp": "2026-05-20T07:25:44.479131+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "grep -n \"def profile\" /root/acr-vla-conformal-refinement/src/profile_latency.py"
+            }
+          },
+          "id": "event-003715"
+        },
+        {
+          "source_line": 3716,
+          "timestamp": "2026-05-20T07:25:44.780802+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 301
+          },
+          "id": "event-003716"
+        },
+        {
+          "source_line": 3717,
+          "timestamp": "2026-05-20T07:25:52.714595+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "tail -20 /root/runs/acr-vla-conformal-refinement/latency-profile-n1000.log"
+            }
+          },
+          "id": "event-003717"
+        },
+        {
+          "source_line": 3718,
+          "timestamp": "2026-05-20T07:25:53.066230+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"tail: cannot open '/root/runs/acr-vla-conformal-refinement/latency-profile-n1000.log' for reading: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 351
+          },
+          "id": "event-003718"
+        },
+        {
+          "source_line": 3719,
+          "timestamp": "2026-05-20T07:25:57.887020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "find /root/runs/acr-vla-conformal-refinement -name \"latency*\" -type f"
+            }
+          },
+          "id": "event-003719"
+        },
+        {
+          "source_line": 3720,
+          "timestamp": "2026-05-20T07:25:58.338962+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 451
+          },
+          "id": "event-003720"
+        },
+        {
+          "source_line": 3721,
+          "timestamp": "2026-05-20T07:25:58.590230+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "find /root/acr-vla-conformal-refinement/logs -name \"latency*\" -type f"
+            }
+          },
+          "id": "event-003721"
+        },
+        {
+          "source_line": 3722,
+          "timestamp": "2026-05-20T07:25:58.892212+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/logs/latency_profile.log\\\\n/root/acr-vla-conformal-refinement/logs/latency_profile.json\\\\n/root/acr-vla-conformal-refinement/logs/latency_profile_n1000.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 301
+          },
+          "id": "event-003722"
+        },
+        {
+          "source_line": 3723,
+          "timestamp": "2026-05-20T07:26:01.854801+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "tail -30 /root/acr-vla-conformal-refinement/logs/latency_profile_n1000.log"
+            }
+          },
+          "id": "event-003723"
+        },
+        {
+          "source_line": 3724,
+          "timestamp": "2026-05-20T07:26:02.156385+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[profile] n_warmup=100, n_measure=1000, dry_run=False\\\\n[profile] Loading SmolVLA...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  45%|████▌     | 221/489 [00:00<00:00, 2209.63it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 2972.75it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[profile] Loading CRM (obs_only)...\\\\n[profile] GPU memory after load: {'allocated_MB': 884.6, 'reserved_MB': 908.0, 'max_allocated_MB': 885.8}\\\\n[profile] Loading LIBERO env (1 task)...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[profile] 1/9  VLA encode_prefix...\\\\n  43.45 ± 26.88 ms\\\\n[profile] 2/9  VLA sample K=1...\\\\n  K=1: 213.76 ± 6.90 ms\\\\n[profile] 2/9  VLA sample K=2...\\\\n  K=2: 217.88 ± 7.74 ms\\\\n[profile] 2/9  VLA sample K=5...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 301
+          },
+          "id": "event-003724"
+        },
+        {
+          "source_line": 3725,
+          "timestamp": "2026-05-20T07:26:30.602112+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "延迟 profiling 初步数据出来了（N=1000, 100 warmup, CUDA synchronized）：\n\n| 阶段 | 延迟 |\n|------|------|\n| encode_prefix | 43.45 ± 26.88 ms |\n| K=1 batched | 213.76 ± 6.90 ms |\n| K=2 batched | 217.88 ± 7.74 ms |\n| K=5 batched | 进行中... |\n\n**推算 e2e**：K=1 ~257ms, K=2 ~261ms。论文声称 ~255ms 在合理范围内（<3% 偏差）。K=5/10 结果待出。实验仍在运行（step 2/9 for K=5），无需干预，等完整结果再出报告。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer"
+          },
+          "id": "event-003725"
+        }
+      ]
+    },
+    {
+      "number": 291,
+      "messages": [
+        {
+          "source_line": 3726,
+          "timestamp": "2026-05-20T07:26:31.160534+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ssh_verify-seed42-p50-alive_20260520T072548]:\nWorker worker_ssh_verify-seed42-p50-alive_20260520T072548 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "source": "worker_done:worker_ssh_verify-seed42-p50-alive_20260520t072548"
+          },
+          "id": "event-003726"
+        },
+        {
+          "source_line": 3727,
+          "timestamp": "2026-05-20T07:26:50.527307+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "tail -20 /root/acr-vla-conformal-refinement/logs/latency_profile_n1000.log"
+            }
+          },
+          "id": "event-003727"
+        },
+        {
+          "source_line": 3728,
+          "timestamp": "2026-05-20T07:26:51.237598+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "tail -5 /root/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p50-seed42.log"
+            }
+          },
+          "id": "event-003728"
+        },
+        {
+          "source_line": 3729,
+          "timestamp": "2026-05-20T07:26:51.543020+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[profile] n_warmup=100, n_measure=1000, dry_run=False\\\\n[profile] Loading SmolVLA...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  45%|████▌     | 221/489 [00:00<00:00, 2209.63it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 2972.75it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[profile] Loading CRM (obs_only)...\\\\n[profile] GPU memory after load: {'allocated_MB': 884.6, 'reserved_MB': 908.0, 'max_allocated_MB': 885.8}\\\\n[profile] Loading LIBERO env (1 task)...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[profile] 1/9  VLA encode_prefix...\\\\n  43.45 ± 26.88 ms\\\\n[profile] 2/9  VLA sample K=1...\\\\n  K=1: 213.76 ± 6.90 ms\\\\n[profile] 2/9  VLA sample K=2...\\\\n  K=2: 217.88 ± 7.74 ms\\\\n[profile] 2/9  VLA sample K=5...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.99}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1015
+          },
+          "id": "event-003729"
+        },
+        {
+          "source_line": 3730,
+          "timestamp": "2026-05-20T07:26:52.254478+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate] success rate: 100.0% (10/10)\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 5/10, success so far: 1/5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.73}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1016
+          },
+          "id": "event-003730"
+        },
+        {
+          "source_line": 3731,
+          "timestamp": "2026-05-20T07:27:06.964066+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "cat /proc/681823/cmdline"
+            }
+          },
+          "id": "event-003731"
+        },
+        {
+          "source_line": 3732,
+          "timestamp": "2026-05-20T07:27:07.316142+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python\\\\u0000-u\\\\u0000src/evaluate.py\\\\u0000--mode\\\\u0000adaptive_k\\\\u0000--adaptive_threshold\\\\u00000.074855\\\\u0000--k_full\\\\u000010\\\\u0000--benchmark\\\\u0000spatial\\\\u0000--seed\\\\u000042\\\\u0000--n_rollouts\\\\u000010\\\\u0000--crm_checkpoint\\\\u0000/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\\u0000--max_correction_norm\\\\u00000.2\\\\u0000--output_file\\\\u0000logs/eval_adaptive_k_spatial_p50_seed42.json\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 352
+          },
+          "id": "event-003732"
+        },
+        {
+          "source_line": 3733,
+          "timestamp": "2026-05-20T07:27:19.896997+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "stat /root/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p50-seed42.log"
+            }
+          },
+          "id": "event-003733"
+        },
+        {
+          "source_line": 3734,
+          "timestamp": "2026-05-20T07:27:19.897435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "find /root/acr-vla-conformal-refinement/logs -name \"*adaptive*spatial*seed42*\" -type f"
+            }
+          },
+          "id": "event-003734"
+        },
+        {
+          "source_line": 3735,
+          "timestamp": "2026-05-20T07:27:20.248936+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File: /root/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p50-seed42.log\\\\n  Size: 2362      \\\\tBlocks: 8          IO Block: 4096   regular file\\\\nDevice: 42h/66d\\\\tInode: 12889276636  Links: 1\\\\nAccess: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)\\\\nAccess: 2026-05-20 15:10:29.885712163 +0800\\\\nModify: 2026-05-20 15:10:21.689813149 +0800\\\\nChange: 2026-05-20 15:10:21.689813149 +0800\\\\n Birth: 2026-05-20 14:02:04.298711455 +0800\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 351
+          },
+          "id": "event-003735"
+        },
+        {
+          "source_line": 3736,
+          "timestamp": "2026-05-20T07:27:20.600869+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_spatial_p50_seed42.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 703
+          },
+          "id": "event-003736"
+        },
+        {
+          "source_line": 3737,
+          "timestamp": "2026-05-20T07:27:26.927923+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "tail -10 /root/acr-vla-conformal-refinement/logs/eval_adaptive_k_spatial_p50_seed42.log"
+            }
+          },
+          "id": "event-003737"
+        },
+        {
+          "source_line": 3738,
+          "timestamp": "2026-05-20T07:27:27.229464+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[eval] Mode: adaptive_k, benchmark: spatial\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.2\\\\n[eval] Loading LIBERO spatial environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 3/5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 301
+          },
+          "id": "event-003738"
+        },
+        {
+          "source_line": 3739,
+          "timestamp": "2026-05-20T07:27:44.454048+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "新进程日志确认在 `/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_spatial_p50_seed42.log`，task 1 rollout 5/10 (3/5 successes)。进程活跃，从头运行中。\n\n所有关键实验状态确认：\n- **seed42**: bjb2-40593, task 1/10（重启后）\n- **seed43-r2**: bjb1-32546, task 1/10\n- **seed44-r2**: bjb2-28827, task 1/10\n- **latency-profile-n1000**: bjb2-28827 cuda:4, 正在 profiling K=5（K=1: 213.76ms, K=2: 217.88ms 已完成）\n\n无需额外报告，verify-seed42-p50-alive worker 确认与我独立核实一致。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer"
+          },
+          "id": "event-003739"
+        }
+      ]
+    },
+    {
+      "number": 292,
+      "messages": [
+        {
+          "source_line": 3740,
+          "timestamp": "2026-05-20T07:30:07.477200+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_failed:eval-adaptive-k-spatial-p50-seed42]:\n实验 eval-adaptive-k-spatial-p50-seed42 failed，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "source": "system"
+          },
+          "id": "event-003740"
+        },
+        {
+          "source_line": 3741,
+          "timestamp": "2026-05-20T07:30:19.200475+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'eval-adaptive-k-spatial-p50-seed42'}",
+              "project": "acr-vla-conformal-refinement",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-003741"
+        },
+        {
+          "source_line": 3742,
+          "timestamp": "2026-05-20T07:30:20.304338+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0837}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1103
+          },
+          "id": "event-003742"
+        },
+        {
+          "source_line": 3743,
+          "timestamp": "2026-05-20T07:30:24.820238+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "eval-adaptive-k-spatial-p50-seed42:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "output_mode": "content",
+              "-A": "30"
+            }
+          },
+          "id": "event-003743"
+        },
+        {
+          "source_line": 3744,
+          "timestamp": "2026-05-20T07:30:24.883563+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "15432:  eval-adaptive-k-spatial-p50-seed42:\n15433-    status: DONE\n15434-    retry_count: 0\n15435-    created_at: '2026-05-20T06:01:50.026Z'\n15436-    updated_at: '2026-05-20T07:29:59.173Z'\n15437-    hypothesis: Adaptive K with τ=P50 (0.074855, Object-calibrated) on LIBERO-Spatial\n15438-      seed42. 验证 Adaptive K 方法在第二个 benchmark 上的泛化：使用 Object 上校准的阈值直接应用到 Spatial（无\n15439-      per-benchmark tuning）。如果 SR 接近 CRM K=10 (34.3%) 且 fast_path >50%，则证明方法跨 benchmark\n15440-      通用。\n15441-    spec:\n15442-      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n15443-        base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache\n15444-        HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py\n15445-        --mode adaptive_k --adaptive_threshold 0.074855 --k_full 10 --benchmark spatial\n15446-        --seed 42 --n_rollouts 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n15447-        --max_correction_norm 0.2 --output_file logs/eval_adaptive_k_spatial_p50_seed42.json\"\n15448-      server: bjb2-40593\n15449-      gpu:\n15450-      - cuda:0\n15451-      pid: '681823'\n15452-      data_path: LIBERO-Spatial\n15453-      data_count: '100'\n15454-      model_name: SmolVLA+Adaptive_K_P50\n15455-      seed: 42\n15456-      notes: PID 675831 was killed by deploy worker, restarted as PID 681823\n15457-    notes: '旧PID 675831被kill后，新PID 681823已于cuda:0重新启动，运行正常(11min+)。旧cron检测到675831死亡触发误报回调。已完成3/10\n15458-      tasks，SR: 70%/100%/0%，第4个task进行中。'\n15459-    reproduce:\n15460-      finished_at: '2026-05-20T07:29:54.160Z'\n15461-    failure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed\n15462-    conclusion: failed"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 63
+          },
+          "id": "event-003744"
+        },
+        {
+          "source_line": 3745,
+          "timestamp": "2026-05-20T07:30:38.359410+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "cat /proc/681823/status"
+            }
+          },
+          "id": "event-003745"
+        },
+        {
+          "source_line": 3746,
+          "timestamp": "2026-05-20T07:30:39.165600+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Name:\\\\tpython\\\\nUmask:\\\\t0022\\\\nState:\\\\tR (running)\\\\nTgid:\\\\t681823\\\\nNgid:\\\\t3637\\\\nPid:\\\\t681823\\\\nPPid:\\\\t681817\\\\nTracerPid:\\\\t0\\\\nUid:\\\\t0\\\\t0\\\\t0\\\\t0\\\\nGid:\\\\t0\\\\t0\\\\t0\\\\t0\\\\nFDSize:\\\\t128\\\\nGroups:\\\\t0 \\\\nNStgid:\\\\t681823\\\\nNSpid:\\\\t681823\\\\nNSpgid:\\\\t681817\\\\nNSsid:\\\\t681817\\\\nVmPeak:\\\\t53087616 kB\\\\nVmSize:\\\\t49842212 kB\\\\nVmLck:\\\\t       0 kB\\\\nVmPin:\\\\t       0 kB\\\\nVmHWM:\\\\t10415392 kB\\\\nVmRSS:\\\\t 9932376 kB\\\\nRssAnon:\\\\t 9168292 kB\\\\nRssFile:\\\\t  746288 kB\\\\nRssShmem:\\\\t   17796 kB\\\\nVmData:\\\\t29668572 kB\\\\nVmStk:\\\\t     232 kB\\\\nVmExe:\\\\t    2412 kB\\\\nVmLib:\\\\t 3753548 kB\\\\nVmPTE:\\\\t   25136 kB\\\\nVmSwap:\\\\t       0 kB\\\\nHugetlbPages:\\\\t       0 kB\\\\nCoreDumping:\\\\t0\\\\nTHP_enabled:\\\\t1\\\\nThreads:\\\\t210\\\\nSigQ:\\\\t16/2061916\\\\nSigPnd:\\\\t0000000000000000\\\\nShdPnd:\\\\t0000000000000000\\\\nSigBlk:\\\\t0000000000000000\\\\nSigIgn:\\\\t0000000001301000\\\\nSigCgt:\\\\t0000000100000402\\\\nCapInh:\\\\t0000000000000000\\\\nCapPrm:\\\\t00000000a80425fb\\\\nCapEff:\\\\t00000000a80425fb\\\\nCapBnd:\\\\t00000000a80425fb\\\\nCapAmb:\\\\t0000000000000000\\\\nNoNewPrivs:\\\\t0\\\\nSeccomp:\\\\t2\\\\nSeccomp_filters:\\\\t1\\\\nSpeculation_Store_Bypass:\\\\tthread vulnerable\\\\nSpeculationIndirectBranch:\\\\tconditional enabled\\\\nCpus_allowed:\\\\tffffffff,ffffffff,ffffffff,ffffffff\\\\nCpus_allowed_list:\\\\t0-127\\\\nMems_allowed:\\\\t00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000003\\\\nMems_allowed_list:\\\\t0-1\\\\nvoluntary_ctxt_switches:\\\\t3076\\\\nnonvoluntary_ctxt_switches:\\\\t1074\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 806
+          },
+          "id": "event-003746"
+        },
+        {
+          "source_line": 3747,
+          "timestamp": "2026-05-20T07:30:58.707565+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "## 审查报告 — eval-adaptive-k-spatial-p50-seed42 误判失败\n\n**结论**: WARNING\n\n### 发现\n\n- [severity: warning] **seed42 被 cron 误判为 failed，实际进程仍在运行**：\n\n  **时间线**：\n  1. 原 PID 675831 运行正常（task 4/10）\n  2. deploy-seed42-and-latency worker 杀掉 675831，启动新 PID 681823\n  3. Cron 检测到旧 PID 675831 死亡 → 5 次检查无 sentinel → auto-resolve 为 failed\n  4. Registry 状态：`status=DONE, conclusion=failed, failure_reason=\"process dead 5× with no sentinel/W&B\"`\n  5. 实际：PID 681823 仍在运行（State: R, 210 threads, ~9.5GB RSS, GPU 6483 MiB）\n\n  **Agent 的 notes 已识别此为误报**（\"旧cron检测到675831死亡触发误报回调\"），但 registry 状态仍为 failed。\n\n  **风险**：PID 681823 完成后，completion hook 不会触发（registry 已关闭为 failed），结果需要手动收割。\n\n- [severity: info] **延迟数据初步结果**：latency-profile-n1000 正在运行（bjb2-28827 cuda:4），已出部分数据：\n  - encode_prefix: 43.45 ± 26.88 ms\n  - K=1 batched: 213.76 ± 6.90 ms（e2e ≈ 257ms）\n  - K=2 batched: 217.88 ± 7.74 ms（e2e ≈ 261ms）\n  - K=5/K=10: 测量中\n  \n  E2E 数字与论文声称的 ~255ms 基本一致（±6ms）。使用 `generate_k_samples_batched()` 已确认。\n\n### 建议\n- 为 PID 681823 创建新 registry 条目（如 seed42-r2）或将当前条目恢复为 RUNNING，确保结果可被收割\n- 这是 deploy worker 杀进程 + cron 误报的连锁后果——根因是 deploy worker 不应该杀掉活跃进程",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-003747"
+        },
+        {
+          "source_line": 3748,
+          "timestamp": "2026-05-20T07:31:03.478434+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 4770
+          },
+          "id": "event-003748"
+        },
+        {
+          "source_line": 3749,
+          "timestamp": "2026-05-20T07:31:05.774255+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 681823 仍在运行（State: R），但 registry 已标记为 `conclusion: failed`（cron 误报 — 检测到旧 PID 675831 死亡）。进程实际正常，结果将无法被自动收割。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer"
+          },
+          "id": "event-003749"
+        }
+      ]
+    },
+    {
+      "number": 293,
+      "messages": [
+        {
+          "source_line": 3750,
+          "timestamp": "2026-05-20T07:33:26.121076+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_diagnose_eval-adaptive-k-spatial-p50-seed42_20260520T073204]:\nWorker worker_diagnose_eval-adaptive-k-spatial-p50-seed42_20260520T073204 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "source": "worker_done:worker_diagnose_eval-adaptive-k-spatial-p50-seed42_20260520t073204"
+          },
+          "id": "event-003750"
+        },
+        {
+          "source_line": 3751,
+          "timestamp": "2026-05-20T07:33:34.271616+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "eval-adaptive-k-spatial-p50-seed42",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "output_mode": "content",
+              "-A": "35",
+              "head_limit": "80"
+            }
+          },
+          "id": "event-003751"
+        },
+        {
+          "source_line": 3752,
+          "timestamp": "2026-05-20T07:33:34.322426+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "15432:  eval-adaptive-k-spatial-p50-seed42:\n15433-    status: DONE\n15434-    retry_count: 0\n15435-    created_at: '2026-05-20T06:01:50.026Z'\n15436-    updated_at: '2026-05-20T07:29:59.173Z'\n15437-    hypothesis: Adaptive K with τ=P50 (0.074855, Object-calibrated) on LIBERO-Spatial\n15438-      seed42. 验证 Adaptive K 方法在第二个 benchmark 上的泛化：使用 Object 上校准的阈值直接应用到 Spatial（无\n15439-      per-benchmark tuning）。如果 SR 接近 CRM K=10 (34.3%) 且 fast_path >50%，则证明方法跨 benchmark\n15440-      通用。\n15441-    spec:\n15442-      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n15443-        base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache\n15444-        HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py\n15445-        --mode adaptive_k --adaptive_threshold 0.074855 --k_full 10 --benchmark spatial\n15446-        --seed 42 --n_rollouts 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n15447-        --max_correction_norm 0.2 --output_file logs/eval_adaptive_k_spatial_p50_seed42.json\"\n15448-      server: bjb2-40593\n15449-      gpu:\n15450-      - cuda:0\n15451-      pid: '681823'\n15452-      data_path: LIBERO-Spatial\n15453-      data_count: '100'\n15454-      model_name: SmolVLA+Adaptive_K_P50\n15455-      seed: 42\n15456-      notes: PID 675831 was killed by deploy worker, restarted as PID 681823\n15457-    notes: '旧PID 675831被kill后，新PID 681823已于cuda:0重新启动，运行正常(11min+)。旧cron检测到675831死亡触发误报回调。已完成3/10\n15458-      tasks，SR: 70%/100%/0%，第4个task进行中。'\n15459-    reproduce:\n15460-      finished_at: '2026-05-20T07:29:54.160Z'\n15461-    failure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed\n15462-    conclusion: failed\n15463-    completed_at: '2026-05-20T07:29:59.173Z'\n15464-    extra:\n15465-      hook_events:\n15466-      - event: on_failed\n15467-        action: agent"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-003752"
+        },
+        {
+          "source_line": 3753,
+          "timestamp": "2026-05-20T07:33:40.296625+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "eval-adaptive-k-spatial-p50-seed42-r2",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "output_mode": "content",
+              "-A": "15"
+            }
+          },
+          "id": "event-003753"
+        },
+        {
+          "source_line": 3754,
+          "timestamp": "2026-05-20T07:33:40.347307+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-003754"
+        },
+        {
+          "source_line": 3755,
+          "timestamp": "2026-05-20T07:33:49.361929+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "wc -l /root/acr-vla-conformal-refinement/logs/eval_adaptive_k_spatial_p50_seed42.log"
+            }
+          },
+          "id": "event-003755"
+        },
+        {
+          "source_line": 3756,
+          "timestamp": "2026-05-20T07:33:49.412569+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "tail -3 /root/acr-vla-conformal-refinement/logs/eval_adaptive_k_spatial_p50_seed42.log"
+            }
+          },
+          "id": "event-003756"
+        },
+        {
+          "source_line": 3757,
+          "timestamp": "2026-05-20T07:33:50.316402+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"16 /root/acr-vla-conformal-refinement/logs/eval_adaptive_k_spatial_p50_seed42.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 954
+          },
+          "id": "event-003757"
+        },
+        {
+          "source_line": 3758,
+          "timestamp": "2026-05-20T07:33:50.718441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 3/5\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 7/10\\\\n[pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate] success rate: 70.0% (7/10)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1305
+          },
+          "id": "event-003758"
+        },
+        {
+          "source_line": 3759,
+          "timestamp": "2026-05-20T07:34:08.707754+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "seed42 新进程（PID 681823）已完成 task 1/10（70%），从头重跑中。Registry 仍标记为 failed，无 r2 条目。诊断 worker 未修复 registry 状态。我已在上一轮报告中提过此问题，等待 Agent/Director 响应。进程正常运行，结果将需手动收割。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer"
+          },
+          "id": "event-003759"
+        }
+      ]
+    },
+    {
+      "number": 294,
+      "messages": [
+        {
+          "source_line": 3760,
+          "timestamp": "2026-05-20T07:48:20.768180+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ssh_verify-seed42-p50-alive-r2_20260520T074729]:\nWorker worker_ssh_verify-seed42-p50-alive-r2_20260520T074729 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "source": "system"
+          },
+          "id": "event-003760"
+        },
+        {
+          "source_line": 3761,
+          "timestamp": "2026-05-20T07:48:28.575715+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "tail -5 /root/acr-vla-conformal-refinement/logs/eval_adaptive_k_spatial_p50_seed42.log"
+            }
+          },
+          "id": "event-003761"
+        },
+        {
+          "source_line": 3762,
+          "timestamp": "2026-05-20T07:48:29.228854+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "eval-adaptive-k-spatial-p50-seed42",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "output_mode": "content",
+              "-A": "5",
+              "head_limit": "20"
+            }
+          },
+          "id": "event-003762"
+        },
+        {
+          "source_line": 3763,
+          "timestamp": "2026-05-20T07:48:29.531495+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 7/10\\\\n[pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate] success rate: 70.0% (7/10)\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 10/10\\\\n[pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate] success rate: 100.0% (10/10)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 955
+          },
+          "id": "event-003763"
+        },
+        {
+          "source_line": 3764,
+          "timestamp": "2026-05-20T07:48:29.531973+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "15432:  eval-adaptive-k-spatial-p50-seed42:\n15433-    status: RUNNING\n15434-    retry_count: 1\n15435-    created_at: '2026-05-20T06:01:50.026Z'\n15436-    updated_at: '2026-05-20T07:46:23.599Z'\n15437-    hypothesis: Adaptive K with τ=P50 (0.074855, Object-calibrated) on LIBERO-Spatial"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "Grep",
+            "elapsed_ms": 303
+          },
+          "id": "event-003764"
+        },
+        {
+          "source_line": 3765,
+          "timestamp": "2026-05-20T07:48:44.172592+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已修复为 `RUNNING`（retry_count=1, updated_at 07:46）。进程 PID 681823 正在正常推进 — task 2/10 完成（70%, 100%）。之前的误判 failed 问题已解决，completion hook 应能正常触发。无需进一步干预。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer"
+          },
+          "id": "event-003765"
+        }
+      ]
+    },
+    {
+      "number": 295,
+      "messages": [
+        {
+          "source_line": 3766,
+          "timestamp": "2026-05-20T07:56:53.757963+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ssh_diagnose-p50-seed42-completion_20260520T075600]:\nWorker worker_ssh_diagnose-p50-seed42-completion_20260520T075600 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "source": "system"
+          },
+          "id": "event-003766"
+        },
+        {
+          "source_line": 3767,
+          "timestamp": "2026-05-20T07:57:02.118810+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "tail -10 /root/acr-vla-conformal-refinement/logs/eval_adaptive_k_spatial_p50_seed42.log"
+            }
+          },
+          "id": "event-003767"
+        },
+        {
+          "source_line": 3768,
+          "timestamp": "2026-05-20T07:57:03.022708+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[eval] Loading LIBERO spatial environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 3/5\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 7/10\\\\n[pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate] success rate: 70.0% (7/10)\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 10/10\\\\n[pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate] success rate: 100.0% (10/10)\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 903
+          },
+          "id": "event-003768"
+        },
+        {
+          "source_line": 3769,
+          "timestamp": "2026-05-20T07:57:17.142904+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "seed42 registry 已修复为 RUNNING (retry_count=1)。新进程正常推进中：task 3/10（70%, 100%, task3 进行中 0/5）。无需进一步干预。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer"
+          },
+          "id": "event-003769"
+        }
+      ]
+    },
+    {
+      "number": 296,
+      "messages": [
+        {
+          "source_line": 3770,
+          "timestamp": "2026-05-20T08:03:41.062896+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_ssh_deploy-bjb1-18228-batch_20260520T080212]:\nWorker worker_ssh_deploy-bjb1-18228-batch_20260520T080212 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "source": "worker_done:worker_ssh_deploy-bjb1-18228-batch_20260520t080212"
+          },
+          "id": "event-003770"
+        },
+        {
+          "source_line": 3771,
+          "timestamp": "2026-05-20T08:03:47.778971+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "limit": "15",
+              "fields": "['status', 'updated_at', 'server', 'gpu', 'spec']"
+            }
+          },
+          "id": "event-003771"
+        },
+        {
+          "source_line": 3772,
+          "timestamp": "2026-05-20T08:03:48.834678+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval-crm-object-k20-seed42\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"updated_at\\\": \\\"2026-05-20T08:03:33.792Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 42 --n_rollouts 10 --K 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02_K20_seed42.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"309205\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-crm-object-k20-seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T08:03:32.825Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"eval-adaptive-k-spatial-p25-seed42\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"updated_at\\\": \\\"2026-05-20T08:03:30.513Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode adaptive_k --adaptive_threshold 0.054959 --k_full 10 --benchmark spatial --seed 42 --n_rollouts 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_adaptive_k_spatial_p25_seed42.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"308612\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p25-seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T08:03:29.509Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"eval-adaptive-k-spatial-p75-seed42\\\": {\\\"status\\\": \\\"QUEUED\\\",\n…[truncated 9736 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1055
+          },
+          "id": "event-003772"
+        },
+        {
+          "source_line": 3773,
+          "timestamp": "2026-05-20T08:04:03.096347+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader"
+            }
+          },
+          "id": "event-003773"
+        },
+        {
+          "source_line": 3774,
+          "timestamp": "2026-05-20T08:04:03.096758+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-003774"
+        },
+        {
+          "source_line": 3775,
+          "timestamp": "2026-05-20T08:04:04.150634+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 21 %, 6282 MiB, 24564 MiB\\\\n1, 22 %, 6259 MiB, 24564 MiB\\\\n2, 18 %, 6259 MiB, 24564 MiB\\\\n3, 11 %, 5899 MiB, 24564 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.01}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1054
+          },
+          "id": "event-003775"
+        },
+        {
+          "source_line": 3776,
+          "timestamp": "2026-05-20T08:04:04.603035+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"308078, GPU-79a1ce73-0e22-25f8-557b-3337bea6b522, 6264 MiB\\\\n308350, GPU-bf477c88-5247-6ede-0aae-9c72a0cfd8ef, 6241 MiB\\\\n308617, GPU-7d267f8c-4e71-14e4-ea18-3683c47d42bf, 6240 MiB\\\\n309210, GPU-06a5ec3b-68fd-a08a-5fea-a1774d8cf02a, 5020 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1506
+          },
+          "id": "event-003776"
+        },
+        {
+          "source_line": 3777,
+          "timestamp": "2026-05-20T08:04:29.341998+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "bjb1-18228 4/4 GPU 全部活跃，PID 匹配，无冲突。部署正常。\n\n当前运行中实验总览（11 个进程/7 个实验 + 4 个新部署）：\n\n| 服务器 | GPU | 实验 | 状态 |\n|--------|-----|------|------|\n| bjb2-40593 | 0 | adaptive-k-spatial-p50-seed42 | task 2/10（重启后） |\n| bjb2-28827 | 0 | adaptive-k-spatial-p50-seed44-r2 + random-sel-obj-seed42 | 运行中（共享GPU） |\n| bjb2-28827 | 2 | random-sel-obj-seed44 | 运行中 |\n| bjb2-28827 | 3 | obs-only-obj-norm02-seed42 | 运行中 |\n| bjb2-28827 | 4 | latency-profile-n1000 | 运行中 |\n| bjb1-32546 | 0 | adaptive-k-spatial-p50-seed43-r2 | 运行中 |\n| bjb1-18228 | 0 | vla-only-long-seed49-r2 | 刚启动 |\n| bjb1-18228 | 1 | adaptive-k-spatial-p75-seed42 | 刚启动 |\n| bjb1-18228 | 2 | adaptive-k-spatial-p25-seed42 | 刚启动 |\n| bjb1-18228 | 3 | crm-object-k20-seed42 | 刚启动 |\n\nNo issues to report."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer"
+          },
+          "id": "event-003777"
+        }
+      ]
+    },
+    {
+      "number": 297,
+      "messages": [
+        {
+          "source_line": 3778,
+          "timestamp": "2026-05-20T08:18:11.906041+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — cron:on_failed:latency-profile-n1000]:\n实验 latency-profile-n1000 failed，请审查。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "source": "system"
+          },
+          "id": "event-003778"
+        },
+        {
+          "source_line": 3779,
+          "timestamp": "2026-05-20T08:18:24.198445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "tail -30 /root/acr-vla-conformal-refinement/logs/latency_profile_n1000.log"
+            }
+          },
+          "id": "event-003779"
+        },
+        {
+          "source_line": 3780,
+          "timestamp": "2026-05-20T08:18:25.302093+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"==========================================================================================\\\\nLATENCY PROFILE SUMMARY — NVIDIA GeForce RTX 4090\\\\nGPU Memory: allocated=903.2MB, peak=1005.0MB\\\\nWarmup=100, N=1000\\\\n==========================================================================================\\\\nComponent                        Mean(ms)    Std(ms)    P95(ms)    Min(ms)    Max(ms)\\\\n------------------------------------------------------------------------------------------\\\\nvla_encode_prefix                  43.448     26.880     71.241     32.534    287.384\\\\nvla_sample_K1                     213.758      6.897    220.858    205.145    313.325\\\\nvla_sample_K2                     217.884      7.743    224.011    207.998    303.888\\\\nvla_sample_K5                     217.999      8.228    228.490    208.717    310.502\\\\nvla_sample_K10                    211.154      6.629    215.881    204.355    339.466\\\\nvla_e2e_K1                        256.466     19.644    281.017    239.629    435.471\\\\nvla_e2e_K2                        258.713     15.846    278.892    245.234    504.025\\\\nvla_e2e_K5                        257.087     17.892    274.796    244.654    504.724\\\\nvla_e2e_K10                       253.192     13.157    273.364    237.144    437.553\\\\nargmin_l2_K2                        0.060      0.004      0.072      0.056      0.087\\\\nargmin_l2_K5                        0.065      0.007      0.074      0.057      0.092\\\\nargmin_l2_K10                       0.060      0.002      0.063      0.057      0.075\\\\ncgs_compute_features                5.749      0.269      6.288      5.570      8.164\\\\ncrm_forward                         0.280      0.015      0.306      0.269      0.624\\\\nfull_pipeline_K10                 248.978     17.817    270.642    224.849    446.413\\\\nadaptive_fast_path                252.867     18.649    279.057    236.550    425.973\\\\nadaptive_full_path                459.615     23.\n…[truncated 425 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1103
+          },
+          "id": "event-003780"
+        }
+      ]
+    }
+  ]
+}

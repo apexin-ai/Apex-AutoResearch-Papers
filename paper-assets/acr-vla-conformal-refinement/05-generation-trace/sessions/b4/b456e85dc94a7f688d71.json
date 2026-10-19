@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b456e85dc94a7f688d71",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code baseline mode feature",
+  "task_key": "worker_code_baseline-mode-feature_20260514T014605",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_baseline-mode-feature_20260514T014605_result.json",
+    "occurrence": 1,
+    "bytes": 856,
+    "sha256": "dfe40fecc0d3cda9e78b8a5b82567d11e796806f6f55afb0a39d820d4ce8eae8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两台服务器修改完成，验证通过。\n\n**修改内容**（bjb1 和 bjb2 一致）：\n\n1. **`parse_args()`** — 新增 `--baseline_mode` 参数（L68-70），choices=`[\"single\", \"mean\"]`，默认 `single`\n2. **`main()`** — 原来 `args.K = 1` 改为条件分支（L359-363）：\n   - `single` → K=1（保持原行为）\n   - `mean` → K=10（10次采样取均值）\n3. **`summary` dict** — 新增 `baseline_mode` 字段（L334），记录到结果 JSON\n\n**无需修改 `select_action_vla_only`**：该函数已实现 `k_trunc.mean(dim=0)`，K=10 时自然计算 10 次采样均值。\n\n**用法**：\n```bash\n# 原 vla_only（K=1，不变）\npython evaluate.py --mode vla_only --benchmark object\n\n# K=10 mean baseline（新）\npython evaluate.py --mode vla_only --baseline_mode mean --benchmark object\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-baseline-mode-feature.md"
+}

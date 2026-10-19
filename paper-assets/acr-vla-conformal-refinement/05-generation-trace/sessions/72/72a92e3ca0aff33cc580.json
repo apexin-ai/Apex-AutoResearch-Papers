@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72a92e3ca0aff33cc580",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh full gpu scan and deploy all idle",
+  "task_key": "worker_ssh_full-gpu-scan-and-deploy-all-idle_20260517T105546",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_full-gpu-scan-and-deploy-all-idle_20260517T105546_result.json",
+    "occurrence": 1,
+    "bytes": 1739,
+    "sha256": "72831f7cf4380f5ab03f9021ca8d9fc6deb9a1ffd47f9248dffe9a2a50136de2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过，5 个实验均已成功加载环境并开始评估。\n\n```\n=== GPU 扫描结果 ===\nbjb1-18228 (4 GPU):\n  GPU 0: 1942 MiB, 23% → obs_only norm01 seed45\n  GPU 1: 1 MiB, 0%    → 空闲\n  GPU 2: 4268 MiB, 21% → obs_only norm01 seed46\n  GPU 3: 4735 MiB, 20% → obs_only norm01 seed47\n\nbjb1-32546 (6 GPU):\n  GPU 0: 2 MiB, 0%     → 空闲\n  GPU 1: 5665 MiB, 22% → perdof norm01 seed47_r2\n  GPU 2: 5665 MiB, 22% → obs_only norm03 seed46\n  GPU 3: 2 MiB, 0%     → 空闲\n  GPU 4: 4736 MiB, 21% → perdof norm01 seed46\n  GPU 5: 2 MiB, 0%     → 空闲\n\nbjb2-28827 (6 GPU):\n  GPU 0: 2410 MiB, 18% → scalar seed45 + tmux spatial\n  GPU 1: 1941 MiB, 18% → perdof norm02 seed45\n  GPU 2: 1 MiB, 0%     → 空闲 (just killed)\n  GPU 3: 2410 MiB, 18% → obs_only default seed45\n  GPU 4: 5186 MiB       → perdof norm02 seed46\n  GPU 5: 2875 MiB, 17% → perdof norm02 seed44\n\nbjb2-40593 (1 GPU):\n  GPU 0: 5628 MiB, 11% → perdof norm01 seed47\n\n空闲 GPU: bjb1-18228:1, bjb1-32546:0/3/5, bjb2-28827:2 (共 5 张)\n\n=== 部署结果 ===\nkilled: bjb2-28827 PID 387642 (duplicate obs_only ε=0.2 seed46) ✓\n\ndeployed:\n1. perdof ε=0.3 seed44   → bjb1-32546 cuda:0, PID=421084\n2. obs_only default seed46 → bjb1-32546 cuda:3, PID=422355\n3. perdof default seed46   → bjb1-32546 cuda:5, PID=423765\n4. obs_only ε=0.3 seed47  → bjb1-18228 cuda:1, PID=612851\n5. perdof ε=0.3 seed46    → bjb2-28827 cuda:2, PID=392854\n\n未部署（无空闲 GPU）:\n- VLA-only seed46\n\n=== 验证 ===\n全部 5 个实验确认启动成功:\n  \"[eval] Loading LIBERO object environments...\"\n  \"[eval] 10 tasks loaded.\"\n```\n\n现在 17 张 GPU 全部满载运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-full-gpu-scan-and-deploy-all-idle.md"
+}

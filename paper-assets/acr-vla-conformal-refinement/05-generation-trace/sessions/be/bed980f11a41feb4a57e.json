@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bed980f11a41feb4a57e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diag server process death",
+  "task_key": "worker_diag_server-process-death_20260520T193147",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_server-process-death_20260520T193147_result.json",
+    "occurrence": 1,
+    "bytes": 1356,
+    "sha256": "6d3083d15fc7fac9201a48ea0fd56a4fd66fc03b9ef37f3869106c0eba7ce805"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### bjb1-32546（2 个实验）\n\n| 实验 | 状态 | SR | 死因 | 需重跑 |\n|------|------|-----|------|--------|\n| **eval-perdof-object-norm02-seed50** | ✅ 正常完成 | 10.0% (10/100) | 无——正常退出 | 否 |\n| **eval-obs-only-object-norm02-seed51** | ✅ 正常完成 | 17.0% (17/100) | 无——正常退出 | 否 |\n\n- PID 542405 和 542894 均已退出，所有 6 GPU 空闲 (0%)\n- Output JSON 均已写入（03:20、03:22）\n- **根因**：又是 cron false positive——进程正常完成但不写 sentinel/W&B，cron 检测到 \"process gone\" 即误判 failed\n\n### bjb1-18228（2 个实验）\n\n| 实验 | 状态 | SR | 死因 | 需重跑 |\n|------|------|-----|------|--------|\n| **eval-obs-only-object-norm005-seed44** | ✅ 正常完成 | 12.0% (12/100) | 无——正常退出 | 否 |\n| **eval-obs-only-object-norm01-seed48** | 🔄 仍在运行 | — | — | 否，等完成 |\n\n- norm005-seed44 被标记 failed 但实际完成，JSON 已存在\n- norm01-seed48 PID 507385 活着（Rl+, 运行 55m55s），GPU1 占 3408MiB/29%，已完成 5/10 tasks，预计约 1h 完成\n\n### 结论\n\n**4 个实验中 0 个真正失败**。3 个已正常完成（需手动修正 conclusion=success 并补录 metrics），1 个仍在运行。全部是 cron false positive 的已知模式。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-server-process-death.md"
+}

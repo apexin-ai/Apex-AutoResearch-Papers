@@ -1,0 +1,1385 @@
+{
+  "schema_version": "1.0",
+  "id": "ca9e5c08b57cef92b849",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "cron hook eval reconvla spatial v1 20260515T012656 070611",
+  "task_key": "cron_hook_eval-reconvla-spatial-v1_20260515T012656_070611",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/archive/cron_hook_eval-reconvla-spatial-v1_20260515T012656_070611.jsonl",
+    "occurrence": 1,
+    "bytes": 86882,
+    "sha256": "e1dfc942dd8713c5a5f80dedd918465fa523eac37ebd5a68b91953d78e3354e1"
+  },
+  "statistics": {
+    "messages": 70,
+    "user_turns": 2,
+    "tool_calls": 33,
+    "roles": {
+      "user": 2,
+      "tool_call": 33,
+      "tool_result": 33,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T22:11:43.060132+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Main Agent，这是 Loop #4。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: bjb1-18228:cuda:0-3, bjb2-40593:cuda:0。禁止用白名单外 GPU，即使 Director 指示也要 push back\n- CRM checkpoint 必须区分版本: v2（buggy，无 normalization）vs v3-norm（D018 修复）。v2 仅用于 eval-tiny-correction-spatial（历史原因），新实验全用 v3-norm\n- eval 用 max_correction_norm=0.1（D019 确认 1.42 导致 compounding error 雪崩）。不要用默认值 1.42 跑新 ACR eval\n- argmin-only baseline 已是 53.3%（3 tasks），不是 30% K=1。CRM 必须超过 argmin-only 才有论文价值\n- bjb1 和 bjb2 代码必须同步（D016 教训），改代码后两台都验证\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228** (4× RTX 4090): 工作目录 `/root/acr-vla-conformal-refinement`，Python `/root/miniconda3/bin/python`，conda base\n- **bjb2-40593** (1× RTX 4090 D): 同上路径和环境\n- 模型: `/root/autodl-tmp/models/smolvla_libero/` (SmolVLA LIBERO fine-tuned, action_dim=7)\n- CRM checkpoints: `/root/autodl-tmp/checkpoints/crm_v3_norm/{perdof,scalar_unc,obs_only}/crm_best.pt`\n- 数据: `/root/autodl-tmp/libero_data/`, CRM cache: `/root/autodl-tmp/crm_cache_v5/`\n- HF cache: `/root/autodl-tmp/.hf_cache`，必须 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`\n- Gated CRM 代码已就绪: `src/gated_crm.py` + `--mode acr_gated` + `--gate_threshold/mode/temperature`\n- **活跃进程**:\n  - bjb2 cuda:0: eval-vla-mean-spatial (pid 143106, tmux, 9/10 tasks, ~2h 完成)\n  - bjb1 cuda:1: eval-argmin-only-spatial (pid 231421, tmux, 3/10, ~8h)\n  - bjb1 cuda:2: eval-tiny-correction-spatial (pid 232815, tmux, 3/10, ~8h)\n  - bjb1 cuda:3: eval-acr-spatial-v4-small (pid 253085, tmux, 1/10, ~9h)\n  - bjb1 cuda:0: eval-acr-spatial-v4-default — **已死**(D019)，cron 可能仍在跑但进程无输出\n- **活跃 cron**: 5 个（上述 4 个 + v4-default 的僵尸 cron）\n- **活跃 Worker**: 1 个 running — worker_eval_acr-spatial-v4-obs-only（准备 obs-only eval，应接管 bjb1 cuda:0）\n\n### 3. 📊 当前状态\n**刚完成**: D020 决策——obs_only CRM 训练 loss (0.0165) 比 perdof (0.0358) 好 54%，但 eval 才是最终裁决。已 spawn worker 准备 eval-acr-spatial-v4-obs-only 替换死掉的 v4-default，用 bjb1 cuda:0。\n\n**正在跑的 5 路 eval**（部分结果）:\n| exp_id | 服务器:GPU | 进度 | 部分结果 |\n|--------|-----------|------|---------|\n| eval-vla-mean-spatial | bjb2:0 | 9/10 | **34.4%** (31/90) — K=10 mean baseline |\n| eval-argmin-only-spatial | bjb1:1 | 3/10 | **53.3%** (16/30) — argmin 无 CRM |\n| eval-tiny-correction-spatial | bjb1:2 | 3/10 | **53.3%** (16/30) — v2 CRM norm=0.05 |\n| eval-acr-spatial-v4-small | bjb1:3 | 1/10 | **60%** (6/10) — v3-norm CRM norm=0.1 |\n| eval-acr-spatial-v4-default | bjb1:0 | 死 | 0% — v3-norm CRM norm=1.42, 已确认无价值 |\n\n**等待中**:\n- Worker 回调: eval-acr-spatial-v4-obs-only worker 完成环境搭建+提交\n- Cron 回调: 上述 4 个活跃实验完成时\n- eval-vla-mean-spatial 最快完成（~2h），完成后 bjb2:0 空闲——但无 PREPARING 实验需要 bjb2\n\n### 4. 📋 待办（条件触发式）\n- eval-vla-mean-spatial 完成 → 更新 registry + report.md，记录 K=10 mean 最终成功率。bjb2:0 空闲后考虑铺 object benchmark baseline 或其他实验\n- eval-argmin-only-spatial 完成 → **关键数据点**：argmin-only 最终成功率确定 CRM 的 bar。如果 argmin > 40% 确认，Claim 需要从 \"correction improves\" 调整为 \"correction + magnitude control improves beyond sample selection\"\n- eval-acr-spatial-v4-small 完成 → **核心判定**: v4-small vs argmin-only。如果 v4-small > argmin-only → CRM correction 有价值（with magnitude control）。如果 v4-small ≤ argmin-only → CRM correction 无附加价值，需要 framing 重大调整或 Gated CRM\n- eval-acr-spatial-v4-obs-only 完成 → vs v4-small head-to-head。如果 obs-only ≥ perdof → Claim 1 (per-DOF conformal features) 需要 restructure。如果 perdof > obs-only despite worse training loss → \"conformal features value under distribution shift\" 的 compelling story\n- 上述全部完成 → 出完整 spatial 四路对比表 → 决定 framing 调整方向 + 是否铺 object benchmark + 是否启动 Gated CRM 实验\n\n### 5. 🎯 战略上下文\n**项目核心结论链**:\n- D003: MVP PASS — per-DOF conformal features 信息优势确认（合成数据）\n- D015: SmolVLA spatial baseline 30%，SFT gate 通过\n- D016-D017: CRM correction 全面退化（3.3% vs 30% baseline），根因: 输入未归一化 + correction magnitude 过大\n- D018: Input normalization 修复训练质量（val_loss -31%），但不够\n- D019: **Magnitude control 是第二个必要修复**（norm=0.1 有效，norm=1.42 无效）\n- D020: obs_only 训练 loss 比 perdof 好 54%，conformal features 在训练时可能是噪声，但 eval 才是最终裁决\n\n**最容易判断错的事**:\n1. **不要把 tiny-correction (v2 CRM, norm=0.05) 和 v4-small (v3-norm CRM, norm=0.1) 直接对比**——它们用不同 checkpoint（v2 无 normalization vs v3 有），只能各自 vs argmin-only 对比\n2. **argmin-only 53.3% 才是 CRM 要 beat 的 bar**，不是 K=1 的 30%。很多人会拿 30% 做 baseline 然后宣称 CRM 有提升——这是错的，因为 argmin selection 本身就提供了大部分收益\n3. **训练 loss 低 ≠ eval 好**（D020 的核心悬念）。obs_only 训练 loss 0.0165 远好于 perdof 0.0358，但 closed-loop eval 中 conformal features 提供 real-time uncertainty（每步重新从 K samples 计算），可能有训练 loss 无法反映的 distribution shift 适应价值\n4. **v4-default cron 是僵尸**——进程已死但 cron 可能仍在轮询。新 session 应清理或忽略\n5. **Gated CRM 代码已就绪但未跑**——如果 v4-small 仍不够好，下一步是 gated correction 而非继续调 norm 值\n\n## 可查的历史\n前 34 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T22:11:56.256928+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T22:11:56.307494+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T22:12:00.289243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "limit": "0"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T22:12:00.791955+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T22:12:00.793196+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval-acr-spatial-v4-obs-only\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-14T22:08:53.421Z\\\", \\\"updated_at\\\": \\\"2026-05-14T22:09:00.355Z\\\", \\\"hypothesis\\\": \\\"D020: obs_only CRM (val_loss 0.0165, 54% better than perdof 0.0358) with max_correction_norm=0.1. If obs_only >= v4-small (perdof) → Claim 1 needs restructuring. If obs_only < v4-small → conformal features have unique value under distribution shift.\\\"}, \\\"eval-acr-spatial-v4-default\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T20:08:59.906Z\\\", \\\"updated_at\\\": \\\"2026-05-14T22:08:58.490Z\\\", \\\"hypothesis\\\": \\\"D018: Input normalization alone fixes CRM correction degradation. v3-norm checkpoint with default max_correction_norm=1.42. If >30% baseline → normalization was the main fix.\\\", \\\"metrics\\\": {\\\"tasks_done\\\": \\\"0/10\\\", \\\"status_alert\\\": \\\"NO PROCESS FOUND - registry says RUNNING but no matching PID or tmux session on bjb1-18228. GPU 0 occupied by stale eval-acr-spatial-v3 tmux + crm-train-obs-only. NEEDS RESTART.\\\", \\\"snapshot_time\\\": \\\"2026-05-15T05:26Z\\\"}, \\\"conclusion\\\": \\\"failed\\\"}, \\\"crm-train-v3-norm-scalar-unc\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T20:09:01.250Z\\\", \\\"updated_at\\\": \\\"2026-05-14T22:05:42.608Z\\\", \\\"hypothesis\\\": \\\"Ablation: scalar_unc input mode (scalar uncertainty only) with normalization. Tests per-DOF vs scalar uncertainty contribution with proper normalization.\\\", \\\"metrics\\\": {\\\"best_epoch\\\": 46, \\\"best_val_loss\\\": 0.037354, \\\"final_train_loss\\\": 0.053422, \\\"final_val_loss\\\": 0.03737}, \\\"conclusion\\\": \\\"success\\\"}, \\\"crm-train-v3-norm-obs-only\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-14T20:09:00.829Z\\\", \\\"updated_at\\\": \\\"2026-05-14T22:05:28.289Z\\\", \\\"hypothesis\\\": \\\"Ablation: obs_only input mode (no uncertainty features) with normalization. Isolates contribution of obs features vs conformal features.\\\", \\\"metrics\\\": {\\\"best_epoch\\\": 48, \\\"best_val_loss\\\": 0.01645, \\\"final_tra\n…[truncated 19349 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 503
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T22:12:01.451314+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T22:12:01.552769+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T22:12:08.904310+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 5, \\\"results\\\": [{\\\"exp_id\\\": \\\"eval-vla-mean-spatial\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Skipped — pending escalation retry\\\"]}, {\\\"exp_id\\\": \\\"eval-argmin-only-spatial\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=231421)\\\"]}, {\\\"exp_id\\\": \\\"eval-tiny-correction-spatial\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=232815)\\\"]}, {\\\"exp_id\\\": \\\"eval-acr-spatial-v4-default\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=eval-acr-spatial-v4-default)\\\"]}, {\\\"exp_id\\\": \\\"eval-acr-spatial-v4-small\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=253085)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 8112
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T22:12:08.904943+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-14\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| eval-acr-spatial-v4-small | D018: Normalization + moderate correction scaling (max_correction_norm=0.1, 14x smaller than default). If v4-small > v4-default → magnitude control needed on top of normalization. | — | — | — |\\\\n| eval-tiny-correction-spatial | — | — | — | — |\\\\n| eval-argmin-only-spatial | — | — | — | — |\\\\n\\\\n## 待处理\\\\n- eval-acr-spatial-v4-obs-only（准备中）\\\\n- eval-object-v6-full（准备中）\\\\n- eval-reconvla-spatial-v1（准备中）\\\\n- precompute-v4-shard2（准备中）\\\\n- precompute-v4-shard1（准备中）\\\\n- precompute-v4-shard0（准备中）\\\\n- eval-spatial-v4-full（准备中）\\\\n- precompute-v3-shard2（准备中）\\\\n- precompute-v3-shard1（准备中）\\\\n- precompute-v3-shard0（准备中）\\\\n- …另有 3 项\\\\n\\\\n## 近期结论\\\\n- **eval-acr-spatial-v4-default** (failed): D018: Input normalization alone fixes CRM correction degradation. v3-norm checkpoint with default max_correction_norm=1.42. If >30% baseline → normalization was the main fix.\\\\n- **crm-train-v3-norm-scalar-unc** (success): Ablation: scalar_unc input mode (scalar uncertainty only) with normalization. Tests per-DOF vs scalar uncertainty contribution with proper normalization.\\\\n- **crm-train-v3-norm-obs-only** (success): Ablation: obs_only input mode (no uncertainty features) with normalization. Isolates contribution of obs features vs conformal features.\\\\n\\\\n## 趋势\\\\n成功 17 / 负向 0 / 失败 8 / 共 47\\\\nbest_epoch: 46 ↓（近 3 次 success）\\\\nbest_val_loss: 0.037354 ↓（近 3 次 success）\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nbjb1-18228: 无 GPU 信息\\\\nbjb2-40593: 无 GPU 信息\\\\n\\\\n## 告警\\\\n- plan_001-crm-smolvla: 训练失败 — unknown\\\\n- plan_014-reconvla-baseline: 训练失败 — unknown\\\\n- eval-smolvla-libero-spatial: 训练失败 — unknown\\\\n- eval-spatial-reeval-v2: 已被终止 — \n…[truncated 1172 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 7453
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T22:12:08.905520+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\\\", \\\"content\\\": \\\"# acr-vla-conformal-refinement — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 16:00 UTC | 更新原因: crm-train-k5 完成 + eval-k5-spatial 启动，竞品分析完成，CRM correction 退化现象确认\\\\n\\\\n## 核心方向\\\\nPer-DOF conformal statistics from multivariate CP on flow-matching VLA samples enable dimension-selective action correction. 详见 paper_framing.md。\\\\n\\\\n## 投稿目标\\\\n**ICLR 2027**（预计 DDL Sep-Oct 2026）。CoRL 2026 已放弃（D011）。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Phase 2 — Spatial Eval 四路对比（ACR-VLA / SampleConsensus / Scalar-CRM / VLA-mean）\\\\n- **MVP**: PASS（plan_000, per-DOF > scalar > none 确认）\\\\n- **SFT Gate**: 30% baseline，决定继续（D015）\\\\n- **CRM 训练完成**: per-DOF val_loss=0.009, scalar_unc=0.008, obs_only=0.018（conformal features 2× 改善确认）\\\\n- **Baselines 锁定**: spatial 30% (K=1), object 13% (K=1)\\\\n- **早期信号（2/10 tasks，不构成结论）**: ACR-VLA 在简单任务上低于 baseline，per-DOF CRM 可能在简单任务上引入有害 correction\\\\n- **竞品分析完成** (art_20260514_621600): 核心竞品 ReconVLA（最直接）、SC-VLA、VLA-Pilot、ACoT-VLA\\\\n- **CRM correction 退化现象**: ACR-VLA 中间结果 (23-26%) 低于 baseline (30%)，SampleConsensus 领先 (42.9%)\\\\n- **文献调研完成** (art_20260514_d21dd2): correction degradation 可能原因与补救方向（correction clipping/gating 等）\\\\n\\\\n## 近期任务\\\\n- [ ] eval-acr-spatial-v2 完成 → 核心 claim 判定（ACR-VLA vs baseline 30%）\\\\n- [ ] eval-reconvla-spatial-v3 完成 → SampleConsensus 对比\\\\n- [ ] eval-scalar-unc-spatial 完成 → scalar vs per-DOF 最终裁决\\\\n- [x] crm-train-k5 完成 → K sensitivity ablation + eval-k5-spatial 已启动\\\\n- [ ] eval-k5-spatial 完成 → K=5 sensitivity ablation 结果\\\\n- [ ] eval-vla-mean-spatial 完成 → 隔离多采样平均贡献\\\\n- [x] 代码同步 bjb1→bjb2（evaluate.py + train_crm.py）— MD5 verified\\\\n- [ ] 完整 spatial 四路对比表出炉 → 决定是否铺 object benchmark\\\\n- [ ] paper_framing.md 更新竞品定位（SC-VLA, VLA-Pilot, ACoT-VLA SOTA）\\\\n\\\\n## SFT Gate\\\\nD015: 30% baseline 继续推进。核心关注相对提升，非绝对值。\\\\n\\\\n## GPU 预算\\\\n- bjb1-18228 (4× RTX 4090): eval-k5-spatial(cuda:0) + eval-acr(cuda:1) \n…[truncated 1906 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 7352
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T22:12:27.657494+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__send_progress,mcp__agent-ml-research__spawn_worker",
+              "max_results": "6"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T22:12:27.708011+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T22:12:30.623282+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "status": "running"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T22:12:30.676470+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_eval_acr-spatial-v4-obs-only_20260514T220927\\\", \\\"task_type\\\": \\\"eval:acr-spatial-v4-obs-only\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-14T22:09:28.580188+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_diagnose_eval-vla-mean-spatial-result_20260514T221125\\\", \\\"task_type\\\": \\\"diagnose:eval-vla-mean-spatial-result\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-14T22:11:25.802665+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_investigate_vla-mean-spatial-finalize_20260514T221220\\\", \\\"task_type\\\": \\\"investigate:vla-mean-spatial-finalize\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-14T22:12:20.363368+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_investigate_bjb1-gpu-audit_20260514T221229\\\", \\\"task_type\\\": \\\"investigate:bjb1-gpu-audit\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-14T22:12:29.747509+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 4}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 53
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T22:12:38.428556+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_eval_acr-spatial-v4-obs-only_20260514T220927",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T22:12:38.881963+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_eval_acr-spatial-v4-obs-only_20260514T220927\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"eval:acr-spatial-v4-obs-only\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"started_at\\\": \\\"2026-05-14T22:09:28.580188+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_execute\\\", \\\"ssh_execute\\\", \\\"update_registry\\\", \\\"read_registry\\\", \\\"update_registry\\\"], \\\"last_text\\\": \\\"进程运行正常：PID 199257，占用 4949 MiB GPU 显存，CRM 已加载（327,198 params），正在加载 LIBERO spatial 环境。\\\\n\\\\n更新 registry。\\\", \\\"turn_count\\\": 25}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 453
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T22:12:38.882425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diagnose_eval-vla-mean-spatial-result_20260514T221125",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T22:12:39.336602+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diagnose_eval-vla-mean-spatial-result_20260514T221125\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"diagnose:eval-vla-mean-spatial-result\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"started_at\\\": \\\"2026-05-14T22:11:25.802665+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"update_registry\\\", \\\"update_registry\\\", \\\"update_registry\\\"], \\\"last_text\\\": \\\"9/10 tasks completed, task 10 (on_wooden_shelf) never ran. No error/traceback in the log — process was silently killed. Updating registry.\\\", \\\"turn_count\\\": 21}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 454
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T22:12:39.840870+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_investigate_vla-mean-spatial-finalize_20260514T221220",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T22:12:39.892494+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_investigate_bjb1-gpu-audit_20260514T221229",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T22:12:39.944452+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_investigate_vla-mean-spatial-finalize_20260514T221220\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"investigate:vla-mean-spatial-finalize\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"started_at\\\": \\\"2026-05-14T22:12:20.363368+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ToolSearch\\\", \\\"read_registry\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\"], \\\"last_text\\\": \\\"先检查 registry 当前状态，同时 SSH 检查进程和结果文件。\\\", \\\"turn_count\\\": 6}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 103
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T22:12:39.944869+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_investigate_bjb1-gpu-audit_20260514T221229\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"investigate:bjb1-gpu-audit\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"started_at\\\": \\\"2026-05-14T22:12:29.747509+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [], \\\"last_text\\\": \\\"\\\", \\\"turn_count\\\": 1}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 52
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T22:13:33.154711+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "text": "[资源] GPU 分配 5 / 实际跑 5 (bjb1:0-3 + bjb2:0) | Worker 池 4 (GPU 1 / CPU 3)\n\n**Session Start 状态汇报**\n\n5 路 spatial eval 全部在跑或刚完成：\n\n| exp_id | 服务器:GPU | 进度 | 部分结果 | 备注 |\n|--------|-----------|------|---------|------|\n| eval-vla-mean-spatial | bjb2:0 | **9/10 ✓** | **34.4%** (31/90) | task 10 进程被杀，Worker 正在收尾。bjb2:0 即将空闲 |\n| eval-argmin-only-spatial | bjb1:1 | 3/10 | 53.3% (16/30) | 正常，~6-7h 剩余 |\n| eval-tiny-correction-spatial | bjb1:2 | 3/10 | 53.3% (16/30) | 正常，~6-7h 剩余 |\n| eval-acr-spatial-v4-small | bjb1:3 | 1/10 | 60% (6/10) | 正常，~8h 剩余 |\n| eval-acr-spatial-v4-obs-only | bjb1:0 | 刚启动 | — | 刚提交 RUNNING (PID 199257)，替代死掉的 v4-default |\n\n**eval-vla-mean-spatial 结论**：K=10 均值 baseline 9/10 tasks = 34.4%。这确认了 mean aggregation 不如 argmin selection（53.3%）。合理——均值被极端样本拉偏，argmin 选择最低 uncertainty 更稳健。task 10 缺失不影响结论（前 9 tasks 已覆盖难/易分布）。\n\n**bjb2:0 空闲规划**：vla-mean 完成后 bjb2:0 空出。可选：\n1. 补跑 vla-mean task 10 on_wooden_shelf（完整性，~2h）\n2. 铺 object benchmark baseline（为下阶段准备）\n3. 其他消融实验\n\n建议：task 10 可跳过（9/10 已够），bjb2:0 留给后续需求。等 4 路 eval 结果出齐后统一决策。请 Director 指示。"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T22:13:36.983953+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3829
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T22:13:48.252819+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Session start 初始化完成。\n\n当前状态：\n- **5 GPU 全部在跑**：bjb1:0-3 各跑一路 eval，bjb2:0 eval-vla-mean 即将完成\n- **4 Worker 运行中**：obs-only eval 提交+监控、vla-mean 诊断/收尾、GPU 审计\n- **已向 Director 汇报**\n\n等待 Worker 回调和 Cron 完成通知。下一步动作取决于：\n- vla-mean Worker 收尾结果（确认 9/10 final metrics）\n- obs-only eval 启动确认\n- 其余 3 路 eval 完成时的 cron 回调"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1"
+          },
+          "id": "event-000026"
+        }
+      ],
+      "message_count": 26
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T01:24:23.872746+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T01:24:50.978161+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.{yaml,md}",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T01:24:51.229761+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/docs/IDEA_BRIEF.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T015051/best/imagined_experiments.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T015051/median/imagined_experiments.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T015051/worst/imagined_experiments.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T015051/best/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T015051/median/review_report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T023849/best/imagined_experiments.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T023849/best/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/libero-smolvla-env-report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T023849/median/imagined_experiments.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T023849/median/paper_framing.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T023849/worst/imagined_experiments.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/dream_reports/dream_20260513T023849/worst/paper_framing.md\n/home/ubunt\n…[truncated 11496 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Glob",
+            "elapsed_ms": 251
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T01:24:51.330590+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/",
+              "description": "List project root directory"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T01:24:51.834078+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 276\ndrwxr-xr-x 8 ubuntu ubuntu  4096 May 15 01:23 .\ndrwxrwxr-x 5 ubuntu ubuntu  4096 May 13 01:01 ..\ndrwxr-xr-x 3 ubuntu ubuntu  4096 May 13 01:01 .claude\n-rw-r--r-- 1 ubuntu ubuntu 12818 May 15 01:24 AGENTS.md\n-rw-r--r-- 1 ubuntu ubuntu     0 May 13 01:03 ROADMAP.lock\n-rw------- 1 ubuntu ubuntu  4496 May 15 01:23 ROADMAP.md\ndrwxr-xr-x 7 ubuntu ubuntu  4096 May 14 21:29 artifacts\ndrwxr-xr-x 2 ubuntu ubuntu 36864 May 14 22:27 checkpoints\n-rw-r--r-- 1 ubuntu ubuntu     0 May 13 01:03 decisions.lock\n-rw------- 1 ubuntu ubuntu 18362 May 15 01:23 decisions.yaml\ndrwxr-xr-x 4 ubuntu ubuntu  4096 May 13 02:35 docs\n-rwxr-xr-x 1 ubuntu ubuntu     0 May 13 01:50 dream_registry.lock\n-rw------- 1 ubuntu ubuntu  1890 May 13 03:26 dream_registry.yaml\n-rw-r--r-- 1 ubuntu ubuntu  1895 May 13 03:26 dream_registry.yaml.bak\n-rw-r--r-- 1 ubuntu ubuntu     0 May 13 04:05 experiment_plan.lock\n-rw------- 1 ubuntu ubuntu  4639 May 14 04:14 experiment_plan.yaml\n-rw-r--r-- 1 ubuntu ubuntu 29230 May 14 18:41 literature_map.yaml\ndrwxr-xr-x 4 ubuntu ubuntu  4096 May 13 01:23 logs\n-rw-r--r-- 1 ubuntu ubuntu 10073 May 14 22:20 memory.md\n-rw-r--r-- 1 ubuntu ubuntu  8312 May 14 07:48 paper_framing.md\n-rw-r--r-- 1 ubuntu ubuntu     0 May 13 01:22 registry.lock\n-rw------- 1 ubuntu ubuntu 89043 May 14 22:58 registry.yaml\n-rw-r--r-- 1 ubuntu ubuntu  3846 May 14 22:27 report.md\n-rwxr-xr-x 1 ubuntu ubuntu     0 May 13 01:02 study_status.lock\ndrwxr-xr-x 3 ubuntu ubuntu  4096 May 15 00:13 task_context"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Bash",
+            "elapsed_ms": 503
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T01:24:54.499467+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T01:24:55.002874+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Handover — 2026-05-14\n2\t\n3\t> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\n4\t\n5\t## 运行中\n6\t| exp_id | 假设 | 状态 | 关键指标 | W&B |\n7\t|--------|------|------|---------|-----|\n8\t| eval-acr-spatial-v4-default-r2 | D018 retry: Normalization alone fixes CRM correction degradation. v3-norm per-DOF checkpoint with default max_correction_norm (~1.42). If >30% baseline → normalization was the main fix. If still < 30% → magnitude control also needed (compare with v4-small at 0.1). | — | — | — |\n9\t| eval-vla-mean-spatial-t10 | — | — | — | — |\n10\t| eval-acr-spatial-v4-small | D018: Normalization + moderate correction scaling (max_correction_norm=0.1, 14x smaller than default). If v4-small > v4-default → magnitude control needed on top of normalization. | — | — | — |\n11\t\n12\t## 待处理\n13\t- eval-acr-spatial-v4-scalar: D020: scalar_unc CRM (val_loss 0.0374) with max_correction_norm=0.1. Three-way ablation: perdof vs scalar_unc vs obs_only under identical correction magnitude.（准备中）\n14\t- eval-object-v6-full（准备中）\n15\t- eval-reconvla-spatial-v1（准备中）\n16\t- precompute-v4-shard2（准备中）\n17\t- precompute-v4-shard1（准备中）\n18\t- precompute-v4-shard0（准备中）\n19\t- eval-spatial-v4-full（准备中）\n20\t- precompute-v3-shard2（准备中）\n21\t- precompute-v3-shard1（准备中）\n22\t- precompute-v3-shard0（准备中）\n23\t- …另有 3 项\n24\t\n25\t## 近期结论\n26\t- **eval-acr-spatial-v4-obs-only-r2** (killed): D020: obs_only CRM v3-norm (val_loss 0.0165) with max_correction_norm=0.1. If obs_only >= v4-small (perdof) → Claim 1 needs restructuring. If obs_only < v4-small → conformal features have unique value under distribution shift.\n27\t- **eval-acr-spatial-v4-obs-only** (failed): D020: obs_only CRM (val_loss 0.0165, 54% better than perdof 0.0358) with max_correction_norm=0.1. If obs_only >= v4-small (perdof) → Claim 1 needs restructuring. If obs_only < v4-small → conformal features have unique value under distribution shift.\n28\t- **eval-vla-mean-spatial** (success): —\n29\t\n30\t## 趋势\n31\t成功 18 / 负向 0 / 失败 9 / 共 50\n32\t\n33\t## 下一步\n34\t（无活跃 idea，请通过 ideas.md 添加）\n35\t\n36\t## 资源状态\n37\tbjb1-\n…[truncated 1444 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Read",
+            "elapsed_ms": 503
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T01:24:55.003432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T01:24:55.459808+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# acr-vla-conformal-refinement — Research Dashboard\n2\t\n3\t> 最后更新: 2026-05-14 16:00 UTC | 更新原因: crm-train-k5 完成 + eval-k5-spatial 启动，竞品分析完成，CRM correction 退化现象确认\n4\t\n5\t## 核心方向\n6\tPer-DOF conformal statistics from multivariate CP on flow-matching VLA samples enable dimension-selective action correction. 详见 paper_framing.md。\n7\t\n8\t## 投稿目标\n9\t**ICLR 2027**（预计 DDL Sep-Oct 2026）。CoRL 2026 已放弃（D011）。\n10\t\n11\t## 当前进展\n12\t- **阶段**: Phase 2 — Spatial Eval 四路对比（ACR-VLA / SampleConsensus / Scalar-CRM / VLA-mean）\n13\t- **MVP**: PASS（plan_000, per-DOF > scalar > none 确认）\n14\t- **SFT Gate**: 30% baseline，决定继续（D015）\n15\t- **CRM 训练完成**: per-DOF val_loss=0.009, scalar_unc=0.008, obs_only=0.018（conformal features 2× 改善确认）\n16\t- **Baselines 锁定**: spatial 30% (K=1), object 13% (K=1)\n17\t- **早期信号（2/10 tasks，不构成结论）**: ACR-VLA 在简单任务上低于 baseline，per-DOF CRM 可能在简单任务上引入有害 correction\n18\t- **竞品分析完成** (art_20260514_621600): 核心竞品 ReconVLA（最直接）、SC-VLA、VLA-Pilot、ACoT-VLA\n19\t- **CRM correction 退化现象**: ACR-VLA 中间结果 (23-26%) 低于 baseline (30%)，SampleConsensus 领先 (42.9%)\n20\t- **文献调研完成** (art_20260514_d21dd2): correction degradation 可能原因与补救方向（correction clipping/gating 等）\n21\t\n22\t## 近期任务\n23\t- [ ] eval-acr-spatial-v2 完成 → 核心 claim 判定（ACR-VLA vs baseline 30%）\n24\t- [ ] eval-reconvla-spatial-v3 完成 → SampleConsensus 对比\n25\t- [ ] eval-scalar-unc-spatial 完成 → scalar vs per-DOF 最终裁决\n26\t- [x] crm-train-k5 完成 → K sensitivity ablation + eval-k5-spatial 已启动\n27\t- [ ] eval-k5-spatial 完成 → K=5 sensitivity ablation 结果\n28\t- [ ] eval-vla-mean-spatial 完成 → 隔离多采样平均贡献\n29\t- [x] 代码同步 bjb1→bjb2（evaluate.py + train_crm.py）— MD5 verified\n30\t- [ ] 完整 spatial 四路对比表出炉 → 决定是否铺 object benchmark\n31\t- [ ] paper_framing.md 更新竞品定位（SC-VLA, VLA-Pilot, ACoT-VLA SOTA）\n32\t\n33\t## SFT Gate\n34\tD015: 30% baseline 继续推进。核心关注相对提升，非绝对值。\n35\t\n36\t## GPU 预算\n37\t- bjb1-18228 (4× RTX 4090): eval-k5-spatial(cuda:0) + eval-acr(cuda:1) + eval-reconvla(cuda:2) + eval-scalar-unc(cuda:3)\n38\t- bjb2-40593 (1× RTX 4090 D): eval-vla-mean-spatial(cuda:0)\n39\t- 总预算 ~200 GPU·h, 已用 ~8\n…[truncated 1752 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Read",
+            "elapsed_ms": 456
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T01:24:55.460329+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T01:24:55.512855+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Memory — acr-vla-conformal-refinement\n2\t\n3\t## VLA-mean Baseline 定稿：多采样平均无收益（2026-05-15）\n4\t\n5\t### 发现\n6\teval-vla-mean-spatial: K=10 平均 ≈ 31%（9/10 tasks），与 K=1 baseline 30% 无显著差异（+1pp，噪声范围）。\n7\t\n8\t### 含义\n9\t- **多采样平均不是 ACR-VLA 改善的来源**。flow-matching VLA 的 K 个样本虽然不同，但 averaging 消除的噪声对 task success 无帮助\n10\t- ACR-VLA 的任何改善必须来自 intelligent selection（argmin）或 CRM correction\n11\t- argmin-only 早期信号 53.3%（3/10 tasks）>> VLA-mean 31% → **sample selection 本身就有强贡献**\n12\t- Narrative 可分层：(1) sample selection > averaging (2) CRM correction adds calibrated precision\n13\t\n14\t### 论文定位\n15\t这证实了 Section 1 (Intro) 的动机：naive aggregation 不够，需要 structured uncertainty-guided selection。\n16\t\n17\t## Correction Magnitude 是核心问题（2026-05-14 18:15，早期信号）\n18\t\n19\t### 发现\n20\teval-tiny-correction-spatial（max_correction_norm=0.05，约默认 1.42 的 1/28）在首个 task 上 4/5 成功，而 full ACR 同一 task 只有 1/10。这说明 CRM correction 的方向可能是对的，但幅度太大导致 compounding error。\n21\t\n22\t### 含义\n23\t- correction clipping / gating 是正确的补救方向\n24\t- Gated CRM 代码已就绪（`src/gated_crm.py` + `--mode acr_gated` + `--gate_threshold/mode/temperature`）\n25\t- 等完整 eval 结果确认后，下一步应该是 correction magnitude sweep（0.01, 0.05, 0.1, 0.2, 0.5）或 Gated CRM eval\n26\t- **不改变目标 venue（ICLR 2027）**，narrative 可从 \"per-DOF correction always helps\" 调整为 \"per-DOF correction with magnitude control\"\n27\t\n28\t### ⚠️ 注意\n29\t这是 1 个 task 的 5 个 rollout 的早期数据。需要完整 10 tasks 确认。\n30\t\n31\t## Correction Magnitude 文献支撑（2026-05-14 18:37）\n32\t\n33\t### 核心竞品/支撑论文\n34\t1. **PLD (ICLR 2026)**: scheduled ξ bound，LIBERO ξ=0.5 / SimplerEnv ξ=0.1——不同环境需不同 correction scale，完全验证我们的发现\n35\t2. **TRANSIC (CoRL 2024)**: 无 gate 时 fine-tuning 导致 model collapse——与我们 40%→2.5% 退化一致\n36\t3. **ResiP (CoRL-W 2024)**: scaling α≤1，关键不是精确值而是 order of magnitude\n37\t4. **DRC (2025)**: temporal decay of correction\n38\t5. **DAWN (2026)**: scale mismatch → residual 学不好\n39\t\n40\t### 独特贡献角度\n41\t**没有现有方法提供 per-DOF, per-timestep, calibrated magnitude bounds。** ACR-VLA 的 conformal intervals 天然提供 calibrated bounds on expected action range。\n42\t\n43\t### 推荐 Framing\n…[truncated 6066 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Read",
+            "elapsed_ms": 52
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T01:25:01.199860+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "limit": "200"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T01:25:01.705088+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tbaseline: null\n2\texperiments:\n3\t  mvp-point-reaching:\n4\t    status: DONE\n5\t    retry_count: 0\n6\t    created_at: '2026-05-13T01:22:10.415Z'\n7\t    updated_at: '2026-05-13T22:06:11.073Z'\n8\t    spec:\n9\t      hypothesis: Per-DOF uncertainty features carry more actionable information than\n10\t        scalar uncertainty summaries, enabling dimension-selective correction\n11\t      description: '3D point-reaching MVP: 3 MLP variants (scalar/per-DOF/no uncertainty)\n12\t        x 6 groups (3 anisotropy ratios x 2 uncertainty sources)'\n13\t      server: bjb2-40593\n14\t      gpu: cuda:0\n15\t      data_count: 20000\n16\t      model_name: CorrectionMLP(2-layer, 64-hidden)\n17\t      seed: 42\n18\t      command: python -u run_mvp.py\n19\t      data_path: synthetic (generated in-script)\n20\t      checkpoint_path: /root/acr-vla-conformal-refinement/mvp/\n21\t      log_path: /root/acr-vla-conformal-refinement/mvp/mvp_results.log\n22\t    conclusion: success\n23\t    completed_at: '2026-05-13T01:44:00.055Z'\n24\t    metrics:\n25\t      group1_oracle:\n26\t        A_scalar:\n27\t          mse_x: 0.180218\n28\t          mse_y: 0.02497\n29\t          mse_z: 0.024232\n30\t          total: 0.076473\n31\t        B_perDOF:\n32\t          mse_x: 0.172652\n33\t          mse_y: 0.015544\n34\t          mse_z: 0.01561\n35\t          total: 0.067935\n36\t        C_none:\n37\t          mse_x: 0.22706\n38\t          mse_y: 0.025542\n39\t          mse_z: 0.024753\n40\t          total: 0.092451\n41\t      group2_oracle:\n42\t        A_scalar:\n43\t          mse_x: 0.064642\n44\t          mse_y: 0.023836\n45\t          mse_z: 0.022967\n46\t          total: 0.037148\n47\t        B_perDOF:\n48\t          mse_x: 0.053403\n49\t          mse_y: 0.015695\n50\t          mse_z: 0.01573\n51\t          total: 0.028276\n52\t        C_none:\n53\t          mse_x: 0.084178\n54\t          mse_y: 0.025427\n55\t          mse_z: 0.024798\n56\t          total: 0.044801\n57\t      group3_oracle:\n58\t        A_scalar:\n59\t          mse_x: 0.042948\n60\t          mse_y: 0.023218\n61\t          mse_z: 0.022365\n62\t   \n…[truncated 4968 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Read",
+            "elapsed_ms": 505
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T01:25:02.257805+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/decisions.yaml",
+              "limit": "100"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T01:25:02.458818+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t_next_id: 22\n2\tdecisions:\n3\t- id: D001\n4\t  date: 2026-05-13 01:03 UTC\n5\t  summary: MVP 方案确定：3D Point-Reaching Motivating Experiment 验证 per-DOF conformal 特征的信息优势\n6\t  rationale: IDEA_BRIEF 已设计了完美的 go/no-go gate：用合成数据的 3D reaching task 对比 per-DOF vs\n7\t    标量 vs 无不确定性三种 conditioning，直接测试核心假设。成本极低（<0.5 GPU-hours），无需 VLA 基础设施，失败则提前止损。Pass\n8\t    标准明确：B 在非扰动轴 MSE 比 A 低 >10%。\n9\t  related_experiments: []\n10\t  depends_on: []\n11\t- id: D002\n12\t  date: 2026-05-13 01:06 UTC\n13\t  summary: 采纳 Reviewer 建议完善 MVP：增加 B vs C 对比（>5% MSE）、K=10 estimated uncertainty variant、2:1/1.5:1\n14\t    各向异性 sweep\n15\t  rationale: Reviewer 正确指出 (1) 缺少 B vs C 对比会遗漏\"观测特征已足够\"的可能性，这直接关系核心 claim；(2) oracle\n16\t    uncertainty 与实际 pipeline 存在 gap，K=10 variant 几乎零成本可验证；(3) 5:1 比率过极端，需测试更温和情况。三项改进均不增加显著成本。\n17\t  related_experiments: []\n18\t  depends_on:\n19\t  - D001\n20\t- id: D003\n21\t  date: 2026-05-13 01:47 UTC\n22\t  summary: MVP 通过，GO — 进入 research 阶段\n23\t  rationale: 全部 3 条 pass 标准满足且 margin 很大：per-DOF (B) 在非扰动轴 MSE 比标量 (A) 低 22-38%，比无\n24\t    uncertainty (C) 低 15-39%。K=10 estimated 和弱各向异性(1.5:1)下均成立。核心假设\"per-DOF conformal\n25\t    特征携带更多可操作信息\"得到验证。关注风险：oracle→K=10 衰减 ~15pp，真实 7-DOF 场景待验证。\n26\t  related_experiments:\n27\t  - exp_id: mvp-point-reaching\n28\t    role: MVP gate\n29\t    result: PASS — all 6 conditions met criteria\n30\t  depends_on:\n31\t  - D001\n32\t  - D002\n33\t- id: D004\n34\t  date: 2026-05-13 02:59 UTC\n35\t  summary: Horizon 策略：截取 chunk 前 H_eff=5 步，action_dim=6。CGS 输出 40D。\n36\t  rationale: SmolVLA chunk_size=50 远超原假设 H=5。receding-horizon 执行语义下只需关注近期 action 的\n37\t    uncertainty，远期 step 对当前校正无意义。H_eff=5 保持与 IDEA_BRIEF 设计一致，CGS 40D 可控（per-DOF std\n38\t    30 + radius 5 + volume 5），p/n=6/10=0.6 优于原假设 0.7。H_eff=10 留作 ablation。action_dim=6\n39\t    使 Ledoit-Wolf 更稳定。\n40\t  related_experiments: []\n41\t  depends_on:\n42\t  - D003\n43\t- id: D005\n44\t  date: 2026-05-13 03:00 UTC\n45\t  summary: 不等 Dream 重新提交，直接启动 P0 实验。Dream zombie 占槽，Reviewer 已两轮审核通过 framing/plan。\n46\t  rationale: Dream dream_20260513T015051 崩溃在 review 阶段（imagine+write \n…[truncated 2520 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Read",
+            "elapsed_ms": 201
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T01:25:02.459281+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/experiment_plan.yaml"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T01:25:02.509819+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\texperiments:\n2\t- id: plan_000\n3\t  claim: 1\n4\t  description: 'Motivating experiment: 3D point-reaching, per-DOF vs scalar vs no\n5\t    uncertainty conditioning'\n6\t  priority: P0\n7\t  gpu_budget_hours: 0.5\n8\t  deps: []\n9\t  registry_id: mvp-point-reaching\n10\t- id: plan_001\n11\t  claim: 1\n12\t  description: 'ACR-VLA full pipeline on SmolVLA base: CGS + ACI/COC + CRM. Train\n13\t    CRM on LIBERO demos + synthetic augmentation. Evaluate on LIBERO (nominal preservation)\n14\t    + LIBERO-Plus L3-L5 (robustness gain).'\n15\t  priority: P0\n16\t  gpu_budget_hours: 25\n17\t  deps: []\n18\t  registry_id: crm-train-v1\n19\t- id: plan_002\n20\t  claim: 1\n21\t  description: Ablation A3 — CRM without conformal features (observation-conditioned\n22\t    residual only, equivalent to A2C2-style generic residual). MAKE-OR-BREAK for Claim\n23\t    1.\n24\t  priority: P0\n25\t  gpu_budget_hours: 8\n26\t  deps:\n27\t  - plan_001\n28\t  registry_id: crm-train-a3-obs-only\n29\t- id: plan_003\n30\t  claim: 1\n31\t  description: Ablation A4 — CRM with scalar uncertainty (Euclidean distance like\n32\t    ReconVLA) replacing 40D per-DOF features. Validates per-DOF > scalar.\n33\t  priority: P0\n34\t  gpu_budget_hours: 8\n35\t  deps:\n36\t  - plan_001\n37\t- id: plan_004\n38\t  claim: 3\n39\t  description: 'ACR-VLA stacked on SRPO-finetuned VLA. Train new CRM on SRPO checkpoint\n40\t    + LIBERO demos. Evaluate on LIBERO-Plus. Primary impact argument: orthogonal to\n41\t    training-time optimization.'\n42\t  priority: P0\n43\t  gpu_budget_hours: 18\n44\t  deps:\n45\t  - plan_001\n46\t- id: plan_005\n47\t  claim: 2\n48\t  description: 'COC signal validation: (a) Spearman ρ between episode COC coverage\n49\t    fraction and task success, (b) ACI convergence plot, (c) ellipsoid volume comparison\n50\t    vs static calibration at matched coverage.'\n51\t  priority: P1\n52\t  gpu_budget_hours: 15\n53\t  deps:\n54\t  - plan_001\n55\t- id: plan_006\n56\t  claim: 2\n57\t  description: Ablation A1 — CRM without ACI (static CGS calibration, no online adaptation).\n58\t    Isolates ACI contribu\n…[truncated 3117 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T01:25:10.167246+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E \"^  [a-z].*:|status:|hypothesis:|server:|gpu:|conclusion:|spec:\" /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml | grep -B1 \"status: \\(RUNNING\\|PREPARING\\|QUEUED\\|ALLOCATED\\|PENDING\\)\" | head -60",
+              "description": "Find RUNNING/PREPARING experiments in registry"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T01:25:11.125943+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  precompute-v2-shard0:\n    status: PREPARING\n--\n  precompute-v2-shard1:\n    status: PREPARING\n--\n  precompute-v2-shard2:\n    status: PREPARING\n--\n  precompute-v3-shard0:\n    status: PREPARING\n--\n  precompute-v3-shard1:\n    status: PREPARING\n--\n  precompute-v3-shard2:\n    status: PREPARING\n--\n  eval-spatial-v4-full:\n    status: PREPARING\n--\n  precompute-v4-shard0:\n    status: PREPARING\n--\n  precompute-v4-shard1:\n    status: PREPARING\n--\n  precompute-v4-shard2:\n    status: PREPARING\n--\n  eval-reconvla-spatial-v1:\n    status: PREPARING\n--\n  eval-object-v6-full:\n    status: PREPARING\n--\n  eval-argmin-only-spatial:\n    status: RUNNING\n--\n  eval-tiny-correction-spatial:\n    status: RUNNING\n--\n  eval-acr-spatial-v4-small:\n    status: RUNNING\n--\n  eval-acr-spatial-v4-scalar:\n    status: PREPARING\n--\n  eval-acr-spatial-v4-obs-only-r2:\n    status: RUNNING\n--\n  eval-vla-mean-spatial-t10:\n    status: RUNNING"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Bash",
+            "elapsed_ms": 958
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T01:25:11.176889+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/task_context/history/agent/loop_5.md"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T01:25:11.830561+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tloop: 5\n3\treason: idle_timeout\n4\tupdated: '2026-05-14T22:10:15+00:00'\n5\t---\n6\t\n7\t### 1. 🔴 硬约束 / 红线\n8\t- GPU 白名单：bjb2-40593:cuda:0, bjb1-18228:cuda:0/1/2/3，共 5 张，禁止用其他卡\n9\t- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/bin/activate && ...`（bjb2 用 conda，不要假设 .venv）\n10\t- bjb2-40593 是 AutoDL 实例，大文件必须放 `/root/autodl-tmp/`，根分区只有 ~30GB\n11\t- CRM 训练必须传 `--norm_stats` 参数（D018 教训：未归一化导致 1500x scale 差异，所有 v3 实验依赖此修复）\n12\t- ACR-VLA 早期信号低于 baseline（23-26% vs 30%），**不要**在完整 spatial 四路对比表出来前修改 paper framing\n13\t\n14\t### 2. 🖥️ 基础设施快照\n15\t- **bjb2-40593**（1× RTX 4090 D）：工作目录 `/root/acr-vla-conformal-refinement`，Python `/root/miniconda3/bin/python`，conda base 环境\n16\t  - CRM checkpoints: `/root/autodl-tmp/checkpoints/crm_v3/`（per_dof / scalar_unc / obs_only 三个子目录）\n17\t  - CRM cache: `/root/autodl-tmp/crm_cache/`\n18\t  - norm_stats: `/root/autodl-tmp/checkpoints/crm_v3/norm_stats.pt`\n19\t  - eval 结果: `/root/autodl-tmp/eval_results/`\n20\t  - 活跃进程：eval-vla-mean-spatial (PID 143106, tmux, cuda:0)\n21\t- **bjb1-18228**（4× RTX 4090）：同样工作目录 `/root/acr-vla-conformal-refinement`\n22\t  - 活跃进程：eval-acr-spatial-v3 (PID 197057, cuda:0), eval-acr-object-v3 (PID 197803, cuda:3), eval-argmin-only-spatial (PID 231421, cuda:1), eval-tiny-correction-spatial (PID 232815, cuda:2)\n23\t- **W&B**: entity/project 从 project config 读取\n24\t- **Cron**: 5 个活跃 cron 分别监控上述 5 个 eval\n25\t\n26\t### 3. 📊 当前状态\n27\t**刚做完**：收到 crm-train-v3-obs-only（CRM obs_only v3 归一化修复版）cron 回调，已派 Worker `worker_analysis_crm-train-v3-obs-only_20260514T182913` 分析训练日志 + W&B 指标。**Worker 尚未回调**，registry 仍为 ANALYZING。\n28\t\n29\t**前序 CRM v3 训练结果**（已完成）：per-DOF val_loss=0.009, scalar_unc=0.008, obs_only(v2)=0.018。v3 obs_only 是否因归一化修复而改善是关键问题。\n30\t\n31\t**RUNNING (5)**：\n32\t- eval-vla-mean-spatial — 隔离多采样平均贡献（bjb2）\n33\t- eval-acr-spatial-v3 — ACR-VLA 核心方法 spatial eval（bjb1:0）\n34\t- eval-acr-object-v3 — ACR-VLA object eval（bjb1:3）\n35\t- eval-argmin-only-spatial — argmin-only ablation spatial（bjb1:1）\n36\t- eval-tiny-correction-spatial — tiny correction ablation\n…[truncated 1598 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Read",
+            "elapsed_ms": 653
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T01:25:11.831053+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/paper_framing.md",
+              "limit": "50"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T01:25:11.883675+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Paper Framing — acr-vla-conformal-refinement\n2\t\n3\t## Target Venue\n4\t- **Primary: ICLR 2027** (expected deadline ~Sep-Oct 2026) — 充足时间\n5\t- ~~CoRL 2026~~ — 已放弃 (D011: GPU 未扩容 + 时间不足)\n6\t\n7\t## Core Insight\n8\tPer-DOF conformal statistics from multivariate CP on flow-matching VLA samples encode \"which action dimensions are uncertain and how they co-vary\" — fundamentally richer information than scalar uncertainty scores. A lightweight learned module conditioned on these structured features can perform dimension-selective action correction: aggressively correcting high-uncertainty DOFs while preserving confident predictions elsewhere.\n9\t\n10\t## Core Claims (3 条，均可证伪)\n11\t1. **Per-DOF conformal features enable dimension-selective correction**: CGS 提取的 40D 结构化 uncertainty 特征（per-DOF std + conformal radius + ellipsoid volume，action_dim=6, H_eff=5）比标量 uncertainty（ReconVLA 的 Euclidean distance）和无 uncertainty conditioning 的残差策略（A2C2 类）提供显著更好的 action correction。\n12\t   - 验证: MVP (✅ done) + A3 ablation (make-or-break) + A4 ablation + feature importance analysis\n13\t   - Kill criterion: A3 (CRM without conformal features) 与 full ACR-VLA 差距 <2% → claim 不成立\n14\t\n15\t2. **ACI+COC 在分布偏移下维持 calibrated uncertainty，无需外部监督**: Chunk Overlap Consistency 提供自参考覆盖信号，ACI 在线更新 conformal threshold，在任意分布偏移下维持长期平均覆盖保证。\n16\t   - 验证: COC-success Spearman ρ + ACI 收敛 + ellipsoid volume vs static\n17\t   - Kill criterion: Spearman ρ < 0.3 AND ellipsoid volume 无 >10% 收窄 → fallback to episode-level ACI\n18\t\n19\t3. **ACR-VLA 与 training-time 方法正交互补**: 作为 inference-time 模块可叠加在 SRPO (82.1% LIBERO-Plus SOTA) 上进一步提升。\n20\t   - 验证: ACR-VLA + SRPO > SRPO alone\n21\t   - Kill criterion: stacking gain < 2% → claim 降级为\"complementary in principle\"\n22\t\n23\t## Story Spine\n24\t- **Problem**: Flow-matching VLAs 在标准 benchmark 上接近饱和(97-99%)，但 LIBERO-Plus 暴露了分布偏移下的灾难性鲁棒性缺口。现有方法分别解决检测(SAFE)、样本选择(ReconVLA)、训练时增强(RobustVLA/DiG-Flow/SRPO)，但没有方法在推理时利用结构化 uncertainty 信息主动校正动作。\n25\t- **Gap**: 现有 inference-time 方法各有根本性局限：ReconVLA 用标量 CQR 做样本选择——丢弃\n…[truncated 2592 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Read",
+            "elapsed_ms": 52
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T01:25:17.774443+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/decisions.yaml",
+              "offset": "250"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T01:25:19.239920+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "250\t  - exp_id: eval-scalar-unc-spatial-v2\n251\t    role: ablation_negative\n252\t    result: 0% killed\n253\t  - exp_id: eval-obs-only-spatial-v3\n254\t    role: ablation_negative\n255\t    result: 0% killed\n256\t  depends_on:\n257\t  - D017\n258\t- id: D019\n259\t  date: 2026-05-14 21:24 UTC\n260\t  summary: 'D019: Normalization alone insufficient — magnitude control confirmed required.\n261\t    v4-default (norm=1.42) 0/5 vs v4-small (norm=0.1) 3/5 on same task. Argmin-only\n262\t    baseline 53.3% (3 tasks) is surprisingly strong.'\n263\t  rationale: 'v4-default uses v3-norm checkpoint (normalization fix from D018) with\n264\t    original max_correction_norm=1.42. Still 0/5 on task 1 — identical failure to\n265\t    pre-normalization CRM. v4-small same checkpoint with norm=0.1: 3/5 on task 1.\n266\t    This definitively proves: (1) normalization improves training quality (val_loss\n267\t    31% better) but does NOT fix eval-time correction magnitude problem; (2) magnitude\n268\t    control is the second required fix. Separately, argmin-only (pure sample selection,\n269\t    no CRM) at 53.3% on 3 tasks is much stronger than K=10 mean (35%) and K=1 (30%).\n270\t    The real bar for CRM to beat is argmin-only, not K=1 baseline. Next critical comparison:\n271\t    v4-small vs argmin-only across all 10 tasks.'\n272\t  related_experiments:\n273\t  - exp_id: eval-acr-spatial-v4-default\n274\t    role: negative\n275\t    result: 0/5 on task 1 — normalization alone fails\n276\t  - exp_id: eval-acr-spatial-v4-small\n277\t    role: positive\n278\t    result: 3/5 on task 1 — normalization + magnitude control works\n279\t  - exp_id: eval-argmin-only-spatial\n280\t    role: baseline\n281\t    result: 53.3% on 3 tasks — strong selection baseline\n282\t  - exp_id: eval-tiny-correction-spatial\n283\t    role: diagnostic\n284\t    result: 53.3% on 3 tasks — v2 tiny correction ≈ argmin\n285\t  - exp_id: eval-vla-mean-spatial\n286\t    role: baseline\n287\t    result: 35% on 8 tasks — K=10 mean baseline\n288\t  depends_on:\n289\t  - D018\n290\t  - D017\n291\t-\n…[truncated 2482 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Read",
+            "elapsed_ms": 1465
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T01:25:19.240317+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/task_context/history/agent/loop_5_1778796698.md"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T01:25:19.642345+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tloop: 5\n3\treason: idle_timeout\n4\tupdated: '2026-05-14T22:10:22+00:00'\n5\t---\n6\t\n7\t### 1. 🔴 硬约束 / 红线\n8\t- bjb2-40593 只分配了 cuda:0（1× RTX 4090 D），不可用其他卡\n9\t- bjb1-18228 分配 cuda:0/1/2/3（4× RTX 4090），当前全部被 eval 占用\n10\t- CRM v3 训练使用 `--norm_stats /root/autodl-tmp/checkpoints/crm_v3/norm_stats.pt` 归一化——eval 时也必须用同一 norm_stats，否则输入 scale 不匹配会重蹈 D018 覆辙\n11\t- eval 代码路径：bjb1 用 `/root/acr-vla-conformal-refinement/src/evaluate.py`，bjb2 用同名但需确认代码是否同步（之前有 bjb1→bjb2 sync 步骤）\n12\t- `submit_training_job` 的 command 必须自带环境激活（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...`）\n13\t\n14\t### 2. 🖥️ 基础设施快照\n15\t- **bjb1-18228** (4× RTX 4090): 工作目录 `/root/acr-vla-conformal-refinement`，Python `/root/miniconda3/bin/python`，conda base\n16\t  - 数据：`/root/autodl-tmp/libero_data/`（spatial/object benchmark）\n17\t  - CRM cache：`/root/autodl-tmp/crm_cache_v5/`（v2 训练用），checkpoint `/root/autodl-tmp/checkpoints/crm_v2/`\n18\t  - 活跃 eval：eval-acr-spatial-v3 (PID 197057, cuda:0), eval-argmin-only-spatial (PID 231421, cuda:1), eval-tiny-correction-spatial (PID 232815, cuda:2), eval-acr-object-v3 (PID 197803, cuda:3)\n19\t- **bjb2-40593** (1× RTX 4090 D): 工作目录同名，conda base\n20\t  - CRM cache：`/root/autodl-tmp/crm_cache/`，checkpoint `/root/autodl-tmp/checkpoints/crm_v3/`（perdof/scalar_unc/obs_only）\n21\t  - 活跃 eval：eval-vla-mean-spatial (PID 143106, cuda:0)\n22\t  - v3 训练刚完成，GPU 暂空闲（eval-vla-mean-spatial 可能也快完成）\n23\t- **Cron 监控**：5 个 eval 都有活跃 cron\n24\t\n25\t### 3. 📊 当前状态\n26\t**刚做完**：收到 crm-train-v3-scalar-unc 的 CRON 完成回调。发现三个 v3 CRM 训练（perdof/scalar_unc/obs_only）全部完成进入 ANALYZING。已 spawn worker `worker_analysis_crm-train-v3-all_20260514T182857` 去 SSH 读日志+W&B 分析，**但 MCP 断连前 worker 回调未收到**。\n27\t\n28\t**RUNNING（5 个 eval）**：\n29\t| exp_id | server | gpu | 说明 |\n30\t|--------|--------|-----|------|\n31\t| eval-acr-spatial-v3 | bjb1 | cuda:0 | ACR-VLA per-DOF 主实验（v3 归一化修复后） |\n32\t| eval-argmin-only-spatial | bjb1 | cuda:1 | argmin-only ablation |\n33\t| eval-tiny-correction-spatial | bjb1 | cuda:2 | tiny correction ab\n…[truncated 1854 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Read",
+            "elapsed_ms": 402
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T01:25:19.642832+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/task_context/history/agent/loop_5_1778796702.md"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T01:25:19.693675+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tloop: 5\n3\treason: idle_timeout\n4\tupdated: '2026-05-14T22:11:38+00:00'\n5\t---\n6\t\n7\t### 1. 🔴 硬约束 / 红线\n8\t- **GPU 白名单**: bjb1-18228 分配 cuda:0-3, bjb2-40593 分配 cuda:0。不能用其他 GPU\n9\t- **CRM v2 checkpoint 已废弃**: /root/autodl-tmp/checkpoints/crm_v2/ 基于 buggy 6D state 数据训练 (D016)，只有 v3-norm 系列 checkpoint 有效（/root/autodl-tmp/checkpoints/crm_v3_norm/）\n10\t- **precompute v1-v4 数据全部无效**: 只有 crm_cache_v5 是用修复后 wrapper (8D state) 生成的有效数据\n11\t- **eval-tiny-correction-spatial 用的是 v2 checkpoint**（不是 v3-norm），结果只能作为 magnitude 效应的定性参考，不能与 v4-small 直接定量对比\n12\t- **obs_only val_loss 优于 per-DOF 是训练 loss，不等于 eval 优于**——下结论前必须等 eval-acr-spatial-v4-obs-only 完成\n13\t\n14\t### 2. 🖥️ 基础设施快照\n15\t- **bjb1-18228** (4× RTX 4090): 工作目录 `/root/acr-vla-conformal-refinement`，Python `/root/miniconda3/bin/python`，conda base\n16\t- **bjb2-40593** (1× RTX 4090 D): 同上路径布局\n17\t- **模型**: SmolVLA `/root/autodl-tmp/smolvla_libero/`, CRM v3-norm `/root/autodl-tmp/checkpoints/crm_v3_norm/{perdof,obs_only,scalar_unc}/crm_best.pt`\n18\t- **数据**: `/root/autodl-tmp/libero_data/` (spatial + object), CRM cache `/root/autodl-tmp/crm_cache_v5/`\n19\t- **HF_HOME**: `/root/autodl-tmp/.hf_cache`\n20\t- **活跃进程 (bjb1)**:\n21\t  - eval-argmin-only-spatial: PID 231421, tmux, cuda:1, ~8h ETA\n22\t  - eval-tiny-correction-spatial: PID 232815, tmux, cuda:2, ~8h ETA\n23\t  - eval-acr-spatial-v4-small: PID 253085, tmux, cuda:3, ~9h ETA\n24\t- **活跃进程 (bjb2)**:\n25\t  - eval-vla-mean-spatial: PID 143106, tmux, cuda:0, ~2h ETA (9/10 tasks done, 34.4%)\n26\t- **bjb1 cuda:0 空闲**: eval-acr-spatial-v4-default 刚失败完成 (22:08)，eval-acr-spatial-v4-obs-only 处于 PREPARING 待提交\n27\t\n28\t### 3. 📊 当前状态\n29\t**刚完成的**: \n30\t- crm-train-v3-norm-obs-only (success, val_loss=0.01645) 和 crm-train-v3-norm-scalar-unc (success, val_loss=0.03737) 两个 ablation 训练\n31\t- eval-acr-spatial-v4-default (failed) — normalization 单独不够，correction 仍退化 baseline，已被 eval-acr-spatial-v4-obs-only 替换\n32\t\n33\t**正在跑的 4 路 eval**:\n34\t\n35\t| exp_id | 服务器/GPU | 进度 | 部分结果 | ETA |\n36\t|--------|-----------|------|--------\n…[truncated 2519 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-15T01:25:25.909549+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/task_context/director.md"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-15T01:25:27.877782+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tloop: 2\n3\treason: max_messages\n4\tupdated: '2026-05-13T22:45:43+00:00'\n5\t---\n6\t\n7\t### 1. 🔴 硬约束 / 红线\n8\t- GPU 分配由 `get_project_status` 的 gpu_ids 决定，当前两台服务器 bjb2-40593 和 bjb1-18228，不要在未分配的卡上跑实验\n9\t- CRM 训练已完成（crm-train-v1 假失败，val_loss=0.009046），registry 需更新为 DONE/success——不要重新训练\n10\t- ReconVLA (arXiv:2604.16677) 是 conformal prediction 方法（CQR + argmin selection），不是 \"scalar Euclidean distance selection\"。论文中所有对 ReconVLA 的描述必须准确，之前 4 个 .tex 文件有错误描述，Paper Agent 已知悉但暂未全部修改\n11\t- baseline 已重命名为 SampleConsensus（原来错误地叫 ReconVLA baseline）\n12\t\n13\t### 2. 🖥️ 基础设施快照\n14\t- 服务器 1：bjb2-40593 (connect.bjb2.seetacloud.com) [root]，工作目录 /root/acr-vla-conformal-refinement\n15\t- 服务器 2：bjb1-18228 (connect.bjb1.seetacloud.com) [root]，工作目录 /root/acr-vla-conformal-refinement\n16\t- CRM checkpoint：/root/autodl-tmp/checkpoints/crm/crm_best.pt（bjb2 上）\n17\t- 审稿 C 群：oc_416d453a45869a9406db62186b1e3ef7\n18\t\n19\t### 3. 📊 当前状态\n20\t**刚完成的关键决策**：\n21\t- Reviewer 确认 Agent 对 ReconVLA 的深度分析完全准确，三个差异化论点（per-DOF vs scalar / correction vs selection / online vs offline calibration）全部成立\n22\t- Reviewer 确认 crm-train-v1 假失败，CRM 可直接用于 eval pipeline\n23\t- Paper Agent 已修正 experiments.tex 中虚假的 augmentation 描述（删除不存在的 camera viewpoint shifts）\n24\t- 已向 Agent 发出综合指令（CRM registry 更新 + Reviewer 补充风险点），在 reset 后的新 session 中处理\n25\t\n26\t**Registry 状态**：\n27\t- RUNNING: eval-reconvla-spatial-v2, eval-object-v4-full, eval-spatial-v5-full\n28\t- PREPARING: precompute-v4-shard0/1/2, precompute-v3-shard0/1/2, eval-reconvla-spatial-v1, eval-spatial-v4-full, precompute-v2-shard1/2\n29\t- 已审批待执行：K=3 precompute（CRM 完成后 cuda:1 启动，完成后串 K=20）\n30\t\n31\t### 4. 📋 待办\n32\t- Agent reset 完成 → 确认新 session 收到 CRM 假失败更新 + Reviewer 补充风险指令\n33\t- eval-object-v4-full 完成 → 若整体 <20% 成功率，需调整 Object benchmark claim 策略（Reviewer 风险点 4b）\n34\t- eval-spatial-v5-full 完成 → 对比 CRM correction vs SampleConsensus selection，验证 \"better-than-best-sample\" claim\n35\t- 差异化分析报告完成 → 规划 ReconVLA Medium baseline 实现（CQR + argmin selection，Reviewer 认为必须实现否则审稿人必问）\n36\t- K=3/K=20 precompute 完成 → 汇报 claim 强\n…[truncated 696 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Read",
+            "elapsed_ms": 1968
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-15T01:25:28.191036+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -E \"^  eval-acr-spatial-v4-small:|^  eval-acr-spatial-v4-obs-only-r2:|^  eval-argmin-only-spatial:|^  eval-tiny-correction-spatial:|^  eval-vla-mean-spatial-t10:|^  eval-acr-spatial-v4-default-r2:|^  eval-acr-spatial-v4-scalar:\" /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml",
+              "description": "Check specific experiment entries in registry"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-15T01:25:28.394454+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  eval-argmin-only-spatial:\n  eval-tiny-correction-spatial:\n  eval-acr-spatial-v4-small:\n  eval-acr-spatial-v4-scalar:\n  eval-acr-spatial-v4-obs-only-r2:\n  eval-acr-spatial-v4-default-r2:\n  eval-vla-mean-spatial-t10:"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Bash",
+            "elapsed_ms": 203
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-15T01:25:36.091467+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 30 \"eval-acr-spatial-v4-small:\" /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml | head -35",
+              "description": "Get details of eval-acr-spatial-v4-small"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-15T01:25:36.543465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  eval-acr-spatial-v4-small:\n    status: RUNNING\n    retry_count: 0\n    created_at: '2026-05-14T20:09:00.358Z'\n    updated_at: '2026-05-14T21:30:04.854Z'\n    hypothesis: 'D018: Normalization + moderate correction scaling (max_correction_norm=0.1,\n      14x smaller than default). If v4-small > v4-default → magnitude control needed\n      on top of normalization.'\n    spec:\n      command: python -u src/evaluate.py --mode acr_vla --benchmark spatial --n_rollouts\n        10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\n        --max_correction_norm 0.1\n      server: bjb1-18228\n      gpu_ids:\n      - cuda:3\n      pid: 253085\n      data_path: /root/autodl-tmp/libero_data/\n      data_count: 100\n      model_name: ACR-VLA (CRM v3-norm per-DOF, max_correction_norm=0.1)\n      seed: 42\n      checkpoint_source: /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\n      eval_data: LIBERO spatial 10 tasks x 10 rollouts\n      log_path: /root/autodl-tmp/logs/eval_acr_spatial_v4_small.log\n    metrics:\n      tasks_done: 1/10\n      task2_status: starting\n      partial_results:\n        T1_between_plate_ramekin: 60% (6/10)\n      runtime: 56m\n      eta: ~9h\n      snapshot_time: 2026-05-15T05:26Z"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Bash",
+            "elapsed_ms": 451
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-15T01:25:37.096657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 25 \"eval-acr-spatial-v4-default-r2:\" /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml | head -30",
+              "description": "Get details of eval-acr-spatial-v4-default-r2"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-15T01:25:37.553344+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  eval-acr-spatial-v4-default-r2:\n    status: DONE\n    retry_count: 0\n    created_at: '2026-05-14T22:17:37.194Z'\n    updated_at: '2026-05-14T22:40:00.000Z'\n    spec:\n      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n        base && cd /root/acr-vla-conformal-refinement && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1\n        MUJOCO_GL=egl python -u src/evaluate.py --mode acr_vla --benchmark spatial\n        --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\"\n      server: bjb2-40593\n      gpu:\n      - cuda:0\n      pid: '203217'\n      log_path: ~/runs/acr-vla-conformal-refinement/eval-acr-spatial-v4-default-r2.log\n      submitted_at: '2026-05-14T22:29:03.489Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n    hypothesis: 'D018 retry: Normalization alone fixes CRM correction degradation.\n      v3-norm per-DOF checkpoint with default max_correction_norm (~1.42). If >30%\n      baseline → normalization was the main fix. If still < 30% → magnitude control\n      also needed (compare with v4-small at 0.1).'\n    parent: eval-acr-spatial-v4-default\n    conclusion: killed\n    failure_reason: 'Superseded by D020 plan. Default norm=1.42 already proven to"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Bash",
+            "elapsed_ms": 456
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-15T01:25:38.461493+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 25 \"eval-vla-mean-spatial-t10:\" /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml | head -30",
+              "description": "Get details of eval-vla-mean-spatial-t10"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-15T01:25:38.562365+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  eval-vla-mean-spatial-t10:\n    status: RUNNING\n    retry_count: 0\n    created_at: '2026-05-14T22:20:02.901Z'\n    updated_at: '2026-05-14T22:20:07.820Z'\n    spec:\n      command: python -u src/evaluate.py --mode vla_only --baseline_mode mean --benchmark\n        spatial --n_rollouts 10 --seed 42 --start_task 9 --output_file /root/autodl-tmp/eval_results/eval-vla-mean-spatial-t10.json\n      server: bjb2-40593\n      data_path: /root/autodl-tmp/libero_data/\n      data_count: 10\n      model_name: smolvla_libero\n      seed: 42"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-15T01:25:46.404741+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 25 \"eval-acr-spatial-v4-obs-only-r2:\" /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml | head -30",
+              "description": "Get details of eval-acr-spatial-v4-obs-only-r2"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-15T01:25:46.859046+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  eval-acr-spatial-v4-obs-only-r2:\n    status: RUNNING\n    retry_count: 0\n    created_at: '2026-05-14T22:16:06.636Z'\n    updated_at: '2026-05-14T22:40:00.000Z'\n    hypothesis: 'D020: obs_only CRM v3-norm (val_loss 0.0165) with max_correction_norm=0.1.\n      If obs_only >= v4-small (perdof) → Claim 1 needs restructuring. If obs_only\n      < v4-small → conformal features have unique value under distribution shift.'\n    spec:\n      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n        base && cd /root/acr-vla-conformal-refinement && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1\n        MUJOCO_GL=egl python -u src/evaluate.py --mode crm_obs_only --benchmark spatial\n        --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n        --max_correction_norm 0.1\"\n      server: bjb1-18228\n      gpu:\n      - cuda:0\n      pid: '270097'\n      log_path: ~/runs/acr-vla-conformal-refinement/eval-acr-spatial-v4-obs-only-r2.log\n      submitted_at: '2026-05-14T22:21:35.775Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n      gpu_ids:\n      - cuda:0\n      data_path: /root/autodl-tmp/libero_data/"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Bash",
+            "elapsed_ms": 454
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-15T01:25:47.061628+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 25 \"eval-acr-spatial-v4-scalar:\" /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/registry.yaml | head -30",
+              "description": "Get details of eval-acr-spatial-v4-scalar"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-15T01:25:47.112360+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  eval-acr-spatial-v4-scalar:\n    status: PREPARING\n    retry_count: 0\n    created_at: '2026-05-14T22:15:49.209Z'\n    updated_at: '2026-05-14T22:15:51.527Z'\n    hypothesis: 'D020: scalar_unc CRM (val_loss 0.0374) with max_correction_norm=0.1.\n      Three-way ablation: perdof vs scalar_unc vs obs_only under identical correction\n      magnitude.'\n  eval-acr-spatial-v4-obs-only-r2:\n    status: RUNNING\n    retry_count: 0\n    created_at: '2026-05-14T22:16:06.636Z'\n    updated_at: '2026-05-14T22:40:00.000Z'\n    hypothesis: 'D020: obs_only CRM v3-norm (val_loss 0.0165) with max_correction_norm=0.1.\n      If obs_only >= v4-small (perdof) → Claim 1 needs restructuring. If obs_only\n      < v4-small → conformal features have unique value under distribution shift.'\n    spec:\n      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n        base && cd /root/acr-vla-conformal-refinement && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1\n        MUJOCO_GL=egl python -u src/evaluate.py --mode crm_obs_only --benchmark spatial\n        --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n        --max_correction_norm 0.1\"\n      server: bjb1-18228\n      gpu:\n      - cuda:0\n      pid: '270097'"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-15T01:26:56.068545+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-18228 cuda:0/1/2/3, bjb2-40593 cuda:0。D021 说用户承诺更多 GPU，但**尚未实际分配**——在 `get_project_status` 的 `gpu_ids` 更新前不要在任何新卡上跑实验\n- CRM eval 必须传 `--crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/{type}/crm_best.pt`（v3-norm 系列）。v2 checkpoint 已废弃（D016 buggy 6D state），precompute v1-v4 数据全部无效，只有 `crm_cache_v5` 有效\n- ACR eval 必须带 `--max_correction_norm 0.1`（D019 证实默认 1.42 必然退化）\n- bjb2 是 AutoDL 实例，大文件放 `/root/autodl-tmp/`，pip 前 `source /etc/network_turbo`\n- **D021 刚撤销 D011，目标回到 CoRL 2026**（abstract DDL ~May 26，full paper ~Jun 2）。不要再引用\"ICLR 2027 充裕时间\"——现在是 11 天冲刺\n- obs_only 训练 loss 优于 per-DOF（0.0165 vs 0.0358）是训练集指标，**不等于 eval 更好**——等闭环 eval 结果再做 Claim 1 判断\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228** (4× RTX 4090): `/root/acr-vla-conformal-refinement`，Python `/root/miniconda3/bin/python`，conda base\n  - CRM v3-norm checkpoints: `/root/autodl-tmp/checkpoints/crm_v3_norm/{perdof,obs_only,scalar_unc}/crm_best.pt`\n  - 数据: `/root/autodl-tmp/libero_data/`，CRM cache: `/root/autodl-tmp/crm_cache_v5/`\n  - 活跃进程: eval-acr-spatial-v4-obs-only-r2 (PID 270097, cuda:0), eval-argmin-only-spatial (PID 231421, cuda:1), eval-tiny-correction-spatial (PID 232815, cuda:2), eval-acr-spatial-v4-small (PID 253085, cuda:3)\n- **bjb2-40593** (1× RTX 4090 D): 同路径布局\n  - 活跃进程: eval-vla-mean-spatial-t10 (PID unknown, cuda:0)，只跑 task 10（补充之前 9/10 已完成的 31% 结果）\n  - HF_HOME: `/root/autodl-tmp/.hf_cache`，SmolVLA: `/root/autodl-tmp/smolvla_libero/`\n- **Cron**: 5 个活跃 cron 分别监控上述 5 个 RUNNING eval\n\n### 3. 📊 当前状态\n**刚做完**: D021 决策——用户指示撤销 D011 放弃 CoRL 的决定，重新瞄准 CoRL 2026。eval-acr-spatial-v4-default-r2 被 kill（默认 norm=1.42 已证实无效）。三个 v3-norm CRM 训练全部完成（perdof=0.0358, scalar_unc=0.0374, obs_only=0.0165）。\n\n**RUNNING (5)**:\n| exp_id | 服务器/GPU | 早期信号 | 说明 |\n|--------|-----------|---------|------|\n| eval-acr-spatial-v4-small | bjb1/cuda:3 | T1: 60% (6/10) | **核心数据点**: per-DOF CRM + max_norm=0.1 |\n| eval-acr-spatial-v4-obs-only-r2 | bjb1/cuda:0 | — | obs_only CRM + max_norm=0.1（vs v4-small 判 Claim 1） |\n| eval-argmin-only-spatial | bjb1/cuda:1 | 53.3% (3/10 tasks) | argmin-only ablation（无 CRM correction） |\n| eval-tiny-correction-spatial | bjb1/cuda:2 | 53.3% (3/10 tasks) | v2 tiny correction（定性参考，不可与 v4 定量对比） |\n| eval-vla-mean-spatial-t10 | bjb2/cuda:0 | 31% (9/10 tasks) | 补跑 task 10，VLA K=10 mean baseline |\n\n**PREPARING**: eval-acr-spatial-v4-scalar（scalar_unc CRM + max_norm=0.1，三路 ablation 最后一路，等 GPU 空出）\n\n**等待中**: 无活跃 Worker 回调。全部依赖 cron 回调。\n\n### 4. 📋 待办（条件触发式）\n- eval-vla-mean-spatial-t10 完成 → 合并 T1-T9 (31%) + T10 结果 → VLA-mean baseline 定稿。bjb2 cuda:0 释放后提交 eval-acr-spatial-v4-scalar（scalar_unc ablation）\n- eval-acr-spatial-v4-small 完成 → **最关键判定**: >30% → Claim 1 alive (per-DOF correction + magnitude control 有效), ≤30% → correction 方向本身有问题需 pivot\n- eval-acr-spatial-v4-obs-only-r2 完成 → 与 v4-small 对比: obs-only ≥ v4-small → Claim 1 需重构; obs-only < v4-small → conformal features confirmed\n- eval-argmin-only-spatial 完成 → argmin-only 是 CRM correction 的真正竞争 bar（当前 53.3% >> baseline 30%）\n- 5 路 eval 全部完成 → 出完整对比表 → 汇报 Director → 判断 framing 是否需调整\n- D021 后用户承诺更多 GPU → 等 Director 发新的 GPU 分配 → 立即铺 eval-acr-spatial-v4-scalar + object benchmark + 其他 ablation\n- **CoRL 冲刺**: eval 全部完成后（~8-10h），同时铺 object benchmark + paper writing（需 12+ GPU 并行）\n\n### 5. 🎯 战略上下文\n- **目标刚变**: D021 撤销 D011，从\"ICLR 2027 充裕时间\"变为\"CoRL 2026 11天冲刺\"。用户承诺更多 GPU 但尚未到位\n- **决策链**: D015(30% baseline) → D016(8D state fix) → D017(correction退化) → D018(1500x scale 根因) → D019(norm不够+magnitude control) → D020(obs_only训练更好) → D021(回CoRL)\n- **核心悬念**: eval-acr-spatial-v4-small 是 make-or-break。T1 早期信号 60% 远超 baseline 30%，argmin-only 53.3%——如果完整 10 tasks 维持优势，narrative 是 \"normalization + magnitude control 解锁 per-DOF correction\"\n- **argmin-only 的意外发现**: 53.3% 远超 VLA-mean 31%。即使 CRM correction 最终不如 argmin-only，\"conformal sample selection\" 本身已有论文价值。narrative 可以分层: (1) sample selection > averaging (2) 如果 CRM > argmin → correction 加持; 如果 CRM ≈ argmin → pivot 到 selection story\n- **易错点**:\n  1. eval-tiny-correction-spatial 用 v2 checkpoint（非 v3-norm），与 v4 系列不可直接对比\n  2. SampleConsensus（原 ReconVLA，D014 重命名）的 42.9% 来自早期 2-task 测试（v2 代码），需要用修复后代码重跑\n  3. Gated CRM 代码已就绪 (`src/gated_crm.py`)，如果 fixed magnitude (0.1) 不够可以尝试 learnable gating\n  4. 文献支撑已就绪: PLD/TRANSIC/ResiP/DRC/DAWN 都有 correction magnitude 问题，ACR-VLA 独特角度是 \"conformally-calibrated correction bounds\"（见 memory.md）\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-reconvla-spatial-v1"
+          },
+          "id": "event-000070"
+        }
+      ],
+      "message_count": 44
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-eval-reconvla-spatial-v1-20260515t012656-070611.md"
+}

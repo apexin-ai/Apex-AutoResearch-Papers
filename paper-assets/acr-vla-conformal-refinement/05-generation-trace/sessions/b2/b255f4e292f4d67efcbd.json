@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0",
+  "id": "b255f4e292f4d67efcbd",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "code optimize precompute",
+  "task_key": "worker_code_optimize-precompute_20260513T063657",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_optimize-precompute_20260513T063657.log",
+    "occurrence": 1,
+    "bytes": 2281889,
+    "sha256": "a03444ac4d2c9a2117366e45791dfb0505acee6a8797e44fbc86337ad4c85272"
+  },
+  "statistics": {
+    "messages": 1393,
+    "user_turns": 2,
+    "tool_calls": 598,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 3,
+      "assistant": 183,
+      "tool_call": 598,
+      "tool_result": 598,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 240,
+      "chunks": [
+        {
+          "path": "b255f4e292f4d67efcbd-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b255f4e292f4d67efcbd-part-0002.json",
+          "message_count": 60
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 796,
+      "chunks": [
+        {
+          "path": "b255f4e292f4d67efcbd-part-0002.json",
+          "message_count": 120
+        },
+        {
+          "path": "b255f4e292f4d67efcbd-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "b255f4e292f4d67efcbd-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "b255f4e292f4d67efcbd-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "b255f4e292f4d67efcbd-part-0006.json",
+          "message_count": 136
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 357,
+      "chunks": [
+        {
+          "path": "b255f4e292f4d67efcbd-part-0006.json",
+          "message_count": 44
+        },
+        {
+          "path": "b255f4e292f4d67efcbd-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "b255f4e292f4d67efcbd-part-0008.json",
+          "message_count": 133
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-optimize-precompute.md"
+}

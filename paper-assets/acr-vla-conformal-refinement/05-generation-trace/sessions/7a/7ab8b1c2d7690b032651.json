@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ab8b1c2d7690b032651",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis seed44 harvest pertask",
+  "task_key": "worker_analysis_seed44-harvest-pertask_20260516T152421",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_seed44-harvest-pertask_20260516T152421_result.json",
+    "occurrence": 1,
+    "bytes": 1245,
+    "sha256": "d46d7c1129a9bcbe5d7b63f3b3c40a9487c47a9fc0a831f1525adad38ac7318e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "argmin 仍在 orange_juice rollout 5/10，还需几分钟。\n\n## 结果汇总\n\n### seed44 obs_only ε=0.2 per-task (已完成，overall=16%)\n\n| Task | SR | Successes |\n|------|-----|-----------|\n| alphabet_soup | 0% | 0/10 |\n| cream_cheese | 10% | 1/10 |\n| salad_dressing | 20% | 2/10 |\n| bbq_sauce | 20% | 2/10 |\n| ketchup | 10% | 1/10 |\n| tomato_sauce | 10% | 1/10 |\n| butter | 20% | 2/10 |\n| milk | 10% | 1/10 |\n| chocolate_pudding | 30% | 3/10 |\n| orange_juice | 30% | 3/10 |\n\n### seed44 argmin (仍在运行，9/10 tasks done)\n\n已完成 task 的部分结果：\n\n| Task | SR | Successes |\n|------|-----|-----------|\n| alphabet_soup | 0% | 0/10 |\n| cream_cheese | 0% | 0/10 |\n| salad_dressing | 10% | 1/10 |\n| bbq_sauce | 20% | 2/10 |\n| ketchup | 10% | 1/10 |\n| tomato_sauce | 10% | 1/10 |\n| butter | 0% | 0/10 |\n| milk | 10% | 1/10 |\n| chocolate_pudding | **50%** | 5/10 |\n| orange_juice | *running* (1/5 at rollout 5) | - |\n\n前 9 个 task: 11/90 = 12.2%。预计 overall 在 11-15% 左右。\n\n**已完成：** obs_only artifact 已注册 (art_20260516_513b56)，registry metrics 已更新含 per_task_sr。argmin 预计几分钟内结束，结束后需要再次读取结果并注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-seed44-harvest-pertask.md"
+}

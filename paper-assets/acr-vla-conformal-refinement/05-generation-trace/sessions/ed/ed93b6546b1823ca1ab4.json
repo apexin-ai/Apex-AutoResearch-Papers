@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "ed93b6546b1823ca1ab4",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "audit stale running harvest",
+  "task_key": "worker_audit_stale-running-harvest_20260526T145318",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_audit_stale-running-harvest_20260526T145318.jsonl",
+    "occurrence": 1,
+    "bytes": 168,
+    "sha256": "878058bea1826200da396f5a7a5e4d1ca5033f41342fb3245873d9ac508efcc8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-26T14:53:25.839054+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_stale-running-harvest_20260526T145318"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/audit-stale-running-harvest.md"
+}

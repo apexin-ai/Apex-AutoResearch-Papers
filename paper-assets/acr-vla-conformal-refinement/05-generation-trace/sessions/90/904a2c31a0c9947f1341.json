@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "904a2c31a0c9947f1341",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "check pi05 eval progress",
+  "task_key": "worker_check_pi05-eval-progress_20260522T020935",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_pi05-eval-progress_20260522T020935_result.json",
+    "occurrence": 1,
+    "bytes": 1309,
+    "sha256": "95dd11bad576ca6e0bb78e1d20bac836258a207c48025b28a3e622a1cc3059d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 6 evals are **running**, on task 1/10. Progress is early (~5%).\n\n## 状态汇总\n\n### bjb1-32546 — Object (π0.5 CRM)\n\n| Seed | 当前 Task (1/10) | Rollout 进度 | Task 1 成功率 |\n|------|-----------------|-------------|--------------|\n| 42 | pick_up_alphabet_soup... | 10/20 | 10/10 (100%) |\n| 43 | pick_up_alphabet_soup... | 10/20 | 10/10 (100%) |\n| 44 | pick_up_alphabet_soup... | 10/20 | 9/10 (90%) |\n\n进程运行时间 ~1h05m，RSS ~3.5MB（wrapper进程）。\n\n### bjb2-28827 — Spatial (π0.5 CRM)\n\n| Seed | 当前 Task (1/10) | Rollout 进度 | Task 1 成功率 |\n|------|-----------------|-------------|--------------|\n| 42 | pick_up_black_bowl... | 10/20 | 8/10 (80%) |\n| 43 | pick_up_black_bowl... | 10/20 | 8/10 (80%) |\n| 44 | pick_up_black_bowl... | 10/20 | 9/10 (90%) |\n\n进程运行时间 ~53min，RSS ~3.5MB（wrapper进程）。\n\n### 进度估算\n\n- 每个 eval: 10 tasks × 20 rollouts = 200 rollouts total\n- 当前：~10/200 (**5%**)，已耗时 ~1h\n- 预计剩余：**~19h**（若线性外推，但后续 task 可能更快/更慢）\n- 配置：K=10, conformal_threshold=0.074855, max_steps=300\n\n### 异常\n\n无异常。所有 6 个进程正常运行，无 OOM/crash。日志中的 WARNING 是正常的 vision tower key 警告。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-pi05-eval-progress.md"
+}

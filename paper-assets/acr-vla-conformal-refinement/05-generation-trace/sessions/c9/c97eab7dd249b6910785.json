@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "c97eab7dd249b6910785",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "fix hdf5 repair and deploy all 20260521T135444 retry1",
+  "task_key": "worker_fix_hdf5-repair-and-deploy-all_20260521T135444_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_hdf5-repair-and-deploy-all_20260521T135444_retry1.log",
+    "occurrence": 1,
+    "bytes": 586698,
+    "sha256": "15e5bf8cc08c8ae95c9e8b7f696d3ffcfef90833c7383d0ec1dea7694e31b2bf"
+  },
+  "statistics": {
+    "messages": 347,
+    "user_turns": 0,
+    "tool_calls": 111,
+    "roles": {
+      "system": 25,
+      "record": 2,
+      "assistant": 91,
+      "tool_call": 111,
+      "tool_result": 111,
+      "result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 347,
+      "chunks": [
+        {
+          "path": "c97eab7dd249b6910785-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c97eab7dd249b6910785-part-0002.json",
+          "message_count": 167
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-hdf5-repair-and-deploy-all-20260521t135444-retry1.md"
+}

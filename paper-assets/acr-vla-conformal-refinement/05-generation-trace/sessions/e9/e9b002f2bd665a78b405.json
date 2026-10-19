@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9b002f2bd665a78b405",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy free gpu fill urgent r2",
+  "task_key": "worker_deploy_free-gpu-fill-urgent-r2_20260524T181910",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_free-gpu-fill-urgent-r2_20260524T181910_result.json",
+    "occurrence": 1,
+    "bytes": 1403,
+    "sha256": "d4769d1432ce8da68e1b29e72a8f81f6d4cec018b812cff6dfd25c0e47b2cb68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "9 个新会话全部创建成功。旧的非-v2 stale 会话存在但不占 GPU（之前检查时显存为 4 MiB），不干扰。等待 2 分钟后做最终 PID 验证。\n\n**当前部署进度（步骤 2A: π0.5 模型可用）**\n\n| # | Server | GPU | exp_id | PID | Mode | Benchmark | Seed |\n|---|--------|-----|--------|-----|------|-----------|------|\n| 1 | bjb1-32546 | cuda:0 | eval-pi05-vla-only-spatial-s42-v2 | 581363 | vla_only | spatial | 42 |\n| 2 | bjb1-32546 | cuda:2 | eval-pi05-vla-only-spatial-s43-v2 | 581958 | vla_only | spatial | 43 |\n| 3 | bjb1-32546 | cuda:3 | eval-pi05-vla-only-goal-s42-v2 | 582430 | vla_only | goal | 42 |\n| 4 | bjb1-32546 | cuda:4 | eval-pi05-vla-only-goal-s43-v2 | 583098 | vla_only | goal | 43 |\n| 5 | bjb1-32546 | cuda:5 | eval-pi05-vla-only-object-s42-v2 | 583769 | vla_only | object | 42 |\n| 6 | bjb2-28827 | cuda:0 | eval-pi05-vla-only-object-s43-v2 | 393309 | vla_only | object | 43 |\n| 7 | bjb2-28827 | cuda:1 | eval-pi05-reconvla-spatial-s42 | 395002 | reconvla | spatial | 42 |\n| 8 | bjb2-28827 | cuda:2 | eval-pi05-reconvla-goal-s42 | 393784 | reconvla | goal | 42 |\n| 9 | bjb2-28827 | cuda:3 | eval-pi05-reconvla-object-s42 | 394188 | reconvla | object | 42 |\n\ncuda:1（PID 395002）首次提交因 stale tmux 会话冲突，已 kill 旧会话并重新提交成功。已安排 ~2 分钟后回来做 PID 健康检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-free-gpu-fill-urgent-r2.md"
+}

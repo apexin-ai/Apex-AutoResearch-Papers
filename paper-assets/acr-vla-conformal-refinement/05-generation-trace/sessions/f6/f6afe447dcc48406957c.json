@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6afe447dcc48406957c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "fix checkpoint path and deploy prep",
+  "task_key": "worker_fix_checkpoint-path-and-deploy-prep_20260523T010352",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_checkpoint-path-and-deploy-prep_20260523T010352_result.json",
+    "occurrence": 1,
+    "bytes": 1139,
+    "sha256": "efa0112e5448495f6f249a9fdab29790a28652e117b404101288b2c8a8292b02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 产出汇总\n\n### 1. evaluate.py 路径修复\n- **bjb1-32546**: 第533行 `crm_v3_norm/obs_only/crm_best.pt` → `crm_smolvla_3suite_v1/crm_best.pt`，语法验证通过\n- **bjb2-40593**: 第536行同样修复完成（注：bjb2-28827 主机名已失效，改为直接在 bjb2-40593 上 sed 修复）\n\n### 2. 本地部署脚本更新\n- **deploy_3dir_spatial_seed42.md**: nohup → tmux + PIPESTATUS 防护，服务器引用更新为 bjb2-40593\n- **deploy_adaptive_k_eval.sh**: CRM_CKPT 从 `crm_v3_norm/obs_only/crm_best.pt` → `crm_smolvla_3suite_v1/crm_best.pt`\n\n### 3. GPU 状态\n\n**bjb1-32546** — 正在跑 CRM eval（全部已用新 checkpoint）：\n| GPU | 利用率 | 显存 | 任务 |\n|-----|--------|------|------|\n| 0 | 34% | 3132 MiB | CRM spatial seed42 |\n| 1 | 34% | 3132 MiB | CRM spatial seed43 |\n| 2 | 34% | 3132 MiB | CRM spatial seed44 |\n| 3 | 10% | 542 MiB | pi05 eval session (待机/排队) |\n| 4 | 33% | 3351 MiB | CRM goal seed42 |\n| 5 | 30% | 2900 MiB | CRM goal seed43 |\n\n**bjb2-40593** — 全部空闲：GPU 0 利用率 0%，无 evaluate.py 进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-checkpoint-path-and-deploy-prep.md"
+}

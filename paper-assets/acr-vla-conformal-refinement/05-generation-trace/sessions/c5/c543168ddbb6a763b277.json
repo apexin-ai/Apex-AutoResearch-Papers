@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c543168ddbb6a763b277",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis eval crm object k20 seed42",
+  "task_key": "worker_analysis_eval-crm-object-k20-seed42_20260520T103217",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval-crm-object-k20-seed42_20260520T103217_result.json",
+    "occurrence": 1,
+    "bytes": 853,
+    "sha256": "b97b6b617b01237dfdba0e165f38ef4f22c12591dc3042ef4d9b4ec3d82b6f4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果汇总：\n\n```\nSR: 20.0% (20/100)\nPer-task SRs:\n  alphabet_soup:       0.0%\n  cream_cheese:       10.0%\n  salad_dressing:     30.0%\n  bbq_sauce:          40.0%\n  ketchup:            10.0%\n  tomato_sauce:       10.0%\n  butter:             10.0%\n  milk:               10.0%\n  chocolate_pudding:  50.0%\n  orange_juice:       30.0%\n\nvs K=10 (16.8%): +3.2pp\nvs VLA-only (10.9%): +9.1pp\nConclusion: success\n理由: K=20 (20.0%) 相比 K=10 (16.8%±1.8%) 仅提升 +3.2pp，而计算量翻倍。\nK=1→K=10 的增益远大于 K=10→K=20 的边际增益，呈现明显的收益递减。\n这支持 K=10 是 compute-efficient 的选择点——花 2x 推理成本仅换来约 3pp 的提升，\n性价比不高。单 seed 结果（20.0%）落在 K=10 分布的 ~1.8σ 处，差异不算显著。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-crm-object-k20-seed42.md"
+}

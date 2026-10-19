@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bda35144b90472186eff",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze bjb1 32546 batch",
+  "task_key": "worker_analyze_bjb1-32546-batch_20260520T121707",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_bjb1-32546-batch_20260520T121707_result.json",
+    "occurrence": 1,
+    "bytes": 1053,
+    "sha256": "ad0d1a7c264cc8ab348f1156e1417d0617a38cd2e463f078b4aae9f6d1b09cb6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## eval-obs-only-goal-norm02-seed52\n\n- **exp_id**: eval-obs-only-goal-norm02-seed52\n- **success_rate**: **0.68** (68/100)\n- **正常完成**: 是 (EXIT_CODE=0)\n- **log_path**: `/root/runs/acr-vla-conformal-refinement/eval-obs-only-goal-norm02-seed52.log`\n- **json_path**: `/root/acr-vla-conformal-refinement/logs/eval_obs_only_goal_norm02_seed52.json`\n\n**per_task**:\n\n| Task | Success Rate | Successes/Total |\n|------|-------------|-----------------|\n| turn_on_the_stove | 100% | 10/10 |\n| put_the_bowl_on_the_plate | 100% | 10/10 |\n| put_the_bowl_on_the_stove | 90% | 9/10 |\n| put_the_bowl_on_top_of_the_cabinet | 80% | 8/10 |\n| push_the_plate_to_the_front_of_the_stove | 80% | 8/10 |\n| open_the_middle_drawer_of_the_cabinet | 70% | 7/10 |\n| put_the_wine_bottle_on_the_rack | 50% | 5/10 |\n| put_the_wine_bottle_on_top_of_the_cabinet | 40% | 4/10 |\n| put_the_cream_cheese_in_the_bowl | 40% | 4/10 |\n| open_the_top_drawer_and_put_the_bowl_inside | 30% | 3/10 |\n\n68% 在预期的 63-73% 范围内。无错误信息。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-bjb1-32546-batch-copy-2.md"
+}

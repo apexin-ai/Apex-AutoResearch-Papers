@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be6e45ae34ae6153a54c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose pi05 crm k2 long s42 backfill",
+  "task_key": "worker_diagnose_pi05-crm-k2-long-s42-backfill_20260528T112923",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_pi05-crm-k2-long-s42-backfill_20260528T112923_result.json",
+    "occurrence": 1,
+    "bytes": 509,
+    "sha256": "a1f4e492fbb03734e512033f3de00b6ee3ae27576a075d76444c03946f16dd8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根因**：两个实验提交命令缺少 `--obs_dim 2048 --unified_obs_dim 2088`，导致 CRM 模型构造时 input_dim=990，与 checkpoint 的 input_dim=2118 不匹配（`RuntimeError: size mismatch`）。\n\n**证据**：同一 checkpoint 在 spatial benchmark 上的成功实验（如 `pi05-crm-k2-spatial-s42-bjb2-r2`）均传了 `--obs_dim 2048 --unified_obs_dim 2088`。\n\n**修复**：在命令中补上这两个参数后重新提交即可，不需要修代码。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-pi05-crm-k2-long-s42-backfill.md"
+}

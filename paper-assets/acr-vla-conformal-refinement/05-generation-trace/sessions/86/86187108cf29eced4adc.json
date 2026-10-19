@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86187108cf29eced4adc",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy smolvla baseline v3 spatial goal",
+  "task_key": "worker_deploy_smolvla-baseline-v3-spatial-goal_20260522T204846",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_smolvla-baseline-v3-spatial-goal_20260522T204846_result.json",
+    "occurrence": 1,
+    "bytes": 768,
+    "sha256": "9eac16df3aff25f1a4311895111972e574c7efad83ebc7ae8e99cd7b4e1c4917"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成，总结：\n\n**Registry 更新：**\n- `eval-smolvla-lerobot-object-seed43-v2` → DONE (SR=66.5%)\n- `eval-smolvla-lerobot-object-seed44-v2` → DONE (SR=65.0%)\n- `eval-smolvla-lerobot-spatial-seed43-v2` → DONE/failed (killed on bjb1-18228)\n- `eval-smolvla-lerobot-goal-seed43-v2` → DONE/failed (killed on bjb1-18228)\n\n**已部署 (bjb1-32546)：**\n- cuda:2 — `eval-smolvla-lerobot-spatial-seed43-v3` (RUNNING, 13GB VRAM)\n- cuda:4 — `eval-smolvla-lerobot-goal-seed43-v3` (RUNNING, 10GB VRAM)\n\n**待部署：**\n- `goal_seed44` — 等 goal_seed43 完成后在 cuda:4 串行跑（已写入 cron 自动部署）\n\n**监控：** 每 8 分钟 cron 检查日志，完成后自动更新 registry 并串行部署 goal_seed44。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-smolvla-baseline-v3-spatial-goal.md"
+}

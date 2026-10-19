@@ -1,0 +1,681 @@
+{
+  "schema_version": "1.0",
+  "id": "7e5dd7ba4bf7d68f312d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "research reconvla deep read",
+  "task_key": "worker_research_reconvla-deep-read_20260513T222507",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_research_reconvla-deep-read_20260513T222507.jsonl",
+    "occurrence": 1,
+    "bytes": 39469,
+    "sha256": "09e25090d632565ebc06c11118baf17201ff783f82293b03a1dbac7743fdbf03"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 0,
+    "tool_calls": 16,
+    "roles": {
+      "tool_call": 16,
+      "tool_result": 16,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-13T22:29:06.136349+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch,WebFetch",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-13T22:29:06.136674+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-13T22:29:06.136852+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ReconVLA arXiv 2604.16677 conformal prediction VLA"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-13T22:29:06.136983+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2604.16677",
+              "prompt": "Extract the full abstract, author list, title, and any method description visible on this page. I need to understand: what is the conformal prediction method used, what is the nonconformity score, how is calibration done, what benchmarks are used, and what is the output (prediction set, corrected action, abstain decision, etc.)"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-13T22:29:06.137141+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ReconVLA arXiv 2604.16677 conformal prediction VLA\"\n\nLinks: [{\"title\":\"ReconVLA: An Uncertainty-Guided and Failure-Aware Vision-Language-Action Framework for Robotic Control\",\"url\":\"https://arxiv.org/html/2604.16677v1\"},{\"title\":\"ReconVLA: Reconstructive Vision-Language-Action Model as Effective Robot Perceiver\",\"url\":\"https://arxiv.org/html/2508.10333v1\"},{\"title\":\"[2604.08885] Uncertainty-Aware Transformers: Conformal Prediction for Language Models\",\"url\":\"https://arxiv.org/abs/2604.08885\"},{\"title\":\"Adaptive Conformal Prediction for Improving Factuality of Generations by Large Language Models\",\"url\":\"https://arxiv.org/html/2604.13991\"},{\"title\":\"[2508.10333] ReconVLA: Reconstructive Vision-Language-Action Model as Effective Robot Perceiver\",\"url\":\"https://arxiv.org/abs/2508.10333\"},{\"title\":\"[2604.21595] A Kernel Nonconformity Score for Multivariate Conformal Prediction\",\"url\":\"https://arxiv.org/abs/2604.21595\"},{\"title\":\"[2107.07511] A Gentle Introduction to Conformal Prediction and Distribution-Free Uncertainty Quantification\",\"url\":\"https://arxiv.org/abs/2107.07511\"},{\"title\":\"[2604.16217] Beyond Surface Statistics: Robust Conformal Prediction for LLMs via Internal Representations\",\"url\":\"https://arxiv.org/abs/2604.16217\"},{\"title\":\"[2507.02496] Online Conformal Prediction with Efficiency Guarantees\",\"url\":\"https://arxiv.org/abs/2507.02496\"},{\"title\":\"[2604.27149] ConformaDecompose: Explaining Uncertainty via Calibration Localization\",\"url\":\"https://arxiv.org/abs/2604.27149\"}]\n\nBased on the search results, I found the paper you're looking for. Here's what I found about ReconVLA arXiv 2604.16677:\n\n## ReconVLA: An Uncertainty-Guided and Failure-Aware Vision-Language-Action Framework\n\nReconVLA is a reliable conformal model that produces uncertainty-guided and failure-aware control signals. The approach applies conformal prediction directly to the action token outputs of pretrained VLA policies, yielding calibrated uncertainty estima\n…[truncated 1206 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-13T22:29:06.137332+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ReconVLA Paper Analysis\n\n## Title & Authors\n**Title:** \"ReconVLA: An Uncertainty-Guided and Failure-Aware Vision-Language-Action Framework for Robotic Control\"\n\n**Authors:** Lingling Chen, Zongyao Lyu, William J. Beksi\n\n## Abstract Summary\nThe paper addresses VLA (Vision-Language-Action) models' lack of confidence calibration by introducing ReconVLA, which \"applies conformal prediction directly to the action token outputs of pretrained VLA policies, yielding calibrated uncertainty estimates that correlate with execution quality and task success.\"\n\n## Key Information Available on This Page\n\n**Conformal Prediction Method:**\nThe approach applies conformal prediction to action token outputs without retraining the underlying VLA model.\n\n**State-Space Extension:**\nThe method extends conformal prediction \"to the robot state space to detect outliers or unsafe states before failures occur, providing a simple yet effective failure detection mechanism.\"\n\n**Evaluation Context:**\nTesting occurred \"in both simulation and real robot experiments across diverse manipulation tasks.\"\n\n**Claimed Benefits:**\nResults demonstrate improved \"failure anticipation, reduce catastrophic errors, and provide a calibrated measure of confidence.\"\n\n## Limitations of Available Information\nThis arXiv abstract page does not provide specific details about:\n- The exact nonconformity score formula\n- Calibration procedures\n- Specific benchmark names/datasets\n- Output format (prediction sets, abstention thresholds, etc.)\n\nThese technical details would require accessing the full PDF or HTML version of the paper."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-13T22:29:06.137536+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/html/2604.16677v1",
+              "prompt": "Extract the FULL detailed methodology section. I need to understand:\n1. What is CQR (Conformal Quantile Regression) method specifically - how do they compute the nonconformity score? Is it per-action-dimension or scalar?\n2. How is the calibration set constructed? Offline split? Online?\n3. What is the exact output - prediction intervals per action dimension? A single scalar uncertainty? Binary execute/abstain?\n4. How do they use uncertainty for control - do they correct actions? abstain? replan?\n5. What is the state-space failure detection method?\n6. What VLA backbone do they use (OpenVLA, pi0, etc.)?\n7. What benchmarks/environments (LIBERO, SimplerEnv, real robot)?\n8. What baselines do they compare against?\n9. Key results/numbers - success rates, coverage guarantees\n10. Any mention of per-DOF or dimension-wise analysis vs scalar uncertainty?"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-13T22:29:06.137710+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ReconVLA Methodology: Detailed Extraction\n\n## 1. CQR (Conformal Quantile Regression) Method\n\n**Nonconformity Score Computation:**\nThe method computes a scalar Euclidean distance error metric rather than per-dimension scoring:\n\n> \"da=‖𝒂^−𝒂gt‖2\"\n\nThis measures overall execution discrepancy. The quantile regression model learns to predict the τ-quantile (e.g., τ=0.9) of this error distribution conditioned on the policy's latent action embedding and predicted action pair.\n\n**Key Formula (Conformity Score):**\n> \"Sj=da(j)−d^a(τ)(xj)\"\n\nThis represents how well the predicted quantile covers actual error.\n\n## 2. Calibration Set Construction\n\n**Offline split methodology:** A holdout subset of the training dataset serves as the calibration set. The conformal offset is computed as:\n\n> \"qτ=Quantileα({Sj})\"\n\nwhere α is the miscoverage rate (e.g., 0.1 for 90% confidence). This is done entirely offline before deployment.\n\n## 3. Exact Output Format\n\n**Single scalar uncertainty per action:** Rather than per-dimension intervals, the framework produces one calibrated bound:\n\n> \"d̃a,i(τ)=d̂a,i(τ)+qτ\"\n\nThis represents a high-confidence upper bound on deviation between generated and expert actions—larger values indicate lower reliability.\n\n## 4. Uncertainty-to-Control Pipeline\n\n**Action selection mechanism (not correction/abstention):** The robot generates K=10 candidate actions via different noise seeds and selects the minimum-uncertainty option:\n\n> \"â*=âk, k=argmini(d̃a,i(τ))\"\n\nNo action correction or replanning occurs; instead, the worst candidates are filtered out before execution.\n\n## 5. State-Space Failure Detection\n\n**Mahalanobis Distance (SMD) approach:**\nModels the safe-state distribution using expert demonstration states, computing:\n\n> \"DM(𝒔)=√[(𝒔−μ)ᵀΣ⁻¹(𝒔−μ)]\"\n\nAt runtime, if DM(st)>ts^calib (threshold set at 99th percentile of calibration states), execution halts. This detects when the robot's internal state representation drifts beyond the training manifold.\n\n## 6. VLA Back\n…[truncated 1704 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-13T22:29:06.137898+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-13T22:29:06.138030+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-13T22:29:06.138147+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "ARCHITECTURE.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-13T22:29:06.138281+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No ARCHITECTURE.md found for 'acr-vla-conformal-refinement'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-13T22:29:06.138413+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "ideas.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-13T22:29:06.138529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No ideas.md found for 'acr-vla-conformal-refinement'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-13T22:29:06.138637+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "paper_framing.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-13T22:29:06.138793+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — acr-vla-conformal-refinement\\\\n\\\\n## Target Venue\\\\n- **Primary: ICLR 2027** (expected deadline ~Sep-Oct 2026) — 充足时间\\\\n- ~~CoRL 2026~~ — 已放弃 (D011: GPU 未扩容 + 时间不足)\\\\n\\\\n## Core Insight\\\\nPer-DOF conformal statistics from multivariate CP on flow-matching VLA samples encode \\\\\\\"which action dimensions are uncertain and how they co-vary\\\\\\\" — fundamentally richer information than scalar uncertainty scores. A lightweight learned module conditioned on these structured features can perform dimension-selective action correction: aggressively correcting high-uncertainty DOFs while preserving confident predictions elsewhere.\\\\n\\\\n## Core Claims (3 条，均可证伪)\\\\n1. **Per-DOF conformal features enable dimension-selective correction**: CGS 提取的 40D 结构化 uncertainty 特征（per-DOF std + conformal radius + ellipsoid volume，action_dim=6, H_eff=5）比标量 uncertainty（ReconVLA 的 Euclidean distance）和无 uncertainty conditioning 的残差策略（A2C2 类）提供显著更好的 action correction。\\\\n   - 验证: MVP (✅ done) + A3 ablation (make-or-break) + A4 ablation + feature importance analysis\\\\n   - Kill criterion: A3 (CRM without conformal features) 与 full ACR-VLA 差距 <2% → claim 不成立\\\\n\\\\n2. **ACI+COC 在分布偏移下维持 calibrated uncertainty，无需外部监督**: Chunk Overlap Consistency 提供自参考覆盖信号，ACI 在线更新 conformal threshold，在任意分布偏移下维持长期平均覆盖保证。\\\\n   - 验证: COC-success Spearman ρ + ACI 收敛 + ellipsoid volume vs static\\\\n   - Kill criterion: Spearman ρ < 0.3 AND ellipsoid volume 无 >10% 收窄 → fallback to episode-level ACI\\\\n\\\\n3. **ACR-VLA 与 training-time 方法正交互补**: 作为 inference-time 模块可叠加在 SRPO (82.1% LIBERO-Plus SOTA) 上进一步提升。\\\\n   - 验证: ACR-VLA + SRPO > SRPO alone\\\\n   - Kill criterion: stacking gain < 2% → claim 降级为\\\\\\\"complementary in principle\\\\\\\"\\\\n\\\\n## Story Spine\\\\n- **Problem**: Flow-matching VLAs 在标准 benchmark 上接近饱和(97-99%)，但 LIBERO-Plus 暴露了分布偏移下的灾难性鲁棒性缺\n…[truncated 2134 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-13T22:29:06.138959+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "ROADMAP.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-13T22:29:06.139116+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\\\", \\\"content\\\": \\\"# acr-vla-conformal-refinement — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-13 19:10 UTC | 更新原因: D014: wrapper+evaluate.py 部署到服务器，v4 实验已启动\\\\n\\\\n## 核心方向\\\\nPer-DOF conformal statistics from multivariate CP on flow-matching VLA samples enable dimension-selective action correction. 详见 paper_framing.md。\\\\n\\\\n## 投稿目标\\\\n**ICLR 2027**（预计 DDL Sep-Oct 2026）。CoRL 2026 已放弃（D011）。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Phase 1 — Eval + Precompute（修复版代码已部署验证）\\\\n- **MVP**: PASS（plan_000, per-DOF > scalar > none 确认）\\\\n- **D014**: wrapper+evaluate.py 修复版已部署到 bjb1-18228，grep 验证通过，v4 实验已启动\\\\n- **Wrapper 重构**: 完成，281 行，对齐 lerobot SmolVLAPolicy（flip+resize_with_pad+normalize[-1,1]+8D state+MEAN_STD+unnormalize）\\\\n- **Paper**: references.bib (31 entries) + related_work.tex (870 words) 已完成\\\\n\\\\n## 近期任务\\\\n- [x] ~~诊断 smolvla_libero 0% 根因~~ → 7 个 wrapper bug\\\\n- [x] ~~部分修复 + re-eval~~ → 55.6% 但不可靠（D013）\\\\n- [x] ~~Kill ghost 进程~~ → 多次清理完成\\\\n- [x] ~~Wrapper 重构~~ → 对齐 lerobot SmolVLAPolicy，Phase 4 验证 33%/67%\\\\n- [x] ~~部署修复版代码到服务器~~ → D014 wrapper+evaluate.py 部署验证通过\\\\n- [x] ~~Paper: bibliography + Related Work~~ → 完成\\\\n- [ ] **eval-spatial-v4-full** 运行中（cuda:0, PID 69379, ~2h）\\\\n- [ ] **precompute-v4-shard0/1/2** 运行中（cuda:1/2/3, ~35min）\\\\n- [ ] Precompute 完成后验证 cache 数据 + CRM 训练\\\\n- [ ] Full eval 完成后确认 SFT gate\\\\n- [ ] autodl-4090 部署 + object eval\\\\n\\\\n## SFT Gate（待重新评估）\\\\nD014: wrapper+evaluate.py 修复版已部署。等 eval-spatial-v4-full 结果（10 tasks × 10 rollouts）。\\\\n- ≥80% → 按计划推进\\\\n- 50-80% → 可继续，调低期望\\\\n- <30% → 换模型\\\\n\\\\n## GPU 预算\\\\n- autodl-4090x4 (bjb1-18228): 4× RTX 4090 → eval-spatial-v4(cuda:0) + precompute-v4(cuda:1/2/3)\\\\n- autodl-4090 (bjb2-40593): 1× RTX 4090 D → 代码部署中，待启动 object eval\\\\n- 总预算 ~200 GPU·h, 已用 ~25h, 剩余 ~175h\\\\n\\\\n## 关键路径\\\\n~~Wrapper 重构~~ → **Eval v4 (~2h)** + **Precompute v4 (~35min)** → CRM 训练 (4-6h) → ACR-VLA Eval (8-10h)\\\\nplan_\n…[truncated 1187 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-13T22:29:06.139285+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "memory.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-13T22:29:06.139452+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\\\", \\\"content\\\": \\\"# Memory — acr-vla-conformal-refinement\\\\n\\\\n## SmolVLA Wrapper 正确预处理规范（2026-05-13 16:00，7 个 bug 修复后验证通过）\\\\n\\\\n### 教训\\\\n初次 eval 0% 成功率，**7 个 wrapper bug 全部是预处理/后处理不匹配**。必须完全对齐 lerobot 官方推理管线。\\\\n\\\\n### 正确预处理（已验证 55.6% success）\\\\n| 步骤 | 正确做法 | 之前的 bug |\\\\n|------|----------|-----------|\\\\n| 图像翻转 | `torch.flip(dims=[2,3])` 翻转 H+W | 无翻转 |\\\\n| 图像尺寸 | `resize_with_pad(512, 512)` | `Resize(256,256)` |\\\\n| 图像值域 | `img * 2.0 - 1.0` → [-1,1] | `ToTensor()` → [0,1] |\\\\n| State 维度 | **8D**: eef_pos(3) + eef_axisangle(3) + gripper_qpos(2) | 6D（缺 gripper） |\\\\n| State 归一化 | `(s - mean) / (std + ε)` MEAN_STD | 原始值直接传入 |\\\\n| Action 反归一化 | `a * std + mean` MEAN_STD | 模型原始输出 |\\\\n| Camera names | env_args 指定 `[\\\\\\\"agentview\\\\\\\", \\\\\\\"robot0_eye_in_hand\\\\\\\"]` | 只有 agentview |\\\\n\\\\n### Normalizer 文件\\\\n- State: `policy_preprocessor_step_5_normalizer_processor.safetensors` (8D mean/std)\\\\n- Action: `policy_postprocessor_step_0_unnormalizer_processor.safetensors` (7D mean/std)\\\\n- 路径: 模型目录下\\\\n\\\\n### ⚠️ Precompute 数据需重做\\\\n之前 3-shard precompute（spatial + object）用的是 buggy wrapper → K-samples 和 obs_features 全部错误。**必须用修复后的 wrapper 重新 precompute 才能训练 CRM。**\\\\n\\\\n## smolvla_libero checkpoint 信息\\\\n\\\\n- `lerobot/smolvla_libero`：25K 步全参数微调 on libero_spatial, action_dim=7\\\\n- 验证结果：spatial 前 3 tasks **55.6% (5/9)** with K=1\\\\n- smolvla_base (6D, 无 gripper) 只是预训练基座，不能直接用于 LIBERO\\\\n- 需要同时下载 VLM backbone `SmolVLM2-500M-Video-Instruct` 到本地\\\\n\\\\n## 评估崩溃根因（2026-05-13 11:00）\\\\n\\\\n- **根因：HuggingFace AutoProcessor.from_pretrained 联网失败**（AutoDL 网络不通）\\\\n- `tee` 掩盖退出码 → 看似\\\\\\\"无声崩溃\\\\\\\"\\\\n- **修复**：HF_HUB_OFFLINE=1 + TRANSFORMERS_OFFLINE=1 + try/except + SIGSEGV handler\\\\n\\\\n## MVP 实验关键洞察 (2026-05-13)\\\\n\\\\n### Per-DOF vs 标量 uncertainty\\\\n- Per-DOF (B) 在所有轴上都优于标量 (A)，说明 per-DOF 特征的价值是\\\\\\\"信息增益\\\\\\\"而非仅\\\\\\\"选择性校正\\\\\\\"\\\\n- 即使 1.5:1 低各向异性比率，per-DOF 仍显著优于标量\\\\n- K\n…[truncated 758 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-13T22:29:06.139629+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/html/2604.16677v1",
+              "prompt": "Extract details about:\n1. The exact training of the CQR model - what inputs does it take? Is it a neural network? How is it trained?\n2. How many candidate actions K do they sample? What is the denoising process?\n3. Do they have any per-dimension analysis or ablation?\n4. What is the relationship between CQR uncertainty and action correction - do they ever MODIFY actions, or only SELECT among candidates?\n5. The exact formula for conformal calibration - split conformal or ACI?\n6. Any limitations section - what do they say they DON'T do?\n7. Is there code available?\n8. What are the LIBERO-Object specific task success rates?"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-13T22:29:06.139796+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ReconVLA Technical Details\n\n## 1. CQR Model Training\n\nThe CQR model is a **neural network regressor** that:\n- **Inputs**: Concatenation of action-level embedding (L-dimensional vector) and predicted action vector\n- **Training objective**: Pinball loss (Eq. 3) to predict τ-quantile of action error distribution\n- **Target variable**: Euclidean distance between predicted and expert actions: `‖â−aᵍᵗ‖₂`\n- **Architecture details**: Not explicitly specified; described as learning \"fτ(za, â)\" mapping\n\nThe model is trained on dataset **Dτ** collected from 20 different random seed scenarios of π₀ policy on LIBERO training tasks.\n\n## 2. Candidate Action Sampling\n\n**K = 10 candidate actions** are sampled per timestep. The document states:\n> \"for each observation oₜ, we sampled K=10 different noise seeds to generate a set of candidate actions\"\n\nFor π₀ (flow-matching policy), actions are generated by \"integrating a learned flow-matching velocity field conditioned on an initial noise sample ϵ∼𝒩(0,I).\"\n\nNo explicit denoising process details provided beyond this conditioning mechanism.\n\n## 3. Per-Dimension Analysis\n\n**No per-dimension ablation** is provided. The approach treats the 7-dimensional action δ𝐚=[Δx, Δy, Δz, Δθₓ, Δθᵧ, Δθᵧ, grip] as a unified vector using L₂ distance.\n\nThree uncertainty score designs are compared (Table I): PIW-CQR, COS-CQR, and **DIS-CQR** (selected as best performer with ρ=−0.781).\n\n## 4. Action Modification vs. Selection\n\n**Selection only—no modification**. The framework:\n> \"select[s] the action with the lowest calibrated uncertainty for execution\"\n\nActions are never corrected or interpolated; only the lowest-uncertainty candidate from K samples is executed via Eq. 10:\n> \"𝐚̂*=𝐚̂ₖ, k=argminᵢ(d̃ₐ,ᵢ⁽τ⁾)\"\n\n## 5. Conformal Calibration Formula\n\n**Split conformal approach** using holdout calibration set:\n\n- Step 1: Train QR model fτ(x) via pinball loss\n- Step 2: Compute conformity scores on calibration set: `Sⱼ = dₐ⁽ʲ⁾ − d̂ₐ⁽τ⁾(xⱼ)`\n- Step 3: Offset: `qτ = Qu\n…[truncated 1120 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-13T22:29:06.139996+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/",
+              "description": "List artifacts directory"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-13T22:29:06.140208+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "_project\ndream_reports\neval-reconvla-spatial-v1-diag.md\nlerobot-pipeline-alignment.md\nlibero-smolvla-env-report.md\nmanifest.yaml\nmethod_section_draft.tex\nmvp-point-reaching\npipeline-dimension-verification.md\nprecompute-k5\nprecompute-k5-analysis.md\nsmolvla-libero-finetune-survey.md\nsmolvla_wrapper_fixed.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-13T22:29:06.140407+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/reconvla-comparison-report.md",
+              "content": "# ReconVLA vs ACR-VLA: 深度对比分析报告\n\n> 基于 arXiv 2604.16677 全文阅读 | 2026-05-13\n\n## 1. ReconVLA 论文概要\n\n**标题**: ReconVLA: An Uncertainty-Guided and Failure-Aware Vision-Language-Action Framework for Robotic Control  \n**作者**: Lingling Chen, Zongyao Lyu, William J. Beksi  \n**机构**: Robotic Vision Laboratory (推断 UT Arlington)  \n**代码**: https://robotic-vision-lab.github.io/reconvla  \n**许可**: CC BY 4.0\n\n### 核心方法\n\nReconVLA 在预训练 VLA（π₀ 和 OpenVLA-OFT）之上，**不修改原模型参数**，增加两个模块：\n\n1. **CQR Action Uncertainty**：训练一个神经网络 $f_\\tau(z_a, \\hat{a})$，输入 action embedding + predicted action，输出 **标量 Euclidean distance** $\\|\\hat{a} - a^{gt}\\|_2$ 的 τ-分位数估计。通过 split conformal calibration 得到校准后的 uncertainty bound。\n\n2. **SMD State Monitoring**：用 Mahalanobis distance 检测 robot state 是否偏离 expert demonstration 分布。超过 99th percentile 阈值时停止执行。\n\n### 工作流程\n\n```\n观测 oₜ → 采样 K=10 candidate actions（不同 noise seeds）\n        → 对每个 candidate 计算 CQR uncertainty bound d̃ₐ,ᵢ(τ)\n        → 选择 argmin uncertainty 的 action 执行\n        → 同时 SMD 检测 state 异常\n```\n\n**关键：ReconVLA 只做 sample selection，不做 action correction。**\n\n---\n\n## 2. 方法对比表\n\n| 维度 | ReconVLA | ACR-VLA (ours) |\n|------|----------|----------------|\n| **CP target** | 标量 Euclidean distance $\\|\\hat{a}-a^{gt}\\|_2$ | Per-DOF action samples（40D CGS：6-DOF std + conformal radius + ellipsoid，H_eff=5 chunks） |\n| **Nonconformity score** | $S_j = d_a^{(j)} - \\hat{d}_a^{(\\tau)}(x_j)$（标量残差） | Per-DOF deviation from calibration set（多元 conformal） |\n| **CP 类型** | CQR (Conformal Quantile Regression) | Multivariate split conformal + ACI online adaptation |\n| **Calibration** | Offline split（固定 holdout set，一次性计算 $q_\\tau$） | ACI online + COC self-referencing（在线更新 threshold） |\n| **输出** | 标量 uncertainty bound → sample selection（argmin） | 40D 结构化 conformal features → CRM residual correction |\n| **Action 处理** | **Selection only**：从 K=10 中选最优，不修改 action | **Correction**：CRM 输出残差 δa，维度选择性校正 |\n| **额外模块** | CQR 网络（分位数回归）+ SMD（Mahalanobis state monitor） | CGS（conformal statistics extractor）+ CRM（~337K params residual network） |\n| **Scope** | Scalar（7D action → 1D uncertainty） | Per-DOF（7D action → 7×多个 conformal features） |\n| **VLA backbone** | π₀, OpenVLA-OFT | SmolVLA (450M, flow matching) |\n| **Benchmark** | LIBERO-Object (10 tasks) + real robot UR5 (4 tasks) | LIBERO-Spatial + LIBERO-Object（计划），target LIBERO-Plus |\n| **Online 适应** | 无（offline calibration 固定不变） | ACI 在线更新 α，COC 提供自参考覆盖信号 |\n| **训练需求** | 需训练 CQR 网络（在 VLA rollout 数据上） | 需训练 CRM（在 precomputed conformal features 上） |\n\n---\n\n## 3. 关键差异深度分析\n\n### 3a. Scalar vs Per-DOF Uncertainty — 信息论差距\n\nReconVLA 将 7D action error 压缩为 1 个标量 $\\|\\hat{a}-a^{gt}\\|_2$。这意味着：\n\n- **丢失维度信息**：无法区分\"x 轴很确定但 gripper 很不确定\"vs\"所有维度都中等不确定\"\n- **丢失协方差结构**：无法捕捉跨维度相关性（如 rotation-translation coupling）\n- **只能做全局判断**：某个 action 整体好/坏，不能说\"这个 action 的 xy 好但 z 差\"\n\nACR-VLA 的 40D CGS features 保留完整的 per-DOF uncertainty 结构，使 CRM 能做**维度选择性校正**——只修正高不确定性维度，保留低不确定性维度的原始预测。\n\n**这是最核心的差异，也是 novelty 的主要来源。**\n\n### 3b. Selection vs Correction — 能力上限差异\n\nReconVLA 的 output space 被限制在 {K=10 candidate actions} 中。即使所有 10 个 candidate 都偏离 expert，ReconVLA 只能选\"least bad\"。\n\nACR-VLA 的 CRM 输出 residual correction δa，可以**合成优于任何单个 sample 的 action**。这在分布偏移场景下特别关键——当 flow matching 的所有 samples 都有系统性偏差时，correction 比 selection 有本质优势。\n\n**类比**：ReconVLA 是 ensemble 中选最好的成员；ACR-VLA 是 ensemble + learned correction。\n\n### 3c. Static vs Online Calibration\n\nReconVLA 用 offline split conformal，$q_\\tau$ 在部署后固定不变。在分布偏移（新场景、新物体）下，calibration 会失效。\n\nACR-VLA 的 ACI + COC 提供在线适应：\n- ACI 根据实际覆盖率在线更新 conformal threshold\n- COC 利用 chunk overlap 提供无需 ground truth 的自参考覆盖信号\n\n**这在 LIBERO-Plus（专门测试 distribution shift robustness）上尤其重要。**\n\n### 3d. CQR 依赖 Ground Truth 距离\n\nReconVLA 的 CQR 网络训练目标是预测 $\\|\\hat{a}-a^{gt}\\|_2$，即需要 expert action 作为监督。这意味着：\n- 训练数据必须包含 policy rollout + 对应 expert action pairs\n- CQR 学到的是 \"action 与 expert 的距离分布\"，而非内在 uncertainty\n\nACR-VLA 的 CGS 直接从 K 个 flow-matching samples 的分布计算 conformal statistics，不依赖 expert labels。CRM 训练确实需要 expert demonstrations，但 uncertainty features 的提取是自包含的。\n\n---\n\n## 4. ACR-VLA 独特贡献评估\n\n### 确定成立的 novelty\n\n1. **Per-DOF conformal features as correction input**：ReconVLA 明确只用标量 uncertainty，且在论文中没有任何 per-dimension 分析。ACR-VLA 是（据我们所知）第一个将多元 conformal statistics 作为学习型校正模块输入的方法。\n\n2. **Correction vs Selection**：ReconVLA 的 argmin selection 和 ACR-VLA 的 residual correction 是本质不同的范式。ReconVLA 永远不修改 action。\n\n3. **Online adaptive conformal inference**：ReconVLA 用 static split conformal；ACR-VLA 用 ACI + COC 做在线适应。这是方法论层面的差异，不是工程改进。\n\n### 需要实验验证的 novelty\n\n4. **Per-DOF 优势幅度**：Dream median 显示 per-DOF vs scalar 仅 +2.1%。如果真实实验确认此趋势，需要 reframe 为 \"structured uncertainty features enable principled correction\"（整体框架优势），而非仅 per-DOF vs scalar。\n\n5. **Correction 上限优势**：需要在真实实验中验证 CRM 是否确实能合成 better-than-best-sample 的 action。\n\n### 不成立的差异化\n\n6. ~~ReconVLA 是 \"simple argmin baseline\"~~：ReconVLA 用了 CQR（一个训练过的神经网络做分位数回归），不是简单的 Euclidean argmin。我们之前的 \"ReconVLA baseline\" 实现（直接 argmin Euclidean distance on raw samples）严重低估了 ReconVLA 的真实方法。\n\n---\n\n## 5. Baseline 实现评估\n\n### 是否需要实现 ReconVLA 作为 baseline？\n\n**强烈建议实现。** 理由：\n\n1. ReconVLA 是**最直接的竞争者**——同样在 VLA 上用 CP 做 inference-time uncertainty-guided action improvement，同样用 K=10 samples from flow matching。\n\n2. Reviewer 极可能要求对比。如果我们引用 ReconVLA 但不实现，说服力不足。\n\n3. 对比 ReconVLA 能直接验证 \"per-DOF + correction > scalar + selection\" 这一核心 claim。\n\n### 实现工作量评估\n\n| 组件 | 复杂度 | 估计工时 |\n|------|--------|---------|\n| CQR 网络训练 | 中 | 4-6h |\n| Split conformal calibration | 低 | 1-2h |\n| Argmin sample selection | 低 | 0.5h |\n| SMD state monitoring | 低（可选） | 2h |\n| **总计** | | **8-10h** |\n\n**可行性**：\n- **不需要他们的代码**。方法描述足够完整（CQR pinball loss + split conformal + argmin），可以从论文复现。\n- 我们已有 K=10 sample generation pipeline（precompute 阶段），只需加 CQR 网络训练和 argmin selection。\n- CQR 训练数据：用我们 precompute 的 K samples + expert actions 计算 Euclidean distances，然后训练分位数回归。\n\n### 简化版 vs 完整版\n\n| 版本 | 实现 | 公平性 |\n|------|------|--------|\n| **Lite**：scalar Euclidean argmin（我们当前的 \"SampleConsensus\"） | 已有 | 低估 ReconVLA |\n| **Medium**：CQR + argmin（无 SMD） | 需 ~6h | 公平对比 action selection 部分 |\n| **Full**：CQR + argmin + SMD | 需 ~10h | 完整复现 |\n\n**建议 Medium 版本**：SMD 是 failure detection（与 action selection 正交），不实现不影响公平性。\n\n### 如果不实现\n\n在论文中需要：\n1. Related Work 详细讨论差异（已有 related_work.tex）\n2. 将当前 SampleConsensus baseline 明确定位为 \"scalar uncertainty argmin (ablated version of ReconVLA without CQR)\"\n3. 承认 CQR 可能优于 raw Euclidean argmin，但 argue ACR-VLA 的 per-DOF + correction 优势在更高层面\n\n---\n\n## 6. 对项目 paper_framing.md 的影响\n\n### 需要更新的内容\n\n1. **Story Spine 中的 ReconVLA 描述**：当前写 \"ReconVLA 用标量 Euclidean distance 做样本选择\"——基本正确但不完整。应改为 \"ReconVLA 用 CQR 预测标量 Euclidean distance 的 calibrated upper bound，然后 argmin selection\"。\n\n2. **Claim 1 的 ablation 对手**：A3 (CRM without conformal features) 对标 A2C2 类。需要加一个 ablation：**scalar CQR + argmin selection**（即 ReconVLA 的方法）作为更强的 baseline。\n\n3. **当前 \"ReconVLA baseline\" 实现**（D014 已重命名为 SampleConsensus）：这个 raw Euclidean argmin 仍然是有效的 ablation（\"没有 CQR 的 sample selection\"），但不应声称等价于 ReconVLA。\n\n### 差异化措辞建议\n\n**不要说**：\"ReconVLA only uses scalar uncertainty\"（暗示他们不够好）  \n**应该说**：\"ReconVLA demonstrates the value of CP-based sample selection with scalar CQR; ACR-VLA extends this by (1) extracting per-DOF conformal features that capture dimension-wise uncertainty structure, (2) using these features to drive learned residual correction rather than sample selection, and (3) online adaptive calibration via ACI+COC.\"\n\n---\n\n## 7. 风险评估\n\n| 风险 | 影响 | 缓解 |\n|------|------|------|\n| ReconVLA 在 LIBERO-Object 上 73%，如果 ACR-VLA 在 LIBERO-Spatial 低于此数 | 需要在相同 benchmark 对比 | 实现 ReconVLA baseline 在 LIBERO-Spatial 上 |\n| CQR argmin selection 可能比 raw Euclidean argmin 强很多，缩小与 ACR-VLA 的差距 | Claim 1 的 effect size 可能减小 | 这恰恰证明了 per-DOF + correction 的增量价值 |\n| ReconVLA 代码公开后质量很高，reviewer 可能要求 head-to-head | 必须有可信对比 | Medium 实现 + same evaluation protocol |\n| ReconVLA 在 real robot 上有结果，ACR-VLA 只有 sim | 如果瞄准 CoRL 是问题，ICLR sim-only 可接受 | LIBERO-Plus 是 recognized benchmark |\n\n---\n\n## 8. 结论与建议\n\n1. **ReconVLA 是真正的竞争者，但差异化充分**。核心差异在 per-DOF vs scalar、correction vs selection、online vs static calibration 三个维度，每个都是方法论层面的区别。\n\n2. **必须正式实现 ReconVLA Medium baseline**（CQR + argmin，~6h 工作量）。不能依赖当前的 SampleConsensus（raw Euclidean argmin）代替。\n\n3. **paper_framing.md 需要更新** ReconVLA 的描述精度，避免 reviewer 认为我们没读过他们的论文。\n\n4. **最佳 framing**：ACR-VLA 不是 \"better ReconVLA\"，而是 \"从 sample selection（ReconVLA）到 uncertainty-conditioned correction 的范式跃迁\"。类比：ReconVLA 是 model selection，ACR-VLA 是 model stacking + correction。\n"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-13T22:29:06.140675+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/reconvla-comparison-report.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-13T22:29:06.140822+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__save_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-13T22:29:06.140948+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-13T22:29:06.141076+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "register artifact",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-13T22:29:06.141187+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-13T22:29:06.141316+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "artifact",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-13T22:29:06.141430+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-13T22:29:06.141576+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/reconvla-comparison-report.md`。\n\n核心发现：\n\n**ReconVLA 确实是最直接竞争者**——同样在 flow-matching VLA 上用 CP + K=10 samples 做 inference-time action improvement。但差异化在三个方法论层面成立：\n\n1. **Scalar vs Per-DOF**：ReconVLA 将 7D action error 压缩为 1 个标量 Euclidean distance，丢失所有维度信息和协方差结构。ACR-VLA 保留 40D per-DOF conformal features。\n\n2. **Selection vs Correction**：ReconVLA 只能从 K=10 candidates 中选最好的（argmin CQR bound），永远不修改 action。ACR-VLA 的 CRM 能合成优于任何单个 sample 的 action。\n\n3. **Static vs Online Calibration**：ReconVLA 用 offline split conformal（部署后 $q_\\tau$ 固定），ACR-VLA 用 ACI+COC 在线适应。\n\n**重要纠正**：ReconVLA 不是简单的 Euclidean argmin——它训练了一个 CQR 神经网络做分位数回归。我们当前的 SampleConsensus baseline（raw Euclidean argmin）低估了 ReconVLA。\n\n**建议**：\n- 必须实现 **ReconVLA Medium baseline**（CQR + argmin，~6h 工作量），从论文可完整复现\n- paper_framing.md 中 ReconVLA 描述需提高精度\n- Framing 策略：不是 \"better ReconVLA\"，而是 \"从 sample selection 到 uncertainty-conditioned correction 的范式跃迁\"\n\nSources:\n- [ReconVLA: An Uncertainty-Guided and Failure-Aware Vision-Language-Action Framework](https://arxiv.org/abs/2604.16677)\n- [ReconVLA HTML full text](https://arxiv.org/html/2604.16677v1)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_reconvla-deep-read_20260513T222507"
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ],
+  "readable_path": "readable/conversations/research-reconvla-deep-read.md"
+}

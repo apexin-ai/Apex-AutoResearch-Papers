@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91ef56c830d8ac31fe73",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval mag perdof norm003 object",
+  "task_key": "worker_analyze_eval-mag-perdof-norm003-object_20260516T081059",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-mag-perdof-norm003-object_20260516T081059_result.json",
+    "occurrence": 1,
+    "bytes": 1024,
+    "sha256": "845223d73204f4b6d90465fab373d2348594d325183cba5af9b73ab8a6aca509"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## 结果汇总\n\n**perdof norm=0.03, LIBERO object, overall_sr = 14%**\n\nPer-task breakdown:\n| Task | SR |\n|------|-----|\n| chocolate_pudding | 40% |\n| salad_dressing | 20% |\n| bbq_sauce | 20% |\n| butter | 20% |\n| ketchup | 10% |\n| tomato_sauce | 10% |\n| milk | 10% |\n| orange_juice | 10% |\n| alphabet_soup | 0% |\n| cream_cheese | 0% |\n\n## Magnitude sweep 对比\n\n| Method | norm=0.03 | norm=0.1 | norm=0.2 |\n|--------|-----------|----------|----------|\n| **perdof** | **14%** | 11% | 11% |\n| obs_only | 16% | — | — |\n| argmin baseline | 12% | 12% | 12% |\n\n**分析：** perdof norm=0.03 得到 14%，略高于 norm=0.1/0.2 的 11%，说明更小的 correction norm 对 perdof 稍有帮助（减少过度修正）。但仍低于 obs_only norm=0.03 的 16%，差距 2pp。整体趋势一致：obs_only 在小 norm 区间优于 perdof，两者都仅略优于 argmin baseline（12%），表明 norm 限制下 CRM correction 的增益有限。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-mag-perdof-norm003-object.md"
+}

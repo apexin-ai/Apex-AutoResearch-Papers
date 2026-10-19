@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2631fc486d11323a495",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval vla only spatial seed43",
+  "task_key": "worker_analyze_eval-vla-only-spatial-seed43_20260519T144237",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-vla-only-spatial-seed43_20260519T144237_result.json",
+    "occurrence": 1,
+    "bytes": 1059,
+    "sha256": "abf1b388f2e6e554191a8f64b5a19c7d5e4f8a367dad04ca9cdeb6f02635fb56"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。汇总：\n\n## eval-vla-only-spatial-seed43 结果\n\n**Overall: 29% (29/100)**\n\n### Per-task 对比 (seed42 → seed43)\n\n| Task | seed42 | seed43 | Δ |\n|------|--------|--------|---|\n| between_plate_and_ramekin | 0.6 | 0.7 | +0.1 |\n| next_to_ramekin | 1.0 | 0.8 | -0.2 |\n| from_table_center | 0.0 | 0.1 | +0.1 |\n| on_cookie_box | 0.2 | 0.3 | +0.1 |\n| in_top_drawer | 0.0 | 0.0 | — |\n| on_ramekin | 0.0 | 0.0 | — |\n| next_to_cookie_box | 0.9 | 0.9 | — |\n| on_stove | 0.0 | 0.0 | — |\n| next_to_plate | 0.3 | 0.1 | -0.2 |\n| on_wooden_cabinet | 0.0 | 0.0 | — |\n| **Overall** | **30%** | **29%** | **-1%** |\n\n两个 seed 非常一致（29% vs 30%），跨 seed 方差极小。同样的 task 难度梯度：next_to_cookie_box / next_to_ramekin / between_plate_and_ramekin 容易，in_top_drawer / on_ramekin / on_stove / on_wooden_cabinet 全部 0%。\n\n### CRM 配对\n\nCRM obs_only spatial seed43 结果 **pending**（seed43 CRM = 32% 按 hypothesis 记录，待实验完成确认）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-vla-only-spatial-seed43.md"
+}

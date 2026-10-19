@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74557ebe269ccd6f6ef3",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_9_1778871769.md",
+  "task_key": "loop_9_1778871769",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_9_1778871769.md",
+    "occurrence": 1,
+    "bytes": 5026,
+    "sha256": "311284a400bed5b394487fcc41d3734d59eb42a7e329521ecb92c80a0fdb9aa7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: max_wall_time\nupdated: '2026-05-15T18:32:59+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- bjb1-32546:cuda:0 已知双占（vla-only-object-seed43 PID 123062 + obsonly-norm003-object PID 121325），Director 已批准共存，不要 kill 任何一个\n- bjb2-28827:cuda:2 刚清理孤儿进程（PID 115384），Worker 回调未处理，先确认再部署\n- 分析 pipeline（analysis_magnitude_sweep.py / statistical_tests.py / visualize.py）Bug A-C 已修但 Bug D（evaluate.py output_file norm）Worker 未确认完成——修复全部确认前**禁止用这些脚本生成论文素材**\n- eval-acr-object-v4-default 结论已 obvious（3/10 全 0%），但 Director 要求完整 10-task 跑完作为 ablation 证据，不要提前 kill\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不能假设 .venv 存在\n\n### 2. 🖥️ 基础设施快照\n**bjb1-18228** (4× 4090)\n- 工作目录: `/root/acr-vla-conformal-refinement`\n- conda: `/root/miniconda3/bin/python`\n- cuda:0 → eval-acr-object-v4-default-r2 (PID 390936, tmux=eval-acr-object-v4-default-r2)\n- cuda:1 → eval-perdof-object-seed43 (PID 365925)\n- cuda:2 → eval-obs-only-object-seed43 (PID 356490)\n- cuda:3 → eval-argmin-object-seed43 (PID 356696)\n\n**bjb1-32546** (6× 4090)\n- cuda:0 → 双占: vla-only-object-seed43 (PID 123062) + obsonly-norm003-object (PID 121325)\n- cuda:1 → eval-vla-mean-object-seed43 (PID 111709)\n- cuda:2 → eval-scalar-object-seed43 (PID 114664)\n- cuda:3 → eval-obs-only-object-norm02-seed43 (PID 118214)\n- cuda:4 → eval-acr-object-obs-only-norm02 (PID 44270, 9/10 almost done)\n- cuda:5 → eval-mag-perdof-norm02-object (PID 127732, 待确认是否 IDLE)\n\n**bjb2-28827** (6× 4090)\n- cuda:0 → eval-mag-perdof-norm003-object (PID 105938)\n- cuda:1 → eval-mag-perdof-norm005-object (PID 109650)\n- cuda:2 → 刚清理，状态待确认（cleanup Worker 回调未处理）\n- cuda:3 → eval-mag-perdof-norm03-object (PID 118886)\n- cuda:4 → eval-mag-obsonly-norm005-object (PID 101610)\n- cuda:5 → eval-mag-obsonly-norm03-object (PID 103028)\n\n**bjb2-40593** (1× 4090)\n- cuda:0 → eval-mag-obsonly-norm003-b2 (PID 227434, 6/10)\n\n**Cron 监控缺口**: eval-mag-perdof-norm02-object, eval-mag-perdof-norm005-object, eval-mag-perdof-norm003-object, eval-vla-only-object-seed43 这 4 个 RUNNING 实验无 cron 监控，完成时不会有回调\n\n### 3. 📊 当前状态\n**刚做完**：Director 三项紧急任务（GPU 冲突修复 + 分析 bug 修复 + pipeline 状态澄清），已向 Director 汇报。\n\n**RUNNING 实验 16 个**：\n- seed=43 doubling 7 方（obs-only/argmin/perdof/scalar/vla-mean/vla-only/obs-only-norm02），进度 0-4/10\n- object magnitude sweep ~8 方（obsonly 3 norms + perdof 4 norms + v4-default-r2），进度 0-9/10\n- spatial magnitude sweep 收尾 1 方（obsonly-norm003-b2 6/10）\n\n**等待中的 Worker 回调**：\n1. `worker_ops_cleanup-bjb2-cuda2-orphan-and-check-bjb1-cuda5` — 清理 bjb2 cuda:2 孤儿 + bjb1 cuda:5 状态\n2. `worker_code_fix-evaluate-output-file-norm` — Bug D 四服务器同步（turn 18，接近完成）\n\n**等待中的 Cron 回调**：11 个 cron 活跃监控\n\n### 4. 📋 待办（条件触发式）\n- cleanup Worker 回调 → 确认 bjb2:cuda:2 空闲 → 部署 QUEUED 实验或报告 Director\n- Bug D Worker 回调 → 确认 4 台服务器均 patch → 标记分析 pipeline 可用\n- bjb1-32546:cuda:4 obs-only-norm02 完成（9/10 接近）→ 分析结果 + 更新 ROADMAP object norm=0.2 行 → cuda:4 空闲部署下一个\n- 任意 seed=43 实验完成 → 立即分析 SR + 与 seed=42 对比 → 累积到 3+ 方法完成时跑 Fisher exact test\n- 全部 seed=43 完成 → 统计分析（Fisher + bootstrap CI）→ p < 0.05 = 项目存活 → 启动 Paper Agent\n- 4 个无 cron 实验完成无回调 → 需要手动 SSH 检查或注册 cron 补监控\n- 所有 object 实验完成 → 更新 paper_framing.md + ROADMAP → 向 Director 提交完整 comparison table\n\n### 5. 🎯 战略上下文\n**核心结论**：obs_only CRM 是唯一存活路径。Object benchmark obs_only 19% vs argmin 12%（+7pp）是项目最高分。Spatial 所有 CRM 变体确认 dead（均≈34-35%）。perdof CRM 已死。\n\n**决策链关键节点**：\n- D030: Spatial ALL CRM dead → object benchmark 是唯一 story 载体\n- D031: seed=43 doubling 决定项目存亡（200 trials → Fisher exact test p < 0.05）\n- D032: Spatial magnitude sweep 整体 null（obs_only 所有 norm 收敛 35%），object magnitude sweep 待完成\n\n**易错点**：\n- argmin object 从 6.7%（6/10 partial）涨到 12%（10/10 FINAL），obs_only 优势从 +12.3pp 压缩到 +7pp——seed=43 复现比之前更 critical\n- Magnitude sweep narrative 已修正：不是\"obs_only 在高 norm 下更强\"，而是\"obs_only 稳定 + perdof 在极端 norm 下崩塌\"\n- 分析 pipeline 刚修完 3 个 critical bug，Bug D 待确认——用之前必须验证\n- CoRL DDL ~11 天，时间紧张\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778871769.md"
+}

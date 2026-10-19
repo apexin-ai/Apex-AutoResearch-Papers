@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc19c0eeabc814e5fcd1",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose goal vla s47 r3 crash",
+  "task_key": "worker_diagnose_goal-vla-s47-r3-crash_20260524T112412",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_goal-vla-s47-r3-crash_20260524T112412_result.json",
+    "occurrence": 1,
+    "bytes": 879,
+    "sha256": "27164a03a66de3f7daf85fc293d039f8da4112d7cb7ebc5638aad8b8d392e6c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**诊断结论：实验已正常完成，无需重启。**\n\n- **原因**：进程不是崩溃，而是正常执行完毕后退出。PID 消失是因为任务已完成。\n- **结果**：overall success rate = **82.5%** (165/200)，结果已保存到 `logs/eval_goal_vla_only_seed47.json`（写入时间 May 24 19:20）\n- **Per-task 结果**：\n  - turn_on_the_stove: 100% (20/20)\n  - put_the_bowl_on_the_stove: 100% (20/20)\n  - put_the_wine_bottle_on_top_of_the_cabinet: 90%\n  - push_the_plate_to_the_front_of_the_stove: 90%\n  - put_the_bowl_on_the_plate: 90%\n  - put_the_bowl_on_top_of_the_cabinet: 85%\n  - open_the_middle_drawer_of_the_cabinet: 80%\n  - put_the_wine_bottle_on_the_rack: 80%\n  - open_the_top_drawer_and_put_the_bowl_inside: 55%\n  - put_the_cream_cheese_in_the_bowl: 55%\n\n不需要重启，cuda:2 当前空闲可用于其他任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-goal-vla-s47-r3-crash.md"
+}

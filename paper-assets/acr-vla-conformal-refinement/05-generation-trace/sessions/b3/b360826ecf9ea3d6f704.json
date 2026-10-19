@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "b360826ecf9ea3d6f704",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "audit table1 long gating consistency 20260525T015057 retry2",
+  "task_key": "worker_audit_table1-long-gating-consistency_20260525T015057_retry2",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_table1-long-gating-consistency_20260525T015057_retry2.log",
+    "occurrence": 1,
+    "bytes": 2159188,
+    "sha256": "994c29ceefe649538a0b8bc3c20b920cd316fec0d4dd2692cec2b357b6905cb4"
+  },
+  "statistics": {
+    "messages": 203,
+    "user_turns": 1,
+    "tool_calls": 73,
+    "roles": {
+      "system": 24,
+      "record": 1,
+      "assistant": 30,
+      "tool_call": 73,
+      "tool_result": 73,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 41,
+      "chunks": [
+        {
+          "path": "b360826ecf9ea3d6f704-part-0001.json",
+          "message_count": 41
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 162,
+      "chunks": [
+        {
+          "path": "b360826ecf9ea3d6f704-part-0001.json",
+          "message_count": 93
+        },
+        {
+          "path": "b360826ecf9ea3d6f704-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "b360826ecf9ea3d6f704-part-0003.json",
+          "message_count": 68
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-table1-long-gating-consistency-20260525t015057-retry2.md"
+}

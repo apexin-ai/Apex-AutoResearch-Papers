@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "782dda34d71186b2ddaa",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose spatial k10 seed46 47 and idle gpus",
+  "task_key": "worker_diagnose_spatial-k10-seed46-47-and-idle-gpus_20260519T161323",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_spatial-k10-seed46-47-and-idle-gpus_20260519T161323_result.json",
+    "occurrence": 1,
+    "bytes": 2448,
+    "sha256": "bc75caac9c06d8608256921e237d56cb9fd0700b3558b2fdd3c311352e17a923"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 1. seed46 (bjb2-28827) — 正在运行\n\n- **PID 871615**: 存活，状态 `Ss+`，已运行 48 分钟\n- **GPU cuda:3**: 29% util, 3660 MiB / 24564 MiB — 正常工作中\n- **进度**: 5/10 tasks 完成，无输出 JSON（尚未写入）\n- **已完成 tasks 的 success rate**:\n  - `pick_up_bowl_between_plate_and_ramekin → plate`: **90%** (9/10)\n  - `pick_up_bowl_next_to_ramekin → plate`: **100%** (10/10)\n  - `pick_up_bowl_from_table_center → plate`: **0%** (0/10)\n  - `pick_up_bowl_on_cookie_box → plate`: **30%** (3/10)\n  - `pick_up_bowl_in_top_drawer → plate`: **10%** (1/10)\n\n### 2. seed47 (bjb1-32546) — 正在运行\n\n- **PID 972439**: 存活，状态 `Ss+`，已运行 46 分钟\n- **GPU cuda:1**: 37% util, 3661 MiB / 24564 MiB — 正常工作中\n- **进度**: 5/10 tasks 完成，无输出 JSON\n- **已完成 tasks 的 success rate**:\n  - `pick_up_bowl_between_plate_and_ramekin → plate`: **80%** (8/10)\n  - `pick_up_bowl_next_to_ramekin → plate`: **90%** (9/10)\n  - `pick_up_bowl_from_table_center → plate`: **0%** (0/10)\n  - `pick_up_bowl_on_cookie_box → plate`: **30%** (3/10)\n  - `pick_up_bowl_in_top_drawer → plate`: **10%** (1/10)\n\n**结论**: 两个实验状态正常，不是卡住/死亡/从未启动。PREPARING 状态只是 tracker 未更新。预计再 ~45 分钟完成剩余 5 个 tasks。\n\n---\n\n### 3. 全服务器 GPU 空闲情况\n\n| 服务器 | GPU | Util | Mem Used | 状态 |\n|--------|-----|------|----------|------|\n| **bjb2-28827** | cuda:0 | 0% | 1 MiB | **IDLE** |\n| | cuda:1 | 17% | 1906 MiB | 占用 |\n| | cuda:2 | 17% | 1906 MiB | 占用 |\n| | cuda:3 | 29% | 3660 MiB | seed46 实验 |\n| | cuda:4 | 0% | 1 MiB | **IDLE** |\n| | cuda:5 | 0% | 1 MiB | **IDLE** |\n| **bjb1-32546** | cuda:0 | 0% | 2 MiB | **IDLE** |\n| | cuda:1 | 37% | 3661 MiB | seed47 实验 |\n| | cuda:2 | 0% | 2 MiB | **IDLE** |\n| | cuda:3 | 0% | 2 MiB | **IDLE** |\n| | cuda:4 | 0% | 2 MiB | **IDLE** |\n| | cuda:5 | 0% | 2 MiB | **IDLE** |\n| **bjb1-18228** | cuda:0 | 21% | 2411 MiB | 占用 |\n| | cuda:1 | 0% | 1 MiB | **IDLE** |\n| | cuda:2 | 23% | 2411 MiB | 占用 |\n| | cuda:3 | 23% | 2411 MiB | 占用 |\n| **bjb2-40593** | cuda:0 | 97% | 5765 MiB | 高负载 |\n\n**空闲 GPU 汇总**: bjb2-28827 有 3 个空闲 (0/4/5)，bjb1-32546 有 5 个空闲 (0/2/3/4/5)，bjb1-18228 有 1 个空闲 (1)。共 **9 个 GPU 完全空闲**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-spatial-k10-seed46-47-and-idle-gpus.md"
+}

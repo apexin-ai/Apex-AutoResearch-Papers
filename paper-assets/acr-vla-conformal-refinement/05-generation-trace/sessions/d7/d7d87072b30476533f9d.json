@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7d87072b30476533f9d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb1 18228 pi05 redeploy",
+  "task_key": "worker_deploy_bjb1-18228-pi05-redeploy_20260526T034300",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb1-18228-pi05-redeploy_20260526T034300_result.json",
+    "occurrence": 1,
+    "bytes": 536,
+    "sha256": "fb8d01db435b730b3854ead304a05fee48ae3f132b615585ee638485c5b7ae70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。bjb1-18228 4 卡满载，4 个 π0.5 评估都在跑：\n\n| GPU | PID | exp_id | 状态 |\n|-----|-----|--------|------|\n| 0 | 2558 | pi05-crm-k2-long-s42-r2 | rollout 中（14.7GB, 40%） |\n| 1 | 2916 | pi05-crm-k2-long-s43-r2 | 模型已加载（10.9GB） |\n| 2 | 3332 | pi05-k2mean-goal-s42-r2 | 加载 PI05 中 |\n| 3 | 3764 | pi05-adaptive-long-s42-r2 | 加载 PI05 中 |\n\nRegistry 4 个条目已建（QUEUED + hypothesis + parent）。错峰启动成功，未复现 cqa1 6 进程并发崩溃。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb1-18228-pi05-redeploy.md"
+}

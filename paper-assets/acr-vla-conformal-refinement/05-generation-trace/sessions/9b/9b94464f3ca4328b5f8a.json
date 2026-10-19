@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b94464f3ca4328b5f8a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops harvest stale bjb2 28827",
+  "task_key": "worker_ops_harvest-stale-bjb2-28827_20260519T112217",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_harvest-stale-bjb2-28827_20260519T112217_result.json",
+    "occurrence": 1,
+    "bytes": 999,
+    "sha256": "8556c4c533130f7e282d0899b91a71617a7928e0ad61f14262acd748b2a8c261"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6/7 实验 registry 全部更新完成。汇总：\n\n```\nexp_id                                  | success_rate | conclusion\n----------------------------------------|-------------|----------\neval-obs-only-object-norm005-seed47     | 14%         | success\neval-perdof-object-norm03-seed47        | 5%          | success\neval-perdof-object-default-seed47       | 0%          | negative\neval-obs-only-object-default-seed48     | 17%         | success\neval-perdof-object-norm003-seed46       | 9%          | success\neval-random-selection-object-seed45     | 10%         | success\neval-obs-only-object-norm003-seed44-bjb2| 仍在运行     | —\n```\n\n**#1 (eval-obs-only-object-norm003-seed44-bjb2)** 仍在跑：tmux session `eval-obs-only-norm003-seed44-t16` 活跃，当前在 `pick_up_the_chocolate_pudding` task (rollout 9/10)，接近完成。输出 JSON 文件尚未生成（评估完所有 10 个 task 后才会写入）。无需干预，等自然结束后再采集。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-harvest-stale-bjb2-28827.md"
+}

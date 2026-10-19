@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86540893792571822c61",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose eval perdof norm01 seed44",
+  "task_key": "worker_diagnose_eval-perdof-norm01-seed44_20260517T104628",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval-perdof-norm01-seed44_20260517T104628_result.json",
+    "occurrence": 1,
+    "bytes": 994,
+    "sha256": "79d24d7ef954190f0a94d9669475f863a0232d82151fdc8c39e5768e2daa2293"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**进程状态：已正常完成（非异常退出）**\n\nPID 531963 不存在，但实验已**跑完全部 10 个 task × 10 rollouts = 100 episodes**，结果已保存。\n\n### 实验结果\n\n| 指标 | 值 |\n|------|-----|\n| 模式 | crm_perdof, max_correction_norm=0.1 |\n| Benchmark | object (10 tasks) |\n| Seed | 44 |\n| **Overall success rate** | **8.0% (8/100)** |\n\n逐任务成功率：\n\n| Task | Success Rate |\n|------|-------------|\n| salad_dressing | 20% (2/10) |\n| orange_juice | 30% (3/10) |\n| chocolate_pudding | 20% (2/10) |\n| bbq_sauce | 10% (1/10) |\n| alphabet_soup / cream_cheese / ketchup / tomato_sauce / butter / milk | 0% (0/10) |\n\n### 结论\n\n- 进程**正常退出**，不是 OOM 或 CUDA error\n- 结果已保存到 `logs/eval_object_perdof_norm01_seed44.json`\n- 无需重试，实验已完整完成\n- GPU 上当前有其他 3 个 python 进程在运行（PID 474319 在 GPU0, 587763 在 GPU2, 588037 在 GPU3）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-perdof-norm01-seed44.md"
+}

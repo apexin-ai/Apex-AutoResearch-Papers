@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac09b1e3cb09351078a7",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh adaptive k thresholds",
+  "task_key": "worker_ssh_adaptive-k-thresholds_20260519T224008",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_adaptive-k-thresholds_20260519T224008_result.json",
+    "occurrence": 1,
+    "bytes": 1054,
+    "sha256": "fd0e13b4afcbd6d2c9f327a4ddcd81bf0d4f3dc266a6748db9f409fac450c907"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 1. JSON 结构\n\n| Top-level key | 内容 |\n|---|---|\n| `config` | benchmark=\"object\", n_episodes=5, seed=42, n_steps_collected=14512, num_ode_steps=10 |\n| `statistics` | 预计算的 fmvd/k10_variance/k2_l2 统计量 + 相关性 |\n| `per_step_data` | 14512 条记录，每条含 step, task, episode, env_step, fmvd, k10_variance, k2_l2, episode_success |\n\n### 2. K2_L2 百分位数（从原始数据独立验证，与 JSON 预计算一致）\n\n| 百分位 | 值 |\n|---|---|\n| **P25** | 0.054959 |\n| **P50** | 0.074855 |\n| **P75** | 0.098735 |\n| **P90** | 0.126512 |\n\n### 3. 描述性统计\n\n| 指标 | 值 |\n|---|---|\n| Mean | 0.080700 |\n| Std | 0.036103 |\n| Min | 0.018047 |\n| Max | 0.403870 |\n| N | 14512 |\n\n### 4. JSON 中已有的额外信息\n\n- `k2_l2_vs_k10_spearman_rho` = 0.997868（K2_L2 与 K10_variance 高度相关）\n- `k2_l2_vs_fmvd_spearman_rho` = 0.092493（K2_L2 与 FMVD 弱相关）\n- FMVD 百分位也有预计算：P25=0.027738, P50=0.046693, P75=0.070899, P90=0.093805"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-adaptive-k-thresholds.md"
+}

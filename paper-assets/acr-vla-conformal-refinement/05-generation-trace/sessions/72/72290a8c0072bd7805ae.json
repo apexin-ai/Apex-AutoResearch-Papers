@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "id": "72290a8c0072bd7805ae",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "deploy long s46 bjb1",
+  "task_key": "worker_deploy_long-s46-bjb1_20260524T035412",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_deploy_long-s46-bjb1_20260524T035412.jsonl",
+    "occurrence": 1,
+    "bytes": 672,
+    "sha256": "317b9b18c5532b1ef38805b2ce0e7ecea0728a8d1c1dc45074f168ae42cd0493"
+  },
+  "statistics": {
+    "messages": 4,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 4
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T03:54:21.095857+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 3pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_long-s46-bjb1_20260524T035412"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-24T03:54:28.679178+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 3pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_long-s46-bjb1_20260524T035412"
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-24T03:54:36.227629+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 3pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_long-s46-bjb1_20260524T035412"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-24T03:54:43.653570+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 3pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_long-s46-bjb1_20260524T035412"
+          },
+          "id": "event-000004"
+        }
+      ],
+      "message_count": 4
+    }
+  ],
+  "readable_path": "readable/conversations/deploy-long-s46-bjb1.md"
+}

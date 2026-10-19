@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89868e758816f9e477c1",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose openvla v3 regression",
+  "task_key": "worker_diagnose_openvla-v3-regression_20260524T082334",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_openvla-v3-regression_20260524T082334_result.json",
+    "occurrence": 1,
+    "bytes": 49,
+    "sha256": "2ad6c135c9072f1938e124cc992e7c746f7759ecc14a380235efd82cfdf25770"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-openvla-v3-regression.md"
+}

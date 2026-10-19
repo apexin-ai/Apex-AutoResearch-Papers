@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f6e6149448d5e9475394",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "code plan001 update",
+  "task_key": "worker_code_plan001-update_20260513T033539",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_plan001-update_20260513T033539.log",
+    "occurrence": 1,
+    "bytes": 748672,
+    "sha256": "ee551074dce78434c5c65e71a25a30d23542acf9389c73e091f41deff01766a3"
+  },
+  "statistics": {
+    "messages": 278,
+    "user_turns": 0,
+    "tool_calls": 102,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 70,
+      "tool_call": 102,
+      "tool_result": 102,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 278,
+      "chunks": [
+        {
+          "path": "f6e6149448d5e9475394-part-0001.json",
+          "message_count": 179
+        },
+        {
+          "path": "f6e6149448d5e9475394-part-0002.json",
+          "message_count": 99
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan001-update.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "804937de9043b02f720d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb2 spatial tau k2mean",
+  "task_key": "worker_deploy_bjb2-spatial-tau-k2mean_20260526T142211",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb2-spatial-tau-k2mean_20260526T142211_result.json",
+    "occurrence": 1,
+    "bytes": 1244,
+    "sha256": "4c9923cfcb57ba58143cb1583bf1a2cd1e71d83b027f09978d4d19ac9e5f6fc1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**STOP — C001 violation. 任务描述与服务器实际状态不符。**\n\nGPU 实测占用情况：\n\n**bjb2-28827** (任务声称\"6 卡全空\"):\n| GPU | memory.used | util | PID |\n|-----|-------------|------|-----|\n| 0 | 14663 MiB | 21% | 443692 |\n| 1 | 14663 MiB | 21% | 444363 |\n| 2 | 13966 MiB | 61% | 445988 |\n| 3 | 13966 MiB | 21% | 448295 |\n| 4 | 14741 MiB | 19% | 450041 |\n| 5 | 14741 MiB | 17% | 451711 |\n\n**bjb2-24035** (任务声称\"1 卡空\"):\n| GPU | memory.used | util | PID |\n|-----|-------------|------|-----|\n| 0 | 14694 MiB | 20% | 63656 |\n\n**所有 7 张目标 GPU 均 > 500 MiB，全部不可用。** 7 个独立进程，每个 ~14 GB，符合 VLA rollout 评测的显存特征——很可能已经有别的 worker 在跑实验，或之前提交的实验仍在进行。\n\n按 C001 禁止启动，需要先排查这些进程是什么。下一步建议：\n\n1. 检查 tmux 会话和 registry，确认这些 PID 对应哪些实验\n2. 如果是本项目正在跑的合法实验 → 不能启动新的，等待这批结束\n3. 如果是僵尸/残留进程 → 经确认后 kill 再启动\n\n要不要我先拉 tmux session 列表和 registry 中 RUNNING 状态的实验做交叉比对？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb2-spatial-tau-k2mean.md"
+}

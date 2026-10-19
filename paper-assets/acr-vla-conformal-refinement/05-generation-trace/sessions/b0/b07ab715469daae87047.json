@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b07ab715469daae87047",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy object vla only wrapper",
+  "task_key": "worker_deploy_object-vla-only-wrapper_20260523T015707",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_object-vla-only-wrapper_20260523T015707_result.json",
+    "occurrence": 1,
+    "bytes": 642,
+    "sha256": "ff866d2f6838b492e092491e297139dc2a8695f6fd1947fdcbeff97124986769"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n## 报告\n\n| Seed | tmux session | PID | GPU | 显存占用 |\n|------|-------------|-----|-----|---------|\n| 42 | obj_vla_s42 | 455214 | cuda:3 | 5630 MiB |\n| 43 | obj_vla_s43 | 455415 | cuda:4 | 5630 MiB |\n| 44 | obj_vla_s44 | 455618 | cuda:5 | 5630 MiB |\n\n- **启动状态**：3 个 seed 全部成功，无 argparse error，已加载 10 个 LIBERO-Object tasks，正在 rollout\n- **GPU 隔离**：cuda:0,1,2 未受影响（CRM eval 正常运行），cuda:3,4,5 各占用 5630 MiB\n- **注意**：首次尝试因 tmux 内未激活 conda 导致 `python: command not found`，已修复并重新部署"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-object-vla-only-wrapper.md"
+}

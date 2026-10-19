@@ -1,0 +1,734 @@
+{
+  "schema_version": "1.0",
+  "id": "e749ccdb5e5ba4ff36e5",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "cron hook eval obs only object norm02 seed43 r2 20260516T112526 317600",
+  "task_key": "cron_hook_eval-obs-only-object-norm02-seed43-r2_20260516T112526_317600",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/archive/cron_hook_eval-obs-only-object-norm02-seed43-r2_20260516T112526_317600.jsonl",
+    "occurrence": 1,
+    "bytes": 39200,
+    "sha256": "4e716c6840569cf56dffb294ea5432643513d83395b489eda10ef1221560bd2a"
+  },
+  "statistics": {
+    "messages": 36,
+    "user_turns": 2,
+    "tool_calls": 16,
+    "roles": {
+      "user": 2,
+      "tool_call": 16,
+      "tool_result": 16,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T07:21:11.422101+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: eval-obs-only-object-norm02-seed43-r2\n- project: acr-vla-conformal-refinement\n- server: bjb1-32546\n- log_path: ~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm02-seed43-r2.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T07:21:21.948894+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__read_experiment_plan_with_status",
+              "max_results": "10"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T07:21:22.049754+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T07:21:25.316395+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T07:21:25.316850+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T07:21:25.919284+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T07:21:26.273886+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (214,168 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-ce9044f6/7ca050f7-8748-41c3-8dc3-9fa9da8f0304/tool-results/mcp-agent-ml-research-read_registry-1778916085942.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-ce9044f6/7ca050f7-8748-41c3-8dc3-9fa9da8f0304/tool-results/mcp-agent-ml-research-read_registry-1778916085942.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-ce9044f6/7ca050f7-8748-41c3-8dc3-9fa9da8f0304/tool-results/mcp-agent-ml-research-read_registry-1778916085942.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 957
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T07:21:26.274403+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T07:21:26.675971+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "status": "running"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T07:21:50.353226+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 12, \\\"results\\\": [{\\\"exp_id\\\": \\\"eval-mag-obsonly-norm03-object\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=103028)\\\"]}, {\\\"exp_id\\\": \\\"eval-mag-obsonly-norm005-object\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=101610)\\\"]}, {\\\"exp_id\\\": \\\"eval-acr-object-v4-default-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=390936)\\\"]}, {\\\"exp_id\\\": \\\"eval-mag-perdof-norm005-object\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=109650)\\\"]}, {\\\"exp_id\\\": \\\"eval-mag-perdof-norm003-object\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=105938)\\\"]}, {\\\"exp_id\\\": \\\"eval-mag-perdof-norm02-seed43-object-r3\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=144504)\\\"]}, {\\\"exp_id\\\": \\\"eval-mag-perdof-norm03-object-r3\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=140759)\\\"]}, {\\\"exp_id\\\": \\\"eval-argmin-object-seed44-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=428117)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm02-seed44-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=428406)\\\"]}, {\\\"exp_id\\\": \\\"eval-perdof-object-seed44\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=452982)\\\"]}, {\\\"exp_id\\\": \\\"eval-vla-mean-object-seed44\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=212655)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-object-norm03-seed44\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=220777)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 25036
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T07:21:50.405908+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-16T07:21:09Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 141 个实验 — ANALYZING 1, DEPLOYED 1, DONE 123, PREPARING 3, RUNNING 13\\\\n**DONE 分布**: failed 22, killed 51, negative 7, success 43\\\\n\\\\n### GPU 占用\\\\n- **实际运行**: 11 张 — bjb2-28827:cuda:0(eval-mag-perdof-norm003-object), bjb2-28827:1(eval-mag-perdof-norm005-object), bjb1-18228:cuda:0(eval-acr-object-v4-default-r2), bjb2-28827:cuda:2(eval-mag-perdof-norm03-object-r3), bjb2-28827:cuda:3(eval-mag-perdof-norm02-seed43-object-r3), bjb1-18228:cuda:3(eval-argmin-object-seed44-r2), bjb1-18228:cuda:2(eval-obs-only-object-norm02-seed44-r2), bjb1-18228:cuda:1(eval-perdof-object-seed44), bjb1-32546:cuda:1(eval-vla-mean-object-seed44), bjb1-32546:cuda:2(eval-obs-only-object-norm03-seed44), bjb2-40593:cuda:0(eval-perdof-object-default-seed44)\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `eval-mag-obsonly-norm005-object` | bjb2-28827 | ? | 101610 | `…-conformal-refinement/logs/eval_object_obs_only_norm005.log` |\\\\n| `eval-mag-obsonly-norm03-object` | bjb2-28827 | ? | 103028 | `…a-conformal-refinement/logs/eval_object_obs_only_norm03.log` |\\\\n| `eval-mag-perdof-norm003-object` | bjb2-28827 | cuda:0 | 105938 | `…vla-conformal-refinement/eval-mag-perdof-norm003-object.log` |\\\\n| `eval-mag-perdof-norm005-object` | bjb2-28827 | 1 | 109650 | `logs/nohup_eval_object_perdof_norm005.log` |\\\\n| `eval-acr-object-v4-default-r2` | bjb1-18228 | cuda:0 | 390936 | `…-vla-conformal-refinement/eval-acr-object-v4-default-r2.log` |\\\\n| `eval-mag-perdof-norm03-object-r3` | bjb2-28827 | cuda:2 | 140759 | `—` |\\\\n| `eval-mag-perdof-norm02-seed43-object-r3` | bjb2-28827 | cuda:3 | 144504 | `—` |\\\\n| `eval-argmin-object-seed\n…[truncated 6360 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 24486
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T07:21:50.406653+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\\\", \\\"content\\\": \\\"# acr-vla-conformal-refinement — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-16 04:55 UTC | 更新原因: seed=43 五方 FINAL (VLA-only/argmin/VLA-mean/perdof/obs_only 0.1); 服务器状态更新; seed=44 排查中\\\\n\\\\n## 核心方向\\\\nobs_only CRM（基于观测特征的 learned correction）是唯一存活路径。Per-DOF conformal claim 已死。论文 story：sample-then-correct > sample-then-select，obs features > conformal features（honest negative）。详见 paper_framing.md。\\\\n\\\\n## 投稿目标\\\\n**CoRL 2026**（abstract DDL ~May 26, full paper DDL ~Jun 2）。剩余 ~11 天。\\\\n\\\\n## 当前进展\\\\n- **阶段**: Phase 3 — Paper writing + seed=43 statistical validation\\\\n- **MVP**: PASS\\\\n- **Object 10/10 FINAL ✅**: obs_only 19.0% vs argmin 12.0% (+7.0pp) — 超过 5pp claim 门槛 (D033)\\\\n- **Object obs_only norm=0.2 FINAL ✅**: **22.0%** (+10.0pp over argmin) — **PROJECT HIGH**\\\\n- **Spatial LOCKED ✅**: 全部 CRM 变体确认 dead（argmin 34%, perdof 35%, obs_only 35%, scalar 32%）\\\\n- **Magnitude sweep**: obs_only stable 35-44% across norms, perdof collapses away from 0.1 (D032)\\\\n- **Seed=43**: 5/7 方 FINAL（VLA-only 12%, argmin 17%, VLA-mean 15%, perdof 12%, obs_only 0.1 12% neg）；obs_only 0.2 在跑 (1/10), scalar 在跑 (3/10)\\\\n- **Seed=44**: VLA-only 在跑 (bjb2-40593); argmin + obs_only 0.2 在 bjb1-18228 排查进程状态\\\\n- **Paper Agent**: Intro ✅ Method ✅ Experiments ✅ Related Work ✅ Discussion/Conclusion ✅ → Figures 进行中 (fig1 WIP, fig2/fig3 pending)\\\\n- **引用审计**: ✅ PASSED — 29 cited keys 全部验证, 22 方法归因验证通过, 0 NEEDS_REVIEW, chen2026reconvla + braun2025cgs 两个 blocking issue 已修复\\\\n- **±1pp 措辞**: ✅ 全文统一为 `best CRM within 1\\\\\\\\,pp of the selection baseline`\\\\n\\\\n## Object Benchmark（seed=42, ALL FINAL ✅）\\\\n\\\\n| 方法 | SR | vs argmin | 状态 |\\\\n|------|-----|-----------|------|\\\\n| **obs_only 0.2** | **22.0%** | **+10.0pp** | FINAL ✅ PROJECT HIGH |\\\\n| **obs_only 0.1** | **19.0%** | **+7.0pp** | FINAL ✅ |\\\\n| argmin K=10 | 12.0% | baseline | FINAL ✅ |\\\\n| VLA-on\n…[truncated 4443 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 24132
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T07:21:50.457170+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 23781
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T07:22:06.498410+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-ce9044f6/7ca050f7-8748-41c3-8dc3-9fa9da8f0304/tool-results/mcp-agent-ml-research-read_registry-1778916085942.txt | python3 -c \"\nimport json, sys\ndata = json.loads(json.loads(sys.stdin.read())['result'])\n# Find our target experiment\ntarget = 'eval-obs-only-object-norm02-seed43-r2'\nfor exp in data:\n    if exp.get('exp_id') == target:\n        print(json.dumps(exp, indent=2))\n        break\n\"",
+              "description": "Extract target experiment from registry"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T07:22:07.050074+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 7, in <module>\n    if exp.get('exp_id') == target:\n       ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "Bash",
+            "elapsed_ms": 551
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T07:22:07.050431+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T07:22:07.050748+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-3/proje…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T07:22:14.890766+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-ce9044f6/7ca050f7-8748-41c3-8dc3-9fa9da8f0304/tool-results/mcp-agent-ml-research-read_registry-1778916085942.txt') as f:\n    raw = json.load(f)\nresult_str = raw['result']\ndata = json.loads(result_str)\n# Check type\nprint(type(data))\nif isinstance(data, dict):\n    print(list(data.keys())[:5])\nelif isinstance(data, list):\n    print(len(data))\n    print(type(data[0]))\nelse:\n    print(str(data)[:200])\n\"",
+              "description": "Probe registry JSON structure"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T07:22:14.992605+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<class 'dict'>\n['success', 'data', 'error', 'metadata']"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T07:22:19.917307+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-ce9044f6/7ca050f7-8748-41c3-8dc3-9fa9da8f0304/tool-results/mcp-agent-ml-research-read_registry-1778916085942.txt') as f:\n    raw = json.load(f)\ndata = json.loads(raw['result'])\nexps = data['data']\ntarget = 'eval-obs-only-object-norm02-seed43-r2'\nif isinstance(exps, list):\n    for exp in exps:\n        if exp.get('exp_id') == target:\n            print(json.dumps(exp, indent=2))\n            break\nelif isinstance(exps, dict):\n    if target in exps:\n        print(json.dumps(exps[target], indent=2))\n    else:\n        print('keys sample:', list(exps.keys())[:10])\n\"",
+              "description": "Extract target experiment from registry data"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T07:22:20.018097+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "keys sample: ['experiments', 'count', 'total', 'baseline']"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "Bash",
+            "elapsed_ms": 100
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T07:22:24.533583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-ce9044f6/7ca050f7-8748-41c3-8dc3-9fa9da8f0304/tool-results/mcp-agent-ml-research-read_registry-1778916085942.txt') as f:\n    raw = json.load(f)\ndata = json.loads(raw['result'])\nexps = data['data']['experiments']\ntarget = 'eval-obs-only-object-norm02-seed43-r2'\nif isinstance(exps, list):\n    for exp in exps:\n        if exp.get('exp_id') == target:\n            print(json.dumps(exp, indent=2))\n            break\nelif isinstance(exps, dict):\n    if target in exps:\n        print(json.dumps(exps[target], indent=2))\n\"",
+              "description": "Extract target experiment details"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T07:22:24.584490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"status\": \"ANALYZING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-15T18:58:27.783Z\",\n  \"updated_at\": \"2026-05-16T07:21:08.483Z\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 43 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02_seed43_r2.json\\\"\",\n    \"server\": \"bjb1-32546\",\n    \"gpu\": [\n      \"cuda:3\"\n    ],\n    \"pid\": \"148788\",\n    \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm02-seed43-r2.log\",\n    \"submitted_at\": \"2026-05-15T18:58:27.518Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\",\n    \"eval_data\": \"libero_object 10 tasks x 10 rollouts\",\n    \"data_path\": \"/root/autodl-tmp/libero_data/ (object)\",\n    \"data_count\": 100,\n    \"model_name\": \"crm_obs_only_v3_norm\",\n    \"seed\": 43\n  },\n  \"hypothesis\": \"D031: obs_only CRM v3-norm norm=0.2 seed=43 on LIBERO object benchmark (r2 retry). P0 critical for statistical significance \\u2014 seed42=22%, need seed43 pooled to 200 trials. Original crashed after 1 task.\",\n  \"parent\": \"eval-obs-only-object-norm02-seed43\",\n  \"metrics\": {\n    \"tasks_done\": 1,\n    \"tasks_total\": 10,\n    \"partial_sr\": {\n      \"alphabet_soup\": 0\n    },\n    \"server\": \"bjb1-32546\",\n    \"pid\": 148797,\n    \"gpu\": \"cuda:3\",\n    \"process_status\": \"alive\",\n    \"checked_at\": \"2026-05-16T04:40:00\"\n  },\n  \"reproduce\": {\n    \"finished_at\": \"2026-05-16T07:21:07.838Z\"\n  },\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-16T07:21:10.900676+00\n…[truncated 24 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T07:22:32.664237+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T07:22:33.467554+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/sessions/agent_ce9044f6."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "Read",
+            "elapsed_ms": 803
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T07:22:50.841343+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analysis:eval-obs-only-object-norm02-seed43-r2",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "## 任务\n分析已完成的实验 `eval-obs-only-object-norm02-seed43-r2`，提取完整结果。\n\n## 背景\n这是 obs_only CRM v3-norm, norm=0.2, seed=43 在 LIBERO object benchmark 上的评估实验。这是项目的 P0 关键实验——seed=42 的同一配置获得了 22% (PROJECT HIGH)，我们需要 seed=43 来确认统计显著性。argmin baseline seed=43 = 17%，所以 obs_only 0.2 seed=43 需 ≥17% 才能维持优势。\n\n## 服务器信息\n- 服务器: bjb1-32546\n- 日志路径: ~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm02-seed43-r2.log\n- JSON 输出: /root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm02_seed43_r2.json\n\n## 具体步骤\n\n1. SSH 到 bjb1-32546，读取日志文件的最后 100 行：\n   ```\n   tail -100 ~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm02-seed43-r2.log\n   ```\n\n2. 读取 JSON 输出文件获取完整 per-task 结果：\n   ```\n   cat /root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm02_seed43_r2.json\n   ```\n\n3. 确认进程已退出：\n   ```\n   ps -p 148788 -o pid= 2>/dev/null && echo \"STILL_RUNNING\" || echo \"DONE\"\n   ```\n\n## 输出要求\n提供以下信息：\n- 10 个 task 各自的成功率（per-task SR）\n- 总体成功率（overall SR out of 100 trials）\n- 与 seed=42 (22%) 的对比\n- 与 argmin baseline seed=43 (17%) 的对比\n- 任何错误或异常信息\n- 如果 JSON 文件不存在，从日志中提取所有可用的 per-task 结果\n\n请用 `update_registry` 更新实验状态：\n- 如果总 SR > argmin baseline (17%)：conclusion=success, 附完整 metrics\n- 如果总 SR ≤ argmin baseline (17%)：conclusion=negative, 附完整 metrics\n- 无论哪种，都设 status=DONE, 填上 checkpoint_path 和 log_path\n\n最后用 `save_project_file` 更新 report.md 中的相关信息。",
+              "tool_groups": "['ssh', 'registry', 'knowledge']",
+              "context": "## Registry 当前状态\nexp_id: eval-obs-only-object-norm02-seed43-r2\nstatus: ANALYZING\nserver: bjb1-32546\nhypothesis: \"D031: obs_only CRM v3-norm norm=0.2 seed=43 on LIBERO object benchmark (r2 retry). P0 critical for statistical significance — seed42=22%, need seed43 pooled to 200 trials.\"\nparent: eval-obs-only-object-norm02-seed43\nspec.checkpoint_source: /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n\n## 对比基准\n- obs_only norm=0.2 seed=42 = 22% (PROJECT HIGH)\n- obs_only norm=0.1 seed=43 = 12% (negative)\n- argmin seed=43 = 17%\n- argmin seed=42 = 12%\n\n## 统计显著性判断\nseed=42: obs_only 0.2 = 22/100, argmin = 12/100 → Δ=10pp\n如果 seed=43 结果出来，pooled 2-seed: (seed42 + seed43) / 200 trials\nFisher exact test 需要 pooled p < 0.05"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T07:22:53.603886+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_eval-obs-only-object-norm02-seed43-r2_20260516T072251\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_analysis_eval-obs-only-object-norm02-seed43-r2_20260516T072251.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analysis_eval-obs-only-object-norm02-seed43-r2_20260516T072251 started. Use get_worker_status('worker_analysis_eval-obs-only-object-norm02-seed43-r2_20260516T072251') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2762
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T07:23:03.943777+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "filters": "{'status': 'PREPARING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T07:23:04.345689+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval-obs-only-object-default-seed44\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T07:13:41.913Z\\\", \\\"updated_at\\\": \\\"2026-05-16T07:13:41.913Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 44 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --output_file logs/eval_object_obs_only_default_seed44.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:5\\\"], \\\"pid\\\": \\\"229742\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-obs-only-object-default-seed44.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T07:13:41.570Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"eval-obs-only-object-norm01-seed44\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T07:12:01.937Z\\\", \\\"updated_at\\\": \\\"2026-05-16T07:12:01.937Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 44 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.1 --output_file logs/eval_object_obs_only_norm01_seed44.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"227077\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm01-seed44.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T07:12:01.614Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\n…[truncated 1118 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 401
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T07:23:04.446480+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "acr-vla-conformal-refinement",
+              "section": "execution"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T07:23:04.497202+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"account\\\": \\\"root\\\", \\\"gpu_constraint\\\": [\\\"autodl-4090:cuda:0\\\"], \\\"gpu_ids\\\": [\\\"bjb2-40593:cuda:0\\\", \\\"bjb1-18228:cuda:0\\\", \\\"bjb1-18228:cuda:1\\\", \\\"bjb1-18228:cuda:2\\\", \\\"bjb1-18228:cuda:3\\\", \\\"bjb1-32546:cuda:0\\\", \\\"bjb1-32546:cuda:1\\\", \\\"bjb1-32546:cuda:2\\\", \\\"bjb1-32546:cuda:3\\\", \\\"bjb1-32546:cuda:4\\\", \\\"bjb1-32546:cuda:5\\\", \\\"bjb2-28827:cuda:0\\\", \\\"bjb2-28827:cuda:1\\\", \\\"bjb2-28827:cuda:2\\\", \\\"bjb2-28827:cuda:3\\\", \\\"bjb2-28827:cuda:4\\\", \\\"bjb2-28827:cuda:5\\\"], \\\"project_path\\\": \\\"/root/acr-vla-conformal-refinement\\\", \\\"servers\\\": [\\\"bjb2-40593\\\", \\\"bjb1-18228\\\", {\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"bjb1-32546\\\"}, {\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"bjb2-28827\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 50
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T07:23:41.650655+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "check:preparing-experiments-bjb1-32546",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "## 任务\n检查 bjb1-32546 上 3 个 PREPARING 状态的实验是否正在运行。\n\n## 背景\n这 3 个实验已通过 submit_training_job 提交，有 PID 分配，但 cron reconcile 没有检测到它们。需要确认它们是否正常运行、已崩溃、或从未启动。\n\n## 实验列表\n1. **eval-scalar-object-seed44-r2**: cuda:0, PID=226869\n   - 日志: ~/runs/acr-vla-conformal-refinement/eval-scalar-object-seed44-r2.log\n2. **eval-obs-only-object-norm01-seed44**: cuda:4, PID=227077\n   - 日志: ~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm01-seed44.log\n3. **eval-obs-only-object-default-seed44**: cuda:5, PID=229742\n   - 日志: ~/runs/acr-vla-conformal-refinement/eval-obs-only-object-default-seed44.log\n\n## 步骤\n1. SSH 到 bjb1-32546 (账号 root)，对每个实验：\n   ```bash\n   # 检查进程是否存活\n   ps -p 226869 -o pid,stat,etime,cmd 2>/dev/null || echo \"PID_226869_DEAD\"\n   ps -p 227077 -o pid,stat,etime,cmd 2>/dev/null || echo \"PID_227077_DEAD\"\n   ps -p 229742 -o pid,stat,etime,cmd 2>/dev/null || echo \"PID_229742_DEAD\"\n   \n   # 检查 tmux sessions\n   tmux ls 2>/dev/null | grep -E \"eval-(scalar|obs-only)\"\n   \n   # 检查日志最后几行\n   tail -5 ~/runs/acr-vla-conformal-refinement/eval-scalar-object-seed44-r2.log 2>/dev/null || echo \"NO_LOG_scalar\"\n   tail -5 ~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm01-seed44.log 2>/dev/null || echo \"NO_LOG_norm01\"\n   tail -5 ~/runs/acr-vla-conformal-refinement/eval-obs-only-object-default-seed44.log 2>/dev/null || echo \"NO_LOG_default\"\n   \n   # GPU 使用情况\n   nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader\n   ```\n\n2. 对每个实验汇报：是否存活、日志进度、GPU 是否在用\n\n## 注意\n- 使用 ssh_read_only 检查，不要执行任何修改操作\n- 如果实验已死，记录原因（日志中的错误信息）\n- 如果实验正在运行但没有 cron 监控，在结果中明确标注",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T07:23:44.172444+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_check_preparing-experiments-bjb1-32546_20260516T072341\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_check_preparing-experiments-bjb1-32546_20260516T072341.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_check_preparing-experiments-bjb1-32546_20260516T072341 started. Use get_worker_status('worker_check_preparing-experiments-bjb1-32546_20260516T072341') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2521
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T07:23:58.323666+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 Worker 已派出：\n1. **分析 Worker**: 读取 `eval-obs-only-object-norm02-seed43-r2` 的完整日志和 JSON 结果 — 这是 obs_only norm=0.2 seed=43 的 P0 关键实验（seed=42 = 22% PROJECT HIGH）\n2. **检查 Worker**: 验证 bjb1-32546 上 3 个 PREPARING 实验的进程状态（cron 未检测到它们）\n\n当前资源状态：\n- 17 GPU 分配，~14 在跑\n- bjb1-32546:cuda:3 刚释放（完成实验所在 GPU）\n- 12 个 cron 监控活跃\n- Worker 池 = 2\n\n等待 Worker 回调。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2"
+          },
+          "id": "event-000034"
+        }
+      ],
+      "message_count": 34
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T11:24:41.233653+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T11:25:26.315396+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 17 张：bjb2-40593:cuda:0, bjb1-18228:cuda:0-3, bjb1-32546:cuda:0-5, bjb2-28827:cuda:0-5。白名单外绝对不能用\n- obs_only norm=0.2 是唯一存活路径，perdof/scalar 已确认 dead。不要在这两个方向上追加新实验\n- seed=43 obs_only 0.1 已确认 negative (12%, pooled Δ=1pp, p=0.44)——不要重跑这个配置\n- 所有实验命令必须 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不能假设 .venv\n- CoRL 2026 DDL: abstract ~May 26, full paper ~Jun 2。剩 ~11 天，不能浪费 GPU 时间\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-32546** (6×4090): 工作目录 `/root/acr-vla-conformal-refinement`, Python `/root/miniconda3/bin/python`, conda base\n- **bjb1-18228** (4×4090): 同上结构\n- **bjb2-28827** (6×4090): 同上结构\n- **bjb2-40593** (1×4090D): 同上结构\n- 模型 checkpoint: `/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt` (obs_only), `scalar_unc/crm_best.pt` (scalar)\n- 数据: `/root/autodl-tmp/libero_data/` (object/spatial benchmarks)\n- HF cache: `/root/autodl-tmp/.hf_cache`\n- 活跃 cron 监控 12 个实验（详见 reconcile 结果）\n\n### 3. 📊 当前状态\n**刚收到回调**: `eval-obs-only-object-norm02-seed43-r2` 进程退出，状态 ANALYZING。这是 P0 关键实验（obs_only 0.2 seed=43，seed=42=22% PROJECT HIGH）。\n\n**已派 Worker 未回调**:\n1. `worker_analysis_eval-obs-only-object-norm02-seed43-r2` — SSH 读日志+JSON，提取 10-task SR，更新 registry\n2. `worker_check_preparing-experiments-bjb1-32546` — 检查 3 个 PREPARING 实验（PID 226869/227077/229742）是否存活\n\n**RUNNING (12 个)**:\n- bjb2-28827: mag-obsonly-norm005, mag-obsonly-norm03, mag-perdof-norm003/005/03-r3/02-seed43-r3 (magnitude sweep 补全)\n- bjb1-18228: acr-object-v4-default-r2, argmin-object-seed44-r2, obs-only-object-norm02-seed44-r2, perdof-object-seed44\n- bjb1-32546: vla-mean-object-seed44, obs-only-object-norm03-seed44\n- bjb2-40593: perdof-object-default-seed44\n\n**PREPARING (3 个，状态待确认)**:\n- eval-scalar-object-seed44-r2 (bjb1-32546:cuda:0)\n- eval-obs-only-object-norm01-seed44 (bjb1-32546:cuda:4)\n- eval-obs-only-object-default-seed44 (bjb1-32546:cuda:5)\n\n### 4. 📋 待办\n- Worker 1 回调（obs_only 0.2 seed=43 结果）→ 看 SR：≥17% = success，<17% = negative。然后：\n  - 计算 pooled 2-seed Fisher exact test (obs_only 0.2 vs argmin)\n  - 如果 p<0.05 → 向 Director 汇报 claim 成立，推进 paper abstract 最终版\n  - 如果 p=0.05-0.10 → 需要 seed=44 数据（已在跑 eval-obs-only-object-norm02-seed44-r2）\n  - 如果 p>0.10 或 SR 很低 → red-section framing 提案\n- Worker 2 回调（PREPARING 检查）→ 死进程重提交，活进程注册 cron\n- bjb1-32546:cuda:3 已空闲（刚完成的实验）→ 分配新 seed44 实验或 magnitude sweep\n- seed=44 实验陆续完成 → 3-seed pooled 统计分析\n- magnitude sweep 全部完成 → norm sensitivity curve figure\n\n### 5. 🎯 战略上下文\n- **核心结论**: obs_only CRM 是唯一存活方法。Object benchmark: obs_only 0.2 seed=42=22% vs argmin 12% (+10pp)。Spatial 所有 CRM 变体确认 dead（全在 argmin ±1pp 内）\n- **论文 story**: sample-then-correct > sample-then-select; obs features > conformal features (honest negative for perdof)\n- **D035 kill criterion**: obs_only 0.1 pooled Δ=1pp 已触发 kill → 所有希望在 norm=0.2 上\n- **关键风险**: argmin baseline 方差大（seed42=12%, seed43=17%）。obs_only 0.2 seed=43 如果 <17%，pooled 优势会大幅缩水\n- **易错点**: \n  - 不要把 spatial 结果和 object 结果混淆——spatial 全 dead，只有 object 有正向结果\n  - seed=43 obs_only 0.1 的 negative 不影响 obs_only 0.2 的 claim（不同 norm）\n  - 3 个 PREPARING 实验可能是 orphan（有 PID 无 cron），必须先确认再决定是否重提交\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-obs-only-object-norm02-seed43-r2"
+          },
+          "id": "event-000036"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-eval-obs-only-object-norm02-seed43-r2-20260516t112526-317600.md"
+}

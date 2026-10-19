@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1589a19038f6a046e57",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops precompute check merge train",
+  "task_key": "worker_ops_precompute-check-merge-train_20260521T163316",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_precompute-check-merge-train_20260521T163316_result.json",
+    "occurrence": 1,
+    "bytes": 1885,
+    "sha256": "88a5a4b0157de42abe08af9ece1388c5de4ed2dfd699d4425c910592c4a29746"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Precompute 状态汇报\n\n**全部 precompute 仍在运行，无一完成。** 以下是各服务器详情：\n\n### bjb2-40593 — Object shard 0\n| Shard | 进度 | 剩余时间 | 速率 |\n|-------|------|---------|------|\n| 0 | 4500/7251 (62%) | ~2.6h | 3.35s/sample |\n\n### bjb1-32546 — Object shards 1-9（全部 9 个在跑）\n| Shard | 进度 | 剩余时间 | 速率 |\n|-------|------|---------|------|\n| 1 | 3700/7251 (51%) | ~2.1h | 2.15s/sample |\n| 2 | 4200/7251 (58%) | ~1.6h | 1.90s/sample |\n| 3 | 4100/7251 (57%) | ~1.7h | 1.94s/sample |\n| 4 | 3800/7251 (52%) | ~2.0h | 2.05s/sample |\n| 5 | 4500/7251 (62%) | ~1.5h | 1.94s/sample |\n| 6 | 4400/7251 (61%) | ~1.5h | 1.89s/sample |\n| 7 | 4500/7250 (62%) | ~1.5h | 1.94s/sample |\n| 8 | 4600/7250 (63%) | ~1.4h | 1.89s/sample |\n| 9 | 4500/7250 (62%) | ~1.5h | 1.96s/sample |\n\n### bjb2-28827 — Spatial shards 0-5（全部 6 个在跑）\n| Shard | 进度 | 剩余时间 | 速率 |\n|-------|------|---------|------|\n| 0 | 4400/8608 (51%) | ~2.7h | 2.27s/sample |\n| 1-3 | ~4100-4300/8607 (48-50%) | ~2.7h | 2.27-2.28s/sample |\n| 4 | 4500/8607 (52%) | ~2.5h | 2.21s/sample |\n| 5 | ~4000/8608 (~46%) | ~2.7h | 2.27s/sample |\n\n### bjb1-18228 — Spatial shard 6\n| Shard | 进度 | 剩余时间 | 速率 |\n|-------|------|---------|------|\n| 6 | 5300/8607 (62%) | ~1.7h | 1.88s/sample |\n\n### 关键结论\n\n- **瓶颈**：bjb2-28827 的 spatial shards 0-5 最慢，预计 **~2.7 小时后完成**（约 UTC 03:10 / 北京时间 11:10）\n- 所有进程运行正常，无崩溃、无 OOM\n- bjb2-40593 的 shard 0 速率偏慢（3.35s vs 其他 ~1.9s），因为只用了单 GPU 且 save_every=100\n- 无法现在执行 merge + CRM training，需等所有 precompute 完成\n\n**建议**：约 2.5-3 小时后再次检查状态。全部完成后立即执行 merge → CRM training。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-precompute-check-merge-train.md"
+}

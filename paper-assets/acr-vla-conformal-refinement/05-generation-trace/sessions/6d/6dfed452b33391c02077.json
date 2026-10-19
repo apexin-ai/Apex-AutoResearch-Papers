@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6dfed452b33391c02077",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh deploy preparing experiments batch5",
+  "task_key": "worker_ssh_deploy-preparing-experiments-batch5_20260517T070743",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_deploy-preparing-experiments-batch5_20260517T070743_result.json",
+    "occurrence": 1,
+    "bytes": 672,
+    "sha256": "2fcb6d5924e9ac05a547d4a4d3e7d964e05a44787c9bea19d854591fd5260ead"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 4 进程确认启动成功（从 1 MiB → 5664 MiB）。\n\n## 部署结果\n\n| 实验 | 服务器 | GPU | PID | 状态 |\n|------|--------|-----|-----|------|\n| eval-obs-only-object-norm01-seed46 | bjb2-28827 | 4 | 365893 | ✅ 运行中 |\n| eval-obs-only-object-norm01-seed47 | — | — | — | ❌ 无空闲 GPU |\n| eval-perdof-object-norm01-seed46 | — | — | — | ❌ 无空闲 GPU |\n| eval-perdof-object-norm01-seed47 | — | — | — | ❌ 无空闲 GPU |\n\n**结论**：4 台服务器共 17 张卡中只有 bjb2-28827 GPU 4 空闲，已部署 1 个实验。其余 3 个实验无可用 GPU，需等待现有任务完成后再部署。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-deploy-preparing-experiments-batch5.md"
+}

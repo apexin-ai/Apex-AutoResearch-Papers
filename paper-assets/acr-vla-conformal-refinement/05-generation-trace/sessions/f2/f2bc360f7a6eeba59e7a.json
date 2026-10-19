@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2bc360f7a6eeba59e7a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "check bjb2 status d021",
+  "task_key": "worker_check_bjb2-status-d021_20260515T012521",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_bjb2-status-d021_20260515T012521_result.json",
+    "occurrence": 1,
+    "bytes": 1084,
+    "sha256": "30ea4e2e6b00267072174eebcf257e44180fdef8f52715360f4c9c35266ae92a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "注意：任务指定的 checkpoint 路径 `crm_v3_norm/scalar_unc/` 不存在，实际路径在 `crm_v3/scalar_unc/`。`crm_v3_norm/` 下只有 `perdof/crm_best.pt`。\n\n## bjb2-40593 状态\n\n| 项目 | 状态 |\n|------|------|\n| **GPU 0** | 空闲 (RTX 4090D, 0MiB/24564MiB, 0% util) |\n| **PID 201029 (vla-mean-t10)** | DEAD |\n| **vla-mean-t10 结果** | 完成。Task 10 (black bowl → plate) 成功率 **10.0% (1/10)**，仅跑了 task 9（start_task=9），overall 10.0% |\n| **PID 199257** | DEAD |\n| **PID 203222** | DEAD |\n| **scalar checkpoint** | **NO** — `crm_v3_norm/scalar_unc/crm_best.pt` 不存在。但 `crm_v3/scalar_unc/crm_best.pt` 存在 (1.3MB, May 15 02:25) |\n| **evaluate.py 有 max_correction_norm** | YES (L77-78 参数定义, L287-290 运行时覆盖) |\n| **evaluate.py** | 14489 bytes |\n| **crm.py** | 2889 bytes |\n| **可以部署 v4-scalar** | **需确认 checkpoint 路径**。GPU 空闲，代码就绪，但指定路径 `crm_v3_norm/scalar_unc/` 无 checkpoint。如果用 `crm_v3/scalar_unc/crm_best.pt` 则可以部署 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-bjb2-status-d021.md"
+}

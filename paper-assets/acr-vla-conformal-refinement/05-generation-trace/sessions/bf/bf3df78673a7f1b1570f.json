@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf3df78673a7f1b1570f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "gpu scan bjb1 18228 resolve",
+  "task_key": "worker_gpu-scan_bjb1-18228-resolve_20260520T110520",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_gpu-scan_bjb1-18228-resolve_20260520T110520_result.json",
+    "occurrence": 1,
+    "bytes": 854,
+    "sha256": "e73086e851cd223fde8022e7cbe5d4aa194b7dba224b137a7a8b3bd30fffff93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "冲突已解决。PID 349877 已被 kill，cuda:3 显存从 10357MiB 降到 5202MiB。\n\n## 最终 GPU 状态\n\n| GPU | PID | 实验 | 启动时间 | 状态 |\n|-----|-----|------|---------|------|\n| cuda:0 | 346801 | `random-selection-spatial-seed42` (mass-deploy) | 18:51:05 | 运行中 |\n| cuda:1 | 347075 | `random-selection-spatial-seed43` (mass-deploy) | 18:51:11 | 运行中 |\n| cuda:2 | 348897 | `random-selection-spatial-seed44` (mass-deploy) | 18:51:38 | 运行中 |\n| cuda:3 | 344862 | `adaptive-k-spatial-p90-seed43` (Director) | 18:45:14 | 运行中 |\n\n- **PID 344852**（Director wrapper bash）存活，其子进程 344862 是实际的 python 评估进程\n- **PID 349877**（`obs-only-goal-norm02-seed51`）已被 kill，cuda:3 冲突解除\n- `obs-only-goal-norm02-seed51` 需要重新调度到空闲 GPU 上运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-scan-bjb1-18228-resolve.md"
+}

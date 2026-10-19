@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ef35f762714ad8a5c21",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis magnitude curve data",
+  "task_key": "worker_analysis_magnitude-curve-data_20260516T185620",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_magnitude-curve-data_20260516T185620_result.json",
+    "occurrence": 1,
+    "bytes": 975,
+    "sha256": "6c54970e91f8d1bf1c55066c056992a08deb208a442f810929183ab053858beb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个产出已完成并注册：\n\n**1. `magnitude_curve_data.json`** — 包含：\n- Object benchmark magnitude curve（seed42，6 norm 级别 × obs_only + perdof）\n- Spatial benchmark magnitude curve（seed42）\n- 所有 baselines（argmin / vla_only / vla_mean）\n- `seed_comparison` 区段：obs_only_norm02 (3 seeds), obs_only_norm01 (2 seeds), argmin (3 seeds), perdof_norm01/02 (2 seeds), vla_only (3 seeds), vla_mean (3 seeds)\n- 每个数据点含 exp_id 追溯\n\n**2. `pooled_fisher_test_v2.py`** — 修正版脚本：\n- 从 JSON 读 `successes`/`total`（不硬编码）\n- `--seeds 42 43 44` 指定包含哪些 seeds\n- 输出 pooled Fisher p-value（双边 + 单边）\n- 用法示例：`python pooled_fisher_test_v2.py --data magnitude_curve_data.json --method1 obs_only_norm02 --method2 argmin --seeds 42 43 44`\n\nseed45/46 完成后只需在 JSON 的 `seed_comparison` 各 method 下追加条目即可直接跑 5-seed pooled test。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-magnitude-curve-data.md"
+}

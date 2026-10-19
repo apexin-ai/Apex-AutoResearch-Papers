@@ -1,0 +1,101 @@
+{
+  "schema_version": "1.0",
+  "id": "6e727bfb900a7ac8509e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose batch r2 failures",
+  "task_key": "worker_diagnose_batch-r2-failures_20260519T162210",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_batch-r2-failures_20260519T162210_result.json",
+    "occurrence": 1,
+    "bytes": 5602,
+    "sha256": "2695788776c6057de9d78a5ce513e88d0c03fa3f3443fe5f514db208ea7e56b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。所有 6 个 r2 实验**实际上都成功完成了**，不是真正的失败。\n\n```json\n{\n  \"root_cause\": \"所有 r2 实验均正常运行完毕并产出了 JSON 结果文件，但因通过 tmux 直接启动（非 submit_training_job），没有写 sentinel 文件，导致 cron 监控系统无法检测到完成状态。进程退出后被 registry 误判为 failed/dead。\",\n  \"error_type\": \"infrastructure\",\n  \"affected_experiments\": [\n    \"eval-random-selection-object-k5-seed42-r2\",\n    \"eval-random-selection-object-k5-seed44-r2\",\n    \"eval-random-selection-object-k5-seed45-r2\",\n    \"eval-random-selection-object-k5-seed43-r2\",\n    \"eval-obs-only-spatial-norm02-k5-seed44-r2\",\n    \"eval-obs-only-spatial-norm02-k5-seed45-r2\"\n  ],\n  \"original_processes_alive\": false,\n  \"r2_actually_completed\": true,\n  \"json_outputs_exist\": {\n    \"seed42 (object, bjb1)\": true,\n    \"seed44 (object, bjb1)\": true,\n    \"seed45 (object, bjb1)\": true,\n    \"seed43 (object, bjb2)\": true,\n    \"seed44 (spatial, bjb2)\": true,\n    \"seed45 (spatial, bjb2)\": true\n  },\n  \"results_summary\": {\n    \"eval-random-selection-object-k5-seed42-r2\": \"14.0% (14/100)\",\n    \"eval-random-selection-object-k5-seed44-r2\": \"10.0% (10/100)\",\n    \"eval-random-selection-object-k5-seed45-r2\": \"7.0% (7/100)\",\n    \"eval-random-selection-object-k5-seed43-r2\": \"11.0% (11/100)\",\n    \"eval-obs-only-spatial-norm02-k5-seed44-r2\": \"37.0% (37/100)\",\n    \"eval-obs-only-spatial-norm02-k5-seed45-r2\": \"34.0% (34/100)\"\n  },\n  \"json_timestamps\": {\n    \"seed42\": \"May 19 23:45\",\n    \"seed44 (object)\": \"May 19 23:50\",\n    \"seed45 (object)\": \"May 19 23:57\",\n    \"seed43\": \"May 20 00:03\",\n    \"seed44 (spatial)\": \"May 19 23:45\",\n    \"seed45 (spatial)\": \"May 19 23:49\"\n  },\n  \"gpu_status\": {\n    \"bjb1-32546\": \"GPU0,2-5 idle (2 MiB); GPU1 active (3132 MiB) — running eval-obs-only-spatial-norm02-seed47\",\n    \"bjb2-28827\": \"GPU0,4,5 idle; GPU1 (1906 MiB, argmin-object-k5-seed44), GPU2 (1906 MiB, random-seed46), GPU3 (3660 MiB, obs-only-spatial-norm02-seed46) active\"\n  },\n  \"active_experiments\": {\n    \"bjb1-32546\": [\"eval-obs-only-spatial-norm02-seed47 (GPU 1)\"],\n    \"bjb2-28827\": [\"eval-random-seed46 (GPU 2)\", \"eval-argmin-object-k5-seed44 (GPU 1)\", \"eval-obs-only-spatial-norm02-seed46 (GPU 3)\"]\n  },\n  \"fix_recommendation\": \"将这 6 个实验的 registry 状态从 failed/RUNNING 更新为 completed。JSON 结果文件已存在，可直接采集。无需重试。根因是 tmux 直接启动的实验绕过了 sentinel 文件机制，建议后续统一通过 submit_training_job 启动以确保监控覆盖。\"\n}\n```\n\n**核心结论**：没有 GPU 冲突，没有 OOM，没有启动失败。6 个 r2 实验全部正常跑完，只是监控系统的盲区——tmux 启动的实验不写 sentinel，cron 检测不到完成状态。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "所有 r2 实验均正常运行完毕并产出了 JSON 结果文件，但因通过 tmux 直接启动（非 submit_training_job），没有写 sentinel 文件，导致 cron 监控系统无法检测到完成状态。进程退出后被 registry 误判为 failed/dead。",
+              "error_type": "infrastructure",
+              "affected_experiments": [
+                "eval-random-selection-object-k5-seed42-r2",
+                "eval-random-selection-object-k5-seed44-r2",
+                "eval-random-selection-object-k5-seed45-r2",
+                "eval-random-selection-object-k5-seed43-r2",
+                "eval-obs-only-spatial-norm02-k5-seed44-r2",
+                "eval-obs-only-spatial-norm02-k5-seed45-r2"
+              ],
+              "original_processes_alive": false,
+              "r2_actually_completed": true,
+              "json_outputs_exist": {
+                "seed42 (object, bjb1)": true,
+                "seed44 (object, bjb1)": true,
+                "seed45 (object, bjb1)": true,
+                "seed43 (object, bjb2)": true,
+                "seed44 (spatial, bjb2)": true,
+                "seed45 (spatial, bjb2)": true
+              },
+              "results_summary": {
+                "eval-random-selection-object-k5-seed42-r2": "14.0% (14/100)",
+                "eval-random-selection-object-k5-seed44-r2": "10.0% (10/100)",
+                "eval-random-selection-object-k5-seed45-r2": "7.0% (7/100)",
+                "eval-random-selection-object-k5-seed43-r2": "11.0% (11/100)",
+                "eval-obs-only-spatial-norm02-k5-seed44-r2": "37.0% (37/100)",
+                "eval-obs-only-spatial-norm02-k5-seed45-r2": "34.0% (34/100)"
+              },
+              "json_timestamps": {
+                "seed42": "May 19 23:45",
+                "seed44 (object)": "May 19 23:50",
+                "seed45 (object)": "May 19 23:57",
+                "seed43": "May 20 00:03",
+                "seed44 (spatial)": "May 19 23:45",
+                "seed45 (spatial)": "May 19 23:49"
+              },
+              "gpu_status": {
+                "bjb1-32546": "GPU0,2-5 idle (2 MiB); GPU1 active (3132 MiB) — running eval-obs-only-spatial-norm02-seed47",
+                "bjb2-28827": "GPU0,4,5 idle; GPU1 (1906 MiB, argmin-object-k5-seed44), GPU2 (1906 MiB, random-seed46), GPU3 (3660 MiB, obs-only-spatial-norm02-seed46) active"
+              },
+              "active_experiments": {
+                "bjb1-32546": [
+                  "eval-obs-only-spatial-norm02-seed47 (GPU 1)"
+                ],
+                "bjb2-28827": [
+                  "eval-random-seed46 (GPU 2)",
+                  "eval-argmin-object-k5-seed44 (GPU 1)",
+                  "eval-obs-only-spatial-norm02-seed46 (GPU 3)"
+                ]
+              },
+              "fix_recommendation": "将这 6 个实验的 registry 状态从 failed/RUNNING 更新为 completed。JSON 结果文件已存在，可直接采集。无需重试。根因是 tmux 直接启动的实验绕过了 sentinel 文件机制，建议后续统一通过 submit_training_job 启动以确保监控覆盖。"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-batch-r2-failures.md"
+}

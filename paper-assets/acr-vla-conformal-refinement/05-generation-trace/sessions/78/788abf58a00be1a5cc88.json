@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "788abf58a00be1a5cc88",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "submit eval object bjb2 28827",
+  "task_key": "worker_submit_eval-object-bjb2-28827_20260515T025311",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_submit_eval-object-bjb2-28827_20260515T025311_result.json",
+    "occurrence": 1,
+    "bytes": 1156,
+    "sha256": "611c12a94b12a9e370154018200b099ab23eda2b1f027fd2163123bc8b70c09c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## bjb2-28827 Results\n\n- **SmolVLA fine-tuned model**: READY (`/root/autodl-tmp/models/smolvla_libero/model.safetensors`)\n- **SmolVLM2 backbone (HuggingFaceTB/SmolVLM2-500M-Video-Instruct)**: **NOT READY** — HF cache 有 8 个 `.incomplete` blob 文件，下载中断，无进程在继续下载\n- **CRM checkpoints**: READY (obs_only + scalar_unc)\n- **Code**: READY (`evaluate.py` 含 `max_correction_norm` 参数)\n- **eval-vla-only-object**: FAILED — backbone 权重缺失 (`OSError: model.safetensors not found`)\n- **eval-acr-object-v4-obs-only-b2**: FAILED — 同上\n- **eval-acr-object-v4-scalar-b2**: FAILED — 同上\n- **Remaining idle GPUs**: cuda:0-5（全部空闲）\n\n### BLOCKER\n\n`SmolVLM2-500M-Video-Instruct` backbone 下载未完成（8 个 incomplete blobs），`HF_HUB_OFFLINE=1` 阻止在线下载。需要：\n1. 先完成 backbone 下载（去掉 `HF_HUB_OFFLINE=1`，或在线环境运行 `huggingface-cli download HuggingFaceTB/SmolVLM2-500M-Video-Instruct --cache-dir /root/autodl-tmp/.hf_cache`）\n2. 下载完成后重新启动 eval\n\n按任务指示，不自行下载，等待 Director 指示。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-eval-object-bjb2-28827.md"
+}

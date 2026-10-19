@@ -1,0 +1,848 @@
+{
+  "schema_version": "1.0",
+  "id": "ea14589a65a1247c234b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "cron hook pi05 crm k2 long s44 20260526T195637 958713",
+  "task_key": "cron_hook_pi05-crm-k2-long-s44_20260526T195637_958713",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/archive/cron_hook_pi05-crm-k2-long-s44_20260526T195637_958713.jsonl",
+    "occurrence": 1,
+    "bytes": 39554,
+    "sha256": "2a13861008ad9159c28e29d63eeb102a4d7a18db8284fc1d571920d067fcbb04"
+  },
+  "statistics": {
+    "messages": 41,
+    "user_turns": 6,
+    "tool_calls": 16,
+    "roles": {
+      "user": 6,
+      "tool_call": 16,
+      "tool_result": 16,
+      "assistant": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-26T03:08:04.896168+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: pi05-crm-k2-long-s44\n- project: acr-vla-conformal-refinement\n- server: bjb1-18228\n- log_path: /tmp/eval_pi05_long_crm_K2_s44.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-26T03:08:30.270426+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config",
+              "max_results": "8"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-26T03:08:30.330532+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "ToolSearch",
+            "elapsed_ms": 60
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-26T03:08:34.511010+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-26T03:08:34.968504+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-26T03:08:35.411820+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-26T03:08:35.579443+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-26T03:08:43.937456+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (1,466,939 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-b1c3f90e/3aa3e956-7275-423b-8068-02e82ada8bfd/tool-results/mcp-agent-ml-research-read_registry-1779764923667.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-b1c3f90e/3aa3e956-7275-423b-8068-02e82ada8bfd/tool-results/mcp-agent-ml-research-read_registry-1779764923667.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 9426
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-26T03:08:44.106768+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 9138
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-26T03:08:44.162474+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-26T03:08:38Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 1069 个实验 — DEPLOYED 6, DONE 888, PREPARING 157, QUEUED 10, RUNNING 8\\\\n**DONE 分布**: failed 87, killed 199, negative 75, success 527\\\\n\\\\n### 💾 磁盘余量\\\\n- **bjb2-40593**: ❌ 连接失败\\\\n- **bjb1-18228**: ❌ 连接失败\\\\n- **bjb1-32546**:\\\\n  - `/autodl-pub`: 1.2T/7.0T 可用（已用 85%）\\\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\\\n  - `/usr/bin/nvidia-smi`: 399G/438G 可用（已用 4%）\\\\n- **bjb2-28827**:\\\\n  - `/autodl-pub`: 4.3T/14T 可用（已用 70%）\\\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\\\n  - `/usr/bin/nvidia-smi`: 399G/439G 可用（已用 5%）\\\\n- **cqa1-32758**:\\\\n  - `/autodl-pub`: 514G/7.0T 可用（已用 93%） ⚠️\\\\n  - `/autodl-pub/data`: 1.5T/4.0T 可用（已用 65%）\\\\n  - `/usr/bin/nvidia-smi`: 77G/98G 可用（已用 19%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `eval-mechanism-goal-adapt-s42` | bjb1-18228 | ? | ? | `—` |\\\\n| `eval-k2-goal-vla-only-s49` | bjb2-40593 | ? | ? | `—` |\\\\n| `tau_sweep_spatial_tau025_s42` | bjb1-32546 | ? | ? | `…-conformal-refinement/logs/tau_sweep_spatial_tau025_s42.log` |\\\\n| `tau_sweep_goal_tau025_s42` | bjb1-32546 | ? | ? | `…vla-conformal-refinement/logs/tau_sweep_goal_tau025_s42.log` |\\\\n| `tau_sweep_goal_tau040_s42` | bjb1-32546 | ? | ? | `…vla-conformal-refinement/logs/tau_sweep_goal_tau040_s42.log` |\\\\n| `tau_sweep_goal_tau045_s42` | bjb1-32546 | ? | ? | `…vla-conformal-refinement/logs/tau_sweep_goal_tau045_s42.log` |\\\\n| `goal_vla_only_s48` | bjb1-32546 | ? | ? | `…oot/acr-vla-conformal-refinement/logs/goal_vla_only_s48.log` |\\\\n| `goal_adapt_s48` | bjb1-32546 | ? | ? | `/root/acr-vla-conformal-refinement/logs/goal_adapt_s48.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `pi05-crm-k2-long-s44` [failed] — 20\n…[truncated 7930 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 8750
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-26T03:08:44.218527+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\\\", \\\"content\\\": \\\"# acr-vla-conformal-refinement — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-25 17:54 UTC | 更新原因: D151 π0.5 negative; 14实验部署; SmolVLA 34/36; GPU 22/23 恢复\\\\n\\\\n> 详见 paper_framing.md（D146 narrative）\\\\n\\\\n## 核心方向\\\\n**ACR-VLA: Adaptive Conformal Refinement for Frozen Flow-Matching VLAs**。CoRL 2026 DDL **2026-05-29**（≤4天）。\\\\n\\\\n## 当前进展\\\\n- **SmolVLA Table 1 (D149)**: 34/36 cells 完成，仅 Long CRM s44 + Long Adaptive s43 仍在运行（ETA 2-4h）\\\\n- **π0.5 cross-VLA**: Adaptive Goal s42 = 86.5% vs baseline 95.5% → **Δ=-9pp（负向）**。MC3 原始 claim 不成立，需 reframe（D151）\\\\n- **14 个新 π0.5 实验部署中**（CRM 全套 + Adaptive Spatial/Object/Long）→ 预计 4-6h 出结果\\\\n- **GPU 利用率**: 22/23 活跃（从 7/23 恢复，Director 直接部署）\\\\n- **Agent session**: 死亡 4h+，已 replace_agent_queue 等待恢复\\\\n\\\\n## Table 1 预览 — SmolVLA D149 (seeds: Spatial s47/48/49, others s42/43/44)\\\\n| Suite | VLA-only | CRM | Adaptive | Δ(A-V) | 叙事角色 |\\\\n|-------|---------|-----|----------|--------|---------|\\\\n| Spatial | 78.8% | 79.5% | 80.3% | **+1.5pp** | magnitude claim (p<0.05, n=8) |\\\\n| Goal | 83.7% | 82.5% | 84.8% | **+1.1pp** | mechanism (trigger 8% → small Δ) |\\\\n| Object | 78.0% | 76.5% | 77.8% | -0.2pp | mechanism (trigger 4% → Δ≈0) |\\\\n| Long | 57.2% | ~55.5% | ~56.0% | ~-1.2pp | CRM harmful → gating necessary |\\\\n\\\\n**核心 pattern**: CRM always-on 在 Object/Long 有害 → Adaptive gating 的必要性。Spatial 有统计显著正效应。\\\\n\\\\n## π0.5 状态 (MC3 待决策)\\\\n- Adaptive Goal: 86.5%, trigger 9.7% → Δ=-9pp ❌\\\\n- Adaptive Spatial: 部署中（cqa1 GPU3 + bjb2-28827 GPU0/1）→ 预计正向（高 trigger）\\\\n- CRM 全套: 部署中（cqa1 + bjb1-32546 + bjb2-28827）\\\\n- **待用户决策**: 方案 A（drop π0.5 from paper）vs 方案 B（reframe: gating 反映模型能力差异）\\\\n\\\\n## GPU 部署（2026-05-26 01:49 UTC）\\\\n| 服务器 | GPU 活跃 | 主要任务 |\\\\n|--------|---------|---------|\\\\n| bjb1-18228 (4卡) | 4/4 | π0.5 CRM Object/Long s42 + Adaptive Long s42 |\\\\n| bjb1-32546 (6卡) | 6/6 | π0.5 CRM Spatial s42/\n…[truncated 2020 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 8639
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-26T03:08:54.574433+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "filters": "{'exp_id': 'pi05-crm-k2-long-s44'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-26T03:08:55.530554+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "filters": "{'exp_id': 'pi05-crm-k2-long-s42'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-26T03:08:55.940483+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "filters": "{'exp_id': 'pi05-crm-k2-long-s43'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-26T03:08:56.966567+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "filters": "{'server': 'bjb1-18228', 'status': 'RUNNING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-26T03:09:04.312054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.6813}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 9737
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-26T03:09:09.887657+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.5223}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 14357
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-26T03:09:14.298904+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.3663}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 18358
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-26T03:09:18.409433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.1361}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 21442
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-26T03:09:23.315414+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "filters": "{'status': 'DONE', 'conclusion': 'failed'}",
+              "limit": "10",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-26T03:09:31.374159+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"pi05-crm-k2-long-s44\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T23:33:23.785Z\\\", \\\"updated_at\\\": \\\"2026-05-26T03:08:34.512Z\\\", \\\"hypothesis\\\": \\\"π0.5 CRM K=2 obs_only on LIBERO-Long s44. Tests whether CRM correction affects strong π0.5 baseline on long-horizon tasks.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark long --seed 44 --n_rollouts 20 --output_file logs/eval_long_crm_obs_only_norm0.05_seed44_pi05_K2.json\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 44, \\\"data_path\\\": \\\"LIBERO-Long\\\", \\\"data_count\\\": 200}, \\\"failure_reason\\\": \\\"SSH check failed 5x — last error: [Errno None] Unable to connect to port 18228 on 106.120.183.117\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-26T03:07:42.279Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-26T03:08:57.334371+00:00\\\"}]}}, \\\"pi05-crm-k2-long-s43\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T23:33:19.948Z\\\", \\\"updated_at\\\": \\\"2026-05-26T03:06:40.563Z\\\", \\\"hypothesis\\\": \\\"π0.5 CRM K=2 obs_only on LIBERO-Long s43. Tests whether CRM correction affects strong π0.5 baseline on long-horizon tasks.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --model pi05 --mode crm_obs_only --K 2 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark long --seed 43 --n_rollouts 20 --output_file logs/eval_long_crm_obs_only_norm0.05_seed43_pi05_K2.json\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"model_name\\\": \\\"pi0.5\\\", \\\"seed\\\": 43, \\\"data_path\\\": \\\"LIBERO-Long\\\", \\\"data_count\\\": 200},\n…[truncated 9140 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 8058
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-26T03:09:40.785110+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-26T03:09:44.504775+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval-spatial-adapt-tau025-s48-paired\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T02:10:29.000Z\\\", \\\"updated_at\\\": \\\"2026-05-26T02:11:25.750Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=5 python src/evaluate.py --model smolvla --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --benchmark spatial --seed 48 --n_rollouts 20\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"data_path\\\": \\\"LIBERO-Spatial\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"smolvla\\\", \\\"seed\\\": 48, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Spatial\\\", \\\"tmux_session\\\": \\\"spatial_adapt_s48\\\", \\\"gpu\\\": 5}}, \\\"eval-spatial-vla-only-s48-paired\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T02:10:21.164Z\\\", \\\"updated_at\\\": \\\"2026-05-26T02:11:17.079Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=4 python src/evaluate.py --model smolvla --mode vla_only --baseline_mode single --benchmark spatial --seed 48 --n_rollouts 20\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"data_path\\\": \\\"LIBERO-Spatial\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"smolvla\\\", \\\"seed\\\": 48, \\\"tmux_session\\\": \\\"spatial_vla_s48\\\", \\\"gpu\\\": 4}}, \\\"eval-spatial-adapt-tau025-s46-paired\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T02:10:10.237Z\\\", \\\"updated_at\\\": \\\"2026-05-26T02:11:09.582Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python src/evaluate.py --model smolvla --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --benchmark spatial --seed 46 --n_rollouts 20\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"data_path\\\": \\\"LIBERO-Spatial\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"smolvla\\\", \\\"seed\\\": 46, \\\n…[truncated 7755 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 3719
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-26T03:10:01.791075+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-26T03:10:03.119515+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/sessions/agent_b1c3f90e."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "Read",
+            "elapsed_ms": 1328
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-26T03:10:03.119934+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_gpu_health,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_project_resource_usage",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-26T03:10:03.120177+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-26T03:10:06.487402+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-26T03:10:06.838666+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "status": "running"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-26T03:10:09.097769+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [], \\\"actually_running_gpus\\\": [], \\\"allocated_but_idle\\\": [], \\\"registered_but_hw_idle\\\": [], \\\"unregistered_but_hw_active\\\": [], \\\"running_experiments\\\": [], \\\"worker_pool\\\": {\\\"total\\\": 0, \\\"gpu_tasks\\\": 0, \\\"cpu_tasks\\\": 0, \\\"details\\\": []}, \\\"summary\\\": \\\"分配 0 张, 实际跑 0 张 | Worker 0 (GPU 0 / CPU 0)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "elapsed_ms": 2610
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-26T03:10:09.248967+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 2410
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-26T03:10:31.996610+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 0/0 (项目无分配) | Worker 0 (GPU 0 / CPU 0) | bjb1-18228: ❌不可达 | bjb2-40593: ❌不可达 | bjb1-32546: 可用 | bjb2-28827: 可用 | cqa1-32758: 可用\n\n## bjb1-18228 宕机导致实验批量失败\n\n**已确认 failed（cron 自动标记）**：\n- `pi05-crm-k2-long-s42` / `s43` / `s44` — π0.5 CRM K=2 obs_only on LIBERO-Long\n- 失败原因：SSH check failed 5x — Unable to connect to port 18228\n\n**高风险（仍标 RUNNING 但服务器不可达）**：\n- `eval-mechanism-goal-adapt-s42`（bjb1-18228, SmolVLA Goal Adaptive s42）— 大概率也已死亡，cron 尚未捕捉到\n\n**bjb2-40593 也不可达**：\n- `eval-k2-goal-vla-only-s49`（SmolVLA Goal VLA-only s49）— 同样高风险\n\n**影响评估**：\n- π0.5 Long CRM 3 seed 全部丢失，需在其他服务器重跑\n- SmolVLA 相关 2 个实验（Goal Adaptive s42 + Goal VLA-only s49）可能也丢了\n- CoRL DDL 还有 3 天，bjb1-32546（6卡）和 bjb2-28827（6卡）仍在跑 12 个实验正常\n\n**建议**：\n1. 确认 bjb1-18228 和 bjb2-40593 实例状态（AutoDL 重启？端口变更？）\n2. 如服务器恢复，在可达服务器上重新提交 pi05-crm-k2-long s42/s43/s44\n3. 确认 eval-mechanism-goal-adapt-s42 和 eval-k2-goal-vla-only-s49 是否需要重跑",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-26T03:10:36.691240+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 4694
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-26T03:10:42.170369+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已向 Director 汇报。诊断结论：\n\n- **根因**：bjb1-18228 服务器不可达（AutoDL 实例可能重启/端口变更），非代码问题\n- **直接影响**：pi05-crm-k2-long s42/s43/s44 三个实验全部 failed\n- **连带风险**：同服务器的 eval-mechanism-goal-adapt-s42 和 bjb2-40593 上的 eval-k2-goal-vla-only-s49 也可能已死\n- **健康实验**：bjb1-32546 和 bjb2-28827 上的 12 个实验不受影响\n\n等 Director 决策是否恢复服务器并重跑失败实验。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44"
+          },
+          "id": "event-000034"
+        }
+      ],
+      "message_count": 34
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-26T03:10:42.200569+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: pi05-crm-k2-long-s44\n- project: acr-vla-conformal-refinement\n- server: bjb1-18228\n- log_path: /tmp/eval_pi05_long_crm_K2_s44.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "source": "cron:hook"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-26T03:10:54.523982+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "这是 `pi05-crm-k2-long-s44` 的重复回调。该实验已在上一轮处理完毕：\n\n- **诊断**：bjb1-18228 SSH 不可达（端口 18228 连接失败 5 次）\n- **Registry**：已标记 `conclusion=failed`\n- **Director**：已汇报，包括同服务器其他受影响实验\n\n无需重复操作。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44"
+          },
+          "id": "event-000036"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-26T19:13:54.979987+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000037"
+        }
+      ],
+      "message_count": 1
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-26T19:22:56.753736+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000038"
+        }
+      ],
+      "message_count": 1
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-26T19:31:38.975357+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000039"
+        }
+      ],
+      "message_count": 1
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-26T19:55:38.726924+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-26T19:56:37.945185+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- 项目 gpu_ids 当前为空（0 张分配），所有实验由 Director 直接部署。不要自行在任何 GPU 上启动实验\n- π0.5 实验用 K=2（D148 锁定），不要用 K=5/K=10\n- SmolVLA CRM checkpoint: `/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt`；π0.5 CRM checkpoint: `/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt`——不要混用\n- Table 1 seed 方案 D157：全部 suite 统一 s42/s43/s44，论文不提具体 seed 编号\n- bjb1-18228 和 bjb2-40593 截至本 session 结束时 SSH 不可达（AutoDL 可能重启换端口），连接前先确认端口\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-32546**（6卡）：工作目录 `/root/acr-vla-conformal-refinement`，aml-train 镜像，conda base，Python `/root/miniconda3/bin/python`\n- **bjb2-28827**（6卡）：同上\n- **bjb1-18228**（4卡）：❌ 不可达（port 18228 连接失败）。π0.5 实验主力机，CRM checkpoint 在 `/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/`\n- **bjb2-40593**（1卡）：❌ 不可达\n- **cqa1-32758**（6卡）：可用，磁盘 `/autodl-pub` 93% ⚠️\n- 活跃进程：14 个 RUNNING（见第 3 节），均由 Director 部署，无 PID/tmux 信息在 registry 中\n\n### 3. 📊 当前状态\n**刚做完**：诊断 pi05-crm-k2-long-s42/s43/s44 失败原因（bjb1-18228 不可达），已向 Director 汇报。收到多次重复 WRITE HANDOFF 但之前未能输出。\n\n**RUNNING（14 个）**：\n- bjb1-32546（6个）：tau_sweep_spatial_tau025_s42, tau_sweep_goal_tau025/040/045_s42, goal_vla_only_s48, goal_adapt_s48 — SmolVLA τ-sweep + Goal paired s48\n- bjb2-28827（6个）：eval-spatial-adapt/vla-s46-paired, eval-spatial-adapt/vla-s48-paired, eval-goal-adapt/vla-s49-paired — SmolVLA paired eval\n- bjb1-18228（1个）：eval-mechanism-goal-adapt-s42 — 大概率已死（服务器不可达）\n- bjb2-40593（1个）：eval-k2-goal-vla-only-s49 — 大概率已死（服务器不可达）\n\n**QUEUED/PREPARING**：~167 个待执行\n\n**等待 Director 决策**：\n- bjb1-18228 / bjb2-40593 服务器恢复或更换端口\n- pi05-crm-k2-long s42/s43/s44 是否在其他服务器重跑\n- MC3 跨模型 claim 最终方案（D155: drop π0.5 or reframe）\n\n### 4. 📋 待办（条件触发式）\n- bjb1-18228 恢复可达 → 检查 eval-mechanism-goal-adapt-s42 进程存活，死了就标 failed 重提交\n- bjb2-40593 恢复可达 → 检查 eval-k2-goal-vla-only-s49，同上\n- Director 确认可用服务器 → 在该服务器重跑 pi05-crm-k2-long s42/s43/s44\n- bjb1-32546 / bjb2-28827 上 12 个实验 cron 回调到达 → on-experiment-done 流程处理\n- SmolVLA Table 1 最后 2 格（Long CRM s44 + Long Adaptive s43）完成 → 锁定 Table 1 数据\n- Director 决定 MC3 方案 → 更新 paper_framing.md\n\n### 5. 🎯 战略上下文\n**CoRL 2026 DDL: 2026-05-29（≤3天）**\n\n**核心结论链**：\n- D148: K=2 硬编码确认\n- D149: Table 1 seed 方案（后被 D152→D156→D157 覆盖为全部 s42/43/44）\n- D150: Claim 强度分层——MC1 Spatial magnitude (p<0.05), MC2 mechanism (trigger↔Δ 单调), MC3 cross-VLA\n- D151: π0.5 Adaptive Goal negative (-9pp)，MC3 原始 claim 不成立\n- D155: MC3 reframe 为\"模型能力依赖性分析\"\n\n**SmolVLA Table 1 已完成 34/36**：Spatial +1.5pp✅, Goal +1.1pp✅, Object -0.2pp(mechanism), Long ~-1.2pp(CRM harmful→gating necessary)\n\n**易错点**：\n- 不要把 SmolVLA 和 π0.5 的 CRM checkpoint 搞混（obs_dim 不同：SmolVLA=384, π0.5=2048）\n- π0.5 Adaptive Goal 已确认 negative（86.5% vs 95.5%），不要期望其他 π0.5 Adaptive 也正向——这是\"模型能力差异\"narrative 的一部分\n- bjb1-18228 上标 RUNNING 的实验可能实际已经跑完或挂了，恢复后第一件事是检查进程+日志，不要直接重提交（可能重复跑）\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-crm-k2-long-s44"
+          },
+          "id": "event-000041"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-pi05-crm-k2-long-s44-20260526t195637-958713.md"
+}

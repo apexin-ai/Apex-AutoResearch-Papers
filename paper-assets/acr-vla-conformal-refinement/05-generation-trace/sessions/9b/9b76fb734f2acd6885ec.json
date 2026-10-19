@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b76fb734f2acd6885ec",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diag train crm unified 4suite r4",
+  "task_key": "worker_diag_train-crm-unified-4suite-r4_20260522T172456",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_train-crm-unified-4suite-r4_20260522T172456_result.json",
+    "occurrence": 1,
+    "bytes": 1267,
+    "sha256": "2beb6ad3baedae6f5d370416b27637b4e85900d2f6cc58b5d2fc67ae1094b0fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**训练进程仍在运行。** PID 322367 就是目标训练进程，日志还在增长（两次读取之间从 batch 4100 推进到了 4250）。\n\n## 诊断报告\n\n### 结论：进程未死亡，是误报\n\n- **PID 322367** 在 GPU 3 上正常运行，cmdline 完全匹配训练命令\n- 日志持续写入，当前进度：**epoch 14, batch ~4250/6316**\n- 训练正常，loss 稳定在 0.010-0.017 区间\n\n### 系统状态\n\n| 项目 | 状态 |\n|------|------|\n| GPU 3 | 正常，532MiB 显存，35°C，10% 利用率 |\n| 磁盘 | `/root/autodl-tmp/` 使用 28%（68G/250G），充裕 |\n| 日志 | 无任何 error/traceback/OOM |\n\n### Checkpoint 状态\n\n| 文件 | 时间 |\n|------|------|\n| `checkpoint_epoch0009.pt` ~ `checkpoint_epoch0013.pt` | 每个 ~3.9MB |\n| `crm_best.pt` | epoch 13, val_loss=0.007949 (当前最优) |\n\n### 误报原因推测\n\n监控系统报告 \"process dead 5× with no sentinel/W&B\" 可能因为：\n1. 没有集成 W&B，监控缺少心跳信号\n2. 监控可能在检查错误的 PID 或使用了错误的存活判断逻辑\n\n### 建议\n\n不需要任何修复。训练正在正常进行，预计还需完成 epoch 14 剩余部分 + epoch 15-49。如需监控可直接 `tail` 日志文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-train-crm-unified-4suite-r4.md"
+}

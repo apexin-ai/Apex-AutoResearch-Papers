@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "984585bc31c94587c8d6",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_10_1778869979.md",
+  "task_key": "loop_10_1778869979",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_10_1778869979.md",
+    "occurrence": 1,
+    "bytes": 5890,
+    "sha256": "05f28eab3797bb22723440631334b4923b037643f07aa62f4f4527d398d80eba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T17:04:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单严格 17 张：bjb2-40593:cuda:0, bjb1-18228:cuda:0-3, bjb1-32546:cuda:0-5, bjb2-28827:cuda:0-5。白名单外的 GPU **即使 Director 指令也必须 push back**\n- bjb2-40593 无 .git repo，sync_code 无效，代码修改需手动 scp 或重新 clone\n- submit_training_job 的 command 必须用 `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"` 包裹，裸 `python` 在部分服务器触发 EXIT_CODE=127（sh 无 conda PATH）\n- Kill 实验前必须 `ps aux | grep` 完整命令行逐参数比对（norm03 vs norm003 误杀事故教训，memory.md 有记录）\n- exp_id 中 norm 值用 `p` 替代小数点：norm-0p3=0.3, norm-0p03=0.03，禁止缩写歧义\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228** (4× 4090): 工作目录 /root/acr-vla-conformal-refinement, Python /root/miniconda3/bin/python, conda base\n  - cuda:0 eval-mag-obsonly-norm03-r2 (PID 325264), cuda:1 eval-perdof-object-seed43 (PID 365925), cuda:2 eval-obs-only-object-seed43 (PID 356490), cuda:3 eval-argmin-object-seed43 (PID 356696)\n- **bjb1-32546** (6× 4090): 同上路径\n  - cuda:0 eval-mag-obsonly-norm003-object (PID 121325), cuda:1 eval-vla-mean-object-seed43 (PID 111709), cuda:2 eval-scalar-object-seed43 (PID 114664), cuda:3 eval-vla-only-object-seed43 (无 PID 记录), cuda:4 eval-acr-object-obs-only-norm02 (PID 44270), cuda:5 空闲（eval-vla-mean-object 已 DONE，未补新实验）\n- **bjb2-28827** (6× 4090): 同上路径\n  - cuda:0 eval-mag-perdof-norm003-object (PID 105938), cuda:1 eval-mag-perdof-norm005-object (PID 109650), cuda:2 eval-mag-perdof-norm02 (PID 13728), cuda:3 eval-obs-only-object-norm02-seed43 (无 PID 记录), cuda:4 eval-mag-obsonly-norm005-object (PID 101610), cuda:5 eval-mag-obsonly-norm03-object (PID 103028)\n- **bjb2-40593** (1× 4090 D): eval-mag-obsonly-norm003-b2 (PID 227426), 3/10 tasks 进度慢\n- **模型检查点**: /root/autodl-tmp/checkpoints/crm_v3_norm/{obs_only,perdof,scalar_unc}/crm_best.pt\n- **HF cache**: /root/autodl-tmp/.hf_cache, SmolVLA: /root/autodl-tmp/models/smolvla_libero/\n- **活跃 cron**: 13 个（reconcile_crons 确认），监控上述 RUNNING 实验\n- **运行中 Worker**: worker_code_fix-output-file-bug (started 16:52 UTC, still running)\n\n### 3. 📊 当前状态\n17 个 RUNNING 实验，全部是 eval（无训练）。分三类：\n\n**A) seed=43 六方对比（项目存亡级）**：obs-only / argmin / perdof / scalar / VLA-mean / VLA-only 各一个，分布在 bjb1-18228 和 bjb1-32546。目标：combined 200 trials Fisher exact p < 0.05。\n\n**B) Object magnitude sweep（论文 fig3 数据）**：obs_only 和 perdof 各 5 点 norm (0.03/0.05/0.1/0.2/0.3)。norm=0.1 已 DONE (obs_only 19%, perdof 11%)。其余 4 点 running on bjb2-28827 + bjb1-32546。\n\n**C) Spatial 补充**: norm=0.03 obs_only (bjb2-40593, 慢), norm=0.3 obs_only retry (bjb1-18228:cuda:0), perdof norm=0.2 (bjb2-28827:cuda:2)。\n\n**已完成关键结果**:\n- Object 10-task FINAL: obs_only 19.0% vs argmin 12.0% (+7pp, PROJECT HIGH)\n- Spatial LOCKED: 全 CRM 变体 ≈ argmin 34%\n- perdof DEAD on both benchmarks\n- 统计分析脚本已 Reviewer PASS\n\n**等待中**: worker_code_fix-output-file-bug 还在跑。bjb1-32546:cuda:5 空闲（eval-vla-mean-object 完成后未补实验）——**下一个\"你\"应立即补上**。\n\n### 4. 📋 待办（条件触发式）\n- **bjb1-32546:cuda:5 空闲** → 立即补一个实验（建议 eval-acr-object-v4-default 的 obs_only 版本，或 object norm=0.2 的 perdof）\n- **seed=43 六方全部完成** → spawn Worker 跑 Fisher exact test + bootstrap CI（脚本在 src/stat_analysis.py，已 Reviewer PASS）→ 汇报 Director：p < 0.05 则 claim 成立，否则项目 dead\n- **Object magnitude sweep 全部完成** → 汇总 5-point curve（obs_only vs perdof 对比图），spawn Worker 画 fig3\n- **eval-mag-obsonly-norm03-r2 完成** → 确认 obs_only norm=0.3 在 spatial 是否退化（对比 perdof norm=0.3 = 26%/T1: 50%）\n- **eval-acr-object-v4-default 完成** → 确认 object 上无 magnitude control 是否也灾难（spatial: norm=1.42 → 0%）\n- **所有 eval 完成** → 更新 paper_framing.md headline result template 中的 X/Y 占位符 → 启动 Paper Agent 写 CoRL 初稿\n- **任何实验 conclusion=negative** → 按 red-section skill 产 Framing 调整提案，禁止默默跑下一个\n- **worker_code_fix-output-file-bug 完成** → 检查产出，可能影响 output_file 路径的解析\n\n### 5. 🎯 战略上下文\n**CoRL 2026 abstract DDL ~May 26（11 天），full paper ~Jun 2（18 天）。**\n\n**核心结论链**:\n- D025: 早期 \"52.5% perdof\" claim 无效（4-task 中期膨胀）\n- D027: perdof = argmin on matched tasks → per-DOF conformal claim DEAD\n- D029-D030: Spatial ALL CRM variants dead (32-35% vs argmin 34%)\n- D031: seed=43 doubling 启动，目标 p < 0.05\n- D032: Spatial magnitude sweep 全部收敛 35%（obs_only 无真实优势），**Object** 是唯一 story 载体\n\n**唯一存活路径**: Object benchmark obs_only CRM +7pp over argmin (19% vs 12%) + seed=43 统计复现。如果 seed=43 obs_only 回落到 ≤ 14% 或 Fisher p > 0.05 → **项目 dead**。\n\n**最容易判断错的事**:\n1. Spatial 数据看起来 obs_only 在 magnitude sweep 中有优势——但 D032 已确认 7-task 以上全部收敛 35%，中期膨胀是因为 T7-T9 是 hard tasks (0-30%)。**不要用 spatial partial data 做 claim**\n2. Object 当前 19% 是 10-task FINAL，但 seed=43 还没出——**不要提前宣称统计显著**\n3. bjb2-40593 进度极慢（1× 4090 D，3/10 tasks），不要对它的 ETA 乐观估计\n4. eval-acr-object-v4-default (perdof 无 magnitude control) 在 bjb2-28827:cuda:4 上跑，但 ROADMAP 写的是 cuda:3——以 registry spec 为准\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778869979.md"
+}

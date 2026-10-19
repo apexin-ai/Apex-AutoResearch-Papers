@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a2b7edeb4fcda5da4128",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "infra libero smolvla setup",
+  "task_key": "worker_infra_libero-smolvla-setup_20260513T023758",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_libero-smolvla-setup_20260513T023758.log",
+    "occurrence": 1,
+    "bytes": 556315,
+    "sha256": "9b7cb753c8318ae48fc20ab4a8279b5ec86e9128851b3abc399f2ac7dc04c7d6"
+  },
+  "statistics": {
+    "messages": 313,
+    "user_turns": 0,
+    "tool_calls": 111,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 87,
+      "tool_call": 111,
+      "tool_result": 111,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 313,
+      "chunks": [
+        {
+          "path": "a2b7edeb4fcda5da4128-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a2b7edeb4fcda5da4128-part-0002.json",
+          "message_count": 133
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-libero-smolvla-setup-copy-2.md"
+}

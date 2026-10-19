@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88fab10c791721226384",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb2 28827 long suite 3gpu",
+  "task_key": "worker_deploy_bjb2-28827-long-suite-3gpu_20260523T095604",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb2-28827-long-suite-3gpu_20260523T095604_result.json",
+    "occurrence": 1,
+    "bytes": 313,
+    "sha256": "c9c45f3ef68f85b2368458f81f1360306542122ff49051ecdef9567bd176e7aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个进程均存活。部署完成：\n\n| 实验 | GPU | PID | 状态 |\n|------|-----|-----|------|\n| eval-supp-long-reconvla-s42 | cuda:3 | 711470 | 运行中 |\n| eval-supp-long-adapt-tau025-s42 | cuda:4 | 711761 | 运行中 |\n| eval-supp-long-crm-norm005-s42 | cuda:5 | 712369 | 运行中 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb2-28827-long-suite-3gpu.md"
+}

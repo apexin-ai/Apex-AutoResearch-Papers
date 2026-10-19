@@ -1,0 +1,1532 @@
+{
+  "schema_version": "1.0",
+  "id": "c8d2c67d89ac7ccfbca9",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "audit bjb2 28827 gpu status",
+  "task_key": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_audit_bjb2-28827-gpu-status_20260520T140249.jsonl",
+    "occurrence": 1,
+    "bytes": 51979,
+    "sha256": "540e756289281ee668243c248d64a50b27ada575841372596c89e5839c2e2bdd"
+  },
+  "statistics": {
+    "messages": 75,
+    "user_turns": 0,
+    "tool_calls": 37,
+    "roles": {
+      "tool_call": 37,
+      "tool_result": 37,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T14:06:32.198837+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T14:06:32.199253+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T14:06:32.199506+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "nvidia-smi --query-gpu=index,gpu_name,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T14:06:32.199650+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "ps aux --sort=-%mem",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T14:06:32.199774+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "tmux list-sessions",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T14:06:32.199907+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA GeForce RTX 4090, 0 %, 1 MiB, 24564 MiB\\\\n1, NVIDIA GeForce RTX 4090, 0 %, 1 MiB, 24564 MiB\\\\n2, NVIDIA GeForce RTX 4090, 23 %, 4190 MiB, 24564 MiB\\\\n3, NVIDIA GeForce RTX 4090, 57 %, 22651 MiB, 24564 MiB\\\\n4, NVIDIA GeForce RTX 4090, 0 %, 1 MiB, 24564 MiB\\\\n5, NVIDIA GeForce RTX 4090, 19 %, 5731 MiB, 24564 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T14:06:32.200106+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\\\nroot     367998  507  1.0 74801100 10741352 pts/6 Rl 21:50  62:37 python -u src/evaluate.py --mode adaptive_k --adaptive_threshold 0.125870 --k_full 10 --benchmark spatial --seed 44 --n_rollouts 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_adaptive_k_spatial_p90_seed44.json\\\\nroot     357304  551  0.9 69475864 9973308 pts/0 Rl  21:27 196:54 python -u src/evaluate.py --mode crm_obs_only --benchmark spatial --seed 49 --n_rollouts 10 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_obs_only_spatial_norm02_seed49.json\\\\nroot     365151  782  0.9 98879504 9822468 pts/1 Rl  21:49 107:03 python precompute_openvla.py --device cuda:0 --max_demos_per_task 50 --cache_dir /root/autodl-tmp/crm_cache_k1_openvla/\\\\nroot        965  0.3  0.0 5270396 99816 ?       Sl   May15  25:20 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        964  0.0  0.0 190528 88376 ?        S    May15   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        960  0.0  0.0 4147492 61128 ?       Sl   May15   3:22 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        941  1.6  0.0 723616 20832 ?        Sl   May15 134:46 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        967  0.0  0.0 3164692 20680 ?       Sl   May15   1:40 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot        966  0.1  0.0 3462372 19380 ?       Sl   May15   9:28 proxy -c /init/proxy/proxy.ini\\\\nroot     289936  0.0  0.0  16692 10624 ?        Ss   17:22   0:02 sshd: root@notty\\\\nroot     373177  4.0  0.0  16692 10612 ?        Ss   22:03   0:00 s\n…[truncated 6315 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T14:06:32.200290+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T14:06:32.200491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "nvidia-smi --query-compute-apps=pid,gpu_uuid,used_memory --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T14:06:32.200629+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"357304, GPU-cd6008a7-b242-51e0-5f10-49dfd6d5651d, 4171 MiB\\\\n365151, GPU-a0d22891-1964-0f75-4962-81994416abaf, 22642 MiB\\\\n367998, GPU-e78bc8c3-4047-7933-7882-9f404fae347f, 5712 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T14:06:32.200784+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "ls -la /root/acr-vla-conformal-refinement/logs/",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T14:06:32.200996+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 19584\\\\ndrwxr-xr-x 3 root root    8192 May 20 21:51 .\\\\ndrwxr-xr-x 7 root root      97 May 20 07:02 ..\\\\n-rw-r--r-- 1 root root   12297 May 20 13:11 calibrate_crm_signal.log\\\\n-rw-r--r-- 1 root root 9954681 May 20 13:11 crm_magnitude_calibration.json\\\\n-rw-r--r-- 1 root root    5011 May 20 21:27 eval-adaptive-k-spatial-p25-seed44.log\\\\n-rw-r--r-- 1 root root    4937 May 20 21:00 eval-adaptive-k-spatial-p75-seed44.log\\\\n-rw-r--r-- 1 root root    5019 May 20 20:49 eval-adaptive-k-spatial-p90-seed42.log\\\\n-rw-r--r-- 1 root root    1906 May 20 22:01 eval-adaptive-k-spatial-p90-seed44-bjb2.log\\\\n-rw-r--r-- 1 root root    1733 May 20 21:50 eval-crm-k1-object-seed42-plan702.log\\\\n-rw-r--r-- 1 root root    1733 May 20 21:50 eval-crm-k1-object-seed43-plan702.log\\\\n-rw-r--r-- 1 root root    1733 May 20 21:50 eval-crm-k1-object-seed44-plan702.log\\\\n-rw-r--r-- 1 root root    4339 May 20 18:47 eval-crm-object-k20-seed44.log\\\\n-rw-r--r-- 1 root root    4535 May 20 21:51 eval-latency-profiling-v1.log\\\\n-rw-r--r-- 1 root root    4333 May 20 18:49 eval-obs-only-object-norm003-seed44.log\\\\n-rw-r--r-- 1 root root    4332 May 20 18:52 eval-obs-only-object-norm005-seed43.log\\\\n-rw-r--r-- 1 root root    2112 May 20 20:20 eval-obs-only-spatial-norm02-seed42.log\\\\n-rw-r--r-- 1 root root    2721 May 20 22:02 eval-obs-only-spatial-norm02-seed49.log\\\\n-rw-r--r-- 1 root root    1620 May 20 20:25 eval-vla-only-goal-seed47.log\\\\n-rw-r--r-- 1 root root    1814 May 20 20:20 eval-vla-only-spatial-seed48.log\\\\n-rw-r--r-- 1 root root  209119 May 20 11:05 eval_adaptive_k_p25_seed43.json\\\\n-rw-r--r-- 1 root root  202822 May 20 10:33 eval_adaptive_k_p50_seed42.json\\\\n-rw-r--r-- 1 root root  206022 May 20 10:29 eval_adaptive_k_p75_seed42.json\\\\n-rw-r--r-- 1 root root  203594 May 20 10:30 eval_adaptive_k_p75_seed43.json\\\\n-rw-r--r-- 1 root root  199524 May 20 10:24 eval_adaptive_k_p90_seed43.json\\\\n-rw-r--r-- 1 root root  200782 May 20 10:36 ev\n…[truncated 6409 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T14:06:32.201153+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "ls -la /root/acr-vla-conformal-refinement/data/openvla_precomputed_*.pt",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T14:06:32.201317+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/acr-vla-conformal-refinement/data/openvla_precomputed_*.pt': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T14:06:32.201504+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "python3 -c \"import json,glob,os; files=['logs/eval_crm_k1_object_seed42_plan702.json','logs/eval_crm_k1_object_seed43_plan702.json','logs/eval_crm_k1_object_seed44_plan702.json','logs/latency_profiling_v1.json','logs/eval_adaptive_k_spatial_p90_seed44.json','logs/eval_adaptive_k_spatial_p90_seed42.json']; [print(f'--- {f} ---') or (print('NOT_FOUND') if not os.path.exists('/root/acr-vla-conformal-refinement/'+f) else print(json.dumps({k:v for k,v in json.load(open('/root/acr-vla-conformal-refinement/'+f)).items() if k not in ['per_task','rollouts','per_task_sr']}, indent=2))) for f in files]\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T14:06:32.201640+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T14:06:32.201760+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "python3 -c \"import json,os; files=['logs/eval_spatial_obs_only_norm02_seed46_r2.json','logs/eval_goal_vla_only_seed44_r2.json','logs/eval_object_argmin_k5_seed44_r2.json','logs/eval_object_perdof_norm02_seed48.json','logs/eval_object_obs_only_norm005_seed43.json']; [print(f'--- {f} ---') or (print('NOT_FOUND') if not os.path.exists('/root/acr-vla-conformal-refinement/'+f) else print(json.dumps({k:v for k,v in json.load(open('/root/acr-vla-conformal-refinement/'+f)).items() if k not in ['per_task','rollouts','per_task_sr']}, indent=2))) for f in files]\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T14:06:32.201882+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T14:06:32.201997+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "tail -5 /root/acr-vla-conformal-refinement/logs/eval-crm-k1-object-seed42-plan702.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T14:06:32.202126+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    evaluate(args)\\\\n  File \\\\\\\"/root/acr-vla-conformal-refinement/src/evaluate.py\\\\\\\", line 466, in evaluate\\\\n    uncertainty_dim=unc_dim,\\\\n                    ^^^^^^^\\\\nUnboundLocalError: cannot access local variable 'unc_dim' where it is not associated with a value\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T14:06:32.202247+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "ls -la /root/autodl-tmp/crm_cache_k1_openvla/",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T14:06:32.202415+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 220\\\\ndrwxr-xr-x  3 root root     28 May 20 21:50 .\\\\ndrwxr-xr-x 10 root root   4096 May 20 21:50 ..\\\\ndrwxr-xr-x  2 root root 143360 May 20 22:04 object\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T14:06:32.202570+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "tail -5 /root/acr-vla-conformal-refinement/logs/eval-crm-k1-object-seed43-plan702.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T14:06:32.202696+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    evaluate(args)\\\\n  File \\\\\\\"/root/acr-vla-conformal-refinement/src/evaluate.py\\\\\\\", line 466, in evaluate\\\\n    uncertainty_dim=unc_dim,\\\\n                    ^^^^^^^\\\\nUnboundLocalError: cannot access local variable 'unc_dim' where it is not associated with a value\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T14:06:32.202814+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "tail -5 /root/acr-vla-conformal-refinement/logs/eval-crm-k1-object-seed44-plan702.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T14:06:32.202935+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    evaluate(args)\\\\n  File \\\\\\\"/root/acr-vla-conformal-refinement/src/evaluate.py\\\\\\\", line 466, in evaluate\\\\n    uncertainty_dim=unc_dim,\\\\n                    ^^^^^^^\\\\nUnboundLocalError: cannot access local variable 'unc_dim' where it is not associated with a value\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T14:06:32.203058+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "tail -5 /root/acr-vla-conformal-refinement/logs/eval-latency-profiling-v1.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T14:06:32.203178+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    },\\\\n    \\\\\\\"estimated_total_ms\\\\\\\": 246.96041863411665\\\\n  }\\\\n}\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T14:06:32.203319+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "tail -5 /root/acr-vla-conformal-refinement/logs/eval-adaptive-k-spatial-p90-seed42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T14:06:32.203455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Overall success rate (adaptive_k): 31.0% (31/100)\\\\n============================================================\\\\n[eval] Adaptive stats: fast_path=80.6%, avg_k=3.5, mean_l2=0.0907\\\\n[eval] Results saved to logs/eval_adaptive_k_spatial_p90_seed42.json\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T14:06:32.203571+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "tail -20 /root/acr-vla-conformal-refinement/logs/eval-adaptive-k-spatial-p90-seed44-bjb2.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T14:06:32.203717+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'spatial', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'n_rollouts': 10, 'max_steps': 300, 'seed': 44, 'K': 10, 'mode': 'adaptive_k', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_adaptive_k_spatial_p90_seed44.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.12587, 'k_init': 2, 'k_full': 10}\\\\n[eval] Mode: adaptive_k, benchmark: spatial\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  35%|███▍      | 171/489 [00:00<00:00, 1709.18it/s]\\\\rLoading weights:  78%|███████▊  | 383/489 [00:00<00:00, 1949.97it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 2042.46it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.2\\\\n[eval] Loading LIBERO spatial environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 4/5\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 8/10\\\\n[pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate] success rate: 80.0% (8/10)\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\\\n  pick_up_the_black_bowl_next_to_the_ram\n…[truncated 277 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T14:06:32.203862+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "tail -10 /root/acr-vla-conformal-refinement/logs/eval-obs-only-spatial-norm02-seed49.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T14:06:32.203994+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate] success rate: 90.0% (9/10)\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 9/10\\\\n[pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate] success rate: 90.0% (9/10)\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 5/10, success so far: 1/5\\\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 10/10, success so far: 3/10\\\\n[pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate] success rate: 30.0% (3/10)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T14:06:32.204129+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "cat /root/acr-vla-conformal-refinement/logs/latency_profiling_v1.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T14:06:32.204319+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"gpu\\\\\\\": \\\\\\\"NVIDIA GeForce RTX 4090\\\\\\\",\\\\n  \\\\\\\"prefix_encode\\\\\\\": {\\\\n    \\\\\\\"mean_ms\\\\\\\": 35.171302407979965,\\\\n    \\\\\\\"std_ms\\\\\\\": 7.549182933363359,\\\\n    \\\\\\\"min_ms\\\\\\\": 31.89769759774208,\\\\n    \\\\\\\"max_ms\\\\\\\": 69.21581365168095,\\\\n    \\\\\\\"median_ms\\\\\\\": 32.7121876180172\\\\n  },\\\\n  \\\\\\\"K=1\\\\\\\": {\\\\n    \\\\\\\"vla_sampling\\\\\\\": {\\\\n      \\\\\\\"mean_ms\\\\\\\": 207.67861656844616,\\\\n      \\\\\\\"std_ms\\\\\\\": 1.948463865208755,\\\\n      \\\\\\\"min_ms\\\\\\\": 204.4147476553917,\\\\n      \\\\\\\"max_ms\\\\\\\": 215.34953080117702,\\\\n      \\\\\\\"median_ms\\\\\\\": 207.3737531900406\\\\n    },\\\\n    \\\\\\\"cgs_scoring\\\\\\\": {\\\\n      \\\\\\\"note\\\\\\\": \\\\\\\"CGS requires K>=3 (Ledoit-Wolf needs >2 samples)\\\\\\\"\\\\n    },\\\\n    \\\\\\\"crm_inference\\\\\\\": {\\\\n      \\\\\\\"mean_ms\\\\\\\": 0.2841079980134964,\\\\n      \\\\\\\"std_ms\\\\\\\": 0.009419136470918608,\\\\n      \\\\\\\"min_ms\\\\\\\": 0.27589499950408936,\\\\n      \\\\\\\"max_ms\\\\\\\": 0.32122060656547546,\\\\n      \\\\\\\"median_ms\\\\\\\": 0.2804175019264221\\\\n    },\\\\n    \\\\\\\"estimated_total_ms\\\\\\\": 243.13402697443962\\\\n  },\\\\n  \\\\\\\"K=5\\\\\\\": {\\\\n    \\\\\\\"vla_sampling\\\\\\\": {\\\\n      \\\\\\\"mean_ms\\\\\\\": 211.1979555338621,\\\\n      \\\\\\\"std_ms\\\\\\\": 1.800894222405545,\\\\n      \\\\\\\"min_ms\\\\\\\": 208.13512802124023,\\\\n      \\\\\\\"max_ms\\\\\\\": 215.1368334889412,\\\\n      \\\\\\\"median_ms\\\\\\\": 211.24171372503042\\\\n    },\\\\n    \\\\\\\"cgs_scoring\\\\\\\": {\\\\n      \\\\\\\"mean_ms\\\\\\\": 7.514307089149952,\\\\n      \\\\\\\"std_ms\\\\\\\": 13.050395761098285,\\\\n      \\\\\\\"min_ms\\\\\\\": 5.527138710021973,\\\\n      \\\\\\\"max_ms\\\\\\\": 98.86093623936176,\\\\n      \\\\\\\"median_ms\\\\\\\": 5.605852231383324\\\\n    },\\\\n    \\\\\\\"crm_inference\\\\\\\": {\\\\n      \\\\\\\"mean_ms\\\\\\\": 0.27492623776197433,\\\\n      \\\\\\\"std_ms\\\\\\\": 0.007776397271212742,\\\\n      \\\\\\\"min_ms\\\\\\\": 0.2681352198123932,\\\\n      \\\\\\\"max_ms\\\\\\\": 0.30330196022987366,\\\\n      \\\\\\\"median_ms\\\\\\\": 0.27168355882167816\\\\n    },\\\\n    \\\\\\\"estimated_total_ms\\\\\\\": 254.158491268754\\\\n  },\\\\n  \\\\\\\"K=10\\\\\\\": {\\\\n    \\\\\\\"vla_sampling\\\\\\\": {\\\\n      \\\\\\\"mea\n…[truncated 1765 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T14:06:32.204477+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "head -20 /root/acr-vla-conformal-refinement/logs/eval_adaptive_k_spatial_p90_seed42.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T14:06:32.204618+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"adaptive_k\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"spatial\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 10,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.31,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.6,\\\\n      \\\\\\\"successes\\\\\\\": 6,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 10,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T14:06:32.204779+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "find /root/acr-vla-conformal-refinement/logs -name \"eval_crm_k1_object*plan702*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T14:06:32.204930+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T14:06:32.205056+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "find /root/acr-vla-conformal-refinement/logs -name \"eval_spatial_obs_only_norm02_seed46_r2.json\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-20T14:06:32.205179+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed46_r2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-20T14:06:32.205312+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "find /root/acr-vla-conformal-refinement/logs -name \"eval_goal_vla_only_seed44_r2.json\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-20T14:06:32.205435+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_goal_vla_only_seed44_r2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-20T14:06:32.205550+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "find /root/acr-vla-conformal-refinement/logs -name \"eval_object_argmin*r2*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-20T14:06:32.205665+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_object_argmin_k5_seed44_r2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-20T14:06:32.205789+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "find /root/acr-vla-conformal-refinement/logs -name \"eval_object_perdof_norm02_seed48*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-20T14:06:32.205905+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_object_perdof_norm02_seed48.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-20T14:06:32.206017+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "find /root/acr-vla-conformal-refinement/logs -name \"eval_object_obs_only_norm005_seed43*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-20T14:06:32.206139+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm005_seed43.log\\\\n/root/acr-vla-conformal-refinement/logs/eval_object_obs_only_norm005_seed43.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-20T14:06:32.206252+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "head -5 /root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed46_r2.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-20T14:06:32.206395+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"crm_obs_only\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"spatial\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 10,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-20T14:06:32.206508+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "head -5 /root/acr-vla-conformal-refinement/logs/eval_goal_vla_only_seed44_r2.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-20T14:06:32.206627+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"vla_only\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"goal\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 10,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-20T14:06:32.206738+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "head -5 /root/acr-vla-conformal-refinement/logs/eval_object_argmin_k5_seed44_r2.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-20T14:06:32.206855+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"reconvla\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"object\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 10,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-20T14:06:32.206965+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "ls /root/autodl-tmp/crm_cache_k1_openvla/object/",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-20T14:06:32.207193+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"sample_000000.pt\\\\nsample_000001.pt\\\\nsample_000002.pt\\\\nsample_000003.pt\\\\nsample_000004.pt\\\\nsample_000005.pt\\\\nsample_000006.pt\\\\nsample_000007.pt\\\\nsample_000008.pt\\\\nsample_000009.pt\\\\nsample_000010.pt\\\\nsample_000011.pt\\\\nsample_000012.pt\\\\nsample_000013.pt\\\\nsample_000014.pt\\\\nsample_000015.pt\\\\nsample_000016.pt\\\\nsample_000017.pt\\\\nsample_000018.pt\\\\nsample_000019.pt\\\\nsample_000020.pt\\\\nsample_000021.pt\\\\nsample_000022.pt\\\\nsample_000023.pt\\\\nsample_000024.pt\\\\nsample_000025.pt\\\\nsample_000026.pt\\\\nsample_000027.pt\\\\nsample_000028.pt\\\\nsample_000029.pt\\\\nsample_000030.pt\\\\nsample_000031.pt\\\\nsample_000032.pt\\\\nsample_000033.pt\\\\nsample_000034.pt\\\\nsample_000035.pt\\\\nsample_000036.pt\\\\nsample_000037.pt\\\\nsample_000038.pt\\\\nsample_000039.pt\\\\nsample_000040.pt\\\\nsample_000041.pt\\\\nsample_000042.pt\\\\nsample_000043.pt\\\\nsample_000044.pt\\\\nsample_000045.pt\\\\nsample_000046.pt\\\\nsample_000047.pt\\\\nsample_000048.pt\\\\nsample_000049.pt\\\\nsample_000050.pt\\\\nsample_000051.pt\\\\nsample_000052.pt\\\\nsample_000053.pt\\\\nsample_000054.pt\\\\nsample_000055.pt\\\\nsample_000056.pt\\\\nsample_000057.pt\\\\nsample_000058.pt\\\\nsample_000059.pt\\\\nsample_000060.pt\\\\nsample_000061.pt\\\\nsample_000062.pt\\\\nsample_000063.pt\\\\nsample_000064.pt\\\\nsample_000065.pt\\\\nsample_000066.pt\\\\nsample_000067.pt\\\\nsample_000068.pt\\\\nsample_000069.pt\\\\nsample_000070.pt\\\\nsample_000071.pt\\\\nsample_000072.pt\\\\nsample_000073.pt\\\\nsample_000074.pt\\\\nsample_000075.pt\\\\nsample_000076.pt\\\\nsample_000077.pt\\\\nsample_000078.pt\\\\nsample_000079.pt\\\\nsample_000080.pt\\\\nsample_000081.pt\\\\nsample_000082.pt\\\\nsample_000083.pt\\\\nsample_000084.pt\\\\nsample_000085.pt\\\\nsample_000086.pt\\\\nsample_000087.pt\\\\nsample_000088.pt\\\\nsample_000089.pt\\\\nsample_000090.pt\\\\nsample_000091.pt\\\\nsample_000092.pt\\\\nsample_000093.pt\\\\nsample_000094.pt\\\\nsample_000095.pt\\\\nsample_000096.pt\\\\nsample_000097.pt\\\\nsample_000098.pt\\\\nsample_000099.pt\\\\nsample_000100.pt\\\\nsample_000101.pt\\\\nsample\n…[truncated 7144 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-20T14:06:32.207380+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "wc -l /root/autodl-tmp/crm_cache_k1_openvla/object/",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-20T14:06:32.207512+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"0 /root/autodl-tmp/crm_cache_k1_openvla/object/\\\\n\\\", \\\"stderr\\\": \\\"wc: /root/autodl-tmp/crm_cache_k1_openvla/object/: Is a directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-20T14:06:32.207632+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "find /root/autodl-tmp/crm_cache_k1_openvla/object/ -name \"*.pt\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-20T14:06:32.207748+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "find /tmp/agent-ml-exit/ -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-20T14:06:32.207941+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000000.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000001.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000002.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000003.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000004.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000005.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000006.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000007.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000008.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000009.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000010.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000011.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000012.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000013.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000014.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000015.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000016.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000017.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000018.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000019.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000020.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000021.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000022.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000023.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000024.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000025.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000026.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000027.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000028.pt\\\\n/root/autodl-tmp/crm_cache_k1_openvla/object/sample_000029.pt\\\\n/root/autodl-tmp/crm_cac\n…[truncated 6461 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-20T14:06:32.208127+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/tmp/agent-ml-exit/eval-vla-only-object.exit\\\\n/tmp/agent-ml-exit/eval-acr-object-v4-obs-only-b2.exit\\\\n/tmp/agent-ml-exit/eval-acr-object-v4-scalar-b2.exit\\\\n/tmp/agent-ml-exit/eval-mag-obsonly-norm005.exit\\\\n/tmp/agent-ml-exit/eval-mag-obsonly-norm02.exit\\\\n/tmp/agent-ml-exit/eval-mag-perdof-norm003.exit\\\\n/tmp/agent-ml-exit/eval-mag-perdof-norm03.exit\\\\n/tmp/agent-ml-exit/eval-mag-perdof-norm005.exit\\\\n/tmp/agent-ml-exit/eval-mag-perdof-norm02.exit\\\\n/tmp/agent-ml-exit/eval-mag-perdof-norm03-object.exit\\\\n/tmp/agent-ml-exit/eval-mag-perdof-norm0p3-object.exit\\\\n/tmp/agent-ml-exit/eval-mag-obsonly-norm03-b3.exit\\\\n/tmp/agent-ml-exit/eval-mag-obsonly-norm03-b4.exit\\\\n/tmp/agent-ml-exit/eval-mag-perdof-norm02-seed43-object-r2.exit\\\\n/tmp/agent-ml-exit/eval-mag-obsonly-norm03-b2.exit\\\\n/tmp/agent-ml-exit/eval-mag-perdof-norm003-object.exit\\\\n/tmp/agent-ml-exit/eval-mag-perdof-norm02-seed43-object-r3.exit\\\\n/tmp/agent-ml-exit/eval-obs-only-object-norm03-seed45.exit\\\\n/tmp/agent-ml-exit/eval-argmin-object-seed45.exit\\\\n/tmp/agent-ml-exit/eval-vla-mean-object-seed45.exit\\\\n/tmp/agent-ml-exit/eval-obs-only-object-norm03-seed45-r2.exit\\\\n/tmp/agent-ml-exit/eval-obs-only-object-norm01-seed47.exit\\\\n/tmp/agent-ml-exit/plan_701-crm-k1-train.exit\\\\n/tmp/agent-ml-exit/train-crm-k1-accg-object-seed42.exit\\\\n/tmp/agent-ml-exit/train-crm-k1-accg-object-seed42-full.exit\\\\n/tmp/agent-ml-exit/train-crm-k1-accg-object-seed42-v2.exit\\\\n/tmp/agent-ml-exit/mag_perdof_norm02_seed43_r3.exit\\\\n/tmp/agent-ml-exit/mag_obs_only_norm01_seed47.exit\\\\n/tmp/agent-ml-exit/mag_obs_only_norm01_seed46.exit\\\\n/tmp/agent-ml-exit/eval-obs-only-object-norm02-k5-seed43.exit\\\\n/tmp/agent-ml-exit/eval-perdof-object-norm02-seed48.exit\\\\n/tmp/agent-ml-exit/eval-random-selection-object-seed43.exit\\\\n/tmp/agent-ml-exit/eval-crm-object-k20-seed44.exit\\\\n/tmp/agent-ml-exit/eval-obs-only-object-norm02-k5-seed44.exit\\\\n/tmp/agent-ml-exit/eval-perdof-object-nor\n…[truncated 3213 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-20T14:06:32.208303+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "cat /tmp/agent-ml-exit/eval-crm-k1-object-seed42-plan702.exit",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-20T14:06:32.208441+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0|2026-05-20T13:50:49Z\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-20T14:06:32.208613+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "cat /tmp/agent-ml-exit/eval-crm-k1-object-seed43-plan702.exit",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-20T14:06:32.208792+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0|2026-05-20T13:50:53Z\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-20T14:06:32.208934+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "cat /tmp/agent-ml-exit/eval-crm-k1-object-seed44-plan702.exit",
+              "account": "root"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-20T14:06:32.209059+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0|2026-05-20T13:50:57Z\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-20T14:06:32.209175+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "cat /tmp/agent-ml-exit/eval-latency-profiling-v1.exit",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-20T14:06:32.209322+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0|2026-05-20T13:51:55Z\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-20T14:06:32.209453+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "cat /tmp/agent-ml-exit/eval-adaptive-k-spatial-p90-seed42.exit",
+              "account": "root"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-20T14:06:32.209574+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"129|2026-05-20T12:49:19Z\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-20T14:06:32.209774+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕，汇总如下：\n\n---\n\n## bjb2-28827 GPU 审计报告\n\n### GPU 总览\n\n| GPU | 显存占用 | 实际进程 |\n|-----|---------|---------|\n| **0** | 1 MiB — **空闲** | 无 |\n| **1** | 1 MiB — **空闲** | 无 |\n| **2** | 4190 MiB | PID 357304 — `evaluate.py --mode crm_obs_only --benchmark spatial --seed 49` (21:27 启动) |\n| **3** | 22651 MiB | PID 365151 — `precompute_openvla.py --device cuda:0 --cache_dir .../crm_cache_k1_openvla/` (21:49 启动) |\n| **4** | 1 MiB — **空闲** | 无 |\n| **5** | 5731 MiB | PID 367998 — `evaluate.py --mode adaptive_k --benchmark spatial --seed 44` (21:50 启动) |\n\n---\n\n### 表中 6 个实验的状态\n\n| exp_id | GPU | 状态 | JSON | 详情 | 推荐 |\n|--------|-----|------|------|------|------|\n| eval-crm-k1-object-seed42-plan702 | 0 | **CRASHED** | NOT_FOUND | `UnboundLocalError: unc_dim`，13:50 退出 | **fix code + redeploy** |\n| eval-latency-profiling-v1 | 1 | **COMPLETED** | **COMPLETE** | `latency_profiling_v1.json` (2893B)，K=1/5/10/20 全有 | **harvest** |\n| eval-crm-k1-object-seed43-plan702 | 3 | **CRASHED** | NOT_FOUND | 同 unc_dim 错误，13:50 退出；GPU 3 现被 precompute 占用 | **fix code + redeploy 到空闲 GPU** |\n| eval-crm-k1-object-seed44-plan702 | 4 | **CRASHED** | NOT_FOUND | 同 unc_dim 错误，13:50 退出 | **fix code + redeploy** |\n| eval-adaptive-k-spatial-p90-seed44-bjb2 | 5 | **RUNNING** | 进行中 | PID 367998（非原 PID 367984），已完成 task 4/10，当前 SR ~80%-100% | **continue** |\n| eval-adaptive-k-spatial-p90-seed42 | 2 | **COMPLETED** | **COMPLETE** | SR=31%, fast_path=80.6%, avg_k=3.5；GPU 2 已被 seed49 eval 占用 | **harvest** |\n\n---\n\n### 幽灵进程确认\n\n表中列出的原始 PID 全部已死：\n- PID 367510 (latency) → 已退出\n- PID 366294 (crm-k1-seed44) → 已退出\n- PID 367984 (adaptive-seed44) → 已退出，但新 PID 367998 在跑同任务\n- PID 308030 (adaptive-seed42) → 已退出（exit code 129 SIGHUP）\n\n---\n\n### 未在表中但正在运行的进程\n\n1. **PID 357304** (GPU 2) — `crm_obs_only spatial seed49`，21:27 启动，正在评估中\n2. **PID 365151** (GPU 3) — `precompute_openvla.py object benchmark`，21:49 启动，已生成 4620 个 sample，仍在运行\n\n---\n\n### 旧 RUNNING 实验 JSON 检查（均已完成，可 harvest）\n\n| 文件 | 状态 |\n|------|------|\n| eval_spatial_obs_only_norm02_seed46_r2.json | **COMPLETE** (crm_obs_only/spatial) |\n| eval_goal_vla_only_seed44_r2.json | **COMPLETE** (vla_only/goal) |\n| eval_object_argmin_k5_seed44_r2.json | **COMPLETE** (reconvla/object) |\n| eval_object_perdof_norm02_seed48.json | **COMPLETE** |\n| eval_object_obs_only_norm005_seed43.json | **COMPLETE** |\n\n---\n\n### OpenVLA Precompute\n\n- `data/openvla_precomputed_*.pt` → NOT_FOUND（输出在 `/root/autodl-tmp/crm_cache_k1_openvla/object/`）\n- 已生成 4620 个 .pt 文件，PID 365151 仍在 GPU 3 上运行\n\n---\n\n### 关键发现\n\n1. **3 个 crm-k1-object 实验全崩**：`evaluate.py:466` 的 `unc_dim` 变量未定义，代码 bug，需修复后重新部署\n2. **3 张 GPU 空闲** (0/1/4)，可立即部署新任务\n3. **5 个旧实验** JSON 已完成但未 harvest\n4. **latency_profiling_v1** 已完成可 harvest，包含 K=1/5/10/20 全部延迟数据"
+            }
+          ],
+          "metadata": {
+            "session": "worker_audit_bjb2-28827-gpu-status_20260520T140249"
+          },
+          "id": "event-000075"
+        }
+      ],
+      "message_count": 75
+    }
+  ],
+  "readable_path": "readable/conversations/audit-bjb2-28827-gpu-status.md"
+}

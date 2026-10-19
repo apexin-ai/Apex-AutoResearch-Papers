@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "8f197cc3b0587386db13",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "code adaptive k fmvd phase1",
+  "task_key": "worker_code_adaptive-k-fmvd-phase1_20260519T164209",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_adaptive-k-fmvd-phase1_20260519T164209.log",
+    "occurrence": 1,
+    "bytes": 824776,
+    "sha256": "4bdefea5c0ff62cc375c867e289825d58492d30c4be44066aa8a00ec3cfb7c27"
+  },
+  "statistics": {
+    "messages": 423,
+    "user_turns": 0,
+    "tool_calls": 164,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 91,
+      "tool_call": 164,
+      "tool_result": 164,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 423,
+      "chunks": [
+        {
+          "path": "8f197cc3b0587386db13-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8f197cc3b0587386db13-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8f197cc3b0587386db13-part-0003.json",
+          "message_count": 63
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-adaptive-k-fmvd-phase1.md"
+}

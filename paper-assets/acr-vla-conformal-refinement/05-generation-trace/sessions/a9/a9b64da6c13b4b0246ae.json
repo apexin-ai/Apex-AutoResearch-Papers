@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9b64da6c13b4b0246ae",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis eval obs only object seed43",
+  "task_key": "worker_analysis_eval-obs-only-object-seed43_20260516T004714",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval-obs-only-object-seed43_20260516T004714_result.json",
+    "occurrence": 1,
+    "bytes": 1324,
+    "sha256": "6b787d5afb05a809221f823f6656c27926164188d5232f4d8dc80f1dd08471c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/negative。以下是完整分析结果：\n\n## eval-obs-only-object-seed43 结果\n\n### 完成状态\n**10/10 task 全部完成**，EXIT_CODE=0，正常退出。\n\n### Per-task Success Rate\n\n| Task | SR |\n|------|-----|\n| alphabet_soup | 0% (0/10) |\n| cream_cheese | 10% (1/10) |\n| salad_dressing | 10% (1/10) |\n| bbq_sauce | 30% (3/10) |\n| ketchup | 0% (0/10) |\n| tomato_sauce | 0% (0/10) |\n| butter | 0% (0/10) |\n| milk | 10% (1/10) |\n| chocolate_pudding | 40% (4/10) |\n| orange_juice | 20% (2/10) |\n\n### Overall SR: **12% (12/100)**\n\n### vs Argmin seed=43 对比\n- obs_only: **12%** vs argmin: **17%** → **-5pp，obs_only 更差**\n\n### 两个 seed 汇总\n\n| | seed=42 | seed=43 | Pooled |\n|--|---------|---------|--------|\n| obs_only | 19% | 12% | 31/200 (15.5%) |\n| argmin | 12% | 17% | 29/200 (14.5%) |\n| diff | +7pp | -5pp | +1pp |\n\n### Fisher Exact Test\n- **Pooled one-sided p = 0.4444**（obs_only > argmin）\n- Pooled two-sided p = 0.8888\n- Odds ratio = 1.08\n\n### 结论：**NEGATIVE**\n\nobs_only 在 object benchmark 上没有显著优于 argmin。seed=42 的+7pp优势在 seed=43 上完全没有复现（反而-5pp），pooled 200 trials 仅差1pp，p=0.44 远未达到显著性。obs_only 对 object benchmark 的改进不成立。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-obs-only-object-seed43.md"
+}

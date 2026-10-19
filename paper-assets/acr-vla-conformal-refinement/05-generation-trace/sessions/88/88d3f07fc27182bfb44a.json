@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "88d3f07fc27182bfb44a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "analysis vla baseline aggregation",
+  "task_key": "worker_analysis_vla-baseline-aggregation_20260519T182814",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_vla-baseline-aggregation_20260519T182814.log",
+    "occurrence": 1,
+    "bytes": 718093,
+    "sha256": "730789628f125fb807a06631f107efc2b28bd2272822bc0564ccc850102da298"
+  },
+  "statistics": {
+    "messages": 66,
+    "user_turns": 0,
+    "tool_calls": 24,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 14,
+      "tool_call": 24,
+      "tool_result": 24,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 66,
+      "chunks": [
+        {
+          "path": "88d3f07fc27182bfb44a-part-0001.json",
+          "message_count": 37
+        },
+        {
+          "path": "88d3f07fc27182bfb44a-part-0002.json",
+          "message_count": 29
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-vla-baseline-aggregation.md"
+}

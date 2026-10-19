@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8536126ba5aa2d62a5c0",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest norm005 seed44 and random progress",
+  "task_key": "worker_harvest_norm005-seed44-and-random-progress_20260518T130610",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_norm005-seed44-and-random-progress_20260518T130610_result.json",
+    "occurrence": 1,
+    "bytes": 658,
+    "sha256": "f509fa0278902a241d470b7f8b6527eaf45f37ae11b2e782d37761f83c213151"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## norm005-seed44 结果\nSR: **16%** (16/100)\nPer-task:\n| Task | SR |\n|---|---|\n| alphabet_soup | 0% |\n| cream_cheese | 0% |\n| salad_dressing | 20% |\n| bbq_sauce | 40% |\n| ketchup | 10% |\n| tomato_sauce | 10% |\n| butter | 0% |\n| milk | 10% |\n| chocolate_pudding | 40% |\n| orange_juice | 30% |\n\nRegistry 已更新: 是 (DONE, conclusion=success)\n\n## random_selection 进度\n- **seed43**: 9/10 tasks 完成，正在跑第 9 个 task (chocolate_pudding rollout 2/10)，已运行 13h51m，预计还需 ~1.5h\n- **seed44**: 7/10 tasks 完成，正在跑第 7 个 task (butter rollout 7/10)，已运行 10h40m，预计还需 ~4-5h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-norm005-seed44-and-random-progress.md"
+}

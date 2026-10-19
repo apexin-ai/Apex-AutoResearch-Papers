@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa720f2618f5048008db",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy plan802 openvla crm eval",
+  "task_key": "worker_deploy_plan802-openvla-crm-eval_20260528T033809",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_plan802-openvla-crm-eval_20260528T033809_result.json",
+    "occurrence": 1,
+    "bytes": 1837,
+    "sha256": "34dc08f07fdf75760f025237e694a408c5d77a83dad576d1b986810280bc9597"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 部署总结\n\n### 环境验证 ✓\n| 检查项 | 状态 |\n|--------|------|\n| CRM checkpoint (`crm_k1_best.pt`, 3.7MB) | ✓ 存在 |\n| OpenVLA model (`openvla-libero-object`, 15.1GB bf16) | ✓ 加载成功 |\n| Eval 脚本 (`openvla_eval.py --mode crm_k1_multiscale`) | ✓ 已实现 |\n| MultiScaleCRM (action_dim=6, obs_dim=4096, 908K params) | ✓ 加载成功 |\n| Multi-scale hooks (layers [7,15,23,31]) | ✓ 注册成功 |\n\n### 已部署实验\n\n| exp_id | GPU | seed | PID | 状态 |\n|--------|-----|------|-----|------|\n| `eval-openvla-crm-k1-object-seed42` | cuda:4 | 42 | 95773 | RUNNING（task 1, rollout 1/20 完成，avg 190ms/step） |\n| `eval-openvla-crm-k1-object-seed43` | cuda:5 | 43 | 97487 | RUNNING（模型加载中） |\n\n### Eval 命令\n```\npython -u src/openvla_eval.py \\\n  --benchmark object \\\n  --model_path /root/autodl-tmp/models/openvla-libero-object \\\n  --mode crm_k1_multiscale \\\n  --crm_checkpoint /root/autodl-tmp/checkpoints/crm_openvla_k1_multiscale/object/crm_k1_best.pt \\\n  --max_correction_norm 0.2 \\\n  --n_rollouts 20 --seed {42,43} --gpu 0\n```\n\n### 无法部署的项目\n\n**seed44**: GPU 0-3 均有 1702-1875 MiB 占用（>500 MiB，C001 约束），GPU 4-5 已被占用。需等 seed42 或 seed43 完成后部署。\n\n**备选实验**（同理无空闲 GPU）：\n- `eval-random-selection-object-seed43`: `python -u src/evaluate.py --mode random_selection --benchmark object --seed 43 --K 10 --n_rollouts 20`\n- `eval-ksweep-k20-obs-object-s44`: `python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 44 --K 20 --n_rollouts 20 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2`\n\n预计每个 eval 运行约 2-3 小时（200 rollouts × 300 steps × ~190ms/step）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-plan802-openvla-crm-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7125df2b33ae5c7ebc81",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy pi05 goal long baseline",
+  "task_key": "worker_deploy_pi05-goal-long-baseline_20260522T122007",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_pi05-goal-long-baseline_20260522T122007_result.json",
+    "occurrence": 1,
+    "bytes": 574,
+    "sha256": "941d68345aa6a957f35005f09e41e6895a9a0a5cf4b80793842722af359cb37f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成，两个实验已注册并标记为 RUNNING。\n\n| 实验 | GPU | tmux session | 日志 |\n|------|-----|-------------|------|\n| `eval-pi05-vla-only-goal-seed42-r4` | cuda:4 | `eval-pi05-goal-seed42` | `/tmp/eval-pi05-goal-seed42.log` |\n| `eval-pi05-vla-only-long-seed42-r4` | cuda:5 | `eval-pi05-long-seed42` | `/tmp/eval-pi05-long-seed42.log` |\n\n参数确认：n_action_steps=10, TORCHDYNAMO_DISABLE=1, Goal max_steps=300, Long max_steps=520。`vla_only` + `baseline_mode=single` 会自动将 K 设为 1（单次推理，符合预期）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-pi05-goal-long-baseline.md"
+}

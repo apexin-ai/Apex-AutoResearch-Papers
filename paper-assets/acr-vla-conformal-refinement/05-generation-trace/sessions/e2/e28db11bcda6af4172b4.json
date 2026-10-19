@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e28db11bcda6af4172b4",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code oft official reproduce r3",
+  "task_key": "worker_code_oft-official-reproduce-r3_20260522T104014",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_oft-official-reproduce-r3_20260522T104014_result.json",
+    "occurrence": 1,
+    "bytes": 744,
+    "sha256": "2f8b9ae3850bb0b64e2cdd471e26883d05651d2ff96a1dd11de690237f707083"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 当前状态汇报\n\n环境搭建完成，eval 已启动：\n\n| 项目 | 状态 |\n|------|------|\n| **Conda env** | `/root/autodl-tmp/envs/openvla-oft` (Python 3.10, torch 2.2.0+cu121) |\n| **GPU** | RTX 4090 D, 15.9GB/24.6GB 使用中 |\n| **模型** | 本地权重 `/root/autodl-tmp/models/openvla-oft/object/` 已加载 |\n| **依赖** | openvla-oft, robosuite 1.4.1, mujoco 3.8.1, LIBERO (PYTHONPATH) |\n| **Eval 配置** | libero_object, 10 tasks × 50 trials, seed=7 |\n| **日志** | `/root/autodl-tmp/eval_results/openvla-oft-official/eval_output.log` |\n| **tmux session** | `openvla-oft-eval` |\n\n已设置每 8 分钟自动检查进度。10 tasks × 50 trials = 500 episodes，预计需要几个小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-oft-official-reproduce-r3.md"
+}

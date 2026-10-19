@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "b99c0c4d3239f6ee5b2a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis mechanism rank deficient r2",
+  "task_key": "worker_analysis_mechanism-rank-deficient-r2_20260524T153007",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_mechanism-rank-deficient-r2_20260524T153007_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "e7b61b0a1bd5a284cdddde876c90af32e5c951f2cfa0d5bc1277bc21635bc37e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Could not process image\"},\"request_id\":\"req_011CbMe92QvhnUL5mfPmvFW3\"}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "type": "error",
+              "error": {
+                "type": "invalid_request_error",
+                "message": "Could not process image"
+              },
+              "request_id": "req_011CbMe92QvhnUL5mfPmvFW3"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mechanism-rank-deficient-r2.md"
+}

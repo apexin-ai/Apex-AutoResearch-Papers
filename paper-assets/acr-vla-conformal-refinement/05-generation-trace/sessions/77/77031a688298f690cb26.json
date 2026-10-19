@@ -1,0 +1,1007 @@
+{
+  "schema_version": "1.0",
+  "id": "77031a688298f690cb26",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "ops verify stats script and prep",
+  "task_key": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_ops_verify-stats-script-and-prep_20260515T164951.jsonl",
+    "occurrence": 1,
+    "bytes": 34385,
+    "sha256": "a66194ccdd30e41348fc958ad4ac0b5a95d5af11f37079ce1c7464044250d6e2"
+  },
+  "statistics": {
+    "messages": 49,
+    "user_turns": 0,
+    "tool_calls": 24,
+    "roles": {
+      "tool_call": 24,
+      "tool_result": 24,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T16:51:48.234389+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T16:51:48.234846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T16:51:48.235093+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "find /root/acr-vla-conformal-refinement -name \"*stat*\" -o -name \"*fisher*\" -o -name \"*bootstrap*\" -o -name \"*analysis*\" 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T16:51:48.235431+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T16:51:48.235673+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "ls -la /root/acr-vla-conformal-refinement/scripts/ /root/acr-vla-conformal-refinement/analysis/ 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T16:51:48.235899+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T16:51:48.236099+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "ls -la /root/acr-vla-conformal-refinement/logs/eval_object_*.json 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T16:51:48.236335+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T16:51:48.236583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "find /root/acr-vla-conformal-refinement -name \"*stat*\" -o -name \"*fisher*\" -o -name \"*bootstrap*\" -o -name \"*analysis*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T16:51:48.236809+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "ls -la /root/acr-vla-conformal-refinement/scripts/",
+              "account": "root"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T16:51:48.237013+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/scripts/statistical_analysis.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T16:51:48.237224+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "ls -la /root/acr-vla-conformal-refinement/logs/",
+              "account": "root"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T16:51:48.237463+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 24\\\\ndrwxr-xr-x 2 root root    75 May 15 21:41 .\\\\ndrwxr-xr-x 7 root root   152 May 15 01:52 ..\\\\n-rw-r--r-- 1 root root 11436 May 15 21:41 statistical_analysis.py\\\\n-rw-r--r-- 1 root root 11762 May 13 13:39 verify_pipeline.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T16:51:48.237673+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 20\\\\ndrwxr-xr-x 2 root root  183 May 15 15:06 .\\\\ndrwxr-xr-x 7 root root  152 May 15 01:52 ..\\\\n-rw-r--r-- 1 root root  304 May 15 15:06 eval_reconvla_spatial_r2.json\\\\n-rw-r--r-- 1 root root 2340 May 13 17:44 precompute_shard0.log\\\\n-rw-r--r-- 1 root root 2341 May 13 17:43 precompute_shard1.log\\\\n-rw-r--r-- 1 root root 2340 May 13 17:44 precompute_shard2.log\\\\n-rw-r--r-- 1 root root 2417 May 13 17:44 precompute_shard3.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T16:51:48.237904+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "cat /root/acr-vla-conformal-refinement/scripts/statistical_analysis.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T16:51:48.238375+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Statistical analysis for ACR-VLA conformal refinement experiments.\\\\n\\\\nFisher exact test, bootstrap CI for success rate differences, McNemar's test\\\\nfor paired per-task comparisons. Supports reading from eval JSON files or\\\\ncommand-line summary data.\\\\n\\\\nUsage:\\\\n  # From JSON files:\\\\n  python scripts/statistical_analysis.py --file_a logs/eval_obs_only.json --file_b logs/eval_argmin.json\\\\n\\\\n  # From summary data:\\\\n  python scripts/statistical_analysis.py --a_success 70 --a_total 200 --b_success 55 --b_total 200 \\\\\\\\\\\\n      --label_a obs_only --label_b argmin\\\\n\\\\n  # From multiple JSON files (merge seeds):\\\\n  python scripts/statistical_analysis.py \\\\\\\\\\\\n      --file_a logs/eval_obs_only_s42.json logs/eval_obs_only_s43.json \\\\\\\\\\\\n      --file_b logs/eval_argmin_s42.json logs/eval_argmin_s43.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\n\\\\n\\\\ndef load_eval_json(filepaths):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load and merge per-task results from one or more eval JSON files.\\\\n\\\\n    Returns dict: {task_name: {\\\\\\\"successes\\\\\\\": int, \\\\\\\"total\\\\\\\": int}}\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    merged = {}\\\\n    for fp in filepaths:\\\\n        with open(fp) as f:\\\\n            data = json.load(f)\\\\n        for task_name, task_data in data[\\\\\\\"per_task\\\\\\\"].items():\\\\n            if task_name not in merged:\\\\n                merged[task_name] = {\\\\\\\"successes\\\\\\\": 0, \\\\\\\"total\\\\\\\": 0}\\\\n            merged[task_name][\\\\\\\"successes\\\\\\\"] += task_data[\\\\\\\"successes\\\\\\\"]\\\\n            merged[task_name][\\\\\\\"total\\\\\\\"] += task_data[\\\\\\\"total\\\\\\\"]\\\\n    return merged\\\\n\\\\n\\\\ndef aggregate(per_task):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Sum successes and totals across all tasks.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    s = sum(v[\\\\\\\"successes\\\\\\\"] for v in per_task.values())\\\\n    t = sum(v[\\\\\\\"total\\\\\\\"] for v in per_task.values())\\\\n    return s, t\\\\n\\\\n\\\\ndef fisher_exact_te\n…[truncated 7294 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T16:51:48.238653+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "find /root/acr-vla-conformal-refinement -name \"*.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T16:51:48.238866+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_reconvla_spatial_r2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T16:51:48.239066+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "find /root/acr-vla-conformal-refinement -name \"eval*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T16:51:48.239289+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/src/evaluate.py\\\\n/root/acr-vla-conformal-refinement/src/__pycache__/evaluate.cpython-312.pyc\\\\n/root/acr-vla-conformal-refinement/src/evaluate.py.bak\\\\n/root/acr-vla-conformal-refinement/logs/eval_reconvla_spatial_r2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T16:51:48.239566+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "find /root/acr-vla-conformal-refinement -name \"*.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T16:51:48.239775+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_reconvla_spatial_r2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T16:51:48.239975+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "cat /root/acr-vla-conformal-refinement/logs/eval_reconvla_spatial_r2.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T16:51:48.240213+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"reconvla\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"spatial\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 10,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.1,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"successes\\\\\\\": 1,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T16:51:48.240507+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "ls -la /root/acr-vla-conformal-refinement/",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T16:51:48.240755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 20\\\\ndrwxr-xr-x 7 root root  152 May 15 01:52 .\\\\ndrwx------ 1 root root 4096 May 13 19:57 ..\\\\n-rw-r--r-- 1 root root 8129 May 15 01:52 diagnose_crm_scale.py\\\\ndrwxr-xr-x 2 root root  183 May 15 15:06 logs\\\\ndrwxr-xr-x 2 root root   32 May 13 13:14 mvp\\\\n-rw-r--r-- 1 root root  608 May 14 04:24 run_eval_gpu.py\\\\ndrwxr-xr-x 2 root root   75 May 15 21:41 scripts\\\\ndrwxr-xr-x 3 root root 4096 May 14 20:47 src\\\\ndrwxr-xr-x 2 root root   38 May 13 13:11 tests\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T16:51:48.241024+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "grep -n \"json\\|save\\|output\\|log\" /root/acr-vla-conformal-refinement/src/evaluate.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T16:51:48.241233+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T16:51:48.241459+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "cat /root/acr-vla-conformal-refinement/run_eval_gpu.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T16:51:48.241693+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Wrapper to run evaluate.py on non-zero GPU with correct EGL device mapping.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport os, sys\\\\ngpu_id = int(os.environ.get(\\\\\\\"TARGET_GPU\\\\\\\", \\\\\\\"0\\\\\\\"))\\\\n\\\\n# Unset CUDA_VISIBLE_DEVICES so EGL can discover devices properly\\\\n# (this system has only 1 EGL device at index 0)\\\\nif \\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\" in os.environ:\\\\n    del os.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"]\\\\n\\\\nos.environ['MUJOCO_GL'] = 'egl'\\\\n# Do NOT set MUJOCO_EGL_DEVICE_ID — let robosuite default to EGL device 0\\\\n\\\\nimport torch\\\\ntorch.cuda.set_device(gpu_id)\\\\nos.chdir('/root/acr-vla-conformal-refinement')\\\\nsys.path.insert(0, 'src')\\\\nexec(open('src/evaluate.py').read())\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T16:51:48.241923+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "grep -n \"json\" /root/acr-vla-conformal-refinement/src/evaluate.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T16:51:48.242131+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"35:import json\\\\n379:        out_path.write_text(json.dumps(summary, indent=2))\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T16:51:48.242353+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "grep -n \"save\\|output\\|log_path\\|result\" /root/acr-vla-conformal-refinement/src/evaluate.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T16:51:48.242561+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T16:51:48.242756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "head -400 /root/acr-vla-conformal-refinement/src/evaluate.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T16:51:48.243159+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLIBERO evaluation script for ACR-VLA.\\\\n\\\\nRollout loop:\\\\n  1. Load LIBERO env + task suite\\\\n  2. Load SmolVLA (frozen) + CRM\\\\n  3. For each task, rollout N times:\\\\n     a. Reset env\\\\n     b. Each step: obs → SmolVLA K=10 samples → CGS on 6D pose → CRM\\\\n        → combine refined pose with gripper → execute 7D action\\\\n     c. Record success/failure\\\\n  4. Report per-task and overall success rate\\\\n\\\\nBaselines:\\\\n  - \\\\\\\"vla_only\\\\\\\": SmolVLA mean of K=10, no CRM refinement\\\\n  - \\\\\\\"crm_scalar\\\\\\\": CRM with scalar uncertainty (single std, not per-DOF)\\\\n  - \\\\\\\"crm_perdof\\\\\\\": CRM with full per-DOF uncertainty (ours)\\\\n  - \\\\\\\"acr_vla\\\\\\\": alias for crm_perdof — the full ACR-VLA pipeline\\\\n  - \\\\\\\"reconvla\\\\\\\": ReconVLA baseline — scalar Euclidean argmin selection (plan_014)\\\\n\\\\nUsage:\\\\n  python evaluate.py --benchmark object --checkpoint /path/to/crm_best.pt --n_rollouts 20\\\\n  python evaluate.py --benchmark object --mode vla_only --n_rollouts 20\\\\n  python evaluate.py --benchmark spatial --mode reconvla --n_rollouts 20\\\\n  python evaluate.py --benchmark spatial --mode acr_vla --crm_checkpoint /path/to/crm_best.pt --n_rollouts 10\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport functools\\\\nbuiltins_print = print\\\\nprint = functools.partial(builtins_print, flush=True)\\\\nimport os\\\\nos.environ.setdefault(\\\\\\\"HF_HUB_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nimport sys\\\\nimport json\\\\nimport time\\\\nimport signal\\\\nimport traceback\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nimport numpy as np\\\\nfrom robosuite.utils.transform_utils import quat2axisangle\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom cgs import ConformilizedGaussianScoring\\\\nfrom crm import ConformalRefinementModule\\\\nfrom aci import AdaptiveConformalInference\\\\nfrom utils import set_seed, CORRECTION_DIM, FULL_ACTION_DIM, H_EFF, OBS_DIM\\\\nfrom reconvla_b\n…[truncated 7197 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T16:51:48.243491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "find /root/acr-vla-conformal-refinement -name \"nohup*\" -o -name \"*.log\" -o -name \"*.out\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T16:51:48.243715+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/logs/precompute_shard0.log\\\\n/root/acr-vla-conformal-refinement/logs/precompute_shard1.log\\\\n/root/acr-vla-conformal-refinement/logs/precompute_shard2.log\\\\n/root/acr-vla-conformal-refinement/logs/precompute_shard3.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T16:51:48.243924+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "find /root -maxdepth 1 -name \"nohup*\" -o -name \"eval_*.log\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T16:51:48.244127+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T16:51:48.244371+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*stat*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T16:51:48.244651+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "study_status.lock\nlogs/workers/worker_infra_check-4090x4-status_20260513T151613.log\nlogs/workers/worker_infra_check-4090x4-status_20260513T151613_result.json\nlogs/workers/worker_infra_check-4090-status_20260513T151621.log\nlogs/workers/worker_infra_check-4090-status_20260513T151621_result.json\nlogs/workers/worker_infra_check-precompute-v3-status_20260513T182942.log\nlogs/chats/worker_infra_check-precompute-v3-status_20260513T182942.lock\nlogs/chats/worker_infra_check-precompute-v3-status_20260513T182942.jsonl\nlogs/workers/worker_infra_check-precompute-v3-status_20260513T182942_result.json\nlogs/workers/worker_infra_full-status-scan-both-servers_20260513T193729.log\nlogs/workers/worker_infra_full-status-scan-both-servers_20260513T193729_result.json\nlogs/workers/worker_diag_bjb1-status-check_20260513T231015.log\nlogs/workers/worker_diag_bjb1-status-check_20260513T231015_result.json\nlogs/workers/worker_diag_bjb2-eval-object-status_20260513T235503.log\nlogs/workers/worker_diag_bjb2-eval-object-status_20260513T235503_result.json\nlogs/workers/worker_monitor_precompute-v5-status-and-train_20260514T092051.log\nlogs/workers/worker_monitor_precompute-v5-status-and-train_20260514T092051_result.json\nlogs/workers/worker_monitor_crm-v2-status-and-reconvla-metrics_20260514T111007.log\nlogs/workers/worker_monitor_crm-v2-status-and-reconvla-metrics_20260514T111007_result.json\nlogs/workers/worker_monitor_urgent-eval-status-bjb2_20260514T131558.log\nlogs/workers/worker_monitor_urgent-eval-status-bjb1_20260514T131552.log\nlogs/workers/worker_monitor_urgent-eval-status-bjb1_20260514T131552_result.json\nlogs/workers/worker_monitor_urgent-eval-status-bjb2_20260514T131558_result.json\nartifacts/_project/data/norm_stats_v3_summary.txt\nlogs/workers/worker_diagnose_bjb2-status_20260514T181415.log\nlogs/chats/worker_diagnose_bjb2-status_20260514T181415.lock\nlogs/chats/worker_diagnose_bjb2-status_20260514T181415.jsonl\nlogs/workers/worker_diagnose_bjb2-status_20260514T181415_result.json\nlogs/workers/worker_ve\n…[truncated 4051 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T16:51:48.244917+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/ROADMAP*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T16:51:48.245114+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ROADMAP.lock\nROADMAP.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T16:51:48.245378+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md",
+              "limit": "100"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T16:51:48.245750+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# acr-vla-conformal-refinement — Research Dashboard\n2\t\n3\t> 最后更新: 2026-05-15 16:25 UTC | 更新原因: obs_only object 10-task final 19.0% (PROJECT HIGH), perdof 11.0%, VLA-only 12%. norm=0.05 spatial finalized 35.0%. seed=43 六方全部部署。\n4\t\n5\t## 核心方向\n6\tobs_only CRM（基于观测特征的 learned correction）是唯一存活路径。Per-DOF conformal claim 已死。论文 story：obs_only CRM 对 correction magnitude 鲁棒，perdof 在高 norm 下崩塌。详见 paper_framing.md。\n7\t\n8\t## 投稿目标\n9\t**CoRL 2026**（abstract DDL ~May 26, full paper DDL ~Jun 2）。剩余 ~11 天。\n10\t\n11\t## 当前进展\n12\t- **阶段**: Phase 2d — Object benchmark + seed=43 doubling 决定项目存亡\n13\t- **MVP**: PASS\n14\t- **Spatial LOCKED ✅**: 全部 CRM 变体确认 dead（argmin 34%, perdof 35%, obs_only 35%, scalar 32%）\n15\t- **Object 10/10 FINAL**: obs_only 0.1: **19.0%** vs argmin ~6.7% (+12.3pp, 6/10 partial); perdof 11.0%; VLA-only 12%\n16\t- **Object norm=0.2**: obs_only 0.2: 18.0% (5t partial) — 可能与 norm=0.1 持平或更高\n17\t- **Magnitude sweep**: norm=0.05 finalized 35.0%. obs_only 在所有 norm 下 > perdof（D032）\n18\t- **D031 seed=43 六方全部部署**: obs_only / argmin / perdof / scalar / VLA-mean 已部署，obs-only-norm02-seed43 待 cuda:0\n19\t\n20\t## Spatial 最终结果（LOCKED ✅）\n21\t\n22\t| 方法 | 10-task SR | vs argmin |\n23\t|------|-----------|-----------|\n24\t| argmin K=10 | 34% | baseline |\n25\t| perdof 0.1 | 35% | +1pp |\n26\t| obs_only 0.1 | 35% | +1pp |\n27\t| scalar 0.1 | 32% | -2pp |\n28\t| VLA-only K=1 | 30% | -4pp |\n29\t| VLA-mean K=10 | 32% | -2pp |\n30\t\n31\t## Object Benchmark（seed=42, 部分已 FINAL）\n32\t\n33\t| 方法 | SR | tasks | vs argmin | 状态 |\n34\t|------|-----|-------|-----------|------|\n35\t| **obs_only 0.1** | **19.0%** | 10/10 ✅ | **+7.0pp** | FINAL |\n36\t| obs_only 0.2 | 18.0% | 5/10 | +6.0pp | running |\n37\t| argmin | 12.0% | 10/10 ✅ | baseline | FINAL |\n38\t| VLA-only K=1 | 12.0% | 10/10 ✅ | 0pp | FINAL |\n39\t| perdof 0.1 | 11.0% | 10/10 ✅ | -1.0pp | FINAL |\n40\t| scalar 0.1 | 9.0% | 10/10 ✅ | -3.0pp | FINAL (negative) |\n41\t| vla_mean | 8.6% | 7/10 | -3.4pp | running |\n42\t\n43\t## Magnitude Sweep（4-7/10 tasks, spatial）\n44\t\n45\t| norm | obs_only | perdof \n…[truncated 3545 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T16:51:48.245936+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/src/analysis/statistical_tests.py"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T16:51:48.246167+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\tStatistical analysis and visualization for ACR-VLA Object Benchmark.\n3\t\n4\tFunctions:\n5\t  fisher_test         — One-sided Fisher exact test (H1: method A > method B)\n6\t  bootstrap_ci        — Bootstrap confidence interval for mean success rate\n7\t  plot_magnitude_curve — Magnitude sensitivity curve (obs_only vs perdof)\n8\t  comparison_table    — Formatted benchmark table with pairwise Fisher tests\n9\t\n10\tInputs:  per-task success rates (%), (successes, total) counts\n11\tOutputs: p-values, CIs to stdout; magnitude curve to PDF/PNG\n12\t\"\"\"\n13\t\n14\timport os\n15\tfrom typing import Dict, List, Optional, Tuple\n16\t\n17\timport numpy as np\n18\tfrom scipy import stats\n19\timport matplotlib\n20\tmatplotlib.use(\"Agg\")\n21\timport matplotlib.pyplot as plt\n22\t\n23\t\n24\tdef fisher_test(\n25\t    a_success: int, a_total: int,\n26\t    b_success: int, b_total: int,\n27\t) -> float:\n28\t    \"\"\"One-sided Fisher exact test. H1: method A has higher success rate than B.\n29\t\n30\t    Args:\n31\t        a_success, a_total: successes and total trials for method A\n32\t        b_success, b_total: successes and total trials for method B\n33\t\n34\t    Returns:\n35\t        One-sided p-value (P[observed or more extreme | H0: equal rates])\n36\t    \"\"\"\n37\t    table = np.array([\n38\t        [a_success, a_total - a_success],\n39\t        [b_success, b_total - b_success],\n40\t    ])\n41\t    _, p_two = stats.fisher_exact(table, alternative=\"greater\")\n42\t    return p_two\n43\t\n44\t\n45\tdef bootstrap_ci(\n46\t    per_task_sr: List[float],\n47\t    n_bootstrap: int = 10000,\n48\t    ci: float = 0.95,\n49\t    seed: int = 0,\n50\t) -> Tuple[float, float, float]:\n51\t    \"\"\"Bootstrap CI for mean success rate across tasks.\n52\t\n53\t    Uses percentile method. Resamples tasks (preserves inter-task variance).\n54\t\n55\t    Args:\n56\t        per_task_sr: list of per-task success rates (0-100 scale)\n57\t        n_bootstrap: number of resamples\n58\t        ci: confidence level\n59\t        seed: random seed\n60\t\n61\t    Returns:\n62\t        (mean, ci_low, ci_high)\n63\t  \n…[truncated 9145 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T16:51:48.246534+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整分析结果如下：\n\n---\n\n## 1. 统计分析脚本\n\n**服务器上**：`/root/acr-vla-conformal-refinement/scripts/statistical_analysis.py`（11KB，May 15 21:41）\n- 支持 JSON 文件输入（`--file_a`/`--file_b`，nargs=\"+\" 支持多 seed 合并）\n- 支持 summary 模式（`--a_success 19 --a_total 100 ...`）\n- McNemar paired test、power analysis、dry-run\n- **问题**：Fisher test 用的是 **two-sided**（`alternative=\"two-sided\"`），任务要求是 one-sided (obs_only > argmin)\n\n**本地**：`src/analysis/statistical_tests.py`\n- Fisher test 正确使用 **one-sided**（`alternative=\"greater\"`）\n- Bootstrap CI 基于 task 重采样（保留 inter-task variance）\n- 含 magnitude curve 绘图和 comparison table\n- `__main__` 里硬编码了 6-task 旧数据（已过期，不含全部 10 task）\n\n## 2. seed=42 数据文件\n\n**不存在。** `logs/` 目录下没有 `eval_object_*.json`，只有 `eval_reconvla_spatial_r2.json`（spatial benchmark, 1 task）。seed=42 的 19/100 和 12/100 结果来自 stdout 日志/ROADMAP 手工记录，evaluate.py 只在指定 `--output_file` 时才保存 JSON。\n\n## 3. 需要修正的问题\n\n| 问题 | 位置 | 修正 |\n|------|------|------|\n| Fisher test two-sided | 服务器 `scripts/statistical_analysis.py` L60 | 改 `alternative=\"two-sided\"` → `\"greater\"` |\n| seed=42 eval 无 JSON 输出 | 历史运行未指定 `--output_file` | seed=43 运行时确保带 `--output_file` 参数 |\n| 本地脚本硬编码数据过期 | `src/analysis/statistical_tests.py` L205 | 更新为 10-task final 数据 |\n\n## 4. 当前可用的 seed=42 summary 数据运行方式\n\n不需要 JSON 文件，直接用 summary 模式：\n\n```bash\n# 服务器脚本（修正 Fisher 方向后）\npython scripts/statistical_analysis.py \\\n    --a_success 19 --a_total 100 \\\n    --b_success 12 --b_total 100 \\\n    --label_a obs_only --label_b argmin\n\n# 本地脚本（已是 one-sided）\npython -c \"\nfrom src.analysis.statistical_tests import fisher_test, bootstrap_ci\np = fisher_test(19, 100, 12, 100)\nprint(f'Fisher one-sided p = {p:.4f}')\n\"\n```\n\n## 5. seed=43 准备\n\nseed=43 实验在 bjb1-18228 的 cuda:2 (obs_only) 和 cuda:3 (argmin) 上跑。完成后需要：\n1. 确认 `--output_file` 有指定（否则要从 stdout 提取数据）\n2. 合并两个 seed：`obs_only: (19+X)/200`, `argmin: (12+Y)/200`\n3. 用 summary 模式或 JSON 模式跑统计检验\n\n**结论**：脚本框架齐全，核心问题是服务器版 Fisher 方向错误（two-sided vs one-sided），以及 seed=42 没有 JSON 输出文件。建议修正服务器脚本的 Fisher 方向，并确保 seed=43 eval 命令带 `--output_file`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_verify-stats-script-and-prep_20260515T164951"
+          },
+          "id": "event-000049"
+        }
+      ],
+      "message_count": 49
+    }
+  ],
+  "readable_path": "readable/conversations/ops-verify-stats-script-and-prep.md"
+}

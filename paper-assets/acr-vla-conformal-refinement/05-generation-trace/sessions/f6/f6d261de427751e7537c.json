@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6d261de427751e7537c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code plan 701 fallback k10cache",
+  "task_key": "worker_code_plan_701-fallback-k10cache_20260517T145427",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_plan_701-fallback-k10cache_20260517T145427_result.json",
+    "occurrence": 1,
+    "bytes": 758,
+    "sha256": "c07638c2c0641f0e16456ec0360f8ddcdf73036bb4d5440875d7200ecb1f89d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常启动并运行中。\n\n**状态汇总：**\n- **服务器**: bjb1-32546, GPU cuda:4\n- **数据**: K=10 cache, 14570 samples (object benchmark), obs_dim=960\n- **模型**: MultiScaleCRM, 327,522 params, multi_scale=False (单阶段 fallback)\n- **训练**: 13113 train / 1457 val, batch_size=512, 26 batches/epoch\n- **进展**: 已到 Epoch 4/50, val_loss 持续下降 0.009415 → 0.008158\n- **Loss 分解**: L2=0.0082, dir=0.3461, tri=0.0107, mag=0.0013\n\nACCG 在单阶段 960D obs_features 上可以正常训练，loss 在快速收敛。`CRMK1FromK10Dataset` 已修改为从合并 tensor 加载 + 每 epoch 随机从 K=10 中选一个样本作为 K=1 action（数据增强效果）。代码已同步修复到 bjb2-28827。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-701-fallback-k10cache.md"
+}

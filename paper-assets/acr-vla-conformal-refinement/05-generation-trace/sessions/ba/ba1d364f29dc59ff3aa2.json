@@ -1,0 +1,612 @@
+{
+  "schema_version": "1.0",
+  "id": "ba1d364f29dc59ff3aa2",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "diagnose bjb1 32546 process gone",
+  "task_key": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_diagnose_bjb1-32546-process-gone_20260519T205640.jsonl",
+    "occurrence": 1,
+    "bytes": 26222,
+    "sha256": "8ee3affd7464aa1228c2973a11a671ab6d20e93d016e98d6361d3d2218d94eba"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "tool_call": 14,
+      "tool_result": 14,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T20:58:28.821567+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T20:58:28.822046+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T20:58:28.824354+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T20:58:28.824664+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "ls -la /root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed47.json 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T20:58:28.824911+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 2 MiB, 24564 MiB\\\\n1, 36 %, 4254 MiB, 24564 MiB\\\\n2, 0 %, 2 MiB, 24564 MiB\\\\n3, 39 %, 4254 MiB, 24564 MiB\\\\n4, 21 %, 4931 MiB, 24564 MiB\\\\n5, 20 %, 4619 MiB, 24564 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.06}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T20:58:28.825117+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T20:58:28.825329+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "ls -la /root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed48.json 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T20:58:28.825538+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T20:58:28.825731+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "ps aux | grep evaluate.py | grep -v grep",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T20:58:28.825916+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T20:58:28.826128+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "ls -la /root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed47.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T20:58:28.827854+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 1779 May 20 04:45 /root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed47.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T20:58:28.828108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "ls -la /root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed48.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T20:58:28.828341+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed48.json': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T20:58:28.828549+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "ps aux --no-headers -C python3",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T20:58:28.828779+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "ps aux --no-headers -C python",
+              "account": "root"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T20:58:28.829054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root          1  0.0  0.0   4476  3364 ?        Ss   May15   0:00 bash /init/boot/boot.sh\\\\nroot        940  1.5  0.0 723360 22040 ?        Sl   May15 104:51 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        955  0.0  0.0 191548 106008 ?       S    May15   0:02 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        961  0.0  0.0 4147608 81632 ?       Sl   May15   3:04 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        962  0.0  0.0  15444  9420 ?        S    May15   0:15 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot        964  0.1  0.0 3535144 18496 ?       Sl   May15   7:34 proxy -c /init/proxy/proxy.ini\\\\nroot        965  0.2  0.0 5195384 99952 ?       Sl   May15  17:12 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        966  0.0  0.0 3313180 17852 ?       Sl   May15   1:48 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot       1079  0.0  0.0 17524960 9964 ?       Sl   May15   2:40 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_q6bmzxvy/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_q6bmzxvy/startup_error\\\\nroot      19704  0.0  0.0  16692 10888 ?        Ss   01:39   0:02 sshd: root@notty\\\\nroot      83909  0.0  0.0   4364  1708 ?        S    04:30   0:00 bash -c cd /root/acr-vla-conformal-refinement && nohup env CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 44 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed44.json > logs/eval_goal_obs_only_norm02\n…[truncated 2835 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T20:58:28.829425+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root          1  0.0  0.0   4476  3364 ?        Ss   May15   0:00 bash /init/boot/boot.sh\\\\nroot        940  1.5  0.0 723360 22040 ?        Sl   May15 104:51 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        955  0.0  0.0 191548 106008 ?       S    May15   0:02 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        961  0.0  0.0 4147608 81632 ?       Sl   May15   3:04 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        962  0.0  0.0  15444  9420 ?        S    May15   0:15 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot        964  0.1  0.0 3535144 18496 ?       Sl   May15   7:34 proxy -c /init/proxy/proxy.ini\\\\nroot        965  0.2  0.0 5195384 99952 ?       Sl   May15  17:12 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        966  0.0  0.0 3313180 17852 ?       Sl   May15   1:48 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot       1079  0.0  0.0 17524960 9964 ?       Sl   May15   2:40 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_q6bmzxvy/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_q6bmzxvy/startup_error\\\\nroot      19704  0.0  0.0  16692 10888 ?        Ss   01:39   0:02 sshd: root@notty\\\\nroot      83909  0.0  0.0   4364  1708 ?        S    04:30   0:00 bash -c cd /root/acr-vla-conformal-refinement && nohup env CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 44 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed44.json > logs/eval_goal_obs_only_norm02\n…[truncated 2834 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T20:58:28.829756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "cat /root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed47.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T20:58:28.830039+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"vla_only\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"long\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 10,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.14,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE3_turn_on_the_stove_and_put_the_moka_pot_on_it\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.8,\\\\n      \\\\\\\"successes\\\\\\\": 8,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE4_put_the_black_bowl_in_the_bottom_drawer_of_the_cabinet_and_close_it\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE5_put_the_white_mug_on_the_left_plate_and_put_the_yellow_and_white_mug_on_the_right_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.4,\\\\n      \\\\\\\"successes\\\\\\\": 4,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"STUDY_SCENE1_pick_up_the_book_and_place_it_in_the_back_compartment_of_the_caddy\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"successes\\\\\\\": 1,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE6_put_the_white_mug_on_the_plate_and_put_the_chocolate_pudding_to_the_right_of_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"successes\\\\\\\": 1,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"LIVING_ROOM_SCENE1_put_both_the_alphabet_soup_and_the_cream_cheese_box_in_the_basket\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"KITCHEN_SCENE8_put_both_moka_pots_on_the_stove\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"success\n…[truncated 349 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T20:58:28.830313+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "tail -20 /root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed47.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T20:58:28.834615+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'long', 'checkpoint': None, 'crm_checkpoint': None, 'n_rollouts': 10, 'max_steps': 300, 'seed': 47, 'K': 1, 'mode': 'vla_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_long_vla_only_seed47.json', 'max_correction_norm': None, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5}\\\\n[eval] Mode: vla_only, benchmark: long\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  58%|█████▊    | 282/489 [00:00<00:00, 2809.15it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3381.76it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] Loading LIBERO long environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket: rollout 5/10, success so far: 0/5\\\\n  LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket: rollout 10/10, success so far: 0/10\\\\n[LIVING_ROOM_SCENE2_put_both_the_alphabet_soup_and_the_tomato_sauce_in_the_basket] success rate: 0.0% (0/10)\\\\n  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 5/10, success so far: 0/5\\\\n  LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket: rollout 10/10, success so far: 0/10\\\\n[LIVING_ROOM_SCENE2_put_both_the_cream_cheese_box_and_the_butter_in_the_basket] success rate: 0.0% (0/10)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 4
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T20:58:28.834884+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "tail -20 /root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed48.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T20:58:28.835135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'spatial', 'checkpoint': None, 'crm_checkpoint': None, 'n_rollouts': 10, 'max_steps': 300, 'seed': 48, 'K': 1, 'mode': 'vla_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_spatial_vla_only_seed48.json', 'max_correction_norm': None, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5}\\\\n[eval] Mode: vla_only, benchmark: spatial\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  57%|█████▋    | 279/489 [00:00<00:00, 2702.12it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3231.43it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] Loading LIBERO spatial environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 3/5\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 7/10\\\\n[pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate] success rate: 70.0% (7/10)\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 10/10\\\\n[pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate] success rate: 100.0% (10/10)\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_\n…[truncated 295 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T20:58:28.837467+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "tail -20 /root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed44.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T20:58:28.837744+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  53%|█████▎    | 257/489 [00:00<00:00, 2556.33it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3086.65it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.2\\\\n[eval] Loading LIBERO goal environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  open_the_middle_drawer_of_the_cabinet: rollout 5/10, success so far: 4/5\\\\n  open_the_middle_drawer_of_the_cabinet: rollout 10/10, success so far: 6/10\\\\n[open_the_middle_drawer_of_the_cabinet] success rate: 60.0% (6/10)\\\\n  put_the_bowl_on_the_stove: rollout 5/10, success so far: 4/5\\\\n  put_the_bowl_on_the_stove: rollout 10/10, success so far: 9/10\\\\n[put_the_bowl_on_the_stove] success rate: 90.0% (9/10)\\\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 5/10, success so far: 2/5\\\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 10/10, success so far: 5/10\\\\n[put_the_wine_bottle_on_top_of_the_cabinet] success rate: 50.0% (5/10)\\\\n  open_the_top_drawer_and_put_the_bowl_inside: rollout 5/10, success so far: 1/5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T20:58:28.838002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "tail -20 /root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed45.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T20:58:28.838252+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  58%|█████▊    | 284/489 [00:00<00:00, 2828.24it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3350.02it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.2\\\\n[eval] Loading LIBERO goal environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  open_the_middle_drawer_of_the_cabinet: rollout 5/10, success so far: 4/5\\\\n  open_the_middle_drawer_of_the_cabinet: rollout 10/10, success so far: 7/10\\\\n[open_the_middle_drawer_of_the_cabinet] success rate: 70.0% (7/10)\\\\n  put_the_bowl_on_the_stove: rollout 5/10, success so far: 4/5\\\\n  put_the_bowl_on_the_stove: rollout 10/10, success so far: 9/10\\\\n[put_the_bowl_on_the_stove] success rate: 90.0% (9/10)\\\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 5/10, success so far: 1/5\\\\n  put_the_wine_bottle_on_top_of_the_cabinet: rollout 10/10, success so far: 4/10\\\\n[put_the_wine_bottle_on_top_of_the_cabinet] success rate: 40.0% (4/10)\\\\n  open_the_top_drawer_and_put_the_bowl_inside: rollout 5/10, success so far: 1/5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T20:58:28.838642+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### Cron 报告有误 — 4 个进程全部在运行\n\ncuda:1 和 cuda:3 上不是原来失败的 crm-goal-seed44/45，而是**新启动的 crm_obs_only (norm=0.2)** 实验。\n\n---\n\n### GPU 状态\n\n| GPU | 利用率 | 显存占用 | 状态 | 实验 |\n|-----|--------|----------|------|------|\n| 0 | 0% | 2 MiB | **空闲** | — |\n| 1 | 36% | 4254 MiB | 运行中 | crm_obs_only goal seed44 (norm0.2), ~4/10 tasks |\n| 2 | 0% | 2 MiB | **空闲** | — |\n| 3 | 39% | 4254 MiB | 运行中 | crm_obs_only goal seed45 (norm0.2), ~4/10 tasks |\n| 4 | 21% | 4931 MiB | 运行中 | eval vla_only long seed47 |\n| 5 | 20% | 4619 MiB | 运行中 | eval vla_only spatial seed48, 3/10 tasks done |\n\n**空闲 GPU: cuda:0, cuda:2**\n\n---\n\n### 实验状态\n\n**1. eval-vla-only-long-seed47 (cuda:4) — 已完成，JSON 已写入**\n\n`overall_success_rate = 0.14` (14%)\n\n| Task | Success Rate |\n|------|-------------|\n| LIVING_ROOM_SCENE2 alphabet_soup + tomato_sauce → basket | 0% |\n| LIVING_ROOM_SCENE2 cream_cheese + butter → basket | 0% |\n| KITCHEN_SCENE3 stove + moka_pot | **80%** |\n| KITCHEN_SCENE4 black_bowl → drawer + close | 0% |\n| LIVING_ROOM_SCENE5 mugs → plates | **40%** |\n| STUDY_SCENE1 book → caddy | 10% |\n| LIVING_ROOM_SCENE6 mug + pudding | 10% |\n| LIVING_ROOM_SCENE1 alphabet_soup + cream_cheese → basket | 0% |\n| KITCHEN_SCENE8 both moka_pots → stove | 0% |\n| KITCHEN_SCENE6 mug → microwave + close | 0% |\n\n**2. eval-vla-only-spatial-seed48 (cuda:5) — 运行中, 3/10 tasks done**\n\n已完成的 tasks:\n- pick_up bowl between plate & ramekin → plate: **70%**\n- pick_up bowl next to ramekin → plate: **100%**\n- pick_up bowl from table center → plate: **0%**\n\n**3. crm_obs_only goal seed44 (cuda:1) — 运行中, ~4/10 tasks done**\n\n已完成: open_middle_drawer 60%, put_bowl_on_stove 90%, wine_bottle_on_cabinet 50%, open_top_drawer 进行中\n\n**4. crm_obs_only goal seed45 (cuda:3) — 运行中, ~4/10 tasks done**\n\n已完成: open_middle_drawer 70%, put_bowl_on_stove 90%, wine_bottle_on_cabinet 40%, open_top_drawer 进行中"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_bjb1-32546-process-gone_20260519T205640"
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ],
+  "readable_path": "readable/conversations/diagnose-bjb1-32546-process-gone.md"
+}

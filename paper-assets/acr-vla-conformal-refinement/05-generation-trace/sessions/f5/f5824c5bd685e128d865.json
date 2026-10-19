@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "f5824c5bd685e128d865",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "debug eval crash diagnosis",
+  "task_key": "worker_debug_eval-crash-diagnosis_20260513T104708",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_debug_eval-crash-diagnosis_20260513T104708.log",
+    "occurrence": 1,
+    "bytes": 754454,
+    "sha256": "1f442c3f7c83a90eaf6d8363c890137fc2334891c7d56129e39c849636e68893"
+  },
+  "statistics": {
+    "messages": 376,
+    "user_turns": 0,
+    "tool_calls": 137,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 98,
+      "tool_call": 137,
+      "tool_result": 137,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 376,
+      "chunks": [
+        {
+          "path": "f5824c5bd685e128d865-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5824c5bd685e128d865-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5824c5bd685e128d865-part-0003.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/debug-eval-crash-diagnosis.md"
+}

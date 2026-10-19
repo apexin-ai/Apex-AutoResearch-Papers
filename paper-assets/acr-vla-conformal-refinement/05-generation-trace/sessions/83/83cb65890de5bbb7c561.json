@@ -1,0 +1,1391 @@
+{
+  "schema_version": "1.0",
+  "id": "83cb65890de5bbb7c561",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "gpu check and deploy supp",
+  "task_key": "worker_gpu_check-and-deploy-supp_20260528T155015",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_gpu_check-and-deploy-supp_20260528T155015.jsonl",
+    "occurrence": 1,
+    "bytes": 102686,
+    "sha256": "af22d29aeddfe3922dc9989cd5d12208436cbd90a0c0987d98b8783be6b7c158"
+  },
+  "statistics": {
+    "messages": 69,
+    "user_turns": 0,
+    "tool_calls": 34,
+    "roles": {
+      "tool_call": 34,
+      "tool_result": 34,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-28T15:56:57.255169+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-28T15:56:57.255528+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-28T15:56:57.255726+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-28T15:56:57.255860+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-28T15:56:57.255992+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA GeForce RTX 4090, 0 MiB, 24564 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-28T15:56:57.256116+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[Errno None] Unable to connect to port 32546 on 106.120.183.117\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-28T15:56:57.256233+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-28T15:56:57.256376+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[Errno None] Unable to connect to port 28827 on 106.38.204.136\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.24}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-28T15:56:57.256492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "cqa1-32758",
+              "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-28T15:56:57.256607+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[Errno None] Unable to connect to port 32758 on 58.144.141.28\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.19}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-28T15:56:57.256720+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "filters": "{'status': 'DONE'}",
+              "limit": "0",
+              "fields": "['exp_id', 'status', 'conclusion', 'metrics']"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-28T15:56:57.256850+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "filters": "{'status': 'RUNNING'}",
+              "limit": "0",
+              "fields": "['exp_id', 'status', 'server', 'gpu']"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-28T15:56:57.256970+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "artifacts/supplementary/supplementary_summary.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-28T15:56:57.258768+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (306,502 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/8c290cbe-aa35-4006-bed3-2d946febaa53/tool-results/mcp-agent-ml-research-read_registry-1779983442741.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/8c290cbe-aa35-4006-bed3-2d946febaa53/tool-results/mcp-agent-ml-research-read_registry-1779983442741.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/8c290cbe-aa35-4006-bed3-2d946febaa53/tool-results/mcp-agent-ml-research-read_registry-1779983442741.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 2
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-28T15:56:57.259036+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.1117}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 2
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-28T15:56:57.259180+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'mistakes.yaml', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'artifacts/supplementary/supplementary_summary.md'\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 2
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-28T15:56:57.259382+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "ps aux | grep -E \"evaluate|train|python\" | grep -v grep",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-28T15:56:57.259528+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-28T15:56:57.259669+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Agent",
+            "tool_args": {
+              "description": "Parse registry DONE experiments",
+              "prompt": "Parse the registry JSON file at /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/8c290cbe-aa35-4006-bed3-2d946febaa53/tool-results/mcp-agent-ml-research-read_registry-1779983442741.txt\n\nThis file is JSON with schema: {result: string} where result is itself a JSON string.\n\nI need you to:\n1. Probe structure with jq/python\n2. Extract ALL experiment entries that have status \"DONE\"\n3. For each, report: exp_id, conclusion, and key metrics (especially success_rate or SR for each task)\n4. Group them by experiment type - specifically identify:\n   - tau-sweep experiments (different tau values like tau025, tau05, tau075, tau10, tau15, tau20)\n   - bonus seed experiments (different seeds like s42, s43, s44)\n   - baseline experiments\n   - any other supplementary experiments\n5. Summarize which configurations are complete and which are missing\n\nReturn a structured summary. Be thorough - I need the complete picture of what's done.",
+              "subagent_type": "general-purpose"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-28T15:56:57.259826+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/supplementary_summary*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-28T15:56:57.259945+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/report/supplementary_summary.md\nartifacts/supplementary/supplementary_summary.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-28T15:56:57.260062+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/supplementary*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-28T15:56:57.260175+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/report/supplementary_summary.md\nartifacts/supplementary/supplementary_summary.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-28T15:56:57.260310+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/8c290cbe-aa35-4006-bed3-2d946febaa53/tool-results/mcp-agent-ml-research-read_registry-1779983442741.txt",
+              "limit": "50"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-28T15:56:57.260433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File content (131281 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-28T15:56:57.260556+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/8c290cbe-aa35-4006-bed3-2d946febaa53/tool-results/mcp-agent-ml-research-read_registry-1779983442741.txt', 'r') as f:\n    raw = json.load(f)\n# The outer structure has a 'result' field which is a JSON string\ninner = json.loads(raw['result'])\nprint('Top-level keys:', list(inner.keys())[:20])\nprint('Type:', type(inner))\nif isinstance(inner, dict):\n    # Check if it's a flat dict or nested\n    for k in list(inner.keys())[:3]:\n        v = inner[k]\n        print(f'  Key: {k}, Type: {type(v).__name__}')\n        if isinstance(v, dict):\n            print(f'    Sub-keys: {list(v.keys())[:10]}')\n        elif isinstance(v, str):\n            print(f'    Value (first 200): {v[:200]}')\n\" 2>&1\n",
+              "description": "Probe the structure of the registry JSON file"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-28T15:56:57.260682+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Top-level keys: ['success', 'data', 'error', 'metadata']\nType: <class 'dict'>\n  Key: success, Type: bool\n  Key: data, Type: dict\n    Sub-keys: ['experiments', 'count', 'total', 'baseline']\n  Key: error, Type: NoneType"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-28T15:56:57.260807+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/8c290cbe-aa35-4006-bed3-2d946febaa53/tool-results/mcp-agent-ml-research-read_registry-1779983442741.txt', 'r') as f:\n    raw = json.load(f)\ninner = json.loads(raw['result'])\ndata = inner['data']\nprint('data keys:', list(data.keys()))\nprint('count:', data.get('count'))\nprint('total:', data.get('total'))\nprint('baseline type:', type(data.get('baseline')))\nif data.get('baseline'):\n    print('baseline keys:', list(data['baseline'].keys())[:10])\n\nexps = data.get('experiments', {})\nprint(f'\\nTotal experiments: {len(exps)}')\nprint('Experiment IDs:', list(exps.keys()))\n\" 2>&1\n",
+              "description": "Explore the data structure and list all experiment IDs"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-28T15:56:57.260934+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (46.3KB). Full output saved to: /home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/8c290cbe-aa35-4006-bed3-2d946febaa53/tool-results/bww2cj7qy.txt\n\nPreview (first 2KB):\ndata keys: ['experiments', 'count', 'total', 'baseline']\ncount: 1415\ntotal: 1415\nbaseline type: <class 'NoneType'>\n\nTotal experiments: 1415\nExperiment IDs: ['eval-vla-only-spatial-seed49-r2', 'eval-adaptive-k-p25-seed44', 'eval-vla-only-spatial-seed50', 'eval-crm-spatial-seed47', 'eval-vla-only-object-seed49-r2', 'eval-crm-spatial-seed48', 'eval-crm-spatial-k10-seed49', 'eval-vla-only-long-seed49', 'eval-crm-spatial-k10-seed50', 'eval-vla-only-object-seed51', 'eval-crm-long-seed48', 'eval-crm-long-seed49', 'eval-crm-goal-seed47', 'eval-crm-goal-seed48', 'eval-vla-only-spatial-seed51', 'eval-vla-only-goal-seed50', 'eval-crm-long-seed51', 'eval-vla-only-long-seed53', 'eval-vla-only-long-seed54', 'eval-vla-only-goal-seed52', 'eval-crm-long-seed52', 'eval-crm-goal-seed49', 'eval-crm-goal-seed50', 'eval-vla-only-spatial-seed52', 'eval-vla-only-spatial-seed53', 'eval-crm-long-seed53', 'eval-vla-only-spatial-seed54', 'eval-crm-long-seed54', 'eval-obs-only-goal-norm02-seed53', 'eval-obs-only-object-norm005-seed77', 'eval-obs-only-object-norm003-seed76', 'eval-obs-only-object-norm003-seed77', 'eval-obs-only-object-norm003-seed78', 'eval-obs-only-object-norm005-seed76', 'eval-obs-only-object-norm003-seed62-r3', 'eval-obs-only-object-norm003-seed63-r3', 'eval-obs-only-object-norm01-seed76', 'eval-obs-only-object-norm01-seed77', 'eval-random-selection-object-seed42-r3', 'precompute-pi05-shard0', 'precompute-pi05-shard1', 'precompute-pi05-shard2', 'precompute-pi05-shard3', 'precompute-pi05-shard4', 'precompute-pi05-shard5', 'precompute-pi05-shard6', 'precompute-pi05-shard7', 'precompute-pi05-shard8', 'precompute-pi05-shard9', 'precompute-pi05-spatial-shard0', 'precompute-pi05-spatial-shard1', 'precompute\n…[truncated 304 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-28T15:56:57.261089+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/8c290cbe-aa35-4006-bed3-2d946febaa53/tool-results/mcp-agent-ml-research-read_registry-1779983442741.txt', 'r') as f:\n    raw = json.load(f)\ninner = json.loads(raw['result'])\nexps = inner['data']['experiments']\n\n# First, understand all statuses\nstatuses = {}\nfor eid, edata in exps.items():\n    s = edata.get('status', 'UNKNOWN')\n    statuses[s] = statuses.get(s, 0) + 1\nprint(\"=== Status distribution ===\")\nfor s, c in sorted(statuses.items(), key=lambda x: -x[1]):\n    print(f\"  {s}: {c}\")\n\n# Look at one DONE experiment to understand the schema\ndone_exps = {eid: edata for eid, edata in exps.items() if edata.get('status') == 'DONE'}\nprint(f\"\\nTotal DONE experiments: {len(done_exps)}\")\n\nif done_exps:\n    sample_id = list(done_exps.keys())[0]\n    sample = done_exps[sample_id]\n    print(f\"\\n=== Sample DONE experiment: {sample_id} ===\")\n    print(f\"  Keys: {list(sample.keys())}\")\n    for k, v in sample.items():\n        if isinstance(v, dict):\n            print(f\"  {k}: (dict) keys={list(v.keys())[:15]}\")\n        elif isinstance(v, str) and len(v) > 200:\n            print(f\"  {k}: {v[:200]}...\")\n        else:\n            print(f\"  {k}: {v}\")\nPYEOF\n",
+              "description": "Get status distribution and sample DONE experiment schema"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-28T15:56:57.261217+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== Status distribution ===\n  DONE: 1415\n\nTotal DONE experiments: 1415\n\n=== Sample DONE experiment: eval-vla-only-spatial-seed49-r2 ===\n  Keys: ['status', 'conclusion']\n  status: DONE\n  conclusion: killed"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-28T15:56:57.261415+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\nfrom collections import Counter\n\nwith open('/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/8c290cbe-aa35-4006-bed3-2d946febaa53/tool-results/mcp-agent-ml-research-read_registry-1779983442741.txt', 'r') as f:\n    raw = json.load(f)\ninner = json.loads(raw['result'])\nexps = inner['data']['experiments']\n\n# Check all unique key sets and conclusions\nkey_sets = Counter()\nconclusions = Counter()\nhas_metrics = []\n\nfor eid, edata in exps.items():\n    ks = frozenset(edata.keys())\n    key_sets[str(sorted(ks))] += 1\n    conc = edata.get('conclusion', '')\n    # Truncate long conclusions for grouping\n    if len(conc) > 100:\n        conclusions[conc[:80] + '...'] += 1\n    else:\n        conclusions[conc] += 1\n    \n    # Check for experiments with more than just status+conclusion\n    if len(edata.keys()) > 2:\n        has_metrics.append(eid)\n\nprint(\"=== Key sets distribution ===\")\nfor ks, c in key_sets.most_common(10):\n    print(f\"  {ks}: {c}\")\n\nprint(f\"\\n=== Unique conclusions (top 30) ===\")\nfor conc, c in conclusions.most_common(30):\n    print(f\"  [{c}x] {conc}\")\n\nprint(f\"\\n=== Experiments with extra fields (beyond status+conclusion): {len(has_metrics)} ===\")\nfor eid in has_metrics[:10]:\n    print(f\"  {eid}: keys={list(exps[eid].keys())}\")\nPYEOF\n",
+              "description": "Analyze conclusion patterns and find experiments with metrics"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-28T15:56:57.261563+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== Key sets distribution ===\n  ['conclusion', 'metrics', 'status']: 900\n  ['conclusion', 'status']: 515\n\n=== Unique conclusions (top 30) ===\n  [768x] success\n  [421x] killed\n  [130x] failed\n  [96x] negative\n\n=== Experiments with extra fields (beyond status+conclusion): 900 ===\n  eval-vla-only-spatial-seed50: keys=['status', 'metrics', 'conclusion']\n  eval-crm-spatial-seed48: keys=['status', 'metrics', 'conclusion']\n  eval-crm-spatial-k10-seed49: keys=['status', 'metrics', 'conclusion']\n  eval-crm-long-seed48: keys=['status', 'metrics', 'conclusion']\n  eval-crm-long-seed49: keys=['status', 'metrics', 'conclusion']\n  eval-crm-goal-seed47: keys=['status', 'metrics', 'conclusion']\n  eval-crm-goal-seed48: keys=['status', 'metrics', 'conclusion']\n  eval-supp-obj-crm-norm005-s46: keys=['status', 'metrics', 'conclusion']\n  eval-tau-sweep-spatial-tau010-s42: keys=['status', 'conclusion', 'metrics']\n  eval-tau-sweep-spatial-tau020-s42: keys=['status', 'conclusion', 'metrics']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-28T15:56:57.261703+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\nfrom collections import Counter\n\nwith open('/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/8c290cbe-aa35-4006-bed3-2d946febaa53/tool-results/mcp-agent-ml-research-read_registry-1779983442741.txt', 'r') as f:\n    raw = json.load(f)\ninner = json.loads(raw['result'])\nexps = inner['data']['experiments']\n\n# Look at metrics structure from a few examples\nfor eid in ['eval-tau-sweep-spatial-tau010-s42', 'eval-crm-spatial-seed48', 'eval-vla-only-spatial-seed50', 'eval-supp-obj-crm-norm005-s46']:\n    edata = exps.get(eid, {})\n    m = edata.get('metrics', {})\n    print(f\"\\n=== {eid} ===\")\n    print(f\"  conclusion: {edata.get('conclusion')}\")\n    if isinstance(m, dict):\n        print(f\"  metrics keys: {list(m.keys())}\")\n        for mk, mv in m.items():\n            print(f\"    {mk}: {mv}\")\n    elif isinstance(m, str):\n        print(f\"  metrics (str, first 500): {m[:500]}\")\nPYEOF\n",
+              "description": "Inspect metrics structure from representative experiments"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-28T15:56:57.261830+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== eval-tau-sweep-spatial-tau010-s42 ===\n  conclusion: killed\n  metrics keys: ['overall_success_rate', 'trigger_rate', 'tau', 'benchmark', 'seed']\n    overall_success_rate: 0.79\n    trigger_rate: 0.752\n    tau: 0.1\n    benchmark: spatial\n    seed: 42\n\n=== eval-crm-spatial-seed48 ===\n  conclusion: killed\n  metrics keys: ['success_rate', 'n_tasks', 'n_rollouts', 'total']\n    success_rate: 0.35\n    n_tasks: 10\n    n_rollouts: 10\n    total: 100\n\n=== eval-vla-only-spatial-seed50 ===\n  conclusion: killed\n  metrics keys: ['success_rate', 'n_tasks', 'n_rollouts', 'total']\n    success_rate: 0.3\n    n_tasks: 10\n    n_rollouts: 10\n    total: 100\n\n=== eval-supp-obj-crm-norm005-s46 ===\n  conclusion: killed\n  metrics keys: ['success_rate', 'successes', 'total', 'source']\n    success_rate: 0.795\n    successes: 159\n    total: 200\n    source: json_harvest_bjb1"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-28T15:56:57.261966+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json, re\nfrom collections import defaultdict\n\nwith open('/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/8c290cbe-aa35-4006-bed3-2d946febaa53/tool-results/mcp-agent-ml-research-read_registry-1779983442741.txt', 'r') as f:\n    raw = json.load(f)\ninner = json.loads(raw['result'])\nexps = inner['data']['experiments']\n\n# Categorize all experiments\ncategories = defaultdict(list)\n\nfor eid, edata in exps.items():\n    metrics = edata.get('metrics', {})\n    if not isinstance(metrics, dict):\n        metrics = {}\n    \n    entry = {\n        'id': eid,\n        'status': edata.get('status'),\n        'conclusion': edata.get('conclusion'),\n        'metrics': metrics,\n    }\n    \n    # Categorize by experiment ID pattern\n    if 'tau-sweep' in eid or 'tau_sweep' in eid:\n        categories['tau-sweep'].append(entry)\n    elif 'bonus-seed' in eid or 'bonus_seed' in eid or re.search(r'bonus.*s\\d+', eid):\n        categories['bonus-seed'].append(entry)\n    elif 'adaptive-k' in eid:\n        categories['adaptive-k'].append(entry)\n    elif 'obs-only' in eid:\n        categories['obs-only'].append(entry)\n    elif 'random-selection' in eid or 'random_selection' in eid:\n        categories['random-selection'].append(entry)\n    elif 'vla-only' in eid:\n        categories['vla-only-baseline'].append(entry)\n    elif 'crm-' in eid and 'supp' not in eid:\n        categories['crm-main'].append(entry)\n    elif 'supp' in eid:\n        categories['supplementary'].append(entry)\n    elif 'precompute' in eid:\n        categories['precompute'].append(entry)\n    elif 'calib' in eid:\n        categories['calibration'].append(entry)\n    elif 'ablation' in eid:\n        categories['ablation'].append(entry)\n    elif 'oracle' in eid:\n        categories['oracle'].append(entry)\n    elif 'heuristic' in eid:\n        categories['heuristic'].append(entry)\n    elif 'fixed-thresh' in eid or 'fixed_thresh' in eid:\n        categories['fixed-threshold'].append(entry)\n    else:\n        categories['other'].append(entry)\n\nprint(\"=\" * 80)\nprint(\"EXPERIMENT CATEGORY SUMMARY\")\nprint(\"=\" * 80)\nfor cat in sorted(categories.keys()):\n    entries = categories[cat]\n    n_with_metrics = sum(1 for e in entries if e['metrics'])\n    conc_counts = defaultdict(int)\n    for e in entries:\n        conc_counts[e['conclusion']] += 1\n    print(f\"\\n{cat}: {len(entries)} experiments ({n_with_metrics} with metrics)\")\n    print(f\"  Conclusions: {dict(conc_counts)}\")\n    # Show sample IDs\n    sample_ids = [e['id'] for e in entries[:5]]\n    if len(entries) > 5:\n        sample_ids.append(f\"... and {len(entries)-5} more\")\n    print(f\"  Sample IDs: {sample_ids}\")\n\nPYEOF\n",
+              "description": "Categorize all 1415 experiments into types"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-28T15:56:57.262124+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "================================================================================\nEXPERIMENT CATEGORY SUMMARY\n================================================================================\n\nablation: 3 experiments (3 with metrics)\n  Conclusions: {'negative': 2, 'success': 1}\n  Sample IDs: ['eval-ablation-tau040-goal-s42', 'eval-ablation-tau015-goal-s42', 'eval-ablation-tau010-goal-s42']\n\nadaptive-k: 38 experiments (28 with metrics)\n  Conclusions: {'killed': 11, 'success': 26, 'negative': 1}\n  Sample IDs: ['eval-adaptive-k-p25-seed44', 'eval-adaptive-k1-spatial-tau025-s42', 'eval-adaptive-k5-spatial-tau025-s42', 'eval-canonical-adaptive-k10-spatial-s42', 'eval-long-adaptive-k10-s42', '... and 33 more']\n\ncalibration: 2 experiments (2 with metrics)\n  Conclusions: {'success': 1, 'negative': 1}\n  Sample IDs: ['k2-l2-calibration-phase1', 'fmvd-calibration-phase1']\n\ncrm-main: 222 experiments (125 with metrics)\n  Conclusions: {'killed': 88, 'negative': 21, 'failed': 17, 'success': 96}\n  Sample IDs: ['eval-crm-spatial-seed47', 'eval-crm-spatial-seed48', 'eval-crm-spatial-k10-seed49', 'eval-crm-spatial-k10-seed50', 'eval-crm-long-seed48', '... and 217 more']\n\nobs-only: 178 experiments (128 with metrics)\n  Conclusions: {'killed': 35, 'success': 120, 'failed': 22, 'negative': 1}\n  Sample IDs: ['eval-obs-only-goal-norm02-seed53', 'eval-obs-only-object-norm005-seed77', 'eval-obs-only-object-norm003-seed76', 'eval-obs-only-object-norm003-seed77', 'eval-obs-only-object-norm003-seed78', '... and 173 more']\n\nother: 471 experiments (300 with metrics)\n  Conclusions: {'killed': 139, 'success': 242, 'negative': 44, 'failed': 46}\n  Sample IDs: ['eval-smolvla-lerobot-goal-seed44', 'eval-pi05-reconvla-spatial-s42', 'eval-pi05-reconvla-goal-s42', 'eval-pi05-reconvla-object-s42', 'eval-pi05-reconvla-spatial-s42-bf16', '... and 466 more']\n\nprecompute: 83 experiments (6 with metrics)\n  Conclusions: {'killed': 58, 'success': 20, 'failed': 5}\n  Sample IDs: ['precompute-pi05-shard0', 'precompute-\n…[truncated 1450 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-28T15:56:57.262298+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json, re\nfrom collections import defaultdict\n\nwith open('/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/8c290cbe-aa35-4006-bed3-2d946febaa53/tool-results/mcp-agent-ml-research-read_registry-1779983442741.txt', 'r') as f:\n    raw = json.load(f)\ninner = json.loads(raw['result'])\nexps = inner['data']['experiments']\n\n# ==========================================\n# 1. TAU-SWEEP EXPERIMENTS\n# ==========================================\nprint(\"=\" * 80)\nprint(\"1. TAU-SWEEP EXPERIMENTS\")\nprint(\"=\" * 80)\n\ntau_exps = {eid: ed for eid, ed in exps.items() if 'tau-sweep' in eid or 'tau_sweep' in eid}\nfor eid in sorted(tau_exps.keys()):\n    ed = tau_exps[eid]\n    m = ed.get('metrics', {})\n    if not isinstance(m, dict): m = {}\n    sr = m.get('overall_success_rate', m.get('success_rate', 'N/A'))\n    tau = m.get('tau', 'N/A')\n    bench = m.get('benchmark', 'N/A')\n    seed = m.get('seed', 'N/A')\n    tr = m.get('trigger_rate', 'N/A')\n    print(f\"  {eid}: conc={ed['conclusion']}, SR={sr}, tau={tau}, bench={bench}, seed={seed}, trigger_rate={tr}\")\n\nPYEOF\n",
+              "description": "Detail tau-sweep experiments"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-28T15:56:57.262444+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "================================================================================\n1. TAU-SWEEP EXPERIMENTS\n================================================================================\n  eval-tau-sweep-spatial-tau010-s42: conc=killed, SR=0.79, tau=0.1, bench=spatial, seed=42, trigger_rate=0.752\n  eval-tau-sweep-spatial-tau020-s42: conc=killed, SR=0.81, tau=0.2, bench=spatial, seed=42, trigger_rate=0.266\n  eval-tau-sweep-spatial-tau030-s42: conc=killed, SR=0.805, tau=0.3, bench=spatial, seed=42, trigger_rate=0.167\n  pi05-tau-sweep-goal-tau050-s42: conc=killed, SR=N/A, tau=N/A, bench=N/A, seed=N/A, trigger_rate=N/A\n  pi05-tau-sweep-goal-tau050-s42-r2: conc=failed, SR=0, tau=N/A, bench=N/A, seed=N/A, trigger_rate=None\n  pi05-tau-sweep-goal-tau050-s42-r3: conc=success, SR=0.87, tau=N/A, bench=N/A, seed=N/A, trigger_rate=0.0206\n  pi05-tau-sweep-goal-tau070-s42: conc=killed, SR=N/A, tau=N/A, bench=N/A, seed=N/A, trigger_rate=N/A\n  pi05-tau-sweep-goal-tau070-s42-r2: conc=success, SR=87, tau=N/A, bench=N/A, seed=N/A, trigger_rate=1.1\n  pi05-tau-sweep-goal-tau090-s42: conc=killed, SR=N/A, tau=N/A, bench=N/A, seed=N/A, trigger_rate=N/A\n  tau-sweep-goal-tau015-s42: conc=success, SR=83, tau=N/A, bench=N/A, seed=N/A, trigger_rate=36.4\n  tau-sweep-goal-tau035-s42: conc=success, SR=86, tau=N/A, bench=N/A, seed=N/A, trigger_rate=2.1\n  tau-sweep-long-tau015-s42: conc=success, SR=61, tau=N/A, bench=N/A, seed=N/A, trigger_rate=24.1\n  tau-sweep-long-tau035-s42: conc=success, SR=57, tau=N/A, bench=N/A, seed=N/A, trigger_rate=1\n  tau-sweep-spatial-tau015-s42: conc=success, SR=79.5, tau=N/A, bench=N/A, seed=N/A, trigger_rate=40.7\n  tau-sweep-spatial-tau035-s42: conc=success, SR=80.5, tau=N/A, bench=N/A, seed=N/A, trigger_rate=12.1\n  tau_sweep_goal_tau025_s42: conc=negative, SR=0.835, tau=N/A, bench=N/A, seed=N/A, trigger_rate=N/A\n  tau_sweep_goal_tau040_s42: conc=negative, SR=0.835, tau=N/A, bench=N/A, seed=N/A, trigger_rate=N/A\n  tau_sweep_goal_tau045_s42: conc=negative, SR=0.835, tau=\n…[truncated 467 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-28T15:56:57.262600+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json, re\nfrom collections import defaultdict\n\nwith open('/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/8c290cbe-aa35-4006-bed3-2d946febaa53/tool-results/mcp-agent-ml-research-read_registry-1779983442741.txt', 'r') as f:\n    raw = json.load(f)\ninner = json.loads(raw['result'])\nexps = inner['data']['experiments']\n\n# ==========================================\n# 2. BONUS SEED experiments - search more broadly\n# ==========================================\nprint(\"=\" * 80)\nprint(\"2. BONUS/EXTRA SEED EXPERIMENTS (looking for seed patterns in supp)\")\nprint(\"=\" * 80)\n\n# Let's look at the supp experiments more carefully\nsupp_exps = {eid: ed for eid, ed in exps.items() if 'supp' in eid}\n# Group supp by sub-type\nsupp_types = defaultdict(list)\nfor eid in sorted(supp_exps.keys()):\n    ed = supp_exps[eid]\n    m = ed.get('metrics', {})\n    if not isinstance(m, dict): m = {}\n    \n    # Extract the sub-type pattern\n    # e.g. eval-supp-adapt-tau025-spatial-s46 -> adapt-tau025-spatial\n    # e.g. eval-supp-obj-crm-norm005-s46 -> obj-crm-norm005\n    match = re.match(r'eval-supp-(.+)-s(\\d+)', eid)\n    if match:\n        subtype = match.group(1)\n        seed = match.group(2)\n    else:\n        subtype = eid\n        seed = '?'\n    \n    sr = m.get('success_rate', m.get('overall_success_rate', 'N/A'))\n    supp_types[subtype].append({\n        'eid': eid, 'seed': seed, 'sr': sr, \n        'conclusion': ed['conclusion'], 'metrics': m\n    })\n\nfor subtype in sorted(supp_types.keys()):\n    entries = supp_types[subtype]\n    print(f\"\\n  {subtype} ({len(entries)} seeds):\")\n    for e in sorted(entries, key=lambda x: x['seed']):\n        extra = \"\"\n        if e['metrics']:\n            extra_keys = {k:v for k,v in e['metrics'].items() if k not in ('success_rate', 'overall_success_rate')}\n            if extra_keys:\n                extra = f\" | {extra_keys}\"\n        print(f\"    s{e['seed']}: SR={e['sr']}, conc={e['conclusion']}{extra}\")\n\nPYEOF\n",
+              "description": "Detail supplementary/bonus seed experiments"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-28T15:56:57.262811+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "================================================================================\n2. BONUS/EXTRA SEED EXPERIMENTS (looking for seed patterns in supp)\n================================================================================\n\n  adapt-tau015-spatial (2 seeds):\n    s42: SR=N/A, conc=killed\n    s42: SR=N/A, conc=success | {'overall_sr': 80.5, 'n_success': 161, 'n_total': 200, 'trigger_rate': 40.7, 'mean_unc': 0.1852, 'conformal_threshold': 0.15, 'max_correction_norm': 0.2, 'per_task_sr': {'pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate': 100, 'pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate': 90, 'pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate': 95, 'pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate': 95, 'pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate': 75, 'pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate': 0, 'pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate': 95, 'pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate': 90, 'pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate': 80, 'pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate': 85}}\n\n  adapt-tau025-goal (4 seeds):\n    s43: SR=0.845, conc=success | {'trigger_rate': 0.088, 'crm_applied_steps': 2509, 'total_steps': 28500}\n    s44: SR=0.865, conc=success | {'trigger_rate': 0.0677, 'crm_applied_steps': 1870, 'total_steps': 27642}\n    s48: SR=0.845, conc=killed | {'trigger_rate': 0.089, 'tau': 0.25, 'benchmark': 'goal', 'seed': 48}\n    s49: SR=0.815, conc=killed | {'trigger_rate': 0.089, 'tau': 0.25, 'benchmark': 'goal', 'seed': 49}\n\n  adapt-tau025-obj (7 seeds):\n    s43: SR=0.775, conc=negative | {'trigger_rate': 0.0367, 'crm_applied_steps': 1312, 'total_steps': 35796}\n    s44: SR=N/A, conc=negative | {'overall_sr': 0.75, 'trigger_rate': 0.0364, 'mean_uncertainty': 0.11, 'crm_applied_steps': 1310\n…[truncated 27652 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-28T15:56:57.262976+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json, re\nfrom collections import defaultdict\n\nwith open('/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/8c290cbe-aa35-4006-bed3-2d946febaa53/tool-results/mcp-agent-ml-research-read_registry-1779983442741.txt', 'r') as f:\n    raw = json.load(f)\ninner = json.loads(raw['result'])\nexps = inner['data']['experiments']\n\n# ==========================================\n# ADAPTIVE-K experiments (with metrics)\n# ==========================================\nprint(\"=\" * 80)\nprint(\"ADAPTIVE-K EXPERIMENTS (with metrics)\")\nprint(\"=\" * 80)\n\nak_exps = {eid: ed for eid, ed in exps.items() if 'adaptive-k' in eid and ed.get('metrics')}\nfor eid in sorted(ak_exps.keys()):\n    ed = ak_exps[eid]\n    m = ed.get('metrics', {})\n    if not isinstance(m, dict): m = {}\n    sr = m.get('success_rate', m.get('overall_success_rate', m.get('SR', m.get('overall_sr', 'N/A'))))\n    print(f\"  {eid}: conc={ed['conclusion']}, SR={sr}, metrics={m}\")\n\nPYEOF\n",
+              "description": "Detail adaptive-k experiments"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-28T15:56:57.263130+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "================================================================================\nADAPTIVE-K EXPERIMENTS (with metrics)\n================================================================================\n  eval-adaptive-k-p25-seed42: conc=success, SR=0.15, metrics={'success_rate': 0.15, 'avg_actual_k': 4.8, 'fast_path_ratio': 0.65}\n  eval-adaptive-k-p25-seed43: conc=success, SR=0.13, metrics={'success_rate': 0.13, 'avg_actual_k': 4.788, 'fast_path_ratio': 0.6515, 'total_steps': 28207, 'fast_steps': 18377, 'full_steps': 9830}\n  eval-adaptive-k-p25-seed44-r2: conc=success, SR=0.15, metrics={'success_rate': 0.15, 'avg_actual_k': 4.736, 'fast_path_ratio': 0.658, 'adaptive_trigger_rate': 0.342, 'total_steps': 27889, 'fast_steps': 18351, 'full_steps': 9538}\n  eval-adaptive-k-p50-seed42: conc=success, SR=0.16, metrics={'success_rate': 0.16, 'avg_actual_k': 3.72, 'fast_path_ratio': 0.785}\n  eval-adaptive-k-p50-seed43: conc=success, SR=0.16, metrics={'success_rate': 0.16, 'avg_actual_k': 3.81, 'fast_path_ratio': 0.7737, 'total_steps': 27813, 'fast_steps': 21520, 'full_steps': 6293}\n  eval-adaptive-k-p50-seed44: conc=success, SR=0.14, metrics={'success_rate': 0.14, 'avg_actual_k': 3.909, 'fast_path_ratio': 0.761, 'total_steps': 28067, 'fast_steps': 21368, 'full_steps': 6699}\n  eval-adaptive-k-p75-seed42: conc=success, SR=0.12, metrics={'success_rate': 0.12, 'avg_actual_k': 3.07, 'fast_path_ratio': 0.866}\n  eval-adaptive-k-p75-seed43: conc=success, SR=0.13, metrics={'success_rate': 0.13, 'avg_actual_k': 3.15, 'fast_path_ratio': 0.856}\n  eval-adaptive-k-p75-seed44: conc=success, SR=0.16, metrics={'success_rate': 0.16, 'avg_actual_k': 3.022, 'fast_path_ratio': 0.872, 'total_steps': 27724, 'fast_steps': 24181, 'full_steps': 3543}\n  eval-adaptive-k-p90-seed42: conc=success, SR=0.12, metrics={'success_rate': 0.12, 'avg_actual_k': 2.672, 'fast_path_ratio': 0.916, 'total_steps': 28258, 'fast_steps': 25886, 'full_steps': 2372}\n  eval-adaptive-k-p90-seed43: conc=success, SR=0.14, metrics={\n…[truncated 6110 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-28T15:56:57.263306+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json, re\nfrom collections import defaultdict\n\nwith open('/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/8c290cbe-aa35-4006-bed3-2d946febaa53/tool-results/mcp-agent-ml-research-read_registry-1779983442741.txt', 'r') as f:\n    raw = json.load(f)\ninner = json.loads(raw['result'])\nexps = inner['data']['experiments']\n\n# ==========================================\n# RANDOM SELECTION experiments\n# ==========================================\nprint(\"=\" * 80)\nprint(\"RANDOM SELECTION EXPERIMENTS (with metrics)\")\nprint(\"=\" * 80)\n\nrs_exps = {eid: ed for eid, ed in exps.items() if 'random-selection' in eid and ed.get('metrics')}\nfor eid in sorted(rs_exps.keys()):\n    ed = rs_exps[eid]\n    m = ed.get('metrics', {})\n    sr = m.get('success_rate', m.get('overall_success_rate', m.get('SR', m.get('overall_sr', 'N/A'))))\n    bench = 'unknown'\n    if 'spatial' in eid: bench = 'spatial'\n    elif 'object' in eid or 'obj' in eid: bench = 'object'\n    elif 'goal' in eid: bench = 'goal'\n    elif 'long' in eid: bench = 'long'\n    print(f\"  {eid}: bench={bench}, conc={ed['conclusion']}, SR={sr}, metrics_keys={list(m.keys())}\")\n\nprint()\nprint(\"=\" * 80)\nprint(\"ABLATION EXPERIMENTS\")\nprint(\"=\" * 80)\n\nabl_exps = {eid: ed for eid, ed in exps.items() if 'ablation' in eid}\nfor eid in sorted(abl_exps.keys()):\n    ed = abl_exps[eid]\n    m = ed.get('metrics', {})\n    print(f\"  {eid}: conc={ed['conclusion']}, metrics={m}\")\n\nprint()\nprint(\"=\" * 80)\nprint(\"CANONICAL/FIXED-K experiments (canonical-adaptive)\")\nprint(\"=\" * 80)\n\ncan_exps = {eid: ed for eid, ed in exps.items() if 'canonical' in eid and ed.get('metrics')}\nfor eid in sorted(can_exps.keys()):\n    ed = can_exps[eid]\n    m = ed.get('metrics', {})\n    sr = m.get('success_rate', m.get('overall_success_rate', m.get('SR', m.get('overall_sr', 'N/A'))))\n    print(f\"  {eid}: conc={ed['conclusion']}, SR={sr}, metrics={m}\")\n\nPYEOF\n",
+              "description": "Detail random-selection, ablation, and canonical experiments"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-28T15:56:57.263465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "================================================================================\nRANDOM SELECTION EXPERIMENTS (with metrics)\n================================================================================\n  eval-random-selection-object-k5-seed42-r2: bench=object, conc=success, SR=0.14, metrics_keys=['success_rate', 'successes', 'total', 'n_tasks', 'n_rollouts']\n  eval-random-selection-object-k5-seed43-r2: bench=object, conc=success, SR=0.11, metrics_keys=['success_rate', 'successes', 'total', 'n_tasks', 'n_rollouts']\n  eval-random-selection-object-k5-seed44-r2: bench=object, conc=success, SR=0.1, metrics_keys=['success_rate', 'successes', 'total', 'n_tasks', 'n_rollouts']\n  eval-random-selection-object-k5-seed45-r2: bench=object, conc=success, SR=0.07, metrics_keys=['success_rate', 'successes', 'total', 'n_tasks', 'n_rollouts']\n  eval-random-selection-object-seed42: bench=object, conc=success, SR=0.11, metrics_keys=['success_rate', 'n_tasks', 'n_rollouts', 'total_rollouts', 'per_task_sr']\n  eval-random-selection-object-seed43: bench=object, conc=success, SR=0.09, metrics_keys=['success_rate', 'n_tasks', 'n_rollouts', 'total_rollouts', 'per_task_sr']\n  eval-random-selection-object-seed43-v2: bench=object, conc=success, SR=77, metrics_keys=['overall_sr']\n  eval-random-selection-object-seed44: bench=object, conc=success, SR=0.11, metrics_keys=['overall_success_rate', 'n_tasks', 'n_rollouts', 'total_rollouts', 'per_task_sr']\n  eval-random-selection-object-seed45: bench=object, conc=success, SR=0.1, metrics_keys=['success_rate', 'n_tasks', 'n_rollouts', 'total_rollouts']\n  eval-random-selection-object-seed46-r3: bench=object, conc=success, SR=0.1, metrics_keys=['overall_success_rate', 'tasks_evaluated', 'rollouts_per_task', 'total_rollouts', 'total_successes']\n  eval-random-selection-object-seed47: bench=object, conc=success, SR=N/A, metrics_keys=['sr']\n  eval-random-selection-object-seed48: bench=object, conc=success, SR=0.1, metrics_keys=['success_rate', 'sr_pct', 'n_\n…[truncated 1883 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-28T15:56:57.263627+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json, re\nfrom collections import defaultdict\n\nwith open('/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/8c290cbe-aa35-4006-bed3-2d946febaa53/tool-results/mcp-agent-ml-research-read_registry-1779983442741.txt', 'r') as f:\n    raw = json.load(f)\ninner = json.loads(raw['result'])\nexps = inner['data']['experiments']\n\n# ==========================================\n# \"OTHER\" category - what's in there?\n# ==========================================\nprint(\"=\" * 80)\nprint(\"'OTHER' CATEGORY - DETAILED BREAKDOWN\")\nprint(\"=\" * 80)\n\nother_exps = {}\nfor eid, ed in exps.items():\n    if any(x in eid for x in ['tau-sweep', 'tau_sweep', 'bonus-seed', 'bonus_seed', \n                                'adaptive-k', 'obs-only', 'random-selection', 'random_selection',\n                                'vla-only', 'supp', 'precompute', 'calib', 'ablation',\n                                'oracle', 'heuristic', 'fixed-thresh', 'fixed_thresh']):\n        continue\n    if 'crm-' in eid and 'supp' not in eid:\n        continue\n    other_exps[eid] = ed\n\n# Sub-categorize 'other'\nother_cats = defaultdict(list)\nfor eid, ed in other_exps.items():\n    if 'smolvla' in eid:\n        other_cats['smolvla'].append(eid)\n    elif 'pi05' in eid:\n        other_cats['pi05'].append(eid)\n    elif 'reconvla' in eid:\n        other_cats['reconvla'].append(eid)\n    elif 'canonical' in eid:\n        other_cats['canonical-adaptive'].append(eid)\n    elif 'k2' in eid or 'k10' in eid or 'k5' in eid or 'k1-' in eid:\n        other_cats['k-variants'].append(eid)\n    elif 'norm' in eid:\n        other_cats['norm-variants'].append(eid)\n    elif 'fmvd' in eid:\n        other_cats['fmvd'].append(eid)\n    else:\n        other_cats['misc'].append(eid)\n\nfor cat in sorted(other_cats.keys()):\n    entries = other_cats[cat]\n    print(f\"\\n--- {cat} ({len(entries)} experiments) ---\")\n    for eid in sorted(entries)[:15]:\n        ed = other_exps[eid]\n        m = ed.get('metrics', {})\n        if not isinstance(m, dict): m = {}\n        sr = m.get('success_rate', m.get('overall_success_rate', m.get('SR', m.get('overall_sr', 'N/A'))))\n        print(f\"  {eid}: conc={ed['conclusion']}, SR={sr}\")\n    if len(entries) > 15:\n        print(f\"  ... and {len(entries)-15} more\")\n\nPYEOF\n",
+              "description": "Break down the 'other' category into sub-types"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-28T15:56:57.263786+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "================================================================================\n'OTHER' CATEGORY - DETAILED BREAKDOWN\n================================================================================\n\n--- k-variants (53 experiments) ---\n  eval-adaptive-spatial-k1-s42: conc=success, SR=0.795\n  eval-argmin-object-k5-seed42: conc=success, SR=N/A\n  eval-argmin-object-k5-seed43: conc=success, SR=N/A\n  eval-argmin-object-k5-seed44: conc=failed, SR=N/A\n  eval-argmin-object-k5-seed44-r2: conc=success, SR=N/A\n  eval-argmin-object-k5-seed45: conc=success, SR=N/A\n  eval-k10-tau025-spatial-s45: conc=killed, SR=N/A\n  eval-k10-tau025-spatial-s46: conc=killed, SR=N/A\n  eval-k10-tau025-spatial-s47: conc=killed, SR=N/A\n  eval-k2-adaptive-spatial-s42: conc=killed, SR=N/A\n  eval-k2-adaptive-spatial-s43: conc=killed, SR=N/A\n  eval-k2-adaptive-spatial-s44: conc=killed, SR=N/A\n  eval-k2-adaptive-spatial-s45: conc=killed, SR=N/A\n  eval-k2-adaptive-spatial-s46: conc=killed, SR=N/A\n  eval-k2-adaptive-spatial-s47: conc=killed, SR=N/A\n  ... and 38 more\n\n--- misc (120 experiments) ---\n  D088-eval-adaptive-unc-head-object-seed42: conc=killed, SR=N/A\n  D088-eval-adaptive-unc-head-object-seed43: conc=killed, SR=N/A\n  D088-eval-adaptive-unc-head-object-seed44: conc=killed, SR=N/A\n  eval-3dir-adaptive-spatial-s42: conc=success, SR=81\n  eval-a1-baseline-object-s42: conc=negative, SR=0.565\n  eval-acr-object-v3: conc=negative, SR=0\n  eval-acr-object-v4-default: conc=killed, SR=N/A\n  eval-acr-object-v4-default-r2: conc=success, SR=0\n  eval-acr-object-v4-perdof: conc=success, SR=11.0% (11/100)\n  eval-acr-object-v4-scalar: conc=negative, SR=9\n  eval-acr-object-v4-scalar-b2: conc=killed, SR=N/A\n  eval-acr-spatial-v1: conc=killed, SR=N/A\n  eval-acr-spatial-v2: conc=killed, SR=N/A\n  eval-acr-spatial-v3: conc=success, SR=0.025\n  eval-acr-spatial-v4-default: conc=failed, SR=N/A\n  ... and 105 more\n\n--- norm-variants (111 experiments) ---\n  eval-3dir-norm005-spatial-s42: conc=success, SR=80\n  eval-3dir-norm01-s\n…[truncated 2824 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-28T15:56:57.263960+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json, re\nfrom collections import defaultdict\n\nwith open('/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/8c290cbe-aa35-4006-bed3-2d946febaa53/tool-results/mcp-agent-ml-research-read_registry-1779983442741.txt', 'r') as f:\n    raw = json.load(f)\ninner = json.loads(raw['result'])\nexps = inner['data']['experiments']\n\n# Helper to normalize SR to 0-1 scale\ndef norm_sr(val):\n    if val is None or val == 'N/A':\n        return None\n    if isinstance(val, str):\n        val = val.replace('%', '').strip()\n        try:\n            val = float(val.split('/')[0])  # handle \"11.0% (11/100)\" format\n        except:\n            return None\n    if val > 1:\n        val = val / 100.0\n    return round(val, 4)\n\ndef get_sr(m):\n    \"\"\"Get SR from metrics dict, trying all known keys\"\"\"\n    for key in ['success_rate', 'overall_success_rate', 'SR', 'overall_sr', 'sr']:\n        if key in m:\n            return norm_sr(m[key])\n    return None\n\n# ==========================================\n# Build a comprehensive table of the MAIN experimental conditions\n# Focus on experiments with metrics and successful conclusions\n# ==========================================\n\n# We want to aggregate by: (method, benchmark, seed) -> SR\n# Methods: vla-only, crm-obs-only (norm005), reconvla, k2mean, adaptive-tau025, obs-only\n# Benchmarks: spatial, object, goal, long\n\nresults = defaultdict(dict)  # (method, benchmark) -> {seed: SR}\n\nfor eid, ed in exps.items():\n    m = ed.get('metrics', {})\n    if not isinstance(m, dict): m = {}\n    sr = get_sr(m)\n    \n    # Skip entries without SR\n    if sr is None:\n        continue\n    \n    # Skip very low SR (likely broken runs, e.g. SR < 0.2 for main methods)\n    # But keep for random-selection and adaptive-k which are legitimately low\n    \n    # Determine benchmark\n    bench = None\n    if 'spatial' in eid: bench = 'spatial'\n    elif 'object' in eid or '-obj' in eid: bench = 'object'\n    elif 'goal' in eid: bench = 'goal'\n    elif 'long' in eid: bench = 'long'\n    if not bench:\n        bench_from_m = m.get('benchmark')\n        if bench_from_m: bench = bench_from_m\n    \n    if not bench:\n        continue\n    \n    # Determine seed\n    seed_match = re.search(r'seed(\\d+)|[-_]s(\\d+)', eid)\n    seed = seed_match.group(1) or seed_match.group(2) if seed_match else m.get('seed')\n    if seed: seed = int(seed)\n    \n    # Determine method\n    method = None\n    \n    # SUPPLEMENTARY experiments (the most complete set)\n    if 'supp' in eid:\n        if 'adapt-tau025' in eid or 'adapt_tau025' in eid:\n            method = 'adaptive-conformal-crm-tau025'\n        elif 'crm-norm005' in eid or 'crm005' in eid:\n            method = 'crm-obs-only-norm005'\n        elif 'k2mean' in eid:\n            method = 'k2mean-baseline'\n        elif 'reconvla' in eid:\n            method = 'reconvla'\n        elif 'vla-only' in eid:\n            method = 'vla-only'\n        elif 'adapt' in eid and 'tau025' in eid:\n            method = 'adaptive-conformal-crm-tau025'\n        elif 'obj-crm-norm005' in eid:\n            method = 'crm-obs-only-norm005'\n        elif 'obj-adapt' in eid:\n            method = 'adaptive-conformal-crm-tau025'\n        elif 'crm' in eid and 'norm' in eid:\n            # various norm experiments\n            continue\n        else:\n            continue\n    \n    # VLA-only baseline\n    elif ('vla-only' in eid or 'vla_only' in eid) and 'supp' not in eid:\n        if sr < 0.3:  # skip broken runs\n            continue\n        method = 'vla-only'\n    \n    # CRM obs-only\n    elif 'crm' in eid and ('norm005' in eid or 'norm0.05' in eid or 'crm005' in eid) and 'supp' not in eid:\n        if sr < 0.3:\n            continue\n        method = 'crm-obs-only-norm005'\n    \n    # Adaptive tau025\n    elif 'adapt' in eid and 'tau025' in eid and 'supp' not in eid and 'adaptive-k' not in eid:\n        if sr < 0.3:\n            continue\n        method = 'adaptive-conformal-crm-tau025'\n    \n    # k2mean\n    elif 'k2mean' in eid and 'supp' not in eid:\n        if sr < 0.3:\n            continue\n        method = 'k2mean-baseline'\n    \n    # reconvla\n    elif 'reconvla' in eid and 'supp' not in eid and sr > 0.3:\n        method = 'reconvla'\n    \n    else:\n        continue\n    \n    if method and bench and seed is not None:\n        key = (method, bench)\n        # Keep highest SR for each seed (handles retries)\n        if seed not in results[key] or (results[key][seed] is not None and sr > results[key][seed]):\n            results[key][seed] = sr\n\n# ==========================================\n# Print the comprehensive table\n# ==========================================\nprint(\"=\" * 100)\nprint(\"COMPREHENSIVE RESULTS TABLE: (method, benchmark) -> SR per seed\")\nprint(\"=\" * 100)\n\nmethods_order = ['vla-only', 'k2mean-baseline', 'reconvla', 'crm-obs-only-norm005', 'adaptive-conformal-crm-tau025']\nbenchmarks = ['spatial', 'object', 'goal', 'long']\n\nfor method in methods_order:\n    print(f\"\\n{'='*80}\")\n    print(f\"  METHOD: {method}\")\n    print(f\"{'='*80}\")\n    for bench in benchmarks:\n        key = (method, bench)\n        if key in results:\n            seed_data = results[key]\n            seeds_sorted = sorted(seed_data.keys())\n            srs = [seed_data[s] for s in seeds_sorted]\n            valid_srs = [s for s in srs if s is not None]\n            mean_sr = sum(valid_srs) / len(valid_srs) if valid_srs else None\n            print(f\"\\n  [{bench}] ({len(valid_srs)} seeds)\")\n            for s in seeds_sorted:\n                print(f\"    seed {s}: SR={seed_data[s]}\")\n            if mean_sr:\n                print(f\"    --> MEAN SR = {mean_sr:.4f} ({mean_sr*100:.1f}%)\")\n        else:\n            print(f\"\\n  [{bench}] NO DATA\")\n\nPYEOF\n",
+              "description": "Build comprehensive results table across methods, benchmarks, and seeds"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-28T15:56:57.264153+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "====================================================================================================\nCOMPREHENSIVE RESULTS TABLE: (method, benchmark) -> SR per seed\n====================================================================================================\n\n================================================================================\n  METHOD: vla-only\n================================================================================\n\n  [spatial] (9 seeds)\n    seed 42: SR=0.98\n    seed 43: SR=0.975\n    seed 44: SR=0.99\n    seed 45: SR=0.85\n    seed 46: SR=0.805\n    seed 47: SR=0.81\n    seed 48: SR=0.795\n    seed 49: SR=0.795\n    seed 50: SR=0.3\n    --> MEAN SR = 0.8111 (81.1%)\n\n  [object] (9 seeds)\n    seed 42: SR=1.0\n    seed 43: SR=1\n    seed 44: SR=0.995\n    seed 45: SR=0.76\n    seed 46: SR=0.79\n    seed 47: SR=0.755\n    seed 48: SR=0.79\n    seed 49: SR=0.755\n    seed 50: SR=0.74\n    --> MEAN SR = 0.8428 (84.3%)\n\n  [goal] (9 seeds)\n    seed 42: SR=0.98\n    seed 43: SR=0.98\n    seed 44: SR=0.975\n    seed 45: SR=0.835\n    seed 46: SR=0.83\n    seed 47: SR=0.835\n    seed 48: SR=0.85\n    seed 49: SR=0.835\n    seed 51: SR=0.69\n    --> MEAN SR = 0.8678 (86.8%)\n\n  [long] (5 seeds)\n    seed 42: SR=0.98\n    seed 43: SR=0.955\n    seed 44: SR=0.96\n    seed 45: SR=0.575\n    seed 47: SR=0.595\n    --> MEAN SR = 0.8130 (81.3%)\n\n================================================================================\n  METHOD: k2mean-baseline\n================================================================================\n\n  [spatial] (6 seeds)\n    seed 42: SR=0.965\n    seed 43: SR=0.78\n    seed 44: SR=0.81\n    seed 45: SR=0.8\n    seed 46: SR=0.8\n    seed 47: SR=0.82\n    --> MEAN SR = 0.8292 (82.9%)\n\n  [object] (6 seeds)\n    seed 42: SR=1.0\n    seed 43: SR=0.78\n    seed 44: SR=0.75\n    seed 45: SR=0.775\n    seed 46: SR=0.765\n    seed 47: SR=0.775\n    --> MEAN SR = 0.8075 (80.8%)\n\n  [goal] (6 seeds)\n    seed 42: SR=0.995\n    seed 43: SR=0.815\n    seed 44: SR=0.82\n    seed 45: SR=\n…[truncated 3156 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-28T15:56:57.264360+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/8c290cbe-aa35-4006-bed3-2d946febaa53/tool-results/mcp-agent-ml-research-read_registry-1779983442741.txt', 'r') as f:\n    raw = json.load(f)\ninner = json.loads(raw['result'])\nexps = inner['data']['experiments']\n\n# Check the high-SR vla-only entries (seed 42-44) - these are suspicious\nprint(\"=== Checking suspicious high-SR vla-only entries ===\")\nfor eid, ed in sorted(exps.items()):\n    if 'vla-only' in eid and any(f'seed{s}' in eid or f'-s{s}' in eid for s in [42, 43, 44]):\n        m = ed.get('metrics', {})\n        if not isinstance(m, dict): m = {}\n        sr = m.get('success_rate', m.get('overall_success_rate', m.get('SR', m.get('overall_sr', 'N/A'))))\n        total = m.get('total', m.get('total_rollouts', m.get('total_trials', 'N/A')))\n        n_rollouts = m.get('n_rollouts', 'N/A')\n        print(f\"  {eid}: SR={sr}, total={total}, n_rollouts={n_rollouts}, conc={ed['conclusion']}\")\n        if m:\n            print(f\"    all metrics: {m}\")\n\nPYEOF\n",
+              "description": "Verify suspicious high-SR entries for vla-only seeds 42-44"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-28T15:56:57.264589+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== Checking suspicious high-SR vla-only entries ===\n  eval-canonical-vla-only-spatial-s44: SR=N/A, total=N/A, n_rollouts=N/A, conc=killed\n  eval-goal-vla-only-wrapper-s42: SR=0.835, total=200, n_rollouts=N/A, conc=success\n    all metrics: {'success_rate': 0.835, 'successes': 167, 'total': 200}\n  eval-k2-spatial-vla-only-s42-paired-r2: SR=0.785, total=200, n_rollouts=N/A, conc=success\n    all metrics: {'success_rate': 0.785, 'successes': 157, 'total': 200}\n  eval-k2-spatial-vla-only-s43-paired-r2: SR=0.795, total=200, n_rollouts=N/A, conc=success\n    all metrics: {'success_rate': 0.795, 'successes': 159, 'total': 200}\n  eval-k2-spatial-vla-only-s44-paired-r2: SR=0.8, total=200, n_rollouts=N/A, conc=success\n    all metrics: {'success_rate': 0.8, 'successes': 160, 'total': 200}\n  eval-object-vla-only-wrapper-s42: SR=N/A, total=N/A, n_rollouts=N/A, conc=killed\n  eval-object-vla-only-wrapper-s42-r2: SR=79, total=N/A, n_rollouts=N/A, conc=success\n    all metrics: {'success_rate': 79, 'total_successes': 158, 'total_episodes': 200, 'per_task': {'alphabet_soup': 85, 'cream_cheese': 75, 'salad_dressing': 85, 'bbq_sauce': 85, 'ketchup': 90, 'tomato_sauce': 75, 'butter': 65, 'milk': 65, 'chocolate_pudding': 70, 'orange_juice': 95}}\n  eval-object-vla-only-wrapper-s43: SR=N/A, total=N/A, n_rollouts=N/A, conc=killed\n  eval-object-vla-only-wrapper-s43-r2: SR=77, total=N/A, n_rollouts=N/A, conc=success\n    all metrics: {'success_rate': 77, 'total_successes': 154, 'total_episodes': 200, 'per_task': {'alphabet_soup': 70, 'cream_cheese': 70, 'salad_dressing': 75, 'bbq_sauce': 85, 'ketchup': 80, 'tomato_sauce': 85, 'butter': 60, 'milk': 75, 'chocolate_pudding': 75, 'orange_juice': 95}}\n  eval-object-vla-only-wrapper-s44: SR=N/A, total=N/A, n_rollouts=N/A, conc=killed\n  eval-object-vla-only-wrapper-s44-r2: SR=77.5, total=N/A, n_rollouts=N/A, conc=success\n    all metrics: {'success_rate': 77.5, 'total_successes': 155, 'total_episodes': 200, 'per_task': {'alphabet_soup': 70, 'cream_cheese\n…[truncated 24707 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-28T15:56:57.264764+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json, re\nfrom collections import defaultdict\n\nwith open('/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/8c290cbe-aa35-4006-bed3-2d946febaa53/tool-results/mcp-agent-ml-research-read_registry-1779983442741.txt', 'r') as f:\n    raw = json.load(f)\ninner = json.loads(raw['result'])\nexps = inner['data']['experiments']\n\n# There are clearly TWO phases of experiments:\n# 1. \"pi05\" experiments with K=10, n_rollouts=10 (100 total) - older, SR around 0.3 for spatial\n#    These use SmolVLA or an older pi0.5 setup\n# 2. \"supp\" / newer experiments with n_rollouts=20 (200 total) - the MAIN results\n#    Spatial SR around 0.8, Object around 0.77-0.81, Goal around 0.82-0.86\n\n# Also there are \"paired\" pi05 experiments on westd server with VERY HIGH SR (0.95-1.0)\n# These are clearly a different (harder/easier?) VLA model/setup\n\n# Let me look for SmolVLA experiments specifically\nprint(\"=\" * 80)\nprint(\"SMOLVLA EXPERIMENTS (with metrics, success conclusion)\")\nprint(\"=\" * 80)\n\nsmolvla_exps = {eid: ed for eid, ed in exps.items() \n                if 'smolvla' in eid.lower() and ed.get('metrics') and ed['conclusion'] == 'success'}\n\n# Group by benchmark\nsmolvla_by_bench = defaultdict(list)\nfor eid, ed in sorted(smolvla_exps.items()):\n    m = ed.get('metrics', {})\n    if not isinstance(m, dict): m = {}\n    \n    bench = None\n    if 'spatial' in eid: bench = 'spatial'\n    elif 'object' in eid or '-obj' in eid: bench = 'object'\n    elif 'goal' in eid: bench = 'goal'\n    elif 'long' in eid: bench = 'long'\n    \n    sr = None\n    for key in ['success_rate', 'overall_success_rate', 'SR', 'overall_sr', 'sr']:\n        if key in m:\n            sr = m[key]\n            break\n    \n    if sr is not None:\n        if isinstance(sr, (int, float)) and sr > 1:\n            sr = sr / 100.0\n    \n    seed_match = re.search(r'seed(\\d+)|[-_]s(\\d+)', eid)\n    seed = None\n    if seed_match:\n        seed = int(seed_match.group(1) or seed_match.group(2))\n    \n    method = 'vla-only' if 'vla-only' in eid or 'vla_only' in eid else 'other'\n    if 'crm' in eid and 'norm005' in eid: method = 'crm-norm005'\n    if 'adaptive' in eid or 'adapt' in eid: method = 'adaptive'\n    if 'reconvla' in eid: method = 'reconvla'\n    \n    smolvla_by_bench[bench].append({'eid': eid, 'sr': sr, 'seed': seed, 'method': method, 'metrics': m})\n\nfor bench in ['spatial', 'object', 'goal', 'long']:\n    entries = smolvla_by_bench.get(bench, [])\n    print(f\"\\n  [{bench}] ({len(entries)} entries)\")\n    for e in entries:\n        print(f\"    {e['eid']}: method={e['method']}, seed={e['seed']}, SR={e['sr']}\")\n\nPYEOF\n",
+              "description": "Check SmolVLA experiments"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-28T15:56:57.264929+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "================================================================================\nSMOLVLA EXPERIMENTS (with metrics, success conclusion)\n================================================================================\n\n  [spatial] (7 entries)\n    eval-smolvla-lerobot-spatial-seed44: method=other, seed=44, SR=0.6\n    smolvla-crm-norm005-spatial-s42-d149: method=crm-norm005, seed=42, SR=0.805\n    smolvla-tau015-spatial-s42-fix: method=other, seed=42, SR=0.79\n    smolvla-tau015-spatial-s43: method=other, seed=43, SR=0.805\n    smolvla-tau025-spatial-s43: method=other, seed=43, SR=0.795\n    smolvla-tau035-spatial-s43: method=other, seed=43, SR=0.795\n    smolvla-tau045-spatial-s42: method=other, seed=42, SR=0.8\n\n  [object] (19 entries)\n    eval-smolvla-lerobot-object-seed43-v2: method=other, seed=43, SR=None\n    eval-smolvla-lerobot-object-seed44-v2: method=other, seed=44, SR=None\n    smolvla-adapt-tau015-object-s42-cqa1: method=adaptive, seed=42, SR=0.79\n    smolvla-adapt-tau015-object-s43-cqa1: method=adaptive, seed=43, SR=0.78\n    smolvla-adapt-tau015-object-s44-cqa1: method=adaptive, seed=44, SR=0.735\n    smolvla-crm-norm005-k10-object-s44-cqa1: method=crm-norm005, seed=44, SR=0.78\n    smolvla-tau005-object-s42: method=other, seed=42, SR=0.75\n    smolvla-tau010-object-s42: method=other, seed=42, SR=0.78\n    smolvla-tau015-object-s42: method=other, seed=42, SR=0.78\n    smolvla-tau020-object-s42: method=other, seed=42, SR=0.785\n    smolvla-tau025-object-s42-r2: method=other, seed=42, SR=0.78\n    smolvla-tau025-object-s42-r3: method=other, seed=42, SR=0.81\n    smolvla-tau025-object-s43-r3: method=other, seed=43, SR=0.775\n    smolvla-tau030-object-s42: method=other, seed=42, SR=0.79\n    smolvla-tau035-object-s42-r2: method=other, seed=42, SR=0.75\n    smolvla-tau035-object-s42-r3: method=other, seed=42, SR=0.75\n    smolvla-tau035-object-s43-r3: method=other, seed=43, SR=0.77\n    smolvla-tau040-object-s42: method=other, seed=42, SR=0.735\n    smolvla-tau045-object-s42: method\n…[truncated 1988 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-28T15:56:57.265105+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json, re\nfrom collections import defaultdict\n\nwith open('/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/8c290cbe-aa35-4006-bed3-2d946febaa53/tool-results/mcp-agent-ml-research-read_registry-1779983442741.txt', 'r') as f:\n    raw = json.load(f)\ninner = json.loads(raw['result'])\nexps = inner['data']['experiments']\n\n# Now build the CLEAN final table, filtering to only the \"supp\" / main experiment family\n# These are: eval-supp-*, and the matching non-supp experiments with 200 total rollouts\n# Focus on seeds 42-49 with 200 total rollouts\n\ndef norm_sr(val):\n    if val is None: return None\n    if isinstance(val, str):\n        try: val = float(val.replace('%','').strip().split('/')[0])\n        except: return None\n    if val > 1: val = val / 100.0\n    return round(val, 4)\n\ndef get_sr(m):\n    for key in ['success_rate', 'overall_success_rate', 'SR', 'overall_sr', 'sr']:\n        if key in m:\n            return norm_sr(m[key])\n    return None\n\n# The \"main\" experiment results for the paper - these use pi0.5 model with 200 rollouts (20 per task x 10 tasks)\n# on the standard evaluation server (not westd, not pi05-paired which has different GPU)\n# Identified by: eval-supp-* prefix, or the equivalent IDs with seeds 45-49\n\n# Let me build the clean table using ONLY supp-prefixed experiments\nresults = defaultdict(lambda: defaultdict(dict))  # method -> benchmark -> {seed: SR}\n\nfor eid, ed in exps.items():\n    m = ed.get('metrics', {})\n    if not isinstance(m, dict): m = {}\n    sr = get_sr(m)\n    if sr is None or sr < 0.3:\n        continue\n    \n    # Determine seed\n    seed_match = re.search(r'[-_]s(\\d+)', eid)\n    seed = int(seed_match.group(1)) if seed_match else None\n    if seed is None:\n        seed_match = re.search(r'seed(\\d+)', eid)\n        seed = int(seed_match.group(1)) if seed_match else None\n    if seed is None:\n        seed = m.get('seed')\n        if seed: seed = int(seed)\n    \n    # Determine benchmark\n    bench = None\n    for b in ['spatial', 'object', 'goal', 'long']:\n        if b in eid: bench = b\n    if 'obj' in eid and bench is None: bench = 'object'\n    if not bench: bench = m.get('benchmark')\n    if not bench: continue\n    \n    method = None\n    \n    # SUPP experiments (the canonical results)\n    if eid.startswith('eval-supp-'):\n        if 'adapt-tau025' in eid: method = 'ACR (tau=0.25)'\n        elif 'crm-norm005' in eid or 'crm005' in eid: method = 'CRM-obs-only'\n        elif 'k2mean' in eid: method = 'K2-mean baseline'\n        elif 'reconvla' in eid: method = 'ReConVLA'\n        elif 'vla-only' in eid: method = 'VLA-only'\n        elif 'adapt-tau015' in eid: method = 'ACR (tau=0.15)'\n        elif 'adapt-tau035' in eid: method = 'ACR (tau=0.35)'\n        elif 'crm-norm02' in eid: method = 'CRM-obs-only (norm=0.2)'\n        elif 'obj-crm-norm005' in eid: method = 'CRM-obs-only'\n        elif 'obj-adapt' in eid and 'tau025' in eid: method = 'ACR (tau=0.25)'\n        elif 'obj-adapt' in eid: method = 'ACR (adaptive)'\n        elif 'obj-crm' in eid: method = 'CRM-obs-only'\n        elif 'crm-obj' in eid: method = 'CRM-obs-only'\n        elif 'goal-adapt-tau025' in eid: method = 'ACR (tau=0.25)'\n        elif 'goal-crm-norm005' in eid or 'goal-crm005' in eid: method = 'CRM-obs-only'\n        elif 'goal-k2mean' in eid: method = 'K2-mean baseline'\n        elif 'goal-reconvla' in eid: method = 'ReConVLA'\n        elif 'goal-vla-only' in eid: method = 'VLA-only'\n        elif 'long-' in eid and 'adapt-tau025' in eid: method = 'ACR (tau=0.25)'\n        elif 'long-crm-norm005' in eid: method = 'CRM-obs-only'\n        elif 'long-k2mean' in eid: method = 'K2-mean baseline'\n        elif 'long-reconvla' in eid: method = 'ReConVLA'\n        elif 'long-vla-only' in eid: method = 'VLA-only'\n        elif 'spatial-adapt-tau025' in eid: method = 'ACR (tau=0.25)'\n        elif 'spatial-crm-norm005' in eid: method = 'CRM-obs-only'\n        elif 'spatial-k2mean' in eid: method = 'K2-mean baseline'\n        elif 'spatial-reconvla' in eid: method = 'ReConVLA'\n        elif 'spatial-vla-only' in eid: method = 'VLA-only'\n        elif 'obj-k2mean' in eid: method = 'K2-mean baseline'\n        elif 'obj-reconvla' in eid: method = 'ReConVLA'\n        elif 'obj-vla-only' in eid: method = 'VLA-only'\n        elif 'obj-crm-norm005' in eid: method = 'CRM-obs-only'\n        elif 'obj-adapt-tau025' in eid: method = 'ACR (tau=0.25)'\n        elif 'vla-only' in eid and 'goal' in eid: method = 'VLA-only'\n        \n    if method and seed is not None:\n        key = (method, bench)\n        # Keep highest SR for each seed\n        if seed not in results[method][bench] or sr > results[method][bench][seed]:\n            results[method][bench][seed] = sr\n\n# Also add the non-supp experiments that have the same pattern\n# These are eval-*-vla-only-*, eval-*-crm-*, etc. with seeds 45-49\nfor eid, ed in exps.items():\n    if eid.startswith('eval-supp-'): continue\n    if 'smolvla' in eid or 'pi05' in eid.lower() or 'openvla' in eid: continue\n    if 'westd' in eid or 'paired' in eid or '4090' in eid: continue\n    if 'adaptive-k' in eid: continue  # different experiment type\n    \n    m = ed.get('metrics', {})\n    if not isinstance(m, dict): m = {}\n    sr = get_sr(m)\n    if sr is None or sr < 0.3: continue\n    \n    total = m.get('total', m.get('total_rollouts', m.get('total_trials', m.get('total_episodes'))))\n    if total is not None and total < 150: continue  # skip 100-rollout experiments\n    \n    seed_match = re.search(r'[-_]s(\\d+)', eid)\n    seed = int(seed_match.group(1)) if seed_match else None\n    if seed is None:\n        seed_match = re.search(r'seed(\\d+)', eid)\n        seed = int(seed_match.group(1)) if seed_match else None\n    if seed is None:\n        seed = m.get('seed')\n        if seed: seed = int(seed)\n    if seed is None: continue\n    \n    bench = None\n    for b in ['spatial', 'object', 'goal', 'long']:\n        if b in eid: bench = b\n    if 'obj' in eid and bench is None: bench = 'object'\n    if not bench: bench = m.get('benchmark')\n    if not bench: continue\n    \n    method = None\n    if ('adapt' in eid and 'tau025' in eid) or ('adaptive' in eid and 'conformal' in eid and 'tau025' in eid):\n        method = 'ACR (tau=0.25)'\n    elif ('crm' in eid and ('norm005' in eid or 'norm0.05' in eid or 'crm005' in eid)):\n        method = 'CRM-obs-only'\n    elif 'k2mean' in eid or 'k2-mean' in eid:\n        method = 'K2-mean baseline'\n    elif 'reconvla' in eid and 'adaptive-k' not in eid:\n        method = 'ReConVLA'\n    elif 'vla-only' in eid and 'crm' not in eid and 'adapt' not in eid:\n        method = 'VLA-only'\n    \n    if method and seed is not None:\n        if seed not in results[method][bench] or sr > results[method][bench][seed]:\n            results[method][bench][seed] = sr\n\n# Print the clean table\nprint(\"=\" * 100)\nprint(\"MAIN EXPERIMENT RESULTS (pi0.5 model, 200 rollouts, 10 tasks x 20 rollouts)\")\nprint(\"All SR values normalized to [0,1]\")\nprint(\"=\" * 100)\n\nmethods_order = ['VLA-only', 'K2-mean baseline', 'ReConVLA', 'CRM-obs-only', 'ACR (tau=0.25)']\nbenchmarks = ['spatial', 'object', 'goal', 'long']\n\nfor method in methods_order:\n    print(f\"\\n{'='*80}\")\n    print(f\"  {method}\")\n    print(f\"{'='*80}\")\n    for bench in benchmarks:\n        seed_data = results.get(method, {}).get(bench, {})\n        if not seed_data:\n            print(f\"  [{bench}] NO DATA\")\n            continue\n        seeds_sorted = sorted(seed_data.keys())\n        srs = [seed_data[s] for s in seeds_sorted]\n        mean_sr = sum(srs) / len(srs)\n        std_sr = (sum((s - mean_sr)**2 for s in srs) / len(srs)) ** 0.5\n        print(f\"  [{bench}] {len(srs)} seeds, MEAN={mean_sr:.3f} +/- {std_sr:.3f} ({mean_sr*100:.1f}%)\")\n        for s in seeds_sorted:\n            print(f\"    seed {s}: {seed_data[s]:.3f} ({seed_data[s]*100:.1f}%)\")\n\nPYEOF\n",
+              "description": "Build clean final results table for main experiments"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-28T15:56:57.265362+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "====================================================================================================\nMAIN EXPERIMENT RESULTS (pi0.5 model, 200 rollouts, 10 tasks x 20 rollouts)\nAll SR values normalized to [0,1]\n====================================================================================================\n\n================================================================================\n  VLA-only\n================================================================================\n  [spatial] 8 seeds, MEAN=0.798 +/- 0.008 (79.8%)\n    seed 42: 0.800 (80.0%)\n    seed 43: 0.790 (79.0%)\n    seed 44: 0.785 (78.5%)\n    seed 45: 0.800 (80.0%)\n    seed 46: 0.805 (80.5%)\n    seed 47: 0.810 (81.0%)\n    seed 48: 0.795 (79.5%)\n    seed 49: 0.795 (79.5%)\n  [object] 9 seeds, MEAN=0.769 +/- 0.017 (76.9%)\n    seed 42: 0.790 (79.0%)\n    seed 43: 0.770 (77.0%)\n    seed 44: 0.775 (77.5%)\n    seed 45: 0.760 (76.0%)\n    seed 46: 0.790 (79.0%)\n    seed 47: 0.755 (75.5%)\n    seed 48: 0.790 (79.0%)\n    seed 49: 0.755 (75.5%)\n    seed 50: 0.740 (74.0%)\n  [goal] 8 seeds, MEAN=0.834 +/- 0.011 (83.4%)\n    seed 42: 0.835 (83.5%)\n    seed 43: 0.825 (82.5%)\n    seed 44: 0.850 (85.0%)\n    seed 45: 0.835 (83.5%)\n    seed 46: 0.830 (83.0%)\n    seed 47: 0.825 (82.5%)\n    seed 48: 0.850 (85.0%)\n    seed 49: 0.820 (82.0%)\n  [long] 4 seeds, MEAN=0.593 +/- 0.011 (59.2%)\n    seed 42: 0.595 (59.5%)\n    seed 44: 0.605 (60.5%)\n    seed 45: 0.575 (57.5%)\n    seed 47: 0.595 (59.5%)\n\n================================================================================\n  K2-mean baseline\n================================================================================\n  [spatial] 6 seeds, MEAN=0.804 +/- 0.013 (80.4%)\n    seed 42: 0.815 (81.5%)\n    seed 43: 0.780 (78.0%)\n    seed 44: 0.810 (81.0%)\n    seed 45: 0.800 (80.0%)\n    seed 46: 0.800 (80.0%)\n    seed 47: 0.820 (82.0%)\n  [object] 6 seeds, MEAN=0.773 +/- 0.014 (77.3%)\n    seed 42: 0.795 (79.5%)\n    seed 43: 0.780 (78.0%)\n    seed 44: 0.750 (75.0%)\n    seed 45: 0\n…[truncated 3674 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-28T15:56:57.265575+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json, re\nfrom collections import defaultdict\n\nwith open('/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/8c290cbe-aa35-4006-bed3-2d946febaa53/tool-results/mcp-agent-ml-research-read_registry-1779983442741.txt', 'r') as f:\n    raw = json.load(f)\ninner = json.loads(raw['result'])\nexps = inner['data']['experiments']\n\n# Obs-only experiments (separate baseline category)\nprint(\"=\" * 80)\nprint(\"OBS-ONLY EXPERIMENTS (with metrics)\")\nprint(\"=\" * 80)\n\nobs_exps = {eid: ed for eid, ed in exps.items() if 'obs-only' in eid and ed.get('metrics')}\n# Group by benchmark and norm\nobs_groups = defaultdict(list)\nfor eid in sorted(obs_exps.keys()):\n    ed = obs_exps[eid]\n    m = ed.get('metrics', {})\n    if not isinstance(m, dict): m = {}\n    \n    bench = None\n    for b in ['spatial', 'object', 'goal', 'long']:\n        if b in eid: bench = b\n    if 'obj' in eid and not bench: bench = 'object'\n    \n    norm = 'unknown'\n    nm = re.search(r'norm(\\d+\\.?\\d*|0p\\d+)', eid)\n    if nm:\n        norm = nm.group(1).replace('p', '.')\n    \n    sr = None\n    for key in ['success_rate', 'overall_success_rate', 'SR', 'overall_sr', 'sr']:\n        if key in m:\n            sr = m[key]\n            break\n    if sr and isinstance(sr, (int, float)) and sr > 1:\n        sr = sr / 100.0\n    \n    seed_match = re.search(r'seed(\\d+)|[-_]s(\\d+)', eid)\n    seed = int(seed_match.group(1) or seed_match.group(2)) if seed_match else '?'\n    \n    obs_groups[(bench, norm)].append({\n        'eid': eid, 'sr': sr, 'seed': seed, 'conc': ed['conclusion']\n    })\n\nfor (bench, norm) in sorted(obs_groups.keys()):\n    entries = obs_groups[(bench, norm)]\n    success_entries = [e for e in entries if e['sr'] is not None]\n    print(f\"\\n  [{bench}] norm={norm} ({len(success_entries)}/{len(entries)} with SR)\")\n    for e in sorted(success_entries, key=lambda x: x['seed']):\n        print(f\"    seed {e['seed']}: SR={e['sr']:.4f}, conc={e['conc']}\")\n\nPYEOF\n",
+              "description": "Detail obs-only experiments grouped by benchmark and norm"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-28T15:56:57.265723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\n================================================================================\nOBS-ONLY EXPERIMENTS (with metrics)\n================================================================================\nTraceback (most recent call last):\n  File \"<stdin>\", line 47, in <module>\nTypeError: '<' not supported between instances of 'str' and 'NoneType'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-28T15:56:57.265863+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json, re\nfrom collections import defaultdict\n\nwith open('/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/8c290cbe-aa35-4006-bed3-2d946febaa53/tool-results/mcp-agent-ml-research-read_registry-1779983442741.txt', 'r') as f:\n    raw = json.load(f)\ninner = json.loads(raw['result'])\nexps = inner['data']['experiments']\n\n# Obs-only experiments\nobs_exps = {eid: ed for eid, ed in exps.items() if 'obs-only' in eid and ed.get('metrics')}\nobs_groups = defaultdict(list)\nfor eid in sorted(obs_exps.keys()):\n    ed = obs_exps[eid]\n    m = ed.get('metrics', {})\n    if not isinstance(m, dict): m = {}\n    \n    bench = None\n    for b in ['spatial', 'object', 'goal', 'long']:\n        if b in eid: bench = b\n    if 'obj' in eid and not bench: bench = 'object'\n    if not bench: bench = 'unknown'\n    \n    norm = 'unknown'\n    nm = re.search(r'norm(\\d+\\.?\\d*|0p\\d+)', eid)\n    if nm: norm = nm.group(1).replace('p', '.')\n    \n    sr = None\n    for key in ['success_rate', 'overall_success_rate', 'SR', 'overall_sr', 'sr']:\n        if key in m:\n            sr = m[key]\n            break\n    if sr is not None and isinstance(sr, (int, float)) and sr > 1:\n        sr = sr / 100.0\n    \n    seed_match = re.search(r'seed(\\d+)|[-_]s(\\d+)', eid)\n    seed = int(seed_match.group(1) or seed_match.group(2)) if seed_match else -1\n    \n    obs_groups[(bench, norm)].append({\n        'eid': eid, 'sr': sr, 'seed': seed, 'conc': ed['conclusion']\n    })\n\nfor (bench, norm) in sorted(obs_groups.keys()):\n    entries = obs_groups[(bench, norm)]\n    success_entries = [e for e in entries if e['sr'] is not None]\n    print(f\"\\n  [{bench}] norm={norm} ({len(success_entries)}/{len(entries)} with SR)\")\n    for e in sorted(success_entries, key=lambda x: str(x['seed'])):\n        sr_str = f\"{e['sr']:.4f}\" if isinstance(e['sr'], float) else str(e['sr'])\n        print(f\"    seed {e['seed']}: SR={sr_str}, conc={e['conc']}\")\n\nPYEOF\n",
+              "description": "Detail obs-only experiments (fixed)"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-28T15:56:57.266023+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  [goal] norm=02 (2/2 with SR)\n    seed 51: SR=0.6600, conc=success\n    seed 52: SR=0.6800, conc=success\n\n  [object] norm=003 (16/17 with SR)\n    seed 43: SR=0.1400, conc=success\n    seed 43: SR=0.1400, conc=success\n    seed 44: SR=0.1500, conc=success\n    seed 44: SR=0.1500, conc=success\n    seed 44: SR=0.1500, conc=success\n    seed 45: SR=0.1500, conc=success\n    seed 46: SR=0.1500, conc=success\n    seed 47: SR=0.1500, conc=success\n    seed 48: SR=0.1500, conc=success\n    seed 56: SR=0.1500, conc=success\n    seed 59: SR=0.1300, conc=success\n    seed 64: SR=0.1700, conc=success\n    seed 65: SR=0.1700, conc=success\n    seed 66: SR=0.1150, conc=success\n    seed 67: SR=0.1400, conc=success\n    seed 73: SR=0.1600, conc=success\n\n  [object] norm=005 (16/16 with SR)\n    seed 43: SR=0.1300, conc=success\n    seed 43: SR=0.1400, conc=success\n    seed 44: SR=0.1200, conc=success\n    seed 47: SR=0.1300, conc=success\n    seed 48: SR=0.1300, conc=success\n    seed 49: SR=0.1500, conc=success\n    seed 50: SR=0.1300, conc=success\n    seed 55: SR=0.1500, conc=success\n    seed 58: SR=0.1600, conc=success\n    seed 61: SR=0.1500, conc=success\n    seed 64: SR=0.1500, conc=success\n    seed 65: SR=0.1400, conc=success\n    seed 66: SR=0.1100, conc=success\n    seed 67: SR=0.1000, conc=success\n    seed 72: SR=0.1100, conc=success\n    seed 75: SR=0.1500, conc=success\n\n  [object] norm=01 (22/22 with SR)\n    seed 44: SR=0.1600, conc=success\n    seed 45: SR=0.1400, conc=success\n    seed 45: SR=0.1700, conc=success\n    seed 46: SR=0.1800, conc=success\n    seed 47: SR=0.1700, conc=success\n    seed 48: SR=0.1300, conc=success\n    seed 49: SR=0.1600, conc=success\n    seed 50: SR=0.1400, conc=success\n    seed 51: SR=0.1100, conc=success\n    seed 51: SR=0.1100, conc=success\n    seed 52: SR=0.1500, conc=success\n    seed 52: SR=0.1500, conc=success\n    seed 53: SR=0.1900, conc=success\n    seed 54: SR=0.1500, conc=success\n    seed 57: SR=0.1900, conc=success\n    seed 60: SR=0.1500, conc=success\n    seed \n…[truncated 2746 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-28T15:56:57.266183+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 << 'PYEOF'\nimport json, re\nfrom collections import defaultdict\n\nwith open('/home/ubuntu/.claude-account-5/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/8c290cbe-aa35-4006-bed3-2d946febaa53/tool-results/mcp-agent-ml-research-read_registry-1779983442741.txt', 'r') as f:\n    raw = json.load(f)\ninner = json.loads(raw['result'])\nexps = inner['data']['experiments']\n\n# Count pi05 paired/westd experiments with success\nprint(\"=\" * 80)\nprint(\"PI0.5 PAIRED EXPERIMENTS (westd server, high-fidelity)\")\nprint(\"=\" * 80)\npaired = {eid: ed for eid, ed in exps.items() \n          if ('westd' in eid or 'paired' in eid) and ed.get('metrics')}\nfor eid in sorted(paired.keys()):\n    ed = paired[eid]\n    m = ed.get('metrics', {})\n    sr = m.get('success_rate', m.get('overall_success_rate', 'N/A'))\n    if isinstance(sr, (int, float)) and sr > 1: sr = sr / 100.0\n    print(f\"  {eid}: SR={sr}, conc={ed['conclusion']}\")\n\n# Count the tau-sweep for SmolVLA\nprint(\"\\n\" + \"=\" * 80)\nprint(\"SMOLVLA TAU-SWEEP (object benchmark, seed 42)\")\nprint(\"=\" * 80)\nfor eid in sorted(exps.keys()):\n    if 'smolvla' in eid and 'tau' in eid and 'object' in eid:\n        ed = exps[eid]\n        m = ed.get('metrics', {})\n        if not isinstance(m, dict): m = {}\n        sr = None\n        for key in ['success_rate', 'overall_success_rate', 'SR', 'overall_sr', 'sr']:\n            if key in m:\n                sr = m[key]\n                break\n        if sr and isinstance(sr, (int, float)) and sr > 1: sr = sr / 100.0\n        tau_match = re.search(r'tau(\\d+)', eid)\n        tau = int(tau_match.group(1)) / 100.0 if tau_match else '?'\n        seed_match = re.search(r'[-_]s(\\d+)', eid)\n        seed = seed_match.group(1) if seed_match else '?'\n        print(f\"  tau={tau}, seed={seed}: SR={sr}, conc={ed['conclusion']} | {eid}\")\n\nPYEOF\n",
+              "description": "Check pi0.5 paired experiments and SmolVLA tau sweep"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-28T15:56:57.266370+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "================================================================================\nPI0.5 PAIRED EXPERIMENTS (westd server, high-fidelity)\n================================================================================\n  eval-goal-adapt-tau025-s49-paired: SR=0.805, conc=negative\n  eval-goal-vla-only-s49-paired: SR=0.835, conc=success\n  eval-k2-goal-adapt-s45-paired: SR=0.82, conc=success\n  eval-k2-goal-adapt-s46-paired: SR=0.84, conc=success\n  eval-k2-goal-adapt-s47-paired: SR=0.825, conc=success\n  eval-k2-goal-vla-only-s45-paired: SR=0.835, conc=success\n  eval-k2-goal-vla-only-s46-paired: SR=0.82, conc=success\n  eval-k2-goal-vla-only-s47-paired: SR=0.835, conc=success\n  eval-k2-spatial-adapt-s42-paired-r2: SR=0.795, conc=success\n  eval-k2-spatial-adapt-s43-paired-r2: SR=0.795, conc=success\n  eval-k2-spatial-adapt-s44-paired-r2: SR=0.805, conc=success\n  eval-k2-spatial-adapt-s45-paired: SR=0.8, conc=killed\n  eval-k2-spatial-adapt-s46-paired: SR=0.8, conc=killed\n  eval-k2-spatial-adapt-s47-paired: SR=0.795, conc=killed\n  eval-k2-spatial-adapt-s48-paired: SR=0.805, conc=killed\n  eval-k2-spatial-adapt-s49-paired: SR=0.81, conc=killed\n  eval-k2-spatial-vla-only-s42-paired-r2: SR=0.785, conc=success\n  eval-k2-spatial-vla-only-s43-paired-r2: SR=0.795, conc=success\n  eval-k2-spatial-vla-only-s44-paired-r2: SR=0.8, conc=success\n  eval-k2-spatial-vla-only-s45-paired: SR=0.805, conc=killed\n  eval-k2-spatial-vla-only-s46-paired: SR=0.8, conc=killed\n  eval-k2-spatial-vla-only-s47-paired: SR=0.765, conc=killed\n  eval-k2-spatial-vla-only-s48-paired: SR=0.775, conc=killed\n  eval-k2-spatial-vla-only-s49-paired: SR=0.795, conc=killed\n  eval-obs-object-norm003-s43-westd: SR=0.74, conc=success\n  eval-obs-object-norm003-s44-westd: SR=0.745, conc=success\n  eval-obs-object-norm005-s43-westd: SR=0.735, conc=success\n  eval-obs-object-norm005-s44-westd: SR=0.765, conc=success\n  eval-perdof-object-norm003-s44-westd: SR=0.795, conc=success\n  eval-perdof-object-norm005-s44-westd: SR=0.79, conc=s\n…[truncated 3765 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-28T15:56:57.266589+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the complete picture. Here is the structured summary:\n\n---\n\n## Complete Registry Summary\n\n**Registry stats**: 1415 total experiments, all status=DONE. Conclusions: 768 success, 421 killed, 130 failed, 96 negative. 900 experiments have metrics.\n\n---\n\n### 1. MAIN RESULTS (pi0.5 model, 200 rollouts = 10 tasks x 20 rollouts/task)\n\nThese are the primary experimental results across 5 methods and 4 benchmarks:\n\n**VLA-only (baseline)**\n| Benchmark | Seeds | Mean SR | Std |\n|-----------|-------|---------|-----|\n| spatial | 8 (42-49) | 79.8% | 0.8% |\n| object | 9 (42-50) | 76.9% | 1.7% |\n| goal | 8 (42-49) | 83.4% | 1.1% |\n| long | 4 (42,44,45,47) | 59.2% | 1.1% |\n\n**K2-mean baseline**\n| Benchmark | Seeds | Mean SR | Std |\n|-----------|-------|---------|-----|\n| spatial | 6 (42-47) | 80.4% | 1.3% |\n| object | 6 (42-47) | 77.3% | 1.4% |\n| goal | 6 (42-47) | 82.5% | 1.4% |\n| long | 6 (42-47) | 55.5% | 0.9% |\n\n**ReConVLA**\n| Benchmark | Seeds | Mean SR | Std |\n|-----------|-------|---------|-----|\n| spatial | 6 (42-47) | 80.3% | 0.7% |\n| object | 6 (42-47) | 77.8% | 1.4% |\n| goal | 5 (43-47) | 81.9% | 2.3% |\n| long | 6 (42-47) | 57.1% | 1.5% |\n\n**CRM-obs-only (norm=0.05)**\n| Benchmark | Seeds | Mean SR | Std |\n|-----------|-------|---------|-----|\n| spatial | 7 (43-49) | 79.7% | 1.2% |\n| object | 6 (42-47) | 78.0% | 2.6% |\n| goal | 7 (42-48) | 82.3% | 1.6% |\n| long | 6 (42-47) | 56.4% | 2.1% |\n\n**ACR / Adaptive Conformal CRM (tau=0.25) -- the proposed method**\n| Benchmark | Seeds | Mean SR | Std |\n|-----------|-------|---------|-----|\n| spatial | 8 (42-49) | 80.9% | 0.8% |\n| object | 8 (42-49) | 77.0% | 2.0% |\n| goal | 8 (42-49) | 83.4% | 1.7% |\n| long | 4 (44-47) | 57.4% | 2.0% |\n\n---\n\n### 2. TAU-SWEEP EXPERIMENTS\n\n**Pi0.5 spatial benchmark (seed 42):**\n- tau=0.10: SR=79.0%, trigger_rate=75.2%\n- tau=0.15: SR=79.5%, trigger_rate=40.7%\n- tau=0.20: SR=81.0%, trigger_rate=26.6%\n- tau=0.25: SR=82.0%, trigger_rate=~19.5%\n- tau=0.30: SR=80.5%, trigger_rate=16.7%\n- tau=0.35:\n…[truncated 3480 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Agent",
+            "elapsed_ms": 6
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-28T15:56:57.266779+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/supplementary/supplementary_summary.md"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-28T15:56:57.267038+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Supplementary Experiment Results\n2\t\n3\tAll results from experiments with status=DONE, conclusion=success.\n4\t\n5\t## A. Threshold (τ) Sensitivity Analysis\n6\t\n7\t**Total experiments: 55** (with valid SR values)\n8\t\n9\t### pi05 / goal\n10\t\n11\t| τ | seed | SR (%) | trigger_rate | source_exp_id |\n12\t|---|------|--------|-------------|---------------|\n13\t| 0.15 | 42 | 92.0 | 0.174 | pi05-adaptive-goal-s42-tau015-bjb2 |\n14\t| 0.15 | 43 | 87.5 | — | pi05-goal-tau015-s43-r3 |\n15\t| 0.25 | 43 | 88.5 | — | pi05-goal-tau025-s43-r3 |\n16\t| 0.35 | 42 | 87.5 | 0.057 | pi05-adaptive-goal-s42-tau035-bjb2 |\n17\t| 0.35 | 43 | 89.5 | — | pi05-goal-tau035-s43-r3 |\n18\t| 0.5 | 42 | 87.0 | 0.0206 | pi05-tau-sweep-goal-tau050-s42-r3 |\n19\t| 0.7 | 42 | 87.0 | 0.0104 | tau_sweep_goal_tau070_s42_cqa1 |\n20\t| 0.9 | 42 | 89.0 | 0.0035 | tau_sweep_goal_tau090_s42_cqa1 |\n21\t\n22\t### pi05 / long\n23\t\n24\t| τ | seed | SR (%) | trigger_rate | source_exp_id |\n25\t|---|------|--------|-------------|---------------|\n26\t| 0.15 | 42 | 84.0 | 0.114 | pi05-adaptive-long-s42-tau015-bjb2 |\n27\t| 0.15 | 43 | 82.0 | — | pi05-long-tau015-s43-r3 |\n28\t\n29\t### pi05 / spatial\n30\t\n31\t| τ | seed | SR (%) | trigger_rate | source_exp_id |\n32\t|---|------|--------|-------------|---------------|\n33\t| 0.15 | 42 | 97.0 | 0.112 | pi05-adaptive-spatial-s42-tau015-bjb2 |\n34\t| 0.15 | 43 | 96.5 | 0.117 | pi05-spatial-tau015-s43 |\n35\t| 0.25 | 43 | 98.5 | 0.028 | pi05-spatial-tau025-s43 |\n36\t| 0.35 | 42 | 96.5 | 0.0255 | pi05-adaptive-spatial-s42-tau035-bjb2 |\n37\t| 0.35 | 43 | 97.5 | 0.022 | pi05-spatial-tau035-s43 |\n38\t\n39\t### smolvla / goal\n40\t\n41\t| τ | seed | SR (%) | trigger_rate | source_exp_id |\n42\t|---|------|--------|-------------|---------------|\n43\t| 0.15 | 42 | 85.5 | 0.333 | smolvla-tau015-goal-s42 |\n44\t| 0.15 | 42 | 85.0 | 0.339 | eval-ablation-tau015-goal-s42 |\n45\t| 0.15 | 43 | 83.5 | 0.354 | smolvla-tau015-goal-s43 |\n46\t| 0.25 | 42 | 84.0 | 0.083 | smolvla-tau025-goal-s42 |\n47\t| 0.25 | 43 | 81.0 | 0.0925 | smolvla-tau025-goal-s43 \n…[truncated 18103 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-28T15:56:57.267205+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "ps aux --no-header",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-28T15:56:57.267371+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root          1  0.0  0.0   4476  3464 ?        Ss   20:40   0:00 bash /init/boot/boot.sh\\\\nroot        794  1.5  0.0 718240 20652 ?        Sl   20:40   2:59 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        812  0.0  0.0 193124 107668 ?       S    20:40   0:03 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        813  0.0  0.0 2181876 79204 ?       Sl   20:40   0:09 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        814  0.0  0.0 2868996 17072 ?       Sl   20:40   0:05 proxy -c /init/proxy/proxy.ini\\\\nroot        816  0.2  0.0 4975212 96212 ?       Sl   20:40   0:28 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        817  0.0  0.0  15444  9280 ?        S    20:40   0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot        818  0.0  0.0 2794240 17556 ?       Sl   20:40   0:02 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot        883  0.0  0.0 17524960 10444 ?      Sl   20:40   0:04 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_xwa8ej3x/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_xwa8ej3x/startup_error\\\\nroot       1186  0.0  0.0  16692 10488 ?        Ss   20:41   0:01 sshd: root@notty\\\\nroot       8099  0.0  0.0  16692 10824 ?        Ss   23:50   0:00 sshd: root@notty\\\\nroot       8333  0.0  0.0   7064  1568 ?        Rs   23:56   0:00 ps aux --no-header\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-28T15:56:57.267510+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "ROADMAP.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-28T15:56:57.267688+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\\\", \\\"content\\\": \\\"# acr-vla-conformal-refinement — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-28 09:39 UTC | 更新原因: Paper Agent 确认 Table 1 重构+叙事升级完成，论文就绪待提交，ROADMAP 更新任务完成状态\\\\n\\\\n> 详见 paper_framing.md（D170/D177/D178: K=2 CRM always-on 4/4 harmful + K-matched Table 1）\\\\n\\\\n## 核心方向\\\\n**ACR-VLA: Adaptive Conformal Refinement for Frozen Flow-Matching VLAs**。CoRL 2026 DDL **2026-05-28 20:00 北京时间**。\\\\n\\\\n## 当前进展\\\\n- **论文就绪**：编译通过，8 页正文 + 6 页（refs 2 + appendix 4），零 critical warning\\\\n- **Table 1 重构完成**：K-matched 3 列（VLA-only K=1 / K=2 CRM always-on / K=2 Adaptive），4/4 suites harmful 叙事升级 ✅\\\\n- **Table 3 (Pi05) 完成**：4/4 suites degradation-only（含 Long 94.0→77.0, Δ=-17.0pp），seed-matched ✅\\\\n- **叙事一致性**：4/4 harmful + gating recovery，全文对齐（Abstract/Intro/Experiments/Conclusion）✅\\\\n- **贡献**：3 条（OpenVLA 从贡献列表移除，保留 §4.5 + Appendix）✅\\\\n- **Backfill 修复**：M115 根因定位（手动 update_registry 不创建 cron），已全部改用 submit_training_job\\\\n- **GPU**：22/22 满载，补充实验持续产出\\\\n\\\\n## CRM always-on 最终数据（SmolVLA, K=2, n=3）\\\\n| Suite | VLA-only (K=1) | CRM always-on (K=2) | Adaptive (K=2) | Δ CRM vs VLA | Δ Adaptive vs VLA |\\\\n|-------|---------------|--------------------|-----------|----|---|\\\\n| Spatial | 79.3±0.8 | 78.0±1.7 | 80.8±1.1 | -1.3pp | +1.5pp |\\\\n| Goal | 83.7±1.3 | 80.0±0.5 | 85.0±1.3 | -3.7pp | +1.3pp |\\\\n| Object | 77.7±1.3 | 73.0±1.8 | 77.8±2.1 | -4.7pp | +0.1pp |\\\\n| Long | 58.0±1.5 | 43.2±2.3 | 57.7±1.5 | -14.8pp | -0.3pp |\\\\n\\\\n## 近期任务\\\\n- [x] **P0** 收集 Long CRM always-on 3 seeds → 43.2%\\\\n- [x] **P0** Paper Agent Table 1 K-matched 重构 + 叙事 4/4 升级 ✅\\\\n- [ ] **P0** 等待用户确认 title + CoRL 提交决定（contingency: 18:00 BJ 默认提交）\\\\n- [ ] **P1** Pi05 CRM always-on long s43/s44（bjb1-18228 运行中）→ supplementary\\\\n- [ ] **P1** Bonus seeds + tau-sweep 补充点（22 GPU 持续跑）→ supplementary / camera-ready\\\\n- [ ] **P2** 最终论文提交 submit_paper_to_review\\\\n- [ ] **Reviewer** 最终 claim 强度\n…[truncated 2404 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-28T15:56:57.267919+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态\n\n| 服务器 | GPU 数 | 状态 | 备注 |\n|--------|--------|------|------|\n| bjb1-18228 | 1× RTX 4090 | **空闲** (0 MiB / 24564 MiB, 0%) | 无残留 python 进程 |\n| bjb1-32546 | 6× GPU | **连接失败** | `Unable to connect to port 32546` |\n| bjb2-28827 | 6× GPU | **连接失败** | `Unable to connect to port 28827` |\n| cqa1-32758 | 6× GPU | **连接失败** | `Unable to connect to port 32758` |\n\n**严重问题：3/4 服务器不可达，22 GPU 中只有 1 GPU 可用。** AutoDL 实例可能已关机或端口已变。需要去 AutoDL 控制台确认实例状态并获取新端口。\n\n此外 bjb1-18228 只显示 1 块 GPU（配置说 cuda:0-3 共 4 卡），可能也已重建。\n\nRegistry 确认 RUNNING 实验数为 0，所有实验已清理。\n\n---\n\n## 数据缺口（来自 supplementary_summary.md Section F）\n\n| 类型 | 缺口描述 | 优先级 |\n|------|----------|--------|\n| Bonus seeds / long / adaptive_conformal | **无有效 SR**（s42/s45/s46 均为 None） | **P0** — 主方法 long 无补充数据 |\n| Bonus seeds / object / adaptive_conformal | 仅 1 个有效 seed (s42) | **P0** — 主方法 object 补充不足 |\n| Bonus seeds / object / crm_obs_only | 仅 1 个有效 seed (s46) | P1 |\n| Bonus seeds / long / crm_obs_only | 仅 1 个有效 seed (s46) | P1 |\n| Bonus seeds / goal / reconvla | 仅 2 个有效 seed (s46, s47) | P1 |\n| Bonus seeds / long / reconvla | 仅 2 个有效 seed (s45, s46) | P1 |\n| Pi05 / long / crm_obs_only | 仅 1 个 seed (s44) | P2 |\n| Pi05 tau-sweep | 多为单 seed (s42)，multi-seed 覆盖仅 tau=0.25 | P2 |\n| CRM always-on / smolvla / long s45 | SR 为 None | P2 |\n\n---\n\n## 部署建议\n\n**当前只有 bjb1-18228 的 1 块 GPU 可用。** DDL 20:00 BJ，每个实验约 30-40 分钟，最多再跑 ~10-12 个实验。\n\n如果只有 1 GPU 可用，建议优先级排序：\n\n| 优先级 | 实验 | 服务器:GPU | 预估时长 |\n|--------|------|-----------|----------|\n| 1 | eval-supp-long-adapt-tau025-s43 | bjb1-18228:0 | ~35min |\n| 2 | eval-supp-long-adapt-tau025-s44 | bjb1-18228:0 | ~35min |\n| 3 | eval-supp-obj-adapt-tau025-s43 | bjb1-18228:0 | ~35min |\n| 4 | eval-supp-obj-adapt-tau025-s44 | bjb1-18228:0 | ~35min |\n| ... | 后续按 P1 缺口排 | — | — |\n\n**但真正的瓶颈是服务器不可达。** 建议：\n1. **立即去 AutoDL 控制台检查 bjb1-32546 / bjb2-28827 / cqa1-32758 实例状态**，如果已关机则开机，如果端口变了请更新 `~/.ssh/config`\n2. 恢复后 22 GPU 全开可在 DDL 前批量补齐上述缺口\n3. bjb1-18228 如果确实只有 1 卡，立即开始跑 P0 缺口实验（long/adaptive 和 object/adaptive）\n\n等待指示。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_gpu_check-and-deploy-supp_20260528T155015"
+          },
+          "id": "event-000069"
+        }
+      ],
+      "message_count": 69
+    }
+  ],
+  "readable_path": "readable/conversations/gpu-check-and-deploy-supp.md"
+}

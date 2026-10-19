@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe28ca28985906372511",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "check preparing experiments bjb1 32546",
+  "task_key": "worker_check_preparing-experiments-bjb1-32546_20260516T072341",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_preparing-experiments-bjb1-32546_20260516T072341_result.json",
+    "occurrence": 1,
+    "bytes": 1247,
+    "sha256": "23cd039207b396eb6ce44ce940815af18048a7b535a406db9f8291c865e29282"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**3 个实验全部正常运行中。** Cron reconcile 未检测到是因为它们不在 tmux session 中（而是由 tmux session `eval-acr-object-v4-obs-only` 下的子 shell 启动）。\n\n| 实验 | PID (python) | 状态 | 运行时长 | GPU | GPU 显存 | GPU 利用率 |\n|------|-------------|------|---------|-----|---------|-----------|\n| eval-scalar-object-seed44-r2 | 226878 | `Rl` (运行中) | ~12min | cuda:0 | 5665 MiB | 20% |\n| eval-obs-only-object-norm01-seed44 | 227086 | `Rl` (运行中) | ~12min | cuda:4 | 5665 MiB | 23% |\n| eval-obs-only-object-default-seed44 | 229751 | `Rl` (运行中) | ~10min | cuda:5 | 5665 MiB | 22% |\n\n**日志进度**：3 个实验都已完成模型加载和环境初始化（\"10 tasks loaded\"），正在执行 rollout 评估。日志输出到 stdout 被重定向到文件，evaluate.py 用了 `-u` 无缓冲模式，当前没有新输出说明 rollout 正在跑但还没打 print。\n\n**Cron 未检测到的原因**：这 3 个实验的 bash wrapper 进程挂在已有的 tmux session `eval-acr-object-v4-obs-only` 下，而非各自独立的 tmux session。Reconcile 可能是按 session 名匹配的，找不到名为 `eval-scalar-object-seed44-r2` 等的独立 session。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-preparing-experiments-bjb1-32546.md"
+}

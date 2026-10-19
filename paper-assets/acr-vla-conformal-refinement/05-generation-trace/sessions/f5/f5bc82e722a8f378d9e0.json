@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5bc82e722a8f378d9e0",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose eval obs only object norm005 seed65",
+  "task_key": "worker_diagnose_eval-obs-only-object-norm005-seed65_20260521T023851",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval-obs-only-object-norm005-seed65_20260521T023851_result.json",
+    "occurrence": 1,
+    "bytes": 1004,
+    "sha256": "e8a69495e7ee60d2e92140d54dbbd8ed3d7b975407df4250c4e03fbba3c28a22"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**实验未失败，已成功完成。** 监控系统误判。\n\n**根因**：实验正常跑完，输出文件写到了相对路径 `logs/eval_obs_only_object_norm005_seed65.json`，实际位置是 `/root/acr-vla-conformal-refinement/logs/eval_obs_only_object_norm005_seed65.json`。监控系统在 `/root/autodl-tmp/...` 路径下找不到输出文件，也没有 W&B sentinel，因此 5 次探测后判定为 failed。\n\n**实验结果**：\n- Overall success rate (crm_obs_only, object, norm=0.05, seed=65): **14.0% (14/100)**\n- 10 个 task 全部完成，结果已写入 JSON\n\n**同服务器其他实验**：3 个 seed66 实验正常运行中（GPU 0/2/3，norm=0.03/0.05/0.1），GPU 1 已空闲。磁盘 61% 使用，无问题。\n\n**不需要重跑。** 需要做的是：\n1. 将结果文件从 `/root/acr-vla-conformal-refinement/logs/` 拷贝到监控系统期望的路径（如果需要）\n2. 修正监控系统对该实验的状态标记为 completed"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-obs-only-object-norm005-seed65-copy-2.md"
+}

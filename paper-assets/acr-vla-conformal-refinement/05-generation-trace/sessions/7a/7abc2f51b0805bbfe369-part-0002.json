@@ -1,0 +1,308 @@
+{
+  "schema_version": "1.0",
+  "session_id": "7abc2f51b0805bbfe369",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 63,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019qbnjvsyyeUhsByWHozpc4",
+              "name": "mcp__agent-ml-research__save_project_file",
+              "input": {
+                "project": "acr-vla-conformal-refinement",
+                "file": "paper_framing.md",
+                "content": "# Paper Framing — acr-vla-conformal-refinement\n\n> Last updated: 2026-05-21 | D090+: Random Selection Spatial 双 benchmark 验证完成, C1 component decomposition 补充 Spatial 维度\n\n## Target Venue\n- **CoRL 2026** (DDL **2026-05-29** per ROADMAP; ⚠️ previously said ~Jun 2 — need user confirmation)\n- Framing: Analysis paper — inference-time correction dissection + mechanism insights (D065 reframe)\n- Title: \"Correction Over Selection: Dissecting Inference-Time Action Refinement for Frozen VLAs\"\n\n## Core Insight (D065 revised)\nLearned correction is the active mechanism that improves frozen VLA policies, but multi-sampling is an enabling condition: it provides a centered starting point within the CRM's bounded correction radius. Neither works alone — K=1 correction performs below baseline (10.3% vs 11.0%), and selection without correction matches baseline. The improvement (+5.8pp, 16.8% vs 11.0%, K=10 n=7 excl. seed42 per D084; K=5: 15.5%) emerges from correction operating on a multi-sample-centered input. Batched inference (D067) eliminates K as a latency factor (~170ms for all K on RTX 4090). The conditioning-magnitude interaction determines success vs catastrophic failure: observation features yield robust corrections (13.4-16.8% across all ε), while conformal per-DOF features cause progressive collapse (14%→0%). This pipeline requires stochastic VLA action diversity as a prerequisite. **D069 boundary**: CRM correction is task-specific — on held-out tasks (LTO), CRM actively degrades VLA (2% vs 14%), revealing that correction quality is bounded by calibration data coverage. Cross-benchmark results (Spatial K=10: 34.5%±1.5%, n=9) are in-distribution (CRM trained on all 20 tasks). **Adaptive K (D076)**: P50 threshold achieves 15.3% at avg_K=3.8 (~91% of fixed K=10). **OpenVLA (D087)**: v2 baseline 69%, CRM training complete (plan_802).\n\n## Headline Metrics\n- **K=5 CRM obs_only (PRIMARY, D066)**: 16.0%±2.2% (n=7, seeds 42-48=[14,19,17,15,16,13,18]; JSON-verified) vs VLA-only 11.0%±1.3% (n=8). +4.4pp / ~38% relative. Mann-Whitney U=34.5, rank-biserial r=0.97 (near-perfect separation, seed47=13 ties VLA seed46=13). K=5 vs K=10 primary 待用户确认（K=10 推荐）。\n- **K=10 CRM obs_only (scaling upper bound)**: 16.8%±1.8% (n=7, excl. seed42 per D084) vs VLA-only 11.0%. +5.8pp / ~53% relative. K=5→K=10 +1.3pp（边际递减）。Statistical tests need recalculation.\n- **Component decomposition (D064/D070, n=4 update)**: K=10: selection ≈ 0 (argmin 12.3% vs random 11.67%), correction +5.3pp (sole driver). K=5 (n=4): **random 10.5% < VLA-only 11.3%** — 多采样有害！argmin 13.0%±1.6%, selection +1.4pp (32%, borderline), **correction +3.0pp (68%, dominant)**. Correction dominates at ALL K: 68% at K=5, ~100% at K=10. **Cross-benchmark**: Spatial random K=10 = 29.3% (n=3) ≈ VLA-only Spatial 29.3% — multi-sampling无益 pattern consistent across both benchmarks (exp_ids: eval-random-selection-spatial-seed42-r2/seed43/seed44).\n- **K-value scaling (D063)**: VLA-only 11.0% → CRM K=1(10.3%±1.5%,n=3,NEGATIVE) → CRM K=5(15.5%,n=7) → CRM K=10(16.8%±1.8%,n=7) → CRM K=20(18.7%). K=5 captures ~78% of K=10 benefit over VLA-only. 收益集中在 K=1→K=5 (+5.2pp)，K=5→K=10 +1.3pp（边际递减）\n- **Magnitude robustness**: obs_only stable 13.4-16.8% all ε (range corrected per Paper Agent audit); perdof collapse 14%→11%→9.9%→4.7%→0%\n- **Latency (RTX 4090, plan_602 formal)**: ~170ms model inference for all K (~5.5 Hz), full pipeline ~200ms (~5 Hz). CRM overhead 0.246ms, CRM size 1.8MB vs VLA 884MB. Batched inference eliminates K as latency factor.\n- **Spatial (cross-benchmark, in-distribution)**: K=10 34.5%±1.5% (n=9) vs VLA-only 29.3%±1.7% (n=4). Δ=+5.2pp. Cross-benchmark improvement consistent with Object +5.8pp。Random Selection Spatial K=10: 29.3% (n=3, seed42=34%, seed43=26%, seed44=28%) ≈ VLA-only — correction is sole driver on Spatial too.\n- **OOD cross-suite (CRM trained on Object+Spatial only)**:\n  - Goal (OOD, n=4): 67.0% vs VLA-only 69.25%, Δ=-2.25pp, **p=0.42 不显著** — 统计中性。seed44=-9pp 是 outlier，其余 [-2,0,+2]。\n  - Long (OOD, n=4): 17.5% vs VLA-only 13.25%(paired), Δ=+4.25pp — 正面但改善集中于 microwave task\n  - LTO (within-suite OOD, D069): 2% vs 14%, Δ=-12pp — **灾难性**\n  - **OOD 图景**: cross-suite OOD 中性(Goal)到正面(Long)，within-suite held-out 灾难性(LTO)。CRM 校正模式可跨 suite 迁移但不能迁移到同 suite 未见 task。\n- **Cross-VLA boundary**: OpenVLA v1=0% → **v2=69%** (D087, 10 trials/task). CRM obs_only training complete (plan_802, val_loss=0.077260). CRM eval pending GPU. SmolVLA naturally stochastic; OpenVLA near-deterministic at T=0.5 (8/10 identical actions).\n- **Adaptive K (D076→D090)**: K=2 L2 pairwise distance ρ=0.9979 vs K=10 variance. **P50 threshold: 15.3% SR at avg_K=3.8 (~91% of fixed K=10, 38% compute)**. D088 Learned Uncertainty Head NO-GO (mean 12.0% < VLA-only). D090 Plan A (K=2 conformal + selective CRM) in progress.\n\n## Core Claims (3 claims, D061)\n\n### C1: Dissecting inference-time correction — correction is active mechanism, multi-sampling is enabling condition\n- K VLA samples → argmin(L2 to mean) → learned MLP residual correction with observation features\n- 16.8%±1.8% vs 11.0%±1.3% VLA-only (n=7 vs n=8, excl. seed42 per D084; statistical tests need recalculation with updated data); vs argmin 12.3%\n- Component decomposition (D064): argmin selection ≈ random (12.3% vs 11.67%, n=3, not significant). CRM correction +5.2pp over argmin, +5.8pp over random. Multi-sampling alone (random K=10) ≈ VLA-only — correction is the active mechanism\n- **Spatial cross-benchmark validation**: Random Selection Spatial K=10 = 29.3% (n=3, seed42=34%, seed43=26%, seed44=28%; exp_ids: eval-random-selection-spatial-seed42-r2, eval-random-selection-spatial-seed43, eval-random-selection-spatial-seed44) ≈ VLA-only Spatial 29.3% (n=4). CRM K=10 Spatial: 34.5% → correction Δ=+5.2pp. Pattern consistent with Object: multi-sampling alone ≈ VLA-only on both benchmarks, correction is the sole driver (+5.8pp Object, +5.2pp Spatial)\n- K-value scaling (D063): CRM K=1(10.3%,n=3) → CRM K=5(15.5%,n=7) → CRM K=10(16.8%,n=7). VLA-only baseline = 11.0% (K=1, no CRM). K=5 captures ~78% of K=10 benefit over VLA-only. CRM K=1→K=5 +5.2pp, K=5→K=10 +1.3pp\n- CRM K=1 does NOT work (10.3% < VLA-only 11.0%) — correction without multi-sample centering is harmful. Same CRM trained on K=10 data; K=1 failure = input distribution shift outside bounded correction radius\n- CRM is a correction module (not selection/ranking): obs_only CRM does NOT use conformal features (D058)\n- Evidence: Table 1 (component decomposition), Figure 3 (K-value curve)\n\n### C2: Conditioning-magnitude interaction — first systematic study\n- Same CRM architecture, same training, only conditioning features differ → stable vs catastrophic failure\n- obs_only (observation features only): 13.4-16.8% stable across all ε (n=1-7 per point, range corrected)\n- perdof (per-DOF conformal features): 14%→11%→9.9%→4.7%→0% dose-response collapse\n- perdof default (uncapped): 0% × 5 data points (catastrophic collapse, all seeds consistent)\n- Root cause: rank-deficient covariance in high-D action space → noisy directional signals amplified by magnitude\n- Practical takeaway: bounded magnitude + observation features = necessary conditions for safe correction\n- Evidence: Figure 2 (magnitude curves), Section analysis\n\n### C3: Applicability boundaries — two prerequisites + unified failure framework (updated with OOD cross-suite)\n- **Prerequisite 1: VLA diversity** — stochastic multi-sampling → action diversity across K samples. OpenVLA (7B, tokenized): T=0.5 produces 8/10 identical actions, near-deterministic (D087: v2 baseline=69%, CRM eval pending to test if correction works despite low diversity). SmolVLA (0.4B, flow-matching): naturally stochastic.\n- **Prerequisite 2: Task proximity in CRM training data** — CRM learns task-specific correction biases. OOD behavior is **proximity-dependent**:\n  - Near-OOD (within-suite held-out, LTO): same manipulation structure, different objects/goals → CRM \"recognizes\" context but correction direction is wrong → **adversarial** (-12pp, 2% vs 14%)\n  - Far-OOD (cross-suite, Goal/Long): different observation distribution → correction signal naturally decays → **neutral** (Goal -1.6pp p=0.46) or **primitive-level transfer** (Long +3.3pp p=0.046, driven by microwave task sharing pick-and-place primitives with training data)\n- **Unified failure framework** — CRM correction = bounded task-specific residual, sensitive to three distribution shifts:\n  - Input shift (K=1): single sample ≠ multi-sample mean → correction points wrong direction (10.3% < baseline)\n  - Task shift (proximity-dependent): near-OOD → adversarial perturbation (LTO -12pp); far-OOD → null operation (Goal ±2pp) or primitive transfer (Long +3.3pp)\n  - Feature shift (perdof, C2): noisy conformal signals amplified by magnitude → catastrophic collapse (→0%)\n- This is the central boundary analysis — three failure modes with mechanistic explanations. Near-OOD more dangerous than far-OOD parallels ML adversarial robustness literature.\n- Evidence: Figure 4 (action diversity), LTO data, Goal/Long cross-suite data, magnitude curves (C2)\n- **Long per-task breakdown required**: microwave task contributes majority of improvement. Report overall SR (honest) + per-task table. Discuss primitive-level transfer mechanism.\n\n## D072/D076: Adaptive K — K=2 L2 Probe 机制（用户硬要求，已验证）\n\n⚠️ **固定 K=10 暴力多推理不可接受**。Adaptive K 信号已验证：K=2 L2 pairwise distance。\n\n**信号验证结果 (D076)**:\n- **K=2 L2 vs K=10 variance: ρ=0.9979** — 近乎完美替代，2 次推理预测 10 次推理的不确定性\n- FMVD (flow turbulence): ρ=0.0825 → NO-GO (D075). 测量不同维度的不确定性，与 action variance 无关\n- K=2 L2 vs FMVD: ρ=0.09 — 两个信号完全独立\n\n**确定的架构**:\n- 默认 K=2（batched推理，延迟=K=1 ~170ms）\n- 计算 K=2 pairwise L2 distance 作为 per-step 不确定性信号\n- L2 > τ → 扩展到 K=10 + argmin + CRM obs_only 校正（\"困难步\"）\n- L2 ≤ τ → K=2 均值，不过 CRM（\"简单步\"）\n- 阈值 τ 从校准数据 percentile 选取：P25=0.055, P50=0.075, P75=0.099, P90=0.127\n\n**Phase 2 结果 (Object)**:\n- **P50 (τ=0.075): 15.3% SR at avg_K=3.8 — ~91% of K=10 (16.8%) at 38% compute** ← 推荐默认\n- P25/P75/P90 阈值 sweep 完成，Pareto 曲线可用\n- Spatial 跨 benchmark 验证完成\n\n**对论文 framing 的影响**:\n- 从纯 analysis paper 升级为 analysis + method paper\n- 分析 (correction > selection, magnitude interaction, boundaries) 作为 FOUNDATION → 指导 adaptive 机制设计\n- K=10 固定推理保留为 oracle upper bound\n- FMVD NO-GO 作为 negative result / ablation（ODE-space 信号 vs action-space 信号）\n- 新增贡献 C4：adaptive inference-time compute allocation for VLA\n\n## D088→D090: Adaptive K 方法路径（2026-05-20）\n\n**D088 Learned Uncertainty Head — NO-GO**:\n- 方案 B: 3-layer MLP (960→16→16→1, 15,665 params) 在 VLA-expert deviation 上训练，AUC=0.8131, F1=0.7674, τ=0.42\n- 3 seed eval: mean SR=12.0% < VLA-only baseline (11.0%→14%) — 方法有害\n- 根因: avg_k≈1.0, uncertainty head 几乎从不触发 CRM correction\n- 结论: offline uncertainty classification 不如 online multi-sample divergence\n\n**D090 Plan A: K=2 Conformal + Selective CRM — IN PROGRESS**:\n- K=2 forward → L2 pairwise distance as uncertainty → if L2 > τ(P50=0.074855): argmin-to-centroid + CRM correction; else: argmin-to-centroid only\n- 与 D076 adaptive K 的区别: Plan A 在 K=2 就做 CRM correction（不扩展到 K=10），更实用但可能牺牲性能\n- 代码已实现 (`adaptive_conformal_crm` mode in evaluate.py)，3 seed eval 待 GPU 释放部署\n- Safety net: Adaptive K P50 已有 15.3% 结果可用\n\n**方案 C (Action Distribution Geometry)**: 备选，如 Plan A 也失败则启用\n\n**对论文影响 (D091)**:\n- 核心 claims (C1-C3) 不受影响 — D088 作为 rejected alternative 写入 Discussion\n- D090 成功: 替代 D076 adaptive K 作为 method contribution\n- D090 失败: D076 adaptive K P50=15.3% 结果作为 safety net\n\n## Story Spine\n- **Problem**: Frozen VLA deployment with a lightweight learned correction module can improve success rates — but fixed multi-sampling (K=10) is computationally wasteful. When does correction actually help, and can we allocate inference-time compute adaptively?\n- **Gap**: No systematic study of (1) what drives effective learned corrections for VLA, (2) how to adaptively allocate inference-time compute based on per-step uncertainty, (3) when multi-sample correction helps vs fails across VLA architectures. Existing methods (A2C2: temporal correction; ReconVLA: UQ; SC-VLA: residual RL) address adjacent problems.\n- **Our angle**: We first dissect inference-time multi-sample correction, finding that learned correction is the active mechanism while multi-sampling is an enabling condition. These findings inform the design of an **adaptive K mechanism** that dynamically allocates compute — sampling more only when the VLA is uncertain. The conditioning-magnitude interaction and applicability boundaries further constrain safe deployment.\n- **Headline**: \"Adaptive inference-time correction improves frozen VLA with avg_K << K_max. Analysis: correction is the active mechanism, not selection. Conditioning-magnitude interaction determines success vs catastrophic failure. Adaptive K achieves ~91% of fixed K=10 performance at 38% average compute (avg_K=3.8 vs K=10).\"\n\n## Competitive Landscape\n\n### A2C2 (D060) — Complementary, not competing\nFrozen VLA + per-step correction within action chunks. Solves **temporal staleness** (chunk actions become outdated during execution). Our method solves **initial action quality** (improve the action before execution). Orthogonal and combinable. A2C2 trains SmolVLA from scratch (67-72% baseline) — different setting from our frozen pretrained VLA (11.0%).\n\n### ReconVLA — Same domain, different route\nConformal quantile regression for UQ + OOD detection on frozen VLA. Does not perform learned correction.\n\n### SC-VLA / PLD — RL-based refinement\nResidual RL per-task. Requires online training, not plug-and-play. PLD achieves 99% on LIBERO but with full fine-tuning.\n\n### Our positioning (D058/D061, updated D072)\nFirst to (1) decompose inference-time VLA correction into selection vs correction contributions, (2) systematically study conditioning-magnitude interaction revealing catastrophic failure mode, (3) establish applicability boundaries across VLA architectures (stochastic vs deterministic), **(4) propose adaptive inference-time compute allocation based on per-step uncertainty — dynamically deciding K rather than fixed brute-force sampling**. The adaptive K mechanism connects to LLM inference-time compute scaling trends in embodied AI.\n\n## Anticipated Reviewer Concerns\n\n1. **\"Absolute performance is low (16.8% on an 11% baseline)\"**\n   - Response: This is frozen fine-tuned VLA with inference-time correction (VLA weights fixed during CRM training and deployment). ~53% relative improvement (+5.8pp) is significant given the frozen constraint. The contribution is the systematic analysis of when/why/how inference-time correction works, not SOTA absolute numbers. Community benchmark: A2C2 trains SmolVLA from scratch on LIBERO reaching 67-72%, a different training regime.\n\n2. **\"Method only works for weak/small VLAs\"**\n   - Response: Honest analysis (C3). Correction value correlates inversely with base model quality/determinism. This is a genuine insight with practical implications: small stochastic VLAs are relevant for edge deployment, latency-constrained scenarios, and new task generalization without fine-tuning.\n\n3. **\"K=1 doesn't work, K=10 needs 10× compute\"**\n   - Response: **Adaptive K (D076) directly addresses this.** Default K=2 (same latency as K=1 with batching ~170ms). K=2 pairwise L2 distance as uncertainty signal (ρ=0.9979 vs K=10 variance). High uncertainty → extend to K=10 + CRM; low uncertainty → use K=2 directly. avg_K=3.8, achieving ~91% of fixed K=10 performance (15.3% vs 16.8%). K=1 CRM failure (10.3%) is a finding: correction needs multi-sample centering. FMVD failure (ρ=0.08) is ablation evidence for why action-space signals work while ODE-space signals don't.\n\n4. **\"obs_only is just a residual MLP, where is the novelty?\"**\n   - Response: Novelty is the systematic analysis, not the architecture. Architecture simplicity isolates the conditioning signal's effect. The conditioning-magnitude interaction and component decomposition are new.\n\n5. **\"Single benchmark (LIBERO-Object)\"**\n   - Response: **Fully addressed with LIBERO-Spatial data.** CRM K=10 Spatial: 35.0%±1.0% (n=3) vs VLA-only 29.3%±1.7% (n=4). Paired Δ=+5.7pp (n=3), matching Object's +6pp. K=5 Spatial: 33.5% (n=2). Both Object and Spatial are in-distribution (CRM trained on all 20 tasks). LTO (D069) shows OOD limitation — honest boundary. OpenVLA v2=69% baseline (D087), CRM eval pending.\n\n6. **\"Why does per-DOF fail?\"**\n   - Response: K samples in 7D action space → rank-deficient covariance → noisy directional signals. Low ε masks noise; high ε amplifies it. 3 seeds × 0% at uncapped confirms catastrophic failure.\n\n7. **\"A2C2 does K=1 correction and it works, yours doesn't\"**\n   - Response (D060): A2C2 solves temporal staleness (within-chunk correction with new observations), not initial action quality. Different problem, different mechanism. Our K=1 failure is about single-sample residual correction without temporal context — complementary finding.\n\n8. **\"Why not just fine-tune the VLA?\"**\n   - Response: VLA is already fine-tuned (LoRA SFT on LIBERO), but inference-time correction provides additional gains without modifying VLA weights. CRM does not modify VLA weights but requires VLA rollout cache on deployment tasks for CRM training. LTO (D069) confirms: CRM correction is task-specific — deployment tasks must be covered in CRM training data.\n\n## Hard Evidence (D058 corrected, M013 fixed)\n\n### K=10 obs_only vs argmin — LOCKED, PRIMARY (D084: excl. seed42)\n- obs_only: seeds 43/44/45/46/47/48/51 = 16/16/16/15/20/18/17, mean=**16.8%±1.8%** (n=7). [seed42=22% excluded per D084]\n- argmin: seeds 42/43/44/45/46/47 = 12/17/13/12/10/10, pooled 74/600 (12.3%)\n- Statistical tests need recalculation with updated VLA-only n=8 baseline\n\n### Component Decomposition — LOCKED (K=10) + PRELIMINARY (K=5)\n\n**K=10 decomposition (LOCKED):**\n- VLA-only (K=1): 11.0%±1.3% (n=8, seeds 42-48+50)\n- Random selection (K=10): 11.67%±2.3% (n=3, seed42=13%, seed43=9%, seed44=13%). Random ≈ VLA-only (11.0%)\n- Argmin (K=10): 12.3%±2.6% (6 seeds, 42/43/44/45/46/47)\n- Random selection (K=10): 9.7%±1.5% (n=6). Random fails to exceed VLA-only.\n- CRM obs_only (K=10): 16.8%±1.8% (n=7, excl. seed42 per D084)\n- Selection effect (D064): argmin vs random = +2.6pp. \n- Correction effect: CRM vs argmin = +4.5pp, CRM vs random = +7.1pp (sole driver)\n- Per-seed correction margin: -1pp to +10pp (seed43: obs_only 16% < argmin 17%)\n\n**K=5 decomposition (n=3 argmin, n=4 random — Random K=5 DONE ✅):**\n- Random (K=5): **10.5%±2.9%** (n=4, seed42=14%, seed43=11%, seed44=10%, seed45=7%). ⚠️ **Random K=5 < VLA-only (11.0%)** — 随机多采样有害！\n- Argmin (K=5): 13.7%±1.2% (n=3, seed42=15%, seed43=13%, seed45=13%). seed44 running → n=4.\n- CRM obs_only (K=5): 16.0%±2.2% (n=7)\n- Multi-sampling effect (K=5): random - VLA-only = **-1.1pp** (HARMFUL)\n- Selection effect (K=5): argmin - random = **+3.2pp** (rescues from random damage + adds value)\n- Correction effect (K=5): CRM - argmin = **+2.3pp**\n- **K-dependent decomposition insight (updated)**:\n  - K=5: multi-sampling hurts (-1.1pp), argmin selection essential (+3.2pp), correction additive (+2.3pp)\n  - K=10: multi-sampling neutral (random≈VLA-only), argmin marginal (+0.6pp), correction dominant (+5.3pp)\n  - As K↑: random pick quality improves (converges to marginal) → argmin selection becomes unnecessary → correction becomes sole differentiator\n  - **Implication for adaptive K (D072)**: naive multi-sampling is wasteful or harmful. Smart allocation (argmin centering + CRM correction, only when needed) is essential.\n\n**Spatial Random Selection K=10 (cross-benchmark validation ✅):**\n- Random Selection (K=10): **29.3%** (n=3, seed42=34%, seed43=26%, seed44=28%). exp_ids: eval-random-selection-spatial-seed42-r2, eval-random-selection-spatial-seed43, eval-random-selection-spatial-seed44\n- VLA-only Spatial: 29.3%±1.7% (n=4, seed42=30%, seed43=29%, seed44=31%, seed45=27%)\n- CRM obs_only Spatial (K=10): 34.5%±1.5%\n- Multi-sampling effect: Random - VLA-only = **0.0pp** (neutral, same as Object pattern)\n- Correction effect: CRM - Random = **+5.2pp** (sole driver, consistent with Object +5.8pp)\n- **双 benchmark 一致结论**: multi-sampling alone 不产生价值（Object: random 11.67% ≈ VLA 11.0%; Spatial: random 29.3% ≈ VLA 29.3%），CRM correction 是唯一改善来源（Object +5.8pp, Spatial +5.2pp）\n\n### K-value Curve (D063 updated, K=5 n=7, JSON-verified)\n- VLA-only (K=1, no CRM): 11.0%±1.3% (n=8) — the baseline reference\n- CRM K=1 (ACCG): 10.3±1.5% (3 seeds: 42=12%, 43=9%, 44=10%) — NEGATIVE, below VLA-only\n- CRM K=5 (obs_only): 16.0±2.2% (n=7, seeds 42-48=[14,19,17,15,16,13,18])\n- CRM K=10 (obs_only): 16.8±1.8% (n=7, excl. seed42 per D084)\n- CRM K=20 (obs_only): 18.7%\n- K=5 captures ~78% of K=10 benefit over VLA-only. CRM K=1→K=5 +5.2pp, K=5→K=10 +1.3pp.\n\n### Magnitude Curve (M013 corrected, updated D069) — LOCKED\n- obs_only: ε=0.03(**15.75%±0.96%,n=4**: seed42=16%,seed44=17%,seed47=15%,seed48=15%), ε=0.05(~14%,n=5), ε=0.1(~17%,n=8), ε=0.2(17.6%,n=7), ε=0.3(~17%,n=7), default(~17%,n=5)\n- perdof: ε=0.03(~10%,n=3), ε=0.05(~11%,n=4: seed42=14%,seed44=9%,seed45=10%,seed43=?), ε=0.1(~11%,n=7), ε=0.2(9.9%,n=7), ε=0.3(~5%,n=5), default(0%,n=6)\n- ✅ obs_only ε=0.03 n=4 完整 (15.75%±0.96%)，error bars 可报告\n\n### Cross-VLA (D054, updated D087) — IN PROGRESS\n- OpenVLA T=0.5: 8/10 actions identical, per-DOF variance <1e-30 for DOFs 0/1/3/5/6 → near-deterministic\n- SmolVLA (0.4B, flow-matching): naturally stochastic, K=10 produces diverse candidates\n- **OpenVLA VLA-only (D087)**: v1=0% (plan_801, 0/100 rollouts) → **v2=69%** (10 trials/task, original eval setting). v1 failure was setup/evaluation issue, not model limitation.\n- **OpenVLA CRM (plan_802)**: CRM obs_only training complete (val_loss=0.077260, 50 epochs, obs_dim=4096). CRM eval awaiting GPU allocation on bjb2-28827 (needs 2 GPUs for 7B model).\n- **Key question**: Does CRM correction work for near-deterministic OpenVLA? Multi-sampling may not produce diverse candidates → C3 prerequisite 1 test.\n\n### Latency — plan_602 Formal Profiling (RTX 4090, bjb1-18228)\n**Sequential**:\n- K=1: 177ms, K=5: 892ms, K=10: 1639ms, K=20: 3246ms (~165ms/K linear)\n\n**Batched (model inference only)**:\n- K=1: 180ms, K=5: 182ms, K=10: 162ms, K=20: 167ms\n- **Batched latency ~170ms independent of K** (~5.5 Hz model inference)\n- Full pipeline (inference + scoring): ~200ms (~5 Hz)\n\n**CRM overhead**: 0.246ms (negligible). CRM model size: 1.8MB vs VLA 884MB.\n**Key insight**: Batched inference eliminates K as a latency factor. K=20 batched ≈ K=1.\n\n⚠️ D067 earlier reported ~314ms — likely included sim step + data loading. Paper should report model inference (~170ms) or full pipeline (~200ms), clearly labeled. Both support the narrative.\n\n### LTO Generalization Boundary (D069) — LOCKED, NEGATIVE\n- CRM trained on Split A (5 tasks), evaluated on 5 held-out tasks\n- CRM+K=5: 2% (1/50) vs VLA-only: 14% (7/50)\n- Per-task: salad_dressing 0 vs 30%, milk 0 vs 20%, orange_juice 0 vs 10%, ketchup 0 vs 0%, tomato_sauce 10 vs 10%\n- CRM zeroes out tasks where VLA has capability → correction is task-specific, actively harmful OOD\n- **LTO VLA-only double reproduction**: r2=14%, r3=14%, per-task identical. Baseline stable, D069 conclusion high confidence.\n- Mechanism: CRM learns task-specific action distribution shifts (correction biases), not general quality assessment\n- K=1 failure + LTO failure together: CRM correction = task-specific residual, needs (1) multi-sample centering AND (2) in-distribution tasks\n- Table 1 cross-benchmark (Object+Spatial) is in-distribution: CRM training covers all 20 tasks\n- Paper: Discussion/Limitations section, honest analysis framing\n\n### Spatial (cross-benchmark, in-distribution)\n**K=10**: seed42=35%, seed44=36%, seed45=34%, seed47=32%, mean=**34.25%±1.7%** (n=4). seed43 running on bjb2-40593, seed46 被杀待重跑.\n**K=5**: seed42=35%, seed43=32%, seed44=37%, seed45=34%, mean=**34.5%±2.1%** (n=4). K=5→K=10 仅 +0.5pp（边际递减更极端）。\n**VLA-only baseline**: seed42=30%, seed43=29%, seed44=**31%**, seed45=**27%**. Mean=**29.3%±1.7%** (n=4). ✅ DONE.\n**Paired K=10 improvements**: seed42 +5pp (35-30), seed44 +5pp (36-31), seed45 +7pp (34-27). Mean Δ=**+5.7pp** (n=3 paired). seed43 K=10 still running.\n**Paired K=5 improvements**: seed42 +5pp (35-30), seed43 +3pp (32-29). Mean Δ=+4pp (n=2 paired).\n**CRM 方差更低**: CRM K=10 std=1.0% vs VLA-only std=1.7%。CRM 在稳定性上也优于 baseline。\n**Framing**: \"consistent cross-benchmark absolute improvement (+5-6pp)\" — 不强调 Spatial 相对改进率（19% vs Object 52%），因为 Spatial baseline 更高。\n**Per-task pattern**: VLA-only 和 CRM 共享同一组 zero-success tasks (4/10)。CRM 改善中等难度 tasks，不修复 impossible tasks。\n\n## INVALIDATED Claims (do not use)\n- ~~K=1 improves frozen VLA~~ — D050/D051: K=1 ACCG fallback 10.0%, multi-scale 10.3%, both ≈ baseline\n- ~~CRM ranks/selects among K candidates~~ — D058: CRM is correction module, not ranking. Same argmin selection for all modes.\n- ~~obs_only uses conformal features~~ — D058: uf_input=None for obs_only mode\n- ~~Cross-VLA positive transfer~~ — D054: OpenVLA near-deterministic at T=0.5. D087: v2 baseline=69%, CRM training done, eval pending\n- ~~perdof default 0% × 3 seeds~~ — M013: was 2 seeds + 1 misclassified. Corrected to 3 data points (2 full + 1 partial) all 0%.\n\n## Pending Evidence (cleaned D069)\n- ~~K=5 seeds~~ → ✅ DONE, n=7\n- K=5 argmin decomposition: seed42/43/45 ✅ DONE (13.7%±1.2%, n=3), seed44 running (~1h) → n=4. 结果：selection +2.1pp / correction +2.3pp (与 K=10 不同的分解模式)\n- Spatial K=10: seed43/44/45 running → cross-benchmark K scaling\n- ~~Spatial VLA-only baseline~~ → ✅ DONE n=4 (29.3%±1.7%, seed42=30%/43=29%/44=31%/45=27%). Paired Δ=+5.7pp (n=3).\n- ~~obs_only ε=0.03~~ → ✅ DONE, n=4 (15.75%±0.96%, seed42/44/47/48)\n- ~~LTO~~ → ✅ DONE (D069 negative)\n- ~~K=1 CRM eval (plan_702)~~ → ✅ DONE: 10.3%±1.5% (n=3, seed42=12%/43=9%/44=10%, NEGATIVE). Below VLA-only 11.0%. Already in K-value curve.\n- ~~Random K=5~~ → ✅ DONE n=4 (10.5%±2.9%). Random < VLA-only — multi-sampling harmful at K=5!\n- OpenVLA CRM eval (plan_802): CRM training done (val_loss=0.077260), eval 待 bjb2-28827 GPU 释放 (standing order P2)\n- ~~Adaptive K~~ → ✅ P50=15.3% at avg_K=3.8 LOCKED. D090 Plan A eval in progress.\n- Cross-server reproducibility: argmin K=5 seed42 = 15%(bjb1) vs 13%(bjb2), ±2pp noise floor noted\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a4ace36-8b0f-4dc3-a528-fca209f376b4",
+            "uuid": "9b426606-26d7-4f14-827d-6b5c2398fcb6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XY4kRikfmcSaURgG47TXBz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10735,
+                "cache_read_input_tokens": 68136,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10735
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-21T04:04:56.424Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019qbnjvsyyeUhsByWHozpc4",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/paper_framing.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1a4ace36-8b0f-4dc3-a528-fca209f376b4",
+            "uuid": "9a8891cf-3b9c-45a7-bffc-c9c31093d8a8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/paper_framing.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/paper_framing.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QxxF6k5yr6pDUajvMedP8j",
+              "name": "mcp__agent-ml-research__save_project_file",
+              "input": {
+                "project": "acr-vla-conformal-refinement",
+                "file": "memory.md",
+                "content": "# Project Memory\n\n## 失败模式记录\n\n- [失败模式] Cron false positive：eval 脚本不写 W&B 也不写 sentinel file，进程正常退出后 cron 5 次检测找不到标记 → 自动标记为 failed。受影响：eval-vla-only-long-seed46, eval-vla-only-goal-seed46。修复方案：tail 日志确认实际完成 → 手动修正 conclusion=success + 补录 metrics。预防：eval 实验应检查 output JSON 是否存在作为 sentinel。\n\n- [失败模式] Cron false positive（2026-05-20）：**eval-adaptive-k-spatial-p50-seed42** 被 cron 误判为 failed（\"process dead 5× with no sentinel/W&B\"）。实际情况：原 PID 675831 被 deploy worker kill 后，重启为 PID 681823。重启后进程正常运行，但 cron 监控未追踪到新 PID，5 次检测均未发现 sentinel → 自动标记 failed。诊断时（2026-05-20）PID 681823 仍在运行（状态 Rl+，已运行 17h36m），已完成 3/10 tasks（SR: 70%/100%/0%），第 4 个 task 进行中（rollout 5, 1/5 success）。GPU 使用 5972/24564 MiB，日志无错误。**无需重新提交，等待自然完成后手动修正 conclusion。**\n\n- [失败模式] SIGHUP false failure（2026-05-20）：bjb2-28827 上多个实验 EXIT_CODE=129 (SIGHUP) 被标记 failed，实际全部完成。**已确认受影响：P75-seed44, P90-seed42, P25-seed44**。SIGHUP 发生在进程写完结果 JSON 之后（tmux session 断开或 SSH 连接清理）。**诊断方法：tail 日志看 \"Results saved to\" + \"Overall success rate\" 行 → 手动修正 conclusion=success 并补录 metrics。**\n\n- [失败模式] Cron 日志路径不匹配（2026-05-20）：**eval-obs-only-goal-norm02-seed51** (bjb1-32546) 被 cron 误判 dead。根因：实验日志写入 `/root/acr-vla-conformal-refinement/logs/`（项目目录下），但 cron 监控在 `~/runs/acr-vla-conformal-refinement/` 下找日志 → 找不到 → 5 次检测均无 sentinel → auto-resolved failed。**教训：submit_training_job 的 log_path 必须与实际 tee 输出路径一致。部分实验用 `tee logs/xxx.log`（相对于 cd 后的项目目录），另一部分用 `~/runs/` 绝对路径，两套路径并存导致 cron 误判。**\n\n- [失败模式] Cron false positive 批量（2026-05-20 诊断）：bjb1-32546 上 **eval-perdof-object-norm02-seed50** (PID 542405) 和 **eval-obs-only-object-norm02-seed51** (PID 542894) 被 cron 报告 \"process gone, no sentinel, no W&B\"。实际两者均已**正常完成**，output JSON 已写入。bjb1-18228 上 **eval-obs-only-object-norm005-seed44** 同样正常完成但被标记 failed。根因同上：eval 脚本不写 sentinel/W&B，进程正常退出后 cron 无法确认完成状态。结果：perdof-norm02-seed50 SR=10.0%, obs_only-norm02-seed51 SR=17.0%, obs_only-norm005-seed44 SR=12.0%。**均无需重跑，需手动修正 conclusion=success 并补录 metrics。**\n\n- [失败模式] python PATH 不存在（2026-05-21, bjb1-32546）：`nohup: failed to run command 'python': No such file or directory`。bjb1-32546 使用 conda 环境，`python` 不在默认 PATH 中（仅 `/root/miniconda3/bin/python` 可用）。受影响：seed51-r2, seed52-r2, seed62, seed63（4 个实验同时失败）。**修复方案：提交命令前加 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 前缀。** 教训：submit_training_job 的 command 不能假设 `python` 在 PATH 中，必须自带环境激活。对照其他服务器（bjb1-18228、bjb2-28827）成功实验的命令格式，它们通过 `bash -c \"source ... && python ...\"` 包裹。\n\n- [失败模式] FMVD 信号无效：ρ=0.0825 NO-GO。根因：denoising 空间统计量不映射到 action uncertainty。\n\n- [失败模式] CRM correction magnitude 信号无效（2026-05-20）：ρ(K1_corr_mag, K10_var) = 0.1523 NO-GO。**根因：CRM correction magnitude 是常数 (~0.1205)，P25=P50=P75=P90 几乎相同。** CRM 对所有输入产出相同大小的修正向量——修正方向变化但幅度不变。推测因 max_correction_norm=0.2 的 clipping 使得大部分 correction 被截断到相同 norm。K=2 argmin 版本同样无效 (ρ=0.1340)。**教训：clipped norm 的信号没有方差，自然无法做 gate。**\n\n- [失败模式] OpenVLA-7B eval timeout：timeout_hours 至少设 12h。\n\n- [失败模式] Table 1 数据混淆（2026-05-20）：Table 1 原报 CRM Object K=10 = 17.6% (n=7)，实际来自 **norm01+norm02 混合数据**。seed42 只有 norm01 (0.19)，seed43 只有 norm02 (0.16)，两个 config 各自只有 n=6，合并后变 n=7。paper_provenance.yaml C029 引用的 exp_id 是抽象 \"obs_only_k10\" 而非具体实验 ID，导致问题没被及时发现。**教训：provenance 必须引用具体 registry_id，不用抽象标签。**\n\n- [失败模式] evaluate.py 路径缺 src/ 前缀（2026-05-20）：adaptive_k spatial 实验命令用 `python evaluate.py` 而非 `python src/evaluate.py`，导致 EXIT_CODE=2 (No such file)。受影响：eval-adaptive-k-spatial-p50-seed43, eval-adaptive-k-spatial-p50-seed44（两台服务器 bjb1-32546, bjb2-28827 同时中招）。**教训：提交命令时对照历史成功实验的 command 格式，evaluate.py 在 src/ 子目录下。**\n\n## seed66 失败诊断 (2026-05-21)\n- 根因：**Cron false positive（第 N 次）**。3 个 seed66 进程（norm003/norm005/norm01）实际仍在 bjb1-18228 上正常运行，被 cron 误判为 \"process dead 5× with no sentinel/W&B\"。\n- 证据：\n  - PID 642428 (norm003, GPU0), PID 642506 (norm005, GPU2), PID 642775 (norm01, GPU3) 均处于 Rl 状态，CPU 使用 ~400%，GPU 利用率 34-38%，VRAM ~5.7GB/卡\n  - 日志在两次读取之间从 rollout 5/20 增长到 10/20，确认进程在推进\n  - sentinels/ 目录完全为空——从未有实验写过 sentinel file\n  - 无 OOM、无 CUDA error、无 traceback、无 segfault\n  - 磁盘空间充足（根分区 53%，数据盘未挂载 autodl-tmp 但进程正常读写）\n- 与 seed65 对比：seed65 (PID 622484, GPU1) 用 `nohup python -u` 启动，日志持续更新；seed66 用 `python3` 启动（无 `-u` 无 nohup），日志因 stdout 缓冲更新延迟，但进程本身正常\n- 影响范围：eval-obs-only-object-norm005-seed66, eval-obs-only-object-norm01-seed66, eval-obs-only-object-norm003-seed66（3 个实验）\n- 建议修复：**无需重跑**。等待进程自然完成（n_rollouts=20，当前约 50% 进度，预计再需 1-2 小时），完成后手动修正 conclusion=success 并从 output JSON 补录 metrics。\n\n## CRM Coverage 限制\n\nCRM v3 训练数据 = Object(10) + Spatial(10) = 20 tasks。Goal/Long 是 OOD 泛化测试。\n\n## Adaptive K 信号探索\n\n| 信号 | ρ vs K10_var | 结论 | 备注 |\n|------|-------------|------|------|\n| FMVD (velocity dispersion) | 0.0825 | ❌ NO-GO | zero-cost 但无效 |\n| **K=2 L2 divergence** | **0.9979** | **✅ GO** | 需要 K=2 采样（+170ms），near-perfect proxy |\n| CRM correction magnitude (K=1) | 0.1523 | ❌ NO-GO | zero-cost 但 magnitude 是常数 |\n| CRM correction magnitude (K=2 argmin) | 0.1340 | ❌ NO-GO | 同上 |\n\n**结论：K=2 L2 distance 是唯一可用的 adaptive K 门控信号。** FMVD 和 CRM magnitude 均因信号方差不足而失败。\n\n## Adaptive K Sweep 最终结果 — Object (2026-05-20, 12/12 完成)\n\n| 阈值 | SR [seeds] | avg_K | fast_path% |\n|------|-----------|-------|-----------|\n| P90 (τ=0.127) | 13.3% [12,14,14] | ~2.6 | ~93% |\n| P75 (τ=0.099) | 13.7% [12,13,16] | ~3.1 | ~87% |\n| **P50 (τ=0.075)** | **15.3% [16,16,14]** | **~3.8** | **~77%** |\n| P25 (τ=0.055) | 14.3% [15,13,15] | ~4.8 | ~65% |\n\n**P50 = Pareto optimal**: 最高 SR + 比 K=10 省 62% compute (avg_K 3.8 vs 10)。\n\n## Adaptive K Cross-Benchmark Sweep — Spatial (2026-05-20, 11/12 done)\n\nObject 校准阈值直接迁移到 Spatial（无 per-benchmark tuning）：\n\n| 阈值 | seed42 | seed43 | seed44 | Mean±Std | avg_K | fast_path |\n|------|--------|--------|--------|----------|-------|-----------|\n| P90 | 31% | 32% | PREPARING | — | ~3.5 | ~80% |\n| P75 | 31% | 34% | 33% | 32.7%±1.5% | ~5.0 | ~62% |\n| P50 | 30% | 33% | 33% | 32.0%±1.7% | ~6.35 | ~46% |\n| P25 | 33% | 30% | 32% | 31.7%±1.5% | ~7.65 | ~29% |\n\nvs VLA-only Spatial: 29.6%±1.1% | vs CRM K=10 Spatial: 34.6%±1.4%\n\n**关键洞察**：\n1. 所有阈值 SR 差异很小（31.7-32.7%），但 compute 差异 2x（avg_K 3.5→7.65）。P75 在 Spatial 上 Pareto 最优（32.7% + avg_K 5.0），P50 在 Object 上最优。\n2. Spatial fast_path 远低于 Object（同阈值下 29% vs 65% for P25）—— Spatial L2 均值更高，方法自动分配更多 full-K steps。\n3. 这支持\"阈值自动适配任务复杂度\"的核心 narrative：同一 Object 校准阈值，在更难的 Spatial 上自动降低 fast_path 比例以保持 SR。\n\n## Latency Profiling (dry-run N=20, RTX 4090, 2026-05-20)\n\n| Component | Mean (ms) | 备注 |\n|-----------|----------|------|\n| VLA sampling | 206 | **K 无关**（batched generation） |\n| CRM MLP forward | 0.33 | 337K params |\n| Argmin L2 + CRM 总开销 | 4.0 | 管线 1.6% |\n| Full pipeline K=10 | 259 | ~3.9 Hz |\n| **Adaptive K 快路径** | **254** | K=2 only |\n| **Adaptive K 全路径** | **459** | K=2→K=10 |\n\n**关键发现：VLA batched sampling 消除 K 作为 latency 因子。Adaptive K 快路径省 45% latency。CRM overhead 可忽略。**\n\n## Random Selection Baseline — 双 Benchmark 验证完成 (2026-05-21)\n\n代码 `--mode random_selection` 可用。\n\n**结论：Random Selection ≈ VLA-only，在 Object 和 Spatial 上一致。多采样本身不产生价值，CRM correction 是唯一改善来源。**\n\n| Benchmark | Random K=10 | VLA-only | CRM K=10 | Random vs VLA | Correction Δ |\n|-----------|-------------|----------|----------|---------------|-------------|\n| Object | 10.0% (n=8) | 11.0% (n=8) | 16.8% (n=7) | ≈0pp (neutral) | +5.8pp |\n| Spatial | 29.3% (n=3) | 29.3% (n=4) | 34.5% | 0.0pp (neutral) | +5.2pp |\n| Object K=5 | 10.5% (n=4) | 11.0% | 16.0% (n=7) | -0.5pp (harmful) | +5.5pp |\n\nexp_ids:\n- Object K=10: eval-random-selection-object-seed{42,43,44,45,46-r3,47,48,49}\n- Spatial K=10: eval-random-selection-spatial-seed{42-r2,43,44}\n- Object K=5: eval-random-selection-object-k5-seed{42,43,44,45}-r2\n\nC1 核心证据。两个 benchmark 上 pattern 完全一致，可以写 \"consistent across benchmarks\"。\n\n## 全 Benchmark 统计摘要 (v2, 2026-05-20, 含新增数据)\n\n### 1. LIBERO-Object — **Strong improvement**\n\n| Method | n | Mean±Std | vs VLA Δ | p (Welch) | Sig |\n|--------|---|----------|----------|-----------|-----|\n| **CRM norm02 K=10 (主配置)** | **6** | **16.8%±1.8%** | **+6.0pp** | **0.000095** | **\\*\\*\\*** |\n| CRM norm01 (补充) | 6 | 17.5%±1.0% | +6.6pp | <0.001 | *** |\n| CRM norm02 K=5 (补充) | 7 | 16.0%±2.2% | +5.1pp | 0.000312 | *** |\n| Adaptive-K (all) | 12 | 14.2%±1.5% | +3.3pp | 0.000098 | *** |\n| Argmin K=10 | 5 | 12.4%±2.9% | +1.5pp | 0.317 | n.s. |\n| **VLA-only** | **8** | **10.9%±1.4%** | — | — | — |\n\n### 2. LIBERO-Spatial — **Strong improvement**\n\n| Method | n | Mean±Std | vs VLA Δ | p (Welch) | Sig |\n|--------|---|----------|----------|-----------|-----|\n| CRM obs_only (K=10) | 7 | 34.6%±1.4% | **+5.0pp** | 0.000007 | *** |\n| **VLA-only** | **9** | **29.6%±1.1%** | — | — | — |\n\n### 3. LIBERO-Goal (OOD) — **Neutral**\n\n| Method | n | Mean±Std | vs VLA Δ | p (Welch) | Sig |\n|--------|---|----------|----------|-----------|-----|\n| CRM obs_only | 7 | 67.7%±3.3% | -1.0pp | ~0.7 | n.s. |\n| **VLA-only** | **6** | **68.7%±3.9%** | — | — | — |\n\n### 4. LIBERO-Long (OOD) — **⚠️ Borderline**\n\n| Method | n | Mean±Std | vs VLA Δ | p (Welch) | Sig |\n|--------|---|----------|----------|-----------|-----|\n| CRM obs_only | 7 | 17.0%±2.0% | **+2.2pp** | 0.049 | * |\n| **VLA-only** | **11** | **14.8%±2.2%** | — | — | — |\n\n**⚠️ Long MW-U p=0.061 (n.s.)。t检验 p=0.049 刚好卡在 0.05 边缘。论文需 cautious wording。**\n\n### 效果总结\n\n| Benchmark | Δ (pp) | p-value | 判定 |\n|-----------|--------|---------|------|\n| **Object** | +6.0 | <0.001 | Strong (主配置 norm02) |\n| **Spatial** | +5.0 | <0.001 | Strong |\n| **Long** | +2.2 | 0.049 | ⚠️ Borderline (OOD, MW-U n.s.) |\n| **Goal** | -1.0 | ~0.7 | Neutral (OOD) |\n\n**注意**: Argmin K=10 seed43=17% 是未验证离群值（4 台服务器未找到原始 JSON），标注 unverified。\n\n## 2026-05-20 新增 eval 结果（诊断中确认）\n\n| 实验 | 服务器 | Mode | Benchmark | norm | seed | SR | JSON 时间 |\n|------|--------|------|-----------|------|------|----|-----------|\n| eval-perdof-object-norm02-seed50 | bjb1-32546 | crm_perdof | object | 0.2 | 50 | 10.0% | 05-21 03:22 |\n| eval-obs-only-object-norm02-seed51 | bjb1-32546 | crm_obs_only | object | 0.2 | 51 | 17.0% | 05-21 03:20 |\n| eval-obs-only-object-norm005-seed44 | bjb1-18228 | crm_obs_only | object | 0.05 | 44 | 12.0% | 05-21 03:16 |\n| eval-obs-only-object-norm01-seed48 | bjb1-18228 | crm_obs_only | object | 0.1 | 48 | **仍在运行** | — |\n\n**norm01-seed48**: PID 507385, 状态 Rl+, 运行 55m55s, GPU1 3408MiB/29%利用率, 已完成 5/10 tasks。预计再需约 1 小时完成。\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a4ace36-8b0f-4dc3-a528-fca209f376b4",
+            "uuid": "2d35dbeb-2117-4ab1-8353-8513f505a66b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01XY4kRikfmcSaURgG47TXBz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10735,
+                "cache_read_input_tokens": 68136,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10735
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-21T04:07:07.731Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QxxF6k5yr6pDUajvMedP8j",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "1a4ace36-8b0f-4dc3-a528-fca209f376b4",
+            "uuid": "82f4e544-7a1e-4ea9-9034-a2ce6a68b70a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。更新摘要：\n\n**paper_framing.md 更新了 4 处：**\n1. **Headline Metrics - Component decomposition**: 添加 \"Cross-benchmark: Spatial random K=10 = 29.3% (n=3) ≈ VLA-only Spatial 29.3%\"\n2. **Headline Metrics - Spatial**: 添加 Random Selection Spatial K=10 数据，标注 \"correction is sole driver on Spatial too\"\n3. **C1 section**: 新增 \"Spatial cross-benchmark validation\" bullet，含完整 exp_ids、数据、结论（+5.8pp Object, +5.2pp Spatial consistent）\n4. **Hard Evidence - Component Decomposition**: 新增 \"Spatial Random Selection K=10\" 子节，含完整分解（Random-VLA=0.0pp, CRM-Random=+5.2pp）和双 benchmark 一致性结论\n\n**memory.md 更新：** Random Selection Baseline 段落扩展为双 benchmark 汇总表，含所有 exp_ids 和结论。\n\n所有数字均追溯至 registry：Spatial seed42-r2=34%, seed43=26%, seed44=28% → mean 29.3% ≈ VLA-only 29.3%。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "1a4ace36-8b0f-4dc3-a528-fca209f376b4",
+            "uuid": "73caafd8-da17-4ad4-bcfc-26694221b481",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UNv83ThukoJs7ti6iA6bdQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 21115,
+                "cache_read_input_tokens": 78871,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 21115
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1779469200,
+                  "rateLimitType": "seven_day",
+                  "utilization": 1,
+                  "isUsingOverage": false,
+                  "surpassedThreshold": 0.75
+                },
+                "uuid": "1b5e3761-d522-410c-8e26-be023a0865a3",
+                "session_id": "1a4ace36-8b0f-4dc3-a528-fca209f376b4"
+              }
+            }
+          ],
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。更新摘要：\n\n**paper_framing.md 更新了 4 处：**\n1. **Headline Metrics - Component decomposition**: 添加 \"Cross-benchmark: Spatial random K=10 = 29.3% (n=3) ≈ VLA-only Spatial 29.3%\"\n2. **Headline Metrics - Spatial**: 添加 Random Selection Spatial K=10 数据，标注 \"correction is sole driver on Spatial too\"\n3. **C1 section**: 新增 \"Spatial cross-benchmark validation\" bullet，含完整 exp_ids、数据、结论（+5.8pp Object, +5.2pp Spatial consistent）\n4. **Hard Evidence - Component Decomposition**: 新增 \"Spatial Random Selection K=10\" 子节，含完整分解（Random-VLA=0.0pp, CRM-Random=+5.2pp）和双 benchmark 一致性结论\n\n**memory.md 更新：** Random Selection Baseline 段落扩展为双 benchmark 汇总表，含所有 exp_ids 和结论。\n\n所有数字均追溯至 registry：Spatial seed42-r2=34%, seed43=26%, seed44=28% → mean 29.3% ≈ VLA-only 29.3%。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 684004,
+            "duration_api_ms": 681045,
+            "num_turns": 25,
+            "stop_reason": "end_turn",
+            "session_id": "1a4ace36-8b0f-4dc3-a528-fca209f376b4",
+            "total_cost_usd": 1.8598047500000003,
+            "usage": {
+              "input_tokens": 26,
+              "cache_creation_input_tokens": 88145,
+              "cache_read_input_tokens": 1155223,
+              "output_tokens": 29186,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 88145,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 341,
+                  "cache_read_input_tokens": 78871,
+                  "cache_creation_input_tokens": 21115,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 21115
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1402,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001507,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 26,
+                "outputTokens": 29186,
+                "cacheReadInputTokens": 1155223,
+                "cacheCreationInputTokens": 88145,
+                "webSearchRequests": 0,
+                "costUSD": 1.8582977500000002,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "8673a3c2-d948-46d7-a13b-71fde9b9e135"
+          },
+          "id": "event-000069"
+        }
+      ]
+    }
+  ]
+}

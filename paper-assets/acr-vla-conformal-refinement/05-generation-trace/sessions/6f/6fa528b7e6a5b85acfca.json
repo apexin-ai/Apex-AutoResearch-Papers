@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6fa528b7e6a5b85acfca",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis eval object vla only batch r2",
+  "task_key": "worker_analysis_eval-object-vla-only-batch-r2_20260523T070438",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval-object-vla-only-batch-r2_20260523T070438_result.json",
+    "occurrence": 1,
+    "bytes": 1169,
+    "sha256": "1e9096f9534712ece464ebe0c2a4bdb9e0df1c08adcd6422144434b6f58652f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nRESULTS:\neval-object-vla-only-wrapper-s42-r2: SR=79.0%, episodes=200\neval-object-vla-only-wrapper-s43-r2: SR=77.0%, episodes=200\neval-object-vla-only-wrapper-s44-r2: SR=77.5%, episodes=200\neval-supp-obj-adapt-s42-r2: SR=77.5%, trigger_rate=70.2%, episodes=200\n\nVLA-only 3-seed: mean=77.8% ± 1.0%\n```\n\nPer-task breakdown (20 rollouts each):\n\n| Task | s42 | s43 | s44 | Adaptive |\n|------|-----|-----|-----|----------|\n| alphabet_soup | 85% | 70% | 70% | 80% |\n| cream_cheese | 75% | 70% | 70% | 90% |\n| salad_dressing | 85% | 75% | 75% | 70% |\n| bbq_sauce | 85% | 85% | 90% | 85% |\n| ketchup | 90% | 80% | 90% | 70% |\n| tomato_sauce | 75% | 85% | 80% | 75% |\n| butter | 65% | 60% | 75% | 65% |\n| milk | 65% | 75% | 65% | 65% |\n| chocolate_pudding | 70% | 75% | 65% | 80% |\n| orange_juice | 95% | 95% | 95% | 95% |\n\nAdaptive CRM (tau=0.074855) 的 overall SR 与 VLA-only s42 同 seed 相比从 79.0% 降到 77.5%，mean_unc=0.1104，trigger_rate=70.2%（70% 的 step 触发了 CRM 修正）。修正过于频繁但未带来提升，cream_cheese 和 chocolate_pudding 有改善，但 ketchup 和 salad_dressing 明显下降。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-object-vla-only-batch-r2.md"
+}

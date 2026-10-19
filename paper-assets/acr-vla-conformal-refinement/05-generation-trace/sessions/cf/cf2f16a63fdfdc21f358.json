@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf2f16a63fdfdc21f358",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_22_1779341109.md",
+  "task_key": "loop_22_1779341109",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_22_1779341109.md",
+    "occurrence": 1,
+    "bytes": 3960,
+    "sha256": "c327a55ace89fddd29c924de087a5b607d13d1432524f4b3e4714c92d75e659c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 22\nreason: idle_timeout\nupdated: '2026-05-21T05:07:16+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- `allocated_gpus` 当前为空列表——get_project_resource_usage 返回 0 分配。实际有 3 张在跑但未在白名单。**提交新实验前必须让 Director 确认/更新 GPU 分配**，不可自行占用\n- bjb2-40593 系统盘 90% 已满（46G/437G），**禁止在此服务器提交新实验**\n- CRM checkpoint 唯一路径：`/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`，所有 eval 实验都依赖它，不可删除\n- CoRL DDL **2026-05-29**，距今 ~8 天，所有决策以此为硬约束\n\n### 2. 🖥️ 基础设施快照\n- **bjb2-28827**: 工作目录 `/root/acr-vla-conformal-refinement`，Python `/root/miniconda3/bin/python`，conda base。6× GPU，磁盘 399G/439G 可用(5%)\n- **bjb1-32546**: 同上路径布局。6× GPU，磁盘 400G/438G 可用(4%)\n- **bjb1-18228**: 同上。磁盘 400G/438G 可用(4%)\n- **HF cache**: `/root/autodl-tmp/.hf_cache`（所有服务器），必须设 `HF_HOME` + `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`\n- **活跃进程**:\n  - eval-adaptive-k-spatial-p25-seed44: bjb2-28827 cuda:1, PID 307754\n  - eval-obs-only-goal-norm02-seed51: bjb1-32546 cuda:1, PID 401661\n  - eval-obs-only-object-norm02-seed43-r3: bjb1-32546 cuda:2, PID 401735\n- **活跃 Worker**: worker_analyze_eval-argmin-object-seed49 (running), worker_diagnose_eval-adaptive-k-spatial-p75-seed44 (running)\n\n### 3. 📊 当前状态\n收到 CRON 回调：eval-adaptive-k-spatial-p75-seed44 在 bjb2-28827 EXIT_CODE=129 (SIGHUP) 失败。已派诊断 Worker (`worker_diagnose_eval-adaptive-k-spatial-p75-seed44_20260520T130411`) SSH 到服务器查日志和系统日志，**尚未收到回调**。\n\n同批 P75 的 seed42=31%, seed43=34% 均 success。P90-seed42 同服务器也 EXIT_CODE=129 但有 metrics 被标 success。推测 P75-seed44 在产出完整 metrics 前被 SIGHUP 杀掉。\n\n**RUNNING**: 3 个实验（见上）\n**PREPARING**: 33 个实验待提交（含 Spatial Adaptive K P50 seeds、Random Selection baseline、各 benchmark 补种子等）\n**等待回调**: 2 个 Worker（诊断 + argmin 分析）\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 回调 → 若确认 transient SIGHUP：在 bjb2-28827 空闲 GPU 上重试 eval-adaptive-k-spatial-p75-seed44（需先确认 GPU 分配白名单）\n- 诊断 Worker 回调 → 若 json 有部分结果且 rollout 数足够：考虑直接用部分结果而非重跑\n- worker_analyze_eval-argmin-object-seed49 回调 → 更新 registry metrics + report.md + 汇报 Director\n- eval-adaptive-k-spatial-p25-seed44 cron 回调 → 按 on-experiment-done 处理，汇总 Spatial P25 三种子结果\n- eval-obs-only-goal-norm02-seed51 / eval-obs-only-object-norm02-seed43-r3 cron 回调 → 同上\n- **GPU 白名单为空** → 下一轮 BOOT 后首要向 Director 确认 GPU 分配，否则无法提交 33 个 PREPARING 实验\n\n### 5. 🎯 战略上下文\n- **核心方向 (D077)**: Adaptive K 是论文核心贡献，K=10 CRM 分析降为 supporting evidence。K=2 L2 distance 是唯一可用不确定性信号 (ρ=0.9979)\n- **P50 = Pareto 最优 (D078)**: Object 上 P50 SR=15.3%, avg_K≈3.8, ~91% of K=10 performance。Spatial sweep 正在补种子\n- **跨 benchmark 阈值迁移 (D085)**: Object 校准的阈值直接用于 Spatial/Long/Goal，验证 zero-shot transfer\n- **Table 1 已 lock (D080)**: Object CRM norm02 n=6, 16.8±1.8%, p=9.5e-5\n- **Long OOD 降级 (D081)**: MW-U p=0.061 n.s.，cautious wording\n- **易错点**: EXIT_CODE=129 不一定是失败——P90-seed42 也是 129 但 success（有 metrics）。cron 判定 failed 是因为\"no valid W&B metrics\"，实际可能是进程在写完 json 前被杀。检查 json 部分结果可能能恢复数据避免重跑\n- **易错点**: allocated_gpus=[] 但有 3 张在跑——这是配置问题不是 bug，但严格按红线不能提交新实验直到 Director 更新分配\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-22-1779341109.md"
+}

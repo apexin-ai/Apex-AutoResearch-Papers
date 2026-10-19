@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a41a19d2f522bef7f915",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "deploy smolvla 3seed baseline osg",
+  "task_key": "worker_deploy_smolvla-3seed-baseline-osg_20260522T184725",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_smolvla-3seed-baseline-osg_20260522T184725.log",
+    "occurrence": 1,
+    "bytes": 682632,
+    "sha256": "f5c163c7088c217fda69e268459a90c734f17714cb3a76339443c6bdc43a2648"
+  },
+  "statistics": {
+    "messages": 273,
+    "user_turns": 0,
+    "tool_calls": 102,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 65,
+      "tool_call": 102,
+      "tool_result": 102,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 273,
+      "chunks": [
+        {
+          "path": "a41a19d2f522bef7f915-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a41a19d2f522bef7f915-part-0002.json",
+          "message_count": 93
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/deploy-smolvla-3seed-baseline-osg.md"
+}

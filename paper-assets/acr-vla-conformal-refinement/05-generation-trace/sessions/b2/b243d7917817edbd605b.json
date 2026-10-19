@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b243d7917817edbd605b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis eval mag obsonly norm003 object",
+  "task_key": "worker_analysis_eval-mag-obsonly-norm003-object_20260516T053656",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval-mag-obsonly-norm003-object_20260516T053656_result.json",
+    "occurrence": 1,
+    "bytes": 731,
+    "sha256": "0a21fb0ece4fb5b17b9a97833b5c159f437b2fadb01586adc1e1ea8cd8dbde68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。\n\n## 结果摘要\n\n**Overall SR: 16.0%** (16/100)\n\n| 对比 | 数值 | Delta |\n|------|------|-------|\n| vs argmin baseline (12%) | +4pp | ✓ 超过 baseline |\n| vs norm=0.1 (19%) | -3pp | 低于 |\n| vs norm=0.2 (22%) | -6pp | 低于 |\n| vs spatial norm=0.03 (34-44%) | -18~28pp | 远低于 |\n\n**结论**: norm=0.03 在 object benchmark 上 beats argmin baseline（16% > 12%），标记 success。但在 object domain 上表现弱于更大 norm（0.1/0.2），且远不如 spatial benchmark 上的同 norm 结果。Object domain 的 magnitude curve 呈单调递增趋势（0.03→0.1→0.2 = 16%→19%→22%），说明 object 任务需要更大幅度的修正才能生效。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-mag-obsonly-norm003-object.md"
+}

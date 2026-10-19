@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb1f2f793148b2716ba2",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh register seed46 cron",
+  "task_key": "worker_ssh_register-seed46-cron_20260516T160344",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_register-seed46-cron_20260516T160344_result.json",
+    "occurrence": 1,
+    "bytes": 214,
+    "sha256": "28e44e4ef27e18770df5e07f74112d74c7b0585352130e23df4b316c035bd091"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n| 项目 | 值 |\n|------|-----|\n| PID | 510896 |\n| GPU | cuda:3, 5645 MiB |\n| 服务器 | bjb1-18228 |\n| Registry | RUNNING ✓ |\n| Cron 监控 | 每30分钟检查，job 6158ee8b |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-register-seed46-cron.md"
+}

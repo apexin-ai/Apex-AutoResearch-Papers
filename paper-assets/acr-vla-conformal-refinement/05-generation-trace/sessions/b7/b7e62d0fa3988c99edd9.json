@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "b7e62d0fa3988c99edd9",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code pi05 crm pipeline prep",
+  "task_key": "worker_code_pi05-crm-pipeline-prep_20260521T112625",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_pi05-crm-pipeline-prep_20260521T112625_result.json",
+    "occurrence": 1,
+    "bytes": 781540,
+    "sha256": "c16693f93d4c40051a76b5a1e1a2ddb9cc62a5d414d2e27f6407c20aae36b51d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "b7e62d0fa3988c99edd9-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/code-pi05-crm-pipeline-prep.md"
+}

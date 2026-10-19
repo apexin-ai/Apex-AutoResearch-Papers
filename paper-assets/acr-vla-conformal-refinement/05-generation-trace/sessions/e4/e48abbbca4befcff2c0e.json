@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e48abbbca4befcff2c0e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh sync and deploy bjb1 18228",
+  "task_key": "worker_ssh_sync-and-deploy-bjb1-18228_20260520T001748",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_sync-and-deploy-bjb1-18228_20260520T001748_result.json",
+    "occurrence": 1,
+    "bytes": 304,
+    "sha256": "e386f9580c1721eff11c8feb554f1e4364ef2d2b5ef5b2d1fd571c537931cf26"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成，三项验证全部通过：\n\n| 检查项 | 期望值 | 实际值 | 状态 |\n|--------|--------|--------|------|\n| 行数 | 593 | 593 | ✓ |\n| adaptive_k 匹配数 | ≥15 | 19 | ✓ |\n| md5 | bfdd8210c182333f66c717f2bdd9c05d | bfdd8210c182333f66c717f2bdd9c05d | ✓ |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-sync-and-deploy-bjb1-18228.md"
+}

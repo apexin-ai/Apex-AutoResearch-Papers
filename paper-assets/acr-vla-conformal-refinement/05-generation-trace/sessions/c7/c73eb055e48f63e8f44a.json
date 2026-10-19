@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c73eb055e48f63e8f44a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "check gpu and baseline status",
+  "task_key": "worker_check_gpu-and-baseline-status_20260522T231625",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_gpu-and-baseline-status_20260522T231625_result.json",
+    "occurrence": 1,
+    "bytes": 2357,
+    "sha256": "d8d2a5989f6035506ab6255800f0fd84f47a6ef29b3d19becd1164bfad4a40c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. bjb1-32546 (6×4090)\n\n| GPU | 显存占用 | 利用率 | 进程 |\n|-----|---------|--------|------|\n| 0 | 1 MiB | 0% | **空闲** |\n| 1 | 1 MiB | 0% | **空闲** |\n| 2 | 1 MiB | 0% | **空闲** |\n| 3 | 542 MiB | 10% | `train_crm_unified_4suite_r4` (PID 322367) — epoch 28/50, batch 6300/6316 |\n| 4 | 1 MiB | 0% | **空闲** |\n| 5 | 1 MiB | 0% | **空闲** |\n\n- **CRM 训练正常运行**，epoch 28 快结束，loss ~0.01\n- **SmolVLA baseline eval 全部不在运行**。没有任何 `eval-smolvla-lerobot-*` 进程。只有一个 stale 的 tmux session `eval-pi05-crm-object-seed42`（无活跃 python 子进程）\n- 空闲 GPU：**0, 1, 2, 4, 5**（5 张）\n\n### 2. bjb2-28827 (6×4090)\n\n| GPU | 显存占用 | 利用率 | 进程 |\n|-----|---------|--------|------|\n| 0 | 5730 MiB | 31% | SmolVLA CRM eval object seed42 |\n| 1 | 5730 MiB | 32% | SmolVLA CRM eval object seed43 |\n| 2 | 5730 MiB | 30% | SmolVLA CRM eval object seed44 |\n| 3 | 1 MiB | 0% | **空闲** |\n| 4 | 1 MiB | 0% | **空闲** |\n| 5 | 1 MiB | 0% | **空闲** |\n\n- **跑的不是 baseline eval，而是 SmolVLA CRM eval**（`--mode crm_obs_only --benchmark object`），3 个 seed (42/43/44)\n- 三个 eval 都刚启动，日志停留在 \"10 tasks loaded\"，尚未输出 rollout 进度\n- 空闲 GPU：**3, 4, 5**（3 张）\n\n### 3. bjb1-18228 (4×4090)\n\n| GPU | 显存占用 | 利用率 | 进程 |\n|-----|---------|--------|------|\n| 0 | 9884 MiB | 24% | π0.5 precompute object — 5300/72507 (7.3%) |\n| 1 | 9884 MiB | 24% | π0.5 precompute spatial — 5200/60250 (8.6%) |\n| 2 | 9883 MiB | 26% | π0.5 precompute goal — 5300/61728 (8.6%) |\n| 3 | 9883 MiB | 25% | π0.5 precompute long — 5700/136090 (4.2%) |\n\n- **4 张 GPU 全满**，cuda:3 在跑 long precompute（未被 kill）\n- 速度 ~2s/sample，预估剩余时间：object ~37h, spatial ~31h, goal ~31h, long ~66h\n- 磁盘：根分区 53% (15G 可用)，数据盘 78% (57G 可用)，暂无压力\n- 空闲 GPU：**无**\n\n### 关键发现\n\n1. **SmolVLA baseline eval 没有在任何服务器上运行**。bjb2-28827 上跑的是 CRM eval（`--mode crm_obs_only`），不是 baseline（`--mode baseline`）\n2. bjb1-18228 的 cuda:3 并未空闲，在跑 long benchmark precompute\n3. bjb1-32546 有 5 张 GPU 空闲，可部署 baseline eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpu-and-baseline-status.md"
+}

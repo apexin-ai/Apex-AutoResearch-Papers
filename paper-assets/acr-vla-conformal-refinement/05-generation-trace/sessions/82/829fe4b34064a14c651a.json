@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "829fe4b34064a14c651a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "eval acr spatial v4 obs only r2",
+  "task_key": "worker_eval_acr-spatial-v4-obs-only-r2_20260514T221639",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_acr-spatial-v4-obs-only-r2_20260514T221639_result.json",
+    "occurrence": 1,
+    "bytes": 466,
+    "sha256": "6274c85731c431320f31b98a8c1c9ec3db900178b0892cfd4ce119029e10e53c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成，全部验证通过。\n\n**汇总：**\n- **实验**: `eval-acr-spatial-v4-obs-only-r2`\n- **服务器**: bjb1-18228 cuda:0（PID 268361, 1811 MiB）\n- **Checkpoint**: `crm_v3_norm/obs_only/crm_best.pt`（含 input_mean/input_std buffers ✓）\n- **max_correction_norm**: 0.1 ✓\n- **Registry**: RUNNING\n- **日志**: `/root/autodl-tmp/logs/eval-acr-spatial-v4-obs-only-r2.log`\n- **tmux session**: `eval-acr-spatial-v4-obs-only-r2`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-acr-spatial-v4-obs-only-r2.md"
+}

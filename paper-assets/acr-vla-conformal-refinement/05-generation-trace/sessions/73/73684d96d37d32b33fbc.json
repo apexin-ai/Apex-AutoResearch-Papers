@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73684d96d37d32b33fbc",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "check bjb1 eval progress",
+  "task_key": "worker_check_bjb1-eval-progress_20260515T001515",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_bjb1-eval-progress_20260515T001515_result.json",
+    "occurrence": 1,
+    "bytes": 2391,
+    "sha256": "cd3dbb0926c733fda50b17649beb8fde790312f6a48bfcf656574f2b7e99a500"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 4 路 Eval 进度快照\n\n**所有 4 个进程均存活。**\n\n| 实验 | PID | Alive | Uptime | Tasks Done | 当前进度 | ETA (剩余) |\n|------|-----|-------|--------|------------|---------|------------|\n| **argmin-only-spatial** | 231421 | ✓ | 6h27m | 5/10, 跑第6个 | ~55/100 rollouts | ~5.3h |\n| **tiny-correction-spatial** | 232815 | ✓ | 6h27m | 5/10, 跑第6个 | ~55/100 rollouts | ~5.3h |\n| **acr-spatial-v4-small** | 253085 | ✓ | 3h45m | 3/10, 跑第4个 | ~35/100 rollouts | ~7h |\n| **acr-spatial-v4-obs-only-r2** | 270097 | ✓ | 1h54m | 2/10, 跑第3个 | ~25/100 rollouts | ~5.8h |\n\n### 各 Task Success Rate\n\n**argmin-only (reconvla baseline, 无 CRM)**\n| Task | Success |\n|------|---------|\n| between_plate_and_ramekin | 60% (6/10) |\n| next_to_ramekin | **100%** (10/10) |\n| from_table_center | 0% (0/10) |\n| on_cookie_box | 30% (3/10) |\n| in_top_drawer | 10% (1/10) |\n| on_ramekin | 运行中 (1/5) |\n\n**tiny-correction (acr_vla, crm_v2, norm=0.05)**\n| Task | Success |\n|------|---------|\n| between_plate_and_ramekin | **70%** (7/10) ↑ |\n| next_to_ramekin | 90% (9/10) |\n| from_table_center | 0% (0/10) |\n| on_cookie_box | 30% (3/10) |\n| in_top_drawer | 0% (0/10) |\n| on_ramekin | 运行中 (0/5) |\n\n**v4-small (acr_vla, crm_v3_norm, norm=0.1)**\n| Task | Success |\n|------|---------|\n| between_plate_and_ramekin | 60% (6/10) |\n| next_to_ramekin | **100%** (10/10) |\n| from_table_center | **10%** (1/10) ↑ |\n| on_cookie_box | 运行中 (1/5) |\n\n**obs-only-r2 (crm_obs_only, crm_v3_norm, norm=0.1)**\n| Task | Success |\n|------|---------|\n| between_plate_and_ramekin | **90%** (9/10) ↑↑ |\n| next_to_ramekin | **100%** (10/10) |\n| from_table_center | 运行中 (0/5) |\n\n### GPU 利用率\n\n| GPU | 显存占用 | 利用率 | 实验 |\n|-----|---------|--------|------|\n| cuda:0 | 12645/24564 MiB (51%) | 20% | obs-only-r2 |\n| cuda:1 | 1423/24564 MiB (6%) | 19% | argmin-only |\n| cuda:2 | 1459/24564 MiB (6%) | 21% | tiny-correction |\n| cuda:3 | 1459/24564 MiB (6%) | 20% | v4-small |\n\n### 初步观察\n\n- **obs-only-r2** 在前两个 task 上表现最好（90%, 100%），显存占用也最高\n- **from_table_center** 对所有方法都极难，仅 v4-small 勉强 10%\n- **tiny-correction** (norm=0.05) 对 between_plate 有提升 (70% vs baseline 60%)，但 top_drawer 反而降到 0%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-bjb1-eval-progress.md"
+}

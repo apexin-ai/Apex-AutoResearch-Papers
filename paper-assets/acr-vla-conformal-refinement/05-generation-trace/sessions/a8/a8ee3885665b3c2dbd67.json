@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8ee3885665b3c2dbd67",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh gpu audit bjb1 32546",
+  "task_key": "worker_ssh_gpu-audit-bjb1-32546_20260520T011723",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_gpu-audit-bjb1-32546_20260520T011723_result.json",
+    "occurrence": 1,
+    "bytes": 1623,
+    "sha256": "cea4a6705bdce07d6aebac547e6c3dbd312b12d08b7fff799b82b0905d538743"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 健康审计 — bjb1-32546\n\n### 逐卡报告\n\n| GPU | 利用率 | 显存占用 | 实验 | 状态 |\n|-----|--------|----------|------|------|\n| **0** | 23% | 3,363 / 24,564 MiB | eval-adaptive-k-p75-seed44 (PID 140968) | ✅ 正常运行 |\n| **1** | 0% | 2 / 24,564 MiB | — | 🟢 **空闲可用** |\n| **2** | 91% | 7,645 / 24,564 MiB | eval-adaptive-k-p50-seed44 (PID 141177 + 146926) | ⚠️ **双进程** |\n| **3** | 0% | 2 / 24,564 MiB | — | 🟢 **空闲可用** |\n| **4** | 74% | 6,721 / 24,564 MiB | eval-adaptive-k-p90-seed42 (PID 141515 + 147198) | ⚠️ **双进程** |\n| **5** | 23% | 3,825 / 24,564 MiB | eval-adaptive-k-p25-seed42 (PID 141788) | ✅ 正常运行 |\n\n### Tmux Sessions（4 个）\n\n- `eval-adaptive-k-p25-seed42` — 08:15 创建\n- `eval-adaptive-k-p50-seed44` — 08:17 创建\n- `eval-adaptive-k-p75-seed44` — 08:15 创建\n- `eval-adaptive-k-p90-seed42` — 08:17 创建\n\n### 问题\n\n1. **eval-vla-only-goal-seed47-r2 (cuda:1) — 未运行。** 无 tmux session，GPU 1 空闲。\n2. **eval-vla-only-goal-seed48-r2 (cuda:3) — 未运行。** 无 tmux session，GPU 3 空闲。\n3. **GPU 2 双进程冲突：** eval-adaptive-k-p50-seed44 有两个 python 进程（PID 141177 启动于 08:15，PID 146926 启动于 08:17），各占 ~3805 MiB，合计 7645 MiB。看起来被提交了两次。\n4. **GPU 4 双进程冲突：** eval-adaptive-k-p90-seed42 同样有两个 python 进程（PID 141515 启动于 08:15，PID 147198 启动于 08:17），各占 ~3343 MiB。\n\n### 空闲可用\n\n**GPU 1 和 GPU 3 完全空闲**，可立即使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-audit-bjb1-32546.md"
+}

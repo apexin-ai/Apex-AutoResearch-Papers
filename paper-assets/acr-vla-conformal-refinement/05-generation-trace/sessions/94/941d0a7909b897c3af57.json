@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "941d0a7909b897c3af57",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "check all servers gpu status",
+  "task_key": "worker_check_all-servers-gpu-status_20260525T045002",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_all-servers-gpu-status_20260525T045002_result.json",
+    "occurrence": 1,
+    "bytes": 3817,
+    "sha256": "14d388713e86ead88e1ffd53a50105486d671568d5cbec8f72ca6b6080e66d1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "tmux ls 被 ssh_read_only 拒绝，但 ps aux 已提供足够信息。汇总如下：\n\n---\n\n## bjb1-18228 (4x RTX 4090)\n**GPU状态:**\n| GPU | 显存 | 利用率 |\n|-----|------|--------|\n| cuda:0 | 2/24564 MiB | 0% |\n| cuda:1 | 10844/24564 MiB | 14% |\n| cuda:2 | 10805/24564 MiB | 1% |\n| cuda:3 | 9883/24564 MiB | 23% |\n\n**进程:**\n| PID | GPU | 命令 |\n|-----|-----|------|\n| 446360 | cuda:1 | evaluate.py --mode vla_only --benchmark spatial --seed 42 |\n| 446719 | cuda:2 | evaluate.py --mode vla_only --benchmark goal --seed 42 |\n| 114507 | cuda:3 | train_crm.py --precompute --model pi05 --benchmark long --K 10 |\n\n**空闲GPU:** cuda:0\n**异常:** cuda:0 CRM训练不在运行（已完成）\n\n---\n\n## cqa1-32758 (6x RTX 4090 D)\n**GPU状态:**\n| GPU | 显存 | 利用率 |\n|-----|------|--------|\n| cuda:0~5 | 全部 0/24564 MiB | 0% |\n\n**进程:** 无\n**空闲GPU:** cuda:0, cuda:1, cuda:2, cuda:3, cuda:4, cuda:5\n**异常: 预期6个K=2 Spatial实验全部不在运行，6 GPU 全空闲。实验已完成或异常退出。**\n\n---\n\n## bjb2-28827 (6x RTX 4090)\n**GPU状态:**\n| GPU | 显存 | 利用率 |\n|-----|------|--------|\n| cuda:0 | 1/24564 MiB | 0% |\n| cuda:1 | 1977/24564 MiB | 14% |\n| cuda:2 | 1/24564 MiB | 0% |\n| cuda:3 | 1971/24564 MiB | 18% |\n| cuda:4 | 1977/24564 MiB | 18% |\n| cuda:5 | 1971/24564 MiB | 19% |\n\n**进程:**\n| PID | GPU | 命令 |\n|-----|-----|------|\n| 573416 | cuda:1 | evaluate.py --mode adaptive_conformal_crm --K 2 --τ=0.25 --spatial --seed 45 |\n| 573684 | cuda:3 | evaluate.py --mode vla_only --spatial --seed 45 |\n| 573958 | cuda:4 | evaluate.py --mode adaptive_conformal_crm --K 2 --τ=0.25 --spatial --seed 47 |\n| 574230 | cuda:5 | evaluate.py --mode vla_only --spatial --seed 47 |\n\n**空闲GPU:** cuda:0, cuda:2\n**异常:** tmux session `eval-supp-adapt-tau025-spatial-s48` 已完成（cuda:0空闲）。预期的 τ-sweep τ=0.15/0.10 实验不在运行（已完成）。\n\n---\n\n## bjb1-32546 (6x RTX 4090)\n**GPU状态:**\n| GPU | 显存 | 利用率 |\n|-----|------|--------|\n| cuda:0 | 2/24564 MiB | 0% |\n| cuda:1 | 2/24564 MiB | 0% |\n| cuda:2 | 1978/24564 MiB | 23% |\n| cuda:3 | 1978/24564 MiB | 21% |\n| cuda:4 | 2/24564 MiB | 0% |\n| cuda:5 | 2/24564 MiB | 0% |\n\n**进程:**\n| PID | GPU | 命令 |\n|-----|-----|------|\n| 918490 | ? | evaluate.py --mode adaptive_conformal_crm --K 2 --τ=0.25 --spatial --seed 49 |\n\n**空闲GPU:** cuda:0, cuda:1, cuda:4, cuda:5\n**异常:** 预期6个实验（Adaptive s46/s48/s49 + VLA-only s46/s48/s49），仅1个进程可见（Adaptive s49），但 cuda:2 和 cuda:3 均有显存占用。tmux `eval-obj-vla-s42` 已完成。其余5个实验已完成或异常退出。\n\n---\n\n## bjb2-40593 (1x RTX 4090 D)\n**GPU状态:**\n| GPU | 显存 | 利用率 |\n|-----|------|--------|\n| cuda:0 | 5416/24564 MiB | 11% |\n\n**进程:**\n| PID | GPU | 命令 |\n|-----|-----|------|\n| 349401 | cuda:0 | evaluate.py --mode adaptive_conformal_crm --K 2 --τ=0.075 --spatial --seed 42 |\n\n**空闲GPU:** 无\n**异常:** 无，符合预期。\n\n---\n\n## 汇总\n\n| 指标 | 数据 |\n|------|------|\n| **在跑实验** | **9个**（bjb1-18228: 3, bjb2-28827: 4, bjb1-32546: 1, bjb2-40593: 1） |\n| **空闲GPU** | **13个**（bjb1-18228: cuda:0; cqa1-32758: cuda:0~5; bjb2-28827: cuda:0,2; bjb1-32546: cuda:0,1,4,5） |\n| **已完成** | CRM训练(bjb1-18228 cuda:0)、cqa1-32758 全部6个实验、bjb2-28827 τ-sweep + supp-s48、bjb1-32546 的5个实验(s46/s48 + VLA-only s46/s48/s49 部分) |\n\n**需关注:**\n1. **cqa1-32758** 全部空闲——需检查6个K=2 Spatial实验的日志确认是正常完成还是crash\n2. **bjb1-32546** cuda:3 有1978 MiB显存占用但无对应进程可见——可能是残留显存或有隐藏进程"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-all-servers-gpu-status.md"
+}

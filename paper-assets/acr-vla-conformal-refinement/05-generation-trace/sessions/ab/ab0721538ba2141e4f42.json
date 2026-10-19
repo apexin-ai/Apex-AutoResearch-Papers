@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab0721538ba2141e4f42",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "check cron status all",
+  "task_key": "worker_check_cron-status-all_20260524T145853",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_cron-status-all_20260524T145853_result.json",
+    "occurrence": 1,
+    "bytes": 1344,
+    "sha256": "77a8c814877ea6a2d5934a0e76c54fdbe1794c791996f19bf98586fc97b9dbd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### 1. train-crm-pi05-unified-3suite-r2 (bjb1-18228, PID 326310)\n- **进程**: 存活，已运行 4h23m\n- **进度**: Epoch 12/50 (24%)，batch 600/684，train_loss≈0.009，val_loss=0.006\n- **GPU**: GPU0 — 9% util, 580 MiB（batch 间歇低利用率正常）\n\n### 2. eval-supp-spatial-reconvla-s47 (bjb2-40593, PID 261844)\n- **进程**: 存活，已运行 4h15m\n- **进度**: 无日志文件（runs 目录无对应 log，可能直接启动未重定向）\n- **GPU**: GPU0 — 20% util, 2263 MiB\n\n### 3. eval-supp-long-adapt-tau025-s47-r2 (bjb1-32546, PID 433348)\n- **进程**: 存活，已运行 2h49m\n- **进度**: 无日志文件（runs 目录无对应 log）\n- **GPU**: GPU1 — 24% util, 3027 MiB\n\n### 4. precompute-pi05-long-2048-r2 (bjb1-18228, PID 114507)\n- **进程**: 存活，已运行 1d18h41m\n- **进度**: 旧日志 `precompute-pi05-long-bjb1-18228.log` 显示到 15400/136090 (11.3%) 后 **Terminated (EXIT_CODE=143)**。当前 PID 114507 是重启后的进程，但 runs 目录下没有对应 r2 的日志文件，无法确认当前进度\n- **GPU**: GPU3 — 21% util, 9883 MiB（该 GPU 可能被此进程使用）\n\n### 异常项\n- 实验 2、3、4 均无可追踪日志，可能是直接 nohup 启动未重定向到 runs 目录。建议确认日志输出位置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-cron-status-all.md"
+}

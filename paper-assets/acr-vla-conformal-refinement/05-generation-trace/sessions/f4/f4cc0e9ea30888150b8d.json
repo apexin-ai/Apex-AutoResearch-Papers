@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4cc0e9ea30888150b8d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "fix multiscale wandb restart",
+  "task_key": "worker_fix_multiscale-wandb-restart_20260517T175952",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_multiscale-wandb-restart_20260517T175952_result.json",
+    "occurrence": 1,
+    "bytes": 465,
+    "sha256": "bc616fb1b78a9f0b188988ec1aed6d8f682fd5eb1427f69703c36dd04f10b60d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n- **旧进程**：PID 436926 已死\n- **GPU**：cuda:0 空闲（1 MiB, 0%）\n- **训练已重启**：PID 447923，tmux session `train-crm-k1-v2`，加了 `--no_wandb`\n- **Cache 复用**：`Loading cached features... [object] 65223 cached samples`，跳过 precompute\n- **训练进行中**：Epoch 2/50 已完成，val_loss=0.009542，loss 正常下降\n- **Registry**：已更新为 RUNNING，notes 记录 retry 原因"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-multiscale-wandb-restart.md"
+}

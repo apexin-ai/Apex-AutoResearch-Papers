@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af36dbf03d343a897cd8",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "infra env setup 4090x4",
+  "task_key": "worker_infra_env-setup-4090x4_20260513T043505",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_env-setup-4090x4_20260513T043505_result.json",
+    "occurrence": 1,
+    "bytes": 1929,
+    "sha256": "8c174a83497c136ab8e78c3743fdb6db329fcfc74e63eb5b0f48b63eb3ce7707"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有验证通过。最终状态报告：\n\n---\n\n## ACR-VLA 环境搭建报告 — `bjb1-18228`\n\n### 1. 基础环境\n\n| 项目 | 值 |\n|------|-----|\n| Python | 3.12.3 (conda base, `/root/miniconda3`) |\n| CUDA | 12.8 |\n| PyTorch | 2.10.0+cu128 |\n| `torch.cuda.is_available()` | True |\n\n### 2. GPU 可见性\n\n| GPU | 型号 | 显存 |\n|-----|------|------|\n| GPU 0 | NVIDIA GeForce RTX 4090 | 23GB |\n| GPU 1 | NVIDIA GeForce RTX 4090 | 23GB |\n| GPU 2 | NVIDIA GeForce RTX 4090 | 23GB |\n| GPU 3 | NVIDIA GeForce RTX 4090 | 23GB |\n\n### 3. 项目代码\n\n所有 11 个源文件已写入 `/root/acr-vla-conformal-refinement/`：\n\n| 文件 | 行数 | 大小 | 状态 |\n|------|------|------|------|\n| `src/__init__.py` | — | 133B | OK |\n| `src/cgs.py` | — | 4080B | OK |\n| `src/aci.py` | — | 3628B | OK |\n| `src/crm.py` | — | 1959B | OK |\n| `src/utils.py` | 186 | 6661B | OK |\n| `src/smolvla_wrapper.py` | 177 | 6585B | OK |\n| `src/train_crm.py` | 361 | 13624B | OK |\n| `src/evaluate.py` | — | 10108B | OK |\n| `scripts/verify_pipeline.py` | 324 | 11762B | OK |\n| `mvp/run_mvp.py` | — | 5846B | OK |\n| `tests/test_aci_sign.py` | 46 | 2284B | OK |\n\n### 4. 组件验证\n\n- **CGS** (ConformilizedGaussianScoring): K=10, horizon=5, action_dim=6 — 实例化成功\n- **CRM** (ConformalRefinementModule): 337,438 参数, forward pass (2,30)→(2,30) — 通过\n- **ACI** (AdaptiveConformalInference): 符号修正测试 3/3 通过（cover→alpha↑, miss→alpha↓, 稳定性）\n- `ACTION_DIM=6, H_EFF=5, OBS_DIM=960, CHUNK_SIZE=50` — 常量正确\n\n### 5. 依赖\n\ntransformers, accelerate, datasets, mujoco, gymnasium, robomimic, h5py, sklearn, einops, wandb, tmux — 全部已安装。\n\n### 6. 磁盘\n\n- 根分区: ~24GB 可用 (30GB 总)\n- 数据盘 (`/root/autodl-tmp/`): ~250GB 可用\n\n### 7. 遗留问题\n\n无。环境就绪，可开始训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-env-setup-4090x4.md"
+}

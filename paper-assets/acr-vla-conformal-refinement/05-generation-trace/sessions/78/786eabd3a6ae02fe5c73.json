@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "786eabd3a6ae02fe5c73",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diag eval supp goal reconvla s45",
+  "task_key": "worker_diag_eval-supp-goal-reconvla-s45_20260523T225731",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_eval-supp-goal-reconvla-s45_20260523T225731_result.json",
+    "occurrence": 1,
+    "bytes": 599,
+    "sha256": "511828aacb8d4101ca03d252cfac811cca6c3b03dddade2b9ba9d4ed2f3bbb3d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**诊断结论：假警报，实验已正常完成。**\n\n- **根因**：eval 脚本将结果写入本地 JSON 文件而非 W&B，cron 监控以 W&B metrics 作为成功信号，因此误报失败\n- **实际结果**：SR = 85.5%（171/200），所有 10 个 task 全部跑完，无任何 error/OOM/磁盘问题\n- **Registry 状态**：已标记为 DONE，conclusion=success\n- **无需重跑**\n\n诊断报告已写入 `artifacts/diag-eval-supp-goal-reconvla-s45.md` 并注册。建议后续更新 cron 监控逻辑，增加对本地 JSON 输出的检测作为备用成功信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-eval-supp-goal-reconvla-s45.md"
+}

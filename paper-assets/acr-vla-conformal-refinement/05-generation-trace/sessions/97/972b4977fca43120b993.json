@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "972b4977fca43120b993",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy d088 eval bjb2 28827 batch",
+  "task_key": "worker_deploy_d088-eval-bjb2-28827-batch_20260520T165909",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_d088-eval-bjb2-28827-batch_20260520T165909_result.json",
+    "occurrence": 1,
+    "bytes": 79,
+    "sha256": "76208d3c683f3fe15766a6f656f022eea6a251deb2004a45aa031af8efcf5cd8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "（30 秒 sleep 已完成，进程验证已在上面报告。）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-d088-eval-bjb2-28827-batch.md"
+}

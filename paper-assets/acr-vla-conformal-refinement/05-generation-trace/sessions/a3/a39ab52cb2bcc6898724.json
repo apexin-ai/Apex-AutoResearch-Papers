@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "a39ab52cb2bcc6898724",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "ops full retrain pipeline v2",
+  "task_key": "worker_ops_full-retrain-pipeline-v2_20260521T180431",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_ops_full-retrain-pipeline-v2_20260521T180431.jsonl",
+    "occurrence": 1,
+    "bytes": 176,
+    "sha256": "3357fe7e11a830677f83727a978063060355d07c60652c0f67302e0dd1c09608"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T18:04:42.618809+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_full-retrain-pipeline-v2_20260521T180431"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ops-full-retrain-pipeline-v2.md"
+}

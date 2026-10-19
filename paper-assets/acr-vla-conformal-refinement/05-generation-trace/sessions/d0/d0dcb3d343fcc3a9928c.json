@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "d0dcb3d343fcc3a9928c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "analyze precompute smolvla long bjb1 18228",
+  "task_key": "worker_analyze_precompute-smolvla-long-bjb1-18228_20260522T085455",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_analyze_precompute-smolvla-long-bjb1-18228_20260522T085455.jsonl",
+    "occurrence": 1,
+    "bytes": 190,
+    "sha256": "4159662aa8e5685e0b68641c2f24e33dac74fb622892f39da1ffe489f35fe49b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T08:55:03.265674+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_precompute-smolvla-long-bjb1-18228_20260522T085455"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/analyze-precompute-smolvla-long-bjb1-18228.md"
+}

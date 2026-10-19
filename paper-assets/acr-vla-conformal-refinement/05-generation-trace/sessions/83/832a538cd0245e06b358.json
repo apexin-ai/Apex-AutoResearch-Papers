@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "832a538cd0245e06b358",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops check bjb1 18228 status",
+  "task_key": "worker_ops_check-bjb1-18228-status_20260515T050057",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-bjb1-18228-status_20260515T050057_result.json",
+    "occurrence": 1,
+    "bytes": 1113,
+    "sha256": "2437252c289d13b39d6044d9ced35249997d6a4a825dda41160645d3b2c2a727"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报结果：\n\n## bjb1-18228 进程状态\n\n### 关键 PID\n- **PID 253085 (eval-acr-spatial-v4-small)** — **已死亡**，ps 未找到该进程\n- **PID 270097 (eval-acr-spatial-v4-obs-only-r2)** — **已死亡**，ps 未找到该进程\n\n### 实验相关进程\n**无任何实验进程在运行。** `ps aux` 输出中没有任何 python eval/libero/acr 相关进程。服务器上只有系统服务（sshd、supervisord、jupyter-lab、tensorboard、autopanel、proxy）。\n\n### GPU 使用\n| GPU | 显存占用 | 总显存 | 利用率 |\n|-----|---------|--------|--------|\n| 0 | 0 MiB | 24564 MiB | 0% |\n| 1 | 0 MiB | 24564 MiB | 0% |\n| 2 | 0 MiB | 24564 MiB | 0% |\n| 3 | 0 MiB | 24564 MiB | 0% |\n\n4 张卡全部空闲，无任何 GPU 负载。\n\n### Sentinel 文件\n无 sentinel 文件。\n\n### Tmux\n存在 tmux socket 目录，但无法用 read-only 模式列出 session 详情。\n\n### 结论\n**两个实验进程均已终止，所有 GPU 空闲。** kill-restart Worker 在被取消前很可能已经 kill 了这些进程。服务器当前无任何实验在运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-bjb1-18228-status-copy-2.md"
+}

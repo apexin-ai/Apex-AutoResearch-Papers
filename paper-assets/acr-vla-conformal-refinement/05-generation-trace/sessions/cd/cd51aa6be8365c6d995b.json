@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd51aa6be8365c6d995b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code acr vla framework",
+  "task_key": "worker_code_acr-vla-framework_20260513T022916",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_acr-vla-framework_20260513T022916_result.json",
+    "occurrence": 1,
+    "bytes": 669,
+    "sha256": "3cbd7157f295268738e889afa5dd1a578333a4f76279d15506546b2bd368d279"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n## 报告\n\n| 项目 | 状态 |\n|------|------|\n| 文件创建 (7/7) | `__init__.py`, `cgs.py`, `aci.py`, `crm.py`, `train_crm.py`, `evaluate.py`, `utils.py` |\n| CGS import | OK |\n| ACI import | OK |\n| CRM import | OK |\n| Utils import | OK |\n| train_crm.py --help | OK |\n| evaluate.py --help | OK |\n\n**CRM 参数量**: 226,595（非 ~131K）。差异原因：`obs_dim=512` 使第一层输入维度为 592（35+45+512），导致参数量偏高。若要达到 ~131K，需将 `obs_dim` 降至约 140，或将 `hidden_dim` 从 256 降至约 190。这取决于 SmolVLA encoder 实际输出维度，后续确定后调整。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-acr-vla-framework.md"
+}

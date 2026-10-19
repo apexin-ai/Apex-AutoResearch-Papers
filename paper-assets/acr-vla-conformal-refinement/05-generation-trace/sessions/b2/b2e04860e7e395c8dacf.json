@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2e04860e7e395c8dacf",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops collect reconvla bjb2 40593",
+  "task_key": "worker_ops_collect-reconvla-bjb2-40593_20260515T043904",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_collect-reconvla-bjb2-40593_20260515T043904_result.json",
+    "occurrence": 1,
+    "bytes": 1073,
+    "sha256": "6028df11726717e84f599cc9766fcb83d12df5f2a882045fa218ec1afe7d743b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The log is being buffered - printing every 5 rollouts. Here's the current state:\n\n```\nexp_id: reconvla-object-n20 (bjb2-40593)\nStatus: RUNNING (PID 211962, uptime ~3h, started 09:48 CST)\nTasks: 0/10 completed (still on T1)\nPer-task (partial):\n  T1 pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/20 done, 0% (0/10 so far)\n  T2-T10: not started\nOverall: N/A — too early\n\nETA: ~15 min/rollout × 200 total = ~50h. ~47h remaining.\n```\n\n**Notes:**\n- Process started ~3h ago (09:48 CST), not 12+ hours as stated. Either the previous run was a different process, or the estimate was off.\n- No results file written yet (`artifacts/reconvla_object.json` only created on completion).\n- Registry has `eval-reconvla-object` on bjb1-32546 (different server, n=10). This bjb2-40593 n=20 run has **no independent registry entry**.\n- T1 alphabet_soup is 0/10 success so far — consistent with other experiments where this task scores 0%.\n\nWant me to create a registry entry for this experiment (e.g. `eval-reconvla-object-n20-bjb2`)?"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-reconvla-bjb2-40593.md"
+}

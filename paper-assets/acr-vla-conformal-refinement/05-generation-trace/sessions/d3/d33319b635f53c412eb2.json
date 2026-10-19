@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d33319b635f53c412eb2",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_5_1778808483.md",
+  "task_key": "loop_5_1778808483",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_5_1778808483.md",
+    "occurrence": 1,
+    "bytes": 4530,
+    "sha256": "1a15c7ed42f75ef31194626b2885b124856b2ee711abe7096afccedf61dcffbd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-15T01:27:31+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- bjb1-18228 只能用 cuda:0/1/2/3（4× RTX 4090），bjb2-40593 只能用 cuda:0（1× RTX 4090 D）——这是 `get_project_status` 白名单\n- 所有 v1/v2/v3（非 norm）CRM checkpoint 已被 D016-D018 invalidate，**禁止用旧 checkpoint 做 eval**\n- submit 命令必须带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不能假设 .venv\n- 环境变量必带 `MUJOCO_GL=egl` + `MUJOCO_EGL_DEVICE_ID=0` + `HF_HUB_OFFLINE=1` + `TRANSFORMERS_OFFLINE=1`\n- CoRL 2026 abstract DDL ~May 26（D021 决策），时间极紧，不可浪费 GPU 跑重复实验\n- SmolVLA baseline 是 30%（spatial）/ 13%（object），不是 40%——之前有错误数据，以 eval-spatial-v7-full 和 eval-object-v8-full 为准\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**: connect.bjb1.seetacloud.com:18228, 4× RTX 4090, root\n- **bjb2-40593**: connect.bjb2.seetacloud.com:40593, 1× RTX 4090 D, root\n- 工作目录: `/root/acr-vla-conformal-refinement`\n- Python: `/root/miniconda3/bin/python`（conda base）\n- 模型: SmolVLA `lerobot/smolvla_libero`（本地 HF cache，离线模式）\n- CRM checkpoints: `/root/autodl-tmp/checkpoints/crm_v3_norm/{perdof,obs_only,scalar_unc}/crm_best.pt`\n- 数据: `/root/autodl-tmp/libero_data/`（spatial + object）\n- CRM cache v5: `/root/autodl-tmp/crm_cache_v5/`（8D state 修正版，26737 samples）\n- 活跃 cron（5 个，interval=120s）:\n  - `eval-argmin-only-spatial` — bjb1 cuda:1, PID 231421\n  - `eval-tiny-correction-spatial` — bjb1 cuda:2, PID 232815\n  - `eval-acr-spatial-v4-small` — bjb1 cuda:3, PID 253085\n  - `eval-acr-spatial-v4-obs-only-r2` — bjb1 cuda:0, PID 270097\n  - `eval-vla-mean-spatial-t10` — bjb2 cuda:0\n\n### 3. 📊 当前状态\n5 个 eval 实验并行运行中，全部 GPU 饱和。这是 D018-D020 之后的关键验证批次：\n\n- **eval-argmin-only-spatial**: ReconVLA argmin-only baseline（无 CRM），5/10 tasks done，40% avg\n- **eval-tiny-correction-spatial**: CRM 极小修正幅度 (max_correction_norm=0.01)，3/10 done，53.3%\n- **eval-acr-spatial-v4-small**: CRM 小修正 (max_correction_norm=0.1)，1/10 done\n- **eval-acr-spatial-v4-obs-only-r2**: obs_only CRM（D020 验证：不用 conformal features 纯用 obs 能否修正），刚启动\n- **eval-vla-mean-spatial-t10**: VLA-mean 第 10 个 task 补齐\n\n等待中：5 个 cron 回调。无 pending Worker。无 pending Director 决策（D021 已批准 CoRL 作为 secondary target）。\n\n### 4. 📋 待办（条件触发式）\n- `eval-tiny-correction-spatial` 完成 → 若 >34%（超 SampleConsensus）→ 确认 magnitude control 是关键，向 Director 汇报 + 规划更细粒度 norm 搜索\n- `eval-argmin-only-spatial` 完成 → 若 >34% → argmin 本身就够好，ACR-VLA framing 需要更强 claim\n- `eval-acr-spatial-v4-obs-only-r2` 完成 → 与 perdof eval 对比，若 obs_only > perdof → conformal features 无增益，需 Framing 调整提案（red-section）\n- `eval-acr-spatial-v4-small` 完成 → 与 tiny (0.01) 对比确认最优 correction scale\n- 全部 5 个 eval 完成 → 综合分析：per-DOF vs scalar vs obs_only vs argmin vs baseline，产出 story 判断 + 向 Director 汇报 CoRL feasibility\n- GPU 空出后 → 立即铺 object benchmark eval（当前只有 spatial）\n\n### 5. 🎯 战略上下文\n**核心悬念**: CRM 修正在全 10 tasks 上是否能稳定超过 30% baseline？目前信号混杂——早期 2/10 tasks 显示 23-26%（degradation），但那是 D018 修复前的数据。v3-norm 是否真正解决了问题，这批 eval 是决定性的。\n\n**决策链关键节点**:\n- D016: 6D→8D state fix，invalidate 所有旧实验\n- D018: 1500x input scale 修复 → v3-norm checkpoint\n- D020: obs_only val_loss (0.0165) 远优于 perdof (0.0358) → 暗示 conformal features 可能不是 bottleneck\n- D021: CoRL 2026 重新纳入考虑（DDL ~May 26，仅剩 11 天）\n\n**最易判断错的事**:\n1. **不要把 val_loss 低等同于 eval success rate 高**——obs_only val_loss 更低但 eval 可能不如 perdof（因为 offline 数据 ≠ online correction dynamics）\n2. **baseline 是 30% 不是 40%**——之前有 wrapper bug 导致高估\n3. **SampleConsensus 34% 是 scalar conformal 的 argmin baseline**，不是 CRM——它们是不同方法\n4. **CoRL 11 天内需要 abstract**——如果这批 eval 全部 negative，必须立即启动 Framing 调整而非继续 tune\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778808483.md"
+}

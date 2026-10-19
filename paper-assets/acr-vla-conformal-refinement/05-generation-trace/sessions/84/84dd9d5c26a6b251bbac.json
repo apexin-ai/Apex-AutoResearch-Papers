@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84dd9d5c26a6b251bbac",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "audit stale running experiments",
+  "task_key": "worker_audit_stale-running-experiments_20260521T010415",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_stale-running-experiments_20260521T010415_result.json",
+    "occurrence": 1,
+    "bytes": 3006,
+    "sha256": "36ebc68bf29fe99681cdceecb90d0325b5a21655f172437ee01bb43f53102b7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "你列出的 15 个实验已经全部不是 RUNNING 了（14 个 DONE，1 个 PREPARING）。这些已经被处理过了。\n\n当前 registry 实际有 **22 个 RUNNING** 实验。以下是审计结果：\n\n---\n\n## 审计结果\n\n### bjb2-28827（9 个实验）\n\n| 实验 | PID | 判定 | 说明 |\n|------|-----|------|------|\n| eval-obs-only-object-norm01-seed71 | 922504 | **ALIVE** | 运行 19min |\n| eval-obs-only-object-norm005-seed72 | 922712 | **ALIVE** | 运行 19min |\n| eval-obs-only-object-norm003-seed73 | 922982 | **ALIVE** | 运行 19min |\n| eval-obs-only-object-norm01-seed74 | 923256 | **ALIVE** | 运行 19min |\n| eval-obs-only-object-norm005-seed75 | 923398 | **ALIVE** | 运行 19min |\n| eval-obs-only-object-norm003-seed56 | 865274 | **COMPLETED** | JSON: `logs/eval_obs_only_object_norm003_seed56.json` |\n| eval-obs-only-object-norm01-seed61 | 915187 | **DEAD** | 日志停在 rollout 5/10，无 JSON，conclusion 已标 \"killed\" |\n| eval-obs-only-object-norm005-seed62 | 915391 | **DEAD** | 日志停在 rollout 5/10，无 JSON |\n| eval-obs-only-object-norm005-seed63 | 915981 | **DEAD** | 日志停在 rollout 5/10，无 JSON |\n\n### bjb1-32546（9 个实验）\n\n| 实验 | PID | 判定 | 说明 |\n|------|-----|------|------|\n| eval-obs-only-object-norm003-seed64 | 723784 | **ALIVE** | 运行 31min |\n| eval-obs-only-object-norm003-seed65 | 725722 | **ALIVE** | 运行 29min |\n| eval-obs-only-object-norm01-seed64 | 726800 | **ALIVE** | 运行 28min |\n| eval-obs-only-object-norm01-seed65 | 728057 | **ALIVE** | 运行 28min |\n| eval-obs-only-object-norm005-seed64 | 729873 | **ALIVE** | 运行 27min |\n| eval-obs-only-object-norm01-seed51-r3 | 731912 | **ALIVE** | 运行 26min |\n| eval-obs-only-object-norm01-seed52-r3 | 733203 | **ALIVE** | 运行 26min |\n| eval-obs-only-object-norm003-seed62-r2 | 734631 | **ALIVE** | 运行 25min |\n| eval-obs-only-object-norm003-seed63-r2 | 735998 | **ALIVE** | 运行 25min |\n\n### bjb1-18228（4 个实验）\n\n| 实验 | PID | 判定 | 说明 |\n|------|-----|------|------|\n| eval-obs-only-object-norm003-seed59 | 599925 | **ALIVE** | 运行 1h41m |\n| eval-obs-only-object-norm005-seed65 | 622479 | **ALIVE** | 运行 31min |\n| eval-obs-only-object-norm005-seed58 | 596867 | **COMPLETED** | JSON: `logs/eval_obs_only_object_norm005_seed58.json` |\n| eval-obs-only-object-norm01-seed57 | 594635 | **COMPLETED** | JSON: `logs/eval_obs_only_object_norm01_seed57.json` |\n\n---\n\n## 汇总\n\n- **ALIVE**: 16 个，正常运行中\n- **COMPLETED**: 3 个，需要收割结果并标记 DONE\n  - `eval-obs-only-object-norm003-seed56`\n  - `eval-obs-only-object-norm005-seed58`\n  - `eval-obs-only-object-norm01-seed57`\n- **DEAD**: 3 个，需要标记 DONE(failed)\n  - `eval-obs-only-object-norm01-seed61`（已有 conclusion=\"killed\"）\n  - `eval-obs-only-object-norm005-seed62`\n  - `eval-obs-only-object-norm005-seed63`\n\n要我执行 `update_registry` 处理这 6 个实验吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-stale-running-experiments.md"
+}

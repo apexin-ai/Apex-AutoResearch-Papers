@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb6725a4e2c6633638eb",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "eval acr vla spatial v1",
+  "task_key": "worker_eval_acr-vla-spatial-v1_20260513T225211",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_acr-vla-spatial-v1_20260513T225211_result.json",
+    "occurrence": 1,
+    "bytes": 731,
+    "sha256": "9fc6268a8afa0adfc39b759abf30c5ec0b62d65509382db443eb3a12921a7199"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "一切正常。CRM 已加载（337,438 params），10 个 spatial tasks 已加载，rollouts 正在运行。\n\n**启动摘要：**\n\n| 项目 | 值 |\n|------|-----|\n| 实验 ID | `eval-acr-spatial-v1` |\n| 服务器 | bjb1-18228, GPU 1 (RTX 4090) |\n| 模式 | `acr_vla` (SmolVLA K=10 → CGS → CRM correction) |\n| 基准 | LIBERO spatial, 10 tasks × 10 rollouts |\n| CRM | crm_best.pt, 337K params |\n| tmux session | `eval-acr-spatial-v1` |\n| 日志 | `/root/autodl-tmp/eval_results/eval-acr-spatial-v1.log` |\n| 结果 JSON | `/root/autodl-tmp/eval_results/eval-acr-spatial-v1.json` |\n\n进程已进入 rollout 阶段。可用 `tail /root/autodl-tmp/eval_results/eval-acr-spatial-v1.log` 跟踪进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-acr-vla-spatial-v1.md"
+}

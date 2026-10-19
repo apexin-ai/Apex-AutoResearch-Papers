@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "757f7566a9132917f97d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh argmin seed44 r2 harvest",
+  "task_key": "worker_ssh_argmin-seed44-r2-harvest_20260516T150746",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_argmin-seed44-r2-harvest_20260516T150746_result.json",
+    "occurrence": 1,
+    "bytes": 579,
+    "sha256": "c9b2186f000dde1b4ea182c186d73839ea5098991204ad9f48d531417fa390cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**PID 428117 (argmin-object-seed44-r2)**: 存活，正在跑最后一个 task (orange_juice, 5/10 rollouts done)。JSON 文件尚未生成。\n\n**部分结果** (9/10 tasks done):\n- 12 successes / 90 rollouts = **13.3% SR (partial)**\n- 最强 task: chocolate_pudding 50%，其余大部分 0-10%\n\n**r4 进程 (PID 501420)**: 已 kill -9，cuda:2 已释放。\n\n结果已保存到 `artifacts/argmin_seed44_r2_results.json`。argmin eval 大约几分钟后跑完，届时可从 `logs/eval_object_reconvla_seed44.json` 读取最终结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-argmin-seed44-r2-harvest.md"
+}

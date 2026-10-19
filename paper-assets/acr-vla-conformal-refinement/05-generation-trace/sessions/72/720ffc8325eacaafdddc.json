@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "720ffc8325eacaafdddc",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "audit diu citation check",
+  "task_key": "worker_audit_diu-citation-check_20260513T224545",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_diu-citation-check_20260513T224545_result.json",
+    "occurrence": 1,
+    "bytes": 1739,
+    "sha256": "4a2531f936462d607ff116dc0a993ab26805a2b081fb8592e75be4ddb1e0dceb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## DiU 引用核查结果：**真实有效**\n\n**bib 条目：**\n```\n@misc{xing2026diu,\n    title={Divergence is Uncertainty: A Closed-Form Posterior Covariance for Flow Matching},\n    author={Jiarui Xing and Song Wang and Jian Wang},\n    year={2026},\n    eprint={2605.00941},\n    archivePrefix={arXiv},\n    primaryClass={cs.LG}\n}\n```\n\n**验证结果：**\n- arXiv ID [2605.00941](https://arxiv.org/abs/2605.00941) **存在且匹配**\n- 标题、作者、年份全部一致\n- 2026年5月1日提交，作者来自 Yale School of Medicine、UCF、Harvard Medical School\n\n**论文实际内容：**\n\nDiU 证明了一个精确的解析恒等式：对于任意预训练的 flow matching 速度场，posterior covariance 的 trace 等于速度场的 divergence（乘以已知的时间依赖系数 + 常数项）。核心优势：\n- **Post-hoc**：无需重训练、无需修改架构\n- **Single-pass**：对于 one-step generators（如 MeanFlow），单次前向传播即可得到精确的生成不确定性\n- 计算量比 ensemble/MC-Dropout 低约 10,000×\n- MNIST 实验验证：per-pixel uncertainty maps 在数字边界处最高，与实际预测误差相关\n\n**我们论文中的引用准确性：**\n- \"divergence of the velocity field recovers per-DOF aleatoric uncertainty from a single forward pass\" — **基本准确**\n- 需注意：原文是关于通用 flow matching 的理论结果（cs.LG），不是 robotics/VLA 专用方法，但技术上可应用于 flow-matching-based VLA\n\n**结论：DiU 引用合法，无需修改。**\n\nSources:\n- [DiU: Divergence is Uncertainty (arXiv:2605.00941)](https://arxiv.org/abs/2605.00941)\n- [DiU HTML version](https://arxiv.org/html/2605.00941)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-diu-citation-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ce2c8c18c064c576816",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_11_1778876825.md",
+  "task_key": "loop_11_1778876825",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_11_1778876825.md",
+    "occurrence": 1,
+    "bytes": 5518,
+    "sha256": "28a9eb98313dad41ff7d83affd578e44a79355cd970e71f2f90522d4c1b16754"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-15T20:21:01+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- allocated_gpus 列表为空但 14 张卡实际在跑——提交新实验前必须向 Director 请求分配，不要自行占用\n- perdof CRM 在 spatial 已确认 dead（D030），不要再在 spatial 上跑 perdof 相关实验\n- obs_only 是唯一存活路径（D030），所有实验规划必须围绕 obs_only story\n- ROADMAP 中 magnitude sweep 的中期值（7t）会膨胀——T7-T9 是 hard tasks（0-30%），必须等 10-task FINAL 才能 claim\n- CoRL 2026 abstract DDL ~May 26, full paper DDL ~Jun 2，剩 ~11 天，不允许 fallback 思维\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228** (4× 4090): 工作目录 /root/acr-vla-conformal-refinement, 4/4 满载\n  - cuda:0 eval-mag-obsonly-norm03-r2 (PID 325264)\n  - cuda:1 eval-perdof-object-seed43 (PID 365925)\n  - cuda:2 eval-obs-only-object-seed43 (PID 356490)\n  - cuda:3 eval-argmin-object-seed43 (PID 356696)\n- **bjb1-32546** (6× 4090): 工作目录 /root/acr-vla-conformal-refinement\n  - cuda:0 eval-mag-obsonly-norm003-object (PID 121325)\n  - cuda:1 eval-vla-mean-object-seed43 (PID 111709)\n  - cuda:2 eval-scalar-object-seed43 (PID 114664)\n  - cuda:4 eval-acr-object-obs-only-norm02 (PID 44270)\n  - cuda:5 eval-mag-perdof-norm02-object\n  - cuda:3 可能空闲（未在 resource usage 中出现）\n- **bjb2-28827** (6× 4090): 工作目录 /root/acr-vla-conformal-refinement\n  - cuda:0 eval-mag-perdof-norm003-object\n  - cuda:1 eval-mag-perdof-norm005-object\n  - cuda:2 eval-mag-perdof-norm02 (PID 13728)\n  - cuda:3 **空闲**（eval-mag-perdof-norm03 刚完成）\n  - cuda:4 eval-acr-object-v4-default\n  - cuda:5 可能跑 eval-mag-obsonly-norm03-object (PID 103028) 或 eval-mag-obsonly-norm005-object (PID 101610)，未确认\n- **bjb2-40593** (1× 4090 D): cuda:0 eval-mag-obsonly-norm003-b2 (PID 227434)\n- 模型路径: /root/autodl-tmp/models/smolvla_libero/\n- CRM checkpoints: /root/autodl-tmp/checkpoints/crm_v3_norm/{perdof,obs_only,scalar}/crm_best.pt\n- 日志: /root/acr-vla-conformal-refinement/logs/\n\n### 3. 📊 当前状态\n**刚做完**: 收到 eval-mag-perdof-norm03 (perdof norm=0.3 spatial) 的 cron 完成回调。已派 Worker (worker_analyze_eval-mag-perdof-norm03_20260515T171431) 去 bjb2-28827 取最终 10-task 结果并更新 registry。已向 Director 发送初步通知 + 请求分配 bjb2-28827:cuda:3。\n\n**ANALYZING**: eval-mag-perdof-norm03 — Worker 正在取结果，7-task 快照 32.9%，预计 10-task < 34% (negative)\n\n**RUNNING (13 个 cron 监控中)**:\n- eval-mag-perdof-norm02 — perdof norm=0.2 spatial (bjb2-28827:cuda:2)\n- eval-acr-object-obs-only-norm02 — obs_only norm=0.2 object (bjb1-32546:cuda:4)\n- eval-mag-obsonly-norm003-b2 — obs_only norm=0.03 spatial retry (bjb2-40593)\n- eval-mag-obsonly-norm03-r2 — obs_only norm=0.3 spatial retry (bjb1-18228:cuda:0)\n- seed=43 三方: obs-only/argmin/perdof-object-seed43 (bjb1-18228:cuda:1-3)\n- seed=43 扩展: vla-mean/scalar-object-seed43 (bjb1-32546:cuda:1-2), obs-only-norm02-seed43 (未确认 GPU)\n- object magnitude sweep: obsonly-norm003-object, obsonly-norm005-object, obsonly-norm03-object, perdof-norm003/005/02-object\n\n**等待中**:\n- Worker 回调: worker_analyze_eval-mag-perdof-norm03 → 需完成 registry 更新 + 完整 Director 汇报\n- Worker 回调: worker_ops_live-status-bjb1-32546, worker_ops_progress-check-all-servers → 进度更新\n- Director 决策: bjb2-28827:cuda:3 GPU 分配（建议填 eval-mag-perdof-norm03-object）\n\n### 4. 📋 待办\n- Worker analyze 回调到达 → 读最终 10-task SR，update_registry(status=DONE, conclusion=negative/success)，更新 report.md，向 Director 发完整分析（含 on-experiment-done 反思 + 文献联动）\n- Director 分配 bjb2-28827:cuda:3 → submit eval-mag-perdof-norm03-object（perdof norm=0.3 object）\n- bjb1-32546:cuda:3 如确认空闲 → 向 Director 请求分配，填入 QUEUED 实验\n- seed=43 三方（obs-only/argmin/perdof-object-seed43）全部完成 → Fisher exact test + bootstrap CI，决定项目存亡（D031）\n- 任一 magnitude sweep 实验完成 → 更新 magnitude sweep 表格，判断 obs_only 在所有 norm 下是否 > perdof\n- 所有 object benchmark 完成 → 更新 paper_framing.md，启动 CoRL 论文初稿\n\n### 5. 🎯 战略上下文\n**核心结论链**: D025 invalidated perdof \"52.5%\" claim → D028 argmin baseline locked 34% → D029 perdof spatial = argmin (dead) → D030 ALL spatial CRM variants dead → D031 seed=43 doubling 决定项目存亡 → D032 spatial magnitude sweep 可能整体 null，object benchmark 是真正 story 载体\n\n**项目存活唯一路径**: Object obs_only +6pp+ 维持 (现 19.0% vs argmin 12.0% = +7pp ✅) + seed=43 复现 → p < 0.05。如果 seed=43 不复现或 obs_only 回落，项目 dead。\n\n**易错判断**:\n- Spatial 所有方法收敛到 ~34%，差异无统计意义——不要在 spatial 上再做 claim\n- Magnitude sweep 中期值会膨胀（T7-T9 hard），不要用 7t 数字做判断\n- perdof 在 spatial 已确认 dead，但 object 上 perdof 11% vs argmin 12% 只差 1pp，也是 dead——唯一有 signal 的是 obs_only object\n- obs_only spatial = 35% = argmin 34%，差 1pp 无意义——story 必须建立在 object benchmark 的 +7pp 上\n- eval-mag-perdof-norm03 大概率 negative（perdof norm=0.3 低于 argmin），这进一步支持 \"perdof 崩塌而 obs_only 鲁棒\" 的 narrative，但需要 obs_only norm=0.3 数据来完成对比\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778876825.md"
+}

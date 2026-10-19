@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae0bef1c1e481d4dbe91",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose multiscale seed43 r2 exit",
+  "task_key": "worker_diagnose_multiscale-seed43-r2-exit_20260517T205414",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_multiscale-seed43-r2-exit_20260517T205414_result.json",
+    "occurrence": 1,
+    "bytes": 807,
+    "sha256": "3f125d2c7eaab7687aa9f86f2ece8151ab0cf79fb21bda3a411f0296087f1388"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不在当前 session 中（可能已在之前 session 删除或从未在此 session 创建），跳过。\n\n---\n\n## 结果汇总\n\n**eval-k1-crm-multiscale-object-seed43-r2** — 完成，结论：**negative**\n\n| Task | SR |\n|------|-----|\n| alphabet_soup | 0% |\n| cream_cheese | 0% |\n| salad_dressing | 10% |\n| bbq_sauce | 20% |\n| ketchup | 0% |\n| tomato_sauce | 20% |\n| butter | 0% |\n| milk | 0% |\n| chocolate_pudding | 20% |\n| orange_juice | 20% |\n| **Overall** | **9.0%** |\n\nK=1 CRM multi-scale (ACCG 4×960D) 在 seed43 上 overall SR = 9%，与之前 single-scale K=1 CRM 的 negative 结论一致（seed42/43/44 均为 negative）。multi-scale 架构未能挽救 K=1 的性能。\n\n**cuda:1 已释放**（4 MiB / 0% utilization），可部署 OpenVLA eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-multiscale-seed43-r2-exit.md"
+}

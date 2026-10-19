@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f91293f9536a01f5e634",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "infra fix camera names restart eval",
+  "task_key": "worker_infra_fix-camera-names-restart-eval_20260513T191521",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_fix-camera-names-restart-eval_20260513T191521_result.json",
+    "occurrence": 1,
+    "bytes": 514,
+    "sha256": "4664a36cf3d344be97e9f5ed778eff4d39cb91a1d5d957902a9eabeb3961b1e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n| 产出 | 结果 |\n|------|------|\n| cuda:0 释放 | PID 69379 + 子进程 69389 已 kill，cuda:0 清空 |\n| precompute 状态 | cuda:1/2/3 三个 precompute 进程正常运行（PID 69657/69803/69947） |\n| camera_names 修复 | 第 108 行：`\"camera_names\": [\"agentview\", \"robot0_eye_in_hand\"],`，缩进对齐 |\n| 语法检查 | SYNTAX OK |\n| eval-spatial-v5-full | PID **73756**，cuda:0，日志 `~/runs/acr-vla-conformal-refinement/eval-spatial-v5-full.log` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-fix-camera-names-restart-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af3d429826594791e4a9",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "fix stuck preparing experiments",
+  "task_key": "worker_fix_stuck-preparing-experiments_20260515T190835",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_stuck-preparing-experiments_20260515T190835_result.json",
+    "occurrence": 1,
+    "bytes": 646,
+    "sha256": "54a084573feacad27b4ec2dec25457c17bd9f32997d3898ebbab76137d43d3d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n| 实验 | 服务器 | PID | 状态变更 | Cron |\n|------|--------|-----|----------|------|\n| `eval-mag-perdof-norm0p3-object-r2` | bjb2-28827 | 127570 ✅存活 | PREPARING → QUEUED → **RUNNING** | `6dfe7623` 每20min |\n| `eval-obs-only-object-norm02-seed43-r2` | bjb1-32546 | 148788 ✅存活 | PREPARING → QUEUED → **RUNNING** | `eba1ca2c` 每20min |\n\n两个进程都在正常运行——模型和环境已加载完成，正在执行 evaluation rollouts（output_file 尚未生成，说明还在第一个 task）。Registry 已更新为 RUNNING，cron 每 20 分钟自动检查进程存活和进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-stuck-preparing-experiments.md"
+}

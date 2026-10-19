@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e06bb9c80d5f16a7a1a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb1 18228 cuda2 pi05 adaptive goal",
+  "task_key": "worker_deploy_bjb1-18228-cuda2-pi05-adaptive-goal_20260525T083808",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb1-18228-cuda2-pi05-adaptive-goal_20260525T083808_result.json",
+    "occurrence": 1,
+    "bytes": 394,
+    "sha256": "dee5236f0c5ab97473b7af4235cc33729ee1d292d91e804eec205c6991dd3e3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**eval-pi05-vla-only-spatial-s43-r2 结果**：SR = 0.975（195/200），9/10 tasks 满分，唯一低分 task \"pick_up_the_black_bowl_on_the_ramekin\" 75%。Registry 已更新 DONE/success。\n\n**eval-pi05-adaptive-goal-s42 已部署**：cuda:2 占用 13966 MiB，PID 525734，模型已加载，10 tasks loaded，正在运行。Registry 已注册 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb1-18228-cuda2-pi05-adaptive-goal.md"
+}

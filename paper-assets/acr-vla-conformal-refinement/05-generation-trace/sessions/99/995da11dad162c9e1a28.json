@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "995da11dad162c9e1a28",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis 4seed fisher prep",
+  "task_key": "worker_analysis_4seed-fisher-prep_20260516T153855",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_4seed-fisher-prep_20260516T153855_result.json",
+    "occurrence": 1,
+    "bytes": 1147,
+    "sha256": "cf86a29e64565d76debc931d52f3870f7ffe27e697f886618e129e4390406448"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果出来了，但 p 值与预期不一致。3-seed pooled Fisher exact test 得到的是 **p=0.035 (one-sided)**，而非预期的 ≈0.091。\n\n实际输出：\n\n```\nSeeds: [42, 43, 44] (3-seed pooled)\n\nSeed    obs_only SR       argmin SR         Δ\n42      44/200 = 22.0%    24/200 = 12.0%    +10.0%\n43      32/200 = 16.0%    34/200 = 17.0%    -1.0%\n44      32/200 = 16.0%    26/200 = 13.0%    +3.0%\nPOOLED  108/600 = 18.0%    84/600 = 14.0%    +4.0%\n\nFisher exact test (one-sided: obs > argmin)\nOdds ratio: 1.3484\np (two-sided): 0.069931\np (one-sided): 0.034966\n\n→ p = 0.0350 < 0.05 → SIGNIFICANT (Narrative A)\n```\n\np≈0.091 可能来自不同的检验方法（如 per-seed Fisher 合并、z-test with continuity correction 等）。标准的 pooled counts Fisher exact test 给出 p=0.035。\n\n脚本路径：`/root/acr-vla-conformal-refinement/analysis/pooled_fisher_test.py`\n\n用法：\n- `python pooled_fisher_test.py` — 自动检测所有可用 seeds\n- `python pooled_fisher_test.py 42 43 44` — 指定 seeds\n- seed45 完成后直接 `python pooled_fisher_test.py` 即可跑 4-seed 分析"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-4seed-fisher-prep.md"
+}

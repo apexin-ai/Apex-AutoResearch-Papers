@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "e1b3ebadb06e43ef7b49",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "cron hook pi05 adaptive long s42 tau035 bjb2",
+  "task_key": "cron_hook_pi05-adaptive-long-s42-tau035-bjb2",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/cron_hook_pi05-adaptive-long-s42-tau035-bjb2.jsonl",
+    "occurrence": 1,
+    "bytes": 562,
+    "sha256": "746bd260aa0e2c0a72778e910b82cf6a47e784617b05f36ca1ef8c7558c02d64"
+  },
+  "statistics": {
+    "messages": 2,
+    "user_turns": 1,
+    "tool_calls": 0,
+    "roles": {
+      "user": 1,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-27T00:23:03.390836+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: pi05-adaptive-long-s42-tau035-bjb2\n- project: acr-vla-conformal-refinement\n- server: bjb2-28827"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-adaptive-long-s42-tau035-bjb2",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-27T00:23:49.939042+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "⏰ API 当前限速（所有账号），请稍后重试。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:pi05-adaptive-long-s42-tau035-bjb2"
+          },
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-pi05-adaptive-long-s42-tau035-bjb2.md"
+}

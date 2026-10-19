@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5f601da494428004f37",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy m023 redeploy bjb2 28827",
+  "task_key": "worker_deploy_m023-redeploy-bjb2-28827_20260519T170200",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_m023-redeploy-bjb2-28827_20260519T170200_result.json",
+    "occurrence": 1,
+    "bytes": 1586,
+    "sha256": "2109f41016026e4f212a0097e59e0e7f043343f9543978861ed5624e122d9060"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证完成。\n\n---\n\n## M023 修复报告\n\n### 1. 事故原因\n- **无法确定根因**：dmesg 无权限，journalctl 无记录\n- 服务器未重启（uptime 146 天）\n- load average 38→11 在下降，说明近期大量进程被终止\n- **所有 GPU 上的进程都被杀了**，不仅是 3 个目标实验，包括 FMVD (GPU5) 和 OpenVLA (GPU4) 也被杀\n- 可能原因：系统级 OOM 或人工批量 kill\n\n### 2. 实验部署状态\n\n| exp_id | GPU | PID | server | status |\n|--------|-----|-----|--------|--------|\n| eval-argmin-object-k5-seed44-r2 | cuda:1 | 901514 | bjb2-28827 | **已提交** |\n| eval-obs-only-spatial-norm02-seed46-r2 | cuda:3 | 901980 | bjb2-28827 | **已提交** |\n| eval-vla-only-goal-seed44-r2 | cuda:0 | 902257 | bjb2-28827 | **已提交** |\n\nGPU 0/1/3 刚启动，模型尚在加载中（3 MiB）。\n\n### 3. OpenVLA cuda:4 状态\n**已被其他 worker 重启**。PID 900134, 22986 MiB, GPU-Util 47%。tmux session `eval-openvla-object-baseline-seed42` 创建于 01:03:26（早于本次部署）。未触碰。\n\n### 4. GPU 空闲状态\n- **cuda:2**：完全空闲，可分配\n- **cuda:5**：tmux session `fmvd-calibration-phase1` 存在但 GPU 仅 3 MiB — FMVD 可能在启动中或异常，需关注\n\n### 5. Registry 更新\n- `eval-vla-only-goal-seed44`: conclusion → killed ✓\n- `eval-openvla-object-baseline-seed42`: conclusion → killed ✓（已被其他 worker 重启）\n- `eval-argmin-object-k5-seed44` / `eval-obs-only-spatial-norm02-seed46`: **registry 中无条目**，无法更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-m023-redeploy-bjb2-28827.md"
+}

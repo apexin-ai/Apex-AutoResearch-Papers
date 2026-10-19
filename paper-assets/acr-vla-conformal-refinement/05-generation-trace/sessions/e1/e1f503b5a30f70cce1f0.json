@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1f503b5a30f70cce1f0",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code lto fix taskname matching",
+  "task_key": "worker_code_lto-fix-taskname-matching_20260519T032257",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_lto-fix-taskname-matching_20260519T032257_result.json",
+    "occurrence": 1,
+    "bytes": 1427,
+    "sha256": "2a1dcd407ef7c2fa6a750a55785e2b53ce0c5dbb94c9dc3ca7b9e6f928171329"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常启动，过滤逻辑正确：从 14570 总样本中筛出 7499 个样本，覆盖 5 个 train task，名称完全正确。\n\n## 修复总结\n\n### 修改的文件\n1. **`train_crm.py`**: `--task_indices` (numeric) → `--task_names` (substring)，过滤逻辑从 numeric ID 索引改为通过 `task_mapping.json` 做 name substring 匹配（下划线自动转空格）\n2. **`evaluate.py`**: `--task_indices` (numeric) → `--task_names` (substring)，过滤逻辑从 `task_envs[j]` 位置索引改为遍历 `task_name` 做 substring 匹配\n\n### 验证清单\n1. ✅ train_crm.py 用 `--task_names` 字符串匹配\n2. ✅ evaluate.py 用 `--task_names` 字符串匹配\n3. ✅ train 选中 5 个 task: alphabet_soup/bbq_sauce/butter/chocolate_pudding/cream_cheese (7499 samples)\n4. ✅ eval 将选中 5 个 task: ketchup/milk/orange_juice/salad_dressing/tomato_sauce\n5. ✅ train 和 eval 零重叠\n\n### 训练\n- **exp_id**: `crm-lto-splitA-train-fixed`\n- **GPU**: cuda:2 (RTX 4090)\n- **预估时长**: ~1-2h (50 epochs, 7499 samples, obs_only mode)\n\n### 训练完成后 eval 命令\n```bash\npython evaluate.py --benchmark object --mode crm_obs_only \\\n  --checkpoint /root/autodl-tmp/checkpoints/crm_lto_splitA_fixed/crm_best.pt \\\n  --task_names 'ketchup,milk,orange_juice,salad_dressing,tomato_sauce' \\\n  --n_rollouts 20 \\\n  --output_file logs/eval_lto_splitA_fixed.json\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-lto-fix-taskname-matching.md"
+}

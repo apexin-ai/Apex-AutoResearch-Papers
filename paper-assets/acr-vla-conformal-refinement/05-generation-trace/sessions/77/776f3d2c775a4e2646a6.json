@@ -1,0 +1,149 @@
+{
+  "schema_version": "1.0",
+  "id": "776f3d2c775a4e2646a6",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "cron hook smolvla tau020 long s43",
+  "task_key": "cron_hook_smolvla-tau020-long-s43",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/cron_hook_smolvla-tau020-long-s43.jsonl",
+    "occurrence": 1,
+    "bytes": 1818,
+    "sha256": "389b98991663857c599076265f282a45ea2039532a5019c9703dcd3e082e274c"
+  },
+  "statistics": {
+    "messages": 6,
+    "user_turns": 3,
+    "tool_calls": 0,
+    "roles": {
+      "user": 3,
+      "assistant": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-27T08:24:09.624053+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: smolvla-tau020-long-s43\n- project: acr-vla-conformal-refinement\n- server: cqa1-32758\n- log_path: ~/runs/acr-vla-conformal-refinement/smolvla-tau020-long-s43.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau020-long-s43",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-27T08:25:02.524413+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "⏰ API 当前限速（所有账号），请稍后重试。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau020-long-s43"
+          },
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-27T08:25:02.668809+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: smolvla-tau020-long-s43\n- project: acr-vla-conformal-refinement\n- server: cqa1-32758\n- log_path: ~/runs/acr-vla-conformal-refinement/smolvla-tau020-long-s43.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau020-long-s43",
+            "source": "cron:hook"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-27T08:26:04.658582+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "⏰ API 当前限速（所有账号），请稍后重试。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau020-long-s43"
+          },
+          "id": "event-000004"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-27T08:48:56.227166+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: smolvla-tau020-long-s43\n- project: acr-vla-conformal-refinement\n- server: cqa1-32758\n- log_path: ~/runs/acr-vla-conformal-refinement/smolvla-tau020-long-s43.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau020-long-s43",
+            "source": "cron:hook"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-27T08:49:48.394148+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "⏰ API 当前限速（所有账号），请稍后重试。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:smolvla-tau020-long-s43"
+          },
+          "id": "event-000006"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-smolvla-tau020-long-s43.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "abbbc77977fdf48b3c69",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose eval vla mean spatial result",
+  "task_key": "worker_diagnose_eval-vla-mean-spatial-result_20260514T221125",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval-vla-mean-spatial-result_20260514T221125_result.json",
+    "occurrence": 1,
+    "bytes": 780,
+    "sha256": "28f5f42924ab787329c4fda8c2d19178d8e57c80613fffb36f46cb88a7a03d32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Summary:\n\n**eval-vla-mean-spatial: DONE (failed — incomplete)**\n\n9/10 tasks completed, task 10 (on_wooden_shelf) never ran. Process was silently killed after task 9 — no error or traceback in log.\n\n| Task | Success Rate |\n|------|-------------|\n| between_plate_and_ramekin | 70% (7/10) |\n| next_to_ramekin | **100%** (10/10) |\n| from_table_center | 0% (0/10) |\n| on_cookie_box | 30% (3/10) |\n| in_top_drawer | 0% (0/10) |\n| on_ramekin | 0% (0/10) |\n| next_to_cookie_box | **80%** (8/10) |\n| on_stove | 0% (0/10) |\n| next_to_plate | 30% (3/10) |\n| on_wooden_shelf | **NOT RUN** |\n\n- **Partial overall**: 31/90 = 34.4% (9 tasks)\n- **Estimated if T10=0**: 31/100 = 31%\n\nTask 10 needs to be re-run to get the complete result."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-vla-mean-spatial-result.md"
+}

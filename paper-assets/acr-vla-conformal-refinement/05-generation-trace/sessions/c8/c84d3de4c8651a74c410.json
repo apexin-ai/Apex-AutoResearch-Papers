@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c84d3de4c8651a74c410",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest eval obs only object norm005 seed43",
+  "task_key": "worker_harvest_eval-obs-only-object-norm005-seed43_20260520T105757",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_eval-obs-only-object-norm005-seed43_20260520T105757_result.json",
+    "occurrence": 1,
+    "bytes": 418,
+    "sha256": "c980e1610936ad01b1f1cb746178ce3ebfb014d34e916b2a375de112fa242e02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果摘要：\n\n- **Overall SR**: 13% (13/100)，与 r2 的 14% 接近，高于 VLA baseline ~11%\n- **Per-task SR**:\n  - alphabet_soup: 0%, cream_cheese: 0%, tomato_sauce: 0%, butter: 0%\n  - ketchup: 10%, milk: 10%\n  - salad_dressing: 20%\n  - bbq_sauce: 30%, chocolate_pudding: 30%, orange_juice: 30%\n- **Conclusion**: success\n- 100 rollouts 全部正常完成，无错误"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-eval-obs-only-object-norm005-seed43.md"
+}

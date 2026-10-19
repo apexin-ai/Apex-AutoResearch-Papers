@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7865eb9314704cda045",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy pi05 crm ao bjb1 18228",
+  "task_key": "worker_deploy_pi05-crm-ao-bjb1-18228_20260528T030655",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_pi05-crm-ao-bjb1-18228_20260528T030655_result.json",
+    "occurrence": 1,
+    "bytes": 556,
+    "sha256": "c3b3bdb5164609bbb47b7ece6f473e43165e3831906f87e7f2e79ca1bfc13cc2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部正常启动，正在加载 Pi05 模型。\n\n## 部署汇总\n\n| 实验 | GPU | PID | 状态 |\n|------|-----|-----|------|\n| `pi05-crm-always-on-long-s43` | cuda:0 | 982384 | 加载模型中 |\n| `pi05-crm-always-on-spatial-s43` | cuda:1 | 982668 | 加载模型中 |\n| `pi05-crm-always-on-long-s44` | cuda:2 | 983101 | 加载模型中 |\n| `pi05-crm-always-on-spatial-s44` | cuda:3 | 983391 | 加载模型中 |\n\n服务器 bjb1-18228，4 个 GPU 全部占满。Long suite max_steps=520，Spatial suite max_steps=280。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-pi05-crm-ao-bjb1-18228.md"
+}

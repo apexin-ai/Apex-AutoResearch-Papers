@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9dc2c1c99eaf9888120a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diag scalar unc completion",
+  "task_key": "worker_diag_scalar-unc-completion_20260514T022012",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_scalar-unc-completion_20260514T022012_result.json",
+    "occurrence": 1,
+    "bytes": 906,
+    "sha256": "a394ba62d1a2743b0670776a0c230318bfe33b1fa3a71164a291e27c0cf5a39e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**crm-train-a4-scalar-unc 训练成功完成。** Registry 已更新为 DONE/success。\n\n结果汇总：\n\n| 指标 | 值 |\n|------|-----|\n| best_val_loss | **0.008379** (epoch 48) |\n| final_val_loss | 0.008384 (epoch 50) |\n| total_epochs | 50/50 |\n| checkpoint | `/root/autodl-tmp/checkpoints/crm/scalar_unc/crm_best.pt` |\n\nAblation 对比：\n\n| 模型 | val_loss | 说明 |\n|------|----------|------|\n| full CRM (40D per-DOF) | 0.009046 | baseline |\n| **scalar_unc (3D)** | **0.008379** | 比 full CRM 更低 |\n| obs_only (无 uncertainty) | 0.018312 | 无不确定性 |\n\n意外发现：scalar_unc (0.008379) 比 full CRM (0.009046) val_loss 更低，差异约 7.4%。这与原假设（scalar 应比 per-DOF 差）相反——3D scalar uncertainty 在这个设置下反而略优于 40D per-DOF uncertainty，可能说明 40D 输入存在过参数化/噪声放大问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-scalar-unc-completion.md"
+}

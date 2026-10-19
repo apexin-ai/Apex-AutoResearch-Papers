@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a260965c383dace2c4bc",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "verify bjb2 cache and training status",
+  "task_key": "worker_verify_bjb2-cache-and-training-status_20260514T181357",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_bjb2-cache-and-training-status_20260514T181357_result.json",
+    "occurrence": 1,
+    "bytes": 1100,
+    "sha256": "58f4fd7c392648b03dbc8fea5aec26ebc5c268b63d48ed17e6f789f6ef35cebc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. bjb2 `/root/autodl-tmp/crm_cache/` — **6D (v4 旧 cache)**\n\nmanifest.json 明确写 `action_dim: 6`，tensor shape 验证一致：\n- `k_samples`: `[2402, 10, 5, 6]` — 最后一维 **6**\n- `expert_actions`: `[2402, 5, 6]` — 最后一维 **6**\n\n**这是 v4 旧版（D016 修复前），不是 v5 的 8D。**\n\n### 2. bjb2 `crm_cache_v5/` — **不存在**\n\n`/root/autodl-tmp/crm_cache_v5/` 不存在。\n\n### 3. 三个 CRM v3 训练进程 — **全部存活**\n\n| PID | 任务 | 运行时间 | 状态 |\n|-----|------|---------|------|\n| 181668 | crm-train-v3-perdof | 9m32s | Ss+ |\n| 181896 | crm-train-v3-scalar-unc | 9m25s | Ss+ |\n| 181973 | crm-train-v3-obs-only | 9m24s | Ss+ |\n\n三个都在用 `--cache_dir /root/autodl-tmp/crm_cache/`，即 6D v4 cache。**这三个训练无效。**\n\n### 4. eval-vla-mean-spatial PID 143106 — **存活**\n\n运行 15h4m43s，状态 S（sleeping），仍在执行。\n\n### 结论\n\nbjb2 上的 crm_cache 是 6D v4 版本，三个正在跑的 CRM v3 训练全部基于错误的 cache，需要 kill。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-bjb2-cache-and-training-status.md"
+}

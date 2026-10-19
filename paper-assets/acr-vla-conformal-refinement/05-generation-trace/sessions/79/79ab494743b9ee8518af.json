@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79ab494743b9ee8518af",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "check bjb1 18228 full d021",
+  "task_key": "worker_check_bjb1-18228-full-d021_20260515T020527",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_bjb1-18228-full-d021_20260515T020527_result.json",
+    "occurrence": 1,
+    "bytes": 3787,
+    "sha256": "8b2d69d5f502a61f713bbbe50302c8855325876ee63899da4a85e4912a3d38aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据已收集。以下是完整状态报告：\n\n---\n\n## 1. eval-acr-spatial-v4-small (perdof, crm_v3_norm, max_norm=0.1)\n- **PID**: 253085 — ALIVE, uptime ~5h35m (since 04:30)\n- **GPU**: cuda:3, 1459MiB, util 20%\n- **Tasks completed: 4/10**, 正在跑 T5\n- Per-task breakdown:\n  - T1 (between_plate_ramekin): **60%** (6/10) ✓\n  - T2 (next_to_ramekin): **100%** (10/10) ✓\n  - T3 (from_table_center): **10%** (1/10) ✓\n  - T4 (on_cookie_box): **40%** (4/10) ✓\n  - T5 (top_drawer): **running** — rollout 5/10, 0/5 so far\n  - T6-T10: pending\n- Current success: **21/40 = 52.5%** (completed tasks only)\n- **ETA: ~6h50m → ~16:55**\n\n## 2. eval-acr-spatial-v4-obs-only-r2 (obs_only, crm_v3_norm, max_norm=0.1)\n- **PID**: 270097 — ALIVE, uptime ~3h44m (since 06:21)\n- **GPU**: cuda:0, 4105MiB, util 23%\n- **Tasks completed: 4/10**, starting T5\n- Per-task breakdown:\n  - T1 (between_plate_ramekin): **90%** (9/10) ✓\n  - T2 (next_to_ramekin): **100%** (10/10) ✓\n  - T3 (from_table_center): **0%** (0/10) ✓\n  - T4 (on_cookie_box): **40%** (4/10) ✓\n  - T5-T10: pending\n- Current success: **23/40 = 57.5%** (completed tasks only)\n- **ETA: ~5h36m → ~15:42**\n\n## 3. eval-argmin-only-spatial (reconvla baseline)\n- **PID**: 231426 (wrapper 231421) — ALIVE, uptime ~8h18m (since 01:47)\n- **GPU**: cuda:1, 1423MiB, util 21%\n- **Tasks completed: 7/10**, starting T8\n- Per-task breakdown:\n  - T1 (between_plate_ramekin): **60%** (6/10) ✓\n  - T2 (next_to_ramekin): **100%** (10/10) ✓\n  - T3 (from_table_center): **0%** (0/10) ✓\n  - T4 (on_cookie_box): **30%** (3/10) ✓\n  - T5 (top_drawer): **10%** (1/10) ✓\n  - T6 (on_ramekin): **10%** (1/10) ✓\n  - T7 (next_to_cookie_box): **90%** (9/10) ✓\n  - T8-T10: pending\n- Current success: **30/70 = 42.9%**\n- **ETA: ~3h33m → ~13:39**\n\n## 4. eval-acr-spatial-v4-scalar (scalar_unc, crm_v3_norm, max_norm=0.1)\n- **PID**: 288939 — ALIVE, uptime ~31m (since 09:34)\n- **GPU**: cuda:2, 2914MiB (shared!), **util 99%**\n- **Tasks completed: 0/10**, on T1\n- Per-task breakdown:\n  - T1 (between_plate_ramekin): **running** — rollout 5/10, 3/5 so far\n  - T2-T10: pending\n- **ETA: ~9h54m → ~19:59**\n\n## 5. eval-acr-spatial-v3 (perdof, crm_v2, max_norm=0.05) — 用户未列出\n- **PID**: 232820 — ALIVE, uptime ~8h17m (since 01:48)\n- **GPU**: cuda:2 (与 v4-scalar 共享!), 1450MiB\n- **Tasks completed: 5/10**, on T6\n- Per-task breakdown:\n  - T1 (between_plate_ramekin): **10%** (1/10) ✓\n  - T2 (next_to_ramekin): **0%** (0/10) ✓\n  - T3 (from_table_center): **0%** (0/10) ✓\n  - T4 (on_cookie_box): **0%** (0/10) ✓\n  - T5 (top_drawer): **0%** (0/10) ✓\n  - T6 (on_ramekin): **running** — rollout 5/10, 0/5 so far\n  - T7-T10: pending\n- Current success: **1/50 = 2.0%** — crm_v2 表现极差\n- **ETA: ~6h47m → ~16:53**\n\n---\n\n## GPU 分配总览\n\n| GPU | Util | 显存 | 进程 |\n|-----|------|------|------|\n| 0 | 23% | 13721/24564 MiB | v4-small + obs-only-r2 + v4-scalar + v3 (EGL render共享) |\n| 1 | 21% | 1423/24564 MiB | argmin-only (reconvla) |\n| 2 | **99%** | 2914/24564 MiB | **v4-scalar + v3 争抢!** |\n| 3 | 20% | 1459/24564 MiB | v4-small (主计算) |\n\n## 关键发现\n\n1. **GPU 2 竞争严重**: eval-acr-spatial-v3 (crm_v2) 和 eval-acr-spatial-v4-scalar 同时占用 cuda:2，GPU util 99%，两个实验都会被拖慢。\n2. **crm_v2 (v3实验) 基本废了**: 5个 task 完成，仅 1/50 成功 (2%)，远不如 crm_v3_norm。考虑 kill 掉释放 GPU 2 给 v4-scalar。\n3. **obs_only 暂时领先**: 57.5% vs perdof 的 52.5%，但 T3 (from_table_center) obs_only 完全失败而 perdof 有 10%。\n4. **reconvla baseline 42.9%**: 作为 baseline 比较合理，ACR 方法都有提升。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-bjb1-18228-full-d021.md"
+}

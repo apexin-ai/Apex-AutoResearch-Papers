@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0cdf1575191d8f0204d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis eval vla only spatial seed45",
+  "task_key": "worker_analysis_eval-vla-only-spatial-seed45_20260519T151919",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval-vla-only-spatial-seed45_20260519T151919_result.json",
+    "occurrence": 1,
+    "bytes": 834,
+    "sha256": "7e480765d5f6dc6fd59f3090a0a633009e333f0f7904d8b0c99e78e36857f700"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。结果如下：\n\n```\nsuccess_rate: 0.27\nper_task:\n  between_plate_and_ramekin: 0.70 (7/10)\n  next_to_ramekin:           0.90 (9/10)\n  from_table_center:         0.00 (0/10)\n  on_cookie_box:             0.20 (2/10)\n  in_top_drawer:             0.00 (0/10)\n  on_ramekin:                0.00 (0/10)\n  next_to_cookie_box:        0.90 (9/10)\n  on_stove:                  0.00 (0/10)\n  next_to_plate:             0.00 (0/10)\n  on_wooden_cabinet:         0.00 (0/10)\nsuccesses: 27 / total: 100\n```\n\n三个 seed 的 VLA-only baseline 汇总：\n\n| seed | success_rate |\n|------|-------------|\n| 42 | 0.30 |\n| 43 | 0.29 |\n| 45 | 0.27 |\n| **mean** | **0.287** |\n\nseed 45 与前两个 seed 结果一致，VLA-only baseline 在 LIBERO-Spatial 上的平均成功率约 28.7%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-vla-only-spatial-seed45.md"
+}

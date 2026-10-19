@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "6b6ba35c9e833e6fbd8c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "harvest comprehensive sr na",
+  "task_key": "worker_harvest_comprehensive-sr-na_20260526T083351",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_harvest_comprehensive-sr-na_20260526T083351.jsonl",
+    "occurrence": 1,
+    "bytes": 168,
+    "sha256": "ee05ab9ceb0b0e863b83437bedfabc17e057867b128d6ca31f21ec7af38d71cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-26T08:34:03.263466+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_comprehensive-sr-na_20260526T083351"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/harvest-comprehensive-sr-na.md"
+}

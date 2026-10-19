@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70eec80ee7f92ae99480",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy long k10 adaptive 3seeds r2",
+  "task_key": "worker_deploy_long-k10-adaptive-3seeds-r2_20260525T023934",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_long-k10-adaptive-3seeds-r2_20260525T023934_result.json",
+    "occurrence": 1,
+    "bytes": 434,
+    "sha256": "0923f09272958082d182105030786658901b424975a067ff38077e2dab6c3e51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "这 3 个实验**已经在跑了**。Registry 显示：\n\n| exp_id | GPU | 状态 | 启动时间 |\n|--------|-----|------|----------|\n| eval-long-adaptive-k10-s42 | cuda:3 | RUNNING | 02:38 UTC |\n| eval-long-adaptive-k10-s43 | cuda:4 | RUNNING | 02:43 UTC |\n| eval-long-adaptive-k10-s44 | cuda:5 | RUNNING | 02:43 UTC |\n\nnvidia-smi 上 cuda:3/4/5 各占用 ~6530 MiB 的进程就是它们。无需重复部署。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-long-k10-adaptive-3seeds-r2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8fa05866d82f78ca7d7d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb2 28827 batch",
+  "task_key": "worker_deploy_bjb2-28827-batch_20260528T045942",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb2-28827-batch_20260528T045942_result.json",
+    "occurrence": 1,
+    "bytes": 767,
+    "sha256": "0ef06bb399920cd804246c69194534bc84cd8d94d918090249107e994833d3d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 GPU 全部确认有负载。部署结果：\n\n**已部署（4/6）：**\n\n| GPU | exp_id | PID | 显存 |\n|-----|--------|-----|------|\n| cuda:0 | eval-k2-tau045-spatial-s42-bjb2 | 120274 | 6211 MiB |\n| cuda:1 | eval-supp-adapt-tau025-spatial-s46 | 121214 | 6211 MiB |\n| cuda:2 | eval-supp-long-vla-only-s42 | 123008 | 6282 MiB |\n| cuda:3 | eval-supp-long-vla-only-s44 | 124418 | 6283 MiB |\n\n**未部署（2/6）— GPU 被占：**\n\n| GPU | exp_id | 占用方 |\n|-----|--------|--------|\n| cuda:4 | eval-supp-long-adapt-tau025-s47-r2 | `smolvla-tau020-spatial-s42`（5682 MiB） |\n| cuda:5 | eval-supp-long-reconvla-s46 | `smolvla-tau025-spatial-s42`（5682 MiB） |\n\ncuda:4-5 上的两个现有实验完成后可部署剩余 2 个。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb2-28827-batch.md"
+}

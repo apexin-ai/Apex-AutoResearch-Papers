@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b95ab239e1f71bf08917",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "diagnose recent failures gpu check",
+  "task_key": "worker_diagnose_recent-failures-gpu-check_20260519T143732",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_recent-failures-gpu-check_20260519T143732.log",
+    "occurrence": 1,
+    "bytes": 745073,
+    "sha256": "c5ed12cdf3b27a58a7b24f378af3a2f501064999c65ffeedff946883f59d3a85"
+  },
+  "statistics": {
+    "messages": 89,
+    "user_turns": 0,
+    "tool_calls": 30,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 25,
+      "tool_call": 30,
+      "tool_result": 30,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 89,
+      "chunks": [
+        {
+          "path": "b95ab239e1f71bf08917-part-0001.json",
+          "message_count": 56
+        },
+        {
+          "path": "b95ab239e1f71bf08917-part-0002.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-recent-failures-gpu-check.md"
+}

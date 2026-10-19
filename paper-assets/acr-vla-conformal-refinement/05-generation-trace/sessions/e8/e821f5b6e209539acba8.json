@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e821f5b6e209539acba8",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_15_1778957498.md",
+  "task_key": "loop_15_1778957498",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_15_1778957498.md",
+    "occurrence": 1,
+    "bytes": 5466,
+    "sha256": "d6adde4a0e5e34423b5654a5467d15cfbccfc1e442b699a2d5f0037f5650c28c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: idle_timeout\nupdated: '2026-05-16T17:08:06+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: bjb2-40593:cuda:0, bjb1-18228:cuda:0-3, bjb1-32546:cuda:0-5, bjb2-28827:cuda:0-5（共 17 张）。白名单外的 GPU 即使 Director 指令也必须 push back\n- **submit_training_job 命令格式**: 必须 `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"` 包裹，裸 `python` 会 EXIT_CODE=127（tmux 用 sh 不是 bash）\n- **EXIT_CODE=129 不等于失败**: SIGHUP 可能是训练完成后 tmux 清理，必须先查日志末尾 + 输出文件完整性再判定\n- **pooled_fisher_test.py 有 ×2 膨胀 bug**: 脚本 KNOWN_DATA 将 counts 翻倍（N=600 是伪造的），任何 p 值必须从 raw JSON 手算 Fisher exact 交叉验证\n- **Kill 操作前必须 `ps aux | grep` 逐参数比对**: 曾发生 norm=0.3 误判为 norm=0.03 导致 kill 错进程、GPU 空闲 9 小时\n- **bjb2-40593 环境有坑**: 无 .git repo、CRM cache 路径是旧版（非 v5）、曾出现 OOM SIGKILL\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: bjb1-18228 (4 GPU), bjb1-32546 (6 GPU), bjb2-28827 (6 GPU), bjb2-40593 (1 GPU) — 全部 RTX 4090\n- **工作目录**: `/root/acr-vla-conformal-refinement`\n- **Python**: `/root/miniconda3/bin/python`，conda base 环境（不是 venv）\n- **激活方式**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **14 个活跃 cron** 监控 RUNNING 实验（reconcile_crons 刚确认全部 still running）\n- **活跃 Worker**: `worker_ssh_check-seed45-progress_20260516T170549`（正在检查 seed45 进度）\n- **关键 PID**:\n  - bjb1-18228: eval-perdof-object-seed44 (pid=452982)\n  - bjb1-32546: eval-obs-only-object-norm03-seed44 (pid=220777), eval-vla-mean-object-seed44 (pid=212655)\n  - bjb2-28827: 多个 seed44/seed45 实验（pid 见 cron reconcile: 212655-474319 范围）\n- **DEPLOYED 未启动**: eval-mag-perdof-norm03-object 在 bjb2-28827，状态卡在 DEPLOYED\n\n### 3. 📊 当前状态\n**刚完成**: session-start 初始化（registry 同步 + cron reconcile + report/ROADMAP/memory 读取）。上一轮 session 完成了 3-seed Fisher test 修正（D041: p=0.110）并确认 Narrative B 为默认路径。\n\n**RUNNING: 17 个实验**，分两大批：\n- **seed44 矩阵补完**（~8 个）: obs-only-default, obs-only-norm01, obs-only-norm03, perdof-default, perdof-norm03, perdof-seed44, scalar-r2, vla-mean — 完善 seed44 的 magnitude sweep + baseline 对照\n- **seed45 全套**（~8 个）: obs-only-norm02, obs-only-default, obs-only-norm01, obs-only-norm03-r2, perdof-norm02, argmin, scalar, vla-mean — seed45 六方对比\n- **seed46**: obs-only-norm02-seed46（唯一 seed46 实验，argmin-seed46 等 GPU 释放）\n\n**DEPLOYED 卡住**: eval-mag-perdof-norm03-object（bjb2-28827）\n\n**等待中**:\n- Worker `check-seed45-progress` 正在运行\n- 14 个 cron 回调（实验完成时自动触发）\n- seed45 关键实验（obs-only-norm02 + argmin）完成后 → 4-seed pooled Fisher test\n\n### 4. 📋 待办（条件触发式）\n- **seed45 obs-only-norm02 + argmin 完成** → 立刻算 4-seed pooled Fisher exact test（从 raw JSON，不用 pooled_fisher_test.py）→ p<0.05 切 Narrative A，否则 Narrative B 确定\n- **seed45 全部完成** → spawn analysis worker 汇总 seed45 六方对比表，更新 ROADMAP\n- **seed46 obs-only 完成 + GPU 释放** → 部署 eval-argmin-object-seed46 → 5-seed 最终 Fisher\n- **5-seed Fisher 出结果** → 最终 narrative 决策 → 开始论文写作（CoRL abstract DDL May 26）\n- **eval-mag-perdof-norm03-object 卡 DEPLOYED** → 检查是否需要手动启动或标记 killed\n- **任何实验 cron 回调 conclusion=negative/failed** → 按 on-experiment-done/failed skill 处理\n- **论文写作启动前** → 必须 Read red-section skill + paper_framing.md\n\n### 5. 🎯 战略上下文\n- **核心结论链**: perdof CRM 死了（D027: =argmin on spatial, 0% at default norm on object）→ obs_only CRM 是唯一存活路径（D029-D033）→ ε=0.2 是最优配置（D038）→ 3-seed +4pp but p=0.110 不显著（D040-D041）→ Narrative B 默认（mechanism insight 为主，SR 为辅）\n- **CoRL 2026**: abstract DDL ~May 26（~10 天），full paper ~Jun 2。时间紧张但可行——magnitude curve figure 已有完整数据，Narrative B 不依赖 p<0.05\n- **Narrative B 核心卖点**: obs_only 倒 U 型 vs perdof 单调崩溃的 magnitude curve（seed42 完整数据），证明 correction conditioning choice 和 magnitude control 是关键设计维度。SR improvement (+4pp) 是 supplementary evidence\n- **翻盘窗口**: seed45/46 如果 gap 够大（4-seed 需 ≥+8pp on seed45），pooled p 可能 <0.05 → 切回 Narrative A（SR improvement 为主 claim）。但不要赌这个——Narrative B 论文准备应同步推进\n- **最容易判断错的事**: (1) 不要把不同 seed 的不同 norm 配置的结果混淆对比——obs_only norm=0.2 seed42 的 22% 和 norm=0.1 seed42 的 19% 是不同实验；(2) A2C2 是最近的竞品，论文定位必须强调 multi-sample selection + correction 的两步 pipeline 差异；(3) Spatial benchmark 上所有方法无差异（32-35%），不要在 spatial 上 claim CRM 改进\n- **DEPLOYED 实验**: eval-mag-perdof-norm03-object 卡住可能是遗留问题，不要在上面浪费太多时间——perdof 数据已经够了（seed42 magnitude curve 完整）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15-1778957498.md"
+}

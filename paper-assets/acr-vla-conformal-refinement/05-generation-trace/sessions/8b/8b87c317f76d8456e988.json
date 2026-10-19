@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b87c317f76d8456e988",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy pi05 object eval 3seeds",
+  "task_key": "worker_deploy_pi05-object-eval-3seeds_20260522T010324",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_pi05-object-eval-3seeds_20260522T010324_result.json",
+    "occurrence": 1,
+    "bytes": 657,
+    "sha256": "59c45e42ad92b35a18c9b443441cef4df48cc82217ea5b2a15f12e782a206fa1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个进程全部在运行。\n\n**部署结果：**\n\n| 实验 | GPU | PID | tmux session |\n|------|-----|-----|-------------|\n| eval-pi05-crm-object-seed42 | cuda:0 | 218131 | eval-pi05-crm-object-seed42 |\n| eval-pi05-crm-object-seed43 | cuda:1 | 218420 | eval-pi05-crm-object-seed43 |\n| eval-pi05-crm-object-seed44 | cuda:2 | 218700 | eval-pi05-crm-object-seed44 |\n\n- Checkpoint 已确认在 bjb1-32546（2.4M）\n- 无残留 eval 进程\n- 3 个 registry 条目已创建（PREPARING → RUNNING），hypothesis 和 parent 已设置\n- 日志路径：`/root/runs/acr-vla-conformal-refinement/eval-pi05-crm-object-seed{42,43,44}.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-pi05-object-eval-3seeds.md"
+}

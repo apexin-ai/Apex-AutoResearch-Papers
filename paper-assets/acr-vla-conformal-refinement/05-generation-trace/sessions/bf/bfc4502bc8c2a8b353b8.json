@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bfc4502bc8c2a8b353b8",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval vla only goal seed47",
+  "task_key": "worker_analyze_eval-vla-only-goal-seed47_20260520T121700",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-vla-only-goal-seed47_20260520T121700_result.json",
+    "occurrence": 1,
+    "bytes": 749,
+    "sha256": "4218b720bceb595e50061ed8ed1bb860a95057006a8acd0b403e1fe31efaabbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n**eval-vla-only-goal-seed47: FAILED（不完整）**\n\n- 仅完成 2/10 tasks，无 JSON 输出\n- 部分结果：`open_the_middle_drawer_of_the_cabinet` 80%, `put_the_bowl_on_the_stove` 90%\n- 进程在 `CUDA_VISIBLE_DEVICES=4` 上运行，`EXIT_CODE=0` 但日志仅 18 行，推测被 OOM 或其他原因提前终止\n- 这是该实验的第 2 次失败（registry 显示 `retry_count: 1`，上次 conclusion 也是 `killed`）\n- Registry 状态：`conclusion=failed`，metrics 标记 `incomplete=true`\n\n**需要重新提交该实验。** 建议排查 GPU 4 的显存占用情况后再重试，或换一张空闲 GPU。Goal VLA-only 目前仍为 n=6（seed42/43/44/45/46/49，均值 0.687）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-vla-only-goal-seed47.md"
+}

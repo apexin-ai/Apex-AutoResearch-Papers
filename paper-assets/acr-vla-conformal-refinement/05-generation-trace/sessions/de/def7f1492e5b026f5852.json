@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "def7f1492e5b026f5852",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh fix and deploy bjb1 32546",
+  "task_key": "worker_ssh_fix-and-deploy-bjb1-32546_20260520T011947",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_fix-and-deploy-bjb1-32546_20260520T011947_result.json",
+    "occurrence": 1,
+    "bytes": 466,
+    "sha256": "9612486e8891f1d34e9bb9498ad77a68994a37269495db1ad106cd862324b709"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。最终 GPU 状态：\n\n| GPU | PID | 显存 | 状态 |\n|-----|-----|------|------|\n| cuda:0 (GPU-2206) | 140968 | 3343 MiB | 正常 |\n| cuda:2 (GPU-4f00) | 146926 | 3805 MiB | 已修复，冲突进程 141177 已 kill |\n| cuda:4 (GPU-5637) | 147198 | 3343 MiB | 已修复，冲突进程 141515 已 kill |\n| cuda:5 (GPU-6d13) | 141788 | 3805 MiB | 正常 |\n\n每张卡恢复为单进程，显存均在 3300-3800 MiB 正常范围。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-and-deploy-bjb1-32546.md"
+}

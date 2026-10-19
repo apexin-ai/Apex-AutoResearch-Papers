@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f10eb5a0b1acfa181691",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diag timeout norm003 batch",
+  "task_key": "worker_diag_timeout-norm003-batch_20260518T212231",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_timeout-norm003-batch_20260518T212231_result.json",
+    "occurrence": 1,
+    "bytes": 2116,
+    "sha256": "7bdb2154f0772dba493ae5fcb6c2eb6b74589b500d890211a39516a853b4e041"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完成。以下是诊断结论。\n\n---\n\n## 诊断结论\n\n### 根因：timeout_hours=6 太短\n\n所有 4 个失败实验都是**正常运行中被 timeout 杀死**，不是卡死。\n\n### 关键证据\n\n| 实验 | 被杀时进度 | EXIT_CODE |\n|------|-----------|-----------|\n| obs_only seed44 (bjb1-32546) | task 5, rollout 2/10 = **42/100** | 124 (SIGTERM) |\n| obs_only seed45 (bjb1-32546) | task 5, rollout 5/10 = **45/100** | 124 |\n| obs_only seed43 (bjb1-18228) | task 5, rollout 6/10 = **46/100** | 129 (SIGHUP) |\n| perdof seed43 (bjb2-28827) | task 4, rollout 5/10 = **35/100** | 124 |\n\n**额外发现：perdof-norm003-seed45 (bjb1-32546) 也超时了**（Birth 23:16 → Modified 05:16 = 正好 6h，task 5 rollout 2/10 = 42/100）。\n\n### 基准对比\n\nseed42 obs_only ε=0.03 成功完成：\n- Birth: May 16 00:47 → Modified: May 16 13:34 = **约 12 小时 47 分钟**\n- 6h 内只能完成 ~45% rollouts，符合被杀时的进度\n\n### 所需时间\n\nε=0.03 实验需要 **~13 小时**。建议 `timeout_hours` 设为 **15 小时**（留余量）。\n\n### 无部分结果\n\n所有失败实验的 JSON 结果文件均不存在。结果只在全部完成后一次性写入，中途被杀 = 全部白费。\n\n### 当前在运行的 ε=0.03 实验（不会超时）\n\n| 服务器 | 实验 | 启动时间 | 已运行 | timeout |\n|--------|------|---------|--------|---------|\n| bjb2-28827 | obs_only seed44-bjb2 | 05:07 | ~18min | 无/长 |\n| bjb1-18228 | obs_only seed49 | 05:07 | ~18min | 无/长 |\n| bjb1-18228 | obs_only seed47 | 04:46 | ~39min | 无/长 |\n| bjb1-18228 | obs_only seed46 | 04:46 | ~39min | 无/长 |\n| bjb1-18228 | perdof seed44 | 21:31 | ~7h53m | 86400s (24h) ✓ |\n\n这些实验的 timeout 要么是 86400s（24h），要么是直接 `bash -c` 启动无 timeout，都不会被过早杀死。\n\n### 建议\n\n1. 重新提交失败的 5 个实验，`timeout_hours` 设为 **15**\n2. 考虑给 evaluate.py 添加**增量保存**（每完成一个 task 就写一次 JSON），避免长时间运行被杀后完全丢失结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-timeout-norm003-batch.md"
+}

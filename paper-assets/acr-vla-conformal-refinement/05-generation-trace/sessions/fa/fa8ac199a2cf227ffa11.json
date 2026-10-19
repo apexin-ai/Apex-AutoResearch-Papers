@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa8ac199a2cf227ffa11",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code plan003 scalar unc ablation",
+  "task_key": "worker_code_plan003-scalar-unc-ablation_20260513T233144",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_plan003-scalar-unc-ablation_20260513T233144_result.json",
+    "occurrence": 1,
+    "bytes": 1250,
+    "sha256": "7cd665d9b743a89805b1fa4518947b9a660912d533e56854ab3df29933441146"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 总结\n\n**scalar_unc 实现状态**: 原代码只完成了一半——模型层面注册了 `unc_dim=3`，但训练循环缺少 40D→3D 的特征转换，直接运行会维度不匹配崩溃。\n\n**已完成的修改** (`src/train_crm.py`):\n1. 添加 `scalar_unc` 标志（line 342）\n2. 添加 `_to_scalar_uf()` 辅助函数（line 364-370）：将 CGS 40D 输出压缩为 3D\n   - `norm(per_dof_std[:30])` → 整体 std 幅度（1D）\n   - `mean(conformal_radius[30:35])` → 平均 conformal 半径（1D）\n   - `mean(log_volume[35:40])` → 平均 log 体积（1D）\n3. 训练循环 CGS 后加 scalar 转换（line 388-389）\n4. 验证循环 CGS 后加 scalar 转换（line 434-435）\n\n**dry-run 验证**: 通过\n- 端到端管道测试: 40D→3D 压缩 + CRM forward 正确\n- 实际训练: 跑了 120+ batches，loss ~0.02-0.06，正常\n\n**CRM 架构**: input_dim = 30(action) + 3(scalar_unc) + 960(obs) = 993, 参数量 327,966\n\n**最终训练命令**:\n```bash\nCUDA_VISIBLE_DEVICES=3 python -u src/train_crm.py \\\n  --benchmark spatial object \\\n  --epochs 50 --batch_size 512 --lr 0.016 --K 10 --seed 42 \\\n  --input_mode scalar_unc \\\n  --output_dir /root/autodl-tmp/checkpoints/crm/scalar_unc/\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan003-scalar-unc-ablation.md"
+}

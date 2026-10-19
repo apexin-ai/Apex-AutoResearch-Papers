@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7efd7c67d1979f49c05",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval vla only object seed50",
+  "task_key": "worker_analyze_eval-vla-only-object-seed50_20260519T233838",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-vla-only-object-seed50_20260519T233838_result.json",
+    "occurrence": 1,
+    "bytes": 710,
+    "sha256": "7cd0f085067f35b71121590d9b01b14e3dd29f1d775f120be330e41b1f1a2b59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。\n\n## 结果汇总\n\n**Overall success rate: 9.0%** (9/100 rollouts)\n\nPer-task breakdown (10 rollouts each):\n\n| Task | Success Rate | Successes |\n|------|-------------|-----------|\n| alphabet_soup | 0% | 0/10 |\n| cream_cheese | 10% | 1/10 |\n| salad_dressing | 10% | 1/10 |\n| bbq_sauce | **20%** | 2/10 |\n| ketchup | 0% | 0/10 |\n| tomato_sauce | 10% | 1/10 |\n| butter | 0% | 0/10 |\n| milk | 10% | 1/10 |\n| chocolate_pudding | 10% | 1/10 |\n| orange_juice | **20%** | 2/10 |\n\nseed50 的 9.0% 与此前 Object VLA-only 均值 ~11.0% 基本一致，属于正常波动范围。该数据点已补入，可用于后续与 CRM K=10 的配对统计检验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-vla-only-object-seed50.md"
+}

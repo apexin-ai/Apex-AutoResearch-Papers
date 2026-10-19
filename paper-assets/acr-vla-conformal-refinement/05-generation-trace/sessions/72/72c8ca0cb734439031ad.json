@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72c8ca0cb734439031ad",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops double deploy bjb1 18228",
+  "task_key": "worker_ops_double-deploy-bjb1-18228_20260518T165013",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_double-deploy-bjb1-18228_20260518T165013_result.json",
+    "occurrence": 1,
+    "bytes": 504,
+    "sha256": "861ec4c6a5a2fcada01bfb5257732c1a37f2426f81d84212a425151ed1cb0ec3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "总结：\n\n**`eval-obs-only-object-norm003-seed46`** — GPU1 上已启动并运行，registry 状态 RUNNING。\n\n**`eval-random-selection-object-seed46`** — 启动失败。`evaluate.py` 不支持 `--mode random_selection`。可用的 mode 为：\n`vla_only | crm_scalar | crm_perdof | acr_vla | crm_obs_only | reconvla | direct_correction | crm_k1_accg`\n\n请确认 random selection baseline 应该用哪个 mode，或者是否需要先在代码中实现 `random_selection` mode。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-double-deploy-bjb1-18228.md"
+}

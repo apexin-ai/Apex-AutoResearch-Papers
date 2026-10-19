@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e00f6eee0e815e4885c4",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_2_1778782494.md",
+  "task_key": "loop_2_1778782494",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_2_1778782494.md",
+    "occurrence": 1,
+    "bytes": 6196,
+    "sha256": "7a0261ae23c5a49c5f616026f8caec70e82aa327268278355292c1141b689c5b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_messages\nupdated: '2026-05-14T18:14:06+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- bjb1-18228 GPU 白名单: cuda:0,1,2,3 | bjb2-40593 GPU 白名单: cuda:0 — 白名单外的 GPU 绝不能碰\n- 所有 pre-D016 的 CRM checkpoint 已失效（6D state mismatch bug）—— crm-train-v1, crm-train-a3, crm-train-a4, crm-train-k5 的 checkpoint 不可复用，必须用 v5 precompute + v2/v3 checkpoint\n- CRM v2 的 obs-only 和 scalar-unc 两个 ablation 均在前 3 个 task 跑出 0% —— 已被 Director kill（D017），不要重启这两条 eval 线\n- bjb2 上 crm-train-v3 三个训练共用 cuda:0，是串行排队的 tmux session —— 不要假设它们并行\n- evaluate.py EXIT_CODE=1 可能是 Python 3.12 SWIG DeprecationWarning 造成的假失败 —— 遇到时先查 log 内容再判定\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**: 4× RTX 4090 | 工作目录 `/root/acr-vla-conformal-refinement` | Python: `/root/miniconda3/bin/python` | conda base 环境 | 激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **bjb2-40593**: 1× RTX 4090 D | 同上路径和环境\n- 模型: `/root/autodl-tmp/models/smolvla_libero/` (SmolVLA 450M checkpoint)\n- 数据: `/root/autodl-tmp/libero_data/` (spatial + object)\n- CRM cache v5 (8D fix): `/root/autodl-tmp/crm_cache_v5/` (26737 samples, 正确版本)\n- CRM v2 checkpoints: `/root/autodl-tmp/checkpoints/crm_v2/{perdof,scalar_unc,obs_only}/crm_best.pt`\n- CRM v3 training output: `/root/autodl-tmp/checkpoints/crm_v3/` (正在 bjb2 训练)\n- 活跃进程:\n  - eval-acr-spatial-v3: bjb1 cuda:0, PID 197057, tmux=eval-acr-spatial-v3 (**核心实验**)\n  - eval-argmin-only-spatial: bjb1 cuda:1, PID 231421, tmux=eval-argmin-only-spatial\n  - eval-tiny-correction-spatial: bjb1 cuda:2, PID 232815, tmux=eval-tiny-correction-spatial\n  - eval-acr-object-v3: bjb1 cuda:3, PID 197803, tmux=eval-acr-object-v3\n  - eval-vla-mean-spatial: bjb2 cuda:0, PID 143106, tmux=eval-vla-mean-spatial\n  - crm-train-v3-{perdof,scalar-unc,obs-only}: bjb2 cuda:0, PIDs 181668/181896/181973（排队中）\n- reconcile_crons 确认 eval-vla-mean-spatial 仍在跑 (PID 143106)\n\n### 3. 📊 当前状态\n**刚做完的事：**\n- D016 四大 bug 修复后重走全部 pipeline：precompute-v5 (3 shards) → crm-train-v2 (3 variants) → 4 路 eval 并行启动\n- D017 确认 CRM 全面退化：obs-only 0/30, scalar-unc 0/30（前 3 task 全灭），Director 下令 kill 并释放 GPU\n- D018 诊断 CRM input 1500x 特征尺度不均衡 → 派 Worker 开发 CRM v3（嵌入 per-feature 归一化），已在 bjb2 提交训练\n- 释放的 bjb1:1 和 bjb1:2 分别启动了 eval-argmin-only-spatial 和 eval-tiny-correction-spatial 两个诊断实验\n\n**RUNNING 实验 (5)：**\n| exp_id | server:gpu | 目的 |\n|--------|-----------|------|\n| eval-acr-spatial-v3 | bjb1:0 | **CORE CLAIM** — per-DOF CRM v2 是否 >30% baseline |\n| eval-argmin-only-spatial | bjb1:1 | 诊断：argmin 选择本身好不好 |\n| eval-tiny-correction-spatial | bjb1:2 | 诊断：correction magnitude 是否是退化原因 |\n| eval-acr-object-v3 | bjb1:3 | 跨 benchmark 验证 (baseline 13%) |\n| eval-vla-mean-spatial | bjb2:0 | K=10 mean baseline（预期 ~30%，隔离 multi-sampling） |\n\n**PREPARING (bjb2)：** crm-train-v3 三个变体（带 input normalization fix），排队等 eval-vla-mean-spatial 释放 GPU 或已经在跑\n\n**关键 baselines：** Spatial VLA K=1 = 30% | SampleConsensus K=10 = 34% | Object VLA K=1 = 13%\n\n**等待：** 5 个 RUNNING 实验的 cron 回调；crm-train-v3 完成后需要再开一轮 eval\n\n### 4. 📋 待办（条件触发式）\n- eval-acr-spatial-v3 完成且 >30% → 核心 claim 初步验证，汇报 Director，立即启动剩余 ablation（K sensitivity 等）\n- eval-acr-spatial-v3 完成且 ≤30% → **CRM v2 全面失败**，按 red-section 产 Framing 调整提案；同时检查 eval-argmin-only 和 eval-tiny-correction 诊断数据辅助定位\n- eval-argmin-only-spatial 完成 → 对比 VLA mean 和 SampleConsensus 34%，判断 argmin selection 本身是否有问题\n- eval-tiny-correction-spatial 完成 → 如果 tiny >> full correction，则 correction magnitude 是主因 → 需要加 gating/adaptive clipping\n- eval-vla-mean-spatial 完成 → 完成 4-way comparison table (VLA K=1 30% / VLA mean / SampleConsensus 34% / ACR-VLA)\n- crm-train-v3 三个变体完成 → 用归一化后的 CRM 重跑 eval（perdof/scalar/obs_only），看是否解决退化\n- 如果 CRM v2 和 v3 都退化 → pivot 方向：从 \"learned correction\" 退到 \"sample selection + gating\"，写 Framing 提案\n\n### 5. 🎯 战略上下文\n**项目核心结论链：**\n- D011: CoRL 2026 放弃 → ICLR 2027 (Sep-Oct 2026 deadline)\n- D013: SmolVLA wrapper 7 个 bug 修复后 55.6%，但最终 baseline 锁定 30%（spatial）/ 13%（object）\n- D015: SFT Gate 30% baseline 通过，继续推进（不换模型）\n- D016: 发现 4 个关键 bug（state 6D→8D、alpha、argmin base、L2 clip），所有 pre-fix 数据失效\n- D017: 修复后 CRM obs-only 和 scalar-unc 仍然 0% → CRM correction 本身可能有根本性问题\n- D018: 诊断为 1500x 特征尺度不均衡 → v3 加归一化\n\n**最容易判断错的事：**\n1. **不要把 val_loss 当成 eval success rate 的代理** —— CRM v1 val_loss=0.009 看起来很好但 eval 可能 0%。val_loss 和 task success rate 之间的关系未经验证\n2. **CRM 退化不一定是 bug** —— 可能是 CRM correction 的固有问题（correction 幅度太大 → compounding error in 300-step episode）。eval-tiny-correction 就是测这个假设\n3. **SampleConsensus 34% 和 VLA 30% 差距很小** —— 如果 ACR-VLA 也只有 ~34%，说明 conformal feature 没有额外价值，只是 multi-sampling 本身的效果\n4. **bjb2 的 crm-train-v3 三个任务共享 cuda:0**，它们的 tmux session 是独立的但 GPU 是同一块 —— 可能串行跑也可能 OOM 竞争，需要查实际状态\n5. **大量 killed/failed 实验是 pipeline 迭代的正常副产品**（wrapper bug → env bug → state bug → normalization bug），不代表方向错误；核心信号要等 eval-acr-spatial-v3\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778782494.md"
+}

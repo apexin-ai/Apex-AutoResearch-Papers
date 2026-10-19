@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9822fed38d5fa1894363",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb1 32546 backfill 3gpu",
+  "task_key": "worker_deploy_bjb1-32546-backfill-3gpu_20260523T083803",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb1-32546-backfill-3gpu_20260523T083803_result.json",
+    "occurrence": 1,
+    "bytes": 680,
+    "sha256": "480e60fa780a97737d373990a4c980fc93665b3fa2d6bf01fe81726976bd13fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就位。GPU 显存占用确认：\n\n| GPU | 实验 | 显存 |\n|-----|------|------|\n| cuda:0 | eval-supp-adapt-tau025-object-s43 | 5014 MiB |\n| cuda:1 | eval-supp-crm-norm005-goal-s43 | 5149 MiB |\n| cuda:2 | eval-supp-adapt-tau025-goal-s43 | 2676 MiB |\n| cuda:3 | train-crm-unified-4suite-r6（已有） | 544 MiB |\n| cuda:4 | eval-supp-crm-norm005-object-s43 | 1789 MiB |\n| cuda:5 | eval-supp-crm-norm005-spatial-s44（已有） | 2072 MiB |\n\n6 个 GPU 全部在用。部署了 4 个新实验：\n- **优先 3 个**：Object Adaptive tau=0.25 s43、Goal CRM norm=0.05 s43、Goal Adaptive tau=0.25 s43\n- **备选 1 个**：Object CRM norm=0.05 s43"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb1-32546-backfill-3gpu.md"
+}

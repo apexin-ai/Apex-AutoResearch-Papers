@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "7da0f7cd78cef4751e04",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "setup cqa1 32758 env deploy",
+  "task_key": "worker_setup_cqa1-32758-env-deploy_20260523T072225",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_setup_cqa1-32758-env-deploy_20260523T072225.log",
+    "occurrence": 1,
+    "bytes": 1779090,
+    "sha256": "e57f9b4ab36aac95a20845e3017655fd7144c3aa473b96eaa880d485570019de"
+  },
+  "statistics": {
+    "messages": 1189,
+    "user_turns": 1,
+    "tool_calls": 489,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 3,
+      "assistant": 201,
+      "tool_call": 489,
+      "tool_result": 489,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 711,
+      "chunks": [
+        {
+          "path": "7da0f7cd78cef4751e04-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7da0f7cd78cef4751e04-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7da0f7cd78cef4751e04-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "7da0f7cd78cef4751e04-part-0004.json",
+          "message_count": 171
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 478,
+      "chunks": [
+        {
+          "path": "7da0f7cd78cef4751e04-part-0004.json",
+          "message_count": 9
+        },
+        {
+          "path": "7da0f7cd78cef4751e04-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "7da0f7cd78cef4751e04-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "7da0f7cd78cef4751e04-part-0007.json",
+          "message_count": 109
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/setup-cqa1-32758-env-deploy.md"
+}

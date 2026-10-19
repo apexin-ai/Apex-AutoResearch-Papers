@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ddf0a2ca101d5d092e1",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_22_1779380126.md",
+  "task_key": "loop_22_1779380126",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_22_1779380126.md",
+    "occurrence": 1,
+    "bytes": 4497,
+    "sha256": "37a788fddf23a965a01fb23127a4fb4dfe0da518c3a6a830ccc3d4e479a7275d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 22\nreason: idle_timeout\nupdated: '2026-05-21T13:45:13+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- `get_project_resource_usage` 返回 allocated_gpus=[] — GPU 白名单配置缺失，实际 14 张在跑。新 session 提交实验前必须先确认 gpu_ids 配置或向 Director 确认\n- CRM checkpoint 唯一路径：`/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`（所有服务器同路径），不要用旧版 crm_v3/ 下的\n- eval-obs-only-object-norm02-seed42 (SR=20%) 不纳入 Table（D084 决策），计算 mean 时必须排除\n- OpenVLA 7B 需 2 GPU 推理，单卡服务器跑不了\n- CoRL DDL = 2026-05-29，剩 8 天\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**: 工作目录 `/root/acr-vla-conformal-refinement`，conda base (`/root/miniconda3/bin/python`)，磁盘 `/usr/bin/nvidia-smi` 400G 可用。活跃：plan-a-seed42 (cuda:2, PID 559831)、plan-a-seed43 (cuda:3, PID 560444)、plan-a-seed44 (cuda:0)\n- **bjb1-32546**: 同上路径/环境，磁盘 400G 可用。6 张卡全满：cuda:0 vla-only-seed50、cuda:1 random-sel-seed49、cuda:2 k5-obs-seed44 + norm02-seed52、cuda:3 spatial-norm02-seed52、cuda:4 norm01-seed49、cuda:5 norm005-seed48 + k20-obs-seed44\n- **bjb2-28827**: 同上，磁盘 399G。活跃：cuda:3 norm003-seed45、cuda:5 openvla-crm-seed42 (PID 842052)；另有 norm02-seed53 (PID 797335)、norm005-seed47 (PID 800192)、norm003-seed44-r2 (PID 815560)\n- **bjb2-40593**: 磁盘 46G 可用 ⚠️ 较紧。cuda:0 random-sel-seed48 (PID 759093)；perdof-norm005-seed46 (PID 538034)\n- CRM eval 命令模板：`python src/evaluate.py --benchmark object --mode crm_obs_only --K 10 --max_correction_norm {ε} --n_rollouts 10 --seed {s} --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`\n\n### 3. 📊 当前状态\n刚处理 eval-obs-only-object-norm01-seed50 的 cron 失败回调——诊断为 false positive（进程正常完成 SR=14.0%，cron 误判）。已清理 3 个同类 cron 误报的 failure_reason，已向 Director 汇报。\n\n**RUNNING（~14-17 个 eval 实验）**：\n- Plan A (D090): seed42/43/44 on bjb1-18228 — **P0 关键路径**，验证 K=2 L2 + selective CRM\n- OpenVLA CRM eval: seed42 on bjb2-28827:cuda:5 — **P0 关键路径**\n- Norm sweep 补种：norm01-seed49、norm02-seed52/53、norm003-seed44-r2/seed45、norm005-seed47/48\n- K-sweep：k5-obs-seed44、k20-obs-seed44\n- Baselines：vla-only-seed50、random-sel-seed48/49\n- Cross-benchmark：spatial-norm02-seed52\n- perdof-norm005-seed46\n\n**PREPARING**: 33 个（含 adaptive-k-spatial-p90-seed44、obs-only-goal-norm02-seed53 等），均待 GPU 释放后铺\n\n**等待中**：无 Worker 回调。15 个 cron 监控活跃。无待 Director 决策的事项。\n\n### 4. 📋 待办（条件触发式）\n- Plan A seed42/43/44 任一完成 → 立即分析 SR，对比 fixed K=10 CRM (16.8%) 和 adaptive K P50 (15.3%)。若 SR > 15.3% → success，汇报 Director 准备 Plan A narrative；若 < 14% → 启动 Plan C (Action Distribution Geometry)\n- OpenVLA CRM eval 完成 → 对比 VLA-only baseline (69%)，填 Claim 3 coverage（当前 0%）\n- norm01-seed49 完成 → 与 seed48 (18%) + seed50 (14%) 合并，计算 ε=0.1 mean±std，更新 norm sweep 表\n- 当前一批 eval 全部完成 → GPU 释放后从 33 个 PREPARING 中按优先级铺下一批\n- bjb2-40593 磁盘 46G → 新实验提交前检查，必要时清理\n\n### 5. 🎯 战略上下文\n- **核心 story**：Adaptive inference-time compute for frozen VLAs。K=2 L2 distance 作为不确定性信号，correction > selection 是关键 insight\n- **D088→D090 决策链**：Learned Uncertainty Head NO-GO (mean 12% < VLA-only 14%, avg_k=1.0 bug) → Plan A (K=2 Conformal + Selective CRM) 是当前主攻路径，Plan C 是 fallback\n- **已锁定数据**：Object CRM K=10 norm02 = 16.8±1.8% (n=7)、Spatial 34.5±1.5% (n=9)、VLA-only 11.0±1.3% (n=8)、Random Selection 9.7±1.5%、Adaptive K P50 = 15.3%\n- **易错点**：(1) Cron \"failed\" 回调经常是 false positive（进程正常退出后触发），先查 registry metrics 再决定是否真的 failed；(2) norm02-seed42 (SR=20%) 是 outlier 不纳入统计（D084）；(3) report.md 的 AUTO-FACTS 段最近完成列表里 conclusion 标签可能与 failure_reason 矛盾，以 registry 为准\n- **时间压力**：CoRL DDL 5/29，Plan A 结果是 go/no-go 的关键——如果 Plan A 也 fail，需要立刻启动 Plan C 或用 Adaptive K P50 (15.3%) 作为 safety net 写论文\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-22-1779380126.md"
+}

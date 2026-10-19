@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b578b73719655e47749c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code fix eval output filename",
+  "task_key": "worker_code_fix-eval-output-filename_20260524T224454",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix-eval-output-filename_20260524T224454_result.json",
+    "occurrence": 1,
+    "bytes": 1618,
+    "sha256": "5a91062c3dd6a4e0d4e17990511a9818b0f89e420b6114b2911974c0dc869b92"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**Diff** (`src/evaluate.py`，main 函数底部默认文件名生成块):\n\n```diff\n         model_tag = f\"_{args.model}\" if args.model != \"smolvla\" else \"\"\n         mode_str = f\"k{args.K}mean\" if args.mode == \"vla_only\" and args.baseline_mode == \"mean\" else args.mode\n-        args.output_file = f\"logs/eval_{args.benchmark}_{mode_str}{model_tag}{norm_tag}{adaptive_tag}_seed{args.seed}.json\"\n+        k_tag = \"\" if args.mode == \"vla_only\" else f\"_K{args.K}\"\n+        args.output_file = f\"logs/eval_{args.benchmark}_{mode_str}{model_tag}{k_tag}{norm_tag}{adaptive_tag}_seed{args.seed}.json\"\n```\n\n**新旧文件名对比**\n\n| mode | 旧 | 新 |\n|---|---|---|\n| adaptive_conformal_crm K=2 norm=0.2 tau=0.20 seed=42 spatial | `logs/eval_spatial_adaptive_conformal_crm_norm0.2_tau0.2_seed42.json` | `logs/eval_spatial_adaptive_conformal_crm_K2_norm0.2_tau0.2_seed42.json` |\n| crm_perdof K=10 norm=0.1 seed=45 object | `logs/eval_object_crm_perdof_norm0.1_seed45.json` | `logs/eval_object_crm_perdof_K10_norm0.1_seed45.json` |\n| vla_only seed=42 spatial | `logs/eval_spatial_vla_only_seed42.json` | `logs/eval_spatial_vla_only_seed42.json` (无变化，K 省略) |\n| vla_only baseline_mode=mean K=2 seed=45 spatial | `logs/eval_spatial_k2mean_seed45.json` | `logs/eval_spatial_k2mean_seed45.json` (无变化，K 已在 mode_str 中) |\n\n**同步状态**\n\n- bjb2-40593：已应用 + 语法验证通过\n- bjb1-32546：已应用 + 语法验证通过\n- 项目无 git remote 配置，无法通过 `git pull` 同步；已直接对两台服务器分别 patch"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-eval-output-filename.md"
+}

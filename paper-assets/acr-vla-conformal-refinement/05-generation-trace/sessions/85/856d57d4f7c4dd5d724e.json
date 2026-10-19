@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "856d57d4f7c4dd5d724e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "deploy bjb2 40593 single",
+  "task_key": "worker_deploy_bjb2-40593-single_20260524T070715",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_deploy_bjb2-40593-single_20260524T070715.jsonl",
+    "occurrence": 1,
+    "bytes": 165,
+    "sha256": "3031ee81db947cc5dc2901893741eedbb79641649ca2c2e2e985aca5c4d4b3b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T07:07:22.773826+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb2-40593-single_20260524T070715"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/deploy-bjb2-40593-single.md"
+}

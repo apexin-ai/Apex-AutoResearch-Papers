@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74948eca37892b61bf92",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis eval loss variants object",
+  "task_key": "worker_analysis_eval-loss-variants-object_20260522T103936",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval-loss-variants-object_20260522T103936_result.json",
+    "occurrence": 1,
+    "bytes": 2089,
+    "sha256": "cc5934c25fd4823506f9df84d5d85dec0e954cdf18c9ec07b95304874ad19f09"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都正常完成，无错误。结果如下：\n\n## eval-loss-conformal-object-seed42 (Conformal-guided CRM)\n- **avg_success_rate: 6.0%**\n- **total_successes: 12/200**\n- per_task:\n\n| Task | Rate | Successes |\n|------|------|-----------|\n| alphabet_soup | 0.0% | 0/20 |\n| cream_cheese | 5.0% | 1/20 |\n| salad_dressing | 0.0% | 0/20 |\n| bbq_sauce | 10.0% | 2/20 |\n| ketchup | 0.0% | 0/20 |\n| tomato_sauce | 5.0% | 1/20 |\n| butter | 0.0% | 0/20 |\n| milk | 10.0% | 2/20 |\n| chocolate_pudding | **20.0%** | 4/20 |\n| orange_juice | 10.0% | 2/20 |\n\n- **conclusion: NEGATIVE** — 6.0% < MSE baseline 7%，远低于 Plan A 18.3%。训练阶段 val_loss 已经 6.4x worse，eval 印证了这一点。\n\n---\n\n## eval-loss-perdof-object-seed42 (Per-DOF weighted CRM)\n- **avg_success_rate: 4.0%**\n- **total_successes: 8/200**\n- per_task:\n\n| Task | Rate | Successes |\n|------|------|-----------|\n| alphabet_soup | 0.0% | 0/20 |\n| cream_cheese | 5.0% | 1/20 |\n| salad_dressing | 0.0% | 0/20 |\n| bbq_sauce | 5.0% | 1/20 |\n| ketchup | 5.0% | 1/20 |\n| tomato_sauce | 0.0% | 0/20 |\n| butter | 10.0% | 2/20 |\n| milk | 5.0% | 1/20 |\n| chocolate_pudding | 5.0% | 1/20 |\n| orange_juice | 5.0% | 1/20 |\n\n- **conclusion: NEGATIVE** — 4.0% < MSE baseline 7%，远低于 Plan A 18.3%。尽管训练阶段 val_loss 16.8x better than MSE，eval 成功率反而最差。\n\n---\n\n## 综合对比\n\n| Method | Success Rate | vs MSE (7%) | vs Plan A (18.3%) |\n|--------|-------------|-------------|-------------------|\n| Plan A CRM (K=2) | **18.3%±2.1%** | +11.3pp | — |\n| VLA-only | 10.8%±1.3% | +3.8pp | -7.5pp |\n| MSE re-trained | 7.0% | — | -11.3pp |\n| **Conformal-guided** | **6.0%** | **-1.0pp** | **-12.3pp** |\n| **Per-DOF weighted** | **4.0%** | **-3.0pp** | **-14.3pp** |\n\n关键发现：**val_loss 与 eval 成功率脱钩**。Per-DOF weighted 训练 loss 最优（16.8x better），但 eval 最差（4.0%）。说明这两个 loss 变体优化的目标与实际 task success 不对齐——低 loss 不等于好 correction。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-loss-variants-object.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a4b3a11ea644f088dc1",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops kill r3 norm0p3",
+  "task_key": "worker_ops_kill-r3-norm0p3_20260515T071231",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_kill-r3-norm0p3_20260515T071231_result.json",
+    "occurrence": 1,
+    "bytes": 303,
+    "sha256": "09c599afd338adb87c7f16c640ab7b34e81779ce55d7436404c464278749a2a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**报告：**\n- **r3 已 kill**：PID 329871 已终止（force_killed），tmux session `eval-mag-obsonly-norm-0p3-r3` 已清理\n- **r2 存活**：PID 325264 正常运行，已运行 23:06\n- **GPU 0 状态**：12475 MiB 显存占用，98% 利用率（r2 独占运行中）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-r3-norm0p3.md"
+}

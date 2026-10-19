@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5d7953d385b72f721fb",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_23_1779390480.md",
+  "task_key": "loop_23_1779390480",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_23_1779390480.md",
+    "occurrence": 1,
+    "bytes": 4120,
+    "sha256": "a9bb4b8191c854713850eda3a743129bedcd6a6f4d5c348739c196ea7090c454"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 23\nreason: idle_timeout\nupdated: '2026-05-21T19:07:57+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- π0.5 eval **必须**传 `--obs_dim 2048`（默认 960 是 SmolVLA 的，会触发 ValueError）\n- bjb2-28827 代码版本旧（evaluate.py 30140B vs bjb1-32546 33058B），**eval 前必须 git pull**\n- CRM training output_dir 已固定：Object `/root/autodl-tmp/checkpoints/crm_pi05_full/object/`，Spatial `/root/autodl-tmp/checkpoints/crm_pi05_full/spatial/`——eval 命令里的 `<CRM_CHECKPOINT_*>` 占位符要填 `{dir}/crm_best.pt`\n- Ceiling effect 预期：π0.5 baseline 81-85%，CRM 增益有限。Framing 已准备 \"no-harm + selective improvement\" narrative，**不要过度 claim improvement**\n- CoRL DDL **2026-05-29**，≤6 天\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**: 4 GPU (cuda:0-3)，工作目录 `/root/acr-vla-conformal-refinement`，Python `/root/miniconda3/bin/python`（conda base）\n  - 活跃：`crm-train-pi05-object-full` PID 800111, cuda:0, log `/root/runs/acr-vla-conformal-refinement/crm-train-pi05-object-full.log`\n  - cuda:1 空闲（Spatial training 待提交），cuda:3 有旧 precompute 进程待清理\n- **bjb1-32546**: 6 GPU (cuda:0-5)，全部空闲，eval 目标机\n- **bjb2-28827**: 6 GPU (cuda:0-5)，全部空闲，eval 目标机（代码需 git pull）\n- **bjb2-40593**: 无 GPU 信息\n- 模型：`/root/autodl-tmp/models/pi05_libero_finetuned/`\n- Precompute cache：`/root/autodl-tmp/crm_cache_pi05/{object,spatial}/`\n- SmolVLA CRM checkpoints（已 LOCKED）：`/root/autodl-tmp/checkpoints/crm_v3_norm/{perdof,obs_only}/crm_best.pt`\n- 环境变量：`HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl`\n\n### 3. 📊 当前状态\n- `crm-train-pi05-object-full` RUNNING（bjb1-18228 cuda:0, 69303 samples, 50 epochs, ~4-7h，启动于 ~18:26 UTC）\n- `crm-train-pi05-spatial-full` PREPARING（未提交，~60250 spatial samples，目标 bjb1-18228 cuda:1）\n- `crm-pipeline-auto` PREPARING（监控脚本，可能已过时——precompute 阶段已手动完成）\n- SmolVLA 全部结果 LOCKED（Object Plan A 18.3%, Spatial 35.0%）\n- π0.5 baseline LOCKED（D105: Object 81.5%, Spatial 84.2%）\n- 论文编译 OK 15 页，待写入 π0.5 cross-VLA 结果\n- 等待中：CRM training 完成 cron 回调（Object + Spatial）\n\n### 4. 📋 待办\n- `crm-train-pi05-spatial-full` 仍 PREPARING → 立即提交到 bjb1-18228 cuda:1（用 `submit_training_job`，命令模仿 object-full 的 spec 换 `--benchmark spatial` + 对应 output_dir）\n- `crm-train-pi05-object-full` cron 回调 DONE → 确认 `crm_best.pt` 存在 → 记录 checkpoint_path 到 registry\n- 两个 CRM training 都 DONE → 部署 6 个 Plan A eval（pi05_eval_commands.md 已准备好，填入 checkpoint 路径，6 GPU 分散到 bjb1-32546 + bjb2-28827 + bjb1-18228）\n- Eval 前 → bjb2-28827 必须 `git pull` 同步代码\n- 6 eval 全 DONE → 汇总 metrics → update registry → 向 Director 汇报（对比 π0.5 baseline 81.5%/84.2%）\n- Eval 结果出来 → spawn Paper Agent Worker 将 π0.5 cross-VLA 结果写入论文\n- 论文更新完 → final review + submission prep\n\n### 5. 🎯 战略上下文\n- **决策链核心**：D001(MVP GO) → D008(SmolVLA需finetune) → D058(obs_only不用conformal) → D065(correction>selection reframe) → D077-D092(Plan A = K=2 L2 + selective CRM) → D105(π0.5 baseline locked)\n- **π0.5 是最后一个关键数据点**：cross-VLA generalization claim 依赖它。SmolVLA 全部 LOCKED，π0.5 CRM eval 是 CoRL 提交的唯一 blocker\n- **易错判断**：π0.5 baseline 极高（81-85%），CRM 增益可能很小甚至为零。不要把 SmolVLA 的 +7.5pp 增益外推到 π0.5。Framing 已预设 \"no-harm + selective improvement\" narrative（ceiling effect）\n- **Spatial training 未提交是遗留问题**——上一个 session 可能在 Object training 启动后被 RESET，Spatial 还卡在 PREPARING。这是第一优先\n- **crm-pipeline-auto** 是旧的自动监控脚本（监控 precompute），precompute 已完成，这个实验可能需要 kill 或标记 DONE\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-23-1779390480.md"
+}

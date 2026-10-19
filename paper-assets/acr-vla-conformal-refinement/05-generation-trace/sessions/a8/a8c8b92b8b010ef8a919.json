@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8c8b92b8b010ef8a919",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "monitor bjb1 32546 status",
+  "task_key": "worker_monitor_bjb1-32546-status_20260515T044914",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_monitor_bjb1-32546-status_20260515T044914_result.json",
+    "occurrence": 1,
+    "bytes": 1763,
+    "sha256": "b2db0f567aaf3c0283fe751ad0c2e128e8b31029639c9e3afca09fe79dd0b027"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## bjb1-32546 Object Eval Status\n\n| Experiment | Mode | GPU | PID | Tasks Done | Total | Task 1 SR | Status |\n|---|---|---|---|---|---|---|---|\n| eval-reconvla-object | reconvla, K=10 | cuda:0 | 9659 | 1/10 | 10 | 0% | **running** — task 2 rollout 5/10 |\n| eval-acr-object-v4-perdof | crm_perdof, norm=0.1 | cuda:1 | 11116 | 1/10 | 10 | 0% | **running** — task 2 rollout 5/10 |\n| eval-acr-object-v4-obs-only | crm_obs_only, norm=0.1 | cuda:2 | 13806 | 1/10 | 10 | 0% | **running** — starting task 2 |\n| eval-acr-object-v4-scalar | crm_scalar, norm=0.1 | cuda:3 | 14012 | 1/10 | 10 | 0% | **running** — starting task 2 |\n| eval-vla-only-object | vla_only, K=1 | cuda:4 | — | **10/10** | 10 | 0% | **done** — SR=12.0% |\n| eval-vla-mean-object | vla_only mean, K=10 | cuda:5 | 18814 | 1/10 | 10 | 0% | **running** — starting task 2 |\n\n### eval-vla-only-object 完整结果 (SR = 12.0%)\n\n| Task | Success | Rate |\n|---|---|---|\n| alphabet_soup | 0/10 | 0% |\n| cream_cheese | 1/10 | 10% |\n| salad_dressing | 2/10 | 20% |\n| bbq_sauce | 2/10 | 20% |\n| ketchup | 0/10 | 0% |\n| tomato_sauce | 1/10 | 10% |\n| butter | 0/10 | 0% |\n| milk | 1/10 | 10% |\n| chocolate_pudding | 2/10 | 20% |\n| orange_juice | 3/10 | 30% |\n\n### 备注\n\n- 所有 5 个运行中的实验都刚完成第 1 个 task（alphabet_soup，全部 0%），正在进入 task 2（cream_cheese）\n- obs_only 和 scalar 的日志在 `/root/runs/acr-vla-conformal-refinement/` 而非 `logs/` 目录，且未指定 `--output_file`，完成后不会自动生成 JSON\n- scalar 实际 PID=14012（非 14003），vla_mean 实际 PID=18814（非 18808）\n- 按当前进度估算，每个实验还需完成 9 个 task × 10 rollouts，预计数小时后完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-bjb1-32546-status.md"
+}

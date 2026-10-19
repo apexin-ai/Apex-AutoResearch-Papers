@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "adca137fb800dd520169",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh check sweep progress",
+  "task_key": "worker_ssh_check-sweep-progress_20260520T015045",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_check-sweep-progress_20260520T015045_result.json",
+    "occurrence": 1,
+    "bytes": 979,
+    "sha256": "16378c49efe03103da004d8ff24c32a4003c29c77967382d9b806177ffbfb3f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有实验仍在运行中，无 JSON 输出。进度汇总（每个实验 10 tasks，每 task 10 rollouts）：\n\n### bjb2-28827（6 个实验）\n| 实验 | 完成 tasks |\n|------|-----------|\n| p75-seed42 | **7/10** |\n| p75-seed43 | 6/10 |\n| p50-seed42 | 6/10 |\n| p90-seed43 | **7/10** |\n| p90-seed44 | 6/10 |\n| p25-seed43 | 5/10 |\n\n### bjb1-32546（4 个实验）\n| 实验 | 完成 tasks |\n|------|-----------|\n| **p75-seed44** | **8/10** ← 最快 |\n| p90-seed42 | 7/10 |\n| p50-seed44 | 7/10 |\n| p25-seed42 | 6/10 |\n\n### bjb2-40593（1 个实验）\n| 实验 | 完成 tasks |\n|------|-----------|\n| p25-seed44 | 2/10 ← 最慢 |\n\n**最快的是 bjb1 上的 p75-seed44（8/10）**，还剩 2 个 tasks（~20 rollouts），预计很快完成。bjb2-28827 上的 p75-seed42 和 p90-seed43 紧随其后（7/10）。bjb2-40593 上只跑了 1 个实验且进度最慢（2/10）。\n\n总计 11 个实验在跑，整体完成度约 60-80%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-sweep-progress.md"
+}

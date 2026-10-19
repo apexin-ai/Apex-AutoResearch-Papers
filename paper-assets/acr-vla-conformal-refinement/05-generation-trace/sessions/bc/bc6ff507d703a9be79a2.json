@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc6ff507d703a9be79a2",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "fix eval scalar seed45 check",
+  "task_key": "worker_fix_eval-scalar-seed45-check_20260517T172843",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_eval-scalar-seed45-check_20260517T172843_result.json",
+    "occurrence": 1,
+    "bytes": 440,
+    "sha256": "d4215cc50ce38245089f32c7eef2504ac7bad2f8b45344e266ed59f6cb8bd35b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能已被清理或在其他 session 创建）。\n\n**实验完成总结：**\n\n| 项目 | 值 |\n|------|-----|\n| exp_id | eval-scalar-object-seed45 |\n| 状态 | DONE (success) |\n| overall success rate | **9.0%** (18/200) |\n| 最佳 task | chocolate_pudding 25% |\n| 最差 task | alphabet_soup 0% |\n| mode | crm_scalar, K=10, max_correction_norm=0.1 |\n\nRegistry 已更新为 DONE + metrics。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-eval-scalar-seed45-check.md"
+}

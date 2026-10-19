@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71837fd277cbe232363e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "paper figure fig3 decomposition",
+  "task_key": "worker_paper_figure_fig3_decomposition_20260520T015133",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_figure_fig3_decomposition_20260520T015133_result.json",
+    "occurrence": 1,
+    "bytes": 305,
+    "sha256": "0e68ba7c1a635a09bb5760854c5042a9033a2bfb6ca0ebe9c9d04fa11830672d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已生成 `fig3_decomposition.pdf`（25.9 KB），已注册为 artifact `art_20260520_18332e`。\n\n图表包含：两组 (K=5, K=10) 各 4 根柱子，Okabe-Ito 配色，correction Δ 标注（K=5: 2.3%, K=10: 5.3%），Random K=5 低于 baseline 的箭头标注，VLA-only 虚线基线。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig3-decomposition.md"
+}

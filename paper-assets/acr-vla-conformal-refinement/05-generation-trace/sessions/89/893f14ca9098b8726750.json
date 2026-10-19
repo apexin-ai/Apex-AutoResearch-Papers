@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "893f14ca9098b8726750",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "research lerobot libero recipes",
+  "task_key": "worker_research_lerobot-libero-recipes_20260513T094527",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_lerobot-libero-recipes_20260513T094527_result.json",
+    "occurrence": 1,
+    "bytes": 1286,
+    "sha256": "c9f8ec136bcb91ca5587ff25f81f845bbbbebcc63988bc883172b7a84bc13c4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/smolvla-libero-finetune-survey.md`。核心结论：\n\n### 1. SmolVLA Fine-tuning 官方方式\n- `lerobot-train --policy.path=lerobot/smolvla_base --dataset.repo_id=HuggingFaceVLA/libero`\n- 支持 full fine-tune（仅 action expert, VLM frozen）和 LoRA\n- 官方文档: https://huggingface.co/docs/lerobot/smolvla\n\n### 2. LIBERO 数据\n**不需要自己转换**。Hub 上已有 `HuggingFaceVLA/libero`（273k frames, 4 suites），直接用。LIBERO-90 用 `IPEC-COMMUNITY/libero_90_no_noops_lerobot`。\n\n### 3. Action Dim 6→7\n**自动处理**。SmolVLA 内部 pad 到 `max_action_dim=32`，fine-tune 时从数据集推断 `action.shape=[7]`、`state.shape=[8]`。加 `--policy.output_features=null --policy.input_features=null` 让 trainer 自动推断。\n\n### 4. 现成 Checkpoint\n- **`lerobot/smolvla_libero`** — SmolVLA 已 fine-tuned on LIBERO，可直接用\n- `lerobot/pi05_libero_finetuned` — π0.5, 97.5% avg\n- `moojink/openvla-7b-oft-finetuned-libero-*` — OpenVLA-OFT, 97.1% avg\n- `nvidia/Cosmos-Policy-LIBERO-Predict2-2B` — SOTA 98.5%\n\n### 5. 推荐方案\n先验证 `lerobot/smolvla_libero` 是否满足需求。如需自己训练，在 4090 上用 batch_size=8-16、100k steps、bfloat16 即可跑通。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-lerobot-libero-recipes.md"
+}

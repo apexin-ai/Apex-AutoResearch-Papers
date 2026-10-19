@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b64fa82365b56a80e38a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh harvest latest completions",
+  "task_key": "worker_ssh_harvest-latest-completions_20260520T053955",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_harvest-latest-completions_20260520T053955_result.json",
+    "occurrence": 1,
+    "bytes": 580,
+    "sha256": "1196e890bcdacf614c3148cc9470061f4669c1d64c60eacf5eae2837de0017df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 服务器 | 文件 | SR | avg_K | fast_path |\n|--------|------|----|-------|-----------|\n| bjb2-28827 | eval_long_vla_only_seed49.json | 0.16 | - | - |\n| bjb2-28827 | eval_long_vla_only_seed50.json | 0.16 | - | - |\n| bjb1-18228 | eval_spatial_obs_only_norm02_seed51.json | 0.36 | - | - |\n| bjb1-18228 | eval_goal_vla_only_seed49.json | 0.65 | - | - |\n| bjb1-18228 | eval_long_vla_only_seed52.json | 0.17 | - | - |\n| bjb1-32546 | eval_long_obs_only_norm02_seed50.json | 0.14 | - | - |\n| bjb2-40593 | eval_adaptive_k_p25_seed44.json | 0.13 | 4.876 | 0.641 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-latest-completions.md"
+}

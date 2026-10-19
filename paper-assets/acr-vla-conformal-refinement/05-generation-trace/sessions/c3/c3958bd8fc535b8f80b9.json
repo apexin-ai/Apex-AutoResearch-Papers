@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3958bd8fc535b8f80b9",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest vla only object metrics",
+  "task_key": "worker_harvest_vla-only-object-metrics_20260521T044251",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_vla-only-object-metrics_20260521T044251_result.json",
+    "occurrence": 1,
+    "bytes": 875,
+    "sha256": "b37822e7466707ddeb5a22a57aaa2e4c1657c127749da72313a51ba07cb13e23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "8/8 registry 更新成功。\n\n```\nexp_id                         | server      | SR   | 状态\neval-vla-only-object           | bjb1-32546  | 0.12 | OK\neval-vla-only-object-seed43    | bjb1-32546  | 0.12 | OK\neval-vla-only-object-seed44-r2 | bjb2-40593  | 0.10 | OK\neval-vla-only-object-seed45    | bjb2-28827  | 0.09 | OK\neval-vla-only-object-seed46    | bjb1-18228  | 0.13 | OK\neval-vla-only-object-seed48    | bjb2-40593  | 0.10 | OK\neval-vla-only-object-seed49    | bjb1-32546  | 0.10 | OK\neval-vla-only-object-seed50    | bjb1-32546  | 0.09 | OK\n```\n\n### 全部 VLA-only Object seeds 汇总（含已有 metrics）\n\n| seed | SR |\n|------|----|\n| 42 | 0.12 |\n| 43 | 0.12 |\n| 44 | 0.10 |\n| 45 | 0.09 |\n| 45-r2 | 0.11 |\n| 46 | 0.13 |\n| 47 | 0.10 |\n| 48 | 0.10 |\n| 49 | 0.10 |\n| 50 | 0.09 |\n\n**Mean ± Std = 0.106 ± 0.014** (n=10)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-vla-only-object-metrics.md"
+}

@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "id": "75383adbee11db75208a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "deploy bjb1 18228 batch1",
+  "task_key": "worker_deploy_bjb1-18228-batch1_20260526T214542",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_deploy_bjb1-18228-batch1_20260526T214542.jsonl",
+    "occurrence": 1,
+    "bytes": 705,
+    "sha256": "e2d262df44cb5f8aa5711fb283fd55519e2a4f50df64d43855aabf4f17f3071d"
+  },
+  "statistics": {
+    "messages": 4,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 4
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-26T21:45:52.131674+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-18228-batch1_20260526T214542"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-26T21:46:00.117564+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 29, 2pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-18228-batch1_20260526T214542"
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-26T21:46:08.562791+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 29, 2pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-18228-batch1_20260526T214542"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-26T21:46:18.181503+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 29, 2pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-18228-batch1_20260526T214542"
+          },
+          "id": "event-000004"
+        }
+      ],
+      "message_count": 4
+    }
+  ],
+  "readable_path": "readable/conversations/deploy-bjb1-18228-batch1.md"
+}

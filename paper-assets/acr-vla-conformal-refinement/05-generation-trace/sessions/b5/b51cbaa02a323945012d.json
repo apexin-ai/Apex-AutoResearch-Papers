@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b51cbaa02a323945012d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest bjb1 32546",
+  "task_key": "worker_harvest_bjb1-32546_20260524T032326",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_bjb1-32546_20260524T032326_result.json",
+    "occurrence": 1,
+    "bytes": 2571,
+    "sha256": "6c400c021ae1ad675127288ec7ab8eb233cfd09f969639d192e737c7c26c92fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 registry 更新完成。汇总报告如下：\n\n---\n\n## 汇总报告\n\n### GPU 状态 (bjb1-32546)\n\n| GPU | 利用率 | 显存占用 | 状态 |\n|-----|--------|----------|------|\n| 0 | 22% | 6289/24564 MiB | 运行中 |\n| 1 | 33% | 9012/24564 MiB | 运行中 |\n| 2 | 46% | 8360/24564 MiB | 运行中 |\n| 3 | 24% | 5844/24564 MiB | 运行中 |\n| 4 | 0% | 2/24564 MiB | 空闲 |\n| 5 | 0% | 2/24564 MiB | 空闲 |\n\n### 磁盘状态\n\n| 分区 | 容量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| / (根) | 30G | 10G | 21G | 34% |\n| /root/autodl-tmp | 250G | 68G | 183G | 28% |\n\n### 收割的 JSON 结果\n\n| 文件名 | success_rate | exp_id | Registry 操作 |\n|--------|-------------|--------|---------------|\n| eval_spatial_k2mean_seed46.json | **0.80** | eval-supp-spatial-k2mean-s46 | metrics 更新 (原 conclusion=failed→已是 success，补 metrics) |\n| eval_object_reconvla_seed45.json | **0.78** | eval-supp-reconvla-obj-s45 | metrics 更新 + conclusion failed→**success** |\n| eval_long_reconvla_seed45.json | **0.59** | eval-supp-long-reconvla-s45 | metrics 更新 (conclusion 已自动修正为 success) |\n| eval_long_vla_only_seed45.json | **0.575** | eval-supp-long-vla-only-s45 | 已有正确数据，无需更新 |\n| eval_long_crm_obs_only_norm0.05_seed45.json | **0.605** | eval-supp-long-crm-norm005-s45 | 已有正确数据，无需更新 |\n| eval_long_adaptive_...tau0.25_seed45.json | **0.60** | eval-supp-long-adapt-tau025-s45 | 已有正确数据，无需更新 |\n| eval_object_crm_obs_only_norm0.05_seed46.json | **0.795** | eval-supp-obj-crm-norm005-s46 | **新建** + metrics + conclusion=success |\n| eval_object_vla_only_seed46.json | **0.79** | eval-supp-obj-vla-only-s46 | 已有正确数据，无需更新 |\n| eval_goal_adaptive_...tau0.25_seed45.json | **0.81** | eval-supp-goal-adapt-tau025-s45 | 已有正确数据，无需更新 |\n\n### 未找到的 JSON\n- `eval_long_k2mean_seed45.json` — 不存在于 logs/ 目录（registry 中已有来自 bjb2 的数据 SR=0.56）\n\n### 被 cron 误标 failed 已修正：3 个\n1. **eval-supp-spatial-k2mean-s46** — SR=0.80，metrics 已补录\n2. **eval-supp-reconvla-obj-s45** — SR=0.78，conclusion 已修正为 success\n3. **eval-supp-long-reconvla-s45** — SR=0.59，metrics 已补录\n\n### 当前运行中\n- Registry 中 RUNNING 状态仅剩 **eval-supp-long-vla-only-s46**\n- /tmp 日志显示 GPU 0-3 上有 seed46 系列 Long 评估在跑（adapt/crm/reconvla s46，时间戳 ~11:20 今天）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-bjb1-32546.md"
+}

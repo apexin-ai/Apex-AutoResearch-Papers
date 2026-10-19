@@ -1,0 +1,2805 @@
+{
+  "schema_version": "1.0",
+  "id": "85110039c8a77b82356f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "deploy k2mean baselines 4090 20260526T131756 retry1",
+  "task_key": "worker_deploy_k2mean-baselines-4090_20260526T131756_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_k2mean-baselines-4090_20260526T131756_retry1.log",
+    "occurrence": 1,
+    "bytes": 103613,
+    "sha256": "59cc448e20ac81d087a250bebb5665ded85701ce6a16927e1fc42db034fc7cdb"
+  },
+  "statistics": {
+    "messages": 65,
+    "user_turns": 0,
+    "tool_calls": 27,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 27,
+      "tool_result": 27
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+                "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__submit_training_job",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-7[1m]",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "bff26a3c-e500-4b79-945a-50d41851f4a3",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1780063200,
+                  "rateLimitType": "seven_day",
+                  "utilization": 0.92,
+                  "isUsingOverage": false,
+                  "surpassedThreshold": 0.75
+                },
+                "uuid": "81b26805-e7b8-4058-ba96-4738e4463f24",
+                "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "",
+              "signature": "EpgCCmMIDhgCKkCsutRADJHinQh+za5UQUSDbXc2mfVn6oh6arr+9hJ6Z+vDlLpt/LOEUXSNkI9tXhSr1gl/wty1xgAsMZc6YLmmMg9jbGF1ZGUtb3B1cy00LTc4AEIIdGhpbmtpbmcSDIuQiwCQbsV/akKnthoM9c9Uy6h0CDmu5BA0IjBAOrHdzVUL+ocNOodwA2uTqZLsDy4XPp3uyg8sUCop7ko+YGTFMMnRwS0hL+ae4uIqY9gnp3iTwz9Mwj+c1ixVXh19VAqHpuJP1Ys3V44cmjHIZsr/3qmHs9W5Z4uLcq7DfA2WWJteIOGiuGTnvzlBZp8jwce2947Cchot4hOI196JrDzu32uYU/XzyoOE1qH8/M13KhgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "23a4112a-26ba-4026-a635-3451a4257a1e",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01WhtiddzoaCHNNqJGk32LJm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 15086,
+                "cache_read_input_tokens": 16241,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 15086
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HNcArjVm4wASmoLMRuPwTc",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image,TodoWrite",
+                "max_results": 10
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "087c6517-4175-47d8-8ce8-a8348506c097",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01WhtiddzoaCHNNqJGk32LJm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 15086,
+                "cache_read_input_tokens": 16241,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 15086
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-26T13:18:18.861Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01HNcArjVm4wASmoLMRuPwTc",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__submit_training_job"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__detect_image"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "TodoWrite"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "69f965c0-92e1-4e7d-a5e7-feb715a148f8",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__submit_training_job",
+                "mcp__agent-ml-research__update_registry",
+                "mcp__agent-ml-research__read_registry",
+                "mcp__agent-ml-research__detect_image",
+                "TodoWrite"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__detect_image,TodoWrite",
+              "total_deferred_tools": 27
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "",
+              "signature": "EoQCCmMIDhgCKkAzX96igzapHMx46MecQfyYcEWVYBRMBkWD+WhNzzGDujH02Nzhl8AK5leSaCpzXurFKA52892mQGULj5w4DzrRMg9jbGF1ZGUtb3B1cy00LTc4AEIIdGhpbmtpbmcSDPVPzaDp1COj4m+WfBoMFEULFlEZauE3/1q/IjBJeH83y8BgiUvySi4V2rji1ITfmswEdMafBS/2Vh2QwuBvPSL13+kvSYqAiNk/cmYqT6nWMesVy1bQbNf7T+zEoX4APHhO5n+KOs9oaXQRlkNXehij/7ibSlFW4o66WSbZ16sjUF0niOoIT6OkwgT9L7kMvs+gL3PETdeGoHpKFXgYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "dc346163-8ea0-4bea-acd4-ee3453535ba5",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_012SGjwFRVUxHtgbghmizr22",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 21835,
+                "cache_read_input_tokens": 16334,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 21835
+                },
+                "output_tokens": 0,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "tools_changed",
+                  "cache_missed_input_tokens": 28908
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J5mB8nRJ7Kmr72krcVFp5L",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Verify --baseline_mode parameter on bjb1-18228",
+                    "status": "in_progress",
+                    "activeForm": "Verifying --baseline_mode parameter on bjb1-18228"
+                  },
+                  {
+                    "content": "Check GPU availability on bjb1-18228 and bjb2-24035",
+                    "status": "pending",
+                    "activeForm": "Checking GPU availability"
+                  },
+                  {
+                    "content": "Deploy pi05-k2mean-spatial-s42 on bjb1-18228 cuda:0",
+                    "status": "pending",
+                    "activeForm": "Deploying pi05-k2mean-spatial-s42"
+                  },
+                  {
+                    "content": "Deploy pi05-k2mean-object-s42 on bjb1-18228 cuda:1",
+                    "status": "pending",
+                    "activeForm": "Deploying pi05-k2mean-object-s42"
+                  },
+                  {
+                    "content": "Deploy pi05-k2mean-long-s42 on bjb1-18228 cuda:3",
+                    "status": "pending",
+                    "activeForm": "Deploying pi05-k2mean-long-s42"
+                  },
+                  {
+                    "content": "Deploy pi05-k2mean-goal-s43 on bjb2-24035 cuda:0",
+                    "status": "pending",
+                    "activeForm": "Deploying pi05-k2mean-goal-s43"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "190e781c-250b-41e1-868b-5595c81f6be2",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_012SGjwFRVUxHtgbghmizr22",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 21835,
+                "cache_read_input_tokens": 16334,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 21835
+                },
+                "output_tokens": 0,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "tools_changed",
+                  "cache_missed_input_tokens": 28908
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-26T13:18:27.578Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J5mB8nRJ7Kmr72krcVFp5L",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "fc46819a-8131-4641-bf8e-ddd4f93769c8",
+            "tool_use_result": {
+              "oldTodos": [],
+              "newTodos": [
+                {
+                  "content": "Verify --baseline_mode parameter on bjb1-18228",
+                  "status": "in_progress",
+                  "activeForm": "Verifying --baseline_mode parameter on bjb1-18228"
+                },
+                {
+                  "content": "Check GPU availability on bjb1-18228 and bjb2-24035",
+                  "status": "pending",
+                  "activeForm": "Checking GPU availability"
+                },
+                {
+                  "content": "Deploy pi05-k2mean-spatial-s42 on bjb1-18228 cuda:0",
+                  "status": "pending",
+                  "activeForm": "Deploying pi05-k2mean-spatial-s42"
+                },
+                {
+                  "content": "Deploy pi05-k2mean-object-s42 on bjb1-18228 cuda:1",
+                  "status": "pending",
+                  "activeForm": "Deploying pi05-k2mean-object-s42"
+                },
+                {
+                  "content": "Deploy pi05-k2mean-long-s42 on bjb1-18228 cuda:3",
+                  "status": "pending",
+                  "activeForm": "Deploying pi05-k2mean-long-s42"
+                },
+                {
+                  "content": "Deploy pi05-k2mean-goal-s43 on bjb2-24035 cuda:0",
+                  "status": "pending",
+                  "activeForm": "Deploying pi05-k2mean-goal-s43"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01APEnh3vAFFyz7EC3kDYzqU",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-18228",
+                "command": "ls /root/acr-vla-conformal-refinement/src/evaluate.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "349745ff-d02e-4eff-ba37-b1b281517d07",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01PQDguUej1aXM4YS6Vhe8Su",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 584,
+                "cache_read_input_tokens": 38169,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 584
+                },
+                "output_tokens": 84,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SEmnnYY1p2sfaF6Dh8Ry3t",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-18228",
+                "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "c222faac-1f9f-4fd2-8ead-a85a3301ce64",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01PQDguUej1aXM4YS6Vhe8Su",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 584,
+                "cache_read_input_tokens": 38169,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 584
+                },
+                "output_tokens": 84,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-26T13:18:33.372Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01APEnh3vAFFyz7EC3kDYzqU",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/src/evaluate.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "13428afa-6773-4a93-a072-f9f3c0b3bbbb",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/src/evaluate.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/acr-vla-conformal-refinement/src/evaluate.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.16}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-26T13:18:33.908Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SEmnnYY1p2sfaF6Dh8Ry3t",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"index, utilization.gpu [%], memory.used [MiB]\\\\n0, 0 %, 1 MiB\\\\n1, 0 %, 1 MiB\\\\n2, 24 %, 10352 MiB\\\\n3, 0 %, 1 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "95c5f829-3cce-4ba5-a2e9-d4a1a153ed67",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"index, utilization.gpu [%], memory.used [MiB]\\\\n0, 0 %, 1 MiB\\\\n1, 0 %, 1 MiB\\\\n2, 24 %, 10352 MiB\\\\n3, 0 %, 1 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"index, utilization.gpu [%], memory.used [MiB]\\n0, 0 %, 1 MiB\\n1, 0 %, 1 MiB\\n2, 24 %, 10352 MiB\\n3, 0 %, 1 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AGjwWkjYCvFBBqfNXyi2Nx",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb2-24035",
+                "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "fbbf4cb9-89a1-432f-91ec-01188a89a7e7",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01PQDguUej1aXM4YS6Vhe8Su",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 584,
+                "cache_read_input_tokens": 38169,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 584
+                },
+                "output_tokens": 84,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-26T13:18:34.926Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AGjwWkjYCvFBBqfNXyi2Nx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"index, utilization.gpu [%], memory.used [MiB]\\\\n0, 0 %, 0 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "868797f3-57e2-48d8-902d-8e7e99bf82d7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"index, utilization.gpu [%], memory.used [MiB]\\\\n0, 0 %, 0 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"index, utilization.gpu [%], memory.used [MiB]\\n0, 0 %, 0 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "2e1a3ed8-6bac-43b9-9f30-05da231491c6",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01UmcjcueuxftWeNWhFRpnjs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 987,
+                "cache_read_input_tokens": 38753,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 987
+                },
+                "output_tokens": 61,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PdRAxMTfFN7mpyzoRKhzPy",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-18228",
+                "command": "grep -n \"baseline_mode\\|--K\\b\\|argmin\\|mean\" /root/acr-vla-conformal-refinement/src/evaluate.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "a624faaa-43e7-43cc-bf38-ff3f40a93d5f",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01UmcjcueuxftWeNWhFRpnjs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 987,
+                "cache_read_input_tokens": 38753,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 987
+                },
+                "output_tokens": 61,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-26T13:18:39.688Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PdRAxMTfFN7mpyzoRKhzPy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "82315193-a839-4960-a232-beffd2c1c134",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Gt2SycmSptrnwU1QdyGWVc",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-18228",
+                "command": "grep -nE \"baseline_mode|--K |argmin\" /root/acr-vla-conformal-refinement/src/evaluate.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "f489820c-8b14-4949-8ec0-6ae3bef7d1b9",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01Af9YLNWZmKrnjVQVg8JFnX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 450,
+                "cache_read_input_tokens": 39740,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 450
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-26T13:18:42.594Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Gt2SycmSptrnwU1QdyGWVc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "4d1a78c8-a5f4-474a-ac60-7643d5c3a7c8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Esmq2wwFGnKmY7v6xMuV5s",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-18228",
+                "command": "grep -nE \"baseline_mode|argmin|add_argument\" /root/acr-vla-conformal-refinement/src/evaluate.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "0fb40448-8361-463c-88e1-565959e42e34",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_0165moqwJPZ98YtiaKgF5rXz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 300,
+                "cache_read_input_tokens": 40190,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 300
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-26T13:18:46.323Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Esmq2wwFGnKmY7v6xMuV5s",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "3838edc9-8a5a-4506-9696-1546c98162e2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PPsUHLGNdW4VEGL58NXUAk",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-18228",
+                "command": "grep -n baseline_mode /root/acr-vla-conformal-refinement/src/evaluate.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "c961a2ef-c0df-4bd3-bdc7-cf7e84c32058",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_017o5arAFWogvDL1q2gh56nN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 302,
+                "cache_read_input_tokens": 40490,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 302
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-26T13:18:49.766Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PPsUHLGNdW4VEGL58NXUAk",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"80:    p.add_argument(\\\\\\\"--baseline_mode\\\\\\\", type=str, default=\\\\\\\"single\\\\\\\",\\\\n762:        \\\\\\\"baseline_mode\\\\\\\": getattr(args, \\\\\\\"baseline_mode\\\\\\\", \\\\\\\"single\\\\\\\"),\\\\n845:        if args.baseline_mode == \\\\\\\"single\\\\\\\":\\\\n861:        mode_str = f\\\\\\\"k{args.K}mean\\\\\\\" if args.mode == \\\\\\\"vla_only\\\\\\\" and args.baseline_mode == \\\\\\\"mean\\\\\\\" else args.mode\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "163dff5f-2865-4ebf-bec7-cdc7aac533e7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"80:    p.add_argument(\\\\\\\"--baseline_mode\\\\\\\", type=str, default=\\\\\\\"single\\\\\\\",\\\\n762:        \\\\\\\"baseline_mode\\\\\\\": getattr(args, \\\\\\\"baseline_mode\\\\\\\", \\\\\\\"single\\\\\\\"),\\\\n845:        if args.baseline_mode == \\\\\\\"single\\\\\\\":\\\\n861:        mode_str = f\\\\\\\"k{args.K}mean\\\\\\\" if args.mode == \\\\\\\"vla_only\\\\\\\" and args.baseline_mode == \\\\\\\"mean\\\\\\\" else args.mode\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"80:    p.add_argument(\\\"--baseline_mode\\\", type=str, default=\\\"single\\\",\\n762:        \\\"baseline_mode\\\": getattr(args, \\\"baseline_mode\\\", \\\"single\\\"),\\n845:        if args.baseline_mode == \\\"single\\\":\\n861:        mode_str = f\\\"k{args.K}mean\\\" if args.mode == \\\"vla_only\\\" and args.baseline_mode == \\\"mean\\\" else args.mode\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S9bC4kzGG4frzuuebBN1bj",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-18228",
+                "command": "grep -n add_argument /root/acr-vla-conformal-refinement/src/evaluate.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "1c2b72cd-5330-46dd-8e05-7feeecf93949",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_017o5arAFWogvDL1q2gh56nN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 302,
+                "cache_read_input_tokens": 40490,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 302
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-26T13:18:50.711Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S9bC4kzGG4frzuuebBN1bj",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"67:    p.add_argument(\\\\\\\"--benchmark\\\\\\\", type=str, default=\\\\\\\"object\\\\\\\",\\\\n69:    p.add_argument(\\\\\\\"--checkpoint\\\\\\\", type=str, default=None,\\\\n71:    p.add_argument(\\\\\\\"--crm_checkpoint\\\\\\\", type=str, default=None,\\\\n73:    p.add_argument(\\\\\\\"--n_rollouts\\\\\\\", type=int, default=20)\\\\n74:    p.add_argument(\\\\\\\"--max_steps\\\\\\\", type=int, default=300,\\\\n76:    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n77:    p.add_argument(\\\\\\\"--K\\\\\\\", type=int, default=10)\\\\n78:    p.add_argument(\\\\\\\"--mode\\\\\\\", type=str, default=\\\\\\\"crm_perdof\\\\\\\",\\\\n80:    p.add_argument(\\\\\\\"--baseline_mode\\\\\\\", type=str, default=\\\\\\\"single\\\\\\\",\\\\n83:    p.add_argument(\\\\\\\"--smolvla_path\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/models/smolvla_libero/\\\\\\\")\\\\n84:    p.add_argument(\\\\\\\"--model\\\\\\\", type=str, default=\\\\\\\"smolvla\\\\\\\",\\\\n87:    p.add_argument(\\\\\\\"--pi05_path\\\\\\\", type=str,\\\\n90:    p.add_argument(\\\\\\\"--openvla_oft_path\\\\\\\", type=str,\\\\n93:    p.add_argument(\\\\\\\"--obs_dim\\\\\\\", type=int, default=OBS_DIM)\\\\n94:    p.add_argument(\\\\\\\"--unified_obs_dim\\\\\\\", type=int, default=None,\\\\n96:    p.add_argument(\\\\\\\"--hidden_dim\\\\\\\", type=int, default=256)\\\\n97:    p.add_argument(\\\\\\\"--task_filter\\\\\\\", type=str, default=None,\\\\n99:    p.add_argument(\\\\\\\"--render\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n100:    p.add_argument(\\\\\\\"--output_file\\\\\\\", type=str, default=None,\\\\n102:    p.add_argument('--max_correction_norm', type=float, default=None,\\\\n104:    p.add_argument(\\\\\\\"--adaptive_k\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n106:    p.add_argument(\\\\\\\"--adaptive_threshold\\\\\\\", type=float, default=0.1,\\\\n108:    p.add_argument(\\\\\\\"--k_init\\\\\\\", type=int, default=2,\\\\n110:    p.add_argument(\\\\\\\"--k_full\\\\\\\", type=int, default=5,\\\\n112:    p.add_argument(\\\\\\\"--unc_head_checkpoint\\\\\\\", type=str, default=None,\\\\n114:    p.add_argument(\\\\\\\"--unc_threshold\\\\\\\", type=float, default=0.5,\\\\n116:    p.add_argument(\\\\\\\"--conformal_threshold\\\\\\\", type=float, default=0.074855,\\\\n118:    p.add_argument(\\\\\\\"--n_action_steps\\\\\\\", type=int, default=10,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "b4a77752-f499-4c3b-b93b-5cb9397102ad",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"67:    p.add_argument(\\\\\\\"--benchmark\\\\\\\", type=str, default=\\\\\\\"object\\\\\\\",\\\\n69:    p.add_argument(\\\\\\\"--checkpoint\\\\\\\", type=str, default=None,\\\\n71:    p.add_argument(\\\\\\\"--crm_checkpoint\\\\\\\", type=str, default=None,\\\\n73:    p.add_argument(\\\\\\\"--n_rollouts\\\\\\\", type=int, default=20)\\\\n74:    p.add_argument(\\\\\\\"--max_steps\\\\\\\", type=int, default=300,\\\\n76:    p.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n77:    p.add_argument(\\\\\\\"--K\\\\\\\", type=int, default=10)\\\\n78:    p.add_argument(\\\\\\\"--mode\\\\\\\", type=str, default=\\\\\\\"crm_perdof\\\\\\\",\\\\n80:    p.add_argument(\\\\\\\"--baseline_mode\\\\\\\", type=str, default=\\\\\\\"single\\\\\\\",\\\\n83:    p.add_argument(\\\\\\\"--smolvla_path\\\\\\\", type=str, default=\\\\\\\"/root/autodl-tmp/models/smolvla_libero/\\\\\\\")\\\\n84:    p.add_argument(\\\\\\\"--model\\\\\\\", type=str, default=\\\\\\\"smolvla\\\\\\\",\\\\n87:    p.add_argument(\\\\\\\"--pi05_path\\\\\\\", type=str,\\\\n90:    p.add_argument(\\\\\\\"--openvla_oft_path\\\\\\\", type=str,\\\\n93:    p.add_argument(\\\\\\\"--obs_dim\\\\\\\", type=int, default=OBS_DIM)\\\\n94:    p.add_argument(\\\\\\\"--unified_obs_dim\\\\\\\", type=int, default=None,\\\\n96:    p.add_argument(\\\\\\\"--hidden_dim\\\\\\\", type=int, default=256)\\\\n97:    p.add_argument(\\\\\\\"--task_filter\\\\\\\", type=str, default=None,\\\\n99:    p.add_argument(\\\\\\\"--render\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n100:    p.add_argument(\\\\\\\"--output_file\\\\\\\", type=str, default=None,\\\\n102:    p.add_argument('--max_correction_norm', type=float, default=None,\\\\n104:    p.add_argument(\\\\\\\"--adaptive_k\\\\\\\", action=\\\\\\\"store_true\\\\\\\",\\\\n106:    p.add_argument(\\\\\\\"--adaptive_threshold\\\\\\\", type=float, default=0.1,\\\\n108:    p.add_argument(\\\\\\\"--k_init\\\\\\\", type=int, default=2,\\\\n110:    p.add_argument(\\\\\\\"--k_full\\\\\\\", type=int, default=5,\\\\n112:    p.add_argument(\\\\\\\"--unc_head_checkpoint\\\\\\\", type=str, default=None,\\\\n114:    p.add_argument(\\\\\\\"--unc_threshold\\\\\\\", type=float, default=0.5,\\\\n116:    p.add_argument(\\\\\\\"--conformal_threshold\\\\\\\", type=float, default=0.074855,\\\\n118:    p.add_argument(\\\\\\\"--n_action_steps\\\\\\\", type=int, default=10,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.41}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"67:    p.add_argument(\\\"--benchmark\\\", type=str, default=\\\"object\\\",\\n69:    p.add_argument(\\\"--checkpoint\\\", type=str, default=None,\\n71:    p.add_argument(\\\"--crm_checkpoint\\\", type=str, default=None,\\n73:    p.add_argument(\\\"--n_rollouts\\\", type=int, default=20)\\n74:    p.add_argument(\\\"--max_steps\\\", type=int, default=300,\\n76:    p.add_argument(\\\"--seed\\\", type=int, default=42)\\n77:    p.add_argument(\\\"--K\\\", type=int, default=10)\\n78:    p.add_argument(\\\"--mode\\\", type=str, default=\\\"crm_perdof\\\",\\n80:    p.add_argument(\\\"--baseline_mode\\\", type=str, default=\\\"single\\\",\\n83:    p.add_argument(\\\"--smolvla_path\\\", type=str, default=\\\"/root/autodl-tmp/models/smolvla_libero/\\\")\\n84:    p.add_argument(\\\"--model\\\", type=str, default=\\\"smolvla\\\",\\n87:    p.add_argument(\\\"--pi05_path\\\", type=str,\\n90:    p.add_argument(\\\"--openvla_oft_path\\\", type=str,\\n93:    p.add_argument(\\\"--obs_dim\\\", type=int, default=OBS_DIM)\\n94:    p.add_argument(\\\"--unified_obs_dim\\\", type=int, default=None,\\n96:    p.add_argument(\\\"--hidden_dim\\\", type=int, default=256)\\n97:    p.add_argument(\\\"--task_filter\\\", type=str, default=None,\\n99:    p.add_argument(\\\"--render\\\", action=\\\"store_true\\\")\\n100:    p.add_argument(\\\"--output_file\\\", type=str, default=None,\\n102:    p.add_argument('--max_correction_norm', type=float, default=None,\\n104:    p.add_argument(\\\"--adaptive_k\\\", action=\\\"store_true\\\",\\n106:    p.add_argument(\\\"--adaptive_threshold\\\", type=float, default=0.1,\\n108:    p.add_argument(\\\"--k_init\\\", type=int, default=2,\\n110:    p.add_argument(\\\"--k_full\\\", type=int, default=5,\\n112:    p.add_argument(\\\"--unc_head_checkpoint\\\", type=str, default=None,\\n114:    p.add_argument(\\\"--unc_threshold\\\", type=float, default=0.5,\\n116:    p.add_argument(\\\"--conformal_threshold\\\", type=float, default=0.074855,\\n118:    p.add_argument(\\\"--n_action_steps\\\", type=int, default=10,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.41}}"
+              }
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "",
+              "signature": "Es4CCmMIDhgCKkCJhDmzcHnCHnSCyrqyYZevSilgoK6/JxxIXqWCYNTFYU1jRycfCbmTYXOF4Bec8zqWRoPyj7kRDZ85PGT0LzTmMg9jbGF1ZGUtb3B1cy00LTc4AEIIdGhpbmtpbmcSDI3OLWhgCqMc/YImJBoMmFyzrEMys401nh/qIjCq+KD0HYZFIRrJCoFUZUOcs97raoNr87RG/cClqjS1rW5Z1H2SkaOvQEd+CxD0x9wqmAH59HtR1DGwaedBs7vqvqLtvN1+RaIeyK5BoNIISgZK07Vkv8O9fT3QhoE67bMX+jxga3z5a9gcAd5jIA9v2zbdlu96tEABgnLJ4lzvC7jiw69EAARkHJs7t4N7pw0YzaFNXnW/3bdoetvQQQ5GAAArt6+pXAORhZrPBc/65lWdeTdPzvTdnXfT9cVtJx6ZxxncEVoCoUxZhxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "35f23583-fcf8-4459-9447-506def6eb479",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_018vVPH8geoa9b8fh7rTYddo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1811,
+                "cache_read_input_tokens": 40792,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1811
+                },
+                "output_tokens": 48,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018QTSNEBgsYPUwrmHK91D87",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "filters": {
+                  "exp_id": "pi05-k2mean-goal-s42-r2"
+                },
+                "project": "acr-vla-conformal-refinement",
+                "fields": [
+                  "*"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "768453ff-249b-4f39-8c04-29a412c6eed1",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_018vVPH8geoa9b8fh7rTYddo",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1811,
+                "cache_read_input_tokens": 40792,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1811
+                },
+                "output_tokens": 48,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-26T13:19:06.325Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018QTSNEBgsYPUwrmHK91D87",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 10.8808}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "7b018aba-8f2b-4c46-9b84-b537db89d94b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 10.8808}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 10.8808}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011tW8bEfsVa6ELP2eqAJWJ4",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "filters": {
+                  "model_name": "pi05"
+                },
+                "project": "acr-vla-conformal-refinement",
+                "fields": [
+                  "*"
+                ],
+                "limit": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "ec0d34a4-3ba0-41ad-901f-2ccd4d404373",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01JPk7FdVFkQk95jdZ5CvoWH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 331,
+                "cache_read_input_tokens": 42603,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 331
+                },
+                "output_tokens": 57,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-26T13:19:17.068Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011tW8bEfsVa6ELP2eqAJWJ4",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.5069}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "45594e81-887a-4720-82db-f526a0a6ec1c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.5069}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.5069}}"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01J1Gw8Qb5KvmnKLpUi7rnum",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "filters": {},
+                "project": "acr-vla-conformal-refinement",
+                "limit": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "2dee86c2-4c04-4440-ba0d-8bd13ec4f91f",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01EnxuFrmYL8dLzv3Qnp81db",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 663,
+                "cache_read_input_tokens": 42934,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 663
+                },
+                "output_tokens": 67,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-26T13:19:33.512Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01J1Gw8Qb5KvmnKLpUi7rnum",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"westd-pi05-vla-only-long-s44-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-26T13:18:18.464Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:18:59.027Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Long s44 (re-run after EXIT_CODE=129). westd same-server paired comparison (Blackwell). Fills Table 2 Long VLA-only last gap. parent: westd-pi05-vla-only-long-s44-paired\\\", \\\"parent\\\": \\\"westd-pi05-vla-only-long-s44-paired\\\"}, \\\"westd-pi05-vla-only-long-s44-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T12:00:13.951Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:11:13.990Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Long s44. westd same-server paired comparison (Blackwell). Fills Table 2 Long VLA-only gap.\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"westd-pi05-vla-only-long-s43-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T12:00:43.452Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:05:08.426Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Long s43. westd same-server paired comparison (Blackwell). Complete Long VLA-only 3-seed coverage.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.945, \\\"benchmark\\\": \\\"long\\\", \\\"mode\\\": \\\"vla_only\\\", \\\"seed\\\": 43, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10}}, \\\"pi05-crm-k2-long-s43-cqa1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T12:56:11.884Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:03:03.319Z\\\", \\\"hypothesis\\\": \\\"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Long s43. Table 2 long-horizon CRM impact. Re-run on cqa1 after bjb1-18228 r2 failed (process dead 5×).\\\", \\\"parent\\\": \\\"pi05-crm-k2-long-s43-r2\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"pi05-k2mean-goal-s42-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-26T03:44:35.194Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:01:00.868Z\\\", \\\"hypothesis\\\": \\\"π0.5 K=2 mean baseline on Goal s42 (re-run after cqa1 crash). Isolates sampling effect (K=2 action averaging) from CRM correction.\\\"}}, \\\"count\\\": 5, \\\"total\\\": 1207, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 12.7242}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "2b099819-376f-47b0-9d07-d417115e8480",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"westd-pi05-vla-only-long-s44-r2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-26T13:18:18.464Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:18:59.027Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Long s44 (re-run after EXIT_CODE=129). westd same-server paired comparison (Blackwell). Fills Table 2 Long VLA-only last gap. parent: westd-pi05-vla-only-long-s44-paired\\\", \\\"parent\\\": \\\"westd-pi05-vla-only-long-s44-paired\\\"}, \\\"westd-pi05-vla-only-long-s44-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T12:00:13.951Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:11:13.990Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Long s44. westd same-server paired comparison (Blackwell). Fills Table 2 Long VLA-only gap.\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"westd-pi05-vla-only-long-s43-paired\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T12:00:43.452Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:05:08.426Z\\\", \\\"hypothesis\\\": \\\"π0.5 VLA-only baseline on Long s43. westd same-server paired comparison (Blackwell). Complete Long VLA-only 3-seed coverage.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.945, \\\"benchmark\\\": \\\"long\\\", \\\"mode\\\": \\\"vla_only\\\", \\\"seed\\\": 43, \\\"model\\\": \\\"pi05\\\", \\\"n_rollouts\\\": 20, \\\"n_tasks\\\": 10}}, \\\"pi05-crm-k2-long-s43-cqa1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-26T12:56:11.884Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:03:03.319Z\\\", \\\"hypothesis\\\": \\\"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Long s43. Table 2 long-horizon CRM impact. Re-run on cqa1 after bjb1-18228 r2 failed (process dead 5×).\\\", \\\"parent\\\": \\\"pi05-crm-k2-long-s43-r2\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"pi05-k2mean-goal-s42-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-26T03:44:35.194Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:01:00.868Z\\\", \\\"hypothesis\\\": \\\"π0.5 K=2 mean baseline on Goal s42 (re-run after cqa1 crash). Isolates sampling effect (K=2 action averaging) from CRM correction.\\\"}}, \\\"count\\\": 5, \\\"total\\\": 1207, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 12.7242}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"westd-pi05-vla-only-long-s44-r2\": {\"status\": \"PREPARING\", \"created_at\": \"2026-05-26T13:18:18.464Z\", \"updated_at\": \"2026-05-26T13:18:59.027Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Long s44 (re-run after EXIT_CODE=129). westd same-server paired comparison (Blackwell). Fills Table 2 Long VLA-only last gap. parent: westd-pi05-vla-only-long-s44-paired\", \"parent\": \"westd-pi05-vla-only-long-s44-paired\"}, \"westd-pi05-vla-only-long-s44-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T12:00:13.951Z\", \"updated_at\": \"2026-05-26T13:11:13.990Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Long s44. westd same-server paired comparison (Blackwell). Fills Table 2 Long VLA-only gap.\", \"conclusion\": \"failed\"}, \"westd-pi05-vla-only-long-s43-paired\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T12:00:43.452Z\", \"updated_at\": \"2026-05-26T13:05:08.426Z\", \"hypothesis\": \"π0.5 VLA-only baseline on Long s43. westd same-server paired comparison (Blackwell). Complete Long VLA-only 3-seed coverage.\", \"conclusion\": \"success\", \"metrics\": {\"success_rate\": 0.945, \"benchmark\": \"long\", \"mode\": \"vla_only\", \"seed\": 43, \"model\": \"pi05\", \"n_rollouts\": 20, \"n_tasks\": 10}}, \"pi05-crm-k2-long-s43-cqa1\": {\"status\": \"DONE\", \"created_at\": \"2026-05-26T12:56:11.884Z\", \"updated_at\": \"2026-05-26T13:03:03.319Z\", \"hypothesis\": \"π0.5 CRM K=2 obs_only (always-on, ε=0.05) on Long s43. Table 2 long-horizon CRM impact. Re-run on cqa1 after bjb1-18228 r2 failed (process dead 5×).\", \"parent\": \"pi05-crm-k2-long-s43-r2\", \"conclusion\": \"failed\"}, \"pi05-k2mean-goal-s42-r2\": {\"status\": \"RUNNING\", \"created_at\": \"2026-05-26T03:44:35.194Z\", \"updated_at\": \"2026-05-26T13:01:00.868Z\", \"hypothesis\": \"π0.5 K=2 mean baseline on Goal s42 (re-run after cqa1 crash). Isolates sampling effect (K=2 action averaging) from CRM correction.\"}}, \"count\": 5, \"total\": 1207, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 12.7242}}"
+              }
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "",
+              "signature": "ErcCCmMIDhgCKkC4rAXbVWyvwdhlXiD/G8DG8uR8jSEVYJAjpcVI+WQirjmcON89nLUo7QLS5ysvet4GVbTtTg7f2/wU3p/mx/dLMg9jbGF1ZGUtb3B1cy00LTc4AEIIdGhpbmtpbmcSDLJnLlk5+7xEEIwscRoMjZrPiINzVW4Kqx36IjDHSE6xS3OILqVj8xGSMZcbpeefUxWBkYrb4AAVZotwoAjicFUl51z+klux3SbRxy8qgQFra/QxC/FBBYvdiMAt/QY6ycVyP/FY1oLVcxUyZ86gTXio/K5Fky1yqZlRP+B+k98ScZyijqANyxfC0SCQotIY+QFAMYyYRTLAJ3N/+Nc8Yu41tqAm+F/ldzN04O2A9CGBA2wqbgKoFosm5yx09TZsSkBjbFRinEoK/6WzWFKVRZsYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "ba965a7b-8cde-4af0-a43c-7cdc0e3ac417",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01TKtBhXHiecSmYnXVtATcD9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1303,
+                "cache_read_input_tokens": 43597,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1303
+                },
+                "output_tokens": 54,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XD3QkQgKbrx27gDzWM4EN5",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "filters": {
+                  "status": "RUNNING"
+                },
+                "project": "acr-vla-conformal-refinement",
+                "fields": [
+                  "*"
+                ],
+                "limit": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "b11d50bf-d0ef-4d22-817b-6d53709ed777",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01TKtBhXHiecSmYnXVtATcD9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1303,
+                "cache_read_input_tokens": 43597,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1303
+                },
+                "output_tokens": 54,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-26T13:19:44.835Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XD3QkQgKbrx27gDzWM4EN5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"pi05-k2mean-goal-s42-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T03:44:35.194Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:01:00.868Z\\\", \\\"hypothesis\\\": \\\"π0.5 K=2 mean baseline on Goal s42 (re-run after cqa1 crash). Isolates sampling effect (K=2 action averaging) from CRM correction.\\\", \\\"server\\\": \\\"cqa1-32758\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"cqa1-32758\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-26T13:00:27.245Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --baseline_mode mean --K 2 --benchmark goal --seed 42 --n_rollouts 20 --output_file logs/eval_goal_k2mean_pi05_seed42_cqa1.json\\\\\\\"\\\", \\\"code_commit\\\": \\\"63f5c8178b0a29a9707e2ba5b78be94a77b459d7\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --baseline_mode mean --K 2 --benchmark goal --seed 42 --n_rollouts 20 --output_file logs/eval_goal_k2mean_pi05_seed42_cqa1.json\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-32758\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"392694\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-k2mean-goal-s42-r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T13:00:44.816Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"392694\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-k2mean-goal-s42-r2.log\\\"}, \\\"pi05-adaptive-object-s43-cqa1-r3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T11:29:55.374Z\\\", \\\"updated_at\\\": \\\"2026-05-26T11:31:13.727Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal (τ=0.25, K=2, max_correction_norm=0.2) on Object s43. Re-run after bjb2-24035 process death. Table 2 cross-suite validation.\\\", \\\"parent\\\": \\\"pi05-adaptive-object-s43-bjb2-24035\\\", \\\"server\\\": \\\"cqa1-32758\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"cqa1-32758\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"started_at\\\": \\\"2026-05-26T11:30:43.794Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark object --seed 43 --n_rollouts 20 --output_file logs/eval_object_adaptive_pi05_seed43_cqa1.json\\\\\\\"\\\", \\\"code_commit\\\": \\\"63f5c8178b0a29a9707e2ba5b78be94a77b459d7\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark object --seed 43 --n_rollouts 20 --output_file logs/eval_object_adaptive_pi05_seed43_cqa1.json\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-32758\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"364798\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-adaptive-object-s43-cqa1-r3.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T11:30:57.126Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"364798\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-adaptive-object-s43-cqa1-r3.log\\\"}, \\\"pi05-adaptive-goal-s44-bjb1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T10:18:00.006Z\\\", \\\"updated_at\\\": \\\"2026-05-26T11:23:06.585Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal (τ=0.25, K=2, max_correction_norm=0.2) on Goal s44. Table 2 paired comparison with CRM K=2 and VLA-only on same server.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --obs_dim 2048 --unified_obs_dim 2088 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --benchmark goal --seed 44 --n_rollouts 20\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"81923\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-adaptive-goal-s44-bjb1.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T10:18:31.265Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"gpu_ids\\\": [\\\"cuda:2\\\"], \\\"model_name\\\": \\\"pi05\\\", \\\"seed\\\": 44, \\\"data_path\\\": \\\"LIBERO-Goal\\\", \\\"data_count\\\": 20}}}, \\\"count\\\": 3, \\\"total\\\": 19, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.5771}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "46aa5e80-dd0c-4fea-a8fc-ec549f29a6ce",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"pi05-k2mean-goal-s42-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T03:44:35.194Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:01:00.868Z\\\", \\\"hypothesis\\\": \\\"π0.5 K=2 mean baseline on Goal s42 (re-run after cqa1 crash). Isolates sampling effect (K=2 action averaging) from CRM correction.\\\", \\\"server\\\": \\\"cqa1-32758\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"cqa1-32758\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-26T13:00:27.245Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --baseline_mode mean --K 2 --benchmark goal --seed 42 --n_rollouts 20 --output_file logs/eval_goal_k2mean_pi05_seed42_cqa1.json\\\\\\\"\\\", \\\"code_commit\\\": \\\"63f5c8178b0a29a9707e2ba5b78be94a77b459d7\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --baseline_mode mean --K 2 --benchmark goal --seed 42 --n_rollouts 20 --output_file logs/eval_goal_k2mean_pi05_seed42_cqa1.json\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-32758\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"392694\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-k2mean-goal-s42-r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T13:00:44.816Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"392694\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-k2mean-goal-s42-r2.log\\\"}, \\\"pi05-adaptive-object-s43-cqa1-r3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T11:29:55.374Z\\\", \\\"updated_at\\\": \\\"2026-05-26T11:31:13.727Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal (τ=0.25, K=2, max_correction_norm=0.2) on Object s43. Re-run after bjb2-24035 process death. Table 2 cross-suite validation.\\\", \\\"parent\\\": \\\"pi05-adaptive-object-s43-bjb2-24035\\\", \\\"server\\\": \\\"cqa1-32758\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"cqa1-32758\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"started_at\\\": \\\"2026-05-26T11:30:43.794Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark object --seed 43 --n_rollouts 20 --output_file logs/eval_object_adaptive_pi05_seed43_cqa1.json\\\\\\\"\\\", \\\"code_commit\\\": \\\"63f5c8178b0a29a9707e2ba5b78be94a77b459d7\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark object --seed 43 --n_rollouts 20 --output_file logs/eval_object_adaptive_pi05_seed43_cqa1.json\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-32758\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"364798\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-adaptive-object-s43-cqa1-r3.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T11:30:57.126Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"364798\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-adaptive-object-s43-cqa1-r3.log\\\"}, \\\"pi05-adaptive-goal-s44-bjb1\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T10:18:00.006Z\\\", \\\"updated_at\\\": \\\"2026-05-26T11:23:06.585Z\\\", \\\"hypothesis\\\": \\\"π0.5 Adaptive Conformal (τ=0.25, K=2, max_correction_norm=0.2) on Goal s44. Table 2 paired comparison with CRM K=2 and VLA-only on same server.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --obs_dim 2048 --unified_obs_dim 2088 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --benchmark goal --seed 44 --n_rollouts 20\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"81923\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-adaptive-goal-s44-bjb1.log\\\", \\\"submitted_at\\\": \\\"2026-05-26T10:18:31.265Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"gpu_ids\\\": [\\\"cuda:2\\\"], \\\"model_name\\\": \\\"pi05\\\", \\\"seed\\\": 44, \\\"data_path\\\": \\\"LIBERO-Goal\\\", \\\"data_count\\\": 20}}}, \\\"count\\\": 3, \\\"total\\\": 19, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.5771}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"pi05-k2mean-goal-s42-r2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T03:44:35.194Z\", \"updated_at\": \"2026-05-26T13:01:00.868Z\", \"hypothesis\": \"π0.5 K=2 mean baseline on Goal s42 (re-run after cqa1 crash). Isolates sampling effect (K=2 action averaging) from CRM correction.\", \"server\": \"cqa1-32758\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-32758\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-26T13:00:27.245Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --baseline_mode mean --K 2 --benchmark goal --seed 42 --n_rollouts 20 --output_file logs/eval_goal_k2mean_pi05_seed42_cqa1.json\\\"\", \"code_commit\": \"63f5c8178b0a29a9707e2ba5b78be94a77b459d7\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --baseline_mode mean --K 2 --benchmark goal --seed 42 --n_rollouts 20 --output_file logs/eval_goal_k2mean_pi05_seed42_cqa1.json\\\"\", \"server\": \"cqa1-32758\", \"gpu\": [\"cuda:0\"], \"pid\": \"392694\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-k2mean-goal-s42-r2.log\", \"submitted_at\": \"2026-05-26T13:00:44.816Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"392694\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-k2mean-goal-s42-r2.log\"}, \"pi05-adaptive-object-s43-cqa1-r3\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T11:29:55.374Z\", \"updated_at\": \"2026-05-26T11:31:13.727Z\", \"hypothesis\": \"π0.5 Adaptive Conformal (τ=0.25, K=2, max_correction_norm=0.2) on Object s43. Re-run after bjb2-24035 process death. Table 2 cross-suite validation.\", \"parent\": \"pi05-adaptive-object-s43-bjb2-24035\", \"server\": \"cqa1-32758\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"cqa1-32758\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-26T11:30:43.794Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark object --seed 43 --n_rollouts 20 --output_file logs/eval_object_adaptive_pi05_seed43_cqa1.json\\\"\", \"code_commit\": \"63f5c8178b0a29a9707e2ba5b78be94a77b459d7\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --obs_dim 2048 --unified_obs_dim 2088 --benchmark object --seed 43 --n_rollouts 20 --output_file logs/eval_object_adaptive_pi05_seed43_cqa1.json\\\"\", \"server\": \"cqa1-32758\", \"gpu\": [\"cuda:2\"], \"pid\": \"364798\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-adaptive-object-s43-cqa1-r3.log\", \"submitted_at\": \"2026-05-26T11:30:57.126Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"pid\": \"364798\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-adaptive-object-s43-cqa1-r3.log\"}, \"pi05-adaptive-goal-s44-bjb1\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T10:18:00.006Z\", \"updated_at\": \"2026-05-26T11:23:06.585Z\", \"hypothesis\": \"π0.5 Adaptive Conformal (τ=0.25, K=2, max_correction_norm=0.2) on Goal s44. Table 2 paired comparison with CRM K=2 and VLA-only on same server.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python src/evaluate.py --model pi05 --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --obs_dim 2048 --unified_obs_dim 2088 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt --benchmark goal --seed 44 --n_rollouts 20\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:2\"], \"pid\": \"81923\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/pi05-adaptive-goal-s44-bjb1.log\", \"submitted_at\": \"2026-05-26T10:18:31.265Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"gpu_ids\": [\"cuda:2\"], \"model_name\": \"pi05\", \"seed\": 44, \"data_path\": \"LIBERO-Goal\", \"data_count\": 20}}}, \"count\": 3, \"total\": 19, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.5771}}"
+              }
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "3568ce83-0394-4ef7-9669-751eb342fe34",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01RUjKj2KzuuwLf95uiSmykC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3024,
+                "cache_read_input_tokens": 44900,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3024
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "`--baseline_mode` confirmed. GPU status:\n- bjb1-18228: cuda:0/1/3 free (cuda:2 has adaptive-goal-s44 running)\n- bjb2-24035: cuda:0 free"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "6a7e57ce-8e67-4780-ad81-cfb85937636f",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01RUjKj2KzuuwLf95uiSmykC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3024,
+                "cache_read_input_tokens": 44900,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3024
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013aCSJ85LAdU6jLExgaa8Bb",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Verify --baseline_mode parameter on bjb1-18228",
+                    "status": "completed",
+                    "activeForm": "Verifying --baseline_mode parameter on bjb1-18228"
+                  },
+                  {
+                    "content": "Check GPU availability on bjb1-18228 and bjb2-24035",
+                    "status": "completed",
+                    "activeForm": "Checking GPU availability"
+                  },
+                  {
+                    "content": "Deploy pi05-k2mean-spatial-s42 on bjb1-18228 cuda:0",
+                    "status": "in_progress",
+                    "activeForm": "Deploying pi05-k2mean-spatial-s42"
+                  },
+                  {
+                    "content": "Deploy pi05-k2mean-object-s42 on bjb1-18228 cuda:1",
+                    "status": "pending",
+                    "activeForm": "Deploying pi05-k2mean-object-s42"
+                  },
+                  {
+                    "content": "Deploy pi05-k2mean-long-s42 on bjb1-18228 cuda:3",
+                    "status": "pending",
+                    "activeForm": "Deploying pi05-k2mean-long-s42"
+                  },
+                  {
+                    "content": "Deploy pi05-k2mean-goal-s43 on bjb2-24035 cuda:0",
+                    "status": "pending",
+                    "activeForm": "Deploying pi05-k2mean-goal-s43"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "8979d74b-6b5f-45f2-b2f3-c300812c27f1",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01RUjKj2KzuuwLf95uiSmykC",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3024,
+                "cache_read_input_tokens": 44900,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3024
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-26T13:19:59.134Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013aCSJ85LAdU6jLExgaa8Bb",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "179229f9-62ec-4152-a9c4-5d510de3c504",
+            "tool_use_result": {
+              "oldTodos": [
+                {
+                  "content": "Verify --baseline_mode parameter on bjb1-18228",
+                  "status": "in_progress",
+                  "activeForm": "Verifying --baseline_mode parameter on bjb1-18228"
+                },
+                {
+                  "content": "Check GPU availability on bjb1-18228 and bjb2-24035",
+                  "status": "pending",
+                  "activeForm": "Checking GPU availability"
+                },
+                {
+                  "content": "Deploy pi05-k2mean-spatial-s42 on bjb1-18228 cuda:0",
+                  "status": "pending",
+                  "activeForm": "Deploying pi05-k2mean-spatial-s42"
+                },
+                {
+                  "content": "Deploy pi05-k2mean-object-s42 on bjb1-18228 cuda:1",
+                  "status": "pending",
+                  "activeForm": "Deploying pi05-k2mean-object-s42"
+                },
+                {
+                  "content": "Deploy pi05-k2mean-long-s42 on bjb1-18228 cuda:3",
+                  "status": "pending",
+                  "activeForm": "Deploying pi05-k2mean-long-s42"
+                },
+                {
+                  "content": "Deploy pi05-k2mean-goal-s43 on bjb2-24035 cuda:0",
+                  "status": "pending",
+                  "activeForm": "Deploying pi05-k2mean-goal-s43"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Verify --baseline_mode parameter on bjb1-18228",
+                  "status": "completed",
+                  "activeForm": "Verifying --baseline_mode parameter on bjb1-18228"
+                },
+                {
+                  "content": "Check GPU availability on bjb1-18228 and bjb2-24035",
+                  "status": "completed",
+                  "activeForm": "Checking GPU availability"
+                },
+                {
+                  "content": "Deploy pi05-k2mean-spatial-s42 on bjb1-18228 cuda:0",
+                  "status": "in_progress",
+                  "activeForm": "Deploying pi05-k2mean-spatial-s42"
+                },
+                {
+                  "content": "Deploy pi05-k2mean-object-s42 on bjb1-18228 cuda:1",
+                  "status": "pending",
+                  "activeForm": "Deploying pi05-k2mean-object-s42"
+                },
+                {
+                  "content": "Deploy pi05-k2mean-long-s42 on bjb1-18228 cuda:3",
+                  "status": "pending",
+                  "activeForm": "Deploying pi05-k2mean-long-s42"
+                },
+                {
+                  "content": "Deploy pi05-k2mean-goal-s43 on bjb2-24035 cuda:0",
+                  "status": "pending",
+                  "activeForm": "Deploying pi05-k2mean-goal-s43"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VDfqudoKhZ2u19o42jsQP4",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "pi05-k2mean-spatial-s42",
+                "field": "status",
+                "value": "PREPARING",
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "0d32c39b-f4c2-46ec-8e7d-09be904b0858",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01TrQ6GmA1a2tenunQ2nK21f",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1234,
+                "cache_read_input_tokens": 47924,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1234
+                },
+                "output_tokens": 87,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016BXT43WxiQ2MTa8EKsrtGA",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "pi05-k2mean-object-s42",
+                "field": "status",
+                "value": "PREPARING",
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "04a5919a-aeff-46a5-818d-56c3cb6b9375",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01TrQ6GmA1a2tenunQ2nK21f",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1234,
+                "cache_read_input_tokens": 47924,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1234
+                },
+                "output_tokens": 87,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013cxoeZUQDEAXRneyZyUCN1",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "pi05-k2mean-long-s42",
+                "field": "status",
+                "value": "PREPARING",
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "2c3b1b8a-1b06-411f-a8c8-24089d300ee0",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01TrQ6GmA1a2tenunQ2nK21f",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1234,
+                "cache_read_input_tokens": 47924,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1234
+                },
+                "output_tokens": 87,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014hKsCuveAG6uAdaZD4C5ii",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "pi05-k2mean-goal-s43",
+                "field": "status",
+                "value": "PREPARING",
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "0259dbfa-bc46-4f95-ac6e-40c747dab450",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01TrQ6GmA1a2tenunQ2nK21f",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1234,
+                "cache_read_input_tokens": 47924,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1234
+                },
+                "output_tokens": 87,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-26T13:20:35.713Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VDfqudoKhZ2u19o42jsQP4",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"pi05-k2mean-spatial-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T13:20:19.025Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:20:19.026Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.5297}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "e5cb13e4-7a57-4e85-bbc9-b1f4bff7eb68",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"pi05-k2mean-spatial-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T13:20:19.025Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:20:19.026Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.5297}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"pi05-k2mean-spatial-s42\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T13:20:19.025Z\", \"updated_at\": \"2026-05-26T13:20:19.026Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 31.5297}}"
+              }
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-26T13:21:04.668Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016BXT43WxiQ2MTa8EKsrtGA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"pi05-k2mean-object-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T13:20:47.845Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:20:47.845Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 28.8876}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "f516594b-9f4e-4291-be73-4e4b7f01826a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"pi05-k2mean-object-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T13:20:47.845Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:20:47.845Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 28.8876}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"pi05-k2mean-object-s42\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T13:20:47.845Z\", \"updated_at\": \"2026-05-26T13:20:47.845Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 28.8876}}"
+              }
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-26T13:21:28.379Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013cxoeZUQDEAXRneyZyUCN1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"pi05-k2mean-long-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T13:21:14.928Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:21:14.928Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 23.6762}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "882e01f4-3514-494e-a544-18f141cc0c03",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"pi05-k2mean-long-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T13:21:14.928Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:21:14.928Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 23.6762}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"pi05-k2mean-long-s42\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T13:21:14.928Z\", \"updated_at\": \"2026-05-26T13:21:14.928Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 23.6762}}"
+              }
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-26T13:21:45.187Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014hKsCuveAG6uAdaZD4C5ii",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"pi05-k2mean-goal-s43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T13:21:33.754Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:21:33.754Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 16.7869}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "f35db7a8-e551-4cc6-aa7c-078b5333f372",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"pi05-k2mean-goal-s43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T13:21:33.754Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:21:33.754Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 16.7869}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"pi05-k2mean-goal-s43\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T13:21:33.754Z\", \"updated_at\": \"2026-05-26T13:21:33.754Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 16.7869}}"
+              }
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QWWQst3x8JqZQpwNm9Wm62",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "pi05-k2mean-spatial-s42",
+                "field": "hypothesis",
+                "value": "π0.5 K=2 mean baseline (VLA-only with K=2 sampling + mean aggregation) on spatial s42. Isolates K=2 sampling effect from CRM correction for argmin-vs-mean analysis.",
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "3833a07b-f7d1-4317-b9e2-c2bae180b12d",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01GRuQvMUsWnhNtdjkPZpBGB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1478,
+                "cache_read_input_tokens": 49158,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1478
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MM2b3sV3s6wHPbdyWmHUis",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "pi05-k2mean-object-s42",
+                "field": "hypothesis",
+                "value": "π0.5 K=2 mean baseline (VLA-only with K=2 sampling + mean aggregation) on object s42. Isolates K=2 sampling effect from CRM correction for argmin-vs-mean analysis.",
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "be4284f5-8ef0-428e-bb8a-4b34b37da47b",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01GRuQvMUsWnhNtdjkPZpBGB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1478,
+                "cache_read_input_tokens": 49158,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1478
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018bXUkuAzXtwtz5HGJSUzBB",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "pi05-k2mean-long-s42",
+                "field": "hypothesis",
+                "value": "π0.5 K=2 mean baseline (VLA-only with K=2 sampling + mean aggregation) on long s42. Isolates K=2 sampling effect from CRM correction for argmin-vs-mean analysis.",
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "a180f14e-4ce3-4b32-b0fd-793fee452201",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01GRuQvMUsWnhNtdjkPZpBGB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1478,
+                "cache_read_input_tokens": 49158,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1478
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012TQJMHYneybBc7KwabUCn6",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "pi05-k2mean-goal-s43",
+                "field": "hypothesis",
+                "value": "π0.5 K=2 mean baseline (VLA-only with K=2 sampling + mean aggregation) on goal s43. Isolates K=2 sampling effect from CRM correction for argmin-vs-mean analysis.",
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "07aa1bb5-1661-40f8-a76a-24b438f4823d",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01GRuQvMUsWnhNtdjkPZpBGB",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1478,
+                "cache_read_input_tokens": 49158,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1478
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-26T13:21:57.388Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QWWQst3x8JqZQpwNm9Wm62",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"pi05-k2mean-spatial-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T13:20:19.025Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:21:54.204Z\\\", \\\"hypothesis\\\": \\\"π0.5 K=2 mean baseline (VLA-only with K=2 sampling + mean aggregation) on spatial s42. Isolates K=2 sampling effect from CRM correction for argmin-vs-mean analysis.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.0056}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "1584774b-0576-4c34-834d-6d7b45f2ba49",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"pi05-k2mean-spatial-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T13:20:19.025Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:21:54.204Z\\\", \\\"hypothesis\\\": \\\"π0.5 K=2 mean baseline (VLA-only with K=2 sampling + mean aggregation) on spatial s42. Isolates K=2 sampling effect from CRM correction for argmin-vs-mean analysis.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.0056}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"pi05-k2mean-spatial-s42\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T13:20:19.025Z\", \"updated_at\": \"2026-05-26T13:21:54.204Z\", \"hypothesis\": \"π0.5 K=2 mean baseline (VLA-only with K=2 sampling + mean aggregation) on spatial s42. Isolates K=2 sampling effect from CRM correction for argmin-vs-mean analysis.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 8.0056}}"
+              }
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-26T13:22:05.190Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MM2b3sV3s6wHPbdyWmHUis",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"pi05-k2mean-object-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T13:20:47.845Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:22:02.044Z\\\", \\\"hypothesis\\\": \\\"π0.5 K=2 mean baseline (VLA-only with K=2 sampling + mean aggregation) on object s42. Isolates K=2 sampling effect from CRM correction for argmin-vs-mean analysis.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.7795}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "02d27455-9651-42f3-9a16-eb209c2a679a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"pi05-k2mean-object-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T13:20:47.845Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:22:02.044Z\\\", \\\"hypothesis\\\": \\\"π0.5 K=2 mean baseline (VLA-only with K=2 sampling + mean aggregation) on object s42. Isolates K=2 sampling effect from CRM correction for argmin-vs-mean analysis.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.7795}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"pi05-k2mean-object-s42\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T13:20:47.845Z\", \"updated_at\": \"2026-05-26T13:22:02.044Z\", \"hypothesis\": \"π0.5 K=2 mean baseline (VLA-only with K=2 sampling + mean aggregation) on object s42. Isolates K=2 sampling effect from CRM correction for argmin-vs-mean analysis.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 7.7795}}"
+              }
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-26T13:22:14.301Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018bXUkuAzXtwtz5HGJSUzBB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"pi05-k2mean-long-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T13:21:14.928Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:22:10.221Z\\\", \\\"hypothesis\\\": \\\"π0.5 K=2 mean baseline (VLA-only with K=2 sampling + mean aggregation) on long s42. Isolates K=2 sampling effect from CRM correction for argmin-vs-mean analysis.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.0929}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "049bc81b-ab53-438b-a9bf-347649f14591",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"pi05-k2mean-long-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T13:21:14.928Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:22:10.221Z\\\", \\\"hypothesis\\\": \\\"π0.5 K=2 mean baseline (VLA-only with K=2 sampling + mean aggregation) on long s42. Isolates K=2 sampling effect from CRM correction for argmin-vs-mean analysis.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.0929}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"pi05-k2mean-long-s42\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T13:21:14.928Z\", \"updated_at\": \"2026-05-26T13:22:10.221Z\", \"hypothesis\": \"π0.5 K=2 mean baseline (VLA-only with K=2 sampling + mean aggregation) on long s42. Isolates K=2 sampling effect from CRM correction for argmin-vs-mean analysis.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 9.0929}}"
+              }
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-26T13:22:25.303Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012TQJMHYneybBc7KwabUCn6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"pi05-k2mean-goal-s43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T13:21:33.754Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:22:19.038Z\\\", \\\"hypothesis\\\": \\\"π0.5 K=2 mean baseline (VLA-only with K=2 sampling + mean aggregation) on goal s43. Isolates K=2 sampling effect from CRM correction for argmin-vs-mean analysis.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 10.9713}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "91084886-3c69-482a-be47-5f73b036931b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"pi05-k2mean-goal-s43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T13:21:33.754Z\\\", \\\"updated_at\\\": \\\"2026-05-26T13:22:19.038Z\\\", \\\"hypothesis\\\": \\\"π0.5 K=2 mean baseline (VLA-only with K=2 sampling + mean aggregation) on goal s43. Isolates K=2 sampling effect from CRM correction for argmin-vs-mean analysis.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 10.9713}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"pi05-k2mean-goal-s43\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-26T13:21:33.754Z\", \"updated_at\": \"2026-05-26T13:22:19.038Z\", \"hypothesis\": \"π0.5 K=2 mean baseline (VLA-only with K=2 sampling + mean aggregation) on goal s43. Isolates K=2 sampling effect from CRM correction for argmin-vs-mean analysis.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 10.9713}}"
+              }
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now submit all 4 jobs in parallel."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "fc429f80-91dc-4a1f-bf18-09da5d9b2ae7",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_014B4KaUbQF4oQVdae3wJkC5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2124,
+                "cache_read_input_tokens": 50636,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2124
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CgFKMoCn3uMhGghwcbQv9P",
+              "name": "mcp__agent-ml-research__submit_training_job",
+              "input": {
+                "server": "bjb1-18228",
+                "gpu_ids": [
+                  "cuda:0"
+                ],
+                "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --baseline_mode mean --K 2 --benchmark spatial --seed 42 --n_rollouts 20 --output_file logs/eval_spatial_k2mean_pi05_seed42.json\"",
+                "exp_id": "pi05-k2mean-spatial-s42",
+                "account": "root",
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "96602abb-0078-4315-81de-c093efe4ff49",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_014B4KaUbQF4oQVdae3wJkC5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2124,
+                "cache_read_input_tokens": 50636,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2124
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WPA5B82x11hsbR6XPbx1qG",
+              "name": "mcp__agent-ml-research__submit_training_job",
+              "input": {
+                "server": "bjb1-18228",
+                "gpu_ids": [
+                  "cuda:1"
+                ],
+                "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --baseline_mode mean --K 2 --benchmark object --seed 42 --n_rollouts 20 --output_file logs/eval_object_k2mean_pi05_seed42.json\"",
+                "exp_id": "pi05-k2mean-object-s42",
+                "account": "root",
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "4485c4e6-f31c-4f99-9d23-8b527e7c6f64",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_014B4KaUbQF4oQVdae3wJkC5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2124,
+                "cache_read_input_tokens": 50636,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2124
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JvtFtGpAp4KYQBBL2xsbvF",
+              "name": "mcp__agent-ml-research__submit_training_job",
+              "input": {
+                "server": "bjb1-18228",
+                "gpu_ids": [
+                  "cuda:3"
+                ],
+                "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --baseline_mode mean --K 2 --benchmark long --seed 42 --n_rollouts 20 --output_file logs/eval_long_k2mean_pi05_seed42.json\"",
+                "exp_id": "pi05-k2mean-long-s42",
+                "account": "root",
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "85815794-f262-4b41-9484-8c31e66e03d6",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_014B4KaUbQF4oQVdae3wJkC5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2124,
+                "cache_read_input_tokens": 50636,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2124
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G65N5RZWswTyHhiRxrZiSc",
+              "name": "mcp__agent-ml-research__submit_training_job",
+              "input": {
+                "server": "bjb2-24035",
+                "gpu_ids": [
+                  "cuda:0"
+                ],
+                "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --model pi05 --mode vla_only --baseline_mode mean --K 2 --benchmark goal --seed 43 --n_rollouts 20 --output_file logs/eval_goal_k2mean_pi05_seed43.json\"",
+                "exp_id": "pi05-k2mean-goal-s43",
+                "account": "root",
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "e1b35f7c-8ea7-4770-be0c-57d3c665e44d",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_014B4KaUbQF4oQVdae3wJkC5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2124,
+                "cache_read_input_tokens": 50636,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2124
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-26T13:22:46.737Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CgFKMoCn3uMhGghwcbQv9P",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"140039\\\", \\\"log_file\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-k2mean-spatial-s42.log\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"server\\\": \\\"bjb1-18228\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"pi05-k2mean-spatial-s42\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 15.72}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "a1907dda-a083-4cb1-afed-59217f2efeb5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"140039\\\", \\\"log_file\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-k2mean-spatial-s42.log\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"server\\\": \\\"bjb1-18228\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"pi05-k2mean-spatial-s42\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 15.72}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"pid\": \"140039\", \"log_file\": \"~/runs/acr-vla-conformal-refinement/pi05-k2mean-spatial-s42.log\", \"gpu_ids\": [\"cuda:0\"], \"server\": \"bjb1-18228\", \"account\": \"root\", \"cuda_visible_devices\": \"0\", \"backend\": \"tmux\", \"tmux_session\": \"pi05-k2mean-spatial-s42\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 15.72}}"
+              }
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-26T13:23:00.372Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WPA5B82x11hsbR6XPbx1qG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"140405\\\", \\\"log_file\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-k2mean-object-s42.log\\\", \\\"gpu_ids\\\": [\\\"cuda:1\\\"], \\\"server\\\": \\\"bjb1-18228\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"1\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"pi05-k2mean-object-s42\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 13.61}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "f4dc45ff-2c59-4844-a988-aabad9238004",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"140405\\\", \\\"log_file\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-k2mean-object-s42.log\\\", \\\"gpu_ids\\\": [\\\"cuda:1\\\"], \\\"server\\\": \\\"bjb1-18228\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"1\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"pi05-k2mean-object-s42\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 13.61}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"pid\": \"140405\", \"log_file\": \"~/runs/acr-vla-conformal-refinement/pi05-k2mean-object-s42.log\", \"gpu_ids\": [\"cuda:1\"], \"server\": \"bjb1-18228\", \"account\": \"root\", \"cuda_visible_devices\": \"1\", \"backend\": \"tmux\", \"tmux_session\": \"pi05-k2mean-object-s42\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 13.61}}"
+              }
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-26T13:23:13.524Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JvtFtGpAp4KYQBBL2xsbvF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"140884\\\", \\\"log_file\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-k2mean-long-s42.log\\\", \\\"gpu_ids\\\": [\\\"cuda:3\\\"], \\\"server\\\": \\\"bjb1-18228\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"3\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"pi05-k2mean-long-s42\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 13.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "08e0e2c1-7e9c-4966-add0-c4d9af590797",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"140884\\\", \\\"log_file\\\": \\\"~/runs/acr-vla-conformal-refinement/pi05-k2mean-long-s42.log\\\", \\\"gpu_ids\\\": [\\\"cuda:3\\\"], \\\"server\\\": \\\"bjb1-18228\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"3\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"pi05-k2mean-long-s42\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 13.13}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"pid\": \"140884\", \"log_file\": \"~/runs/acr-vla-conformal-refinement/pi05-k2mean-long-s42.log\", \"gpu_ids\": [\"cuda:3\"], \"server\": \"bjb1-18228\", \"account\": \"root\", \"cuda_visible_devices\": \"3\", \"backend\": \"tmux\", \"tmux_session\": \"pi05-k2mean-long-s42\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 13.13}}"
+              }
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-26T13:23:25.193Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "MCP error -32000: Connection closed",
+              "is_error": true,
+              "tool_use_id": "toolu_01G65N5RZWswTyHhiRxrZiSc"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9e243a3c-4382-4b24-878b-94571eeb3893",
+            "uuid": "ee914802-7598-4ac4-9872-678bb3949d55",
+            "tool_use_result": "Error: MCP error -32000: Connection closed"
+          },
+          "id": "event-000065"
+        }
+      ],
+      "message_count": 65
+    }
+  ],
+  "readable_path": "readable/worker-executions/deploy-k2mean-baselines-4090-20260526t131756-retry1.md"
+}

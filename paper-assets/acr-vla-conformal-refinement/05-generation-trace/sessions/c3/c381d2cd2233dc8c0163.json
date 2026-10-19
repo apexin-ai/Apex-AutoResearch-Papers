@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "id": "c381d2cd2233dc8c0163",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "code oft official reproduce",
+  "task_key": "worker_code_oft-official-reproduce_20260522T092048",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_code_oft-official-reproduce_20260522T092048.jsonl",
+    "occurrence": 1,
+    "bytes": 358,
+    "sha256": "11dadea497c395ec39d542ec66abb6a1988a78f9a66e7e5489664599816f037e"
+  },
+  "statistics": {
+    "messages": 2,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T09:20:59.660324+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_oft-official-reproduce_20260522T092048"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T09:21:07.755640+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 24, 1am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_oft-official-reproduce_20260522T092048"
+          },
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/code-oft-official-reproduce.md"
+}

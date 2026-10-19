@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f5c589381d62b9f5762",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "research full benchmark audit",
+  "task_key": "worker_research_full-benchmark-audit_20260520T071731",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_full-benchmark-audit_20260520T071731_result.json",
+    "occurrence": 1,
+    "bytes": 992,
+    "sha256": "377063d0a9cc939357f8387fe414ed889944b0f933faf04f378ea53668dfb865"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。报告已保存到 `artifacts/benchmark_data_audit.md` 并注册 (`art_20260520_8e3ba4`)。\n\n核心结论：\n\n- **0 个数值不匹配** — 所有 script 与 registry 共有的 seed，SR 值完全一致\n- **9/15 组数据完美匹配**（含 Long-CRM、Goal-VLA、Object-K5、Object-VLA、Argmin 等）\n- **8 个 seed 的 registry 状态异常**（数据有效但 status 不是 DONE+success）：\n  - VLA-Spatial seed48/49: conclusion=failed（数据来自 Director 指令）\n  - VLA-Long seed49: status=PREPARING，无 SR（**最高风险，数据不可验证**）\n  - CRM-Goal seed47: status=PREPARING，SR=0.69 已在 metrics 中\n  - 4 个 Adaptive-K: status=ALLOCATED 应为 DONE\n  - Object norm01 seed42: status=DEPLOYED 应为 DONE\n- **1 个被排除的 registry seed**: Object CRM norm02 K=10 seed42 (SR=0.22 是离群值)\n\n**建议优先处理**: VLA-Long seed49（无法验证）和 VLA-Spatial seed48/49（registry 标记为 failed）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-full-benchmark-audit.md"
+}

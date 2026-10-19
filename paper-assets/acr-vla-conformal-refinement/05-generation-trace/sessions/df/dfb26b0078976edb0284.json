@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dfb26b0078976edb0284",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_2_1778728392.md",
+  "task_key": "loop_2_1778728392",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_2_1778728392.md",
+    "occurrence": 1,
+    "bytes": 4158,
+    "sha256": "1560b63d3c685d58b35b9316c7da062dc3c0561b1e44df4d2d7a0906ad1a10ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: idle_timeout\nupdated: '2026-05-14T03:13:10+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-18228:cuda:0/1/2/3 + bjb2-40593:cuda:0，其他设备禁用\n- bjb1-18228 是 AutoDL 4090x4，bjb2-40593 是 AutoDL 4090x1（单卡 4090 D）\n- submit_on_allocated 命令必须自带环境激活（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...`），不能假设 .venv 存在\n- GPU 编号脚本内始终从 0 开始（框架注入 CUDA_VISIBLE_DEVICES）\n- AutoDL 实例重启后 SSH 端口会变，连接失败不要重试，提示用户查控制台\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**（4×RTX 4090）：\n  - 工作目录：`/root/acr-vla-conformal-refinement`\n  - Python：`/root/miniconda3/bin/python`（conda base）\n  - 数据：`/root/autodl-tmp/libero_data/`（spatial + object）\n  - CRM checkpoint：`/root/autodl-tmp/checkpoints/crm/crm_best.pt`（crm-train-v1 产出，val_loss=0.009046）\n  - Precompute cache：`/root/autodl-tmp/precompute_cache/`（K=5，spatial 12167 + object 14570 = 26737 samples，233MB）\n  - HF cache：`/root/autodl-tmp/.hf_cache`\n  - 活跃进程：crm-train-a3-obs-only（RUNNING，PID 未确认，无 GPU 信息在 registry）\n- **bjb2-40593**（1×RTX 4090 D）：\n  - 工作目录：`/root/acr-vla-conformal-refinement`\n  - 活跃进程：eval-object-v5-full（RUNNING，PID 115623，cuda:0）\n- **日志目录**：`~/runs/acr-vla-conformal-refinement/`\n\n### 3. 📊 当前状态\n**刚发生的事**：bjb1-18228 上三个 eval 实验同时 EXIT_CODE=1 失败（eval-spatial-v6-full / eval-acr-spatial-v2 / eval-reconvla-spatial-v3），已派 Worker `worker_diag_eval-v6-batch-failure_20260513T233517` 去读日志诊断根因，**Worker 尚未回调**。\n\n**Registry 状态**：\n- RUNNING：`crm-train-a3-obs-only`（bjb1-18228）、`eval-object-v5-full`（bjb2-40593:cuda:0, PID 115623）\n- 33 个实验总计：success 6, failed 6, killed 7, RUNNING 2, PREPARING 12\n- 关键 success：`mvp-point-reaching`（per-DOF > scalar > none 确认）、`crm-train-v1`（val_loss=0.009046）、`precompute-k5`（26737 samples）\n\n**等待中**：\n- Worker `diag_eval-v6-batch-failure` 回调 → 诊断报告\n- `crm-train-a3-obs-only` cron 回调\n- `eval-object-v5-full` cron 回调\n\n### 4. 📋 待办（条件触发式）\n- Worker diag 回调到 → 读诊断报告，根据根因决定修复方案；如果是代码 bug 则派 Worker 修复后重提交三个 eval；如果是环境问题则先修环境\n- eval-object-v5-full cron 回调 → 按 on-experiment-done 处理（success → 更新 report + 对标矩阵；failed → 诊断）\n- crm-train-a3-obs-only cron 回调 → 同上；success 后可用新 checkpoint 跑 ACR-VLA eval\n- 三个 eval 修复重跑成功后 → 对比 vla_only / acr_vla / reconvla 三种模式的 spatial success rate，这是 SFT gate 判定 + ACR-VLA 核心 claim 验证\n- SFT gate 判定（spatial eval 结果出来后）：≥80% 按计划推进，50-80% 调低期望，<30% 换模型\n\n### 5. 🎯 战略上下文\n- **核心方向**：Per-DOF conformal statistics → dimension-selective action correction（ACR-VLA）\n- **投稿目标**：ICLR 2027（Sep-Oct 2026 DDL），CoRL 已放弃（D011）\n- **MVP 已 PASS**：mvp-point-reaching 确认 per-DOF > scalar（6.75%）> none（16.71%），paper claims 有数据支撑\n- **关键决策链**：D008 SmolVLA 未 LIBERO fine-tuned → D009 用社区 checkpoint lerobot/smolvla_libero → D013 55.6% 不可靠 → D014 Wrapper 重构完成 + 代码部署 → 当前在跑修复版 eval\n- **最容易判断错的事**：\n  - Wrapper 已经过多轮重构（7 个 bug 修复），当前版本是 D014 部署的修复版，不要再假设 wrapper 有问题——先看 evaluate.py 的 traceback\n  - 大量 killed 实验是主动清理的（ghost 进程），不是系统问题\n  - crm-train-a3-obs-only 的 GPU 分配信息在 registry 里缺失（无 gpu 字段），需要 SSH 确认实际占用哪张卡\n  - bjb1-18228 上三个 eval 同时失败暗示可能是共享资源问题（磁盘满 / CUDA driver / 共享库），而非单个实验的逻辑错误\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-1778728392.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73ea8c15397361f39ac1",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval argmin object seed50",
+  "task_key": "worker_analyze_eval-argmin-object-seed50_20260520T150435",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-argmin-object-seed50_20260520T150435_result.json",
+    "occurrence": 1,
+    "bytes": 629,
+    "sha256": "e9f490cf89a8e70a6661b6f0b130831cf2674c8cf86cd8971acf8f304cd4cbc3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。结果：\n\n```\noverall_sr: 0.13\nper_task_sr:\n  alphabet_soup:      0.0\n  cream_cheese:       0.0\n  salad_dressing:     0.1\n  bbq_sauce:          0.4\n  ketchup:            0.0\n  tomato_sauce:       0.0\n  butter:             0.1\n  milk:               0.2\n  chocolate_pudding:  0.3\n  orange_juice:       0.2\ntotal_rollouts: 100\ntotal_successes: 13\n```\n\nSeed50 的 13% 与历史 seeds 一致（seed43: 17%, seed44: 13%, seed45: 12%, seed46: 10%, seed47: 10%, seed48: 15%, seed49: 16%），Argmin baseline 在 LIBERO-Object 上稳定在 10-17% 区间，均值约 13.3%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-argmin-object-seed50.md"
+}

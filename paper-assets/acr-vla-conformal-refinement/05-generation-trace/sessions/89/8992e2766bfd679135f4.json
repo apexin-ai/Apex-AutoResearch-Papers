@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "8992e2766bfd679135f4",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "ssh scan bjb1 32546 harvest 20260524T060442 retry1",
+  "task_key": "worker_ssh_scan-bjb1-32546-harvest_20260524T060442_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_scan-bjb1-32546-harvest_20260524T060442_retry1.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/ssh-scan-bjb1-32546-harvest-20260524t060442-retry1.md"
+}

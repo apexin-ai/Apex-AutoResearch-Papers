@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "829c0d878477f2c8a290",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "verify smolvla checkpoint source",
+  "task_key": "worker_verify_smolvla-checkpoint-source_20260522T115941",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_smolvla-checkpoint-source_20260522T115941_result.json",
+    "occurrence": 1,
+    "bytes": 1731,
+    "sha256": "9a221553f1e51bb943a19161c38a9d6d6241031de647b87dee25f8f826e7a8b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "核实完毕。结论如下：\n\n---\n\n## 结果\n\n### 1. 我们用的是哪个？\n\n**`lerobot/smolvla_libero`**（不是 `HuggingFaceVLA/smolvla_libero`）。\n\n证据：下载 metadata 中的 commit SHA `31d453f7edd78c839a8bbc39744a292686daf0de` 精确匹配 `lerobot/smolvla_libero`。config.json 中的 `repo_id: \"pepijn223/smolvla_libero\"` 是训练者的个人 repo，后来发布为 `lerobot/smolvla_libero`。\n\n### 2. 这两个是不是同一个模型？\n\n**不是。架构和训练配置有根本性差异。**\n\n| 配置项 | `HuggingFaceVLA/smolvla_libero` (Sep 2025) | `lerobot/smolvla_libero` (Mar 2026) ← 我们用的 |\n|--------|---------------------------------------------|------------------------------------------------|\n| VLM backbone | SmolVLM2-500M-**Instruct** | SmolVLM2-500M-**Video**-Instruct |\n| state_dim | **8** | **6** |\n| 相机数量 | **2** (image, image2) | **3** (camera1, camera2, camera3) |\n| n_action_steps | **1** | **50** |\n| freeze_vision_encoder | **true** | **false** |\n| train_expert_only | **true** | **false** |\n| num_vlm_layers | **0** | **16** |\n| num_expert_layers | **-1** (all) | **0** |\n| expert_width_multiplier | **0.5** | **0.75** |\n| 模型大小 | ~1.22 GB | ~907 MB |\n\n### 3. 差异总结\n\n这是两代不同的 SmolVLA LIBERO 微调：\n- **`HuggingFaceVLA/`** — 旧版 (v1)，冻结视觉编码器、只训练 expert layers、单步 action、2 相机、8 维 state\n- **`lerobot/`** — 新版 (v2)，全参微调、50 步 action chunking、3 相机、6 维 state、Video backbone\n\n如果要切换到 `HuggingFaceVLA/smolvla_libero`，wrapper 代码需要改动（相机数量、state 维度、action steps 都不同）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-smolvla-checkpoint-source.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ca586e83cb9784e119b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "setup precompute pi05 r2 registry",
+  "task_key": "worker_setup_precompute-pi05-r2-registry_20260523T050219",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_setup_precompute-pi05-r2-registry_20260523T050219_result.json",
+    "occurrence": 1,
+    "bytes": 816,
+    "sha256": "2e9d3a8d40341d490b06fef84f1d0401444434aaba4a8dab88ede2661736ed30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个 registry 条目全部创建完成，状态均为 RUNNING。\n\n## 汇总\n\n| exp_id | PID | GPU | 总样本 | 已处理 | 进度 | 状态 |\n|--------|-----|-----|--------|--------|------|------|\n| precompute-pi05-object-2048-r2 | 113456 | cuda:0 | 72,507 | ~15,900 | 22% | RUNNING |\n| precompute-pi05-spatial-2048-r2 | 113796 | cuda:1 | 60,250 | ~15,600 | 26% | RUNNING |\n| precompute-pi05-goal-2048-r2 | 114159 | cuda:2 | 61,728 | ~15,800 | 26% | RUNNING |\n| precompute-pi05-long-2048-r2 | 114507 | cuda:3 | 136,090 | ~16,700 | 12% | RUNNING |\n\n所有进程运行约 8h43m，速度 ~1.9-2.0s/sample。预估剩余时间：object ~31h, spatial ~25h, goal ~25h, long ~62h。输出目录 `/root/autodl-tmp/crm_cache_pi05_2048/{benchmark}/`，每 500 样本保存一个 partial pt 文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-precompute-pi05-r2-registry.md"
+}

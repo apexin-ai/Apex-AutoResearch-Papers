@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b2f055d26154b4bc60e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb2 40593 fill 1gpu",
+  "task_key": "worker_deploy_bjb2-40593-fill-1gpu_20260520T141810",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb2-40593-fill-1gpu_20260520T141810_result.json",
+    "occurrence": 1,
+    "bytes": 472,
+    "sha256": "fef185fcf232c8f19afd87c161775ca6095818bfe469475ec977580e0eb3537a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**该实验已完成。** `eval_object_random_selection_seed42.json` 于 May 18 生成，参数完全匹配（random_selection, object, seed42, K=10, n_rollouts=10）。\n\n结果摘要：\n- **Overall success rate: 13.0%**\n- 10 tasks × 10 rollouts\n- 最高：bbq_sauce 40%，最低：alphabet_soup / ketchup / butter 0%\n\nGPU 当前空闲（0%, 0 MiB），无需重新部署。如果需要用其他 seed 再跑一轮或部署其他实验，请告知。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb2-40593-fill-1gpu.md"
+}

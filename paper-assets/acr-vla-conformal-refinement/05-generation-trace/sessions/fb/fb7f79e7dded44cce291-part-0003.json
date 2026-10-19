@@ -1,0 +1,1184 @@
+{
+  "schema_version": "1.0",
+  "session_id": "fb7f79e7dded44cce291",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 361,
+          "timestamp": "2026-05-21T04:27:39.313Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017SM7UYN6rMvrudmDnvesKh",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-vla-only-spatial-seed53\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:23:19.064Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:27:38.859Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"harvest\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"data_path\\\": \\\"logs/eval_spatial_vla_only_seed53.json\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"openvla\\\", \\\"seed\\\": 53, \\\"checkpoint_source\\\": \\\"harvested\\\", \\\"eval_data\\\": \\\"spatial\\\", \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed53.json\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed53.json\\\"}, \\\"hypothesis\\\": \\\"VLA-only baseline (no CRM) on spatial task — measures intrinsic VLA capability for ablation comparison against CRM-refined variants.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.28}, \\\"completed_at\\\": \\\"2026-05-21T04:27:38.859Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6972}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196",
+            "uuid": "9d3ef02c-3f41-49f1-a6bc-34ab5e2dcd28",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-vla-only-spatial-seed53\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:23:19.064Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:27:38.859Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"harvest\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"data_path\\\": \\\"logs/eval_spatial_vla_only_seed53.json\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"openvla\\\", \\\"seed\\\": 53, \\\"checkpoint_source\\\": \\\"harvested\\\", \\\"eval_data\\\": \\\"spatial\\\", \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed53.json\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed53.json\\\"}, \\\"hypothesis\\\": \\\"VLA-only baseline (no CRM) on spatial task — measures intrinsic VLA capability for ablation comparison against CRM-refined variants.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.28}, \\\"completed_at\\\": \\\"2026-05-21T04:27:38.859Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6972}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-vla-only-spatial-seed53\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:23:19.064Z\", \"updated_at\": \"2026-05-21T04:27:38.859Z\", \"spec\": {\"command\": \"harvest\", \"server\": \"bjb1-18228\", \"data_path\": \"logs/eval_spatial_vla_only_seed53.json\", \"data_count\": 100, \"model_name\": \"openvla\", \"seed\": 53, \"checkpoint_source\": \"harvested\", \"eval_data\": \"spatial\", \"checkpoint_path\": \"/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed53.json\", \"log_path\": \"/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed53.json\"}, \"hypothesis\": \"VLA-only baseline (no CRM) on spatial task — measures intrinsic VLA capability for ablation comparison against CRM-refined variants.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.28}, \"completed_at\": \"2026-05-21T04:27:38.859Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6972}}"
+              }
+            }
+          },
+          "id": "event-000361"
+        },
+        {
+          "source_line": 362,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Hn6XbPGKofS1qrzrXtJgQR",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval-vla-only-spatial-seed52",
+                "field": "status",
+                "value": "DONE"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196",
+            "uuid": "1fa59035-2abd-42e1-970b-998ea89ad6dd",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01UBMfzevsTRoe6TpNYv5MNp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 141765,
+                "cache_read_input_tokens": 16334,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 141765
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000362"
+        },
+        {
+          "source_line": 363,
+          "timestamp": "2026-05-21T04:27:44.768Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Hn6XbPGKofS1qrzrXtJgQR",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-vla-only-spatial-seed52\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:23:24.079Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:27:44.351Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"harvest\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"data_path\\\": \\\"logs/eval_spatial_vla_only_seed52.json\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"openvla\\\", \\\"seed\\\": 52, \\\"checkpoint_source\\\": \\\"harvested\\\", \\\"eval_data\\\": \\\"spatial\\\", \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed52.json\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed52.json\\\"}, \\\"hypothesis\\\": \\\"VLA-only baseline (no CRM) on spatial task — measures intrinsic VLA capability for ablation comparison against CRM-refined variants.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.31}, \\\"completed_at\\\": \\\"2026-05-21T04:27:44.351Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6609}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196",
+            "uuid": "b26a1ecb-f1fd-4a72-bb8e-e9f6cc275621",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-vla-only-spatial-seed52\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:23:24.079Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:27:44.351Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"harvest\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"data_path\\\": \\\"logs/eval_spatial_vla_only_seed52.json\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"openvla\\\", \\\"seed\\\": 52, \\\"checkpoint_source\\\": \\\"harvested\\\", \\\"eval_data\\\": \\\"spatial\\\", \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed52.json\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed52.json\\\"}, \\\"hypothesis\\\": \\\"VLA-only baseline (no CRM) on spatial task — measures intrinsic VLA capability for ablation comparison against CRM-refined variants.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.31}, \\\"completed_at\\\": \\\"2026-05-21T04:27:44.351Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6609}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-vla-only-spatial-seed52\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:23:24.079Z\", \"updated_at\": \"2026-05-21T04:27:44.351Z\", \"spec\": {\"command\": \"harvest\", \"server\": \"bjb1-18228\", \"data_path\": \"logs/eval_spatial_vla_only_seed52.json\", \"data_count\": 100, \"model_name\": \"openvla\", \"seed\": 52, \"checkpoint_source\": \"harvested\", \"eval_data\": \"spatial\", \"checkpoint_path\": \"/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed52.json\", \"log_path\": \"/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed52.json\"}, \"hypothesis\": \"VLA-only baseline (no CRM) on spatial task — measures intrinsic VLA capability for ablation comparison against CRM-refined variants.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.31}, \"completed_at\": \"2026-05-21T04:27:44.351Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6609}}"
+              }
+            }
+          },
+          "id": "event-000363"
+        },
+        {
+          "source_line": 364,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XGs7DVeQxhgkBhxvkavHJU",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval-vla-only-spatial-seed50",
+                "field": "status",
+                "value": "DONE"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196",
+            "uuid": "9d91035f-f276-474f-a9cf-8ac8859575c3",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01UBMfzevsTRoe6TpNYv5MNp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 141765,
+                "cache_read_input_tokens": 16334,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 141765
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000364"
+        },
+        {
+          "source_line": 365,
+          "timestamp": "2026-05-21T04:27:45.794Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XGs7DVeQxhgkBhxvkavHJU",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-vla-only-spatial-seed50\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:23:25.081Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:27:45.373Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"harvest\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"data_path\\\": \\\"logs/eval_spatial_vla_only_seed50.json\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"openvla\\\", \\\"seed\\\": 50, \\\"checkpoint_source\\\": \\\"harvested\\\", \\\"eval_data\\\": \\\"spatial\\\", \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed50.json\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed50.json\\\"}, \\\"hypothesis\\\": \\\"VLA-only baseline (no CRM) on spatial task — measures intrinsic VLA capability for ablation comparison against CRM-refined variants.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.3}, \\\"completed_at\\\": \\\"2026-05-21T04:27:45.373Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6624}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196",
+            "uuid": "022da251-df5a-4701-a5a4-a06542d85e6a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-vla-only-spatial-seed50\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:23:25.081Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:27:45.373Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"harvest\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"data_path\\\": \\\"logs/eval_spatial_vla_only_seed50.json\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"openvla\\\", \\\"seed\\\": 50, \\\"checkpoint_source\\\": \\\"harvested\\\", \\\"eval_data\\\": \\\"spatial\\\", \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed50.json\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed50.json\\\"}, \\\"hypothesis\\\": \\\"VLA-only baseline (no CRM) on spatial task — measures intrinsic VLA capability for ablation comparison against CRM-refined variants.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.3}, \\\"completed_at\\\": \\\"2026-05-21T04:27:45.373Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6624}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-vla-only-spatial-seed50\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:23:25.081Z\", \"updated_at\": \"2026-05-21T04:27:45.373Z\", \"spec\": {\"command\": \"harvest\", \"server\": \"bjb1-18228\", \"data_path\": \"logs/eval_spatial_vla_only_seed50.json\", \"data_count\": 100, \"model_name\": \"openvla\", \"seed\": 50, \"checkpoint_source\": \"harvested\", \"eval_data\": \"spatial\", \"checkpoint_path\": \"/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed50.json\", \"log_path\": \"/root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed50.json\"}, \"hypothesis\": \"VLA-only baseline (no CRM) on spatial task — measures intrinsic VLA capability for ablation comparison against CRM-refined variants.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.3}, \"completed_at\": \"2026-05-21T04:27:45.373Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6624}}"
+              }
+            }
+          },
+          "id": "event-000365"
+        },
+        {
+          "source_line": 366,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LPyY5isb1bGAcmzvrD5dkK",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval-crm-spatial-seed47",
+                "field": "status",
+                "value": "DONE"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196",
+            "uuid": "184d5011-b4b0-4211-8c71-f56433e0754e",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01UBMfzevsTRoe6TpNYv5MNp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 141765,
+                "cache_read_input_tokens": 16334,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 141765
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000366"
+        },
+        {
+          "source_line": 367,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LAGHLmoSw8CdqugUkpd91T",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval-vla-only-object-seed49-r2",
+                "field": "status",
+                "value": "DONE"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196",
+            "uuid": "f9a7a469-25af-4f26-8b99-c6d4b66909a0",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01UBMfzevsTRoe6TpNYv5MNp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 141765,
+                "cache_read_input_tokens": 16334,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 141765
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000367"
+        },
+        {
+          "source_line": 368,
+          "timestamp": "2026-05-21T04:27:47.373Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LPyY5isb1bGAcmzvrD5dkK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-spatial-seed47\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:23:26.099Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:27:46.878Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"harvest\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"data_path\\\": \\\"logs/eval_spatial_obs_only_norm02_seed47.json\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"openvla\\\", \\\"seed\\\": 47, \\\"checkpoint_source\\\": \\\"harvested\\\", \\\"eval_data\\\": \\\"spatial\\\", \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed47.json\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed47.json\\\"}, \\\"hypothesis\\\": \\\"CRM with observation-only refinement (norm=0.2) on spatial task — tests whether observation embedding similarity improves VLA action selection over baseline VLA-only.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.32}, \\\"completed_at\\\": \\\"2026-05-21T04:27:46.878Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7807}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196",
+            "uuid": "28f150b0-0eec-44e6-9b15-a858ac405f71",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-spatial-seed47\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:23:26.099Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:27:46.878Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"harvest\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"data_path\\\": \\\"logs/eval_spatial_obs_only_norm02_seed47.json\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"openvla\\\", \\\"seed\\\": 47, \\\"checkpoint_source\\\": \\\"harvested\\\", \\\"eval_data\\\": \\\"spatial\\\", \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed47.json\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed47.json\\\"}, \\\"hypothesis\\\": \\\"CRM with observation-only refinement (norm=0.2) on spatial task — tests whether observation embedding similarity improves VLA action selection over baseline VLA-only.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.32}, \\\"completed_at\\\": \\\"2026-05-21T04:27:46.878Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7807}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-crm-spatial-seed47\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:23:26.099Z\", \"updated_at\": \"2026-05-21T04:27:46.878Z\", \"spec\": {\"command\": \"harvest\", \"server\": \"bjb1-18228\", \"data_path\": \"logs/eval_spatial_obs_only_norm02_seed47.json\", \"data_count\": 100, \"model_name\": \"openvla\", \"seed\": 47, \"checkpoint_source\": \"harvested\", \"eval_data\": \"spatial\", \"checkpoint_path\": \"/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed47.json\", \"log_path\": \"/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed47.json\"}, \"hypothesis\": \"CRM with observation-only refinement (norm=0.2) on spatial task — tests whether observation embedding similarity improves VLA action selection over baseline VLA-only.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.32}, \"completed_at\": \"2026-05-21T04:27:46.878Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7807}}"
+              }
+            }
+          },
+          "id": "event-000368"
+        },
+        {
+          "source_line": 369,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MeiBXq8iEQLcN4SYGmeiUT",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval-crm-spatial-k10-seed49",
+                "field": "status",
+                "value": "DONE"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196",
+            "uuid": "78840517-ce9e-483d-b265-4f70292d20d3",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01UBMfzevsTRoe6TpNYv5MNp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 141765,
+                "cache_read_input_tokens": 16334,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 141765
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000369"
+        },
+        {
+          "source_line": 370,
+          "timestamp": "2026-05-21T04:27:48.035Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LAGHLmoSw8CdqugUkpd91T",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-vla-only-object-seed49-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:23:27.122Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:27:47.609Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"harvest\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"data_path\\\": \\\"logs/eval_object_vla_only_seed49.json\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"openvla\\\", \\\"seed\\\": 49, \\\"checkpoint_source\\\": \\\"harvested\\\", \\\"eval_data\\\": \\\"object\\\", \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed49.json\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed49.json\\\"}, \\\"hypothesis\\\": \\\"VLA-only baseline (no CRM) on object task — measures intrinsic VLA capability for ablation comparison against CRM-refined variants.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.1}, \\\"completed_at\\\": \\\"2026-05-21T04:27:47.609Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6502}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196",
+            "uuid": "c8b8b05e-72de-4e2a-875c-cab108f51cfb",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-vla-only-object-seed49-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:23:27.122Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:27:47.609Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"harvest\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"data_path\\\": \\\"logs/eval_object_vla_only_seed49.json\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"openvla\\\", \\\"seed\\\": 49, \\\"checkpoint_source\\\": \\\"harvested\\\", \\\"eval_data\\\": \\\"object\\\", \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed49.json\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed49.json\\\"}, \\\"hypothesis\\\": \\\"VLA-only baseline (no CRM) on object task — measures intrinsic VLA capability for ablation comparison against CRM-refined variants.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.1}, \\\"completed_at\\\": \\\"2026-05-21T04:27:47.609Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6502}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-vla-only-object-seed49-r2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:23:27.122Z\", \"updated_at\": \"2026-05-21T04:27:47.609Z\", \"spec\": {\"command\": \"harvest\", \"server\": \"bjb1-18228\", \"data_path\": \"logs/eval_object_vla_only_seed49.json\", \"data_count\": 100, \"model_name\": \"openvla\", \"seed\": 49, \"checkpoint_source\": \"harvested\", \"eval_data\": \"object\", \"checkpoint_path\": \"/root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed49.json\", \"log_path\": \"/root/acr-vla-conformal-refinement/logs/eval_object_vla_only_seed49.json\"}, \"hypothesis\": \"VLA-only baseline (no CRM) on object task — measures intrinsic VLA capability for ablation comparison against CRM-refined variants.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.1}, \"completed_at\": \"2026-05-21T04:27:47.609Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6502}}"
+              }
+            }
+          },
+          "id": "event-000370"
+        },
+        {
+          "source_line": 371,
+          "timestamp": "2026-05-21T04:27:48.679Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MeiBXq8iEQLcN4SYGmeiUT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-spatial-k10-seed49\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:23:28.274Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:27:48.274Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"harvest\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"data_path\\\": \\\"logs/eval_spatial_obs_only_norm02_seed49.json\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"openvla\\\", \\\"seed\\\": 49, \\\"checkpoint_source\\\": \\\"harvested\\\", \\\"eval_data\\\": \\\"spatial\\\", \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed49.json\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed49.json\\\"}, \\\"hypothesis\\\": \\\"CRM with k=10 candidates and observation-only refinement (norm=0.2) on spatial task — tests refinement quality with larger candidate pool.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.32}, \\\"completed_at\\\": \\\"2026-05-21T04:27:48.274Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6354}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196",
+            "uuid": "fb87f1c8-d2cd-4830-b081-868b451922c1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-spatial-k10-seed49\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:23:28.274Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:27:48.274Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"harvest\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"data_path\\\": \\\"logs/eval_spatial_obs_only_norm02_seed49.json\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"openvla\\\", \\\"seed\\\": 49, \\\"checkpoint_source\\\": \\\"harvested\\\", \\\"eval_data\\\": \\\"spatial\\\", \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed49.json\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed49.json\\\"}, \\\"hypothesis\\\": \\\"CRM with k=10 candidates and observation-only refinement (norm=0.2) on spatial task — tests refinement quality with larger candidate pool.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.32}, \\\"completed_at\\\": \\\"2026-05-21T04:27:48.274Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6354}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-crm-spatial-k10-seed49\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:23:28.274Z\", \"updated_at\": \"2026-05-21T04:27:48.274Z\", \"spec\": {\"command\": \"harvest\", \"server\": \"bjb2-28827\", \"data_path\": \"logs/eval_spatial_obs_only_norm02_seed49.json\", \"data_count\": 100, \"model_name\": \"openvla\", \"seed\": 49, \"checkpoint_source\": \"harvested\", \"eval_data\": \"spatial\", \"checkpoint_path\": \"/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed49.json\", \"log_path\": \"/root/acr-vla-conformal-refinement/logs/eval_spatial_obs_only_norm02_seed49.json\"}, \"hypothesis\": \"CRM with k=10 candidates and observation-only refinement (norm=0.2) on spatial task — tests refinement quality with larger candidate pool.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.32}, \"completed_at\": \"2026-05-21T04:27:48.274Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6354}}"
+              }
+            }
+          },
+          "id": "event-000371"
+        },
+        {
+          "source_line": 372,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0143CtpB87TEwY8RSydrLVYQ",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval-crm-goal-seed48",
+                "field": "status",
+                "value": "DONE"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196",
+            "uuid": "ee3bf192-191c-4ae3-82e6-fdd65e964994",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01UBMfzevsTRoe6TpNYv5MNp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 141765,
+                "cache_read_input_tokens": 16334,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 141765
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000372"
+        },
+        {
+          "source_line": 373,
+          "timestamp": "2026-05-21T04:27:49.460Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0143CtpB87TEwY8RSydrLVYQ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-goal-seed48\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:23:29.201Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:27:49.021Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"harvest\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"data_path\\\": \\\"logs/eval_goal_obs_only_norm02_seed48.json\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"openvla\\\", \\\"seed\\\": 48, \\\"checkpoint_source\\\": \\\"harvested\\\", \\\"eval_data\\\": \\\"goal\\\", \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed48.json\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed48.json\\\"}, \\\"hypothesis\\\": \\\"CRM with observation-only refinement (norm=0.2) on goal task — tests whether observation embedding similarity improves VLA action selection over baseline VLA-only.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.68}, \\\"completed_at\\\": \\\"2026-05-21T04:27:49.021Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6729}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196",
+            "uuid": "d0de8015-f78b-43cf-aded-c4b48a2187c6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-goal-seed48\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:23:29.201Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:27:49.021Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"harvest\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"data_path\\\": \\\"logs/eval_goal_obs_only_norm02_seed48.json\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"openvla\\\", \\\"seed\\\": 48, \\\"checkpoint_source\\\": \\\"harvested\\\", \\\"eval_data\\\": \\\"goal\\\", \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed48.json\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed48.json\\\"}, \\\"hypothesis\\\": \\\"CRM with observation-only refinement (norm=0.2) on goal task — tests whether observation embedding similarity improves VLA action selection over baseline VLA-only.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.68}, \\\"completed_at\\\": \\\"2026-05-21T04:27:49.021Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6729}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-crm-goal-seed48\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:23:29.201Z\", \"updated_at\": \"2026-05-21T04:27:49.021Z\", \"spec\": {\"command\": \"harvest\", \"server\": \"bjb2-28827\", \"data_path\": \"logs/eval_goal_obs_only_norm02_seed48.json\", \"data_count\": 100, \"model_name\": \"openvla\", \"seed\": 48, \"checkpoint_source\": \"harvested\", \"eval_data\": \"goal\", \"checkpoint_path\": \"/root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed48.json\", \"log_path\": \"/root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed48.json\"}, \"hypothesis\": \"CRM with observation-only refinement (norm=0.2) on goal task — tests whether observation embedding similarity improves VLA action selection over baseline VLA-only.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.68}, \"completed_at\": \"2026-05-21T04:27:49.021Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6729}}"
+              }
+            }
+          },
+          "id": "event-000373"
+        },
+        {
+          "source_line": 374,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014X4ot6tZZDnsy4pJv8DueN",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval-crm-goal-seed47",
+                "field": "status",
+                "value": "DONE"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196",
+            "uuid": "08a95d3e-406d-48dd-8151-a2e03ded54c8",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01UBMfzevsTRoe6TpNYv5MNp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 141765,
+                "cache_read_input_tokens": 16334,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 141765
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000374"
+        },
+        {
+          "source_line": 375,
+          "timestamp": "2026-05-21T04:27:50.812Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014X4ot6tZZDnsy4pJv8DueN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-goal-seed47\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:23:29.771Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:27:50.201Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"harvest\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"data_path\\\": \\\"logs/eval_goal_obs_only_norm02_seed47.json\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"openvla\\\", \\\"seed\\\": 47, \\\"checkpoint_source\\\": \\\"harvested\\\", \\\"eval_data\\\": \\\"goal\\\", \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed47.json\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed47.json\\\"}, \\\"hypothesis\\\": \\\"CRM with observation-only refinement (norm=0.2) on goal task — tests whether observation embedding similarity improves VLA action selection over baseline VLA-only.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.69}, \\\"completed_at\\\": \\\"2026-05-21T04:27:50.201Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.966}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196",
+            "uuid": "d11cd741-8698-432d-b2de-3ebd8d9ab1ce",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-goal-seed47\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:23:29.771Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:27:50.201Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"harvest\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"data_path\\\": \\\"logs/eval_goal_obs_only_norm02_seed47.json\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"openvla\\\", \\\"seed\\\": 47, \\\"checkpoint_source\\\": \\\"harvested\\\", \\\"eval_data\\\": \\\"goal\\\", \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed47.json\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed47.json\\\"}, \\\"hypothesis\\\": \\\"CRM with observation-only refinement (norm=0.2) on goal task — tests whether observation embedding similarity improves VLA action selection over baseline VLA-only.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.69}, \\\"completed_at\\\": \\\"2026-05-21T04:27:50.201Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.966}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-crm-goal-seed47\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:23:29.771Z\", \"updated_at\": \"2026-05-21T04:27:50.201Z\", \"spec\": {\"command\": \"harvest\", \"server\": \"bjb2-28827\", \"data_path\": \"logs/eval_goal_obs_only_norm02_seed47.json\", \"data_count\": 100, \"model_name\": \"openvla\", \"seed\": 47, \"checkpoint_source\": \"harvested\", \"eval_data\": \"goal\", \"checkpoint_path\": \"/root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed47.json\", \"log_path\": \"/root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed47.json\"}, \"hypothesis\": \"CRM with observation-only refinement (norm=0.2) on goal task — tests whether observation embedding similarity improves VLA action selection over baseline VLA-only.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.69}, \"completed_at\": \"2026-05-21T04:27:50.201Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.966}}"
+              }
+            }
+          },
+          "id": "event-000375"
+        },
+        {
+          "source_line": 376,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TkevTUKsfDmZn7hPJBghJq",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval-crm-goal-seed50",
+                "field": "status",
+                "value": "DONE"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196",
+            "uuid": "1602b877-20df-4661-8b01-0d8056358177",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01UBMfzevsTRoe6TpNYv5MNp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 141765,
+                "cache_read_input_tokens": 16334,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 141765
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000376"
+        },
+        {
+          "source_line": 377,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015KRE4FyhsY4rvxdQyP8fnG",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval-crm-goal-seed49",
+                "field": "status",
+                "value": "DONE"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196",
+            "uuid": "76094b3c-f22c-4e28-a98a-3f17a8138cbc",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01UBMfzevsTRoe6TpNYv5MNp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 141765,
+                "cache_read_input_tokens": 16334,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 141765
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000377"
+        },
+        {
+          "source_line": 378,
+          "timestamp": "2026-05-21T04:27:51.951Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TkevTUKsfDmZn7hPJBghJq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-goal-seed50\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:23:30.804Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:27:51.247Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"harvest\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"data_path\\\": \\\"logs/eval_goal_obs_only_norm02_seed50.json\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"openvla\\\", \\\"seed\\\": 50, \\\"checkpoint_source\\\": \\\"harvested\\\", \\\"eval_data\\\": \\\"goal\\\", \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed50.json\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed50.json\\\"}, \\\"hypothesis\\\": \\\"CRM with observation-only refinement (norm=0.2) on goal task — tests whether observation embedding similarity improves VLA action selection over baseline VLA-only.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.67}, \\\"completed_at\\\": \\\"2026-05-21T04:27:51.247Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0216}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196",
+            "uuid": "957bfc1f-7c19-4f94-be8f-0d3e659f7948",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-goal-seed50\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:23:30.804Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:27:51.247Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"harvest\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"data_path\\\": \\\"logs/eval_goal_obs_only_norm02_seed50.json\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"openvla\\\", \\\"seed\\\": 50, \\\"checkpoint_source\\\": \\\"harvested\\\", \\\"eval_data\\\": \\\"goal\\\", \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed50.json\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed50.json\\\"}, \\\"hypothesis\\\": \\\"CRM with observation-only refinement (norm=0.2) on goal task — tests whether observation embedding similarity improves VLA action selection over baseline VLA-only.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.67}, \\\"completed_at\\\": \\\"2026-05-21T04:27:51.247Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0216}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-crm-goal-seed50\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:23:30.804Z\", \"updated_at\": \"2026-05-21T04:27:51.247Z\", \"spec\": {\"command\": \"harvest\", \"server\": \"bjb2-28827\", \"data_path\": \"logs/eval_goal_obs_only_norm02_seed50.json\", \"data_count\": 100, \"model_name\": \"openvla\", \"seed\": 50, \"checkpoint_source\": \"harvested\", \"eval_data\": \"goal\", \"checkpoint_path\": \"/root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed50.json\", \"log_path\": \"/root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed50.json\"}, \"hypothesis\": \"CRM with observation-only refinement (norm=0.2) on goal task — tests whether observation embedding similarity improves VLA action selection over baseline VLA-only.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.67}, \"completed_at\": \"2026-05-21T04:27:51.247Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0216}}"
+              }
+            }
+          },
+          "id": "event-000378"
+        },
+        {
+          "source_line": 379,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017PRM9jFgLCHbAhLLh9ad4f",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval-crm-long-seed52",
+                "field": "status",
+                "value": "DONE"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196",
+            "uuid": "0c40a19a-c689-4b16-874e-f15487747d21",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01UBMfzevsTRoe6TpNYv5MNp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 141765,
+                "cache_read_input_tokens": 16334,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 141765
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000379"
+        },
+        {
+          "source_line": 380,
+          "timestamp": "2026-05-21T04:27:53.051Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015KRE4FyhsY4rvxdQyP8fnG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-goal-seed49\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:23:31.844Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:27:52.398Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"harvest\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"data_path\\\": \\\"logs/eval_goal_obs_only_norm02_seed49.json\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"openvla\\\", \\\"seed\\\": 49, \\\"checkpoint_source\\\": \\\"harvested\\\", \\\"eval_data\\\": \\\"goal\\\", \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed49.json\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed49.json\\\"}, \\\"hypothesis\\\": \\\"CRM with observation-only refinement (norm=0.2) on goal task — tests whether observation embedding similarity improves VLA action selection over baseline VLA-only.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.62}, \\\"completed_at\\\": \\\"2026-05-21T04:27:52.398Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0678}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196",
+            "uuid": "27d0705d-4ffb-4b6f-88fe-9991f3354c7c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-goal-seed49\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:23:31.844Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:27:52.398Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"harvest\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"data_path\\\": \\\"logs/eval_goal_obs_only_norm02_seed49.json\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"openvla\\\", \\\"seed\\\": 49, \\\"checkpoint_source\\\": \\\"harvested\\\", \\\"eval_data\\\": \\\"goal\\\", \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed49.json\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed49.json\\\"}, \\\"hypothesis\\\": \\\"CRM with observation-only refinement (norm=0.2) on goal task — tests whether observation embedding similarity improves VLA action selection over baseline VLA-only.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.62}, \\\"completed_at\\\": \\\"2026-05-21T04:27:52.398Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0678}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-crm-goal-seed49\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:23:31.844Z\", \"updated_at\": \"2026-05-21T04:27:52.398Z\", \"spec\": {\"command\": \"harvest\", \"server\": \"bjb2-28827\", \"data_path\": \"logs/eval_goal_obs_only_norm02_seed49.json\", \"data_count\": 100, \"model_name\": \"openvla\", \"seed\": 49, \"checkpoint_source\": \"harvested\", \"eval_data\": \"goal\", \"checkpoint_path\": \"/root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed49.json\", \"log_path\": \"/root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed49.json\"}, \"hypothesis\": \"CRM with observation-only refinement (norm=0.2) on goal task — tests whether observation embedding similarity improves VLA action selection over baseline VLA-only.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.62}, \"completed_at\": \"2026-05-21T04:27:52.398Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0678}}"
+              }
+            }
+          },
+          "id": "event-000380"
+        },
+        {
+          "source_line": 381,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A8GWh3GgNBY6nuPjBKLsUh",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval-vla-only-long-seed49",
+                "field": "status",
+                "value": "DONE"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196",
+            "uuid": "7cd30154-925b-4c41-9cd6-4a04aeb7d358",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01UBMfzevsTRoe6TpNYv5MNp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 141765,
+                "cache_read_input_tokens": 16334,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 141765
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000381"
+        },
+        {
+          "source_line": 382,
+          "timestamp": "2026-05-21T04:27:53.822Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017PRM9jFgLCHbAhLLh9ad4f",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-long-seed52\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:23:32.959Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:27:53.425Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"harvest\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"data_path\\\": \\\"logs/eval_long_obs_only_norm02_seed52.json\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"openvla\\\", \\\"seed\\\": 52, \\\"checkpoint_source\\\": \\\"harvested\\\", \\\"eval_data\\\": \\\"long\\\", \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed52.json\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed52.json\\\"}, \\\"hypothesis\\\": \\\"CRM with observation-only refinement (norm=0.2) on long-horizon task — tests whether observation embedding similarity improves VLA action selection over baseline VLA-only.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.15}, \\\"completed_at\\\": \\\"2026-05-21T04:27:53.426Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.758}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196",
+            "uuid": "ebf427d1-ea7b-4dc6-95e0-51c6fb69c5b3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-long-seed52\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:23:32.959Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:27:53.425Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"harvest\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"data_path\\\": \\\"logs/eval_long_obs_only_norm02_seed52.json\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"openvla\\\", \\\"seed\\\": 52, \\\"checkpoint_source\\\": \\\"harvested\\\", \\\"eval_data\\\": \\\"long\\\", \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed52.json\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed52.json\\\"}, \\\"hypothesis\\\": \\\"CRM with observation-only refinement (norm=0.2) on long-horizon task — tests whether observation embedding similarity improves VLA action selection over baseline VLA-only.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.15}, \\\"completed_at\\\": \\\"2026-05-21T04:27:53.426Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.758}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-crm-long-seed52\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:23:32.959Z\", \"updated_at\": \"2026-05-21T04:27:53.425Z\", \"spec\": {\"command\": \"harvest\", \"server\": \"bjb2-28827\", \"data_path\": \"logs/eval_long_obs_only_norm02_seed52.json\", \"data_count\": 100, \"model_name\": \"openvla\", \"seed\": 52, \"checkpoint_source\": \"harvested\", \"eval_data\": \"long\", \"checkpoint_path\": \"/root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed52.json\", \"log_path\": \"/root/acr-vla-conformal-refinement/logs/eval_long_obs_only_norm02_seed52.json\"}, \"hypothesis\": \"CRM with observation-only refinement (norm=0.2) on long-horizon task — tests whether observation embedding similarity improves VLA action selection over baseline VLA-only.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.15}, \"completed_at\": \"2026-05-21T04:27:53.426Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.758}}"
+              }
+            }
+          },
+          "id": "event-000382"
+        },
+        {
+          "source_line": 383,
+          "timestamp": "2026-05-21T04:27:54.527Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A8GWh3GgNBY6nuPjBKLsUh",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-vla-only-long-seed49\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:23:33.602Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:27:54.076Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"harvest\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"data_path\\\": \\\"logs/eval_long_vla_only_seed49.json\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"openvla\\\", \\\"seed\\\": 49, \\\"checkpoint_source\\\": \\\"harvested\\\", \\\"eval_data\\\": \\\"long\\\", \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed49.json\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed49.json\\\"}, \\\"hypothesis\\\": \\\"VLA-only baseline (no CRM) on long-horizon task — measures intrinsic VLA capability for ablation comparison against CRM-refined variants.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.16}, \\\"completed_at\\\": \\\"2026-05-21T04:27:54.076Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196",
+            "uuid": "a14e79ba-9ca5-4f1e-952a-c1337bd36305",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-vla-only-long-seed49\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T04:23:33.602Z\\\", \\\"updated_at\\\": \\\"2026-05-21T04:27:54.076Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"harvest\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"data_path\\\": \\\"logs/eval_long_vla_only_seed49.json\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"openvla\\\", \\\"seed\\\": 49, \\\"checkpoint_source\\\": \\\"harvested\\\", \\\"eval_data\\\": \\\"long\\\", \\\"checkpoint_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed49.json\\\", \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed49.json\\\"}, \\\"hypothesis\\\": \\\"VLA-only baseline (no CRM) on long-horizon task — measures intrinsic VLA capability for ablation comparison against CRM-refined variants.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.16}, \\\"completed_at\\\": \\\"2026-05-21T04:27:54.076Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.69}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-vla-only-long-seed49\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T04:23:33.602Z\", \"updated_at\": \"2026-05-21T04:27:54.076Z\", \"spec\": {\"command\": \"harvest\", \"server\": \"bjb2-28827\", \"data_path\": \"logs/eval_long_vla_only_seed49.json\", \"data_count\": 100, \"model_name\": \"openvla\", \"seed\": 49, \"checkpoint_source\": \"harvested\", \"eval_data\": \"long\", \"checkpoint_path\": \"/root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed49.json\", \"log_path\": \"/root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed49.json\"}, \"hypothesis\": \"VLA-only baseline (no CRM) on long-horizon task — measures intrinsic VLA capability for ablation comparison against CRM-refined variants.\", \"conclusion\": \"success\", \"metrics\": {\"overall_success_rate\": 0.16}, \"completed_at\": \"2026-05-21T04:27:54.076Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.69}}"
+              }
+            }
+          },
+          "id": "event-000383"
+        },
+        {
+          "source_line": 384,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018sKJfG1LfwEN9XuLjsHxTP",
+              "name": "TodoWrite",
+              "input": {
+                "todos": [
+                  {
+                    "content": "Test single registry update to validate flow",
+                    "activeForm": "Testing single registry update",
+                    "status": "completed"
+                  },
+                  {
+                    "content": "Transition all 28 to QUEUED then RUNNING with spec",
+                    "activeForm": "Transitioning to RUNNING",
+                    "status": "completed"
+                  },
+                  {
+                    "content": "Set hypothesis for all 28",
+                    "activeForm": "Setting hypothesis",
+                    "status": "completed"
+                  },
+                  {
+                    "content": "Set conclusion and metrics for all 28",
+                    "activeForm": "Setting conclusion and metrics",
+                    "status": "completed"
+                  },
+                  {
+                    "content": "Final RUNNING → DONE for all 28",
+                    "activeForm": "Finalizing DONE state",
+                    "status": "completed"
+                  },
+                  {
+                    "content": "Report summary table",
+                    "activeForm": "Reporting summary",
+                    "status": "completed"
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196",
+            "uuid": "fc780b79-6e4e-4c3e-b29f-e2494ee7be42",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01T6DEcER922Ex357hGKKgDL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 150138,
+                "cache_read_input_tokens": 16334,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 150138
+                },
+                "output_tokens": 59,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000384"
+        },
+        {
+          "source_line": 385,
+          "timestamp": "2026-05-21T04:28:02.132Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018sKJfG1LfwEN9XuLjsHxTP",
+              "type": "tool_result",
+              "content": "Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196",
+            "uuid": "a01803c1-4ca9-4174-a8c2-87661d2cfb1a",
+            "tool_use_result": {
+              "oldTodos": [
+                {
+                  "content": "Test single registry update to validate flow",
+                  "status": "completed",
+                  "activeForm": "Testing single registry update"
+                },
+                {
+                  "content": "Transition all 28 to QUEUED then RUNNING with spec",
+                  "status": "completed",
+                  "activeForm": "Transitioning to RUNNING"
+                },
+                {
+                  "content": "Set hypothesis for all 28",
+                  "status": "completed",
+                  "activeForm": "Setting hypothesis"
+                },
+                {
+                  "content": "Set conclusion and metrics for all 28",
+                  "status": "completed",
+                  "activeForm": "Setting conclusion and metrics"
+                },
+                {
+                  "content": "Final RUNNING → DONE for all 28",
+                  "status": "in_progress",
+                  "activeForm": "Finalizing DONE state"
+                },
+                {
+                  "content": "Report summary table",
+                  "status": "pending",
+                  "activeForm": "Reporting summary"
+                }
+              ],
+              "newTodos": [
+                {
+                  "content": "Test single registry update to validate flow",
+                  "status": "completed",
+                  "activeForm": "Testing single registry update"
+                },
+                {
+                  "content": "Transition all 28 to QUEUED then RUNNING with spec",
+                  "status": "completed",
+                  "activeForm": "Transitioning to RUNNING"
+                },
+                {
+                  "content": "Set hypothesis for all 28",
+                  "status": "completed",
+                  "activeForm": "Setting hypothesis"
+                },
+                {
+                  "content": "Set conclusion and metrics for all 28",
+                  "status": "completed",
+                  "activeForm": "Setting conclusion and metrics"
+                },
+                {
+                  "content": "Final RUNNING → DONE for all 28",
+                  "status": "completed",
+                  "activeForm": "Finalizing DONE state"
+                },
+                {
+                  "content": "Report summary table",
+                  "status": "completed",
+                  "activeForm": "Reporting summary"
+                }
+              ],
+              "verificationNudgeNeeded": false
+            }
+          },
+          "id": "event-000385"
+        },
+        {
+          "source_line": 386,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 29 experiments processed: 26 marked DONE with metrics, 3 missing JSONs flagged.\n\n## 汇总表\n\n| # | exp_id | server | JSON exists? | SR | 备注 |\n|---|---|---|---|---|---|\n| 1 | eval-vla-only-spatial-seed54 | bjb1-32546 | ✓ | 0.27 | DONE |\n| 2 | eval-crm-long-seed54 | bjb1-32546 | ✓ | 0.19 | DONE |\n| 3 | eval-crm-long-seed49 | bjb1-32546 | ✓ | 0.14 | DONE |\n| 4 | eval-crm-long-seed48 | bjb1-32546 | ✓ | 0.15 | DONE |\n| 5 | eval-crm-spatial-k10-seed50 | bjb1-32546 | ✓ | 0.35 | DONE |\n| 6 | eval-vla-only-long-seed53 | bjb1-32546 | ✓ | 0.12 | DONE |\n| 7 | eval-vla-only-goal-seed52 | bjb1-32546 | ✓ | 0.68 | DONE |\n| 8 | eval-crm-long-seed51 | bjb1-32546 | ✓ | 0.13 | DONE |\n| 9 | eval-vla-only-spatial-seed51 | bjb1-32546 | ✓ | 0.33 | DONE |\n| 10 | eval-vla-only-object-seed51 | bjb1-32546 | ✓ | 0.15 | DONE |\n| 11 | eval-crm-spatial-seed48 | bjb1-32546 | ✓ | 0.35 | DONE |\n| 12 | eval-obs-only-object-norm02-k20-seed42 | bjb1-32546 | ✗ | — | 进程可能仍在运行或已失败，未更新 |\n| 13 | eval-obs-only-goal-norm02-seed53 | bjb1-32546 | ✓ | 0.63 | DONE |\n| 14 | eval-vla-only-long-seed54 | bjb1-18228 | ✓ | 0.12 | DONE |\n| 15 | eval-crm-long-seed53 | bjb1-18228 | ✓ | 0.18 | DONE |\n| 16 | eval-vla-only-spatial-seed53 | bjb1-18228 | ✓ | 0.28 | DONE |\n| 17 | eval-vla-only-spatial-seed52 | bjb1-18228 | ✓ | 0.31 | DONE |\n| 18 | eval-vla-only-spatial-seed50 | bjb1-18228 | ✓ | 0.30 | DONE |\n| 19 | eval-crm-spatial-seed47 | bjb1-18228 | ✓ | 0.32 | DONE |\n| 20 | eval-vla-only-object-seed49-r2 | bjb1-18228 | ✓ | 0.10 | DONE |\n| 21 | eval-obs-only-object-norm02-k20-seed43 | bjb1-18228 | ✗ | — | 进程可能仍在运行或已失败，未更新 |\n| 22 | eval-crm-spatial-k10-seed49 | bjb2-28827 | ✓ | 0.32 | DONE |\n| 23 | eval-crm-goal-seed48 | bjb2-28827 | ✓ | 0.68 | DONE |\n| 24 | eval-crm-goal-seed47 | bjb2-28827 | ✓ | 0.69 | DONE |\n| 25 | eval-crm-goal-seed50 | bjb2-28827 | ✓ | 0.67 | DONE |\n| 26 | eval-crm-goal-seed49 | bjb2-28827 | ✓ | 0.62 | DONE |\n| 27 | eval-crm-long-seed52 | bjb2-28827 | ✓ | 0.15 | DONE |\n| 28 | eval-vla-only-long-seed49 | bjb2-28827 | ✓ | 0.16 | DONE |\n| 29 | eval-vla-only-spatial-seed49-r2 | bjb2-28827 | ✗ | — | 进程可能仍在运行或已失败，未更新 |\n\n**统计**：26 个已收割到 DONE（全部 SR > 0，conclusion=success），3 个 JSON 缺失保持 PREPARING。\n\n**关键观察**：\n- VLA-only goal seed52 = 0.68 vs CRM goal (47/48/49/50) = 0.62-0.69 — CRM 在 goal 任务上与 VLA-only 持平甚至略低\n- CRM long (0.13-0.19) vs VLA-only long (0.12, 0.16) — long-horizon 上 CRM 提升微弱\n- CRM spatial (0.32-0.35) vs VLA-only spatial (0.27-0.33) — spatial 上 CRM 有小幅领先\n\n**注**：registry 中 spec.command 填的是占位 \"harvest\"，因为原始 submit_training_job 的命令未保留；checkpoint_path 和 log_path 都指向同一 JSON 文件（eval 类任务无独立训练 checkpoint）。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196",
+            "uuid": "34625082-d37d-4dc7-9dd1-92e86c037bf8",
+            "message": {
+              "model": "claude-opus-4-7",
+              "id": "msg_01SvJRFGjFTT19iNuwTVSCfK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 397,
+                "cache_read_input_tokens": 166472,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 397
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000386"
+        },
+        {
+          "source_line": 387,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed_warning",
+                  "resetsAt": 1779584400,
+                  "rateLimitType": "seven_day",
+                  "utilization": 0.75,
+                  "isUsingOverage": false,
+                  "surpassedThreshold": 0.75
+                },
+                "uuid": "70ff98fe-037a-4552-a913-4a63c8c3a00f",
+                "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196"
+              }
+            }
+          ],
+          "id": "event-000387"
+        },
+        {
+          "source_line": 388,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 29 experiments processed: 26 marked DONE with metrics, 3 missing JSONs flagged.\n\n## 汇总表\n\n| # | exp_id | server | JSON exists? | SR | 备注 |\n|---|---|---|---|---|---|\n| 1 | eval-vla-only-spatial-seed54 | bjb1-32546 | ✓ | 0.27 | DONE |\n| 2 | eval-crm-long-seed54 | bjb1-32546 | ✓ | 0.19 | DONE |\n| 3 | eval-crm-long-seed49 | bjb1-32546 | ✓ | 0.14 | DONE |\n| 4 | eval-crm-long-seed48 | bjb1-32546 | ✓ | 0.15 | DONE |\n| 5 | eval-crm-spatial-k10-seed50 | bjb1-32546 | ✓ | 0.35 | DONE |\n| 6 | eval-vla-only-long-seed53 | bjb1-32546 | ✓ | 0.12 | DONE |\n| 7 | eval-vla-only-goal-seed52 | bjb1-32546 | ✓ | 0.68 | DONE |\n| 8 | eval-crm-long-seed51 | bjb1-32546 | ✓ | 0.13 | DONE |\n| 9 | eval-vla-only-spatial-seed51 | bjb1-32546 | ✓ | 0.33 | DONE |\n| 10 | eval-vla-only-object-seed51 | bjb1-32546 | ✓ | 0.15 | DONE |\n| 11 | eval-crm-spatial-seed48 | bjb1-32546 | ✓ | 0.35 | DONE |\n| 12 | eval-obs-only-object-norm02-k20-seed42 | bjb1-32546 | ✗ | — | 进程可能仍在运行或已失败，未更新 |\n| 13 | eval-obs-only-goal-norm02-seed53 | bjb1-32546 | ✓ | 0.63 | DONE |\n| 14 | eval-vla-only-long-seed54 | bjb1-18228 | ✓ | 0.12 | DONE |\n| 15 | eval-crm-long-seed53 | bjb1-18228 | ✓ | 0.18 | DONE |\n| 16 | eval-vla-only-spatial-seed53 | bjb1-18228 | ✓ | 0.28 | DONE |\n| 17 | eval-vla-only-spatial-seed52 | bjb1-18228 | ✓ | 0.31 | DONE |\n| 18 | eval-vla-only-spatial-seed50 | bjb1-18228 | ✓ | 0.30 | DONE |\n| 19 | eval-crm-spatial-seed47 | bjb1-18228 | ✓ | 0.32 | DONE |\n| 20 | eval-vla-only-object-seed49-r2 | bjb1-18228 | ✓ | 0.10 | DONE |\n| 21 | eval-obs-only-object-norm02-k20-seed43 | bjb1-18228 | ✗ | — | 进程可能仍在运行或已失败，未更新 |\n| 22 | eval-crm-spatial-k10-seed49 | bjb2-28827 | ✓ | 0.32 | DONE |\n| 23 | eval-crm-goal-seed48 | bjb2-28827 | ✓ | 0.68 | DONE |\n| 24 | eval-crm-goal-seed47 | bjb2-28827 | ✓ | 0.69 | DONE |\n| 25 | eval-crm-goal-seed50 | bjb2-28827 | ✓ | 0.67 | DONE |\n| 26 | eval-crm-goal-seed49 | bjb2-28827 | ✓ | 0.62 | DONE |\n| 27 | eval-crm-long-seed52 | bjb2-28827 | ✓ | 0.15 | DONE |\n| 28 | eval-vla-only-long-seed49 | bjb2-28827 | ✓ | 0.16 | DONE |\n| 29 | eval-vla-only-spatial-seed49-r2 | bjb2-28827 | ✗ | — | 进程可能仍在运行或已失败，未更新 |\n\n**统计**：26 个已收割到 DONE（全部 SR > 0，conclusion=success），3 个 JSON 缺失保持 PREPARING。\n\n**关键观察**：\n- VLA-only goal seed52 = 0.68 vs CRM goal (47/48/49/50) = 0.62-0.69 — CRM 在 goal 任务上与 VLA-only 持平甚至略低\n- CRM long (0.13-0.19) vs VLA-only long (0.12, 0.16) — long-horizon 上 CRM 提升微弱\n- CRM spatial (0.32-0.35) vs VLA-only spatial (0.27-0.33) — spatial 上 CRM 有小幅领先\n\n**注**：registry 中 spec.command 填的是占位 \"harvest\"，因为原始 submit_training_job 的命令未保留；checkpoint_path 和 log_path 都指向同一 JSON 文件（eval 类任务无独立训练 checkpoint）。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 565561,
+            "duration_api_ms": 555708,
+            "num_turns": 182,
+            "stop_reason": "end_turn",
+            "session_id": "54dfdabd-182c-4d7a-8a56-19df45c62196",
+            "total_cost_usd": 9.176181499999998,
+            "usage": {
+              "input_tokens": 45,
+              "cache_creation_input_tokens": 1155892,
+              "cache_read_input_tokens": 1731303,
+              "output_tokens": 43340,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 1155892,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 1787,
+                  "cache_read_input_tokens": 166472,
+                  "cache_creation_input_tokens": 397,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 397
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2395,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.00248,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-7[1m]": {
+                "inputTokens": 45,
+                "outputTokens": 43340,
+                "cacheReadInputTokens": 1731303,
+                "cacheCreationInputTokens": 1155892,
+                "webSearchRequests": 0,
+                "costUSD": 9.173701499999998,
+                "contextWindow": 1000000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "35748972-dfeb-4936-8431-c0f895551676"
+          },
+          "id": "event-000388"
+        }
+      ]
+    }
+  ]
+}

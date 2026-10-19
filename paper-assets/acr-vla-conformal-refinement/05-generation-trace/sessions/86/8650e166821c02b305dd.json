@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8650e166821c02b305dd",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops check vla mean object completion",
+  "task_key": "worker_ops_check-vla-mean-object-completion_20260515T170014",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-vla-mean-object-completion_20260515T170014_result.json",
+    "occurrence": 1,
+    "bytes": 653,
+    "sha256": "8f38fdb25b3528b1f9d1d77db25b64ef6ed95d315631d2eb56249d4147274f94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**eval-vla-mean-object 已完成，registry 已更新为 DONE。**\n\n结果汇总：\n- **Overall SR: 12.0% (12/100)**\n- 10/10 tasks 全部完成\n\n| Task | SR |\n|------|-----|\n| alphabet_soup | 0% |\n| cream_cheese | 0% |\n| salad_dressing | 10% |\n| bbq_sauce | 30% |\n| ketchup | 10% |\n| tomato_sauce | 10% |\n| butter | 0% |\n| milk | 20% |\n| chocolate_pudding | 30% |\n| orange_juice | 10% |\n\n与 reconvla-object（也是 12% SR）完全一致——VLA mean 和 ReconVLA argmin 在 object benchmark 上表现相同。\n\ncuda:5 已释放（2 MiB, 0% 利用率）。JSON 输出已保存在 `logs/eval_object_vla_mean.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-vla-mean-object-completion.md"
+}

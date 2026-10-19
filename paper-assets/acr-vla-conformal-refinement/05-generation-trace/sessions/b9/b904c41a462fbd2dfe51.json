@@ -1,0 +1,541 @@
+{
+  "schema_version": "1.0",
+  "id": "b904c41a462fbd2dfe51",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "cron hook eval random selection object seed44",
+  "task_key": "cron_hook_eval-random-selection-object-seed44",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/cron_hook_eval-random-selection-object-seed44.jsonl",
+    "occurrence": 1,
+    "bytes": 26323,
+    "sha256": "1499cc66fab0319b1d705d033699e8b3b74a554ab20a1ec30ee2221515efc70b"
+  },
+  "statistics": {
+    "messages": 26,
+    "user_turns": 1,
+    "tool_calls": 12,
+    "roles": {
+      "user": 1,
+      "tool_call": 12,
+      "tool_result": 12,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T08:44:52.658334+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: eval-random-selection-object-seed44\n- project: acr-vla-conformal-refinement\n- server: bjb2-28827"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-random-selection-object-seed44",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T08:45:09.579794+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-random-selection-object-seed44",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__send_progress,mcp__agent-ml-research__load_project_config",
+              "max_results": "10"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T08:45:09.631174+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-random-selection-object-seed44",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T08:45:13.551126+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-random-selection-object-seed44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T08:45:13.805182+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-random-selection-object-seed44",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T08:45:14.257772+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-random-selection-object-seed44",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T08:45:14.358631+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-random-selection-object-seed44",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T08:45:15.370288+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (646,782 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-bc3345c4/9d9d8580-2075-42b0-84f5-75cd044cae54/tool-results/mcp-agent-ml-research-read_registry-1779266715322.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-bc3345c4/9d9d8580-2075-42b0-84f5-75cd044cae54/tool-results/mcp-agent-ml-research-read_registry-1779266715322.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-random-selection-object-seed44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1819
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T08:45:28.971439+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 4, \\\"results\\\": [{\\\"exp_id\\\": \\\"eval-adaptive-k-spatial-p50-seed43-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=303834)\\\"]}, {\\\"exp_id\\\": \\\"eval-adaptive-k-spatial-p50-seed44-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=249543)\\\"]}, {\\\"exp_id\\\": \\\"eval-random-selection-object-seed42\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=235076)\\\"]}, {\\\"exp_id\\\": \\\"eval-adaptive-k-spatial-p50-seed42\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=681823)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-random-selection-object-seed44",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 15166
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T08:45:28.974012+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-20T08:44:51Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 429 个实验 — ALLOCATED 4, ANALYZING 1, DEPLOYED 4, DONE 375, PREPARING 32, QUEUED 9, RUNNING 4\\\\n**DONE 分布**: failed 48, killed 86, negative 32, success 209\\\\n\\\\n### GPU 占用\\\\n- **实际运行**: 3 张 — bjb2-40593:cuda:0(eval-adaptive-k-spatial-p50-seed42), bjb1-32546:cuda:0(eval-adaptive-k-spatial-p50-seed43-r2), bjb2-28827:cuda:0(eval-adaptive-k-spatial-p50-seed44-r2)\\\\n\\\\n### 💾 磁盘余量\\\\n- **bjb2-40593**:\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\\\n  - `/usr/bin/nvidia-smi`: 47G/437G 可用（已用 89%）\\\\n- **bjb1-18228**:\\\\n  - `/autodl-pub`: 1006G/7.0T 可用（已用 86%）\\\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\\\n  - `/usr/bin/nvidia-smi`: 400G/438G 可用（已用 4%）\\\\n- **bjb1-32546**:\\\\n  - `/autodl-pub`: 904G/7.0T 可用（已用 88%）\\\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\\\n  - `/usr/bin/nvidia-smi`: 400G/438G 可用（已用 4%）\\\\n- **bjb2-28827**:\\\\n  - `/autodl-pub`: 4.5T/14T 可用（已用 69%）\\\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\\\n  - `/usr/bin/nvidia-smi`: 399G/439G 可用（已用 5%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `eval-random-selection-object-seed42` | bjb2-28827 | ? | ? | `—` |\\\\n| `eval-adaptive-k-spatial-p50-seed42` | bjb2-40593 | cuda:0 | 681823 | `—` |\\\\n| `eval-adaptive-k-spatial-p50-seed43-r2` | bjb1-32546 | cuda:0 | 303834 | `…formal-refinement/eval-adaptive-k-spatial-p50-seed43-r2.log` |\\\\n| `eval-adaptive-k-spatial-p50-seed44-r2` | bjb2-28827 | cuda:0 | 249543 | `…formal-refinement/eval-adaptive-k-spatial-p50-seed44-r2.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `eval-obs-only-object-norm02-seed42` [success] — 2026-05-20T08:44:33\\\\n- `latency-profile-n1000` [success] \n…[truncated 7795 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-random-selection-object-seed44",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 14716
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T08:45:28.976915+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\\\", \\\"content\\\": \\\"# acr-vla-conformal-refinement — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-20 06:17 UTC | 更新原因: Fix Long OOD data to match D081, update RUNNING section per Reviewer observation\\\\n\\\\n> 详见 paper_framing.md（D077: Adaptive K 升级为核心贡献）\\\\n\\\\n## 核心方向\\\\n**Adaptive inference-time compute for frozen VLAs** — K=2 L2 distance 作为不确定性信号，自适应决定每步推理次数。CRM correction>selection 分析作为支撑。\\\\n\\\\n## 投稿目标\\\\n**CoRL 2026** DDL **2026-05-29**。剩余 ~9 天。\\\\n\\\\n## D077 方向转换（用户硬要求）\\\\n- Adaptive K = 论文**核心贡献**（方法）\\\\n- K=10 分析降为 supporting evidence\\\\n\\\\n## 信号候选 (CLOSED)\\\\n| 信号 | ρ vs K10_var | 结论 |\\\\n|------|-------------|------|\\\\n| **K=2 L2 distance** | **0.9979** | **✅ GO — 唯一可用信号** |\\\\n| CRM correction magnitude | 0.1523 | ❌ NO-GO (D079) |\\\\n| FMVD | 0.0825 | ❌ NO-GO |\\\\n\\\\n## Adaptive K Sweep (Object) — 12/12 DONE ✅\\\\n| 阈值 | seeds | SR (mean) | avg_K | fast_path% | vs K=10 |\\\\n|------|-------|-----------|-------|-----------|---------|\\\\n| P90 | 3/3 ✅ | 13.3% | ~2.6 | ~93% | 74% |\\\\n| P75 | 3/3 ✅ | 13.7% | ~3.1 | ~87% | 79% |\\\\n| **P50** | **3/3 ✅** | **15.3%** | **~3.8** | **~77%** | **~91%** |\\\\n| P25 | 3/3 ✅ | 14.3% | ~4.8 | ~65% | ~85% |\\\\n\\\\n**P50 = Pareto 最优 (D078)**。\\\\n\\\\n## RUNNING 实验\\\\n- bjb2-40593: Spatial Adaptive K P50 seed42 (rollout 中)\\\\n- bjb1-18228: Long VLA-only seed54, Long CRM seed53, Spatial VLA-only seed53\\\\n- bjb1-32546: Long CRM seed54, Spatial VLA-only seed54\\\\n- 更多部署中（Agent 处理综合指令）\\\\n\\\\n## 待部署\\\\n1. **Spatial Adaptive K P50 seed43, seed44**\\\\n2. **Random Selection baseline seed42, seed44** (plan_600)\\\\n3. **CRM Object K=10 norm02 seed42** (Table 1 n=6→n=7)\\\\n4. **fig3_kvalue 重新生成**\\\\n\\\\n## 论文 CRITICAL 待解决\\\\n1. **evaluate.py 推理模式确认** — Agent P0\\\\n2. **Spatial CRM K=10 n=8 溯源** — registry 只有 n=7, Agent 调查中\\\\n3. **OOD Long/Goal 数据全量更新** — Paper Agent 处理中\\\\n4. **P25 n=3 更新** — Paper Agent 处理中\\\\n\\\\n## 核心实验结果 (LOCKED,\n…[truncated 2536 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-random-selection-object-seed44",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 14618
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T08:45:34.298197+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-random-selection-object-seed44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "filters": "{'exp_id': 'eval-random-selection-object-seed44'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T08:45:35.110773+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-random-selection-object-seed44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T08:45:35.564491+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1165}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-random-selection-object-seed44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1266
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T08:45:35.564921+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-random-selection-object-seed44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "filters": "{'status': 'ANALYZING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T08:45:36.468817+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval-adaptive-k-spatial-p50-seed42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-20T06:01:50.026Z\\\", \\\"updated_at\\\": \\\"2026-05-20T07:57:07.905Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P50 (0.074855, Object-calibrated) on LIBERO-Spatial seed42. 验证 Adaptive K 方法在第二个 benchmark 上的泛化：使用 Object 上校准的阈值直接应用到 Spatial（无 per-benchmark tuning）。如果 SR 接近 CRM K=10 (34.3%) 且 fast_path >50%，则证明方法跨 benchmark 通用。\\\", \\\"notes\\\": \\\"PID 681823 在 bjb2-40593:cuda:0 运行中 (State: R, 210 threads, 6483 MiB GPU)。旧 cron 检测旧 PID 675831 死亡后误标 DONE/failed，已恢复 RUNNING。第三次 cron 误报。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T07:29:54.160Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"completed_at\\\": \\\"2026-05-20T07:29:59.173Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T07:30:08.474411+00:00\\\"}], \\\"previous_failure\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"notes\\\": \\\"旧PID 675831被kill后，新PID 681823已于cuda:0重新启动，运行正常(11min+)。旧cron检测到675831死亡触发误报回调。已完成3/10 tasks，SR: 70%/100%/0%，第4个task进行中。\\\"}}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode adaptive_k --adaptive_threshold 0.074855 --k_full 10 --benchmark spatial --seed 42 --n_rollouts 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_adaptive_k_spatial_p50_seed42.json\\\\\\\"\\\", \\\"server\\\": \\\"bjb2-40593\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"681823\\\", \\\"data_path\\\": \\\"LIBERO-Spatial\\\", \\\"data_count\\\": \\\"100\\\", \\\"model_name\\\": \\\"SmolVLA+Adaptive_K_P50\\\", \\\"seed\\\": 42}}, \\\"eval-adaptive-k-spatial-p50-seed44-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T06:42:09.659Z\\\", \\\"updated_at\\\": \\\"2026-05-20T\n…[truncated 5559 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-random-selection-object-seed44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1358
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T08:45:37.579472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval-random-selection-object-seed44\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-18T02:25:56.030Z\\\", \\\"updated_at\\\": \\\"2026-05-20T08:44:43.515Z\\\", \\\"hypothesis\\\": \\\"Random selection baseline (K=10 随机选一个 action) seed44 on LIBERO-Object. 第三个 seed 验证 random selection ≈ VLA-only。\\\", \\\"completed_at\\\": \\\"2026-05-18T19:54:45.658Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.13, \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 10, \\\"total_rollouts\\\": 100}}, \\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T08:44:57.080310+00:00\\\"}]}, \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --mode random_selection --benchmark object --seed 44 --K 10 --n_rollouts 10 --output_file logs/eval_object_random_selection_seed44.json\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu_id\\\": 2, \\\"data_path\\\": \\\"/root/acr-vla-conformal-refinement\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"smolvla\\\", \\\"seed\\\": 44, \\\"checkpoint_source\\\": \\\"N/A\\\", \\\"eval_data\\\": \\\"LIBERO object benchmark\\\"}, \\\"notes\\\": \\\"2026-05-20 15:06 确认进程活跃: PID 235343, cuda:2, tmux session active, 进度 task 2/10 (~15%). 启动时间 14:40 UTC. 旧 seed44 JSON (SR=0.13) 在磁盘上但会被新运行覆盖.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T08:44:41.731Z\\\"}}}, \\\"count\\\": 1, \\\"total\\\": 1, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0947}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-random-selection-object-seed44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 2014
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T08:45:49.375427+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-random-selection-object-seed44",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement && grep -i \"random.selection\" registry.yaml | head -30",
+              "description": "Search registry for all random selection experiments"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T08:45:49.577563+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  eval-random-selection-object-seed42:\n    hypothesis: Random selection baseline (K=10 随机选一个 action) on LIBERO-Object seed42.\n      command: python -u src/evaluate.py --mode random_selection --benchmark object\n        --seed 42 --K 10 --n_rollouts 10 --output_file logs/eval_object_random_selection_seed42.json\n  eval-random-selection-object-seed43:\n      command: random_selection --seed 43 --K 10\n      log_path: ~/runs/acr-vla-conformal-refinement/eval-random-selection-object-seed43.log\n      model_name: random_selection\n    hypothesis: Random selection baseline (K=10 随机选一个 action) seed43 on LIBERO-Object.\n    log_path: ~/runs/acr-vla-conformal-refinement/eval-random-selection-object-seed43.log\n  eval-random-selection-object-seed44:\n    hypothesis: Random selection baseline (K=10 随机选一个 action) seed44 on LIBERO-Object.\n      第三个 seed 验证 random selection ≈ VLA-only。\n      command: python -u src/evaluate.py --mode random_selection --benchmark object\n        --seed 44 --K 10 --n_rollouts 10 --output_file logs/eval_object_random_selection_seed44.json\n  eval-random-selection-object-seed45:\n    hypothesis: Random selection baseline seed45 on LIBERO-Object. GPU 双跑补 seed。\n        --mode random_selection --benchmark object --n_rollouts 10 --seed 45 --K 10\n        --output_file logs/eval_object_random_selection_seed45.json\n      log_path: logs/eval_object_random_selection_seed45.json\n  eval-random-selection-object-seed46:\n    hypothesis: Random selection baseline (K=10, randomly pick one of K VLA samples)\n      seed46 on LIBERO-Object. 补审稿 C3 要求的 random selection baseline 额外 seed。\n    failure_reason: random_selection mode not supported on bjb1-18228\n  eval-random-selection-object-seed46-r2:\n    hypothesis: 'Random selection baseline (K=10, randomly pick one of K VLA samples)\n        -u src/evaluate.py --mode random_selection --benchmark object --n_rollouts\n        10 --seed 46 --K 10 --output_file logs/eval_object_random_selection_seed46.json\n      tmux_session: eval-random-sel\n…[truncated 201 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-random-selection-object-seed44",
+            "tool": "Bash",
+            "elapsed_ms": 202
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T08:45:52.941501+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-random-selection-object-seed44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "filters": "{'status': 'DONE'}",
+              "fields": "['status', 'conclusion', 'metrics', 'hypothesis']",
+              "limit": "0"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T08:45:54.199551+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (166,076 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-bc3345c4/9d9d8580-2075-42b0-84f5-75cd044cae54/tool-results/mcp-agent-ml-research-read_registry-1779266754170.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-bc3345c4/9d9d8580-2075-42b0-84f5-75cd044cae54/tool-results/mcp-agent-ml-research-read_registry-1779266754170.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-random-selection-object-seed44",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1258
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T08:45:59.268468+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-random-selection-object-seed44",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-bc3345c4/9d9d8580-2075-42b0-84f5-75cd044cae54/tool-results/mcp-agent-ml-research-read_registry-1779266754170.txt | python3 -c \"\nimport json, sys\ndata = json.loads(sys.stdin.read())\nexps = json.loads(data['result'])['data']['experiments']\n# Find all random-selection experiments\nfor k, v in exps.items():\n    if 'random-selection' in k or 'random_selection' in k:\n        print(f\\\"{k}: conclusion={v.get('conclusion','?')}, metrics={v.get('metrics','?')}\\\")\n\"",
+              "description": "Extract random selection experiment results from registry dump"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T08:45:59.370385+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval-random-selection-object-seed46-r2: conclusion=failed, metrics=?\neval-random-selection-object-k5-seed45-r2: conclusion=success, metrics={'success_rate': 0.07, 'successes': 7, 'total': 100, 'n_tasks': 10, 'n_rollouts': 10}\neval-random-selection-object-k5-seed44-r2: conclusion=success, metrics={'success_rate': 0.1, 'successes': 10, 'total': 100, 'n_tasks': 10, 'n_rollouts': 10}\neval-random-selection-object-k5-seed43-r2: conclusion=success, metrics={'success_rate': 0.11, 'successes': 11, 'total': 100, 'n_tasks': 10, 'n_rollouts': 10}\neval-random-selection-object-k5-seed42-r2: conclusion=success, metrics={'success_rate': 0.14, 'successes': 14, 'total': 100, 'n_tasks': 10, 'n_rollouts': 10}\neval-random-selection-object-k5-seed45: conclusion=failed, metrics=?\neval-random-selection-object-k5-seed44: conclusion=failed, metrics=?\neval-random-selection-object-k5-seed43: conclusion=failed, metrics=?\neval-random-selection-object-k5-seed42: conclusion=failed, metrics=?\neval-random-selection-object-seed45: conclusion=success, metrics={'success_rate': 0.1, 'n_tasks': 10, 'n_rollouts': 10, 'total_rollouts': 100}\neval-random-selection-object-seed46: conclusion=failed, metrics=?\neval-random-selection-object-seed43: conclusion=success, metrics={'success_rate': 0.09, 'n_tasks': 10, 'n_rollouts': 10, 'total_rollouts': 100, 'per_task_sr': [0, 0, 0.1, 0.1, 0, 0.1, 0, 0.1, 0.2, 0.3]}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-random-selection-object-seed44",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T08:46:16.804516+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-random-selection-object-seed44",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analyze:eval-random-selection-object-seed44",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "## 任务\nSSH 到 bjb2-28827 读取实验 `eval-random-selection-object-seed44` 的结果。\n\n## 操作步骤\n\n1. SSH (read_only) 到 bjb2-28827，读取结果文件：\n   ```\n   cat /root/acr-vla-conformal-refinement/logs/eval_object_random_selection_seed44.json\n   ```\n\n2. 如果 JSON 不存在，检查日志：\n   ```\n   tail -100 ~/runs/acr-vla-conformal-refinement/eval-random-selection-object-seed44.log 2>/dev/null || echo \"NO_LOG\"\n   ```\n\n3. 也检查进程退出状态：\n   ```\n   cat ~/runs/acr-vla-conformal-refinement/eval-random-selection-object-seed44.exit_code 2>/dev/null || echo \"NO_EXIT_CODE\"\n   ```\n\n## 需要提取的指标\n- success_rate (overall)\n- n_tasks, n_rollouts, total_rollouts\n- per_task_sr (每个 task 的成功率列表)\n- 如果有 avg_K、fast_path% 也记录\n\n## 输出格式\n用 `update_registry` 更新实验：\n1. `field=\"metrics\"`, value 填提取到的指标 dict\n2. `field=\"conclusion\"`, value=\"success\" (如果正常完成) 或 \"failed\" (如果异常)\n3. `field=\"status\"`, value=\"DONE\"\n4. `field=\"notes\"`, 简要记录分析结果\n\n同时设置 `checkpoint_path`（如果有模型输出）和 `log_path`。\n\n## 上下文\n这是 Random Selection baseline (K=10 随机选一个 action) 在 LIBERO-Object benchmark 上的 seed44 运行。已有的同类实验结果：seed43=0.09, seed45=0.10。这是 plan_600 的一部分，用于论文中对比 CRM uncertainty-guided selection vs random selection。",
+              "tool_groups": "['ssh', 'registry']"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T08:46:19.845735+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analyze_eval-random-selection-object-seed44_20260520T084617\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_analyze_eval-random-selection-object-seed44_20260520T084617.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analyze_eval-random-selection-object-seed44_20260520T084617 started. Use get_worker_status('worker_analyze_eval-random-selection-object-seed44_20260520T084617') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-random-selection-object-seed44",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3041
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T08:46:40.981447+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已派 Worker 去 bjb2-28827 提取 `eval-random-selection-object-seed44` 的结果指标并更新 registry。等待 Worker 回调后汇总 Random Selection baseline 数据并向 Director 汇报。\n\n当前状态：\n- **RUNNING**: 4 个实验（Spatial Adaptive K P50 seed42/43/44, Random Selection seed42）\n- **ANALYZING → Worker 处理中**: Random Selection seed44\n- **已完成 Random Selection K=10 Object seeds**: seed43=9%, seed45=10%（seed42/44 待定）"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-random-selection-object-seed44"
+          },
+          "id": "event-000026"
+        }
+      ],
+      "message_count": 26
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-eval-random-selection-object-seed44.md"
+}

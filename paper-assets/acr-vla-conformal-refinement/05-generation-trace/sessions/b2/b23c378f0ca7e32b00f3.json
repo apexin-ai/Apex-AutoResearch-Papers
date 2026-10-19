@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b23c378f0ca7e32b00f3",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "check gpu utilization urgent",
+  "task_key": "worker_check_gpu-utilization-urgent_20260524T165223",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_gpu-utilization-urgent_20260524T165223_result.json",
+    "occurrence": 1,
+    "bytes": 2798,
+    "sha256": "f9877ceb46def9bc6d5bffa22c7408b4dde43336615accdf9ad6516e31786f7c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n---\n\n### Server 1: bjb2-28827 ✅ 6/6 全部在跑\n\n| GPU | 利用率 | 显存 | 实验 |\n|-----|--------|------|------|\n| 0 | 19% | 3566/24564 MiB | adaptive_conformal_crm, spatial, s48 |\n| 1 | 14% | 3566/24564 MiB | adaptive_conformal_crm, spatial, s49 |\n| 2 | 17% | 3256/24564 MiB | adaptive_conformal_crm, goal, s48 |\n| 3 | 19% | 3256/24564 MiB | adaptive_conformal_crm, goal, s49 |\n| 4 | 17% | 3776/24564 MiB | adaptive_conformal_crm, object, s48 |\n| 5 | 20% | 3776/24564 MiB | adaptive_conformal_crm, object, s49 |\n\nTmux: 6 sessions（eval-supp-adapt-tau025-{spatial,goal,obj}-s{48,49}）\n\n---\n\n### Server 2: cqa1-32758 ✅ 6/6 全部在跑\n\n| GPU | 利用率 | 显存 | 实验 |\n|-----|--------|------|------|\n| 0 | 19% | 3822/24564 MiB | vla_only, spatial, s48 |\n| 1 | 0% | 3810/24564 MiB | vla_only, spatial, s49 |\n| 2 | 17% | 4415/24564 MiB | vla_only, goal, s48 |\n| 3 | 35% | 4415/24564 MiB | vla_only, goal, s49 |\n| 4 | 18% | 4496/24564 MiB | vla_only, object, s48 |\n| 5 | 33% | 4496/24564 MiB | vla_only, object, s49 |\n\nTmux: 6 sessions（eval-supp-vla-only-{spatial,goal,obj}-s{48,49}）\n\n---\n\n### Server 3: bjb1-18228 ✅ 预期实验在跑\n\n| GPU | 利用率 | 显存 | 实验 |\n|-----|--------|------|------|\n| 0 | 9% | 580/24564 MiB | train_crm.py (pi05 unified 3suite, epochs 50) |\n| 1 | 20% | 4618/24564 MiB | **evaluate.py vla_only, spatial, s42** ✅ |\n| 2 | 21% | 4701/24564 MiB | **evaluate.py vla_only, object, s50** ✅ |\n| 3 | 23% | 9883/24564 MiB | train_crm.py --precompute pi05 long K=10 |\n\nTmux: eval-supp-spatial-vla-only-s42, eval-supp-obj-vla-only-s50, train-crm-pi05-unified-3suite-r2\n\n---\n\n### Server 4: bjb2-40593 ❌ K=5 实验未运行！\n\n| GPU | 利用率 | 显存 | 实验 |\n|-----|--------|------|------|\n| 0 | **0%** | **0/24564 MiB** | **无进程** |\n\n**无 evaluate 进程，无 tmux session，GPU 完全空闲。K=5 实验部署失败。**\n\n---\n\n### Server 5: bjb1-32546 ✅ 6/6 满载\n\n| GPU | 利用率 | 显存 | 实验 |\n|-----|--------|------|------|\n| 0 | 21% | 1978/24564 MiB | τ-sweep τ=0.10, spatial, s42 |\n| 1 | 23% | 1876/24564 MiB | Long-adapt (K=2, s47, crm_unified_4suite_r4) |\n| 2 | 22% | 1978/24564 MiB | τ-sweep τ=0.20, spatial, s42 |\n| 3 | 21% | 1978/24564 MiB | τ-sweep τ=0.30, spatial, s42 |\n| 4 | 29% | 2477/24564 MiB | CRM-reeval (crm_obs_only, object, s47, K=10) |\n| 5 | 23% | 1978/24564 MiB | K=1 adaptive, spatial, s42 |\n\nTmux: 6 sessions 全部匹配\n\n---\n\n## 关键问题\n\n**bjb2-40593 的 K=5 实验完全没有运行** — GPU 空闲 0%/0MiB，无 python 进程，无 tmux session。需要立即重新部署。\n\nbjb2-28827 和 cqa1-32758 的 s48/s49 实验 **部署成功**，全部 12 个实验正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gpu-utilization-urgent.md"
+}

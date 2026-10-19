@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "690ad026a2c16ad7df87",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "paper conclusion draft",
+  "task_key": "worker_paper_conclusion-draft_20260517T011132",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_conclusion-draft_20260517T011132_result.json",
+    "occurrence": 1,
+    "bytes": 93,
+    "sha256": "8854df070832a50e619125c5b467df818b081179c515316790202f74e1c32f34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "203 words, no em-dash/en-dash. Draft saved to `artifacts/conclusion_draft.md`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-conclusion-draft.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d635cb00a2cddf1fbc56",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code evaluate start task",
+  "task_key": "worker_code_evaluate-start-task_20260515T215024",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_evaluate-start-task_20260515T215024_result.json",
+    "occurrence": 1,
+    "bytes": 831,
+    "sha256": "1478d59f87e68bffadac8f07921b8ca065b473d6632d43968262bdbf6df80031"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结修改：\n\n**evaluate.py**:\n- `--start_task` 已存在，新增 `--end_task`（int, default=None，exclusive upper bound）\n- Task 切片逻辑改为 `task_envs[start_task:end_idx]`，范围外的 env 正确 close\n\n**src/analysis/merge_eval_results.py**（新建）:\n- 合并多个 partial JSON：`python merge_eval_results.py part1.json part2.json -o merged.json`\n- 检查 task 不重叠（重复报错退出），mode/benchmark 不一致给 WARNING\n- 重新计算 overall_success_rate\n\n**用法示例**（跑 T6-T9）:\n```bash\npython src/evaluate.py --benchmark spatial --start_task 6 --output_file logs/eval_spatial_part2.json ...\n# 合并\npython src/analysis/merge_eval_results.py logs/eval_spatial_part1.json logs/eval_spatial_part2.json -o logs/eval_spatial_merged.json\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-evaluate-start-task.md"
+}

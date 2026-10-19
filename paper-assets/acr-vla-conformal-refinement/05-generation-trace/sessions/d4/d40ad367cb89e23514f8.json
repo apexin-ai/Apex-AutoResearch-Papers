@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "d40ad367cb89e23514f8",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "code lerobot native precompute",
+  "task_key": "worker_code_lerobot-native-precompute_20260522T145626",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_lerobot-native-precompute_20260522T145626.log",
+    "occurrence": 1,
+    "bytes": 1455566,
+    "sha256": "ddb2776d6ef6d8898031ba1498af2a09a3152eed425f299740456fe29a26517d"
+  },
+  "statistics": {
+    "messages": 744,
+    "user_turns": 1,
+    "tool_calls": 313,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 2,
+      "assistant": 107,
+      "tool_call": 313,
+      "tool_result": 313,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 323,
+      "chunks": [
+        {
+          "path": "d40ad367cb89e23514f8-part-0001.json",
+          "message_count": 135
+        },
+        {
+          "path": "d40ad367cb89e23514f8-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d40ad367cb89e23514f8-part-0003.json",
+          "message_count": 8
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 421,
+      "chunks": [
+        {
+          "path": "d40ad367cb89e23514f8-part-0003.json",
+          "message_count": 172
+        },
+        {
+          "path": "d40ad367cb89e23514f8-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "d40ad367cb89e23514f8-part-0005.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-lerobot-native-precompute.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "940cecd9da135a90ccdd",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose eval obs only object norm03 seed47",
+  "task_key": "worker_diagnose_eval-obs-only-object-norm03-seed47_20260517T115219",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval-obs-only-object-norm03-seed47_20260517T115219_result.json",
+    "occurrence": 1,
+    "bytes": 2765,
+    "sha256": "3abe7d87faf888a2f0cbef36d3b585d3bb33d3e131cd68798d8477dea5ef597a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。以下是结论：\n\n---\n\n## 诊断结果\n\n### 根本原因（两个实验共同）\n\n**`evaluate.py` 没有 W&B 集成，也不写 sentinel 文件。** 监控系统检查三个信号：运行中进程、sentinel 文件、W&B 活动。evaluate.py 只写 JSON 结果文件然后 `sys.exit(0)` 退出。进程正常结束后，监控找不到任何存活信号，连续检查 5 次后自动判定失败。\n\n- `wandb/` 目录完全为空（0 文件）\n- 项目中无任何 sentinel 文件\n- `evaluate.py` 中无 `wandb` import，无 sentinel 写入逻辑\n\n---\n\n### 实验 1: eval-perdof-object-norm03-seed44-r2\n\n**状态：实际已完成，误报失败。**\n\n- JSON 结果文件已存在：`eval_object_perdof_norm03_seed44.json`（创建于 12:40）\n- 结果：overall_success_rate = 0.04（10 tasks × 10 rollouts）\n- 无 .log 文件（可能启动时未指定 tee/redirect，或被覆盖）\n- 无运行中进程（正常退出）\n- 监控看到\"进程不存在 + 无 sentinel + 无 W&B\" → 判定失败\n\n**结论：假阳性。实验正常完成并输出了结果。**\n\n---\n\n### 实验 2: eval-obs-only-object-norm03-seed47\n\n**状态：当前已被重新启动，正在运行中。**\n\n- PID 617632，GPU 1（CUDA_VISIBLE_DEVICES=1），19:39 启动，state=R (running)\n- 占用 ~5.6GB / 24GB VRAM，CPU 155%\n- 日志停在 \"10 tasks loaded.\"（16 行），这是正常的——参照同类实验 norm01 seed45，每个 rollout 约 8 分钟，首次进度输出（5 rollouts 后）预计约 40 分钟后出现\n- 之前的尝试被监控判定失败（同样因为无 sentinel/W&B），然后被重新启动\n\n**结论：当前运行正常，预计 10-12 小时内完成。之前的\"失败\"同样是假阳性。**\n\n---\n\n### 环境状态\n\n| 指标 | 状态 |\n|------|------|\n| GPU | 4× RTX 4090，正常，无 ECC 错误 |\n| 磁盘 | root 34%（20G 空闲），data 83%（1.3T 空闲）|\n| OOM | dmesg 不可访问（容器限制），但当前内存充裕 |\n| 当前 GPU 占用 | GPU0: seed45 norm01, GPU1: seed47 norm03, GPU2: seed46 norm01, GPU3: seed47 norm01 |\n\n---\n\n### 是否可以重跑\n\n- **perdof-norm03-seed44-r2**：不需要重跑，结果已在 `eval_object_perdof_norm03_seed44.json`\n- **obs-only-norm03-seed47**：不需要重跑，PID 617632 当前正在运行\n\n### 修复建议\n\n在 `evaluate.py` 末尾（`evaluate(args)` 之后、`sys.exit(0)` 之前）加 sentinel 文件写入，让监控系统能检测到完成状态。类似：\n\n```python\nsentinel = Path(args.output_file).with_suffix('.done')\nsentinel.write_text('ok')\n```\n\n或者在 job 提交时，将 evaluate.py 的调用包装为 `python evaluate.py ... && touch <sentinel_path>`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-obs-only-object-norm03-seed47.md"
+}

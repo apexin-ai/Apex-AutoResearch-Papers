@@ -1,0 +1,1313 @@
+{
+  "schema_version": "1.0",
+  "id": "f69d5d09e4cfde9dd499",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "deploy bjb1 32546 batch3",
+  "task_key": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_deploy_bjb1-32546-batch3_20260519T202911.jsonl",
+    "occurrence": 1,
+    "bytes": 44655,
+    "sha256": "65b21c14042f2fe08a2d2629dd253c676938579417b3d1c74d50d2b7929fa1e0"
+  },
+  "statistics": {
+    "messages": 63,
+    "user_turns": 0,
+    "tool_calls": 31,
+    "roles": {
+      "tool_call": 31,
+      "tool_result": 31,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T20:34:06.642887+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T20:34:06.643392+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T20:34:06.643690+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "nvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T20:34:06.643931+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 2 MiB, 24564 MiB\\\\n1, 2 MiB, 24564 MiB\\\\n2, 2 MiB, 24564 MiB\\\\n3, 1716 MiB, 24564 MiB\\\\n4, 2 MiB, 24564 MiB\\\\n5, 2 MiB, 24564 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.03}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T20:34:06.644160+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "ls -la /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T20:34:06.644416+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 1320219 May 15 10:51 /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T20:34:06.644642+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "grep -E \"benchmark|choices\" /root/acr-vla-conformal-refinement/src/evaluate.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T20:34:06.644886+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T20:34:06.645163+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "grep -n \"benchmark\" /root/acr-vla-conformal-refinement/src/evaluate.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T20:34:06.645440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"22:  python evaluate.py --benchmark object --checkpoint /path/to/crm_best.pt --n_rollouts 20\\\\n23:  python evaluate.py --benchmark object --mode vla_only --n_rollouts 20\\\\n24:  python evaluate.py --benchmark spatial --mode reconvla --n_rollouts 20\\\\n25:  python evaluate.py --benchmark spatial --mode acr_vla --crm_checkpoint /path/to/crm_best.pt --n_rollouts 10\\\\n55:    p.add_argument(\\\\\\\"--benchmark\\\\\\\", type=str, default=\\\\\\\"object\\\\\\\",\\\\n98:def load_libero_env(benchmark_name):\\\\n99:    \\\\\\\"\\\\\\\"\\\\\\\"Load LIBERO benchmark tasks and create environments.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n100:    from libero.libero import benchmark as bm\\\\n103:    benchmark_dict = {\\\\n110:    bm_name = benchmark_dict[benchmark_name]\\\\n111:    benchmark_instance = bm.get_benchmark(bm_name)()\\\\n112:    n_tasks = benchmark_instance.n_tasks\\\\n116:        task = benchmark_instance.get_task(task_idx)\\\\n119:        task_bddl = benchmark_instance.get_task_bddl_file_path(task_idx)\\\\n135:            \\\\\\\"init_states\\\\\\\": benchmark_instance.get_task_init_states(task_idx),\\\\n324:    print(f\\\\\\\"[eval] Mode: {args.mode}, benchmark: {args.benchmark}\\\\\\\")\\\\n378:    print(f\\\\\\\"[eval] Loading LIBERO {args.benchmark} environments...\\\\\\\")\\\\n379:    task_envs = load_libero_env(args.benchmark)\\\\n457:        \\\\\\\"benchmark\\\\\\\": args.benchmark,\\\\n504:        args.output_file = f\\\\\\\"logs/eval_{args.benchmark}_{args.mode}{norm_tag}{adaptive_tag}_seed{args.seed}.json\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T20:34:06.645718+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "head -115 /root/acr-vla-conformal-refinement/src/evaluate.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T20:34:06.646082+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nLIBERO evaluation script for ACR-VLA.\\\\n\\\\nRollout loop:\\\\n  1. Load LIBERO env + task suite\\\\n  2. Load SmolVLA (frozen) + CRM\\\\n  3. For each task, rollout N times:\\\\n     a. Reset env\\\\n     b. Each step: obs → SmolVLA K=10 samples → CGS on 6D pose → CRM\\\\n        → combine refined pose with gripper → execute 7D action\\\\n     c. Record success/failure\\\\n  4. Report per-task and overall success rate\\\\n\\\\nBaselines:\\\\n  - \\\\\\\"vla_only\\\\\\\": SmolVLA mean of K=10, no CRM refinement\\\\n  - \\\\\\\"crm_scalar\\\\\\\": CRM with scalar uncertainty (single std, not per-DOF)\\\\n  - \\\\\\\"crm_perdof\\\\\\\": CRM with full per-DOF uncertainty (ours)\\\\n  - \\\\\\\"acr_vla\\\\\\\": alias for crm_perdof — the full ACR-VLA pipeline\\\\n  - \\\\\\\"reconvla\\\\\\\": ReconVLA baseline — scalar Euclidean argmin selection (plan_014)\\\\n\\\\nUsage:\\\\n  python evaluate.py --benchmark object --checkpoint /path/to/crm_best.pt --n_rollouts 20\\\\n  python evaluate.py --benchmark object --mode vla_only --n_rollouts 20\\\\n  python evaluate.py --benchmark spatial --mode reconvla --n_rollouts 20\\\\n  python evaluate.py --benchmark spatial --mode acr_vla --crm_checkpoint /path/to/crm_best.pt --n_rollouts 10\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport argparse\\\\nimport functools\\\\nbuiltins_print = print\\\\nprint = functools.partial(builtins_print, flush=True)\\\\nimport os\\\\nos.environ.setdefault(\\\\\\\"HF_HUB_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nos.environ.setdefault(\\\\\\\"TRANSFORMERS_OFFLINE\\\\\\\", \\\\\\\"1\\\\\\\")\\\\nimport sys\\\\nimport json\\\\nimport time\\\\nimport signal\\\\nimport traceback\\\\nfrom pathlib import Path\\\\n\\\\nimport torch\\\\nimport numpy as np\\\\nfrom robosuite.utils.transform_utils import quat2axisangle\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom cgs import ConformilizedGaussianScoring\\\\nfrom crm import ConformalRefinementModule\\\\nfrom aci import AdaptiveConformalInference\\\\nfrom utils import set_seed, CORRECTION_DIM, FULL_ACTION_DIM, H_EFF, OBS_DIM\\\\nfrom reconvla_b\n…[truncated 3834 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T20:34:06.646404+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "ls -d /root/acr-vla-conformal-refinement/logs",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T20:34:06.646633+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/acr-vla-conformal-refinement/logs\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T20:34:06.646897+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "cd /root/acr-vla-conformal-refinement && nohup env CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 44 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed44.json > logs/eval_goal_obs_only_norm02_seed44.log 2>&1 &\necho \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T20:34:06.647130+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "cd /root/acr-vla-conformal-refinement && nohup env CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 45 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed45.json > logs/eval_goal_obs_only_norm02_seed45.log 2>&1 &\necho \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T20:34:06.647374+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "cd /root/acr-vla-conformal-refinement && nohup env CUDA_VISIBLE_DEVICES=4 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark long --n_rollouts 10 --seed 47 --K 1 --output_file logs/eval_long_vla_only_seed47.json > logs/eval_long_vla_only_seed47.log 2>&1 &\necho \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T20:34:06.647594+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "cd /root/acr-vla-conformal-refinement && nohup env CUDA_VISIBLE_DEVICES=5 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_spatial_vla_only_seed48.json > logs/eval_spatial_vla_only_seed48.log 2>&1 &\necho \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T20:34:06.647825+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/acr-vla-conformal-refinement && nohup env CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 44 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed44.json > logs/eval_goal_obs_only_norm02_seed44.log 2>&1 &\\\\\\\\necho \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=83909\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T20:34:06.648062+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/acr-vla-conformal-refinement && nohup env CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 45 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed45.json > logs/eval_goal_obs_only_norm02_seed45.log 2>&1 &\\\\\\\\necho \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=85315\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.72}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T20:34:06.648308+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/acr-vla-conformal-refinement && nohup env CUDA_VISIBLE_DEVICES=4 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark long --n_rollouts 10 --seed 47 --K 1 --output_file logs/eval_long_vla_only_seed47.json > logs/eval_long_vla_only_seed47.log 2>&1 &\\\\\\\\necho \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=86796\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T20:34:06.648544+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/acr-vla-conformal-refinement && nohup env CUDA_VISIBLE_DEVICES=5 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_spatial_vla_only_seed48.json > logs/eval_spatial_vla_only_seed48.log 2>&1 &\\\\\\\\necho \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=88042\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.82}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T20:34:06.648837+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "ps -p 83909,85315,86796,88042 -o pid,stat,etime,cmd --no-headers",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T20:34:06.649059+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "nvidia-smi --query-gpu=index,memory.used --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T20:34:06.649331+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 83909 S          02:12 bash -c cd /root/acr-vla-conformal-refinement && nohup env CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 44 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed44.json > logs/eval_goal_obs_only_norm02_seed44.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\n 85315 S          01:41 bash -c cd /root/acr-vla-conformal-refinement && nohup env CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 45 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed45.json > logs/eval_goal_obs_only_norm02_seed45.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\n 86796 S          01:10 bash -c cd /root/acr-vla-conformal-refinement && nohup env CUDA_VISIBLE_DEVICES=4 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark long --n_rollouts 10 --seed 47 --K 1 --output_file logs/eval_long_vla_only_seed47.json > logs/eval_long_vla_only_seed47.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\n 88042 S          00:39 bash -c cd /root/acr-vla-conformal-refinement && nohup env CUDA_VISIBLE_DEVICES=5 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_spatial_vla_only_seed48.json > logs/eval_spatial_vla_only_seed48.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.73}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T20:34:06.649588+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 2 MiB\\\\n1, 5609 MiB\\\\n2, 2 MiB\\\\n3, 7320 MiB\\\\n4, 6283 MiB\\\\n5, 6206 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T20:34:06.649854+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "tail -5 /root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed44.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T20:34:06.650092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.2\\\\n[eval] Loading LIBERO goal environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T20:34:06.650328+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "tail -5 /root/acr-vla-conformal-refinement/logs/eval_goal_obs_only_norm02_seed45.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T20:34:06.650554+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.2\\\\n[eval] Loading LIBERO goal environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T20:34:06.650783+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "tail -5 /root/acr-vla-conformal-refinement/logs/eval_long_vla_only_seed47.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T20:34:06.651006+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Reducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] Loading LIBERO long environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T20:34:06.651226+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "tail -5 /root/acr-vla-conformal-refinement/logs/eval_spatial_vla_only_seed48.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T20:34:06.651470+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Reducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] Loading LIBERO spatial environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T20:34:06.651717+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-goal-seed44",
+              "field": "hypothesis",
+              "value": "CRM obs_only (trained on Object+Spatial) generalizes to LIBERO-Goal OOD benchmark with ε=0.2 norm constraint, providing meaningful action refinement despite distribution shift.",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T20:34:06.651946+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-goal-seed45",
+              "field": "hypothesis",
+              "value": "CRM obs_only (trained on Object+Spatial) generalizes to LIBERO-Goal OOD benchmark with ε=0.2 norm constraint, providing meaningful action refinement despite distribution shift.",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-19T20:34:06.652185+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-goal-seed44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T20:32:43.382Z\\\", \\\"updated_at\\\": \\\"2026-05-19T20:32:43.382Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (trained on Object+Spatial) generalizes to LIBERO-Goal OOD benchmark with ε=0.2 norm constraint, providing meaningful action refinement despite distribution shift.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.5354}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-19T20:34:06.652453+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-goal-seed45\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T20:32:44.897Z\\\", \\\"updated_at\\\": \\\"2026-05-19T20:32:44.897Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (trained on Object+Spatial) generalizes to LIBERO-Goal OOD benchmark with ε=0.2 norm constraint, providing meaningful action refinement despite distribution shift.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4667}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T20:34:06.652701+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-vla-only-long-seed47",
+              "field": "hypothesis",
+              "value": "VLA-only baseline on LIBERO-10 (Long) with seed47 establishes additional statistical sample (n→6) for baseline success rate estimation.",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-19T20:34:06.652943+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-vla-only-spatial-seed48",
+              "field": "hypothesis",
+              "value": "VLA-only baseline on LIBERO-Spatial with seed48 establishes additional statistical sample (n→6) for baseline success rate estimation.",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-19T20:34:06.653184+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-vla-only-long-seed47\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T18:51:41.106Z\\\", \\\"updated_at\\\": \\\"2026-05-19T20:32:46.710Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on LIBERO-10 (Long) with seed47 establishes additional statistical sample (n→6) for baseline success rate estimation.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4167}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-19T20:34:06.653450+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-vla-only-spatial-seed48\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T20:32:48.207Z\\\", \\\"updated_at\\\": \\\"2026-05-19T20:32:48.207Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on LIBERO-Spatial with seed48 establishes additional statistical sample (n→6) for baseline success rate estimation.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4758}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-19T20:34:06.653727+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-goal-seed44",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 44 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed44.json', 'server': 'bjb1-32546', 'data_path': 'LIBERO-Goal', 'data_count': '10 tasks x 10 rollouts', 'model_name': 'CRM_obs_only_v3_norm', 'seed': 44, 'checkpoint_source': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'eval_data': 'LIBERO-Goal (OOD)', 'log_path': 'logs/eval_goal_obs_only_norm02_seed44.log', 'checkpoint_path': 'N/A (eval only)'}"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-19T20:34:06.654056+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8789}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-19T20:34:06.654306+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-goal-seed45",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 45 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed45.json', 'server': 'bjb1-32546', 'data_path': 'LIBERO-Goal', 'data_count': '10 tasks x 10 rollouts', 'model_name': 'CRM_obs_only_v3_norm', 'seed': 45, 'checkpoint_source': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'eval_data': 'LIBERO-Goal (OOD)', 'log_path': 'logs/eval_goal_obs_only_norm02_seed45.log', 'checkpoint_path': 'N/A (eval only)'}"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-19T20:34:06.654562+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.85}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-19T20:34:06.654784+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-vla-only-long-seed47",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=4 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark long --n_rollouts 10 --seed 47 --K 1 --output_file logs/eval_long_vla_only_seed47.json', 'server': 'bjb1-32546', 'data_path': 'LIBERO-10 (Long)', 'data_count': '10 tasks x 10 rollouts', 'model_name': 'SmolVLA (vla_only)', 'seed': 47, 'log_path': 'logs/eval_long_vla_only_seed47.log', 'checkpoint_path': 'N/A (eval only)'}"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-19T20:34:06.655020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-vla-only-spatial-seed48",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=5 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_spatial_vla_only_seed48.json', 'server': 'bjb1-32546', 'data_path': 'LIBERO-Spatial', 'data_count': '10 tasks x 10 rollouts', 'model_name': 'SmolVLA (vla_only)', 'seed': 48, 'log_path': 'logs/eval_spatial_vla_only_seed48.log', 'checkpoint_path': 'N/A (eval only)'}"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-19T20:34:06.655306+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-vla-only-long-seed47\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T18:51:41.106Z\\\", \\\"updated_at\\\": \\\"2026-05-19T20:33:05.917Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on LIBERO-10 (Long) with seed47 establishes additional statistical sample (n→6) for baseline success rate estimation.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=4 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark long --n_rollouts 10 --seed 47 --K 1 --output_file logs/eval_long_vla_only_seed47.json\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"data_path\\\": \\\"LIBERO-10 (Long)\\\", \\\"data_count\\\": \\\"10 tasks x 10 rollouts\\\", \\\"model_name\\\": \\\"SmolVLA (vla_only)\\\", \\\"seed\\\": 47, \\\"log_path\\\": \\\"logs/eval_long_vla_only_seed47.log\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.0878}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-19T20:34:06.655566+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8115}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-19T20:34:06.655839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-goal-seed44",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-19T20:34:06.656057+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-goal-seed45",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-19T20:34:06.656287+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-vla-only-spatial-seed48",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-19T20:34:06.656536+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-goal-seed44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T20:32:43.382Z\\\", \\\"updated_at\\\": \\\"2026-05-19T20:33:17.901Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (trained on Object+Spatial) generalizes to LIBERO-Goal OOD benchmark with ε=0.2 norm constraint, providing meaningful action refinement despite distribution shift.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-19T20:34:06.656798+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-goal-seed45\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T20:32:44.897Z\\\", \\\"updated_at\\\": \\\"2026-05-19T20:33:20.999Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (trained on Object+Spatial) generalizes to LIBERO-Goal OOD benchmark with ε=0.2 norm constraint, providing meaningful action refinement despite distribution shift.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.1155}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-19T20:34:06.657041+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-vla-only-spatial-seed48\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T20:32:48.207Z\\\", \\\"updated_at\\\": \\\"2026-05-19T20:33:24.161Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on LIBERO-Spatial with seed48 establishes additional statistical sample (n→6) for baseline success rate estimation.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.0547}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-19T20:34:06.657292+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-goal-seed44",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 44 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed44.json', 'server': 'bjb1-32546', 'data_path': 'LIBERO-Goal', 'data_count': '10 tasks x 10 rollouts', 'model_name': 'CRM_obs_only_v3_norm', 'seed': 44, 'checkpoint_source': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'eval_data': 'LIBERO-Goal (OOD)', 'log_path': 'logs/eval_goal_obs_only_norm02_seed44.log', 'checkpoint_path': 'N/A (eval only)'}"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-19T20:34:06.657543+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-goal-seed45",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 45 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed45.json', 'server': 'bjb1-32546', 'data_path': 'LIBERO-Goal', 'data_count': '10 tasks x 10 rollouts', 'model_name': 'CRM_obs_only_v3_norm', 'seed': 45, 'checkpoint_source': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'eval_data': 'LIBERO-Goal (OOD)', 'log_path': 'logs/eval_goal_obs_only_norm02_seed45.log', 'checkpoint_path': 'N/A (eval only)'}"
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-19T20:34:06.657814+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-goal-seed44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T20:32:43.382Z\\\", \\\"updated_at\\\": \\\"2026-05-19T20:33:38.679Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (trained on Object+Spatial) generalizes to LIBERO-Goal OOD benchmark with ε=0.2 norm constraint, providing meaningful action refinement despite distribution shift.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 44 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed44.json\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"data_path\\\": \\\"LIBERO-Goal\\\", \\\"data_count\\\": \\\"10 tasks x 10 rollouts\\\", \\\"model_name\\\": \\\"CRM_obs_only_v3_norm\\\", \\\"seed\\\": 44, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Goal (OOD)\\\", \\\"log_path\\\": \\\"logs/eval_goal_obs_only_norm02_seed44.log\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.4133}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-19T20:34:06.658071+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-vla-only-spatial-seed48",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=5 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_spatial_vla_only_seed48.json', 'server': 'bjb1-32546', 'data_path': 'LIBERO-Spatial', 'data_count': '10 tasks x 10 rollouts', 'model_name': 'SmolVLA (vla_only)', 'seed': 48, 'log_path': 'logs/eval_spatial_vla_only_seed48.log', 'checkpoint_path': 'N/A (eval only)'}"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-19T20:34:06.658363+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-goal-seed45\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T20:32:44.897Z\\\", \\\"updated_at\\\": \\\"2026-05-19T20:33:42.881Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (trained on Object+Spatial) generalizes to LIBERO-Goal OOD benchmark with ε=0.2 norm constraint, providing meaningful action refinement despite distribution shift.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 /root/miniconda3/bin/python -u src/evaluate.py --mode crm_obs_only --benchmark goal --n_rollouts 10 --seed 45 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_goal_obs_only_norm02_seed45.json\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"data_path\\\": \\\"LIBERO-Goal\\\", \\\"data_count\\\": \\\"10 tasks x 10 rollouts\\\", \\\"model_name\\\": \\\"CRM_obs_only_v3_norm\\\", \\\"seed\\\": 45, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Goal (OOD)\\\", \\\"log_path\\\": \\\"logs/eval_goal_obs_only_norm02_seed45.log\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.6539}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-19T20:34:06.658642+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-vla-only-spatial-seed48\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T20:32:48.207Z\\\", \\\"updated_at\\\": \\\"2026-05-19T20:33:48.132Z\\\", \\\"hypothesis\\\": \\\"VLA-only baseline on LIBERO-Spatial with seed48 establishes additional statistical sample (n→6) for baseline success rate estimation.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=5 /root/miniconda3/bin/python -u src/evaluate.py --mode vla_only --benchmark spatial --n_rollouts 10 --seed 48 --K 1 --output_file logs/eval_spatial_vla_only_seed48.json\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"data_path\\\": \\\"LIBERO-Spatial\\\", \\\"data_count\\\": \\\"10 tasks x 10 rollouts\\\", \\\"model_name\\\": \\\"SmolVLA (vla_only)\\\", \\\"seed\\\": 48, \\\"log_path\\\": \\\"logs/eval_spatial_vla_only_seed48.log\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.6709}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-19T20:34:06.658932+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部部署完成，registry 已注册为 RUNNING。\n\n| GPU | exp_id | 模式 | Benchmark | Seed | PID |\n|-----|--------|------|-----------|------|-----|\n| cuda:1 | eval-crm-goal-seed44 | crm_obs_only | Goal (OOD) | 44 | 83909 |\n| cuda:3 | eval-crm-goal-seed45 | crm_obs_only | Goal (OOD) | 45 | 85315 |\n| cuda:4 | eval-vla-only-long-seed47 | vla_only | Long | 47 | 86796 |\n| cuda:5 | eval-vla-only-spatial-seed48 | vla_only | Spatial | 48 | 88042 |\n\nGPU 显存已分配（5.6-7.3 GB），日志显示模型和环境加载正常，无报错。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_bjb1-32546-batch3_20260519T202911"
+          },
+          "id": "event-000063"
+        }
+      ],
+      "message_count": 63
+    }
+  ],
+  "readable_path": "readable/conversations/deploy-bjb1-32546-batch3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "987ee9b55759dd424a5c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "audit trigger rate extraction",
+  "task_key": "worker_audit_trigger-rate-extraction_20260526T083137",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_trigger-rate-extraction_20260526T083137_result.json",
+    "occurrence": 1,
+    "bytes": 1656,
+    "sha256": "2d75c9c788b8950f9bb1ea6c870abccd4c676816ecbed2e870cf77633918e954"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "12/12 全部找到。汇总：\n\n```\n=== TRIGGER RATE EXTRACTION (SmolVLA Adaptive, K=2, τ=0.25, norm=0.2) ===\n\nSpatial: s42=19.65%, s43=19.45%, s44=19.98% → mean=19.69%\nGoal:    s42= 8.78%, s43= 8.80%, s44= 6.77% → mean= 8.12%\nObject:  s42= 3.55%, s43= 3.67%, s44= 3.64% → mean= 3.62%\nLong:    s42= 3.87%, s43= 4.50%, s44= 4.90% → mean= 4.43%\n\n数据来源:\n  Spatial s42: bjb1-32546 eval_spatial_adaptive_conformal_crm_norm0.2_tau0.25_seed42.json  (0.19649737)\n  Spatial s43: bjb1-32546 eval_spatial_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json  (0.19447001)\n  Spatial s44: bjb1-32546 eval_spatial_adaptive_conformal_crm_norm0.2_tau0.25_seed44.json  (0.19977407)\n  Goal    s42: bjb1-32546 eval_goal_adaptive_conformal_crm_K2_norm0.2_tau0.25_seed42.json  (0.08780898)\n  Goal    s43: bjb1-32546 eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json     (0.08803509)\n  Goal    s44: bjb1-32546 eval_goal_adaptive_conformal_crm_norm0.2_tau0.25_seed44.json     (0.06765068)\n  Object  s42: bjb2-28827 eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed42.json   (0.03547850)\n  Object  s43: bjb1-32546 eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json   (0.03665214)\n  Object  s44: bjb1-32546 eval_object_adaptive_conformal_crm_norm0.2_tau0.25_seed44.json   (0.03639900)\n  Long    s42: bjb2-28827 eval_long_adaptive_conformal_crm_norm0.2_tau0.25_seed42.json     (0.03869130)\n  Long    s43: bjb1-32546 eval_long_adaptive_conformal_crm_norm0.2_tau0.25_seed43.json     (0.04502165)\n  Long    s44: cqa1-32758 eval_long_adaptive_conformal_crm_norm0.2_tau0.25_seed44.json     (0.04904963)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-trigger-rate-extraction.md"
+}

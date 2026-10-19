@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "7aac4237eb8adce03e2f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "ops rsync merge train now 20260521T172804 retry1",
+  "task_key": "worker_ops_rsync-merge-train-now_20260521T172804_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_rsync-merge-train-now_20260521T172804_retry1.log",
+    "occurrence": 1,
+    "bytes": 963510,
+    "sha256": "448fb1604c94baaa88daf788aea7b5a2a39755d7418c5d1be3f5a6fd1f3f513b"
+  },
+  "statistics": {
+    "messages": 568,
+    "user_turns": 0,
+    "tool_calls": 203,
+    "roles": {
+      "system": 25,
+      "record": 5,
+      "assistant": 130,
+      "tool_call": 203,
+      "tool_result": 203,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 568,
+      "chunks": [
+        {
+          "path": "7aac4237eb8adce03e2f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7aac4237eb8adce03e2f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7aac4237eb8adce03e2f-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "7aac4237eb8adce03e2f-part-0004.json",
+          "message_count": 28
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-rsync-merge-train-now-20260521t172804-retry1.md"
+}

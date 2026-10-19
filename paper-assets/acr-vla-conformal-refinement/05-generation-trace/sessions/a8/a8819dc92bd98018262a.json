@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8819dc92bd98018262a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy cqa1 free gpus",
+  "task_key": "worker_deploy_cqa1-free-gpus_20260526T164122",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cqa1-free-gpus_20260526T164122_result.json",
+    "occurrence": 1,
+    "bytes": 1213,
+    "sha256": "2f5f9a9ba1eca79361ddd1a211c4fcce1954018d176b0fb61bffe7e181771dad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 4 张空闲卡部署完毕，全部进入 RUNNING 状态。\n\n| GPU | PID | exp_id | 模式 | seed | 显存 |\n|-----|-----|--------|------|------|------|\n| cuda:0 | 488507 | smolvla-adapt-tau015-object-s42-cqa1 | adaptive_conformal_crm K=2 τ=0.15 | 42 | 5896 MiB |\n| cuda:1 | 489504 | smolvla-adapt-tau015-object-s43-cqa1 | adaptive_conformal_crm K=2 τ=0.15 | 43 | 5896 MiB |\n| cuda:2 | 491094 | smolvla-adapt-tau015-object-s44-cqa1 | adaptive_conformal_crm K=2 τ=0.15 | 44 | 5896 MiB |\n| cuda:3 | 492008 | smolvla-crm-norm005-k10-object-s44-cqa1 | crm_obs_only K=10 ε=0.05 (D149) | 44 | 5970 MiB |\n\ncuda:4/5（10.7/10.1 GiB）保持原有 pi05-adaptive-long s43/s44 运行不受影响。\n\n要点：\n- 优先级 1 跳过：`eval_object_adaptive_pi05_seed44.json` 已存在且数据完整（SR=0.88, 200 rollouts），无 registry 条目但日志文件有效\n- checkpoint 路径修正：`crm_smolvla_3suite_unified` → `crm_smolvla_3suite_v1`（v1 存在，unified 不存在；evaluate.py line 541 默认也是 v1）\n- 部署优先级 2 时同步加 s43/s44 完整 3 seed sweep，填满 4 张卡\n- 所有 4 个进程 SmolVLA + CRM v1 加载成功，已进入 rollout 阶段"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-cqa1-free-gpus.md"
+}

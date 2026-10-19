@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3d6350c93dcb9349d44",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose crm goal seed43",
+  "task_key": "worker_diagnose_crm-goal-seed43_20260519T211721",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_crm-goal-seed43_20260519T211721_result.json",
+    "occurrence": 1,
+    "bytes": 851,
+    "sha256": "6a5124cb52adbe09d75ce02b6ec783789eac79ba4553d6709ffdbb9b1ee3d92e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验状态：成功完成。**\n\neval-crm-goal-seed43 已正常跑完全部 10 个 task × 10 rollouts，结果已写入 JSON。\n\n### 结果汇总\n\n**Overall success rate: 72.0% (72/100)**\n\n| Task | Success Rate |\n|------|-------------|\n| turn_on_the_stove | **100%** (10/10) |\n| put_the_bowl_on_the_plate | **100%** (10/10) |\n| put_the_bowl_on_the_stove | **90%** (9/10) |\n| put_the_bowl_on_top_of_the_cabinet | **90%** (9/10) |\n| open_the_middle_drawer_of_the_cabinet | 80% (8/10) |\n| push_the_plate_to_the_front_of_the_stove | 80% (8/10) |\n| put_the_wine_bottle_on_top_of_the_cabinet | 60% (6/10) |\n| open_the_top_drawer_and_put_the_bowl_inside | 50% (5/10) |\n| put_the_wine_bottle_on_the_rack | 40% (4/10) |\n| put_the_cream_cheese_in_the_bowl | **30%** (3/10) |\n\nGPU 2 已释放（0% util, 1 MiB memory）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-crm-goal-seed43.md"
+}

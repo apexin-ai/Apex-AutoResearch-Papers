@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8d0333c16aaa51c2dce9",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "fix kill premature eval",
+  "task_key": "worker_fix_kill-premature-eval_20260521T215448",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_kill-premature-eval_20260521T215448_result.json",
+    "occurrence": 1,
+    "bytes": 567,
+    "sha256": "d313fc900834524201c076f1dfdc5dc52f0146fa00b3c813859df16c320fb9de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n**1. Kill 结果**：成功。PID 804196 和 804568 已终止。\n\n**2. Object 训练**（PID 800111，运行 03:33:46）：\n- 当前进度：epoch 26 batch 150/1950\n- 最新完成：**Epoch 25/50, val_loss=0.004565**, train_loss=0.008349, lr=5.00e-04\n\n**3. Spatial 训练**（PID 805017，运行 02:31:42）：\n- 当前进度：epoch 20 batch 1350/1695\n- 最新完成：**Epoch 19/50, val_loss=0.007507**, train_loss=0.013170, lr=6.84e-04\n- 趋势：val_loss 持续下降（0.009994 → 0.007445 @ epoch 18），收敛健康"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-premature-eval.md"
+}

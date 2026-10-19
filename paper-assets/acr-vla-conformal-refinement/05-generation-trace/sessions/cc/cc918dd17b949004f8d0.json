@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc918dd17b949004f8d0",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diag acr correction logic review",
+  "task_key": "worker_diag_acr-correction-logic-review_20260514T072631",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_acr-correction-logic-review_20260514T072631_result.json",
+    "occurrence": 1,
+    "bytes": 4880,
+    "sha256": "addc15c18d4c827297daef9f864f3e3c550e106ebf752179c50da90651d8d554"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the complete picture. Here's the audit report.\n\n---\n\n# ACR-VLA CRM Bug Audit Report\n\n## CRITICAL\n\n### C1: Train/eval state dimension mismatch (6D vs 8D)\n\n**Files:** `smolvla_wrapper.py:180` vs `smolvla_wrapper.py:142-145`\n\nDuring CRM training precompute, `preprocess_obs_batch` feeds SmolVLA the robot state from `s[\"ee_states\"]` — **6D** (eef_pos + axisangle, no gripper):\n\n```python\n# smolvla_wrapper.py:180 (precompute path)\nes = torch.tensor(s[\"ee_states\"], ...)  # 6D\nes = self._normalize_state(es)\nstate[i, :es.shape[0]] = es  # state[0:6] filled, state[6:31] = 0\n```\n\nDuring evaluation, `preprocess_obs` feeds SmolVLA the full **8D** state (eef_pos + axisangle + gripper_qpos):\n\n```python\n# smolvla_wrapper.py:142 (eval path), via get_robot_state (evaluate.py:80)\nstate_t = torch.tensor(robot_state, ...)  # 8D\nstate_t = self._normalize_state(state_t)\nstate[0, :state_t.shape[0]] = state_t  # state[0:8] filled\n```\n\nRoot cause: `build_training_samples` (utils.py:75) stores `ee_states` (6D) but `get_robot_state` (evaluate.py:80) computes 8D by including `gripper_qpos`.\n\n**Impact:** SmolVLA was trained with 8D state input. During CRM precompute, positions 6-7 (gripper_qpos) are zeroed → SmolVLA produces differently-conditioned `obs_feat` (960D) and K samples. The CRM trains on this corrupted distribution, then at eval receives correctly-conditioned inputs it has never seen. This is a systematic train/eval distribution shift on **both** of CRM's primary inputs.\n\n---\n\n## WARNING\n\n### W1: ACI module dead code — conformal alpha never adapts online\n\n**File:** `evaluate.py:287,303`\n\n```python\naci = AdaptiveConformalInference()  # line ~287\n...\naci.reset()  # line ~303, per task\n```\n\n`aci` is instantiated and reset per task but never passed to any action selection function. CGS always uses the static default `alpha=0.1`. The online alpha adaptation described in `aci.py` (Gibbs & Candès 2021 update rule, COC signal) is completely disconnected from the pipeline.\n\n### W2: CRM uses sample mean as base action — bad for multimodal distributions\n\n**File:** `evaluate.py:174`, `cgs.py:38`\n\nACR-VLA computes `ma = K_samples.mean(dim=0)` and CRM output = `ma + delta`. For multimodal action distributions (common in spatial manipulation — e.g., reach around left vs right), the mean falls in an invalid no-man's-land between modes. ReconVLA avoids this by selecting a concrete sample via argmin, which is always a valid action.\n\nThis is likely a key contributor to the 42.9% (reconvla) vs 23.3% (acr_vla) gap.\n\n### W3: Conformal radius always equals max distance (K=10, alpha=0.1)\n\n**File:** `cgs.py:61-64`\n\n```python\nq_idx = int(np.ceil((1 - 0.1) * (10 + 1))) - 1  # = ceil(9.9) - 1 = 9\nq_idx = min(9, 9)  # 9 → last element = maximum\n```\n\nWith K=10 and alpha=0.1, the conformal quantile index is always 9 (the max). All 5 `conformal_radius` features in the 40D CGS are just `max(Mahalanobis_distances)` — a single noisy outlier statistic with near-zero discriminative power.\n\n### W4: No correction magnitude constraint\n\n**File:** `crm.py:44`\n\n```python\ndelta = self.net(x)\nreturn mean_action + delta  # no clamping/scaling\n```\n\nCRM can output arbitrarily large corrections at eval. A well-performing base prediction can be catastrophically corrupted. No tanh squashing, learned temperature, or norm constraint is applied.\n\n---\n\n## OK (verified correct)\n\n| # | Check | Verdict |\n|---|-------|---------|\n| O1 | CRM output is absolute (mean+delta), consistent in train & eval | ✓ |\n| O2 | Gripper excluded from CRM, mean-aggregated separately (`evaluate.py:183-185`) | ✓ |\n| O3 | 30D = 5×6 dimension mapping, consistent H_EFF/CORRECTION_DIM | ✓ |\n| O4 | Both train & eval operate in unnormalized action space, no double denorm | ✓ |\n| O5 | CGS math correct (Ledoit-Wolf cov, regularized inverse, Mahalanobis) | ✓ |\n| O6 | CRM input concat order `[ma(30), uf(40), obs(960)]` same in train & eval | ✓ |\n| O7 | chunk_size=50 → H_EFF=5 truncation consistent | ✓ |\n| O8 | Expert actions in same space (raw LIBERO) as unnormalized SmolVLA output | ✓ |\n\n---\n\n## Summary\n\nThe most actionable bug is **C1** — the 6D/8D state mismatch in training precompute. Fix: change `build_training_samples` to include `gripper_qpos` in the cached state, or augment `ee_states` to 8D in `preprocess_obs_batch`. This requires re-running precompute + retraining CRM.\n\nBeyond the code bug, two design issues (W2: mean as base action, W3: degenerate conformal quantile) structurally limit ACR-VLA's ability to outperform the simpler reconvla baseline. Consider switching to a \"select then refine\" approach: use reconvla-style argmin to pick the best sample, then apply CRM correction to that concrete sample instead of the mean."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-acr-correction-logic-review.md"
+}

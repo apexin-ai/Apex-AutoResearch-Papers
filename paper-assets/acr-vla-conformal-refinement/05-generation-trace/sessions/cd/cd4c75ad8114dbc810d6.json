@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd4c75ad8114dbc810d6",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy westd object crm adaptive paired",
+  "task_key": "worker_deploy_westd-object-crm-adaptive-paired_20260526T132404",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd-object-crm-adaptive-paired_20260526T132404_result.json",
+    "occurrence": 1,
+    "bytes": 513,
+    "sha256": "2fc767bab28bae3770e0f8f86781f97dca9bb07a7528b702fc7cf624e9f6b65e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 0 不空闲：正在跑 `westd-pi05-vla-only-long-s44-r2` (VLA-only LONG s44, PID 467995, 14GB)。任务描述说\"westd 6 卡全部空闲\"与实际状态冲突。\n\n我可以：\n- A) 部署 5 个实验到 cuda:1-5（丢一个），报告冲突\n- B) 等 GPU 0 空闲后补第 6 个（无队列机制，需手动）\n- C) Kill 现有 long s44 任务，按原计划部署 6 个\n\n请确认要走哪条路径？默认我先按 A 部署 5 个不阻塞，等你回复决定第 6 个怎么办。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-westd-object-crm-adaptive-paired.md"
+}

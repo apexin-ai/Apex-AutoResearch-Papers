@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c34025f8a0847b238ae4",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval supp long vla only s42",
+  "task_key": "worker_analyze_eval-supp-long-vla-only-s42_20260523T141220",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-supp-long-vla-only-s42_20260523T141220_result.json",
+    "occurrence": 1,
+    "bytes": 875,
+    "sha256": "ee7eedcfb0305fbe951bdf6b595d67edc6ea5f943ec8325d079ed48519b23d0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（可能已被删除或在其他 session 创建）。Registry 已更新为 DONE。\n\n## 结果\n\n**eval-supp-long-vla-only-s42** — LIBERO-Long VLA-only baseline, seed42\n\n| 任务 | SR |\n|------|-----|\n| KITCHEN_SCENE3 (stove + moka pot) | 100% |\n| KITCHEN_SCENE4 (bowl in drawer) | 100% |\n| STUDY_SCENE1 (book in caddy) | 90% |\n| KITCHEN_SCENE6 (mug in microwave) | 75% |\n| LIVING_ROOM_SCENE2 (cream cheese + butter) | 65% |\n| LIVING_ROOM_SCENE1 (soup + cream cheese) | 55% |\n| LIVING_ROOM_SCENE5 (mugs on plates) | 40% |\n| LIVING_ROOM_SCENE6 (mug + pudding) | 30% |\n| LIVING_ROOM_SCENE2 (soup + tomato sauce) | 25% |\n| KITCHEN_SCENE8 (two moka pots) | 0% |\n| **Overall** | **58.0%** |\n\n## GPU 状态\n\n**bjb1-32546 全部 6 张 4090 空闲**（cuda:0-5 均 1MiB / 0%）。不仅 cuda:3，所有 GPU 都可部署新实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-supp-long-vla-only-s42.md"
+}

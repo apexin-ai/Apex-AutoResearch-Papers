@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "775584414203b02324db",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy fill idle gpus bjb1 32546 bjb1 18228",
+  "task_key": "worker_deploy_fill-idle-gpus-bjb1-32546-bjb1-18228_20260525T080319",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_fill-idle-gpus-bjb1-32546-bjb1-18228_20260525T080319_result.json",
+    "occurrence": 1,
+    "bytes": 1081,
+    "sha256": "4553324d055027c38dec0293ffd7742be5245a543ca5ad921697c14fd311c8d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 部署结果\n\n### ✅ 任务 1: bjb1-32546 cuda:3 — eval-smolvla-crm-goal-seed44\n- PID 70782，GPU 显存占用 5609 MiB\n- 日志显示已加载 SmolVLA + CRM checkpoint，10 个 Goal 任务已加载，进入 rollout 阶段\n- Registry 已转为 RUNNING（PENDING → QUEUED → RUNNING）\n\n### ⚠️ 任务 2: bjb1-18228 cuda:2 — **未部署（重复实验，已 kill）**\n\n**关键发现**：`eval-pi05-vla-only-goal-s43` 在 registry 中已是 **DONE** 状态：\n- 完成时间：2026-05-25 00:37（约 7.5 小时前）\n- 执行服务器：bjb1-32546 cuda:4\n- 结果：**overall_success_rate = 0.97**（200 rollouts / 10 tasks）\n- 同 seed、同 benchmark、同模型 → 重复运行结果一致，纯属浪费 GPU\n\n已 kill bjb1-18228 上刚启动的 pi05 进程（PID 518504），GPU 2 已释放至 1 MiB used。\n\n**建议**：如需在 bjb1-18228 cuda:2 填充 idle GPU，请改派其他未完成的实验（例如其他 seed 的 π0.5 评估、或 CRM 相关变体）。Director 可能下发任务时未检查 registry DONE 状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-fill-idle-gpus-bjb1-32546-bjb1-18228.md"
+}

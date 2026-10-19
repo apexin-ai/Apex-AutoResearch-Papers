@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a954f7bd42b242ccaa06",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diag eval obs only object norm01 seed48",
+  "task_key": "worker_diag_eval-obs-only-object-norm01-seed48_20260520T195415",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_eval-obs-only-object-norm01-seed48_20260520T195415_result.json",
+    "occurrence": 1,
+    "bytes": 1476,
+    "sha256": "e429c5b5dfce36fa71b2ca8cde6abd5f289c23778c78fc38e2d7e278f53ecb7c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**实验状态：retry 运行中途崩溃（进程被杀），但前次完整结果已存在。**\n\n### 详情\n\n1. **retry 运行（本次）**：日志 `eval-obs-only-object-norm01-seed48.log` 仅 32 行，实验在第 6 个 task（tomato_sauce）的 rollout 5/10 处停止，无错误信息，无 JSON 产出。创建时间 02:36，最后修改 03:36（运行约 1 小时后进程消失）。日志无任何错误输出——进程被静默杀死，最可能是 OOM kill。\n\n2. **前次完整结果已存在**：`eval_object_obs_only_norm01_seed48.json`（2026-05-18 创建，不同命名格式），包含完整 10 tasks × 10 rollouts 结果：\n\n| Task | SR |\n|------|-----|\n| alphabet_soup | 0% |\n| cream_cheese | 0% |\n| salad_dressing | 0% |\n| bbq_sauce | 40% |\n| ketchup | 10% |\n| tomato_sauce | 20% |\n| butter | 20% |\n| milk | 30% |\n| chocolate_pudding | 30% |\n| orange_juice | 30% |\n| **Overall** | **18%** |\n\n3. **cron 判定正确**：retry 进程确实死了，不是误判。\n\n### 结论\n\n- **失败原因**：大概率 OOM kill（无错误日志、进程静默消失的典型特征）\n- **是否需要重跑**：**不需要**。前次完整结果（SR=18%）已存在于 `eval_object_obs_only_norm01_seed48.json`，数据完整可用\n- **注意**：两次运行的命名不一致（`eval_obs_only_object_` vs `eval_object_obs_only_`），如果有汇总脚本需确认能匹配到已有的 JSON 文件"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-eval-obs-only-object-norm01-seed48.md"
+}

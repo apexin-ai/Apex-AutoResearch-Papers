@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "baf19c705fb189c58039",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh scan cqa1 bjb2 40593",
+  "task_key": "worker_ssh_scan-cqa1-bjb2-40593_20260523T233806",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_scan-cqa1-bjb2-40593_20260523T233806_result.json",
+    "occurrence": 1,
+    "bytes": 1639,
+    "sha256": "efd671bb3146c94cc51d31e1cc249fa1fb1e85f35e26d1bf7fb750664134d062"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。所有实验状态汇总如下：\n\n---\n\n## cqa1-32758（6x A100 24GB）\n\n| GPU | 实验 | Registry ID | 进度 | 状态 |\n|-----|------|-------------|------|------|\n| cuda:0 | Goal K2mean s45 | eval-supp-goal-k2mean-s45 | **7/10** tasks | Running |\n| cuda:1 | Spatial VLA-only s45 | eval-supp-spatial-vla-only-s45 | **7/10** tasks | Running |\n| cuda:2 | Object K2mean s45 | eval-supp-obj-k2mean-s45 | **3/10** tasks | Running（启动较晚） |\n| cuda:3 | Spatial CRM s45 | eval-supp-spatial-crm-norm005-s45 | **7/10** tasks | Running |\n| cuda:4 | **Spatial Adaptive s45** | eval-supp-spatial-adapt-tau025-s45-r3 | **6/10** tasks | Running (PID 502821) |\n| cuda:5 | Spatial Reconvla s45 | eval-supp-spatial-reconvla-s45 | **7/10** tasks | Running |\n\n## bjb2-40593（1x A100 24GB）\n\n| GPU | 实验 | Registry ID | 进度 | 状态 |\n|-----|------|-------------|------|------|\n| cuda:0 | Spatial K2mean s45 | eval-supp-spatial-k2mean-s45 | **3/10** tasks | Running (PID 204339) |\n\n---\n\n**关键发现：**\n- 6卡全满载，无空闲GPU可部署新实验\n- cuda:0/1/3/5 已完成 7/10 tasks，预计 **2-3 小时内完成**\n- cuda:4 Spatial Adaptive s45 at 6/10，预计 **3-4 小时内完成**\n- cuda:2 和 bjb2:cuda:0 启动较晚（3/10），预计 **5-7 小时**\n- 无已完成未收割的实验——之前的 JSON 结果都已注册 DONE\n- 已为 Spatial Adaptive s45 创建 `eval-supp-spatial-adapt-tau025-s45-r3` registry 条目并设为 RUNNING\n\n**下一步时机：** cuda:0/1/3/5 的实验最先完成，建议 2-3 小时后再扫描收割并部署 s46 实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-scan-cqa1-bjb2-40593.md"
+}

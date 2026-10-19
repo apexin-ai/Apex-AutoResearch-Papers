@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "c2613106c9fa5c6254e7",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "code plan a adaptive conformal crm",
+  "task_key": "worker_code_plan-a-adaptive-conformal-crm_20260520T185941",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_plan-a-adaptive-conformal-crm_20260520T185941.log",
+    "occurrence": 1,
+    "bytes": 872828,
+    "sha256": "d0912724d0b6aa367e5f4c76b12298fcfc5b8afaec6f8c38d8baaa68e9faf8fa"
+  },
+  "statistics": {
+    "messages": 380,
+    "user_turns": 1,
+    "tool_calls": 159,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 54,
+      "tool_call": 159,
+      "tool_result": 159,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 361,
+      "chunks": [
+        {
+          "path": "c2613106c9fa5c6254e7-part-0001.json",
+          "message_count": 175
+        },
+        {
+          "path": "c2613106c9fa5c6254e7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c2613106c9fa5c6254e7-part-0003.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 19,
+      "chunks": [
+        {
+          "path": "c2613106c9fa5c6254e7-part-0003.json",
+          "message_count": 19
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan-a-adaptive-conformal-crm.md"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "af06db46b651bf7f6cd1",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "harvest pi05 vla only baseline all6",
+  "task_key": "worker_harvest_pi05-vla-only-baseline-all6_20260521T122006",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_harvest_pi05-vla-only-baseline-all6_20260521T122006.jsonl",
+    "occurrence": 1,
+    "bytes": 191,
+    "sha256": "fbade7ef3c457d07cf4ffc3680f8e71971d8f907e5d9f7483a36f41d56337222"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T12:20:18.227222+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 22, 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_pi05-vla-only-baseline-all6_20260521T122006"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/harvest-pi05-vla-only-baseline-all6.md"
+}

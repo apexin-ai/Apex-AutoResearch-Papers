@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d37d67160504c578cc4f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "check eval vla mean spatial",
+  "task_key": "worker_check_eval-vla-mean-spatial_20260514T221331",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_eval-vla-mean-spatial_20260514T221331_result.json",
+    "occurrence": 1,
+    "bytes": 1597,
+    "sha256": "95965b4020561723d21b3e1bdcaf5a20068bc32de0a218f93e22733565524bd1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结论明确了。日志中没有 `Overall success rate` 这行输出，说明进程在完成第 9 个 task 后、开始第 10 个 task 之前被杀掉了。\n\n## eval-vla-mean-spatial 实验结果\n\n**状态：崩溃/被杀（incomplete）**\n\n进程 PID 143106 已消失，tmux 会话 `eval-vla-mean-spatial` 不存在。日志在 9/10 tasks 后截断，无 `Overall success rate` 汇总行，无 sentinel。\n\n**已完成的 9 个 task per-task 成功率：**\n\n| # | Task | Success Rate |\n|---|------|-------------|\n| 1 | bowl_between_plate_and_ramekin → plate | 70% (7/10) |\n| 2 | bowl_next_to_ramekin → plate | **100%** (10/10) |\n| 3 | bowl_from_table_center → plate | 0% (0/10) |\n| 4 | bowl_on_cookie_box → plate | 30% (3/10) |\n| 5 | bowl_in_top_drawer → plate | 0% (0/10) |\n| 6 | bowl_on_ramekin → plate | 0% (0/10) |\n| 7 | bowl_next_to_cookie_box → plate | **80%** (8/10) |\n| 8 | bowl_on_stove → plate | 0% (0/10) |\n| 9 | bowl_next_to_plate → plate | 30% (3/10) |\n\n**Running total：31/90 = 34.4%**（与 cron 报的一致）\n\n**缺失：第 10 个 task**（libero_spatial 共 10 tasks，task order [0-9]，第 10 个未执行）\n\n**日志路径：** `/root/autodl-tmp/eval_results/eval-vla-mean-spatial.log`\n\n**异常信息：** 无错误日志输出——进程被外部信号杀掉（SIGKILL/OOM），不是代码内异常。日志末尾是 task 9 的正常成功率输出，无 traceback。当前服务器上有另一个实验 `eval-acr-spatial-v4-obs-only` 在运行（PID 199257，占 346% CPU），可能导致资源竞争。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-eval-vla-mean-spatial.md"
+}

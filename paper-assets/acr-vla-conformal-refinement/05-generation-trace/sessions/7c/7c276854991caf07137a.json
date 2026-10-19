@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7c276854991caf07137a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_30_1780050001.md",
+  "task_key": "loop_30_1780050001",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_30_1780050001.md",
+    "occurrence": 1,
+    "bytes": 2600,
+    "sha256": "b7200d41101369af9fe563b33119a73e86b3729a081bd6fae8844582109d0a97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 30\nreason: idle_timeout\nupdated: '2026-05-29T10:18:14+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 22 张跨 4 台：bjb1-18228, bjb1-32546, bjb2-28827, cqa1-32758 — 不得用白名单外 GPU\n- westd-49937 eval 数据不入主表（D174/D175: LIBERO assets 版本差异导致系统性偏低 4-5pp）\n- Table 1 使用 K-matched 3 列设计（VLA-only K=1 / K=2 CRM always-on / K=2 Adaptive）— 不得回退旧格式\n- Pi05 Object CRM 数据不入 Table 2 主表，放 Supplement（D171）\n- CoRL 2026 DDL **2026-05-28 20:00 北京时间** — 已过或即将过\n\n### 2. 🖥️ 基础设施快照\n- **全部 4 台服务器已关机**：bjb1-18228 / bjb1-32546 / bjb2-28827 / cqa1-32758 连接失败\n- 代码仓库路径（各服务器）: `~/runs/acr-vla-conformal-refinement/`\n- 活跃进程：无（0 PID / 0 tmux / 0 cron）\n- 系统完全空闲：0 RUNNING / 0 ANALYZING / 0 Worker / 0 Cron\n\n### 3. 📊 当前状态\nSession #30 刚完成初始化。Registry 确认 0 RUNNING / 0 ANALYZING。全部实验已在之前 loop 中 kill/cancel，所有服务器实例已关机。\n\n论文状态：**就绪待提交**\n- Table 1 K-matched 3 列 ✅（4/4 suites harmful + Adaptive 恢复）\n- Table 3 Pi05 完成 ✅（4/4 degradation-only，含 Long 94.0→77.0 Δ=-17.0pp）\n- 编译通过，8+6 页，零 critical warning\n- Title: \"Knowing When Not to Correct: Adaptive Test-Time Refinement for Frozen Flow-Matching VLAs\"\n- 总计 1230 实验（成功 768 / 负向 97 / 失败 130）\n\n已向 Director 汇报完整状态，等待提交决策。\n\n### 4. 📋 待办\n- Director 确认提交 → 执行 CoRL 提交流程\n- Director 要求修改 → 派 Worker 改论文（注意服务器已关机，仅本地编辑可行）\n- 如需重新启动实验 → 需先确认服务器实例重启 + 端口更新\n\n### 5. 🎯 战略上下文\n- **核心结论**: CRM always-on 在 SmolVLA 4/4 suites 有害（Object -4.7pp, Spatial -1.3pp, Goal -3.7pp, Long -14.8pp），Adaptive gating 全面恢复。Pi05 跨模型验证 4/4 degradation-only\n- **决策链**: D170→D178（Long -14.8pp 最有力证据）→ D179（Title 锁定）→ D180-D182（Table 2/3 数据确认）→ D183（OpenVLA 贡献移除）→ D184（Title+提交确认）\n- **MC1**: 4/4 harmful + Adaptive 恢复 = 论文核心 claim\n- **MC2**: Trigger rate ↔ Δ 单调正相关（Long 非单调需 Appendix 诚实报告 D170）\n- **MC3**: Cross-VLA 泛化 = Pi05 Table 3\n- **易错点**: Pi05 VLA-only baseline 有多个版本（r3/r4/v2/paired），Table 2/3 用 r4 版本（n_rollouts=20 标准化），不要混用\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-30-1780050001.md"
+}

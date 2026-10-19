@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6df6c02d7681890966a0",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh analyze crm long seed46",
+  "task_key": "worker_ssh_analyze-crm-long-seed46_20260520T001152",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_analyze-crm-long-seed46_20260520T001152_result.json",
+    "occurrence": 1,
+    "bytes": 1136,
+    "sha256": "84903d9fc61d26e7c65bf586a986b1ce60e1cf9dce7e657f4200b182ab2e5735"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## eval-crm-long-seed46 结果\n\n**Overall SR: 18.0%** (18/100 episodes)\n\n### Per-task breakdown\n\n| Task | SR | Succ/Total |\n|------|----|------------|\n| KITCHEN_SCENE3 — turn on stove, put moka pot | **90%** | 9/10 |\n| KITCHEN_SCENE6 — mug in microwave, close it | **50%** | 5/10 |\n| LIVING_ROOM_SCENE5 — white mug left plate, yellow mug right plate | **20%** | 2/10 |\n| STUDY_SCENE1 — book in back compartment of caddy | **20%** | 2/10 |\n| LIVING_ROOM_SCENE2 — alphabet soup + tomato sauce in basket | 0% | 0/10 |\n| LIVING_ROOM_SCENE2 — cream cheese + butter in basket | 0% | 0/10 |\n| KITCHEN_SCENE4 — black bowl in drawer, close it | 0% | 0/10 |\n| LIVING_ROOM_SCENE6 — white mug on plate, pudding to right | 0% | 0/10 |\n| LIVING_ROOM_SCENE1 — alphabet soup + cream cheese in basket | 0% | 0/10 |\n| KITCHEN_SCENE8 — both moka pots on stove | 0% | 0/10 |\n\n模式为 `crm_obs_only`，baseline `single`，每 task 10 rollouts。成功集中在 KITCHEN_SCENE3（90%）和 KITCHEN_SCENE6（50%），6 个 task 完全失败（均为多物体操作或需要开关抽屉/门的任务）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-analyze-crm-long-seed46.md"
+}

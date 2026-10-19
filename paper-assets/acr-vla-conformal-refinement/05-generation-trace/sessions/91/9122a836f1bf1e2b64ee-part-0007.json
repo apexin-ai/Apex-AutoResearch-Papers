@@ -1,0 +1,3657 @@
+{
+  "schema_version": "1.0",
+  "session_id": "9122a836f1bf1e2b64ee",
+  "rounds": [
+    {
+      "number": 87,
+      "messages": [
+        {
+          "source_line": 1081,
+          "timestamp": "2026-05-22T06:31:29.699406+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"for s in crm-loss-mse-baseline crm-loss-perdof crm-loss-conformal crm-loss-combined; do echo \\\"=== \\$s ===\\\"; tmux has-session -t \\$s 2>/dev/null && echo 'tmux: alive' || echo 'tmux: dead'; done && nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader\" 2>&1",
+              "description": "Check CRM loss training status on bjb1-18228",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001081"
+        },
+        {
+          "source_line": 1082,
+          "timestamp": "2026-05-22T06:31:30.343122+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb1-32546 \"nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader\" 2>&1",
+              "description": "Check GPU status on bjb1-32546",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001082"
+        },
+        {
+          "source_line": 1083,
+          "timestamp": "2026-05-22T06:31:33.074892+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"crm-loss-conformal\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T05:02:18.756Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:31:09.042Z\\\", \\\"hypothesis\\\": \\\"Conformal-guided auxiliary loss (lambda=0.1) will improve CRM by encouraging correction magnitude proportional to nonconformity, compared to uniform MSE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/train_crm.py --benchmark object --loss_type conformal_guided --lambda_conf 0.1 --epochs 50 --batch_size 32 --lr 1e-3 --obs_dim 960\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"845499\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/crm-loss-conformal.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T05:02:54.937Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/crm_cache_v5/\\\", \\\"data_count\\\": 14570, \\\"model_name\\\": \\\"CRM_conformal_guided\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T06:26:09.967Z\\\"}, \\\"metrics\\\": {\\\"best_val_loss\\\": 0.013343, \\\"final_train_loss\\\": 0.016046, \\\"best_epoch\\\": 50, \\\"total_epochs\\\": 50, \\\"initial_val_loss\\\": 0.037526, \\\"exit_code\\\": 0, \\\"lambda_conf\\\": 0.1}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/crm_loss_variants/conformal_guided/crm_best.pt\\\", \\\"log_path\\\": \\\"/root/runs/acr-vla-conformal-refinement/crm-loss-conformal.log\\\"}, \\\"crm-loss-combined\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T05:02:25.073Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:30:58.453Z\\\", \\\"hypothesis\\\": \\\"Combined per-DOF weighting + conformal-guided loss will achieve best CRM performance by addressing both DOF importance and correction calibration\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/train_crm.py --benchmark object --loss_type combined --lambda_conf 0.1 --epochs 50 --batch_size 32 --lr 1e-3 --obs_dim 960\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"845729\\\", \\\"log_pa\n…[truncated 4628 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 5737
+          },
+          "id": "event-001083"
+        },
+        {
+          "source_line": 1084,
+          "timestamp": "2026-05-22T06:31:34.131397+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\n=== crm-loss-mse-baseline ===\ntmux: dead\n=== crm-loss-perdof ===\ntmux: dead\n=== crm-loss-conformal ===\ntmux: dead\n=== crm-loss-combined ===\ntmux: dead\n0, 0 MiB, 0 %\n1, 0 MiB, 0 %\n2, 0 MiB, 0 %\n3, 0 MiB, 0 %"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 4431
+          },
+          "id": "event-001084"
+        },
+        {
+          "source_line": 1085,
+          "timestamp": "2026-05-22T06:31:35.187807+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:32546' (ED25519) to the list of known hosts.\r\n0, 13196 MiB, 26 %\n1, 13196 MiB, 26 %\n2, 13196 MiB, 25 %\n3, 2 MiB, 0 %\n4, 2 MiB, 0 %\n5, 2 MiB, 0 %"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 4844
+          },
+          "id": "event-001085"
+        },
+        {
+          "source_line": 1086,
+          "timestamp": "2026-05-22T06:31:53.992812+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"tail -30 /root/runs/acr-vla-conformal-refinement/crm-loss-combined.log\" 2>&1",
+              "description": "Get crm-loss-combined final metrics",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001086"
+        },
+        {
+          "source_line": 1087,
+          "timestamp": "2026-05-22T06:31:54.949478+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\n  epoch 48 batch 150/410 loss=0.005402\n  epoch 48 batch 200/410 loss=0.003279\n  epoch 48 batch 250/410 loss=0.003323\n  epoch 48 batch 300/410 loss=0.004052\n  epoch 48 batch 350/410 loss=0.004010\n  epoch 48 batch 400/410 loss=0.004105\nEpoch 48/50  train_loss=0.004503  val_loss=0.005302  lr=3.94e-06\n  → New best val_loss: 0.005302\n  epoch 49 batch 50/410 loss=0.004780\n  epoch 49 batch 100/410 loss=0.007424\n  epoch 49 batch 150/410 loss=0.004156\n  epoch 49 batch 200/410 loss=0.003896\n  epoch 49 batch 250/410 loss=0.004290\n  epoch 49 batch 300/410 loss=0.004580\n  epoch 49 batch 350/410 loss=0.003200\n  epoch 49 batch 400/410 loss=0.005242\nEpoch 49/50  train_loss=0.004469  val_loss=0.005312  lr=9.87e-07\n  epoch 50 batch 50/410 loss=0.005048\n  epoch 50 batch 100/410 loss=0.004289\n  epoch 50 batch 150/410 loss=0.004797\n  epoch 50 batch 200/410 loss=0.004740\n  epoch 50 batch 250/410 loss=0.008204\n  epoch 50 batch 300/410 loss=0.005096\n  epoch 50 batch 350/410 loss=0.003556\n  epoch 50 batch 400/410 loss=0.006513\nEpoch 50/50  train_loss=0.004481  val_loss=0.005310  lr=0.00e+00\n\n[train] Done. Best val_loss=0.005302\n[train] Checkpoints at /root/autodl-tmp/checkpoints/crm_loss_variants/combined/\nEXIT_CODE=0"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 956
+          },
+          "id": "event-001087"
+        },
+        {
+          "source_line": 1088,
+          "timestamp": "2026-05-22T06:31:54.950656+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb2-28827 \"nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader\" 2>&1",
+              "description": "Check bjb2-28827 GPU status",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001088"
+        },
+        {
+          "source_line": 1089,
+          "timestamp": "2026-05-22T06:31:55.906782+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090 \"nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader\" 2>&1",
+              "description": "Check bjb2-40593 GPU status",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001089"
+        },
+        {
+          "source_line": 1090,
+          "timestamp": "2026-05-22T06:31:56.359599+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:28827' (ED25519) to the list of known hosts.\r\n0, 13112 MiB, 21 %\n1, 13112 MiB, 23 %\n2, 13112 MiB, 22 %\n3, 4970 MiB, 19 %\n4, 4193 MiB, 20 %\n5, 4970 MiB, 20 %"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1408
+          },
+          "id": "event-001090"
+        },
+        {
+          "source_line": 1091,
+          "timestamp": "2026-05-22T06:31:56.360329+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "acr-vla-conformal-refinement",
+              "section": "execution"
+            }
+          },
+          "id": "event-001091"
+        },
+        {
+          "source_line": 1092,
+          "timestamp": "2026-05-22T06:31:58.217257+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:40593' (ED25519) to the list of known hosts.\r\n0, 0 MiB, 0 %"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 2310
+          },
+          "id": "event-001092"
+        },
+        {
+          "source_line": 1093,
+          "timestamp": "2026-05-22T06:31:58.217728+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"account\\\": \\\"root\\\", \\\"gpu_constraint\\\": [\\\"bjb2-40593:cuda:0\\\", \\\"bjb1-18228:cuda:0\\\", \\\"bjb1-18228:cuda:1\\\", \\\"bjb1-18228:cuda:2\\\", \\\"bjb1-18228:cuda:3\\\", \\\"bjb1-32546:cuda:0\\\", \\\"bjb1-32546:cuda:1\\\", \\\"bjb1-32546:cuda:2\\\", \\\"bjb1-32546:cuda:3\\\", \\\"bjb1-32546:cuda:4\\\", \\\"bjb1-32546:cuda:5\\\", \\\"bjb2-28827:cuda:0\\\", \\\"bjb2-28827:cuda:1\\\", \\\"bjb2-28827:cuda:2\\\", \\\"bjb2-28827:cuda:3\\\", \\\"bjb2-28827:cuda:4\\\", \\\"bjb2-28827:cuda:5\\\"], \\\"gpu_ids\\\": [\\\"bjb2-40593:cuda:0\\\", \\\"bjb1-18228:cuda:0\\\", \\\"bjb1-18228:cuda:1\\\", \\\"bjb1-18228:cuda:2\\\", \\\"bjb1-18228:cuda:3\\\", \\\"bjb1-32546:cuda:0\\\", \\\"bjb1-32546:cuda:1\\\", \\\"bjb1-32546:cuda:2\\\", \\\"bjb1-32546:cuda:3\\\", \\\"bjb1-32546:cuda:4\\\", \\\"bjb1-32546:cuda:5\\\", \\\"bjb2-28827:cuda:0\\\", \\\"bjb2-28827:cuda:1\\\", \\\"bjb2-28827:cuda:2\\\", \\\"bjb2-28827:cuda:3\\\", \\\"bjb2-28827:cuda:4\\\", \\\"bjb2-28827:cuda:5\\\"], \\\"project_path\\\": \\\"/root/acr-vla-conformal-refinement\\\", \\\"servers\\\": [\\\"bjb2-40593\\\", \\\"bjb1-18228\\\", {\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"bjb1-32546\\\"}, {\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"bjb2-28827\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 1857
+          },
+          "id": "event-001093"
+        },
+        {
+          "source_line": 1094,
+          "timestamp": "2026-05-22T06:31:58.420437+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb1-32546 \"ls /root/autodl-tmp/crm_cache_v5/ 2>/dev/null && echo '---' && ls /root/autodl-tmp/crm_cache_v5/goal/ 2>/dev/null && echo '---goal exists' || echo 'goal: not found' && ls /root/autodl-tmp/crm_cache_v5/long/ 2>/dev/null && echo '---long exists' || echo 'long: not found'\" 2>&1",
+              "description": "Check if Goal/Long precompute cache exists on bjb1-32546",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001094"
+        },
+        {
+          "source_line": 1095,
+          "timestamp": "2026-05-22T06:31:59.430891+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:32546' (ED25519) to the list of known hosts.\r\nlong\nobject\nspatial\n---\ngoal: not found\n---long exists"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1010
+          },
+          "id": "event-001095"
+        },
+        {
+          "source_line": 1096,
+          "timestamp": "2026-05-22T06:32:17.746442+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "crm-loss-combined",
+              "field": "metrics",
+              "value": "{'best_val_loss': 0.005302, 'final_train_loss': 0.004481, 'best_epoch': 48, 'total_epochs': 50, 'initial_val_loss': None, 'exit_code': 0, 'lambda_conf': 0.1}",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001096"
+        },
+        {
+          "source_line": 1097,
+          "timestamp": "2026-05-22T06:32:19.265462+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "crm-loss-combined",
+              "field": "checkpoint_path",
+              "value": "/root/autodl-tmp/checkpoints/crm_loss_variants/combined/crm_best.pt",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001097"
+        },
+        {
+          "source_line": 1098,
+          "timestamp": "2026-05-22T06:32:20.219232+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "crm-loss-conformal",
+              "field": "conclusion",
+              "value": "success",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001098"
+        },
+        {
+          "source_line": 1099,
+          "timestamp": "2026-05-22T06:32:21.173202+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "crm-loss-mse-baseline",
+              "field": "conclusion",
+              "value": "success",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001099"
+        },
+        {
+          "source_line": 1100,
+          "timestamp": "2026-05-22T06:32:22.366572+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb2-28827 \"ps aux | grep -E 'python.*train_crm|python.*precompute|python.*evaluate' | grep -v grep\" 2>&1",
+              "description": "Check what's running on bjb2-28827 cuda:3-5",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001100"
+        },
+        {
+          "source_line": 1101,
+          "timestamp": "2026-05-22T06:32:24.006817+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"ls /root/autodl-tmp/crm_cache_v5/ 2>/dev/null; echo '---'; ls /root/autodl-tmp/crm_cache_v5/goal/ 2>/dev/null && echo 'goal exists' || echo 'goal: not found'; ls /root/autodl-tmp/crm_cache_v5/long/ 2>/dev/null && echo 'long exists' || echo 'long: not found'\" 2>&1",
+              "description": "Check cache status on bjb1-18228",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001101"
+        },
+        {
+          "source_line": 1102,
+          "timestamp": "2026-05-22T06:32:25.771035+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"crm-loss-combined\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T05:02:25.073Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:32:21.446Z\\\", \\\"hypothesis\\\": \\\"Combined per-DOF weighting + conformal-guided loss will achieve best CRM performance by addressing both DOF importance and correction calibration\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/train_crm.py --benchmark object --loss_type combined --lambda_conf 0.1 --epochs 50 --batch_size 32 --lr 1e-3 --obs_dim 960\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"845729\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/crm-loss-combined.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T05:03:04.572Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/crm_cache_v5/\\\", \\\"data_count\\\": 14570, \\\"model_name\\\": \\\"CRM_combined\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T06:30:52.704Z\\\"}, \\\"metrics\\\": {\\\"best_val_loss\\\": 0.005302, \\\"final_train_loss\\\": 0.004481, \\\"best_epoch\\\": 48, \\\"total_epochs\\\": 50, \\\"initial_val_loss\\\": null, \\\"exit_code\\\": 0, \\\"lambda_conf\\\": 0.1}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.9689}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 8024
+          },
+          "id": "event-001102"
+        },
+        {
+          "source_line": 1103,
+          "timestamp": "2026-05-22T06:32:31.986514+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"crm-loss-combined\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T05:02:25.073Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:32:29.136Z\\\", \\\"hypothesis\\\": \\\"Combined per-DOF weighting + conformal-guided loss will achieve best CRM performance by addressing both DOF importance and correction calibration\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/train_crm.py --benchmark object --loss_type combined --lambda_conf 0.1 --epochs 50 --batch_size 32 --lr 1e-3 --obs_dim 960\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"845729\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/crm-loss-combined.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T05:03:04.572Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/crm_cache_v5/\\\", \\\"data_count\\\": 14570, \\\"model_name\\\": \\\"CRM_combined\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T06:30:52.704Z\\\"}, \\\"metrics\\\": {\\\"best_val_loss\\\": 0.005302, \\\"final_train_loss\\\": 0.004481, \\\"best_epoch\\\": 48, \\\"total_epochs\\\": 50, \\\"initial_val_loss\\\": null, \\\"exit_code\\\": 0, \\\"lambda_conf\\\": 0.1}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/crm_loss_variants/combined/crm_best.pt\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.9948}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 12721
+          },
+          "id": "event-001103"
+        },
+        {
+          "source_line": 1104,
+          "timestamp": "2026-05-22T06:32:39.830559+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"crm-loss-conformal\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T05:02:18.756Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:32:37.348Z\\\", \\\"hypothesis\\\": \\\"Conformal-guided auxiliary loss (lambda=0.1) will improve CRM by encouraging correction magnitude proportional to nonconformity, compared to uniform MSE\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/train_crm.py --benchmark object --loss_type conformal_guided --lambda_conf 0.1 --epochs 50 --batch_size 32 --lr 1e-3 --obs_dim 960\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"845499\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/crm-loss-conformal.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T05:02:54.937Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/crm_cache_v5/\\\", \\\"data_count\\\": 14570, \\\"model_name\\\": \\\"CRM_conformal_guided\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 5342.6, \\\"gpu_hours\\\": 1.48}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T06:26:09.967Z\\\"}, \\\"metrics\\\": {\\\"best_val_loss\\\": 0.013343, \\\"final_train_loss\\\": 0.016046, \\\"best_epoch\\\": 50, \\\"total_epochs\\\": 50, \\\"initial_val_loss\\\": 0.037526, \\\"exit_code\\\": 0, \\\"lambda_conf\\\": 0.1}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/crm_loss_variants/conformal_guided/crm_best.pt\\\", \\\"log_path\\\": \\\"/root/runs/acr-vla-conformal-refinement/crm-loss-conformal.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"Training completed cleanly (50/50 epochs, EXIT_CODE=0). Val loss decreased monotonically 0.037526 (ep1) → 0.013343 (ep50). Final train_loss=0.016046, val_loss=0.013343. The ~6.4x higher val_loss vs MSE baseline (0.013343 vs 0.002080) is EXPECTED and NOT a regression: total loss = MSE + λ·conformal_aux with λ=0.1, so the reported loss is on a strictly larger objective than the MSE-only baseline — direct numeric comparison is invalid. Convergence shape is healthy (still i\n…[truncated 369 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 19611
+          },
+          "id": "event-001104"
+        },
+        {
+          "source_line": 1105,
+          "timestamp": "2026-05-22T06:32:43.295108+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"crm-loss-mse-baseline\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T05:02:13.450Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:32:42.169Z\\\", \\\"hypothesis\\\": \\\"MSE baseline re-training on SmolVLA Object for controlled comparison with loss variants\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/train_crm.py --benchmark object --loss_type mse --epochs 50 --batch_size 32 --lr 1e-3 --obs_dim 960\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"845069\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/crm-loss-mse-baseline.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T05:02:45.750Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/crm_cache_v5/\\\", \\\"data_count\\\": 14570, \\\"model_name\\\": \\\"CRM_MSE_baseline\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 5341.6, \\\"gpu_hours\\\": 1.48}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T06:25:33.296Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T06:25:48.377898+00:00\\\"}]}, \\\"metrics\\\": {\\\"best_val_loss\\\": 0.00208, \\\"final_train_loss\\\": 0.004038, \\\"best_epoch\\\": 50, \\\"total_epochs\\\": 50, \\\"initial_val_loss\\\": 0.008373, \\\"exit_code\\\": 0}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/crm_loss_variants/mse/crm_best.pt\\\", \\\"log_path\\\": \\\"/root/runs/acr-vla-conformal-refinement/crm-loss-mse-baseline.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"Training completed cleanly (50/50 epochs, EXIT_CODE=0). Val loss decreased monotonically from 0.008373 (ep1) → 0.002080 (ep50), no overfitting/plateau visible — model still converging at end of cosine schedule. Train_loss=0.004038 vs val_loss=0.002080 (val < train, expected with augmentation noise on train side). Best ckpt saved at epoch 50. Loss values are NOT directly comparable across variants (perdof uses per-DoF weights, conformal_guided adds aux term to MSE); \n…[truncated 290 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 22121
+          },
+          "id": "event-001105"
+        },
+        {
+          "source_line": 1106,
+          "timestamp": "2026-05-22T06:32:44.098749+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:28827' (ED25519) to the list of known hosts.\r\nroot     148747  0.0  0.0   6196  3728 ?        Ss   09:17   0:00 tmux new-session -d -s eval-pi05-crm-spatial-seed42 rm -f /tmp/agent-ml-exit/eval-pi05-crm-spatial-seed42.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \"EXIT_CODE=$_EC\" >> ~/runs/acr-vla-conformal-refinement/eval-pi05-crm-spatial-seed42.log; printf \"%s|%s\\n\" \"$_EC\" \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\" > /tmp/agent-ml-exit/eval-pi05-crm-spatial-seed42.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 43200 env bash -c 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && TORCHDYNAMO_DISABLE=1 python src/evaluate.py --model pi05 --pi05_path /root/autodl-tmp/models/pi05_libero_finetuned/ --mode acr_vla --crm_checkpoint /root/autodl-tmp/checkpoints/crm_pi05_full/spatial/crm_best.pt --benchmark spatial --seed 42 --obs_dim 2048 2>&1 | tee /root/runs/acr-vla-conformal-refinement/eval-pi05-crm-spatial-seed42.log\"'; } > ~/runs/acr-vla-conformal-refinement/eval-pi05-crm-spatial-seed42.log 2>&1\nroot     148748  0.0  0.0   4496  3496 pts/0    Ss+  09:17   0:00 bash -c rm -f /tmp/agent-ml-exit/eval-pi05-crm-spatial-seed42.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \"EXIT_CODE=$_EC\" >> ~/runs/acr-vla-conformal-refinement/eval-pi05-crm-spatial-seed42.log; printf \"%s|%s\\n\" \"$_EC\" \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\" > /tmp/agent-ml-exit/eval-pi05-crm-spatial-seed42.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=0 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && timeout 43200 env bash -c 'bash -c \"source /root/miniconda3/etc/profile.\n…[truncated 8836 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 21732
+          },
+          "id": "event-001106"
+        },
+        {
+          "source_line": 1107,
+          "timestamp": "2026-05-22T06:32:45.052910+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\nobject\nspatial\n---\ngoal: not found\nlong: not found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 21046
+          },
+          "id": "event-001107"
+        },
+        {
+          "source_line": 1108,
+          "timestamp": "2026-05-22T06:33:42.181939+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "crm-loss-combined",
+              "field": "conclusion",
+              "value": "success",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001108"
+        },
+        {
+          "source_line": 1109,
+          "timestamp": "2026-05-22T06:33:44.543596+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb2-28827 \"kill 171682 171683 171957 171958 172560 172561 2>/dev/null; sleep 1; ps aux | grep 'evaluate.py.*--benchmark.*long\\|evaluate.py.*--benchmark.*goal' | grep -v grep | grep -v pi05 | wc -l\" 2>&1",
+              "description": "Kill OOD eval processes on bjb2-28827 cuda:3-5",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001109"
+        },
+        {
+          "source_line": 1110,
+          "timestamp": "2026-05-22T06:33:45.347247+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb1-32546 \"cat /root/autodl-tmp/crm_cache_v5/object/manifest.json 2>/dev/null\" 2>&1",
+              "description": "Read existing cache manifest for reference",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001110"
+        },
+        {
+          "source_line": 1111,
+          "timestamp": "2026-05-22T06:33:45.398001+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"crm-loss-combined\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T05:02:25.073Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:33:44.189Z\\\", \\\"hypothesis\\\": \\\"Combined per-DOF weighting + conformal-guided loss will achieve best CRM performance by addressing both DOF importance and correction calibration\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/train_crm.py --benchmark object --loss_type combined --lambda_conf 0.1 --epochs 50 --batch_size 32 --lr 1e-3 --obs_dim 960\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"845729\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/crm-loss-combined.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T05:03:04.572Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/crm_cache_v5/\\\", \\\"data_count\\\": 14570, \\\"model_name\\\": \\\"CRM_combined\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T06:30:52.704Z\\\"}, \\\"metrics\\\": {\\\"best_val_loss\\\": 0.005302, \\\"final_train_loss\\\": 0.004481, \\\"best_epoch\\\": 48, \\\"total_epochs\\\": 50, \\\"initial_val_loss\\\": null, \\\"exit_code\\\": 0, \\\"lambda_conf\\\": 0.1}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/checkpoints/crm_loss_variants/combined/crm_best.pt\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.1281}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 3216
+          },
+          "id": "event-001111"
+        },
+        {
+          "source_line": 1112,
+          "timestamp": "2026-05-22T06:33:47.411466+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:28827' (ED25519) to the list of known hosts.\r\n0"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 2867
+          },
+          "id": "event-001112"
+        },
+        {
+          "source_line": 1113,
+          "timestamp": "2026-05-22T06:33:48.416156+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:32546' (ED25519) to the list of known hosts.\r\n{\n  \"benchmark\": \"object\",\n  \"n_samples\": 14570,\n  \"K\": 10,\n  \"obs_dim\": 960,\n  \"action_dim\": 6,\n  \"h_eff\": 5\n}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 3068
+          },
+          "id": "event-001113"
+        },
+        {
+          "source_line": 1114,
+          "timestamp": "2026-05-22T06:34:15.670650+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb1-32546 \"cat /root/autodl-tmp/crm_cache_v5/long/manifest.json 2>/dev/null\" 2>&1",
+              "description": "Check long cache manifest on bjb1-32546",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001114"
+        },
+        {
+          "source_line": 1115,
+          "timestamp": "2026-05-22T06:34:15.925776+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb2-28827 \"ls /root/autodl-tmp/crm_cache_v5/ 2>/dev/null; echo '---'; for d in /root/autodl-tmp/crm_cache_v5/*/; do echo \\\"\\$d\\\"; cat \\$d/manifest.json 2>/dev/null | head -1; done\" 2>&1",
+              "description": "Check cache status on bjb2-28827",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001115"
+        },
+        {
+          "source_line": 1116,
+          "timestamp": "2026-05-22T06:34:16.581067+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nWarning: Permanently added '[connect.bjb1.seetacloud.com]:32546' (ED25519) to the list of known hosts."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 910
+          },
+          "id": "event-001116"
+        },
+        {
+          "source_line": 1117,
+          "timestamp": "2026-05-22T06:34:16.581495+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(ssh bjb1-32546 \"cat /root/autodl-tmp/crm…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 655
+          },
+          "id": "event-001117"
+        },
+        {
+          "source_line": 1118,
+          "timestamp": "2026-05-22T06:34:20.991810+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb1-32546 \"ls -la /root/autodl-tmp/crm_cache_v5/long/ 2>/dev/null && du -sh /root/autodl-tmp/crm_cache_v5/long/ 2>/dev/null\" 2>&1",
+              "description": "Check long cache contents on bjb1-32546",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001118"
+        },
+        {
+          "source_line": 1119,
+          "timestamp": "2026-05-22T06:34:22.331485+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:32546' (ED25519) to the list of known hosts.\r\ntotal 0\ndrwxr-xr-x 2 root root 10 May 22 14:16 .\ndrwxr-xr-x 5 root root 63 May 22 14:16 ..\n0\t/root/autodl-tmp/crm_cache_v5/long/"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1339
+          },
+          "id": "event-001119"
+        },
+        {
+          "source_line": 1120,
+          "timestamp": "2026-05-22T06:34:22.382563+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb2-28827 \"ls /root/autodl-tmp/crm_cache_v5/ 2>/dev/null; echo '---'; for d in object spatial goal long; do echo \\\"=== \\$d ===\\\"; cat /root/autodl-tmp/crm_cache_v5/\\$d/manifest.json 2>/dev/null || echo 'no manifest'; done\" 2>&1",
+              "description": "Check cache status on bjb2-28827",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001120"
+        },
+        {
+          "source_line": 1121,
+          "timestamp": "2026-05-22T06:34:23.380507+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:28827' (ED25519) to the list of known hosts.\r\ngoal\n---\n=== object ===\nno manifest\n=== spatial ===\nno manifest\n=== goal ===\nno manifest\n=== long ===\nno manifest"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 997
+          },
+          "id": "event-001121"
+        },
+        {
+          "source_line": 1122,
+          "timestamp": "2026-05-22T06:34:51.558879+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__register_cron",
+              "max_results": "2"
+            }
+          },
+          "id": "event-001122"
+        },
+        {
+          "source_line": 1123,
+          "timestamp": "2026-05-22T06:34:51.609796+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001123"
+        },
+        {
+          "source_line": 1124,
+          "timestamp": "2026-05-22T06:35:17.737665+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-goal-bjb1-32546",
+              "field": "hypothesis",
+              "value": "Precompute SmolVLA obs_features + K=10 action samples on LIBERO-Goal for unified 4-suite CRM training",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001124"
+        },
+        {
+          "source_line": 1125,
+          "timestamp": "2026-05-22T06:35:19.097794+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-long-bjb1-32546",
+              "field": "hypothesis",
+              "value": "Precompute SmolVLA obs_features + K=10 action samples on LIBERO-Long for unified 4-suite CRM training",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001125"
+        },
+        {
+          "source_line": 1126,
+          "timestamp": "2026-05-22T06:35:20.056558+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-goal-bjb1-18228",
+              "field": "hypothesis",
+              "value": "Precompute SmolVLA obs_features + K=10 action samples on LIBERO-Goal for unified 4-suite CRM training (parallel path)",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001126"
+        },
+        {
+          "source_line": 1127,
+          "timestamp": "2026-05-22T06:35:21.663497+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-long-bjb1-18228",
+              "field": "hypothesis",
+              "value": "Precompute SmolVLA obs_features + K=10 action samples on LIBERO-Long for unified 4-suite CRM training (parallel path)",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001127"
+        },
+        {
+          "source_line": 1128,
+          "timestamp": "2026-05-22T06:35:23.675978+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"precompute-smolvla-goal-bjb1-32546\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:35:21.518Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:35:21.518Z\\\", \\\"hypothesis\\\": \\\"Precompute SmolVLA obs_features + K=10 action samples on LIBERO-Goal for unified 4-suite CRM training\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.8485}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 5938
+          },
+          "id": "event-001128"
+        },
+        {
+          "source_line": 1129,
+          "timestamp": "2026-05-22T06:35:28.384695+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"precompute-smolvla-long-bjb1-32546\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:35:27.252Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:35:27.252Z\\\", \\\"hypothesis\\\": \\\"Precompute SmolVLA obs_features + K=10 action samples on LIBERO-Long for unified 4-suite CRM training\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.6704}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 9286
+          },
+          "id": "event-001129"
+        },
+        {
+          "source_line": 1130,
+          "timestamp": "2026-05-22T06:35:30.895707+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"precompute-smolvla-goal-bjb1-18228\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:35:29.841Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:35:29.841Z\\\", \\\"hypothesis\\\": \\\"Precompute SmolVLA obs_features + K=10 action samples on LIBERO-Goal for unified 4-suite CRM training (parallel path)\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.517}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 10839
+          },
+          "id": "event-001130"
+        },
+        {
+          "source_line": 1131,
+          "timestamp": "2026-05-22T06:35:33.607877+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"precompute-smolvla-long-bjb1-18228\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:35:32.599Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:35:32.599Z\\\", \\\"hypothesis\\\": \\\"Precompute SmolVLA obs_features + K=10 action samples on LIBERO-Long for unified 4-suite CRM training (parallel path)\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.7225}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 11944
+          },
+          "id": "event-001131"
+        },
+        {
+          "source_line": 1132,
+          "timestamp": "2026-05-22T06:35:37.325876+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-goal-bjb1-32546",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001132"
+        },
+        {
+          "source_line": 1133,
+          "timestamp": "2026-05-22T06:35:38.435426+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-long-bjb1-32546",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001133"
+        },
+        {
+          "source_line": 1134,
+          "timestamp": "2026-05-22T06:35:39.189565+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-goal-bjb1-18228",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001134"
+        },
+        {
+          "source_line": 1135,
+          "timestamp": "2026-05-22T06:35:39.792028+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-long-bjb1-18228",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001135"
+        },
+        {
+          "source_line": 1136,
+          "timestamp": "2026-05-22T06:35:50.576954+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"precompute-smolvla-goal-bjb1-32546\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:35:21.518Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:35:40.197Z\\\", \\\"hypothesis\\\": \\\"Precompute SmolVLA obs_features + K=10 action samples on LIBERO-Goal for unified 4-suite CRM training\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 13.1647}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 13251
+          },
+          "id": "event-001136"
+        },
+        {
+          "source_line": 1137,
+          "timestamp": "2026-05-22T06:36:00.584449+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"precompute-smolvla-long-bjb1-32546\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:35:27.252Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:35:55.903Z\\\", \\\"hypothesis\\\": \\\"Precompute SmolVLA obs_features + K=10 action samples on LIBERO-Long for unified 4-suite CRM training\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.947}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 22149
+          },
+          "id": "event-001137"
+        },
+        {
+          "source_line": 1138,
+          "timestamp": "2026-05-22T06:36:06.380437+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"precompute-smolvla-goal-bjb1-18228\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:35:29.841Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:36:02.038Z\\\", \\\"hypothesis\\\": \\\"Precompute SmolVLA obs_features + K=10 action samples on LIBERO-Goal for unified 4-suite CRM training (parallel path)\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.773}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 27190
+          },
+          "id": "event-001138"
+        },
+        {
+          "source_line": 1139,
+          "timestamp": "2026-05-22T06:36:11.657671+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"precompute-smolvla-long-bjb1-18228\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:35:32.599Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:36:08.052Z\\\", \\\"hypothesis\\\": \\\"Precompute SmolVLA obs_features + K=10 action samples on LIBERO-Long for unified 4-suite CRM training (parallel path)\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.2819}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 31865
+          },
+          "id": "event-001139"
+        },
+        {
+          "source_line": 1140,
+          "timestamp": "2026-05-22T06:36:15.201431+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-goal-bjb1-32546",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001140"
+        },
+        {
+          "source_line": 1141,
+          "timestamp": "2026-05-22T06:36:16.156931+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-long-bjb1-32546",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001141"
+        },
+        {
+          "source_line": 1142,
+          "timestamp": "2026-05-22T06:36:17.061312+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-goal-bjb1-18228",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001142"
+        },
+        {
+          "source_line": 1143,
+          "timestamp": "2026-05-22T06:36:17.563740+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-long-bjb1-18228",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001143"
+        },
+        {
+          "source_line": 1144,
+          "timestamp": "2026-05-22T06:36:20.430756+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"precompute-smolvla-goal-bjb1-32546\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:35:21.518Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:36:16.787Z\\\", \\\"hypothesis\\\": \\\"Precompute SmolVLA obs_features + K=10 action samples on LIBERO-Goal for unified 4-suite CRM training\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.23}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 5229
+          },
+          "id": "event-001144"
+        },
+        {
+          "source_line": 1145,
+          "timestamp": "2026-05-22T06:36:25.787911+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"precompute-smolvla-long-bjb1-32546\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:35:27.252Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:36:21.934Z\\\", \\\"hypothesis\\\": \\\"Precompute SmolVLA obs_features + K=10 action samples on LIBERO-Long for unified 4-suite CRM training\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.301}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 9630
+          },
+          "id": "event-001145"
+        },
+        {
+          "source_line": 1146,
+          "timestamp": "2026-05-22T06:36:30.962433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"precompute-smolvla-goal-bjb1-18228\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:35:29.841Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:36:27.230Z\\\", \\\"hypothesis\\\": \\\"Precompute SmolVLA obs_features + K=10 action samples on LIBERO-Goal for unified 4-suite CRM training (parallel path)\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.1984}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 13901
+          },
+          "id": "event-001146"
+        },
+        {
+          "source_line": 1147,
+          "timestamp": "2026-05-22T06:36:39.001108+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"precompute-smolvla-long-bjb1-18228\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:35:32.599Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:36:32.755Z\\\", \\\"hypothesis\\\": \\\"Precompute SmolVLA obs_features + K=10 action samples on LIBERO-Long for unified 4-suite CRM training (parallel path)\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.9843}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 21437
+          },
+          "id": "event-001147"
+        },
+        {
+          "source_line": 1148,
+          "timestamp": "2026-05-22T06:36:45.190426+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "gpu_ids": "['cuda:3']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python src/train_crm.py --precompute --benchmark goal --K 10 --cache_dir /root/autodl-tmp/crm_cache_v5/\"",
+              "exp_id": "precompute-smolvla-goal-bjb1-32546",
+              "project": "acr-vla-conformal-refinement",
+              "timeout_hours": "6"
+            }
+          },
+          "id": "event-001148"
+        },
+        {
+          "source_line": 1149,
+          "timestamp": "2026-05-22T06:36:47.613574+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "gpu_ids": "['cuda:4']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python src/train_crm.py --precompute --benchmark long --K 10 --cache_dir /root/autodl-tmp/crm_cache_v5/\"",
+              "exp_id": "precompute-smolvla-long-bjb1-32546",
+              "project": "acr-vla-conformal-refinement",
+              "timeout_hours": "6"
+            }
+          },
+          "id": "event-001149"
+        },
+        {
+          "source_line": 1150,
+          "timestamp": "2026-05-22T06:36:49.424546+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "gpu_ids": "['cuda:0']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python src/train_crm.py --precompute --benchmark goal --K 10 --cache_dir /root/autodl-tmp/crm_cache_v5/\"",
+              "exp_id": "precompute-smolvla-goal-bjb1-18228",
+              "project": "acr-vla-conformal-refinement",
+              "timeout_hours": "6"
+            }
+          },
+          "id": "event-001150"
+        },
+        {
+          "source_line": 1151,
+          "timestamp": "2026-05-22T06:36:50.873848+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "gpu_ids": "['cuda:1']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python src/train_crm.py --precompute --benchmark long --K 10 --cache_dir /root/autodl-tmp/crm_cache_v5/\"",
+              "exp_id": "precompute-smolvla-long-bjb1-18228",
+              "project": "acr-vla-conformal-refinement",
+              "timeout_hours": "6"
+            }
+          },
+          "id": "event-001151"
+        },
+        {
+          "source_line": 1152,
+          "timestamp": "2026-05-22T06:36:58.745546+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"260139\\\", \\\"log_file\\\": \\\"~/runs/acr-vla-conformal-refinement/precompute-smolvla-goal-bjb1-32546.log\\\", \\\"gpu_ids\\\": [\\\"cuda:3\\\"], \\\"server\\\": \\\"bjb1-32546\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"3\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"precompute-smolvla-goal-bjb1-32546\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 13.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 13555
+          },
+          "id": "event-001152"
+        },
+        {
+          "source_line": 1153,
+          "timestamp": "2026-05-22T06:37:11.547374+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"260450\\\", \\\"log_file\\\": \\\"~/runs/acr-vla-conformal-refinement/precompute-smolvla-long-bjb1-32546.log\\\", \\\"gpu_ids\\\": [\\\"cuda:4\\\"], \\\"server\\\": \\\"bjb1-32546\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"4\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"precompute-smolvla-long-bjb1-32546\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 12.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 23933
+          },
+          "id": "event-001153"
+        },
+        {
+          "source_line": 1154,
+          "timestamp": "2026-05-22T06:37:24.817463+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"855585\\\", \\\"log_file\\\": \\\"~/runs/acr-vla-conformal-refinement/precompute-smolvla-goal-bjb1-18228.log\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"server\\\": \\\"bjb1-18228\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"precompute-smolvla-goal-bjb1-18228\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 13.23}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 35392
+          },
+          "id": "event-001154"
+        },
+        {
+          "source_line": 1155,
+          "timestamp": "2026-05-22T06:37:29.513992+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"855748\\\", \\\"log_file\\\": \\\"~/runs/acr-vla-conformal-refinement/precompute-smolvla-long-bjb1-18228.log\\\", \\\"gpu_ids\\\": [\\\"cuda:1\\\"], \\\"server\\\": \\\"bjb1-18228\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"1\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"precompute-smolvla-long-bjb1-18228\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.68}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 38640
+          },
+          "id": "event-001155"
+        },
+        {
+          "source_line": 1156,
+          "timestamp": "2026-05-22T06:37:35.936800+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb1-32546 \"tail -5 ~/runs/acr-vla-conformal-refinement/precompute-smolvla-goal-bjb1-32546.log 2>/dev/null; echo '==='; tail -5 ~/runs/acr-vla-conformal-refinement/precompute-smolvla-long-bjb1-32546.log 2>/dev/null\" 2>&1",
+              "description": "Check precompute startup on bjb1-32546",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001156"
+        },
+        {
+          "source_line": 1157,
+          "timestamp": "2026-05-22T06:37:37.292160+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:32546' (ED25519) to the list of known hosts.\r\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/acr-vla-conformal-refinement/src/utils.py\", line 60, in load_libero_demos\n    raise FileNotFoundError(f\"LIBERO data not found at {data_path}\")\nFileNotFoundError: LIBERO data not found at /root/autodl-tmp/libero_data/libero_goal\nEXIT_CODE=1\n===\n[train_crm] args: {'benchmark': ['long'], 'epochs': 50, 'batch_size': 32, 'lr': 0.001, 'seed': 42, 'output_dir': '/root/autodl-tmp/checkpoints/crm/', 'cache_dir': '/root/autodl-tmp/crm_cache_v5/', 'K': 10, 'obs_dim': 960, 'hidden_dim': 256, 'aug_noise_min': 0.02, 'aug_noise_max': 0.1, 'aug_ratio': 0.5, 'precompute': True, 'auto': False, 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'max_demos_per_task': 50, 'val_split': 0.1, 'log_every': 50, 'precompute_batch_size': 4, 'save_every': 500, 'shard_id': 0, 'num_shards': 1, 'input_mode': 'full', 'loss_type': 'mse', 'lambda_conf': 0.1, 'unified_obs_dim': None}\n[train_crm] device: cuda\n[precompute] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\n\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\rLoading weights:  55%|█████▍    | 267/489 [00:00<00:00, 2669.13it/s]\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3164.24it/s]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1355
+          },
+          "id": "event-001157"
+        },
+        {
+          "source_line": 1158,
+          "timestamp": "2026-05-22T06:37:37.744136+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"tail -5 ~/runs/acr-vla-conformal-refinement/precompute-smolvla-goal-bjb1-18228.log 2>/dev/null; echo '==='; tail -5 ~/runs/acr-vla-conformal-refinement/precompute-smolvla-long-bjb1-18228.log 2>/dev/null\" 2>&1",
+              "description": "Check precompute startup on bjb1-18228",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001158"
+        },
+        {
+          "source_line": 1159,
+          "timestamp": "2026-05-22T06:37:38.547355+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\n[train_crm] args: {'benchmark': ['goal'], 'epochs': 50, 'batch_size': 32, 'lr': 0.001, 'seed': 42, 'output_dir': '/root/autodl-tmp/checkpoints/crm/', 'cache_dir': '/root/autodl-tmp/crm_cache_v5/', 'K': 10, 'obs_dim': 960, 'hidden_dim': 256, 'aug_noise_min': 0.02, 'aug_noise_max': 0.1, 'aug_ratio': 0.5, 'precompute': True, 'auto': False, 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'max_demos_per_task': 50, 'val_split': 0.1, 'log_every': 50, 'precompute_batch_size': 4, 'save_every': 500, 'shard_id': 0, 'num_shards': 1, 'input_mode': 'full', 'loss_type': 'mse', 'lambda_conf': 0.1, 'unified_obs_dim': None}\n[train_crm] device: cuda\n[precompute] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\n\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\rLoading weights:  58%|█████▊    | 284/489 [00:00<00:00, 2823.57it/s]\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3362.40it/s]\n==="
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 803
+          },
+          "id": "event-001159"
+        },
+        {
+          "source_line": 1160,
+          "timestamp": "2026-05-22T06:37:46.878680+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb1-32546 \"ls /root/autodl-tmp/libero_data/ 2>/dev/null\" 2>&1",
+              "description": "Check LIBERO data on bjb1-32546",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001160"
+        },
+        {
+          "source_line": 1161,
+          "timestamp": "2026-05-22T06:37:47.280540+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"ls /root/autodl-tmp/libero_data/ 2>/dev/null\" 2>&1",
+              "description": "Check LIBERO data on bjb1-18228",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001161"
+        },
+        {
+          "source_line": 1162,
+          "timestamp": "2026-05-22T06:37:47.733452+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:32546' (ED25519) to the list of known hosts.\r\ndatasets\nlibero_10\nlibero_object\nlibero_spatial"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 854
+          },
+          "id": "event-001162"
+        },
+        {
+          "source_line": 1163,
+          "timestamp": "2026-05-22T06:37:48.235776+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb2-28827 \"ls /root/autodl-tmp/libero_data/ 2>/dev/null\" 2>&1",
+              "description": "Check LIBERO data on bjb2-28827",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001163"
+        },
+        {
+          "source_line": 1164,
+          "timestamp": "2026-05-22T06:37:48.692838+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\nREADME.md\neval_obs_only_object_norm03_seed45.log\nlibero_10\nlibero_90\nlibero_goal\nlibero_object\nlibero_spatial"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1412
+          },
+          "id": "event-001164"
+        },
+        {
+          "source_line": 1165,
+          "timestamp": "2026-05-22T06:37:49.055642+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"tail -3 ~/runs/acr-vla-conformal-refinement/precompute-smolvla-long-bjb1-18228.log 2>/dev/null\" 2>&1",
+              "description": "Check long precompute status on bjb1-18228",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001165"
+        },
+        {
+          "source_line": 1166,
+          "timestamp": "2026-05-22T06:37:49.454933+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:28827' (ED25519) to the list of known hosts.\r\nlibero_goal\nlibero_object\nlibero_spatial"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1219
+          },
+          "id": "event-001166"
+        },
+        {
+          "source_line": 1167,
+          "timestamp": "2026-05-22T06:37:50.471766+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\n[precompute] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\n\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\rLoading weights:  57%|█████▋    | 279/489 [00:00<00:00, 2784.48it/s]\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3315.55it/s]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1416
+          },
+          "id": "event-001167"
+        },
+        {
+          "source_line": 1168,
+          "timestamp": "2026-05-22T06:38:27.183960+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-goal-bjb1-32546",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'command': 'python src/train_crm.py --precompute --benchmark goal --K 10 --cache_dir /root/autodl-tmp/crm_cache_v5/', 'server': 'bjb1-32546', 'data_path': '/root/autodl-tmp/libero_data/libero_goal', 'data_count': 0, 'model_name': 'smolvla', 'seed': 42}"
+            }
+          },
+          "id": "event-001168"
+        },
+        {
+          "source_line": 1169,
+          "timestamp": "2026-05-22T06:38:27.184432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb1-32546 \"tail -10 ~/runs/acr-vla-conformal-refinement/precompute-smolvla-long-bjb1-32546.log 2>/dev/null\" 2>&1",
+              "description": "Check long precompute progress on bjb1-32546",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001169"
+        },
+        {
+          "source_line": 1170,
+          "timestamp": "2026-05-22T06:38:27.811771+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"tail -10 ~/runs/acr-vla-conformal-refinement/precompute-smolvla-goal-bjb1-18228.log 2>/dev/null\" 2>&1",
+              "description": "Check goal precompute progress on bjb1-18228",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001170"
+        },
+        {
+          "source_line": 1171,
+          "timestamp": "2026-05-22T06:38:28.917449+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7058}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1733
+          },
+          "id": "event-001171"
+        },
+        {
+          "source_line": 1172,
+          "timestamp": "2026-05-22T06:38:29.820524+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:32546' (ED25519) to the list of known hosts.\r\n  File \"/root/miniconda3/lib/python3.12/site-packages/torch/serialization.py\", line 976, in save\n    with _open_zipfile_writer(f) as opened_zipfile:\n         ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/miniconda3/lib/python3.12/site-packages/torch/serialization.py\", line 838, in _open_zipfile_writer\n    return container(name_or_buffer)  # type: ignore[arg-type]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/miniconda3/lib/python3.12/site-packages/torch/serialization.py\", line 802, in __init__\n    torch._C.PyTorchFileWriter(\nRuntimeError: Parent directory /root/autodl-tmp/crm_cache_v5/long does not exist.\nEXIT_CODE=1"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 2636
+          },
+          "id": "event-001172"
+        },
+        {
+          "source_line": 1173,
+          "timestamp": "2026-05-22T06:38:30.574486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\n[train_crm] args: {'benchmark': ['goal'], 'epochs': 50, 'batch_size': 32, 'lr': 0.001, 'seed': 42, 'output_dir': '/root/autodl-tmp/checkpoints/crm/', 'cache_dir': '/root/autodl-tmp/crm_cache_v5/', 'K': 10, 'obs_dim': 960, 'hidden_dim': 256, 'aug_noise_min': 0.02, 'aug_noise_max': 0.1, 'aug_ratio': 0.5, 'precompute': True, 'auto': False, 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'max_demos_per_task': 50, 'val_split': 0.1, 'log_every': 50, 'precompute_batch_size': 4, 'save_every': 500, 'shard_id': 0, 'num_shards': 1, 'input_mode': 'full', 'loss_type': 'mse', 'lambda_conf': 0.1, 'unified_obs_dim': None}\n[train_crm] device: cuda\n[precompute] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\n\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\rLoading weights:  58%|█████▊    | 284/489 [00:00<00:00, 2823.57it/s]\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3362.40it/s]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 2762
+          },
+          "id": "event-001173"
+        },
+        {
+          "source_line": 1174,
+          "timestamp": "2026-05-22T06:38:47.091521+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"mkdir -p /root/autodl-tmp/crm_cache_v5/goal /root/autodl-tmp/crm_cache_v5/long && ls -la /root/autodl-tmp/crm_cache_v5/\" 2>&1",
+              "description": "Ensure cache directories exist on bjb1-18228",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001174"
+        },
+        {
+          "source_line": 1175,
+          "timestamp": "2026-05-22T06:38:47.994673+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\ntotal 12\ndrwxr-xr-x  6 root root   79 May 22 14:37 .\ndrwxr-xr-x 17 root root 4096 May 21 20:21 ..\ndrwxr-xr-x  2 root root   75 May 22 14:38 goal\ndrwxr-xr-x  2 root root   41 May 22 14:38 long\ndrwxr-xr-x  2 root root 4096 May 14 17:05 object\ndrwxr-xr-x  2 root root 4096 May 14 16:27 spatial"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 903
+          },
+          "id": "event-001175"
+        },
+        {
+          "source_line": 1176,
+          "timestamp": "2026-05-22T06:38:48.496799+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"tail -5 ~/runs/acr-vla-conformal-refinement/precompute-smolvla-long-bjb1-18228.log 2>/dev/null\" 2>&1",
+              "description": "Check long precompute status on bjb1-18228",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001176"
+        },
+        {
+          "source_line": 1177,
+          "timestamp": "2026-05-22T06:38:49.452255+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\n[train_crm] args: {'benchmark': ['long'], 'epochs': 50, 'batch_size': 32, 'lr': 0.001, 'seed': 42, 'output_dir': '/root/autodl-tmp/checkpoints/crm/', 'cache_dir': '/root/autodl-tmp/crm_cache_v5/', 'K': 10, 'obs_dim': 960, 'hidden_dim': 256, 'aug_noise_min': 0.02, 'aug_noise_max': 0.1, 'aug_ratio': 0.5, 'precompute': True, 'auto': False, 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'max_demos_per_task': 50, 'val_split': 0.1, 'log_every': 50, 'precompute_batch_size': 4, 'save_every': 500, 'shard_id': 0, 'num_shards': 1, 'input_mode': 'full', 'loss_type': 'mse', 'lambda_conf': 0.1, 'unified_obs_dim': None}\n[train_crm] device: cuda\n[precompute] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\n\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\rLoading weights:  57%|█████▋    | 279/489 [00:00<00:00, 2784.48it/s]\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3315.55it/s]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 955
+          },
+          "id": "event-001177"
+        },
+        {
+          "source_line": 1178,
+          "timestamp": "2026-05-22T06:38:49.452684+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-goal-bjb1-32546",
+              "field": "conclusion",
+              "value": "failed",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001178"
+        },
+        {
+          "source_line": 1179,
+          "timestamp": "2026-05-22T06:38:50.058853+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-long-bjb1-32546",
+              "field": "conclusion",
+              "value": "failed",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001179"
+        },
+        {
+          "source_line": 1180,
+          "timestamp": "2026-05-22T06:38:53.376755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"precompute-smolvla-goal-bjb1-32546\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:35:21.518Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:38:51.382Z\\\", \\\"hypothesis\\\": \\\"Precompute SmolVLA obs_features + K=10 action samples on LIBERO-Goal for unified 4-suite CRM training\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python src/train_crm.py --precompute --benchmark goal --K 10 --cache_dir /root/autodl-tmp/crm_cache_v5/\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"260139\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/precompute-smolvla-goal-bjb1-32546.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T06:36:52.793Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"conclusion\\\": \\\"failed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.904}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 3924
+          },
+          "id": "event-001180"
+        },
+        {
+          "source_line": 1181,
+          "timestamp": "2026-05-22T06:38:56.336098+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"precompute-smolvla-long-bjb1-32546\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:35:27.252Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:38:55.268Z\\\", \\\"hypothesis\\\": \\\"Precompute SmolVLA obs_features + K=10 action samples on LIBERO-Long for unified 4-suite CRM training\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python src/train_crm.py --precompute --benchmark long --K 10 --cache_dir /root/autodl-tmp/crm_cache_v5/\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"260450\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/precompute-smolvla-long-bjb1-32546.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T06:37:03.834Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"conclusion\\\": \\\"failed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.9617}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 6277
+          },
+          "id": "event-001181"
+        },
+        {
+          "source_line": 1182,
+          "timestamp": "2026-05-22T06:39:14.905053+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "sleep 15 && ssh autodl-4090x4 \"tail -5 ~/runs/acr-vla-conformal-refinement/precompute-smolvla-goal-bjb1-18228.log 2>/dev/null; echo '=== LONG ==='; tail -5 ~/runs/acr-vla-conformal-refinement/precompute-smolvla-long-bjb1-18228.log 2>/dev/null; echo '=== GPU ==='; nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader\" 2>&1",
+              "description": "Check precompute progress after brief wait",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-001182"
+        },
+        {
+          "source_line": 1183,
+          "timestamp": "2026-05-22T06:39:16.410688+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/skills/resource-saturation.skill.md",
+              "limit": "40"
+            }
+          },
+          "id": "event-001183"
+        },
+        {
+          "source_line": 1184,
+          "timestamp": "2026-05-22T06:39:30.921641+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\n[train_crm] args: {'benchmark': ['goal'], 'epochs': 50, 'batch_size': 32, 'lr': 0.001, 'seed': 42, 'output_dir': '/root/autodl-tmp/checkpoints/crm/', 'cache_dir': '/root/autodl-tmp/crm_cache_v5/', 'K': 10, 'obs_dim': 960, 'hidden_dim': 256, 'aug_noise_min': 0.02, 'aug_noise_max': 0.1, 'aug_ratio': 0.5, 'precompute': True, 'auto': False, 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'max_demos_per_task': 50, 'val_split': 0.1, 'log_every': 50, 'precompute_batch_size': 4, 'save_every': 500, 'shard_id': 0, 'num_shards': 1, 'input_mode': 'full', 'loss_type': 'mse', 'lambda_conf': 0.1, 'unified_obs_dim': None}\n[train_crm] device: cuda\n[precompute] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\n\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\rLoading weights:  58%|█████▊    | 284/489 [00:00<00:00, 2823.57it/s]\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3362.40it/s]\n=== LONG ===\n[train_crm] args: {'benchmark': ['long'], 'epochs': 50, 'batch_size': 32, 'lr': 0.001, 'seed': 42, 'output_dir': '/root/autodl-tmp/checkpoints/crm/', 'cache_dir': '/root/autodl-tmp/crm_cache_v5/', 'K': 10, 'obs_dim': 960, 'hidden_dim': 256, 'aug_noise_min': 0.02, 'aug_noise_max': 0.1, 'aug_ratio': 0.5, 'precompute': True, 'auto': False, 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'max_demos_per_task': 50, 'val_split': 0.1, 'log_every': 50, 'precompute_batch_size': 4, 'save_every': 500, 'shard_id': 0, 'num_shards': 1, 'input_mode': 'full', 'loss_type': 'mse', 'lambda_conf': 0.1, 'unified_obs_dim': None}\n[train_crm] device: cuda\n[precompute] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libe\n…[truncated 352 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 16016
+          },
+          "id": "event-001184"
+        },
+        {
+          "source_line": 1185,
+          "timestamp": "2026-05-22T06:39:30.922090+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/sessions/agent_bbd03d76."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "elapsed_ms": 14511
+          },
+          "id": "event-001185"
+        },
+        {
+          "source_line": 1186,
+          "timestamp": "2026-05-22T06:40:14.569286+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 8/17 运行中 | Worker 3 (GPU 0 / CPU 3) | 磁盘: bjb1-18228 400G可用 / bjb1-32546 400G可用\n\n## 进展汇报\n\n### ✅ P0 完成：obs_dim 不匹配修复\n- `--unified_obs_dim` 已添加到 train_crm.py 和 evaluate.py\n- train_crm.py: 加载缓存后 zero-pad obs_features 到统一维度\n- evaluate.py: 5 处 CRM 推理入口全部加 `_pad_obs()` 填充，CRM 模型创建使用 unified_obs_dim\n- 语法验证通过，已同步到全部 4 台服务器\n- 用法：`--unified_obs_dim 1000` 即可混合训练 Object/Spatial(960D) + Goal/Long(1000D)\n\n### ✅ Track 2：CRM Loss 变体全部完成\n4 个 checkpoint 均已就绪（bjb1-18228），训练 metrics（val_loss 不跨变体可比，需下游 eval）：\n| 变体 | val_loss | 说明 |\n|------|----------|------|\n| MSE baseline | 0.002080 | 标准 MSE 基线 |\n| Per-DOF weighted | 0.000124 | 反方差加权，数值不可直比 |\n| Conformal-guided | 0.013343 | MSE + λ·conformal_aux (λ=0.1) |\n| Combined | 0.005302 | Per-DOF + conformal_aux |\n\n**下一步需要：在 SmolVLA Object 上 eval 4 个 checkpoint 比较真实 success rate**\n\n### 🔄 Track 1：π0.5 CRM Eval 正常运行\n- bjb1-32546 cuda:0-2: Object seed42/43/44（~5.5h 运行中）\n- bjb2-28827 cuda:0-2: Spatial seed42/43/44（~5.5h 运行中）\n\n### 🔄 Track 3：Precompute 已部署（bjb1-18228 主力路径）\n- cuda:0: Goal precompute (K=10) — 运行中\n- cuda:1: Long precompute (K=10) — 运行中\n- bjb1-32546 precompute 失败（缺 libero_goal 数据 + 缓存目录问题）\n- **bjb1-18228 是唯一有全部 4 个 LIBERO 数据集的服务器**\n- Precompute 完成后：merge 4 suite → `--unified_obs_dim 1000` 训练统一 CRM → eval\n\n### ⚠️ 已处理：bjb2-28827 OOD eval\nDirector 下令 kill 的 6 个 OOD eval 中，bjb2-28827 cuda:3-5 上仍有 3 个在跑（precompute worker 误部署为 eval）。已全部 kill。\n\n### 🔴 空闲 GPU（10 张）\n- bjb1-18228: cuda:2, cuda:3（2张）\n- bjb1-32546: cuda:3, cuda:4, cuda:5（3张）\n- bjb2-28827: cuda:3, cuda:4, cuda:5（3张）\n- bjb2-40593: cuda:0（1张）\n- 总计 **10 张 GPU 空闲**\n\n### 建议（需 Director 决策）\n1. **P0**：用 4 张空闲 GPU 跑 CRM loss 变体 eval（4 checkpoint × SmolVLA Object），~3h 得到真实 success rate 对比\n2. **P1**：在 bjb1-32546 部署 libero_goal 数据（从 bjb1-18228 rsync，~10分钟），然后也跑 precompute 作为冗余\n3. **P1**：OpenVLA-OFT baseline eval 在 bjb2-40593 cuda:0 上部署（需 adapt evaluate.py）\n4. **P1**：π0.5 server-client 模式实现（worker 在跑，可能受 rate limit 影响）",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001186"
+        },
+        {
+          "source_line": 1187,
+          "timestamp": "2026-05-22T06:40:18.534011+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3964
+          },
+          "id": "event-001187"
+        },
+        {
+          "source_line": 1188,
+          "timestamp": "2026-05-22T06:40:41.912489+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_deploy_precompute-goal-long-bjb2_20260522T055604",
+              "verbose": "True"
+            }
+          },
+          "id": "event-001188"
+        },
+        {
+          "source_line": 1189,
+          "timestamp": "2026-05-22T06:40:41.912983+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_code_pi05-server-mode_20260522T061935",
+              "verbose": "True"
+            }
+          },
+          "id": "event-001189"
+        },
+        {
+          "source_line": 1190,
+          "timestamp": "2026-05-22T06:40:41.913244+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_analyze_crm-loss-perdof_20260522T062411",
+              "verbose": "True"
+            }
+          },
+          "id": "event-001190"
+        },
+        {
+          "source_line": 1191,
+          "timestamp": "2026-05-22T06:40:42.013918+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_deploy_precompute-goal-long-bjb2_20260522T055604\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"deploy:precompute-goal-long-bjb2\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"started_at\\\": \\\"2026-05-22T05:56:04.959197+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [], \\\"last_text\\\": \\\"You've hit your limit · resets 5pm (UTC)\\\", \\\"turn_count\\\": 1}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-001191"
+        },
+        {
+          "source_line": 1192,
+          "timestamp": "2026-05-22T06:40:42.115612+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_pi05-server-mode_20260522T061935\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"code:pi05-server-mode\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"started_at\\\": \\\"2026-05-22T06:19:35.499651+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [], \\\"last_text\\\": \\\"You've hit your limit · resets 5pm (UTC)\\\", \\\"turn_count\\\": 1}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 202
+          },
+          "id": "event-001192"
+        },
+        {
+          "source_line": 1193,
+          "timestamp": "2026-05-22T06:40:42.266767+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analyze_crm-loss-perdof_20260522T062411\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"analyze:crm-loss-perdof\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"started_at\\\": \\\"2026-05-22T06:24:12.169303+00:00\\\", \\\"ended_at\\\": \\\"2026-05-22T06:28:18.941490+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"Registry 已更新。以下是分析报告：\\\\n\\\\n---\\\\n\\\\n## `crm-loss-perdof` 实验分析报告\\\\n\\\\n### 训练状态\\\\n- **状态**: 正常完成 (50/50 epochs, EXIT_CODE=0)\\\\n- **收敛**: val_loss 每个 epoch 持续下降，至最后一个 epoch 仍在改善\\\\n\\\\n### 关键指标\\\\n| 指标 | 值 |\\\\n|------|-----|\\\\n| Best val_loss | **0.000124** (epoch 50) |\\\\n| Final train_loss | 0.000141 |\\\\n| DOF 权重范围 | 0.0107 – 3.7318 (~350x) |\\\\n| 数据量 | 14,570 samples |\\\\n| 模型参数 | 337,438 |\\\\n| Checkpoint | `/root/autodl-tmp/checkpoints/crm_loss_variants/perdof_weighted/crm_best.pt` |\\\\n\\\\n### 四变体 val_loss 对比\\\\n| Loss Type | val_loss | 状态 |\\\\n|-----------|----------|------|\\\\n| **perdof_weighted** | **0.000124** | 完成 |\\\\n| mse (baseline) | 0.002080 | 完成 |\\\\n| combined | 0.005302 | 运行中 (epoch 48) |\\\\n| conformal_guided | 0.013343 | 完成 |\\\\n\\\\n### 重要注意\\\\n**loss 值不可直接跨变体比较。** perdof_weighted 使用逆方差加权（rotation/gripper 权重高达 3.73x，translation 低至 0.01x），这从根本上改变了 loss 的尺度。数值上的 16.8x 差异部分来自加权本身对 loss scale 的压缩。\\\\n\\\\n### 结论: **success**（训练层面）\\\\n训练正常收敛，per-DOF 加权机制按预期工作——高精度 DOF（旋转/夹爪）获得更多优化权重。最终是否优于 uniform MSE 需要 **downstream robot evaluation（success rate）** 做决定性比较。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 353
+          },
+          "id": "event-001193"
+        },
+        {
+          "source_line": 1194,
+          "timestamp": "2026-05-22T06:41:02.952543+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__cancel_worker",
+              "max_results": "1"
+            }
+          },
+          "id": "event-001194"
+        },
+        {
+          "source_line": 1195,
+          "timestamp": "2026-05-22T06:41:03.003108+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-001195"
+        },
+        {
+          "source_line": 1196,
+          "timestamp": "2026-05-22T06:41:06.615417+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cancel_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__cancel_worker",
+            "tool_args": {
+              "worker_id": "worker_deploy_precompute-goal-long-bjb2_20260522T055604"
+            }
+          },
+          "id": "event-001196"
+        },
+        {
+          "source_line": 1197,
+          "timestamp": "2026-05-22T06:41:06.615831+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cancel_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__cancel_worker",
+            "tool_args": {
+              "worker_id": "worker_code_pi05-server-mode_20260522T061935"
+            }
+          },
+          "id": "event-001197"
+        },
+        {
+          "source_line": 1198,
+          "timestamp": "2026-05-22T06:41:07.171473+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_deploy_precompute-goal-long-bjb2_20260522T055604\\\", \\\"status\\\": \\\"cancelled\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__cancel_worker",
+            "elapsed_ms": 556
+          },
+          "id": "event-001198"
+        },
+        {
+          "source_line": 1199,
+          "timestamp": "2026-05-22T06:41:07.677767+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_code_pi05-server-mode_20260522T061935\\\", \\\"status\\\": \\\"cancelled\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__cancel_worker",
+            "elapsed_ms": 1061
+          },
+          "id": "event-001199"
+        },
+        {
+          "source_line": 1200,
+          "timestamp": "2026-05-22T06:41:15.538886+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 worker 被 rate limit 卡住（turn_count=1）。取消它们 + 部署 CRM loss 变体 eval 利用空闲 GPU。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-001200"
+        }
+      ]
+    },
+    {
+      "number": 88,
+      "messages": [
+        {
+          "source_line": 1201,
+          "timestamp": "2026-05-22T06:41:16.306432+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [Director 指令] 立即 kill bjb2-28827 僵尸进程\n\nReviewer 发现 bjb2-28827 cuda:3/4/5 仍有 3 个旧 OOD eval 僵尸进程在跑（使用旧 CRM，obs_dim 不匹配，结果无意义）：\n\n```\nssh bjb2-28827 \"kill 171683 171958 172561\"\n```\n\nKill 后确认 cuda:3/4/5 释放，用于 Goal/Long precompute。你处理 obs_dim 修复和 bjb1 precompute 部署时顺手做掉。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "director"
+          },
+          "id": "event-001201"
+        },
+        {
+          "source_line": 1202,
+          "timestamp": "2026-05-22T06:41:25.052467+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb2-28827 \"kill 171683 171958 172561 2>/dev/null; sleep 2; ps aux | grep -E 'python.*evaluate' | grep -v grep | grep -v pi05\" 2>&1",
+              "description": "Kill zombie OOD eval processes on bjb2-28827",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001202"
+        },
+        {
+          "source_line": 1203,
+          "timestamp": "2026-05-22T06:41:28.017471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nWarning: Permanently added '[connect.bjb2.seetacloud.com]:28827' (ED25519) to the list of known hosts."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 2965
+          },
+          "id": "event-001203"
+        },
+        {
+          "source_line": 1204,
+          "timestamp": "2026-05-22T06:41:31.443040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb2-28827 \"nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader\" 2>&1",
+              "description": "Verify GPU release on bjb2-28827",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001204"
+        },
+        {
+          "source_line": 1205,
+          "timestamp": "2026-05-22T06:41:32.500122+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:28827' (ED25519) to the list of known hosts.\r\n0, 13112 MiB, 22 %\n1, 13112 MiB, 21 %\n2, 13112 MiB, 22 %\n3, 1573 MiB, 39 %\n4, 1573 MiB, 26 %\n5, 1573 MiB, 25 %"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1057
+          },
+          "id": "event-001205"
+        },
+        {
+          "source_line": 1206,
+          "timestamp": "2026-05-22T06:41:38.473153+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb2-28827 \"ps aux | grep python | grep -v grep | grep -v 'pi05_path'\" 2>&1",
+              "description": "Check non-pi05 python processes on bjb2-28827",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001206"
+        },
+        {
+          "source_line": 1207,
+          "timestamp": "2026-05-22T06:41:39.376717+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb2.seetacloud.com]:28827' (ED25519) to the list of known hosts.\r\nroot        960  0.0  0.0 4147492 59944 ?       Sl   May15   4:18 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\nroot        964  0.0  0.0 190528 88376 ?        S    May15   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\nroot       1082  0.0  0.0 17524960 4608 ?       Sl   May15   3:51 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_edewh761/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_edewh761/startup_error\nroot     194947  629  0.7 60893528 8403000 ?    Rl   14:36  32:55 /root/miniconda3/bin/python src/train_crm.py --precompute --benchmark goal --K 2 --model smolvla --smolvla_path /root/autodl-tmp/models/smolvla_libero/ --cache_dir /root/autodl-tmp/crm_cache_v5/ --max_demos_per_task 50 --precompute_batch_size 4 --save_every 500 --shard_id 0 --num_shards 3\nroot     194948  632  0.7 60903584 8414140 ?    Rl   14:36  33:05 /root/miniconda3/bin/python src/train_crm.py --precompute --benchmark goal --K 2 --model smolvla --smolvla_path /root/autodl-tmp/models/smolvla_libero/ --cache_dir /root/autodl-tmp/crm_cache_v5/ --max_demos_per_task 50 --precompute_batch_size 4 --save_every 500 --shard_id 1 --num_shards 3\nroot     194949  669  0.7 60880552 8392248 ?    Rl   14:36  35:02 /root/miniconda3/bin/python src/train_crm.py --precompute --benchmark goal --K 2 --model smolvla --smolvla_path /root/autodl-tmp/models/smolvla_libero/ --cache_dir /root/autodl-tmp/crm_cache_v5/ --max_demos_per_task 50 --precompute_batch_size 4 --save_every 500 --shard_id 2 --num_shards 3"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 903
+          },
+          "id": "event-001207"
+        },
+        {
+          "source_line": 1208,
+          "timestamp": "2026-05-22T06:42:17.863495+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 8/17 运行中 | Worker 0 (已清理 rate-limited workers) | 磁盘: bjb1-18228 400G可用\n\n## bjb2-28827 僵尸进程处理\n\nDirector 要求 kill 的 3 个 OOD eval 僵尸（PID 171683/171958/172561）**已在本 session 早些时候 kill 掉**。\n\ncuda:3-5 当前运行的是 **Goal precompute**（PID 194947/194948/194949），3 shard 并行，由前 session worker 部署：\n```\npython src/train_crm.py --precompute --benchmark goal --K 2 --shard_id 0/1/2 --num_shards 3\n```\n- 已跑 ~50min，GPU 利用率 25-39%\n- ⚠️ K=2（不是 K=10）——与 Object/Spatial 缓存（K=10）不匹配，无法直接用于统一 CRM 训练\n- bjb2-28827 也**缺 libero_10（Long 数据）**，无法做完整 4 套件\n\n**建议**：让它们跑完（K=2 缓存未来可能有用），主力路径走 bjb1-18228（K=10 Goal+Long 已在 cuda:0-1 运行中）。\n\n如果 Director 要 kill 改跑 K=10，请指示。",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001208"
+        },
+        {
+          "source_line": 1209,
+          "timestamp": "2026-05-22T06:42:22.031870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 4168
+          },
+          "id": "event-001209"
+        },
+        {
+          "source_line": 1210,
+          "timestamp": "2026-05-22T06:43:16.004107+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"tail -10 ~/runs/acr-vla-conformal-refinement/precompute-smolvla-goal-bjb1-18228.log 2>/dev/null; echo '=== LONG ==='; tail -10 ~/runs/acr-vla-conformal-refinement/precompute-smolvla-long-bjb1-18228.log 2>/dev/null\" 2>&1",
+              "description": "Check precompute progress on bjb1-18228",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001210"
+        },
+        {
+          "source_line": 1211,
+          "timestamp": "2026-05-22T06:43:16.807414+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\n[train_crm] args: {'benchmark': ['goal'], 'epochs': 50, 'batch_size': 32, 'lr': 0.001, 'seed': 42, 'output_dir': '/root/autodl-tmp/checkpoints/crm/', 'cache_dir': '/root/autodl-tmp/crm_cache_v5/', 'K': 10, 'obs_dim': 960, 'hidden_dim': 256, 'aug_noise_min': 0.02, 'aug_noise_max': 0.1, 'aug_ratio': 0.5, 'precompute': True, 'auto': False, 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'max_demos_per_task': 50, 'val_split': 0.1, 'log_every': 50, 'precompute_batch_size': 4, 'save_every': 500, 'shard_id': 0, 'num_shards': 1, 'input_mode': 'full', 'loss_type': 'mse', 'lambda_conf': 0.1, 'unified_obs_dim': None}\n[train_crm] device: cuda\n[precompute] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\n\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\rLoading weights:  58%|█████▊    | 284/489 [00:00<00:00, 2823.57it/s]\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3362.40it/s]\n=== LONG ===\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\n[train_crm] args: {'benchmark': ['long'], 'epochs': 50, 'batch_size': 32, 'lr': 0.001, 'seed': 42, 'output_dir': '/root/autodl-tmp/checkpoints/crm/', 'cache_dir': '/root/autodl-tmp/crm_cache_v5/', 'K': 10, 'obs_dim': 960, 'hidden_dim': 256, 'aug_noise_min': 0.02, 'aug_noise_max': 0.1, 'aug_ratio': 0.5, 'precompute': True, 'auto': False, 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'max_demos_per_task': 50, 'val_split': 0.1, 'log_every': 50, 'precompute_batch_size': 4, 'save_every': 500, 'shard_id': 0, 'num_shards': 1, 'input_mode': 'full', 'loss_type': 'mse', 'lambda_co\n…[truncated 406 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 803
+          },
+          "id": "event-001211"
+        },
+        {
+          "source_line": 1212,
+          "timestamp": "2026-05-22T06:43:25.089741+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"ps aux | grep 'train_crm.*precompute' | grep -v grep; echo '=== CACHE ==='; ls -la /root/autodl-tmp/crm_cache_v5/goal/ 2>/dev/null; echo '---'; ls -la /root/autodl-tmp/crm_cache_v5/long/ 2>/dev/null; echo '=== GPU ==='; nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader\" 2>&1",
+              "description": "Check precompute processes + cache files + GPU on bjb1-18228",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001212"
+        },
+        {
+          "source_line": 1213,
+          "timestamp": "2026-05-22T06:43:26.094564+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\nroot     855584  0.0  0.0   6088  3824 ?        Ss   14:37   0:00 tmux new-session -d -s precompute-smolvla-goal-bjb1-18228 rm -f /tmp/agent-ml-exit/precompute-smolvla-goal-bjb1-18228.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \"EXIT_CODE=$_EC\" >> ~/runs/acr-vla-conformal-refinement/precompute-smolvla-goal-bjb1-18228.log; printf \"%s|%s\\n\" \"$_EC\" \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\" > /tmp/agent-ml-exit/precompute-smolvla-goal-bjb1-18228.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=0 && timeout 21600 env bash -c 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python src/train_crm.py --precompute --benchmark goal --K 10 --cache_dir /root/autodl-tmp/crm_cache_v5/\"'; } > ~/runs/acr-vla-conformal-refinement/precompute-smolvla-goal-bjb1-18228.log 2>&1\nroot     855585  0.0  0.0   4496  3520 pts/0    Ss+  14:37   0:00 bash -c rm -f /tmp/agent-ml-exit/precompute-smolvla-goal-bjb1-18228.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \"EXIT_CODE=$_EC\" >> ~/runs/acr-vla-conformal-refinement/precompute-smolvla-goal-bjb1-18228.log; printf \"%s|%s\\n\" \"$_EC\" \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\" > /tmp/agent-ml-exit/precompute-smolvla-goal-bjb1-18228.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/acr-vla-conformal-refinement && export CUDA_VISIBLE_DEVICES=0 && timeout 21600 env bash -c 'bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && python src/train_crm.py --precompute --benchmark goal --K 10 --cache_dir /root/autodl-tmp/crm_cache_v5/\"'; } > ~/runs/acr-vla-conformal-refinement/precompute-smolvla-goal-bjb1-18228.log 2>&1\nroot     855589  0.0  0.0   2800   984 pts/0    S    14:37   0:00 \n…[truncated 3729 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1004
+          },
+          "id": "event-001213"
+        },
+        {
+          "source_line": 1214,
+          "timestamp": "2026-05-22T06:43:59.274733+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "scp autodl-4090x4:/root/autodl-tmp/checkpoints/crm_loss_variants/conformal_guided/crm_best.pt /tmp/crm_conformal.pt 2>&1 && scp autodl-4090x4:/root/autodl-tmp/checkpoints/crm_loss_variants/combined/crm_best.pt /tmp/crm_combined.pt 2>&1 && echo \"downloaded\"",
+              "description": "Download conformal+combined checkpoints from bjb1-18228",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-001214"
+        },
+        {
+          "source_line": 1215,
+          "timestamp": "2026-05-22T06:44:02.942967+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\nWarning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\ndownloaded"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 3668
+          },
+          "id": "event-001215"
+        },
+        {
+          "source_line": 1216,
+          "timestamp": "2026-05-22T06:44:07.459214+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb1-32546 \"mkdir -p /root/autodl-tmp/checkpoints/crm_loss_variants/conformal_guided/ /root/autodl-tmp/checkpoints/crm_loss_variants/combined/\" 2>&1 && scp /tmp/crm_conformal.pt bjb1-32546:/root/autodl-tmp/checkpoints/crm_loss_variants/conformal_guided/crm_best.pt 2>&1 && scp /tmp/crm_combined.pt bjb1-32546:/root/autodl-tmp/checkpoints/crm_loss_variants/combined/crm_best.pt 2>&1 && echo \"uploaded\"",
+              "description": "Upload checkpoints to bjb1-32546",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-001216"
+        },
+        {
+          "source_line": 1217,
+          "timestamp": "2026-05-22T06:44:11.423253+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:32546' (ED25519) to the list of known hosts.\r\nWarning: Permanently added '[connect.bjb1.seetacloud.com]:32546' (ED25519) to the list of known hosts.\r\nWarning: Permanently added '[connect.bjb1.seetacloud.com]:32546' (ED25519) to the list of known hosts.\r\nuploaded"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 3964
+          },
+          "id": "event-001217"
+        },
+        {
+          "source_line": 1218,
+          "timestamp": "2026-05-22T06:44:18.764293+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-loss-mse-object-seed42",
+              "field": "hypothesis",
+              "value": "MSE-trained CRM eval on SmolVLA Object for controlled loss variant comparison — baseline for perdof/conformal/combined",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001218"
+        },
+        {
+          "source_line": 1219,
+          "timestamp": "2026-05-22T06:44:20.674471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-loss-perdof-object-seed42",
+              "field": "hypothesis",
+              "value": "Per-DOF weighted CRM eval on SmolVLA Object — testing if prioritizing high-precision DOFs improves downstream success rate vs uniform MSE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001219"
+        },
+        {
+          "source_line": 1220,
+          "timestamp": "2026-05-22T06:44:21.628387+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-loss-mse-object-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:44:20.228Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:44:20.228Z\\\", \\\"hypothesis\\\": \\\"MSE-trained CRM eval on SmolVLA Object for controlled loss variant comparison — baseline for perdof/conformal/combined\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.4427}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2864
+          },
+          "id": "event-001220"
+        },
+        {
+          "source_line": 1221,
+          "timestamp": "2026-05-22T06:44:22.330959+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-loss-conformal-object-seed42",
+              "field": "hypothesis",
+              "value": "Conformal-guided CRM eval on SmolVLA Object — testing if encouraging correction proportional to nonconformity improves success rate",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001221"
+        },
+        {
+          "source_line": 1222,
+          "timestamp": "2026-05-22T06:44:23.083735+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-loss-combined-object-seed42",
+              "field": "hypothesis",
+              "value": "Combined (per-DOF + conformal) CRM eval on SmolVLA Object — testing if combining both loss improvements yields best success rate",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001222"
+        },
+        {
+          "source_line": 1223,
+          "timestamp": "2026-05-22T06:44:23.737794+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-loss-perdof-object-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:44:22.703Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:44:22.703Z\\\", \\\"hypothesis\\\": \\\"Per-DOF weighted CRM eval on SmolVLA Object — testing if prioritizing high-precision DOFs improves downstream success rate vs uniform MSE\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.461}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 3063
+          },
+          "id": "event-001223"
+        },
+        {
+          "source_line": 1224,
+          "timestamp": "2026-05-22T06:44:26.146070+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-loss-conformal-object-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:44:25.081Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:44:25.081Z\\\", \\\"hypothesis\\\": \\\"Conformal-guided CRM eval on SmolVLA Object — testing if encouraging correction proportional to nonconformity improves success rate\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.4369}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 3815
+          },
+          "id": "event-001224"
+        },
+        {
+          "source_line": 1225,
+          "timestamp": "2026-05-22T06:44:28.609995+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-loss-combined-object-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:44:27.563Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:44:27.564Z\\\", \\\"hypothesis\\\": \\\"Combined (per-DOF + conformal) CRM eval on SmolVLA Object — testing if combining both loss improvements yields best success rate\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.4388}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 5526
+          },
+          "id": "event-001225"
+        },
+        {
+          "source_line": 1226,
+          "timestamp": "2026-05-22T06:44:32.289024+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-loss-mse-object-seed42",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001226"
+        },
+        {
+          "source_line": 1227,
+          "timestamp": "2026-05-22T06:44:33.242312+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-loss-perdof-object-seed42",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001227"
+        },
+        {
+          "source_line": 1228,
+          "timestamp": "2026-05-22T06:44:33.694078+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-loss-conformal-object-seed42",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001228"
+        },
+        {
+          "source_line": 1229,
+          "timestamp": "2026-05-22T06:44:34.549667+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-loss-combined-object-seed42",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001229"
+        },
+        {
+          "source_line": 1230,
+          "timestamp": "2026-05-22T06:44:37.208143+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-loss-mse-object-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:44:20.228Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:44:33.787Z\\\", \\\"hypothesis\\\": \\\"MSE-trained CRM eval on SmolVLA Object for controlled loss variant comparison — baseline for perdof/conformal/combined\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.8841}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 4919
+          },
+          "id": "event-001230"
+        },
+        {
+          "source_line": 1231,
+          "timestamp": "2026-05-22T06:44:42.022478+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-loss-perdof-object-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:44:22.703Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:44:38.621Z\\\", \\\"hypothesis\\\": \\\"Per-DOF weighted CRM eval on SmolVLA Object — testing if prioritizing high-precision DOFs improves downstream success rate vs uniform MSE\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.8297}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 8780
+          },
+          "id": "event-001231"
+        },
+        {
+          "source_line": 1232,
+          "timestamp": "2026-05-22T06:44:46.888875+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-loss-conformal-object-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:44:25.081Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:44:43.380Z\\\", \\\"hypothesis\\\": \\\"Conformal-guided CRM eval on SmolVLA Object — testing if encouraging correction proportional to nonconformity improves success rate\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.8195}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 13194
+          },
+          "id": "event-001232"
+        },
+        {
+          "source_line": 1233,
+          "timestamp": "2026-05-22T06:44:51.712034+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-loss-combined-object-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:44:27.563Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:44:48.242Z\\\", \\\"hypothesis\\\": \\\"Combined (per-DOF + conformal) CRM eval on SmolVLA Object — testing if combining both loss improvements yields best success rate\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.8083}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 17162
+          },
+          "id": "event-001233"
+        },
+        {
+          "source_line": 1234,
+          "timestamp": "2026-05-22T06:44:55.271247+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-loss-mse-object-seed42",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001234"
+        },
+        {
+          "source_line": 1235,
+          "timestamp": "2026-05-22T06:44:56.269446+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-loss-perdof-object-seed42",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001235"
+        },
+        {
+          "source_line": 1236,
+          "timestamp": "2026-05-22T06:44:56.685409+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-loss-conformal-object-seed42",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001236"
+        },
+        {
+          "source_line": 1237,
+          "timestamp": "2026-05-22T06:44:57.538812+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-loss-combined-object-seed42",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001237"
+        },
+        {
+          "source_line": 1238,
+          "timestamp": "2026-05-22T06:45:00.980599+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-loss-mse-object-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:44:20.228Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:44:57.398Z\\\", \\\"hypothesis\\\": \\\"MSE-trained CRM eval on SmolVLA Object for controlled loss variant comparison — baseline for perdof/conformal/combined\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.6632}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 5709
+          },
+          "id": "event-001238"
+        },
+        {
+          "source_line": 1239,
+          "timestamp": "2026-05-22T06:45:05.946601+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-loss-perdof-object-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:44:22.703Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:45:02.474Z\\\", \\\"hypothesis\\\": \\\"Per-DOF weighted CRM eval on SmolVLA Object — testing if prioritizing high-precision DOFs improves downstream success rate vs uniform MSE\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.9535}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 9677
+          },
+          "id": "event-001239"
+        },
+        {
+          "source_line": 1240,
+          "timestamp": "2026-05-22T06:45:10.816869+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-loss-conformal-object-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:44:25.081Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:45:07.289Z\\\", \\\"hypothesis\\\": \\\"Conformal-guided CRM eval on SmolVLA Object — testing if encouraging correction proportional to nonconformity improves success rate\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.8533}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 14131
+          },
+          "id": "event-001240"
+        },
+        {
+          "source_line": 1241,
+          "timestamp": "2026-05-22T06:45:15.634687+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-loss-combined-object-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:44:27.563Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:45:12.154Z\\\", \\\"hypothesis\\\": \\\"Combined (per-DOF + conformal) CRM eval on SmolVLA Object — testing if combining both loss improvements yields best success rate\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.8063}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 18095
+          },
+          "id": "event-001241"
+        },
+        {
+          "source_line": 1242,
+          "timestamp": "2026-05-22T06:45:24.394142+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "gpu_ids": "['cuda:2']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && TORCHDYNAMO_DISABLE=1 python src/evaluate.py --model smolvla --mode acr_vla --crm_checkpoint /root/autodl-tmp/checkpoints/crm_loss_variants/mse/crm_best.pt --benchmark object --seed 42 --n_rollouts 20 --obs_dim 960\"",
+              "exp_id": "eval-loss-mse-object-seed42",
+              "project": "acr-vla-conformal-refinement",
+              "timeout_hours": "12"
+            }
+          },
+          "id": "event-001242"
+        },
+        {
+          "source_line": 1243,
+          "timestamp": "2026-05-22T06:45:26.753578+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "gpu_ids": "['cuda:3']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && TORCHDYNAMO_DISABLE=1 python src/evaluate.py --model smolvla --mode acr_vla --crm_checkpoint /root/autodl-tmp/checkpoints/crm_loss_variants/perdof_weighted/crm_best.pt --benchmark object --seed 42 --n_rollouts 20 --obs_dim 960\"",
+              "exp_id": "eval-loss-perdof-object-seed42",
+              "project": "acr-vla-conformal-refinement",
+              "timeout_hours": "12"
+            }
+          },
+          "id": "event-001243"
+        },
+        {
+          "source_line": 1244,
+          "timestamp": "2026-05-22T06:45:29.111916+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "gpu_ids": "['cuda:3']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && TORCHDYNAMO_DISABLE=1 python src/evaluate.py --model smolvla --mode acr_vla --crm_checkpoint /root/autodl-tmp/checkpoints/crm_loss_variants/conformal_guided/crm_best.pt --benchmark object --seed 42 --n_rollouts 20 --obs_dim 960\"",
+              "exp_id": "eval-loss-conformal-object-seed42",
+              "project": "acr-vla-conformal-refinement",
+              "timeout_hours": "12"
+            }
+          },
+          "id": "event-001244"
+        },
+        {
+          "source_line": 1245,
+          "timestamp": "2026-05-22T06:45:30.544748+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"857351\\\", \\\"log_file\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-loss-mse-object-seed42.log\\\", \\\"gpu_ids\\\": [\\\"cuda:2\\\"], \\\"server\\\": \\\"bjb1-18228\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"2\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"eval-loss-mse-object-seed42\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 6150
+          },
+          "id": "event-001245"
+        },
+        {
+          "source_line": 1246,
+          "timestamp": "2026-05-22T06:45:31.009765+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "gpu_ids": "['cuda:4']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && TORCHDYNAMO_DISABLE=1 python src/evaluate.py --model smolvla --mode acr_vla --crm_checkpoint /root/autodl-tmp/checkpoints/crm_loss_variants/combined/crm_best.pt --benchmark object --seed 42 --n_rollouts 20 --obs_dim 960\"",
+              "exp_id": "eval-loss-combined-object-seed42",
+              "project": "acr-vla-conformal-refinement",
+              "timeout_hours": "12"
+            }
+          },
+          "id": "event-001246"
+        },
+        {
+          "source_line": 1247,
+          "timestamp": "2026-05-22T06:45:34.678589+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"857635\\\", \\\"log_file\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-loss-perdof-object-seed42.log\\\", \\\"gpu_ids\\\": [\\\"cuda:3\\\"], \\\"server\\\": \\\"bjb1-18228\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"3\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"eval-loss-perdof-object-seed42\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.96}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 7925
+          },
+          "id": "event-001247"
+        },
+        {
+          "source_line": 1248,
+          "timestamp": "2026-05-22T06:45:39.544472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"265009\\\", \\\"log_file\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-loss-conformal-object-seed42.log\\\", \\\"gpu_ids\\\": [\\\"cuda:3\\\"], \\\"server\\\": \\\"bjb1-32546\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"3\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"eval-loss-conformal-object-seed42\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.81}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 10432
+          },
+          "id": "event-001248"
+        },
+        {
+          "source_line": 1249,
+          "timestamp": "2026-05-22T06:45:43.957457+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"265284\\\", \\\"log_file\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-loss-combined-object-seed42.log\\\", \\\"gpu_ids\\\": [\\\"cuda:4\\\"], \\\"server\\\": \\\"bjb1-32546\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"4\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"eval-loss-combined-object-seed42\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 12947
+          },
+          "id": "event-001249"
+        },
+        {
+          "source_line": 1250,
+          "timestamp": "2026-05-22T06:45:55.576384+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh autodl-4090x4 \"nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader\" 2>&1",
+              "description": "Verify all 4 GPUs active on bjb1-18228",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001250"
+        },
+        {
+          "source_line": 1251,
+          "timestamp": "2026-05-22T06:45:56.524402+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ssh bjb1-32546 \"nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader\" 2>&1",
+              "description": "Verify GPUs on bjb1-32546",
+              "timeout": "15000"
+            }
+          },
+          "id": "event-001251"
+        },
+        {
+          "source_line": 1252,
+          "timestamp": "2026-05-22T06:45:57.035494+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:18228' (ED25519) to the list of known hosts.\r\n0, 1867 MiB, 71 %\n1, 1867 MiB, 65 %\n2, 2257 MiB, 0 %\n3, 1301 MiB, 0 %"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1459
+          },
+          "id": "event-001252"
+        },
+        {
+          "source_line": 1253,
+          "timestamp": "2026-05-22T06:45:57.529434+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-loss-mse-object-seed42",
+              "field": "parent",
+              "value": "crm-loss-mse-baseline",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001253"
+        },
+        {
+          "source_line": 1254,
+          "timestamp": "2026-05-22T06:45:57.976062+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: Permanently added '[connect.bjb1.seetacloud.com]:32546' (ED25519) to the list of known hosts.\r\n0, 13196 MiB, 24 %\n1, 12729 MiB, 22 %\n2, 13196 MiB, 23 %\n3, 11115 MiB, 29 %\n4, 1574 MiB, 40 %\n5, 1574 MiB, 23 %"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Bash",
+            "elapsed_ms": 1451
+          },
+          "id": "event-001254"
+        },
+        {
+          "source_line": 1255,
+          "timestamp": "2026-05-22T06:45:58.438483+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-loss-perdof-object-seed42",
+              "field": "parent",
+              "value": "crm-loss-perdof",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001255"
+        },
+        {
+          "source_line": 1256,
+          "timestamp": "2026-05-22T06:45:59.364494+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-loss-conformal-object-seed42",
+              "field": "parent",
+              "value": "crm-loss-conformal",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001256"
+        },
+        {
+          "source_line": 1257,
+          "timestamp": "2026-05-22T06:46:00.127521+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-loss-combined-object-seed42",
+              "field": "parent",
+              "value": "crm-loss-combined",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-001257"
+        },
+        {
+          "source_line": 1258,
+          "timestamp": "2026-05-22T06:46:02.344500+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-loss-mse-object-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:44:20.228Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:46:00.394Z\\\", \\\"hypothesis\\\": \\\"MSE-trained CRM eval on SmolVLA Object for controlled loss variant comparison — baseline for perdof/conformal/combined\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && TORCHDYNAMO_DISABLE=1 python src/evaluate.py --model smolvla --mode acr_vla --crm_checkpoint /root/autodl-tmp/checkpoints/crm_loss_variants/mse/crm_best.pt --benchmark object --seed 42 --n_rollouts 20 --obs_dim 960\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"857351\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-loss-mse-object-seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T06:45:27.218Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"parent\\\": \\\"crm-loss-mse-baseline\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.6794}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 4815
+          },
+          "id": "event-001258"
+        },
+        {
+          "source_line": 1259,
+          "timestamp": "2026-05-22T06:46:06.917403+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-loss-perdof-object-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:44:22.703Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:46:05.023Z\\\", \\\"hypothesis\\\": \\\"Per-DOF weighted CRM eval on SmolVLA Object — testing if prioritizing high-precision DOFs improves downstream success rate vs uniform MSE\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && TORCHDYNAMO_DISABLE=1 python src/evaluate.py --model smolvla --mode acr_vla --crm_checkpoint /root/autodl-tmp/checkpoints/crm_loss_variants/perdof_weighted/crm_best.pt --benchmark object --seed 42 --n_rollouts 20 --obs_dim 960\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"857635\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-loss-perdof-object-seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T06:45:31.934Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"parent\\\": \\\"crm-loss-perdof\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.5637}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 8478
+          },
+          "id": "event-001259"
+        },
+        {
+          "source_line": 1260,
+          "timestamp": "2026-05-22T06:46:09.943533+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-loss-conformal-object-seed42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:44:25.081Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:46:08.847Z\\\", \\\"hypothesis\\\": \\\"Conformal-guided CRM eval on SmolVLA Object — testing if encouraging correction proportional to nonconformity improves success rate\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && TORCHDYNAMO_DISABLE=1 python src/evaluate.py --model smolvla --mode acr_vla --crm_checkpoint /root/autodl-tmp/checkpoints/crm_loss_variants/conformal_guided/crm_best.pt --benchmark object --seed 42 --n_rollouts 20 --obs_dim 960\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"265009\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-loss-conformal-object-seed42.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T06:45:37.067Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"parent\\\": \\\"crm-loss-conformal\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.0249}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 10579
+          },
+          "id": "event-001260"
+        }
+      ]
+    }
+  ]
+}

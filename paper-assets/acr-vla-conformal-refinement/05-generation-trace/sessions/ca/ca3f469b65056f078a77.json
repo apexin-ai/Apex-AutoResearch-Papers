@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca3f469b65056f078a77",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "investigate bjb1 32546 r4 goal files",
+  "task_key": "worker_investigate_bjb1-32546-r4-goal-files_20260523T102706",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_investigate_bjb1-32546-r4-goal-files_20260523T102706_result.json",
+    "occurrence": 1,
+    "bytes": 1972,
+    "sha256": "c93a4d98bb937bcc7bfbd008b8f437f73fa02033ca9d5324c255c9506d6edf51"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。以下是结论：\n\n---\n\n## 文件配置详情\n\n### `eval_goal_vla_only_seed43_r4.json`\n| 字段 | 值 |\n|------|-----|\n| mode | `vla_only` |\n| baseline_mode | `single` |\n| benchmark | `goal` |\n| n_rollouts | **20** |\n| overall_success_rate | **0.98 (98%)** |\n| 创建时间 | May 23 00:15 |\n\n### `eval_goal_vla_only_seed44_r4.json`\n| 字段 | 值 |\n|------|-----|\n| mode | `vla_only` |\n| baseline_mode | `single` |\n| benchmark | `goal` |\n| n_rollouts | **20** |\n| overall_success_rate | **0.975 (97.5%)** |\n| 创建时间 | May 23 00:16 |\n\n两个文件均**没有** `model`、`seed`、`K` 字段。`_r4` 后缀不是 evaluate.py 自动生成的（代码中无此逻辑），是通过 `--output_file` 手动指定的路径。\n\n---\n\n## 结论：这是 Pi0.5 的结果，被错误命名\n\n证据链：\n\n1. **SR 对比**：同服务器上 SmolVLA goal vla_only 的结果（`eval_goal_vla_only_seed43.json`，n_rollouts=10）SR = **69%**；而 Pi0.5 goal vla_only（`eval_goal_vla_only_pi05_seed42.json`，n_rollouts=20）SR = **98%**。r4 文件的 97.5-98% SR 与 Pi0.5 完全吻合，与 SmolVLA 差距巨大。\n\n2. **文件命名逻辑**：evaluate.py 第 826 行 `model_tag = f\"_{args.model}\" if args.model != \"smolvla\" else \"\"`。Pi0.5 应产生 `_pi05` 后缀（如 `eval_goal_vla_only_pi05_seed42.json`），但 r4 文件缺少此标记。原因：使用了 `--output_file` 手动指定路径（第 794-798 行），绕过了自动命名。\n\n3. **per_task 对比**：r4 文件中 8/10 任务 SR=100%，与 Pi0.5 seed42 的模式一致（也是多数 100%）。SmolVLA 的 per_task 最高才 90-100%，多数在 40-90%。\n\n4. **r4 文件唯一性**：整个 logs 目录只有这两个 r4 文件，无其他 r4 数据。\n\n**判定：这两个文件是 Pi0.5 模型 + n_rollouts=20 + goal benchmark + vla_only mode 的结果，不是 SmolVLA baseline。不应用于 SmolVLA baseline 统计。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-bjb1-32546-r4-goal-files.md"
+}

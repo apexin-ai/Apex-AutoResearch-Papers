@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8cb325170e59871f01d7",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops scan bjb2 40593",
+  "task_key": "worker_ops_scan-bjb2-40593_20260518T195507",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_scan-bjb2-40593_20260518T195507_result.json",
+    "occurrence": 1,
+    "bytes": 1145,
+    "sha256": "69edc44751ecb8ad19a84a7f1df80a05b62f6325b60520d8ea18402ece67d263"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## bjb2-40593 服务器状态\n\n### GPU 状态\n| GPU | 利用率 | 显存占用 | 总显存 |\n|-----|--------|----------|--------|\n| 0 | 13% | 4232 MiB | 24564 MiB |\n\nGPU 处于**忙碌状态**（有进程占用，利用率低是因为 evaluate.py 在 rollout 间歇）。\n\n### 正在运行的实验\n| tmux session | 实验 | 状态 |\n|---|---|---|\n| `eval-scalar-seed45-r2` | `crm_scalar`, seed=45, K=10, norm=0.1 | 运行中，正在评估 `salad_dressing` 任务（最后几个 task） |\n\n最近输出显示 alphabet_soup 0/10, cream_cheese 0/10, salad_dressing 1/10，看起来接近完成。\n\n### 已完成的实验\n| 文件 | Mode | SR |\n|---|---|---|\n| `eval_object_random_selection_seed42` | random_selection | **13%** |\n| `eval_object_vla_only_seed44` | vla_only | **10%** |\n| `eval_object_obs_only` | crm_obs_only | **19%** |\n| `eval_mag_obsonly_norm003` | crm_obs_only | **34%** |\n\n### 空闲 GPU slot\n**无**。当前 GPU 被 scalar-seed45-r2 占用。该实验看起来接近尾声（已跑到后面的 task），预计不久后释放。obs_only-norm02-seed48-r2 未在此服务器上运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-scan-bjb2-40593.md"
+}

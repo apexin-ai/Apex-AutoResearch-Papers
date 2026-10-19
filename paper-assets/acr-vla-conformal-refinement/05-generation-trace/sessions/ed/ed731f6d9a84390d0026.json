@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed731f6d9a84390d0026",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose eval crm long seed45",
+  "task_key": "worker_diagnose_eval-crm-long-seed45_20260519T220714",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval-crm-long-seed45_20260519T220714_result.json",
+    "occurrence": 1,
+    "bytes": 495,
+    "sha256": "75d68409cbe16c71dec26c086ae28440e63aafc4eafa4fede9eb2adb85198ef1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。报告已写到 `artifacts/diagnose_crm_long_seed45.md`。\n\n**结论：实验成功完成，是监控误报。**\n\n原因：实验未通过标准 job 提交系统启动，日志和哨兵文件不在 `~/runs/` 和 `/tmp/agent-ml-exit/` 标准路径下，cron 找不到就误判为 dead。实际上输出 JSON 完整存在（`logs/eval_long_obs_only_norm02_seed45.json`），overall success rate 18.0%（18/100），日志正常结束无报错。不需要重试。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-crm-long-seed45.md"
+}

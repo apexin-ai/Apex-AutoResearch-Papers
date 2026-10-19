@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8cd538cd9a47cbbfa730",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "fix pi05 wrapper image flip verify",
+  "task_key": "worker_fix_pi05-wrapper-image-flip-verify_20260521T073006",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_pi05-wrapper-image-flip-verify_20260521T073006_result.json",
+    "occurrence": 1,
+    "bytes": 1149,
+    "sha256": "0d70b741b359c223b72cc652ea1ddbd019865dd86e27e3cbbbe4c97afc84f422"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**100% SR (3/3)！** 修复验证成功！\n\n结果：\n- Task: `pick_up_the_alphabet_soup_and_place_it_in_the_basket`\n- Success rate: **100.0% (3/3)**\n- Overall: **100.0% (3/3)**\n\n## 总结\n\n**修复状态 — 全部到位：**\n1. **Image 180° flip** (`pi05_wrapper.py:154`): `torch.flip(img, dims=[2, 3])` 在 `_preprocess_image` 中，resize 之前执行，与官方 `LiberoProcessorStep` 一致\n2. **Vision tower key remap** (`pi05_wrapper.py:102-123`): `vision_tower.vision_model.` → `vision_tower.` 重映射，修复了 437 个 keys\n3. **诊断日志** — 我补充了 missing_keys/unexpected_keys 的打印\n\n**改动：**\n- 仅在 `_fix_vision_tower_keys` 中追加了 4 行诊断日志打印\n\n**Quick verify 结果：**\n- 1 task × 3 episodes = **3/3 成功 (100% SR)**\n- 之前 5 轮修复前全是 0% SR\n- 与官方 lerobot-eval 的 100% SR 一致\n\n**修复成功，准备全量 baseline eval。** 注意启动 eval 时必须：\n- 设 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`（否则 tokenizer 加载会卡住）\n- 确保无其他大内存进程（cgroup 限制 60GB，PI05 加载峰值 ~30GB）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-pi05-wrapper-image-flip-verify.md"
+}

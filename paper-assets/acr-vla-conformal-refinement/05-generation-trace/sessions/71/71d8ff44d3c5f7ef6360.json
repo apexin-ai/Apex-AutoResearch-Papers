@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71d8ff44d3c5f7ef6360",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "infra code sync check",
+  "task_key": "worker_infra_code-sync-check_20260514T031545",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_code-sync-check_20260514T031545_result.json",
+    "occurrence": 1,
+    "bytes": 1436,
+    "sha256": "25c4122d761c0b55fb2586f3908b3b11651256989737c437ad95e2f7bb710a70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 代码同步报告\n\n**两台服务器均无 git 仓库**（`.git` 不存在），无法对比 commit。\n\n### 文件 MD5 对比\n\n| 文件 | bjb1-18228 | bjb2-40593 | 状态 |\n|------|-----------|-----------|------|\n| `src/__init__.py` | `5d989330...` | `5d989330...` | 一致 |\n| `src/cgs.py` | `96d4e530...` | `96d4e530...` | 一致 |\n| `src/aci.py` | `7bfe3b8f...` | `7bfe3b8f...` | 一致 |\n| **`src/crm.py`** | `a76e37e6...` | `374c74aa...` | **不一致** |\n| `src/utils.py` | `440fb67d...` | `440fb67d...` | 一致 |\n| `src/smolvla_wrapper.py` | `2e0b7c45...` | `2e0b7c45...` | 一致 |\n| **`src/train_crm.py`** | `fa207317...` | `f081b61a...` | **不一致** |\n| **`src/evaluate.py`** | `5da05f00...` | `e9990231...` | **不一致** |\n| `src/reconvla_baseline.py` | `391cdf15...` | `391cdf15...` | 一致 |\n| `mvp/run_mvp.py` | `2b227cf8...` | `2b227cf8...` | 一致 |\n| `scripts/verify_pipeline.py` | `4aa9adef...` | `4aa9adef...` | 一致 |\n| `tests/test_aci_sign.py` | `7f7cdb28...` | `7f7cdb28...` | 一致 |\n\n### 结构差异\n- bjb1 独有：`run_eval_gpu.py`、`src/sanity_check_reset.py`\n- bjb2 独有：`artifacts/` 目录、`mvp/mvp_results.log`\n\n### 结论\n\n**代码不同步 ✗** — 3 个核心文件不一致：`crm.py`、`train_crm.py`、`evaluate.py`。需要确定哪台是最新版本并同步到另一台。建议用 `diff` 查看具体差异后决定同步方向。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-code-sync-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ab15638f4dd03ab62fa",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis pi05 spatial batch",
+  "task_key": "worker_analysis_pi05-spatial-batch_20260526T134314",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_pi05-spatial-batch_20260526T134314_result.json",
+    "occurrence": 1,
+    "bytes": 1105,
+    "sha256": "af1c486c65a35bb88247ea25a86fd4f8cddec34de1a2186741c0c313e9133d50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 6 experiments completed successfully. Here are the results:\n\n## π0.5 Spatial Results (bjb2-28827)\n\n| exp_id | mode | seed | SR% | trigger_rate | n_rollouts | n_tasks |\n|--------|------|------|-----|-------------|------------|---------|\n| pi05-crm-k2-spatial-s42-bjb2-r2 | CRM | 42 | 96.5% (193/200) | N/A | 20 | 10 |\n| pi05-crm-k2-spatial-s43-bjb2-r2 | CRM | 43 | 97.0% (194/200) | N/A | 20 | 10 |\n| pi05-crm-k2-spatial-s44-bjb2-r2 | CRM | 44 | 97.0% (194/200) | N/A | 20 | 10 |\n| pi05-adaptive-spatial-s42-bjb2-r2 | Adaptive | 42 | 96.5% (193/200) | 4.8% | 20 | 10 |\n| pi05-adaptive-spatial-s43-bjb2-r2 | Adaptive | 43 | 98.0% (196/200) | 4.4% | 20 | 10 |\n| pi05-adaptive-spatial-s44-bjb2-r2 | Adaptive | 44 | 97.0% (194/200) | 3.9% | 20 | 10 |\n\n**CRM (always-on) mean ± std: 96.83 ± 0.29%**\n**Adaptive (τ=0.25) mean ± std: 97.17 ± 0.76%**\n**Adaptive mean trigger_rate: 4.37%**\n\nAdaptive achieves comparable SR (97.17% vs 96.83%) while only triggering CRM on ~4.4% of steps. The hardest task across both modes is `on_the_ramekin` (80-95% depending on seed/mode)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-pi05-spatial-batch.md"
+}

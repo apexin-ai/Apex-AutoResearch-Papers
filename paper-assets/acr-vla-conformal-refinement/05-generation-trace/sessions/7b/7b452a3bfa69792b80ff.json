@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "7b452a3bfa69792b80ff",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "infra 4090x4 sync precompute v2",
+  "task_key": "worker_infra_4090x4-sync-precompute-v2_20260513T091703",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_4090x4-sync-precompute-v2_20260513T091703.log",
+    "occurrence": 1,
+    "bytes": 727202,
+    "sha256": "f2be5c7a653333acfaac27b3666094d052d67fc370f7a0fbdb3e8c73e73f0143"
+  },
+  "statistics": {
+    "messages": 303,
+    "user_turns": 0,
+    "tool_calls": 109,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 81,
+      "tool_call": 109,
+      "tool_result": 109,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 303,
+      "chunks": [
+        {
+          "path": "7b452a3bfa69792b80ff-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7b452a3bfa69792b80ff-part-0002.json",
+          "message_count": 123
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-4090x4-sync-precompute-v2.md"
+}

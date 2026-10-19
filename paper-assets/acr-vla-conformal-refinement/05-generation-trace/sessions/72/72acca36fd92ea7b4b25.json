@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72acca36fd92ea7b4b25",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh cluster scan session init",
+  "task_key": "worker_ssh_cluster-scan-session-init_20260520T033213",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_cluster-scan-session-init_20260520T033213_result.json",
+    "occurrence": 1,
+    "bytes": 4852,
+    "sha256": "22d269477673b5570636da58172dfdbb84e67de59af8c80b6269f8f8622b50e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now compiling the full cluster report.\n\n---\n\n## 集群状态总览 (2026-05-20)\n\n---\n\n## bjb2-28827 (6×4090) — 全满\n\n| GPU | VRAM | Util | PID | 实验 |\n|-----|------|------|-----|------|\n| 0 | 4190/24564 | 29% | 129425 | `crm_obs_only --benchmark spatial --seed 49 --K 10 --norm 0.2` |\n| 1 | 4662/24564 | 16% | 129700 | `vla_only --benchmark long --seed 49` |\n| 2 | 5315/24564 | 11% | 154335 | `vla_only --benchmark long --seed 51` |\n| 3 | 4253/24564 | 28% | 145404 | `crm_obs_only --benchmark goal --seed 48 --K 10 --norm 0.2` |\n| 4 | 4662/24564 | 18% | 129973 | `vla_only --benchmark long --seed 50` |\n| 5 | 8566/24564 | 99% | 137179 | `crm_obs_only --benchmark goal --seed 47 --K 10 --norm 0.2` |\n| 5 | ↑ 共享 | ↑ | 148827 | **calibrate_crm_signal.py** |\n\n### CRM Calibration (bjb2-28827): 运行中\n- 进度: Task 3/10, ep 3/10 (23/100 episodes done)\n- 已运行 ~32 min, 速率 ~83s/ep\n- **预计还需 ~1.8h** 完成\n- 1 次 OK (cream_cheese ep4, 193 steps), 其余全 FAIL\n- 输出 JSON: **未生成** (crm_magnitude_calibration.json 不存在)\n\n### 最近完成的 JSON (bjb2-28827, 24h):\n\n| 文件 | overall_success_rate |\n|------|---------------------|\n| eval_adaptive_k_p75_seed42.json | **0.12** |\n| eval_adaptive_k_p75_seed43.json | **0.13** |\n| eval_adaptive_k_p90_seed43.json | **0.14** |\n| eval_adaptive_k_p90_seed44.json | **0.14** |\n| eval_adaptive_k_p50_seed42.json | **0.16** |\n| eval_adaptive_k_p25_seed43.json | **0.13** |\n| eval_crm_goal_seed46.json | **0.72** |\n| eval_crm_goal_seed44_r2.json | **0.64** |\n| eval_crm_goal_seed45_r2.json | **0.65** |\n| eval_crm_long_seed47.json | **0.17** |\n| eval_long_obs_only_norm02_seed42.json | **0.17** |\n| + 25 more eval/calibration JSONs | |\n\n---\n\n## bjb1-18228 (4×4090) — 3/4 occupied, GPU 1 空闲\n\n| GPU | VRAM | Util | PID | 实验 |\n|-----|------|------|-----|------|\n| 0 | 5221/24564 | 18% | 239026 | `adaptive_k --threshold 0.054959 --k_full 10 --benchmark object --seed 44` (p25) |\n| 1 | 1/24564 | **0%** | — | **空闲** |\n| 2 | 5248/24564 | 29% | 235421 | `crm_obs_only --benchmark spatial --seed 51 --K 10 --norm 0.2` |\n| 3 | 5606/24564 | 20% | 235691 | `vla_only --benchmark long --seed 52` |\n\n### 最近完成的 JSON (bjb1-18228, 24h):\n\n| 文件 | overall_success_rate |\n|------|---------------------|\n| eval_adaptive_k_p50_seed43.json | **0.16** |\n| + 22 more eval JSONs | |\n\n---\n\n## bjb1-32546 (6×4090) — 全满\n\n| GPU | VRAM | Util | PID | 实验 |\n|-----|------|------|-----|------|\n| 0 | 3660/24564 | 27% | 199984 | `crm_obs_only --benchmark spatial --seed 50 --K 10 --norm 0.2` |\n| 1 | 5149/24564 | 19% | 216401 | `vla_only --benchmark spatial --seed 51` |\n| 2 | 3771/24564 | 20% | 200256 | `vla_only --benchmark object --seed 51` |\n| 3 | 5707/24564 | 37% | 219383 | `crm_obs_only --benchmark long --seed 50 --K 10 --norm 0.2` |\n| 4 | 4400/24564 | 37% | 200532 | `crm_obs_only --benchmark long --seed 48 --K 10 --norm 0.2` |\n| 5 | 4399/24564 | 28% | 201124 | `crm_obs_only --benchmark long --seed 49 --K 10 --norm 0.2` |\n\n### 最近完成的 JSON (bjb1-32546, 24h):\n\n| 文件 | overall_success_rate |\n|------|---------------------|\n| eval_adaptive_k_p75_seed44.json | **0.16** |\n| eval_adaptive_k_p90_seed42.json | **0.12** |\n| eval_adaptive_k_p50_seed44.json | **0.14** |\n| eval_adaptive_k_p25_seed42.json | **0.15** |\n| + 38 more eval JSONs | |\n\n---\n\n## bjb2-40593 (1×4090) — GPU 共享两进程\n\n| GPU | VRAM | Util | PID | 实验 |\n|-----|------|------|-----|------|\n| 0 | 9057/24564 | 79% | 647880 | `adaptive_k --threshold 0.054959 --k_full 10 --benchmark object --seed 44` (p25) |\n| 0 | ↑ 共享 | ↑ | 660279 | **calibrate_crm_signal.py** (SCREEN session) |\n\n### CRM Calibration (bjb2-40593): 运行中\n- 进度: Task 1/10, ep 8/10 (8/100 episodes done)\n- 已运行 ~17 min, 速率 ~125s/ep (共享 GPU 较慢)\n- **预计还需 ~3h** 完成\n- 输出 JSON: **未生成**\n\n### 最近完成的 JSON (bjb2-40593, 24h):\n- eval_object_scalar_seed45_r2.json, eval_spatial_obs_only_norm02_seed44.json, eval_object_vla_only_seed48.json\n\n---\n\n## 关键发现\n\n1. **CRM Calibration 在两台机器上并行运行** — bjb2-28827 (cuda:5, 独立进程但与 goal-seed47 共享) 和 bjb2-40593 (cuda:0, 与 adaptive_k 共享)。两处均未生成最终 JSON，都还在早期阶段。\n\n2. **bjb1-18228 GPU 1 空闲** — 可以调度新任务。\n\n3. **adaptive_k 全系列 (object benchmark) 结果**: p25/p50/p75/p90 全在 0.12–0.16 区间，相互无显著差异。\n\n4. **CRM goal benchmark 表现优秀**: seed44=0.64, seed45=0.65, seed46=0.72。\n\n5. **CRM long benchmark 表现较差**: seed47=0.17, long_obs_only_norm02 seed42=0.17。\n\n6. **集群总计**: 17 GPU 中 16 个在跑实验，全力运转。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cluster-scan-session-init.md"
+}

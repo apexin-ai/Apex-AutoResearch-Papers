@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8e12b80655c8f079853",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "infra check bjb1 18228 gpus",
+  "task_key": "worker_infra_check-bjb1-18228-gpus_20260516T045312",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_check-bjb1-18228-gpus_20260516T045312_result.json",
+    "occurrence": 1,
+    "bytes": 2121,
+    "sha256": "97e8ef023c5f135a31f421f5c6398e9d73307c9e7c56407e23b0191af236c240"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果如下：\n\n## GPU 状态总览\n\n| GPU | 利用率 | 显存占用 | 状态 |\n|-----|--------|----------|------|\n| cuda:0 | 19% | 2410/24564 MiB | **占用** |\n| cuda:1 | 0% | 1/24564 MiB | **空闲** |\n| cuda:2 | 79% | 9467/24564 MiB | **占用** |\n| cuda:3 | 99% | 9395/24564 MiB | **占用** |\n\n## 各 GPU 进程详情\n\n### cuda:0 — PID 390936\n```\npython -u src/evaluate.py --mode crm_perdof --benchmark object --n_rollouts 10 --seed 42 --K 10\n  --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\n  --output_file logs/eval_object_perdof_default_norm_r2.json\n```\n即 **eval-acr-object-v4-default-r2**，正常运行中。\n\n### cuda:1 — 空闲\n无进程。\n\n### cuda:2 — 两个进程共享\n| PID | 任务 | 显存 |\n|-----|------|------|\n| **428411** | eval-obs-only-object-norm02-seed44-**r2** | 4717 MiB |\n| **431194** | eval-obs-only-object-norm02-seed44-**r3** | 4717 MiB |\n\n两个进程的完整命令相同：\n```\n--mode crm_obs_only --benchmark object --n_rollouts 10 --seed 44 --K 10\n  --crm_checkpoint .../obs_only/crm_best.pt --max_correction_norm 0.2\n  --output_file logs/eval_object_obs_only_norm02_seed44.json\n```\n\n### cuda:3 — 两个进程共享\n| PID | 任务 | 显存 |\n|-----|------|------|\n| **428122** | eval-argmin-object-seed44-**r2** | 4681 MiB |\n| **430990** | eval-argmin-object-seed44-**r3** | 4681 MiB |\n\n两个进程的完整命令相同：\n```\n--mode reconvla --benchmark object --n_rollouts 10 --seed 44 --K 10\n  --output_file logs/eval_object_reconvla_seed44.json\n```\n\n## 关键发现\n\n1. **cuda:1 空闲**，确认可用。\n2. **r2 的 PID 428117 和 428406 仍然存活**（与 registry 的 killed 状态不符）。它们的 python 子进程 428122 和 428411 在活跃运行。\n3. **r3 的进程也在运行**（PID 430990 和 431194），与 registry 显示 killed 不符。\n4. **cuda:2 和 cuda:3 各有两个重复实验在跑**（r2 和 r3 写同一个 output_file），会互相覆盖结果。这是个问题——两组完全相同参数的实验写同一个输出文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-bjb1-18228-gpus.md"
+}

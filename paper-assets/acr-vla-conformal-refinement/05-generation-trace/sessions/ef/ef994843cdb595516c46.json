@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef994843cdb595516c46",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh verify 4 new experiments",
+  "task_key": "worker_ssh_verify-4-new-experiments_20260517T065156",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_verify-4-new-experiments_20260517T065156_result.json",
+    "occurrence": 1,
+    "bytes": 940,
+    "sha256": "74e48bc3b6f271f975eadc81a76ed8b42b8a8ed2cbec250ca2a0e9fc32b46f37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 检查结果汇总\n\n| 实验 | 服务器 | tmux | 日志状态 | Rollout |\n|------|--------|------|----------|---------|\n| obs-only seed46 | bjb1-18228 | ✅ (tmux ls 可见) | CRM loaded, 10 tasks loaded | ❌ 未开始 |\n| obs-only seed47 | bjb1-18228 | ⚠️ has-session 报 MISSING，但日志正常 | CRM loaded, 10 tasks loaded | ❌ 未开始 |\n| perdof seed46 | bjb1-32546 | ✅ OK | VLM + CRM loaded, 10 tasks loaded | ❌ 未开始 |\n| perdof seed47 | bjb2-28827 | ⚠️ session 名可能不同 | VLM + CRM loaded, 10 tasks loaded | ❌ 未开始 |\n\n**状态**: 4 个实验均已成功加载模型和环境，无报错。但 90 秒内均未产生第一条 rollout 输出——可能 VLA 模型初始化 + 环境 reset 耗时较长。bjb1-32546 和 bjb2-28827 的日志显示完整的 SmolVLM2 权重加载过程，说明进程仍在正常推进。\n\n建议再等 2-3 分钟后复查 rollout 进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-4-new-experiments.md"
+}

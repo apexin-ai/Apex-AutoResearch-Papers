@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80c8d75543bbb91753cc",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis eval vla only object seed44 r2",
+  "task_key": "worker_analysis_eval-vla-only-object-seed44-r2_20260516T050106",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval-vla-only-object-seed44-r2_20260516T050106_result.json",
+    "occurrence": 1,
+    "bytes": 774,
+    "sha256": "ef064a9319265563c7bbc82dc240261c78e5ec2a2fd4d0f0435be1489bdda7a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**总体 SR: 10.0% (10/100)**\n\n日志正常结束，最终 `EXIT_CODE=0`，无 error/traceback。\n\n各 task SR：\n\n| Task | SR |\n|---|---|\n| pick_up_the_alphabet_soup | 0% (0/10) |\n| pick_up_the_cream_cheese | 10% (1/10) |\n| pick_up_the_salad_dressing | 20% (2/10) |\n| pick_up_the_bbq_sauce | 20% (2/10) |\n| pick_up_the_ketchup | 0% (0/10) |\n| pick_up_the_tomato_sauce | 0% (0/10) |\n| pick_up_the_butter | 0% (0/10) |\n| pick_up_the_milk | 10% (1/10) |\n| pick_up_the_chocolate_pudding | 20% (2/10) |\n| pick_up_the_orange_juice | 20% (2/10) |\n\n三个 seed 汇总：\n\n| Seed | SR |\n|---|---|\n| 42 | 12% |\n| 43 | 12% |\n| 44 | 10% |\n| **Mean ± Std** | **11.3% ± 0.9%** |\n\n符合预期范围（10-15%）。日志中未见 W&B run ID。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-vla-only-object-seed44-r2.md"
+}

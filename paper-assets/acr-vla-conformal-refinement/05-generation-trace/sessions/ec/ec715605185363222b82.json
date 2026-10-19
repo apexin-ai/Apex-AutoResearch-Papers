@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec715605185363222b82",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "monitor precompute v5 status and train",
+  "task_key": "worker_monitor_precompute-v5-status-and-train_20260514T092051",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_monitor_precompute-v5-status-and-train_20260514T092051_result.json",
+    "occurrence": 1,
+    "bytes": 1956,
+    "sha256": "f488f639008b6142b30ec366ae9def47471c8a6f7ebcb8fa9b9e4e3fcc094bb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### 1. Precompute-v5: 未运行 / 失败\n\n- 3 个 shard 进程 (PID 180251/180400/180480) 全部已死\n- `/root/autodl-tmp/crm_cache_v5/` 目录**不存在**\n- precompute-v5-shard{0,1,2}.log 日志文件**不存在**\n- 现有 `/root/autodl-tmp/crm_cache/` 仅包含 spatial shard0 的 2,402 samples（partial 文件），object 为空目录\n- **结论：precompute-v5 从未成功启动，或启动后立即失败且未产生任何输出**\n\n### 2. Cache 验证: N/A\n\nprecompute 未完成，无法验证。\n\n### 3. CRM 训练: BLOCKED\n\n- 无可用 cache，无法启动训练\n- 额外问题：**bjb2 只有 1 块 RTX 4090 D**，无法做 3 路并行训练（任务描述中的 cuda:0/1/3 不适用于此机器）\n- bjb1 有 4x RTX 4090（cuda:0/1/3 空闲），reconvla 占用 cuda:2\n\n### 4. reconvla + vla-mean 状态\n\n**reconvla (bjb1, PID 118108)**: RUNNING，已运行 9h 38m\n- 模式：reconvla, benchmark: spatial, 10 rollouts/task\n- 进度：**8/10 tasks 完成**，task 9 进行中 (rollout 5/10)，~85%\n- 已完成 task 成绩率：60%, 100%, 0%, 30%, 10%, 10%, 90%, 0% → **均值 37.5%**\n- 注：`/root/runs/` 下有一份更早的 v3 日志显示 EXIT_CODE=1（crashed with `ValueError: executing action in terminated episode`），但当前进程写入 `/root/autodl-tmp/eval_results/` 的日志正常推进中\n\n**vla-mean (bjb2, PID 143106)**: RUNNING，已运行 6h 12m\n- 模式：vla_only (baseline_mode=mean), benchmark: spatial\n- 进度：**3/10 tasks 完成**，task 4 进行中 (rollout 5/10)，~35%\n- 已完成 task 成绩率：70%, 100%, 0% → **均值 56.7%**\n\n### 需要决策\n\n1. Precompute-v5 需要重新启动，但需要先确认：用 bjb1（有 3 块空闲 GPU）还是 bjb2（只有 1 块 GPU 且被 vla-mean 占用）？\n2. 训练也需要在有多 GPU 的机器上执行——bjb1 等 reconvla 完成后可以释放 cuda:2，届时 4 块 GPU 全可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-precompute-v5-status-and-train.md"
+}

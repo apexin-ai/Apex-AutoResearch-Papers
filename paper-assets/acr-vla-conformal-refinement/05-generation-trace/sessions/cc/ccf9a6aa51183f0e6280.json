@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "ccf9a6aa51183f0e6280",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "ssh full cluster scan and harvest",
+  "task_key": "worker_ssh_full-cluster-scan-and-harvest_20260520T054720",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_full-cluster-scan-and-harvest_20260520T054720.log",
+    "occurrence": 1,
+    "bytes": 737784,
+    "sha256": "2bf67eb908a3e00cbe8a6edf4d2de8ea83a48a1635980190667f6951438538ac"
+  },
+  "statistics": {
+    "messages": 241,
+    "user_turns": 0,
+    "tool_calls": 101,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 35,
+      "tool_call": 101,
+      "tool_result": 101,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 241,
+      "chunks": [
+        {
+          "path": "ccf9a6aa51183f0e6280-part-0001.json",
+          "message_count": 176
+        },
+        {
+          "path": "ccf9a6aa51183f0e6280-part-0002.json",
+          "message_count": 65
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-full-cluster-scan-and-harvest.md"
+}

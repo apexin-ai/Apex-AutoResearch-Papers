@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75fbdd54e9da04af98f0",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "audit crm train eval consistency",
+  "task_key": "worker_audit_crm-train-eval-consistency_20260514T174852",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_crm-train-eval-consistency_20260514T174852_result.json",
+    "occurrence": 1,
+    "bytes": 3517,
+    "sha256": "b7fe4c01af6ce5520e30459c9de1cbcab432d7ea63d33b3e51d357b864856fd7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部代码和数据分析完成。以下是完整审查报告。\n\n---\n\n## 审查结论\n\n### 1. Train/eval CRM 输入拼接：✅ 完全一致\n\n**拼接顺序** 两端完全相同，通过同一个 `CRM.forward()` 执行：\n```\ntorch.cat([base_action(30D), uncertainty_features(40D), obs_features(960D)]) → 1030D\n```\n\n逐项对比：\n\n| 组件 | train_crm.py | evaluate.py | 一致？ |\n|------|-------------|-------------|--------|\n| obs_feat | 从 cache 加载 (B, 960) | wrapper.get_obs_features_and_samples → (1, 960) | ✅ |\n| base_action | `_argmin_base_action(k_samp)`: mean→L2→argmin | 手写同逻辑: mean→L2→argmin | ✅ |\n| uncertainty_features | `cgs.compute_features_batch(k_samp)` → (B, 40) | `cgs.compute_features(k_pose)` → unsqueeze → (1, 40) | ✅ |\n| CGS params | K=10, H=5, D=6, alpha=0.5 | K=10, H=5, D=6, alpha=0.5 | ✅ |\n| `_to_scalar_uf` | 相同实现 | 相同实现 | ✅ |\n\nSmolVLA `preprocess_obs` vs `preprocess_obs_batch` 也一致：相同的图像 flip+resize+normalize、相同的 state MEAN_STD 归一化+pad 到 32D。\n\n### 2. Normalization 差异：✅ 无差异\n\n- CRM 输入层**无任何 normalization**（train 和 eval 都没有）\n- VLM 的 state 归一化使用相同的 `state_mean/state_std`\n- K samples 均经过 `_unnormalize_action` 转回原始 scale\n\n### 3. CRM delta scale 分析：⚠️ 关键发现\n\n诊断脚本在 **训练集 cache** 上运行 CRM，结果令人担忧：\n\n```\nBase → Expert L2 error:    mean = 0.576\nRefined → Expert L2 error: mean = 0.573\nImprovement ratio:         -0.16 (负值 = CRM 平均让结果更差)\nCRM helps:                 49/100 samples (49%) — 等同于随机\n```\n\n**CRM 的 delta 量级合理**（mean L2 = 0.45, delta/base ratio = 35%），但方向经常错误。\n\n### 4. Precompute vs Online eval CGS：✅ 一致\n\n- Precompute 缓存原始 `k_samples (K, H_eff, 6)`，训练时现算 CGS\n- Eval 在线生成 K 个新 sample，现算 CGS\n- 两端用完全相同的 `ConformilizedGaussianScoring` 类、相同的 alpha=0.5\n- 唯一区别：precompute 的 K samples 被缓存（确定性），eval 每步重新采样（随机）——这是设计如此，不是 bug\n\n### 5. Feature scale 严重失衡：⚠️\n\n```\nCRM input 三段 mean abs scale:\n  base_action [0:30]:   0.264\n  uncertainty  [30:70]:  2.448  (其中 log_volume ≈ -25)\n  obs_features [70:1030]: 0.467\n\nScale ratios: uf/ba = 9.3x, obs/uf = 0.2x\n```\n\n`log_volume` 的量级 (~-25) 比 `per_dof_std` (~0.017) 大 **1500 倍**。这意味着 CRM 第一层需要学习极其不均匀的权重，增加了优化难度。\n\n---\n\n## 最终判断\n\n**🟢 未发现 D016 级别的 train/eval 不匹配 bug。** 拼接顺序、维度、scale、normalization 在 train 和 eval 两端完全一致。\n\n**⚠️ 发现的实际问题是 CRM 模型本身质量差：**\n- 在训练数据上只帮助 49% 的样本（等于随机）\n- 平均 improvement ratio 为负\n- Online eval 中，错误的 correction 会逐步累积（每一步的错误改变后续状态分布），导致从 40% 雪崩到 3%\n\n**根因不是数据管道 bug，而是模型训练效果不佳**，可能原因：\n1. CGS feature scale 严重失衡（log_volume vs per_dof_std 差 1500x），未做 input normalization\n2. CRM 架构太简单（2 层 256D MLP）处理 1030D 输入\n3. max_correction_norm=1.42 允许大幅修正，但方向经常错，导致 eval 时 compounding error"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-crm-train-eval-consistency.md"
+}

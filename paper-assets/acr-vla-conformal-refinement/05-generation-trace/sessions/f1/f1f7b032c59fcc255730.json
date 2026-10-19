@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1f7b032c59fcc255730",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnosis spatial norm02 seed44 exit",
+  "task_key": "worker_diagnosis_spatial-norm02-seed44-exit_20260519T142459",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnosis_spatial-norm02-seed44-exit_20260519T142459_result.json",
+    "occurrence": 1,
+    "bytes": 612,
+    "sha256": "8149075f9cae4d3cde5a5a1d5d27358f3936f1cbda3953ba0bb8f9930720daf5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能之前已自动清除）。\n\n**诊断结果：实验成功完成。**\n\n- **状态**: SUCCESS\n- **Overall SR**: 0.36 (36/100)\n- **退出原因**: 正常完成，cron 误判为 failed（进程退出时未检测到 sentinel/W&B，但 JSON 输出完整）\n- **Per-task SR**:\n  - next_to_cookie_box: 1.0, next_to_ramekin: 1.0\n  - between_plate_and_ramekin: 0.9\n  - on_cookie_box: 0.4\n  - next_to_plate: 0.2, in_top_drawer: 0.1\n  - from_table_center / on_ramekin / on_stove / on_wooden_cabinet: 0.0\n\nRegistry 已更新为 conclusion=success，metrics 已写入。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-spatial-norm02-seed44-exit.md"
+}

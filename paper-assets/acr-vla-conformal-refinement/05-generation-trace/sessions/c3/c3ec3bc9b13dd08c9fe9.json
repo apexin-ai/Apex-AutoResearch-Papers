@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3ec3bc9b13dd08c9fe9",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis next batch experiment plan",
+  "task_key": "worker_analysis_next-batch-experiment-plan_20260517T113300",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_next-batch-experiment-plan_20260517T113300_result.json",
+    "occurrence": 1,
+    "bytes": 664,
+    "sha256": "7aee61e41be68c090815b7b122427684bc9ee2777f88a8e5df104ae4d0ac9644"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "计划已写入并注册。核心结论：\n\n**最薄弱点**: norm=0.03 和 norm=0.05（obs_only 和 perdof 各仅 1 seed，无法画 error bar）。这是 Figure 2 左端点，对 \"低 magnitude 时两者表现相近\" 的 claim 至关重要。\n\n**推荐 Tier 1（8 个实验，全部必做）**:\n- obs_only norm=0.03 seed43/44\n- obs_only norm=0.05 seed43/44\n- perdof norm=0.03 seed43/44\n- perdof norm=0.05 seed43/44\n\n**部署分配**: bjb1-18228 (4 GPU) 跑 obs_only，bjb1-32546 (4 GPU) 跑 perdof。完成后 Figure 2 所有点均有 >=3 seeds 可绘制 mean +/- stderr。\n\n详细命令见 `artifacts/next_batch_plan_20260517.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-next-batch-experiment-plan.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "717a4db385bd8645f295",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "paper introduction draft",
+  "task_key": "worker_paper_introduction-draft_20260516T233457",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_introduction-draft_20260516T233457_result.json",
+    "occurrence": 1,
+    "bytes": 767,
+    "sha256": "e8f60a5db79a1bbb3204113ab916f1ade3ce1ecb89b532f91dc29cb685eb88af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Introduction 草稿已写入 `artifacts/introduction_draft.md`。\n\n结构概要：\n- 段1：VLA frozen deployment 下 distribution shift 问题 + inference-time correction 动机（含 test-time compute scaling 类比）\n- 段2：CP 提供校准 UQ，multi-sample selection 有天花板，引出 learned correction\n- 段3：conditioning features 和 magnitude control 两个设计轴未被研究，定位 A2C2/ReconVLA/SC-VLA 各自缺口\n- 段4：sample-then-correct pipeline + 三种 conditioning 对比 + 核心发现（obs_only robust vs perdof collapse）\n- 段5：4 条 contributions 直接从 `contribution_list.md` 嵌入\n\n已遵守所有硬规则：无 em-dash、无 -ing 结尾、无禁用词、缩写首次定义、每段 5-8 句。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-introduction-draft.md"
+}

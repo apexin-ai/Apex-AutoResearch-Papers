@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4ce41e8742dcda951ef",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "prep object benchmark readiness",
+  "task_key": "worker_prep_object-benchmark-readiness_20260514T031603",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_prep_object-benchmark-readiness_20260514T031603_result.json",
+    "occurrence": 1,
+    "bytes": 962,
+    "sha256": "f787329f5e18f9e1e36800e35541f0dfe4def53fb7b2a5c94711d2267a083c52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成，结果如下：\n\n### 验证状态\n\n| 项目 | 状态 |\n|------|------|\n| Object 数据（10 tasks × 两台服务器） | ✅ 就绪 |\n| evaluate.py 支持 `--benchmark object` | ✅ 无需修改 |\n| CRM cache/object（14570 samples） | ✅ bjb1 有，bjb2 空（eval 不需要 cache） |\n| per-DOF CRM checkpoint | ✅ bjb1 有，❌ bjb2 仅有 spatial-only |\n| scalar CRM checkpoint | ✅ bjb1 有，❌ bjb2 无 |\n\n### 关键问题\n\n**bjb2 缺 CRM checkpoints**：bjb2 的 `crm_spatial_only/crm_best.pt` 只在 spatial 数据上训练，不适合 object eval。bjb2 只能跑 vla_only / vla_mean / reconvla。\n\n### GPU 分配方案\n\n5 个方法全部并行：\n- **bjb1** GPU 0-3：ACR-VLA、Scalar CRM、ReconVLA、VLA Only\n- **bjb2** GPU 0：VLA Mean（不需要 CRM）\n\n5 套精确启动命令已写入 memory.md（`Object Benchmark 评估就绪验证` 段落），spatial 跑完后直接复制执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-object-benchmark-readiness.md"
+}

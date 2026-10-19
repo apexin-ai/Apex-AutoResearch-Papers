@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e224662f3ddeb81af257",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_29_1780030179.md",
+  "task_key": "loop_29_1780030179",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_29_1780030179.md",
+    "occurrence": 1,
+    "bytes": 3341,
+    "sha256": "63a8feb95f818c56f2773f710511cc6632d779184be7cffe398fbf98446dbb29"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 29\nreason: idle_timeout\nupdated: '2026-05-29T04:49:09+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：22 卡分布在 4 台服务器（bjb1-18228×4, bjb1-32546×6, bjb2-28827×6, cqa1-32758×6），但实测 bjb1-18228 仅 1× RTX 4090 可用，其余 3 台不可达\n- Pi05 CRM checkpoint (`crm_pi05_unified_3suite/crm_best.pt`) **必须**传 `--obs_dim 2048 --unified_obs_dim 2088`，否则维度不匹配（2118 vs 990）直接 crash\n- westd 系列服务器有 LIBERO assets 版本差异（HF 下载 vs 预装），westd 产出数据不可与 bjb/cqa 直接对比（D175 确认）\n- CoRL 2026 DDL 已过（2026-05-28 20:00 北京时间），论文数据已锁定，不要修改任何 paper 数据\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**：唯一可达服务器，1× RTX 4090，工作目录 `/root/acr-vla-conformal-refinement`，account=root，**当前空闲**\n- **bjb1-32546** (port 32546)：❌ 不可达\n- **bjb2-28827** (port 28827)：❌ 不可达\n- **cqa1-32758** (port 32758)：❌ 不可达\n- 活跃进程：无（全面停机状态）\n- 活跃 Cron：无（reconcile 返回 0）\n- 活跃 Worker：无\n\n### 3. 📊 当前状态\n**全面停机**。2026-05-28 用户指令停止所有实验。1230 个实验全部 DONE/killed/cancelled（成功 768 / 负向 97 / 失败 130）。论文编译就绪（8+6 页，零 critical warning）。\n\n关键表格数据已锁定：\n- **Table 1** (SmolVLA K-matched)：VLA-only K=1 / CRM always-on K=2 / Adaptive K=2，4/4 suites CRM harmful，Adaptive 全面恢复\n- **Table 3** (Pi05)：4/4 suites degradation-only（Long -17.0pp 最显著）\n- 叙事：4/4 harmful + gating recovery，全文对齐\n\n**等待中**：\n- 用户确认论文是否已提交 CoRL / 是否转投其他会议\n- 用户确认 3 台不可达服务器是否释放\n\n无 Worker 回调 / Cron / Director 决策待处理。\n\n### 4. 📋 待办（条件触发式）\n- 用户确认已提交 CoRL → 项目进入 wait-for-review 状态，可开始准备 rebuttal 素材（补充实验预案）\n- 用户确认转投其他会议 → 读目标会议格式要求 → 派 Worker 调整论文格式/页数/补充 Limitations 段\n- 用户确认服务器释放 → 更新 project config 移除对应 GPU，清理 registry 中相关服务器实验\n- 若需补充实验（reviewer 要求 / 新会议要求）→ 先确认服务器可用性，pi05 实验必须带 `--obs_dim 2048 --unified_obs_dim 2088`\n\n### 5. 🎯 战略上下文\n- **核心结论**：CRM always-on 在 4/4 LIBERO suites 上有害（SmolVLA -1.3~-14.8pp, Pi05 全 degradation），Adaptive conformal gating 全面恢复性能。这是论文的中心 claim（MC1）\n- **决策链**：D170（4/4 harmful 叙事）→ D177（K-matched Table 1 重构）→ D178（Long -14.8pp 最强证据）→ D179（Title 锁定）→ D184（20:00 数据锁定 + 提交确认）\n- **易错点**：\n  - 不要把 westd 服务器产出的数据混入论文表格（assets 版本差异，D175/D176）\n  - bjb1-18228 config 写 4 卡但实测只有 1 卡，不要假设有多卡\n  - CoRL 要求 Limitations section 计入 8 页限制，已写入论文\n  - Table 1 的 \"K-matched\" 设计是 controlled experiment 的关键：VLA-only 用 K=1 是因为它没有 CRM 不需要第二次推理，CRM/Adaptive 用 K=2 保证公平对比。不要改这个设计\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-29-1780030179.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1f1227a86846bf152b5",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze batch analyzing 20250520",
+  "task_key": "worker_analyze_batch-analyzing-20250520_20260520T125542",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_batch-analyzing-20250520_20260520T125542_result.json",
+    "occurrence": 1,
+    "bytes": 792,
+    "sha256": "5d1399157bef7a1ac29445d400ea02bd330fa23198819d4b1cb4b17e12d56355"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n| # | exp_id | conclusion | SR | 关键 metrics |\n|---|--------|------------|-----|-------------|\n| 1 | eval-adaptive-k-spatial-p90-seed43 | success | **32%** | avg_K=3.6, fast_path=80.2%, mean_l2=0.0905 |\n| 2 | eval-random-selection-spatial-seed43 | success | **26%** | baseline: random selection |\n| 3 | eval-argmin-object-seed49 | success | **16%** | argmin baseline on Object |\n| 4 | eval-obs-only-spatial-norm02-seed42 | **不存在** | — | registry 中无此 exp_id，未创建 |\n| 5 | eval-obs-only-goal-norm02-seed52 | success | **68%** | turn_on_stove=100%, put_bowl_on_plate=100% |\n\n4 个实验已完成 metrics 提取并更新 registry → DONE。`eval-obs-only-spatial-norm02-seed42` 在 registry 中不存在，需确认是否需要补建。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-batch-analyzing-20250520.md"
+}

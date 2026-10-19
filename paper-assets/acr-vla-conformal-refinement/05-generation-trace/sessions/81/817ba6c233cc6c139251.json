@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "817ba6c233cc6c139251",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh seed45 final harvest",
+  "task_key": "worker_ssh_seed45-final-harvest_20260516T201251",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_seed45-final-harvest_20260516T201251_result.json",
+    "occurrence": 1,
+    "bytes": 1196,
+    "sha256": "38a5bd7b033378308be4274cf5011e1dc133ad067c2f7bdef5ed9c1e914d9e9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 seed45 实验都**尚未完成**，仍在运行中。\n\n**当前进度:**\n\n### obs_only seed45 (bjb1-32546, GPU 3)\n9/10 任务已完成，最后一个任务 (orange_juice) 正在跑：\n\n| Task | Successes/10 |\n|------|-------------|\n| alphabet_soup | 0 |\n| cream_cheese | 0 |\n| salad_dressing | 1 |\n| bbq_sauce | 4 |\n| ketchup | 1 |\n| tomato_sauce | 1 |\n| butter | 1 |\n| milk | 2 |\n| chocolate_pudding | 4 |\n| orange_juice | **running...** |\n\n已完成部分: **14/90**\n\n### argmin seed45 (bjb2-28827, GPU 5)\n7/10 任务已完成，还有 3 个任务待跑 (milk, chocolate_pudding, orange_juice)：\n\n| Task | Successes/10 |\n|------|-------------|\n| alphabet_soup | 0 |\n| cream_cheese | 0 |\n| salad_dressing | 1 |\n| bbq_sauce | 4 |\n| ketchup | 0 |\n| tomato_sauce | 0 |\n| butter | 1 |\n| milk~orange_juice | **pending** |\n\n已完成部分: **6/70**\n\n### 预估\n\nobs_only seed45 还差 1 个任务的 10 rollouts，预计 1-2 小时内完成。argmin seed45 还差 3 个任务，预计 3-5 小时。\n\nJSON 文件要等实验全部跑完才会写出。目前无法计算 4-seed Fisher test。需要等两个实验都结束后再读取。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-seed45-final-harvest.md"
+}

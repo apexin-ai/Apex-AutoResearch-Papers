@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc9d7c105822e004df19",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_22_1779384793.md",
+  "task_key": "loop_22_1779384793",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_22_1779384793.md",
+    "occurrence": 1,
+    "bytes": 4198,
+    "sha256": "856c75c9f41330a59335e0f2edf6f200e77c749b94e754a1b66a9f8f7d3eb0fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 22\nreason: idle_timeout\nupdated: '2026-05-21T17:28:23+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- bjb1-18228 eval 实验日志路径必须用 `/root/autodl-tmp/logs/` 绝对路径，不能用项目目录下的相对路径（cron 监控在 `~/runs/` 下找日志会误判）\n- bjb1-32546 提交命令必须带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 前缀，裸 `python` 不在 PATH 中（seed51-r2/52-r2/62/63 四连失败教训）\n- Norm sweep 数据严禁混合不同 ε 的 seed 算均值（D092 Table 1 数据混淆事故教训：norm01+norm02 混合报了虚假 n=7）\n- provenance 必须引用具体 registry exp_id，不用抽象标签如 \"obs_only_k10\"\n- allocated_gpus 列表当前为空（未通过 gpu_ids 白名单管理），实际 GPU 使用靠 registry RUNNING 状态追踪\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**: 工作目录 `/root/acr-vla-conformal-refinement/`, Python `/root/miniconda3/bin/python`, conda base 环境。模型 `/root/autodl-tmp/models/smolvla_libero/`, CRM checkpoint `/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`, 日志 `/root/autodl-tmp/logs/`。磁盘 400G 可用(4%)。当前仅 cuda:1 在跑(norm005-seed65)，cuda:0/2/3 空闲\n- **bjb1-32546**: 同上路径结构。6 张卡满载（10 个实验复用 cuda:0-5，部分是 retry 版本 r2/r3）。磁盘 400G 可用(4%)\n- **bjb2-28827**: 5 张卡在跑 (cuda:0-4: seed71/72/73/74/75)。磁盘 399G 可用(5%)\n- **bjb2-40593**: 未活跃，磁盘根分区满 ⚠️\n- W&B: eval 实验不写 W&B（这是 cron false positive 的根因）\n- 活跃 cron: 13 个（reconcile_crons 确认全部 still running）\n\n### 3. 📊 当前状态\n刚处理完 cron false positive 回调：bjb1-18228 上 3 个实验 (norm01-seed57=19%, norm005-seed58=16%, norm003-seed59=13%) 被误判 failed，已修正为 success 并补录 metrics。已向 Director 汇报。\n\n**RUNNING (16 个 eval)**:\n- bjb1-32546 (10): norm003-seed64/65, norm01-seed64/65, norm005-seed64, norm01-seed51-r3/52-r3, norm003-seed62-r2/63-r2\n- bjb2-28827 (5): norm01-seed71, norm005-seed72, norm003-seed73, norm01-seed74, norm005-seed75\n- bjb1-18228 (1): norm005-seed65\n\n**PREPARING (~34 个)**: 包括 norm02-seed55、adaptive-k-spatial-p90-seed44-bjb2 等\n\n**Worker**: 1 个在跑 (pi05-sync-and-smoke-test)，π0.5 模型适配工作进行中\n\n**等待中**: \n- 16 个 running 实验的 cron 完成回调（全部会是 false positive，需逐个 tail 日志修正）\n- pi05 Worker 回调\n- Director 对 bjb1-18228 空闲 3 张 GPU 的分配决策\n\n### 4. 📋 待办（条件触发式）\n- 任何 norm sweep eval cron 报 failed → 先 tail_training_logs 确认是否 cron false positive（99% 概率是），确认完成则修正 conclusion=success + 补录 metrics\n- pi05 Worker 完成 → 读产出，确认 π0.5 baseline eval 是否就绪，汇报 Director\n- bjb1-18228 cuda:1 (norm005-seed65) 完成 → bjb1-18228 全部 4 张卡空闲，可从 PREPARING 队列批量提交\n- 所有 norm sweep 跑完 → 汇总各 ε 的 mean±std，更新 ROADMAP norm sweep 表，生成 Figure 2 数据\n- Director 分配新 GPU 或指示用 bjb1-18228 空闲卡 → 立即从 PREPARING 中提交\n\n### 5. 🎯 战略上下文\n- **CoRL 2026 DDL: 2026-05-29，剩 8 天**\n- **Plan A (K=2 conformal + selective CRM) 已 LOCKED**: Object 18.3%±2.1%, Spatial 35.0%±1.0%，优于 K=10 CRM 且省 80% compute\n- **OpenVLA CRM 实验 CLOSED** (D093): 0% SR，near-deterministic action space 是 applicability boundary\n- **π0.5/π 实验线 (D095/D096)** 是用户硬要求，解决 reviewer M1 (narrow scope)。Worker 正在做 sync + smoke test\n- **Norm sweep 是论文 Figure 2 的数据来源**，当前 ε=0.03/0.05/0.1 各约 6-9 seeds 在跑，ε=0.2 已 LOCKED (n=12, 17.2%)\n- **最易判错的事**: cron 报 failed ≠ 实际失败。本项目 eval 脚本不写 W&B/sentinel，所有 eval 完成都会被 cron 误判。必须 tail 日志看 \"Overall success rate\" 和 \"Results saved to\" 确认真实状态\n- **第二易错**: bjb1-32546 上同一 GPU 编号出现两次是因为有 retry 版本 (r2/r3) 和原版同时在跑——它们是不同 tmux session，不是冲突\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-22-1779384793.md"
+}

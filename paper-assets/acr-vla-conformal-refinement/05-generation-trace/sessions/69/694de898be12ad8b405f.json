@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "694de898be12ad8b405f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "exec phase2 precompute v5",
+  "task_key": "worker_exec_phase2-precompute-v5_20260514T075529",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exec_phase2-precompute-v5_20260514T075529_result.json",
+    "occurrence": 1,
+    "bytes": 601,
+    "sha256": "fab72bf69189dedbd1cfb42d1919e117a24c50eb01594fccbeae91bed925050e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 3 个 shard 已成功启动，模型加载完毕，正在处理数据。\n\n| Shard | exp_id | PID | GPU | 状态 |\n|-------|--------|-----|-----|------|\n| 0 | `precompute-v5-shard0` | 180251 | cuda:0 | 已加载 spatial，4056 samples |\n| 1 | `precompute-v5-shard1` | 180400 | cuda:1 | 已加载 spatial，4056 samples |\n| 2 | `precompute-v5-shard2` | 180480 | cuda:3 | 已加载 spatial，加载中 |\n\n日志路径: `~/runs/acr-vla-conformal-refinement/precompute-v5-shard{0,1,2}.log`\n缓存输出: `/root/autodl-tmp/crm_cache_v5/`\nGPU 2 (reconvla eval) 未受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-phase2-precompute-v5.md"
+}

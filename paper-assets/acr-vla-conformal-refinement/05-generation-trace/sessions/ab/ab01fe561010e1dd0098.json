@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab01fe561010e1dd0098",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest bjb1 32546 tau complete",
+  "task_key": "worker_harvest_bjb1-32546-tau-complete_20260526T020511",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_bjb1-32546-tau-complete_20260526T020511_result.json",
+    "occurrence": 1,
+    "bytes": 1433,
+    "sha256": "7a85e665b212b78f27c9bdd2b338408c7bfa55e3e4cf8d9d9747ea14c4345331"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 6 GPUs active (5.5-6.2 GiB each, ~22% util). All 6 experiments registered as RUNNING.\n\n## Spatial τ-sweep 结果（seed=42, K=2, max_norm=0.2）\n\n| τ    | SR    | trigger_rate |\n|------|-------|--------------|\n| 0.05 | 0.785 | 0.994        |\n| 0.10 | 0.770 | 0.746        |\n| 0.15 | 0.785 | 0.410        |\n| 0.20 | **0.810** | 0.267    |\n| 0.30 | 0.795 | 0.168        |\n| 0.35 | 0.795 | 0.123        |\n\n**关键观察**：τ=0.20 是当前最优（SR=0.81），低 τ 过度触发反而降低 SR（0.05 → 0.785）。τ≥0.20 后 SR 稳定在 0.795-0.81。趋势暗示 τ=0.25 可能持平或微降。\n\n## 新部署实验（bjb1-32546, 6 GPU）\n\n| GPU | Session              | 实验                       | Checkpoint    |\n|-----|----------------------|---------------------------|---------------|\n| 0   | tau025_spatial_s42   | Spatial τ=0.25 s42        | autodl-tmp    |\n| 1   | tau025_goal_s42      | Goal τ=0.25 s42           | autodl-tmp    |\n| 2   | tau040_goal_s42      | Goal τ=0.40 s42           | autodl-tmp    |\n| 3   | tau045_goal_s42      | Goal τ=0.45 s42           | autodl-tmp    |\n| 4   | goal_vla_s48         | Goal VLA-only s48         | -             |\n| 5   | goal_adapt_s48       | Goal Adaptive τ=0.25 s48  | autodl-tmp    |\n\nCheckpoint 路径确认为 `/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt`（项目目录下无 checkpoint）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-bjb1-32546-tau-complete.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bce0c11e251bc8109a89",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diag crm cache v5 obsdim bjb1",
+  "task_key": "worker_diag_crm-cache-v5-obsdim-bjb1_20260522T201111",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_crm-cache-v5-obsdim-bjb1_20260522T201111_result.json",
+    "occurrence": 1,
+    "bytes": 701,
+    "sha256": "64f9d5a9258e3bd614e4b88811ef43dc45958420ce1a98c63211be20e3f628cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果明确：\n\n### 1. crm_cache_v5 obs_features shape\n\n| Suite | Shape | obs_dim |\n|-------|-------|---------|\n| object | [14570, 960] | 960 |\n| spatial | [12167, 960] | 960 |\n| goal | [61728, 960] | 960 |\n| long | [136090, 960] | 960 |\n\n所有 suite 的 manifest.json 也确认 `obs_dim: 960`。\n\n### 2. CRM checkpoint 第一层 input_dim\n\n- **r4**: `net.0.weight` shape = [256, **990**]（= 960 obs + 30 action = 960 + 5×6）\n- **r5**: NOT FOUND（checkpoint 不存在）\n- 无 config.json 文件\n\n### 3. 结论\n\n**obs_dim = 960，来自 SmolVLA**，不是 π0.5 (2048)。\n\nCRM r4 的 input_dim=990 = 960(obs) + 30(action=5步×6维) 也验证了这一点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-crm-cache-v5-obsdim-bjb1.md"
+}

@@ -1,0 +1,411 @@
+{
+  "schema_version": "1.0",
+  "id": "ee5edb9c3ff9a3a4bb28",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "diagnose eval adaptive k spatial p50 seed42",
+  "task_key": "worker_diagnose_eval-adaptive-k-spatial-p50-seed42_20260520T073204",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_diagnose_eval-adaptive-k-spatial-p50-seed42_20260520T073204.jsonl",
+    "occurrence": 1,
+    "bytes": 19242,
+    "sha256": "0de3d992d9779c91533f20b70791a0e7b3aee0ae2eb20b1e7746fc7bf7f398e2"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "tool_call": 9,
+      "tool_result": 9,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T07:33:20.550091+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_eval-adaptive-k-spatial-p50-seed42_20260520T073204",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T07:33:20.550584+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_eval-adaptive-k-spatial-p50-seed42_20260520T073204",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T07:33:20.550839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_eval-adaptive-k-spatial-p50-seed42_20260520T073204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "tail -100 /root/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p50-seed42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T07:33:20.551110+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n[evaluate] args: {'benchmark': 'spatial', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'n_rollouts': 10, 'max_steps': 300, 'seed': 42, 'K': 10, 'mode': 'adaptive_k', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_adaptive_k_spatial_p50_seed42.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.074855, 'k_init': 2, 'k_full': 10}\\\\n[eval] Mode: adaptive_k, benchmark: spatial\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.2\\\\n[eval] Loading LIBERO spatial environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 3/5\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 7/10\\\\n[pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate] success rate: 70.0% (7/10)\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 10/10\\\\n[pick_up_the_black_bowl_next_to_the_ramekin_and_place_i\n…[truncated 568 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_eval-adaptive-k-spatial-p50-seed42_20260520T073204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T07:33:20.551389+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_eval-adaptive-k-spatial-p50-seed42_20260520T073204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "ps -p 681823 -o pid,stat,etime,cmd",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T07:33:20.551620+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED CMD\\\\n681823 Rl+        17:36 python -u src/evaluate.py --mode adaptive_k --adaptive_threshold 0.074855 --k_full 10 --benchmark spatial --seed 42 --n_rollouts 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_adaptive_k_spatial_p50_seed42.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_eval-adaptive-k-spatial-p50-seed42_20260520T073204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T07:33:20.551846+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_eval-adaptive-k-spatial-p50-seed42_20260520T073204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "ls -la /root/acr-vla-conformal-refinement/logs/eval_adaptive_k_spatial_p50_seed42.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T07:33:20.552057+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/acr-vla-conformal-refinement/logs/eval_adaptive_k_spatial_p50_seed42.json': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_eval-adaptive-k-spatial-p50-seed42_20260520T073204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T07:33:20.552261+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_eval-adaptive-k-spatial-p50-seed42_20260520T073204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "tmux list-sessions",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T07:33:20.552498+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_eval-adaptive-k-spatial-p50-seed42_20260520T073204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T07:33:20.552708+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_eval-adaptive-k-spatial-p50-seed42_20260520T073204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T07:33:20.552928+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 5972 MiB, 24564 MiB, 13 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_eval-adaptive-k-spatial-p50-seed42_20260520T073204",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T07:33:20.553203+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_eval-adaptive-k-spatial-p50-seed42_20260520T073204",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T07:33:20.553440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_eval-adaptive-k-spatial-p50-seed42_20260520T073204",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T07:33:20.553639+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_eval-adaptive-k-spatial-p50-seed42_20260520T073204",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "memory.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T07:33:20.553947+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\\\", \\\"content\\\": \\\"# Project Memory\\\\n\\\\n## 失败模式记录\\\\n\\\\n- [失败模式] Cron false positive：eval 脚本不写 W&B 也不写 sentinel file，进程正常退出后 cron 5 次检测找不到标记 → 自动标记为 failed。受影响：eval-vla-only-long-seed46, eval-vla-only-goal-seed46。修复方案：tail 日志确认实际完成 → 手动修正 conclusion=success + 补录 metrics。预防：eval 实验应检查 output JSON 是否存在作为 sentinel。\\\\n\\\\n- [失败模式] FMVD 信号无效：ρ=0.0825 NO-GO。根因：denoising 空间统计量不映射到 action uncertainty。\\\\n\\\\n- [失败模式] CRM correction magnitude 信号无效（2026-05-20）：ρ(K1_corr_mag, K10_var) = 0.1523 NO-GO。**根因：CRM correction magnitude 是常数 (~0.1205)，P25=P50=P75=P90 几乎相同。** CRM 对所有输入产出相同大小的修正向量——修正方向变化但幅度不变。推测因 max_correction_norm=0.2 的 clipping 使得大部分 correction 被截断到相同 norm。K=2 argmin 版本同样无效 (ρ=0.1340)。**教训：clipped norm 的信号没有方差，自然无法做 gate。**\\\\n\\\\n- [失败模式] OpenVLA-7B eval timeout：timeout_hours 至少设 12h。\\\\n\\\\n- [失败模式] Table 1 数据混淆（2026-05-20）：Table 1 原报 CRM Object K=10 = 17.6% (n=7)，实际来自 **norm01+norm02 混合数据**。seed42 只有 norm01 (0.19)，seed43 只有 norm02 (0.16)，两个 config 各自只有 n=6，合并后变 n=7。paper_provenance.yaml C029 引用的 exp_id 是抽象 \\\\\\\"obs_only_k10\\\\\\\" 而非具体实验 ID，导致问题没被及时发现。**教训：provenance 必须引用具体 registry_id，不用抽象标签。**\\\\n\\\\n- [失败模式] evaluate.py 路径缺 src/ 前缀（2026-05-20）：adaptive_k spatial 实验命令用 `python evaluate.py` 而非 `python src/evaluate.py`，导致 EXIT_CODE=2 (No such file)。受影响：eval-adaptive-k-spatial-p50-seed43, eval-adaptive-k-spatial-p50-seed44（两台服务器 bjb1-32546, bjb2-28827 同时中招）。**教训：提交命令时对照历史成功实验的 command 格式，evaluate.py 在 src/ 子目录下。**\\\\n\\\\n## CRM Coverage 限制\\\\n\\\\nCRM v3 训练数据 = Object(10) + Spatial(10) = 20 tasks。Goal/Long 是 OOD 泛化测试。\\\\n\\\\n## Adaptive K 信号探索\\\\n\\\\n| 信号 | ρ vs K10_var | 结论 | 备注 |\\\\n|------|-------------|------|------|\\\\n| FMVD (velocity dispersion) | 0.0825 | ❌ NO-GO | zero-cost 但无效 |\\\\n| **K=2 L2 divergence** | **0.9979** | **✅ GO** | 需要 K=2 采样（+170ms），near-perfect proxy |\\\\n| CRM correction magnitude (K=1) | 0.1523 | ❌ NO-GO | zero-cost\n…[truncated 3348 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_eval-adaptive-k-spatial-p50-seed42_20260520T073204",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T07:33:20.554324+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_eval-adaptive-k-spatial-p50-seed42_20260520T073204",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "memory.md",
+              "content": "# Project Memory\n\n## 失败模式记录\n\n- [失败模式] Cron false positive：eval 脚本不写 W&B 也不写 sentinel file，进程正常退出后 cron 5 次检测找不到标记 → 自动标记为 failed。受影响：eval-vla-only-long-seed46, eval-vla-only-goal-seed46。修复方案：tail 日志确认实际完成 → 手动修正 conclusion=success + 补录 metrics。预防：eval 实验应检查 output JSON 是否存在作为 sentinel。\n\n- [失败模式] Cron false positive（2026-05-20）：**eval-adaptive-k-spatial-p50-seed42** 被 cron 误判为 failed（\"process dead 5× with no sentinel/W&B\"）。实际情况：原 PID 675831 被 deploy worker kill 后，重启为 PID 681823。重启后进程正常运行，但 cron 监控未追踪到新 PID，5 次检测均未发现 sentinel → 自动标记 failed。诊断时（2026-05-20）PID 681823 仍在运行（状态 Rl+，已运行 17h36m），已完成 3/10 tasks（SR: 70%/100%/0%），第 4 个 task 进行中（rollout 5, 1/5 success）。GPU 使用 5972/24564 MiB，日志无错误。**无需重新提交，等待自然完成后手动修正 conclusion。**\n\n- [失败模式] FMVD 信号无效：ρ=0.0825 NO-GO。根因：denoising 空间统计量不映射到 action uncertainty。\n\n- [失败模式] CRM correction magnitude 信号无效（2026-05-20）：ρ(K1_corr_mag, K10_var) = 0.1523 NO-GO。**根因：CRM correction magnitude 是常数 (~0.1205)，P25=P50=P75=P90 几乎相同。** CRM 对所有输入产出相同大小的修正向量——修正方向变化但幅度不变。推测因 max_correction_norm=0.2 的 clipping 使得大部分 correction 被截断到相同 norm。K=2 argmin 版本同样无效 (ρ=0.1340)。**教训：clipped norm 的信号没有方差，自然无法做 gate。**\n\n- [失败模式] OpenVLA-7B eval timeout：timeout_hours 至少设 12h。\n\n- [失败模式] Table 1 数据混淆（2026-05-20）：Table 1 原报 CRM Object K=10 = 17.6% (n=7)，实际来自 **norm01+norm02 混合数据**。seed42 只有 norm01 (0.19)，seed43 只有 norm02 (0.16)，两个 config 各自只有 n=6，合并后变 n=7。paper_provenance.yaml C029 引用的 exp_id 是抽象 \"obs_only_k10\" 而非具体实验 ID，导致问题没被及时发现。**教训：provenance 必须引用具体 registry_id，不用抽象标签。**\n\n- [失败模式] evaluate.py 路径缺 src/ 前缀（2026-05-20）：adaptive_k spatial 实验命令用 `python evaluate.py` 而非 `python src/evaluate.py`，导致 EXIT_CODE=2 (No such file)。受影响：eval-adaptive-k-spatial-p50-seed43, eval-adaptive-k-spatial-p50-seed44（两台服务器 bjb1-32546, bjb2-28827 同时中招）。**教训：提交命令时对照历史成功实验的 command 格式，evaluate.py 在 src/ 子目录下。**\n\n## CRM Coverage 限制\n\nCRM v3 训练数据 = Object(10) + Spatial(10) = 20 tasks。Goal/Long 是 OOD 泛化测试。\n\n## Adaptive K 信号探索\n\n| 信号 | ρ vs K10_var | 结论 | 备注 |\n|------|-------------|------|------|\n| FMVD (velocity dispersion) | 0.0825 | ❌ NO-GO | zero-cost 但无效 |\n| **K=2 L2 divergence** | **0.9979** | **✅ GO** | 需要 K=2 采样（+170ms），near-perfect proxy |\n| CRM correction magnitude (K=1) | 0.1523 | ❌ NO-GO | zero-cost 但 magnitude 是常数 |\n| CRM correction magnitude (K=2 argmin) | 0.1340 | ❌ NO-GO | 同上 |\n\n**结论：K=2 L2 distance 是唯一可用的 adaptive K 门控信号。** FMVD 和 CRM magnitude 均因信号方差不足而失败。\n\n## Adaptive K Sweep 最终结果 (2026-05-20, 12/12 完成)\n\n| 阈值 | SR [seeds] | avg_K | fast_path% |\n|------|-----------|-------|-----------|\n| P90 (τ=0.127) | 13.3% [12,14,14] | ~2.6 | ~93% |\n| P75 (τ=0.099) | 13.7% [12,13,16] | ~3.1 | ~87% |\n| **P50 (τ=0.075)** | **15.3% [16,16,14]** | **~3.8** | **~77%** |\n| P25 (τ=0.055) | 14.3% [15,13,15] | ~4.8 | ~65% |\n\n**P50 = Pareto optimal**: 最高 SR + 比 K=10 省 62% compute (avg_K 3.8 vs 10)。P25 多 26% compute 但 SR 低 1pp。\n\n## Latency Profiling (dry-run N=20, RTX 4090, 2026-05-20)\n\n| Component | Mean (ms) | 备注 |\n|-----------|----------|------|\n| VLA sampling | 206 | **K 无关**（batched generation） |\n| CRM MLP forward | 0.33 | 337K params |\n| Argmin L2 + CRM 总开销 | 4.0 | 管线 1.6% |\n| Full pipeline K=10 | 259 | ~3.9 Hz |\n| **Adaptive K 快路径** | **254** | K=2 only |\n| **Adaptive K 全路径** | **459** | K=2→K=10 |\n\n**关键发现：VLA batched sampling 消除 K 作为 latency 因子。Adaptive K 快路径省 45% latency。CRM overhead 可忽略。**\n\n## Random Selection Baseline (2026-05-20)\n\n代码 `--mode random_selection` 可用。已有结果：seed43=9%, seed45=10%（之前标记 failed 是状态标记问题，实际正常完成）。\n\n## 全 Benchmark 统计摘要 (v2, 2026-05-20, 含新增数据)\n\n### 1. LIBERO-Object — **Strong improvement**\n\n| Method | n | Mean±Std | vs VLA Δ | p (Welch) | Sig |\n|--------|---|----------|----------|-----------|-----|\n| **CRM norm02 K=10 (主配置)** | **6** | **16.8%±1.8%** | **+6.0pp** | **0.000095** | **\\*\\*\\*** |\n| CRM norm01 (补充) | 6 | 17.5%±1.0% | +6.6pp | <0.001 | *** |\n| CRM norm02 K=5 (补充) | 7 | 16.0%±2.2% | +5.1pp | 0.000312 | *** |\n| Adaptive-K (all) | 12 | 14.2%±1.5% | +3.3pp | 0.000098 | *** |\n| Argmin K=10 | 5 | 12.4%±2.9% | +1.5pp | 0.317 | n.s. |\n| **VLA-only** | **8** | **10.9%±1.4%** | — | — | — |\n\n### 2. LIBERO-Spatial — **Strong improvement**\n\n| Method | n | Mean±Std | vs VLA Δ | p (Welch) | Sig |\n|--------|---|----------|----------|-----------|-----|\n| CRM obs_only (K=10) | 7 | 34.6%±1.4% | **+5.0pp** | 0.000007 | *** |\n| **VLA-only** | **9** | **29.6%±1.1%** | — | — | — |\n\n### 3. LIBERO-Goal (OOD) — **Neutral**\n\n| Method | n | Mean±Std | vs VLA Δ | p (Welch) | Sig |\n|--------|---|----------|----------|-----------|-----|\n| CRM obs_only | 6 | 68.2%±3.4% | -0.5pp | 0.818 | n.s. |\n| **VLA-only** | **6** | **68.7%±3.9%** | — | — | — |\n\n### 4. LIBERO-Long (OOD) — **⚠️ Borderline**\n\n| Method | n | Mean±Std | vs VLA Δ | p (Welch) | Sig |\n|--------|---|----------|----------|-----------|-----|\n| CRM obs_only | 7 | 17.0%±2.0% | **+2.2pp** | 0.049 | * |\n| **VLA-only** | **11** | **14.8%±2.2%** | — | — | — |\n\n**⚠️ Long MW-U p=0.061 (n.s.)。t检验 p=0.049 刚好卡在 0.05 边缘。论文需 cautious wording。**\n\n### 效果总结\n\n| Benchmark | Δ (pp) | p-value | 判定 |\n|-----------|--------|---------|------|\n| **Object** | +6.0 | <0.001 | Strong (主配置 norm02) |\n| **Spatial** | +5.0 | <0.001 | Strong |\n| **Long** | +2.2 | 0.049 | ⚠️ Borderline (OOD, MW-U n.s.) |\n| **Goal** | -0.5 | 0.818 | Neutral (OOD) |\n\n**注意**: Argmin K=10 seed43=17% 是未验证离群值（4 台服务器未找到原始 JSON），标注 unverified。"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T07:33:20.554658+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_eval-adaptive-k-spatial-p50-seed42_20260520T073204",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T07:33:20.554923+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**失败根因：Cron 误判（false positive）。** 原 PID 675831 被 deploy worker kill 后重启为 PID 681823，cron 未追踪到新 PID，5 次检测均无 sentinel/W&B 信号 → 自动标记 failed。\n\n**实际状态：进程正常运行中。**\n- PID 681823 状态 `Rl+`，已运行 17h36m\n- 已完成 3/10 tasks（SR: 70% / 100% / 0%），第 4 个 task 进行中\n- GPU 使用 5972/24564 MiB，无错误\n- 输出 JSON 尚未生成（全部 task 完成后才写入）\n\n**结论：无需重新提交。** 等进程自然完成后，手动修正 conclusion 为 success 并补录 metrics。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_eval-adaptive-k-spatial-p50-seed42_20260520T073204"
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ],
+  "readable_path": "readable/conversations/diagnose-eval-adaptive-k-spatial-p50-seed42.md"
+}

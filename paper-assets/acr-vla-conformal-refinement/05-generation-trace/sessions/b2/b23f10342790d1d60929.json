@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b23f10342790d1d60929",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb1 32546 batch6",
+  "task_key": "worker_deploy_bjb1-32546-batch6_20260517T112232",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb1-32546-batch6_20260517T112232_result.json",
+    "occurrence": 1,
+    "bytes": 577,
+    "sha256": "07ca157ebf16651596648028a607c5f4f6974655b9cf94cf6b1e2c1e51f07f8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**前置检查结果：目标 GPU 全部被占用，无法部署。**\n\n| 检查项 | 状态 |\n|--------|------|\n| 工作目录 `src/evaluate.py` | 存在 |\n| obs_only checkpoint | 存在 |\n| perdof checkpoint | 存在 |\n| cuda:0 | **被占用** — PID 421086 (python, 5645MiB) |\n| cuda:3 | **被占用** — PID 422357 (python, 5645MiB) |\n| cuda:5 | **被占用** — PID 423767 (python, 5645MiB) |\n\n实际上 bjb1-32546 的全部 6 张 4090 都有 python 进程在跑，没有空闲 GPU。需要等现有实验完成或手动终止后才能部署。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb1-32546-batch6.md"
+}

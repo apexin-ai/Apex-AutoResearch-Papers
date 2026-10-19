@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ceb4e97218c1bd9bcc1b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose seed66 norm005 verify",
+  "task_key": "worker_diagnose_seed66-norm005-verify_20260521T045625",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_seed66-norm005-verify_20260521T045625_result.json",
+    "occurrence": 1,
+    "bytes": 801,
+    "sha256": "e48be40643174c679be932f614131f7b2f5e0d4c60fe7199af22ca85ff529a23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 3 seed66 experiments已经在 registry 中被修正，无需进一步操作。\n\n## 实际状态汇总\n\n| 实验 | 状态 | SR | 备注 |\n|------|------|-----|------|\n| eval-obs-only-object-norm003-seed66 | **completed** (DONE/success) | **11.5%** (23/200) | 10 tasks × 20 rollouts 全部完成 |\n| eval-obs-only-object-norm005-seed66 | **completed** (DONE/success) | **11.0%** (22/200) | 10 tasks × 20 rollouts 全部完成。之前误判 failed 已修正 |\n| eval-obs-only-object-norm01-seed66 | **completed** (DONE/success) | **13.5%** (27/200) | 10 tasks × 20 rollouts 全部完成 |\n\n3 个进程均已自然退出（PID 不存在），但 output JSON 完整生成在 `/root/logs/`。Registry 已被修正为 DONE/success 并补录了 metrics，无需额外更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-seed66-norm005-verify.md"
+}

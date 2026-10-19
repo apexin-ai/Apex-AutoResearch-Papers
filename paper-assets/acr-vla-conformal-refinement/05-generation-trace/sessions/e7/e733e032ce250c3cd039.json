@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e733e032ce250c3cd039",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose spatial r4 baseline missing",
+  "task_key": "worker_diagnose_spatial-r4-baseline-missing_20260522T135352",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_spatial-r4-baseline-missing_20260522T135352_result.json",
+    "occurrence": 1,
+    "bytes": 859,
+    "sha256": "692ea578080d2cebda9a2d4e3d90b6268a0242b355fa3df5f7be72a6c1d12794"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果：正常完成\n\n3 个 seed 全部在今天 20:17-20:18（北京时间）完成，结果文件完整。\n\n### 各 seed Success Rate\n\n| Seed | Overall | 失败任务 |\n|------|---------|----------|\n| 42 | **98.0%** | bowl_on_ramekin 85%, bowl_on_wooden_cabinet 95% |\n| 43 | **97.5%** | bowl_on_ramekin 75% |\n| 44 | **98.5%** | bowl_on_ramekin 90%, bowl_on_wooden_cabinet 95% |\n\n**均值：98.0%**（3 seeds 平均）\n\n### Per-task 摘要\n- 10 个任务中 **8 个在所有 seed 下都是 100%**\n- 唯一短板任务：`pick_up_the_black_bowl_on_the_ramekin`（3 seed 均值 83.3%）\n- `bowl_on_wooden_cabinet` 在 seed42/44 略低（95%），seed43 为 100%\n\n### 当前服务器状态\n- tmux 仅剩 `precompute-pi05-long-bjb1-18228` session（今天 17:00 创建）\n- cuda:1-3 已释放，可用于其他任务"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-spatial-r4-baseline-missing.md"
+}

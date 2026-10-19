@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c920b74492d74c5aca2f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb2 28827 p0b 5exp",
+  "task_key": "worker_deploy_bjb2-28827-p0b-5exp_20260520T134556",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb2-28827-p0b-5exp_20260520T134556_result.json",
+    "occurrence": 1,
+    "bytes": 916,
+    "sha256": "7d8f6c2ebbff32a3aa9cba05a2fceba4f65e74ea27c34263676a2fbf3992499d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 个实验全部提交成功。\n\n| # | exp_id | GPU | PID | plan |\n|---|--------|-----|-----|------|\n| 1 | `eval-crm-k1-object-seed42-plan702` | cuda:0 | 365485 | plan_702 |\n| 2 | `eval-crm-k1-object-seed43-plan702` | cuda:3 | 365759 | plan_702 |\n| 3 | `eval-crm-k1-object-seed44-plan702` | cuda:4 | 366294 | plan_702 |\n| 4 | `eval-latency-profiling-v1` | cuda:1 | 367510 | plan_602 |\n| 5 | `eval-adaptive-k-spatial-p90-seed44-bjb2` | cuda:5 | 367984 | plan_602 |\n\n额外操作：\n- **evaluate.py** 已 patch，恢复了 `crm_k1_accg` mode（从 .bak 移植 `MultiScaleCRM` 加载 + `select_action_crm_k1_accg` 函数）\n- **profile_latency.py** 新建于 `src/`，测量 prefix encode / VLA sampling (K=1,5,10,20) / CGS scoring / CRM inference 各组件独立延迟\n- 实验 5 因原 exp_id 已被 bjb1-18228 占用，改用 `eval-adaptive-k-spatial-p90-seed44-bjb2`\n- cuda:2 未触碰"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb2-28827-p0b-5exp.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3511561fc22c1109661",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval random selection object seed44",
+  "task_key": "worker_analyze_eval-random-selection-object-seed44_20260520T084617",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-random-selection-object-seed44_20260520T084617_result.json",
+    "occurrence": 1,
+    "bytes": 557,
+    "sha256": "772d8e9cdfe142b99c09721ac273ca18f9721f8c21b7d930bdb06fcf5db9768b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。\n\n**结果汇总：**\n\n| 指标 | 值 |\n|------|-----|\n| overall_success_rate | **0.11** |\n| n_tasks | 10 |\n| n_rollouts | 10 |\n| total_rollouts | 100 |\n\nPer-task SR: alphabet_soup=0.0, cream_cheese=0.1, salad_dressing=0.2, bbq_sauce=0.2, ketchup=0.0, tomato_sauce=0.1, butter=0.1, milk=0.1, chocolate_pudding=0.2, orange_juice=0.1\n\n**三 seed 汇总：** seed43=0.09, seed44=0.11, seed45=0.10, 均值≈**0.10**。Random selection 无法有效利用 K=10 candidates，与 VLA-only baseline 相当。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-random-selection-object-seed44.md"
+}

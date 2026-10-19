@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad76744bf7949f2ef9ce",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "cron bjb1 32546 get pids",
+  "task_key": "worker_cron_bjb1-32546-get-pids_20260520T175321",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_cron_bjb1-32546-get-pids_20260520T175321_result.json",
+    "occurrence": 1,
+    "bytes": 842,
+    "sha256": "16e13b49f8bd6bc1303a478855dee1c835e43a2fe990b6d4be71acff14a2833c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n| exp_id | GPU | PID | Registry | Cron |\n|--------|-----|-----|----------|------|\n| eval-obs-only-spatial-norm02-seed50 | cuda:0 | 542128 | ✓ | ✓ |\n| eval-perdof-object-norm02-seed50 | cuda:1 | 542405 | ✓ | ✓ |\n| eval-vla-only-object-seed49 | cuda:3 | 542620 | ✓ | ✓ |\n| eval-obs-only-object-norm02-seed51 | cuda:4 | 542894 | ✓ | ✓ |\n\n**GPU 利用率** (6/6 全部在用)：\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|---------|\n| 0 | 35% | 5249/24564 MiB |\n| 1 | 32% | 5265/24564 MiB |\n| 2 | 27% | 4760/24564 MiB |\n| 3 | 19% | 5167/24564 MiB |\n| 4 | 33% | 5267/24564 MiB |\n| 5 | 51% | 4940/24564 MiB |\n\n另外注意到 GPU 2 和 GPU 5 上还跑着两个之前的实验（eval-k5-obs-only-object-seed44 和 eval-k20-obs-only-object-seed44），也在正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cron-bjb1-32546-get-pids.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eed596b1fff8bf1bdf7d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh kill duplicates deploy new bjb2 28827",
+  "task_key": "worker_ssh_kill-duplicates-deploy-new-bjb2-28827_20260517T103437",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_kill-duplicates-deploy-new-bjb2-28827_20260517T103437_result.json",
+    "occurrence": 1,
+    "bytes": 452,
+    "sha256": "2cb5ae1912ed0a6e7c2755850a2c96a6a8e27d0ffeda1bb99e58f833e5955336"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n```\nkilled: PID 363223, PID 365893 ✓\n\ndeployed:\n  obs_only ε=0.2 seed46: cuda:2, PID=387642\n  perdof ε=0.2 seed46: cuda:4, PID=389051\n\nnvidia-smi 确认:\n  GPU 2: python PID 387642, 5645MiB\n  GPU 4: python PID 389051, 5645MiB\n\n日志确认 (两个都正常启动):\n  [eval] Loading LIBERO object environments...\n  [info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\n  [eval] 10 tasks loaded.\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-duplicates-deploy-new-bjb2-28827.md"
+}

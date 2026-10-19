@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "daea5a3cd3e2ddf8a02d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "deploy cqa1 32758 seeds 20260524T062601 retry1",
+  "task_key": "worker_deploy_cqa1-32758-seeds_20260524T062601_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cqa1-32758-seeds_20260524T062601_retry1.log",
+    "occurrence": 1,
+    "bytes": 546749,
+    "sha256": "5e7542736a36f4e6af0d4d233ba42c349ba1ad7f25d2f1f4acbd628eada104c7"
+  },
+  "statistics": {
+    "messages": 266,
+    "user_turns": 0,
+    "tool_calls": 111,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 40,
+      "tool_call": 111,
+      "tool_result": 111,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 266,
+      "chunks": [
+        {
+          "path": "daea5a3cd3e2ddf8a02d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "daea5a3cd3e2ddf8a02d-part-0002.json",
+          "message_count": 86
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/deploy-cqa1-32758-seeds-20260524t062601-retry1.md"
+}

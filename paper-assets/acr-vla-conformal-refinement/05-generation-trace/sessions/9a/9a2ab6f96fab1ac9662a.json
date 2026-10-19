@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a2ab6f96fab1ac9662a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diag bjb1 vla only k check",
+  "task_key": "worker_diag_bjb1-vla-only-k-check_20260514T000418",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_bjb1-vla-only-k-check_20260514T000418_result.json",
+    "occurrence": 1,
+    "bytes": 722,
+    "sha256": "2230e9eb5658b9954407fce5a031e1316d2d5fdf03f99abbc174c7752c782043"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**bjb1 evaluate.py 当前已有 K=1 修复**（第 365 行：`args.K = 1`），但修复是在进程启动之后才加入的。\n\n**eval-spatial-v6-full 确实受 K=10 bug 影响**：\n- 日志明确显示启动参数 `'K': 10, 'mode': 'vla_only'` — 修复代码会在 print 之前把 K 改成 1，说明该进程启动时用的是**旧版代码**\n- 日志停在 `10 tasks loaded`，之后无任何 rollout 输出 — 与 bjb2 的 K=10 卡死表现一致\n\n**PID 117486 已不存在** — 进程已死（可能自行崩溃或被 kill）。\n\n**结论**：eval-spatial-v6-full 的结果无效，需要用修复后的代码重新跑。当前 evaluate.py 已有修复，直接重启即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-bjb1-vla-only-k-check.md"
+}

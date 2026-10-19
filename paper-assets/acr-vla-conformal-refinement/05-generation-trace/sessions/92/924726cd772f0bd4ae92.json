@@ -1,0 +1,737 @@
+{
+  "schema_version": "1.0",
+  "id": "924726cd772f0bd4ae92",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "cron hook eval crm k1 object seed43 plan702 20260521T105555 825780",
+  "task_key": "cron_hook_eval-crm-k1-object-seed43-plan702_20260521T105555_825780",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/archive/cron_hook_eval-crm-k1-object-seed43-plan702_20260521T105555_825780.jsonl",
+    "occurrence": 1,
+    "bytes": 38929,
+    "sha256": "ceac5c1eca40a2e22965a49972134a7e4625a0e5748cbfc5a9ea8cab7c6f9c9f"
+  },
+  "statistics": {
+    "messages": 36,
+    "user_turns": 3,
+    "tool_calls": 15,
+    "roles": {
+      "user": 3,
+      "tool_call": 15,
+      "tool_result": 15,
+      "assistant": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T14:29:00.201176+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: eval-crm-k1-object-seed43-plan702\n- project: acr-vla-conformal-refinement\n- server: bjb2-28827\n- log_path: ~/runs/acr-vla-conformal-refinement/eval-crm-k1-object-seed43-plan702.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T14:29:15.537813+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__load_project_config,mcp__agent-ml-research__read_experiment_plan_with_status,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__compute_coverage_matrix",
+              "max_results": "15"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T14:29:15.634452+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "ToolSearch",
+            "elapsed_ms": 96
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T14:29:19.094609+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T14:29:19.608998+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T14:29:20.260232+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T14:29:20.757450+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T14:29:20.934062+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "status": "running"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T14:29:23.085440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (701,837 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-8f2ce989/fab03cb0-b739-45e9-b474-83fb4ec5e419/tool-results/mcp-agent-ml-research-read_registry-1779287362931.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement--claude-sessions-agent-8f2ce989/fab03cb0-b739-45e9-b474-83fb4ec5e419/tool-results/mcp-agent-ml-research-read_registry-1779287362931.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 3990
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T14:30:14.020687+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 8, \\\"results\\\": [{\\\"exp_id\\\": \\\"eval-perdof-object-norm02-seed49\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=450375)\\\"]}, {\\\"exp_id\\\": \\\"eval-adaptive-k-spatial-p90-seed44\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=384503)\\\"]}, {\\\"exp_id\\\": \\\"eval-random-selection-spatial-seed42-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=384777)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-spatial-norm02-seed48\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=385308)\\\"]}, {\\\"exp_id\\\": \\\"eval-vla-only-spatial-seed48\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=385902)\\\"]}, {\\\"exp_id\\\": \\\"eval-obs-only-spatial-norm02-seed49\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=357304)\\\"]}, {\\\"exp_id\\\": \\\"eval-crm-k1-object-seed44-plan702\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Skipped (created 104s ago < interval 120s)\\\"]}, {\\\"exp_id\\\": \\\"eval-random-selection-object-seed43\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Skipped (created 1s ago < interval 120s)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 54411
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T14:30:14.072309+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-20T14:29:31Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 458 个实验 — ANALYZING 4, DEPLOYED 4, DONE 408, PREPARING 37, RUNNING 5\\\\n**DONE 分布**: failed 47, killed 82, negative 33, success 246\\\\n\\\\n### GPU 占用\\\\n- **实际运行**: 5 张 — bjb1-18228:cuda:0(eval-adaptive-k-spatial-p90-seed44), bjb1-18228:cuda:1(eval-random-selection-spatial-seed42-r2), bjb2-28827:cuda:2(eval-obs-only-spatial-norm02-seed49), bjb2-28827:cuda:3(openvla-precompute-k1), bjb1-32546:cuda:2(eval-perdof-object-norm02-seed49)\\\\n\\\\n### 💾 磁盘余量\\\\n- **bjb2-40593**:\\\\n  - `/init`: 150M/150M 可用（已用 0%）\\\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\\\n  - `/usr/bin/nvidia-smi`: 46G/437G 可用（已用 89%）\\\\n- **bjb1-18228**:\\\\n  - `/autodl-pub`: 791G/7.0T 可用（已用 89%）\\\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\\\n  - `/usr/bin/nvidia-smi`: 400G/438G 可用（已用 4%）\\\\n- **bjb1-32546**:\\\\n  - `/autodl-pub`: 890G/7.0T 可用（已用 88%）\\\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\\\n  - `/usr/bin/nvidia-smi`: 400G/438G 可用（已用 4%）\\\\n- **bjb2-28827**:\\\\n  - `/autodl-pub`: 4.5T/14T 可用（已用 69%）\\\\n  - `/autodl-pub/data`: 5.7T/10T 可用（已用 44%）\\\\n  - `/usr/bin/nvidia-smi`: 399G/439G 可用（已用 5%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `eval-adaptive-k-spatial-p90-seed44` | bjb1-18228 | cuda:0 | 384493 | `…conformal-refinement/eval-adaptive-k-spatial-p90-seed44.log` |\\\\n| `eval-random-selection-spatial-seed42-r2` | bjb1-18228 | cuda:1 | 384767 | `…rmal-refinement/eval-random-selection-spatial-seed42-r2.log` |\\\\n| `eval-obs-only-spatial-norm02-seed49` | bjb2-28827 | cuda:2 | 357291 | `…onformal-refinement/eval-obs-only-spatial-norm02-seed49.log` |\\\\n| `openvla-precompute-k1` | bjb2-28827 | cuda:3 | 365142 | `…runs/acr-vla-\n…[truncated 7775 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 53812
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T14:30:14.137685+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/ROADMAP.md\\\", \\\"content\\\": \\\"# acr-vla-conformal-refinement — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-20 06:17 UTC | 更新原因: Fix Long OOD data to match D081, update RUNNING section per Reviewer observation\\\\n\\\\n> 详见 paper_framing.md（D077: Adaptive K 升级为核心贡献）\\\\n\\\\n## 核心方向\\\\n**Adaptive inference-time compute for frozen VLAs** — K=2 L2 distance 作为不确定性信号，自适应决定每步推理次数。CRM correction>selection 分析作为支撑。\\\\n\\\\n## 投稿目标\\\\n**CoRL 2026** DDL **2026-05-29**。剩余 ~9 天。\\\\n\\\\n## D077 方向转换（用户硬要求）\\\\n- Adaptive K = 论文**核心贡献**（方法）\\\\n- K=10 分析降为 supporting evidence\\\\n\\\\n## 信号候选 (CLOSED)\\\\n| 信号 | ρ vs K10_var | 结论 |\\\\n|------|-------------|------|\\\\n| **K=2 L2 distance** | **0.9979** | **✅ GO — 唯一可用信号** |\\\\n| CRM correction magnitude | 0.1523 | ❌ NO-GO (D079) |\\\\n| FMVD | 0.0825 | ❌ NO-GO |\\\\n\\\\n## Adaptive K Sweep (Object) — 12/12 DONE ✅\\\\n| 阈值 | seeds | SR (mean) | avg_K | fast_path% | vs K=10 |\\\\n|------|-------|-----------|-------|-----------|---------|\\\\n| P90 | 3/3 ✅ | 13.3% | ~2.6 | ~93% | 74% |\\\\n| P75 | 3/3 ✅ | 13.7% | ~3.1 | ~87% | 79% |\\\\n| **P50** | **3/3 ✅** | **15.3%** | **~3.8** | **~77%** | **~91%** |\\\\n| P25 | 3/3 ✅ | 14.3% | ~4.8 | ~65% | ~85% |\\\\n\\\\n**P50 = Pareto 最优 (D078)**。\\\\n\\\\n## RUNNING 实验\\\\n- bjb2-40593: Spatial Adaptive K P50 seed42 (rollout 中)\\\\n- bjb1-18228: Long VLA-only seed54, Long CRM seed53, Spatial VLA-only seed53\\\\n- bjb1-32546: Long CRM seed54, Spatial VLA-only seed54\\\\n- 更多部署中（Agent 处理综合指令）\\\\n\\\\n## 待部署\\\\n1. **Spatial Adaptive K P50 seed43, seed44**\\\\n2. **Random Selection baseline seed42, seed44** (plan_600)\\\\n3. **CRM Object K=10 norm02 seed42** (Table 1 n=6→n=7)\\\\n4. **fig3_kvalue 重新生成**\\\\n\\\\n## 论文 CRITICAL 待解决\\\\n1. **evaluate.py 推理模式确认** — Agent P0\\\\n2. **Spatial CRM K=10 n=8 溯源** — registry 只有 n=7, Agent 调查中\\\\n3. **OOD Long/Goal 数据全量更新** — Paper Agent 处理中\\\\n4. **P25 n=3 更新** — Paper Agent 处理中\\\\n\\\\n## 核心实验结果 (LOCKED,\n…[truncated 2698 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 53380
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T14:30:14.350682+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_bugfix_plan702-unc-dim-redeploy_20260520T142039\\\", \\\"task_type\\\": \\\"bugfix:plan702-unc-dim-redeploy\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-20T14:20:39.295202+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_deploy_bjb2-28827-cuda4-fill_20260520T142830\\\", \\\"task_type\\\": \\\"deploy:bjb2-28827-cuda4-fill\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-20T14:28:30.408250+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 2}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 53416
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T14:30:20.103945+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement",
+              "filters": "{'exp_id': 'eval-crm-k1-object-seed43-plan702'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T14:30:20.455485+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "acr-vla-conformal-refinement",
+              "section": "execution"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T14:30:21.311174+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1926}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1207
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T14:30:21.361826+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"account\\\": \\\"root\\\", \\\"gpu_constraint\\\": [\\\"autodl-4090:cuda:0\\\"], \\\"gpu_ids\\\": [\\\"bjb2-40593:cuda:0\\\", \\\"bjb1-18228:cuda:0\\\", \\\"bjb1-18228:cuda:1\\\", \\\"bjb1-18228:cuda:2\\\", \\\"bjb1-18228:cuda:3\\\", \\\"bjb1-32546:cuda:0\\\", \\\"bjb1-32546:cuda:1\\\", \\\"bjb1-32546:cuda:2\\\", \\\"bjb1-32546:cuda:3\\\", \\\"bjb1-32546:cuda:4\\\", \\\"bjb1-32546:cuda:5\\\", \\\"bjb2-28827:cuda:0\\\", \\\"bjb2-28827:cuda:1\\\", \\\"bjb2-28827:cuda:2\\\", \\\"bjb2-28827:cuda:3\\\", \\\"bjb2-28827:cuda:4\\\", \\\"bjb2-28827:cuda:5\\\"], \\\"project_path\\\": \\\"/root/acr-vla-conformal-refinement\\\", \\\"servers\\\": [\\\"bjb2-40593\\\", \\\"bjb1-18228\\\", {\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"bjb1-32546\\\"}, {\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"bjb2-28827\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 906
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T14:30:27.255104+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement && grep -A 30 \"eval-crm-k1-object-seed43-plan702\" registry.yaml 2>/dev/null | head -60",
+              "description": "Search registry for the completed experiment"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T14:30:27.712580+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  eval-crm-k1-object-seed43-plan702:\n    status: ANALYZING\n    conclusion: ''\n    failure_reason: ''\n    retry_count: 0\n    created_at: '2026-05-20T13:50:02.848Z'\n    updated_at: '2026-05-20T14:28:50.245Z'\n    hypothesis: K=1 CRM (ACCG) on LIBERO-Object seed43 for plan_702. Single VLA forward\n      + CRM correction.\n    spec:\n      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n        base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache\n        HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py\n        --mode crm_k1_accg --benchmark object --n_rollouts 10 --seed 43 --crm_checkpoint\n        /root/autodl-tmp/checkpoints/crm_k1/crm_k1_best.pt --max_correction_norm 0.2\n        --output_file logs/eval_crm_k1_object_seed43_plan702.json 2>&1 | tee logs/eval-crm-k1-object-seed43-plan702.log\"\n      server: bjb2-28827\n      gpu:\n      - cuda:1\n      pid: '381299'\n      log_path: ~/runs/acr-vla-conformal-refinement/eval-crm-k1-object-seed43-plan702.log\n      submitted_at: '2026-05-20T13:50:35.103Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n    reproduce:\n      finished_at: '2026-05-20T14:28:48.120Z'\n    extra:\n      hook_events:\n      - event: on_complete\n        action: agent\n        ts: '2026-05-20T14:29:03.076074+00:00'\n  eval-crm-k1-object-seed44-plan702:\n    status: ANALYZING\n    conclusion: ''\n    failure_reason: ''\n    retry_count: 0\n    created_at: '2026-05-20T13:50:04.763Z'\n    updated_at: '2026-05-20T14:29:16.043Z'\n    hypothesis: K=1 CRM (ACCG) on LIBERO-Object seed44 for plan_702. Single VLA forward\n      + CRM correction.\n    spec:\n      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n        base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache\n        HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py\n        --mode crm_k1_accg --benchm\n…[truncated 451 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "Bash",
+            "elapsed_ms": 457
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T14:30:41.676035+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T14:30:48.309918+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": [{\\\"id\\\": \\\"plan_100\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"obs_only ε=0.2 multi-seed evaluation on LIBERO Object (6 seeds). Core evidence for pipeline improvement over argmin baseline.\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 36, \\\"deps\\\": [], \\\"registry_id\\\": \\\"eval-obs-only-object-norm02-seed42\\\", \\\"notes\\\": \\\"6v6 pooled: 105/600 (17.5%) vs argmin 74/600 (12.3%), Fisher p=0.0074, Cohen's d=1.21\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_success_rate\\\": 0.2, \\\"total_episodes\\\": 100, \\\"total_successes\\\": 20, \\\"per_task\\\": {\\\"alphabet_soup\\\": 0, \\\"cream_cheese\\\": 0.1, \\\"salad_dressing\\\": 0.4, \\\"bbq_sauce\\\": 0.4, \\\"ketchup\\\": 0, \\\"tomato_sauce\\\": 0.1, \\\"butter\\\": 0.2, \\\"milk\\\": 0.3, \\\"chocolate_pudding\\\": 0.2, \\\"orange_juice\\\": 0.3}}}, {\\\"id\\\": \\\"plan_101\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"argmin baseline (reconvla K=10) multi-seed evaluation on LIBERO Object (6 seeds).\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 36, \\\"deps\\\": [], \\\"registry_id\\\": \\\"eval-reconvla-object\\\", \\\"notes\\\": \\\"seeds 42/43/44/45/46/47 = 12/17/13/12/10/10. registry: eval-reconvla-object (seed42), eval-argmin-object-seed43..seed47\\\", \\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"overall_sr\\\": 0.12, \\\"per_task\\\": {\\\"alphabet_soup\\\": 0, \\\"cream_cheese\\\": 0, \\\"salad_dressing\\\": 0.1, \\\"bbq_sauce\\\": 0.3, \\\"ketchup\\\": 0, \\\"tomato_sauce\\\": 0, \\\"butter\\\": 0.1, \\\"milk\\\": 0.1, \\\"chocolate_pudding\\\": 0.3, \\\"orange_juice\\\": 0.3}, \\\"n_rollouts\\\": 10, \\\"total_episodes\\\": 100, \\\"total_successes\\\": 12}}, {\\\"id\\\": \\\"plan_102\\\", \\\"claim\\\": 1, \\\"description\\\": \\\"VLA-only (K=1, no CRM) multi-seed baseline on LIBERO Object.\\\", \\\"priority\\\": \\\"P0\\\", \\\"gpu_budget_hours\\\": 24, \\\"deps\\\": [], \\\"registry_id\\\": \\\"eval-vla-only-object\\\", \\\"notes\\\": \\\"seeds 42/43/44/45/46/47 = 12/12/10/9/11/9%, mean 10.8%. registry: eval-vla-only-object (seed42), eval-vla-only-object-seed43..seed47\\\", \\\"status\\\": \\\"DONE\\\n…[truncated 10733 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "elapsed_ms": 6633
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T14:30:48.362150+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analyze:eval-crm-k1-object-seed43-plan702",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "## 任务\n分析已完成的实验 `eval-crm-k1-object-seed43-plan702` 的结果。\n\n## 服务器信息\n- server: bjb2-28827\n- account: root\n- log_path: ~/runs/acr-vla-conformal-refinement/eval-crm-k1-object-seed43-plan702.log\n- 还有 JSON output: /root/acr-vla-conformal-refinement/logs/eval_crm_k1_object_seed43_plan702.json\n\n## 你要做的\n1. SSH 到 bjb2-28827 读取日志文件尾部（最后 100 行），获取最终 success rate 和其他指标\n2. 读取 JSON output 文件获取详细 rollout 结果\n3. 检查是否有报错或异常\n\n## 实验背景\n这是 K=1 CRM (ACCG) 在 LIBERO-Object benchmark 上 seed43 的 eval 实验，使用单次 VLA forward + CRM correction。max_correction_norm=0.2。\n\n## 输出格式\n请汇报：\n- success_rate (SR)\n- 每个 task 的成功率（如果 JSON 里有）\n- 是否有报错\n- 总结论建议：success / negative / failed",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T14:30:51.476658+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analyze_eval-crm-k1-object-seed43-plan702_20260520T143048\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_analyze_eval-crm-k1-object-seed43-plan702_20260520T143048.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analyze_eval-crm-k1-object-seed43-plan702_20260520T143048 started. Use get_worker_status('worker_analyze_eval-crm-k1-object-seed43-plan702_20260520T143048') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3114
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T14:31:17.903970+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analyze:eval-crm-k1-object-seed44-plan702",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "## 任务\n分析已完成的实验 `eval-crm-k1-object-seed44-plan702` 的结果。\n\n## 服务器信息\n- server: bjb2-28827\n- account: root\n- log_path: ~/runs/acr-vla-conformal-refinement/eval-crm-k1-object-seed44-plan702.log\n- JSON output: /root/acr-vla-conformal-refinement/logs/eval_crm_k1_object_seed44_plan702.json\n\n## 你要做的\n1. SSH 到 bjb2-28827 读取日志文件尾部（最后 100 行），获取最终 success rate 和其他指标\n2. 读取 JSON output 文件获取详细 rollout 结果\n3. 检查是否有报错或异常\n\n## 实验背景\n这是 K=1 CRM (ACCG) 在 LIBERO-Object benchmark 上 seed44 的 eval 实验，使用单次 VLA forward + CRM correction。max_correction_norm=0.2。plan_702 要求与 K=1 VLA-only baseline (10.8%) 对比。\n\n## 输出格式\n请汇报：\n- success_rate (SR)\n- 每个 task 的成功率（如果 JSON 里有）\n- 是否有报错\n- 总结论建议：success / negative / failed",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T14:31:20.787706+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analyze_eval-crm-k1-object-seed44-plan702_20260520T143118\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_analyze_eval-crm-k1-object-seed44-plan702_20260520T143118.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analyze_eval-crm-k1-object-seed44-plan702_20260520T143118 started. Use get_worker_status('worker_analyze_eval-crm-k1-object-seed44-plan702_20260520T143118') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2883
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T14:31:27.426302+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement && grep -B 1 -A 20 \"eval-crm-k1-object-seed42-plan702\" registry.yaml 2>/dev/null | head -30",
+              "description": "Check if seed42 plan702 experiment exists"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T14:31:27.878678+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "      training pipeline, enabling backbone-agnostic conformal refinement.\n  eval-crm-k1-object-seed42-plan702:\n    status: ANALYZING\n    conclusion: ''\n    failure_reason: ''\n    retry_count: 0\n    created_at: '2026-05-20T13:50:00.848Z'\n    updated_at: '2026-05-20T14:28:21.648Z'\n    hypothesis: K=1 CRM (ACCG) on LIBERO-Object seed42 for plan_702. Single VLA forward\n      + CRM correction. Compare to K=1 VLA-only baseline (10.8%).\n    spec:\n      command: bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate\n        base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache\n        HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py\n        --mode crm_k1_accg --benchmark object --n_rollouts 10 --seed 42 --crm_checkpoint\n        /root/autodl-tmp/checkpoints/crm_k1/crm_k1_best.pt --max_correction_norm 0.2\n        --output_file logs/eval_crm_k1_object_seed42_plan702.json 2>&1 | tee logs/eval-crm-k1-object-seed42-plan702.log\"\n      server: bjb2-28827\n      gpu:\n      - cuda:0\n      pid: '381023'\n      log_path: ~/runs/acr-vla-conformal-refinement/eval-crm-k1-object-seed42-plan702.log\n      submitted_at: '2026-05-20T13:50:31.521Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n    reproduce:\n      finished_at: '2026-05-20T14:28:17.342Z'\n    extra:\n      hook_events:\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/sessions/agent_8f2ce989"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "Bash",
+            "elapsed_ms": 452
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T14:31:28.180125+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement && grep \"eval-crm-k1\" registry.yaml 2>/dev/null",
+              "description": "List all K=1 CRM experiments in registry"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T14:31:28.230831+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  eval-crm-k1-object-seed42-plan702:\n        --output_file logs/eval_crm_k1_object_seed42_plan702.json 2>&1 | tee logs/eval-crm-k1-object-seed42-plan702.log\"\n      log_path: ~/runs/acr-vla-conformal-refinement/eval-crm-k1-object-seed42-plan702.log\n  eval-crm-k1-object-seed43-plan702:\n        --output_file logs/eval_crm_k1_object_seed43_plan702.json 2>&1 | tee logs/eval-crm-k1-object-seed43-plan702.log\"\n      log_path: ~/runs/acr-vla-conformal-refinement/eval-crm-k1-object-seed43-plan702.log\n  eval-crm-k1-object-seed44-plan702:\n        --output_file logs/eval_crm_k1_object_seed44_plan702.json 2>&1 | tee logs/eval-crm-k1-object-seed44-plan702.log\"\n      log_path: ~/runs/acr-vla-conformal-refinement/eval-crm-k1-object-seed44-plan702.log\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/sessions/agent_8f2ce989"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T14:31:37.747025+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analyze:eval-crm-k1-object-seed42-plan702",
+              "project": "acr-vla-conformal-refinement",
+              "task_prompt": "## 任务\n分析已完成的实验 `eval-crm-k1-object-seed42-plan702` 的结果。\n\n## 服务器信息\n- server: bjb2-28827\n- account: root\n- log_path: ~/runs/acr-vla-conformal-refinement/eval-crm-k1-object-seed42-plan702.log\n- JSON output: /root/acr-vla-conformal-refinement/logs/eval_crm_k1_object_seed42_plan702.json\n\n## 你要做的\n1. SSH 到 bjb2-28827 读取日志文件尾部（最后 100 行），获取最终 success rate 和其他指标\n2. 读取 JSON output 文件获取详细 rollout 结果\n3. 检查是否有报错或异常\n\n## 实验背景\n这是 K=1 CRM (ACCG) 在 LIBERO-Object benchmark 上 seed42 的 eval 实验，使用单次 VLA forward + CRM correction。max_correction_norm=0.2。plan_702 要求与 K=1 VLA-only baseline (10.8%) 对比。\n\n## 输出格式\n请汇报：\n- success_rate (SR)\n- 每个 task 的成功率（如果 JSON 里有）\n- 是否有报错\n- 总结论建议：success / negative / failed",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T14:31:40.520221+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analyze_eval-crm-k1-object-seed42-plan702_20260520T143137\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/logs/workers/worker_analyze_eval-crm-k1-object-seed42-plan702_20260520T143137.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analyze_eval-crm-k1-object-seed42-plan702_20260520T143137 started. Use get_worker_status('worker_analyze_eval-crm-k1-object-seed42-plan702_20260520T143137') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2773
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T14:31:47.359109+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 plan_702 分析 Worker 已全部派出（seed42/43/44），等待回调。\n\n当前状态：\n- 3 个 plan_702 K=1 CRM eval 实验都在 ANALYZING，Worker 正在读取日志\n- 5 个实验仍在 RUNNING（adaptive-k-spatial、random-selection-spatial、obs-only-spatial、vla-only-spatial、perdof-object）\n- 还有 2 个先前 Worker 在运行（bugfix:plan702-unc-dim-redeploy、deploy:bjb2-28827-cuda4-fill）\n\nWorker 完成后我会汇总三个 seed 的 K=1 CRM 结果，与 K=1 VLA-only baseline（10.8%）对比，更新 registry 并向 Director 汇报。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702"
+          },
+          "id": "event-000032"
+        }
+      ],
+      "message_count": 32
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T16:50:07.702390+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: eval-crm-k1-object-seed43-plan702\n- project: acr-vla-conformal-refinement\n- server: bjb2-28827"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "source": "cron:hook"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T16:50:19.007521+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已收到重复 CRON。`eval-crm-k1-object-seed43-plan702` 的分析 Worker 已在运行中（`worker_analyze_eval-crm-k1-object-seed43-plan702_20260520T143048`），无需重复派发。等待 Worker 回调。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702"
+          },
+          "id": "event-000034"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T10:54:59.953296+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T10:55:55.823854+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb2-40593:cuda:0, bjb1-18228:cuda:0-3, bjb1-32546:cuda:0-5, bjb2-28827:cuda:0-5。白名单外的 GPU 即使 Director 指令也必须 push back\n- plan_702 (K=1 CRM) 只能与 K=1 VLA-only baseline (10.8%) 对比，**严禁与 K=10 结果混比**（用户硬要求 D049）\n- Table 1 用 norm02-only 数据，seed42 (SR=20%) 已被 D084 排除不纳入（异常值）\n- CoRL 2026 DDL = 2026-05-29，剩 ~8 天\n- Adaptive K 是论文**核心贡献**（D077 用户硬要求），K=10 分析降为 supporting evidence\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb2-28827 / bjb1-18228 / bjb1-32546 / bjb2-40593，account=root\n- 工作目录：/root/acr-vla-conformal-refinement\n- Python：/root/miniconda3/bin/python（conda base 环境，**不是 venv**）\n- 激活命令：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- CRM K=1 checkpoint：/root/autodl-tmp/checkpoints/crm_k1/crm_k1_best.pt (bjb2-28827)\n- HF cache：/root/autodl-tmp/.hf_cache（所有服务器）\n- 活跃进程（reconcile 时刻）：\n  - eval-perdof-object-norm02-seed49: bjb1-32546 cuda:2, PID 450375\n  - eval-adaptive-k-spatial-p90-seed44: bjb1-18228 cuda:0, PID 384503\n  - eval-random-selection-spatial-seed42-r2: bjb1-18228 cuda:1, PID 384777\n  - eval-obs-only-spatial-norm02-seed48: bjb1-18228 (?), PID 385308\n  - eval-vla-only-spatial-seed48: bjb1-18228 (?), PID 385902\n  - eval-obs-only-spatial-norm02-seed49: bjb2-28827 cuda:2, PID 357304\n  - openvla-precompute-k1: bjb2-28827 cuda:3, PID 365142\n- 活跃 Workers（上一轮遗留）：bugfix:plan702-unc-dim-redeploy, deploy:bjb2-28827-cuda4-fill\n\n### 3. 📊 当前状态\n收到 eval-crm-k1-object-seed43-plan702 的 CRON 完成回调。发现 seed42/43/44 三个 plan_702 实验**全部**进入 ANALYZING 状态（均已正常退出）。\n\n我派了 3 个分析 Worker（ssh 读日志 + JSON）分别分析三个 seed 的结果，**但 Worker 尚未回调**——下一个 session 必须等 `[WORKER DONE]` 回调后：\n1. 从 Worker 产出提取 SR 和 per-task 结果\n2. 更新 registry（conclusion + metrics + checkpoint_path + log_path）\n3. 汇总 3-seed mean±std，与 K=1 VLA-only baseline (10.8%) 对比\n4. 判断 conclusion（success if SR > 10.8% with significance, negative otherwise）\n5. 向 Director 汇报 plan_702 完整结果\n\n还有若干实验在跑（见上方进程列表），以及 eval-random-selection-object-seed43 的 cron 刚创建。\n\n### 4. 📋 待办（条件触发式）\n- Worker analyze:eval-crm-k1-object-seed{42,43,44}-plan702 回调 → 提取 SR，update_registry 转 DONE，汇总 3-seed 统计，向 Director 汇报 plan_702 结果\n- plan_702 如果 3-seed mean SR 显著 > 10.8% → conclusion=success，K=1 CRM 作为核心贡献证据写入论文；如果不显著 → negative，走 hypothesis 推导链\n- eval-random-selection-object-seed43 cron 回调 → 分析 random selection baseline 结果（plan_600 系列）\n- eval-perdof-object-norm02-seed49 完成 → 更新 perdof magnitude curve 最后一个 seed\n- eval-adaptive-k-spatial-p90-seed44 完成 → 更新 Spatial Adaptive K 数据\n- openvla-precompute-k1 完成 → 进入 OpenVLA K=1 CRM 训练（plan_802）\n- GPU 释放后 → 部署 Spatial Adaptive K P50 剩余 seeds (seed43/44)、Random Selection baseline 剩余 seeds\n\n### 5. 🎯 战略上下文\n- **核心 story**：Adaptive K（K=2 L2 distance 作为不确定性信号，自适应推理次数）= 核心贡献。K=10 CRM correction>selection = supporting evidence。信号候选已收敛到 K=2 L2 distance（ρ=0.9979，唯一可用）\n- **决策链关键点**：D077(Adaptive K 升核心) → D078(P50=Pareto最优) → D079(CRM magnitude NO-GO) → D080(Table 1 norm02 n=6) → D081(Long OOD 降级) → D082(batched inference确认) → D083(Spatial CRM n=8修正) → D084(seed42排除) → D085(跨benchmark阈值迁移) → D087(OpenVLA恢复)\n- **易错点**：\n  1. plan_702 结果只与 K=1 VLA-only 比（10.8%），绝不与 K=10 obs_only（16.8%）比\n  2. seed42 在 Table 1 中被 D084 排除（异常值 20%），新的 plan_702 seed42 结果要单独看是否也异常\n  3. OpenVLA baseline v2 SR=69%（v1 的 0% 是 transformers 版本 bug，D086→D087 撤回）\n  4. Spatial CRM K=10 = 34.4±1.5% (n=8)，但 registry 只能追溯 n=7，第 8 个来源见 D083\n  5. Long OOD 只有 marginal significance（MW-U p=0.061），论文用 cautious wording\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval-crm-k1-object-seed43-plan702"
+          },
+          "id": "event-000036"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-eval-crm-k1-object-seed43-plan702-20260521t105555-825780.md"
+}

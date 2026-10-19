@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96a88b7244bf2b693350",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "audit deploy bjb1 18228 fill",
+  "task_key": "worker_audit-deploy_bjb1-18228-fill_20260520T152913",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit-deploy_bjb1-18228-fill_20260520T152913_result.json",
+    "occurrence": 1,
+    "bytes": 939,
+    "sha256": "49a9c126c57993b033373f09737610f46a1969d195574a0b35bef9120d19c675"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n**审计结果** — bjb1-18228 全部 4 张 GPU 空闲，4 个已完成实验已更新 registry：\n\n| 实验 | 成功率 | Registry |\n|------|--------|----------|\n| adaptive_k_spatial_p90_seed44 | 0.36 | 已 DONE |\n| random_selection_spatial_seed42_r2 | 0.34 | 已 DONE |\n| obs_only_spatial_seed48 | 0.35 | → DONE ✓ |\n| vla_only_spatial_seed48 | 0.30 | → DONE ✓ |\n\n**部署 4 个新实验** — 全部已启动并注册为 RUNNING：\n\n| GPU | 实验 | Registry ID | PID |\n|-----|------|-------------|-----|\n| cuda:0 | K=20 obs_only object seed42 | eval-k20-obs-only-object-seed42 | 421434 |\n| cuda:1 | random_selection object seed46 | eval-random-selection-object-seed46-r3 | 421636 |\n| cuda:2 | random_selection object seed47 | eval-random-selection-object-seed47 | 421965 |\n| cuda:3 | random_selection spatial seed43 | eval-random-selection-spatial-seed43-r2 | 422233 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-deploy-bjb1-18228-fill.md"
+}

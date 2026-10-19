@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "id": "ee87b90692895ac9ee20",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "code pi05 server mode 20260522T061935 retry1 retry2",
+  "task_key": "worker_code_pi05-server-mode_20260522T061935_retry1_retry2",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_pi05-server-mode_20260522T061935_retry1_retry2.log",
+    "occurrence": 1,
+    "bytes": 582184,
+    "sha256": "c40bcd6cf50aa899adaf2ec90379a39cec1442263026576a79addb9f3c1cb9ca"
+  },
+  "statistics": {
+    "messages": 174,
+    "user_turns": 0,
+    "tool_calls": 71,
+    "roles": {
+      "system": 1,
+      "record": 4,
+      "assistant": 27,
+      "tool_call": 71,
+      "tool_result": 71
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 174,
+      "chunks": [
+        {
+          "path": "ee87b90692895ac9ee20-part-0001.json",
+          "message_count": 174
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-pi05-server-mode-20260522t061935-retry1-retry2.md"
+}

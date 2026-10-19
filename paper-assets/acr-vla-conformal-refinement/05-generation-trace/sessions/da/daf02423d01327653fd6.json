@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "daf02423d01327653fd6",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh deploy seed42 and latency",
+  "task_key": "worker_ssh_deploy-seed42-and-latency_20260520T071349",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_deploy-seed42-and-latency_20260520T071349_result.json",
+    "occurrence": 1,
+    "bytes": 894,
+    "sha256": "4dbc871ef7012c47ac38ce4d3ac373989075e086d16a470fada8733571cd0671"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "只剩新进程 PID 681823，运行正常。\n\n## 部署结果\n\n### 任务 1: P50 seed42 eval (bjb2-40593)\n- **Server**: bjb2-40593\n- **GPU**: cuda:0\n- **tmux session**: `eval-adaptive-k-spatial-p50-seed42`\n- **PID**: 681823\n- **状态**: 运行中\n- **注意**: 旧进程 PID 675831 实际仍在运行（你说已死但实际没死），已 kill 掉，新进程独占 GPU 0\n\n### 任务 2: Latency profiling N=1000 (bjb2-28827)\n- **Server**: bjb2-28827\n- **GPU**: cuda:4（空闲 GPU）\n- **tmux session**: `latency-profile-n1000`\n- **PID**: 252933\n- **参数**: `--n_measure 1000 --n_warmup 100 --output logs/latency_profile_n1000.json`\n- **状态**: 运行中\n\n**cron 监控**: 因为 `submit_training_job` 工具不存在，两个任务都通过 `ssh_execute` + tmux 提交，未自动注册 cron 监控。如果需要 cron 轮询，我可以手动创建。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-deploy-seed42-and-latency.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "a486f68d6232c74f9387",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "harvest 14 stale completed experiments 20260525T004657 retry1",
+  "task_key": "worker_harvest_14-stale-completed-experiments_20260525T004657_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_14-stale-completed-experiments_20260525T004657_retry1.log",
+    "occurrence": 1,
+    "bytes": 756656,
+    "sha256": "45a755c7221af852753e35a637cc5962b01028b89a567566b3059ea67ff47727"
+  },
+  "statistics": {
+    "messages": 366,
+    "user_turns": 0,
+    "tool_calls": 171,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 20,
+      "tool_call": 171,
+      "tool_result": 171,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 366,
+      "chunks": [
+        {
+          "path": "a486f68d6232c74f9387-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a486f68d6232c74f9387-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a486f68d6232c74f9387-part-0003.json",
+          "message_count": 6
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/harvest-14-stale-completed-experiments-20260525t004657-retry1.md"
+}

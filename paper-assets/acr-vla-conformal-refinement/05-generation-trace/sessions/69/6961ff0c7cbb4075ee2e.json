@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "6961ff0c7cbb4075ee2e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "code plan 701 download libero full train",
+  "task_key": "worker_code_plan_701-download-libero-full-train_20260517T145454",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_plan_701-download-libero-full-train_20260517T145454.log",
+    "occurrence": 1,
+    "bytes": 739038,
+    "sha256": "6befed99b12ead584a0cbeb44ea0ef33d035a58d646e22a2cec99cc00fb8ed54"
+  },
+  "statistics": {
+    "messages": 455,
+    "user_turns": 0,
+    "tool_calls": 162,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 127,
+      "tool_call": 162,
+      "tool_result": 162,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 455,
+      "chunks": [
+        {
+          "path": "6961ff0c7cbb4075ee2e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6961ff0c7cbb4075ee2e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6961ff0c7cbb4075ee2e-part-0003.json",
+          "message_count": 95
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan-701-download-libero-full-train.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2dc2c9a3362b965a8b4",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb2 40593 object seed48",
+  "task_key": "worker_deploy_bjb2-40593-object-seed48_20260519T202921",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb2-40593-object-seed48_20260519T202921_result.json",
+    "occurrence": 1,
+    "bytes": 282,
+    "sha256": "c10611190227ec85655e3372a0fb1c39870bbe1792f70765878e28b7dfec21c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n- **清理**: 杀掉 PID 627895（eval spatial obs_only norm02 seed45），GPU 0 已释放\n- **部署**: `eval-vla-only-object-seed48` 在 tmux session `eval-vla-only-object-seed48` 中运行，cuda:0\n- **Registry**: 已创建并推进到 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb2-40593-object-seed48.md"
+}

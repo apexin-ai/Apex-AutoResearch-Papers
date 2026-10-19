@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94f5791d9ee60673fa76",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest deploy bjb2 28827 cuda2 and 40593",
+  "task_key": "worker_harvest-deploy_bjb2-28827-cuda2-and-40593_20260520T132332",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest-deploy_bjb2-28827-cuda2-and-40593_20260520T132332_result.json",
+    "occurrence": 1,
+    "bytes": 1395,
+    "sha256": "3557c1824402578ef0326a24afa1d8b51cde0bc92c4c07967bb5b423b5f25919"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "正在加载模型。\n\n## 收割结果汇总\n\n| # | exp_id | 结果 | SR | Registry 状态 |\n|---|--------|------|----|--------------|\n| 1 | eval-obs-only-spatial-norm02-seed46-r2 | JSON ✓ | **33.0%** | 已 DONE/success（之前自动收割） |\n| 2 | eval-vla-only-goal-seed44-r2 | JSON ✓ | **73.0%** | 已 DONE/success（之前自动收割） |\n| 3 | eval-argmin-object-k5-seed44-r2 | JSON ✓ | **11.0%** | 已 DONE/success（之前自动收割） |\n| 4 | eval-openvla-object-baseline-seed42 | 部分结果 (400/500 ep) | **68.0%** partial | DONE/killed (timeout)，今天有新 re-run 在跑 (ep 404+) |\n| 5 | eval-perdof-object-norm02-seed48 | JSON ✓ | **7.0%** | 已 DONE，conclusion 从 killed → **success** 已修正 |\n| 6 | eval-obs-only-object-norm005-seed43 | JSON ✓ | **13.0%** | 已 DONE/success（之前已完成） |\n\n这 6 个实验均已被 cron hook 自动收割（不再是 RUNNING phantom）。仅 #5 的 conclusion 需要从 killed 修正为 success。\n\n## 新实验部署\n\n| exp_id | 服务器 | GPU | PID | 状态 |\n|--------|--------|-----|-----|------|\n| eval-obs-only-spatial-norm02-seed49 | bjb2-28827 | cuda:2 | **357291** | 已启动，模型加载中 |\n| eval-vla-only-object-seed50 | — | — | — | **已完成**（bjb1-18228, SR=9.0%），无需重新部署 |\n\nbjb2-40593 cuda:0 空闲，可用于其他实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-deploy-bjb2-28827-cuda2-and-40593.md"
+}

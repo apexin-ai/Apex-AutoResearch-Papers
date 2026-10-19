@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a6fa6222a294280f54b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis eval pi05 baseline object seed42 r2",
+  "task_key": "worker_analysis_eval-pi05-baseline-object-seed42-r2_20260521T045550",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval-pi05-baseline-object-seed42-r2_20260521T045550_result.json",
+    "occurrence": 1,
+    "bytes": 888,
+    "sha256": "7aced47c0042097f08f53bca919ebfa9374ef9820236ecb190d8f7b108077124"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**π0.5 r2 分析完成。**\n\n**核心结论：NO-GO。** r2 完整 run（200 episodes, 10 tasks × 20 rollouts）SR = 0.0%，全部 task 均为零。\n\n关键发现：\n- 5 个 fix 均已在代码层面确认实现（MEAN_STD, image [-1,1], vision tower 437 keys, padding_side right）\n- 唯一未生效的是 `TORCH_COMPILE_DISABLE=1`（进程环境中缺失），但不影响自定义 wrapper 路径\n- **diag 日志暴露深层问题**：所有 action sample 的 gripper 值恒定 ~0.98（永远 open），机器人无法抓取任何物体\n- lerobot native API 也因 torch.compile 兼容性崩溃\n\n**Plan B 的可行路径**：先设 `TORCH_COMPILE_DISABLE=1`，重试 lerobot native API (`policy.predict_action_chunk`)，对比其 action 输出。如果 native API 也 0%，说明 fine-tuned 模型本身有问题，需要回退到 OpenPI 原始代码验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-pi05-baseline-object-seed42-r2.md"
+}

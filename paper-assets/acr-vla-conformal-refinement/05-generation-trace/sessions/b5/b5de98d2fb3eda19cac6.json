@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5de98d2fb3eda19cac6",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis crm loss variants finalize",
+  "task_key": "worker_analysis_crm-loss-variants-finalize_20260522T063402",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_crm-loss-variants-finalize_20260522T063402_result.json",
+    "occurrence": 1,
+    "bytes": 707,
+    "sha256": "d42c87c4ee215553982c1979e6b58ea7ae8f111af92a960bb3bc9ed4beb8d138"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**实际状态**：3 个实验中只有 `crm-loss-perdof` 还在 ANALYZING，已推到 DONE。`crm-loss-mse-baseline` 和 `crm-loss-conformal` 此前已是 DONE 状态，checkpoint_path / log_path 均已设置，无需操作。\n\n**checkpoint 路径**（均在 bjb1-18228）：\n- mse-baseline: `/root/autodl-tmp/checkpoints/crm_loss_variants/mse/crm_best.pt`\n- perdof: `/root/autodl-tmp/checkpoints/crm_loss_variants/perdof_weighted/crm_best.pt`\n- conformal: `/root/autodl-tmp/checkpoints/crm_loss_variants/conformal_guided/crm_best.pt`\n\n附带发现：`crm-loss-combined` 也在 ANALYZING 且具备 checkpoint + conclusion=success，不在本次任务范围，未处理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-crm-loss-variants-finalize.md"
+}

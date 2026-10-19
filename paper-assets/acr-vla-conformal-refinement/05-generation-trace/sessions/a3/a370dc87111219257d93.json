@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "a370dc87111219257d93",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "audit table1 spatial provenance 20260525T015026 retry2",
+  "task_key": "worker_audit_table1-spatial-provenance_20260525T015026_retry2",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_table1-spatial-provenance_20260525T015026_retry2.log",
+    "occurrence": 1,
+    "bytes": 1666048,
+    "sha256": "a046a215f7429b1ff59163d67aed8d820dedcf26a09f699435e5a9de7a3ffcbf"
+  },
+  "statistics": {
+    "messages": 125,
+    "user_turns": 0,
+    "tool_calls": 44,
+    "roles": {
+      "system": 1,
+      "record": 1,
+      "assistant": 34,
+      "tool_call": 44,
+      "tool_result": 44,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 125,
+      "chunks": [
+        {
+          "path": "a370dc87111219257d93-part-0001.json",
+          "message_count": 7
+        },
+        {
+          "path": "a370dc87111219257d93-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "a370dc87111219257d93-part-0003.json",
+          "message_count": 117
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-table1-spatial-provenance-20260525t015026-retry2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d662e52afb6bf132f865",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval supp obj adapt tau025 s42",
+  "task_key": "worker_analyze_eval-supp-obj-adapt-tau025-s42_20260523T100543",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-supp-obj-adapt-tau025-s42_20260523T100543_result.json",
+    "occurrence": 1,
+    "bytes": 1009,
+    "sha256": "7b92ed1e231be4a2336318b255ed94a5f8e702eaebeff2847618cedba1f1c271"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Object Adaptive CRM (τ=0.25, seed=42) 结果\n\n**Overall: 81.0% (162/200)**\n\n### Per-task\n\n| Task | Rate | Succ/Total |\n|------|------|------------|\n| alphabet_soup | 80% | 16/20 |\n| cream_cheese | 80% | 16/20 |\n| salad_dressing | **90%** | 18/20 |\n| bbq_sauce | **90%** | 18/20 |\n| ketchup | 85% | 17/20 |\n| tomato_sauce | 80% | 16/20 |\n| butter | **65%** | 13/20 |\n| milk | 75% | 15/20 |\n| chocolate_pudding | 75% | 15/20 |\n| orange_juice | **90%** | 18/20 |\n\n### Adaptive Stats\n\n- **trigger_rate**: 3.55% (1236/34838 steps)\n- **mean_uncertainty**: 0.1090\n- **τ**: 0.25\n- **max_correction_norm**: 0.2\n\n### 对比\n\n| Method | Object SR |\n|--------|-----------|\n| VLA-only | 79% |\n| CRM (always-on) | 77% |\n| ReConVLA | 79% |\n| **Adaptive CRM τ=0.25** | **81%** |\n\nτ=0.25 比之前错误的 τ=0.074855 (77.5%) 高 3.5pp，超过所有 baseline。trigger rate 从之前的高频触发降到 3.55%，说明只在高不确定性时介入，效果更好。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-supp-obj-adapt-tau025-s42.md"
+}

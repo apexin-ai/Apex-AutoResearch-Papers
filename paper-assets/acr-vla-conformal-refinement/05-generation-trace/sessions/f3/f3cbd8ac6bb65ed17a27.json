@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3cbd8ac6bb65ed17a27",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "fix ghost and untracked registry",
+  "task_key": "worker_fix_ghost-and-untracked-registry_20260517T133100",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_ghost-and-untracked-registry_20260517T133100_result.json",
+    "occurrence": 1,
+    "bytes": 874,
+    "sha256": "e95f5fa338b5e77c591bf2bb9b6afa4319030750d2c596de1a9ef0b8975446ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个子任务全部完成。\n\n**汇总：**\n\n| 子任务 | 结果 |\n|--------|------|\n| 1. Ghost 修复 eval-obs-only-object-norm01-seed45 | ✅ DONE/failed |\n| 2a. eval-obs-only-object-norm005-seed43-r2 (bjb1-32546) | ✅ RUNNING + cron |\n| 2b. eval-obs-only-object-norm003-seed43 (bjb1-18228) | ⚠️ PID 621127 已死，标记 DONE/failed |\n| 2c. eval-perdof-object-norm02-seed47 (bjb2-28827) | ✅ RUNNING + cron |\n| 2d. eval-random-selection-object-seed42 (bjb2-40593) | ✅ RUNNING + cron |\n| 3. 部署 perdof ε=0.2 seed45 (bjb1-18228 cuda:0) | ✅ PID 632167 运行中，模型加载中 |\n\n**需要关注：**\n1. `eval-obs-only-object-norm003-seed43` (PID 621127) 已死，需要重新部署\n2. bjb1-18228 上还有一个未在任务列表中的 `eval-perdof-object-norm02-seed45-r2` (PID 631702, cuda:1)，可能也需要注册追踪"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-ghost-and-untracked-registry.md"
+}

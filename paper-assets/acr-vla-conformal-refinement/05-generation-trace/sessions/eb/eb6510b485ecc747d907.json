@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb6510b485ecc747d907",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops deploy bjb2 28827 4gpu magnitude",
+  "task_key": "worker_ops_deploy-bjb2-28827-4gpu-magnitude_20260517T235048",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_deploy-bjb2-28827-4gpu-magnitude_20260517T235048_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "0a0eab9ac29b90457a5a9faf18ca6327a8a1d578139cb45970c5af0775f6d5a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署结果：\n\n| # | exp_id | GPU | 状态 |\n|---|--------|-----|------|\n| 1 | eval-obs-only-object-norm02-seed42 | cuda:0 | **跳过** — GPU 被占用 (PID 492545, 5609 MiB) |\n| 2 | eval-obs-only-object-norm01-seed42 | cuda:1 | **运行中** ✓ |\n| 3 | eval-perdof-object-norm01-seed42 | cuda:3 | **运行中** ✓ |\n| 4 | eval-perdof-object-norm03-seed43 | cuda:5 | **跳过** — GPU 被占用 (PID 488665, 5645 MiB) |\n\n已成功部署 2/4 实验（tmux sessions: `eval-obs-only-norm01-s42`, `eval-perdof-norm01-s42`），已注册至 registry。\n\nGPU 0 和 GPU 5 各有一个 python 进程占用约 5.6 GB 显存，需要等现有任务结束后才能部署剩余两个实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deploy-bjb2-28827-4gpu-magnitude.md"
+}

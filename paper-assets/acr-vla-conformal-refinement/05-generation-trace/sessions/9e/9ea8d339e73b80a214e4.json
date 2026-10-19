@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ea8d339e73b80a214e4",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "check bjb1 fresh progress v2",
+  "task_key": "worker_check_bjb1-fresh-progress-v2_20260515T013614",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_bjb1-fresh-progress-v2_20260515T013614_result.json",
+    "occurrence": 1,
+    "bytes": 3177,
+    "sha256": "fb3007d1d826657c29e613c8565981e808c661487c039cf33296e3e5706baf71"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 registry 已更新。以下是完整进度报告：\n\n---\n\n## bjb1-18228 Eval 进度快照 (2026-05-15T09:40Z)\n\n| exp_id | tasks_done | running_avg | 进程状态 | ETA |\n|--------|-----------|-------------|---------|-----|\n| **eval-argmin-only-spatial** | 7/10 | **42.9%** (30/70) | alive (PID 231421, GPU1) | ~3h |\n| **eval-tiny-correction-spatial** | 7/10 | **40.0%** (28/70) | alive (PID 232820, GPU2) | ~3h |\n| **eval-acr-spatial-v4-small** | 4.5/10 | **52.5%** (21/40) | alive (PID 253085, GPU2) | ~6h |\n| **eval-acr-spatial-v4-obs-only-r2** | 3.5/10 | **63.3%** (19/30) | alive (PID 270097, GPU0) | ~7h |\n| **eval-acr-spatial-v4-scalar** *(新发现)* | 刚启动 | - | alive (PID 288939, GPU2) | ~10h |\n\n### Per-task 明细\n\n**eval-argmin-only-spatial** (reconvla, K=10 argmin, no CRM):\n| Task | Success |\n|------|---------|\n| T1 between_plate_ramekin | 60% (6/10) |\n| T2 next_to_ramekin | **100%** (10/10) |\n| T3 from_table_center | 0% (0/10) |\n| T4 on_cookie_box | 30% (3/10) |\n| T5 in_top_drawer | 10% (1/10) |\n| T6 on_ramekin | 10% (1/10) |\n| T7 next_to_cookie_box | **90%** (9/10) |\n\n**eval-tiny-correction-spatial** (CRM v2 perdof, max_norm=0.05):\n| Task | Success |\n|------|---------|\n| T1 between_plate_ramekin | **70%** (7/10) |\n| T2 next_to_ramekin | **90%** (9/10) |\n| T3 from_table_center | 0% (0/10) |\n| T4 on_cookie_box | 30% (3/10) |\n| T5 in_top_drawer | 0% (0/10) |\n| T6 on_ramekin | 0% (0/10) |\n| T7 next_to_cookie_box | **90%** (9/10) |\n\n**eval-acr-spatial-v4-small** (CRM v3-norm perdof, max_norm=0.1):\n| Task | Success |\n|------|---------|\n| T1 between_plate_ramekin | 60% (6/10) |\n| T2 next_to_ramekin | **100%** (10/10) |\n| T3 from_table_center | 10% (1/10) |\n| T4 on_cookie_box | 40% (4/10) |\n\n**eval-acr-spatial-v4-obs-only-r2** (CRM v3-norm obs_only, max_norm=0.1):\n| Task | Success |\n|------|---------|\n| T1 between_plate_ramekin | **90%** (9/10) |\n| T2 next_to_ramekin | **100%** (10/10) |\n| T3 from_table_center | 0% (0/10) |\n\n### eval-tiny-correction-spatial 诊断结论\n\n**进程没死。** bash wrapper PID 232815 死了（可能 tmux session 被清理），但 python 子进程 PID 232820 仍在正常运行（07:48h uptime, 139% CPU, 9.1GB RSS, GPU2 占用 1450 MiB）。已完成 7/10 tasks，预计 ~3h 自然跑完。**不需要重启。**\n\nRegistry 曾被错误标记为 DONE+killed，已在 metrics 中注明实际仍在运行。\n\n### GPU 分配\n\n| GPU | 占用 | 实验 |\n|-----|------|------|\n| GPU0 | 14250/24564 MiB | eval-acr-spatial-v4-obs-only-r2 |\n| GPU1 | 1423/24564 MiB | eval-argmin-only-spatial |\n| GPU2 | 2914/24564 MiB | eval-tiny-correction + eval-v4-small + eval-v4-scalar (3进程共享!) |\n| GPU3 | 1459/24564 MiB | 空闲（v4-small 实际在 GPU2 而非 registry 记录的 cuda:3） |\n\n### 注意事项\n1. **GPU2 三进程共享** — tiny-correction(232820) + v4-small(253085) + v4-scalar(288939) 都在 GPU2 上，可能互相影响性能\n2. eval-acr-spatial-v4-scalar 是新发现的实验（PID 288939，刚启动 2 分钟），已注册到 registry\n3. 所有实验预计在 **今天内完成**（最晚 ~19:40Z）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-bjb1-fresh-progress-v2.md"
+}

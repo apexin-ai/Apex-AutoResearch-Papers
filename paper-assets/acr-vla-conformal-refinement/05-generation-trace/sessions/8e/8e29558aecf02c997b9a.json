@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e29558aecf02c997b9a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh gpu scan 4servers",
+  "task_key": "worker_ssh_gpu-scan-4servers_20260517T112514",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_gpu-scan-4servers_20260517T112514_result.json",
+    "occurrence": 1,
+    "bytes": 2564,
+    "sha256": "e0ee2845fa58554fec01448283224477be5e027362f5516f5f569776fe8fa0b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== bjb1-18228 (4 GPU) ===\ncuda:0 — PID 474319 — mode=crm_obs_only, norm=0.1, seed=45, benchmark=object, n_rollouts=default | GPU util 21%, mem 1942 MiB\ncuda:1 — PID 612853 — mode=crm_obs_only, norm=0.3, seed=47, benchmark=object, n_rollouts=10 | GPU util 20%, mem 5664 MiB\ncuda:2 — PID 587763 — mode=crm_obs_only, norm=0.1, seed=46, benchmark=object, n_rollouts=10 | GPU util 23%, mem 4268 MiB\ncuda:3 — PID 588037 — mode=crm_obs_only, norm=0.1, seed=47, benchmark=object, n_rollouts=10 | GPU util 19%, mem 4268 MiB\n\n=== bjb1-32546 (6 GPU) ===\ncuda:0 — PID 421086 — mode=crm_perdof, norm=0.3, seed=44, benchmark=object, n_rollouts=10 | GPU util 21%, mem 5665 MiB\ncuda:1 — PID 414824 — mode=crm_perdof, norm=0.1, seed=47, benchmark=object, n_rollouts=10 | GPU util 23%, mem 5665 MiB\ncuda:2 — PID 416568 — mode=crm_obs_only, norm=0.3, seed=46, benchmark=object, n_rollouts=10 | GPU util 21%, mem 5665 MiB\ncuda:3 — PID 422357 — mode=crm_obs_only, norm=default, seed=46, benchmark=object, n_rollouts=10 | GPU util 21%, mem 5665 MiB\ncuda:4 — PID 393646 — mode=crm_perdof, norm=0.1, seed=46, benchmark=object, n_rollouts=10 | GPU util 21%, mem 4269 MiB\ncuda:5 — PID 423767 — mode=crm_perdof, norm=default, seed=46, benchmark=object, n_rollouts=10 | GPU util 19%, mem 5665 MiB\n\n=== bjb2-28827 (6 GPU) ===\ncuda:0 — PID 224628 — mode=crm_scalar, norm=0.1, seed=45, benchmark=object, n_rollouts=default | GPU util 17%, mem 1941 MiB\ncuda:1 — PID 222830 — mode=crm_perdof, norm=0.2, seed=45, benchmark=object, n_rollouts=default | GPU util 17%, mem 1942 MiB\ncuda:2 — PID 392856 — mode=crm_perdof, norm=0.3, seed=46, benchmark=object, n_rollouts=10 | GPU util 19%, mem 5664 MiB\ncuda:3 — PID 242264 — mode=crm_obs_only, norm=default, seed=45, benchmark=object, n_rollouts=default | GPU util 19%, mem 2410 MiB\ncuda:4 — PID 389051 — mode=crm_perdof, norm=0.2, seed=46, benchmark=object, n_rollouts=10 | GPU util 18%, mem 5664 MiB\ncuda:5 — PID 326081 — mode=crm_perdof, norm=0.2, seed=44, benchmark=object, n_rollouts=10 | GPU util 17%, mem 2875 MiB\n\n=== bjb2-40593 (1 GPU) ===\ncuda:0 — PID 388460 — mode=crm_perdof, norm=0.1, seed=47, benchmark=object, n_rollouts=10 | GPU util 12%, mem 5628 MiB\n```\n\n**汇总**：4 台服务器共 17 张卡，全部在跑 `src/evaluate.py`，0 张空闲。全部是 benchmark=object，覆盖三种 mode（crm_obs_only / crm_perdof / crm_scalar）和多种 norm（0.1 / 0.2 / 0.3 / default）× 多 seed（44-47）的网格评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-scan-4servers.md"
+}

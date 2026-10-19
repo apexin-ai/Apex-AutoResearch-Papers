@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0169fc1bc0209e6d6b0",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "reviewer / loop_14.md",
+  "task_key": "loop_14",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/reviewer/loop_14.md",
+    "occurrence": 1,
+    "bytes": 4202,
+    "sha256": "aa5e5aa40cd973bac7e9a10d0b60cbefe158e290e204e97dcc8721fa34f433e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: max_wall_time\nupdated: '2026-05-17T06:43:49+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- bjb1-32546 上 eval-acr-object-v4-obs-only tmux session 的日志（`/root/runs/acr-vla-conformal-refinement/eval-acr-object-v4-obs-only.log`）是 obs_only ε=0.1 = 19% 的唯一权威数据源，但该实验未注册到 registry（registry 中 eval-object-v8-full = 13% 是旧版 CRM，不是当前论文使用的数据）\n- seed42 是系统性 outlier（obs_only 所有 norm 都偏高 3-6pp）。任何基于 seed42 单 seed 的 claim 都需要多 seed 验证才能定论\n- eval-obs-only-object-seed43 (norm=0.1) = 12%，低于同 seed 的 argmin=17%。seed43 是 obs_only 的最差 seed + argmin 的最好 seed\n\n### 2. 🖥️ 基础设施快照\n- 服务器：bjb1-18228 / bjb1-32546 / bjb2-28827 / bjb2-40593，account=root\n- 代码根：`/root/acr-vla-conformal-refinement`\n- Python：`/root/miniconda3/bin/python`（需 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- CRM checkpoints：`/root/autodl-tmp/checkpoints/crm_v3_norm/{obs_only,perdof,scalar_unc}/crm_best.pt`\n- HF cache：`/root/autodl-tmp/.hf_cache`（HF_HUB_OFFLINE=1）\n- SmolVLA：`/root/autodl-tmp/models/smolvla_libero/`\n- 无 W&B — 所有评估均为离线 JSON 输出\n- 空闲 GPU（截至 06:40 UTC）：bjb1-18228 cuda:2,3 / bjb1-32546 cuda:4 / bjb2-28827 cuda:2\n\n### 3. 📊 当前状态\n**刚完成**：\n1. 论文 Experiments section 审查 → 发现 Table 3 per-task 数据 3/4 列有误（CRITICAL，已提供修正数据）\n2. eval-direct-correction-r3 审查：14% > VLA-only 12%，但 +2pp 不显著 → Claim 1 需软化\n3. eval-perdof-object-norm03-seed44 = 4% PASS（与 seed42 完全一致）\n4. 多 seed variance 系统性分析：obs_only vs Argmin pooled p≈0.075（不显著），obs_only vs VLA-only p<0.01（显著）→ 建议 Director 将 primary contribution 锚定于 mechanism insight 而非 absolute SR\n\n**RUNNING 实验**（16 个）：\n- bjb1-32546: eval-argmin-object-seed46/47, eval-perdof-norm01-seed45, eval-perdof-norm03-seed45-r2, eval-obs-only-norm02-seed47\n- bjb1-18228: eval-perdof-norm01-seed44, eval-perdof-norm03-seed44(已完成待收), eval-obs-only-norm01-seed45, eval-obs-only-norm02-seed46(已完成待收)\n- bjb2-28827: eval-perdof-norm02-seed44/seed45, eval-scalar-seed45, eval-obs-only-default-seed45, eval-obs-only-norm03-seed45-r2\n- bjb2-40593: eval-perdof-default-seed44\n\n**等待中**：Director 对 claim 强度调整建议的决策回复\n\n### 4. 📋 待办（条件触发式）\n- eval-obs-only-object-norm02-seed47 完成 → 更新 6-seed 统计，按决策树判断 Claim 1 最终措辞\n- 论文 Table 3 修正 worker 提交 → 审查新数据是否与 JSON 原始文件一致\n- Direct correction 结果被写入论文 → 审查措辞是否如实报告 14%（非 ≤12%），是否避免 \"CRM 独立无效\" 过强声称\n- 任何新 paper section 提交审查 → 先检查 Table 1/Table 3 自洽性（之前已证明 worker 会抄错数据）\n- eval-vla-mean-object-seed45 registry status 仍为 ANALYZING → 提醒 Agent 补刷 status 为 DONE\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- obs_only vs VLA-only: +6pp, p<0.01 ✓（稳）\n- obs_only vs Argmin: +3.5pp, p≈0.075（不显著，seed43 反向）\n- obs_only vs perdof magnitude robustness: 跨所有 seed 一致（最强证据）\n- perdof progressive collapse: ε=0.3 → 4%, default → 0%（完美复现）\n- Direct correction: 14%（边际正向，不显著）\n\n**下一个\"我\"最容易判断错的事**：\n1. 不要信 registry 中 eval-object-v8-full = 13% 是当前论文的 obs_only ε=0.1 数据——那是旧 CRM。真正的 19% 来自 eval-acr-object-v4-obs-only（只有 tmux log，未注册）\n2. 不要因为 5-seed mean = 17% > Argmin 13.5% 就说\"显著\"——pooled Fisher p=0.075 不过阈值\n3. Narrative B 最强点是 mechanism insight (robustness vs collapse)，不是绝对 SR improvement。如果 Agent 试图用 \"+10pp\" (seed42-only) 做 headline claim，必须打回\n4. Paper worker 有从 report/registry 等二手源抄录数据的毛病（Table 3 事件），审查任何数据表时必须与 JSON 原始文件交叉验证\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-copy-3.md"
+}

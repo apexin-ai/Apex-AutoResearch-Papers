@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8843f3bbb62bce7ed57",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "eval v4 default r3 bjb2",
+  "task_key": "worker_eval_v4-default-r3-bjb2_20260515T014839",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_v4-default-r3-bjb2_20260515T014839_result.json",
+    "occurrence": 1,
+    "bytes": 389,
+    "sha256": "531346337a6dcee7d24ecde24b39255f0c1a8ca6e6ce45d752f02d34419d0199"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。实验 `eval-acr-spatial-v4-default-r3` 已在 bjb2-40593 cuda:0 上启动并运行：\n\n- **PID**: 212685\n- **tmux session**: `eval-acr-spatial-v4-default-r3`\n- **日志**: `~/runs/acr-vla-conformal-refinement/eval-acr-spatial-v4-default-r3.log`\n- **max_correction_norm**: None（使用 checkpoint 内保存的默认值）\n- **Registry**: 已更新为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-v4-default-r3-bjb2.md"
+}

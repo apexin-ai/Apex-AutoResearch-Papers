@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82d9cd8096b7a0224f43",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval k5 obs only object seed43 cron",
+  "task_key": "worker_analyze_eval-k5-obs-only-object-seed43-cron_20260520T172142",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-k5-obs-only-object-seed43-cron_20260520T172142_result.json",
+    "occurrence": 1,
+    "bytes": 142,
+    "sha256": "2c7d0d5a645bd398f8d3f62cc76e775a4c3940e9413e879bc48aa8efd1cf424a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **eval-k5-obs-only-object-seed43**: 成功结束，SR=17% (17/100)，10 tasks，已标记 DONE\n- Cron 已删除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-k5-obs-only-object-seed43-cron.md"
+}

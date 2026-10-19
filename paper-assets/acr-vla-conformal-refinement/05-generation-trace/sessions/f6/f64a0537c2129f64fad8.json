@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f64a0537c2129f64fad8",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "monitor register crons all servers",
+  "task_key": "worker_monitor_register-crons-all-servers_20260523T222703",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_monitor_register-crons-all-servers_20260523T222703_result.json",
+    "occurrence": 1,
+    "bytes": 2198,
+    "sha256": "34b9942b892073372126ae810a6836e1544f2ce6bdea3ffce64eefdb87c749c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n---\n\n## 1. 确认在跑的实验及 PID（15 个）\n\n**bjb1-32546**（5 个，cuda:0-4）:\n| GPU | 实验 | PID |\n|-----|------|-----|\n| cuda:0 | eval-supp-crm-norm005-obj-s46 | 102927 |\n| cuda:1 | eval-supp-long-vla-only-s45 | 103128 |\n| cuda:2 | eval-supp-long-adapt-tau025-s45 | 103397 |\n| cuda:3 | eval-supp-long-crm-norm005-s45 | 103675 |\n| cuda:4 | eval-supp-long-reconvla-s45 | 103942 |\n\n**bjb2-28827**（6 个，cuda:0-5）:\n| GPU | 实验 | PID |\n|-----|------|-----|\n| cuda:0 | eval-supp-goal-vla-only-s45 | 926766 |\n| cuda:1 | eval-supp-goal-crm-norm005-s45 | 927030 |\n| cuda:2 | eval-supp-goal-reconvla-s45 | 927237 |\n| cuda:3 | eval-supp-long-reconvla-s44 | 849677 |\n| cuda:4 | eval-supp-long-k2mean-s45 | 924226 |\n| cuda:5 | eval-supp-long-k2mean-s44 | 850410 |\n\n**cqa1-32758**（5 个，cuda:0-1,3-5）:\n| GPU | 实验 | PID |\n|-----|------|-----|\n| cuda:0 | eval-supp-goal-k2mean-s45 | 456787 |\n| cuda:1 | eval-supp-spatial-vla-only-s45 | 456947 |\n| cuda:3 | eval-supp-spatial-crm-norm005-s45 | 457405 |\n| cuda:4 | eval-supp-spatial-adapt-tau025-s45 | 502816 |\n| cuda:5 | eval-supp-spatial-reconvla-s45 | 457485 |\n\n## 2. 已注册 cron（16 个，含上述 15 个 + spatial-adapt）\n\n全部 16 个 cron 注册成功，interval=120s。\n\n## 3. 已完成但之前标记为 RUNNING 的实验（3 个）\n\n| 实验 | 服务器 | SR | 状态已更新 |\n|------|--------|-----|-----------|\n| eval-supp-goal-adapt-tau025-s45 | bjb1-32546:cuda:5 | **81.0%** (162/200), trigger_rate=9.4% | → DONE |\n| eval-supp-reconvla-obj-s46 | cqa1-32758:cuda:2 | **80.0%** (160/200) | → DONE |\n| eval-supp-crm-norm005-obj-s45 | bjb2-40593:cuda:0 | **76.5%** (153/200) | → DONE |\n\n## 4. 异常/特殊情况\n\n- **bjb2-40593**: 完全空闲，无任何 eval 进程和 tmux session（eval-supp-crm-norm005-obj-s45 已完成）\n- **bjb1-32546:cuda:5**: 已空闲（eval-supp-goal-adapt-tau025-s45 已完成）\n- **cqa1-32758:cuda:2**: 已空闲（eval-supp-reconvla-obj-s46 已完成）\n- **eval-supp-spatial-adapt-tau025-s45**: 状态已从 PREPARING → RUNNING，进程确认在跑（PID 502816/502821）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-register-crons-all-servers.md"
+}

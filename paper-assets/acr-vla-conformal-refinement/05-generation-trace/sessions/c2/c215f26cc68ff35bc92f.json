@@ -1,0 +1,255 @@
+{
+  "schema_version": "1.0",
+  "id": "c215f26cc68ff35bc92f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "harvest eval obs only object norm005 seed43",
+  "task_key": "worker_harvest_eval-obs-only-object-norm005-seed43_20260520T105757",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_harvest_eval-obs-only-object-norm005-seed43_20260520T105757.jsonl",
+    "occurrence": 1,
+    "bytes": 12954,
+    "sha256": "366e9a4d0f6ab22b1baa06c15140584422aa2bddb4330b315022441b6c746e73"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "tool_call": 5,
+      "tool_result": 5,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T10:58:38.942489+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_eval-obs-only-object-norm005-seed43_20260520T105757",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T10:58:38.942828+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_eval-obs-only-object-norm005-seed43_20260520T105757",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T10:58:38.943001+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_eval-obs-only-object-norm005-seed43_20260520T105757",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "tail -200 ~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm005-seed43.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T10:58:38.943202+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt', 'n_rollouts': 10, 'max_steps': 300, 'seed': 43, 'K': 10, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': 'logs/eval_object_obs_only_norm005_seed43.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5}\\\\n[eval] Mode: crm_obs_only, benchmark: object\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  33%|███▎      | 163/489 [00:00<00:00, 1610.87it/s]\\\\rLoading weights:  66%|██████▋   | 325/489 [00:00<00:00, 1614.06it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 1786.55it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.05\\\\n[eval] Loading LIBERO object environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_alphabet_soup_and_place_it_in_the_basket] success rate: 0.0% (0/10)\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_cream_cheese_and_place_it_in_the_basket: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_cream_cheese_and_place_it_in_the_basket] su\n…[truncated 2570 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_eval-obs-only-object-norm005-seed43_20260520T105757",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T10:58:38.943492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_eval-obs-only-object-norm005-seed43_20260520T105757",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm005-seed43",
+              "field": "metrics",
+              "value": "{'success_rate': 0.13, 'total_rollouts': 100, 'per_task': {'alphabet_soup': 0, 'cream_cheese': 0, 'salad_dressing': 0.2, 'bbq_sauce': 0.3, 'ketchup': 0.1, 'tomato_sauce': 0, 'butter': 0, 'milk': 0.1, 'chocolate_pudding': 0.3, 'orange_juice': 0.3}}",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T10:58:38.943812+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm005-seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-17T13:32:15.980Z\\\", \\\"updated_at\\\": \\\"2026-05-20T10:58:22.346Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only ε=0.05 on Object seed43. Low-norm multi-seed supplement (plan_500): strengthens Figure 2 error bars at small ε.\\\", \\\"notes\\\": \\\"Superseded by eval-obs-only-object-norm005-seed43-r2 (bjb1-32546) and r3 (bjb1-18228)\\\", \\\"completed_at\\\": \\\"2026-05-17T23:17:56.045Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"Superseded by eval-obs-only-object-norm005-seed43-r2 (bjb1-32546) and r3 (bjb1-18228)\\\"}, \\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T10:54:29.620606+00:00\\\"}]}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"... python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 43 --n_rollouts 10 --K 10 --max_correction_norm 0.05 ...\\\\\\\"\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"278354\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm005-seed43.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T08:49:07.406Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": \\\"100 (10 tasks x 10 rollouts)\\\", \\\"model_name\\\": \\\"SmolVLA + CRM obs_only ε=0.05\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object (10 tasks x 10 rollouts)\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"wall_clock_seconds\\\": 7635.0, \\\"gpu_hours\\\": 2.12}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T10:54:17.445Z\\\"}, \\\"metrics\\\": {\\\"success_rate\\\": 0.13, \\\"total_rollouts\\\": 100, \\\"per_task\\\": {\\\"alphabet_soup\\\": 0, \\\"cream_cheese\\\": 0, \\\"salad_dressing\\\": 0.2, \\\"bbq_sauce\\\": 0.3, \\\"ketchup\\\": 0.1, \\\"tomato_sauce\\\": 0, \\\"butter\\\": 0, \\\"milk\\\": 0.\n…[truncated 150 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_eval-obs-only-object-norm005-seed43_20260520T105757",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T10:58:38.944067+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_eval-obs-only-object-norm005-seed43_20260520T105757",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm005-seed43",
+              "field": "log_path",
+              "value": "~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm005-seed43.log",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T10:58:38.944255+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_eval-obs-only-object-norm005-seed43_20260520T105757",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm005-seed43",
+              "field": "conclusion",
+              "value": "success",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T10:58:38.944505+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm005-seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-17T13:32:15.980Z\\\", \\\"updated_at\\\": \\\"2026-05-20T10:58:29.252Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only ε=0.05 on Object seed43. Low-norm multi-seed supplement (plan_500): strengthens Figure 2 error bars at small ε.\\\", \\\"notes\\\": \\\"Superseded by eval-obs-only-object-norm005-seed43-r2 (bjb1-32546) and r3 (bjb1-18228)\\\", \\\"completed_at\\\": \\\"2026-05-17T23:17:56.045Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"Superseded by eval-obs-only-object-norm005-seed43-r2 (bjb1-32546) and r3 (bjb1-18228)\\\"}, \\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T10:54:29.620606+00:00\\\"}]}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"... python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 43 --n_rollouts 10 --K 10 --max_correction_norm 0.05 ...\\\\\\\"\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"278354\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm005-seed43.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T08:49:07.406Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": \\\"100 (10 tasks x 10 rollouts)\\\", \\\"model_name\\\": \\\"SmolVLA + CRM obs_only ε=0.05\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object (10 tasks x 10 rollouts)\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"wall_clock_seconds\\\": 7635.0, \\\"gpu_hours\\\": 2.12}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T10:54:17.445Z\\\"}, \\\"metrics\\\": {\\\"success_rate\\\": 0.13, \\\"total_rollouts\\\": 100, \\\"per_task\\\": {\\\"alphabet_soup\\\": 0, \\\"cream_cheese\\\": 0, \\\"salad_dressing\\\": 0.2, \\\"bbq_sauce\\\": 0.3, \\\"ketchup\\\": 0.1, \\\"tomato_sauce\\\": 0, \\\"butter\\\": 0, \\\"milk\\\": 0.\n…[truncated 245 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_eval-obs-only-object-norm005-seed43_20260520T105757",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T10:58:38.944755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm005-seed43\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 1, \\\"created_at\\\": \\\"2026-05-17T13:32:15.980Z\\\", \\\"updated_at\\\": \\\"2026-05-20T10:58:32.683Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only ε=0.05 on Object seed43. Low-norm multi-seed supplement (plan_500): strengthens Figure 2 error bars at small ε.\\\", \\\"notes\\\": \\\"Superseded by eval-obs-only-object-norm005-seed43-r2 (bjb1-32546) and r3 (bjb1-18228)\\\", \\\"completed_at\\\": \\\"2026-05-17T23:17:56.045Z\\\", \\\"extra\\\": {\\\"previous_failure\\\": {\\\"conclusion\\\": \\\"killed\\\", \\\"notes\\\": \\\"Superseded by eval-obs-only-object-norm005-seed43-r2 (bjb1-32546) and r3 (bjb1-18228)\\\"}, \\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T10:54:29.620606+00:00\\\"}]}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"... python -u src/evaluate.py --mode crm_obs_only --benchmark object --seed 43 --n_rollouts 10 --K 10 --max_correction_norm 0.05 ...\\\\\\\"\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:4\\\"], \\\"pid\\\": \\\"278354\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-obs-only-object-norm005-seed43.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T08:49:07.406Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": \\\"100 (10 tasks x 10 rollouts)\\\", \\\"model_name\\\": \\\"SmolVLA + CRM obs_only ε=0.05\\\", \\\"seed\\\": 43, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object (10 tasks x 10 rollouts)\\\", \\\"checkpoint_path\\\": \\\"N/A (eval only)\\\", \\\"wall_clock_seconds\\\": 7635.0, \\\"gpu_hours\\\": 2.12}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T10:54:17.445Z\\\"}, \\\"metrics\\\": {\\\"success_rate\\\": 0.13, \\\"total_rollouts\\\": 100, \\\"per_task\\\": {\\\"alphabet_soup\\\": 0, \\\"cream_cheese\\\": 0, \\\"salad_dressing\\\": 0.2, \\\"bbq_sauce\\\": 0.3, \\\"ketchup\\\": 0.1, \\\"tomato_sauce\\\": 0, \\\"butter\\\": 0, \\\"milk\\\": 0.\n…[truncated 245 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_eval-obs-only-object-norm005-seed43_20260520T105757",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T10:58:38.944964+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果摘要：\n\n- **Overall SR**: 13% (13/100)，与 r2 的 14% 接近，高于 VLA baseline ~11%\n- **Per-task SR**:\n  - alphabet_soup: 0%, cream_cheese: 0%, tomato_sauce: 0%, butter: 0%\n  - ketchup: 10%, milk: 10%\n  - salad_dressing: 20%\n  - bbq_sauce: 30%, chocolate_pudding: 30%, orange_juice: 30%\n- **Conclusion**: success\n- 100 rollouts 全部正常完成，无错误"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_eval-obs-only-object-norm005-seed43_20260520T105757"
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/conversations/harvest-eval-obs-only-object-norm005-seed43.md"
+}

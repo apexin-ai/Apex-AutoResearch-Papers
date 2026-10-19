@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0f9e63367babc7385ca",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "check precompute status v2",
+  "task_key": "worker_check_precompute-status-v2_20260521T180234",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_precompute-status-v2_20260521T180234_result.json",
+    "occurrence": 1,
+    "bytes": 345,
+    "sha256": "78d909e94d8129b93f2bcf451667bbdfca6fdb66da1b799790050622e3902213"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 服务器 | precompute 进程 | Object partials | Spatial partials | 状态 |\n|--------|----------------|-----------------|------------------|------|\n| bjb2-40593 | 无 | 63 | — | DONE |\n| bjb1-32546 | 无 | 384 | — | DONE |\n| bjb1-18228 | 无 | 387 | 84 | DONE |\n| bjb2-28827 | 无 | — | 78 | DONE |\n\nALL_DONE=true"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-precompute-status-v2.md"
+}

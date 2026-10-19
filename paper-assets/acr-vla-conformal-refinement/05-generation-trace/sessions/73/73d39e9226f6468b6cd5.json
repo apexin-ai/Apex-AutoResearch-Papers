@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73d39e9226f6468b6cd5",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code fisher test script object",
+  "task_key": "worker_code_fisher-test-script-object_20260515T204705",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fisher-test-script-object_20260515T204705_result.json",
+    "occurrence": 1,
+    "bytes": 3587,
+    "sha256": "a7446607d4618923fe21502261e90950a2d64d3b44b4a11b3510bcfaa25202db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "dry-run 完成，输出如下：\n\n```\n============================================================\n  LIBERO-Object 6-Method Statistical Analysis\n============================================================\nMode: seed=42 only\nSeeds available per method:\n  obs_only    : 1 seed(s)\n  argmin      : 1 seed(s)\n  perdof      : 1 seed(s)\n  vla_only    : 1 seed(s)\n  vla_mean    : 1 seed(s)\n  scalar      : 1 seed(s)\n\n============================================================\n  1. Pooled Fisher Exact Test: obs_only vs argmin\n============================================================\n\n  obs_only: 19/100 = 19.0%\n  argmin:   12/100 = 12.0%\n\n  2x2 contingency table:\n              success  failure\n  obs_only         19       81\n  argmin           12       88\n\n  Fisher exact p-value (two-sided): 0.2408\n  Odds ratio: 1.720\n  Cohen's h: 0.195\n\n  Interpretation: Not significant (p>=0.05)\n\n============================================================\n  2. Per-Seed Fisher Exact Test: obs_only vs argmin\n============================================================\n\n  seed42:\n    obs_only: 19/100 = 19.0%\n    argmin:   12/100 = 12.0%\n    Fisher p = 0.2408, OR = 1.720, h = 0.195\n\n============================================================\n  3. Bootstrap CI for SR Difference (obs_only - argmin)\n============================================================\n\n  Task-level resampling, 10 tasks, 10000 bootstrap iterations\n  Mean difference: +0.0702 (+7.0%)\n  95% CI: [+0.0300, +0.1100] ([+3.0%, +11.0%])\n  CI includes 0: No → significant\n\n============================================================\n  4. Six-Way Comparison Table\n============================================================\n\n  Method       |  Pooled SR |  seed42 SR |  seed43 SR | Seeds\n  -------------+------------+------------+------------+------\n  obs_only     |     19.0% |     19.0% |        N/A |     1\n  argmin       |     12.0% |     12.0% |        N/A |     1\n  perdof       |     11.0% |     11.0% |        N/A |     1\n  vla_only     |     12.0% |     12.0% |        N/A |     1\n  vla_mean     |     12.0% |     12.0% |        N/A |     1\n  scalar       |      9.0% |      9.0% |        N/A |     1\n\n============================================================\n  5. Pairwise Fisher Tests: obs_only vs Each Baseline\n============================================================\n\n  Bonferroni correction: 5 comparisons, α_adj = 0.0100\n\n  Comparison                     |  p-value |    p_adj |     OR |      h |   Sig?\n  -------------------------------+----------+----------+--------+--------+-------\n  obs_only vs argmin             |   0.2408 |   1.0000 |  1.720 | +0.195 |     No\n  obs_only vs perdof             |   0.1649 |   0.8247 |  1.898 | +0.226 |     No\n  obs_only vs vla_only           |   0.2408 |   1.0000 |  1.720 | +0.195 |     No\n  obs_only vs vla_mean           |   0.2408 |   1.0000 |  1.720 | +0.195 |     No\n  obs_only vs scalar             |   0.0652 |   0.3261 |  2.372 | +0.293 |     No\n```\n\n**验证结果**:\n- 5 个 section 全部正常输出\n- Pooled Fisher p=0.2408，符合预期范围（19% vs 12%, n=100, 预期 p≈0.17-0.25）\n- Bootstrap CI [+3.0%, +11.0%] 不含 0 — task-level resampling 比 Fisher 更敏感，因为它保留了 task 间方差结构\n- Six-way table 数值正确（obs_only 19%, scalar 最低 9%）\n- Bonferroni 校正后所有比较均不显著（单 seed 100 trials power 不够）\n\nseed=43 数据到齐后填入 `SEED43` dict 即可，不需改代码逻辑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fisher-test-script-object.md"
+}

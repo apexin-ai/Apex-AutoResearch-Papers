@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb7cb2606756be3da92c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest eval adaptive k spatial p50 seed43 r2",
+  "task_key": "worker_harvest_eval-adaptive-k-spatial-p50-seed43-r2_20260520T092516",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_eval-adaptive-k-spatial-p50-seed43-r2_20260520T092516_result.json",
+    "occurrence": 1,
+    "bytes": 774,
+    "sha256": "2c7583237c249d8bdf8a67c3ecaaf93f2925804d042be04d1b7470111e54d375"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## 摘要\n\n| 指标 | Adaptive-K Spatial P50 | Spatial K=10 baseline | Object P50 |\n|------|----------------------|----------------------|------------|\n| **SR** | **33.0%** | 34.3% (±1.5%) | 15.3% |\n| **avg_K** | **6.33** | 10 | 3.8 |\n| **fast_path** | **45.8%** | N/A | 77% |\n| **compute saving** | **~37%** | — | ~62% |\n\nP50 阈值（τ=0.074855）从 Object 迁移到 Spatial：SR 仅降 1.3pp（在 baseline CI 内），avg_K=6.33 节省 37% 计算。Spatial 任务 L2 divergence 均值更高（0.090 vs Object），导致 fast_path 从 77% 降至 46%——Spatial 任务不确定性更大，需要更多 full refinement steps，但自适应分配仍能在不损失 SR 的前提下显著节省计算。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-eval-adaptive-k-spatial-p50-seed43-r2.md"
+}

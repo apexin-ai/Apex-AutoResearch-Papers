@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d783ad267752b01b1b35",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb2 28827 tau sweep d132",
+  "task_key": "worker_deploy_bjb2-28827-tau-sweep-d132_20260523T130545",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb2-28827-tau-sweep-d132_20260523T130545_result.json",
+    "occurrence": 1,
+    "bytes": 745,
+    "sha256": "cd8f9cea03d38eeb3f65282eddaf860b42051ab1136782ed26024cda20c3a325"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实验全部部署成功。汇总：\n\n| exp_id | GPU | τ | tmux session | 状态 |\n|--------|-----|-----|--------------|------|\n| `eval-ablation-tau010-goal-s42` | cuda:0 | 0.10 | `eval-ablation-tau010-goal-s42` | RUNNING |\n| `eval-ablation-tau015-goal-s42` | cuda:1 | 0.15 | `eval-ablation-tau015-goal-s42` | RUNNING |\n| `eval-ablation-tau040-goal-s42` | cuda:2 | 0.40 | `eval-ablation-tau040-goal-s42` | RUNNING |\n\n- 服务器：bjb2-28827\n- 日志：`logs/eval-ablation-tau{010,015,040}-goal-s42.log`\n- 3 个进程均已开始加载 SmolVLA 模型，正常运行中\n- CRM checkpoint: `crm_smolvla_3suite_v1/crm_best.pt`\n- 配置与 `eval-supp-goal-adapt-tau025-s42` 一致，仅 `--conformal_threshold` 不同"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb2-28827-tau-sweep-d132.md"
+}

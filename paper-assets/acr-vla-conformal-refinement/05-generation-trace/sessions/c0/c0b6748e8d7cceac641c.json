@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0b6748e8d7cceac641c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "kill and redeploy bjb2 bjb1 32546",
+  "task_key": "worker_kill-and-redeploy_bjb2-bjb1-32546_20260528T044006",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_kill-and-redeploy_bjb2-bjb1-32546_20260528T044006_result.json",
+    "occurrence": 1,
+    "bytes": 1143,
+    "sha256": "6cd756a746dfcb32d72ebfebc49c14416f94dca92d440d4c5a9b5bbe54170695"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 1. Kill 结果\n\n| 服务器 | 操作 | GPU 释放确认 |\n|--------|------|-------------|\n| bjb2-28827 | kill -9 95782 97560 | cuda:0-5 全部 0 MiB ✓ |\n| bjb1-32546 | kill -9 515230 515586 | cuda:3 = 2 MiB, cuda:4 = 2 MiB ✓ (cuda:0/1/2 有 Pi05 goal-s43/s44, object-s44 正常运行) |\n\n## 2. bjb1-32546 部署\n\n| GPU | exp_id | PID | 说明 |\n|-----|--------|-----|------|\n| cuda:3 | `eval-random-selection-object-seed43-v2` | 550552 | Random selection K=10, n_rollouts=20, plan_600 |\n| cuda:4 | `eval-ksweep-k20-obs-object-s44` | 550832 | K=20 obs_only CRM, n_rollouts=20, plan_601 |\n\n## 3. bjb2-28827 部署\n\n所有 Pi05 CRM always-on seed 已铺开（object-s44/goal-s43/goal-s44 在 bjb1-32546 cuda:0/1/2；spatial-s43/s44/long-s43/s44 在 bjb1-18228；long-s42 在 cqa1）。改为填补 SmolVLA tau-sweep spatial s42 缺口：\n\n| GPU | exp_id | PID | 说明 |\n|-----|--------|-----|------|\n| cuda:4 | `smolvla-tau025-spatial-s42` | 112960 | τ=0.25 spatial s42, 最关键缺口 |\n| cuda:5 | `smolvla-tau020-spatial-s42` | 113242 | τ=0.20 spatial s42, 密化 sweep 曲线 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/kill-and-redeploy-bjb2-bjb1-32546.md"
+}

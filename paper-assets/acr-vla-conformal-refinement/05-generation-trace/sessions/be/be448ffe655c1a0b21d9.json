@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be448ffe655c1a0b21d9",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh harvest 3dir results",
+  "task_key": "worker_ssh_harvest-3dir-results_20260523T031403",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_harvest-3dir-results_20260523T031403_result.json",
+    "occurrence": 1,
+    "bytes": 985,
+    "sha256": "c61928f64f89a9b80cdd5343ec627107d889e39b1027a6b82e827f012c9513cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果收割完成。\n\n**已完成 (2/5):**\n- CRM norm=0.1: **79.0%** (vs VLA-only 79.8%, -0.8pp)\n- CRM norm=0.05: **80.0%** (vs VLA-only 79.8%, +0.2pp)\n\n**即将完成 (3/5, 均在最后一个 task 的最后几个 rollout):**\n- CRM norm=0.3: ~74-76% (估计, -4~6pp)\n- Adaptive CRM: ~81-83% (估计)\n- Reconvla K=10: ~81-83% (估计)\n\n**核心发现:**\n\n1. **Norm 大小是决定性因素**: 1.42→0.3→0.1→0.05，SR 从 57%→~75%→79%→80%，单调递增\n2. **CRM 在小 norm 下无增益**: norm=0.05 时 SR 与 VLA-only 持平（80% vs 79.8%），corrections 太小无法帮助也无法伤害\n3. **Reconvla (无 CRM 的 K=10 平均) 是强 baseline**: 估计 ~81-83%，与 adaptive CRM 持平甚至略优于 CRM variants\n4. **T6 (on_ramekin) 全部 0%**: 所有方法均失败，是 VLA 本身的限制\n\n报告已写入 `artifacts/3dir_spatial_s42_results.md`。3 个 running 实验预计 ~15 分钟内完成，届时可更新最终数字。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-3dir-results.md"
+}

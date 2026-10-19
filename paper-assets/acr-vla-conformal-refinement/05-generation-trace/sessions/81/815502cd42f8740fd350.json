@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "815502cd42f8740fd350",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy pi05 crm training bjb1 18228",
+  "task_key": "worker_deploy_pi05-crm-training-bjb1-18228_20260524T083322",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_pi05-crm-training-bjb1-18228_20260524T083322_result.json",
+    "occurrence": 1,
+    "bytes": 1140,
+    "sha256": "f5f84b01217bcf37aac28a26f64f6b403d922a89291b847979cbb6ce1c9095c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**Step 1 — Kill 旧进程** ✓\n- PID 278846 (GPU 1) 和 279117 (GPU 2) 已 force kill\n- bjb1-18228 和 cqa1-32758 的 tmux sessions 已清理\n\n**Step 2 — 代码兼容性** ✓\n- `train_crm_k1.py` 已有 `--reuse_merged_cache` 路径，直接加载 `obs_features.pt/k_samples.pt/expert_actions.pt`\n- `MultiScaleCRM` 的 `set_normalization_stats` 正确处理 1D obs_mean（单尺度 fallback）\n- 无需代码修改，只需传 `--obs_dim 2048 --reuse_merged_cache`\n\n**Cache 维度确认**:\n- Spatial: 60,250 samples, obs [60250, 2048], k_samples [60250, 10, 5, 6]\n- Goal: 61,728 samples, obs [61728, 2048], k_samples [61728, 10, 5, 6]\n- h_eff=5, action_dim=6, K=10 → K=1 取 sample[0]\n\n**Step 4 — 训练已启动** ✓\n- GPU 1 (525MB): `crm-pi05-spatial` — epoch 13/50, val_loss=0.004967, 持续下降\n- GPU 2 (525MB): `crm-pi05-goal` — epoch 15/50, val_loss=0.004808, 持续下降\n- 模型 536,418 params (vs SmolVLA 960D 时 ~327K，因 obs_dim=2048 增大)\n\n**Step 6 — Registry** ✓\n- `train-crm-pi05-spatial-k1`: RUNNING\n- `train-crm-pi05-goal-k1`: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-pi05-crm-training-bjb1-18228.md"
+}

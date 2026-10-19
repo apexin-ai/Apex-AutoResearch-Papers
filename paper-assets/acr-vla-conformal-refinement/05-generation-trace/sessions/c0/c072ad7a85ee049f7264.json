@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c072ad7a85ee049f7264",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_4_1778808431.md",
+  "task_key": "loop_4_1778808431",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_4_1778808431.md",
+    "occurrence": 1,
+    "bytes": 6425,
+    "sha256": "e4f3226c7f3f30f428cc23c4ba28c7fe0847a9e5410340ca4bf7062182106af1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: idle_timeout\nupdated: '2026-05-15T01:27:01+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**：bjb1-18228 gpu_ids 需查 `get_project_status`，当前 4 卡全占（cuda:0/1/2/3 分别跑 obs-only-r2/argmin/tiny-correction/v4-small）。bjb2-40593 只有 cuda:0\n- **CRM checkpoint 版本**：只能用 `crm_v3_norm` 目录下的 checkpoint（已做 input normalization）。`crm_v3`（无 norm）和 `crm_v2`（6D state bug）都是废弃的，用了会产生垃圾结果。之前 eval-acr-spatial-v4-obs-only 就因为误用 crm_v3 而非 crm_v3_norm 被 kill 过\n- **max_correction_norm**：默认值 1.42 已证明导致 compounding error 雪崩（D019 确认 0/5）。所有新 CRM eval 必须用 0.1 或更小\n- **CoRL 2026 DDL ~May 26**（D021 刚撤销 D011，重新瞄准）。用户承诺加 GPU。不要再提\"时间不够要不要考虑 ICLR\"\n- **precompute cache**：bjb1 用 `crm_cache_v5`（8D state，正确），bjb2 的 `crm_cache` 是旧的 6D state（D016 invalidated），不能用\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**（4× RTX 4090）：工作目录 `/root/acr-vla-conformal-refinement`，Python `/root/miniconda3/bin/python`，conda base 环境\n- **bjb2-40593**（1× RTX 4090 D）：同上目录结构，conda base\n- 模型：`/root/autodl-tmp/models/smolvla_libero/`（SmolVLA 450M, libero-finetuned）\n- CRM checkpoints（v3-norm，唯一有效版本）：\n  - perdof: `/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt`（val_loss 0.0358）\n  - obs_only: `/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`（val_loss 0.0165）\n  - scalar_unc: `/root/autodl-tmp/checkpoints/crm_v3_norm/scalar_unc/crm_best.pt`（val_loss 0.0374）\n- 数据：`/root/autodl-tmp/libero_data/`，precompute cache `/root/autodl-tmp/crm_cache_v5/`\n- HF cache: offline mode（`HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`）\n- 活跃进程（截至 05-15 05:26Z snapshot，需验证是否还活着）：\n  - eval-argmin-only-spatial: bjb1 cuda:1, PID 231421, tmux=eval-argmin-only-spatial\n  - eval-tiny-correction-spatial: bjb1 cuda:2, PID 232815, tmux=eval-tiny-correction-spatial\n  - eval-acr-spatial-v4-small: bjb1 cuda:3, PID 253085\n  - eval-acr-spatial-v4-obs-only-r2: bjb1 cuda:0, PID 270097, tmux=eval-acr-spatial-v4-obs-only-r2\n  - eval-vla-mean-spatial-t10: bjb2 cuda:0, PID unknown\n\n### 3. 📊 当前状态\n上个 session 刚执行完 D021（撤销放弃 CoRL，重新瞄准 CoRL 2026），然后收到 WRITE HANDOFF。\n\n**RUNNING 实验（5 路 spatial eval 并行）**：\n| exp_id | server:gpu | 进度 | 已知结果 |\n|--------|-----------|------|---------|\n| eval-argmin-only-spatial | bjb1:1 | 5/10 tasks | 40%（纯 argmin 选择，无 CRM）|\n| eval-tiny-correction-spatial | bjb1:2 | 3/10 tasks | 53.3%（v2 CRM, norm=0.05）|\n| eval-acr-spatial-v4-small | bjb1:3 | 1/10 tasks | T1=60%（v3-norm perdof, norm=0.1）|\n| eval-acr-spatial-v4-obs-only-r2 | bjb1:0 | 刚启动 | —（v3-norm obs_only, norm=0.1）|\n| eval-vla-mean-spatial-t10 | bjb2:0 | T10 补充 | 补 VLA-mean 缺失的第 10 个 task |\n\n**PREPARING（未提交）**：eval-acr-spatial-v4-scalar, eval-object-v6-full, eval-reconvla-spatial-v1, precompute-v3/v4 shards（多数是旧的残留条目）\n\n**等待中**：\n- 5 路 eval 的 cron 回调（估计各还需 6-9h，即 ~May 15 12:00-16:00Z 陆续完成）\n- Director 是否已收到 D021 汇报的确认\n\n### 4. 📋 待办（条件触发式）\n- **5 路 eval 任一完成 →** 分析结果，更新 registry metrics，不等全部完成就向 Director 汇报增量结果\n- **v4-small（perdof）+ obs-only-r2 都完成 →** 核心 Claim 1 判定：perdof > obs_only → conformal features 有 closed-loop 价值（narrative \"per-DOF uncertainty under distribution shift\"）；obs_only ≥ perdof → Claim 1 需 reframing（conformal features 训练帮倒忙但 closed-loop 也不行）\n- **argmin-only 完成（10 tasks）→** 确定 CRM correction 的真正增量。如果 v4-small ≈ argmin-only → CRM correction 无净增益，narrative 退化为\"sample selection is all you need\"。如果 v4-small > argmin-only → CRM 有增量\n- **GPU 空出后 →** 立即提交 eval-acr-spatial-v4-scalar（三路 ablation 的最后一路）+ eval-object benchmark + 考虑 Gated CRM eval\n- **Director 确认加 GPU →** 扩 eval 并行度：object benchmark、multi-seed、K-sweep、held-out perturbation。Gated CRM 代码已就绪（`src/gated_crm.py`）\n- **所有 spatial eval 完成 →** 产出完整对比表：K=1(30%) / K=10-mean(31%) / argmin-only(?) / v4-small-perdof(?) / obs-only(?) / scalar-unc(?) / tiny-correction(?)。基于对比表确定最终 framing，写 paper_framing.md 更新\n\n### 5. 🎯 战略上下文\n**项目核心**：ACR-VLA = Adaptive Conformal Refinement for VLA。用多变量 conformal prediction 的 per-DOF 不确定性统计指导 flow-matching VLA 的 action correction。\n\n**决策链**：D001-D003（MVP PASS）→ D004-D009（架构选型 + SmolVLA）→ D012-D013（wrapper 7 bug 修复）→ D015（30% baseline 继续）→ D016（state dim bug）→ D017-D018（CRM correction 退化→根因 normalization）→ D019（normalization alone 不够→magnitude control）→ D020（obs_only vs perdof 的 training loss 意外发现）→ **D021（重新瞄准 CoRL 2026）**\n\n**最容易判断错的事**：\n1. **argmin-only 的强度被低估**。早期信号 argmin-only ≈ 40-53%，远超 K=1(30%) 和 K=10-mean(31%)。CRM correction 的增量可能很小甚至为零。如果 v4-small ≈ argmin-only，narrative 必须转向\"sample selection > averaging > single sample\"，CRM 退居辅助角色\n2. **obs_only training loss 54% 好于 perdof**。但 training loss ≠ closed-loop success。conformal features 可能在 distribution shift 下提供实时 uncertainty 信号（每步重新从 K 个新样本计算），这是 obs_features 做不到的。closed-loop eval 才是判决\n3. **eval-tiny-correction-spatial 用的是 v2 checkpoint**（非 v3-norm），而 v4-small 用 v3-norm。不能直接对比两者的数值，只能看各自 vs argmin-only 的增量\n4. **CoRL DDL 极紧**。Abstract ~May 26 = 11 天。论文写作必须与 eval 并行铺开。用户说会加 GPU，但加多少、什么时候到位未确认\n5. **bjb2 上的旧 crm_cache 是 6D state 的废弃数据**，千万不要在 bjb2 上跑 CRM 训练除非确认用的是 v5 cache\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778808431.md"
+}

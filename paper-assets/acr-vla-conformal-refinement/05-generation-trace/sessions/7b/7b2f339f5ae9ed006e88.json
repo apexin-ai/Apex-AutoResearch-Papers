@@ -1,0 +1,77 @@
+{
+  "schema_version": "1.0",
+  "id": "7b2f339f5ae9ed006e88",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "eval smolvla libero checkpoint",
+  "task_key": "worker_eval_smolvla-libero-checkpoint_20260513T100459",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_smolvla-libero-checkpoint_20260513T100459.log",
+    "occurrence": 1,
+    "bytes": 1397482,
+    "sha256": "43f0db77c2dc2233b1582f28827ce46cc56b253dab869a4187ac505cba602925"
+  },
+  "statistics": {
+    "messages": 934,
+    "user_turns": 1,
+    "tool_calls": 422,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 82,
+      "tool_call": 422,
+      "tool_result": 422,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 698,
+      "chunks": [
+        {
+          "path": "7b2f339f5ae9ed006e88-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7b2f339f5ae9ed006e88-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7b2f339f5ae9ed006e88-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "7b2f339f5ae9ed006e88-part-0004.json",
+          "message_count": 158
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 236,
+      "chunks": [
+        {
+          "path": "7b2f339f5ae9ed006e88-part-0004.json",
+          "message_count": 22
+        },
+        {
+          "path": "7b2f339f5ae9ed006e88-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "7b2f339f5ae9ed006e88-part-0006.json",
+          "message_count": 34
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-smolvla-libero-checkpoint.md"
+}

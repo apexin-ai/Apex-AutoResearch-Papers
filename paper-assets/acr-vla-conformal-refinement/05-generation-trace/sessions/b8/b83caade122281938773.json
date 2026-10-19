@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b83caade122281938773",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops scan bjb1 32546 object",
+  "task_key": "worker_ops_scan-bjb1-32546-object_20260515T113909",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_scan-bjb1-32546-object_20260515T113909_result.json",
+    "occurrence": 1,
+    "bytes": 1662,
+    "sha256": "992ae4c36d3100fad55b98110247819abbc35b44595efd041d5f3f7aaa03e95f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 个 registry 全部更新完毕。汇总如下：\n\n## Object Eval 进度快照 (2026-05-15 19:45 UTC)\n\n| # | 实验 | GPU | 进度 | Running Avg | 状态 |\n|---|------|-----|------|-------------|------|\n| 1 | **reconvla** (baseline) | cuda:0 | 6/10 | **6.7%** | alive |\n| 2 | **perdof** CRM | cuda:1 | 6/10 (butter 5/10) | **8.3%** | alive |\n| 3 | ⭐ **obs_only** CRM (norm=0.1) | cuda:2 | 6/10 | **13.3%** | alive |\n| 4 | **scalar** CRM | cuda:3 | 6/10 | **3.3%** | alive |\n| 5 | **obs_only** (norm=0.2) | cuda:4 | 5/10 | **18.0%** | alive |\n| 6 | **vla_mean** (baseline) | cuda:5 | 6/10 | **10.0%** | alive |\n\n### Per-task 明细\n\n| Task | reconvla | perdof | obs_only⭐ | scalar | obs_only_0.2 | vla_mean |\n|------|----------|--------|-----------|--------|-------------|----------|\n| alphabet_soup | 0% | 0% | 0% | 0% | 0% | 0% |\n| cream_cheese | 0% | 0% | **10%** | 0% | 0% | 0% |\n| salad_dressing | 10% | 20% | 20% | 10% | **30%** | 10% |\n| bbq_sauce | **30%** | **30%** | **40%** | 10% | **40%** | **30%** |\n| ketchup | 0% | 0% | **10%** | 0% | **20%** | 10% |\n| tomato_sauce | 0% | 0% | 0% | 0% | — | 10% |\n\n### 关键发现\n\n1. **obs_only norm=0.2 暂时领先** (18.0%)，但只完成 5 个 task，还需观察后续\n2. **obs_only norm=0.1** 排第二 (13.3%)，是唯一在 cream_cheese 和 ketchup 上都有成功的方法\n3. **scalar CRM 最差** (3.3%)，比两个 baseline 都低\n4. **所有方法在 alphabet_soup 上全军覆没**（0%），这是公认最难的 task\n5. GPU 利用率 ~20-22%，所有 python 进程 CPU 134-137%，运行正常\n6. 估计还需 ~3-4 小时完成剩余 4 个 task"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-scan-bjb1-32546-object.md"
+}

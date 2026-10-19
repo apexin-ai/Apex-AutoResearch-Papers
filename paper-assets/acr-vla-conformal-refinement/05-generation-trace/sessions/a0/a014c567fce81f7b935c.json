@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a014c567fce81f7b935c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval acr object v4 default r2",
+  "task_key": "worker_analyze_eval-acr-object-v4-default-r2_20260516T085851",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-acr-object-v4-default-r2_20260516T085851_result.json",
+    "occurrence": 1,
+    "bytes": 689,
+    "sha256": "bba5e8dab4017a7a8404fcb359ef435dd8c882f47db633b5d5f141b4de4531ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（可能已被清理或从未创建）。\n\n**诊断完成：**\n\n| 项目 | 结果 |\n|------|------|\n| **实际 mode** | `crm_perdof`（非 crm_default） |\n| **norm** | default ~1.42（无 `--max_correction_norm`） |\n| **seed** | 42 |\n| **完整性** | 10/10 tasks, 100 rollouts |\n| **overall SR** | **0.0%** (0/100) — 所有 task 全部 0 |\n| **anomaly** | 已解决：exp_id 叫 \"v4-default\" 实际是 perdof default norm 消融实验 |\n| **结论** | success — 假设验证通过：perdof 在无 magnitude control 时完全崩溃 |\n\nRegistry 已更新为 DONE/success，metrics 中备注了实际配置。bjb1-18228:cuda:0 已释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-acr-object-v4-default-r2.md"
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "b88c02d8fe5a723f9188",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "infra env setup 4090x4",
+  "task_key": "worker_infra_env-setup-4090x4_20260513T043505",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_env-setup-4090x4_20260513T043505.log",
+    "occurrence": 1,
+    "bytes": 1759812,
+    "sha256": "1733c839073e057bbb3ad8815aac8e9c013ceb0d5c7eb429f5dce195b39c7c2f"
+  },
+  "statistics": {
+    "messages": 357,
+    "user_turns": 2,
+    "tool_calls": 129,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 87,
+      "tool_call": 129,
+      "tool_result": 129,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 189,
+      "chunks": [
+        {
+          "path": "b88c02d8fe5a723f9188-part-0001.json",
+          "message_count": 163
+        },
+        {
+          "path": "b88c02d8fe5a723f9188-part-0002.json",
+          "message_count": 26
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 101,
+      "chunks": [
+        {
+          "path": "b88c02d8fe5a723f9188-part-0002.json",
+          "message_count": 78
+        },
+        {
+          "path": "b88c02d8fe5a723f9188-part-0003.json",
+          "message_count": 23
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 67,
+      "chunks": [
+        {
+          "path": "b88c02d8fe5a723f9188-part-0003.json",
+          "message_count": 67
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-env-setup-4090x4.md"
+}

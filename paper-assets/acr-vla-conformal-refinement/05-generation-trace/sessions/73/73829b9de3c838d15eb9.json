@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "73829b9de3c838d15eb9",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "ops monitor precompute and retrain",
+  "task_key": "worker_ops_monitor-precompute-and-retrain_20260521T175611",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_ops_monitor-precompute-and-retrain_20260521T175611.jsonl",
+    "occurrence": 1,
+    "bytes": 182,
+    "sha256": "74aa4422c7b0be572c3c8da83612109bf2cf3cbd479c43657ad5c405fa028c3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T17:56:21.526928+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_monitor-precompute-and-retrain_20260521T175611"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ops-monitor-precompute-and-retrain.md"
+}

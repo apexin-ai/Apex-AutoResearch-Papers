@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80bf645064737e43a140",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval supp adapt tau025 spatial s43",
+  "task_key": "worker_analyze_eval-supp-adapt-tau025-spatial-s43_20260523T083433",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-supp-adapt-tau025-spatial-s43_20260523T083433_result.json",
+    "occurrence": 1,
+    "bytes": 1133,
+    "sha256": "e574112dbb949d757ff5dcc94ab5a202acaed1e7550d585e3b35c927fe441965"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。总结：\n\n## eval-supp-adapt-tau025-spatial-s43 结果\n\n| 指标 | seed43 | seed42 | VLA-only baseline |\n|------|--------|--------|-------------------|\n| **SR** | **80.0%** (160/200) | 82.0% | 78.5% (3-seed mean 79.8%±1.2%) |\n| **trigger_rate** | 19.4% | 19.4% | — |\n| **mean_unc** | 0.1845 | — | — |\n\n**结论：success** — SR 80.0% > VLA-only baseline 78.5%，trigger_rate 与 seed42 完全一致 (19.4%)。\n\n### Per-task 明细\n\n| Task | SR | \n|------|------|\n| between_plate_and_ramekin | 95% |\n| next_to_ramekin | 95% |\n| from_table_center | 95% |\n| on_cookie_box | **100%** |\n| next_to_cookie_box | **100%** |\n| next_to_plate | 85% |\n| on_stove | 80% |\n| on_wooden_cabinet | 80% |\n| in_top_drawer | 70% |\n| on_ramekin | **0%** |\n\n### 与 seed42 对比\n\nseed43 比 seed42 低 2pp (80% vs 82%)，但仍在 VLA-only 3-seed 均值 (79.8%±1.2%) 之上。trigger_rate 完全一致，说明 conformal threshold τ=0.25 的触发行为跨 seed 稳定。on_ramekin 任务两个 seed 应该都是 0%（硬任务），是 SR 的主要拖累项。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-supp-adapt-tau025-spatial-s43.md"
+}

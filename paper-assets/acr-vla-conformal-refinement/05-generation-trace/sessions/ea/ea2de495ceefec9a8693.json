@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea2de495ceefec9a8693",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops retrain pipeline exec",
+  "task_key": "worker_ops_retrain-pipeline-exec_20260521T180729",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_retrain-pipeline-exec_20260521T180729_result.json",
+    "occurrence": 1,
+    "bytes": 1218,
+    "sha256": "e0f021e0a4da2487deb6face58677ce1548fd2c213791272cddf637719446150"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Object CRM training 正常运行：\n- **GPU 0**: 557 MiB, 10% utilization\n- **Epoch 1, batch 50/1950**: loss = 0.009459\n- 1950 batches/epoch (62K train samples / 32 batch_size)\n\n## 最终输出总结\n\n### 1. rsync 文件数\n- Object: 387 (bjb1-32546) + 64 (bjb2-40593) partial files → 已全部在 bjb1-18228\n- Spatial: 84 (bjb2-28827 current) + 18 (bjb1-18228 local shard 6) partial files\n\n### 2. Merge manifest n_samples\n| Benchmark | **n_samples** | 预期 | 占比 |\n|-----------|-------------|------|------|\n| **Object** | **69,303** | 72,500 | **95.6%** ✓ |\n| **Spatial** | **待 merge** | 60,250 | **~84% 当前可用** ⚠️ |\n\n**Spatial 阻塞**: bjb2-28827 上 6 个 spatial precompute shards 仍在运行（7300/8608, ~50 min 剩余）。完成后需要：\n1. 再次 `scp -3 bjb2-28827:spatial/*.pt` → bjb1-18228\n2. Merge: `python merge_precompute_cache.py --cache_dir .../spatial/ --num_shards 7 --total_samples 60250 --allow_partial --concat`\n3. 启动 spatial CRM training（GPU 1）\n\n### 3. CRM training PID\n- **Object**: PID **800111** (GPU 0) ✅ 运行中\n- **Spatial**: 待启动\n\n### 4. 初始 loss\n- **Object epoch 1 batch 50**: **loss = 0.009459**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-retrain-pipeline-exec.md"
+}

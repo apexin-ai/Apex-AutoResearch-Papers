@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b38cc1b5b4e84668e906",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval crm k1 object seed44 plan702",
+  "task_key": "worker_analyze_eval-crm-k1-object-seed44-plan702_20260520T164832",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-crm-k1-object-seed44-plan702_20260520T164832_result.json",
+    "occurrence": 1,
+    "bytes": 1818,
+    "sha256": "44c6bb8893923cb48f48e4e9496ec8f3de773dbd4765acbc99c8b3f69cf11fe1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验结果：eval-crm-k1-object-seed44-plan702\n\n### 异常：脚本崩溃\n\n日志显示脚本在 `evaluate.py:466` 崩溃：\n```\nUnboundLocalError: cannot access local variable 'unc_dim' where it is not associated with a value\n```\n\n但结果 JSON 已写入且包含完整的 10 tasks × 10 rollouts 数据，说明评估本身已完成，崩溃发生在后处理阶段。\n\n### 总体结果\n\n| 指标 | 值 |\n|------|-----|\n| **overall_success_rate** | **0.1** |\n| 总 rollouts | 100 (10 tasks × 10 rollouts) |\n| 总成功数 | 10 |\n| mode | crm_k1_accg |\n| max_correction_norm | 0.2 |\n| seed | 44 |\n\n### Per-task Breakdown\n\n| Task | Success Rate | Successes / Total |\n|------|-------------|-------------------|\n| pick_up_the_alphabet_soup_and_place_it_in_the_basket | 0.0 | 0/10 |\n| pick_up_the_cream_cheese_and_place_it_in_the_basket | 0.0 | 0/10 |\n| pick_up_the_salad_dressing_and_place_it_in_the_basket | 0.2 | 2/10 |\n| pick_up_the_bbq_sauce_and_place_it_in_the_basket | 0.2 | 2/10 |\n| pick_up_the_ketchup_and_place_it_in_the_basket | 0.0 | 0/10 |\n| pick_up_the_tomato_sauce_and_place_it_in_the_basket | 0.1 | 1/10 |\n| pick_up_the_butter_and_place_it_in_the_basket | 0.0 | 0/10 |\n| pick_up_the_milk_and_place_it_in_the_basket | 0.0 | 0/10 |\n| pick_up_the_chocolate_pudding_and_place_it_in_the_basket | 0.3 | 3/10 |\n| pick_up_the_orange_juice_and_place_it_in_the_basket | 0.2 | 2/10 |\n\n### 要点\n\n- **Overall success rate = 0.1 (10%)**，CRM K=1 ACCG 在 LIBERO-Object seed=44 上表现较低\n- 4/10 tasks 完全失败（success_rate=0.0）\n- 最好的 task 是 chocolate_pudding（0.3）\n- `unc_dim` 未绑定的 bug 需要修复，虽然不影响评估结果本身，但会导致后续处理（可能是 W&B logging 或 uncertainty 分析）未执行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-crm-k1-object-seed44-plan702-copy-2.md"
+}

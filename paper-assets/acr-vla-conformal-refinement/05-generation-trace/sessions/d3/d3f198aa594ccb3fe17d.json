@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3f198aa594ccb3fe17d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops kill duplicate obsonly norm03",
+  "task_key": "worker_ops_kill-duplicate-obsonly-norm03_20260515T070716",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_kill-duplicate-obsonly-norm03_20260515T070716_result.json",
+    "occurrence": 1,
+    "bytes": 562,
+    "sha256": "30070a634745eb1df209815cec438ac84c9896daa56190e12ed7b8ae51b9b48b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "冲突已解决。\n\n### 报告\n\n| 项目 | 详情 |\n|------|------|\n| **保留** | `eval-mag-obsonly-norm03-r2`，Python PID 325264，14:50 启动，~18 分钟运行时间 |\n| **Kill** | `eval-mag-obsonly-norm03-b2`，PID 328010/328015，原因：命令完全相同但 r2 进度多 ~15 分钟 |\n| **GPU 0 状态** | 显存从 12.5GB 降至 6.2GB，温度从 47°C 降至 44°C，功耗从 123W 降至 80W |\n| **存活进程进度** | 已加载模型和 10 个 spatial tasks，正在 eval 循环中（日志尚未输出 rollout 结果） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-duplicate-obsonly-norm03.md"
+}

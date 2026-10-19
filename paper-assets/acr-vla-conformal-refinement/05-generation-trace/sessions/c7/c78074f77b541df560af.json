@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c78074f77b541df560af",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval k20 obs only object seed42 cron",
+  "task_key": "worker_analyze_eval-k20-obs-only-object-seed42-cron_20260520T172346",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-k20-obs-only-object-seed42-cron_20260520T172346_result.json",
+    "occurrence": 1,
+    "bytes": 218,
+    "sha256": "ba7bae82e3b5409df104050348b5792b31e8bfa763f68f95091c8fa9c809fb80"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`eval-k20-obs-only-object-seed42` 已完成。\n\n- **结果**: SR = 20% (20/100), 10 tasks, K=20 obs_only on LIBERO-Object\n- **Registry**: DONE, conclusion=success, metrics.sr=20\n- **Cron**: 已删除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-k20-obs-only-object-seed42-cron.md"
+}

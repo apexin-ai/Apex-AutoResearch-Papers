@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0181702702f2c0a9b0e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_23_1779398714.md",
+  "task_key": "loop_23_1779398714",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_23_1779398714.md",
+    "occurrence": 1,
+    "bytes": 5231,
+    "sha256": "641ec1585d7b7061da8eedee219fa13c3672d79c94e2997b01e2a3c91ef44e8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 23\nreason: idle_timeout\nupdated: '2026-05-21T21:25:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- evaluate.py 在 `src/` 子目录下，提交命令必须是 `python src/evaluate.py`（非 `python evaluate.py`），否则 EXIT_CODE=2\n- GPU 编号脚本内始终从 0 开始（CUDA_VISIBLE_DEVICES 由框架映射）\n- Cron 对 eval 实验频繁 false positive（eval 不写 W&B/sentinel），收到失败回调必须先 tail 日志确认实际是否完成再改 registry\n- Table 1 只用 norm02 数据，不混 norm01（D080 教训）\n- provenance 必须引用具体 registry exp_id，不用抽象标签如 \"obs_only_k10\"\n- Long OOD MW-U p=0.061 n.s.，论文必须 cautious wording（D081）\n- bjb1-32546 conda 环境 python 不在默认 PATH，提交命令必须 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 前缀\n- norm005-seed66 registry 有 conclusion=failed 但进程实际仍在跑（PID 642506），Worker 正在诊断——下一轮处理 Worker 回调时注意这个矛盾状态\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**: /root/acr-vla-conformal-refinement, conda base (/root/miniconda3), RTX 4090。当前跑 3 实验 (cuda:0 norm003-seed66 PID 642428, cuda:2 norm005-seed66 PID 642506, cuda:3 norm01-seed66 PID 642775)\n- **bjb1-32546**: /root/acr-vla-conformal-refinement, conda base, RTX 4090。**全部空闲**（6 GPU）\n- **bjb2-28827**: /root/acr-vla-conformal-refinement, conda base, RTX 4090。当前跑 1 实验 (cuda:0 P90-seed44-bjb2 PID 975409)\n- **bjb2-40593**: /root/acr-vla-conformal-refinement, conda base, RTX 4090。磁盘 90% ⚠️\n- 模型: /root/autodl-tmp/models/smolvla_libero/, CRM: /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt\n- HF_HOME=/root/autodl-tmp/.hf_cache, HF_HUB_OFFLINE=1, MUJOCO_GL=egl\n- **活跃 cron**: 4 个 (norm003-seed66, norm005-seed66, norm01-seed66, p90-seed44-bjb2)\n\n### 3. 📊 当前状态\nLoop #23 刚完成 session-start 初始化并向 Director 汇报。MCP 断连前状态：\n\n**RUNNING (4)**:\n- eval-adaptive-k-spatial-p90-seed44-bjb2 (bjb2-28827 cuda:0) — Spatial P90 第 3 seed，完成后 LOCK Spatial sweep\n- eval-obs-only-object-norm003-seed66 (bjb1-18228 cuda:0) — norm sweep 补充\n- eval-obs-only-object-norm005-seed66 (bjb1-18228 cuda:2) — ⚠️ conclusion=failed 但进程仍 alive\n- eval-obs-only-object-norm01-seed66 (bjb1-18228 cuda:3) — norm sweep 补充\n\n**Workers (3, 可能已完成)**:\n- `worker_analysis_eval-pi05-baseline-object-seed42-r2_20260521T045550` — π0.5 r2 分析\n- `worker_diagnose_seed66-norm005-verify_20260521T045625` — norm005-seed66 诊断\n- `worker_figure_norm-sweep-v3_20260521T050151` — Figure 2 norm sweep curve 生成\n\n**已完成（本轮确认）**:\n- 0 个 ANALYZING 实验剩余（batch worker 已清完）\n- eval-obs-only-object-norm02-seed{50,51,52,53} 全部 success\n- eval-obs-only-object-norm003-seed67 被 cron 标记 failed → DONE（大概率又是 false positive，已清理 cron）\n- bjb1-32546 全部空闲\n\n### 4. 📋 待办\n- Worker figure:norm-sweep-v3 回调 → 检查 Figure 2 输出质量，register_artifact，通知 Director\n- Worker diagnose:seed66-norm005-verify 回调 → 根据诊断结果决定：进程仍活则等完成后修正 conclusion；真死则标记 DONE/failed（ROADMAP 已标 norm sweep ALL LOCKED，不重跑）\n- Worker analysis:pi05-r2 回调 → 获取 π0.5 r2 结果。若仍 0% SR → 评估 fix2/Plan B；若 >0% → 立即铺 π0.5 baseline multi-seed + CRM pipeline（9 GPU 可用）\n- P90-seed44-bjb2 cron 完成回调 → tail 日志确认（防 false positive）→ 补录 metrics → LOCK Spatial Adaptive K sweep → 汇总最终 Spatial 表到 memory.md → 汇报 Director\n- 3 个 seed66 norm 实验 cron 回调 → 同上 tail 确认 → harvest metrics（但 norm sweep 已 LOCKED，数据仅补充统计）\n- norm003-seed67 可能需要 false positive 验证（tail 日志看是否实际完成了）\n- bjb1-32546 6 GPU 全空闲 — 若 π0.5 fix2 GO 则立即铺；否则向 Director 汇报空闲状态\n\n### 5. 🎯 战略上下文\n**核心方向**: Adaptive inference-time compute for frozen VLAs。K=2 L2 distance 做门控信号 (ρ=0.9979)，Plan A (K=2 conformal + selective CRM) 为 Pareto 最优。\n\n**关键决策链**: D078 P50 Pareto → D079 CRM magnitude NO-GO → D080 Table 1 只用 norm02 → D081 Long OOD cautious → D082 batched inference → D083 Spatial n=8 修正 → D085 跨 benchmark 阈值迁移 → D087 OpenVLA v2 baseline → D092 Plan A GO → D094 Plan A Spatial 完成 → D095/D096 π0.5 实验线 → D097 Spatial Adaptive K + Latency 完成\n\n**当前瓶颈已从 GPU 实验转向**: Figure 2 生成 + π0.5 调通 + 论文定稿。CoRL DDL 2026-05-29（剩 ~8 天）。\n\n**易错点**:\n- Cron eval false positive 是常态（已发生 8+ 次），不要看到 \"failed\" 就信，必须 tail 日志\n- norm005-seed66 registry 状态矛盾（conclusion=failed + RUNNING + PID alive），下一轮必须处理 Worker 诊断结果\n- bjb1-32546 全空闲但无正式 GPU 分配（allocated_gpus=[]），π0.5 是预留用途\n- Spatial P50 3-seed 均值 ~32%（30,33,33），不是单 seed 33%\n- bjb2-40593 磁盘 90%，提交实验前必须检查\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-23-1779398714.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd6c2c27a07639f6526b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops gpu check deploy plan a",
+  "task_key": "worker_ops_gpu-check-deploy-plan-a_20260520T212341",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_gpu-check-deploy-plan-a_20260520T212341_result.json",
+    "occurrence": 1,
+    "bytes": 2890,
+    "sha256": "994711be7bbc8301afe962ad44c4faf3cea538015274b2b7d5b02246f662df05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. GPU 状态总览：17/17 全部占用\n\n#### bjb2-40593 (1×4090) — 0 空闲\n| GPU | VRAM | Util | 实验 |\n|-----|------|------|------|\n| 0 | 2.2/24 GB | 19% | `random_selection` object seed48 |\n\n#### bjb1-18228 (4×4090) — 0 空闲\n| GPU | VRAM | Util | 实验 |\n|-----|------|------|------|\n| 0 | 2.0/24 GB | 36% | `crm_obs_only` object norm=0.05 seed45 |\n| 1 | 3.4/24 GB | 28% | `crm_perdof` object norm=0.05 seed46 |\n| 2 | 2.0/24 GB | 38% | `crm_obs_only` object norm=0.1 seed50 |\n| 3 | 2.0/24 GB | 30% | `crm_obs_only` object norm=0.03 seed46 |\n\n#### bjb1-32546 (6×4090) — 0 空闲\n| GPU | VRAM | Util | 实验 |\n|-----|------|------|------|\n| 0 | 2.4/24 GB | 18% | `vla_only` object seed50 |\n| 1 | 2.4/24 GB | 33% | `random_selection` object seed49 |\n| 2 | 2.5/24 GB | 36% | `crm_obs_only` object norm=0.2 seed52 |\n| 3 | 2.1/24 GB | 22% | `crm_obs_only` **spatial** norm=0.2 seed52 |\n| 4 | 2.0/24 GB | 0% | `crm_obs_only` object norm=0.1 seed49 |\n| 5 | 2.5/24 GB | 32% | `crm_obs_only` object norm=0.05 seed48 |\n\n#### bjb2-28827 (6×4090) — 0 空闲\n| GPU | VRAM | Util | 实验 |\n|-----|------|------|------|\n| 0 | 2.0/24 GB | 27% | `crm_obs_only` object norm=0.2 seed53 |\n| 1 | 2.0/24 GB | 25% | `crm_obs_only` object norm=0.03 seed45 |\n| 2 | 3.9/24 GB | 26% | `crm_obs_only` object norm=0.03 seed44 |\n| 3 | 2.0/24 GB | 18% | `crm_obs_only` object norm=0.05 seed47 |\n| 4 | 2.5/24 GB | 30% | `crm_obs_only` object norm=0.1 seed48 |\n| 5 | 2.5/24 GB | 29% | `crm_obs_only` object norm=0.2 seed54 |\n\n---\n\n### 2. Plan A 部署：**无法执行** — 没有空闲 GPU\n\n所有 17 张 GPU 都在跑实验（主要是不同 norm 和 seed 的 crm_obs_only/perdof 消融实验）。\n\n### 3. Checkpoint 状态\n\n| Checkpoint | 路径 | 状态 |\n|-----------|------|------|\n| CRM obs_only (SmolVLA) | `/root/acr-vla-conformal-refinement/checkpoints/crm_obs_only_best.pt` | **不存在** |\n| CRM obs_only (SmolVLA) 备选 | `/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt` | **存在** (1.3 MB) |\n| CRM obs_only (OpenVLA) | `/root/autodl-tmp/checkpoints/crm_openvla_obs_only/crm_best.pt` | **存在** (4.5 MB) |\n\nOpenVLA CRM checkpoint 已就绪，但 bjb2-28827 的 6 张 GPU 全占，同样无法部署 eval。\n\n---\n\n### 4. 当前 RUNNING 实验汇总（17 个）\n\n共跑 17 个 evaluate.py 实验，分布：\n- **crm_obs_only**: 13 个（norm=0.03/0.05/0.1/0.2 × 多 seed，覆盖 object + spatial）\n- **crm_perdof**: 1 个（norm=0.05 seed46）\n- **random_selection**: 2 个（seed48, seed49）\n- **vla_only**: 1 个（seed50）\n\n---\n\n### 下一步建议\n\n需要等当前批次实验完成后才能部署 Plan A 和 OpenVLA eval。是否需要我：\n1. 检查当前实验的进度（查 log 看跑到第几个 rollout）？\n2. 等有 GPU 空出来后自动部署？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-check-deploy-plan-a.md"
+}

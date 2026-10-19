@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd4d7eca52f284e1e121",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "figure fig5 k2 correlation",
+  "task_key": "worker_figure_fig5_k2_correlation_20260520T021302",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_figure_fig5_k2_correlation_20260520T021302_result.json",
+    "occurrence": 1,
+    "bytes": 400,
+    "sha256": "339a5671cdc13e1507c1566764017f9e4e1dad6e41aff43f4cc8ddc5c61dfb9a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并验证。\n\n**结果：**\n- `fig5_k2_correlation.pdf` (114KB) 和 `.png` (348KB) 已保存到 `docs/paper/figures/`\n- 左面板：K=2 L2 vs K=10 Variance，Spearman ρ = 0.9979（近乎完美相关）\n- 右面板：FMVD vs K=10 Variance，Spearman ρ = 0.0825（几乎无相关性）\n- 14,512 个数据点，alpha=0.15，色盲友好配色，去 top/right spines"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig5-k2-correlation.md"
+}

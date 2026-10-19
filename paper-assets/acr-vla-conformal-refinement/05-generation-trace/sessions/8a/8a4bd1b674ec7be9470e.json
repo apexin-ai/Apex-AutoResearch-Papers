@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a4bd1b674ec7be9470e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis random selection spatial writeup",
+  "task_key": "worker_analysis_random-selection-spatial-writeup_20260521T035553",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_random-selection-spatial-writeup_20260521T035553_result.json",
+    "occurrence": 1,
+    "bytes": 949,
+    "sha256": "14ca01029fd763a05577e6086b27daf353718df215df030063e2bd802ebf9c3d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。更新摘要：\n\n**paper_framing.md 更新了 4 处：**\n1. **Headline Metrics - Component decomposition**: 添加 \"Cross-benchmark: Spatial random K=10 = 29.3% (n=3) ≈ VLA-only Spatial 29.3%\"\n2. **Headline Metrics - Spatial**: 添加 Random Selection Spatial K=10 数据，标注 \"correction is sole driver on Spatial too\"\n3. **C1 section**: 新增 \"Spatial cross-benchmark validation\" bullet，含完整 exp_ids、数据、结论（+5.8pp Object, +5.2pp Spatial consistent）\n4. **Hard Evidence - Component Decomposition**: 新增 \"Spatial Random Selection K=10\" 子节，含完整分解（Random-VLA=0.0pp, CRM-Random=+5.2pp）和双 benchmark 一致性结论\n\n**memory.md 更新：** Random Selection Baseline 段落扩展为双 benchmark 汇总表，含所有 exp_ids 和结论。\n\n所有数字均追溯至 registry：Spatial seed42-r2=34%, seed43=26%, seed44=28% → mean 29.3% ≈ VLA-only 29.3%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-random-selection-spatial-writeup.md"
+}

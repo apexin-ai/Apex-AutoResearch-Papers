@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8001da65f862a4d82d1d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh diagnose vla only object seed48",
+  "task_key": "worker_ssh_diagnose-vla-only-object-seed48_20260520T001841",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_diagnose-vla-only-object-seed48_20260520T001841_result.json",
+    "occurrence": 1,
+    "bytes": 650,
+    "sha256": "7275a79916322f04d3407b0381b92e257e64d67e15993d65f1dff3efeade80fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已完成。结果如下：\n\n**Overall**: SR = **10.0%**（10/100 episodes）\n\n**Per-task breakdown**（每 task 10 rollouts）:\n\n| Task (pick & place to basket) | SR | Successes |\n|---|---|---|\n| bbq_sauce | 0.3 | 3/10 |\n| salad_dressing | 0.2 | 2/10 |\n| cream_cheese | 0.1 | 1/10 |\n| butter | 0.1 | 1/10 |\n| milk | 0.1 | 1/10 |\n| chocolate_pudding | 0.1 | 1/10 |\n| orange_juice | 0.1 | 1/10 |\n| alphabet_soup | 0.0 | 0/10 |\n| ketchup | 0.0 | 0/10 |\n| tomato_sauce | 0.0 | 0/10 |\n\n10 个 object 任务 × 10 rollouts = 100 episodes，seed=48，mode=vla_only（无 conformal refinement），benchmark=object。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-vla-only-object-seed48.md"
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "9d6ae773f1e907393b9a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "research lerobot pi05 action chunk 20260521T050352 retry2",
+  "task_key": "worker_research_lerobot-pi05-action-chunk_20260521T050352_retry2",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_lerobot-pi05-action-chunk_20260521T050352_retry2.log",
+    "occurrence": 1,
+    "bytes": 562660,
+    "sha256": "419bb356f172859018304d9063e4d6a782fe16b94db7965efce8797aabcb7d14"
+  },
+  "statistics": {
+    "messages": 259,
+    "user_turns": 1,
+    "tool_calls": 86,
+    "roles": {
+      "system": 48,
+      "record": 2,
+      "assistant": 35,
+      "tool_call": 86,
+      "tool_result": 86,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 81,
+      "chunks": [
+        {
+          "path": "9d6ae773f1e907393b9a-part-0001.json",
+          "message_count": 81
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 178,
+      "chunks": [
+        {
+          "path": "9d6ae773f1e907393b9a-part-0001.json",
+          "message_count": 99
+        },
+        {
+          "path": "9d6ae773f1e907393b9a-part-0002.json",
+          "message_count": 79
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-lerobot-pi05-action-chunk-20260521t050352-retry2.md"
+}

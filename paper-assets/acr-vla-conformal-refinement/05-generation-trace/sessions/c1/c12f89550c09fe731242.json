@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c12f89550c09fe731242",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_23_1779398754.md",
+  "task_key": "loop_23_1779398754",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_23_1779398754.md",
+    "occurrence": 1,
+    "bytes": 3433,
+    "sha256": "470ec5fb38ddecef2bc5eecff84ae9b7c674db7d3a11c9551eac1cd49d817d17"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 23\nreason: idle_timeout\nupdated: '2026-05-21T21:25:52+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- gpu_ids 白名单: bjb2-40593:cuda:0, bjb1-18228:cuda:0-3, bjb1-32546:cuda:0-5, bjb2-28827:cuda:0-5（共 17 张）\n- bjb1-32546 必须用 `/root/miniconda3/bin/python`（不是 `python`），否则 nohup 报 \"No such file or directory\"\n- Norm Sweep 数据已 ALL LOCKED，不要修改已锁定的统计数字\n- CoRL 2026 DDL = 2026-05-29，剩 ≤8 天\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**: /root/acr-vla-conformal-refinement, conda base (`/root/miniconda3/bin/python`), 磁盘 400G/438G 可用\n- **bjb1-32546**: /root/acr-vla-conformal-refinement, conda base (`/root/miniconda3/bin/python`), 磁盘 400G/438G 可用\n- **bjb2-28827**: /root/acr-vla-conformal-refinement, conda base, 磁盘 399G/439G 可用\n- **bjb2-40593**: /root/acr-vla-conformal-refinement, 磁盘根分区 44G/437G（90%!）\n- CRM checkpoint: `/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`\n- 活跃进程（reconcile 时刻）:\n  - eval-obs-only-object-norm003-seed66: bjb1-18228 PID 642428\n  - eval-obs-only-object-norm005-seed66: bjb1-18228 PID 642506\n  - eval-obs-only-object-norm01-seed66: bjb1-18228 PID 642775\n  - eval-obs-only-object-norm003-seed67: bjb2-28827 PID 969788\n  - eval-adaptive-k-spatial-p90-seed44-bjb2: bjb2-28827 PID 975409\n  - eval-obs-only-object-norm01-seed67: bjb1-18228 PID 666593（escalating，可能已死）\n\n### 3. 📊 当前状态\n- 收到 `eval-obs-only-object-norm005-seed67` 失败回调（bjb1-32546，process dead 5× no W&B）\n- `eval-obs-only-object-norm01-seed67`（bjb1-18228）也在 escalating（miss 4/5），大概率也挂了\n- 已派 Worker `worker_diagnose_norm005-seed67-and-norm01-seed67_20260521T044713` 去诊断两个失败实验日志 + 确定重跑命令\n- **Worker 回调尚未收到**——下一个\"你\"应先检查该 Worker 状态\n- 5 个实验仍 RUNNING（3 个 seed66 + 1 个 norm003-seed67 + 1 个 adaptive-k P90-seed44）\n- 44 个实验处于 PREPARING 状态\n\n### 4. 📋 待办（条件触发式）\n- Worker diagnose 回调到达 → 根据诊断结果：若确认是 python PATH 问题则用 `/root/miniconda3/bin/python` 重跑 norm005-seed67 和 norm01-seed67\n- eval-adaptive-k-spatial-p90-seed44-bjb2 完成 → LOCK Spatial Adaptive K Sweep，更新 ROADMAP\n- seed66 三个实验完成 → harvest metrics，更新 norm sweep 统计\n- π0.5 fix2 quicktest 结果出来 → SR>0% 则铺 9 GPU baseline multi-seed + CRM pipeline；SR=0% 评估 Plan B (lerobot native API)\n- 论文 Figure 2（norm sweep curve）待生成\n\n### 5. 🎯 战略上下文\n- **核心结论**: Plan A (K=2 L2 conformal + selective CRM) = Pareto 最优。Object +7.5pp, Spatial +5.6pp vs VLA-only，同时 1.82× speedup vs K=10 CRM (D092/D094/D097)\n- **阶段**: 实验收尾 → 论文写作。核心数据齐备，瓶颈是 Figure 生成 + π0.5 调通 + 论文定稿\n- **π0.5 线**: r1=0%(normalization bug), r2=0%(vision tower key mismatch), fix2 运行中。这是唯一未锁定的实验线\n- **易错点**: bjb1-32546 的 python 路径问题反复出现（seed63/seed67 都踩过），提交命令必须用绝对路径。bjb2-28827 有历史 SIGHUP 批量故障模式（tmux/SSH 断连杀进程）\n- **Norm Sweep ALL LOCKED 意味着**: seed66/67 是补充数据点（P1），即使全失败也不影响已锁定的论文数字，但成功能增强统计显著性\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-23-1779398754.md"
+}

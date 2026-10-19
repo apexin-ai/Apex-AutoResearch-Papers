@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69f31b3172534b9ffdf8",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval obs only object default seed45 r2",
+  "task_key": "worker_analyze_eval-obs-only-object-default-seed45-r2_20260519T042340",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-obs-only-object-default-seed45-r2_20260519T042340_result.json",
+    "occurrence": 1,
+    "bytes": 1246,
+    "sha256": "ea425f3fbf0d13d12252da34bf776a81c84c2eae642af8eaffb340497c2790e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "W&B 查询工具有内部错误，跳过。已从 log 和 JSON 获取到完整结果。\n\n## 实验结果: eval-obs-only-object-default-seed45-r2\n\n**Overall success rate: 18.0% (18/100)**\n\n| Task | SR | Successes/Total |\n|---|---|---|\n| alphabet_soup | 0% | 0/10 |\n| cream_cheese | 0% | 0/10 |\n| salad_dressing | 30% | 3/10 |\n| bbq_sauce | 30% | 3/10 |\n| ketchup | 10% | 1/10 |\n| tomato_sauce | 10% | 1/10 |\n| butter | 10% | 1/10 |\n| milk | 20% | 2/10 |\n| chocolate_pudding | 40% | 4/10 |\n| orange_juice | 30% | 3/10 |\n\n**执行状态:** EXIT_CODE=0，无错误/警告，output JSON 已保存。10 tasks × 10 rollouts = 100 rollouts 全部完成。\n\n**与已有数据对比 (obs_only default norm):**\n\n| Seed | SR | n_rollouts | 备注 |\n|---|---|---|---|\n| seed42 | 20% | 10 | |\n| seed43 | 20% | 10 | |\n| seed44 | 10% | 10 | |\n| seed45 (原始) | 12% | 20 | 非标准 |\n| **seed45-r2** | **18%** | **10** | 本次标准化重跑 |\n\n**结论: success**\n\n- seed45 标准化重跑得到 18%，高于原始的 12%（但原始用 n_rollouts=20，方差不同）\n- 加入 seed45-r2 后，obs_only default 4 seeds 均值: (20 + 20 + 10 + 18) / 4 = **17.0%**\n- 结果合理，无异常，实验有效。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-obs-only-object-default-seed45-r2.md"
+}

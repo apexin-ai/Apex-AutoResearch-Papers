@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5dc1e6884d3df7fd873",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval random selection object seed42",
+  "task_key": "worker_analyze_eval-random-selection-object-seed42_20260520T084945",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-random-selection-object-seed42_20260520T084945_result.json",
+    "occurrence": 1,
+    "bytes": 1051,
+    "sha256": "3096780d860d42d41fcf1cfd2b484ed6a5be082c5d4f563ca1f7536bc74fd888"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 结果文件已成功读取，无 stdout 日志，无 W&B。\n\n## 结果汇总：`eval_object_random_selection_seed42`\n\n| 指标 | 值 |\n|------|-----|\n| **Overall SR** | **0.11** |\n| n_tasks | 10 |\n| n_rollouts per task | 10 |\n| mode | random_selection (single) |\n| benchmark | object |\n\n### Per-task SR\n\n| Task | SR | Successes/Total |\n|------|----|-----------------|\n| alphabet_soup | 0.0 | 0/10 |\n| cream_cheese | 0.1 | 1/10 |\n| salad_dressing | 0.1 | 1/10 |\n| bbq_sauce | 0.1 | 1/10 |\n| ketchup | 0.0 | 0/10 |\n| tomato_sauce | 0.1 | 1/10 |\n| butter | 0.1 | 1/10 |\n| milk | 0.1 | 1/10 |\n| chocolate_pudding | 0.2 | 2/10 |\n| orange_juice | 0.3 | 3/10 |\n\n**Overall SR = 0.11**，符合预期范围 (0.09–0.13)。2 个 task 全部失败（alphabet_soup, ketchup），orange_juice 最高 0.3，其余在 0.1–0.2。无异常，进程正常完成。\n\n另外注意 logs 目录下还有 seed43/44/45 的 random_selection 结果文件，以及 k5 版本 (seed43)，如需汇总多 seed 可以一起读。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-random-selection-object-seed42.md"
+}

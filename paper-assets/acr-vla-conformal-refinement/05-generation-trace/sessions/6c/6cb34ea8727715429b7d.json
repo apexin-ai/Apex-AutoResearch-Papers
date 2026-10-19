@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6cb34ea8727715429b7d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "data libero download",
+  "task_key": "worker_data_libero-download_20260513T035457",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_data_libero-download_20260513T035457_result.json",
+    "occurrence": 1,
+    "bytes": 1201,
+    "sha256": "90d3edb77c2eb8d5149779c4d4d67b1c84fb03cc0e8e8488a50251d259daa4c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 LIBERO 数据完整下载且结构验证通过。\n\n## 产出总结\n\n### 1. 数据状态（全部完整）\n\n| Benchmark | 文件数 | 总大小 | 每文件 demos |\n|-----------|--------|--------|-------------|\n| libero_spatial | 10 | 5.81 GB | 50 |\n| libero_object | 10 | 6.93 GB | 50 |\n| libero_10 | 10 | 12.79 GB | 50 |\n| libero_goal | 10 | 5.94 GB | 50 |\n| libero_90 | 90 | 62.08 GB | 50 |\n| **总计** | **130** | **~93.5 GB** | |\n\n### 2. Action shape: **7D** (`(T, 7)`, float64)\n含义：6D pose (3D position + 3D orientation) + 1D gripper\n\n### 3. Observation keys\n\n| Key | Shape | Dtype |\n|-----|-------|-------|\n| `agentview_rgb` | (T, 128, 128, 3) | uint8 |\n| `eye_in_hand_rgb` | (T, 128, 128, 3) | uint8 |\n| `ee_pos` | (T, 3) | float64 |\n| `ee_ori` | (T, 3) | float64 |\n| `ee_states` | (T, 6) | float64 |\n| `gripper_states` | (T, 2) | float64 |\n| `joint_states` | (T, 7) | float64 |\n\n其他 top-level keys: `robot_states (T, 9)`, `states (T, 47~110)`, `rewards`, `dones`\n\n### 4. 磁盘\n数据盘 250GB，已用 97GB（含 93.5GB LIBERO 数据），剩余 **154GB**。\n\n### 5. 无 `.incomplete` 文件，数据干净，无需补下载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-libero-download.md"
+}

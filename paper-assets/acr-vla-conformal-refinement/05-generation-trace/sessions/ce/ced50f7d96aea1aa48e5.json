@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ced50f7d96aea1aa48e5",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "exec crm v2 3way training",
+  "task_key": "worker_exec_crm-v2-3way-training_20260514T092830",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_exec_crm-v2-3way-training_20260514T092830_result.json",
+    "occurrence": 1,
+    "bytes": 240,
+    "sha256": "79d31215ae60cd634da6d479569ec81f5629eabb02ae9a604ecc528a385644e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两路训练持续推进，val_loss 在下降：\n\n- **perdof**: Epoch 2, val_loss 0.0772 → 0.0699\n- **scalar-unc**: Epoch 2, val_loss 0.0769 → 0.0690\n\n每 epoch ~3 min，50 epoch 预计 ~2.5h 完成。训练正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-crm-v2-3way-training.md"
+}

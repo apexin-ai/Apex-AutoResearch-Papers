@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e13c97a822240c68bd7c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "bugfix aci sign",
+  "task_key": "worker_bugfix_aci-sign_20260513T035216",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_bugfix_aci-sign_20260513T035216_result.json",
+    "occurrence": 1,
+    "bytes": 639,
+    "sha256": "761470a08d246c4a26671b5d97013700ddcbb727e7a60d43f90ba23dd2c8eafa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。总结：\n\n**修改内容** (`src/aci.py` 第 61 行):\n- 修复前: `self.alpha + self.gamma * (err - self.alpha_target)` — 符号反了\n- 修复后: `self.alpha + self.gamma * (self.alpha_target - err)` — 符合 Gibbs & Candès 2021\n\n**alpha 变化方向确认**:\n| 场景 | 修复前 | 修复后 |\n|------|--------|--------|\n| cover (err=0) | alpha 减小 (错误) | alpha 增大 → 0.11 (收紧) |\n| miss (err=1) | alpha 增大 (错误) | alpha 减小 → 0.01 (放松) |\n\n**测试结果**: 3/3 PASSED — cover/miss 方向正确，连续 100 次 miss 后 alpha 稳定在安全范围内。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/bugfix-aci-sign.md"
+}

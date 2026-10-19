@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c920ea320e53d1cb7ed6",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh scan bjb1 bjb2 28827",
+  "task_key": "worker_ssh_scan-bjb1-bjb2-28827_20260523T233833",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_scan-bjb1-bjb2-28827_20260523T233833_result.json",
+    "occurrence": 1,
+    "bytes": 1774,
+    "sha256": "e4266a02706d333310f9577f9b366f7714860578b9c2f4763f43a2b3d6707eb7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "adapt-tau025-obj-s45 已在 registry 中标记为 DONE。所有 GPU 均在忙，无空闲 GPU 可部署新实验。\n\n---\n\n## 扫描报告\n\n### 收割结果\n| 实验 | SR | 状态 |\n|------|-----|------|\n| eval-supp-crm-obj-s46 (Object CRM s46) | **79.5%** | 刚收割 DONE |\n| eval-supp-adapt-tau025-obj-s45 (Object Adapt s45) | **78.0%** | 已在 registry DONE |\n\n### bjb1-32546 — 6/6 GPU 占满\n\n| GPU | 实验 | 进度 | 预计剩余 |\n|-----|------|------|----------|\n| cuda:0 | Spatial K2mean s46 | 1/10 tasks | ~4-5h |\n| cuda:1 | Long VLA s45 | 8/10 tasks | **~1h** (最快释放) |\n| cuda:2 | Long Adapt s45 | 7/10 tasks | ~1.5h |\n| cuda:3 | Long CRM s45 | 7/10 tasks | ~1.5h |\n| cuda:4 | Long Reconvla s45 | 7/10 tasks | ~1.5h |\n| cuda:5 | Obj Reconvla s45 | 4/10 tasks | ~3h |\n\n### bjb2-28827 — 6/6 GPU 占满\n\n| GPU | 实验 | 进度 | 预计剩余 |\n|-----|------|------|----------|\n| cuda:0 | Goal VLA s46 | 3/10 tasks | ~5h |\n| cuda:1 | Goal K2mean s46 | 2/10 tasks | ~5-6h |\n| cuda:2 | Goal Reconvla s46 | 2/10 tasks | ~5-6h |\n| cuda:3 | Goal CRM s46 | 2/10 tasks | ~5-6h |\n| cuda:4 | Long K2mean s45 | 6/10 tasks | **~2-3h** |\n| cuda:5 | Goal Adapt s46 | 2/10 tasks | ~5-6h |\n\n### 部署计划（等 GPU 释放）\n\n**bjb1 最快释放顺序**：cuda:1 (~1h) → cuda:2/3/4 (~1.5h) → cuda:5 (~3h) → cuda:0 (~5h)\n\n释放后按优先级部署：\n1. cuda:1 释放 → Object VLA-only s46\n2. cuda:2 释放 → Object Adaptive s46\n3. cuda:3 释放 → Spatial VLA-only s46\n4. cuda:4 释放 → Spatial CRM s46\n5. cuda:5 释放 → Spatial Reconvla s46\n\n**bjb2 最快释放**：cuda:4 (~2-3h) → 部署 Long VLA-only s46\n\n当前无法部署。建议 1-2h 后重新扫描收割 Long s45 实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-scan-bjb1-bjb2-28827.md"
+}

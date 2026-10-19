@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "9a466b18d0da24585782",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "deploy a1 baseline object",
+  "task_key": "worker_deploy_a1-baseline-object_20260524T112844",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_deploy_a1-baseline-object_20260524T112844.jsonl",
+    "occurrence": 1,
+    "bytes": 166,
+    "sha256": "d2849a280be5acc1a85d0263a17479626374e341e8eeba76abcf12eda00834b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T11:28:59.359387+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_a1-baseline-object_20260524T112844"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/deploy-a1-baseline-object.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1c9848b7fc83ed08105",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis eval obs only object norm03 seed45 r2",
+  "task_key": "worker_analysis_eval-obs-only-object-norm03-seed45-r2_20260517T070148",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval-obs-only-object-norm03-seed45-r2_20260517T070148_result.json",
+    "occurrence": 1,
+    "bytes": 394,
+    "sha256": "e55ee7e26e4294d68772ebb2185e43e36bbbb6e6c01879c31b1bd55da0b409bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n**结果汇总**:\n- **Overall success rate: 14%** (14/100), seed42 为 19%\n- 两个 seed 的均值为 **16.5% ± 2.5%**，确认 obs_only CRM 在 ε=0.3 时的 graceful degradation 是稳定的\n- 高分 task (30%): bbq_sauce, chocolate_pudding, orange_juice\n- 失败 task (0%): alphabet_soup, cream_cheese\n- 其余 task 稳定在 10%"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-obs-only-object-norm03-seed45-r2.md"
+}

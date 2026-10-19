@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df02b51527060de2967a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose eval k2 tau015 spatial s42",
+  "task_key": "worker_diagnose_eval-k2-tau015-spatial-s42_20260525T004449",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval-k2-tau015-spatial-s42_20260525T004449_result.json",
+    "occurrence": 1,
+    "bytes": 433,
+    "sha256": "7b621e28e835517f128b59276a833c079f78808afd4b8252c97fa50029692559"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断已写入 memory.md。\n\n**总结：** `eval-k2-tau015-spatial-s42` 超时纯粹因为 timeout=7200s (2h) 不够。spatial benchmark 10 tasks × 20 rollouts = 200 rollouts，每 rollout ~80s，需 ~4.5h。实验跑了 45% (90/200 rollouts) 就被 kill。已完成的 4 个 task 成绩很好 (90%-95%)，无任何错误或资源问题。重试建议 timeout=18000s (5h)，等当前 tau=0.10 跑完后再启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-k2-tau015-spatial-s42.md"
+}

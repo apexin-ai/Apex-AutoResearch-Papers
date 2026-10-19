@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f3960231da5c1e78810",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_27_1779825519.md",
+  "task_key": "loop_27_1779825519",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_27_1779825519.md",
+    "occurrence": 1,
+    "bytes": 4226,
+    "sha256": "d0352fa6e28c01f5998baa91a223676b5a61b6308ee6d18c692329e89a3468c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 27\nreason: idle_timeout\nupdated: '2026-05-26T19:58:02+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- bjb2-40593 已掉线，禁止尝试连接\n- cqa1 Long Adaptive r2 的 0% SR 是 OOM artifact，绝不引用（已记录在 memory.md）\n- evaluate.py 必须是 commit a594db5（D163），所有补跑用旧代码确保 Table 一致性\n- westd-49937 是 Blackwell RTX PRO 6000，与 4090 有 ~3pp 系统偏差（D158）。Table 2 要求同 GPU 型号 paired comparison，westd 数据不能与 4090 服务器数据直接混用\n- SmolVLA CRM checkpoint 唯一正确路径：`/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt`（`_unified` 路径不存在）\n- π0.5 correction_norm 恒定 0.200 是真实 max cap 现象，不是 bug\n- GPU 部署前必须 nvidia-smi 检查占用，>500MB 不启动（C001 硬约束，3 次碰撞事故教训）\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228** (4×4090): 4 卡全空 ⚠️ 无活跃实验\n- **bjb1-32546** (6×4090): 6 个 eval 在跑（Long Adaptive s43/s44 + D149 hedge evals），PID 903949/904304/908783/909918/911462/912825\n- **bjb2-28827** (6×4090): cuda:0/1 跑 Object τ-sweep（PID 548972/549421），cuda:4/5 跑 Long τ-sweep（PID 450041/451711，cron 监控中），cuda:2/3 空闲\n- **bjb2-24035** (1×4090D): eval-k2-tau045-spatial-s42-bjb2 在跑\n- **cqa1-32758** (6×4090D): cuda:4 跑 pi05-adaptive-long-s43-cqa1-r3（PID 350877，cron 监控中），cuda:0/1/2/3/5 空闲\n- **westd-49937** (6×RTX PRO 6000): 全部 6 卡在跑 paired validation（CRM K=2 Object s42/43/44 + Adaptive Object s42/43/44），PID 491271-493251\n- Cron 活跃：3 个（pi05-adaptive-long-s43-cqa1-r3, pi05-adaptive-long-s42-tau015-bjb2, pi05-adaptive-long-s42-tau035-bjb2）\n\n### 3. 📊 当前状态\n本 session 是全新 BOOT，刚完成 session-start 初始化（read_registry + reconcile_crons + read report/ROADMAP/memory）。上一个 session idle 了 ~16h 未执行任何操作。\n\n**RUNNING 18 个实验**（关键分组）：\n- **Table 2 收官**: pi05-adaptive-long-s43-cqa1-r3 (cqa1 cuda:4) + pi05-adaptive-long-s43/s44-bjb1 (bjb1-32546) — Long Adaptive 是 Table 2 最后一格\n- **westd paired validation**: 6 个实验（CRM K=2 Object × 3 seeds + Adaptive Object × 3 seeds）\n- **τ-sweep**: bjb2-28827 跑 Long τ=0.15/0.35 + Object τ=0.15/0.35；bjb2-24035 跑 Spatial τ=0.45\n- **D149 hedge evals**: bjb1-32546 跑 CRM Spatial/Object/Goal s43/s48\n\n**等待中**：无 Worker 回调待处理。3 个 cron 监控在跑。DDL ~41h（2026-05-28 20:00 北京时间）。\n\n### 4. 📋 待办\n- Long Adaptive s43 (cqa1-r3 或 bjb1) 完成 → 收割 SR，填 Table 2 Long Adaptive 格。若 s44 也完成 → Table 2 12/12 收官 → 立即汇报 Director + 更新 paper_framing + 通知 Paper Agent 启动 D166 叙事写作\n- westd 6 个 paired validation 完成 → 收割对比 CRM vs Adaptive on Object（同 Blackwell GPU），确认跨服务器一致性\n- τ-sweep (bjb2) 全部完成 → 汇总 τ=0.15/0.25/0.35 曲线（Spatial/Goal/Long/Object），支撑 MC2 claim\n- bjb1-18228 4 卡全空 → 立即部署（候选：τ-sweep 补跑 / Goal τ=0.35 重试 / scatter_data 提取）\n- pi05-adaptive-goal-s42-tau035-bjb2 failed → 需重试（process dead 5× auto-resolved）\n- Table 2 收官后 → scatter_data.csv 补充 π0.5 数据点（从 bjb2-28827 JSON 提取）\n\n### 5. 🎯 战略上下文\n**CoRL 2026 DDL 2026-05-28 20:00 北京时间**，剩余 ~41h。Table 2 差最后一格（Long Adaptive），实验已在跑。\n\n**D166 narrative（核心 framing）**：恢复比例 ∝ CRM 危害。Spatial 33%, Goal 34%, Long ~41%(TBD), Object 噪声抵消。三层叙事：(1) gating ∝ suite difficulty (2) gating ∝ model capability (3) correction_norm 饱和。\n\n**易错点**：\n- bjb1-32546 上有多个实验共存（Long Adaptive + D149 hedge），收割时区分清楚，不要搞混\n- Object Adaptive 在 π0.5 上 SR=86.2% < CRM 88.0%，这不是 bug——VLA 近天花板(99.7%)，K=2 selection noise 抵消恢复信号，D166 narrative 已覆盖此解释\n- Long VLA-only 只有 s43=59.5% 一个 seed，Table 2 Long 行数据不如其他 suite 稳固\n- bjb1-18228 4 卡空闲是失职状态，必须尽快部署\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-27-1779825519.md"
+}

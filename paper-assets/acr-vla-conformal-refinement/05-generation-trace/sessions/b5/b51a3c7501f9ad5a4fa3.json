@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "b51a3c7501f9ad5a4fa3",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "analysis 8 pair spatial data 20260524T220019 retry2",
+  "task_key": "worker_analysis_8-pair-spatial-data_20260524T220019_retry2",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_8-pair-spatial-data_20260524T220019_retry2.log",
+    "occurrence": 1,
+    "bytes": 1572724,
+    "sha256": "886a16e9d92c17f7f1bedbffbde3e4b93587d7704cc416f4b81f3d265b130a42"
+  },
+  "statistics": {
+    "messages": 65,
+    "user_turns": 0,
+    "tool_calls": 23,
+    "roles": {
+      "system": 1,
+      "record": 1,
+      "assistant": 16,
+      "tool_call": 23,
+      "tool_result": 23,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 65,
+      "chunks": [
+        {
+          "path": "b51a3c7501f9ad5a4fa3-part-0001.json",
+          "message_count": 7
+        },
+        {
+          "path": "b51a3c7501f9ad5a4fa3-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "b51a3c7501f9ad5a4fa3-part-0003.json",
+          "message_count": 57
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-8-pair-spatial-data-20260524t220019-retry2.md"
+}

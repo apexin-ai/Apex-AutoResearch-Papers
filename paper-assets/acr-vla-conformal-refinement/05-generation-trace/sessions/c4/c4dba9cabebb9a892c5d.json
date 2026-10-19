@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4dba9cabebb9a892c5d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_30_1780049016.md",
+  "task_key": "loop_30_1780049016",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_30_1780049016.md",
+    "occurrence": 1,
+    "bytes": 3095,
+    "sha256": "8f4ee423e4b1244ef275d8344f5e0e9e06a20410bbfdd34339dda7b3061a0bce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 30\nreason: idle_timeout\nupdated: '2026-05-29T09:40:51+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 22 张，分布在 bjb1-18228(4卡)、bjb1-32546(6卡)、bjb2-28827(6卡)、cqa1-32758(6卡)，禁止用白名单外 GPU\n- CoRL 2026 DDL **2026-05-28 20:00 北京时间**（已过或即将到）。D184 已锁定 title + 20:00 数据锁定 + CoRL 提交确认\n- westd-49937 服务器数据系统性偏低 4-5pp（D174/D175），该服务器数据不可入 Table 1/2 主表\n- Table 1 已锁定为 K-matched 3 列（VLA-only K=1 / K=2 CRM always-on / K=2 Adaptive），不可改结构\n- Pi05 Object CRM 数据不入 Table 2 主表，放 Supplement（D171）\n- Long τ-sweep 非单调性：Appendix 诚实报告 + MC2 claim 限定为 cross-suite 级别（D170）\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**: 可达，conda base, `/root/acr-vla-conformal-refinement/`, CRM ckpt `/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt`, Python `/root/miniconda3/bin/python`, 1× RTX 4090 空闲\n- **bjb1-32546**: ❌ 不可达（port 32546，AutoDL 实例可能已关机/端口变更）\n- **bjb2-28827**: ❌ 不可达（port 28827）\n- **cqa1-32758**: ❌ 不可达（port 32758），Pi05 CRM ckpt `/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt`, Pi05 需额外参数 `--obs_dim 2048 --unified_obs_dim 2088`\n- 活跃进程：无（全部实验已 kill/cancel，0 cron，0 Worker）\n\n### 3. 📊 当前状态\nLoop #30 session-start 完成。发现状态与 handoff 描述有重大变化：全部实验已停机（用户指令全面停机），RUNNING=0，cron=0。论文就绪：编译通过，Table 1/3 完成，叙事一致性 ✅。已向 Director 汇报当前状态并询问是否启动最终提交流程，等待 Director 回复。\n\nRegistry 总览：成功 768 / 负向 97 / 失败 130 / 共 1230，无 RUNNING/PREPARING 实验。\n\n### 4. 📋 待办（条件触发式）\n- Director 回复\"启动提交\" → 执行最终 CoRL 提交流程（submit_paper_to_review 或直接提交）\n- Director 要求恢复实验 → 检查哪些服务器可达，重新部署（注意 3/4 服务器当前不可达）\n- 用户更新 SSH 端口（AutoDL 重启后端口变） → 更新连接信息，恢复服务器可达性\n- DDL 已过且未提交 → 向 Director 确认是否转投其他会议或等 camera-ready\n\n### 5. 🎯 战略上下文\n- **核心叙事**: CRM 修正是双刃剑，4/4 suites always-on 有害（Long -14.8pp 最有力），Adaptive gating 正确决定何时不干预\n- **MC1**(4/4 harmful) 最强，**MC2**(trigger↔Δ 单调) 限 cross-suite 级别，**MC3**(cross-VLA SmolVLA+Pi05) 依赖 Pi05 数据已完成\n- **决策链**: D170→D178（核心实验设计）→ D179(title 锁定) → D184(提交确认)\n- **易错点**: (1) handoff 描述的 13 RUNNING 实验已全部停止，不要试图恢复或等回调 (2) 3/4 服务器不可达，不要假设能 SSH (3) 论文已就绪，此刻唯一关键动作是确认提交流程 (4) DDL 是 2026-05-28 20:00 BJ，可能已经过了——如果过了需要确认后续计划\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-30-1780049016.md"
+}

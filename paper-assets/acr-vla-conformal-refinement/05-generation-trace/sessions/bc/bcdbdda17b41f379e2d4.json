@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bcdbdda17b41f379e2d4",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "prep phase2 commands",
+  "task_key": "worker_prep_phase2-commands_20260514T074706",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_prep_phase2-commands_20260514T074706_result.json",
+    "occurrence": 1,
+    "bytes": 4748,
+    "sha256": "029d6d3bfb613d20b0d7b2e07e904f52609a5913c935425fec37de773fa4165b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息收集完毕。以下是 Phase 2 完整命令清单。\n\n---\n\n## Phase 2 完整命令清单\n\n### 环境信息\n- 服务器: bjb1-18228，4× RTX 4090 (24GB)\n- 旧 cache: `/root/autodl-tmp/crm_cache/` (max_demos=10, 6D state buggy, action_dim=6)\n- 新 cache: `/root/autodl-tmp/crm_cache_v2/` (max_demos=50, 8D state C1 fix)\n- 旧 cache 样本: spatial=12,167, object=14,570 (100 traj each, max_demos=10)\n- 新 cache 预估: spatial≈60k, object≈73k (500 traj each, max_demos=50)\n\n---\n\n### Step 1: Precompute（3 shard 并行，GPU 0/1/2）\n\n**Shard 0 (GPU 0):**\n```bash\ncd /root/acr-vla-conformal-refinement && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nCUDA_VISIBLE_DEVICES=0 python src/train_crm.py \\\n  --precompute \\\n  --benchmark spatial object \\\n  --cache_dir /root/autodl-tmp/crm_cache_v2/ \\\n  --K 10 \\\n  --shard_id 0 --num_shards 3 \\\n  --max_demos_per_task 50 \\\n  --precompute_batch_size 4 \\\n  --save_every 500\n```\n\n**Shard 1 (GPU 1):**\n```bash\ncd /root/acr-vla-conformal-refinement && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nCUDA_VISIBLE_DEVICES=1 python src/train_crm.py \\\n  --precompute \\\n  --benchmark spatial object \\\n  --cache_dir /root/autodl-tmp/crm_cache_v2/ \\\n  --K 10 \\\n  --shard_id 1 --num_shards 3 \\\n  --max_demos_per_task 50 \\\n  --precompute_batch_size 4 \\\n  --save_every 500\n```\n\n**Shard 2 (GPU 2):**\n```bash\ncd /root/acr-vla-conformal-refinement && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nCUDA_VISIBLE_DEVICES=2 python src/train_crm.py \\\n  --precompute \\\n  --benchmark spatial object \\\n  --cache_dir /root/autodl-tmp/crm_cache_v2/ \\\n  --K 10 \\\n  --shard_id 2 --num_shards 3 \\\n  --max_demos_per_task 50 \\\n  --precompute_batch_size 4 \\\n  --save_every 500\n```\n\n- **GPU**: 各用 1 块，共 3 块\n- **预计时间**: 每 shard ~5-6h（两个 benchmark 串行，每个 benchmark ~44k samples / 3 shards ≈ 14-16k × 0.45s/sample）\n- **自动合并**: 最后完成的 shard 自动触发 `_try_merge`，生成 `obs_features.pt` / `k_samples.pt` / `expert_actions.pt` / `manifest.json`\n- **支持断点续传**: 每 500 samples 存 partial 文件，中断后重启自动恢复\n\n---\n\n### Step 2: CRM Retrain（1 GPU，等 Step 1 全部完成）\n\n```bash\ncd /root/acr-vla-conformal-refinement && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nCUDA_VISIBLE_DEVICES=0 python src/train_crm.py \\\n  --benchmark spatial object \\\n  --cache_dir /root/autodl-tmp/crm_cache_v2/ \\\n  --output_dir /root/autodl-tmp/checkpoints/crm_v2/ \\\n  --K 10 \\\n  --epochs 50 \\\n  --batch_size 32 \\\n  --lr 1e-3 \\\n  --input_mode full\n```\n\n- **GPU**: 1 块\n- **预计时间**: ~10-15 min（CRM 仅 337K 参数，训练很快）\n- **产出**: `crm_best.pt` + epoch checkpoints 在 `/root/autodl-tmp/checkpoints/crm_v2/`\n- **已内置 fix**: `_argmin_base_action` (W2 argmin fix)，`load_libero_demos` 中 8D state (C1 fix)\n\n---\n\n### Step 3: Re-eval（1 GPU，等 Step 2 完成）\n\n```bash\ncd /root/acr-vla-conformal-refinement && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nTARGET_GPU=0 python run_eval_gpu.py \\\n  --benchmark spatial \\\n  --mode acr_vla \\\n  --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v2/crm_best.pt \\\n  --K 10 \\\n  --n_rollouts 20 \\\n  --output_file /root/autodl-tmp/eval_results/acr_spatial_v3_postfix/results.json\n```\n\n- **GPU**: 1 块（`run_eval_gpu.py` 封装 EGL 设备映射）\n- **预计时间**: ~2-3h（10 tasks × 20 rollouts × ≤300 steps）\n- **产出**: JSON 结果文件\n\n---\n\n### 依赖关系\n\n```\nStep 1 (Shard 0) ─┐\nStep 1 (Shard 1) ──┼──▶ Step 2 (Train) ──▶ Step 3 (Eval)\nStep 1 (Shard 2) ─┘\n        并行                   串行            串行\n```\n\n### 注意事项\n\n1. **旧 cache 保留**: 新 cache 写入 `crm_cache_v2/`，旧 `crm_cache/` 不受影响\n2. **旧 checkpoint 保留**: 新 checkpoint 写入 `checkpoints/crm_v2/`，旧 `checkpoints/crm/` 不变\n3. **max_demos_per_task=50 vs 旧版 10**: 数据量增加 5x，precompute 时间相应增加。如需加速可改回 `--max_demos_per_task 10`（与旧版相同数据量，precompute 降至 ~1h/shard）\n4. **GPU 3 空闲**: precompute 用 GPU 0-2，GPU 3 可同时跑其他任务\n5. **merge 注意**: 3 个 shard 必须全部完成才能 merge。如某 shard 挂了，重启同参数即可（自动续传），最后完成的 shard 触发 merge\n6. **eval 只跑 spatial**: 如需 object benchmark eval，换 `--benchmark object` 并调整 output_file 路径"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-phase2-commands.md"
+}

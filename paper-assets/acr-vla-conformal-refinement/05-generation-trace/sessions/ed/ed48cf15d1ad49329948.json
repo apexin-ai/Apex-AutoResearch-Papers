@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed48cf15d1ad49329948",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "monitor bjb1 18228 urgent",
+  "task_key": "worker_monitor_bjb1-18228-urgent_20260515T045319",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_monitor_bjb1-18228-urgent_20260515T045319_result.json",
+    "occurrence": 1,
+    "bytes": 2303,
+    "sha256": "d9f768452c27474b7fa63534cb3ed3cef9a9a75786a1681a241d6417e9db7280"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Spatial Eval 状态汇总（bjb1-18228, 2026-05-15 12:53 服务器时间）\n\n### 实验状态\n\n| # | 实验 | 模式 | 状态 | 完成进度 | 当前 SR | 日志最后更新 |\n|---|------|------|------|---------|---------|-------------|\n| 1 | **v4-default-r2** | acr_vla (default) | **失败** | 0/10 | N/A | 05-14 22:17 |\n| 2 | **v4-small (perdof)** | acr_vla | **运行中** | 7/10 tasks | 42.9% (30/70) | 12:26 (~28min前) |\n| 3 | **v4-obs-only-r2** | crm_obs_only | **运行中** | 7/10 tasks | 40.0% (24/60) | 12:49 (~5min前) |\n| 4 | **v4-scalar** | crm_scalar | **运行中** | 4/10 tasks | 56.7% (17/30) | 12:48 (~6min前) |\n\n### 详细结果\n\n**1. v4-default-r2 — 启动即失败**\n- 错误：`python: command not found`（exit code 127）\n- 原因：脚本用了 `python` 而非 `python3`\n\n**2. v4-small (perdof ACR-VLA)** — 7/10 tasks 完成\n| Task | SR |\n|------|----|\n| between plate & ramekin | 60% (6/10) |\n| next to ramekin | 100% (10/10) |\n| table center | 10% (1/10) |\n| on cookie box | 40% (4/10) |\n| top drawer | 0% (0/10) |\n| on ramekin | 0% (0/10) |\n| next to cookie box | 90% (9/10) |\n\n**3. v4-obs-only-r2** — 7/10 tasks 完成（task 7 进行中，midpoint 5/5）\n| Task | SR |\n|------|----|\n| between plate & ramekin | 90% (9/10) |\n| next to ramekin | 100% (10/10) |\n| table center | 0% (0/10) |\n| on cookie box | 40% (4/10) |\n| top drawer | 10% (1/10) |\n| on ramekin | 0% (0/10) |\n| next to cookie box | 进行中 (5/5 at midpoint) |\n\n**4. v4-scalar** — 4/10 tasks 完成（task 4 进行中）\n| Task | SR |\n|------|----|\n| between plate & ramekin | 60% (6/10) |\n| next to ramekin | 100% (10/10) |\n| table center | 10% (1/10) |\n| on cookie box | 进行中 (1/5 at midpoint) |\n\n### GPU 状态\n- 4x RTX 4090，4 个 python 进程占用 GPU（PIDs: 231426, 253085, 270097, 288939）\n- GPU 利用率 18-22%，符合 eval 推理模式\n- 无 JSON 输出文件（实验未完成）\n\n### 判断\n**实验未卡死。** 3 个实验活跃运行中，日志在过去 30 分钟内均有更新。只有 v4-default-r2 因 `python` 命令找不到而启动失败（需修复后重启）。预计 obs-only 和 perdof 约 1-2 小时内完成（剩余 3 个 tasks），scalar 约 2-3 小时（剩余 6 个 tasks）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-bjb1-18228-urgent.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a2db7ca52e92ad4ca65",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops kill a1 bjb1 32546",
+  "task_key": "worker_ops_kill-a1-bjb1-32546_20260524T201007",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_kill-a1-bjb1-32546_20260524T201007_result.json",
+    "occurrence": 1,
+    "bytes": 946,
+    "sha256": "b88a1b6d04610e8bd5a4f3e279b840e72906c333dd1d3c8c1d23fbe496f77b79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done.\n\n## Kill 结果\n- A1 进程已自行终止（PID 462251 不存在，无 tmux 会话）—— 无需手动 kill\n- Registry: `eval-a1-baseline-object-s42` → `DONE`, conclusion=`killed`, notes 记录 D137 决定\n\n## bjb1-32546 GPU 全貌\n所有 6 张 RTX 4090 **全部空闲**（0% util，1 MiB used）：\n\n| GPU | 进程 | 利用率 | 显存 |\n|-----|------|--------|------|\n| 0 | 无 | 0% | 1 MiB / 24564 MiB |\n| 1 | 无 | 0% | 1 MiB / 24564 MiB |\n| 2 | 无 | 0% | 1 MiB / 24564 MiB |\n| 3 | 无 | 0% | 1 MiB / 24564 MiB |\n| 4 | 无 | 0% | 1 MiB / 24564 MiB |\n| 5 | 无 | 0% | 1 MiB / 24564 MiB |\n\n**注**：Registry 中 `bjb1-32546` 上还有 3 个标 RUNNING 但实际已不在的实验（孤儿记录）：\n- `eval-supp-spatial-k2mean-s46` (PID 188432，gpu:0)\n- `eval-supp-reconvla-obj-s45` (gpu:5)\n- `eval-smolvla-lerobot-{goal,spatial}-seed43-v3`\n\n整机 6 卡全空，可立即调度新任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-a1-bjb1-32546.md"
+}

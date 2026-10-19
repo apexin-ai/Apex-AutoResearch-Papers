@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f175d7c6ed34c6b158ee",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose eval argmin object seed44 r2",
+  "task_key": "worker_diagnose_eval-argmin-object-seed44-r2_20260516T153021",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval-argmin-object-seed44-r2_20260516T153021_result.json",
+    "occurrence": 1,
+    "bytes": 1204,
+    "sha256": "30018ea2f0f459f637d218e5745a4c8a10616148b6a878fd31ed007d0afb8bc3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**实验没有失败。** 它完整运行了全部 10 个 task × 10 rollouts = 100 次评估后正常退出。\n\n### 根因\n\nEXIT_CODE=129 (SIGHUP) 发生在实验**已经完成并保存结果之后**。日志最后几行清楚显示：\n\n1. 打印了 \"Overall success rate (reconvla): 13.0% (13/100)\"\n2. 打印了 \"Results saved to logs/eval_object_reconvla_seed44.json\"\n3. 之后才出现 EXIT_CODE=129\n\n这是 tmux/nohup session 在主进程退出后收到 SIGHUP 的典型现象（可能是 tmux session 被关闭或终端断开），不影响实验结果。\n\n### 实验结果\n\n- **所有 10/10 task 全部完成**，100 个 rollout 全部跑完\n- **输出文件完整** (1486 bytes, 包含所有 per-task 结果)\n- **Overall success rate: 13.0% (13/100)**\n\nPer-task breakdown:\n| Task | Success Rate |\n|------|-------------|\n| alphabet_soup | 0% |\n| cream_cheese | 0% |\n| salad_dressing | 10% |\n| bbq_sauce | 20% |\n| ketchup | 10% |\n| tomato_sauce | 10% |\n| butter | 0% |\n| milk | 10% |\n| chocolate_pudding | 50% |\n| orange_juice | 20% |\n\n### 建议\n\n**不需要重试 (r3)**。实验已完整完成，结果文件有效可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-argmin-object-seed44-r2.md"
+}

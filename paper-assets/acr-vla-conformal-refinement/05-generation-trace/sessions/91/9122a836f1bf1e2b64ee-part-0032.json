@@ -1,0 +1,3538 @@
+{
+  "schema_version": "1.0",
+  "session_id": "9122a836f1bf1e2b64ee",
+  "rounds": [
+    {
+      "number": 379,
+      "messages": [
+        {
+          "source_line": 5581,
+          "timestamp": "2026-05-23T07:09:00.012954+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005581"
+        },
+        {
+          "source_line": 5582,
+          "timestamp": "2026-05-23T07:09:00.063664+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005582"
+        },
+        {
+          "source_line": 5583,
+          "timestamp": "2026-05-23T07:09:02.602431+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005583"
+        },
+        {
+          "source_line": 5584,
+          "timestamp": "2026-05-23T07:09:02.653030+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005584"
+        },
+        {
+          "source_line": 5585,
+          "timestamp": "2026-05-23T07:09:05.885471+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005585"
+        },
+        {
+          "source_line": 5586,
+          "timestamp": "2026-05-23T07:09:06.105404+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 219
+          },
+          "id": "event-005586"
+        },
+        {
+          "source_line": 5587,
+          "timestamp": "2026-05-23T07:09:09.593077+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005587"
+        },
+        {
+          "source_line": 5588,
+          "timestamp": "2026-05-23T07:09:09.894622+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 301
+          },
+          "id": "event-005588"
+        },
+        {
+          "source_line": 5589,
+          "timestamp": "2026-05-23T07:09:12.004187+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005589"
+        },
+        {
+          "source_line": 5590,
+          "timestamp": "2026-05-23T07:09:12.054939+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005590"
+        },
+        {
+          "source_line": 5591,
+          "timestamp": "2026-05-23T07:09:14.121188+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005591"
+        },
+        {
+          "source_line": 5592,
+          "timestamp": "2026-05-23T07:09:14.171775+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005592"
+        },
+        {
+          "source_line": 5593,
+          "timestamp": "2026-05-23T07:09:18.791230+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005593"
+        },
+        {
+          "source_line": 5594,
+          "timestamp": "2026-05-23T07:09:18.791684+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 0
+          },
+          "id": "event-005594"
+        },
+        {
+          "source_line": 5595,
+          "timestamp": "2026-05-23T07:09:20.749363+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005595"
+        },
+        {
+          "source_line": 5596,
+          "timestamp": "2026-05-23T07:09:20.799901+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005596"
+        },
+        {
+          "source_line": 5597,
+          "timestamp": "2026-05-23T07:09:23.255960+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005597"
+        },
+        {
+          "source_line": 5598,
+          "timestamp": "2026-05-23T07:09:23.256482+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 0
+          },
+          "id": "event-005598"
+        },
+        {
+          "source_line": 5599,
+          "timestamp": "2026-05-23T07:09:25.895887+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005599"
+        },
+        {
+          "source_line": 5600,
+          "timestamp": "2026-05-23T07:09:25.998311+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 102
+          },
+          "id": "event-005600"
+        },
+        {
+          "source_line": 5601,
+          "timestamp": "2026-05-23T07:09:28.222069+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005601"
+        },
+        {
+          "source_line": 5602,
+          "timestamp": "2026-05-23T07:09:28.273061+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005602"
+        },
+        {
+          "source_line": 5603,
+          "timestamp": "2026-05-23T07:09:30.448627+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005603"
+        },
+        {
+          "source_line": 5604,
+          "timestamp": "2026-05-23T07:09:30.549576+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 100
+          },
+          "id": "event-005604"
+        },
+        {
+          "source_line": 5605,
+          "timestamp": "2026-05-23T07:09:32.716336+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005605"
+        },
+        {
+          "source_line": 5606,
+          "timestamp": "2026-05-23T07:09:32.818155+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 101
+          },
+          "id": "event-005606"
+        },
+        {
+          "source_line": 5607,
+          "timestamp": "2026-05-23T07:09:35.680184+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005607"
+        },
+        {
+          "source_line": 5608,
+          "timestamp": "2026-05-23T07:09:35.730950+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005608"
+        },
+        {
+          "source_line": 5609,
+          "timestamp": "2026-05-23T07:09:38.189468+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005609"
+        },
+        {
+          "source_line": 5610,
+          "timestamp": "2026-05-23T07:09:38.240005+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005610"
+        },
+        {
+          "source_line": 5611,
+          "timestamp": "2026-05-23T07:09:40.802221+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005611"
+        },
+        {
+          "source_line": 5612,
+          "timestamp": "2026-05-23T07:09:40.852863+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005612"
+        },
+        {
+          "source_line": 5613,
+          "timestamp": "2026-05-23T07:09:48.952308+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005613"
+        },
+        {
+          "source_line": 5614,
+          "timestamp": "2026-05-23T07:09:48.952830+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 0
+          },
+          "id": "event-005614"
+        },
+        {
+          "source_line": 5615,
+          "timestamp": "2026-05-23T07:09:50.960013+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005615"
+        },
+        {
+          "source_line": 5616,
+          "timestamp": "2026-05-23T07:09:51.011455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 51
+          },
+          "id": "event-005616"
+        },
+        {
+          "source_line": 5617,
+          "timestamp": "2026-05-23T07:09:56.562442+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005617"
+        },
+        {
+          "source_line": 5618,
+          "timestamp": "2026-05-23T07:09:56.613060+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005618"
+        },
+        {
+          "source_line": 5619,
+          "timestamp": "2026-05-23T07:10:02.386921+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005619"
+        },
+        {
+          "source_line": 5620,
+          "timestamp": "2026-05-23T07:10:02.437623+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005620"
+        },
+        {
+          "source_line": 5621,
+          "timestamp": "2026-05-23T07:10:05.198229+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005621"
+        },
+        {
+          "source_line": 5622,
+          "timestamp": "2026-05-23T07:10:05.248984+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005622"
+        },
+        {
+          "source_line": 5623,
+          "timestamp": "2026-05-23T07:10:07.835566+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005623"
+        },
+        {
+          "source_line": 5624,
+          "timestamp": "2026-05-23T07:10:07.980747+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 145
+          },
+          "id": "event-005624"
+        },
+        {
+          "source_line": 5625,
+          "timestamp": "2026-05-23T07:10:11.037092+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005625"
+        },
+        {
+          "source_line": 5626,
+          "timestamp": "2026-05-23T07:10:11.079490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 42
+          },
+          "id": "event-005626"
+        },
+        {
+          "source_line": 5627,
+          "timestamp": "2026-05-23T07:10:15.569694+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005627"
+        },
+        {
+          "source_line": 5628,
+          "timestamp": "2026-05-23T07:10:15.670499+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 100
+          },
+          "id": "event-005628"
+        },
+        {
+          "source_line": 5629,
+          "timestamp": "2026-05-23T07:10:21.442578+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005629"
+        },
+        {
+          "source_line": 5630,
+          "timestamp": "2026-05-23T07:10:21.543535+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 100
+          },
+          "id": "event-005630"
+        },
+        {
+          "source_line": 5631,
+          "timestamp": "2026-05-23T07:10:23.876807+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005631"
+        },
+        {
+          "source_line": 5632,
+          "timestamp": "2026-05-23T07:10:23.927488+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005632"
+        },
+        {
+          "source_line": 5633,
+          "timestamp": "2026-05-23T07:10:26.186650+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005633"
+        },
+        {
+          "source_line": 5634,
+          "timestamp": "2026-05-23T07:10:26.287460+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 100
+          },
+          "id": "event-005634"
+        },
+        {
+          "source_line": 5635,
+          "timestamp": "2026-05-23T07:10:29.097912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005635"
+        },
+        {
+          "source_line": 5636,
+          "timestamp": "2026-05-23T07:10:29.198626+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 100
+          },
+          "id": "event-005636"
+        },
+        {
+          "source_line": 5637,
+          "timestamp": "2026-05-23T07:10:32.819112+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005637"
+        },
+        {
+          "source_line": 5638,
+          "timestamp": "2026-05-23T07:10:33.120577+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 301
+          },
+          "id": "event-005638"
+        },
+        {
+          "source_line": 5639,
+          "timestamp": "2026-05-23T07:10:35.228558+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005639"
+        },
+        {
+          "source_line": 5640,
+          "timestamp": "2026-05-23T07:10:35.479976+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 251
+          },
+          "id": "event-005640"
+        },
+        {
+          "source_line": 5641,
+          "timestamp": "2026-05-23T07:10:37.839789+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005641"
+        },
+        {
+          "source_line": 5642,
+          "timestamp": "2026-05-23T07:10:37.840150+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 0
+          },
+          "id": "event-005642"
+        },
+        {
+          "source_line": 5643,
+          "timestamp": "2026-05-23T07:10:40.099555+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005643"
+        },
+        {
+          "source_line": 5644,
+          "timestamp": "2026-05-23T07:10:40.150210+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005644"
+        },
+        {
+          "source_line": 5645,
+          "timestamp": "2026-05-23T07:10:54.533804+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005645"
+        },
+        {
+          "source_line": 5646,
+          "timestamp": "2026-05-23T07:10:54.584434+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005646"
+        },
+        {
+          "source_line": 5647,
+          "timestamp": "2026-05-23T07:10:57.044626+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005647"
+        },
+        {
+          "source_line": 5648,
+          "timestamp": "2026-05-23T07:10:57.145560+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 100
+          },
+          "id": "event-005648"
+        },
+        {
+          "source_line": 5649,
+          "timestamp": "2026-05-23T07:11:01.616357+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005649"
+        },
+        {
+          "source_line": 5650,
+          "timestamp": "2026-05-23T07:11:01.616732+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 0
+          },
+          "id": "event-005650"
+        },
+        {
+          "source_line": 5651,
+          "timestamp": "2026-05-23T07:11:03.975972+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005651"
+        },
+        {
+          "source_line": 5652,
+          "timestamp": "2026-05-23T07:11:03.976459+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 0
+          },
+          "id": "event-005652"
+        },
+        {
+          "source_line": 5653,
+          "timestamp": "2026-05-23T07:11:06.284819+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005653"
+        },
+        {
+          "source_line": 5654,
+          "timestamp": "2026-05-23T07:11:06.385700+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 100
+          },
+          "id": "event-005654"
+        },
+        {
+          "source_line": 5655,
+          "timestamp": "2026-05-23T07:11:09.949919+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005655"
+        },
+        {
+          "source_line": 5656,
+          "timestamp": "2026-05-23T07:11:10.000709+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005656"
+        },
+        {
+          "source_line": 5657,
+          "timestamp": "2026-05-23T07:11:12.596129+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005657"
+        },
+        {
+          "source_line": 5658,
+          "timestamp": "2026-05-23T07:11:12.790246+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 194
+          },
+          "id": "event-005658"
+        },
+        {
+          "source_line": 5659,
+          "timestamp": "2026-05-23T07:11:14.930730+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005659"
+        },
+        {
+          "source_line": 5660,
+          "timestamp": "2026-05-23T07:11:15.013638+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 82
+          },
+          "id": "event-005660"
+        },
+        {
+          "source_line": 5661,
+          "timestamp": "2026-05-23T07:11:17.405847+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005661"
+        },
+        {
+          "source_line": 5662,
+          "timestamp": "2026-05-23T07:11:17.478926+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 73
+          },
+          "id": "event-005662"
+        },
+        {
+          "source_line": 5663,
+          "timestamp": "2026-05-23T07:11:19.780543+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005663"
+        },
+        {
+          "source_line": 5664,
+          "timestamp": "2026-05-23T07:11:19.780967+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 0
+          },
+          "id": "event-005664"
+        },
+        {
+          "source_line": 5665,
+          "timestamp": "2026-05-23T07:11:22.661820+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005665"
+        },
+        {
+          "source_line": 5666,
+          "timestamp": "2026-05-23T07:11:22.712485+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005666"
+        },
+        {
+          "source_line": 5667,
+          "timestamp": "2026-05-23T07:11:24.971247+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005667"
+        },
+        {
+          "source_line": 5668,
+          "timestamp": "2026-05-23T07:11:25.022070+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005668"
+        },
+        {
+          "source_line": 5669,
+          "timestamp": "2026-05-23T07:11:27.030657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005669"
+        },
+        {
+          "source_line": 5670,
+          "timestamp": "2026-05-23T07:11:27.181676+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 151
+          },
+          "id": "event-005670"
+        },
+        {
+          "source_line": 5671,
+          "timestamp": "2026-05-23T07:11:29.540807+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005671"
+        },
+        {
+          "source_line": 5672,
+          "timestamp": "2026-05-23T07:11:29.641607+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 100
+          },
+          "id": "event-005672"
+        },
+        {
+          "source_line": 5673,
+          "timestamp": "2026-05-23T07:11:35.121945+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005673"
+        },
+        {
+          "source_line": 5674,
+          "timestamp": "2026-05-23T07:11:35.172666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005674"
+        },
+        {
+          "source_line": 5675,
+          "timestamp": "2026-05-23T07:11:37.433715+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005675"
+        },
+        {
+          "source_line": 5676,
+          "timestamp": "2026-05-23T07:11:37.484489+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005676"
+        },
+        {
+          "source_line": 5677,
+          "timestamp": "2026-05-23T07:11:41.401210+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005677"
+        },
+        {
+          "source_line": 5678,
+          "timestamp": "2026-05-23T07:11:41.552463+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 151
+          },
+          "id": "event-005678"
+        },
+        {
+          "source_line": 5679,
+          "timestamp": "2026-05-23T07:11:43.862644+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005679"
+        },
+        {
+          "source_line": 5680,
+          "timestamp": "2026-05-23T07:11:43.863135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 0
+          },
+          "id": "event-005680"
+        },
+        {
+          "source_line": 5681,
+          "timestamp": "2026-05-23T07:11:46.375341+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005681"
+        },
+        {
+          "source_line": 5682,
+          "timestamp": "2026-05-23T07:11:46.426071+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005682"
+        },
+        {
+          "source_line": 5683,
+          "timestamp": "2026-05-23T07:11:48.434216+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005683"
+        },
+        {
+          "source_line": 5684,
+          "timestamp": "2026-05-23T07:11:48.534845+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 100
+          },
+          "id": "event-005684"
+        },
+        {
+          "source_line": 5685,
+          "timestamp": "2026-05-23T07:11:50.693460+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005685"
+        },
+        {
+          "source_line": 5686,
+          "timestamp": "2026-05-23T07:11:50.744025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005686"
+        },
+        {
+          "source_line": 5687,
+          "timestamp": "2026-05-23T07:11:53.070720+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005687"
+        },
+        {
+          "source_line": 5688,
+          "timestamp": "2026-05-23T07:11:53.071158+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 0
+          },
+          "id": "event-005688"
+        },
+        {
+          "source_line": 5689,
+          "timestamp": "2026-05-23T07:12:01.452974+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005689"
+        },
+        {
+          "source_line": 5690,
+          "timestamp": "2026-05-23T07:12:01.553713+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 100
+          },
+          "id": "event-005690"
+        },
+        {
+          "source_line": 5691,
+          "timestamp": "2026-05-23T07:12:04.514336+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005691"
+        },
+        {
+          "source_line": 5692,
+          "timestamp": "2026-05-23T07:12:04.564933+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005692"
+        },
+        {
+          "source_line": 5693,
+          "timestamp": "2026-05-23T07:12:11.993344+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005693"
+        },
+        {
+          "source_line": 5694,
+          "timestamp": "2026-05-23T07:12:11.993784+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 0
+          },
+          "id": "event-005694"
+        },
+        {
+          "source_line": 5695,
+          "timestamp": "2026-05-23T07:12:14.152148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005695"
+        },
+        {
+          "source_line": 5696,
+          "timestamp": "2026-05-23T07:12:14.152580+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 0
+          },
+          "id": "event-005696"
+        },
+        {
+          "source_line": 5697,
+          "timestamp": "2026-05-23T07:12:16.511796+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005697"
+        },
+        {
+          "source_line": 5698,
+          "timestamp": "2026-05-23T07:12:16.662823+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 151
+          },
+          "id": "event-005698"
+        },
+        {
+          "source_line": 5699,
+          "timestamp": "2026-05-23T07:12:18.872054+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005699"
+        },
+        {
+          "source_line": 5700,
+          "timestamp": "2026-05-23T07:12:18.872584+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 0
+          },
+          "id": "event-005700"
+        },
+        {
+          "source_line": 5701,
+          "timestamp": "2026-05-23T07:12:23.025222+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005701"
+        },
+        {
+          "source_line": 5702,
+          "timestamp": "2026-05-23T07:12:23.051328+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 26
+          },
+          "id": "event-005702"
+        },
+        {
+          "source_line": 5703,
+          "timestamp": "2026-05-23T07:12:25.210002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005703"
+        },
+        {
+          "source_line": 5704,
+          "timestamp": "2026-05-23T07:12:25.312490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 102
+          },
+          "id": "event-005704"
+        },
+        {
+          "source_line": 5705,
+          "timestamp": "2026-05-23T07:12:28.123605+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005705"
+        },
+        {
+          "source_line": 5706,
+          "timestamp": "2026-05-23T07:12:28.174188+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005706"
+        },
+        {
+          "source_line": 5707,
+          "timestamp": "2026-05-23T07:12:30.483051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005707"
+        },
+        {
+          "source_line": 5708,
+          "timestamp": "2026-05-23T07:12:30.483449+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 0
+          },
+          "id": "event-005708"
+        },
+        {
+          "source_line": 5709,
+          "timestamp": "2026-05-23T07:12:33.243147+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005709"
+        },
+        {
+          "source_line": 5710,
+          "timestamp": "2026-05-23T07:12:33.293859+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005710"
+        },
+        {
+          "source_line": 5711,
+          "timestamp": "2026-05-23T07:12:36.403911+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005711"
+        },
+        {
+          "source_line": 5712,
+          "timestamp": "2026-05-23T07:12:36.454639+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005712"
+        },
+        {
+          "source_line": 5713,
+          "timestamp": "2026-05-23T07:12:39.516944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005713"
+        },
+        {
+          "source_line": 5714,
+          "timestamp": "2026-05-23T07:12:39.617838+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 100
+          },
+          "id": "event-005714"
+        },
+        {
+          "source_line": 5715,
+          "timestamp": "2026-05-23T07:12:42.931105+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005715"
+        },
+        {
+          "source_line": 5716,
+          "timestamp": "2026-05-23T07:12:42.981720+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005716"
+        },
+        {
+          "source_line": 5717,
+          "timestamp": "2026-05-23T07:12:45.139846+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005717"
+        },
+        {
+          "source_line": 5718,
+          "timestamp": "2026-05-23T07:12:45.190720+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005718"
+        },
+        {
+          "source_line": 5719,
+          "timestamp": "2026-05-23T07:12:47.450226+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005719"
+        },
+        {
+          "source_line": 5720,
+          "timestamp": "2026-05-23T07:12:47.500852+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 50
+          },
+          "id": "event-005720"
+        },
+        {
+          "source_line": 5721,
+          "timestamp": "2026-05-23T07:12:52.477296+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005721"
+        },
+        {
+          "source_line": 5722,
+          "timestamp": "2026-05-23T07:12:52.628334+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 151
+          },
+          "id": "event-005722"
+        },
+        {
+          "source_line": 5723,
+          "timestamp": "2026-05-23T07:12:54.875051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005723"
+        },
+        {
+          "source_line": 5724,
+          "timestamp": "2026-05-23T07:12:54.875534+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 0
+          },
+          "id": "event-005724"
+        },
+        {
+          "source_line": 5725,
+          "timestamp": "2026-05-23T07:12:57.084815+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005725"
+        },
+        {
+          "source_line": 5726,
+          "timestamp": "2026-05-23T07:12:57.085245+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 0
+          },
+          "id": "event-005726"
+        },
+        {
+          "source_line": 5727,
+          "timestamp": "2026-05-23T07:12:59.294060+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005727"
+        },
+        {
+          "source_line": 5728,
+          "timestamp": "2026-05-23T07:12:59.294525+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 0
+          },
+          "id": "event-005728"
+        },
+        {
+          "source_line": 5729,
+          "timestamp": "2026-05-23T07:13:01.702923+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005729"
+        },
+        {
+          "source_line": 5730,
+          "timestamp": "2026-05-23T07:13:01.703254+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 0
+          },
+          "id": "event-005730"
+        },
+        {
+          "source_line": 5731,
+          "timestamp": "2026-05-23T07:13:06.520953+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__poll_secret_request"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "tool_args": {
+              "request_id": "secret_req_ssh_password_cqa1_32758_1779519766",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005731"
+        },
+        {
+          "source_line": 5732,
+          "timestamp": "2026-05-23T07:13:06.521456+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"status\\\": \\\"pending\\\", \\\"message\\\": \\\"等待用户审批...\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__poll_secret_request",
+            "elapsed_ms": 0
+          },
+          "id": "event-005732"
+        },
+        {
+          "source_line": 5733,
+          "timestamp": "2026-05-23T07:13:15.605698+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "⚠️ cqa1-32758 SSH 密码审批仍在等待。飞书 A 群已发出审批卡片（key_id: ssh_password_cqa1_32758），请用户点击批准。6 张 4090D 空置中。",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005733"
+        },
+        {
+          "source_line": 5734,
+          "timestamp": "2026-05-23T07:13:16.961210+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 1355
+          },
+          "id": "event-005734"
+        },
+        {
+          "source_line": 5735,
+          "timestamp": "2026-05-23T07:13:22.978391+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "SSH 密码审批等待中。已完成的准备工作：\n- cqa1-32758 已在 resources.yaml 注册（host/port/6 GPUs）\n- 项目配置已更新（gpu_constraint + gpu_ids + servers 添加 cqa1-32758）\n- 6 个实验 registry 条目已创建（PREPARING）\n- 审批提醒已发送\n\n密码批准后将立即派 Worker 搭建环境并部署 6 个实验。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-005735"
+        }
+      ]
+    },
+    {
+      "number": 380,
+      "messages": [
+        {
+          "source_line": 5736,
+          "timestamp": "2026-05-23T07:13:23.785296+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_analyze_eval-supp-obj-reconvla-s42_20260523T065844 已完成（status=done）。用 `get_worker_status('worker_analyze_eval-supp-obj-reconvla-s42_20260523T065844')` 读取结果，然后处理。\n\n- worker_id: worker_analyze_eval-supp-obj-reconvla-s42_20260523T065844\n- project: acr-vla-conformal-refinement\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "worker:done"
+          },
+          "id": "event-005736"
+        },
+        {
+          "source_line": 5737,
+          "timestamp": "2026-05-23T07:13:36.365378+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_analyze_eval-supp-obj-reconvla-s42_20260523T065844",
+              "verbose": "True"
+            }
+          },
+          "id": "event-005737"
+        },
+        {
+          "source_line": 5738,
+          "timestamp": "2026-05-23T07:13:36.581709+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analyze_eval-supp-obj-reconvla-s42_20260523T065844\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"analyze:eval-supp-obj-reconvla-s42\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"started_at\\\": \\\"2026-05-23T06:58:45.015951+00:00\\\", \\\"ended_at\\\": \\\"2026-05-23T07:01:24.140817+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"Registry 已更新完毕。结果汇总：\\\\n\\\\n**eval-supp-obj-reconvla-s42 — Overall SR: 79.0% (158/200)**\\\\n\\\\n| Task | SR |\\\\n|------|----|\\\\n| bbq_sauce | 95.0% |\\\\n| ketchup | 90.0% |\\\\n| orange_juice | 90.0% |\\\\n| salad_dressing | 85.0% |\\\\n| tomato_sauce | 80.0% |\\\\n| alphabet_soup | 75.0% |\\\\n| chocolate_pudding | 75.0% |\\\\n| cream_cheese | 70.0% |\\\\n| butter | 65.0% |\\\\n| milk | 65.0% |\\\\n\\\\nObject Reconvla K=10 的 79.0% 与 Spatial Reconvla K=10 的 79.0% 完全一致，验证了 CRM-based refinement 跨 suite 的泛化性。Conclusion 已从 cron 误判的 `failed` 修正为 `success`，status 设为 `DONE`。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 216
+          },
+          "id": "event-005738"
+        },
+        {
+          "source_line": 5739,
+          "timestamp": "2026-05-23T07:13:52.176575+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-supp-k2mean-object-s42",
+              "field": "hypothesis",
+              "value": "K=2 mean baseline (vla_only, 2-sample average) on Object suite seed42. Isolates multi-sample averaging from CRM correction. Object CRM=77%, Reconvla=79%. If K=2 mean ≈ VLA-only, confirms CRM/reconvla improvements not from sampling diversity alone.",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005739"
+        },
+        {
+          "source_line": 5740,
+          "timestamp": "2026-05-23T07:13:55.283621+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-k2mean-object-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T07:03:22.668Z\\\", \\\"updated_at\\\": \\\"2026-05-23T07:13:54.058Z\\\", \\\"hypothesis\\\": \\\"K=2 mean baseline (vla_only, 2-sample average) on Object suite seed42. Isolates multi-sample averaging from CRM correction. Object CRM=77%, Reconvla=79%. If K=2 mean ≈ VLA-only, confirms CRM/reconvla improvements not from sampling diversity alone.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.024}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 3107
+          },
+          "id": "event-005740"
+        },
+        {
+          "source_line": 5741,
+          "timestamp": "2026-05-23T07:13:55.284051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "gpu_ids": "['cuda:1']",
+              "command": "bash -c \"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --baseline_mode mean --K 2 --benchmark object --seed 42 --n_rollouts 20 2>&1 | tee logs/eval-supp-k2mean-object-s42.log\"",
+              "exp_id": "eval-supp-k2mean-object-s42",
+              "project": "acr-vla-conformal-refinement",
+              "account": "root"
+            }
+          },
+          "id": "event-005741"
+        },
+        {
+          "source_line": 5742,
+          "timestamp": "2026-05-23T07:14:00.853339+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"618917\\\", \\\"log_file\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-supp-k2mean-object-s42.log\\\", \\\"gpu_ids\\\": [\\\"cuda:1\\\"], \\\"server\\\": \\\"bjb2-28827\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"1\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"eval-supp-k2mean-object-s42\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 5569
+          },
+          "id": "event-005742"
+        },
+        {
+          "source_line": 5743,
+          "timestamp": "2026-05-23T07:14:04.018079+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-supp-k2mean-object-s42",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005743"
+        },
+        {
+          "source_line": 5744,
+          "timestamp": "2026-05-23T07:14:11.229122+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-k2mean-object-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T07:03:22.668Z\\\", \\\"updated_at\\\": \\\"2026-05-23T07:14:05.687Z\\\", \\\"hypothesis\\\": \\\"K=2 mean baseline (vla_only, 2-sample average) on Object suite seed42. Isolates multi-sample averaging from CRM correction. Object CRM=77%, Reconvla=79%. If K=2 mean ≈ VLA-only, confirms CRM/reconvla improvements not from sampling diversity alone.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --baseline_mode mean --K 2 --benchmark object --seed 42 --n_rollouts 20 2>&1 | tee logs/eval-supp-k2mean-object-s42.log\\\\\\\"\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"618917\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-supp-k2mean-object-s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T07:13:58.001Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.2293}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 7211
+          },
+          "id": "event-005744"
+        },
+        {
+          "source_line": 5745,
+          "timestamp": "2026-05-23T07:14:16.075478+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-supp-k2mean-object-s42",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005745"
+        },
+        {
+          "source_line": 5746,
+          "timestamp": "2026-05-23T07:14:25.849408+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-k2mean-object-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T07:03:22.668Z\\\", \\\"updated_at\\\": \\\"2026-05-23T07:14:19.184Z\\\", \\\"hypothesis\\\": \\\"K=2 mean baseline (vla_only, 2-sample average) on Object suite seed42. Isolates multi-sample averaging from CRM correction. Object CRM=77%, Reconvla=79%. If K=2 mean ≈ VLA-only, confirms CRM/reconvla improvements not from sampling diversity alone.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --baseline_mode mean --K 2 --benchmark object --seed 42 --n_rollouts 20 2>&1 | tee logs/eval-supp-k2mean-object-s42.log\\\\\\\"\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"618917\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-supp-k2mean-object-s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T07:13:58.001Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.7433}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 9773
+          },
+          "id": "event-005746"
+        },
+        {
+          "source_line": 5747,
+          "timestamp": "2026-05-23T07:14:30.252106+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-supp-k2mean-object-s42",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'data_path': '/root/acr-vla-conformal-refinement', 'data_count': 200, 'model_name': 'smolvla', 'seed': 42, 'checkpoint_source': 'n/a (vla_only mode)', 'eval_data': 'LIBERO-Object'}"
+            }
+          },
+          "id": "event-005747"
+        },
+        {
+          "source_line": 5748,
+          "timestamp": "2026-05-23T07:14:39.738055+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-k2mean-object-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T07:03:22.668Z\\\", \\\"updated_at\\\": \\\"2026-05-23T07:14:33.387Z\\\", \\\"hypothesis\\\": \\\"K=2 mean baseline (vla_only, 2-sample average) on Object suite seed42. Isolates multi-sample averaging from CRM correction. Object CRM=77%, Reconvla=79%. If K=2 mean ≈ VLA-only, confirms CRM/reconvla improvements not from sampling diversity alone.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"set -o pipefail; cd /root/acr-vla-conformal-refinement && python -u src/evaluate.py --mode vla_only --baseline_mode mean --K 2 --benchmark object --seed 42 --n_rollouts 20 2>&1 | tee logs/eval-supp-k2mean-object-s42.log\\\\\\\"\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"618917\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-supp-k2mean-object-s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T07:13:58.001Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/acr-vla-conformal-refinement\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"smolvla\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"n/a (vla_only mode)\\\", \\\"eval_data\\\": \\\"LIBERO-Object\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.4508}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 9485
+          },
+          "id": "event-005748"
+        },
+        {
+          "source_line": 5749,
+          "timestamp": "2026-05-23T07:14:53.892170+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 17/17 满载 | Worker 0 | cqa1-32758 密码待审批（6 卡空置）\n\n## eval-supp-obj-reconvla-s42 完成 ✅\n\n**Object Reconvla K=10 = 79.0% SR** (158/200)\n\n跨 suite 对比：\n| Suite | Reconvla K=10 |\n|-------|--------------|\n| Spatial | 79.0% |\n| Object | 79.0% |\n\n两个 suite 完全一致，验证 reconvla baseline 跨 suite 稳定。\n\n## Object suite 当前矩阵\n\n| 方法 | s42 | 状态 |\n|------|-----|------|\n| VLA-only | 🔄 运行中 (s42/s43/s44) | — |\n| CRM norm=0.05 | **77.0%** | ✅ |\n| Reconvla K=10 | **79.0%** | ✅ |\n| Adaptive τ=0.25 | 🔄 运行中 | — |\n| K=2 mean | 🔄 **刚部署** bjb2-28827:cuda:1 | PID=618917 |\n\n释放的 cuda:1 已立即填补 → Object K=2 mean s42。全部 GPU 继续满载。",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005749"
+        },
+        {
+          "source_line": 5750,
+          "timestamp": "2026-05-23T07:14:57.672809+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3780
+          },
+          "id": "event-005750"
+        },
+        {
+          "source_line": 5751,
+          "timestamp": "2026-05-23T07:15:04.877172+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Object Reconvla 完成（79.0%），已立即用释放的 GPU 部署 Object K=2 mean。继续等待 cqa1-32758 密码审批和其他实验回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-005751"
+        }
+      ]
+    },
+    {
+      "number": 381,
+      "messages": [
+        {
+          "source_line": 5752,
+          "timestamp": "2026-05-23T07:15:05.556447+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_analysis_eval-object-vla-only-batch-r2_20260523T070438 已完成（status=done）。用 `get_worker_status('worker_analysis_eval-object-vla-only-batch-r2_20260523T070438')` 读取结果，然后处理。\n\n- worker_id: worker_analysis_eval-object-vla-only-batch-r2_20260523T070438\n- project: acr-vla-conformal-refinement\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "worker:done"
+          },
+          "id": "event-005752"
+        },
+        {
+          "source_line": 5753,
+          "timestamp": "2026-05-23T07:15:11.615799+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_analysis_eval-object-vla-only-batch-r2_20260523T070438",
+              "verbose": "True"
+            }
+          },
+          "id": "event-005753"
+        },
+        {
+          "source_line": 5754,
+          "timestamp": "2026-05-23T07:15:11.717594+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analysis_eval-object-vla-only-batch-r2_20260523T070438\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"analysis:eval-object-vla-only-batch-r2\\\", \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"started_at\\\": \\\"2026-05-23T07:04:38.363780+00:00\\\", \\\"ended_at\\\": \\\"2026-05-23T07:05:48.734041+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"```\\\\nRESULTS:\\\\neval-object-vla-only-wrapper-s42-r2: SR=79.0%, episodes=200\\\\neval-object-vla-only-wrapper-s43-r2: SR=77.0%, episodes=200\\\\neval-object-vla-only-wrapper-s44-r2: SR=77.5%, episodes=200\\\\neval-supp-obj-adapt-s42-r2: SR=77.5%, trigger_rate=70.2%, episodes=200\\\\n\\\\nVLA-only 3-seed: mean=77.8% ± 1.0%\\\\n```\\\\n\\\\nPer-task breakdown (20 rollouts each):\\\\n\\\\n| Task | s42 | s43 | s44 | Adaptive |\\\\n|------|-----|-----|-----|----------|\\\\n| alphabet_soup | 85% | 70% | 70% | 80% |\\\\n| cream_cheese | 75% | 70% | 70% | 90% |\\\\n| salad_dressing | 85% | 75% | 75% | 70% |\\\\n| bbq_sauce | 85% | 85% | 90% | 85% |\\\\n| ketchup | 90% | 80% | 90% | 70% |\\\\n| tomato_sauce | 75% | 85% | 80% | 75% |\\\\n| butter | 65% | 60% | 75% | 65% |\\\\n| milk | 65% | 75% | 65% | 65% |\\\\n| chocolate_pudding | 70% | 75% | 65% | 80% |\\\\n| orange_juice | 95% | 95% | 95% | 95% |\\\\n\\\\nAdaptive CRM (tau=0.074855) 的 overall SR 与 VLA-only s42 同 seed 相比从 79.0% 降到 77.5%，mean_unc=0.1104，trigger_rate=70.2%（70% 的 step 触发了 CRM 修正）。修正过于频繁但未带来提升，cream_cheese 和 chocolate_pudding 有改善，但 ketchup 和 salad_dressing 明显下降。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-005754"
+        },
+        {
+          "source_line": 5755,
+          "timestamp": "2026-05-23T07:15:58.632410+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-supp-obj-adapt-tau025-s42",
+              "field": "hypothesis",
+              "value": "Object Adaptive CRM with correct tau=0.25 (previous r2 used tau=0.074855, too aggressive with 70% trigger rate → no improvement). tau=0.25 worked on Spatial (82% vs 78.5% VLA-only). Object VLA-only=77.8%±1.0%.",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005755"
+        },
+        {
+          "source_line": 5756,
+          "timestamp": "2026-05-23T07:16:01.696636+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-obj-adapt-tau025-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T07:16:00.470Z\\\", \\\"updated_at\\\": \\\"2026-05-23T07:16:00.471Z\\\", \\\"hypothesis\\\": \\\"Object Adaptive CRM with correct tau=0.25 (previous r2 used tau=0.074855, too aggressive with 70% trigger rate → no improvement). tau=0.25 worked on Spatial (82% vs 78.5% VLA-only). Object VLA-only=77.8%±1.0%.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.0552}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 3064
+          },
+          "id": "event-005756"
+        },
+        {
+          "source_line": 5757,
+          "timestamp": "2026-05-23T07:16:01.697076+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-supp-goal-reconvla-s42",
+              "field": "hypothesis",
+              "value": "Reconvla K=10 argmin baseline on Goal suite seed42. Spatial and Object both achieved 79.0%. If Goal also ~79%, confirms reconvla is suite-invariant. Goal VLA-only=71%, CRM=85.5%.",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005757"
+        },
+        {
+          "source_line": 5758,
+          "timestamp": "2026-05-23T07:16:03.304386+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-goal-vla-only-wrapper-s42",
+              "field": "hypothesis",
+              "value": "Goal VLA-only wrapper baseline seed42 with n_rollouts=20. Previous Goal VLA-only (71%) may have used different wrapper. Re-run with consistent evaluation wrapper for fair cross-method comparison.",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005758"
+        },
+        {
+          "source_line": 5759,
+          "timestamp": "2026-05-23T07:16:04.560369+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-goal-reconvla-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T07:03:28.711Z\\\", \\\"updated_at\\\": \\\"2026-05-23T07:16:03.399Z\\\", \\\"hypothesis\\\": \\\"Reconvla K=10 argmin baseline on Goal suite seed42. Spatial and Object both achieved 79.0%. If Goal also ~79%, confirms reconvla is suite-invariant. Goal VLA-only=71%, CRM=85.5%.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.8413}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2863
+          },
+          "id": "event-005759"
+        },
+        {
+          "source_line": 5760,
+          "timestamp": "2026-05-23T07:16:07.425564+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-goal-vla-only-wrapper-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T07:03:33.979Z\\\", \\\"updated_at\\\": \\\"2026-05-23T07:16:06.204Z\\\", \\\"hypothesis\\\": \\\"Goal VLA-only wrapper baseline seed42 with n_rollouts=20. Previous Goal VLA-only (71%) may have used different wrapper. Re-run with consistent evaluation wrapper for fair cross-method comparison.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.8236}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 4121
+          },
+          "id": "event-005760"
+        }
+      ]
+    }
+  ]
+}

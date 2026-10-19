@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "db72a6f6b5d6ec28fe8b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code optimize precompute",
+  "task_key": "worker_code_optimize-precompute_20260513T063657",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_optimize-precompute_20260513T063657_result.json",
+    "occurrence": 1,
+    "bytes": 2338930,
+    "sha256": "27c8c46dccf90ed294185084f7de24e50c20ca0876ef98e7c023fe8aa90dc773"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "db72a6f6b5d6ec28fe8b-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/code-optimize-precompute.md"
+}

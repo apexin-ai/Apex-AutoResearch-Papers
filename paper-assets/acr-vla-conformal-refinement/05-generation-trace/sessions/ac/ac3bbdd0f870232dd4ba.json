@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ac3bbdd0f870232dd4ba",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose pi05 crm k2 long s43 r2",
+  "task_key": "worker_diagnose_pi05-crm-k2-long-s43-r2_20260526T125148",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_pi05-crm-k2-long-s43-r2_20260526T125148_result.json",
+    "occurrence": 1,
+    "bytes": 1547,
+    "sha256": "9e2ee75b095a57c23da1f70d967c3a70dc7a05f530075515bdcb20d6dfd296c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 根因：误报（False Positive）— 实验实际已成功完成\n\n实验 `pi05-crm-k2-long-s43-r2` **并未失败**，而是被监控系统误判为失败。\n\n**原因**：监控系统在 `/root/autodl-tmp/acr-vla-conformal-refinement/` 下查找 sentinel/日志文件，但项目实际路径是 `/root/acr-vla-conformal-refinement/`。连续 5 次检测不到 sentinel/W&B 信号后自动标记为 failed。\n\n### 实验结果\n\n- **状态**：10 个任务 × 20 rollouts = 200 rollouts 全部完成\n- **Overall success rate**：**76.0%** (152/200)\n- **结果文件**：`/root/acr-vla-conformal-refinement/logs/eval_long_crm_obs_only_norm0.05_seed43_pi05_K2.json`（写入时间 May 26 20:22）\n- **日志文件**：同目录下 `.log` 文件，末尾显示正常结束\n\n### Per-task 成绩\n\n| Task | Success Rate |\n|------|-------------|\n| cream_cheese_box_and_butter | 95% |\n| stove_and_moka_pot | 95% |\n| white_mug_left_yellow_right | 95% |\n| yellow_white_mug_microwave | 90% |\n| alphabet_soup_tomato_sauce | 75% |\n| black_bowl_cabinet | 75% |\n| book_in_caddy | 75% |\n| alphabet_soup_cream_cheese | 75% |\n| white_mug_chocolate_pudding | 60% |\n| both_moka_pots_stove | 25% |\n\n### GPU 状态\n\n- **cuda:1 空闲**（1MiB / 24564MiB, 0% util）\n- cuda:0, cuda:3 也空闲\n- cuda:2 有进程占用（11238MiB）\n\n### 结论\n\n无需重跑。结果已完整写入 JSON 文件，可直接使用。监控系统的路径配置需要修正（`/root/autodl-tmp/` → `/root/`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-pi05-crm-k2-long-s43-r2.md"
+}

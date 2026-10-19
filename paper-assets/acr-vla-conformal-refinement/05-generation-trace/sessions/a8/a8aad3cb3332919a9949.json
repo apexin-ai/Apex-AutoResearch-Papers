@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8aad3cb3332919a9949",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis eval perdof object norm03 seed44",
+  "task_key": "worker_analysis_eval-perdof-object-norm03-seed44_20260517T044304",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval-perdof-object-norm03-seed44_20260517T044304_result.json",
+    "occurrence": 1,
+    "bytes": 1192,
+    "sha256": "3405919d571783126d130aa307583f43e1076ab8841ee0d574c8cb7a82ab7382"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验分析完成。结果如下：\n\n## eval-perdof-object-norm03-seed44 结果\n\n| 指标 | 值 |\n|------|-----|\n| **Overall success rate** | **4.0% (4/100)** |\n| Total episodes | 100 (10 tasks × 10 rollouts) |\n| 异常 | 无（EXIT_CODE=0，所有 100 episodes 正常完成） |\n| W&B run_id | **无** — 日志中无 W&B 记录，该评估未上传 W&B |\n\n### Per-task breakdown\n\n| Task | Success |\n|------|---------|\n| alphabet_soup | 0/10 |\n| cream_cheese | 1/10 |\n| salad_dressing | 0/10 |\n| bbq_sauce | 1/10 |\n| ketchup | 0/10 |\n| tomato_sauce | 0/10 |\n| butter | 1/10 |\n| milk | 0/10 |\n| chocolate_pudding | 1/10 |\n| orange_juice | 0/10 |\n\n### 关键观察\n\n**seed44 = 4%，与 seed42 = 4% 完全一致。** 多 seed 确认 perdof 在 norm=0.3 下的 progressive collapse 是确定性现象，不是随机波动。\n\n对比：\n- perdof norm=0.3: seed42=4%, seed44=4% → 稳定退化\n- obs_only norm=0.3: seed42=19%（作为参照）\n\n结论：perdof 在高修正幅度下的 collapse 机制得到多 seed 验证。4% 几乎等于随机成功，说明 perdof 的 per-DOF correction 在 norm=0.3 时系统性地破坏了动作质量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-perdof-object-norm03-seed44.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bbddf96b0ac72914363f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose eval random selection object seed46 r2",
+  "task_key": "worker_diagnose_eval-random-selection-object-seed46-r2_20260519T174856",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval-random-selection-object-seed46-r2_20260519T174856_result.json",
+    "occurrence": 1,
+    "bytes": 383,
+    "sha256": "37efa1c9609c202e8f2b545c78da9053669f0acfeeaa220f5daf2eb00e9ccb4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根因**：robosuite/MuJoCo C 后端间歇性 segfault。seed46 完成 6/10 任务后进程被外部信号杀死（无 Python traceback），非代码 bug。seed42 同代码路径完整跑完 10 任务并输出 JSON，`select_action_random` 逻辑极简无问题。磁盘和 GPU 资源均正常。\n\n**结论**：可直接重试，无需修复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-random-selection-object-seed46-r2-copy-2.md"
+}

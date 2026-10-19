@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86162bc2a4835d0b4395",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze pi05 adaptive object s42 cqa1",
+  "task_key": "worker_analyze_pi05-adaptive-object-s42-cqa1_20260526T115522",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_pi05-adaptive-object-s42-cqa1_20260526T115522_result.json",
+    "occurrence": 1,
+    "bytes": 949,
+    "sha256": "5af87c43388d6e77b38a02c59ed09883e92a8d388938b19bf9e5fd428dd3b1a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## π0.5 Adaptive Conformal CRM — Object Suite (seed=42)\n\n**状态**: 正常完成 (EXIT_CODE=0)\n\n### 总体指标\n\n| 指标 | 值 |\n|------|-----|\n| **SR%** | **85.5%** (171/200) |\n| **trigger_rate** | 3.68% (1,250 / 33,946 steps) |\n| **mean_correction_norm** | 0.200 (= max_correction_norm, clipped) |\n| **mean_uncertainty** | 0.0842 |\n| **conformal τ** | 0.25 |\n\n### Per-task SR%\n\n| Task | SR% |\n|------|-----|\n| alphabet_soup | 100% |\n| butter | 95% |\n| chocolate_pudding | 95% |\n| salad_dressing | 90% |\n| bbq_sauce | 90% |\n| tomato_sauce | 90% |\n| milk | 90% |\n| orange_juice | 85% |\n| cream_cheese | 70% |\n| ketchup | **50%** |\n\ncorrection_norm 全部被 clip 到 0.2 上限，说明 CRM 在触发时总是想施加更大的修正。trigger_rate 仅 3.68%，conformal threshold=0.25 下大部分 step 不确定性低于阈值，CRM 介入非常稀疏。ketchup 任务 SR 明显偏低（50%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-pi05-adaptive-object-s42-cqa1.md"
+}

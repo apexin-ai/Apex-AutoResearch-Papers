@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "abeae5ccaf0bad126fca",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "check all servers status and fill",
+  "task_key": "worker_check_all-servers-status-and-fill_20260525T075349",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_all-servers-status-and-fill_20260525T075349_result.json",
+    "occurrence": 1,
+    "bytes": 4504,
+    "sha256": "c3e71e03657d1b8d646d2db8d984059ce0bd9fb39c592793daf00252b79a105f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。以下是完整报告。\n\n---\n\n## bjb1-18228 (4x GPU)\n\n**实际在跑的实验:**\n| GPU | 实验 | PID | 显存 |\n|-----|------|-----|------|\n| cuda:0 | eval-pi05-adaptive-spatial-s42-r2 | 484291 | 14135 MiB |\n| cuda:1 | eval-pi05-vla-only-object-s42-r2 | 484675 | 10365 MiB |\n| cuda:3 | precompute-pi05-long-2048-r2 | 114507 | 9883 MiB |\n\n**空闲 GPU:** cuda:2（但有 10429 MiB 泄漏显存，需 GPU reset 回收）\n\n**Zombie 实验（registry RUNNING 但实际已死）:**\n- `eval-pi05-vla-only-spatial-s43-r2` (pid 485043, cuda:2) — **已完成** SR=97.5%，进程已退出但显存未释放\n- `eval-pi05-vla-only-goal-s42-paired` (pid 446717) — **已完成** SR=98.0%，进程已退出\n- `eval-pi05-vla-only-spatial-s42-paired` (pid 446358) — **已完成** SR=98.0%，进程已退出\n- `eval-pi05-adaptive-spatial-s42` — conclusion=failed，已死\n\n**用户指定的旧实验:**\n- `precompute-pi05-object-2048-r2` — registry 已是 DONE/success，不在 RUNNING 列表\n\n---\n\n## bjb2-28827 (6x GPU)\n\n**实际在跑的实验:**\n| GPU | 实验 | PID |\n|-----|------|-----|\n| cuda:0 | eval-k2-goal-adapt-s45-paired | 639192 |\n| cuda:1 | eval-k2-goal-vla-only-s45-paired | 639189 |\n| cuda:2 | eval-k2-goal-adapt-s46-paired | 639190 |\n| cuda:3 | eval-k2-goal-vla-only-s46-paired | 639199 |\n| cuda:4 | eval-k2-goal-adapt-s47-paired | 639193 |\n| cuda:5 | eval-k2-goal-vla-only-s47-paired | 639194 |\n\n**空闲 GPU:** 无（6/6 全满）\n\n**Zombie 实验（registry RUNNING 但实际已死）:**\n- `eval-k2-tau010-spatial-s42-r3` (cuda:2) — 被 Goal K=2 配对覆盖\n- `eval-k2-tau015-spatial-s42-r2` (cuda:0) — 被 Goal K=2 配对覆盖\n- `eval-canonical-adaptive-k10-spatial-s44` (conclusion=killed)\n- `eval-canonical-adaptive-k10-spatial-s43` (conclusion=killed)\n\n**用户指定的旧实验:**\n- eval-supp-obj-reconvla-s47, eval-supp-goal-reconvla-s47, eval-supp-goal-k2mean-s47, eval-supp-goal-crm-norm005-s47, eval-supp-goal-adapt-tau025-s47 — **全部已是 DONE/success**，不在 RUNNING 列表\n\n---\n\n## bjb1-32546 (6x GPU)\n\n**实际在跑的实验:**\n| GPU | 实验 | PID |\n|-----|------|-----|\n| cuda:0 | eval-k2-spatial-adapt-s42-paired-r2 | 978848 |\n| cuda:1 | eval-k2-spatial-vla-only-s42-paired-r2 | 980371 |\n| cuda:2 | eval-k2-spatial-adapt-s43-paired-r2 | 981563 |\n| cuda:4 | eval-k2-spatial-adapt-s44-paired-r2 | 984726 |\n| cuda:5 | eval-k2-spatial-vla-only-s44-paired-r2 | 986463 |\n\n**空闲 GPU:** cuda:3\n\n**Zombie 实验（registry RUNNING 但实际已死）:**\n- `eval-k2-spatial-vla-only-s43-paired-r2` (cuda:3) — **已完成** SR=79.5%，GPU 3 已释放\n- `eval-k2-adaptive-spatial-s49` (cuda:3) — 被 K=2 spatial r2 覆盖\n- `eval-k2-adaptive-spatial-s48` (cuda:2) — 被覆盖\n- `eval-k2-adaptive-spatial-s46` (cuda:0) — 被覆盖\n- `eval-vla-only-spatial-bjb1-s46` — 被覆盖\n- `eval-vla-only-spatial-bjb1-s49` (cuda:4) — 被覆盖\n- `eval-vla-only-spatial-bjb1-s48` (cuda:1) — 被覆盖\n- `eval-k10-tau025-spatial-s46` (killed)\n- `eval-canonical-adaptive-k10-spatial-s49` (killed)\n- `eval-canonical-adaptive-k10-spatial-s48` (killed)\n\n**用户指定的旧实验:**\n- eval-supp-spatial-k2mean-s46, eval-supp-reconvla-obj-s45, eval-smolvla-lerobot-goal-seed43-v3, eval-smolvla-lerobot-spatial-seed43-v3 — **不在 RUNNING registry**（已完成或已终止）\n\n---\n\n## bjb2-40593 (1x GPU)\n\n**实际在跑的实验:**\n| GPU | 实验 | PID |\n|-----|------|-----|\n| cuda:0 | eval-k2-tau0075-spatial-s42 | 349401 |\n\n**空闲 GPU:** 无\n\n**τ=0.075 状态:** 仍在运行，正在跑最后一个 task（task 10/10，rollout 10/20）。预计很快完成。JSON 文件尚未生成。\n\n---\n\n## cqa1-32758 补充（已禁用但 registry 仍标 RUNNING）\n\n以下 12 个实验挂在 cqa1 上，全是 zombie：\n- eval-vla-only-spatial-cqa1-s44/s43/s42\n- eval-k2-adaptive-spatial-s44/s43/s42\n- eval-canonical-adaptive-k10-spatial-s42 (killed)\n- eval-k10-tau025-spatial-s47/s45 (killed)\n- eval-long-adaptive-k10-s44/s43/s42 (killed)\n\n---\n\n## 总结\n\n| 服务器 | 在跑 | 空闲GPU | Zombie数 |\n|--------|------|---------|----------|\n| bjb1-18228 | 3 | 1 (cuda:2, 显存泄漏) | 4 |\n| bjb2-28827 | 6 | 0 | 4 |\n| bjb1-32546 | 5 | 1 (cuda:3) | 10 |\n| bjb2-40593 | 1 | 0 | 0 |\n| cqa1-32758 | 0 | — | 12 |\n\nRegistry 共 45 个 RUNNING，实际只有 **15 个真正在跑**。**30 个 zombie** 需要清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-all-servers-status-and-fill.md"
+}

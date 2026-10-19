@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7fdb2645df80cb04ec9",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze precompute v4 shard2",
+  "task_key": "worker_analyze_precompute-v4-shard2_20260513T201045",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_precompute-v4-shard2_20260513T201045_result.json",
+    "occurrence": 1,
+    "bytes": 1133,
+    "sha256": "7da36ef64fdd88143e52281fb97dd50b7981af2399d3eeb952f9798ae4dd6390"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据验证完毕。\n\n---\n\n## 报告\n\n### shard2 完成状态: **SUCCESS**\n- spatial: 4055 samples 处理完毕，0.46s/sample，无 error\n- object: 4856 samples 处理完毕，0.48s/sample，无 error\n- EXIT_CODE=0，两个 benchmark 均触发 merge 并成功合并\n\n### Cache 完整性\n\n| Benchmark | Samples | Trajectories | obs_features | expert_actions | k_samples | 状态 |\n|-----------|---------|-------------|--------------|----------------|-----------|------|\n| spatial | 12,167 | 100 (10 tasks × 10 demos) | [12167, 960] | [12167, 5, 6] | [12167, 10, 5, 6] | OK |\n| object | 14,570 | 100 (10 tasks × 10 demos) | [14570, 960] | [14570, 5, 6] | [14570, 10, 5, 6] | OK |\n\n- 总大小: **264MB**\n- K=10 calibration samples, h_eff=5 action horizon, obs_dim=960, action_dim=6\n- 3 个 shard 的 partial 文件均完整（spatial: 9 partials × 3 shards = 27, object: 10 partials × 3 shards = 30）\n- manifest.json 正确记录了合并后的元数据\n- 所有 .pt 文件可正常 `torch.load`，tensor shape 一致\n\n### 结论\n**可以开始 CRM 训练。** 无异常或警告。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-precompute-v4-shard2.md"
+}

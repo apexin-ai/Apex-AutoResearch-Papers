@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "762912e18d49c07f456b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "paper figure trigger scatter d159",
+  "task_key": "worker_paper_figure_trigger_scatter_d159_20260526T063425",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_figure_trigger_scatter_d159_20260526T063425_result.json",
+    "occurrence": 1,
+    "bytes": 460,
+    "sha256": "697dd9872876b060030e3c084c02605e3590c73257c23f8683a65d43e319f6e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Final verification:\n\n- **Spatial** at (20, 1.5) ✓ (D159-updated, not 2.1)\n- **Goal** at (8, 1.3), **Object** at (4, 0.1), **Long** at (3, -0.3) ✓\n- Dashed zero line with \"no change\" annotation ✓\n- All 4 points uniformly amber (#E69F00) ✓\n- \"all suites n.s. (p ≥ 0.05)\" badge upper-right ✓\n- White background, no grid, 3.5×2.8\", DPI 300 ✓\n- PDF + PNG written to `docs/paper/figures/fig_trigger_scatter.{pdf,png}`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-trigger-scatter-d159.md"
+}

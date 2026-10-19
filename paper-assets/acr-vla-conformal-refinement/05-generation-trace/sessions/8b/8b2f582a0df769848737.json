@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b2f582a0df769848737",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb1 32546 fill 4gpu",
+  "task_key": "worker_deploy_bjb1-32546-fill-4gpu_20260520T172918",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb1-32546-fill-4gpu_20260520T172918_result.json",
+    "occurrence": 1,
+    "bytes": 761,
+    "sha256": "f52f740af96e7c742759e562e0180da5e8dc10206a9ec7dfb278ae32111b3985"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**审计结果：**\n- cuda:0/1/3/4 确认空闲，cuda:2/5 在跑 K sweep seed44\n- 1 个未 harvest 的 JSON（eval-perdof-object-norm02-seed49, success_rate=0.12）已更新到 DONE\n\n**部署状态（全部 RUNNING，日志初始化正常）：**\n\n| GPU | exp_id | mode | benchmark | seed |\n|-----|--------|------|-----------|------|\n| cuda:0 | eval-obs-only-spatial-norm02-seed50 | crm_obs_only K=10 ε=0.2 | spatial | 50 |\n| cuda:1 | eval-perdof-object-norm02-seed50 | crm_perdof K=10 ε=0.2 | object | 50 |\n| cuda:3 | eval-vla-only-object-seed49 | vla_only K=1 | object | 49 |\n| cuda:4 | eval-obs-only-object-norm02-seed51 | crm_obs_only K=10 ε=0.2 | object | 51 |\n\nbjb1-32546 全部 6 张 GPU 现已满载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb1-32546-fill-4gpu.md"
+}

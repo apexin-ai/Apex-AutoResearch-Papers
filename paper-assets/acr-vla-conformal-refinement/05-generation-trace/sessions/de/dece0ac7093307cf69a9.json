@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dece0ac7093307cf69a9",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb2 28827 goal s45 trio",
+  "task_key": "worker_deploy_bjb2-28827-goal-s45-trio_20260523T202715",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb2-28827-goal-s45-trio_20260523T202715_result.json",
+    "occurrence": 1,
+    "bytes": 340,
+    "sha256": "cd5cc698cdfe468163e55f3cea21ac7750387041fb936006db794fefc55ac8bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n| GPU | 实验 | PID | 显存 |\n|-----|------|-----|------|\n| cuda:0 | Goal VLA-only s45 | 926766 | 4572 MiB |\n| cuda:1 | Goal CRM s45 | 927030 | 2226 MiB |\n| cuda:2 | Goal Reconvla s45 | 927237 | 1754 MiB |\n\n三个实验均已正常加载 10 个 LIBERO-Goal 任务，Registry 已更新为 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb2-28827-goal-s45-trio.md"
+}

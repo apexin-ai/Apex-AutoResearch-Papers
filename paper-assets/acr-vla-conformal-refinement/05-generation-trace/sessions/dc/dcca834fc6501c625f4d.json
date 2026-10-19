@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dcca834fc6501c625f4d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "research pi05 server client",
+  "task_key": "worker_research_pi05-server-client_20260522T054649",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_pi05-server-client_20260522T054649_result.json",
+    "occurrence": 1,
+    "bytes": 847,
+    "sha256": "48c3a5e69f323933c0b65b7c6addd117efcaaa70280d5608e51b164aad65fa95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/pi05_server_client_feasibility.md`。\n\n核心结论：\n\n1. **技术上完全可行**，无 showstopper。推荐 **FastAPI Server** 方案，实现复杂度 4-6 小时。\n\n2. **GPU 节省显著**：6 GPU → 1-2 GPU。单张 4090 可同时跑 model server (13GB) + EGL 渲染 (<1GB)。\n\n3. **但吞吐收益有限**：PI05 的 chunk_size=50 意味着每 50 步才推理一次（300 步 rollout 仅 6 次推理），GPU 利用率本来就 <10%。Server 化主要价值是**省卡**，而非提速。\n\n4. **额外优化机会**：K-sample 串行循环可改为 batch 并行（K=10 时推理部分 3-5× 加速），这个优化独立于 server 架构，可单独做。\n\n5. **关键实现细节**：server 应返回完整 50 步 action chunk 让 client 本地 replay，而非每步都调 server。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-pi05-server-client.md"
+}

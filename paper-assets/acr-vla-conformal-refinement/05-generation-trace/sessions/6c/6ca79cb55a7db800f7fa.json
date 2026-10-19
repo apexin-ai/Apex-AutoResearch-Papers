@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ca79cb55a7db800f7fa",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "research competitor analysis",
+  "task_key": "worker_research_competitor-analysis_20260514T071515",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_competitor-analysis_20260514T071515_result.json",
+    "occurrence": 1,
+    "bytes": 762,
+    "sha256": "35396621878592801364f39ee2491a68a54fe82cbee594e4e5535ea718f4198b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`artifacts/competitor_analysis.md` 已完成并注册（`art_20260514_621600`）。\n\n文档包含：\n- **方法对比表**：10 个维度横向对比 ACR-VLA vs SC-VLA / VLA-Pilot / ACoT-VLA / ReconVLA\n- **逐竞品深度分析**：方法、设计决策、实验结果、局限性、与 ACR-VLA 的本质区别\n- **4 个 USP 提炼**：Per-DOF granularity、learned correction、statistical guarantees、online adaptation\n- **Related Work 定位建议**：5 段叙事结构 + 可直接用于论文的差异化表述\n\n核心发现：ReconVLA 是最直接竞争者（同用 CP + frozen VLA），但 ACR-VLA 在三个层面超越——Per-DOF vs scalar UQ、learned CRM vs sample selection、ACI+COC online adaptation vs static calibration。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-competitor-analysis.md"
+}

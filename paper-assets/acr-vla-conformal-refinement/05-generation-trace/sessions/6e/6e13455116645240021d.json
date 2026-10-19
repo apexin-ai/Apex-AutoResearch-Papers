@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e13455116645240021d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze spatial norm02 seed49 seed42",
+  "task_key": "worker_analyze_spatial-norm02-seed49-seed42_20260520T151735",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_spatial-norm02-seed49-seed42_20260520T151735_result.json",
+    "occurrence": 1,
+    "bytes": 868,
+    "sha256": "9c809c267f7f50ec51044af237ae875a4b3175802048c2a5b37681bbc563c158"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果汇总：\n\n```\neval-obs-only-spatial-norm02-seed49: SR=32%, total_rollouts=100  ✓ (在 30-38% 预期范围内)\neval-obs-only-spatial-norm02-seed42: ⚠️ 未完成 — 仅跑了 2/10 tasks 后进程被终止，JSON 未生成\n```\n\n**seed49 per-task 详情：**\n| Task | SR |\n|------|-----|\n| between_plate_ramekin | 90% |\n| next_to_ramekin | 90% |\n| next_to_cookie_box | 80% |\n| on_cookie_box | 30% |\n| next_to_plate | 20% |\n| top_drawer_cabinet | 10% |\n| table_center | 0% |\n| on_ramekin | 0% |\n| on_stove | 0% |\n| on_wooden_cabinet | 0% |\n\n**seed42 问题诊断：** 日志只记录到 task 1 完成（between_plate_ramekin=90%, next_to_ramekin=100%），`~/runs/` 日志显示 EXIT_CODE=0 但输出被截断，JSON 从未写入。进程可能被 OOM 或 GPU 资源竞争 kill。需要重跑 seed42。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-spatial-norm02-seed49-seed42.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70dab9f182c7a6fc1340",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "submit eval acr spatial v4 scalar",
+  "task_key": "worker_submit_eval-acr-spatial-v4-scalar_20260514T222244",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_submit_eval-acr-spatial-v4-scalar_20260514T222244_result.json",
+    "occurrence": 1,
+    "bytes": 851,
+    "sha256": "4a516e617bed24fab686962358debd2da9800a09ecf497637251e8e6838bcc20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**GPU 0 未空闲。** 当前有进程占用：\n\n- **PID**: 270097\n- **运行时间**: 1h47m\n- **命令**: `python -u src/evaluate.py --mode crm_obs_only --benchmark spatial --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.1`\n- **显存占用**: 6221 MiB / 15292 MiB total on GPU 0\n\n这是三方消融实验中的 obs_only eval，还在运行中。\n\n其余验证已通过：\n- Checkpoint `/root/autodl-tmp/checkpoints/crm_v3_norm/scalar_unc/crm_best.pt` 存在 (1.3MB)\n- `evaluate.py` 支持 `--max_correction_norm` 参数 (L77-78)\n\n**选项：**\n1. 等 obs_only 跑完后再部署 scalar_unc\n2. 用其他空闲 GPU（GPU 1/2/3 各占 ~1.4GB，可能是 idle 进程）\n3. 强制 kill obs_only 进程，立即部署\n\n怎么处理？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-eval-acr-spatial-v4-scalar.md"
+}

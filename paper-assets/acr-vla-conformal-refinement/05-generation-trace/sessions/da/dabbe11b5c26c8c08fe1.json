@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dabbe11b5c26c8c08fe1",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "infra check bjb1 32546 pi05",
+  "task_key": "worker_infra_check-bjb1-32546-pi05_20260521T120056",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_check-bjb1-32546-pi05_20260521T120056_result.json",
+    "occurrence": 1,
+    "bytes": 1255,
+    "sha256": "eeb69c952ae401917abfbbc3ac96a25739ba8056f0987b7d1669d60e1556c37e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n**GPU 占用（6/6 全部在跑 π0.5 eval r3）**\n- GPU0: object-seed42-r3 → task 4/10 (alphabet_soup 85%, cream_cheese 100%, salad_dressing 60%)\n- GPU1: object-seed43-r3 → task 3/10\n- GPU2: object-seed44-r3 → task 3/10\n- GPU3: spatial-seed42-r3 → task 4/10 (95%/90%/100%)\n- GPU4: spatial-seed43-r3 → task 3/10\n- GPU5: spatial-seed45 (注意：tmux 名无 -r3，应该是 seed44 命名错误) → task 3/10\n\n**实际状态**\n- 进程：6 个 `python evaluate.py` 全部 RUNNING（CPU 200%+，已运行 ~10 min）\n- 启动时间 19:52，当前 20:02，日志活跃更新（最后写 20:01）\n- 已完成 3-4/10 task，速度 ~7-8 rollout/min\n- **ETA 修正：约 20-30 min 总耗时，不是 ROADMAP 说的 8h**（GPU 平均利用率低（0-21%），瓶颈在 sim/CPU 不在 GPU）\n\n**先前异常**\n- 18:48-18:55 的非 -r3 旧日志显示 `Overall SR: 0.0% (0/200)`——上一次跑挂了，r3 是修复后重跑（registry 显示 PREPARING 是因为状态没更新，实际进程是后启动的）\n\n**磁盘**\n- `/root/autodl-tmp`: 40G/250G (16%) ✅\n- `/root`: 9.8G/30G (33%) ✅\n\n**结论**：实验正常运行，预计 20:20-20:30 全部完成。建议 ~20 min 后回来收结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-bjb1-32546-pi05.md"
+}

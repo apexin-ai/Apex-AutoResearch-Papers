@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "8155b4a0f13951575ad7",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "ops kill and deploy bjb2 28827 gpu0",
+  "task_key": "worker_ops_kill-and-deploy-bjb2-28827-gpu0_20260526T181329",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_ops_kill-and-deploy-bjb2-28827-gpu0_20260526T181329.jsonl",
+    "occurrence": 1,
+    "bytes": 176,
+    "sha256": "564373070058318e737b02bdfa5b098db69778b2499fab9132eea1b8a3622bd1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-26T18:13:39.839080+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_kill-and-deploy-bjb2-28827-gpu0_20260526T181329"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ops-kill-and-deploy-bjb2-28827-gpu0.md"
+}

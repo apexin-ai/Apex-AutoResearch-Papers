@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9e7f1edf29f28323535",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose bjb2 28827 process gone batch",
+  "task_key": "worker_diagnose_bjb2-28827-process-gone-batch_20260521T030743",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_bjb2-28827-process-gone-batch_20260521T030743_result.json",
+    "occurrence": 1,
+    "bytes": 880,
+    "sha256": "711fbb027fc14ed6ce3fcca1266f573684d0c935b5614881d0c925b66b3367cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 5 个实验已修复。确认均为 cron false positive——eval 脚本正常完成、JSON 完整，但无 sentinel/W&B 导致 cron 误判。\n\n| exp_id | 实际状态 | SR | 备注 |\n|--------|---------|------|------|\n| eval-obs-only-object-norm01-seed71 | DONE ✓ | 0.16 | 10 tasks × 10 rollouts，cron false positive |\n| eval-obs-only-object-norm005-seed72 | DONE ✓ | 0.11 | 10 tasks × 10 rollouts，cron false positive |\n| eval-obs-only-object-norm003-seed73 | DONE ✓ | 0.16 | 10 tasks × 10 rollouts，cron false positive |\n| eval-obs-only-object-norm01-seed74 | DONE ✓ | 0.13 | 10 tasks × 10 rollouts，cron false positive |\n| eval-obs-only-object-norm005-seed75 | DONE ✓ | 0.15 | 10 tasks × 10 rollouts，cron false positive |\n\nRegistry 已全部更新：status=DONE, conclusion=success, metrics 写入, failure_reason 清除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-bjb2-28827-process-gone-batch.md"
+}

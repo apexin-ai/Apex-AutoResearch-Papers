@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd7c62d338d059363c16",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "audit deploy bjb2 28827 fill",
+  "task_key": "worker_audit-deploy_bjb2-28827-fill_20260520T152900",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit-deploy_bjb2-28827-fill_20260520T152900_result.json",
+    "occurrence": 1,
+    "bytes": 929,
+    "sha256": "c664cd2f5238ea7edbdf1f991070e276d55609325f68f79eb4097ec4725bb3e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审计总结\n\n### GPU 状态 (bjb2-28827)\n| GPU | PID | 状态 | 实验 |\n|-----|-----|------|------|\n| cuda:0 | 401372 | ✓ running | K=1 CRM seed42 (plan702) — task 4/10 |\n| cuda:1 | 401666 | ✓ running | K=1 CRM seed43 (plan702) — task 4/10 |\n| cuda:2 | 433142 | **刚部署** | eval-obs-only-spatial-norm02-seed42-r2 |\n| cuda:3 | 365151 | ✓ running | OpenVLA precompute (PID 365151, 非 365142) |\n| cuda:4 | 392238 | **占用中** | random_selection object seed44 — task 5/10, 还需 ~30min |\n| cuda:5 | 402276 | ✓ running | K=1 CRM seed44 (plan702) — task 4/10 |\n\n### 已完成\n- `eval-perdof-object-norm02-seed49` — 注册表中 RUNNING 但进程已死，已标记为 killed\n\n### 未部署\n- **cuda:4 的 eval-k5-obs-only-object-seed42 无法部署** — 当前被 `random_selection object seed44` 占用。该实验约 30 分钟后完成，届时 cuda:4 空出可部署。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-deploy-bjb2-28827-fill.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7acc0e336cce9809c839",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "verify crm training alive",
+  "task_key": "worker_verify_crm-training-alive_20260524T105805",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_crm-training-alive_20260524T105805_result.json",
+    "occurrence": 1,
+    "bytes": 1054,
+    "sha256": "3cb0916f9cd7bcc2a1e68ebd49901c0020e395301155c3cb5ad51731fa9cabad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态汇总\n\n| 项目 | 状态 |\n|------|------|\n| **GPU 0 显存** | 558 MiB（训练进程 `CUDA_VISIBLE_DEVICES=0`，但显存占用偏低） |\n| **tmux session** | `train-crm-pi05-unified-3suite-r2` 存在 ✅ |\n| **PID 326310** | 存活 ✅（bash wrapper），实际 python 训练进程 PID 326315 + 2 个 worker（328645, 328646） |\n| **当前进度** | **Epoch 1, batch 300/684** |\n| **Batches/epoch** | **684**（194,485 samples / 256 batch_size ≈ 760 理论值，实际 684 因 val_split=0.1 分出验证集：~175K train / 256 ≈ 684）✅ 符合预期 |\n| **Loss** | ~0.014–0.018（epoch 1 前半段） |\n\n**关键验证通过**：batches/epoch = 684（非旧的 ~5470），确认 batch_size=256 生效。训练刚启动约 20 分钟（18:38 启动），正在 epoch 1 前半段正常推进。\n\n注意：GPU 0 显存仅 558 MiB 看起来偏低，可能是因为 `nvidia-smi` 查询时刻刚好在 batch 间隙，或者 CRM 模型本身很小（仅 615,966 参数）所以实际显存需求不大。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-crm-training-alive.md"
+}

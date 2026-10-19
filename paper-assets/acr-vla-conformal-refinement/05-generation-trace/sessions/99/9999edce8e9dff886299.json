@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9999edce8e9dff886299",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh kill residual and verify bjb1 18228",
+  "task_key": "worker_ssh_kill-residual-and-verify-bjb1-18228_20260520T014109",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_kill-residual-and-verify-bjb1-18228_20260520T014109_result.json",
+    "occurrence": 1,
+    "bytes": 83,
+    "sha256": "c5840610e9eba13ec7a5b91f7687b3fa1058f7ffb9457ef0929ea083fdeaa0e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:1 已清空：显存从 5148 MiB 降至 1 MiB，利用率 0%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-residual-and-verify-bjb1-18228.md"
+}

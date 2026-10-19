@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d72c594738db81b771d5",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_7_1778821968.md",
+  "task_key": "loop_7_1778821968",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_7_1778821968.md",
+    "occurrence": 1,
+    "bytes": 5297,
+    "sha256": "8ee86e3d1fdc60404294d1e01aeffb28b5f89aed5ea63d4b04f2c9bb0227a058"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-15T05:12:30+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单严格: bjb2-40593:cuda:0, bjb1-18228:cuda:0-3, bjb1-32546:cuda:0-5, bjb2-28827:cuda:0-5（共 17 张）\n- **D027 kill criteria TRIGGERED**: spatial benchmark perdof vs argmin matched-task delta = 0pp。per-DOF conformal claim 在 spatial 上已死。不要在汇报中声称 perdof 优于 argmin（之前的 +6.2pp 是 completion bias artifact）\n- bjb1-18228 上的 spatial 实验被 premature kill（EXIT_CODE=143），重启必须带 task offset 从断点恢复，不能从头跑\n- submit_training_job 命令必须自带环境激活（`source /root/miniconda3/bin/activate && ...`），不假设 .venv\n- 所有服务器用 conda 环境（/root/miniconda3/bin/python），不创建 venv\n- CoRL abstract DDL ~May 26（剩 11 天），full paper ~Jun 2\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228** (4× RTX 4090): 工作目录 /root/acr-vla-conformal-refinement, Python=/root/miniconda3/bin/python, conda base。Spatial eval 主战场，实验被 kill 后诊断/重启中\n- **bjb1-32546** (6× RTX 4090): 同上路径和环境。Object eval 主战场。cuda:0=reconvla-object(pid=9659), cuda:1=IDLE, cuda:2=acr-object-v4-obs-only(pid=13806), cuda:3=acr-object-v4-scalar(pid=14003), cuda:4=部署中(worker running), cuda:5=vla-mean-object(pid=18808)。acr-object-v4-perdof(pid=11116) 在某 GPU 上\n- **bjb2-28827** (6× RTX 4090): Magnitude sweep 全满载。6 实验: perdof-norm003/005/02/03 + obsonly-norm005/02\n- **bjb2-40593** (1× RTX 4090 D): 无 .git repo，v4-default-r3 已 kill (D024)，GPU 空闲\n- 模型 checkpoints: /root/autodl-tmp/checkpoints/crm_v3_norm/{perdof,scalar_unc,obs_only}/crm_best.pt\n- CRM cache: /root/autodl-tmp/crm_cache/\n- Logs: /root/autodl-tmp/logs/\n- 活跃 cron: 11 个（对应 11 个 RUNNING 实验，reconcile 确认全部进程存活）\n- 活跃 Worker: worker_ops_restart-bjb1-18228-spatial（重启 spatial）+ worker_ops_deploy-bjb1-32546-cuda4-vla-only（部署 cuda:4）\n\n### 3. 📊 当前状态\n**刚做完**: D027 matched-task 分析揭示 perdof=argmin=42.9% on T0-T6（0pp delta），推翻了之前的 +6.2pp claim。Claims 2+3 已放弃（D022/D023），CoRL 聚焦单 Claim。Kill bjb1-18228 上卡住的实验并准备重启。\n\n**RUNNING (11)**:\n- bjb1-32546: 5 个 object eval（reconvla / perdof / obs-only / scalar / vla-mean），约 2/10 tasks 完成，ETA ~8-12h\n- bjb2-28827: 6 个 magnitude sweep（4 perdof + 2 obs-only，不同 norm），刚开始，ETA ~8-10h\n\n**等待中**:\n- Worker 回调: restart-bjb1-18228-spatial（诊断 v4-small/obs-only-r2 是否存活，若被 kill 则带 offset 重启）\n- Worker 回调: deploy-bjb1-32546-cuda4（部署 VLA baseline 到 cuda:4）\n- bjb1-32546 cuda:1 仍空闲，需部署实验\n- bjb1-18228 诊断完成后需重启 argmin(T9起)、scalar(T3起) 等被 kill 的实验\n- 14 个 PREPARING 实验（precompute shards、object-b2、spatial-v4-full 等）暂无 GPU 可用\n\n### 4. 📋 待办（条件触发式）\n- restart-bjb1-18228-spatial worker 回调 → 根据诊断结果: 存活则等完成，被 kill 则用 task offset 重启所有 spatial 实验（argmin T9, scalar T3, perdof/obs-only 视情况）\n- deploy-bjb1-32546-cuda4 worker 回调 → 确认 VLA baseline 在 cuda:4 启动，然后部署 cuda:1（acr-object-v4-perdof-b2 或其他排队实验）\n- magnitude sweep 完成（某 norm 的 cron 回调）→ **关键裁决**: 若某 norm 下 perdof >> argmin → per-DOF claim 复活，更新 framing; 若全部 ≈ argmin → per-DOF 彻底死亡\n- object eval 完成 → cross-benchmark 对比: 若 perdof > argmin on object → spatial 是 anomaly, claim 可站; 若仍 ≈ → 转向 \"CRM obs-only correction\" narrative\n- 所有关键数据到齐 → framing 最终裁决 → 派 Paper Agent 写 CoRL 初稿\n- bjb2-40593 空闲 → 可部署额外实验（但无 .git repo，需先 git clone）\n\n### 5. 🎯 战略上下文\n**核心结论链**: D018(输入未归一化是失败根因) → D019(norm+magnitude control 有效) → D020(obs_only val_loss 远优于 perdof) → D025(52.5% perdof claim 无效) → D027(**perdof=argmin=42.9% matched-task, per-DOF spatial 已死**)\n\n**项目存活条件（四条路，任一成功即可）**:\n1. Magnitude sweep 某 norm 下 perdof >> argmin → per-DOF 复活\n2. obs_only CRM consistently +5pp across benchmarks → 转 \"CRM with obs features\" narrative（弱化 conformal novelty）\n3. Object benchmark perdof > argmin → spatial 是 anomaly\n4. 全部失败 → 项目 dead\n\n**最容易判断错的事**:\n- **不要把不同 task 集合的 SR 直接比较**。之前的 +6.2pp 就是 completion bias——perdof 跑了 7 tasks 但 argmin 跑了 9 tasks，平均值不可比。必须用 matched-task（相同 task 子集）对比\n- obs_only 在 T0-T5 matched 40% vs perdof/argmin 35%，看似 +5pp，但样本量极小（每 task 10 rollouts），统计显著性存疑\n- bjb1-18228 的实验可能被 OOM 或系统 kill，重启前务必检查 GPU 显存和进程状态\n- paper_framing.md 已严重过时（仍含 stale 数据），更新前需等关键实验数据到齐\n- Baselines 已锁定: spatial 30%(K=1), VLA-mean 31%(K=10), object 13%(K=1), 12%(VLA-mean partial)——不要重跑\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778821968.md"
+}

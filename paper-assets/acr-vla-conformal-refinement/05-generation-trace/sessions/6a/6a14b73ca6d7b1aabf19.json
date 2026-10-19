@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "6a14b73ca6d7b1aabf19",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "audit canonical data protocol 20260524T224440 retry1",
+  "task_key": "worker_audit_canonical-data-protocol_20260524T224440_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_canonical-data-protocol_20260524T224440_retry1.log",
+    "occurrence": 1,
+    "bytes": 639266,
+    "sha256": "92fc19e695d6b6b5b89cacaa7c049cb0192ce329e07df12705e1297b61e4052a"
+  },
+  "statistics": {
+    "messages": 123,
+    "user_turns": 0,
+    "tool_calls": 48,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 22,
+      "tool_call": 48,
+      "tool_result": 48,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 123,
+      "chunks": [
+        {
+          "path": "6a14b73ca6d7b1aabf19-part-0001.json",
+          "message_count": 117
+        },
+        {
+          "path": "6a14b73ca6d7b1aabf19-part-0002.json",
+          "message_count": 6
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-canonical-data-protocol-20260524t224440-retry1.md"
+}

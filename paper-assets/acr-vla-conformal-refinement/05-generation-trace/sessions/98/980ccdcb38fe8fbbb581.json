@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "980ccdcb38fe8fbbb581",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb1 32546 cuda3 long vla only",
+  "task_key": "worker_deploy_bjb1-32546-cuda3-long-vla-only_20260523T092420",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb1-32546-cuda3-long-vla-only_20260523T092420_result.json",
+    "occurrence": 1,
+    "bytes": 326,
+    "sha256": "6f4d0d385830569c1f9efd6c567d878c0100f59245e071b1d8e6ccb2d277d674"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n- **已 kill**：cuda:3 上的 Goal CRM s44 进程（PID 846524），无对应 registry 条目，无需更新\n- **已部署**：`eval-supp-long-vla-only-s42` on cuda:3，tmux session `eval-supp-long-vla-only-s42`，PID 848576，模型加载中\n- **Registry**：已创建并置为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb1-32546-cuda3-long-vla-only.md"
+}

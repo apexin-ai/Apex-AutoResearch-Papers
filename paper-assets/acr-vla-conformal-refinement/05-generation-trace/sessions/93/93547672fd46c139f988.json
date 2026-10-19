@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93547672fd46c139f988",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose crm train v1",
+  "task_key": "worker_diagnose_crm-train-v1_20260513T224133",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_crm-train-v1_20260513T224133_result.json",
+    "occurrence": 1,
+    "bytes": 15,
+    "sha256": "ce4a1647d45fe2a4c49a27ff15d18a962283163096043939113e1780f0c8cb91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-crm-train-v1.md"
+}

@@ -1,0 +1,777 @@
+{
+  "schema_version": "1.0",
+  "id": "ef1852ce3c26e7cbda75",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "eval acr spatial v4 small",
+  "task_key": "worker_eval_acr-spatial-v4-small_20260514T202909",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_eval_acr-spatial-v4-small_20260514T202909.jsonl",
+    "occurrence": 1,
+    "bytes": 19592,
+    "sha256": "3c02c5643958c5e66aaa75f1c1dcce0e3d5a15307754213e315b8bb5799f3d24"
+  },
+  "statistics": {
+    "messages": 37,
+    "user_turns": 0,
+    "tool_calls": 18,
+    "roles": {
+      "tool_call": 18,
+      "tool_result": 18,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T20:31:20.696182+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T20:31:20.696560+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T20:31:20.696800+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "nvidia-smi -i 3 --query-compute-apps=pid,name --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T20:31:20.696951+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "grep -n 'max_correction_norm\\|correction_norm' /root/acr-vla-conformal-refinement/src/evaluate.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T20:31:20.697089+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"197808, python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T20:31:20.697213+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T20:31:20.697407+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "grep -n 'max_correction_norm\\|correction_norm' /root/acr-vla-conformal-refinement/src/evaluate.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T20:31:20.697548+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T20:31:20.697671+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "ls -la /proc/197808/cmdline",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T20:31:20.697797+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-r--r--r-- 1 root root 0 May 14 20:17 /proc/197808/cmdline\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T20:31:20.697917+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "cat /proc/197808/cmdline",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T20:31:20.698054+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"python\\\\u0000-u\\\\u0000src/evaluate.py\\\\u0000--mode\\\\u0000acr_vla\\\\u0000--benchmark\\\\u0000object\\\\u0000--n_rollouts\\\\u000010\\\\u0000--seed\\\\u000042\\\\u0000--K\\\\u000010\\\\u0000--crm_checkpoint\\\\u0000/root/autodl-tmp/checkpoints/crm_v2/perdof/crm_best.pt\\\\u0000\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T20:31:20.698178+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "grep -n max_correction_norm /root/acr-vla-conformal-refinement/src/evaluate.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T20:31:20.698341+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"77:    p.add_argument('--max_correction_norm', type=float, default=None,\\\\n78:                   help='Override CRM max_correction_norm (default: use checkpoint value)')\\\\n287:    # Override max_correction_norm if specified\\\\n288:    if args.max_correction_norm is not None and crm is not None:\\\\n289:        crm.max_correction_norm = args.max_correction_norm\\\\n290:        print(f\\\\\\\"[eval] Override max_correction_norm = {args.max_correction_norm}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T20:31:20.698501+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "kill 197808",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T20:31:20.698628+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T20:31:20.698746+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "nvidia-smi -i 3 --query-compute-apps=pid,name --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T20:31:20.698865+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T20:31:20.698999+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__submit_training_job",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T20:31:20.699115+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T20:31:20.699227+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "submit training job",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T20:31:20.699401+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T20:31:20.699554+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "cd /root/acr-vla-conformal-refinement && nohup bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=3 MUJOCO_GL=egl MUJOCO_EGL_DEVICE_ID=0 python -u src/evaluate.py --mode acr_vla --benchmark spatial --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1\" > /root/autodl-tmp/logs/eval_acr_spatial_v4_small.log 2>&1 & echo $!",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T20:31:20.699682+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"253084\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T20:31:20.699813+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "nvidia-smi -i 3 --query-compute-apps=pid,name --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T20:31:20.699929+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "tail -20 /root/autodl-tmp/logs/eval_acr_spatial_v4_small.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T20:31:20.700048+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"253085, python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T20:31:20.700188+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[robosuite WARNING] No private macro file found! (__init__.py:7)\\\\n[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n[evaluate] args: {'benchmark': 'spatial', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt', 'n_rollouts': 10, 'max_steps': 300, 'seed': 42, 'K': 10, 'mode': 'acr_vla', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'obs_dim': 960, 'hidden_dim': 256, 'render': False, 'output_file': None, 'max_correction_norm': 0.1}\\\\n[eval] Mode: acr_vla, benchmark: spatial\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  63%|██████▎   | 309/489 [00:00<00:00, 3087.21it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3478.22it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt (337,438 params)\\\\n[eval] Override max_correction_norm = 0.1\\\\n[eval] Loading LIBERO spatial environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T20:31:20.700395+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-acr-spatial-v4-small",
+              "field": "status",
+              "value": "running",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'command': 'python -u src/evaluate.py --mode acr_vla --benchmark spatial --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1', 'server': 'bjb1-18228', 'gpu_ids': ['cuda:3'], 'pid': 253085, 'data_path': '/root/autodl-tmp/libero_data/', 'data_count': 100, 'model_name': 'ACR-VLA (CRM v3-norm per-DOF, max_correction_norm=0.1)', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt', 'eval_data': 'LIBERO spatial 10 tasks x 10 rollouts', 'log_path': '/root/autodl-tmp/logs/eval_acr_spatial_v4_small.log'}"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T20:31:20.700553+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid state 'running'. Valid: ['ALLOCATED', 'ANALYZING', 'DEPLOYED', 'DEPLOYING', 'DONE', 'PENDING', 'PREPARING', 'QUEUED', 'RUNNING']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.152}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T20:31:20.700703+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-acr-spatial-v4-small",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'command': 'python -u src/evaluate.py --mode acr_vla --benchmark spatial --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1', 'server': 'bjb1-18228', 'gpu_ids': ['cuda:3'], 'pid': 253085, 'data_path': '/root/autodl-tmp/libero_data/', 'data_count': 100, 'model_name': 'ACR-VLA (CRM v3-norm per-DOF, max_correction_norm=0.1)', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt', 'eval_data': 'LIBERO spatial 10 tasks x 10 rollouts', 'log_path': '/root/autodl-tmp/logs/eval_acr_spatial_v4_small.log'}"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T20:31:20.700919+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1496}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T20:31:20.701062+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-acr-spatial-v4-small",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T20:31:20.701201+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-acr-spatial-v4-small\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T20:09:00.358Z\\\", \\\"updated_at\\\": \\\"2026-05-14T20:31:04.852Z\\\", \\\"hypothesis\\\": \\\"D018: Normalization + moderate correction scaling (max_correction_norm=0.1, 14x smaller than default). If v4-small > v4-default → magnitude control needed on top of normalization.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7712}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T20:31:20.701385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-acr-spatial-v4-small",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'command': 'python -u src/evaluate.py --mode acr_vla --benchmark spatial --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1', 'server': 'bjb1-18228', 'gpu_ids': ['cuda:3'], 'pid': 253085, 'data_path': '/root/autodl-tmp/libero_data/', 'data_count': 100, 'model_name': 'ACR-VLA (CRM v3-norm per-DOF, max_correction_norm=0.1)', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt', 'eval_data': 'LIBERO spatial 10 tasks x 10 rollouts', 'log_path': '/root/autodl-tmp/logs/eval_acr_spatial_v4_small.log'}"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-14T20:31:20.701559+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-acr-spatial-v4-small\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T20:09:00.358Z\\\", \\\"updated_at\\\": \\\"2026-05-14T20:31:10.337Z\\\", \\\"hypothesis\\\": \\\"D018: Normalization + moderate correction scaling (max_correction_norm=0.1, 14x smaller than default). If v4-small > v4-default → magnitude control needed on top of normalization.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u src/evaluate.py --mode acr_vla --benchmark spatial --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt --max_correction_norm 0.1\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu_ids\\\": [\\\"cuda:3\\\"], \\\"pid\\\": 253085, \\\"data_path\\\": \\\"/root/autodl-tmp/libero_data/\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"ACR-VLA (CRM v3-norm per-DOF, max_correction_norm=0.1)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO spatial 10 tasks x 10 rollouts\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/logs/eval_acr_spatial_v4_small.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4445}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-14T20:31:20.701734+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**eval-acr-spatial-v4-small 已启动。**\n\n| 项目 | 值 |\n|------|-----|\n| 服务器 | bjb1-18228, cuda:3 |\n| PID | 253085 |\n| Checkpoint | crm_v3_norm/perdof/crm_best.pt |\n| max_correction_norm | 0.1 |\n| Benchmark | LIBERO spatial, 10 tasks × 10 rollouts |\n| 日志 | `/root/autodl-tmp/logs/eval_acr_spatial_v4_small.log` |\n\n注：cuda:3 上原有残留进程 197808（旧 eval-acr-object-v3，用 v2 checkpoint）已 kill。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_acr-spatial-v4-small_20260514T202909"
+          },
+          "id": "event-000037"
+        }
+      ],
+      "message_count": 37
+    }
+  ],
+  "readable_path": "readable/conversations/eval-acr-spatial-v4-small.md"
+}

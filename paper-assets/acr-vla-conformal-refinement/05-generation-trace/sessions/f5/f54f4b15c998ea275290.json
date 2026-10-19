@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f54f4b15c998ea275290",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "fix kill persuite redeploy bjb1 18228",
+  "task_key": "worker_fix_kill-persuite-redeploy-bjb1-18228_20260524T091421",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_kill-persuite-redeploy-bjb1-18228_20260524T091421_result.json",
+    "occurrence": 1,
+    "bytes": 939,
+    "sha256": "50275f5fff28d599bda40707d0e6652c39ef413104dcaf93fe5868a73155843c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完成报告\n\n### CRM 训练 Kill\n- 状态：**已无 CRM 训练进程**（之前已被 kill，无残留 tmux session）\n- GPU 1+2 已释放（0 MiB used）\n\n### 新 Eval 部署\n| Session | GPU | 状态 |\n|---|---|---|\n| `long-vla-s47-r3` | GPU 1 | RUNNING，已加载 LIBERO long 10 tasks |\n| `goal-vla-s47-r2` | GPU 2 | RUNNING，已加载 LIBERO goal 10 tasks |\n\nGPU 显存确认：GPU 1 = 6282 MiB, GPU 2 = 5508 MiB（模型已加载）\n\n### Registry\n- `eval-supp-long-vla-only-s47-r3` → RUNNING（parent: eval-supp-long-vla-only-s47-r2）\n- `eval-supp-goal-vla-only-s47-r2` → RUNNING（parent: eval-supp-goal-vla-only-s47）\n\n### Precompute 进度\n| Benchmark | GPU | 进度 | 预计剩余 |\n|---|---|---|---|\n| **Object** | 0 | 71200/72507 = **98.2%** | ~41 min |\n| **Long** | 3 | 68600/136090 = **50.4%** | ~36.2 h |\n\nObject precompute 即将完成（< 1h），Long 仍需约 1.5 天。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-persuite-redeploy-bjb1-18228.md"
+}

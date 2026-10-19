@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a860c6786e7363dc248c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh diagnose p50 seed42 completion",
+  "task_key": "worker_ssh_diagnose-p50-seed42-completion_20260520T075600",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_diagnose-p50-seed42-completion_20260520T075600_result.json",
+    "occurrence": 1,
+    "bytes": 595,
+    "sha256": "5f0c3ed9eae3d46431148a5296b89b2693b4dd03d5b4afc46dc86415af42365e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程 **仍在运行**（PID 681823, 状态 `Rl+`, 已运行 41:45）。尚未退出。\n\n当前进度：完成 3/10 tasks，第4个task进行到 rollout 5/10。\n\n| Task | SR |\n|------|----|\n| pick_up_black_bowl_between_plate_and_ramekin → plate | 70% (7/10) |\n| pick_up_black_bowl_next_to_ramekin → plate | 100% (10/10) |\n| pick_up_black_bowl_from_table_center → plate | 0% (0/10) |\n| pick_up_black_bowl_on_cookie_box → plate | 进行中 (1/5) |\n\nJSON 输出文件尚未生成（实验结束时才写入）。不更新 registry，等实验完成后再诊断。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-p50-seed42-completion.md"
+}

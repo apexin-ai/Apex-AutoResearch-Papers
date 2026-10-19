@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78ac6badc5e676a18553",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb1 32546 pi05 table2",
+  "task_key": "worker_deploy_bjb1-32546-pi05-table2_20260526T052256",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb1-32546-pi05-table2_20260526T052256_result.json",
+    "occurrence": 1,
+    "bytes": 843,
+    "sha256": "a32dfcc3e3398d47728b97ea823cb56a692788cc345444f4d0ab7d6abd68f958"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**6 个实验全部已在运行中，无需重新部署。**\n\nRegistry 中 6 个条目全部为 RUNNING 状态，命令完全匹配：\n\n| exp_id | GPU | benchmark | seed | 状态 | 启动时间 |\n|--------|-----|-----------|------|------|---------|\n| `pi05-crm-k2-goal-s42-bjb1` | 0 | goal | 42 | RUNNING | 13:43 |\n| `pi05-crm-k2-goal-s43-bjb1` | 1 | goal | 43 | RUNNING | 13:43 |\n| `pi05-crm-k2-goal-s44-bjb1` | 2 | goal | 44 | RUNNING | 13:43 |\n| `pi05-crm-k2-object-s42-bjb1` | 3 | object | 42 | RUNNING | 13:46 |\n| `pi05-crm-k2-object-s43-bjb1` | 4 | object | 43 | RUNNING | 13:46 |\n| `pi05-crm-k2-object-s44-bjb1` | 5 | object | 44 | RUNNING | 13:46 |\n\nGPU 利用率 21-60%，显存占用 ~14GB/24GB，进程运行正常（goal 组已跑 ~21 分钟，object 组 ~15 分钟）。所有 tmux session 均存活。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb1-32546-pi05-table2.md"
+}

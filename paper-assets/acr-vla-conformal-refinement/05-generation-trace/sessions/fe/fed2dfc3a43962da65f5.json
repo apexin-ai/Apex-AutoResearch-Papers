@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fed2dfc3a43962da65f5",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze pi05 object baseline harvest",
+  "task_key": "worker_analyze_pi05-object-baseline-harvest_20260521T121542",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_pi05-object-baseline-harvest_20260521T121542_result.json",
+    "occurrence": 1,
+    "bytes": 1381,
+    "sha256": "eb4313f269cb2c846718b9ffdc13297517a6eb1f99052ed5fa4b1fdf9ce2e5f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 3 experiments updated to DONE. Here's the summary:\n\n```\n=== π0.5 VLA-only Object Baseline Results ===\nseed42: SR = 82.0% (164/200, 10 tasks × 20 rollouts)\nseed43: SR = 81.5% (163/200, 10 tasks × 20 rollouts)\nseed44: SR = 81.0% (162/200, 10 tasks × 20 rollouts)\nMean ± Std: 81.5% ± 0.5%\n\nPer-task breakdown:\nTask                    seed42  seed43  seed44  Mean\nalphabet_soup            85%     80%     85%    83.3%\ncream_cheese            100%     95%     95%    96.7%\nsalad_dressing           60%     70%     65%    65.0%\nbbq_sauce                80%     85%     80%    81.7%\nketchup                  80%     80%     85%    81.7%\ntomato_sauce             55%     60%     55%    56.7%\nbutter                  100%     95%     90%    95.0%\nmilk                     80%     80%     85%    81.7%\nchocolate_pudding       100%    100%    100%   100.0%\norange_juice             80%     70%     70%    73.3%\n\nLog paths (bjb1-32546):\n  ~/runs/acr-vla-conformal-refinement/eval-pi05-vla-only-object-seed{42,43,44}-r3.log\nJSON results:\n  /root/acr-vla-conformal-refinement/logs/eval_object_vla_only_pi05_seed{42,43,44}.json\nModel: /root/autodl-tmp/models/pi05_libero_finetuned/\n```\n\n结果非常稳定（std=0.5%）。最难的 task 是 tomato_sauce（56.7%）和 salad_dressing（65.0%），最简单的是 chocolate_pudding（100%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-pi05-object-baseline-harvest.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae9f4cb86615f5bea229",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops verify seed44 r2 and seed43 progress",
+  "task_key": "worker_ops_verify-seed44-r2-and-seed43-progress_20260516T045552",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_verify-seed44-r2-and-seed43-progress_20260516T045552_result.json",
+    "occurrence": 1,
+    "bytes": 2240,
+    "sha256": "4529607d8c2209cd3abc1c0572c1066357c46a86b0661726e2bda87f063ac15c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 任务 1：bjb1-18228 — r2 存活确认\n\n| PID | 任务 | GPU | 状态 | 运行时长 | 显存 |\n|-----|------|-----|------|---------|------|\n| 428117 | argmin r2 (seed44) | cuda:3 | **存活** (Ss) | 3h23m | 4681 MiB |\n| 428406 | obs_only r2 (seed44) | cuda:2 | **存活** (Ss) | 3h23m | 4717 MiB |\n\n**r3 子进程 (430990, 431194)：已死。**\n\n### 任务 2：bjb1-32546 — obs_only ε=0.2 seed43 r2 进度\n\nPID 148788 **存活**，已运行 9h57m。\n\n当前进度：**8/10 tasks 完成**（第 8 个 milk 正在跑 rollout 5/10）。已完成 tasks 成绩：\n\n| Task | Success Rate |\n|------|-------------|\n| alphabet_soup | 0% (0/10) |\n| cream_cheese | 10% (1/10) |\n| salad_dressing | 20% (2/10) |\n| bbq_sauce | 40% (4/10) |\n| ketchup | 0% (0/10) |\n| tomato_sauce | 10% (1/10) |\n| butter | 10% (1/10) |\n| milk | 进行中 (1/5 so far) |\n\nJSON 输出文件尚未生成（评估完成后才写入）。\n\n### 任务 3：全局 GPU 占用\n\n**bjb1-18228** (4× A5000 24GB)\n\n| GPU | 显存占用 | 利用率 | 状态 |\n|-----|---------|--------|------|\n| 0 | 2410/24564 MiB | 17% | 占用 |\n| 1 | 1/24564 MiB | 0% | **空闲** |\n| 2 | 4735/24564 MiB | 23% | 占用 (obs_only r2) |\n| 3 | 4699/24564 MiB | 20% | 占用 (argmin r2) |\n\n**bjb1-32546** (6× A5000 24GB)\n\n| GPU | 显存占用 | 利用率 | 状态 |\n|-----|---------|--------|------|\n| 0 | 1943/24564 MiB | 23% | 占用 |\n| 1 | 2/24564 MiB | 0% | **空闲** |\n| 2 | 1942/24564 MiB | 21% | 占用 |\n| 3 | 2411/24564 MiB | 24% | 占用 (seed43 r2) |\n| 4 | 1943/24564 MiB | 23% | 占用 |\n| 5 | 1942/24564 MiB | 23% | 占用 |\n\n**bjb2-28827** (6× A5000 24GB)\n\n| GPU | 显存占用 | 利用率 | 状态 |\n|-----|---------|--------|------|\n| 0 | 2410/24564 MiB | 18% | 占用 |\n| 1 | 2411/24564 MiB | 18% | 占用 |\n| 2 | 2875/24564 MiB | 19% | 占用 |\n| 3 | 2875/24564 MiB | 19% | 占用 |\n| 4 | 2411/24564 MiB | 18% | 占用 |\n| 5 | 1941/24564 MiB | 19% | 占用 |\n\n**bjb2-40593** (1× A5000 24GB)\n\n| GPU | 显存占用 | 利用率 | 状态 |\n|-----|---------|--------|------|\n| 0 | 1870/24564 MiB | 11% | 占用 |\n\n**空闲 GPU：bjb1-18228 GPU1、bjb1-32546 GPU1，共 2 块。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-seed44-r2-and-seed43-progress.md"
+}

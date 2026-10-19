@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "bd1be935790ec66b69d7",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "fix pi05 wrapper image flip verify 20260521T073006 retry1",
+  "task_key": "worker_fix_pi05-wrapper-image-flip-verify_20260521T073006_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_pi05-wrapper-image-flip-verify_20260521T073006_retry1.log",
+    "occurrence": 1,
+    "bytes": 807678,
+    "sha256": "4d4ddeda087396d571ec21e691e25ed99fa58704604cc056ba5339416085a7be"
+  },
+  "statistics": {
+    "messages": 540,
+    "user_turns": 0,
+    "tool_calls": 205,
+    "roles": {
+      "system": 1,
+      "record": 2,
+      "assistant": 126,
+      "tool_call": 205,
+      "tool_result": 205,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 540,
+      "chunks": [
+        {
+          "path": "bd1be935790ec66b69d7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bd1be935790ec66b69d7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "bd1be935790ec66b69d7-part-0003.json",
+          "message_count": 180
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-pi05-wrapper-image-flip-verify-20260521t073006-retry1.md"
+}

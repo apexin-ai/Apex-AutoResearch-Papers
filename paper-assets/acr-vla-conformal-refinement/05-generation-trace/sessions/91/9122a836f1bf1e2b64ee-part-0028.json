@@ -1,0 +1,3700 @@
+{
+  "schema_version": "1.0",
+  "session_id": "9122a836f1bf1e2b64ee",
+  "rounds": [
+    {
+      "number": 348,
+      "messages": [
+        {
+          "source_line": 4861,
+          "timestamp": "2026-05-23T04:43:05.944086+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-goal-shard1",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004861"
+        },
+        {
+          "source_line": 4862,
+          "timestamp": "2026-05-23T04:43:06.897539+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-goal-shard2",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004862"
+        },
+        {
+          "source_line": 4863,
+          "timestamp": "2026-05-23T04:43:07.349465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-pi05-features-object",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004863"
+        },
+        {
+          "source_line": 4864,
+          "timestamp": "2026-05-23T04:43:08.302965+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-tau025-spatial-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T03:38:28.948Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:43:04.278Z\\\", \\\"hypothesis\\\": \\\"Adaptive conformal CRM with tau=0.25 adjusts correction trigger sensitivity, finding optimal balance between correction frequency and accuracy on LIBERO-spatial\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.7021}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 14938
+          },
+          "id": "event-004864"
+        },
+        {
+          "source_line": 4865,
+          "timestamp": "2026-05-23T04:43:08.303417+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm02-seed55",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004865"
+        },
+        {
+          "source_line": 4866,
+          "timestamp": "2026-05-23T04:43:09.106324+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-openvla-object-baseline-seed42-r2",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004866"
+        },
+        {
+          "source_line": 4867,
+          "timestamp": "2026-05-23T04:43:13.780614+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-tau015-spatial-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T03:38:26.202Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:43:09.802Z\\\", \\\"hypothesis\\\": \\\"Adaptive conformal CRM with tau=0.15 adjusts correction trigger sensitivity, finding optimal balance between correction frequency and accuracy on LIBERO-spatial\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.5404}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 19639
+          },
+          "id": "event-004867"
+        },
+        {
+          "source_line": 4868,
+          "timestamp": "2026-05-23T04:43:19.098851+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-norm02-spatial-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T03:38:23.399Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:43:15.363Z\\\", \\\"hypothesis\\\": \\\"Reducing max_correction_norm to 0.2 prevents CRM overcorrection and improves SR vs unconstrained CRM on LIBERO-spatial\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.326}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 23971
+          },
+          "id": "event-004868"
+        },
+        {
+          "source_line": 4869,
+          "timestamp": "2026-05-23T04:43:24.417017+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-obj-adapt-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T03:36:39.492Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:43:20.685Z\\\", \\\"hypothesis\\\": \\\"Adaptive conformal CRM (K=2, tau=0.074855) generalizes from Spatial (+2.5pp) to Object suite\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-23T04:25:43.835Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T04:26:05.066667+00:00\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.3172}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 28280
+          },
+          "id": "event-004869"
+        },
+        {
+          "source_line": 4870,
+          "timestamp": "2026-05-23T04:43:30.877513+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-crm-goal-seed44-v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:13:54.489Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:43:26.042Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (crm_obs_only mode, obs_dim=960) improves success rate over VLA-only baseline on LIBERO-Goal, validating the conformal refinement approach\\\", \\\"parent\\\": \\\"train-crm-smolvla-3suite-v1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.4296}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 34351
+          },
+          "id": "event-004870"
+        },
+        {
+          "source_line": 4871,
+          "timestamp": "2026-05-23T04:43:39.767125+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-crm-goal-seed43-v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:13:50.015Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:43:33.204Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (crm_obs_only mode, obs_dim=960) improves success rate over VLA-only baseline on LIBERO-Goal, validating the conformal refinement approach\\\", \\\"parent\\\": \\\"train-crm-smolvla-3suite-v1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.8687}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 42333
+          },
+          "id": "event-004871"
+        },
+        {
+          "source_line": 4872,
+          "timestamp": "2026-05-23T04:43:49.023274+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-crm-goal-seed42-v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:13:45.533Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:43:42.657Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (crm_obs_only mode, obs_dim=960) improves success rate over VLA-only baseline on LIBERO-Goal, validating the conformal refinement approach\\\", \\\"parent\\\": \\\"train-crm-smolvla-3suite-v1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.2599}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 50348
+          },
+          "id": "event-004872"
+        },
+        {
+          "source_line": 4873,
+          "timestamp": "2026-05-23T04:43:58.485822+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-crm-spatial-seed44-v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:13:37.387Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:43:52.025Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (crm_obs_only mode, obs_dim=960) improves success rate over VLA-only baseline on LIBERO-Spatial, validating the conformal refinement approach\\\", \\\"parent\\\": \\\"train-crm-smolvla-3suite-v1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.4427}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 59005
+          },
+          "id": "event-004873"
+        },
+        {
+          "source_line": 4874,
+          "timestamp": "2026-05-23T04:44:08.065782+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-crm-spatial-seed43-v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:13:32.121Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:44:01.455Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (crm_obs_only mode, obs_dim=960) improves success rate over VLA-only baseline on LIBERO-Spatial, validating the conformal refinement approach\\\", \\\"parent\\\": \\\"train-crm-smolvla-3suite-v1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.5459}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 67783
+          },
+          "id": "event-004874"
+        },
+        {
+          "source_line": 4875,
+          "timestamp": "2026-05-23T04:44:16.947459+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-crm-spatial-seed42-v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:13:28.149Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:44:10.369Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (crm_obs_only mode, obs_dim=960) improves success rate over VLA-only baseline on LIBERO-Spatial, validating the conformal refinement approach\\\", \\\"parent\\\": \\\"train-crm-smolvla-3suite-v1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.8639}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 75677
+          },
+          "id": "event-004875"
+        },
+        {
+          "source_line": 4876,
+          "timestamp": "2026-05-23T04:44:26.644773+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-long-seed0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T15:08:30.499Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:44:19.924Z\\\", \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T15:08:47.325025+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T16:19:41.680623+00:00\\\"}]}, \\\"notes\\\": \\\"Phantom entry — never submitted (PREPARING, no spec). Cron false alarm.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T16:19:09.641Z\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.583}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 84501
+          },
+          "id": "event-004876"
+        },
+        {
+          "source_line": 4877,
+          "timestamp": "2026-05-23T04:44:36.096408+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-long-seed1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T15:08:55.328Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:44:29.571Z\\\", \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T15:09:10.198277+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T16:18:48.741538+00:00\\\"}]}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T16:18:07.280Z\\\"}, \\\"notes\\\": \\\"Phantom entry — never submitted (PREPARING, no spec). Cron false alarm. No action needed.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.5645}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 93012
+          },
+          "id": "event-004877"
+        },
+        {
+          "source_line": 4878,
+          "timestamp": "2026-05-23T04:44:41.984480+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-long-seed2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T15:07:26.187Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:44:37.972Z\\\", \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T15:07:55.673770+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T16:19:25.936928+00:00\\\"}]}, \\\"notes\\\": \\\"Phantom entry — never submitted (PREPARING, no spec). Cron false alarm.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T16:18:58.254Z\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.8564}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 97897
+          },
+          "id": "event-004878"
+        },
+        {
+          "source_line": 4879,
+          "timestamp": "2026-05-23T04:44:47.403742+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"precompute-smolvla-goal-shard0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:36:45.138Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:44:43.574Z\\\", \\\"hypothesis\\\": \\\"Precompute SmolVLA obs features (960D) + K=2 action samples on LIBERO-Goal for CRM training (Plan A config). Shard 0/3 on cuda:3 of bjb2-28827, output to crm_cache_v5/goal/partial_s0_*.pt.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.3848}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 102413
+          },
+          "id": "event-004879"
+        },
+        {
+          "source_line": 4880,
+          "timestamp": "2026-05-23T04:44:52.843490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"precompute-smolvla-goal-shard1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:37:03.110Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:44:49.031Z\\\", \\\"hypothesis\\\": \\\"Precompute SmolVLA obs features (960D) + K=2 action samples on LIBERO-Goal for CRM training (Plan A config). Shard 1/3 on cuda:4 of bjb2-28827, output to crm_cache_v5/goal/partial_s1_*.pt.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.4471}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 106899
+          },
+          "id": "event-004880"
+        },
+        {
+          "source_line": 4881,
+          "timestamp": "2026-05-23T04:44:58.162904+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"precompute-smolvla-goal-shard2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:37:16.074Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:44:54.451Z\\\", \\\"hypothesis\\\": \\\"Precompute SmolVLA obs features (960D) + K=2 action samples on LIBERO-Goal for CRM training (Plan A config). Shard 2/3 on cuda:5 of bjb2-28827, output to crm_cache_v5/goal/partial_s2_*.pt.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.3161}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 111265
+          },
+          "id": "event-004881"
+        },
+        {
+          "source_line": 4882,
+          "timestamp": "2026-05-23T04:45:03.733458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"precompute-pi05-features-object\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T12:16:27.403Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:44:59.754Z\\\", \\\"hypothesis\\\": \\\"Precompute π0.5 2048D obs_features + K=10 action samples from LIBERO demos for CRM training. Required step for Plan A (CRM with π0.5 features).\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.5275}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 116383
+          },
+          "id": "event-004882"
+        },
+        {
+          "source_line": 4883,
+          "timestamp": "2026-05-23T04:45:09.163816+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm02-seed55\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T21:54:53.558Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:45:05.238Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (ε=0.2) K=10 on LIBERO-Object seed55. Norm sweep seed balance.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.4365}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 120860
+          },
+          "id": "event-004883"
+        },
+        {
+          "source_line": 4884,
+          "timestamp": "2026-05-23T04:45:14.612029+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-openvla-object-baseline-seed42-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T23:07:05.761Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:45:10.726Z\\\", \\\"hypothesis\\\": \\\"OpenVLA-7B fine-tuned on LIBERO-Object baseline eval (seed42). 复现官方 88.4% SR，获取 per-task breakdown 与 SmolVLA 对比。如果 SR 符合预期，验证 CRM 路线的 base policy 基线可用性。重试：前次 timeout (6h不够，需~10h)。\\\", \\\"parent\\\": \\\"eval-openvla-object-baseline-seed42\\\", \\\"spec\\\": \\\"placeholder\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.4138}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 125505
+          },
+          "id": "event-004884"
+        },
+        {
+          "source_line": 4885,
+          "timestamp": "2026-05-23T04:45:19.332126+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-tau035-spatial-s42",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004885"
+        },
+        {
+          "source_line": 4886,
+          "timestamp": "2026-05-23T04:45:20.285357+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-tau025-spatial-s42",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004886"
+        },
+        {
+          "source_line": 4887,
+          "timestamp": "2026-05-23T04:45:21.288246+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-tau015-spatial-s42",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004887"
+        },
+        {
+          "source_line": 4888,
+          "timestamp": "2026-05-23T04:45:22.243155+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-norm02-spatial-s42",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004888"
+        },
+        {
+          "source_line": 4889,
+          "timestamp": "2026-05-23T04:45:23.146587+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-supp-obj-adapt-s42",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004889"
+        },
+        {
+          "source_line": 4890,
+          "timestamp": "2026-05-23T04:45:24.602033+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-crm-goal-seed44-v1",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004890"
+        },
+        {
+          "source_line": 4891,
+          "timestamp": "2026-05-23T04:45:25.053609+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-tau035-spatial-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T03:38:32.825Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:45:20.949Z\\\", \\\"hypothesis\\\": \\\"Adaptive conformal CRM with tau=0.35 adjusts correction trigger sensitivity, finding optimal balance between correction frequency and accuracy on LIBERO-spatial\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.3925}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 5721
+          },
+          "id": "event-004891"
+        },
+        {
+          "source_line": 4892,
+          "timestamp": "2026-05-23T04:45:25.505083+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-crm-goal-seed43-v1",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004892"
+        },
+        {
+          "source_line": 4893,
+          "timestamp": "2026-05-23T04:45:26.460489+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-crm-goal-seed42-v1",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004893"
+        },
+        {
+          "source_line": 4894,
+          "timestamp": "2026-05-23T04:45:27.567919+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-crm-spatial-seed44-v1",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004894"
+        },
+        {
+          "source_line": 4895,
+          "timestamp": "2026-05-23T04:45:28.471514+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-crm-spatial-seed43-v1",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004895"
+        },
+        {
+          "source_line": 4896,
+          "timestamp": "2026-05-23T04:45:29.425332+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-crm-spatial-seed42-v1",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004896"
+        },
+        {
+          "source_line": 4897,
+          "timestamp": "2026-05-23T04:45:30.228168+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-long-seed0",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004897"
+        },
+        {
+          "source_line": 4898,
+          "timestamp": "2026-05-23T04:45:30.781313+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-tau025-spatial-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T03:38:28.948Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:45:26.391Z\\\", \\\"hypothesis\\\": \\\"Adaptive conformal CRM with tau=0.25 adjusts correction trigger sensitivity, finding optimal balance between correction frequency and accuracy on LIBERO-spatial\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.5949}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 10495
+          },
+          "id": "event-004898"
+        },
+        {
+          "source_line": 4899,
+          "timestamp": "2026-05-23T04:45:31.182710+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-long-seed1",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004899"
+        },
+        {
+          "source_line": 4900,
+          "timestamp": "2026-05-23T04:45:32.187434+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-long-seed2",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004900"
+        },
+        {
+          "source_line": 4901,
+          "timestamp": "2026-05-23T04:45:33.142404+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-goal-shard0",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004901"
+        },
+        {
+          "source_line": 4902,
+          "timestamp": "2026-05-23T04:45:34.045158+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-goal-shard1",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004902"
+        },
+        {
+          "source_line": 4903,
+          "timestamp": "2026-05-23T04:45:34.948125+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-goal-shard2",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004903"
+        },
+        {
+          "source_line": 4904,
+          "timestamp": "2026-05-23T04:45:35.953401+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-tau015-spatial-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T03:38:26.202Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:45:31.902Z\\\", \\\"hypothesis\\\": \\\"Adaptive conformal CRM with tau=0.15 adjusts correction trigger sensitivity, finding optimal balance between correction frequency and accuracy on LIBERO-spatial\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.4039}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 14665
+          },
+          "id": "event-004904"
+        },
+        {
+          "source_line": 4905,
+          "timestamp": "2026-05-23T04:45:35.953848+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-pi05-features-object",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004905"
+        },
+        {
+          "source_line": 4906,
+          "timestamp": "2026-05-23T04:45:36.405193+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm02-seed55",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004906"
+        },
+        {
+          "source_line": 4907,
+          "timestamp": "2026-05-23T04:45:37.235520+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-openvla-object-baseline-seed42-r2",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004907"
+        },
+        {
+          "source_line": 4908,
+          "timestamp": "2026-05-23T04:45:42.270313+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-norm02-spatial-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T03:38:23.399Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:45:37.887Z\\\", \\\"hypothesis\\\": \\\"Reducing max_correction_norm to 0.2 prevents CRM overcorrection and improves SR vs unconstrained CRM on LIBERO-spatial\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.4838}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 20027
+          },
+          "id": "event-004908"
+        },
+        {
+          "source_line": 4909,
+          "timestamp": "2026-05-23T04:45:47.722227+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-obj-adapt-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T03:36:39.492Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:45:43.959Z\\\", \\\"hypothesis\\\": \\\"Adaptive conformal CRM (K=2, tau=0.074855) generalizes from Spatial (+2.5pp) to Object suite\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-23T04:25:43.835Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T04:26:05.066667+00:00\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.4377}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 24575
+          },
+          "id": "event-004909"
+        },
+        {
+          "source_line": 4910,
+          "timestamp": "2026-05-23T04:45:53.300765+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-crm-goal-seed44-v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:13:54.489Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:45:49.372Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (crm_obs_only mode, obs_dim=960) improves success rate over VLA-only baseline on LIBERO-Goal, validating the conformal refinement approach\\\", \\\"parent\\\": \\\"train-crm-smolvla-3suite-v1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.5612}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 28698
+          },
+          "id": "event-004910"
+        },
+        {
+          "source_line": 4911,
+          "timestamp": "2026-05-23T04:45:58.866853+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-crm-goal-seed43-v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:13:50.015Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:45:54.839Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (crm_obs_only mode, obs_dim=960) improves success rate over VLA-only baseline on LIBERO-Goal, validating the conformal refinement approach\\\", \\\"parent\\\": \\\"train-crm-smolvla-3suite-v1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.5641}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 33361
+          },
+          "id": "event-004911"
+        },
+        {
+          "source_line": 4912,
+          "timestamp": "2026-05-23T04:46:04.235387+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-crm-goal-seed42-v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:13:45.533Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:46:00.482Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (crm_obs_only mode, obs_dim=960) improves success rate over VLA-only baseline on LIBERO-Goal, validating the conformal refinement approach\\\", \\\"parent\\\": \\\"train-crm-smolvla-3suite-v1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.3507}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 37774
+          },
+          "id": "event-004912"
+        },
+        {
+          "source_line": 4913,
+          "timestamp": "2026-05-23T04:46:12.839564+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-crm-spatial-seed44-v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:13:37.387Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:46:05.831Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (crm_obs_only mode, obs_dim=960) improves success rate over VLA-only baseline on LIBERO-Spatial, validating the conformal refinement approach\\\", \\\"parent\\\": \\\"train-crm-smolvla-3suite-v1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.5676}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 45271
+          },
+          "id": "event-004913"
+        },
+        {
+          "source_line": 4914,
+          "timestamp": "2026-05-23T04:46:21.890058+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-crm-spatial-seed43-v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:13:32.121Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:46:15.320Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (crm_obs_only mode, obs_dim=960) improves success rate over VLA-only baseline on LIBERO-Spatial, validating the conformal refinement approach\\\", \\\"parent\\\": \\\"train-crm-smolvla-3suite-v1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.013}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 53418
+          },
+          "id": "event-004914"
+        },
+        {
+          "source_line": 4915,
+          "timestamp": "2026-05-23T04:46:35.039435+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-crm-spatial-seed42-v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:13:28.149Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:46:25.070Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (crm_obs_only mode, obs_dim=960) improves success rate over VLA-only baseline on LIBERO-Spatial, validating the conformal refinement approach\\\", \\\"parent\\\": \\\"train-crm-smolvla-3suite-v1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 13.1394}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 65614
+          },
+          "id": "event-004915"
+        },
+        {
+          "source_line": 4916,
+          "timestamp": "2026-05-23T04:46:48.417742+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-long-seed0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T15:08:30.499Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:46:38.392Z\\\", \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T15:08:47.325025+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T16:19:41.680623+00:00\\\"}]}, \\\"notes\\\": \\\"Phantom entry — never submitted (PREPARING, no spec). Cron false alarm.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T16:19:09.641Z\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 13.374}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 78189
+          },
+          "id": "event-004916"
+        },
+        {
+          "source_line": 4917,
+          "timestamp": "2026-05-23T04:46:59.888634+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-long-seed1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T15:08:55.328Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:46:52.793Z\\\", \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T15:09:10.198277+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T16:18:48.741538+00:00\\\"}]}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T16:18:07.280Z\\\"}, \\\"notes\\\": \\\"Phantom entry — never submitted (PREPARING, no spec). Cron false alarm. No action needed.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 11.414}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 88705
+          },
+          "id": "event-004917"
+        },
+        {
+          "source_line": 4918,
+          "timestamp": "2026-05-23T04:47:10.823083+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-long-seed2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T15:07:26.187Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:47:02.222Z\\\", \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T15:07:55.673770+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T16:19:25.936928+00:00\\\"}]}, \\\"notes\\\": \\\"Phantom entry — never submitted (PREPARING, no spec). Cron false alarm.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T16:18:58.254Z\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 10.933}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 98635
+          },
+          "id": "event-004918"
+        },
+        {
+          "source_line": 4919,
+          "timestamp": "2026-05-23T04:47:24.818458+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"precompute-smolvla-goal-shard0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:36:45.138Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:47:14.773Z\\\", \\\"hypothesis\\\": \\\"Precompute SmolVLA obs features (960D) + K=2 action samples on LIBERO-Goal for CRM training (Plan A config). Shard 0/3 on cuda:3 of bjb2-28827, output to crm_cache_v5/goal/partial_s0_*.pt.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 14.0007}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 111676
+          },
+          "id": "event-004919"
+        },
+        {
+          "source_line": 4920,
+          "timestamp": "2026-05-23T04:47:38.661492+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"precompute-smolvla-goal-shard1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:37:03.110Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:47:29.034Z\\\", \\\"hypothesis\\\": \\\"Precompute SmolVLA obs features (960D) + K=2 action samples on LIBERO-Goal for CRM training (Plan A config). Shard 1/3 on cuda:4 of bjb2-28827, output to crm_cache_v5/goal/partial_s1_*.pt.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 13.8202}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 124616
+          },
+          "id": "event-004920"
+        },
+        {
+          "source_line": 4921,
+          "timestamp": "2026-05-23T04:47:48.278710+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"precompute-smolvla-goal-shard2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:37:16.074Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:47:41.574Z\\\", \\\"hypothesis\\\": \\\"Precompute SmolVLA obs features (960D) + K=2 action samples on LIBERO-Goal for CRM training (Plan A config). Shard 2/3 on cuda:5 of bjb2-28827, output to crm_cache_v5/goal/partial_s2_*.pt.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.5592}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 133330
+          },
+          "id": "event-004921"
+        },
+        {
+          "source_line": 4922,
+          "timestamp": "2026-05-23T04:47:59.519204+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"precompute-pi05-features-object\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T12:16:27.403Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:47:51.282Z\\\", \\\"hypothesis\\\": \\\"Precompute π0.5 2048D obs_features + K=10 action samples from LIBERO demos for CRM training. Required step for Plan A (CRM with π0.5 features).\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 11.2124}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 143565
+          },
+          "id": "event-004922"
+        },
+        {
+          "source_line": 4923,
+          "timestamp": "2026-05-23T04:48:12.425000+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm02-seed55\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T21:54:53.558Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:48:03.381Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (ε=0.2) K=10 on LIBERO-Object seed55. Norm sweep seed balance.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 12.9258}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 156019
+          },
+          "id": "event-004923"
+        },
+        {
+          "source_line": 4924,
+          "timestamp": "2026-05-23T04:48:22.554819+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-openvla-object-baseline-seed42-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T23:07:05.761Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:48:15.377Z\\\", \\\"hypothesis\\\": \\\"OpenVLA-7B fine-tuned on LIBERO-Object baseline eval (seed42). 复现官方 88.4% SR，获取 per-task breakdown 与 SmolVLA 对比。如果 SR 符合预期，验证 CRM 路线的 base policy 基线可用性。重试：前次 timeout (6h不够，需~10h)。\\\", \\\"parent\\\": \\\"eval-openvla-object-baseline-seed42\\\", \\\"spec\\\": \\\"placeholder\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 10.0888}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 165319
+          },
+          "id": "event-004924"
+        },
+        {
+          "source_line": 4925,
+          "timestamp": "2026-05-23T04:48:31.894424+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-tau035-spatial-s42",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004925"
+        },
+        {
+          "source_line": 4926,
+          "timestamp": "2026-05-23T04:48:32.850388+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-tau025-spatial-s42",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004926"
+        },
+        {
+          "source_line": 4927,
+          "timestamp": "2026-05-23T04:48:33.805044+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-tau015-spatial-s42",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004927"
+        },
+        {
+          "source_line": 4928,
+          "timestamp": "2026-05-23T04:48:34.760159+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-norm02-spatial-s42",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004928"
+        },
+        {
+          "source_line": 4929,
+          "timestamp": "2026-05-23T04:48:35.713301+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-supp-obj-adapt-s42",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004929"
+        },
+        {
+          "source_line": 4930,
+          "timestamp": "2026-05-23T04:48:36.164716+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-tau035-spatial-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T03:38:32.825Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:48:34.690Z\\\", \\\"hypothesis\\\": \\\"Adaptive conformal CRM with tau=0.35 adjusts correction trigger sensitivity, finding optimal balance between correction frequency and accuracy on LIBERO-spatial\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.9408}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 4270
+          },
+          "id": "event-004930"
+        },
+        {
+          "source_line": 4931,
+          "timestamp": "2026-05-23T04:48:37.067890+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-crm-goal-seed44-v1",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004931"
+        },
+        {
+          "source_line": 4932,
+          "timestamp": "2026-05-23T04:48:38.022957+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-crm-goal-seed43-v1",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004932"
+        },
+        {
+          "source_line": 4933,
+          "timestamp": "2026-05-23T04:48:39.027521+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-tau025-spatial-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T03:38:28.948Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:48:37.423Z\\\", \\\"hypothesis\\\": \\\"Adaptive conformal CRM with tau=0.25 adjusts correction trigger sensitivity, finding optimal balance between correction frequency and accuracy on LIBERO-spatial\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.7218}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 6177
+          },
+          "id": "event-004933"
+        },
+        {
+          "source_line": 4934,
+          "timestamp": "2026-05-23T04:48:39.027965+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-crm-goal-seed42-v1",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004934"
+        },
+        {
+          "source_line": 4935,
+          "timestamp": "2026-05-23T04:48:39.931064+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-crm-spatial-seed44-v1",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004935"
+        },
+        {
+          "source_line": 4936,
+          "timestamp": "2026-05-23T04:48:40.890877+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-crm-spatial-seed43-v1",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004936"
+        },
+        {
+          "source_line": 4937,
+          "timestamp": "2026-05-23T04:48:41.844919+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-tau015-spatial-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T03:38:26.202Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:48:40.259Z\\\", \\\"hypothesis\\\": \\\"Adaptive conformal CRM with tau=0.15 adjusts correction trigger sensitivity, finding optimal balance between correction frequency and accuracy on LIBERO-spatial\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.023}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 8039
+          },
+          "id": "event-004937"
+        },
+        {
+          "source_line": 4938,
+          "timestamp": "2026-05-23T04:48:41.845364+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-crm-spatial-seed42-v1",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004938"
+        },
+        {
+          "source_line": 4939,
+          "timestamp": "2026-05-23T04:48:42.749692+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-long-seed0",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004939"
+        },
+        {
+          "source_line": 4940,
+          "timestamp": "2026-05-23T04:48:43.202938+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-long-seed1",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004940"
+        },
+        {
+          "source_line": 4941,
+          "timestamp": "2026-05-23T04:48:44.207164+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-long-seed2",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004941"
+        },
+        {
+          "source_line": 4942,
+          "timestamp": "2026-05-23T04:48:44.658847+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-norm02-spatial-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T03:38:23.399Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:48:43.269Z\\\", \\\"hypothesis\\\": \\\"Reducing max_correction_norm to 0.2 prevents CRM overcorrection and improves SR vs unconstrained CRM on LIBERO-spatial\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.7974}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 9898
+          },
+          "id": "event-004942"
+        },
+        {
+          "source_line": 4943,
+          "timestamp": "2026-05-23T04:48:45.161866+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-goal-shard0",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004943"
+        },
+        {
+          "source_line": 4944,
+          "timestamp": "2026-05-23T04:48:46.081735+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-goal-shard1",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004944"
+        },
+        {
+          "source_line": 4945,
+          "timestamp": "2026-05-23T04:48:46.985120+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-goal-shard2",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004945"
+        },
+        {
+          "source_line": 4946,
+          "timestamp": "2026-05-23T04:48:47.486867+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-obj-adapt-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T03:36:39.492Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:48:46.208Z\\\", \\\"hypothesis\\\": \\\"Adaptive conformal CRM (K=2, tau=0.074855) generalizes from Spatial (+2.5pp) to Object suite\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-23T04:25:43.835Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T04:26:05.066667+00:00\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.9199}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 11773
+          },
+          "id": "event-004946"
+        },
+        {
+          "source_line": 4947,
+          "timestamp": "2026-05-23T04:48:47.939492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-pi05-features-object",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004947"
+        },
+        {
+          "source_line": 4948,
+          "timestamp": "2026-05-23T04:48:48.944447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm02-seed55",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004948"
+        },
+        {
+          "source_line": 4949,
+          "timestamp": "2026-05-23T04:48:49.448064+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-openvla-object-baseline-seed42-r2",
+              "field": "conclusion",
+              "value": "killed",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004949"
+        },
+        {
+          "source_line": 4950,
+          "timestamp": "2026-05-23T04:48:50.504127+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-crm-goal-seed44-v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:13:54.489Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:48:49.117Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (crm_obs_only mode, obs_dim=960) improves success rate over VLA-only baseline on LIBERO-Goal, validating the conformal refinement approach\\\", \\\"parent\\\": \\\"train-crm-smolvla-3suite-v1\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.1381}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 13436
+          },
+          "id": "event-004950"
+        },
+        {
+          "source_line": 4951,
+          "timestamp": "2026-05-23T04:48:53.273483+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-crm-goal-seed43-v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:13:50.015Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:48:52.128Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (crm_obs_only mode, obs_dim=960) improves success rate over VLA-only baseline on LIBERO-Goal, validating the conformal refinement approach\\\", \\\"parent\\\": \\\"train-crm-smolvla-3suite-v1\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.7591}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 15250
+          },
+          "id": "event-004951"
+        },
+        {
+          "source_line": 4952,
+          "timestamp": "2026-05-23T04:48:56.150500+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-crm-goal-seed42-v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:13:45.533Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:48:54.941Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (crm_obs_only mode, obs_dim=960) improves success rate over VLA-only baseline on LIBERO-Goal, validating the conformal refinement approach\\\", \\\"parent\\\": \\\"train-crm-smolvla-3suite-v1\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.8488}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 17122
+          },
+          "id": "event-004952"
+        },
+        {
+          "source_line": 4953,
+          "timestamp": "2026-05-23T04:48:58.913539+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-crm-spatial-seed44-v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:13:37.387Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:48:57.776Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (crm_obs_only mode, obs_dim=960) improves success rate over VLA-only baseline on LIBERO-Spatial, validating the conformal refinement approach\\\", \\\"parent\\\": \\\"train-crm-smolvla-3suite-v1\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.7615}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 18982
+          },
+          "id": "event-004953"
+        },
+        {
+          "source_line": 4954,
+          "timestamp": "2026-05-23T04:49:01.828039+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-crm-spatial-seed43-v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:13:32.121Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:49:00.478Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (crm_obs_only mode, obs_dim=960) improves success rate over VLA-only baseline on LIBERO-Spatial, validating the conformal refinement approach\\\", \\\"parent\\\": \\\"train-crm-smolvla-3suite-v1\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.8873}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 20937
+          },
+          "id": "event-004954"
+        },
+        {
+          "source_line": 4955,
+          "timestamp": "2026-05-23T04:49:04.789032+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-crm-spatial-seed42-v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:13:28.149Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:49:03.633Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (crm_obs_only mode, obs_dim=960) improves success rate over VLA-only baseline on LIBERO-Spatial, validating the conformal refinement approach\\\", \\\"parent\\\": \\\"train-crm-smolvla-3suite-v1\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.9723}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 22943
+          },
+          "id": "event-004955"
+        },
+        {
+          "source_line": 4956,
+          "timestamp": "2026-05-23T04:49:07.699877+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-long-seed0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T15:08:30.499Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:49:06.373Z\\\", \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T15:08:47.325025+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T16:19:41.680623+00:00\\\"}]}, \\\"notes\\\": \\\"Phantom entry — never submitted (PREPARING, no spec). Cron false alarm.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T16:19:09.641Z\\\"}}, \\\"impact_analysis\\\": {\\\"change_type\\\": \\\"experiment\\\", \\\"change_id\\\": \\\"eval-smolvla-long-seed0\\\", \\\"affected_decisions\\\": [], \\\"cascade_decisions\\\": [], \\\"affected_claims\\\": [], \\\"affected_figures\\\": [], \\\"recommendations\\\": [\\\"No downstream impact detected\\\"]}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.8879}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 24950
+          },
+          "id": "event-004956"
+        },
+        {
+          "source_line": 4957,
+          "timestamp": "2026-05-23T04:49:10.661148+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-long-seed1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T15:08:55.328Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:49:09.330Z\\\", \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T15:09:10.198277+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T16:18:48.741538+00:00\\\"}]}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T16:18:07.280Z\\\"}, \\\"notes\\\": \\\"Phantom entry — never submitted (PREPARING, no spec). Cron false alarm. No action needed.\\\"}, \\\"impact_analysis\\\": {\\\"change_type\\\": \\\"experiment\\\", \\\"change_id\\\": \\\"eval-smolvla-long-seed1\\\", \\\"affected_decisions\\\": [], \\\"cascade_decisions\\\": [], \\\"affected_claims\\\": [], \\\"affected_figures\\\": [], \\\"recommendations\\\": [\\\"No downstream impact detected\\\"]}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.9425}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 27458
+          },
+          "id": "event-004957"
+        },
+        {
+          "source_line": 4958,
+          "timestamp": "2026-05-23T04:49:13.722481+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-long-seed2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T15:07:26.187Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:49:12.347Z\\\", \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T15:07:55.673770+00:00\\\"}, {\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T16:19:25.936928+00:00\\\"}]}, \\\"notes\\\": \\\"Phantom entry — never submitted (PREPARING, no spec). Cron false alarm.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T16:18:58.254Z\\\"}}, \\\"impact_analysis\\\": {\\\"change_type\\\": \\\"experiment\\\", \\\"change_id\\\": \\\"eval-smolvla-long-seed2\\\", \\\"affected_decisions\\\": [], \\\"cascade_decisions\\\": [], \\\"affected_claims\\\": [], \\\"affected_figures\\\": [], \\\"recommendations\\\": [\\\"No downstream impact detected\\\"]}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.0203}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 29515
+          },
+          "id": "event-004958"
+        },
+        {
+          "source_line": 4959,
+          "timestamp": "2026-05-23T04:49:16.609211+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"precompute-smolvla-goal-shard0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:36:45.138Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:49:15.324Z\\\", \\\"hypothesis\\\": \\\"Precompute SmolVLA obs features (960D) + K=2 action samples on LIBERO-Goal for CRM training (Plan A config). Shard 0/3 on cuda:3 of bjb2-28827, output to crm_cache_v5/goal/partial_s0_*.pt.\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.8772}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 31447
+          },
+          "id": "event-004959"
+        },
+        {
+          "source_line": 4960,
+          "timestamp": "2026-05-23T04:49:25.096854+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"precompute-smolvla-goal-shard1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:37:03.110Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:49:22.317Z\\\", \\\"hypothesis\\\": \\\"Precompute SmolVLA obs features (960D) + K=2 action samples on LIBERO-Goal for CRM training (Plan A config). Shard 1/3 on cuda:4 of bjb2-28827, output to crm_cache_v5/goal/partial_s1_*.pt.\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.4633}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 39015
+          },
+          "id": "event-004960"
+        },
+        {
+          "source_line": 4961,
+          "timestamp": "2026-05-23T04:49:30.165019+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"precompute-smolvla-goal-shard2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T06:37:16.074Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:49:28.279Z\\\", \\\"hypothesis\\\": \\\"Precompute SmolVLA obs features (960D) + K=2 action samples on LIBERO-Goal for CRM training (Plan A config). Shard 2/3 on cuda:5 of bjb2-28827, output to crm_cache_v5/goal/partial_s2_*.pt.\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.0662}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 43179
+          },
+          "id": "event-004961"
+        },
+        {
+          "source_line": 4962,
+          "timestamp": "2026-05-23T04:49:33.680593+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"precompute-pi05-features-object\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-21T12:16:27.403Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:49:31.797Z\\\", \\\"hypothesis\\\": \\\"Precompute π0.5 2048D obs_features + K=10 action samples from LIBERO demos for CRM training. Required step for Plan A (CRM with π0.5 features).\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.4855}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 45741
+          },
+          "id": "event-004962"
+        },
+        {
+          "source_line": 4963,
+          "timestamp": "2026-05-23T04:49:36.956204+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-obs-only-object-norm02-seed55\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T21:54:53.558Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:49:35.783Z\\\", \\\"hypothesis\\\": \\\"CRM obs_only (ε=0.2) K=10 on LIBERO-Object seed55. Norm sweep seed balance.\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.2756}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 48011
+          },
+          "id": "event-004963"
+        },
+        {
+          "source_line": 4964,
+          "timestamp": "2026-05-23T04:49:39.717935+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-openvla-object-baseline-seed42-r2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T23:07:05.761Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:49:38.570Z\\\", \\\"hypothesis\\\": \\\"OpenVLA-7B fine-tuned on LIBERO-Object baseline eval (seed42). 复现官方 88.4% SR，获取 per-task breakdown 与 SmolVLA 对比。如果 SR 符合预期，验证 CRM 路线的 base policy 基线可用性。重试：前次 timeout (6h不够，需~10h)。\\\", \\\"parent\\\": \\\"eval-openvla-object-baseline-seed42\\\", \\\"spec\\\": \\\"placeholder\\\", \\\"conclusion\\\": \\\"killed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.7437}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 50269
+          },
+          "id": "event-004964"
+        },
+        {
+          "source_line": 4965,
+          "timestamp": "2026-05-23T04:49:51.298243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-tau035-spatial-s42",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004965"
+        },
+        {
+          "source_line": 4966,
+          "timestamp": "2026-05-23T04:49:51.399084+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-tau025-spatial-s42",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004966"
+        },
+        {
+          "source_line": 4967,
+          "timestamp": "2026-05-23T04:49:51.449770+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-adaptive-tau015-spatial-s42",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004967"
+        },
+        {
+          "source_line": 4968,
+          "timestamp": "2026-05-23T04:49:51.751905+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-norm02-spatial-s42",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004968"
+        },
+        {
+          "source_line": 4969,
+          "timestamp": "2026-05-23T04:49:52.642486+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-supp-obj-adapt-s42",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004969"
+        },
+        {
+          "source_line": 4970,
+          "timestamp": "2026-05-23T04:49:53.993759+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-crm-goal-seed44-v1",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004970"
+        },
+        {
+          "source_line": 4971,
+          "timestamp": "2026-05-23T04:49:54.937251+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-crm-goal-seed43-v1",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004971"
+        },
+        {
+          "source_line": 4972,
+          "timestamp": "2026-05-23T04:49:55.920250+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-crm-goal-seed42-v1",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004972"
+        },
+        {
+          "source_line": 4973,
+          "timestamp": "2026-05-23T04:49:56.862525+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-crm-spatial-seed44-v1",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004973"
+        },
+        {
+          "source_line": 4974,
+          "timestamp": "2026-05-23T04:49:57.750887+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-crm-spatial-seed43-v1",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004974"
+        },
+        {
+          "source_line": 4975,
+          "timestamp": "2026-05-23T04:49:58.809198+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-crm-spatial-seed42-v1",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004975"
+        },
+        {
+          "source_line": 4976,
+          "timestamp": "2026-05-23T04:49:59.745419+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-long-seed0",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004976"
+        },
+        {
+          "source_line": 4977,
+          "timestamp": "2026-05-23T04:50:00.213503+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-long-seed1",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004977"
+        },
+        {
+          "source_line": 4978,
+          "timestamp": "2026-05-23T04:50:01.180700+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-tau035-spatial-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T03:38:32.825Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:49:53.623Z\\\", \\\"hypothesis\\\": \\\"Adaptive conformal CRM with tau=0.35 adjusts correction trigger sensitivity, finding optimal balance between correction frequency and accuracy on LIBERO-spatial\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-23T04:49:53.623Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.4431}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 9882
+          },
+          "id": "event-004978"
+        },
+        {
+          "source_line": 4979,
+          "timestamp": "2026-05-23T04:50:01.181143+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-long-seed2",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004979"
+        },
+        {
+          "source_line": 4980,
+          "timestamp": "2026-05-23T04:50:02.176511+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-goal-shard0",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004980"
+        },
+        {
+          "source_line": 4981,
+          "timestamp": "2026-05-23T04:50:03.143991+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-goal-shard1",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004981"
+        },
+        {
+          "source_line": 4982,
+          "timestamp": "2026-05-23T04:50:04.049464+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-goal-shard2",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004982"
+        },
+        {
+          "source_line": 4983,
+          "timestamp": "2026-05-23T04:50:05.026438+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-pi05-features-object",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004983"
+        },
+        {
+          "source_line": 4984,
+          "timestamp": "2026-05-23T04:50:06.001416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm02-seed55",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004984"
+        },
+        {
+          "source_line": 4985,
+          "timestamp": "2026-05-23T04:50:06.611000+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-openvla-object-baseline-seed42-r2",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-004985"
+        },
+        {
+          "source_line": 4986,
+          "timestamp": "2026-05-23T04:50:09.665379+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-tau025-spatial-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T03:38:28.948Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:50:03.969Z\\\", \\\"hypothesis\\\": \\\"Adaptive conformal CRM with tau=0.25 adjusts correction trigger sensitivity, finding optimal balance between correction frequency and accuracy on LIBERO-spatial\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-23T04:50:03.969Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.8712}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 18266
+          },
+          "id": "event-004986"
+        },
+        {
+          "source_line": 4987,
+          "timestamp": "2026-05-23T04:50:15.139835+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-tau015-spatial-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T03:38:26.202Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:50:11.299Z\\\", \\\"hypothesis\\\": \\\"Adaptive conformal CRM with tau=0.15 adjusts correction trigger sensitivity, finding optimal balance between correction frequency and accuracy on LIBERO-spatial\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-23T04:50:11.299Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.4322}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 23690
+          },
+          "id": "event-004987"
+        },
+        {
+          "source_line": 4988,
+          "timestamp": "2026-05-23T04:50:20.865901+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-norm02-spatial-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T03:38:23.399Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:50:16.948Z\\\", \\\"hypothesis\\\": \\\"Reducing max_correction_norm to 0.2 prevents CRM overcorrection and improves SR vs unconstrained CRM on LIBERO-spatial\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-23T04:50:16.948Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.7226}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 29113
+          },
+          "id": "event-004988"
+        },
+        {
+          "source_line": 4989,
+          "timestamp": "2026-05-23T04:50:26.852472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-obj-adapt-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T03:36:39.492Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:50:22.494Z\\\", \\\"hypothesis\\\": \\\"Adaptive conformal CRM (K=2, tau=0.074855) generalizes from Spatial (+2.5pp) to Object suite\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-23T04:25:43.835Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T04:26:05.066667+00:00\\\"}]}, \\\"completed_at\\\": \\\"2026-05-23T04:49:18.156Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.966}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 34209
+          },
+          "id": "event-004989"
+        },
+        {
+          "source_line": 4990,
+          "timestamp": "2026-05-23T04:50:36.373659+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-crm-goal-seed44-v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:13:54.489Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:50:29.455Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (crm_obs_only mode, obs_dim=960) improves success rate over VLA-only baseline on LIBERO-Goal, validating the conformal refinement approach\\\", \\\"parent\\\": \\\"train-crm-smolvla-3suite-v1\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-23T04:50:29.455Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.4975}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 42379
+          },
+          "id": "event-004990"
+        },
+        {
+          "source_line": 4991,
+          "timestamp": "2026-05-23T04:50:44.137232+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 conclusion=killed 设置成功。最后一步：ALLOCATED → DONE。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a"
+          },
+          "id": "event-004991"
+        }
+      ]
+    },
+    {
+      "number": 349,
+      "messages": [
+        {
+          "source_line": 4992,
+          "timestamp": "2026-05-23T04:50:44.621230+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] [URGENT 修正] **eval-supp-obj-reconvla-s42 也是活跃实验，不要 CANCEL**\n\n纠正上一条 urgent 指令的错误：`eval-supp-obj-reconvla-s42`（无 r2 后缀）PID 523250 仍在 bjb2-28827 cuda:1 运行。Diag Worker 同样误标 failed。\n\n**修正后的正确操作：**\n- `eval-supp-goal-crm005-s42` → 改回 RUNNING（PID 524322, cuda:2）\n- `eval-supp-obj-reconvla-s42` → 改回 RUNNING（PID 523250, cuda:1）\n- 只有 `eval-supp-obj-adapt-s42`（无 r2）是真正未部署的旧条目 → CANCELLED\n\n三个都 delete_cron 停止旧 cron 回调。\n**不要在 bjb2-28827 cuda:1 和 cuda:2 上启动新进程。**"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "source": "director"
+          },
+          "id": "event-004992"
+        },
+        {
+          "source_line": 4993,
+          "timestamp": "2026-05-23T04:51:16.330426+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'eval-supp-goal-crm005-s42'}",
+              "project": "acr-vla-conformal-refinement",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-004993"
+        },
+        {
+          "source_line": 4994,
+          "timestamp": "2026-05-23T04:51:16.883445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'eval-supp-obj-reconvla-s42'}",
+              "project": "acr-vla-conformal-refinement",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-004994"
+        },
+        {
+          "source_line": 4995,
+          "timestamp": "2026-05-23T04:51:18.087935+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7042}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1757
+          },
+          "id": "event-004995"
+        },
+        {
+          "source_line": 4996,
+          "timestamp": "2026-05-23T04:51:18.088454+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'eval-supp-obj-adapt-s42'}",
+              "project": "acr-vla-conformal-refinement",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-004996"
+        },
+        {
+          "source_line": 4997,
+          "timestamp": "2026-05-23T04:51:18.440059+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__reconcile_crons",
+              "max_results": "1"
+            }
+          },
+          "id": "event-004997"
+        },
+        {
+          "source_line": 4998,
+          "timestamp": "2026-05-23T04:51:19.846950+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7928}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 2963
+          },
+          "id": "event-004998"
+        },
+        {
+          "source_line": 4999,
+          "timestamp": "2026-05-23T04:51:22.035853+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.1702}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 3947
+          },
+          "id": "event-004999"
+        },
+        {
+          "source_line": 5000,
+          "timestamp": "2026-05-23T04:51:22.036366+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "elapsed_ms": 3596
+          },
+          "id": "event-005000"
+        },
+        {
+          "source_line": 5001,
+          "timestamp": "2026-05-23T04:51:34.940480+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'RUNNING'}",
+              "project": "acr-vla-conformal-refinement",
+              "fields": "['status', 'conclusion', 'failure_reason', 'spec']"
+            }
+          },
+          "id": "event-005001"
+        },
+        {
+          "source_line": 5002,
+          "timestamp": "2026-05-23T04:51:35.644455+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__poll_cron",
+              "max_results": "2"
+            }
+          },
+          "id": "event-005002"
+        },
+        {
+          "source_line": 5003,
+          "timestamp": "2026-05-23T04:51:36.650141+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval-object-vla-only-wrapper-s44-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"evaluate.py --mode vla_only --benchmark object --seed 44\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": \\\"cuda:5\\\", \\\"pid\\\": 521785, \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-object-vla-only-wrapper-s44-r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T04:12:06.236Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/acr-vla-conformal-refinement\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"smolvla\\\", \\\"seed\\\": 44, \\\"eval_data\\\": \\\"LIBERO-Object\\\"}}, \\\"eval-object-vla-only-wrapper-s43-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"evaluate.py --mode vla_only --benchmark object --seed 43\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": \\\"cuda:4\\\", \\\"pid\\\": 520493, \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-object-vla-only-wrapper-s43-r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T04:11:55.548Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/acr-vla-conformal-refinement\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"smolvla\\\", \\\"seed\\\": 43, \\\"eval_data\\\": \\\"LIBERO-Object\\\"}}, \\\"eval-object-vla-only-wrapper-s42-r2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"evaluate.py --mode vla_only --benchmark object --seed 42\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 519749, \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-object-vla-only-wrapper-s42-r2.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T04:11:36.448Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/acr-vla-conformal-refinement\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"smolvla\\\", \\\"seed\\\": 42, \\\"eval_data\\\": \\\"LIBERO-Object\\\"}}, \\\"eval-supp-goal-crm005-s42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"spec\\\": {\\\"command\\\": \\\"evaluate.py --mode crm_obs_only --ma\n…[truncated 6710 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1709
+          },
+          "id": "event-005003"
+        },
+        {
+          "source_line": 5004,
+          "timestamp": "2026-05-23T04:51:36.650569+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "elapsed_ms": 1006
+          },
+          "id": "event-005004"
+        },
+        {
+          "source_line": 5005,
+          "timestamp": "2026-05-23T04:51:51.612455+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:CronDelete,CronList",
+              "max_results": "2"
+            }
+          },
+          "id": "event-005005"
+        },
+        {
+          "source_line": 5006,
+          "timestamp": "2026-05-23T04:51:51.612878+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-005006"
+        },
+        {
+          "source_line": 5007,
+          "timestamp": "2026-05-23T04:51:53.050498+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-supp-goal-crm005-s42",
+              "field": "conclusion",
+              "value": "",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005007"
+        },
+        {
+          "source_line": 5008,
+          "timestamp": "2026-05-23T04:51:53.786514+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-supp-obj-reconvla-s42",
+              "field": "conclusion",
+              "value": "",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005008"
+        },
+        {
+          "source_line": 5009,
+          "timestamp": "2026-05-23T04:51:56.073457+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion ''. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.0027}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 3022
+          },
+          "id": "event-005009"
+        },
+        {
+          "source_line": 5010,
+          "timestamp": "2026-05-23T04:51:58.986476+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion ''. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.9139}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 5199
+          },
+          "id": "event-005010"
+        },
+        {
+          "source_line": 5011,
+          "timestamp": "2026-05-23T04:52:21.828631+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "cron delete register",
+              "max_results": "5"
+            }
+          },
+          "id": "event-005011"
+        },
+        {
+          "source_line": 5012,
+          "timestamp": "2026-05-23T04:52:21.879367+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-005012"
+        },
+        {
+          "source_line": 5013,
+          "timestamp": "2026-05-23T04:52:22.131435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-supp-goal-crm005-s42",
+              "field": "failure_reason",
+              "value": "STALE — cron误判，进程PID 524322仍在运行，已清理旧cron",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005013"
+        },
+        {
+          "source_line": 5014,
+          "timestamp": "2026-05-23T04:52:22.835656+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-supp-obj-reconvla-s42",
+              "field": "failure_reason",
+              "value": "STALE — cron误判，进程PID 523238仍在运行，已清理旧cron",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005014"
+        },
+        {
+          "source_line": 5015,
+          "timestamp": "2026-05-23T04:52:24.942895+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-goal-crm005-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T04:12:29.401Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:52:23.789Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"evaluate.py --mode crm_obs_only --max_correction_norm 0.05 --benchmark goal\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": 524322, \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-supp-goal-crm005-s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T04:12:27.091Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/acr-vla-conformal-refinement\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"smolvla\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Goal\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-23T04:27:53.823Z\\\"}, \\\"failure_reason\\\": \\\"STALE — cron误判，进程PID 524322仍在运行，已清理旧cron\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T04:28:40.701334+00:00\\\"}]}, \\\"hypothesis\\\": \\\"CRM norm=0.05 on Goal suite extends cross-suite validation (tested on Spatial and Object) to a third benchmark\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.7857}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2811
+          },
+          "id": "event-005015"
+        },
+        {
+          "source_line": 5016,
+          "timestamp": "2026-05-23T04:52:27.760877+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-obj-reconvla-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T04:12:22.236Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:52:26.604Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"evaluate.py --mode reconvla --benchmark object\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 523238, \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-supp-obj-reconvla-s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T04:12:20.187Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/acr-vla-conformal-refinement\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"smolvla\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-23T04:26:37.492Z\\\"}, \\\"failure_reason\\\": \\\"STALE — cron误判，进程PID 523238仍在运行，已清理旧cron\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T04:27:02.717771+00:00\\\"}]}, \\\"hypothesis\\\": \\\"Reconvla K=10 (argmin baseline) on Object suite establishes cross-suite comparison with Spatial (79%); validates CRM-based methods generalize\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.8388}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 4925
+          },
+          "id": "event-005016"
+        },
+        {
+          "source_line": 5017,
+          "timestamp": "2026-05-23T04:52:35.892591+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-005017"
+        },
+        {
+          "source_line": 5018,
+          "timestamp": "2026-05-23T04:53:23.809755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 11, \\\"results\\\": [{\\\"exp_id\\\": \\\"eval-supp-crm-norm02-spatial-s42-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=664402)\\\"]}, {\\\"exp_id\\\": \\\"eval-supp-adapt-tau015-spatial-s42-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=664686)\\\"]}, {\\\"exp_id\\\": \\\"eval-supp-adapt-tau025-spatial-s42-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=665520)\\\"]}, {\\\"exp_id\\\": \\\"eval-supp-adapt-tau035-spatial-s42-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=667018)\\\"]}, {\\\"exp_id\\\": \\\"eval-supp-obj-crm005-s42-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=669419)\\\"]}, {\\\"exp_id\\\": \\\"eval-supp-obj-adapt-s42-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=522259)\\\"]}, {\\\"exp_id\\\": \\\"eval-supp-obj-reconvla-s42\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=523238)\\\"]}, {\\\"exp_id\\\": \\\"eval-supp-goal-crm005-s42\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=524322)\\\"]}, {\\\"exp_id\\\": \\\"eval-object-vla-only-wrapper-s42-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=519749)\\\"]}, {\\\"exp_id\\\": \\\"eval-object-vla-only-wrapper-s43-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=520493)\\\"]}, {\\\"exp_id\\\": \\\"eval-object-vla-only-wrapper-s44-r2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=521785)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 47917
+          },
+          "id": "event-005018"
+        },
+        {
+          "source_line": 5019,
+          "timestamp": "2026-05-23T04:53:47.811175+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005019"
+        },
+        {
+          "source_line": 5020,
+          "timestamp": "2026-05-23T04:53:49.466672+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/skills/resource-saturation.skill.md",
+              "limit": "30"
+            }
+          },
+          "id": "event-005020"
+        },
+        {
+          "source_line": 5021,
+          "timestamp": "2026-05-23T04:53:49.618761+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [], \\\"actually_running_gpus\\\": [{\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"eval-supp-crm-norm02-spatial-s42-r2\\\"}, {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"exp_id\\\": \\\"eval-supp-adapt-tau015-spatial-s42-r2\\\"}, {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu_id\\\": \\\"cuda:2\\\", \\\"exp_id\\\": \\\"eval-supp-adapt-tau025-spatial-s42-r2\\\"}, {\\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu_id\\\": \\\"cuda:3\\\", \\\"exp_id\\\": \\\"eval-object-vla-only-wrapper-s42-r2\\\"}, {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu_id\\\": \\\"cuda:4\\\", \\\"exp_id\\\": \\\"eval-supp-adapt-tau035-spatial-s42-r2\\\"}, {\\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu_id\\\": \\\"cuda:4\\\", \\\"exp_id\\\": \\\"eval-object-vla-only-wrapper-s43-r2\\\"}, {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu_id\\\": \\\"cuda:3\\\", \\\"exp_id\\\": \\\"train-crm-unified-4suite-r6\\\"}, {\\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu_id\\\": \\\"cuda:5\\\", \\\"exp_id\\\": \\\"eval-object-vla-only-wrapper-s44-r2\\\"}, {\\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu_id\\\": \\\"cuda:5\\\", \\\"exp_id\\\": \\\"eval-supp-obj-crm005-s42-r2\\\"}, {\\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"eval-supp-obj-adapt-s42-r2\\\"}, {\\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"exp_id\\\": \\\"eval-supp-obj-reconvla-s42\\\"}, {\\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu_id\\\": \\\"cuda:2\\\", \\\"exp_id\\\": \\\"eval-supp-goal-crm005-s42\\\"}], \\\"allocated_but_idle\\\": [], \\\"registered_but_hw_idle\\\": [], \\\"unregistered_but_hw_active\\\": [], \\\"running_experiments\\\": [{\\\"exp_id\\\": \\\"eval-supp-crm-norm02-spatial-s42-r2\\\", \\\"gpus\\\": [\\\"cuda:0\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"eval-supp-adapt-tau015-spatial-s42-r2\\\", \\\"gpus\\\": [\\\"cuda:1\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"eval-supp-adapt-tau025-spatial-s42-r2\\\", \\\"gpus\\\": [\\\"cuda:2\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"eval-object-vla-only-wrapper-s42-r2\\\", \\\"gpus\\\": [\\\"cuda:3\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"eval-supp-adapt-tau035-spatial-s42-r2\\\", \\\"gpus\\\": [\\\"cuda:4\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"eval-object-vla-only-\n…[truncated 799 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "elapsed_ms": 1807
+          },
+          "id": "event-005021"
+        },
+        {
+          "source_line": 5022,
+          "timestamp": "2026-05-23T04:53:49.619133+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/.claude/sessions/agent_bbd03d76."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "Read",
+            "elapsed_ms": 152
+          },
+          "id": "event-005022"
+        },
+        {
+          "source_line": 5023,
+          "timestamp": "2026-05-23T04:54:06.893551+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-crm-goal-seed43-v1",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005023"
+        },
+        {
+          "source_line": 5024,
+          "timestamp": "2026-05-23T04:54:07.847570+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-crm-goal-seed42-v1",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005024"
+        },
+        {
+          "source_line": 5025,
+          "timestamp": "2026-05-23T04:54:08.801424+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-crm-spatial-seed44-v1",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005025"
+        },
+        {
+          "source_line": 5026,
+          "timestamp": "2026-05-23T04:54:09.755428+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-crm-spatial-seed43-v1",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005026"
+        },
+        {
+          "source_line": 5027,
+          "timestamp": "2026-05-23T04:54:10.608595+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-crm-spatial-seed42-v1",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005027"
+        },
+        {
+          "source_line": 5028,
+          "timestamp": "2026-05-23T04:54:11.612360+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-long-seed0",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005028"
+        },
+        {
+          "source_line": 5029,
+          "timestamp": "2026-05-23T04:54:12.114322+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-long-seed1",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005029"
+        },
+        {
+          "source_line": 5030,
+          "timestamp": "2026-05-23T04:54:12.567755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-crm-goal-seed43-v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:13:50.015Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:54:08.535Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (crm_obs_only mode, obs_dim=960) improves success rate over VLA-only baseline on LIBERO-Goal, validating the conformal refinement approach\\\", \\\"parent\\\": \\\"train-crm-smolvla-3suite-v1\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-23T04:50:38.713Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.5513}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 5674
+          },
+          "id": "event-005030"
+        },
+        {
+          "source_line": 5031,
+          "timestamp": "2026-05-23T04:54:13.020055+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-smolvla-long-seed2",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005031"
+        },
+        {
+          "source_line": 5032,
+          "timestamp": "2026-05-23T04:54:13.973426+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-goal-shard0",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005032"
+        },
+        {
+          "source_line": 5033,
+          "timestamp": "2026-05-23T04:54:14.927346+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-goal-shard1",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005033"
+        },
+        {
+          "source_line": 5034,
+          "timestamp": "2026-05-23T04:54:15.880891+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-smolvla-goal-shard2",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005034"
+        },
+        {
+          "source_line": 5035,
+          "timestamp": "2026-05-23T04:54:16.834960+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "precompute-pi05-features-object",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005035"
+        },
+        {
+          "source_line": 5036,
+          "timestamp": "2026-05-23T04:54:17.738339+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-obs-only-object-norm02-seed55",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005036"
+        },
+        {
+          "source_line": 5037,
+          "timestamp": "2026-05-23T04:54:18.240410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-crm-goal-seed42-v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:13:45.533Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:54:14.038Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (crm_obs_only mode, obs_dim=960) improves success rate over VLA-only baseline on LIBERO-Goal, validating the conformal refinement approach\\\", \\\"parent\\\": \\\"train-crm-smolvla-3suite-v1\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-23T04:54:14.038Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.5258}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 10392
+          },
+          "id": "event-005037"
+        },
+        {
+          "source_line": 5038,
+          "timestamp": "2026-05-23T04:54:18.240854+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-openvla-object-baseline-seed42-r2",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-005038"
+        },
+        {
+          "source_line": 5039,
+          "timestamp": "2026-05-23T04:54:23.538847+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-crm-spatial-seed44-v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:13:37.387Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:54:19.576Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (crm_obs_only mode, obs_dim=960) improves success rate over VLA-only baseline on LIBERO-Spatial, validating the conformal refinement approach\\\", \\\"parent\\\": \\\"train-crm-smolvla-3suite-v1\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-23T04:54:19.576Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.5103}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 14737
+          },
+          "id": "event-005039"
+        },
+        {
+          "source_line": 5040,
+          "timestamp": "2026-05-23T04:54:28.965909+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-smolvla-crm-spatial-seed43-v1\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:13:32.121Z\\\", \\\"updated_at\\\": \\\"2026-05-23T04:54:25.093Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (crm_obs_only mode, obs_dim=960) improves success rate over VLA-only baseline on LIBERO-Spatial, validating the conformal refinement approach\\\", \\\"parent\\\": \\\"train-crm-smolvla-3suite-v1\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-23T04:54:25.093Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.4169}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 19210
+          },
+          "id": "event-005040"
+        }
+      ]
+    }
+  ]
+}

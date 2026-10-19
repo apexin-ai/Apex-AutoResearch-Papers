@@ -1,0 +1,378 @@
+{
+  "schema_version": "1.0",
+  "session_id": "e48cce584218d7eaa2f1",
+  "rounds": [
+    {
+      "number": 586,
+      "messages": [
+        {
+          "source_line": 7921,
+          "timestamp": "2026-05-21T01:22:50.915516+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "nvidia-smi --query-compute-apps=pid,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-007921"
+        },
+        {
+          "source_line": 7922,
+          "timestamp": "2026-05-21T01:22:52.071090+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"622484, 3851 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1155
+          },
+          "id": "event-007922"
+        },
+        {
+          "source_line": 7923,
+          "timestamp": "2026-05-21T01:23:02.772003+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "最后等一轮 bjb1-18228 回填，否则发 CRITICAL 报告",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-007923"
+        },
+        {
+          "source_line": 7924,
+          "timestamp": "2026-05-21T01:23:02.872956+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 01:27:00 (in 237s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 100
+          },
+          "id": "event-007924"
+        },
+        {
+          "source_line": 7925,
+          "timestamp": "2026-05-21T01:23:05.116857+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "仍然 1/4。诊断 worker 只诊断不部署。bjb1-18228 已持续 ~30 分钟 3 GPU 空闲。如果下轮仍无回填将上报。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer"
+          },
+          "id": "event-007925"
+        }
+      ]
+    },
+    {
+      "number": 587,
+      "messages": [
+        {
+          "source_line": 7926,
+          "timestamp": "2026-05-21T01:23:12.237730+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[系统通知 — worker_done:worker_code_pi05-wrapper-adaptation_20260521T010617]:\nWorker worker_code_pi05-wrapper-adaptation_20260521T010617 已完成（status=done），请审查 Agent 的处理结果。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "source": "system"
+          },
+          "id": "event-007926"
+        },
+        {
+          "source_line": 7927,
+          "timestamp": "2026-05-21T01:23:20.491425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "ls /root/acr-vla-conformal-refinement/src/evaluate_pi05.py"
+            }
+          },
+          "id": "event-007927"
+        },
+        {
+          "source_line": 7928,
+          "timestamp": "2026-05-21T01:23:21.448574+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/acr-vla-conformal-refinement/src/evaluate_pi05.py': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 957
+          },
+          "id": "event-007928"
+        },
+        {
+          "source_line": 7929,
+          "timestamp": "2026-05-21T01:23:21.501419+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "nvidia-smi --query-compute-apps=pid,used_memory --format=csv,noheader"
+            }
+          },
+          "id": "event-007929"
+        },
+        {
+          "source_line": 7930,
+          "timestamp": "2026-05-21T01:23:21.855327+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader"
+            }
+          },
+          "id": "event-007930"
+        },
+        {
+          "source_line": 7931,
+          "timestamp": "2026-05-21T01:23:21.905995+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 404
+          },
+          "id": "event-007931"
+        },
+        {
+          "source_line": 7932,
+          "timestamp": "2026-05-21T01:23:22.711869+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 0 %, 1 MiB\\\\n1, 35 %, 3870 MiB\\\\n2, 0 %, 1 MiB\\\\n3, 0 %, 1 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.84}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 856
+          },
+          "id": "event-007932"
+        },
+        {
+          "source_line": 7933,
+          "timestamp": "2026-05-21T01:23:41.637007+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "tool_args": {
+              "text": "[severity: warning] 审查报告 #43 — GPU 利用率回落至 13/17 (76%)，持续 30+ 分钟\n\n## 当前 GPU 状态\n\n| 服务器 | 活跃/总数 | 空闲时长 | 原因 |\n|--------|----------|---------|------|\n| bjb2-40593 | 0/1 | ~25 min | π0.5 环境搭建完成，模型已下载，但 evaluate_pi05.py 未同步到服务器 |\n| bjb1-18228 | 1/4 | ~35 min | norm005-seed58/norm01-seed57/norm003-seed59 完成后未回填。3 个 diagnose worker 已运行但均未部署新实验 |\n| bjb1-32546 | 6/6 | — | ✓ 满载（双实验） |\n| bjb2-28827 | 6/6 | — | ✓ 满载 |\n\n## 建议\n\n1. **bjb1-18228**: 立即部署 3 个 norm sweep 实验填满 cuda:0/2/3（ε=0.03/0.05/0.1 均有空间加种子）\n2. **bjb2-40593**: 需 sync_code 将 π0.5 评估代码推送到服务器，然后启动 baseline eval。代码已在本地 (`worker_code_pi05-wrapper-adaptation`) 但 `/root/acr-vla-conformal-refinement/src/evaluate_pi05.py` 在服务器上不存在。\n\n## 模式观察\n\n反复出现的 GPU 空窗模式：实验完成 → cron 触发 on_failed → Agent 派 diagnose worker → diagnose 只诊断不部署 → GPU 空闲 30+ 分钟。建议 Agent 在确认实验完成（JSON 存在）后直接派 deploy worker 而非 diagnose worker。",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-007933"
+        },
+        {
+          "source_line": 7934,
+          "timestamp": "2026-05-21T01:23:45.654341+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_5ee1fd6fcd3e57fe38e03d67d16d0bf4:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "mcp__agent-ml-research__reviewer_post_to_director",
+            "elapsed_ms": 4017
+          },
+          "id": "event-007934"
+        },
+        {
+          "source_line": 7935,
+          "timestamp": "2026-05-21T01:23:50.332927+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ScheduleWakeup"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "ScheduleWakeup",
+            "tool_args": {
+              "delaySeconds": "270",
+              "reason": "等待 Director 响应 #43 报告，监控 bjb1-18228 回填和 π0.5 代码同步",
+              "prompt": "Continue from where you left off."
+            }
+          },
+          "id": "event-007935"
+        },
+        {
+          "source_line": 7936,
+          "timestamp": "2026-05-21T01:23:50.333393+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Next wakeup scheduled for 01:28:00 (in 250s)."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "tool": "ScheduleWakeup",
+            "elapsed_ms": 0
+          },
+          "id": "event-007936"
+        },
+        {
+          "source_line": 7937,
+          "timestamp": "2026-05-21T01:23:52.579878+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告 #43 已发布。核心问题：diagnose-but-not-deploy 模式导致 GPU 空窗反复出现。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer"
+          },
+          "id": "event-007937"
+        }
+      ]
+    },
+    {
+      "number": 588,
+      "messages": [
+        {
+          "source_line": 7938,
+          "timestamp": "2026-05-21T01:23:53.141526+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WRITE HANDOFF] 请立即写你的 handoff。\n\n**格式硬约束**:\n- 整条回复**只能**是 <handoff>...</handoff> 标签包裹\n- 禁止在标签外写任何寒暄 / 说明 / 确认（\"好的\"/\"我开始写\"/\"写完了\"等）\n\n**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:\n\n### 1. 🔴 硬约束 / 红线\n  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。\n  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。\n  下一个\"你\"第一眼看到的就是这里，写错了会被 Director CRITICAL。\n\n### 2. 🖥️ 基础设施快照\n  - 服务器名 + 工作目录 + Python 路径 + conda env\n  - 模型路径 / 数据集路径 / wandb config / HF cache\n  - 活跃进程：PID + tmux session + cron 任务 ID\n  写一次就稳定，下一个\"你\"不用再 SSH 探查。\n\n### 3. 📊 当前状态\n  - 你刚做完什么 / 正在做什么\n  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要\n  - 等待中的 Worker 回调 / Cron / Director 决策\n\n### 4. 📋 待办（条件触发式）\n  格式 \"条件 X 满足 → 动作 Y\"。例如:\n  - \"Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交\"\n  - \"pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result\"\n\n### 5. 🎯 战略上下文\n  - 项目核心结论 / 决策链（D001..）\n  - 下一个\"你\"最容易判断错的事 / 容易踩的坑\n\n**写作原则**：\n- 第 1 节必须是项目特定的（不是通用 L1 红线）\n- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查\n- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff\n\n示例格式:\n<handoff>\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）\n- submit_training_job 不支持 shell builtin（source/conda activate 全不行）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases\n- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）\n- 模型：/root/autodl-tmp/qwen35_4b_direct\n- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)\n\n### 3. 📊 当前状态\n我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。\nregistry: pilot_011 RUNNING；其他全 DONE。\n\n### 4. 📋 待办\n- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算\n- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪\n\n### 5. 🎯 战略上下文\nFalcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。\n易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-007938"
+        },
+        {
+          "source_line": 7939,
+          "timestamp": "2026-05-21T01:24:52.689439+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "<handoff>\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb2-40593=cuda:0; bjb1-18228=cuda:0-3; bjb1-32546=cuda:0-5; bjb2-28827=cuda:0-5\n- Cron 系统存在 tmux exit 误报 bug（30+ 次），实验标 \"failed\" 前**必须 SSH 验证 JSON 是否存在**，不可信 cron conclusion\n- Registry 中 conclusion=\"failed\" 的实验可能实际成功（norm01-seed48=18%, norm02-seed43-r3=16% 等已确认被误标），核实前不引用\n- π0.5 实验线在 bjb2-40593 上，该服务器只有 1 块 GPU，不可与 norm sweep 争抢\n\n### 2. 🖥️ 基础设施快照\n**服务器配置：**\n- bjb2-40593: 1×24GB GPU, `/root/acr-vla-conformal-refinement`, python=/root/miniconda3/bin/python\n- bjb1-18228: 4×24GB GPU, `/root/acr-vla-conformal-refinement`, python=python（系统）\n- bjb1-32546: 6×24GB GPU, `/root/acr-vla-conformal-refinement`, python symlink `/usr/local/bin/python` → miniconda3（修复于 00:30 UTC）\n- bjb2-28827: 6×24GB GPU, `/root/acr-vla-conformal-refinement`, python3=/root/miniconda3/bin/python3\n\n**关键路径：**\n- CRM checkpoint: `/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt` (所有服务器)\n- SmolVLA: `/root/autodl-tmp/models/smolvla_libero/` (所有服务器)\n- π0.5 模型: `/root/autodl-tmp/models/pi05_libero_finetuned/` (仅 bjb2-40593)\n- 日志: `/root/autodl-tmp/logs/` (bjb1-32546, bjb2-28827) 或项目内 `logs/` (bjb1-18228)\n- JSON 结果: `/root/acr-vla-conformal-refinement/logs/eval_*.json`\n\n**活跃进程 (截至 01:25 UTC)：**\n- bjb2-40593: 空（π0.5 待评估代码同步）\n- bjb1-18228: 1 进程 (PID 622484, norm005-seed65, cuda:1)\n- bjb1-32546: 9 进程（4 GPU 双实验：seed51-r3/seed64@cuda:0, seed52-r3/seed65@cuda:1, seed62-r2/seed64@cuda:3, seed63-r2/seed65@cuda:4; seed64@cuda:5）\n- bjb2-28827: 6 进程（seed71-75 on cuda:0-4, old PID 890017 on cuda:5）\n\n### 3. 📊 当前状态\n**刚做完：** 发了报告 #43（GPU 回落至 13/17，bjb1-18228 3 GPU 空闲 35 min，bjb2-40593 π0.5 代码未同步）。本 session 共发 15 份报告 (#29-#43)。\n\n**RUNNING 实验 (~18-20)：** 全部是 norm sweep (ε=0.03/0.05/0.1)。seed 范围 51-75。分布在 bjb1-32546 (9 进程)、bjb2-28827 (6 进程)、bjb1-18228 (1 进程)。\n\n**Norm sweep 已验证累计结果：**\n- ε=0.03: 15.1% ± 1.2% (n=7, seeds 42-46,56,59)\n- ε=0.05: 14.0% ± 1.4% (n=10, seeds 42-45,47-50,55,58)\n- ε=0.1: 15.4% ± 3.0% (n=9, seeds 42-44,50-54,57) — 方差异常高\n- ε=0.2: 17.2% ± 1.8% (n=12) — LOCKED\n\n**等待中：**\n- π0.5 代码同步到 bjb2-40593 + baseline eval 启动\n- bjb1-18228 GPU 0/2/3 回填\n- bjb1-32546 双实验批次完成（~1-2h 估计）\n- Director 对报告 #43 (GPU 空窗模式) 的响应\n\n### 4. 📋 待办（条件触发式）\n- bjb1-32546 双实验完成 → 验证 JSON SR 值，更新 norm sweep 累计表，检查是否有 GPU 空闲未回填\n- bjb2-28827 seed71-75 完成 → 同上，特别关注 ε=0.1 方差是否收敛\n- π0.5 baseline eval 启动 → SSH 验证 evaluate_pi05.py 存在、进程在 cuda:0、参数正确\n- π0.5 baseline eval 完成 → 验证 SR，核查 action diversity（flow-matching 应有 diversity，若无则如 OpenVLA 一样是 applicability boundary）\n- Norm sweep 全 ε n≥10 → 编译最终统计表发给 Director，重点标注 ε=0.05 是否仍低于 14.3%、ε=0.1 方差是否可接受\n- 收到章节审查请求 → 先检查 Agent 是否读过 red-section skill，再按模式 B 五维度审\n- Cron on_failed 通知 → 先 SSH 查 JSON 是否存在，存在则忽略（误报概率 >90%）\n\n### 5. 🎯 战略上下文\n**核心叙事：** \"Correction Over Selection\" — CRM correction（修正残差）是提升机制，不是 selection（从 K 候选中选最好的）。Plan A (K=2 + selective CRM) 用 80% 更少 VLA forward 达到同等或更好性能。\n\n**决策链关键节点：**\n- D092: Plan A GO — Object 18.3%±2.1%, Spatial 35.0%±1.0%\n- D093: OpenVLA CRM 0% — CLOSED, applicability boundary\n- D095: π0.5/π 新实验线 — 用户硬要求，验证方法泛化到第二个 VLA backbone\n\n**最容易判断错的事：**\n1. **Plan A ≠ Adaptive K**。Plan A 用 `adaptive_conformal_crm` mode（flatten-L2 30D, trigger_rate=84%），Adaptive K 用 `adaptive_k` mode（per-step-mean-L2 7D×5, trigger_rate=22.6%）。两者 threshold τ=0.074855 相同但 uncertainty scale 差 2.77×。不可混淆。\n2. **Cron \"failed\" ≠ 实验失败**。tmux session 替换触发 EXIT_CODE 文件 → cron 误判。必须 SSH 查 JSON。Agent 因此部署了大量不必要的 r2 rerun，浪费 GPU。\n3. **ε=0.05 是 norm sweep 最低点** (14.0%)，不是 ε=0.03。paper_framing 声称 \"14.3-17.6% all ε\" 需修正下界。\n4. **Random Selection baseline 已完成** — Object ~10.7% ≈ VLA-only 11.0%，Spatial ~29.3% ≈ VLA-only 29.3%。这是 Claim 1 最强证据，确认 CRM scoring（非 sampling diversity）是提升来源。\n5. **GPU 空窗反复出现**：实验完成 → cron 误报 → diagnose worker → 不部署。关注 bjb1-18228 和 bjb2-40593 是否恢复。\n</handoff>"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_718f2ee7260b8649b47875a90c263a2a:reviewer"
+          },
+          "id": "event-007939"
+        }
+      ]
+    }
+  ]
+}

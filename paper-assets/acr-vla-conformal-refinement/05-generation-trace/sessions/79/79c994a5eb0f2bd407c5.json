@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79c994a5eb0f2bd407c5",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze pi05 crm k2 object s42 bjb1 r2",
+  "task_key": "worker_analyze_pi05-crm-k2-object-s42-bjb1-r2_20260526T142112",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_pi05-crm-k2-object-s42-bjb1-r2_20260526T142112_result.json",
+    "occurrence": 1,
+    "bytes": 741,
+    "sha256": "f1f0e5e2bafb8196dcbe6136c9e89cfd6a045245eadf2e7db5d8cb4b0da9bc8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated to DONE. Results:\n\n```\n=== RESULT ===\nexp_id: pi05-crm-k2-object-s42-bjb1-r2\nsuccess_rate: 89.0%\nsuccesses: 178\ntotal_rollouts: 200\nper_task: {\n  alphabet_soup: 100.0% (20/20),\n  cream_cheese: 75.0% (15/20),\n  salad_dressing: 95.0% (19/20),\n  bbq_sauce: 95.0% (19/20),\n  ketchup: 65.0% (13/20),\n  tomato_sauce: 85.0% (17/20),\n  butter: 95.0% (19/20),\n  milk: 95.0% (19/20),\n  chocolate_pudding: 95.0% (19/20),\n  orange_juice: 90.0% (18/20)\n}\nerrors: none\nOOM: none\ntrigger_rate: N/A (always-on mode)\nmean_uncertainty: not logged\nconclusion: success\n=== END ===\n```\n\n与 s44 (88%, 176/200) 高度一致，s42 略高 1pp。ketchup (65%) 和 cream_cheese (75%) 是两个最弱 task。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-pi05-crm-k2-object-s42-bjb1-r2.md"
+}

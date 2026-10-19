@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8ad6aa71d607fcebd21",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "monitor urgent eval status bjb1",
+  "task_key": "worker_monitor_urgent-eval-status-bjb1_20260514T131552",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_monitor_urgent-eval-status-bjb1_20260514T131552_result.json",
+    "occurrence": 1,
+    "bytes": 1415,
+    "sha256": "f6bbaf4cb552dcb5e2e27bd640389bc6cacdab4882f15db0fcec7529cf939d85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 个进程存活，状态汇总：\n\n```\n实验名                      | PID    | 状态    | 运行时长 | 进度          | 当前 task 成功率\neval-acr-spatial-v3 (CORE) | 197057 | RUNNING | 59m      | Task 1/10, rollout 5/10 | 1/5\neval-scalar-unc-spatial-v2 | 197324 | RUNNING | 59m      | Task 1/10, rollout 5/10 | 0/5\neval-obs-only-spatial-v3   | 211961 | RUNNING | 27m      | Task 1/10, 刚加载完     | —\neval-acr-object-v3         | 197803 | RUNNING | 59m      | Task 1/10, rollout 5/10 | 0/5\n```\n\n**GPU 状态：**\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| 0 (acr-spatial) | 20% | 20005 / 24564 MiB |\n| 1 (scalar-unc) | 22% | 1459 / 24564 MiB |\n| 2 (obs-only) | 17% | 1459 / 24564 MiB |\n| 3 (acr-object) | 21% | 1459 / 24564 MiB |\n\n**关键观察：**\n- 所有 4 个实验都还在 **Task 1/10**，进度很早期（每个 benchmark 有 10 个 task × 10 rollouts = 100 次评估）\n- 每个 rollout 最多 300 步，59 分钟才跑到第 1 个 task 的第 5 个 rollout，预估 **总时长约 20 小时**\n- GPU 0 显存占用 20 GB 远高于其他 GPU 的 1.4 GB，可能是 acr_vla 模式加载了更多组件\n- eval-obs-only-spatial-v3 启动较晚（27 min vs 59 min），日志中尚无 rollout 进度输出\n- **eval-acr-spatial-v3 (CORE CLAIM)**：目前 task 1 前 5 个 rollout 中成功 1 次，尚不足以判断趋势"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-urgent-eval-status-bjb1.md"
+}

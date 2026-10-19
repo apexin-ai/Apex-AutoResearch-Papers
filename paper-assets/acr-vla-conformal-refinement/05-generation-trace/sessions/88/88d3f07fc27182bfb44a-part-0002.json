@@ -1,0 +1,1226 @@
+{
+  "schema_version": "1.0",
+  "session_id": "88d3f07fc27182bfb44a",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also check if the `eval-vla-only-object` (seed42) experiment has its openvla counterpart with the correct data, and check for the seed45 discrepancy."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "0315e14c-3d11-48da-87eb-8fe6b73ea438",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DgPXczYAWiMFQJPBgLjX1B",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3381,
+                "cache_read_input_tokens": 39951,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3381
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TWZouFZ8iinmDkN33sNAdN",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/dcc029ef-2962-4d39-bee8-d40a10c23560/tool-results/mcp-agent-ml-research-read_registry-1779215323676.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Check eval-openvla-object-vla-only-seed42-v2\ne = experiments.get('eval-openvla-object-vla-only-seed42-v2', {})\nprint(\"eval-openvla-object-vla-only-seed42-v2:\")\nprint(json.dumps(e.get('metrics', {}), indent=2))\nprint(f\"  notes: {e.get('notes','')[:200]}\")\nprint()\n\n# eval-vla-only-object (presumably seed42)\ne = experiments.get('eval-vla-only-object', {})\nprint(\"eval-vla-only-object:\")\nprint(f\"  notes: {e.get('notes','')[:200]}\")\nprint()\n\n# eval-vla-only-object-seed45 - has 200 rollouts, seems like a different run\ne = experiments.get('eval-vla-only-object-seed45', {})\nprint(\"eval-vla-only-object-seed45:\")\nprint(json.dumps(e.get('metrics', {}), indent=2))\nprint(f\"  notes: {e.get('notes','')[:200]}\")\nprint()\n\n# eval-vla-only-object-seed45-r2\ne = experiments.get('eval-vla-only-object-seed45-r2', {})\nprint(\"eval-vla-only-object-seed45-r2:\")\nprint(json.dumps(e.get('metrics', {}), indent=2))\n\n# LTO experiments\nfor eid in ['eval-lto-splitA-vla-only-r2', 'eval-lto-splitA-vla-only-r3', 'eval-lto-splitA-vla-only-v2']:\n    e = experiments[eid]\n    print(f\"\\n{eid}:\")\n    print(f\"  notes: {e.get('notes','')[:300]}\")\nPYEOF\n",
+                "description": "Check specific experiment details"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "f1e49b0f-4587-41a9-b20f-a6906b9937d9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DgPXczYAWiMFQJPBgLjX1B",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3381,
+                "cache_read_input_tokens": 39951,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3381
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-19T18:31:09.319Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TWZouFZ8iinmDkN33sNAdN",
+              "type": "tool_result",
+              "content": "eval-openvla-object-vla-only-seed42-v2:\n{\n  \"overall_sr\": 0.69,\n  \"n_tasks\": 10,\n  \"n_trials_per_task\": 10,\n  \"total_rollouts\": 100\n}\n  notes: \n\neval-vla-only-object:\n  notes: \n\neval-vla-only-object-seed45:\n{\n  \"overall_sr\": 0.09,\n  \"successes\": 18,\n  \"total\": 200,\n  \"tasks_done\": 10\n}\n  notes: \n\neval-vla-only-object-seed45-r2:\n{\n  \"overall_success_rate\": 0.11,\n  \"n_tasks\": 10,\n  \"n_rollouts_per_task\": 10,\n  \"total_rollouts\": 100,\n  \"per_task\": {\n    \"alphabet_soup\": 0,\n    \"cream_cheese\": 0.3,\n    \"salad_dressing\": 0.2,\n    \"bbq_sauce\": 0.2,\n    \"ketchup\": 0,\n    \"tomato_sauce\": 0.1,\n    \"butter\": 0,\n    \"milk\": 0,\n    \"chocolate_pudding\": 0.1,\n    \"orange_juice\": 0.2\n  }\n}\n\neval-lto-splitA-vla-only-r2:\n  notes: \n\neval-lto-splitA-vla-only-r3:\n  notes: \n\neval-lto-splitA-vla-only-v2:\n  notes:",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "2a7249e9-d1fe-4abd-a1f7-f0596fcf71c9",
+            "tool_use_result": {
+              "stdout": "eval-openvla-object-vla-only-seed42-v2:\n{\n  \"overall_sr\": 0.69,\n  \"n_tasks\": 10,\n  \"n_trials_per_task\": 10,\n  \"total_rollouts\": 100\n}\n  notes: \n\neval-vla-only-object:\n  notes: \n\neval-vla-only-object-seed45:\n{\n  \"overall_sr\": 0.09,\n  \"successes\": 18,\n  \"total\": 200,\n  \"tasks_done\": 10\n}\n  notes: \n\neval-vla-only-object-seed45-r2:\n{\n  \"overall_success_rate\": 0.11,\n  \"n_tasks\": 10,\n  \"n_rollouts_per_task\": 10,\n  \"total_rollouts\": 100,\n  \"per_task\": {\n    \"alphabet_soup\": 0,\n    \"cream_cheese\": 0.3,\n    \"salad_dressing\": 0.2,\n    \"bbq_sauce\": 0.2,\n    \"ketchup\": 0,\n    \"tomato_sauce\": 0.1,\n    \"butter\": 0,\n    \"milk\": 0,\n    \"chocolate_pudding\": 0.1,\n    \"orange_juice\": 0.2\n  }\n}\n\neval-lto-splitA-vla-only-r2:\n  notes: \n\neval-lto-splitA-vla-only-r3:\n  notes: \n\neval-lto-splitA-vla-only-v2:\n  notes:",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me now check the description/config of these experiments to understand which benchmark they belong to, and check for the openvla vs normal VLA baseline distinction.\n\nKey observations:\n1. VLA-only Object experiments:\n   - eval-vla-only-object (seed42): SR=0.12\n   - eval-openvla-object-vla-only-seed42-v2: SR=0.69 - this seems different, maybe OpenVLA vs fine-tuned?\n   - eval-vla-only-object-seed43: SR=0.12\n   - eval-vla-only-object-seed44-r2: SR=0.10\n   - eval-vla-only-object-seed45-r2: SR=0.11\n   - eval-vla-only-object-seed46: SR=0.13\n\n2. VLA-only Spatial experiments:\n   - eval-vla-only-spatial-seed42: SR=0.30\n   - eval-vla-only-spatial-seed43: SR=0.29\n   - eval-vla-only-spatial-seed44: SR=0.31\n   - eval-vla-only-spatial-seed45: SR=0.27\n\n3. VLA-only Goal experiments are next to examine.\n\nLooking at the goal experiments, the success rates are notably higher—ranging from 0.69 to 0.73—which is a significant jump from the spatial results. The LTO experiments all show a consistent SR of 0.14, which suggests they might be evaluating the same checkpoint multiple times. I should verify whether that openvla-object result at 0.69 is actually a different model or configuration.\n\nFor the seed45 object entries, I'm seeing two variants with different rollout counts, so I'll go with the r2 version since 100 rollouts appears to be the standard. Now I'm compiling the CRM observation-only results across different K values and seeds to build out the comparison table.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "7214c728-c6f7-4e2d-8031-3442c0de9eb7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01W7iE3umQ3oHho5Ega5vE9k",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1151,
+                "cache_read_input_tokens": 43332,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1151
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Hr6gF4s82E1g4TLBxfH6tw",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/dcc029ef-2962-4d39-bee8-d40a10c23560/tool-results/mcp-agent-ml-research-read_registry-1779215323676.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Check full detail of eval-openvla-object-vla-only-seed42-v2\ne = experiments.get('eval-openvla-object-vla-only-seed42-v2', {})\nprint(\"eval-openvla-object-vla-only-seed42-v2 FULL:\")\n# print all keys except metrics\nfor k, v in e.items():\n    if k != 'metrics':\n        val_str = str(v)[:300]\n        print(f\"  {k}: {val_str}\")\nprint()\n\n# Check description/config for eval-vla-only-object (is it the same model?)\ne = experiments.get('eval-vla-only-object', {})\nprint(\"eval-vla-only-object FULL:\")\nfor k, v in e.items():\n    if k != 'metrics':\n        val_str = str(v)[:300]\n        print(f\"  {k}: {val_str}\")\n\n# Check LTO experiments - are these different seeds or same?\nprint(\"\\n\\nLTO EXPERIMENTS FULL:\")\nfor eid in ['eval-lto-splitA-vla-only-r2', 'eval-lto-splitA-vla-only-r3', 'eval-lto-splitA-vla-only-v2']:\n    e = experiments[eid]\n    print(f\"\\n{eid}:\")\n    for k, v in e.items():\n        if k not in ['metrics']:\n            val_str = str(v)[:300]\n            print(f\"  {k}: {val_str}\")\nPYEOF\n",
+                "description": "Check experiment configs for model identity"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "55bcdd5f-f401-46ea-a4e4-fad6359b9b9a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01W7iE3umQ3oHho5Ega5vE9k",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1151,
+                "cache_read_input_tokens": 43332,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1151
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-19T18:31:36.967Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Hr6gF4s82E1g4TLBxfH6tw",
+              "type": "tool_result",
+              "content": "eval-openvla-object-vla-only-seed42-v2 FULL:\n  status: DONE\n  retry_count: 0\n  created_at: 2026-05-17T20:06:55.243Z\n  updated_at: 2026-05-17T22:39:25.302Z\n  hypothesis: OpenVLA 7B finetuned VLA-only baseline on LIBERO-Object using official eval code (transformers 4.40.1, isolated conda env). v1 failed due to transformers 5.8 DynamicCache bug. Dry-run on libero_spatial confirmed 80% SR. This run uses openvla-libero-object finetuned model with 10 trials/task.\n  spec: {'command': 'bash -c \"source /root/autodl-tmp/conda_envs/openvla/bin/activate && cd /root/autodl-tmp/openvla && MUJOCO_GL=egl python experiments/robot/libero/run_libero_eval.py --model_family openvla --pretrained_checkpoint /root/autodl-tmp/models/openvla-libero-object --task_suite_name libero_objec\n  conclusion: success\n  completed_at: 2026-05-17T22:39:25.302Z\n\neval-vla-only-object FULL:\n  status: DONE\n  retry_count: 0\n  created_at: 2026-05-15T02:54:57.323Z\n  updated_at: 2026-05-15T04:47:47.959Z\n  spec: {'command': 'python -u src/evaluate.py --benchmark object --mode vla_only --baseline_mode single --n_rollouts 10 --K 1 --output_file logs/eval_object_vla_only.json', 'server': 'bjb1-32546', 'data_path': 'LIBERO object benchmark', 'data_count': '10 tasks x 10 rollouts', 'model_name': 'SmolVLA (VLA-on\n  conclusion: success\n  hypothesis: VLA-only baseline (K=1, no mean, no CRM) on LIBERO object benchmark. Single sample from flow-matching VLA.\n  gpu: bjb1-32546:cuda:4\n  pid: 17222\n  log_path: /root/acr-vla-conformal-refinement/logs/eval_object_vla_only.log\n  checkpoint_path: /root/acr-vla-conformal-refinement/logs/eval_object_vla_only.json\n  completed_at: 2026-05-15T04:42:20.025Z\n\n\nLTO EXPERIMENTS FULL:\n\neval-lto-splitA-vla-only-r2:\n  status: DONE\n  retry_count: 0\n  created_at: 2026-05-19T04:55:29.003Z\n  updated_at: 2026-05-19T12:47:58.882Z\n  spec: {'command': 'bash -c \"source /root/miniconda3/bin/activate base && cd /root/acr-vla-conformal-refinement/src && CUDA_VISIBLE_DEVICES=2 timeout 57600 python -u evaluate.py --benchmark object --mode vla_only --task_names \\'ketchup,milk,orange_juice,salad_dressing,tomato_sauce\\' --n_rollouts 10 --seed \n  hypothesis: VLA-only baseline on 5 held-out tasks (ketchup, milk, orange_juice, salad_dressing, tomato_sauce). Bugfix r2: removed .replace(\"_\",\" \") that caused 3/5 task matching failures.\n  conclusion: success\n  checkpoint_path: N/A\n  completed_at: 2026-05-19T12:47:58.882Z\n\neval-lto-splitA-vla-only-r3:\n  status: DONE\n  retry_count: 0\n  created_at: 2026-05-19T05:56:16.472Z\n  updated_at: 2026-05-19T12:48:01.446Z\n  spec: {'command': 'bash -c \"source /root/miniconda3/bin/activate base && cd /root/acr-vla-conformal-refinement/src && CUDA_VISIBLE_DEVICES=1 timeout 57600 python -u evaluate.py --benchmark object --mode vla_only --task_names \\'ketchup,milk,orange_juice,salad_dressing,tomato_sauce\\' --n_rollouts 10 --seed \n  hypothesis: VLA-only baseline on LTO held-out 5 tasks r3 rerun. Second reproduction of LTO baseline SR=14%. Confirms v2 result consistency.\n  conclusion: success\n  checkpoint_path: N/A\n  completed_at: 2026-05-19T12:48:01.446Z\n\neval-lto-splitA-vla-only-v2:\n  status: DONE\n  retry_count: 0\n  created_at: 2026-05-19T05:19:21.005Z\n  updated_at: 2026-05-19T11:30:43.198Z\n  hypothesis: VLA-only baseline on LTO held-out 5 tasks (ketchup, milk, orange_juice, salad_dressing, tomato_sauce). Control group for Leave-Task-Out Split A eval. Retry after .replace task matching bug fix.\n  spec: {'command': 'bash -c \"source /root/miniconda3/bin/activate base && cd /root/acr-vla-conformal-refinement/src && CUDA_VISIBLE_DEVICES=2 timeout 57600 python -u evaluate.py --benchmark object --mode vla_only --task_names \\'ketchup,milk,orange_juice,salad_dressing,tomato_sauce\\' --n_rollouts 10 --seed \n  conclusion: success\n  completed_at: 2026-05-19T11:27:47.248Z",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "3f7e00ee-c91f-450b-879c-0f5eefac8299",
+            "tool_use_result": {
+              "stdout": "eval-openvla-object-vla-only-seed42-v2 FULL:\n  status: DONE\n  retry_count: 0\n  created_at: 2026-05-17T20:06:55.243Z\n  updated_at: 2026-05-17T22:39:25.302Z\n  hypothesis: OpenVLA 7B finetuned VLA-only baseline on LIBERO-Object using official eval code (transformers 4.40.1, isolated conda env). v1 failed due to transformers 5.8 DynamicCache bug. Dry-run on libero_spatial confirmed 80% SR. This run uses openvla-libero-object finetuned model with 10 trials/task.\n  spec: {'command': 'bash -c \"source /root/autodl-tmp/conda_envs/openvla/bin/activate && cd /root/autodl-tmp/openvla && MUJOCO_GL=egl python experiments/robot/libero/run_libero_eval.py --model_family openvla --pretrained_checkpoint /root/autodl-tmp/models/openvla-libero-object --task_suite_name libero_objec\n  conclusion: success\n  completed_at: 2026-05-17T22:39:25.302Z\n\neval-vla-only-object FULL:\n  status: DONE\n  retry_count: 0\n  created_at: 2026-05-15T02:54:57.323Z\n  updated_at: 2026-05-15T04:47:47.959Z\n  spec: {'command': 'python -u src/evaluate.py --benchmark object --mode vla_only --baseline_mode single --n_rollouts 10 --K 1 --output_file logs/eval_object_vla_only.json', 'server': 'bjb1-32546', 'data_path': 'LIBERO object benchmark', 'data_count': '10 tasks x 10 rollouts', 'model_name': 'SmolVLA (VLA-on\n  conclusion: success\n  hypothesis: VLA-only baseline (K=1, no mean, no CRM) on LIBERO object benchmark. Single sample from flow-matching VLA.\n  gpu: bjb1-32546:cuda:4\n  pid: 17222\n  log_path: /root/acr-vla-conformal-refinement/logs/eval_object_vla_only.log\n  checkpoint_path: /root/acr-vla-conformal-refinement/logs/eval_object_vla_only.json\n  completed_at: 2026-05-15T04:42:20.025Z\n\n\nLTO EXPERIMENTS FULL:\n\neval-lto-splitA-vla-only-r2:\n  status: DONE\n  retry_count: 0\n  created_at: 2026-05-19T04:55:29.003Z\n  updated_at: 2026-05-19T12:47:58.882Z\n  spec: {'command': 'bash -c \"source /root/miniconda3/bin/activate base && cd /root/acr-vla-conformal-refinement/src && CUDA_VISIBLE_DEVICES=2 timeout 57600 python -u evaluate.py --benchmark object --mode vla_only --task_names \\'ketchup,milk,orange_juice,salad_dressing,tomato_sauce\\' --n_rollouts 10 --seed \n  hypothesis: VLA-only baseline on 5 held-out tasks (ketchup, milk, orange_juice, salad_dressing, tomato_sauce). Bugfix r2: removed .replace(\"_\",\" \") that caused 3/5 task matching failures.\n  conclusion: success\n  checkpoint_path: N/A\n  completed_at: 2026-05-19T12:47:58.882Z\n\neval-lto-splitA-vla-only-r3:\n  status: DONE\n  retry_count: 0\n  created_at: 2026-05-19T05:56:16.472Z\n  updated_at: 2026-05-19T12:48:01.446Z\n  spec: {'command': 'bash -c \"source /root/miniconda3/bin/activate base && cd /root/acr-vla-conformal-refinement/src && CUDA_VISIBLE_DEVICES=1 timeout 57600 python -u evaluate.py --benchmark object --mode vla_only --task_names \\'ketchup,milk,orange_juice,salad_dressing,tomato_sauce\\' --n_rollouts 10 --seed \n  hypothesis: VLA-only baseline on LTO held-out 5 tasks r3 rerun. Second reproduction of LTO baseline SR=14%. Confirms v2 result consistency.\n  conclusion: success\n  checkpoint_path: N/A\n  completed_at: 2026-05-19T12:48:01.446Z\n\neval-lto-splitA-vla-only-v2:\n  status: DONE\n  retry_count: 0\n  created_at: 2026-05-19T05:19:21.005Z\n  updated_at: 2026-05-19T11:30:43.198Z\n  hypothesis: VLA-only baseline on LTO held-out 5 tasks (ketchup, milk, orange_juice, salad_dressing, tomato_sauce). Control group for Leave-Task-Out Split A eval. Retry after .replace task matching bug fix.\n  spec: {'command': 'bash -c \"source /root/miniconda3/bin/activate base && cd /root/acr-vla-conformal-refinement/src && CUDA_VISIBLE_DEVICES=2 timeout 57600 python -u evaluate.py --benchmark object --mode vla_only --task_names \\'ketchup,milk,orange_juice,salad_dressing,tomato_sauce\\' --n_rollouts 10 --seed \n  conclusion: success\n  completed_at: 2026-05-19T11:27:47.248Z",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the data I need. Let me organize it:\n\n**VLA-only Object (SmolVLA)**:\n- eval-vla-only-object (seed42): SR=0.12\n- eval-vla-only-object-seed43: SR=0.12\n- eval-vla-only-object-seed44-r2: SR=0.10\n- eval-vla-only-object-seed45-r2: SR=0.11\n- eval-vla-only-object-seed46: SR=0.13\n\nNote: eval-openvla-object-vla-only-seed42-v2 is OpenVLA 7B (different model), not SmolVLA. I should note this separately or exclude it from the SmolVLA baseline.\n\n\nLooking at the spatial and goal variants, the spatial results hover around 0.29-0.31 while the goal-focused runs are much stronger at 0.69-0.73. The long-term objective data appears to be cut off, but I'm tracking these performance differences across the different input modalities. Looking at the LIBERO benchmark structure, I need to find experiments specifically for the Long suite to compare against these Leave-Task-Out results.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "6434ab9e-89d6-4d4c-8cbb-eeb3bbefadf8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U97bRG3zLJttqCNe4bhTy9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3043,
+                "cache_read_input_tokens": 44483,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3043
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015zLVJyN2TZy8i1Xt1hTj5Q",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/dcc029ef-2962-4d39-bee8-d40a10c23560/tool-results/mcp-agent-ml-research-read_registry-1779215323676.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Search for \"long\" benchmark experiments\nlong_exps = {k:v for k,v in experiments.items() if 'long' in k.lower() and 'vla' in k.lower()}\nprint(f\"Long VLA experiments: {len(long_exps)}\")\nfor k in sorted(long_exps.keys()):\n    print(f\"  {k} -> conclusion={long_exps[k].get('conclusion')}\")\n\n# Also search for libero-10 or libero_10\nl10 = {k:v for k,v in experiments.items() if '10' in k.lower() and 'vla' in k.lower()}\nprint(f\"\\nLibero-10 VLA: {len(l10)}\")\nfor k in sorted(l10.keys()):\n    print(f\"  {k} -> conclusion={l10[k].get('conclusion')}\")\n\n# Also check for \"long\" benchmark in any experiment\nlong_any = {k:v for k,v in experiments.items() if 'long' in k.lower()}\nprint(f\"\\nAny 'long': {len(long_any)}\")\nfor k in sorted(long_any.keys()):\n    print(f\"  {k} -> conclusion={long_any[k].get('conclusion')}\")\nPYEOF\n",
+                "description": "Search for LIBERO-Long experiments"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "f4d3eed9-7226-43b2-a3f3-fd93f24d952e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U97bRG3zLJttqCNe4bhTy9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3043,
+                "cache_read_input_tokens": 44483,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3043
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-19T18:32:04.769Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015zLVJyN2TZy8i1Xt1hTj5Q",
+              "type": "tool_result",
+              "content": "Long VLA experiments: 5\n  eval-vla-only-long-seed42 -> conclusion=None\n  eval-vla-only-long-seed43 -> conclusion=None\n  eval-vla-only-long-seed44 -> conclusion=None\n  eval-vla-only-long-seed45 -> conclusion=None\n  eval-vla-only-long-seed46 -> conclusion=None\n\nLibero-10 VLA: 1\n  eval-vla-mean-spatial-t10 -> conclusion=success\n\nAny 'long': 5\n  eval-vla-only-long-seed42 -> conclusion=None\n  eval-vla-only-long-seed43 -> conclusion=None\n  eval-vla-only-long-seed44 -> conclusion=None\n  eval-vla-only-long-seed45 -> conclusion=None\n  eval-vla-only-long-seed46 -> conclusion=None",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "3aedf8f4-92d5-418c-b523-48f378e922c5",
+            "tool_use_result": {
+              "stdout": "Long VLA experiments: 5\n  eval-vla-only-long-seed42 -> conclusion=None\n  eval-vla-only-long-seed43 -> conclusion=None\n  eval-vla-only-long-seed44 -> conclusion=None\n  eval-vla-only-long-seed45 -> conclusion=None\n  eval-vla-only-long-seed46 -> conclusion=None\n\nLibero-10 VLA: 1\n  eval-vla-mean-spatial-t10 -> conclusion=success\n\nAny 'long': 5\n  eval-vla-only-long-seed42 -> conclusion=None\n  eval-vla-only-long-seed43 -> conclusion=None\n  eval-vla-only-long-seed44 -> conclusion=None\n  eval-vla-only-long-seed45 -> conclusion=None\n  eval-vla-only-long-seed46 -> conclusion=None",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YBo9vtNJEQTcroQ3DA6Znv",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/dcc029ef-2962-4d39-bee8-d40a10c23560/tool-results/mcp-agent-ml-research-read_registry-1779215323676.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Check long experiments - they are RUNNING\nfor eid in ['eval-vla-only-long-seed42', 'eval-vla-only-long-seed43', 'eval-vla-only-long-seed44', 'eval-vla-only-long-seed45', 'eval-vla-only-long-seed46']:\n    e = experiments[eid]\n    print(f\"{eid}:\")\n    print(f\"  status: {e.get('status')}, conclusion: {e.get('conclusion')}\")\n    print(f\"  metrics: {e.get('metrics', {})}\")\n    print()\nPYEOF\n",
+                "description": "Check LIBERO-Long experiment status"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "8fcbe30d-8895-4d01-8570-186cce9ab0db",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CySoZLYjFZy191pZVkrGJm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1367,
+                "cache_read_input_tokens": 47526,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1367
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-19T18:32:10.484Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YBo9vtNJEQTcroQ3DA6Znv",
+              "type": "tool_result",
+              "content": "eval-vla-only-long-seed42:\n  status: RUNNING, conclusion: None\n  metrics: {}\n\neval-vla-only-long-seed43:\n  status: RUNNING, conclusion: None\n  metrics: {}\n\neval-vla-only-long-seed44:\n  status: RUNNING, conclusion: None\n  metrics: {}\n\neval-vla-only-long-seed45:\n  status: RUNNING, conclusion: None\n  metrics: {}\n\neval-vla-only-long-seed46:\n  status: RUNNING, conclusion: None\n  metrics: {}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "f3cbfc9c-2471-42a1-86b6-521ca19fd7db",
+            "tool_use_result": {
+              "stdout": "eval-vla-only-long-seed42:\n  status: RUNNING, conclusion: None\n  metrics: {}\n\neval-vla-only-long-seed43:\n  status: RUNNING, conclusion: None\n  metrics: {}\n\neval-vla-only-long-seed44:\n  status: RUNNING, conclusion: None\n  metrics: {}\n\neval-vla-only-long-seed45:\n  status: RUNNING, conclusion: None\n  metrics: {}\n\neval-vla-only-long-seed46:\n  status: RUNNING, conclusion: None\n  metrics: {}",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "LIBERO-Long experiments are still running. Let me also check the LTO experiments more carefully - they seem to be a different thing (Leave-Task-Out evaluation), not the Long benchmark.\n\nNow let me also check the spatial K=10 obs_only data - I only found 3 seeds. Let me also look at the seed42 run for spatial K=10 which might exist.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "4c52df2b-54f6-4fc8-8bc5-db8d054cdab4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RRPKg2SDTAiasdvHPq4hyg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 527,
+                "cache_read_input_tokens": 48893,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 527
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GThzSntF6RkFoNSzC49fsV",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/dcc029ef-2962-4d39-bee8-d40a10c23560/tool-results/mcp-agent-ml-research-read_registry-1779215323676.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Check if there's a spatial norm02 seed42 (K=10 default)\nspatial_norm02 = {k:v for k,v in experiments.items() if 'spatial' in k and 'norm02' in k and 'k5' not in k and 'k20' not in k}\nprint(\"Spatial norm02 K=10:\")\nfor k in sorted(spatial_norm02.keys()):\n    e = spatial_norm02[k]\n    sr = e.get('metrics', {}).get('success_rate', e.get('metrics', {}).get('overall_success_rate', 'N/A'))\n    print(f\"  {k}: conclusion={e.get('conclusion')}, SR={sr}\")\n\n# Also check eval-acr experiments for spatial obs_only\nacr_spatial = {k:v for k,v in experiments.items() if 'acr' in k and 'spatial' in k}\nprint(\"\\nACR Spatial:\")\nfor k in sorted(acr_spatial.keys()):\n    e = acr_spatial[k]\n    print(f\"  {k}: conclusion={e.get('conclusion')}, metrics={json.dumps(e.get('metrics',{}))[:200]}\")\n\n# Check the seed42 of obs_only object norm02 (K=10)\n# The original one might be eval-acr-object-obs-only-norm02\ne = experiments.get('eval-acr-object-obs-only-norm02', {})\nprint(f\"\\neval-acr-object-obs-only-norm02: conclusion={e.get('conclusion')}\")\nprint(f\"  metrics: {json.dumps(e.get('metrics', {}), indent=2)}\")\n\n# Also check eval-acr-object-obs-only-default as a potential seed42\ne = experiments.get('eval-acr-object-obs-only-default', {})\nprint(f\"\\neval-acr-object-obs-only-default: conclusion={e.get('conclusion')}\")\nprint(f\"  metrics: {json.dumps(e.get('metrics', {}), indent=2)}\")\nPYEOF\n",
+                "description": "Check spatial K=10 norm02 and ACR experiments"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "0eadd508-8451-4882-895b-ff264c7c0719",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RRPKg2SDTAiasdvHPq4hyg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 527,
+                "cache_read_input_tokens": 48893,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 527
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-19T18:32:22.900Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GThzSntF6RkFoNSzC49fsV",
+              "type": "tool_result",
+              "content": "Spatial norm02 K=10:\n  eval-obs-only-spatial-norm02-seed43: conclusion=failed, SR=N/A\n  eval-obs-only-spatial-norm02-seed43-r2: conclusion=None, SR=N/A\n  eval-obs-only-spatial-norm02-seed44: conclusion=success, SR=0.36\n  eval-obs-only-spatial-norm02-seed45: conclusion=success, SR=0.34\n  eval-obs-only-spatial-norm02-seed46: conclusion=failed, SR=N/A\n  eval-obs-only-spatial-norm02-seed46-r2: conclusion=None, SR=N/A\n  eval-obs-only-spatial-norm02-seed47: conclusion=success, SR=0.32\n\nACR Spatial:\n  eval-acr-spatial-v1: conclusion=killed, metrics={}\n  eval-acr-spatial-v2: conclusion=killed, metrics={}\n  eval-acr-spatial-v3: conclusion=success, metrics={\"tasks_done\": \"4/10\", \"overall_success_rate\": 0.025, \"total_successes\": 1, \"total_rollouts\": 40, \"per_task_partial\": {\"pick_up_black_bowl_between_plate_and_ramekin\": 0.1, \"pick_up_black_bowl_next_to_\n  eval-acr-spatial-v4-default: conclusion=failed, metrics={\"tasks_done\": \"0/10\", \"status_alert\": \"NO PROCESS FOUND - registry says RUNNING but no matching PID or tmux session on bjb1-18228. GPU 0 occupied by stale eval-acr-spatial-v3 tmux + crm-train-obs-onl\n  eval-acr-spatial-v4-default-r2: conclusion=killed, metrics={}\n  eval-acr-spatial-v4-default-r3: conclusion=killed, metrics={}\n  eval-acr-spatial-v4-obs-only: conclusion=failed, metrics={}\n  eval-acr-spatial-v4-obs-only-r2: conclusion=killed, metrics={\"tasks_done\": \"6/10\", \"partial_results\": {\"between_plate_and_ramekin\": \"90.0% (9/10)\", \"next_to_ramekin\": \"100.0% (10/10)\", \"from_table_center\": \"0.0% (0/10)\", \"on_cookie_box\": \"40.0% (4/10)\", \"in_to\n  eval-acr-spatial-v4-obs-only-r3: conclusion=success, metrics={\"overall_sr\": \"35.0% (35/100)\", \"total_success\": 35, \"total_rollouts\": 100, \"mode\": \"crm_obs_only\", \"benchmark\": \"spatial\", \"max_correction_norm\": 0.1, \"seed\": 42, \"K\": 10, \"per_task\": {\"T0\": \"90%\", \n  eval-acr-spatial-v4-scalar: conclusion=killed, metrics={\"tasks_done\": \"3/10\", \"partial_results\": {\"between_plate_and_ramekin\": \"60.0% (6/10)\", \"next_to_ramekin\": \"100.0% (10/10)\", \"from_table_center\": \"10.0% (1/10)\"}, \"running_avg_3tasks\": \"56.7% (17/30)\"\n  eval-acr-spatial-v4-scalar-r2: conclusion=success, metrics={\"overall_sr\": \"32.0% (32/100)\", \"total_success\": 32, \"total_rollouts\": 100, \"mode\": \"scalar_unc\", \"benchmark\": \"spatial\", \"max_correction_norm\": 0.1, \"seed\": 42, \"K\": 10, \"per_task\": {\"T0\": \"60%\", \"T\n  eval-acr-spatial-v4-small: conclusion=killed, metrics={\"tasks_done\": \"7/10\", \"partial_results\": {\"between_plate_and_ramekin\": \"60.0% (6/10)\", \"next_to_ramekin\": \"100.0% (10/10)\", \"from_table_center\": \"10.0% (1/10)\", \"on_cookie_box\": \"40.0% (4/10)\", \"in_t\n  eval-acr-spatial-v4-small-r2: conclusion=success, metrics={\"overall_sr\": \"35.0% (35/100)\", \"total_success\": 35, \"total_rollouts\": 100, \"mode\": \"perdof\", \"benchmark\": \"spatial\", \"max_correction_norm\": 0.1, \"seed\": 42, \"K\": 10, \"per_task\": {\"T0\": \"60%\", \"T1\": \n  eval-acr-vla-spatial-v1: conclusion=killed, metrics={}\n\neval-acr-object-obs-only-norm02: conclusion=success\n  metrics: {\n  \"overall_sr\": 0.22,\n  \"total_success\": 22,\n  \"total_rollouts\": 100,\n  \"tasks_done\": 10,\n  \"tasks_total\": 10,\n  \"per_task\": {\n    \"alphabet_soup\": 0,\n    \"cream_cheese\": 0,\n    \"salad_dressing\": 0.3,\n    \"bbq_sauce\": 0.4,\n    \"ketchup\": 0.2,\n    \"tomato_sauce\": 0.1,\n    \"butter\": 0.1,\n    \"milk\": 0.2,\n    \"chocolate_pudding\": 0.6,\n    \"orange_juice\": 0.3\n  }\n}\n\neval-acr-object-obs-only-default: conclusion=success\n  metrics: {\n  \"tasks_done\": 10,\n  \"tasks_total\": 10,\n  \"overall_sr\": 0.17,\n  \"per_task_sr\": {\n    \"alphabet_soup\": 0,\n    \"cream_cheese\": 0,\n    \"salad_dressing\": 0.2,\n    \"bbq_sauce\": 0.4,\n    \"ketchup\": 0,\n    \"tomato_sauce\": 0.1,\n    \"butter\": 0.1,\n    \"milk\": 0.1,\n    \"chocolate_pudding\": 0.5,\n    \"orange_juice\": 0.3\n  }\n}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "ade82726-481b-4a98-9d20-2648ee7e56c1",
+            "tool_use_result": {
+              "stdout": "Spatial norm02 K=10:\n  eval-obs-only-spatial-norm02-seed43: conclusion=failed, SR=N/A\n  eval-obs-only-spatial-norm02-seed43-r2: conclusion=None, SR=N/A\n  eval-obs-only-spatial-norm02-seed44: conclusion=success, SR=0.36\n  eval-obs-only-spatial-norm02-seed45: conclusion=success, SR=0.34\n  eval-obs-only-spatial-norm02-seed46: conclusion=failed, SR=N/A\n  eval-obs-only-spatial-norm02-seed46-r2: conclusion=None, SR=N/A\n  eval-obs-only-spatial-norm02-seed47: conclusion=success, SR=0.32\n\nACR Spatial:\n  eval-acr-spatial-v1: conclusion=killed, metrics={}\n  eval-acr-spatial-v2: conclusion=killed, metrics={}\n  eval-acr-spatial-v3: conclusion=success, metrics={\"tasks_done\": \"4/10\", \"overall_success_rate\": 0.025, \"total_successes\": 1, \"total_rollouts\": 40, \"per_task_partial\": {\"pick_up_black_bowl_between_plate_and_ramekin\": 0.1, \"pick_up_black_bowl_next_to_\n  eval-acr-spatial-v4-default: conclusion=failed, metrics={\"tasks_done\": \"0/10\", \"status_alert\": \"NO PROCESS FOUND - registry says RUNNING but no matching PID or tmux session on bjb1-18228. GPU 0 occupied by stale eval-acr-spatial-v3 tmux + crm-train-obs-onl\n  eval-acr-spatial-v4-default-r2: conclusion=killed, metrics={}\n  eval-acr-spatial-v4-default-r3: conclusion=killed, metrics={}\n  eval-acr-spatial-v4-obs-only: conclusion=failed, metrics={}\n  eval-acr-spatial-v4-obs-only-r2: conclusion=killed, metrics={\"tasks_done\": \"6/10\", \"partial_results\": {\"between_plate_and_ramekin\": \"90.0% (9/10)\", \"next_to_ramekin\": \"100.0% (10/10)\", \"from_table_center\": \"0.0% (0/10)\", \"on_cookie_box\": \"40.0% (4/10)\", \"in_to\n  eval-acr-spatial-v4-obs-only-r3: conclusion=success, metrics={\"overall_sr\": \"35.0% (35/100)\", \"total_success\": 35, \"total_rollouts\": 100, \"mode\": \"crm_obs_only\", \"benchmark\": \"spatial\", \"max_correction_norm\": 0.1, \"seed\": 42, \"K\": 10, \"per_task\": {\"T0\": \"90%\", \n  eval-acr-spatial-v4-scalar: conclusion=killed, metrics={\"tasks_done\": \"3/10\", \"partial_results\": {\"between_plate_and_ramekin\": \"60.0% (6/10)\", \"next_to_ramekin\": \"100.0% (10/10)\", \"from_table_center\": \"10.0% (1/10)\"}, \"running_avg_3tasks\": \"56.7% (17/30)\"\n  eval-acr-spatial-v4-scalar-r2: conclusion=success, metrics={\"overall_sr\": \"32.0% (32/100)\", \"total_success\": 32, \"total_rollouts\": 100, \"mode\": \"scalar_unc\", \"benchmark\": \"spatial\", \"max_correction_norm\": 0.1, \"seed\": 42, \"K\": 10, \"per_task\": {\"T0\": \"60%\", \"T\n  eval-acr-spatial-v4-small: conclusion=killed, metrics={\"tasks_done\": \"7/10\", \"partial_results\": {\"between_plate_and_ramekin\": \"60.0% (6/10)\", \"next_to_ramekin\": \"100.0% (10/10)\", \"from_table_center\": \"10.0% (1/10)\", \"on_cookie_box\": \"40.0% (4/10)\", \"in_t\n  eval-acr-spatial-v4-small-r2: conclusion=success, metrics={\"overall_sr\": \"35.0% (35/100)\", \"total_success\": 35, \"total_rollouts\": 100, \"mode\": \"perdof\", \"benchmark\": \"spatial\", \"max_correction_norm\": 0.1, \"seed\": 42, \"K\": 10, \"per_task\": {\"T0\": \"60%\", \"T1\": \n  eval-acr-vla-spatial-v1: conclusion=killed, metrics={}\n\neval-acr-object-obs-only-norm02: conclusion=success\n  metrics: {\n  \"overall_sr\": 0.22,\n  \"total_success\": 22,\n  \"total_rollouts\": 100,\n  \"tasks_done\": 10,\n  \"tasks_total\": 10,\n  \"per_task\": {\n    \"alphabet_soup\": 0,\n    \"cream_cheese\": 0,\n    \"salad_dressing\": 0.3,\n    \"bbq_sauce\": 0.4,\n    \"ketchup\": 0.2,\n    \"tomato_sauce\": 0.1,\n    \"butter\": 0.1,\n    \"milk\": 0.2,\n    \"chocolate_pudding\": 0.6,\n    \"orange_juice\": 0.3\n  }\n}\n\neval-acr-object-obs-only-default: conclusion=success\n  metrics: {\n  \"tasks_done\": 10,\n  \"tasks_total\": 10,\n  \"overall_sr\": 0.17,\n  \"per_task_sr\": {\n    \"alphabet_soup\": 0,\n    \"cream_cheese\": 0,\n    \"salad_dressing\": 0.2,\n    \"bbq_sauce\": 0.4,\n    \"ketchup\": 0,\n    \"tomato_sauce\": 0.1,\n    \"butter\": 0.1,\n    \"milk\": 0.1,\n    \"chocolate_pudding\": 0.5,\n    \"orange_juice\": 0.3\n  }\n}",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me check what seed the acr-object-obs-only-norm02 and eval-acr-spatial-v4-obs-only-r3 used.",
+              "signature": "EpoCClkIDRgCKkCrqcT3iycUbZ/AVQU2fltq3IvzuGDEKdwcES925h6VqkhSDIfP/QxqCeVUbuML5v/HyfEO5MwWXDtB7TIpA7uNMg9jbGF1ZGUtb3B1cy00LTY4ABIMYaCuyyMdAXLg+euLGgy6MV4VNesEC7qU5ZgiMEHfCr8kCTgfxyKi/L1qp2Qyi6n1csrU9PNEa6mFx/Rh2MGCSETryGGMa/lZxGjtCSpvMgKVqOYd6FvCxrkClxPZqbRfAEsLM3ZS0UuX+r9NUZ0RAUB8nBifCREMZbUJQ5k706l9toPG16b+T5003N7BuQ7reRfEnLBhQA84g+GqerZevivKHnYfQg5c6vZmIwSqzLU3CEVCOVvcUVziF6eTGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "6fd0b2f8-d876-4c66-99ac-d73d72b0e883",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LVUEp5WEt7pnmcVNwiTDHe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2433,
+                "cache_read_input_tokens": 49420,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2433
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QcA3w8iyWu75KCwdbzafQn",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/dcc029ef-2962-4d39-bee8-d40a10c23560/tool-results/mcp-agent-ml-research-read_registry-1779215323676.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Check seed info for the acr experiments\nfor eid in ['eval-acr-object-obs-only-norm02', 'eval-acr-spatial-v4-obs-only-r3']:\n    e = experiments[eid]\n    spec = e.get('spec', {})\n    hyp = e.get('hypothesis', '')\n    cmd = spec.get('command', '')[:500] if isinstance(spec, dict) else ''\n    print(f\"{eid}:\")\n    print(f\"  hypothesis: {hyp[:300]}\")\n    print(f\"  command: {cmd}\")\n    print(f\"  metrics seed: {e.get('metrics',{}).get('seed','N/A')}\")\n    print()\n\n# Also check object norm02 seed42 existence\nobj_norm02_seed42 = {k:v for k,v in experiments.items() \n                     if 'object' in k and 'norm02' in k and 'seed42' in k and 'obs' in k}\nprint(\"Object norm02 seed42 obs-only:\")\nfor k in sorted(obj_norm02_seed42.keys()):\n    print(f\"  {k}: conclusion={obj_norm02_seed42[k].get('conclusion')}\")\nPYEOF\n",
+                "description": "Check seed info for ACR experiments"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "ce40482d-6e3b-466b-8439-53f52b2897a7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LVUEp5WEt7pnmcVNwiTDHe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2433,
+                "cache_read_input_tokens": 49420,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2433
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-19T18:32:31.430Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QcA3w8iyWu75KCwdbzafQn",
+              "type": "tool_result",
+              "content": "eval-acr-object-obs-only-norm02:\n  hypothesis: ACR with obs-only CRM and max_correction_norm=0.2 on LIBERO-Object achieves meaningful improvement over VLA-only baseline by applying visually-guided corrections without requiring action history\n  command: python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02.json\n  metrics seed: N/A\n\neval-acr-spatial-v4-obs-only-r3:\n  hypothesis: Restart from T6. obs_only CRM v3-norm with max_correction_norm=0.1 on spatial. If obs_only >= perdof, conformal features need restructuring.\n  command: python -u src/evaluate.py --mode crm_obs_only --benchmark spatial --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.1 --start_task 6\n  metrics seed: 42\n\nObject norm02 seed42 obs-only:\n  eval-obs-only-object-norm02-k20-seed42: conclusion=killed\n  eval-obs-only-object-norm02-k5-seed42: conclusion=success",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "862afd3b-0c4e-42fa-9c25-06fd72afa925",
+            "tool_use_result": {
+              "stdout": "eval-acr-object-obs-only-norm02:\n  hypothesis: ACR with obs-only CRM and max_correction_norm=0.2 on LIBERO-Object achieves meaningful improvement over VLA-only baseline by applying visually-guided corrections without requiring action history\n  command: python -u src/evaluate.py --mode crm_obs_only --benchmark object --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_object_obs_only_norm02.json\n  metrics seed: N/A\n\neval-acr-spatial-v4-obs-only-r3:\n  hypothesis: Restart from T6. obs_only CRM v3-norm with max_correction_norm=0.1 on spatial. If obs_only >= perdof, conformal features need restructuring.\n  command: python -u src/evaluate.py --mode crm_obs_only --benchmark spatial --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.1 --start_task 6\n  metrics seed: 42\n\nObject norm02 seed42 obs-only:\n  eval-obs-only-object-norm02-k20-seed42: conclusion=killed\n  eval-obs-only-object-norm02-k5-seed42: conclusion=success",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have enough data. Let me compile the summary:\n\n**VLA-only Object (SmolVLA)**:\n- seed42: 0.12 (eval-vla-only-object)\n- seed43: 0.12 (eval-vla-only-object-seed43)\n- seed44: 0.10 (eval-vla-only-object-seed44-r2)\n- seed45: 0.11 (eval-vla-only-object-seed45-r2)\n- seed46: 0.13 (eval-vla-only-object-seed46)\n\n\n- Mean: 0.116\n\n**VLA-only Spatial**:\n- seed42: 0.30\n- seed43: 0.29\n- seed44: 0.31\n- seed45: 0.27\n- Mean: 0.2925\n\nI should note that eval-openvla-object-vla-only-seed42-v2 with SR=0.69 is actually OpenVLA 7B, a different model entirely, so I'll track that separately.\n\nNow I'm computing standard deviations for the spatial results and looking at the goal-conditioned performance, which shows a mean of 0.71 across three seeds. The long-horizon LIBERO-10 benchmark is still running across all five seeds, so no data there yet. I'm also seeing some Leave-Task-Out split results that are separate from the main LIBERO-Long benchmark, and starting to examine the observation-only comparisons with different normalization settings. I need to clarify which experiments actually used the correct normalization parameter—norm02 means max_correction_norm=0.2, so I should only include runs that explicitly match that specification. Looking at the spatial results, only seeds 44, 45, and 47 have proper norm02 K=10 runs, while the object K=5 results show a consistent pattern across seeds 42-45.\n\nNow I'm compiling the remaining object and spatial K=5 results to complete the dataset before generating the summary table.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "623293e3-87eb-4bd1-aaa6-308f5cf91a44",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DUxs4uEh3WnibX9sZGeocA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 987,
+                "cache_read_input_tokens": 51853,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 987
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data. Let me generate the summary table."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "44db5515-cf94-482f-8ef7-418cdffdb222",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DUxs4uEh3WnibX9sZGeocA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 987,
+                "cache_read_input_tokens": 51853,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 987
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Kzputx3mizVXnMvqSdbRGi",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport numpy as np\n\n# ============================================================\n# VLA-ONLY BASELINES\n# ============================================================\n\n# --- LIBERO-Object ---\nobject_seeds = {\n    42: {'sr': 0.12, 'exp': 'eval-vla-only-object',\n         'per_task': {'alphabet_soup':0,'cream_cheese':0.1,'salad_dressing':0.2,'bbq_sauce':0.2,'ketchup':0,'tomato_sauce':0.1,'butter':0,'milk':0.1,'chocolate_pudding':0.2,'orange_juice':0.3}},\n    43: {'sr': 0.12, 'exp': 'eval-vla-only-object-seed43',\n         'per_task': {'alphabet_soup':0,'cream_cheese':0.1,'salad_dressing':0.1,'bbq_sauce':0.3,'ketchup':0,'tomato_sauce':0,'butter':0,'milk':0.1,'chocolate_pudding':0.4,'orange_juice':0.2}},\n    44: {'sr': 0.10, 'exp': 'eval-vla-only-object-seed44-r2',\n         'per_task': {'alphabet_soup':0,'cream_cheese':0.1,'salad_dressing':0.2,'bbq_sauce':0.2,'ketchup':0,'tomato_sauce':0,'butter':0,'milk':0.1,'chocolate_pudding':0.2,'orange_juice':0.2}},\n    45: {'sr': 0.11, 'exp': 'eval-vla-only-object-seed45-r2',\n         'per_task': {'alphabet_soup':0,'cream_cheese':0.3,'salad_dressing':0.2,'bbq_sauce':0.2,'ketchup':0,'tomato_sauce':0.1,'butter':0,'milk':0,'chocolate_pudding':0.1,'orange_juice':0.2}},\n    46: {'sr': 0.13, 'exp': 'eval-vla-only-object-seed46',\n         'per_task': None},\n}\n\n# --- LIBERO-Spatial ---\nspatial_seeds = {\n    42: {'sr': 0.30, 'exp': 'eval-vla-only-spatial-seed42',\n         'per_task': {'between_plate_and_ramekin':0.6,'next_to_ramekin':1.0,'from_table_center':0,'on_cookie_box':0.2,'in_top_drawer':0,'on_ramekin':0,'next_to_cookie_box':0.9,'on_stove':0,'next_to_plate':0.3,'on_wooden_cabinet':0}},\n    43: {'sr': 0.29, 'exp': 'eval-vla-only-spatial-seed43',\n         'per_task': {'between_plate_and_ramekin':0.7,'next_to_ramekin':0.8,'from_table_center':0.1,'on_cookie_box':0.3,'in_top_drawer':0,'on_ramekin':0,'next_to_cookie_box':0.9,'on_stove':0,'next_to_plate':0.1,'on_wooden_cabinet':0}},\n    44: {'sr': 0.31, 'exp': 'eval-vla-only-spatial-seed44',\n         'per_task': {'between_plate_and_ramekin':0.6,'next_to_ramekin':1.0,'from_table_center':0,'on_cookie_box':0.3,'in_top_drawer':0,'on_ramekin':0,'next_to_cookie_box':0.9,'on_stove':0,'next_to_plate':0.3,'on_wooden_cabinet':0}},\n    45: {'sr': 0.27, 'exp': 'eval-vla-only-spatial-seed45',\n         'per_task': {'between_plate_and_ramekin':0.7,'next_to_ramekin':0.9,'from_table_center':0,'on_cookie_box':0.2,'in_top_drawer':0,'on_ramekin':0,'next_to_cookie_box':0.9,'on_stove':0,'next_to_plate':0,'on_wooden_cabinet':0}},\n}\n\n# --- LIBERO-Goal ---\ngoal_seeds = {\n    42: {'sr': 0.71, 'exp': 'eval-vla-only-goal-seed42',\n         'per_task': {'open_middle_drawer':0.9,'bowl_on_stove':0.9,'wine_on_cabinet':0.6,'drawer_bowl_inside':0.4,'bowl_on_cabinet':0.7,'plate_front_stove':0.9,'cream_cheese_in_bowl':0.2,'turn_on_stove':0.9,'bowl_on_plate':0.9,'wine_on_rack':0.7}},\n    43: {'sr': 0.69, 'exp': 'eval-vla-only-goal-seed43',\n         'per_task': {'open_middle_drawer':0.9,'bowl_on_stove':0.9,'wine_on_cabinet':0.4,'drawer_bowl_inside':0.5,'bowl_on_cabinet':0.5,'plate_front_stove':0.8,'cream_cheese_in_bowl':0.4,'turn_on_stove':0.9,'bowl_on_plate':1.0,'wine_on_rack':0.6}},\n    44: {'sr': 0.73, 'exp': 'eval-vla-only-goal-seed44-r2',\n         'per_task': {'open_middle_drawer':0.8,'bowl_on_stove':0.9,'wine_on_cabinet':0.4,'drawer_bowl_inside':0.6,'bowl_on_cabinet':0.7,'plate_front_stove':0.9,'cream_cheese_in_bowl':0.3,'turn_on_stove':0.9,'bowl_on_plate':1.0,'wine_on_rack':0.8}},\n}\n\n# --- LIBERO-Long ---\n# All 5 seeds (42-46) are RUNNING, no results yet\n\n# --- LTO Split-A ---\nlto_seeds = {\n    'r2': {'sr': 0.14, 'exp': 'eval-lto-splitA-vla-only-r2'},\n    'r3': {'sr': 0.14, 'exp': 'eval-lto-splitA-vla-only-r3'},\n    'v2': {'sr': 0.14, 'exp': 'eval-lto-splitA-vla-only-v2'},\n}\n\n# ============================================================\n# CRM OBS_ONLY\n# ============================================================\n\n# Object K=10 norm02\ncrm_obj_k10 = {\n    42: 0.22, 43: 0.16, 44: 0.16, 45: 0.16, 46: 0.15, 47: 0.20, 48: 0.18,\n}\n\n# Spatial K=10 norm02\ncrm_spa_k10 = {44: 0.36, 45: 0.34, 47: 0.32}\n\n# Object K=5 norm02\ncrm_obj_k5 = {42: 0.14, 43: 0.19, 44: 0.17, 45: 0.15, 46: 0.16, 47: 0.13, 48: 0.18}\n\n# Spatial K=5 norm02\ncrm_spa_k5 = {42: 0.35, 43: 0.32, 44: 0.37, 45: 0.34}\n\ndef mean_std(vals):\n    m = np.mean(vals)\n    s = np.std(vals, ddof=1) if len(vals) > 1 else 0\n    return m, s\n\n# Compute stats\nobj_srs = [v['sr'] for v in object_seeds.values()]\nspa_srs = [v['sr'] for v in spatial_seeds.values()]\ngoal_srs = [v['sr'] for v in goal_seeds.values()]\n\nobj_m, obj_s = mean_std(obj_srs)\nspa_m, spa_s = mean_std(spa_srs)\ngoal_m, goal_s = mean_std(goal_srs)\n\ncrm_obj_k10_m, crm_obj_k10_s = mean_std(list(crm_obj_k10.values()))\ncrm_spa_k10_m, crm_spa_k10_s = mean_std(list(crm_spa_k10.values()))\ncrm_obj_k5_m, crm_obj_k5_s = mean_std(list(crm_obj_k5.values()))\ncrm_spa_k5_m, crm_spa_k5_s = mean_std(list(crm_spa_k5.values()))\n\nprint(f\"Object: {obj_m:.3f} ± {obj_s:.3f} (n={len(obj_srs)})\")\nprint(f\"Spatial: {spa_m:.3f} ± {spa_s:.3f} (n={len(spa_srs)})\")\nprint(f\"Goal: {goal_m:.3f} ± {goal_s:.3f} (n={len(goal_srs)})\")\nprint()\nprint(f\"CRM obj K10 norm02: {crm_obj_k10_m:.3f} ± {crm_obj_k10_s:.3f} (n={len(crm_obj_k10)})\")\nprint(f\"CRM spa K10 norm02: {crm_spa_k10_m:.3f} ± {crm_spa_k10_s:.3f} (n={len(crm_spa_k10)})\")\nprint(f\"CRM obj K5 norm02: {crm_obj_k5_m:.3f} ± {crm_obj_k5_s:.3f} (n={len(crm_obj_k5)})\")\nprint(f\"CRM spa K5 norm02: {crm_spa_k5_m:.3f} ± {crm_spa_k5_s:.3f} (n={len(crm_spa_k5)})\")\nPYEOF\n",
+                "description": "Compute summary statistics"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "a222a438-c4e7-44b4-86a0-e09fc0dc04c7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DUxs4uEh3WnibX9sZGeocA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 987,
+                "cache_read_input_tokens": 51853,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 987
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-19T18:33:18.087Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Kzputx3mizVXnMvqSdbRGi",
+              "type": "tool_result",
+              "content": "Object: 0.116 ± 0.011 (n=5)\nSpatial: 0.292 ± 0.017 (n=4)\nGoal: 0.710 ± 0.020 (n=3)\n\nCRM obj K10 norm02: 0.176 ± 0.026 (n=7)\nCRM spa K10 norm02: 0.340 ± 0.020 (n=3)\nCRM obj K5 norm02: 0.160 ± 0.022 (n=7)\nCRM spa K5 norm02: 0.345 ± 0.021 (n=4)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "8134c2fa-0f98-4e2e-8dbe-6f713afa3735",
+            "tool_use_result": {
+              "stdout": "Object: 0.116 ± 0.011 (n=5)\nSpatial: 0.292 ± 0.017 (n=4)\nGoal: 0.710 ± 0.020 (n=3)\n\nCRM obj K10 norm02: 0.176 ± 0.026 (n=7)\nCRM spa K10 norm02: 0.340 ± 0.020 (n=3)\nCRM obj K5 norm02: 0.160 ± 0.022 (n=7)\nCRM spa K5 norm02: 0.345 ± 0.021 (n=4)",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017TPViQUhRiSBqS9atyWeXP",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/",
+                "description": "List artifacts directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "60d75bf0-0812-4eba-985b-e8bf9f4ab77c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hy8JvwG8txEkMvkKp1N8dw",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4996,
+                "cache_read_input_tokens": 51853,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4996
+                },
+                "output_tokens": 36,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "previous_message_not_found"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-19T18:33:22.352Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017TPViQUhRiSBqS9atyWeXP",
+              "type": "tool_result",
+              "content": "__pycache__\n_project\nablation_eval_commands.md\nadaptive_k_design.md\nanalysis\nanalysis_magnitude_sweep.py\nanalysis_object_benchmark.py\nanalysis_spatial_final.py\nargmin_seed44_r2_results.json\nbatched_inference_feasibility_report.md\nbenchmark_survey.md\ncitation_attribution_audit.md\ncitation_audit_report.md\ncompetitive_analysis_20260515.md\ncompetitor_analysis.md\nconclusion_draft.md\ncontribution_list.md\ncorl_paper_outline.md\ncorrection_degradation_literature.md\ncrm-train-v2-k5\ncrm_bug_audit.md\ncrm_k1_model.py\ndiag-eval-v6-batch-failure.md\ndiag_bjb1_18228.md\ndiag_bjb2_28827.md\ndiagnose-norm02-seed44-r2.md\ndiagnose-random-selection-seed46-r2.md\ndiagnose_default_seed46.md\ndiagnose_spatial_k5_seed44_r2.md\ndiagnosis-eval-obs-only-object-norm003-seed43.md\ndiagnosis_random_k5_seed44_r2.md\ndream_reports\neval-acr-object-v4-obs-only\neval-acr-object-v4-scalar\neval-argmin-object-seed44-r2\neval-mag-perdof-norm03\neval-obs-only-object-default-seed45\neval-obs-only-object-norm01-seed45-r2\neval-obs-only-object-norm02-seed44-r2\neval-obs-only-object-norm02-seed46\neval-obs-only-object-norm03-seed44\neval-openvla-object-vla-only-seed42\neval-openvla-object-vla-only-seed42-v2\neval-random-selection-object-k5-seed44-r2\neval-reconvla-spatial-v1-diag.md\neval-vla-mean-object-seed44\nexperiment_progress_20260515.md\nexperiments_draft.md\nfallback_narrative_draft.md\nfig_magnitude_curve.py\nfigures\nfisher_analysis.py\nfix_plan_code_sketch.md\ngpu_health_snapshot_20260515.md\nintroduction_draft.md\nk_value_curve_data.json\nlatency_breakdown.json\nlerobot-pipeline-alignment.md\nlibero-smolvla-env-report.md\nliterature_gap_report.md\nmagnitude_curve.pdf\nmagnitude_curve.png\nmagnitude_curve_data.json\nmagnitude_curve_data.md\nmagnitude_curve_draft.pdf\nmagnitude_curve_draft.png\nmagnitude_multiseed_data.md\nmagnitude_sweep_summary.md\nmanifest.yaml\nmethod_draft.md\nmethod_section_draft.tex\nmvp-point-reaching\nn_rollouts_audit_report.md\nnarrative_b_abstract_draft.md\nnarrative_b_abstract_final.md\nnarrative_b_draft.md\nnext_batch_plan_20260517.md\nnorm003_diagnosis_report.md\nobject_eval_commands.md\nobject_results_summary.md\nopenvla_eval_strategy_report.md\nopenvla_gap_analysis.md\nopenvla_libero_weight_investigation.md\npaper_data_alignment.md\npaper_evidence_package.md\npatch_train_crm_k1.py\npipeline-dimension-verification.md\nplan802_architecture.md\nplan_602-latency-profiling\npooled_fisher_test_v2.py\nprecompute-k5\nprecompute-k5-analysis.md\nprogress_scan_loop9.md\nreconvla-comparison-report.md\nrelated_work_draft.md\nreport_eval_progress.md\nreport_running_status.md\nresults_tables.md\nreview_issues.yaml\nreview_reports\nseed43_env_check.md\nseed44_obs_only_norm02_per_task.json\nsmolvla-libero-finetune-survey.md\nsmolvla_wrapper_fixed.py\nspatial_analysis_prep.md\nspatial_comparison_template.md\nthree_seed_fisher_analysis.py\ntrain_crm_k1.py\ntraining_loss_analysis.md",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "69816f4b-0400-4d3a-952a-95c076a05fab",
+            "tool_use_result": {
+              "stdout": "__pycache__\n_project\nablation_eval_commands.md\nadaptive_k_design.md\nanalysis\nanalysis_magnitude_sweep.py\nanalysis_object_benchmark.py\nanalysis_spatial_final.py\nargmin_seed44_r2_results.json\nbatched_inference_feasibility_report.md\nbenchmark_survey.md\ncitation_attribution_audit.md\ncitation_audit_report.md\ncompetitive_analysis_20260515.md\ncompetitor_analysis.md\nconclusion_draft.md\ncontribution_list.md\ncorl_paper_outline.md\ncorrection_degradation_literature.md\ncrm-train-v2-k5\ncrm_bug_audit.md\ncrm_k1_model.py\ndiag-eval-v6-batch-failure.md\ndiag_bjb1_18228.md\ndiag_bjb2_28827.md\ndiagnose-norm02-seed44-r2.md\ndiagnose-random-selection-seed46-r2.md\ndiagnose_default_seed46.md\ndiagnose_spatial_k5_seed44_r2.md\ndiagnosis-eval-obs-only-object-norm003-seed43.md\ndiagnosis_random_k5_seed44_r2.md\ndream_reports\neval-acr-object-v4-obs-only\neval-acr-object-v4-scalar\neval-argmin-object-seed44-r2\neval-mag-perdof-norm03\neval-obs-only-object-default-seed45\neval-obs-only-object-norm01-seed45-r2\neval-obs-only-object-norm02-seed44-r2\neval-obs-only-object-norm02-seed46\neval-obs-only-object-norm03-seed44\neval-openvla-object-vla-only-seed42\neval-openvla-object-vla-only-seed42-v2\neval-random-selection-object-k5-seed44-r2\neval-reconvla-spatial-v1-diag.md\neval-vla-mean-object-seed44\nexperiment_progress_20260515.md\nexperiments_draft.md\nfallback_narrative_draft.md\nfig_magnitude_curve.py\nfigures\nfisher_analysis.py\nfix_plan_code_sketch.md\ngpu_health_snapshot_20260515.md\nintroduction_draft.md\nk_value_curve_data.json\nlatency_breakdown.json\nlerobot-pipeline-alignment.md\nlibero-smolvla-env-report.md\nliterature_gap_report.md\nmagnitude_curve.pdf\nmagnitude_curve.png\nmagnitude_curve_data.json\nmagnitude_curve_data.md\nmagnitude_curve_draft.pdf\nmagnitude_curve_draft.png\nmagnitude_multiseed_data.md\nmagnitude_sweep_summary.md\nmanifest.yaml\nmethod_draft.md\nmethod_section_draft.tex\nmvp-point-reaching\nn_rollouts_audit_report.md\nnarrative_b_abstract_draft.md\nnarrative_b_abstract_final.md\nnarrative_b_draft.md\nnext_batch_plan_20260517.md\nnorm003_diagnosis_report.md\nobject_eval_commands.md\nobject_results_summary.md\nopenvla_eval_strategy_report.md\nopenvla_gap_analysis.md\nopenvla_libero_weight_investigation.md\npaper_data_alignment.md\npaper_evidence_package.md\npatch_train_crm_k1.py\npipeline-dimension-verification.md\nplan802_architecture.md\nplan_602-latency-profiling\npooled_fisher_test_v2.py\nprecompute-k5\nprecompute-k5-analysis.md\nprogress_scan_loop9.md\nreconvla-comparison-report.md\nrelated_work_draft.md\nreport_eval_progress.md\nreport_running_status.md\nresults_tables.md\nreview_issues.yaml\nreview_reports\nseed43_env_check.md\nseed44_obs_only_norm02_per_task.json\nsmolvla-libero-finetune-survey.md\nsmolvla_wrapper_fixed.py\nspatial_analysis_prep.md\nspatial_comparison_template.md\nthree_seed_fisher_analysis.py\ntrain_crm_k1.py\ntraining_loss_analysis.md",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BrcoBDePjKF2y8wXjyAwMo",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/vla_baseline_summary.md",
+                "content": "# VLA-Only Baseline & CRM obs_only Summary\n\nGenerated: 2026-05-19\n\n## 1. VLA-Only Baselines (SmolVLA, K=1, no CRM)\n\n### LIBERO-Object\n\n| Seed | Overall SR | exp_id |\n|------|-----------|--------|\n| 42 | 0.12 | eval-vla-only-object |\n| 43 | 0.12 | eval-vla-only-object-seed43 |\n| 44 | 0.10 | eval-vla-only-object-seed44-r2 |\n| 45 | 0.11 | eval-vla-only-object-seed45-r2 |\n| 46 | 0.13 | eval-vla-only-object-seed46 |\n| **Mean ± Std** | **0.116 ± 0.011** | **n=5** |\n\nPer-task breakdown (seeds with data):\n\n| Task | s42 | s43 | s44 | s45 |\n|------|-----|-----|-----|-----|\n| alphabet_soup | 0.0 | 0.0 | 0.0 | 0.0 |\n| cream_cheese | 0.1 | 0.1 | 0.1 | 0.3 |\n| salad_dressing | 0.2 | 0.1 | 0.2 | 0.2 |\n| bbq_sauce | 0.2 | 0.3 | 0.2 | 0.2 |\n| ketchup | 0.0 | 0.0 | 0.0 | 0.0 |\n| tomato_sauce | 0.1 | 0.0 | 0.0 | 0.1 |\n| butter | 0.0 | 0.0 | 0.0 | 0.0 |\n| milk | 0.1 | 0.1 | 0.1 | 0.0 |\n| chocolate_pudding | 0.2 | 0.4 | 0.2 | 0.1 |\n| orange_juice | 0.3 | 0.2 | 0.2 | 0.2 |\n\n### LIBERO-Spatial\n\n| Seed | Overall SR | exp_id |\n|------|-----------|--------|\n| 42 | 0.30 | eval-vla-only-spatial-seed42 |\n| 43 | 0.29 | eval-vla-only-spatial-seed43 |\n| 44 | 0.31 | eval-vla-only-spatial-seed44 |\n| 45 | 0.27 | eval-vla-only-spatial-seed45 |\n| **Mean ± Std** | **0.292 ± 0.017** | **n=4** |\n\nPer-task breakdown:\n\n| Task | s42 | s43 | s44 | s45 |\n|------|-----|-----|-----|-----|\n| between_plate_and_ramekin | 0.6 | 0.7 | 0.6 | 0.7 |\n| next_to_ramekin | 1.0 | 0.8 | 1.0 | 0.9 |\n| from_table_center | 0.0 | 0.1 | 0.0 | 0.0 |\n| on_cookie_box | 0.2 | 0.3 | 0.3 | 0.2 |\n| in_top_drawer | 0.0 | 0.0 | 0.0 | 0.0 |\n| on_ramekin | 0.0 | 0.0 | 0.0 | 0.0 |\n| next_to_cookie_box | 0.9 | 0.9 | 0.9 | 0.9 |\n| on_stove | 0.0 | 0.0 | 0.0 | 0.0 |\n| next_to_plate | 0.3 | 0.1 | 0.3 | 0.0 |\n| on_wooden_cabinet | 0.0 | 0.0 | 0.0 | 0.0 |\n\n### LIBERO-Goal\n\n| Seed | Overall SR | exp_id |\n|------|-----------|--------|\n| 42 | 0.71 | eval-vla-only-goal-seed42 |\n| 43 | 0.69 | eval-vla-only-goal-seed43 |\n| 44 | 0.73 | eval-vla-only-goal-seed44-r2 |\n| **Mean ± Std** | **0.710 ± 0.020** | **n=3** |\n\nPer-task breakdown:\n\n| Task | s42 | s43 | s44 |\n|------|-----|-----|-----|\n| open_middle_drawer | 0.9 | 0.9 | 0.8 |\n| bowl_on_stove | 0.9 | 0.9 | 0.9 |\n| wine_on_cabinet | 0.6 | 0.4 | 0.4 |\n| drawer_bowl_inside | 0.4 | 0.5 | 0.6 |\n| bowl_on_cabinet | 0.7 | 0.5 | 0.7 |\n| plate_front_stove | 0.9 | 0.8 | 0.9 |\n| cream_cheese_in_bowl | 0.2 | 0.4 | 0.3 |\n| turn_on_stove | 0.9 | 0.9 | 0.9 |\n| bowl_on_plate | 0.9 | 1.0 | 1.0 |\n| wine_on_rack | 0.7 | 0.6 | 0.8 |\n\n### LIBERO-Long\n\nAll 5 seeds (42-46) currently **RUNNING** — no results yet.\n\n### LTO Split-A (5 held-out tasks, not LIBERO-Long)\n\n| Run | SR | exp_id |\n|-----|-----|--------|\n| r2 | 0.14 | eval-lto-splitA-vla-only-r2 |\n| r3 | 0.14 | eval-lto-splitA-vla-only-r3 |\n| v2 | 0.14 | eval-lto-splitA-vla-only-v2 |\n\nTasks: ketchup, milk, orange_juice, salad_dressing, tomato_sauce (5 tasks × 10 rollouts = 50 total, 7 successes)\n\n### OpenVLA 7B Baseline (different model)\n\n| Seed | Suite | SR | exp_id |\n|------|-------|-----|--------|\n| 42 | Object | 0.69 | eval-openvla-object-vla-only-seed42-v2 |\n\n---\n\n## 2. CRM obs_only Comparisons (norm=0.2)\n\n### Object K=10\n\n| Seed | SR | exp_id |\n|------|-----|--------|\n| 42 | 0.22 | eval-acr-object-obs-only-norm02 |\n| 43 | 0.16 | eval-obs-only-object-norm02-seed43-r2 |\n| 44 | 0.16 | eval-obs-only-object-norm02-seed44-r2 |\n| 45 | 0.16 | eval-obs-only-object-norm02-seed45 |\n| 46 | 0.15 | eval-obs-only-object-norm02-seed46 |\n| 47 | 0.20 | eval-obs-only-object-norm02-seed47 |\n| 48 | 0.18 | eval-obs-only-object-norm02-seed48-r2 |\n| **Mean ± Std** | **0.176 ± 0.026** | **n=7** |\n\n### Spatial K=10\n\n| Seed | SR | exp_id |\n|------|-----|--------|\n| 44 | 0.36 | eval-obs-only-spatial-norm02-seed44 |\n| 45 | 0.34 | eval-obs-only-spatial-norm02-seed45 |\n| 47 | 0.32 | eval-obs-only-spatial-norm02-seed47 |\n| **Mean ± Std** | **0.340 ± 0.020** | **n=3** |\n\n### Object K=5\n\n| Seed | SR | exp_id |\n|------|-----|--------|\n| 42 | 0.14 | eval-obs-only-object-norm02-k5-seed42 |\n| 43 | 0.19 | eval-obs-only-object-norm02-k5-seed43 |\n| 44 | 0.17 | eval-obs-only-object-norm02-k5-seed44 |\n| 45 | 0.15 | eval-obs-only-object-norm02-k5-seed45 |\n| 46 | 0.16 | eval-obs-only-object-norm02-k5-seed46 |\n| 47 | 0.13 | eval-obs-only-object-norm02-k5-seed47 |\n| 48 | 0.18 | eval-obs-only-object-norm02-k5-seed48 |\n| **Mean ± Std** | **0.160 ± 0.022** | **n=7** |\n\n### Spatial K=5\n\n| Seed | SR | exp_id |\n|------|-----|--------|\n| 42 | 0.35 | eval-obs-only-spatial-norm02-k5-seed42 |\n| 43 | 0.32 | eval-obs-only-spatial-norm02-k5-seed43 |\n| 44 | 0.37 | eval-obs-only-spatial-norm02-k5-seed44-r2 |\n| 45 | 0.34 | eval-obs-only-spatial-norm02-k5-seed45-r2 |\n| **Mean ± Std** | **0.345 ± 0.021** | **n=4** |\n\n---\n\n## 3. Comparison Summary\n\n| Suite | VLA-only | CRM obs_only K=10 | CRM obs_only K=5 | Δ(K=10) | Δ(K=5) |\n|-------|----------|-------------------|-------------------|---------|--------|\n| Object | 0.116 ± 0.011 (n=5) | 0.176 ± 0.026 (n=7) | 0.160 ± 0.022 (n=7) | +6.0pp | +4.4pp |\n| Spatial | 0.292 ± 0.017 (n=4) | 0.340 ± 0.020 (n=3) | 0.345 ± 0.021 (n=4) | +4.8pp | +5.3pp |\n| Goal | 0.710 ± 0.020 (n=3) | — | — | — | — |\n| Long | RUNNING | — | — | — | — |\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "b4c7659f-b11c-44e8-bf1e-ec2b42899863",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JQkkRZ9Txqu5ZiwvAvxTtD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1178,
+                "cache_read_input_tokens": 56849,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1178
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-19T18:33:53.538Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BrcoBDePjKF2y8wXjyAwMo",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/vla_baseline_summary.md"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "a96f2ab8-a822-4ef6-b18a-83bff9947e00",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/vla_baseline_summary.md",
+              "content": "# VLA-Only Baseline & CRM obs_only Summary\n\nGenerated: 2026-05-19\n\n## 1. VLA-Only Baselines (SmolVLA, K=1, no CRM)\n\n### LIBERO-Object\n\n| Seed | Overall SR | exp_id |\n|------|-----------|--------|\n| 42 | 0.12 | eval-vla-only-object |\n| 43 | 0.12 | eval-vla-only-object-seed43 |\n| 44 | 0.10 | eval-vla-only-object-seed44-r2 |\n| 45 | 0.11 | eval-vla-only-object-seed45-r2 |\n| 46 | 0.13 | eval-vla-only-object-seed46 |\n| **Mean ± Std** | **0.116 ± 0.011** | **n=5** |\n\nPer-task breakdown (seeds with data):\n\n| Task | s42 | s43 | s44 | s45 |\n|------|-----|-----|-----|-----|\n| alphabet_soup | 0.0 | 0.0 | 0.0 | 0.0 |\n| cream_cheese | 0.1 | 0.1 | 0.1 | 0.3 |\n| salad_dressing | 0.2 | 0.1 | 0.2 | 0.2 |\n| bbq_sauce | 0.2 | 0.3 | 0.2 | 0.2 |\n| ketchup | 0.0 | 0.0 | 0.0 | 0.0 |\n| tomato_sauce | 0.1 | 0.0 | 0.0 | 0.1 |\n| butter | 0.0 | 0.0 | 0.0 | 0.0 |\n| milk | 0.1 | 0.1 | 0.1 | 0.0 |\n| chocolate_pudding | 0.2 | 0.4 | 0.2 | 0.1 |\n| orange_juice | 0.3 | 0.2 | 0.2 | 0.2 |\n\n### LIBERO-Spatial\n\n| Seed | Overall SR | exp_id |\n|------|-----------|--------|\n| 42 | 0.30 | eval-vla-only-spatial-seed42 |\n| 43 | 0.29 | eval-vla-only-spatial-seed43 |\n| 44 | 0.31 | eval-vla-only-spatial-seed44 |\n| 45 | 0.27 | eval-vla-only-spatial-seed45 |\n| **Mean ± Std** | **0.292 ± 0.017** | **n=4** |\n\nPer-task breakdown:\n\n| Task | s42 | s43 | s44 | s45 |\n|------|-----|-----|-----|-----|\n| between_plate_and_ramekin | 0.6 | 0.7 | 0.6 | 0.7 |\n| next_to_ramekin | 1.0 | 0.8 | 1.0 | 0.9 |\n| from_table_center | 0.0 | 0.1 | 0.0 | 0.0 |\n| on_cookie_box | 0.2 | 0.3 | 0.3 | 0.2 |\n| in_top_drawer | 0.0 | 0.0 | 0.0 | 0.0 |\n| on_ramekin | 0.0 | 0.0 | 0.0 | 0.0 |\n| next_to_cookie_box | 0.9 | 0.9 | 0.9 | 0.9 |\n| on_stove | 0.0 | 0.0 | 0.0 | 0.0 |\n| next_to_plate | 0.3 | 0.1 | 0.3 | 0.0 |\n| on_wooden_cabinet | 0.0 | 0.0 | 0.0 | 0.0 |\n\n### LIBERO-Goal\n\n| Seed | Overall SR | exp_id |\n|------|-----------|--------|\n| 42 | 0.71 | eval-vla-only-goal-seed42 |\n| 43 | 0.69 | eval-vla-only-goal-seed43 |\n| 44 | 0.73 | eval-vla-only-goal-seed44-r2 |\n| **Mean ± Std** | **0.710 ± 0.020** | **n=3** |\n\nPer-task breakdown:\n\n| Task | s42 | s43 | s44 |\n|------|-----|-----|-----|\n| open_middle_drawer | 0.9 | 0.9 | 0.8 |\n| bowl_on_stove | 0.9 | 0.9 | 0.9 |\n| wine_on_cabinet | 0.6 | 0.4 | 0.4 |\n| drawer_bowl_inside | 0.4 | 0.5 | 0.6 |\n| bowl_on_cabinet | 0.7 | 0.5 | 0.7 |\n| plate_front_stove | 0.9 | 0.8 | 0.9 |\n| cream_cheese_in_bowl | 0.2 | 0.4 | 0.3 |\n| turn_on_stove | 0.9 | 0.9 | 0.9 |\n| bowl_on_plate | 0.9 | 1.0 | 1.0 |\n| wine_on_rack | 0.7 | 0.6 | 0.8 |\n\n### LIBERO-Long\n\nAll 5 seeds (42-46) currently **RUNNING** — no results yet.\n\n### LTO Split-A (5 held-out tasks, not LIBERO-Long)\n\n| Run | SR | exp_id |\n|-----|-----|--------|\n| r2 | 0.14 | eval-lto-splitA-vla-only-r2 |\n| r3 | 0.14 | eval-lto-splitA-vla-only-r3 |\n| v2 | 0.14 | eval-lto-splitA-vla-only-v2 |\n\nTasks: ketchup, milk, orange_juice, salad_dressing, tomato_sauce (5 tasks × 10 rollouts = 50 total, 7 successes)\n\n### OpenVLA 7B Baseline (different model)\n\n| Seed | Suite | SR | exp_id |\n|------|-------|-----|--------|\n| 42 | Object | 0.69 | eval-openvla-object-vla-only-seed42-v2 |\n\n---\n\n## 2. CRM obs_only Comparisons (norm=0.2)\n\n### Object K=10\n\n| Seed | SR | exp_id |\n|------|-----|--------|\n| 42 | 0.22 | eval-acr-object-obs-only-norm02 |\n| 43 | 0.16 | eval-obs-only-object-norm02-seed43-r2 |\n| 44 | 0.16 | eval-obs-only-object-norm02-seed44-r2 |\n| 45 | 0.16 | eval-obs-only-object-norm02-seed45 |\n| 46 | 0.15 | eval-obs-only-object-norm02-seed46 |\n| 47 | 0.20 | eval-obs-only-object-norm02-seed47 |\n| 48 | 0.18 | eval-obs-only-object-norm02-seed48-r2 |\n| **Mean ± Std** | **0.176 ± 0.026** | **n=7** |\n\n### Spatial K=10\n\n| Seed | SR | exp_id |\n|------|-----|--------|\n| 44 | 0.36 | eval-obs-only-spatial-norm02-seed44 |\n| 45 | 0.34 | eval-obs-only-spatial-norm02-seed45 |\n| 47 | 0.32 | eval-obs-only-spatial-norm02-seed47 |\n| **Mean ± Std** | **0.340 ± 0.020** | **n=3** |\n\n### Object K=5\n\n| Seed | SR | exp_id |\n|------|-----|--------|\n| 42 | 0.14 | eval-obs-only-object-norm02-k5-seed42 |\n| 43 | 0.19 | eval-obs-only-object-norm02-k5-seed43 |\n| 44 | 0.17 | eval-obs-only-object-norm02-k5-seed44 |\n| 45 | 0.15 | eval-obs-only-object-norm02-k5-seed45 |\n| 46 | 0.16 | eval-obs-only-object-norm02-k5-seed46 |\n| 47 | 0.13 | eval-obs-only-object-norm02-k5-seed47 |\n| 48 | 0.18 | eval-obs-only-object-norm02-k5-seed48 |\n| **Mean ± Std** | **0.160 ± 0.022** | **n=7** |\n\n### Spatial K=5\n\n| Seed | SR | exp_id |\n|------|-----|--------|\n| 42 | 0.35 | eval-obs-only-spatial-norm02-k5-seed42 |\n| 43 | 0.32 | eval-obs-only-spatial-norm02-k5-seed43 |\n| 44 | 0.37 | eval-obs-only-spatial-norm02-k5-seed44-r2 |\n| 45 | 0.34 | eval-obs-only-spatial-norm02-k5-seed45-r2 |\n| **Mean ± Std** | **0.345 ± 0.021** | **n=4** |\n\n---\n\n## 3. Comparison Summary\n\n| Suite | VLA-only | CRM obs_only K=10 | CRM obs_only K=5 | Δ(K=10) | Δ(K=5) |\n|-------|----------|-------------------|-------------------|---------|--------|\n| Object | 0.116 ± 0.011 (n=5) | 0.176 ± 0.026 (n=7) | 0.160 ± 0.022 (n=7) | +6.0pp | +4.4pp |\n| Spatial | 0.292 ± 0.017 (n=4) | 0.340 ± 0.020 (n=3) | 0.345 ± 0.021 (n=4) | +4.8pp | +5.3pp |\n| Goal | 0.710 ± 0.020 (n=3) | — | — | — | — |\n| Long | RUNNING | — | — | — | — |\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EdJ3H4mDnjckReCG3kg5U7",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "vla_baseline_summary",
+                "type": "report",
+                "description": "VLA-only baseline and CRM obs_only summary across LIBERO suites (Object/Spatial/Goal/Long), with per-seed SR, mean±std, per-task breakdown, and K=10/K=5 comparisons",
+                "project": "acr-vla-conformal-refinement",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/vla_baseline_summary.md",
+                "tags": [
+                  "baseline",
+                  "vla-only",
+                  "obs_only",
+                  "summary",
+                  "libero"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "63eba88c-6c46-4bfa-8b4e-589ee0422efb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015XhzkvLGZKrDdgfipAcS8Y",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3086,
+                "cache_read_input_tokens": 58027,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3086
+                },
+                "output_tokens": 58,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "unavailable"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-19T18:34:00.468Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EdJ3H4mDnjckReCG3kg5U7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260519_311a6c\\\", \\\"name\\\": \\\"vla_baseline_summary\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"VLA-only baseline and CRM obs_only summary across LIBERO suites (Object/Spatial/Goal/Long), with per-seed SR, mean±std, per-task breakdown, and K=10/K=5 comparisons\\\", \\\"path\\\": \\\"projects/acr-vla-conformal-refinement/artifacts/_project/report/vla_baseline_summary.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-19T18:33:59.987311+00:00\\\", \\\"tags\\\": [\\\"baseline\\\", \\\"vla-only\\\", \\\"obs_only\\\", \\\"summary\\\", \\\"libero\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "93e3458a-fcad-44c2-9aae-43388166c622",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260519_311a6c\\\", \\\"name\\\": \\\"vla_baseline_summary\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"VLA-only baseline and CRM obs_only summary across LIBERO suites (Object/Spatial/Goal/Long), with per-seed SR, mean±std, per-task breakdown, and K=10/K=5 comparisons\\\", \\\"path\\\": \\\"projects/acr-vla-conformal-refinement/artifacts/_project/report/vla_baseline_summary.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"acr-vla-conformal-refinement\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-19T18:33:59.987311+00:00\\\", \\\"tags\\\": [\\\"baseline\\\", \\\"vla-only\\\", \\\"obs_only\\\", \\\"summary\\\", \\\"libero\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260519_311a6c\", \"name\": \"vla_baseline_summary\", \"type\": \"report\", \"description\": \"VLA-only baseline and CRM obs_only summary across LIBERO suites (Object/Spatial/Goal/Long), with per-seed SR, mean±std, per-task breakdown, and K=10/K=5 comparisons\", \"path\": \"projects/acr-vla-conformal-refinement/artifacts/_project/report/vla_baseline_summary.md\", \"url\": null, \"project\": \"acr-vla-conformal-refinement\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-19T18:33:59.987311+00:00\", \"tags\": [\"baseline\", \"vla-only\", \"obs_only\", \"summary\", \"libero\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。汇总结果：\n\n| Suite | VLA-only (SmolVLA) | CRM obs_only K=10 | CRM obs_only K=5 |\n|-------|-------------------|-------------------|-------------------|\n| **Object** | 11.6% ± 1.1% (n=5) | 17.6% ± 2.6% (n=7) | 16.0% ± 2.2% (n=7) |\n| **Spatial** | 29.2% ± 1.7% (n=4) | 34.0% ± 2.0% (n=3) | 34.5% ± 2.1% (n=4) |\n| **Goal** | 71.0% ± 2.0% (n=3) | — | — |\n| **Long** | RUNNING (5 seeds) | — | — |\n\n文件已保存至 `artifacts/vla_baseline_summary.md` 并注册（`art_20260519_311a6c`）。含 per-task breakdown 和 per-seed 明细。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "uuid": "911c07fc-44c3-4e5a-8c85-7fa3baa6572c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UvhfXnmecFnUTiSQfRo4bd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3689,
+                "cache_read_input_tokens": 58027,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3689
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": {
+                "cache_miss_reason": {
+                  "type": "previous_message_not_found"
+                }
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。汇总结果：\n\n| Suite | VLA-only (SmolVLA) | CRM obs_only K=10 | CRM obs_only K=5 |\n|-------|-------------------|-------------------|-------------------|\n| **Object** | 11.6% ± 1.1% (n=5) | 17.6% ± 2.6% (n=7) | 16.0% ± 2.2% (n=7) |\n| **Spatial** | 29.2% ± 1.7% (n=4) | 34.0% ± 2.0% (n=3) | 34.5% ± 2.1% (n=4) |\n| **Goal** | 71.0% ± 2.0% (n=3) | — | — |\n| **Long** | RUNNING (5 seeds) | — | — |\n\n文件已保存至 `artifacts/vla_baseline_summary.md` 并注册（`art_20260519_311a6c`）。含 per-task breakdown 和 per-seed 明细。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 344064,
+            "duration_api_ms": 340881,
+            "num_turns": 25,
+            "stop_reason": "end_turn",
+            "session_id": "dcc029ef-2962-4d39-bee8-d40a10c23560",
+            "total_cost_usd": 1.2343535,
+            "usage": {
+              "input_tokens": 29,
+              "cache_creation_input_tokens": 53948,
+              "cache_read_input_tokens": 913633,
+              "output_tokens": 17563,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 53948,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 280,
+                  "cache_read_input_tokens": 58027,
+                  "cache_creation_input_tokens": 3689,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 3689
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1052,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001142,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 29,
+                "outputTokens": 17563,
+                "cacheReadInputTokens": 913633,
+                "cacheCreationInputTokens": 53948,
+                "webSearchRequests": 0,
+                "costUSD": 1.2332115000000003,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "d0866202-8399-414f-90d7-6a62b6db9684"
+          },
+          "id": "event-000066"
+        }
+      ]
+    }
+  ]
+}

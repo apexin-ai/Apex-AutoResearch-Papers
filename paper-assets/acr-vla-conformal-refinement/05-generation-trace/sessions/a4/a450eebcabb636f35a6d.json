@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a450eebcabb636f35a6d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval crm goal seed46",
+  "task_key": "worker_analyze_eval-crm-goal-seed46_20260519T235724",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-crm-goal-seed46_20260519T235724_result.json",
+    "occurrence": 1,
+    "bytes": 989,
+    "sha256": "36ef259a411a6e8522261606249eafa44bb57bf85c555e9af4d1317774952954"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。以下是分析摘要：\n\n---\n\n## CRM Goal OOD 综合分析\n\n### 两个实验结果\n\n| Seed | CRM SR | 状态 |\n|------|--------|------|\n| seed44-r2 | **64%** | metrics 已补充 |\n| seed46 | **72%** | 新完成，已注册 |\n\n### CRM Goal OOD 汇总 (n=4)\n\n| Seed | SR |\n|------|----|\n| 42 | 67% |\n| 43 | 72% |\n| 44 | 64% |\n| 46 | 72% |\n| **平均** | **68.8% ± 3.9%** |\n\n（seed45-r2 标记 failed，不计入）\n\n### 与 VLA-only baseline 对比\n\n| 方法 | 平均 SR | n | Std |\n|------|---------|---|-----|\n| VLA-only | 69.4% | 5 | ±3.7% |\n| CRM obs_only | 68.8% | 4 | ±3.9% |\n\n### 结论\n\n**CRM 在 Goal OOD 上效果中性。** 68.8% vs 69.4%，差异 -0.6pp，远在噪声范围内。CRM 仅在 Object+Spatial 训练，未能对 Goal suite 产生正向迁移，也未造成退化。这符合预期——Goal 任务的 action distribution 与训练分布差异较大，CRM 的校正信号不 informative。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-crm-goal-seed46.md"
+}

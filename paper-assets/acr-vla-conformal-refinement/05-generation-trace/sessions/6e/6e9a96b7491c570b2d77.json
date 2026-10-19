@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "6e9a96b7491c570b2d77",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "check spatial completions harvest",
+  "task_key": "worker_check_spatial-completions-harvest_20260525T023635",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_check_spatial-completions-harvest_20260525T023635.jsonl",
+    "occurrence": 1,
+    "bytes": 174,
+    "sha256": "3d73ef4803103ca7b02d6f363f83c0e8e197e2143ea1b93167b735ad49877478"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T02:36:42.810424+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_spatial-completions-harvest_20260525T023635"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/check-spatial-completions-harvest.md"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "b80dc59270fa49691039",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "ops check gpu utilization",
+  "task_key": "worker_ops_check-gpu-utilization_20260521T183341",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_ops_check-gpu-utilization_20260521T183341.jsonl",
+    "occurrence": 1,
+    "bytes": 173,
+    "sha256": "a7db9637208ccfd5d94fc7838255e8292628718dc26269ae99e9fec363e9ae47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T18:33:48.715660+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_check-gpu-utilization_20260521T183341"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ops-check-gpu-utilization.md"
+}

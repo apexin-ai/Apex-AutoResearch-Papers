@@ -1,0 +1,699 @@
+{
+  "schema_version": "1.0",
+  "id": "81da4cea7445545a837f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "deploy remaining 2gpu",
+  "task_key": "worker_deploy_remaining-2gpu_20260526T011025",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_deploy_remaining-2gpu_20260526T011025.jsonl",
+    "occurrence": 1,
+    "bytes": 18877,
+    "sha256": "3ea9481fd43ba59a1491a4e83b79714547881834767871b1ad0b493d03baee2e"
+  },
+  "statistics": {
+    "messages": 33,
+    "user_turns": 0,
+    "tool_calls": 16,
+    "roles": {
+      "tool_call": 16,
+      "tool_result": 16,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-26T01:12:35.833532+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-26T01:12:35.834009+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-26T01:12:35.834341+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "grep -n 'correction_norm' /root/acr-vla-conformal-refinement/src/evaluate.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-26T01:12:35.834598+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"102:    p.add_argument('--max_correction_norm', type=float, default=None,\\\\n103:                   help='Override CRM max_correction_norm (default: use checkpoint value)')\\\\n494:    correction_norm = 0.0\\\\n496:        correction_norm = (refined_pose.reshape(-1).cpu() - base_action.reshape(-1).cpu()).norm().item()\\\\n500:        \\\\\\\"correction_norm\\\\\\\": correction_norm,\\\\n607:    # Default max_correction_norm=0.2 for adaptive_k mode\\\\n608:    if args.mode in (\\\\\\\"adaptive_k\\\\\\\", \\\\\\\"adaptive_unc_head\\\\\\\", \\\\\\\"adaptive_conformal_crm\\\\\\\") and args.max_correction_norm is None:\\\\n609:        args.max_correction_norm = 0.2\\\\n611:    # Override max_correction_norm if specified\\\\n612:    if args.max_correction_norm is not None and crm is not None:\\\\n613:        crm.max_correction_norm = args.max_correction_norm\\\\n614:        print(f\\\\\\\"[eval] Override max_correction_norm = {args.max_correction_norm}\\\\\\\")\\\\n812:        all_correction_norms = [m.get(\\\\\\\"correction_norm\\\\\\\", 0.0) for m in all_unc_head_meta]\\\\n819:            \\\\\\\"mean_correction_norm\\\\\\\": float(np.mean([n for n in all_correction_norms if n > 0])) if any(n > 0 for n in all_correction_norms) else 0.0,\\\\n848:        norm_tag = f\\\\\\\"_norm{args.max_correction_norm}\\\\\\\" if args.max_correction_norm is not None else \\\\\\\"\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.96}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-26T01:12:35.834822+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-26T01:12:35.835025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 10 %, 1977 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-26T01:12:35.835287+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__kill_job",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-26T01:12:35.835499+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-26T01:12:35.835704+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "submit training job",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-26T01:12:35.835909+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-26T01:12:35.836128+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-26T01:12:35.836363+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-26T01:12:35.836617+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "mkdir -p /root/acr-vla-conformal-refinement/logs && tmux new-session -d -s mechanism_goal_s42 \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=3 python src/evaluate.py --model smolvla --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint /root/acr-vla-conformal-refinement/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --benchmark goal --seed 42 --n_rollouts 20 2>&1 | tee /root/acr-vla-conformal-refinement/logs/mechanism_goal_adapt_s42.log\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-26T01:12:35.836830+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-26T01:12:35.837028+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "mkdir -p /root/acr-vla-conformal-refinement/logs && tmux new-session -d -s goal_vla_s49 \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && CUDA_VISIBLE_DEVICES=0 python src/evaluate.py --model smolvla --mode vla_only --baseline_mode single --benchmark goal --seed 49 --n_rollouts 20 2>&1 | tee /root/acr-vla-conformal-refinement/logs/goal_vla_only_s49.log\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-26T01:12:35.837233+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-26T01:12:35.837508+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-18228",
+              "command": "tail -5 /root/acr-vla-conformal-refinement/logs/mechanism_goal_adapt_s42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-26T01:12:35.837734+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n[evaluate] args: {'benchmark': 'goal', 'checkpoint': None, 'crm_checkpoint': '/root/acr-vla-conformal-refinement/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 42, 'K': 2, 'mode': 'adaptive_conformal_crm', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_goal_adaptive_conformal_crm_K2_norm0.2_tau0.25_seed42.json', 'max_correction_norm': 0.2, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.25, 'n_action_steps': 10}\\\\n[eval] Mode: adaptive_conformal_crm, benchmark: goal\\\\n[eval] max_steps set to 300 for benchmark goal\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-26T01:12:35.837961+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-40593",
+              "command": "tail -5 /root/acr-vla-conformal-refinement/logs/goal_vla_only_s49.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-26T01:12:35.838177+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[robosuite WARNING] It is recommended to use a private macro file (__init__.py:8)\\\\n[robosuite WARNING] To setup, run: python /root/miniconda3/lib/python3.12/site-packages/robosuite/scripts/setup_macros.py (__init__.py:9)\\\\n[evaluate] args: {'benchmark': 'goal', 'checkpoint': None, 'crm_checkpoint': None, 'n_rollouts': 20, 'max_steps': 300, 'seed': 49, 'K': 1, 'mode': 'vla_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'openvla_oft_path': '/root/autodl-tmp/models/openvla-oft/object/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_goal_vla_only_seed49.json', 'max_correction_norm': None, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\\\n[eval] Mode: vla_only, benchmark: goal\\\\n[eval] max_steps set to 300 for benchmark goal\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.32}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-26T01:12:35.838466+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-mechanism-goal-adapt-s42",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=3 python src/evaluate.py --model smolvla --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint checkpoints/crm_smolvla_3suite_v1/crm_best.pt --benchmark goal --seed 42 --n_rollouts 20', 'server': 'bjb1-18228', 'data_path': '/root/acr-vla-conformal-refinement/', 'data_count': 20, 'model_name': 'smolvla', 'seed': 42}"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-26T01:12:35.838691+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-k2-goal-vla-only-s49",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=0 python src/evaluate.py --model smolvla --mode vla_only --baseline_mode single --benchmark goal --seed 49 --n_rollouts 20', 'server': 'bjb2-40593', 'data_path': '/root/acr-vla-conformal-refinement/', 'data_count': 20, 'model_name': 'smolvla', 'seed': 49}"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-26T01:12:35.838920+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.345}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-26T01:12:35.839129+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.3292}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-26T01:12:35.839391+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-mechanism-goal-adapt-s42",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-26T01:12:35.839598+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-k2-goal-vla-only-s49",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-26T01:12:35.839804+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-mechanism-goal-adapt-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T01:11:48.015Z\\\", \\\"updated_at\\\": \\\"2026-05-26T01:11:48.015Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.9377}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-26T01:12:35.840011+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-k2-goal-vla-only-s49\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T01:11:55.792Z\\\", \\\"updated_at\\\": \\\"2026-05-26T01:11:55.792Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.4926}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-26T01:12:35.840210+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-mechanism-goal-adapt-s42",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=3 python src/evaluate.py --model smolvla --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint checkpoints/crm_smolvla_3suite_v1/crm_best.pt --benchmark goal --seed 42 --n_rollouts 20', 'server': 'bjb1-18228', 'data_path': '/root/acr-vla-conformal-refinement/', 'data_count': 20, 'model_name': 'smolvla', 'seed': 42}"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-26T01:12:35.840473+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-k2-goal-vla-only-s49",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "acr-vla-conformal-refinement",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=0 python src/evaluate.py --model smolvla --mode vla_only --baseline_mode single --benchmark goal --seed 49 --n_rollouts 20', 'server': 'bjb2-40593', 'data_path': '/root/acr-vla-conformal-refinement/', 'data_count': 20, 'model_name': 'smolvla', 'seed': 49}"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-26T01:12:35.840715+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-mechanism-goal-adapt-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T01:11:48.015Z\\\", \\\"updated_at\\\": \\\"2026-05-26T01:12:15.012Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python src/evaluate.py --model smolvla --mode adaptive_conformal_crm --K 2 --max_correction_norm 0.2 --conformal_threshold 0.25 --crm_checkpoint checkpoints/crm_smolvla_3suite_v1/crm_best.pt --benchmark goal --seed 42 --n_rollouts 20\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"data_path\\\": \\\"/root/acr-vla-conformal-refinement/\\\", \\\"data_count\\\": 20, \\\"model_name\\\": \\\"smolvla\\\", \\\"seed\\\": 42}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.6734}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-26T01:12:35.840940+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-k2-goal-vla-only-s49\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-26T01:11:55.792Z\\\", \\\"updated_at\\\": \\\"2026-05-26T01:12:22.955Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python src/evaluate.py --model smolvla --mode vla_only --baseline_mode single --benchmark goal --seed 49 --n_rollouts 20\\\", \\\"server\\\": \\\"bjb2-40593\\\", \\\"data_path\\\": \\\"/root/acr-vla-conformal-refinement/\\\", \\\"data_count\\\": 20, \\\"model_name\\\": \\\"smolvla\\\", \\\"seed\\\": 49}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 8.8186}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-26T01:12:35.841202+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n| 实验 | 服务器 | GPU | tmux session | Registry ID | 状态 |\n|------|--------|-----|--------------|-------------|------|\n| SmolVLA Adaptive Goal s42 (mechanism) | bjb1-18228 | 3 | `mechanism_goal_s42` | `eval-mechanism-goal-adapt-s42` | RUNNING |\n| SmolVLA VLA-only Goal s49 | bjb2-40593 | 0 | `goal_vla_s49` | `eval-k2-goal-vla-only-s49` | RUNNING |\n\n两个实验预计 45-60 分钟完成。日志分别在：\n- `/root/acr-vla-conformal-refinement/logs/mechanism_goal_adapt_s42.log`\n- `/root/acr-vla-conformal-refinement/logs/goal_vla_only_s49.log`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_remaining-2gpu_20260526T011025"
+          },
+          "id": "event-000033"
+        }
+      ],
+      "message_count": 33
+    }
+  ],
+  "readable_path": "readable/conversations/deploy-remaining-2gpu.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "deb9024a3c103928e392",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "verify gpu status all servers",
+  "task_key": "worker_verify_gpu-status-all-servers_20260521T032920",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_gpu-status-all-servers_20260521T032920_result.json",
+    "occurrence": 1,
+    "bytes": 3760,
+    "sha256": "99f50dc7d1a8e6829fe3f9d0879d73f46f9be830db2364cc7dacf5f5bb4f01e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集完毕。以下是汇总：\n\n---\n\n## SERVER: bjb1-32546 (6x 4090 24GB)\n\n| GPU | 显存占用 | GPU利用率 | 状态 |\n|-----|---------|----------|------|\n| cuda:0 | 2 MiB | 0% | **空闲** ✅ |\n| cuda:1 | 5731 MiB | 36% | PID 814271: `eval_obs_only_object_norm003_seed62_r3` (K=10, n=20) |\n| cuda:2 | 3871 MiB | 31% | PID 805840: `eval crm_obs_only object norm0.05 seed67` (K=10, n=10) |\n| cuda:3 | 5731 MiB | 34% | PID 814868: `eval_obs_only_object_norm003_seed63_r3` (K=10, n=20) |\n| cuda:4 | 5731 MiB | 29% | PID 815207: `eval_obs_only_object_norm01_seed76` (K=10, n=20) |\n| cuda:5 | 5731 MiB | 33% | PID 815997: `eval_obs_only_object_norm01_seed77` (K=10, n=20) |\n\n## SERVER: bjb2-28827 (6x 4090 24GB)\n\n| GPU | 显存占用 | GPU利用率 | 状态 |\n|-----|---------|----------|------|\n| cuda:0 | 5202 MiB | 18% | PID 975409: `eval_adaptive_k_spatial_p90_seed44` (threshold=0.125870, k_full=10, norm=0.2) |\n| cuda:1 | 5730 MiB | 26% | PID 979385: `eval_obs_only_object_norm003_seed77` (K=10, n=20) |\n| cuda:2 | 5730 MiB | 29% | PID 980044: `eval_obs_only_object_norm003_seed78` (K=10, n=20) |\n| cuda:3 | 5730 MiB | 31% | PID 981089: `eval_obs_only_object_norm005_seed76` (K=10, n=20) |\n| cuda:4 | 5730 MiB | 27% | PID 982680: `eval_obs_only_object_norm005_seed77` (K=10, n=20) |\n| cuda:5 | 4334 MiB | 18% | PID 969788: `eval crm_obs_only object norm0.03 seed67` (K=10, n=10) |\n\n## SERVER: bjb1-18228 (4x 4090 24GB)\n\n| GPU | 显存占用 | GPU利用率 | 状态 |\n|-----|---------|----------|------|\n| cuda:0 | 3408 MiB | 34% | PID 642428: `eval crm_obs_only object norm0.03 seed66` (K=10) |\n| cuda:1 | 3870 MiB | 34% | PID 666593: `eval crm_obs_only object norm0.1 seed67` (K=10, n=10) |\n| cuda:2 | 3408 MiB | 34% | PID 642506: `eval crm_obs_only object norm0.05 seed66` (K=10) |\n| cuda:3 | 3408 MiB | 23% | PID 642775: `eval crm_obs_only object norm0.1 seed66` (K=10) |\n\n## SERVER: bjb2-40593 (1x 4090 24GB)\n\n| GPU | 显存占用 | GPU利用率 | 状态 |\n|-----|---------|----------|------|\n| cuda:0 | 13039 MiB | 13% | PID 802639: `evaluate.py --model pi05 --mode vla_only --benchmark object --seed 42` |\n\n---\n\n## 汇总\n\n**空闲 GPU：**\n- `bjb1-32546:cuda:0`\n\n**占用 GPU（共 16 张）：**\n\n| 服务器:GPU | 实验 |\n|-----------|------|\n| bjb1-32546:cuda:1 | obs_only norm0.03 seed62 r3 |\n| bjb1-32546:cuda:2 | obs_only norm0.05 seed67 |\n| bjb1-32546:cuda:3 | obs_only norm0.03 seed63 r3 |\n| bjb1-32546:cuda:4 | obs_only norm0.1 seed76 |\n| bjb1-32546:cuda:5 | obs_only norm0.1 seed77 |\n| bjb2-28827:cuda:0 | adaptive_k spatial p90 seed44 |\n| bjb2-28827:cuda:1 | obs_only norm0.03 seed77 |\n| bjb2-28827:cuda:2 | obs_only norm0.03 seed78 |\n| bjb2-28827:cuda:3 | obs_only norm0.05 seed76 |\n| bjb2-28827:cuda:4 | obs_only norm0.05 seed77 |\n| bjb2-28827:cuda:5 | obs_only norm0.03 seed67 |\n| bjb1-18228:cuda:0 | obs_only norm0.03 seed66 |\n| bjb1-18228:cuda:1 | obs_only norm0.1 seed67 |\n| bjb1-18228:cuda:2 | obs_only norm0.05 seed66 |\n| bjb1-18228:cuda:3 | obs_only norm0.1 seed66 |\n| bjb2-40593:cuda:0 | π0.5 vla_only object seed42 |\n\n---\n\n## 特别关注项回答\n\n1. **bjb2-28827:cuda:0 是否有 eval-adaptive-k-spatial-p90-seed44?** — **是的**，PID 975409 正在运行，adaptive_k 模式，spatial benchmark，seed 44，threshold=0.125870，norm=0.2。\n\n2. **bjb1-32546:cuda:0 是否空闲?** — **是的**，仅 2 MiB 占用，0% 利用率，无计算进程。\n\n3. **bjb2-40593:cuda:0 是否已被 kill（π0.5 旧 eval PID 802634）?** — **未被 kill**。PID 802639（非 802634）仍在运行 π0.5 vla_only eval（object benchmark, seed 42），占用 13039 MiB。PID 号略有出入，可能是重启过一次。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-gpu-status-all-servers.md"
+}

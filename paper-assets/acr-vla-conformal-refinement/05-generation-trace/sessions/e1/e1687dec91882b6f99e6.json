@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1687dec91882b6f99e6",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "survey orphan experiments check",
+  "task_key": "worker_survey_orphan-experiments-check_20260517T221108",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_survey_orphan-experiments-check_20260517T221108_result.json",
+    "occurrence": 1,
+    "bytes": 1327,
+    "sha256": "7221255e3592e6ededdf931632f4f5898ee799f365549e84beb795e67f01a162"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### Orphan 实验（bjb1-18228）\n\n| 实验 | 状态 | PID | 进度 | 预计剩余 |\n|------|------|-----|------|----------|\n| eval-obs-only-object-norm02-k5-seed42 | **ALIVE** (已重试) | 713405 | 4/10 tasks done | ~5h |\n| eval-obs-only-object-norm02-k20-seed42 | **ALIVE** (已重试) | 713480 | 1/10 tasks done (第2个task进行中) | ~27h |\n\n两个实验之前确实以 EXIT_CODE=129 (SIGHUP) 失败过，但已被自动重试（retry_count=1）。当前重试实例在 bjb1-18228 上正常运行，started ~02:54 UTC。Registry 的 RUNNING 状态正确，`failure_reason`/`completed_at` 是上一次失败的残留字段。\n\nK=20 实验因为每步采样 20 个候选，速度远慢于 K=5，预计还需 ~27 小时。\n\n### Cron 监控实验\n\n| 实验 | 服务器 | PID | 状态 | 运行时间 |\n|------|--------|-----|------|----------|\n| eval-obs-only-object-norm01-seed46 | bjb2-28827 | 449068 | **ALIVE** (Rl) | 4h08m |\n| eval-perdof-object-norm02-seed43-r3 | bjb2-28827 | 449339 | **ALIVE** (Rl) | 4h08m |\n| eval-perdof-object-norm02-seed45-r3 | bjb1-32546 | 749540→749547 | **ALIVE** (Rl) | 1h10m |\n| eval-obs-only-object-norm005-seed43 | bjb2-28827 | 476529→476536 | **ALIVE** (Rl) | 1h09m |\n\n所有 6 个实验均正常运行，无需 registry 更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/survey-orphan-experiments-check.md"
+}

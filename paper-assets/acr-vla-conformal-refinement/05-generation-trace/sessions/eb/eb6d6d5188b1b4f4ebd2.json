@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb6d6d5188b1b4f4ebd2",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest bjb1 32546 batch",
+  "task_key": "worker_harvest_bjb1-32546-batch_20260525T174358",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_bjb1-32546-batch_20260525T174358_result.json",
+    "occurrence": 1,
+    "bytes": 1119,
+    "sha256": "8c70a688283e0108ee7707c3bcecaad668023e6c096fbec2e034e3cca6200ca2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 9 个实验 registry 已更新为 DONE。汇总表：\n\n| exp_id | SR | trigger_rate | Δ vs VLA-only | status |\n|--------|-----|-------------|---------------|--------|\n| **K=2 Spatial Paired r2** | | | | |\n| eval-k2-spatial-adapt-s42-paired-r2 | 79.5% | 19.8% | +1.0% | DONE |\n| eval-k2-spatial-vla-only-s42-paired-r2 | 78.5% | — | — | DONE |\n| eval-k2-spatial-adapt-s43-paired-r2 | 79.5% | 20.3% | ±0.0% | DONE |\n| eval-k2-spatial-vla-only-s43-paired-r2 | 79.5% | — | — | DONE |\n| eval-k2-spatial-adapt-s44-paired-r2 | 80.5% | 19.5% | +0.5% | DONE |\n| eval-k2-spatial-vla-only-s44-paired-r2 | 80.0% | — | — | DONE |\n| **VLA-only Spatial baseline** | | | | |\n| eval-vla-only-spatial-bjb1-s48 | 77.5% | — | — | DONE |\n| eval-vla-only-spatial-bjb1-s49 | 79.5% | — | — | DONE |\n| **SmolVLA CRM Goal** | | | | |\n| eval-smolvla-crm-goal-seed44 | 82.5% | — | — | DONE |\n\n**K=2 Paired 小结**：Adaptive mean=79.8%, VLA-only mean=79.3%, mean Δ=+0.5%。方向正确但改善极其微弱，3 seeds 中仅 s42 有 +1% 的可见 Δ。Trigger rate 稳定在 ~20%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-bjb1-32546-batch.md"
+}

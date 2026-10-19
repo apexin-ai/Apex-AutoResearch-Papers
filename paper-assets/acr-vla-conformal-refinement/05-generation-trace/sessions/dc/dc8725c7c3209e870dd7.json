@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc8725c7c3209e870dd7",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_23_1779390449.md",
+  "task_key": "loop_23_1779390449",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_23_1779390449.md",
+    "occurrence": 1,
+    "bytes": 4750,
+    "sha256": "2a48c5d356f9330c86a20b1351614676fe222c2ecfef26f75bf3bee12e5639c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 23\nreason: idle_timeout\nupdated: '2026-05-21T19:04:07+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: bjb2-40593:cuda:0, bjb1-18228:cuda:0-3, bjb1-32546:cuda:0-5, bjb2-28827:cuda:0-5（共17张），白名单外的 GPU 即使 Director 指令也必须 push back\n- Object CRM K=10 Table 1 锁定 norm02-only n=6 (16.8±1.8%)，D084 决定 seed42 (SR=20%) 不纳入——不要把新 Object CRM 结果随意加入 Table 1\n- Spatial CRM K=10 已修正为 clean n=8 (34.4±1.5%)，D083\n- Long OOD 已降级 cautious wording (D081, MW-U p=0.061 n.s.)——不要写 significant\n- P50 是 Pareto 最优 (D078)，论文核心配置\n- bjb1-32546 使用 conda 环境，提交命令必须 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python ...`，不能裸 `python`（2026-05-21 4个实验因此失败）\n- evaluate.py 在 `src/` 子目录下，命令用 `python src/evaluate.py` 不是 `python evaluate.py`\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**: 4× RTX 4090, 工作目录 `/root/acr-vla-conformal-refinement/`, Python: conda base `/root/miniconda3/bin/python`\n- **bjb1-32546**: 6× RTX 4090, 工作目录 `/root/autodl-tmp/acr-vla-conformal-refinement/`, Python: conda base `/root/miniconda3/bin/python`, CRM checkpoint: `/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`\n- **bjb2-28827**: 6× RTX 4090, 同 bjb1-32546 路径结构\n- **bjb2-40593**: 1× RTX 4090, 同上路径\n- W&B: 项目配置里有 entity/project，Worker 用 fetch_wandb_metrics 查询\n- 活跃 cron 确认存活进程: pi05-baseline-seed42 (bjb2-40593, pid=802634), norm003-seed67 (bjb2-28827, pid=969788), norm005-seed67 (bjb1-32546, pid=805840), norm01-seed67 (bjb1-18228, pid=666593)\n\n### 3. 📊 当前状态\n**刚做完**: Loop #23 session-start 初始化——read_registry, reconcile_crons, 向 Director 汇报当前状态。mass-deploy Worker 已完成（12/12 部署成功，包括 Spatial Random Selection seed42-44、Goal/Object CRM 补种等）。\n\n**RUNNING (21)**: 主要是 norm sweep 批量（norm003/005/01 seeds 51-75）+ eval-pi05-baseline-object-seed42（π0.5 baseline，D095 关键实验）\n\n**⚠️ 10 个实验 \"Process gone, no sentinel\"**: norm003-seed64 已 miss 3/5（最紧急），其余 miss 1-2/5。已知 false positive 模式——eval 脚本不写 sentinel。\n\n**ANALYZING (1)**: eval-vla-only-object-seed49（卡在 ANALYZING 自 5/20 17:54）\n\n**PREPARING (35)**: Long/Spatial/Goal 补种、Adaptive K P90 seed44 等\n\n**活跃 Worker (4)**:\n1. `worker_diag_verify-nocron-running-L23` — 验证无 cron 监控的 RUNNING 实验\n2. `worker_diagnose_eval-vla-only-object-seed49` — ANALYZING 卡住诊断\n3. `worker_diagnose_bjb1-18228-norm-seed65-fill` — bjb1-18228 实验诊断\n4. `worker_diag_bjb1-32546-gpu-conflicts` — bjb1-32546 GPU 冲突诊断\n\n### 4. 📋 待办\n- 4 个诊断 Worker 回调到达 → 读结果，对 \"process gone\" 实验: tail 日志确认完成则手动修正 conclusion=success + 补录 metrics；确认失败则重提交\n- eval-vla-only-object-seed49 诊断完成 → 若实际完成则修正为 DONE + 补录 metrics\n- norm003-seed64 miss 达 5/5 被误判 failed → 手动修正（但优先在 miss 5/5 前通过诊断 Worker 确认状态）\n- π0.5 baseline (pi05-seed42) 完成 → 提取 SR，判断 action diversity，若 stochastic 则进 Phase 3 CRM pipeline (D095/D096)\n- norm sweep 全部完成 → 汇总各 ε 的 mean±std，生成 Figure 2，更新 paper_framing.md（ε=0.05 应为 ~13.8% 非 14.3%）\n- 35 个 PREPARING 实验 → 待 GPU 空闲后按优先级部署（Spatial CRM/Random Selection > Long/Goal 补种）\n\n### 5. 🎯 战略上下文\n- **CoRL 2026 DDL = 2026-05-29，剩 ~8 天**\n- 论文核心贡献 = Adaptive K (D077)，Plan A (K=2 conformal + selective CRM) 已锁定: Object 18.3%±2.1%, Spatial 35.0%±1.0% (D092/D094)\n- 信号锁定 K=2 L2 distance (ρ=0.9979, D076)，CRM magnitude 和 FMVD 都 NO-GO (D075/D079)\n- OpenVLA CRM = 0% applicability boundary, CLOSED (D093)\n- π0.5/π 实验线是用户硬要求 (D095)，目的是第二个 VLA backbone 解决 reviewer concern M1 (narrow scope)\n- 决策链: D075→D076→D077→D078→D079→D080→D081→D082→D083→D084→...→D096\n- **易错点**: \"process gone\" 大概率是 false positive（历史上反复出现），不要急着重提交，先 tail 日志确认\n- **易错点**: 不要混淆 Object-calibrated threshold (τ) 和 Spatial 的实际表现——阈值从 Object 标定，跨 benchmark 泛化性是要验证的\n- **易错点**: report.md 告警列表很长但大多是历史 killed/failed 实验，不要被干扰\n- **易错点**: norm sweep 的 ε=0.2 (norm02) 是 Table 1 的主配置，其他 ε 值是 sweep 支撑数据\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-23-1779390449.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f6ad204ddeb247976f9",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code fisher test preparation",
+  "task_key": "worker_code_fisher-test-preparation_20260515T202503",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fisher-test-preparation_20260515T202503_result.json",
+    "occurrence": 1,
+    "bytes": 594,
+    "sha256": "d2ab9b8e8a7430d07097820cb6d8c3c976ffc46baa20a10850eb242aab7cbcb5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建并验证通过。\n\n核心发现（用假设数据 seed43=20/100 vs 12/100 模拟）：\n- 单 seed Fisher p > 0.17，不显著\n- **Pooled Fisher p = 0.054**，刚好卡在 0.05 边界\n- Bootstrap pooled CI 排除了 0（[0.5, 14.5] pp），P(obs≤arg) = 0.023\n\n现实意义：seed43 的 argmin 需要比 obs_only **至少低 1-2pp**（或 obs_only 比当前 partial 更好）才能让 pooled p < 0.05。当前 partial 数据 obs_only=8.3% vs argmin=10%，**方向反了**——如果最终结果维持这个方向，pooled 几乎不可能达到 p < 0.05。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fisher-test-preparation.md"
+}

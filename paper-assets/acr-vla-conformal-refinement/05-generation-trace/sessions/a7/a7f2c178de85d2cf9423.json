@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7f2c178de85d2cf9423",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis eval acr object v4 scalar",
+  "task_key": "worker_analysis_eval-acr-object-v4-scalar_20260515T160921",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval-acr-object-v4-scalar_20260515T160921_result.json",
+    "occurrence": 1,
+    "bytes": 480,
+    "sha256": "5fbd72dabd174bbd5ed3554db0ec6b2e49840ca9a20dc4e7df40869dd0a00267"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果：scalar_unc CRM v3-norm on LIBERO Object = 9.0% SR (9/100)**\n\n- 4/10 tasks 完全失败 (0%)，最好的 chocolate_pudding 30%\n- 略高于 argmin baseline (6.7%)，但低于 obs_only (13.3%) 和 vla_mean (10.0%)\n- 结论：**negative** — scalar uncertainty 信号不足以提供有效的 correction 方向信息，obs_only 的全观测 embedding 明显更优\n\nRegistry 已更新 (status=DONE, conclusion=negative)，报告已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-acr-object-v4-scalar.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6dc257058691de5113f9",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "check precompute status all",
+  "task_key": "worker_check_precompute-status-all_20260521T145216",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_precompute-status-all_20260521T145216_result.json",
+    "occurrence": 1,
+    "bytes": 3084,
+    "sha256": "88954409b99d6e8200ce5b08e04d56a65ce3a6e0c512f5c7ad5e4c06b2a74ef4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data. Here's the complete status:\n\n## Precompute Shard 状态汇总\n\n### Object Shards (10 shards, ~7251 samples each)\n\n| Shard | 服务器 | GPU | 状态 | 进度 | 速度 | 预计剩余 | Cache .pt |\n|-------|--------|-----|------|------|------|----------|-----------|\n| **s0** | bjb2-40593 | GPU 0 (99%) | **RUNNING** (原始进程) | 2700/7251 | 3.38s/sample | ~4.3h | 30 files (混合100/500粒度) |\n| **s1** | bjb1-32546 | GPU 0-4之一 | **RUNNING** (r2) | 1000/7251 | 2.15s/sample | ~3.7h | 2 files (500粒度) |\n| **s2** | bjb1-32546 | GPU 0-4之一 | **RUNNING** (r2) | 1100/7251 | 1.91s/sample | ~3.3h | 2 files (500粒度) |\n| **s3** | bjb1-32546 | GPU 0-4之一 | **RUNNING** (r2) | 1100/7251 | 1.93s/sample | ~3.3h | 2 files (500粒度) |\n| **s4** | bjb1-32546 | GPU 0-4之一 | **RUNNING** (r2) | 1000/7251 | 2.05s/sample | ~3.6h | 2 files (500粒度) |\n| **s5** | bjb1-32546 | GPU 0-4之一 | **RUNNING** (r2) | 1500/7251 | 2.02s/sample | ~3.2h | 混合(fix+r2) |\n| **s6** | bjb1-32546 | GPU 5 (0%) | **DEAD** | 1500/7251 | — | — | 15 files (100粒度, 覆盖0-1500) |\n| **s7** | bjb1-18228 | GPU 0-3之一 | **RUNNING** (r2) | 1100/7250 | 1.92s/sample | ~3.3h | 2 files (500粒度) |\n| **s8** | bjb1-18228 | GPU 0-3之一 | **RUNNING** (r2) | 1100/7250 | 1.94s/sample | ~3.3h | 2 files (500粒度) |\n| **s9** | bjb1-18228 | GPU 0-3之一 | **RUNNING** (r2) | 1100/7250 | 1.95s/sample | ~3.3h | 2 files (500粒度) |\n\n### Spatial Shards (7 shards, ~8607 samples each)\n\n| Shard | 服务器 | GPU | 状态 | 进度 | 速度 | 预计剩余 | Cache .pt |\n|-------|--------|-----|------|------|------|----------|-----------|\n| **s0** | bjb2-28827 | GPU 0-5之一 | **RUNNING** | 1900/8608 | 2.27s/sample | ~4.2h | 3 files (500粒度) |\n| **s1** | bjb2-28827 | GPU 0-5之一 | **RUNNING** | 1900/8607 | 2.26s/sample | ~4.2h | 3 files |\n| **s2** | bjb2-28827 | GPU 0-5之一 | **RUNNING** | 1900/8607 | 2.22s/sample | ~4.1h | 3 files |\n| **s3** | bjb2-28827 | GPU 0-5之一 | **RUNNING** | 1800/8607 | 2.27s/sample | ~4.3h | 3 files |\n| **s4** | bjb2-28827 | GPU 0-5之一 | **RUNNING** | 1900/8607 | 2.21s/sample | ~4.1h | 3 files |\n| **s5** | bjb2-28827 | GPU 0-5之一 | **RUNNING** | 1800/8607 | 2.31s/sample | ~4.4h | 3 files |\n| **s6** | bjb1-18228 | GPU 0-3之一 | **RUNNING** | 2200/8607 | 1.90s/sample | ~3.4h | 4 files (500粒度) |\n\n### 问题\n\n1. **Object shard 6 已死** — bjb1-32546 GPU 5 空闲(0% util, 1 MiB)，进程停在 1500/7251。已有 1500 samples 缓存可复用。\n2. **Object shard 0 r2 尝试 OOM 崩溃** — bjb2-40593 有 2 个 GPU 进程各占 9.6 GB，r2 启动时 OOM。但**原始进程仍在运行**（shard0.log 活跃更新到 2700/7251），只是速度较慢(3.38s vs ~2s)。\n3. **bjb1-32546 GPU 5 闲置** — 可以用来重启 Object shard 6（从 1500 处 resume）。\n\n### Cache 总计\n\n| 服务器 | .pt 文件数 |\n|--------|-----------|\n| bjb1-32546 | 88 |\n| bjb1-18228 | 139 (含旧 s1-s4 数据) |\n| bjb2-28827 | 18 |\n| bjb2-40593 | 30 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-precompute-status-all.md"
+}

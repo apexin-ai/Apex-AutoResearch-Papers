@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "977211f657234717a514",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops harvest random seed42",
+  "task_key": "worker_ops_harvest-random-seed42_20260518T121915",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_harvest-random-seed42_20260518T121915_result.json",
+    "occurrence": 1,
+    "bytes": 717,
+    "sha256": "c50f1308447472026bbd30e03d207146f7dbdd9062f981d286af1183281fa8a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。\n\n## 结果报告\n\n**Overall SR: 13.0% (13/100)**\n\n**Per-task SR:**\n\n| # | Task | SR |\n|---|------|-----|\n| 1 | alphabet_soup | 0% |\n| 2 | cream_cheese | 10% |\n| 3 | salad_dressing | 10% |\n| 4 | bbq_sauce | 40% |\n| 5 | ketchup | 0% |\n| 6 | tomato_sauce | 20% |\n| 7 | butter | 0% |\n| 8 | milk | 10% |\n| 9 | chocolate_pudding | 20% |\n| 10 | orange_juice | 20% |\n\n完整 10 task 结果 (13.0%) 与之前 partial 数据 (7/10 tasks, ~11.4%) 基本一致，最后 3 个 task (milk 10%, chocolate_pudding 20%, orange_juice 20%) 略拉高了整体 SR。\n\n**bjb2-40593 cuda:0 已完全释放**（0MiB 显存占用，无进程），可用于下一个实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-harvest-random-seed42.md"
+}

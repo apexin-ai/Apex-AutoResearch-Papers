@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad12e4146107077c6dc1",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy director d049 gpu fill",
+  "task_key": "worker_deploy_director-d049-gpu-fill_20260517T132950",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_director-d049-gpu-fill_20260517T132950_result.json",
+    "occurrence": 1,
+    "bytes": 903,
+    "sha256": "4cbfc0f1a5cd8efbf121bc881757486b943b881eb3664f5e3ad9588343ba7ba0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。总结：\n\n**成功部署 4 个实验：**\n- **Exp 4** (obs_only ε=0.05 seed43) → bjb1-18228 cuda:0, PID 631667\n- **Exp 5** (perdof ε=0.2 seed45) → bjb1-18228 cuda:1, PID 631687\n- **Exp 2** (K=5 obs_only seed42) → bjb1-18228 cuda:2, PID 633662（另一 worker 部署）\n- **Exp 3** (K=20 obs_only seed42) → bjb1-18228 cuda:3, PID 636638（首次失败，已重新提交）\n\n**无需部署：**\n- **Exp 1** (random selection seed42): 已在 bjb2-40593 cuda:0 运行中 (PID 395256, ~1.5h)\n- **Exp 6** (obs_only ε=0.03 seed43): Registry 显示已 DONE\n\n**偏差：** Exp 2、3 原计划部署到 bjb2-28827 cuda:1/2，但该 GPU 被 perdof seed45 (29h!) 和 seed47 (~2h) 占用，改部署到 bjb1-18228。bjb1-18228 现有 4 个 LIBERO 进程（达上限）。\n\n**需关注：** bjb2-28827 cuda:1 的 perdof seed45 已跑 29 小时，可能 stuck。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-director-d049-gpu-fill.md"
+}

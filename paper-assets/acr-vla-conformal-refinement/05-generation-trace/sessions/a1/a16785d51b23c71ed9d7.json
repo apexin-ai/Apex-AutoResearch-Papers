@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "id": "a16785d51b23c71ed9d7",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "deploy westd 49937 batch3",
+  "task_key": "worker_deploy_westd-49937-batch3_20260526T214624",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_deploy_westd-49937-batch3_20260526T214624.jsonl",
+    "occurrence": 1,
+    "bytes": 709,
+    "sha256": "b46f477c01d040683d8397f1afc7b82a348ea34209cba8a1d1f481013e8ec2d3"
+  },
+  "statistics": {
+    "messages": 4,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 4
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-26T21:46:34.330183+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_westd-49937-batch3_20260526T214624"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-26T21:46:43.730503+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 29, 2pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_westd-49937-batch3_20260526T214624"
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-26T21:46:53.131492+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 29, 2pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_westd-49937-batch3_20260526T214624"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-26T21:47:02.788521+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 29, 2pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_westd-49937-batch3_20260526T214624"
+          },
+          "id": "event-000004"
+        }
+      ],
+      "message_count": 4
+    }
+  ],
+  "readable_path": "readable/conversations/deploy-westd-49937-batch3.md"
+}

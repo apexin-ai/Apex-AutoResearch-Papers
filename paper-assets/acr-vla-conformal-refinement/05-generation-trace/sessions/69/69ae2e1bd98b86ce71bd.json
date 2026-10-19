@@ -1,0 +1,1014 @@
+{
+  "schema_version": "1.0",
+  "id": "69ae2e1bd98b86ce71bd",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "analyze eval adaptive k spatial p90 seed44",
+  "task_key": "worker_analyze_eval-adaptive-k-spatial-p90-seed44_20260520T145720",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-adaptive-k-spatial-p90-seed44_20260520T145720.log",
+    "occurrence": 1,
+    "bytes": 88828,
+    "sha256": "8aff68437bcb13eb7251ddbbe2b937a29aed1ce84da22a550c5cf984343d3b2d"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 6,
+      "tool_result": 6,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_8/projects/acr-vla-conformal-refinement",
+                "session_id": "85662c08-ffbf-40fa-91d0-2d5f7659694d",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "4a026995-df77-4c2a-be9b-fc2ee36e00a4",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-8-projects-acr-vla-conformal-refinement/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779295200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "e94f13cb-9a53-4fd4-a36b-eef46b29d9f0",
+                "session_id": "85662c08-ffbf-40fa-91d0-2d5f7659694d"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the experiment results from the server bjb1-18228.",
+              "signature": "Eo8CCmMIDRgCKkCV4IcQpr//hAIUvVtebjxs9aUCXjMoCbnho7F7Lhz6OiIbbb7u869bn01jtA7aGREnv+HjTAo8olwImq1A0/tnMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDE9LdI7UYPniSurg9RoMrh5bE8wPHv7cJMieIjBKX6DlZJPUch4WdZ99Sb94YRj76UVSEXSScXEfxKAPAaIi/t8fQ+U5Syi/ZqizBYsqWtDzo9CEnRl1REAmBx4vfVSz3tTRCqrm9Ro0KviNddZmlREfseAAUir+CaKoVmVFn3O6NJdtYOGqoTxPZ5BLH2oiMI7Y2tdm2Rwdm+M8vJWchvMe5IbTM2q56BgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "85662c08-ffbf-40fa-91d0-2d5f7659694d",
+            "uuid": "b25d681a-774d-4147-aa9f-21bc0e0ca029",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NRbHRbARhcSMDypUsm3ZS9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11583,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11583
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FjvEwJousLNj36FKQrLDhk",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "85662c08-ffbf-40fa-91d0-2d5f7659694d",
+            "uuid": "c12faddd-ae86-4aeb-890a-836149ecdbfc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NRbHRbARhcSMDypUsm3ZS9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 11583,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11583
+                },
+                "output_tokens": 33,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T14:57:30.818Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01FjvEwJousLNj36FKQrLDhk",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "85662c08-ffbf-40fa-91d0-2d5f7659694d",
+            "uuid": "38be29b8-bd1c-4131-91fb-7e8fd5495b32",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__update_registry",
+                "mcp__agent-ml-research__read_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "读取实验结果文件和日志。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "85662c08-ffbf-40fa-91d0-2d5f7659694d",
+            "uuid": "f9546220-cb73-47c9-9bb7-7680636abc4c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019HEqHxyyMrZTUGSa5uV3HZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1297,
+                "cache_read_input_tokens": 23424,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1297
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G79v1Su267LhC9kLSKSe4Q",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-18228",
+                "command": "cat /root/acr-vla-conformal-refinement/logs/eval_adaptive_k_spatial_p90_seed44.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "85662c08-ffbf-40fa-91d0-2d5f7659694d",
+            "uuid": "e71c152b-2550-4b3f-beae-7bc313b57d43",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019HEqHxyyMrZTUGSa5uV3HZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1297,
+                "cache_read_input_tokens": 23424,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1297
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UzUyCoMKBLSAnSManwcuV2",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "bjb1-18228",
+                "command": "tail -50 /root/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p90-seed44.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "85662c08-ffbf-40fa-91d0-2d5f7659694d",
+            "uuid": "06595f79-34ab-4688-bfbf-a15c9f055f3d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019HEqHxyyMrZTUGSa5uV3HZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1297,
+                "cache_read_input_tokens": 23424,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1297
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T14:57:41.726Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G79v1Su267LhC9kLSKSe4Q",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"adaptive_k\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"spatial\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 10,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.36,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.8,\\\\n      \\\\\\\"successes\\\\\\\": 8,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 10,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.4,\\\\n      \\\\\\\"successes\\\\\\\": 4,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"successes\\\\\\\": 1,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.9,\\\\n      \\\\\\\"successes\\\\\\\": 9,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.4,\\\\n      \\\\\\\"successes\\\\\\\": 4,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    }\\\\n  },\\\\n  \\\\\\\"per_step_K\\\\\\\": [\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n \\\\n\\\\n... [截断: 输出过长，省略 160416 字符] ...\\\\n\\\\n  2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2\\\\n  ],\\\\n  \\\\\\\"avg_K\\\\\\\": 3.5596592137698395,\\\\n  \\\\\\\"adaptive_trigger_rate\\\\\\\": 0.19495740172122994,\\\\n  \\\\\\\"threshold\\\\\\\": 0.12587,\\\\n  \\\\\\\"adaptive_stats\\\\\\\": {\\\\n    \\\\\\\"fast_path_ratio\\\\\\\": 0.80504259827877,\\\\n    \\\\\\\"avg_actual_k\\\\\\\": 3.5596592137698395,\\\\n    \\\\\\\"mean_l2_distance\\\\\\\": 0.09003116319895517,\\\\n    \\\\\\\"total_steps\\\\\\\": 23123,\\\\n    \\\\\\\"fast_steps\\\\\\\": 18615,\\\\n    \\\\\\\"full_steps\\\\\\\": 4508\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "85662c08-ffbf-40fa-91d0-2d5f7659694d",
+            "uuid": "fd3430f7-1905-4133-ba96-6aae2458f38a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"adaptive_k\\\\\\\",\\\\n  \\\\\\\"baseline_mode\\\\\\\": \\\\\\\"single\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"spatial\\\\\\\",\\\\n  \\\\\\\"n_rollouts\\\\\\\": 10,\\\\n  \\\\\\\"overall_success_rate\\\\\\\": 0.36,\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.8,\\\\n      \\\\\\\"successes\\\\\\\": 8,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 1.0,\\\\n      \\\\\\\"successes\\\\\\\": 10,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.4,\\\\n      \\\\\\\"successes\\\\\\\": 4,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"successes\\\\\\\": 1,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.9,\\\\n      \\\\\\\"successes\\\\\\\": 9,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.4,\\\\n      \\\\\\\"successes\\\\\\\": 4,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    },\\\\n    \\\\\\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\\\\\": {\\\\n      \\\\\\\"success_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"successes\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 10\\\\n    }\\\\n  },\\\\n  \\\\\\\"per_step_K\\\\\\\": [\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n \\\\n\\\\n... [截断: 输出过长，省略 160416 字符] ...\\\\n\\\\n  2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    2,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    2,\\\\n    10,\\\\n    10,\\\\n    10,\\\\n    2\\\\n  ],\\\\n  \\\\\\\"avg_K\\\\\\\": 3.5596592137698395,\\\\n  \\\\\\\"adaptive_trigger_rate\\\\\\\": 0.19495740172122994,\\\\n  \\\\\\\"threshold\\\\\\\": 0.12587,\\\\n  \\\\\\\"adaptive_stats\\\\\\\": {\\\\n    \\\\\\\"fast_path_ratio\\\\\\\": 0.80504259827877,\\\\n    \\\\\\\"avg_actual_k\\\\\\\": 3.5596592137698395,\\\\n    \\\\\\\"mean_l2_distance\\\\\\\": 0.09003116319895517,\\\\n    \\\\\\\"total_steps\\\\\\\": 23123,\\\\n    \\\\\\\"fast_steps\\\\\\\": 18615,\\\\n    \\\\\\\"full_steps\\\\\\\": 4508\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"mode\\\": \\\"adaptive_k\\\",\\n  \\\"baseline_mode\\\": \\\"single\\\",\\n  \\\"benchmark\\\": \\\"spatial\\\",\\n  \\\"n_rollouts\\\": 10,\\n  \\\"overall_success_rate\\\": 0.36,\\n  \\\"per_task\\\": {\\n    \\\"pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.8,\\n      \\\"successes\\\": 8,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 1.0,\\n      \\\"successes\\\": 10,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.4,\\n      \\\"successes\\\": 4,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.1,\\n      \\\"successes\\\": 1,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.9,\\n      \\\"successes\\\": 9,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.4,\\n      \\\"successes\\\": 4,\\n      \\\"total\\\": 10\\n    },\\n    \\\"pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate\\\": {\\n      \\\"success_rate\\\": 0.0,\\n      \\\"successes\\\": 0,\\n      \\\"total\\\": 10\\n    }\\n  },\\n  \\\"per_step_K\\\": [\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n \\n\\n... [截断: 输出过长，省略 160416 字符] ...\\n\\n  2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    10,\\n    2,\\n    2,\\n    2,\\n    2,\\n    10,\\n    2,\\n    2,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    2,\\n    10,\\n    10,\\n    10,\\n    2\\n  ],\\n  \\\"avg_K\\\": 3.5596592137698395,\\n  \\\"adaptive_trigger_rate\\\": 0.19495740172122994,\\n  \\\"threshold\\\": 0.12587,\\n  \\\"adaptive_stats\\\": {\\n    \\\"fast_path_ratio\\\": 0.80504259827877,\\n    \\\"avg_actual_k\\\": 3.5596592137698395,\\n    \\\"mean_l2_distance\\\": 0.09003116319895517,\\n    \\\"total_steps\\\": 23123,\\n    \\\"fast_steps\\\": 18615,\\n    \\\"full_steps\\\": 4508\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.45}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T14:57:42.195Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UzUyCoMKBLSAnSManwcuV2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[eval] Mode: adaptive_k, benchmark: spatial\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  60%|██████    | 294/489 [00:00<00:00, 2936.58it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3416.24it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.2\\\\n[eval] Loading LIBERO spatial environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 4/5\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 8/10\\\\n[pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate] success rate: 80.0% (8/10)\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 10/10\\\\n[pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate] success rate: 100.0% (10/10)\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 5/10, success so far: 2/5\\\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 10/10, success so far: 4/10\\\\n[pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate] success rate: 40.0% (4/10)\\\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/10, success so far: 1/10\\\\n[pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 10.0% (1/10)\\\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 10/10, success so far: 9/10\\\\n[pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate] success rate: 90.0% (9/10)\\\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 5/10, success so far: 1/5\\\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 10/10, success so far: 4/10\\\\n[pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate] success rate: 40.0% (4/10)\\\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\\\n\\\\n============================================================\\\\nOverall success rate (adaptive_k): 36.0% (36/100)\\\\n============================================================\\\\n[eval] Adaptive stats: fast_path=80.5%, avg_k=3.6, mean_l2=0.0900\\\\n[eval] Results saved to logs/eval_adaptive_k_spatial_p90_seed44.json\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "85662c08-ffbf-40fa-91d0-2d5f7659694d",
+            "uuid": "7fbfe095-2999-4305-83a8-f67e03216ce1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[eval] Mode: adaptive_k, benchmark: spatial\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  60%|██████    | 294/489 [00:00<00:00, 2936.58it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3416.24it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\\\n[eval] Override max_correction_norm = 0.2\\\\n[eval] Loading LIBERO spatial environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 4/5\\\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 8/10\\\\n[pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate] success rate: 80.0% (8/10)\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 10/10\\\\n[pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate] success rate: 100.0% (10/10)\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 5/10, success so far: 2/5\\\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 10/10, success so far: 4/10\\\\n[pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate] success rate: 40.0% (4/10)\\\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/10, success so far: 1/10\\\\n[pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 10.0% (1/10)\\\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 10/10, success so far: 9/10\\\\n[pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate] success rate: 90.0% (9/10)\\\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 5/10, success so far: 1/5\\\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 10/10, success so far: 4/10\\\\n[pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate] success rate: 40.0% (4/10)\\\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\\\n[pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\\\n\\\\n============================================================\\\\nOverall success rate (adaptive_k): 36.0% (36/100)\\\\n============================================================\\\\n[eval] Adaptive stats: fast_path=80.5%, avg_k=3.6, mean_l2=0.0900\\\\n[eval] Results saved to logs/eval_adaptive_k_spatial_p90_seed44.json\\\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"[eval] Mode: adaptive_k, benchmark: spatial\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\rLoading weights:  60%|██████    | 294/489 [00:00<00:00, 2936.58it/s]\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 3416.24it/s]\\nReducing the number of VLM layers to 16 ...\\nLoading weights from local directory\\n[eval] CRM loaded from /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt (327,198 params)\\n[eval] Override max_correction_norm = 0.2\\n[eval] Loading LIBERO spatial environments...\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\n[eval] 10 tasks loaded.\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 4/5\\n  pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 8/10\\n[pick_up_the_black_bowl_between_the_plate_and_the_ramekin_and_place_it_on_the_plate] success rate: 80.0% (8/10)\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\n  pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 10/10\\n[pick_up_the_black_bowl_next_to_the_ramekin_and_place_it_on_the_plate] success rate: 100.0% (10/10)\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\n  pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\n[pick_up_the_black_bowl_from_table_center_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 5/10, success so far: 2/5\\n  pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate: rollout 10/10, success so far: 4/10\\n[pick_up_the_black_bowl_on_the_cookie_box_and_place_it_on_the_plate] success rate: 40.0% (4/10)\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\n  pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/10, success so far: 1/10\\n[pick_up_the_black_bowl_in_the_top_drawer_of_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 10.0% (1/10)\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\n  pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\n[pick_up_the_black_bowl_on_the_ramekin_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 5/10, success so far: 5/5\\n  pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate: rollout 10/10, success so far: 9/10\\n[pick_up_the_black_bowl_next_to_the_cookie_box_and_place_it_on_the_plate] success rate: 90.0% (9/10)\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\n  pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\n[pick_up_the_black_bowl_on_the_stove_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 5/10, success so far: 1/5\\n  pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate: rollout 10/10, success so far: 4/10\\n[pick_up_the_black_bowl_next_to_the_plate_and_place_it_on_the_plate] success rate: 40.0% (4/10)\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 5/10, success so far: 0/5\\n  pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate: rollout 10/10, success so far: 0/10\\n[pick_up_the_black_bowl_on_the_wooden_cabinet_and_place_it_on_the_plate] success rate: 0.0% (0/10)\\n\\n============================================================\\nOverall success rate (adaptive_k): 36.0% (36/100)\\n============================================================\\n[eval] Adaptive stats: fast_path=80.5%, avg_k=3.6, mean_l2=0.0900\\n[eval] Results saved to logs/eval_adaptive_k_spatial_p90_seed44.json\\nsys:1: DeprecationWarning: builtin type swigvarlink has no __module__ attribute\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.42}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Got the results. Let me extract the key metrics:\n\n- overall_success_rate: 0.36 (36%)\n- avg_K: 3.5597\n- fast_path_ratio: 0.80504 (80.5%)\n- adaptive_trigger_rate: 0.19496\n- total_steps: 23123\n- fast_steps: 18615\n- full_steps: 4508\n- threshold: 0.12587\n- total rollouts: 100 (10 tasks × 10 rollouts)\n- successes: 36\n\nPer-task:\n\n\nLooking at the breakdown by task, I see some significant variation in performance. A few tasks like next_to_ramekin are hitting 100% success, while others like from_table_center and on_ramekin are completely failing. Most tasks fall somewhere in between, with next_to_cookie_box at 90% and between_plate_and_ramekin at 80% performing well. Now I need to update the registry with these metrics.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "85662c08-ffbf-40fa-91d0-2d5f7659694d",
+            "uuid": "700ed07d-4418-4ddd-ad48-72b42b76faa8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MyPY1yeJEWpgMRQZnBkADy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7760,
+                "cache_read_input_tokens": 24721,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7760
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正常完成，SR=36%, avg_K=3.56, fast_path=80.5%。更新 registry。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "85662c08-ffbf-40fa-91d0-2d5f7659694d",
+            "uuid": "2fb4fc8b-1cf9-48cb-aacd-7e398a45373f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MyPY1yeJEWpgMRQZnBkADy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7760,
+                "cache_read_input_tokens": 24721,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7760
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NcxswgbouBQiRHkJUwMw1P",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval-adaptive-k-spatial-p90-seed44",
+                "field": "metrics",
+                "value": {
+                  "success_rate": 0.36,
+                  "avg_K": 3.56,
+                  "fast_path_ratio": 0.805,
+                  "adaptive_trigger_rate": 0.195,
+                  "total_rollouts": 100,
+                  "successes": 36,
+                  "total_steps": 23123,
+                  "fast_steps": 18615,
+                  "full_steps": 4508,
+                  "threshold": 0.12587,
+                  "mean_l2_distance": 0.09,
+                  "per_task": {
+                    "between_plate_and_ramekin": {
+                      "sr": 0.8,
+                      "successes": 8,
+                      "total": 10
+                    },
+                    "next_to_ramekin": {
+                      "sr": 1,
+                      "successes": 10,
+                      "total": 10
+                    },
+                    "from_table_center": {
+                      "sr": 0,
+                      "successes": 0,
+                      "total": 10
+                    },
+                    "on_cookie_box": {
+                      "sr": 0.4,
+                      "successes": 4,
+                      "total": 10
+                    },
+                    "in_top_drawer": {
+                      "sr": 0.1,
+                      "successes": 1,
+                      "total": 10
+                    },
+                    "on_ramekin": {
+                      "sr": 0,
+                      "successes": 0,
+                      "total": 10
+                    },
+                    "next_to_cookie_box": {
+                      "sr": 0.9,
+                      "successes": 9,
+                      "total": 10
+                    },
+                    "on_stove": {
+                      "sr": 0,
+                      "successes": 0,
+                      "total": 10
+                    },
+                    "next_to_plate": {
+                      "sr": 0.4,
+                      "successes": 4,
+                      "total": 10
+                    },
+                    "on_wooden_cabinet": {
+                      "sr": 0,
+                      "successes": 0,
+                      "total": 10
+                    }
+                  }
+                },
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "85662c08-ffbf-40fa-91d0-2d5f7659694d",
+            "uuid": "a826e260-aae9-4ba7-881c-ffb1506d1ff7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MyPY1yeJEWpgMRQZnBkADy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7760,
+                "cache_read_input_tokens": 24721,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7760
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019aTGy8YTHS21qAui2RyoUj",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval-adaptive-k-spatial-p90-seed44",
+                "field": "spec",
+                "value": {
+                  "log_path": "~/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p90-seed44.log"
+                },
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "85662c08-ffbf-40fa-91d0-2d5f7659694d",
+            "uuid": "6016134c-fd9e-4f3c-a334-bc9bea5e5d22",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MyPY1yeJEWpgMRQZnBkADy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7760,
+                "cache_read_input_tokens": 24721,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7760
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T14:58:00.984Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NcxswgbouBQiRHkJUwMw1P",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-spatial-p90-seed44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T13:06:33.103Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:57:59.036Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P90 (0.125870) on LIBERO-Spatial seed44. Third seed completing Spatial P90 cross-benchmark sweep.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode adaptive_k --adaptive_threshold 0.125870 --k_full 10 --benchmark spatial --seed 44 --n_rollouts 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_adaptive_k_spatial_p90_seed44.json 2>&1 | tee logs/eval-adaptive-k-spatial-p90-seed44.log\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"384493\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p90-seed44.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T13:07:04.948Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T14:54:15.429Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T14:55:02.249467+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0.36, \\\"avg_K\\\": 3.56, \\\"fast_path_ratio\\\": 0.805, \\\"adaptive_trigger_rate\\\": 0.195, \\\"total_rollouts\\\": 100, \\\"successes\\\": 36, \\\"total_steps\\\": 23123, \\\"fast_steps\\\": 18615, \\\"full_steps\\\": 4508, \\\"threshold\\\": 0.12587, \\\"mean_l2_distance\\\": 0.09, \\\"per_task\\\": {\\\"between_plate_and_ramekin\\\": {\\\"sr\\\": 0.8, \\\"successes\\\": 8, \\\"total\\\": 10}, \\\"next_to_ramekin\\\": {\\\"sr\\\": 1, \\\"successes\\\": 10, \\\"total\\\": 10}, \\\"from_table_center\\\": {\\\"sr\\\": 0, \\\"successes\\\": 0, \\\"total\\\": 10}, \\\"on_cookie_box\\\": {\\\"sr\\\": 0.4, \\\"successes\\\": 4, \\\"total\\\": 10}, \\\"in_top_drawer\\\": {\\\"sr\\\": 0.1, \\\"successes\\\": 1, \\\"total\\\": 10}, \\\"on_ramekin\\\": {\\\"sr\\\": 0, \\\"successes\\\": 0, \\\"total\\\": 10}, \\\"next_to_cookie_box\\\": {\\\"sr\\\": 0.9, \\\"successes\\\": 9, \\\"total\\\": 10}, \\\"on_stove\\\": {\\\"sr\\\": 0, \\\"successes\\\": 0, \\\"total\\\": 10}, \\\"next_to_plate\\\": {\\\"sr\\\": 0.4, \\\"successes\\\": 4, \\\"total\\\": 10}, \\\"on_wooden_cabinet\\\": {\\\"sr\\\": 0, \\\"successes\\\": 0, \\\"total\\\": 10}}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.2001}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "85662c08-ffbf-40fa-91d0-2d5f7659694d",
+            "uuid": "8219497b-0338-45ea-a607-fb38ac6e5714",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-spatial-p90-seed44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T13:06:33.103Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:57:59.036Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P90 (0.125870) on LIBERO-Spatial seed44. Third seed completing Spatial P90 cross-benchmark sweep.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode adaptive_k --adaptive_threshold 0.125870 --k_full 10 --benchmark spatial --seed 44 --n_rollouts 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_adaptive_k_spatial_p90_seed44.json 2>&1 | tee logs/eval-adaptive-k-spatial-p90-seed44.log\\\\\\\"\\\", \\\"server\\\": \\\"bjb1-18228\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"384493\\\", \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p90-seed44.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T13:07:04.948Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T14:54:15.429Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T14:55:02.249467+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0.36, \\\"avg_K\\\": 3.56, \\\"fast_path_ratio\\\": 0.805, \\\"adaptive_trigger_rate\\\": 0.195, \\\"total_rollouts\\\": 100, \\\"successes\\\": 36, \\\"total_steps\\\": 23123, \\\"fast_steps\\\": 18615, \\\"full_steps\\\": 4508, \\\"threshold\\\": 0.12587, \\\"mean_l2_distance\\\": 0.09, \\\"per_task\\\": {\\\"between_plate_and_ramekin\\\": {\\\"sr\\\": 0.8, \\\"successes\\\": 8, \\\"total\\\": 10}, \\\"next_to_ramekin\\\": {\\\"sr\\\": 1, \\\"successes\\\": 10, \\\"total\\\": 10}, \\\"from_table_center\\\": {\\\"sr\\\": 0, \\\"successes\\\": 0, \\\"total\\\": 10}, \\\"on_cookie_box\\\": {\\\"sr\\\": 0.4, \\\"successes\\\": 4, \\\"total\\\": 10}, \\\"in_top_drawer\\\": {\\\"sr\\\": 0.1, \\\"successes\\\": 1, \\\"total\\\": 10}, \\\"on_ramekin\\\": {\\\"sr\\\": 0, \\\"successes\\\": 0, \\\"total\\\": 10}, \\\"next_to_cookie_box\\\": {\\\"sr\\\": 0.9, \\\"successes\\\": 9, \\\"total\\\": 10}, \\\"on_stove\\\": {\\\"sr\\\": 0, \\\"successes\\\": 0, \\\"total\\\": 10}, \\\"next_to_plate\\\": {\\\"sr\\\": 0.4, \\\"successes\\\": 4, \\\"total\\\": 10}, \\\"on_wooden_cabinet\\\": {\\\"sr\\\": 0, \\\"successes\\\": 0, \\\"total\\\": 10}}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.2001}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-adaptive-k-spatial-p90-seed44\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T13:06:33.103Z\", \"updated_at\": \"2026-05-20T14:57:59.036Z\", \"hypothesis\": \"Adaptive K with τ=P90 (0.125870) on LIBERO-Spatial seed44. Third seed completing Spatial P90 cross-benchmark sweep.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl python -u src/evaluate.py --mode adaptive_k --adaptive_threshold 0.125870 --k_full 10 --benchmark spatial --seed 44 --n_rollouts 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt --max_correction_norm 0.2 --output_file logs/eval_adaptive_k_spatial_p90_seed44.json 2>&1 | tee logs/eval-adaptive-k-spatial-p90-seed44.log\\\"\", \"server\": \"bjb1-18228\", \"gpu\": [\"cuda:0\"], \"pid\": \"384493\", \"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p90-seed44.log\", \"submitted_at\": \"2026-05-20T13:07:04.948Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T14:54:15.429Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T14:55:02.249467+00:00\"}]}, \"metrics\": {\"success_rate\": 0.36, \"avg_K\": 3.56, \"fast_path_ratio\": 0.805, \"adaptive_trigger_rate\": 0.195, \"total_rollouts\": 100, \"successes\": 36, \"total_steps\": 23123, \"fast_steps\": 18615, \"full_steps\": 4508, \"threshold\": 0.12587, \"mean_l2_distance\": 0.09, \"per_task\": {\"between_plate_and_ramekin\": {\"sr\": 0.8, \"successes\": 8, \"total\": 10}, \"next_to_ramekin\": {\"sr\": 1, \"successes\": 10, \"total\": 10}, \"from_table_center\": {\"sr\": 0, \"successes\": 0, \"total\": 10}, \"on_cookie_box\": {\"sr\": 0.4, \"successes\": 4, \"total\": 10}, \"in_top_drawer\": {\"sr\": 0.1, \"successes\": 1, \"total\": 10}, \"on_ramekin\": {\"sr\": 0, \"successes\": 0, \"total\": 10}, \"next_to_cookie_box\": {\"sr\": 0.9, \"successes\": 9, \"total\": 10}, \"on_stove\": {\"sr\": 0, \"successes\": 0, \"total\": 10}, \"next_to_plate\": {\"sr\": 0.4, \"successes\": 4, \"total\": 10}, \"on_wooden_cabinet\": {\"sr\": 0, \"successes\": 0, \"total\": 10}}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.2001}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T14:58:02.984Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019aTGy8YTHS21qAui2RyoUj",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-spatial-p90-seed44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T13:06:33.103Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:58:02.210Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P90 (0.125870) on LIBERO-Spatial seed44. Third seed completing Spatial P90 cross-benchmark sweep.\\\", \\\"spec\\\": {\\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p90-seed44.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T14:54:15.429Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T14:55:02.249467+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0.36, \\\"avg_K\\\": 3.56, \\\"fast_path_ratio\\\": 0.805, \\\"adaptive_trigger_rate\\\": 0.195, \\\"total_rollouts\\\": 100, \\\"successes\\\": 36, \\\"total_steps\\\": 23123, \\\"fast_steps\\\": 18615, \\\"full_steps\\\": 4508, \\\"threshold\\\": 0.12587, \\\"mean_l2_distance\\\": 0.09, \\\"per_task\\\": {\\\"between_plate_and_ramekin\\\": {\\\"sr\\\": 0.8, \\\"successes\\\": 8, \\\"total\\\": 10}, \\\"next_to_ramekin\\\": {\\\"sr\\\": 1, \\\"successes\\\": 10, \\\"total\\\": 10}, \\\"from_table_center\\\": {\\\"sr\\\": 0, \\\"successes\\\": 0, \\\"total\\\": 10}, \\\"on_cookie_box\\\": {\\\"sr\\\": 0.4, \\\"successes\\\": 4, \\\"total\\\": 10}, \\\"in_top_drawer\\\": {\\\"sr\\\": 0.1, \\\"successes\\\": 1, \\\"total\\\": 10}, \\\"on_ramekin\\\": {\\\"sr\\\": 0, \\\"successes\\\": 0, \\\"total\\\": 10}, \\\"next_to_cookie_box\\\": {\\\"sr\\\": 0.9, \\\"successes\\\": 9, \\\"total\\\": 10}, \\\"on_stove\\\": {\\\"sr\\\": 0, \\\"successes\\\": 0, \\\"total\\\": 10}, \\\"next_to_plate\\\": {\\\"sr\\\": 0.4, \\\"successes\\\": 4, \\\"total\\\": 10}, \\\"on_wooden_cabinet\\\": {\\\"sr\\\": 0, \\\"successes\\\": 0, \\\"total\\\": 10}}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.976}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "85662c08-ffbf-40fa-91d0-2d5f7659694d",
+            "uuid": "16fbeaef-a255-491e-a8fe-062253fb0001",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-spatial-p90-seed44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T13:06:33.103Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:58:02.210Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P90 (0.125870) on LIBERO-Spatial seed44. Third seed completing Spatial P90 cross-benchmark sweep.\\\", \\\"spec\\\": {\\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p90-seed44.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T14:54:15.429Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T14:55:02.249467+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0.36, \\\"avg_K\\\": 3.56, \\\"fast_path_ratio\\\": 0.805, \\\"adaptive_trigger_rate\\\": 0.195, \\\"total_rollouts\\\": 100, \\\"successes\\\": 36, \\\"total_steps\\\": 23123, \\\"fast_steps\\\": 18615, \\\"full_steps\\\": 4508, \\\"threshold\\\": 0.12587, \\\"mean_l2_distance\\\": 0.09, \\\"per_task\\\": {\\\"between_plate_and_ramekin\\\": {\\\"sr\\\": 0.8, \\\"successes\\\": 8, \\\"total\\\": 10}, \\\"next_to_ramekin\\\": {\\\"sr\\\": 1, \\\"successes\\\": 10, \\\"total\\\": 10}, \\\"from_table_center\\\": {\\\"sr\\\": 0, \\\"successes\\\": 0, \\\"total\\\": 10}, \\\"on_cookie_box\\\": {\\\"sr\\\": 0.4, \\\"successes\\\": 4, \\\"total\\\": 10}, \\\"in_top_drawer\\\": {\\\"sr\\\": 0.1, \\\"successes\\\": 1, \\\"total\\\": 10}, \\\"on_ramekin\\\": {\\\"sr\\\": 0, \\\"successes\\\": 0, \\\"total\\\": 10}, \\\"next_to_cookie_box\\\": {\\\"sr\\\": 0.9, \\\"successes\\\": 9, \\\"total\\\": 10}, \\\"on_stove\\\": {\\\"sr\\\": 0, \\\"successes\\\": 0, \\\"total\\\": 10}, \\\"next_to_plate\\\": {\\\"sr\\\": 0.4, \\\"successes\\\": 4, \\\"total\\\": 10}, \\\"on_wooden_cabinet\\\": {\\\"sr\\\": 0, \\\"successes\\\": 0, \\\"total\\\": 10}}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.976}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-adaptive-k-spatial-p90-seed44\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T13:06:33.103Z\", \"updated_at\": \"2026-05-20T14:58:02.210Z\", \"hypothesis\": \"Adaptive K with τ=P90 (0.125870) on LIBERO-Spatial seed44. Third seed completing Spatial P90 cross-benchmark sweep.\", \"spec\": {\"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p90-seed44.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T14:54:15.429Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T14:55:02.249467+00:00\"}]}, \"metrics\": {\"success_rate\": 0.36, \"avg_K\": 3.56, \"fast_path_ratio\": 0.805, \"adaptive_trigger_rate\": 0.195, \"total_rollouts\": 100, \"successes\": 36, \"total_steps\": 23123, \"fast_steps\": 18615, \"full_steps\": 4508, \"threshold\": 0.12587, \"mean_l2_distance\": 0.09, \"per_task\": {\"between_plate_and_ramekin\": {\"sr\": 0.8, \"successes\": 8, \"total\": 10}, \"next_to_ramekin\": {\"sr\": 1, \"successes\": 10, \"total\": 10}, \"from_table_center\": {\"sr\": 0, \"successes\": 0, \"total\": 10}, \"on_cookie_box\": {\"sr\": 0.4, \"successes\": 4, \"total\": 10}, \"in_top_drawer\": {\"sr\": 0.1, \"successes\": 1, \"total\": 10}, \"on_ramekin\": {\"sr\": 0, \"successes\": 0, \"total\": 10}, \"next_to_cookie_box\": {\"sr\": 0.9, \"successes\": 9, \"total\": 10}, \"on_stove\": {\"sr\": 0, \"successes\": 0, \"total\": 10}, \"next_to_plate\": {\"sr\": 0.4, \"successes\": 4, \"total\": 10}, \"on_wooden_cabinet\": {\"sr\": 0, \"successes\": 0, \"total\": 10}}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.976}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XL7niznAPoeUZp8BeFx3Ze",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval-adaptive-k-spatial-p90-seed44",
+                "field": "conclusion",
+                "value": "success",
+                "project": "acr-vla-conformal-refinement"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "85662c08-ffbf-40fa-91d0-2d5f7659694d",
+            "uuid": "27b95897-01f7-406e-a892-279f8f572094",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016SGUCxkeqeY2EcbSkUiqhF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2991,
+                "cache_read_input_tokens": 32481,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2991
+                },
+                "output_tokens": 60,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T14:58:09.981Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XL7niznAPoeUZp8BeFx3Ze",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-spatial-p90-seed44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T13:06:33.103Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:58:07.619Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P90 (0.125870) on LIBERO-Spatial seed44. Third seed completing Spatial P90 cross-benchmark sweep.\\\", \\\"spec\\\": {\\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p90-seed44.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T14:54:15.429Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T14:55:02.249467+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0.36, \\\"avg_K\\\": 3.56, \\\"fast_path_ratio\\\": 0.805, \\\"adaptive_trigger_rate\\\": 0.195, \\\"total_rollouts\\\": 100, \\\"successes\\\": 36, \\\"total_steps\\\": 23123, \\\"fast_steps\\\": 18615, \\\"full_steps\\\": 4508, \\\"threshold\\\": 0.12587, \\\"mean_l2_distance\\\": 0.09, \\\"per_task\\\": {\\\"between_plate_and_ramekin\\\": {\\\"sr\\\": 0.8, \\\"successes\\\": 8, \\\"total\\\": 10}, \\\"next_to_ramekin\\\": {\\\"sr\\\": 1, \\\"successes\\\": 10, \\\"total\\\": 10}, \\\"from_table_center\\\": {\\\"sr\\\": 0, \\\"successes\\\": 0, \\\"total\\\": 10}, \\\"on_cookie_box\\\": {\\\"sr\\\": 0.4, \\\"successes\\\": 4, \\\"total\\\": 10}, \\\"in_top_drawer\\\": {\\\"sr\\\": 0.1, \\\"successes\\\": 1, \\\"total\\\": 10}, \\\"on_ramekin\\\": {\\\"sr\\\": 0, \\\"successes\\\": 0, \\\"total\\\": 10}, \\\"next_to_cookie_box\\\": {\\\"sr\\\": 0.9, \\\"successes\\\": 9, \\\"total\\\": 10}, \\\"on_stove\\\": {\\\"sr\\\": 0, \\\"successes\\\": 0, \\\"total\\\": 10}, \\\"next_to_plate\\\": {\\\"sr\\\": 0.4, \\\"successes\\\": 4, \\\"total\\\": 10}, \\\"on_wooden_cabinet\\\": {\\\"sr\\\": 0, \\\"successes\\\": 0, \\\"total\\\": 10}}}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.0169}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "85662c08-ffbf-40fa-91d0-2d5f7659694d",
+            "uuid": "314fe1f3-2bf7-4ea0-b2df-493d6ec82b2a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-adaptive-k-spatial-p90-seed44\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T13:06:33.103Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:58:07.619Z\\\", \\\"hypothesis\\\": \\\"Adaptive K with τ=P90 (0.125870) on LIBERO-Spatial seed44. Third seed completing Spatial P90 cross-benchmark sweep.\\\", \\\"spec\\\": {\\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p90-seed44.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-20T14:54:15.429Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-20T14:55:02.249467+00:00\\\"}]}, \\\"metrics\\\": {\\\"success_rate\\\": 0.36, \\\"avg_K\\\": 3.56, \\\"fast_path_ratio\\\": 0.805, \\\"adaptive_trigger_rate\\\": 0.195, \\\"total_rollouts\\\": 100, \\\"successes\\\": 36, \\\"total_steps\\\": 23123, \\\"fast_steps\\\": 18615, \\\"full_steps\\\": 4508, \\\"threshold\\\": 0.12587, \\\"mean_l2_distance\\\": 0.09, \\\"per_task\\\": {\\\"between_plate_and_ramekin\\\": {\\\"sr\\\": 0.8, \\\"successes\\\": 8, \\\"total\\\": 10}, \\\"next_to_ramekin\\\": {\\\"sr\\\": 1, \\\"successes\\\": 10, \\\"total\\\": 10}, \\\"from_table_center\\\": {\\\"sr\\\": 0, \\\"successes\\\": 0, \\\"total\\\": 10}, \\\"on_cookie_box\\\": {\\\"sr\\\": 0.4, \\\"successes\\\": 4, \\\"total\\\": 10}, \\\"in_top_drawer\\\": {\\\"sr\\\": 0.1, \\\"successes\\\": 1, \\\"total\\\": 10}, \\\"on_ramekin\\\": {\\\"sr\\\": 0, \\\"successes\\\": 0, \\\"total\\\": 10}, \\\"next_to_cookie_box\\\": {\\\"sr\\\": 0.9, \\\"successes\\\": 9, \\\"total\\\": 10}, \\\"on_stove\\\": {\\\"sr\\\": 0, \\\"successes\\\": 0, \\\"total\\\": 10}, \\\"next_to_plate\\\": {\\\"sr\\\": 0.4, \\\"successes\\\": 4, \\\"total\\\": 10}, \\\"on_wooden_cabinet\\\": {\\\"sr\\\": 0, \\\"successes\\\": 0, \\\"total\\\": 10}}}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.0169}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-adaptive-k-spatial-p90-seed44\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T13:06:33.103Z\", \"updated_at\": \"2026-05-20T14:58:07.619Z\", \"hypothesis\": \"Adaptive K with τ=P90 (0.125870) on LIBERO-Spatial seed44. Third seed completing Spatial P90 cross-benchmark sweep.\", \"spec\": {\"log_path\": \"~/runs/acr-vla-conformal-refinement/eval-adaptive-k-spatial-p90-seed44.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T14:54:15.429Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T14:55:02.249467+00:00\"}]}, \"metrics\": {\"success_rate\": 0.36, \"avg_K\": 3.56, \"fast_path_ratio\": 0.805, \"adaptive_trigger_rate\": 0.195, \"total_rollouts\": 100, \"successes\": 36, \"total_steps\": 23123, \"fast_steps\": 18615, \"full_steps\": 4508, \"threshold\": 0.12587, \"mean_l2_distance\": 0.09, \"per_task\": {\"between_plate_and_ramekin\": {\"sr\": 0.8, \"successes\": 8, \"total\": 10}, \"next_to_ramekin\": {\"sr\": 1, \"successes\": 10, \"total\": 10}, \"from_table_center\": {\"sr\": 0, \"successes\": 0, \"total\": 10}, \"on_cookie_box\": {\"sr\": 0.4, \"successes\": 4, \"total\": 10}, \"in_top_drawer\": {\"sr\": 0.1, \"successes\": 1, \"total\": 10}, \"on_ramekin\": {\"sr\": 0, \"successes\": 0, \"total\": 10}, \"next_to_cookie_box\": {\"sr\": 0.9, \"successes\": 9, \"total\": 10}, \"on_stove\": {\"sr\": 0, \"successes\": 0, \"total\": 10}, \"next_to_plate\": {\"sr\": 0.4, \"successes\": 4, \"total\": 10}, \"on_wooden_cabinet\": {\"sr\": 0, \"successes\": 0, \"total\": 10}}}, \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 4.0169}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果摘要：\n\n| 指标 | 值 |\n|------|-----|\n| **Overall SR** | **36.0%** (36/100) |\n| **avg_K** | 3.56 |\n| **fast_path_ratio** | 80.5% |\n| **adaptive_trigger_rate** | 19.5% |\n| **mean_l2_distance** | 0.090 |\n| **threshold (τ=P90)** | 0.12587 |\n\nPer-task 分布：next_to_ramekin 100%, next_to_cookie_box 90%, between_plate_and_ramekin 80% 领先；from_table_center / on_ramekin / on_stove / on_wooden_cabinet 均 0%。\n\n对比 Object P90 参考（SR ~13.3%, avg_K ~2.6, fast_path ~93%），Spatial P90 seed44 的 SR 显著更高（36% vs 13.3%），但 avg_K 也更高（3.56 vs 2.6），fast_path 更低（80.5% vs 93%），说明 Spatial 任务触发更多 full refinement。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "85662c08-ffbf-40fa-91d0-2d5f7659694d",
+            "uuid": "57ae8d4b-7938-4ab9-9213-9bc92aea15d2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017qWAbh44ovyndiMvkRieFT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 926,
+                "cache_read_input_tokens": 35472,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 926
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果摘要：\n\n| 指标 | 值 |\n|------|-----|\n| **Overall SR** | **36.0%** (36/100) |\n| **avg_K** | 3.56 |\n| **fast_path_ratio** | 80.5% |\n| **adaptive_trigger_rate** | 19.5% |\n| **mean_l2_distance** | 0.090 |\n| **threshold (τ=P90)** | 0.12587 |\n\nPer-task 分布：next_to_ramekin 100%, next_to_cookie_box 90%, between_plate_and_ramekin 80% 领先；from_table_center / on_ramekin / on_stove / on_wooden_cabinet 均 0%。\n\n对比 Object P90 参考（SR ~13.3%, avg_K ~2.6, fast_path ~93%），Spatial P90 seed44 的 SR 显著更高（36% vs 13.3%），但 avg_K 也更高（3.56 vs 2.6），fast_path 更低（80.5% vs 93%），说明 Spatial 任务触发更多 full refinement。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 50470,
+            "duration_api_ms": 39796,
+            "num_turns": 7,
+            "stop_reason": "end_turn",
+            "session_id": "85662c08-ffbf-40fa-91d0-2d5f7659694d",
+            "total_cost_usd": 0.26835175,
+            "usage": {
+              "input_tokens": 8,
+              "cache_creation_input_tokens": 24557,
+              "cache_read_input_tokens": 127939,
+              "output_tokens": 1979,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 24557,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 317,
+                  "cache_read_input_tokens": 35472,
+                  "cache_creation_input_tokens": 926,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 926
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1261,
+                "outputTokens": 25,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001386,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 8,
+                "outputTokens": 1979,
+                "cacheReadInputTokens": 127939,
+                "cacheCreationInputTokens": 24557,
+                "webSearchRequests": 0,
+                "costUSD": 0.26696575,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "ab5d5b64-f232-418b-984b-3bc45d4195e4"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/worker-executions/analyze-eval-adaptive-k-spatial-p90-seed44.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93d49ace7cc1d7176dcc",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "monitor fix cron gaps all servers",
+  "task_key": "worker_monitor_fix-cron-gaps-all-servers_20260523T082329",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_monitor_fix-cron-gaps-all-servers_20260523T082329_result.json",
+    "occurrence": 1,
+    "bytes": 900,
+    "sha256": "723ba11a85807f2e9af4335587896f7c060decd2097510851a2078b84e8e33af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "7 个 cron 全部注册成功。\n\n## 结果汇总\n\n### 已注册 cron（7个）\n\n**bjb1-32546（2个）：**\n| 实验 | PID | 状态 |\n|------|-----|------|\n| eval-supp-crm-norm005-spatial-s44 | 759215 | ✓ 已注册 |\n| train-crm-unified-4suite-r6 | 668382 | ✓ 已注册 |\n\n**bjb2-28827（5个）：**\n| 实验 | PID | 状态 |\n|------|-----|------|\n| eval-supp-obj-adapt-tau025-s42 | 620549 | ✓ 已注册 |\n| eval-supp-k2mean-object-s42 | 618927 | ✓ 已注册 |\n| eval-supp-goal-reconvla-s42 | 620827 | ✓ 已注册 |\n| eval-supp-k2mean-spatial-s42 | 621426 | ✓ 已注册 |\n| eval-goal-vla-only-wrapper-s42 | 621708 | ✓ 已注册 |\n\n### 已完成/失败（1个）\n\n**bjb2-40593：**\n| 实验 | 状态 |\n|------|------|\n| eval-supp-k2mean-goal-s42 | **已退出**（exit code 127，2026-05-23T06:56:53Z）— 进程不存在，无需注册 cron |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-fix-cron-gaps-all-servers.md"
+}

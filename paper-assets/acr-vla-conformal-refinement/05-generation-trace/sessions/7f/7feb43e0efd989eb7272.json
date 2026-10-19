@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7feb43e0efd989eb7272",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb2 40593 random sel seed43",
+  "task_key": "worker_deploy_bjb2-40593-random-sel-seed43_20260520T142551",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb2-40593-random-sel-seed43_20260520T142551_result.json",
+    "occurrence": 1,
+    "bytes": 349,
+    "sha256": "7728ed94161bfcd7dfe4225eaa29c7965d5226f42656dbf84a8277ef4f74f100"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成，汇总如下：\n\n| 项目 | 值 |\n|------|-----|\n| **exp_id** | `eval-random-selection-object-seed43` |\n| **PID** | 707407 |\n| **tmux session** | `eval-random-selection-object-seed43` |\n| **GPU 0** | 21% util, 5922 MiB used |\n| **状态** | 模型已加载，10 个 LIBERO-Object tasks 就绪，开始 rollout |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb2-40593-random-sel-seed43.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a903f7754d3e2156d28c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose latency profile n1000",
+  "task_key": "worker_diagnose_latency-profile-n1000_20260520T081949",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_latency-profile-n1000_20260520T081949_result.json",
+    "occurrence": 1,
+    "bytes": 886,
+    "sha256": "9f2f0c93063cc240c90c597985559f19ef89e1f7a52c687ce7ab8eec3eb56ad9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**实验 `latency-profile-n1000` 实际上成功完成了，是监控系统误报。**\n\n**根本原因**：`profile_latency.py` 脚本不创建 sentinel 文件，而 cron 监控以 sentinel 存在作为成功判据。脚本正常完成 → 监控找不到 sentinel → 判定失败 → 重启，循环 5 次。\n\n**证据**：\n- `logs/latency_profile_n1000.log` 显示全部 9 个阶段完成，打印了完整 summary\n- `logs/latency_profile_n1000.json`（5589 bytes）包含 17 个组件的完整测量数据（每组件 1000 次迭代）\n- `logs/sentinels/` 目录为空，脚本中 grep \"sentinel\" 无匹配\n- GPU cuda:4 已空闲，进程正常退出\n\n**修复**：在脚本末尾加 sentinel 文件创建逻辑，或修改监控策略改为检查输出 JSON 是否存在。\n\n诊断报告已注册为 artifact `art_20260520_de306f`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-latency-profile-n1000.md"
+}

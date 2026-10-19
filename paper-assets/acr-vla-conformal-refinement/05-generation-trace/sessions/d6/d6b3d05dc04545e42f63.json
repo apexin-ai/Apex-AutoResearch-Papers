@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6b3d05dc04545e42f63",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "figure norm sweep magnitude",
+  "task_key": "worker_figure_norm-sweep-magnitude_20260521T043856",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_figure_norm-sweep-magnitude_20260521T043856_result.json",
+    "occurrence": 1,
+    "bytes": 578,
+    "sha256": "df7b542d0513eda97474a27779698734fed2e7fa31782058b61c75e249c0b086"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 2 已生成：\n\n- **PDF**: `/root/acr-vla-conformal-refinement/artifacts/fig2_norm_sweep.pdf` (16.5 KB)\n- **PNG**: `/root/acr-vla-conformal-refinement/artifacts/fig2_norm_sweep.png` (55.8 KB)\n\n数据摘要：\n\n| ε | Mean SR (%) | SEM (%) | n |\n|---|---|---|---|\n| 0.03 | 15.18 | 0.35 | 11 |\n| 0.05 | 13.92 | 0.40 | 13 |\n| 0.10 | 15.38 | 0.52 | 16 |\n| 0.20 | 17.00 | 3.00 | 2 |\n\nVLA-only baseline 虚线在 10.5%。ε=0.2 的 SEM 很大（±3%），符合预期（仅 2 seeds）。本地脚本同步保存在 `artifacts/fig2_norm_sweep.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-norm-sweep-magnitude.md"
+}

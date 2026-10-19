@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aafa67f79c5e867ab039",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_22_1779331569.md",
+  "task_key": "loop_22_1779331569",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_22_1779331569.md",
+    "occurrence": 1,
+    "bytes": 5119,
+    "sha256": "3b9f31b5c3ae5aa3813ed161f9088d70ce055bc1b4daedba30ce18c206db0c93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 22\nreason: idle_timeout\nupdated: '2026-05-21T02:44:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单（17张）：bjb2-40593:cuda:0, bjb1-18228:cuda:0-3, bjb1-32546:cuda:0-5, bjb2-28827:cuda:0-5。白名单外的卡即使 Director 指令也必须 push back\n- CRM checkpoint 唯一路径：`/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`，所有 eval 实验用同一个\n- Table 1 只用 norm02 数据（D080），不要混入其他 norm 的结果\n- Object CRM K=10 baseline = 16.8%±1.8% (n=6, D080)；Spatial CRM K=10 baseline ≈ 34.4%±1.5% (n=8, D083)\n- Adaptive K 阈值全部从 Object 校准，跨 benchmark 不做 per-benchmark tuning——这是方法的核心 claim\n- Long OOD 只能 cautious wording（MW-U p=0.061 n.s., D081）\n- CoRL DDL 2026-05-29，剩 8 天\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**: root@, `/root/acr-vla-conformal-refinement`, conda base (`/root/miniconda3/bin/python`), HF_HOME=/root/autodl-tmp/.hf_cache, 磁盘充裕(400G/438G 4%)\n- **bjb1-32546**: root@, 同上路径结构, 磁盘 400G/438G 4%\n- **bjb2-28827**: root@, 同上, 磁盘 399G/439G 5%\n- **bjb2-40593**: root@, 同上, **磁盘紧张** 46G/437G 90%⚠️\n- 所有服务器：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，HF_HUB_OFFLINE=1, TRANSFORMERS_OFFLINE=1, MUJOCO_GL=egl\n- W&B: 项目 acr-vla-conformal-refinement（cron 自动同步指标）\n- **活跃进程**:\n  - eval-adaptive-k-spatial-p50-seed42: bjb2-40593 cuda:0 PID 681823\n  - eval-adaptive-k-spatial-p25-seed43: bjb1-32546 cuda:2 PID 314014\n  - eval-crm-object-k20-seed44: bjb2-28827 cuda:3 PID 278078\n  - eval-obs-only-object-norm005-seed43: bjb2-28827 cuda:4 PID 278354\n  - eval-obs-only-object-norm003-seed44: bjb2-28827 cuda:5 PID 279014\n- Cron 监控上述 5 个实验\n\n### 3. 📊 当前状态\n**刚收到 cron 回调**：`eval-adaptive-k-spatial-p25-seed42`（bjb1-18228, Spatial P25 seed42）进程正常退出转 ANALYZING。我已派 Worker（`worker_analyze_eval-adaptive-k-spatial-p25-seed42_20260520T103941`）去 SSH 读 log + JSON 结果，**Worker 尚未回调**——这是下一个\"我\"启动后要优先处理的事。\n\n**Registry 状态**:\n- ANALYZING(1): eval-adaptive-k-spatial-p25-seed42 — 等 Worker 回调后更新 metrics → DONE\n- RUNNING(5): 见上方活跃进程列表\n- PREPARING(32): 大量待部署实验（Long seed54 baseline、Random Selection baseline、更多 Spatial seeds 等）\n\n**Spatial Adaptive K 已有结果**:\n| 阈值 | seeds done | SR | avg_K | fast_path |\n|------|-----------|-----|-------|-----------|\n| P75 | seed42(31%), seed43(34%) | ~32.5% | ~5.0 | ~62% |\n| P50 | seed43(33%), seed44(33%), seed42 RUNNING | 33% | ~6.4 | ~45% |\n| P25 | seed42 ANALYZING, seed43 RUNNING | ? | ? | ? |\n\nSpatial baselines: VLA-only ~29.6% (n=7), CRM K=10 ~34.4% (n=8)\n\n**Worker 池 = 0（Worker 刚派但可能已完成或将完成）**——严重不饱和，12/17 GPU 空闲。\n\n### 4. 📋 待办（条件触发式）\n- **Worker analyze 回调到达** → 读结果 → update_registry(metrics + conclusion + checkpoint_path/log_path) → 汇报 Director（带 [资源] 行）→ 与 P50/P75/P90 对比，判断 P25 在 Spatial 上的表现\n- **eval-adaptive-k-spatial-p50-seed42 完成** → 分析 → Spatial P50 三 seed 齐全 → 可计算 mean±std，更新论文 Spatial Adaptive K 表\n- **eval-adaptive-k-spatial-p25-seed43 完成** → 分析 → P25 两 seed 齐全（如需第三 seed 要部署 seed44）\n- **bjb1-18228 现在 4 张卡全空闲**（P25-seed42 刚跑完）→ 立即部署待办实验（Long VLA-only seed54、Long CRM seed53/54、Spatial VLA-only seed53/54、Random Selection baseline）\n- **bjb1-32546 只用了 cuda:2**（P25-seed43）→ cuda:0/1/3/4/5 空闲 → 部署更多实验\n- **5 个 RUNNING 实验全部完成后** → Spatial Adaptive K 全景表（P25/P50/P75/P90 × 3 seeds）可写入论文 → 汇报 Director 是否足够\n\n### 5. 🎯 战略上下文\n- **核心方向（D077）**: Adaptive K = 论文核心贡献（方法），K=10 分析降为 supporting evidence。这是用户硬要求\n- **信号选择已锁定（D076/D079）**: K=2 L2 distance 是唯一可用信号（ρ=0.9979），CRM magnitude (ρ=0.15) 和 FMVD (ρ=0.08) 均 NO-GO\n- **P50 = Object 上的 Pareto 最优（D078）**: SR 91% of K=10, fast_path 77%。但 Spatial 上 P50 的 fast_path 只有 ~45%（Object 校准的阈值在 Spatial 上触发 full-K 更频繁）——这本身是一个有趣的 cross-benchmark 现象，论文可讨论\n- **易错点**:\n  - Spatial P75 的 SR(~32.5%) 和 P50(33%) 差距很小但 fast_path 差别大(62% vs 45%)——Spatial 上 P75 可能是更好的 Pareto 点（和 Object 结论不同）\n  - 不要假设 Object 上的最优阈值在 Spatial 上也最优——cross-benchmark transfer 的边界条件是论文要讨论的\n  - bjb2-40593 磁盘 90%，不要在上面部署新实验，跑完 P50-seed42 就释放\n  - 12/17 GPU 空闲是严重资源浪费，Director 会问为什么——因为 PREPARING 池有 32 个实验但没人部署，下一个\"我\"要立即大规模部署\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-22-1779331569.md"
+}

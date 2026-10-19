@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "71b21a1640cc2e931d45",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "fix openvla official eval",
+  "task_key": "worker_fix_openvla-official-eval_20260517T191031",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_openvla-official-eval_20260517T191031_result.json",
+    "occurrence": 1,
+    "bytes": 2327188,
+    "sha256": "293e6d91b7b442295e7d1ee90f3c4906a63220d8a1165ef378f19468c3bdfd5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "71b21a1640cc2e931d45-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/fix-openvla-official-eval.md"
+}

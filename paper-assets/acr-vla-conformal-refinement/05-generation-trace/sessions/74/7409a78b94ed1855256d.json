@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "7409a78b94ed1855256d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "diag norm005 seed67 exit",
+  "task_key": "worker_diag_norm005-seed67-exit_20260521T044330",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_diag_norm005-seed67-exit_20260521T044330.jsonl",
+    "occurrence": 1,
+    "bytes": 180,
+    "sha256": "7c26316cc3afe82ae024ba8285bd49ba4e537de818bc6f4a2f03a8033276c760"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T04:43:47.358546+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 22, 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diag_norm005-seed67-exit_20260521T044330"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/diag-norm005-seed67-exit.md"
+}

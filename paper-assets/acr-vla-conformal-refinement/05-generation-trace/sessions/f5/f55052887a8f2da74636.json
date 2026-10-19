@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f55052887a8f2da74636",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "audit d160 harvest long json v2",
+  "task_key": "worker_audit_d160-harvest-long-json-v2_20260526T073000",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_d160-harvest-long-json-v2_20260526T073000_result.json",
+    "occurrence": 1,
+    "bytes": 2956,
+    "sha256": "d13efebac6f9bcfa16ebaa8907666bb138c2bd023147a11b9c54ea658c144649"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Long VLA-only JSON Harvest\n\n| seed | JSON file | SR | server | registry exp_id | 已更新 |\n|------|-----------|-----|--------|------------------|--------|\n| 42 | logs/eval_long_vla_only_seed42.json (2026-05-23 22:10) | **0.58** | bjb1-32546 | eval-supp-long-vla-only-s42 | ✅ |\n| 44 | logs/eval_long_vla_only_seed44.json (2026-05-24 03:20) | **0.565** | bjb1-32546 | eval-supp-long-vla-only-s44 | ✅ |\n| 43 | logs/eval_long_vla_only_seed43.json | 0.57 | bjb1-32546 | (已有 s43=0.595, 不同run, 未覆盖) | — |\n| 44 (mean) | logs/eval_long_vla_only_seed44.json | 0.545 | bjb2-28827 | baseline_mode=**mean** 不匹配, 忽略 | — |\n\n注：registry 中原本不存在 s42/s44 条目，update_registry 已新建（status=PREPARING）。两条新建条目均为 baseline_mode=single, n_rollouts=20, benchmark=long。\n\n## evaluate.py Diff\n\n文件 mtime: 2026-05-26 08:27:38，最后 commit a594db5 之后**有大量未提交修改**（约 30+ 处）。\n\n### 关键影响 evaluation 逻辑的改动\n\n| 改动 | 影响 |\n|------|------|\n| `SUITE_MAX_STEPS[\"long\"] = 520`，当 `args.max_steps==300` 时自动覆盖 | **重大**：long suite 默认 max_steps 由 300 → 520，rollout 时长大幅增加，会显著提高 long SR |\n| `rollout_single` 初始 reset: `range(5)` zeros → `range(10)` `[0,0,0,0,0,0,-1]` | **影响**：初始状态由 5 步零动作改为 10 步带 gripper=-1（张开），改变 episode 起始 |\n| 新增 OOM try/except：rollout 抛 OOM → success=False, steps=-1 | **轻微**：仅在 OOM 时生效，正常运行不影响 |\n| 默认 CRM checkpoint: `crm_v3_norm/obs_only/crm_best.pt` → `crm_smolvla_3suite_v1/crm_best.pt` | **重大**：adaptive_k/adaptive_unc_head/adaptive_conformal_crm 模式默认 checkpoint 换了 |\n| 删除 `baseline_mode==\"mean\"` 时 `args.K=10` 自动设置 | **影响**：k2mean 现在使用用户传入的 K（如 --K 2），不再强制 K=10 |\n| 新增 `_pad_obs` 函数和 `unified_obs_dim` 参数 | **新功能**：仅当 `--unified_obs_dim` 显式设置时生效 |\n| 新增 openvla_oft 模型支持 | 新增 model 选项，不影响已有 smolvla/pi05 |\n| Output filename: 新增 `k_tag` 和 `k2mean` 模式标签 | **影响**：vla_only mean 模式 JSON 文件名由 `eval_<bench>_vla_only_*` 改为 `eval_<bench>_k{K}mean_*`，新旧 JSON 可能不会互相覆盖 |\n| `select_action_conformal_crm` 新增 `correction_norm` 到 step_metadata, summary 增加 `detailed_steps` | adaptive_conformal_crm 模式输出新增字段，不影响 SR |\n\n**结论**：05-26 修改**不是注释/格式变更**，对 evaluation 逻辑有实质影响。Long suite 后续 eval 默认 max_steps 从 300 翻到 520，会让 long SR 数据**不再可与历史 long 实验直接对比**；adaptive 系列默认 checkpoint 也换了。已有的 s42/s44/s43 JSON (5-23/24 生成) 是在旧代码下产出，与新代码运行结果不可直接比较。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-d160-harvest-long-json-v2.md"
+}

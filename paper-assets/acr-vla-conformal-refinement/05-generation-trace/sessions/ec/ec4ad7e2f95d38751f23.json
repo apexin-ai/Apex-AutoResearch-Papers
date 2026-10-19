@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec4ad7e2f95d38751f23",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops p1 scan bjb1 18228",
+  "task_key": "worker_ops_p1-scan-bjb1-18228_20260515T105458",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_p1-scan-bjb1-18228_20260515T105458_result.json",
+    "occurrence": 1,
+    "bytes": 1205,
+    "sha256": "ec1d911dc0e2d096669fb42aa184e2829f9396a06f946974c13ccdf7db799479"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 1. obs-only-r3 — 已完成 (EXIT_CODE=0)\n\nT6-T9 逐 task SR（从 T6 restart，10 rollouts each）：\n\n| Task | 描述 | SR |\n|------|------|----|\n| T6 | next_to_the_cookie_box | **90%** (9/10) |\n| T7 | on_the_stove | **0%** (0/10) |\n| T8 | next_to_the_plate | **20%** (2/10) |\n| T9 | on_the_wooden_cabinet | **0%** (0/10) |\n| **Overall (T6-T9)** | | **27.5%** |\n\n合并 parent T0-T5 的完整 10-task 结果：\n\n| Task | SR |\n|------|----|\n| T0 | 90% |\n| T1 | 100% |\n| T2 | 0% |\n| T3 | 40% |\n| T4 | 10% |\n| T5 | 0% |\n| T6 | 90% |\n| T7 | 0% |\n| T8 | 20% |\n| T9 | 0% |\n| **Overall** | **35.0%** |\n\n### 2. norm03-r2 (cuda:0) — 运行中，跑完 T3\n\n已完成 T0-T3：T0=90%, T1=100%, T2=0%, T3=30%。正在跑 T4。\n\n### 3. scalar-r2 (cuda:1) — 运行中，跑完 T7\n\n从 T3 restart。已完成 T3-T7：T3=40%, T4=0%, T5=0%, T6=90%, T7=0%。正在跑 T8。\n\n### 4. GPU 状态\n\n| GPU | 利用率 | 显存 | 状态 |\n|-----|--------|------|------|\n| cuda:0 | 23% | 4124 MiB | norm03-r2 运行中 |\n| cuda:1 | 24% | 2005 MiB | scalar-r2 运行中 |\n| cuda:2 | 0% | 1 MiB | **空闲** |\n| cuda:3 | 0% | 1 MiB | **空闲** |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-p1-scan-bjb1-18228.md"
+}

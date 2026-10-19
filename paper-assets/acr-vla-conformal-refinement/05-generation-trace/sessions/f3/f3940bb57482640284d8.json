@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3940bb57482640284d8",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops sync fixes to bjb2",
+  "task_key": "worker_ops_sync-fixes-to-bjb2_20260514T075428",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_sync-fixes-to-bjb2_20260514T075428_result.json",
+    "occurrence": 1,
+    "bytes": 677,
+    "sha256": "ba3c5fdcd11d9e9b147c278b2c356a0b7807d5fe14ac7e2f8fe399c31ad553a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D016 bug fix 代码同步结果：bjb1 → bjb2\n\n| 文件 | 修改项 | MD5 | 状态 |\n|------|--------|-----|------|\n| `src/utils.py` | C1: 6D→8D state (gripper_states) | `d5ab5f4b...92073e` | ✅ MATCH |\n| `src/cgs.py` | W3: alpha 0.1→0.5 | `7636378e...ae80c` | ✅ MATCH |\n| `src/crm.py` | W2: base_action + W4: L2 clipping (1.42) | `f727622d...56518` | ✅ MATCH |\n| `src/evaluate.py` | W2: argmin base action selection | `6866277f...ea9c4` | ✅ MATCH |\n| `src/train_crm.py` | W2: `_argmin_base_action` function | `cae04eb6...1d5b0` | ✅ MATCH |\n\n**5/5 文件全部同步成功，MD5 校验全部通过。** bjb2 已就绪可运行 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-fixes-to-bjb2.md"
+}

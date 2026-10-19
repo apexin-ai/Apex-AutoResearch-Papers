@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef6fe6fdc4d768013fe8",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "collect bjb2 results",
+  "task_key": "worker_collect_bjb2-results_20260527T223002",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_collect_bjb2-results_20260527T223002_result.json",
+    "occurrence": 1,
+    "bytes": 748,
+    "sha256": "6dd357844e435f29171e3cb32e659824ce58ce78657142a1f38009f676bf4668"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 5 个实验收割完毕，registry 已更新。\n\n## 最终结果\n\n| 实验 | Benchmark | SR | Trigger Rate | 备注 |\n|------|-----------|-----|-------------|------|\n| **crm-always-on-long-s42** | Long | **41.0%** | 100% | τ=0.001, always-on |\n| **crm-always-on-long-s43** | Long | **45.5%** | 100% | τ=0.001, always-on |\n| **smolvla-tau030-object-s42** | Object | **79.0%** | 2.31% | τ=0.30 |\n| **smolvla-tau040-object-s42** | Object | **73.5%** | 0.91% | τ=0.40 |\n| **smolvla-tau045-object-s42** | Object | **71.5%** | 0.75% | τ=0.45 |\n\nCRM always-on Long 两个 seed 均值 = **43.25%**。Object tau-sweep 清晰显示 τ 越高 → trigger 越少 → SR 越低的单调趋势。全部无 OOM/CUDA error。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-bjb2-results.md"
+}

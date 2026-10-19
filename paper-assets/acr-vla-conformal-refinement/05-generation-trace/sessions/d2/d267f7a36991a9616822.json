@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d267f7a36991a9616822",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops check norm003 seed43 r2",
+  "task_key": "worker_ops_check-norm003-seed43-r2_20260519T051459",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-norm003-seed43-r2_20260519T051459_result.json",
+    "occurrence": 1,
+    "bytes": 629,
+    "sha256": "5d30a0253009967ffe9b5c76278568f7cd9e9cd48d948305af6324a104640cd6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能之前已被清除）。\n\n**结果报告：**\n\n| 字段 | 值 |\n|---|---|\n| exp_id | `eval-obs-only-object-norm003-seed43-r2` |\n| SR | 无完整结果（未完成） |\n| conclusion | **killed** |\n| status | DONE |\n| 理由 | 进程收到 SIGHUP (EXIT_CODE=129) 被 kill，完成了 5/10 个任务后在第 6 个任务 (ketchup) rollout 6/10 处中断。无 JSON 输出文件。部分可见结果：alphabet_soup 0%, cream_cheese 10%, salad_dressing 20%, bbq_sauce 40%, ketchup 未完成。与预期一致——今天 kill 了 bjb1-18228 上的 norm003 实验给 K=5 腾 GPU。 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-norm003-seed43-r2.md"
+}

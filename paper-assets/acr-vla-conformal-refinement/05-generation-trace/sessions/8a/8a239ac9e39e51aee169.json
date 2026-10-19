@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "8a239ac9e39e51aee169",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "ops verify scalar crm data",
+  "task_key": "worker_ops_verify-scalar-crm-data_20260518T101620",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_verify-scalar-crm-data_20260518T101620.log",
+    "occurrence": 1,
+    "bytes": 653181,
+    "sha256": "cc801e91a525a138bf49bac47b4c2aad66f1252c25bc41e631c9b1d312b7136b"
+  },
+  "statistics": {
+    "messages": 125,
+    "user_turns": 1,
+    "tool_calls": 43,
+    "roles": {
+      "log": 1,
+      "system": 21,
+      "record": 1,
+      "assistant": 14,
+      "tool_call": 43,
+      "tool_result": 43,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 19,
+      "chunks": [
+        {
+          "path": "8a239ac9e39e51aee169-part-0001.json",
+          "message_count": 19
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 106,
+      "chunks": [
+        {
+          "path": "8a239ac9e39e51aee169-part-0001.json",
+          "message_count": 99
+        },
+        {
+          "path": "8a239ac9e39e51aee169-part-0002.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-verify-scalar-crm-data.md"
+}

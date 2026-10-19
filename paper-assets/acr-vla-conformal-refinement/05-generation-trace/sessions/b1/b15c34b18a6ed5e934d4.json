@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b15c34b18a6ed5e934d4",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy remaining 2gpu",
+  "task_key": "worker_deploy_remaining-2gpu_20260526T011025",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_remaining-2gpu_20260526T011025_result.json",
+    "occurrence": 1,
+    "bytes": 596,
+    "sha256": "c8aa87a0ed38cef56131fb847b9074b8a916cd9998d2e464eb776837576d623d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n| 实验 | 服务器 | GPU | tmux session | Registry ID | 状态 |\n|------|--------|-----|--------------|-------------|------|\n| SmolVLA Adaptive Goal s42 (mechanism) | bjb1-18228 | 3 | `mechanism_goal_s42` | `eval-mechanism-goal-adapt-s42` | RUNNING |\n| SmolVLA VLA-only Goal s49 | bjb2-40593 | 0 | `goal_vla_s49` | `eval-k2-goal-vla-only-s49` | RUNNING |\n\n两个实验预计 45-60 分钟完成。日志分别在：\n- `/root/acr-vla-conformal-refinement/logs/mechanism_goal_adapt_s42.log`\n- `/root/acr-vla-conformal-refinement/logs/goal_vla_only_s49.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-remaining-2gpu.md"
+}

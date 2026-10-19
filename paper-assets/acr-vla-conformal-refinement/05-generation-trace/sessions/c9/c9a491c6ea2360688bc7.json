@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9a491c6ea2360688bc7",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "audit bjb2 28827 preparing fix",
+  "task_key": "worker_audit_bjb2-28827-preparing-fix_20260523T121441",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_bjb2-28827-preparing-fix_20260523T121441_result.json",
+    "occurrence": 1,
+    "bytes": 698,
+    "sha256": "92245d4bfc3600d92ca587b45df1d2991028415facdb2647df84a28d7d118e2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇报：\n\n| 实验 | GPU | PID | 状态 | 当前进度 |\n|------|-----|-----|------|----------|\n| eval-supp-long-reconvla-s42 | cuda:3 | 711479 | RUNNING ✓ | LIVING_ROOM_SCENE5 rollout 5/20 |\n| eval-supp-long-adapt-tau025-s42 | cuda:4 | 711770 | RUNNING ✓ | LIVING_ROOM_SCENE5 rollout 10/20 |\n| eval-supp-long-crm-norm005-s42 | cuda:5 | 712378 | RUNNING ✓ | LIVING_ROOM_SCENE5 rollout 5/20 |\n\n- 3 个实验都在 Long benchmark 的最后一个任务（LIVING_ROOM_SCENE5），接近完成\n- Registry 已从 PREPARING → QUEUED → RUNNING 更新完毕\n- 每 20 分钟监控 cron 已注册（job `ed6f6ab6`），会自动检查完成状态并更新 registry"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-bjb2-28827-preparing-fix.md"
+}

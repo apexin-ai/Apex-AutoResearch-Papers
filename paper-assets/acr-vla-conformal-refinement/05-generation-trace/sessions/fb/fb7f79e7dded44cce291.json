@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "fb7f79e7dded44cce291",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "harvest old preparing experiments 20260521T041745 retry1",
+  "task_key": "worker_harvest_old-preparing-experiments_20260521T041745_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_old-preparing-experiments_20260521T041745_retry1.log",
+    "occurrence": 1,
+    "bytes": 769471,
+    "sha256": "6d05d244d8920a489645842443d11fd7e981c22b6fe13c2530cb499a904a50e8"
+  },
+  "statistics": {
+    "messages": 388,
+    "user_turns": 0,
+    "tool_calls": 181,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 3,
+      "assistant": 20,
+      "tool_call": 181,
+      "tool_result": 181,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 388,
+      "chunks": [
+        {
+          "path": "fb7f79e7dded44cce291-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fb7f79e7dded44cce291-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "fb7f79e7dded44cce291-part-0003.json",
+          "message_count": 28
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/harvest-old-preparing-experiments-20260521t041745-retry1.md"
+}

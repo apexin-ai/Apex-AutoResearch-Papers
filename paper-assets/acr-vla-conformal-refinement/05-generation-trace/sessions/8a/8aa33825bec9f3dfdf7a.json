@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "8aa33825bec9f3dfdf7a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "registry reconcile running experiments",
+  "task_key": "worker_registry_reconcile-running-experiments_20260528T063228",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_registry_reconcile-running-experiments_20260528T063228.log",
+    "occurrence": 1,
+    "bytes": 1026824,
+    "sha256": "a47c35a9474112fcf52ba3bacbaf924575b6cbcd30b2a1fe4975942a127bad7c"
+  },
+  "statistics": {
+    "messages": 281,
+    "user_turns": 0,
+    "tool_calls": 122,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 33,
+      "tool_call": 122,
+      "tool_result": 122,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 281,
+      "chunks": [
+        {
+          "path": "8aa33825bec9f3dfdf7a-part-0001.json",
+          "message_count": 116
+        },
+        {
+          "path": "8aa33825bec9f3dfdf7a-part-0002.json",
+          "message_count": 165
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/registry-reconcile-running-experiments.md"
+}

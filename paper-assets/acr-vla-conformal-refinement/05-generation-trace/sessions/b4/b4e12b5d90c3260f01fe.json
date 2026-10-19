@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4e12b5d90c3260f01fe",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze pi05 crm always on object s42",
+  "task_key": "worker_analyze_pi05-crm-always-on-object-s42_20260528T020851",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_pi05-crm-always-on-object-s42_20260528T020851_result.json",
+    "occurrence": 1,
+    "bytes": 333,
+    "sha256": "6041c3d97636230a644816ead311c958aab30f175bc2f3319348c74e54d5cb35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n**总结**：`pi05-crm-always-on-object-s42` → **SR 90.5%**（181/200），trigger_rate 100%。相比 Pi05 VLA-only baseline 96.5%，always-on CRM 降低 6pp，确认 hypothesis（无差别修正会 degrade 性能）。ketchup 任务降幅最大（55%）。状态已标记 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-pi05-crm-always-on-object-s42.md"
+}

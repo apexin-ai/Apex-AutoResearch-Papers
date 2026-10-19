@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1cc40094dc8cb56e977",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy westd object paired r2",
+  "task_key": "worker_deploy_westd-object-paired-r2_20260526T135616",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_westd-object-paired-r2_20260526T135616_result.json",
+    "occurrence": 1,
+    "bytes": 875,
+    "sha256": "d89a18f62cecf857ebb97e0e468d85639818f2a1c6d3a4bdda6c77ed0dc2a03b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**westd-49937 全部 6 个实验部署完成，运行正常。**\n\n| # | exp_id | GPU | PID | VRAM | util |\n|---|--------|-----|-----|------|------|\n| 1 | westd-pi05-crm-k2-object-s42 | cuda:0 | 491271 | 13969 MiB | 39% |\n| 2 | westd-pi05-crm-k2-object-s43 | cuda:1 | 491696 | 13969 MiB | 38% |\n| 3 | westd-pi05-crm-k2-object-s44 | cuda:2 | 492088 | 13969 MiB | 41% |\n| 4 | westd-pi05-adaptive-object-s42-paired | cuda:3 | 492479 | 13903 MiB | 33% |\n| 5 | westd-pi05-adaptive-object-s43-paired | cuda:4 | 492867 | 13903 MiB | 37% |\n| 6 | westd-pi05-adaptive-object-s44-paired | cuda:5 | 493251 | 13903 MiB | 54% |\n\n- 6 张 GPU 各有 1 个 python 进程，无碰撞\n- 每个进程 ~14 GB VRAM，GPU 利用率 33-54%\n- CRM s42/s43 已进入 rollout（task 1: 5/5 success），其余正在加载 task\n- Registry 全部标记为 RUNNING，spec 完整"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-westd-object-paired-r2.md"
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "c545ede7cd21aa2cae98",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "audit table1 goal object provenance 20260525T015038 retry2",
+  "task_key": "worker_audit_table1-goal-object-provenance_20260525T015038_retry2",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_table1-goal-object-provenance_20260525T015038_retry2.log",
+    "occurrence": 1,
+    "bytes": 1838502,
+    "sha256": "4bfc39ad25f3807a6449eb03044a371d92e79a912d8915aac495cd946f3251cb"
+  },
+  "statistics": {
+    "messages": 143,
+    "user_turns": 0,
+    "tool_calls": 51,
+    "roles": {
+      "system": 1,
+      "assistant": 37,
+      "record": 2,
+      "tool_call": 51,
+      "tool_result": 51,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 143,
+      "chunks": [
+        {
+          "path": "c545ede7cd21aa2cae98-part-0001.json",
+          "message_count": 7
+        },
+        {
+          "path": "c545ede7cd21aa2cae98-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "c545ede7cd21aa2cae98-part-0003.json",
+          "message_count": 135
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-table1-goal-object-provenance-20260525t015038-retry2.md"
+}

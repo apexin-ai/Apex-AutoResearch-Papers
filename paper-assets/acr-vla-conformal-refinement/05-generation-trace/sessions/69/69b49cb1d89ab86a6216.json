@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69b49cb1d89ab86a6216",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_28_1779859000.md",
+  "task_key": "loop_28_1779859000",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_28_1779859000.md",
+    "occurrence": 1,
+    "bytes": 4224,
+    "sha256": "07ad13c21eef4342bfdf677eecbd4acfa35d2f75bd2109a65d9a139589f70898"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 28\nreason: idle_timeout\nupdated: '2026-05-27T05:16:34+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **westd-49937 是 RTX PRO 6000 (Blackwell)**，与 4090 集群存在 ~3pp 系统性偏差（D158）。Table 2 π0.5 数据必须 same-server paired，不能混用 westd 和 4090 服务器的数据\n- **evaluate.py 必须用 commit a594db5**（D163），所有补跑用旧代码确保 Table 一致性\n- **GPU 白名单**：只用 `get_project_status` 的 `execution.gpu_ids` 中的 GPU，即使 Director 指令也必须 push back\n- **π0.5 CRM checkpoint 路径**：`/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt`（各 4090 服务器）\n- **所有服务器用 conda**：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv 存在\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228** (4×4090): 工作目录 `/root/acr-vla-conformal-refinement`, conda base\n- **bjb1-32546** (6×4090): 同上\n- **bjb2-28827** (6×4090): 同上\n- **cqa1-32758** (6×4090D): 同上，磁盘 `/autodl-pub` 94% ⚠️ 需关注\n- **westd-49937** (6×RTX PRO 6000): 同上，Blackwell GPU\n- **bjb2-24035** (1×4090D): 磁盘 `/usr/bin/nvidia-smi` 90% ⚠️\n- Python: 全部 `/root/miniconda3/bin/python`\n- 代码 commit: `a594db578dee` (D163 锁定)\n\n### 3. 📊 当前状态\n**刚做的事**：收到 `westd-pi05-vla-only-goal-s43-paired` 的 CRON 完成回调，发现 7 个实验同时处于 ANALYZING：\n- westd VLA-only baseline: Goal s42/43/44 + Object s42/43/44（共 6 个）\n- cqa1 Adaptive Object s42（1 个）\n\n已派 2 个 Worker 分析：\n1. `worker_analyze_westd-vla-only-batch_20260526T115512` — 读 westd 6 个 VLA-only 的 JSON/log 提取 SR%\n2. `worker_analyze_pi05-adaptive-object-s42-cqa1_20260526T115522` — 读 cqa1 Adaptive Object s42 结果\n\n**这两个 Worker 的回调尚未收到，是最高优先级待处理项。**\n\n**RUNNING 实验**（21 个，全部有 cron 监控）：\n- bjb1-18228: CRM-K2 Long s42/43 (cuda:0/1), Adaptive Long s42 (cuda:3), Adaptive Goal s44 (cuda:2)\n- bjb1-32546: CRM-K2 Goal s42/43/44 (cuda:0/1/2), CRM-K2 Object s42/43/44 (cuda:3/4/5) — 全部 r2 重跑\n- bjb2-28827: CRM-K2 Spatial s42/43/44 (cuda:0/1/2), Adaptive Spatial s42/43/44 (cuda:3/4/5) — 全部 r2\n- cqa1-32758: CRM-K2 Long s44 (cuda:0), Adaptive Object s43/44-r3 (cuda:2/3), Adaptive Long s43/44-r3 (cuda:4/5)\n\n**PREPARING**: ~167 个排队\n\n### 4. 📋 待办（条件触发式）\n- **Worker 回调到达（westd batch + cqa1 adaptive）→ 提取 SR% → update_registry 设 conclusion + metrics + checkpoint_path/log_path → 转 DONE → 向 Director 汇报 Table 2 进度**\n- **westd 6 个 VLA-only 全部 DONE → 汇总 Goal/Object mean±std → 与已有 CRM/Adaptive 数据对比 → 更新 ROADMAP Table 2 进度**\n- **任一 RUNNING 实验 cron 回调 → 走 on-experiment-done 流程（提取指标 → conclusion → registry → Director）**\n- **westd GPU 释放（6 个 VLA-only 完成后）→ 检查 PREPARING 队列中 westd paired 实验（如 CRM/Adaptive on westd）→ 提交**\n- **所有 Table 2 cells 完成 → 汇总 π0.5 表格 → 与 SmolVLA Table 1 对比 → MC3 \"模型能力依赖性分析\" narrative**\n\n### 5. 🎯 战略上下文\n- **CoRL 2026 DDL: 2026-05-29（~48h）**，时间极紧\n- **Table 1 (SmolVLA)**: 36/36 完成。核心 pattern: CRM always-on 在 Object/Long 有害，Adaptive gating 消除退化\n- **Table 2 (π0.5)**: 进行中。已知 π0.5 Adaptive 在 Goal 上负向（86.5% vs VLA-only 96%，D154）→ MC3 已 reframe 为\"模型能力依赖性分析\"（D155），不再 claim cross-model generalization\n- **MC1 (Consistency)**: 从 magnitude claim 改为 consistency claim（Adaptive ≥ CRM on ALL 4 suites），因 n=3 p≈0.27 n.s.（D150）\n- **MC2 (Mechanism)**: trigger_rate ↔ Δ 单调正相关，仍成立\n- **易错点**：\n  - 不要把 westd (Blackwell) 和 4090 的数据混在同一个 Table 行里——D158 明确要求 same-server paired\n  - π0.5 K=2 argmin 选择本身对强 VLA 有害（τ=0.90 SR=89% vs VLA-only 96%），这不是 CRM 的问题\n  - cqa1 磁盘 94%，提交新实验前必须检查\n  - 所有 evaluate.py 必须用 a594db5 commit，不要 pull 新代码\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-28-1779859000.md"
+}

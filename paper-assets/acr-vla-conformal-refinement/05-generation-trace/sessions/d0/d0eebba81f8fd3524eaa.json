@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0eebba81f8fd3524eaa",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy cqa1 32758 spatial seeds",
+  "task_key": "worker_deploy_cqa1-32758-spatial-seeds_20260524T070703",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cqa1-32758-spatial-seeds_20260524T070703_result.json",
+    "occurrence": 1,
+    "bytes": 587,
+    "sha256": "5c1493e67bfe390276f750bd6a1f578efe285cb19b957d5bf7eb19324531fe52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "情况汇总：\n\n- **Goal s45/s46**: 10/10 实验全部 DONE\n- **Spatial s45/s46**: 全部 DONE（registry 中 4 个 RUNNING 条目是僵尸，cqa1-32758 上并没有对应 tmux session）\n- **cqa1-32758 tmux**: 只有 `long-adapt-s47` (cuda:4) 和 `long-vla-s47` (cuda:5)，GPU 0-3 完全空闲\n\n**Spatial s47 状态**：只有 CRM (eval-supp-spatial-crm-norm005-s47) 在跑，缺 4 个方法：\n1. VLA-only s47\n2. Adaptive τ=0.25 s47\n3. Reconvla s47\n4. K2mean s47\n\n正好 4 个实验对 4 张 GPU。要部署 Spatial s47 补全吗？还是有其他安排？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-cqa1-32758-spatial-seeds.md"
+}

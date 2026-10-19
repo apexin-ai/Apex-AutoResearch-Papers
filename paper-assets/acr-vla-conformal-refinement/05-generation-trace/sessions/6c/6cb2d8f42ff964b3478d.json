@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6cb2d8f42ff964b3478d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops deploy bjb2 28827 freed gpus",
+  "task_key": "worker_ops_deploy-bjb2-28827-freed-gpus_20260516T083209",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_deploy-bjb2-28827-freed-gpus_20260516T083209_result.json",
+    "occurrence": 1,
+    "bytes": 629,
+    "sha256": "c6b1dddd773c203222abe3efbf40c8156f321cedb5f59c2cae509c3070f3ed3d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。总结：\n\n| 实验 | GPU | PID | 状态 |\n|------|-----|-----|------|\n| `eval-vla-only-object-seed45` (VLA-only K=1 seed=45) | cuda:4 | 221407 | RUNNING, 5628 MiB |\n| `eval-perdof-object-norm02-seed45` (perdof norm=0.2 seed=45) | cuda:1 | 222824 | RUNNING, 5664 MiB |\n\n注意：任务中的 `run_eval_object.py` 不存在，实际脚本是 `src/evaluate.py`，参数也做了对应调整（`--mode` 替代 `--method`，`--max_correction_norm` 替代 `--norm`，perdof 实验补加了 `--crm_checkpoint`）。bjb2-28827 当前 6 张卡中 4 张在用（cuda:1/2/3/4/5），cuda:0 仍空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deploy-bjb2-28827-freed-gpus.md"
+}

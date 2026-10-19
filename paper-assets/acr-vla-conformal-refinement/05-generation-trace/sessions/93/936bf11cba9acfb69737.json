@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "936bf11cba9acfb69737",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "calibration crm correction magnitude v3",
+  "task_key": "worker_calibration_crm-correction-magnitude-v3_20260520T030350",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_calibration_crm-correction-magnitude-v3_20260520T030350.log",
+    "occurrence": 1,
+    "bytes": 736704,
+    "sha256": "d6fceb5031796127bccaddb091326409333ec49c9eca213d1e64c4432277349d"
+  },
+  "statistics": {
+    "messages": 454,
+    "user_turns": 0,
+    "tool_calls": 186,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 80,
+      "tool_call": 186,
+      "tool_result": 185
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 454,
+      "chunks": [
+        {
+          "path": "936bf11cba9acfb69737-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "936bf11cba9acfb69737-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "936bf11cba9acfb69737-part-0003.json",
+          "message_count": 94
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/calibration-crm-correction-magnitude-v3.md"
+}

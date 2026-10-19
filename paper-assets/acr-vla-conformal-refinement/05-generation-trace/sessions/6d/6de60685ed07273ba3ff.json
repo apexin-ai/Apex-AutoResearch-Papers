@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6de60685ed07273ba3ff",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops progress check and harvest batch",
+  "task_key": "worker_ops_progress-check-and-harvest-batch_20260518T112416",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_progress-check-and-harvest-batch_20260518T112416_result.json",
+    "occurrence": 1,
+    "bytes": 1317,
+    "sha256": "2929fe350b5da41c462c6e950ddc08adb27e9d42a99e5ef0fcf47a78a44a7265"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### 实验 1：K=5 seed43（bjb2-28827, cuda:2）\n- **状态**: RUNNING\n- **进度**: Task 9/10（chocolate_pudding），rollout 5/10\n- 可见部分结果：bbq_sauce=30%, ketchup=10%, tomato_sauce=20%, butter=10%, milk=10%\n- 预计还需 ~15 个 rollout（task 9 剩 5 个 + task 10 全部 10 个）\n\n### 实验 2：random_selection seed42（bjb2-40593, cuda:0）\n- **状态**: RUNNING\n- **进度**: Task 10/10（orange_juice），rollout 5/10\n- 只剩 5 个 rollout，马上完成\n- 已完成 9 个 task：0%, 10%, 10%, 40%, 0%, 20%, 0%, 10%, 20%\n\n### 实验 3：perdof default seed43（bjb1-18228, cuda:3）\n- **状态**: RUNNING\n- **进度**: Task 1/10（alphabet_soup），rollout 6/10\n- 刚启动不久\n\n### 实验 4：perdof default seed45（bjb1-32546, cuda:4）\n- **状态**: RUNNING\n- **进度**: Task 5/10（ketchup），rollout 5/10\n- 前 4 个 task 全部 0% SR（符合 perdof default 预期）\n\n### GPU 释放\n- **bjb2-28827**: 6 个 PID 全部存活，0 GPU 释放\n- **bjb2-40593**: PID 395256 存活，0 GPU 释放\n- **bjb1-18228**: 4 个 PID 全部存活，0 GPU 释放\n- **bjb1-32546**: 6 个 PID 全部存活，0 GPU 释放\n\n**无任何 GPU 释放。** 实验 1 和 2 预计 10-20 分钟内完成，可以稍后再收割结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-progress-check-and-harvest-batch.md"
+}

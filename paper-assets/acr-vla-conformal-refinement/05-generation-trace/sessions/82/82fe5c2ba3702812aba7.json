@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82fe5c2ba3702812aba7",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_18.md",
+  "task_key": "loop_18",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_18.md",
+    "occurrence": 1,
+    "bytes": 3959,
+    "sha256": "8be6ea0e817dd7b010c98cc1cb93d1fd371253332cb7e317a4721b1ac27d7e2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: idle_timeout\nupdated: '2026-05-17T11:10:51+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单严格按 `get_project_status` 的 `execution.gpu_ids`，当前 4 台服务器：bjb1-18228, bjb1-32546, bjb2-28827, bjb2-40593\n- bjb2-40593 磁盘 `/usr/bin/nvidia-smi` 分区已用 90%（仅剩 46GB），不要在该服务器启动写大量 checkpoint 的实验（eval log 很小可以用）\n- Narrative B 已锁定 (D043)，论文 framing 不可改动除非 Director 明确批准\n- `eval-direct-correction` 前两次 SIGTERM 是资源冲突（非代码 bug），r3 已成功完成 SR=14%，不需再重试\n- pooled Fisher test 统计必须从 raw JSON 读取实际 trial counts，不能硬编码（翻倍 bug 教训）\n\n### 2. 🖥️ 基础设施快照\n- **4 台服务器**: bjb1-18228, bjb1-32546, bjb2-28827, bjb2-40593\n- 工作目录: `/root/acr-vla-conformal-refinement/`\n- Python: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（submit 命令必须 bash -c 包裹）\n- CRM checkpoint: `/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`（obs_only 327K params）\n- 评测命令: `python -u src/evaluate.py --mode {mode} --benchmark object --seed {seed} --max_correction_norm {norm} --crm_checkpoint ... --n_rollouts 10 --output_file results/...`\n- W&B: 未配置（eval 实验不走 W&B，cron 通过进程存活 + log 检测完成）\n- 活跃 GPU 进程: 12 experiments RUNNING（cron 监控中），详见 registry\n\n### 3. 📊 当前状态\n**刚做完**: session-start 初始化 + 批量新结果处理。发现 5 个实验完成（obs-only-seed46=15%, direct-correction-r3=14%, perdof-norm03-seed44=4%, obs-only-norm03-seed45=14%, vla-mean-seed45=13%）。已向 Director 汇报。\n\n**已派发 2 个 Worker**（等回调）:\n- `worker_ssh_deploy-preparing-experiments-batch5_20260517T070743`: SSH 检查空闲 GPU + 部署 4 个 PREPARING 实验 (norm01 seed46/47 obs_only+perdof)\n- `worker_analysis_batch-results-update-20260517_20260517T070805`: 更新 pooled 统计 + memory.md\n\n**RUNNING 实验 (12)**:\n- perdof ablation: norm01-seed44/45, norm02-seed44/45, norm03-seed45-r2, default-seed44\n- obs_only: default-seed45, norm01-seed45, norm02-seed47\n- scalar: seed45\n- argmin: seed46, seed47\n\n### 4. 📋 待办\n- deploy Worker 回调 → 确认 4 PREPARING 实验成功启动，更新 registry 为 RUNNING\n- analysis Worker 回调 → 确认 memory.md 更新，检查 pooled 统计正确性\n- argmin seed46/47 完成 → 计算 6-seed pooled Fisher p（目标: obs_only 17% vs argmin ~13%, 预估 p~0.08-0.12）\n- perdof norm01/02/default seed44/45 全部完成 → 汇总 magnitude curve multi-seed error bars，准备论文 figure 数据\n- 所有 eval 完成 → 汇报 Director 最终统计 + 建议启动 paper figures matplotlib 脚本\n- Director 回复建议（paper figures / 下一步）→ 执行\n\n### 5. 🎯 战略上下文\n- **核心结论**: obs_only CRM (ε=0.2) 唯一存活。5-seed pooled: obs_only 17.0% vs argmin 13.5%, +3.5pp。Narrative B = mechanism insight（magnitude robustness）为主线\n- **新关键数据点**: direct-correction=14% ≈ argmin → 证明 CRM 价值在 selection signal 而非 correction itself。这完成了 Claim 1 的 ablation 证据链\n- **投稿**: CoRL 2026，abstract DDL ~May 26，full paper DDL ~Jun 2（剩 ~10 天）\n- **决策链**: D038(ε=0.2最优) → D039(perdof default=0%崩溃) → D042(claim结构) → D043(Narrative B锁定) → D044(Claim 1降级)\n- **易错点**:\n  - magnitude curve 数据来自不同 seed，论文 figure 用 seed42 单线（已有完整 6 点），multi-seed 做 error bar 是补充\n  - 5-seed obs_only pooled (85/500) 目前只能和 4-seed argmin (54/400) 比（不对称），等 seed46/47 argmin 完成才能做 paired 6-seed Fisher\n  - perdof norm=0.3 两个 seed 都是 4%（deterministic collapse），但 obs_only norm=0.3 有波动（19% vs 14%），报告时注意标注 variance\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-18-copy-2.md"
+}

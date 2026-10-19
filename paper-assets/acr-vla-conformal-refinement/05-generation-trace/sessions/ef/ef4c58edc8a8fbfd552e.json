@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef4c58edc8a8fbfd552e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code evaluate K parameter audit",
+  "task_key": "worker_code_evaluate-K-parameter-audit_20260525T024751",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_evaluate-K-parameter-audit_20260525T024751_result.json",
+    "occurrence": 1,
+    "bytes": 4147,
+    "sha256": "a89fd0cf15349d7b06896fbcb657cd3db98522b9ba17ef434ed547d695460585"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。以下是直接回答：\n\n---\n\n## Q1: `--K` 参数的作用\n\n`--K` 是全局参数（line 76, `default=10`），传递给 VLA wrapper 的 `get_obs_features_and_samples(K=K)` 控制前向推理采样数。\n\n**但关键发现：`adaptive_conformal_crm` 模式完全忽略 `--K` 参数。**\n\n在 dispatch 处（line 670-673）：\n```python\nelif args.mode == \"adaptive_conformal_crm\":\n    action_fn = lambda obs: select_action_conformal_crm(\n        wrapper, obs, task_desc, crm, device,\n        args.conformal_threshold, rollout_meta, obs_proj=obs_proj\n    )\n```\n`args.K` 没有被传入。函数内部（line 450-498）硬编码 `K=2`：\n```python\ndef select_action_conformal_crm(...):\n    \"\"\"K=2 Conformal + Selective CRM: always K=2, CRM only when uncertain.\"\"\"\n    ...\n    obs_feat, samples = wrapper.get_obs_features_and_samples(\n        ...,\n        K=2,   # ← 硬编码\n    )\n```\n\n`--K` 对以下模式**有效**（直接传 `args.K`）：`vla_only`, `crm_perdof`, `crm_scalar`, `acr_vla`, `crm_obs_only`, `reconvla`, `random_selection`。\n\n对以下模式**无效**（函数内部自行控制 K）：`adaptive_conformal_crm`（硬编码2）、`adaptive_k`（内部管理 2→10 扩展）、`adaptive_unc_head`（需读其函数确认）。\n\n---\n\n## Q2: `--K 10` 时 `adaptive_conformal_crm` 实际在做什么\n\n**与 `--K 2` 行为完全相同。** 具体流程：\n\n1. **始终采样 K=2**：VLA 前向推理 2 次，得到 2 个 action samples\n2. **Uncertainty = L2 距离**：将两个 6D pose 展平为 30 维向量，计算 `(a1 - a2).norm()` 作为 uncertainty\n3. **Gating**：`uncertainty > conformal_threshold` → triggered（需要 CRM 修正）\n4. **Base action 选择**：计算 2 个 sample 的 centroid，选离 centroid 更近的那个（argmin distance to mean）\n5. **CRM 修正**（仅 triggered 时）：用 obs-only CRM（`unc_dim=0`，不输入 uncertainty features），对 selected pose 做修正\n6. **非 triggered**：直接用 selected pose，跳过 CRM\n\n`--K 10` 的**唯一影响**：\n- CGS 初始化用 K=10（line 567），但 `adaptive_conformal_crm` 从不调用 CGS\n- 输出文件名包含 `_K10`（line ~838 的 `k_tag`）\n\n**结论：所有标注 \"K=10\" 的 `adaptive_conformal_crm` 实验，实际推理都是 K=2。`--K 10` 只是个假标签。**\n\n---\n\n## Q3: 默认值\n\nLine 76: `p.add_argument(\"--K\", type=int, default=10)` — **默认值 10**，确认无误。\n\n---\n\n## 关键代码段\n\n```python\n# Line 450-498: select_action_conformal_crm\ndef select_action_conformal_crm(wrapper, obs, task_name, crm, device,\n                                 conformal_threshold, step_metadata, obs_proj=None):\n    \"\"\"K=2 Conformal + Selective CRM: always K=2, CRM only when uncertain.\"\"\"\n    # ... 获取 obs ...\n    obs_feat, samples = wrapper.get_obs_features_and_samples(\n        ..., K=2,                              # ← 硬编码 K=2\n    )\n    k_pose = samples[0, :, :H_EFF, :CORRECTION_DIM]  # (2, H_eff, 6)\n\n    a1 = k_pose[0].reshape(-1)                # (30,)\n    a2 = k_pose[1].reshape(-1)                # (30,)\n    uncertainty = (a1 - a2).norm().item()      # ← L2 距离作为 uncertainty\n\n    centroid = (a1 + a2) / 2\n    d1 = (a1 - centroid).norm()\n    d2 = (a2 - centroid).norm()\n    selected_idx = 0 if d1 <= d2 else 1       # ← argmin to mean\n    selected_pose = k_pose[selected_idx]\n\n    triggered = uncertainty > conformal_threshold  # ← gating\n\n    if triggered:\n        base_action = selected_pose.reshape(1, -1).to(device)\n        obs_feat_dev = _pad_obs(obs_feat.to(device))\n        with torch.no_grad():\n            refined_pose = crm(base_action, None, obs_feat_dev)  # ← obs-only CRM, unc=None\n        # ... 拼接 gripper ...\n    else:\n        # ... 直接用 selected_pose + mean gripper ...\n```\n\n**总结：用户说法正确。Adaptive 方法始终 K=2（两次前向推理算 L2 做 gating）。那 14 个 \"canonical K=10\" 实验的 K=10 仅出现在文件名和 CGS 初始化中，实际推理行为与 K=2 完全一致。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-evaluate-k-parameter-audit.md"
+}

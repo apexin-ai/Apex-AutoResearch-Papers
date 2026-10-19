@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78d8289fa51e45eca093",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "investigate pi05 regression bjb1 32546",
+  "task_key": "worker_investigate_pi05-regression-bjb1-32546_20260528T063015",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_investigate_pi05-regression-bjb1-32546_20260528T063015_result.json",
+    "occurrence": 1,
+    "bytes": 880,
+    "sha256": "906b0a9b7a18b1b31544561473e516369e032cfd7c71e18fecba47fed0b0d504"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 个 tmux sessions 对应 6 块 GPU，全部占用：\n\n| GPU | 显存占用 | 可能对应的 session |\n|-----|---------|-------------------|\n| cuda:0 | 10353/24564 MiB | Pi05 session |\n| cuda:1 | 10353/24564 MiB | Pi05 session |\n| cuda:2 | 10835/24564 MiB | Pi05 session |\n| cuda:3 | 2439/24564 MiB | SmolVLA session |\n| cuda:4 | 3080/24564 MiB | SmolVLA session |\n| cuda:5 | 3080/24564 MiB | SmolVLA session |\n\n**结论：bjb1-32546 上 3 个 Pi05 实验均正常运行（obs_dim=2048，SR 远高于 0%），不受 regression 影响，不应 kill。6 块 GPU 全部占满，没有空闲 GPU 可以部署新实验。**\n\n如果仍需部署 3 个 SmolVLA 候选实验（smolvla-tau045-spatial-s42、eval-supp-long-vla-only-s44、eval-supp-long-vla-only-s42），需要另选服务器或等当前实验完成。需要我查看其他可用服务器吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-pi05-regression-bjb1-32546.md"
+}

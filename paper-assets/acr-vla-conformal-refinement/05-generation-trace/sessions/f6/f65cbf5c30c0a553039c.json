@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f65cbf5c30c0a553039c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code ablation prep",
+  "task_key": "worker_code_ablation-prep_20260513T201522",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_ablation-prep_20260513T201522_result.json",
+    "occurrence": 1,
+    "bytes": 4998,
+    "sha256": "4c8a90acc799040a599dd7d59d49baa802320ba20201a9ede8fd287486ae25ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n---\n\n## 结论\n\n### 1. 是否已支持 ablation：**No**\n\n`parse_args()` 中没有 `--ablation`、`--mode`、`--input_mode` 等参数。特征拼接逻辑硬编码为 full 模式（obs + conformal + mean_action）。\n\n### 2. 当前特征流\n\n| 组件 | 维度 | 来源 |\n|------|------|------|\n| `mean_action` | 30D (H_EFF×CORRECTION_DIM = 5×6) | CGS: K samples 均值 |\n| `uncertainty_features` | 40D (per_dof_std 30 + conformal_radius 5 + log_volume 5) | CGS: 结构化不确定性 |\n| `obs_features` | 960D | VLM frozen encoder |\n| **总输入** | **1030D** | CRM 输入 |\n\n关键代码位置：\n- **CRM 模型** `crm.py:26-27` — `input_dim = action_dim + uncertainty_dim + obs_dim`，`forward()` 中 `torch.cat([mean_action, uncertainty_features, obs_features])`\n- **训练循环** `train_crm.py` `train()` 函数 — CRM 实例化硬编码 `uncertainty_dim=40`, `action_dim=30`, `obs_dim=960`；forward 调用 `crm(ma, uf, obs_feat)`\n\n### 3. 最小改动方案\n\n**目标**：加一个 `--input_mode` 参数，支持三种模式：\n\n| mode | 输入 | 维度 | 对应 plan |\n|------|------|------|-----------|\n| `full` (默认) | obs + uncertainty + mean_action | 1030D | 当前 baseline |\n| `obs_only` | obs + mean_action (无 conformal) | 990D | plan_002 (A3) |\n| `scalar_unc` | obs + scalar_uncertainty + mean_action | 960+S+30 | plan_003 (A4) |\n\n#### 修改文件 1: `train_crm.py`\n\n**A. `parse_args()` 加参数**（约 L68 附近）：\n```python\np.add_argument(\"--input_mode\", type=str, default=\"full\",\n               choices=[\"full\", \"obs_only\", \"scalar_unc\"],\n               help=\"full=all features, obs_only=no conformal, scalar_unc=scalar uncertainty\")\n```\n\n**B. `train()` 函数中 CRM 实例化**（约 L330 附近）：\n```python\n# 根据 input_mode 决定 uncertainty_dim\nif args.input_mode == \"full\":\n    unc_dim = CORRECTION_DIM * H_EFF + H_EFF + H_EFF  # 40\nelif args.input_mode == \"obs_only\":\n    unc_dim = 0\nelif args.input_mode == \"scalar_unc\":\n    unc_dim = 3  # euclidean_dist + mean_conformal_radius + mean_log_volume\n```\n\n**C. 训练循环中 forward 调用**（约 L355, L370, L390 三处）：\n```python\nuf, ma = cgs.compute_features_batch(k_samp)\n\nif args.input_mode == \"obs_only\":\n    uf_input = None  # 不传 uncertainty\nelif args.input_mode == \"scalar_unc\":\n    uf_input = compute_scalar_uncertainty(k_samp, ma)  # 新函数\nelse:\n    uf_input = uf\n```\n\n验证和 augmentation 两处也要同步改。\n\n#### 修改文件 2: `crm.py`\n\n**D. `__init__` 和 `forward` 支持 `uncertainty_dim=0`**（L15, L40）：\n```python\ndef __init__(self, action_dim=30, uncertainty_dim=40, obs_dim=960, hidden_dim=256):\n    input_dim = action_dim + uncertainty_dim + obs_dim  # 已有，不变\n\ndef forward(self, mean_action, uncertainty_features, obs_features):\n    if uncertainty_features is not None:\n        x = torch.cat([mean_action, uncertainty_features, obs_features], dim=-1)\n    else:\n        x = torch.cat([mean_action, obs_features], dim=-1)\n    delta = self.net(x)\n    return mean_action + delta\n```\n\n#### 修改文件 3: `cgs.py` 或 `train_crm.py` 中新增辅助函数\n\n**E. `compute_scalar_uncertainty()`**（plan_003 需要）：\n```python\ndef compute_scalar_uncertainty(k_samples, mean_action):\n    \"\"\"K samples → 3 scalar features: avg_std, avg_conformal_radius, avg_log_volume.\"\"\"\n    # k_samples: (B, K, H, D), mean_action: (B, 30)\n    B = k_samples.shape[0]\n    ma_reshaped = mean_action.reshape(B, H_EFF, CORRECTION_DIM)\n    diff = k_samples - ma_reshaped.unsqueeze(1)  # (B, K, H, D)\n    euclidean = diff.norm(dim=-1).mean(dim=(1, 2))  # (B,) scalar spread\n    per_dof_std = k_samples.std(dim=1).mean(dim=(1, 2))  # (B,)\n    max_std = k_samples.std(dim=1).max(dim=-1).values.mean(dim=1)  # (B,)\n    return torch.stack([euclidean, per_dof_std, max_std], dim=-1)  # (B, 3)\n```\n\n#### 输出目录区分\n\n`--output_dir` 加 mode 后缀：\n```python\nargs.output_dir = os.path.join(args.output_dir, args.input_mode)\n```\n\n### 4. plan_002 / plan_003 训练命令（改完后）\n\n```bash\n# plan_002 (A3): obs only, no conformal\npython train_crm.py --benchmark spatial --epochs 50 --input_mode obs_only \\\n  --output_dir /root/autodl-tmp/checkpoints/crm/obs_only/\n\n# plan_003 (A4): scalar uncertainty\npython train_crm.py --benchmark spatial --epochs 50 --input_mode scalar_unc \\\n  --output_dir /root/autodl-tmp/checkpoints/crm/scalar_unc/\n```\n\n### 5. 预估训练时间和 GPU 需求\n\nPhase 2 训练（加载缓存后）是纯 MLP 训练，参数量约 280K（full 模式），ablation 模式更少：\n- **obs_only**: input_dim=990, 约 260K params\n- **scalar_unc**: input_dim=993, 约 260K params\n\n50 epochs 在单 GPU 上预计 **5-15 分钟**（取决于数据量）。GPU 显存需求极低（<1GB），任意 GPU 均可。precompute cache 已有则无需重新生成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-ablation-prep.md"
+}

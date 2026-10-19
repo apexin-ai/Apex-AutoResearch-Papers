@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73c8db61d3c96d88726b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "audit bjb1 18228 precompute check",
+  "task_key": "worker_audit_bjb1-18228-precompute-check_20260523T123546",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_bjb1-18228-precompute-check_20260523T123546_result.json",
+    "occurrence": 1,
+    "bytes": 797,
+    "sha256": "4ac9ecf29cc7a7bb8f257f63cf6b325ca586cd8deb9a3a57bb086e59a628bda5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**bjb1-18228 Pi0.5 Precompute 状态**\n\n| GPU | Benchmark | 进度 | 完成% | 已用时间 | 预计剩余 | 预计完成时间 |\n|-----|-----------|------|-------|---------|---------|------------|\n| 0 | object | 30500/72507 | 42.1% | 16.2h | **22.3h** | ~5/24 19:00 |\n| 1 | spatial | 29200/60250 | 48.5% | 16.2h | **17.2h** | ~5/24 14:00 |\n| 2 | goal | 29200/61728 | 47.3% | 16.2h | **18.1h** | ~5/24 14:40 |\n| 3 | long | 30400/136090 | 22.3% | 16.2h | **56.2h** | ~5/25 05:00 |\n\n所有进程速度 ~1.91-2.00s/sample，GPU 利用率 23-25%，显存占用 ~9.9GB/24.6GB。\n\n**结论：4 张卡全部 busy，无空闲 GPU 可分配。** spatial 和 goal 最快释放（明天下午），long benchmark 数据量最大（136K samples），预计后天凌晨才能完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-bjb1-18228-precompute-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78ba3d959c71b2131796",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diag bjb2 24035 new server",
+  "task_key": "worker_diag_bjb2-24035-new-server_20260526T040531",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_bjb2-24035-new-server_20260526T040531_result.json",
+    "occurrence": 1,
+    "bytes": 2371,
+    "sha256": "31a50e887fc285c488034494dc7e3f07e751e484344e14f674a313e5d46b85c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## bjb2-24035 状态报告\n\n### GPU\n- **1× RTX 4090 D** (24GB VRAM)，空闲，无进程占用\n- Driver 580.105.08，CUDA 13.0\n\n### 磁盘\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| 根分区 (/) | 30G | 21G | 9.7G | 68% |\n| 数据盘 (/dev/sda2) | 437G | 369G | 47G | 89% |\n\n数据盘使用率 89%，剩余 47G，偏紧。\n\n### 数据盘拷贝状态：**已完成**\n- 无 cp/rsync/scp 进程在跑\n- 数据盘内容结构完整，与旧服务器一致\n\n### 数据盘主要内容\n| 目录 | 大小 | 说明 |\n|------|------|------|\n| libero_data | 94G | LIBERO 数据集 |\n| models | 49G | 所有模型 |\n| envs | 18G | Python 环境 |\n| A1 | 976M | A1 相关 |\n| checkpoints | 87M | CRM checkpoints |\n| crm_cache_pi05 | 76M | π0.5 precompute (object suite only) |\n\n### π0.5 依赖就绪性\n\n| 项目 | 状态 | 路径/说明 |\n|------|------|-----------|\n| π0.5 模型 | ✓ 就绪 | `models/pi05_libero_finetuned/` (4.0G) |\n| SmolVLA CRM checkpoint | ✓ 就绪 | `checkpoints/crm_smolvla_3suite_v1/crm_best.pt` |\n| **π0.5 CRM checkpoint** | **✗ 缺失** | `checkpoints/crm_pi05_unified_3suite/` 不存在 |\n| π0.5 precompute 数据 | **部分** | 只有 `crm_cache_pi05/object/` (76M, 75个 partial 文件)，无 spatial/goal suite |\n| `crm_cache_pi05_2048/` | **✗ 缺失** | 旧任务提到的 2048-dim cache 目录不存在 |\n\n### Python 环境\n- miniconda3 已装，Python 3.12.3\n- `python3` 不在 PATH 中（需通过 `/root/miniconda3/bin/python3` 调用）\n- `envs/` 下有 `a1` 和 `openvla-oft` 两个环境\n\n### 项目代码\n- ✓ `/root/acr-vla-conformal-refinement/src/evaluate.py` 存在（最后更新 May 25）\n\n### 旧实验日志\n- ✓ 已迁移，项目 `logs/` 下有 ~55 个日志/JSON 文件，最新到 May 26\n\n### 结论：**暂不可部署 π0.5 实验**\n\n缺两个关键依赖：\n1. **π0.5 CRM checkpoint** (`crm_pi05_unified_3suite/crm_best.pt`) — 需要重新训练或从备份恢复\n2. **完整 precompute 数据** — 当前只有 object suite 的 cache，缺 spatial 和 goal suite；且目录名是 `crm_cache_pi05` 而非 `crm_cache_pi05_2048`\n\nSmolVLA 相关实验可以跑（模型+checkpoint 都在）。磁盘剩余 47G 偏紧，如果需要重新 precompute 全部 3 suite 可能需要清理空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-bjb2-24035-new-server.md"
+}

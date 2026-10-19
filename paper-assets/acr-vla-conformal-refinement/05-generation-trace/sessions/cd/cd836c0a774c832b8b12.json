@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd836c0a774c832b8b12",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code fix eval obs only crm load",
+  "task_key": "worker_code_fix-eval-obs-only-crm-load_20260514T124633",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix-eval-obs-only-crm-load_20260514T124633_result.json",
+    "occurrence": 1,
+    "bytes": 415,
+    "sha256": "89250d22f57f2180369919bd8e0a50fb350e56c2843b74e519ed10b05b2de393"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n1. **bjb1 旧进程 PID 203968** — 已 kill\n2. **bjb1 + bjb2 evaluate.py** — 已修复，CRM 加载条件包含 `crm_obs_only`，`unc_dim=0` 分支正确\n3. **eval-obs-only-spatial-v3** — bjb1:cuda:2, PID 211961, RUNNING\n4. **CRM 加载验证** — 日志显示 `[eval] CRM loaded from .../crm_best.pt (327,198 params)`，无 TypeError，正在加载 LIBERO spatial 环境"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-eval-obs-only-crm-load.md"
+}

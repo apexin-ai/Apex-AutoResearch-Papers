@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "763cafac7efb12d02f51",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh sync adaptive k code",
+  "task_key": "worker_ssh_sync-adaptive-k-code_20260519T230000",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_sync-adaptive-k-code_20260519T230000_result.json",
+    "occurrence": 1,
+    "bytes": 983,
+    "sha256": "81573eab1a83fc419f67dcf9f18f0d16858433b71b7a072d4e28de45b9ec2a3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "发现版本差异——**bjb2-40593 才是最新版本**，不是 bjb2-28827：\n\n| 服务器 | 文件大小 | 行数 | adaptive_k 匹配 | 版本 |\n|--------|---------|------|-----------------|------|\n| bjb2-40593 | 23157 B | 593 | 19 | **最新** — `adaptive_k` 作为独立 mode，含 `select_action_adaptive_k()`, 默认 checkpoint/norm, trigger_rate 统计 |\n| bjb2-28827 | 19685 B | 511 | 4 | 旧版 — `adaptive_k` 仅作 flag |\n| bjb1-32546 | 19685 B | 511 | 4 | 旧版（同 bjb2-28827） |\n| bjb1-18228 | 19685 B | 511 | 4 | 旧版（同 bjb2-28827） |\n\nbjb2-40593 的版本包含 bjb2-28827 所没有的：\n- `adaptive_k` 作为 `--mode` 选项（不仅是 flag）\n- 独立的 `select_action_adaptive_k()` 函数\n- 默认 CRM checkpoint 和 `max_correction_norm=0.2`\n- `adaptive_trigger_rate` 统计\n\n**应该从 bjb2-40593 同步到其他 3 台服务器。** 需要确认是否按此执行，还是你确实想用 bjb2-28827 的版本？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-sync-adaptive-k-code.md"
+}

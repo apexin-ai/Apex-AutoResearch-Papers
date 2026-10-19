@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "8c8627c23d10c1d257d7",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "pull mechanism analysis artifacts",
+  "task_key": "worker_pull_mechanism-analysis-artifacts_20260524T155633",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_pull_mechanism-analysis-artifacts_20260524T155633.jsonl",
+    "occurrence": 1,
+    "bytes": 174,
+    "sha256": "ae76732eab6c12c0f4bb319f4198f76e397b1bb8f5eccef9112683b0cac7dd01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T15:56:43.630003+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_pull_mechanism-analysis-artifacts_20260524T155633"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/pull-mechanism-analysis-artifacts.md"
+}

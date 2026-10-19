@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ab68ec9f5d184b4dc22",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_23_1779398847.md",
+  "task_key": "loop_23_1779398847",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_23_1779398847.md",
+    "occurrence": 1,
+    "bytes": 4813,
+    "sha256": "b69cb204f0dc47e6f4749bab1c19c807e0785ab06f93f7ddff16faec2d0eec7e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 23\nreason: idle_timeout\nupdated: '2026-05-21T21:26:43+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单必须从 `get_project_status` 的 `execution.gpu_ids` 获取，当前分配：bjb1-18228 cuda:0/1（CRM training）+ bjb1-32546 cuda:0-5 + bjb2-28827 cuda:0-5（eval）。不得使用白名单外 GPU\n- π0.5 模型路径：`/root/autodl-tmp/models/pi05_libero_finetuned/`，必须传 `--obs_dim 2048`（默认 960 是 SmolVLA 的）\n- π0.5 evaluate.py 的 `--mode acr_vla` 是 crm_perdof 别名（per-DOF CRM），不是 adaptive_conformal_crm。如果想要 Plan A conformal stopping 版本，需要改 mode + 加 `--conformal_threshold`\n- SmolVLA 全部结果 LOCKED，不要重跑、不要修改论文中 SmolVLA 数据\n- CoRL 2026 DDL **2026-05-29**，仅剩 **≤8 天**\n- CRM checkpoint 分 benchmark 存储：object 和 spatial 各自有 crm_best.pt，不共享\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**（CRM training 服务器）：工作目录 `/root/acr-vla-conformal-refinement/`，Python `/root/miniconda3/bin/python`，conda base\n  - Object CRM: PID 800111, cuda:0, output `/root/autodl-tmp/checkpoints/crm_pi05_full/object/`，epoch 7/50，best val_loss=0.005511\n  - Spatial CRM: **FAILED**（`crm-train-pi05-spatial-full` 报 FileNotFoundError: No precomputed cache at spatial），需要诊断 spatial cache 路径问题后重启\n  - 旧 precompute 进程 cuda:3 待清理\n  - 数据缓存：`/root/autodl-tmp/crm_cache_pi05/{object,spatial}/`\n- **bjb1-32546**（eval 服务器）：6 GPU，PyTorch 2.10.0+cu128，evaluate.py 33058 bytes 最新版，pi05 model 7.5GB OK\n- **bjb2-28827**（eval 服务器）：6 GPU，同上环境就绪\n- **bjb2-40593**：仅 1 GPU，之前跑 SmolVLA 系列，目前空闲\n- W&B：项目内未见 wandb 配置引用\n- 代码同步方式：rsync/scp（三台服务器均无有效 git remote）\n\n### 3. 📊 当前状态\n**刚完成**：π0.5 precompute merge + Object/Spatial CRM training 启动。Spatial CRM 失败（cache 路径问题），Object CRM 在跑（epoch 7/50，~5.5h 剩余）。\n\n**Registry RUNNING**：\n- `crm-train-pi05-object-full`：Object CRM training，bjb1-18228 cuda:0，PID 800111，69303 samples，epoch 7/50\n- `crm-train-pi05-spatial-full`：标记 RUNNING 但实际 FAILED（FileNotFoundError），需要修复后重启\n\n**PREPARING 积压**：~80+ eval 实验（大部分是旧的 SmolVLA 系列残留，可忽略）\n\n**等待中**：\n- Spatial CRM training 修复（cache 路径 `/root/autodl-tmp/crm_cache_pi05/spatial` 缺失或路径不对）\n- Object CRM training 完成后 → 6 GPU eval 部署（命令已准备在 `pi05_eval_commands.md`）\n- 14 GPU 空闲等 CRM 训练完成后部署 eval\n\n### 4. 📋 待办\n- **立即**：诊断 `crm-train-pi05-spatial-full` 失败原因（SSH 检查 `/root/autodl-tmp/crm_cache_pi05/spatial/` 是否存在及内容），修复后在 bjb1-18228 cuda:1 重启 spatial CRM training\n- `crm-train-pi05-object-full` cron 回调（预计 ~5h 后）→ scp `crm_best.pt` 到 bjb1-32546 和 bjb2-28827 → 部署 3 个 Object eval（runs 1-3 in pi05_eval_commands.md，替换 `<CRM_CHECKPOINT_OBJECT>` 为实际路径）\n- Spatial CRM training 完成 → scp → 部署 3 个 Spatial eval（runs 4-6）\n- 6 个 eval 全部完成 → 分析 π0.5 CRM vs VLA-only（81.5% Object / 84.2% Spatial）→ ceiling effect 分析 → 向 Director 汇报\n- 汇报后 → Paper Agent 写入 π0.5 cross-VLA 结果 → final review → submission prep\n\n### 5. 🎯 战略上下文\n- **核心 story**（D065 reframe）：Learned correction 是有效机制，multi-sampling 是 enabling condition。论文标题\"Correction Over Selection\"。3 claims: C1=correction 是 active mechanism，C2=conditioning-magnitude interaction，C3=applicability boundaries\n- **决策链关键节点**：D065（reframe 到 analysis paper）→ D092/D097（Adaptive K/Latency LOCKED）→ D102（K=20≈K=2 证实 Plan A）→ D103-D105（π0.5 baseline LOCKED）\n- **π0.5 是 cross-VLA generalization 验证**，不是主实验。81-85% baseline 意味着 CRM 增益受 ceiling effect 限制。framing 已准备双路径：(1) 有提升→cross-VLA 泛化成功 (2) 持平→\"no-harm on strong VLA + significant improvement on weak VLA\"\n- **易错点**：\n  - Spatial CRM training 的 cache 路径问题——可能是 precompute 数据合并时 spatial 目录结构与 object 不同\n  - `--mode acr_vla` vs `--mode adaptive_conformal_crm` 不等价——Plan A 需要 conformal stopping，可能需要后者\n  - eval 命令中 `--max_correction_norm 0.2` 是 SmolVLA 时代参数，π0.5 action space 不同，可能需要重新校准\n  - 代码通过 rsync 同步，改完代码必须手动 scp 到所有服务器\n  - bjb1-18228 cuda:3 有旧进程待清理，不要在上面启动新实验\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-23-1779398847.md"
+}

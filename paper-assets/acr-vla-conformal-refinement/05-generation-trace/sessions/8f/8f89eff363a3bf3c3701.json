@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f89eff363a3bf3c3701",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest tau sweep bjb1",
+  "task_key": "worker_harvest_tau-sweep-bjb1_20260523T061143",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_tau-sweep-bjb1_20260523T061143_result.json",
+    "occurrence": 1,
+    "bytes": 1423,
+    "sha256": "339cbabe04bea4a9656735cecbcbfbc9ba6df1250041ee1837d0108a3f38af64"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部收割完毕，registry 已更新为 DONE。\n\n## 汇总表\n\n| exp_id | mode | SR | vs baseline | trigger_rate | conclusion | GPU 释放 |\n|--------|------|----|-------------|-------------|------------|----------|\n| eval-supp-adapt-tau025-spatial-s42-r2 | adaptive_conformal, tau=0.25 | **82.0%** | +3.5pp | 19.4% | success | cuda:2 已空闲 |\n| eval-supp-crm-norm02-spatial-s42-r2 | crm_obs_only, norm=0.2 | **79.0%** | +0.5pp | — | success | cuda:0 已空闲 |\n| eval-supp-adapt-tau015-spatial-s42-r2 | adaptive_conformal, tau=0.15 | **80.5%** | +2.0pp | 40.7% | success | cuda:1 已空闲 |\n| eval-supp-adapt-tau035-spatial-s42-r2 | adaptive_conformal, tau=0.35 | **80.0%** | +1.5pp | 12.2% | success | cuda:4 刚释放 |\n\n## Threshold sweep 趋势\n\n| tau | SR | trigger_rate | 解读 |\n|-----|-----|-------------|------|\n| 0.15 | 80.5% | 40.7% | 触发太频繁，overcorrection 拉低 SR |\n| 0.25 | **82.0%** | 19.4% | 最优平衡点 |\n| 0.35 | 80.0% | 12.2% | 触发太保守，miss 可纠正的 step |\n\n**tau=0.25 是最优 threshold**，符合 Director 预期 (82%)。CRM norm=0.2 = 79.0%，也符合预期 (79%)。\n\n## GPU 状态\n\n- cuda:0,1,2 — 完全空闲 (2 MiB)\n- cuda:3 — 低负载 (544 MiB, 10% util)，可能是其他进程\n- cuda:4 — tau=0.35 刚完成，进程将退出释放\n- cuda:5 — 有负载 (2008 MiB, 26% util)，非本批实验"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-tau-sweep-bjb1.md"
+}

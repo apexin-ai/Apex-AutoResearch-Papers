@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f00f34a11e7ac5976432",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "scan d139 seed status all servers",
+  "task_key": "worker_scan_d139-seed-status-all-servers_20260524T192909",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_scan_d139-seed-status-all-servers_20260524T192909_result.json",
+    "occurrence": 1,
+    "bytes": 1427,
+    "sha256": "748aac67d9a462dc4a8a1b94268b9f18f52ba8b0afba433c49738b67b56583ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已落盘并注册（artifact id `art_20260524_336b39`，路径 `projects/acr-vla-conformal-refinement/artifacts/_project/report/d139_status_scan.md`）。\n\n## 核心结论\n\n**1. D139 种子扩展（12 实验）→ 100% 完成**\n- 6 adaptive + 6 vla_only，跨 object/spatial/goal × s48/s49\n- adaptive vs vla_only Δ：object/goal 微负差（-0.005~-0.030），spatial 正差（+0.015, +0.035）\n- trigger_rate：object 4%, goal 9%, spatial 20%\n\n**2. τ-sweep（spatial s42）→ 6/6 完成**\n| τ | 0.10 | 0.15 | 0.20 | 0.25 | 0.30 | 0.35 |\n|---|------|------|------|------|------|------|\n| SR | 0.790 | 0.805 | 0.810 | 0.795 | 0.805 | 0.800 |\n| trig | 0.752 | 0.407 | 0.266 | 0.197 | 0.167 | 0.122 |\n\nSR 平坦，trigger_rate 随 τ 单调下降。\n\n**3. K-sweep**\n- K=1 spatial s42 done: SR=0.795, trig=0.1965\n- K=5 spatial s42 在 bjb2-40593 GPU 0 进行中，2h33min elapsed，6/10 task 完成\n\n**4. π0.5 CRM 训练（bjb1-18228 GPU 0）**\n- Epoch **25/50**，elapsed 8h51m\n- Best val_loss = **0.004854 @ epoch 24**（持续小幅下降）\n- ETA ~9h，但 timeout 剩余预算 ~3h 不足 — **需决定是否续期**\n\n**5. 空闲 GPU：17 张**\n- cqa1-32758: 6 张全空\n- bjb1-32546: 5 张\n- bjb2-28827: 4 张\n- bjb1-18228: 2 张\n\n**注意事项**：bjb1-18228 上 PID 114507（May 23 启动的 pi05 precompute）疑似僵尸，17 GB RES，需要确认后清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/scan-d139-seed-status-all-servers.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f6334ed9501a25ec4a6",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops status bjb1 18228 obsonly r3",
+  "task_key": "worker_ops_status-bjb1-18228-obsonly-r3_20260515T095253",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_status-bjb1-18228-obsonly-r3_20260515T095253_result.json",
+    "occurrence": 1,
+    "bytes": 2145,
+    "sha256": "035113dbe68264618a6cb7586447287f338b262d9affaae55a35e138734be595"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集。汇总如下：\n\n---\n\n## 1. obs-only-r3 结果\n\n**进程状态**: ALIVE (PID 312425, GPU 3)\n\n| Task | SR | 详情 |\n|------|-----|------|\n| T6 | **90%** | 9/10 |\n| T7 | **0%** | 0/10 |\n| T8 | **20%** | 2/10 |\n| T9 | **running** | 0/5 at rollout 5/10 |\n\n结合 r2 的 T0-T5 (90%, 100%, 0%, 40%, 10%, 0%)，obs-only 全 10 task 完成后预计 overall ≈ **25-27%**（T9 按当前趋势大概 0%）。\n\n---\n\n## 2. GPU 全状态\n\n| GPU | Util | VRAM | PID | 实验 |\n|-----|------|------|-----|------|\n| 0 | 19% | 4652/24564 MiB | 325264 | **eval-mag-obsonly-norm03-r2** (obs_only, norm=0.3, T0起) |\n| 1 | 24% | 2535/24564 MiB | 311886 | **eval-acr-spatial-v4-scalar-r2** (crm_scalar, T3起) |\n| 2 | 22% | 5711/24564 MiB | 341878 | **eval-obs-only-spatial-seed43** (obs_only, seed=43, T0起) |\n| 3 | 20% | 2005/24564 MiB | 312425 | **eval-acr-spatial-v4-obs-only-r3** (obs_only, T6起) |\n\n4 GPU 全部在用，无空闲。\n\n---\n\n## 3. Tmux Sessions\n\n| Session | Created | GPU | PID |\n|---------|---------|-----|-----|\n| eval-acr-spatial-v4-obs-only-r3 | 13:14 | 3 | 312425 |\n| eval-acr-spatial-v4-scalar-r2 | 13:14 | 1 | 311886 |\n| eval-mag-obsonly-norm03-r2 | 14:50 | 0 | 325264 |\n| eval-obs-only-spatial-seed43 | 17:09 | 2 | 341878 |\n\n---\n\n## 4. 其他运行中实验进度\n\n**scalar-r2** (GPU 1, start_task=3): T3=40%, T4=0%, T5=0%, T6=90%，当前正在 T7+\n\n**mag-obsonly-norm03-r2** (GPU 0, norm=0.3): T0=90%, T1=100%, T2=0%, T3 in progress (1/5 at rollout 5)\n\n**obs-only-spatial-seed43** (GPU 2, seed=43): T0=80% (8/10)，正在 T1+\n\n---\n\n## 5. 已完成实验（进程不在了）\n\n| 实验 | 退出码 | 结果 |\n|------|--------|------|\n| **eval-argmin-only-spatial-r2** (reconvla, T9) | 0 | T9=10% (1/10) |\n| **eval-acr-spatial-v4-small-r2** (acr_vla, T7起) | 0 | T7=10%, T8=40%, T9=0%, overall=16.7% |\n| **eval-acr-spatial-v4-default-r2** | **127** | 崩溃：`python: command not found`（需用 python3） |\n| **eval-mag-obsonly-norm03** (首次) | **127** | 同上 |\n| **eval-mag-obsonly-norm03-b2** | **143** | 被 SIGTERM kill |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-status-bjb1-18228-obsonly-r3.md"
+}

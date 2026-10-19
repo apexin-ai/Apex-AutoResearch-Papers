@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e209bcbd8089c6847093",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "check d088 and openvla status round2",
+  "task_key": "worker_check_d088-and-openvla-status-round2_20260520T173448",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_d088-and-openvla-status-round2_20260520T173448_result.json",
+    "occurrence": 1,
+    "bytes": 1680,
+    "sha256": "61fedc46ac8719a57f3d8a7d5a6da5a4a8d7b221f5b546f0320241c5d7c6e61b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态总结\n\n### 1. D088 Adaptive Uncertainty Head Eval\n\n| Seed | PID | GPU | n_rollouts | 已运行 | 状态 | 进度 |\n|------|-----|-----|------------|--------|------|------|\n| 42 | 741948 | cuda:0 | 10/task | 14min | **RUNNING** | 1/10 tasks done |\n| 43 | 742213 | cuda:1 | 10/task | 14min | **RUNNING** | 1/10 tasks done |\n| 44 | 728278 | cuda:5 | 10/task (n_rollouts=100) | 35min | **RUNNING** | ~2.5/10 tasks done |\n\n**Seed44 已完成 task 结果：**\n| Task | SR |\n|------|----|\n| alphabet_soup | 0% (0/10) |\n| cream_cheese | 10% (1/10) |\n| salad_dressing | 进行中 (1/5) |\n\n**Seed42 & 43** 都刚完成第 1 个 task (alphabet_soup: 0%)，正在跑第 2 个。\n\n注意：seed44 的 args 显示 n_rollouts=100，但实际每个 task 跑 10 rollouts（100 total / 10 tasks = 10 per task），和 seed42/43 一致。\n\n### 2. OpenVLA Precompute\n\n| 指标 | 值 |\n|------|----|\n| PID | 365151 |\n| 状态 | **RUNNING** |\n| 已运行 | 3h 45min |\n| 缓存文件数 | **67,530** .pt files |\n| 缓存大小 | 5.5 GB |\n| 缓存路径 | `/root/autodl-tmp/crm_cache_k1_openvla/object/` |\n| 最后写入 | 01:37 (仍在活跃写入) |\n\n### 3. GPU 使用状态\n\n| GPU | Util | Mem Used | Mem Total | 占用进程 |\n|-----|------|----------|-----------|----------|\n| 0 | 17% | 5166 MiB | 24564 MiB | seed42 eval |\n| 1 | 20% | 5166 MiB | 24564 MiB | seed43 eval |\n| 2 | 0% | 1 MiB | 24564 MiB | **空闲** |\n| 3 | 35% | 22651 MiB | 24564 MiB | OpenVLA precompute |\n| 4 | 30% | 5267 MiB | 24564 MiB | 未知进程 |\n| 5 | 99% | 9499 MiB | 24564 MiB | seed44 eval |\n\nGPU 2 完全空闲，GPU 4 有未知占用（5.2GB）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-d088-and-openvla-status-round2.md"
+}

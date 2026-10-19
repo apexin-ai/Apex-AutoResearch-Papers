@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5e20b35a3b1f80c06e4",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "verify crm obj s47 anomaly",
+  "task_key": "worker_verify_crm-obj-s47-anomaly_20260524T115755",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_crm-obj-s47-anomaly_20260524T115755_result.json",
+    "occurrence": 1,
+    "bytes": 1535,
+    "sha256": "b2be026b358c5e8c9b98b1a5b3de16e92be4c13838ace0ff9b6623203ededda2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All checks complete. Here's the summary:\n\n## CRM s47 验证\n\n参数全部正确：\n- mode: `crm_obs_only` ✓\n- benchmark: `object` ✓\n- max_correction_norm: `0.05` ✓\n- K: `10` ✓\n- seed: `47` ✓\n- crm_checkpoint: `/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt` ✓\n- conformal_threshold: `0.074855` ✓\n- JSON 输出确认 10 tasks × 20 rollouts = 200 total, SR=82.5%\n\n**结论：合法结果（随机波动），无需重跑**\n\n## Long s47 假失败检查\n\n| exp_id | 实际状态 | SR | 操作 |\n|--------|---------|-----|------|\n| eval-supp-long-crm-norm005-s47 | 已修正为 success | 56.5% | 无需操作（已修正） |\n| eval-supp-long-reconvla-s47 | 已修正为 success | 55.0% | 无需操作（已修正） |\n| eval-supp-long-adapt-tau025-s47 | **真失败** | — | 需要重跑（cqa1-32758 上日志在 KITCHEN_SCENE8 中断，无 JSON 输出） |\n| eval-supp-long-k2mean-s47 | **真失败** | — | 需要重跑（同上，cqa1-32758 上中断于 KITCHEN_SCENE8） |\n\n## 其他假失败扫描\n\n扫描范围：最近 48h，conclusion=failed 的 eval-supp-* 实验\n\n发现 **0 个假失败**，全部为真失败：\n\n| exp_id | 服务器 | 失败原因 |\n|--------|--------|---------|\n| eval-supp-obj-adapt-tau025-s45 | bjb2-40593 | FileNotFoundError: CRM checkpoint 不存在 |\n| eval-supp-k2mean-goal-s42 | bjb2-40593 | log=n/a，未成功启动 |\n| precompute-smolvla-goal-bjb1-32546 | bjb1-32546 | LIBERO data not found at libero_goal 路径 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-crm-obj-s47-anomaly.md"
+}

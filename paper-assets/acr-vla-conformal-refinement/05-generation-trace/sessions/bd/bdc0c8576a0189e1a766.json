@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bdc0c8576a0189e1a766",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval adaptive k spatial p25 seed43",
+  "task_key": "worker_analyze_eval-adaptive-k-spatial-p25-seed43_20260520T105000",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-adaptive-k-spatial-p25-seed43_20260520T105000_result.json",
+    "occurrence": 1,
+    "bytes": 1275,
+    "sha256": "f15f165dcdaf0083d8c4e09c8d0ab1c45ff371b308e53152744148145ddc235b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## 实验结果摘要：eval-adaptive-k-spatial-p25-seed43\n\n| 指标 | 值 |\n|------|-----|\n| **Overall SR** | **30.0%** (30/100) |\n| **Avg K** | 7.6 |\n| **Fast path (K=1)** | 29.5% |\n| **Mean L2** | 0.089 |\n| **Rollouts** | 100 (10 tasks × 10), 无错误/crash |\n| W&B | 日志中无 run ID |\n\n### Per-task SR\n\n| Task | SR |\n|------|-----|\n| next_to_ramekin | **100%** |\n| next_to_cookie_box | 80% |\n| between_plate_and_ramekin | 60% |\n| on_cookie_box | 30% |\n| next_to_plate | 20% |\n| in_top_drawer | 10% |\n| from_table_center | 0% |\n| on_ramekin | 0% |\n| on_stove | 0% |\n| on_wooden_cabinet | 0% |\n\n### 与 Object P25 对比\n\n| | Spatial P25 (seed43) | Object P25 |\n|---|---|---|\n| SR | **30.0%** | 14.3% |\n| Avg K | 7.6 | ~4.8 |\n| Fast path | 29.5% | ~65% |\n\n### 分析\n\nSpatial 上 P25 阈值的表现比 Object 好很多（SR 30% vs 14.3%），但代价是计算量大幅增加——avg_k=7.6（接近满 K=10），fast_path 仅 29.5%。这说明模型在 Spatial 任务上不确定性更高，P25 阈值几乎无法过滤掉不必要的推理步骤，adaptive 机制退化为接近 K=10 的行为。任务成功率两极分化严重：3 个 task ≥60%，4 个 task 为 0%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-adaptive-k-spatial-p25-seed43.md"
+}

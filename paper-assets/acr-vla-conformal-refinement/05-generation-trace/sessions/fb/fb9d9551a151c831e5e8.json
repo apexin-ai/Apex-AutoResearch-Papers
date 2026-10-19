@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb9d9551a151c831e5e8",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb2 28827 director fill 4gpu",
+  "task_key": "worker_deploy_bjb2-28827-director-fill-4gpu_20260520T141758",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb2-28827-director-fill-4gpu_20260520T141758_result.json",
+    "occurrence": 1,
+    "bytes": 1112,
+    "sha256": "110db935ad1980226137551a4085ca1ce97527b2473b637327a4b6112f4291dd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "latency profiling 已正常跑完，输出了 JSON 结果。\n\n4 个实验全部部署完毕，3 个 CRM 实验正在运行。汇总：\n\n| GPU | exp_id | tmux session | Python PID | 状态 |\n|-----|--------|-------------|------------|------|\n| cuda:0 | eval-crm-k1-object-seed42-plan702 | eval-crm-k1-object-seed42-plan702 | 381023 | 运行中 |\n| cuda:1 | eval-crm-k1-object-seed43-plan702 | eval-crm-k1-object-seed43-plan702 | 381299 | 运行中 |\n| cuda:2 | eval-obs-only-spatial-norm02-seed49 | eval-obs-only-spatial-norm02-seed49 | 357304 | 已有实验（未动） |\n| cuda:3 | openvla-precompute-k1 | openvla-precompute-k1 | — | 未动 |\n| cuda:4 | eval-latency-profiling-v1 | — | — | **已完成** |\n| cuda:5 | eval-crm-k1-object-seed44-plan702 | eval-crm-k1-object-seed44-plan702 | 381573 | 运行中 |\n\n**修复了 `evaluate.py:457` 的 bug**：`crm_k1_accg` 模式下 `unc_dim` 未定义导致 `UnboundLocalError`。将 `ConformalRefinementModule` 初始化代码移入 `else` 分支，使其只在非 `crm_k1_accg` 模式下执行。备份在 `src/evaluate.py.bak`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb2-28827-director-fill-4gpu.md"
+}

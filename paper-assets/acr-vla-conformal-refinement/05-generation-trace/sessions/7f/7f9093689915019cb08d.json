@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f9093689915019cb08d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_23_1779491443.md",
+  "task_key": "loop_23_1779491443",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_23_1779491443.md",
+    "occurrence": 1,
+    "bytes": 4572,
+    "sha256": "b4bf2c211f459d0823d3668d32d58976c9b96f17144a04f2df824a24d172104e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 23\nreason: idle_timeout\nupdated: '2026-05-21T21:29:27+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb2-40593:cuda:0, bjb1-18228:cuda:0-3, bjb1-32546:cuda:0-5, bjb2-28827:cuda:0-5（共 17 张）。白名单外绝不可用\n- π0.5 模型仅在 bjb2-40593（单卡 A100）和 bjb1-32546/bjb2-28827（已 rsync）可用。bjb1-18228 用于 CRM training，不跑 π0.5 eval\n- bjb1-32546 / bjb2-28827 提交命令必须 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base &&` 前缀\n- evaluate.py 在 `src/` 子目录：`python src/evaluate.py`（不是 `python evaluate.py`）\n- eval 脚本不写 sentinel/W&B，cron 报 failed **必须先 SSH 查日志确认**\n- CoRL 2026 DDL = **2026-05-29**，≤8 天\n- bjb2-40593 磁盘仅剩 ~48GB，不跑除 π0.5 以外的实验\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228** (4×GPU): `/root/acr-vla-conformal-refinement`，conda base，`/root/miniconda3/bin/python`\n  - CRM checkpoints: `/root/autodl-tmp/checkpoints/crm_pi05_full/object/` (训练中)，`/root/autodl-tmp/checkpoints/crm_pi05/spatial/crm_best.pt` (旧 run)\n  - Precompute cache: `/root/autodl-tmp/crm_cache_pi05/object/` (存在)，**`/root/autodl-tmp/crm_cache_pi05/spatial/` 可能不存在（见下方）**\n  - 活跃：**crm-train-pi05-object-full** PID 800111, cuda:0, epoch 7/50 (~5.5h 剩余), cron 活跃\n- **bjb1-32546** (6×GPU): `/root/acr-vla-conformal-refinement`，conda base，π0.5 模型 `/root/autodl-tmp/models/pi05_libero_finetuned/`。全部空闲\n- **bjb2-28827** (6×GPU): 同上，磁盘最宽裕 (69%)。全部空闲\n- **bjb2-40593** (1×GPU A100): π0.5 权重所在。空闲\n- SmolVLA CRM checkpoint: `/root/autodl-tmp/checkpoints/crm_v3_norm/{obs_only,perdof}/crm_best.pt`\n\n### 3. 📊 当前状态\n**刚完成 session-start 初始化。** 上一轮交接但未执行任何操作。\n\nRegistry:\n- **RUNNING**: `crm-train-pi05-object-full` (bjb1-18228:cuda:0, PID 800111 confirmed alive, epoch ~7/50)\n- **RUNNING 但实际 FAILED**: `crm-train-pi05-spatial-full` — FileNotFoundError: `/root/autodl-tmp/crm_cache_pi05/spatial` 不存在。status 仍显示 RUNNING 但 `finished_at` 已写入。**需要修正 registry 状态 + 解决 spatial cache 问题**\n- **PREPARING**: 84 项（含 crm-pipeline-auto + 大量旧 precompute retries，大部分是历史遗留）\n- **0 Workers 运行中**，**1 cron 活跃**（监控 object training）\n\n关键已 LOCKED 数据：\n- SmolVLA Plan A: Object 18.3%±2.1%, Spatial 35.0%±1.0%\n- π0.5 VLA-only baseline: Object 81.5%±0.5%, Spatial 84.2%±1.0% (D105)\n- K=20 Sweep, Latency, Norm Sweep, Adaptive K, Random Selection — 全部 LOCKED\n\n### 4. 📋 待办（条件触发式）\n- **立即**：`crm-train-pi05-spatial-full` 实际已失败 → 修正 registry 状态为 DONE/failed → SSH 查 bjb1-18228 确认 spatial cache 路径 → 修复后重新提交 spatial CRM training (cuda:1)\n- crm-train-pi05-object-full cron 回调（~5-6h 后）→ 确认 best checkpoint → 部署 π0.5 CRM Object eval (3 seeds × 2 modes on bjb1-32546/bjb2-28827)\n- Spatial CRM training 完成 → 部署 π0.5 CRM Spatial eval (同上)\n- π0.5 CRM eval 全部完成 → 写入论文 cross-VLA section + 更新 Table\n- eval-adaptive-k-spatial-p90-seed44-bjb2 标记 failed → SSH 查日志确认是否 cron false positive → 如完成则修正\n- 论文 Figure 2 + π0.5 结果写入 → final review → submission prep\n\n### 5. 🎯 战略上下文\n- **核心结论**：Adaptive inference-time compute for frozen VLAs。Plan A (K=2 L2 distance + selective CRM) = Pareto 最优\n- **Decision chain**: D092 Plan A GO → D094-D097 SmolVLA LOCKED → D099 π0.5 action chunk fix → D101-D105 π0.5 baseline LOCKED → 当前: CRM training for π0.5\n- **最紧迫**：`crm-train-pi05-spatial-full` 已经失败但 status 未更新。spatial precompute cache 路径可能在旧 run 被 kill 时丢失或位于不同路径。必须 SSH 确认 `/root/autodl-tmp/crm_cache_pi05/spatial/` 是否存在，以及数据是否在别处（如 `crm_cache_pi05_full/spatial/`）\n- **易判断错的事**：\n  1. crm-train-pi05-spatial-full 看似 RUNNING 实际已 FAILED——不要等 cron 回调\n  2. cron 报 failed ≠ 真的 failed（本项目 10+ 次 false positive 历史）\n  3. π0.5 baseline 上 CRM 增益预期有限（81-85% ceiling），framing 准备 \"no-harm + selective improvement\"\n  4. PREPARING 的 84 个实验大部分是历史遗留，不要批量提交\n  5. 12 GPU 空闲（bjb1-32546 6 + bjb2-28827 6）等待 CRM training 完成后部署 eval\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-23-1779491443.md"
+}

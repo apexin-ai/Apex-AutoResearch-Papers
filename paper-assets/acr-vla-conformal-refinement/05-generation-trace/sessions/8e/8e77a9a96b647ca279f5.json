@@ -1,0 +1,337 @@
+{
+  "schema_version": "1.0",
+  "id": "8e77a9a96b647ca279f5",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "analyze eval supp obj reconvla s42",
+  "task_key": "worker_analyze_eval-supp-obj-reconvla-s42_20260523T065844",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_analyze_eval-supp-obj-reconvla-s42_20260523T065844.jsonl",
+    "occurrence": 1,
+    "bytes": 18736,
+    "sha256": "1f2dac26bea7bafe53a2680012d105373a7c41d92a771348b809d478dc7af11c"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T07:01:23.611585+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval-supp-obj-reconvla-s42_20260523T065844",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T07:01:23.612048+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval-supp-obj-reconvla-s42_20260523T065844",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T07:01:23.614386+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval-supp-obj-reconvla-s42_20260523T065844",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb2-28827",
+              "command": "tail -100 /root/acr-vla-conformal-refinement/logs/eval-supp-obj-reconvla-s42.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T07:01:23.614812+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 42, 'K': 10, 'mode': 'reconvla', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': 'logs/eval_object_reconvla_seed42.json', 'max_correction_norm': None, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\\\n[eval] Mode: reconvla, benchmark: object\\\\n[eval] max_steps set to 280 for benchmark object\\\\n[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...\\\\nLoading  /root/autodl-tmp/models/SmolVLM2-500M-Video-Instruct weights ...\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/489 [00:00<?, ?it/s]\\\\rLoading weights:  31%|███▏      | 154/489 [00:00<00:00, 1539.08it/s]\\\\rLoading weights:  71%|███████▏  | 349/489 [00:00<00:00, 1771.86it/s]\\\\rLoading weights: 100%|██████████| 489/489 [00:00<00:00, 1941.78it/s]\\\\nReducing the number of VLM layers to 16 ...\\\\nLoading weights from local directory\\\\n[eval] Loading LIBERO object environments...\\\\n[info] using task orders [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\\\\n[eval] 10 tasks loaded.\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 5/20, success so far: 3/5\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 10/20, success so far: 8/10\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 15/20, success so far: 12/15\\\\n  pick_up_the_alphabet_soup_and_place_it_in_the_basket: rollout 20/20, success so far: 15/20\\\\n[pick_up_th\n…[truncated 4534 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval-supp-obj-reconvla-s42_20260523T065844",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T07:01:23.615153+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval-supp-obj-reconvla-s42_20260523T065844",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-supp-obj-reconvla-s42",
+              "field": "metrics",
+              "value": "{'success_rate': 0.79, 'n_tasks': 10, 'n_rollouts': 20, 'total_successes': 158, 'total_episodes': 200, 'per_task_sr': {'alphabet_soup': 0.75, 'cream_cheese': 0.7, 'salad_dressing': 0.85, 'bbq_sauce': 0.95, 'ketchup': 0.9, 'tomato_sauce': 0.8, 'butter': 0.65, 'milk': 0.65, 'chocolate_pudding': 0.75, 'orange_juice': 0.9}}",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T07:01:23.615436+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval-supp-obj-reconvla-s42_20260523T065844",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-supp-obj-reconvla-s42",
+              "field": "log_path",
+              "value": "/root/acr-vla-conformal-refinement/logs/eval-supp-obj-reconvla-s42.log",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T07:01:23.615664+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval-supp-obj-reconvla-s42_20260523T065844",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-supp-obj-reconvla-s42",
+              "field": "checkpoint_path",
+              "value": "n/a (eval-only experiment)",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T07:01:23.615936+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-obj-reconvla-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T04:12:22.236Z\\\", \\\"updated_at\\\": \\\"2026-05-23T06:59:20.370Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"evaluate.py --mode reconvla --benchmark object\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 523238, \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-supp-obj-reconvla-s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T04:12:20.187Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/acr-vla-conformal-refinement\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"smolvla\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-23T06:57:38.730Z\\\"}, \\\"failure_reason\\\": \\\"N/A - experiment still running, cron false alarm\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T04:27:02.717771+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T06:57:57.821353+00:00\\\"}]}, \\\"hypothesis\\\": \\\"Reconvla K=10 (argmin baseline) on Object suite establishes cross-suite comparison with Spatial (79%); validates CRM-based methods generalize\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.79, \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 20, \\\"total_successes\\\": 158, \\\"total_episodes\\\": 200, \\\"per_task_sr\\\": {\\\"alphabet_soup\\\": 0.75, \\\"cream_cheese\\\": 0.7, \\\"salad_dressing\\\": 0.85, \\\"bbq_sauce\\\": 0.95, \\\"ketchup\\\": 0.9, \\\"tomato_sauce\\\": 0.8, \\\"butter\\\": 0.65, \\\"milk\\\": 0.65, \\\"chocolate_pudding\\\": 0.75, \\\"orange_juice\\\": 0.9}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.0896}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval-supp-obj-reconvla-s42_20260523T065844",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T07:01:23.616214+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-obj-reconvla-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T04:12:22.236Z\\\", \\\"updated_at\\\": \\\"2026-05-23T06:59:29.124Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"evaluate.py --mode reconvla --benchmark object\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 523238, \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-supp-obj-reconvla-s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T04:12:20.187Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/acr-vla-conformal-refinement\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"smolvla\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-23T06:57:38.730Z\\\"}, \\\"failure_reason\\\": \\\"N/A - experiment still running, cron false alarm\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T04:27:02.717771+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T06:57:57.821353+00:00\\\"}]}, \\\"hypothesis\\\": \\\"Reconvla K=10 (argmin baseline) on Object suite establishes cross-suite comparison with Spatial (79%); validates CRM-based methods generalize\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.79, \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 20, \\\"total_successes\\\": 158, \\\"total_episodes\\\": 200, \\\"per_task_sr\\\": {\\\"alphabet_soup\\\": 0.75, \\\"cream_cheese\\\": 0.7, \\\"salad_dressing\\\": 0.85, \\\"bbq_sauce\\\": 0.95, \\\"ketchup\\\": 0.9, \\\"tomato_sauce\\\": 0.8, \\\"butter\\\": 0.65, \\\"milk\\\": 0.65, \\\"chocolate_pudding\\\": 0.75, \\\"orange_juice\\\": 0.9}}, \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval-supp-obj-reconvla-s42.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.6249}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval-supp-obj-reconvla-s42_20260523T065844",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T07:01:23.618670+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-obj-reconvla-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T04:12:22.236Z\\\", \\\"updated_at\\\": \\\"2026-05-23T06:59:54.551Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"evaluate.py --mode reconvla --benchmark object\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 523238, \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-supp-obj-reconvla-s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T04:12:20.187Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/acr-vla-conformal-refinement\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"smolvla\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-23T06:57:38.730Z\\\"}, \\\"failure_reason\\\": \\\"N/A - experiment still running, cron false alarm\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T04:27:02.717771+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T06:57:57.821353+00:00\\\"}]}, \\\"hypothesis\\\": \\\"Reconvla K=10 (argmin baseline) on Object suite establishes cross-suite comparison with Spatial (79%); validates CRM-based methods generalize\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.79, \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 20, \\\"total_successes\\\": 158, \\\"total_episodes\\\": 200, \\\"per_task_sr\\\": {\\\"alphabet_soup\\\": 0.75, \\\"cream_cheese\\\": 0.7, \\\"salad_dressing\\\": 0.85, \\\"bbq_sauce\\\": 0.95, \\\"ketchup\\\": 0.9, \\\"tomato_sauce\\\": 0.8, \\\"butter\\\": 0.65, \\\"milk\\\": 0.65, \\\"chocolate_pudding\\\": 0.75, \\\"orange_juice\\\": 0.9}}, \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval-supp-obj-reconvla-s42.log\\\", \\\"checkpoint_path\\\": \\\"n/a (eval-only experiment)\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 25.8997}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval-supp-obj-reconvla-s42_20260523T065844",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 3
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T07:01:23.618942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval-supp-obj-reconvla-s42_20260523T065844",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-supp-obj-reconvla-s42",
+              "field": "conclusion",
+              "value": "success",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T07:01:23.619167+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval-supp-obj-reconvla-s42_20260523T065844",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-supp-obj-reconvla-s42",
+              "field": "status",
+              "value": "DONE",
+              "project": "acr-vla-conformal-refinement"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T07:01:23.619478+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-obj-reconvla-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T04:12:22.236Z\\\", \\\"updated_at\\\": \\\"2026-05-23T07:00:22.518Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"evaluate.py --mode reconvla --benchmark object\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 523238, \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-supp-obj-reconvla-s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T04:12:20.187Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/acr-vla-conformal-refinement\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"smolvla\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-23T06:57:38.730Z\\\"}, \\\"failure_reason\\\": \\\"N/A - experiment still running, cron false alarm\\\", \\\"conclusion\\\": \\\"success\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T04:27:02.717771+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T06:57:57.821353+00:00\\\"}]}, \\\"hypothesis\\\": \\\"Reconvla K=10 (argmin baseline) on Object suite establishes cross-suite comparison with Spatial (79%); validates CRM-based methods generalize\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.79, \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 20, \\\"total_successes\\\": 158, \\\"total_episodes\\\": 200, \\\"per_task_sr\\\": {\\\"alphabet_soup\\\": 0.75, \\\"cream_cheese\\\": 0.7, \\\"salad_dressing\\\": 0.85, \\\"bbq_sauce\\\": 0.95, \\\"ketchup\\\": 0.9, \\\"tomato_sauce\\\": 0.8, \\\"butter\\\": 0.65, \\\"milk\\\": 0.65, \\\"chocolate_pudding\\\": 0.75, \\\"orange_juice\\\": 0.9}}, \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval-supp-obj-reconvla-s42.log\\\", \\\"checkpoint_path\\\": \\\"n/a (eval-only experiment)\\\"}, \\\"impact_analysis\\\": {\\\"change_type\\\": \\\"experiment\\\", \\\"change_id\\\": \\\"eval-\n…[truncated 255 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval-supp-obj-reconvla-s42_20260523T065844",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T07:01:23.619847+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-supp-obj-reconvla-s42\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T04:12:22.236Z\\\", \\\"updated_at\\\": \\\"2026-05-23T07:00:54.546Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"evaluate.py --mode reconvla --benchmark object\\\", \\\"server\\\": \\\"bjb2-28827\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 523238, \\\"log_path\\\": \\\"~/runs/acr-vla-conformal-refinement/eval-supp-obj-reconvla-s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T04:12:20.187Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"/root/acr-vla-conformal-refinement\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"smolvla\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object\\\", \\\"wall_clock_seconds\\\": 10114.4, \\\"gpu_hours\\\": 2.81}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-23T06:57:38.730Z\\\"}, \\\"failure_reason\\\": \\\"N/A - experiment still running, cron false alarm\\\", \\\"conclusion\\\": \\\"success\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T04:27:02.717771+00:00\\\"}, {\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-23T06:57:57.821353+00:00\\\"}]}, \\\"hypothesis\\\": \\\"Reconvla K=10 (argmin baseline) on Object suite establishes cross-suite comparison with Spatial (79%); validates CRM-based methods generalize\\\", \\\"metrics\\\": {\\\"success_rate\\\": 0.79, \\\"n_tasks\\\": 10, \\\"n_rollouts\\\": 20, \\\"total_successes\\\": 158, \\\"total_episodes\\\": 200, \\\"per_task_sr\\\": {\\\"alphabet_soup\\\": 0.75, \\\"cream_cheese\\\": 0.7, \\\"salad_dressing\\\": 0.85, \\\"bbq_sauce\\\": 0.95, \\\"ketchup\\\": 0.9, \\\"tomato_sauce\\\": 0.8, \\\"butter\\\": 0.65, \\\"milk\\\": 0.65, \\\"chocolate_pudding\\\": 0.75, \\\"orange_juice\\\": 0.9}}, \\\"log_path\\\": \\\"/root/acr-vla-conformal-refinement/logs/eval-supp-obj-reconvla-s42.log\\\", \\\"checkpoint_path\\\": \\\"n/a (eval-only experiment)\\\", \\\"completed_at\\\": \\\"2026-05-2\n…[truncated 136 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval-supp-obj-reconvla-s42_20260523T065844",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T07:01:23.620162+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。结果汇总：\n\n**eval-supp-obj-reconvla-s42 — Overall SR: 79.0% (158/200)**\n\n| Task | SR |\n|------|----|\n| bbq_sauce | 95.0% |\n| ketchup | 90.0% |\n| orange_juice | 90.0% |\n| salad_dressing | 85.0% |\n| tomato_sauce | 80.0% |\n| alphabet_soup | 75.0% |\n| chocolate_pudding | 75.0% |\n| cream_cheese | 70.0% |\n| butter | 65.0% |\n| milk | 65.0% |\n\nObject Reconvla K=10 的 79.0% 与 Spatial Reconvla K=10 的 79.0% 完全一致，验证了 CRM-based refinement 跨 suite 的泛化性。Conclusion 已从 cron 误判的 `failed` 修正为 `success`，status 设为 `DONE`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval-supp-obj-reconvla-s42_20260523T065844"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/conversations/analyze-eval-supp-obj-reconvla-s42.md"
+}

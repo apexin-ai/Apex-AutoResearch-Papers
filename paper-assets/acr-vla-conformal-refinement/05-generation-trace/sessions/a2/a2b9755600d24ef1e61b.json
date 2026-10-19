@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2b9755600d24ef1e61b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_5_1778808444.md",
+  "task_key": "loop_5_1778808444",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_5_1778808444.md",
+    "occurrence": 1,
+    "bytes": 4871,
+    "sha256": "dfb0a60f4b8a625a44141406cc929afdd0b2b4a71324acd7168e19ef1dc7eed7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-15T01:27:20+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **目标 venue 刚切回 CoRL 2026**（D021, 2026-05-15）。Abstract DDL ~May 26（11天），Full paper DDL ~Jun 2（18天）。之前 D011 放弃过 CoRL，现在撤销。不要再提 ICLR 2027 为首要目标\n- **GPU 白名单必须查 `get_project_status`**。bjb1 有 4 卡（cuda:0-3），bjb2 有 1 卡（cuda:0）。严禁用白名单外 GPU\n- **CRM correction magnitude 是核心已知问题**：默认 max_correction_norm=1.42 导致 40%→3% 退化。任何新 eval 都需显式设 max_correction_norm（推荐 0.05-0.1 范围）\n- **不要对比 v2 和 v3-norm 的训练 loss**：v2 是 buggy cache 训练的，数值不可比，只有 eval 结果才有效\n- paper_framing.md 里 Target Venue 还写着 ICLR 2027，**需要更新为 CoRL 2026**\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**（4× RTX 4090）：工作目录 `/root/acr-vla-conformal-refinement`\n- **bjb2-40593**（1× RTX 4090 D）：工作目录 `/root/acr-vla-conformal-refinement`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）。环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：`lerobot/smolvla_libero`（VLA backbone），VLM backbone `SmolVLM2-500M-Video-Instruct`\n- CRM checkpoints：`/root/autodl-tmp/checkpoints/crm_v3/`（per_dof / obs_only / scalar_unc 三个子目录）\n- Precompute cache：`crm_cache_v5/spatial`（v5 = all-bugs-fixed + normalized inputs）\n- 活跃进程（5 个 RUNNING，均通过 tmux + cron 监控）：\n  - eval-argmin-only-spatial（bjb1, cuda:1）— 隔离 sample selection 贡献\n  - eval-tiny-correction-spatial（bjb1, cuda:2）— max_norm=0.05 极端 clipping\n  - eval-acr-spatial-v4-small（bjb1, cuda:3）— max_norm=0.1 moderate clipping\n  - eval-acr-spatial-v4-obs-only-r2（bjb1, cuda:0）— obs_only CRM ablation\n  - eval-vla-mean-spatial-t10（bjb2, cuda:0）— K=10 averaging baseline\n\n### 3. 📊 当前状态\n**刚做完**：\n- CRM v3-norm 训练完成（val_loss=0.03578），normalization bug 修复验证通过\n- VLA-mean baseline 定稿：31%，与 K=1 baseline 30% 无显著差异 → 多采样平均无收益\n- 5 路 eval 全部提交并 RUNNING，等待 cron 回调\n\n**关键早期信号**（不构成结论）：\n- eval-tiny-correction-spatial：max_norm=0.05 首个 task 4/5 成功，full CRM 同 task 1/10 → 幅度控制假设初步验证\n- eval-argmin-only-spatial：3/10 tasks 完成时 53.3% >> VLA-mean 31% → sample selection 本身有强贡献\n\n**等待中**：\n- 5 个 RUNNING 实验的 cron 完成回调（预计各 6-9h）\n- eval-acr-spatial-v4-scalar（PREPARING）— D020 三路消融第三组，等 GPU 空出\n- D021 要求的 12 张额外 GPU 卡 — Director 尚未分配\n\n### 4. 📋 待办（条件触发式）\n- eval-acr-spatial-v4-small 完成 → 对比 v4-default（如果也完成的话）：v4-small >> v4-default → magnitude control 是修复方案，启动 magnitude sweep（0.01, 0.05, 0.1, 0.2, 0.5）\n- eval-acr-spatial-v4-obs-only-r2 完成 → 对比 v4-small：obs_only ≥ v4-small → Claim 1 需重构；obs_only < v4-small → conformal features 有独特价值\n- eval-argmin-only-spatial 完成 → 对比 VLA-mean + ACR-VLA：量化 selection vs correction 各自贡献\n- 所有 5 路 eval 完成 → 汇总完整对比表 → 确定 framing 方向（\"Conformally-Calibrated Correction Magnitude\" 还是 \"per-DOF > scalar\"）→ 更新 paper_framing.md → 向 Director 汇报\n- Director 分配额外 GPU → 立即铺 object benchmark + scalar CRM eval + SRPO stacking（plan_004）\n- **paper_framing.md 需立即更新** Target Venue 为 CoRL 2026（D021 已批准但文件未改）\n\n### 5. 🎯 战略上下文\n**核心决策链**：D003(MVP pass) → D015(30% baseline 继续) → D016-D018(7 bug 修复 + normalization 修复) → D019(magnitude 是核心问题) → D020(三路消融设计) → D021(切回 CoRL 2026)\n\n**最容易判断错的事**：\n1. **不要以为 CRM correction 直接就 work**——默认幅度导致灾难性退化，必须带 magnitude control（clipping/gating）\n2. **不要把 obs_only 低 train loss（0.0165 vs perdof 0.0358）解读为 obs_only 更好**——train loss 不可比，只有 eval success rate 才是判据\n3. **时间极紧**：CoRL abstract DDL ~May 26（11天）。当前 5 路 eval 是方向判定的前置条件，结果出来后必须立即铺全部 ablation + paper writing，没有 buffer\n4. **文献支撑已就绪**：PLD/TRANSIC/ResiP/DRC/DAWN 五篇论文支持 correction magnitude 控制的必要性（memory.md），\"Conformally-Calibrated Correction Magnitude\" framing 可直接用\n5. **Gated CRM 代码已就绪**（`src/gated_crm.py`），如果 clipping 实验确认幅度是问题，可立即切换到 learned gating\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778808444.md"
+}

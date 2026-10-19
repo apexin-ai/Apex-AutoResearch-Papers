@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dcfd3cbfaed064cd7d31",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh fix tmux bjb1 32546",
+  "task_key": "worker_ssh_fix-tmux-bjb1-32546_20260520T001604",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_fix-tmux-bjb1-32546_20260520T001604_result.json",
+    "occurrence": 1,
+    "bytes": 616,
+    "sha256": "5642b3982070e10831cc7ba47163ae1f86fb78f73b47866c6638a8546c79bd52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n**清理结果**：\n- `eval-adaptive-k-p50-seed44` — 已 kill ✓\n- `eval-adaptive-k-p90-seed42` — 已 kill ✓\n\n**残留 sessions**（未在清理范围内）：\n- `eval-adaptive-k-p25-seed42` — 仍在运行\n- `eval-adaptive-k-p75-seed44` — 仍在运行\n\n**GPU 状态**：4 个 GPU 各有一个 python 进程在跑，每个占用 5665 MiB。这与残留的两个 session 加上可能的其他任务对应。被 kill 的两个 session 对应的 GPU 进程可能需要一点时间释放，或者这 4 个进程属于仍在运行的 p25/p75 sessions 及其他任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-tmux-bjb1-32546.md"
+}

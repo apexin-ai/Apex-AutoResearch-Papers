@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "897723bc3882044ec1af",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "monitor bjb1 eval progress",
+  "task_key": "worker_monitor_bjb1-eval-progress_20260514T181345",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_monitor_bjb1-eval-progress_20260514T181345_result.json",
+    "occurrence": 1,
+    "bytes": 1795,
+    "sha256": "68546a486c089355b44e6831cc1c23cd401cfd72cbaefa73c593ec77bb2fd7b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态总结\n\n| exp_id | PID | alive | runtime | GPU | GPU util | tasks done | current SR | status |\n|--------|-----|-------|---------|-----|----------|-----------|------------|--------|\n| eval-acr-spatial-v3 | 197057 | ✓ | 5h57m | cuda:0 | 11% | 4/10 | **1/40 (2.5%)** | running task 5 |\n| eval-acr-object-v3 | 197803 | ✓ | 5h57m | cuda:3 | 20% | 4/10 | **0/40 (0%)** | running task 5 |\n| eval-argmin-only-spatial | 231421 | ✓ | 26m | cuda:1 | 99% | 0/10 | — | loaded, no rollouts yet |\n| eval-tiny-correction-spatial | 232815 | ✓ | 25m | cuda:2 | 98% | 0/10 | **4/5 so far** | task 1 rollout 5/10 |\n\n### Per-task breakdown: eval-acr-spatial-v3 (CORE CLAIM)\n\n| # | task | success |\n|---|------|---------|\n| 1 | pick_up_black_bowl_between_plate_and_ramekin → plate | **1/10 (10%)** |\n| 2 | pick_up_black_bowl_next_to_ramekin → plate | 0/10 (0%) |\n| 3 | pick_up_black_bowl_from_table_center → plate | 0/10 (0%) |\n| 4 | pick_up_black_bowl_on_cookie_box → plate | 0/10 (0%) |\n| 5-10 | (in progress) | — |\n\n### Per-task breakdown: eval-acr-object-v3\n\n| # | task | success |\n|---|------|---------|\n| 1 | alphabet_soup → basket | 0/10 |\n| 2 | cream_cheese → basket | 0/10 |\n| 3 | salad_dressing → basket | 0/10 |\n| 4 | bbq_sauce → basket | 0/10 |\n| 5-10 | (in progress) | — |\n\n### 关键发现\n\n**eval-tiny-correction-spatial (max_correction_norm=0.05) 在第一个 task 上 4/5 成功。** 这和 full ACR 在同一个 task 上只有 1/10 形成鲜明对比。如果这个趋势持续，说明 CRM 的大幅度 correction 反而在破坏 VLA 的 action——小幅修正效果更好。\n\nCore claim 实验 (spatial-v3) 目前 2.5% 整体成功率，object-v3 为 0%。预计还需约 ~6 小时完成全部 10 个 task。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-bjb1-eval-progress-copy-2.md"
+}

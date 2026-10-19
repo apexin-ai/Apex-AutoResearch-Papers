@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cddb1930b2b201e48abc",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "infra cleanup bjb2",
+  "task_key": "worker_infra_cleanup-bjb2_20260513T152616",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_cleanup-bjb2_20260513T152616_result.json",
+    "occurrence": 1,
+    "bytes": 568,
+    "sha256": "1cab6645beaeef85e8ae600424e0912f046e021558e69fca910fca949041275e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n| 项目 | 状态 |\n|------|------|\n| **PID 48594** | 已 kill（原为挂起近8小时的 libero assets 下载进程） |\n| **GPU 0** | 空闲 — 显存 0 MiB，利用率 0% |\n| **残留 Python 进程** | 有两个刚启动的 `list_repo_files` 查询进程（PID 83527, 83588），是其他 Worker 的 HF repo 查询，非长驻进程，会自行结束 |\n| **smolvla_libero 模型** | 已就绪 — `/root/autodl-tmp/models/smolvla_libero/model.safetensors` (865MB) |\n\nGPU 已完全释放，模型文件可用，服务器就绪。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-cleanup-bjb2.md"
+}

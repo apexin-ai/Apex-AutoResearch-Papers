@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "beeac5fea346dab4c599",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze pi05 adaptive spatial tau015 bjb2",
+  "task_key": "worker_analyze_pi05-adaptive-spatial-tau015-bjb2_20260526T174119",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_pi05-adaptive-spatial-tau015-bjb2_20260526T174119_result.json",
+    "occurrence": 1,
+    "bytes": 614,
+    "sha256": "e153e2ecf1c8cfb939d9c1074f22fd1a2198e6335fad4eb5ac47428ee18789c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE(success)。\n\n## 结果汇总\n\n| 指标 | 值 |\n|---|---|\n| **SR** | **97%** (194/200) |\n| **trigger_rate** | **11.2%** (2471/22013 steps) |\n| **mean_correction_norm** | 0.2 |\n| **mean_uncertainty** | 0.099 |\n| **tau** | 0.15 |\n\n**Per-task**: 6 tasks 100%, 2 tasks 95%, 2 tasks 90% (top_drawer, on_ramekin)\n\n**vs tau=0.25 baseline**: SR 基本持平 (97% vs 97.2%), trigger_rate 大幅上升 (11.2% vs ~4%)。更低阈值触发了近 3 倍的修正，但并未提升 SR — 说明额外修正是冗余的。\n\n**GPU**: cuda:0 已释放 (1 MiB / 24564 MiB)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-pi05-adaptive-spatial-tau015-bjb2.md"
+}

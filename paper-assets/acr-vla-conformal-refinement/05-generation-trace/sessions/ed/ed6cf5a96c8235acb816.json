@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "ed6cf5a96c8235acb816",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "verify bjb1 18228 model and crm",
+  "task_key": "worker_verify_bjb1-18228-model-and-crm_20260524T092843",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_verify_bjb1-18228-model-and-crm_20260524T092843.jsonl",
+    "occurrence": 1,
+    "bytes": 172,
+    "sha256": "ec818f74c02981a5f812dcd8f0e3d1c2d438e2cbed2002fff356fd7bf6617256"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T09:28:53.405262+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_verify_bjb1-18228-model-and-crm_20260524T092843"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/verify-bjb1-18228-model-and-crm.md"
+}

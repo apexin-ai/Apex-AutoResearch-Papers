@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1d031a73ebee9190d66",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest eval obs only object norm003 seed44",
+  "task_key": "worker_harvest_eval-obs-only-object-norm003-seed44_20260520T105317",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_eval-obs-only-object-norm003-seed44_20260520T105317_result.json",
+    "occurrence": 1,
+    "bytes": 779,
+    "sha256": "d7dc89736fed2087999a0308b69622d08c2473829bd6667236217a811957b209"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。\n\n**eval-obs-only-object-norm003-seed44 结果汇总：**\n\n| 指标 | 值 |\n|------|-----|\n| **Overall SR** | **15.0% (15/100)** |\n| **Conclusion** | **success** (> 12% baseline) |\n\n**Per-task SR：**\n\n| Task | SR |\n|------|-----|\n| alphabet_soup | 0% |\n| cream_cheese | 0% |\n| salad_dressing | **30%** |\n| bbq_sauce | **20%** |\n| ketchup | 0% |\n| tomato_sauce | 10% |\n| butter | 10% |\n| milk | **20%** |\n| chocolate_pudding | **30%** |\n| orange_juice | **30%** |\n\n**对比同 norm 的其他 seed：** norm003-seed43-r2 得 14%，norm003-seed44 得 15%，一致性好。比 norm005-seed44 的 12% 高 3pp，说明 ε=0.03 在 Object 上略优于 ε=0.05（可能因为更小 correction 减少了过度干预）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-eval-obs-only-object-norm003-seed44.md"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "cc924ca45d55d3f4da0d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "analysis norm sweep aggregation",
+  "task_key": "worker_analysis_norm-sweep-aggregation_20260521T032154",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_norm-sweep-aggregation_20260521T032154.log",
+    "occurrence": 1,
+    "bytes": 679457,
+    "sha256": "1a0192ebec419b02f2451e8734b0fa4e432280bc017cbb81580a16891ea0fa79"
+  },
+  "statistics": {
+    "messages": 64,
+    "user_turns": 1,
+    "tool_calls": 17,
+    "roles": {
+      "log": 1,
+      "system": 10,
+      "record": 2,
+      "assistant": 15,
+      "tool_call": 17,
+      "tool_result": 17,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 31,
+      "chunks": [
+        {
+          "path": "cc924ca45d55d3f4da0d-part-0001.json",
+          "message_count": 31
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "cc924ca45d55d3f4da0d-part-0001.json",
+          "message_count": 13
+        },
+        {
+          "path": "cc924ca45d55d3f4da0d-part-0002.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-norm-sweep-aggregation.md"
+}

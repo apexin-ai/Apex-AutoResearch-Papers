@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f301b77258164e1829fe",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "fix crm train pi05 spatial data",
+  "task_key": "worker_fix_crm-train-pi05-spatial-data_20260521T213106",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_crm-train-pi05-spatial-data_20260521T213106.log",
+    "occurrence": 1,
+    "bytes": 157,
+    "sha256": "e705bbf8982385da2b1a03725921d0a6c6730bbaadd22c8f9168522573d067e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-crm-train-pi05-spatial-data.md"
+}

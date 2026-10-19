@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd292dfcd2e8963e5a02",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb1 32546 6gpu long s43 plus",
+  "task_key": "worker_deploy_bjb1-32546-6gpu-long-s43-plus_20260523T143533",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb1-32546-6gpu-long-s43-plus_20260523T143533_result.json",
+    "occurrence": 1,
+    "bytes": 725,
+    "sha256": "ba4f47ab580f4d2c53d031f1155a5f341237992adc533c22ae1e92ffe4554896"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 个实验全部部署完毕，registry 已更新到 RUNNING。\n\n| GPU | exp_id | PID | 状态 |\n|-----|--------|-----|------|\n| cuda:0 | eval-supp-goal-vla-only-wrapper-s44-r2 | 990832 | RUNNING |\n| cuda:1 | eval-supp-long-adapt-tau025-s43 | 991960 | RUNNING |\n| cuda:2 | eval-supp-long-crm-norm005-s43 | 993249 | RUNNING |\n| cuda:3 | eval-supp-long-reconvla-s43 | 994675 | RUNNING |\n| cuda:4 | eval-supp-long-k2mean-s43 | 996158 | RUNNING |\n| cuda:5 | eval-supp-long-vla-only-s44 | 997776 | RUNNING |\n\n注意：`evaluate.py` 实际路径是 `src/evaluate.py`（非项目根目录），已自动修正。旧的冲突 JSON `eval_goal_vla_only_seed44.json` 已删除。日志在 `/tmp/eval_*.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb1-32546-6gpu-long-s43-plus.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da9ebc6d43d06cc6cff6",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval obs only spatial seed42 r2 cron",
+  "task_key": "worker_analyze_eval-obs-only-spatial-seed42-r2-cron_20260520T172706",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-obs-only-spatial-seed42-r2-cron_20260520T172706_result.json",
+    "occurrence": 1,
+    "bytes": 203,
+    "sha256": "7e922f51f745662fbc1623e4b0bb33d4d2668144d24b2f766e2931153652c2de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **eval-obs-only-spatial-norm02-seed42-r2**: 评估成功，overall SR=33%（10 tasks x 10 rollouts）\n- Registry 已更新为 DONE/success，metrics.sr=33\n- Cron 已删除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-obs-only-spatial-seed42-r2-cron.md"
+}

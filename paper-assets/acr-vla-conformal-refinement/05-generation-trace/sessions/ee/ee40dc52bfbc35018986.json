@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee40dc52bfbc35018986",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "urgent pi05 process conflict",
+  "task_key": "worker_urgent_pi05-process-conflict_20260521T033630",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_urgent_pi05-process-conflict_20260521T033630_result.json",
+    "occurrence": 1,
+    "bytes": 656,
+    "sha256": "e5e7f2c435c656e273003f69e2798bdef85fdf09f549bd57ff663f0068d155c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 排查结果\n\n| 项目 | 详情 |\n|------|------|\n| **发现进程数** | 2 个 |\n| **PID 802639** | 启动 09:49，运行 1h47m，旧版命令（缺 `--n_rollouts`/`--K`/`--output_file` 参数）→ **已 kill** |\n| **PID 811006** | 启动 11:30，运行 6m，新版完整命令，输出到 `eval_pi05_baseline_object_seed42_r2.json` → **保留** |\n| **代码状态** | ✅ MEAN_STD 修复版（`self.state_mean`/`self.state_std`，无 q01/q99） |\n| **执行操作** | kill 802639，释放 13GB 显存；无需修复代码、无需重新部署 |\n| **最终状态** | cuda:0 上唯一进程 **PID 811006**，占用 10960 MiB |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-pi05-process-conflict.md"
+}

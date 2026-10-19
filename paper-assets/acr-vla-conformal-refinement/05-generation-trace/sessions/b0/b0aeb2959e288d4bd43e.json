@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0aeb2959e288d4bd43e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb1 32546 cuda0 obj vla s46",
+  "task_key": "worker_deploy_bjb1-32546-cuda0-obj-vla-s46_20260523T172306",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb1-32546-cuda0-obj-vla-s46_20260523T172306_result.json",
+    "occurrence": 1,
+    "bytes": 276,
+    "sha256": "9f0443e74b539ae13beed0348295722525d7172f0b1b9680f78a12b7a20deaf1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成：\n\n- **实验**: `eval-supp-obj-vla-only-s46`\n- **服务器**: bjb1-32546, cuda:0\n- **tmux session**: `eval-supp-obj-vla-only-s46`\n- **日志**: `/root/acr-vla-conformal-refinement/logs/eval-supp-obj-vla-only-s46.log`\n- **Registry**: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb1-32546-cuda0-obj-vla-s46.md"
+}

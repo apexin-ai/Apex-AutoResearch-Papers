@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be66e40bc97546222e63",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_22_1779363951.md",
+  "task_key": "loop_22_1779363951",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_22_1779363951.md",
+    "occurrence": 1,
+    "bytes": 4215,
+    "sha256": "fd581fb3ed9b22d593f381acdb9241d53dda63acf20f259fabdc47f8dbf1a958"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 22\nreason: idle_timeout\nupdated: '2026-05-21T11:43:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单严格按 `get_project_status` 的 `execution.gpu_ids`，当前 4 台服务器各 GPU 分配不同，提交前必须核实\n- evaluate.py 不使用 W&B，cron 会反复误判 failed（\"process dead 5× with no sentinel/W&B\"）——收到此类回调必须先 SSH 检查 JSON 输出文件，大概率是 cron false positive\n- CoRL 2026 DDL **2026-05-29**，剩 9 天，所有实验决策以此为锚\n- D088 Learned Uncertainty Head 已 NO-GO（D090 决策），不要再跑 adaptive_unc_head 模式\n- norm003 实验（ε=0.03）的 n_rollouts=10 在命令里，但实际跑 100 rollouts（evaluate.py 内部按 10 tasks × 10 rollouts）\n\n### 2. 🖥️ 基础设施快照\n- **bjb2-28827**: `/root/acr-vla-conformal-refinement/`, Python `/root/miniconda3/bin/python`, conda base\n  - CRM checkpoint: `/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`\n  - perdof checkpoint: `/root/autodl-tmp/checkpoints/crm_v3_norm/perdof/crm_best.pt`\n  - 活跃 cron: eval-obs-only-object-norm02-seed43-r3 (pid=758482), eval-random-selection-object-seed48 (pid=759093)\n- **bjb1-32546**: 同结构，活跃 cron 无（reconcile 未返回）\n- **bjb1-18228**: 活跃 cron: eval-obs-only-object-norm01-seed48 (pid=507385)\n- **eval-adaptive-unc-head-object-seed43**: pending escalation retry（bjb2-28827），实际已 NO-GO 可忽略\n- 输出 JSON 路径格式: `logs/eval_{mode}_{benchmark}_{params}.json`，tmux 日志: `logs/eval-{exp_id}.log`\n\n### 3. 📊 当前状态\n刚收到 eval-obs-only-object-norm003-seed43 的第 3 次 cron false positive 回调（bjb2-28827）。Registry 已标 conclusion=success 但无 metrics。已派 Worker `worker_diagnose_eval-obs-only-object-norm003-seed43_20260520T193932` 去 SSH 提取实际 metrics，**等待该 Worker 回调**。\n\nRUNNING 实验（按 reconcile 结果）:\n- eval-obs-only-object-norm02-seed43-r3 (bjb2-28827, pid=758482) — Object CRM obs_only ε=0.2 seed43 retry\n- eval-random-selection-object-seed48 (bjb2-28827, pid=759093) — Random selection baseline seed48\n- eval-obs-only-object-norm01-seed48 (bjb1-18228, pid=507385) — Object CRM obs_only ε=0.1 seed48\n- eval-adaptive-unc-head-object-seed43: pending escalation retry，D090 已 NO-GO，应清理\n\nROADMAP 显示 17/17 GPU filled，report.md 显示 269 success / 35 negative / 47 failed。\n\n### 4. 📋 待办\n- Worker diagnose 回调到 → 用 metrics 更新 registry（update_registry metrics + notes），刷新 report.md\n- eval-obs-only-object-norm02-seed43-r3 完成 → 提取 SR，更新 registry，汇入 Object CRM n=6→n=7 均值\n- eval-random-selection-object-seed48 完成 → 提取 SR，更新 Random Selection 数据（当前 Object seed45=10%, seed47=7%）\n- eval-obs-only-object-norm01-seed48 完成 → 填入 magnitude curve ε=0.1 数据点\n- OpenVLA precompute 完成（87.8%，ETA ~31min from ROADMAP 写入时间）→ 启动 plan_802 CRM training\n- D088 NO-GO 确认 → fallback A (K=2 Conformal Score) 相关实验准备，等 Director 指示\n- 32 项 PREPARING 实验在排队，GPU 空出后按优先级提交\n\n### 5. 🎯 战略上下文\n- 核心 story: Adaptive inference-time compute for frozen VLAs。CRM correction >> selection（Random Selection ≈ VLA-only 直接支撑）。K-sweep 确认 diminishing returns (K=5→17%, K=10→16.8%, K=20→20%)\n- D088 Learned Uncertainty Head NO-GO 后，方法核心回退为 K=2 L2 conformal score + selective CRM\n- Round 2 审稿 weak reject 3/3，7 criticals + 8 warnings，3 个 SYSTEMIC_ISSUE（见 D089）\n- **最高 impact 线是 OpenVLA**（解决 3 个 review criticals：second VLA architecture + larger model + modern baseline）\n- 易错点：cron false positive 极频繁，eval 实验完成后 cron 必报 failed，**不要盲目重跑**——先检查 JSON 输出\n- 易错点：report.md 的\"近期结论\"可能与 registry 不一致（report 说 failed 但 registry 说 success），以 registry + SSH 实际文件为准\n- 决策链关键节点：D083(Spatial n=8 修正) → D084(seed42 异常值剔除) → D085(跨benchmark阈值迁移) → D088(Uncertainty Head) → D090(NO-GO)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-22-1779363951.md"
+}

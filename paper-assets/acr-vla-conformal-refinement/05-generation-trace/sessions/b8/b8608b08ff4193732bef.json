@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "b8608b08ff4193732bef",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "verify goal vla only d163 20260526T161800 retry1",
+  "task_key": "worker_verify_goal-vla-only-d163_20260526T161800_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_goal-vla-only-d163_20260526T161800_retry1.log",
+    "occurrence": 1,
+    "bytes": 2026687,
+    "sha256": "6b286b5ff5daa325a26cd13be4ddc7ed65889bb4df8d12f4e18ed926b9097ff8"
+  },
+  "statistics": {
+    "messages": 149,
+    "user_turns": 0,
+    "tool_calls": 60,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 23,
+      "tool_call": 60,
+      "tool_result": 60,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 149,
+      "chunks": [
+        {
+          "path": "b8608b08ff4193732bef-part-0001.json",
+          "message_count": 10
+        },
+        {
+          "path": "b8608b08ff4193732bef-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "b8608b08ff4193732bef-part-0003.json",
+          "message_count": 138
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/verify-goal-vla-only-d163-20260526t161800-retry1.md"
+}

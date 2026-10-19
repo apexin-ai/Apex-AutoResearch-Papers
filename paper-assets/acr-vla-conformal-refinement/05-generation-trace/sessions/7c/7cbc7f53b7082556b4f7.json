@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "7cbc7f53b7082556b4f7",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "ops gpu patrol harvest deploy round2",
+  "task_key": "worker_ops_gpu-patrol-harvest-deploy-round2_20260518T070028",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_gpu-patrol-harvest-deploy-round2_20260518T070028.log",
+    "occurrence": 1,
+    "bytes": 676867,
+    "sha256": "6619c69ea702fff8c7f83cea069c17f0e872477e41732a0848ec594583ab4ee4"
+  },
+  "statistics": {
+    "messages": 168,
+    "user_turns": 0,
+    "tool_calls": 66,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 32,
+      "tool_call": 66,
+      "tool_result": 66,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 168,
+      "chunks": [
+        {
+          "path": "7cbc7f53b7082556b4f7-part-0001.json",
+          "message_count": 137
+        },
+        {
+          "path": "7cbc7f53b7082556b4f7-part-0002.json",
+          "message_count": 31
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-gpu-patrol-harvest-deploy-round2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fcdcecaf621c2fb7678f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops double deploy bjb2 28827",
+  "task_key": "worker_ops_double-deploy-bjb2-28827_20260518T163024",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_double-deploy-bjb2-28827_20260518T163024_result.json",
+    "occurrence": 1,
+    "bytes": 714,
+    "sha256": "5b185bfec2f196081bd64018acc24c3c250ec8a39aa40a102af378a813db8bae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 个实验全部部署完成，registry 已更新为 RUNNING。\n\n**汇总：**\n\n| GPU | exp_id | PID | 显存 |\n|-----|--------|-----|------|\n| 0 | eval-random-selection-object-seed45 | 604514 | 5922MB |\n| 1 | eval-perdof-object-norm003-seed46 | 604782 | 3162MB |\n| 2 | eval-obs-only-object-norm02-k5-seed45 | 604856 | 2234MB |\n| 3 | eval-obs-only-object-default-seed48 | 604925 | 2234MB |\n| 4 | eval-perdof-object-default-seed47 | 605833 | 1735MB |\n| 5 | eval-perdof-object-norm03-seed47 | 606098 | 1539MB |\n\n每张卡双跑总显存 3.6-11.6GB / 24.6GB，均安全。注意首次启动时 `python` 不在 tmux 的 PATH 里，已改用全路径 `/root/miniconda3/bin/python` 解决。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-double-deploy-bjb2-28827.md"
+}

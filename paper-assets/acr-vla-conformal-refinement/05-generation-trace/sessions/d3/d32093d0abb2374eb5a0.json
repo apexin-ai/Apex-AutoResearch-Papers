@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d32093d0abb2374eb5a0",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh check all experiment status",
+  "task_key": "worker_ssh_check-all-experiment-status_20260523T014120",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_check-all-experiment-status_20260523T014120_result.json",
+    "occurrence": 1,
+    "bytes": 558,
+    "sha256": "2cb824b01ab6ff241a52ef8a5f11835271c37eb9ed089386a05c660814da250c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "状态总结：\n\n**bjb1-32546** — 6个任务全部正常运行\n- 5个方向实验均在 task 3/10，~25分钟已过，预计还需 ~1.5h\n- CRM 4-suite 训练进入 epoch 34/50，epoch 33 达到新最佳 val_loss=0.0060\n\n**bjb2-28827**\n- Object CRM eval 3个 seed 均在 task 8/10，预计 ~30min 完成。7-task 均值：s42=46.4%, s43=50.0%, s44=49.3%\n- Spatial VLA-only **已完成**：mean SR = **79.8%** (78.5/80.5/80.5)。GPU 3-5 空闲可复用\n\n无异常/崩溃。报告已保存到 `artifacts/experiment_status_check.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-all-experiment-status.md"
+}

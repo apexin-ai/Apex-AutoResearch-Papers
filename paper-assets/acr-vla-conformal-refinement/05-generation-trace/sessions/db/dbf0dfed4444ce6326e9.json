@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbf0dfed4444ce6326e9",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis eval perdof norm005 seed44",
+  "task_key": "worker_analysis_eval-perdof-norm005-seed44_20260518T123616",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval-perdof-norm005-seed44_20260518T123616_result.json",
+    "occurrence": 1,
+    "bytes": 684,
+    "sha256": "2bf91c77519b4922c5f57ffb8cc64e4e55da6fca8a1d2b1e9386ab263a00c092"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正常完成，无错误 (`EXIT_CODE=0`)。\n\n- **overall_sr**: 0.09 (9.0%)\n- **successes**: 9\n- **total_rollouts**: 100 (10 tasks × 10 rollouts)\n- **per_task_sr**:\n\n| task | sr | succ/total |\n|---|---|---|\n| alphabet_soup | 0.0% | 0/10 |\n| cream_cheese | 0.0% | 0/10 |\n| salad_dressing | 20.0% | 2/10 |\n| bbq_sauce | 20.0% | 2/10 |\n| ketchup | 0.0% | 0/10 |\n| tomato_sauce | 0.0% | 0/10 |\n| butter | 0.0% | 0/10 |\n| milk | 0.0% | 0/10 |\n| chocolate_pudding | 30.0% | 3/10 |\n| orange_juice | 20.0% | 2/10 |\n\n- **状态**: 正常完成，无错误/异常\n- **配置**: mode=crm_perdof, benchmark=object, max_correction_norm=0.05, seed=44, K=10"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-perdof-norm005-seed44.md"
+}

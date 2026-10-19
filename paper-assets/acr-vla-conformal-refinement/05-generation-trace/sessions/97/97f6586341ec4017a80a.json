@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "97f6586341ec4017a80a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis pi05 adaptive object s44 cqa1 r3",
+  "task_key": "worker_analysis_pi05-adaptive-object-s44-cqa1-r3_20260526T152254",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_pi05-adaptive-object-s44-cqa1-r3_20260526T152254_result.json",
+    "occurrence": 1,
+    "bytes": 1151,
+    "sha256": "406f68948bfb8bb6c75cc38d0a758bdc55b1950e17d2195d946af6a57cb3faf0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No W&B run found. Experiment completed normally, no OOM/CUDA errors. Results:\n\n```\nsuccess_rate: 0.88 (176/200)\ntrigger_rate: 0.035 (3.5%, 1155/33220 steps)\nmean_correction_norm: 0.200\nmean_uncertainty: 0.082\nper_task:\n  alphabet_soup:       100.0% (20/20)\n  cream_cheese:         70.0% (14/20)\n  salad_dressing:       95.0% (19/20)\n  bbq_sauce:            95.0% (19/20)\n  ketchup:              60.0% (12/20)\n  tomato_sauce:         85.0% (17/20)\n  butter:               95.0% (19/20)\n  milk:                100.0% (20/20)\n  chocolate_pudding:    90.0% (18/20)\n  orange_juice:         90.0% (18/20)\ntotal_rollouts: 200\nn_tasks: 10\nwandb_run_id: none\nconclusion: negative\n```\n\n**分析**: SR=88.0% 显著低于 VLA-only baseline 99.5%（Δ=-11.5pp）。与前两个 seed 一致（s42=85.5%, s43=83.0%），s44 的 88.0% 略高但同一量级。Adaptive 模式 trigger_rate 仅 3.5%（τ=0.25 下大部分 step 未触发），correction 被 clamp 到 max_norm=0.2，但即便低触发率仍造成明显性能损伤。三 seed 均值 ~85.5%，确认 π0.5 + Adaptive CRM 在 Object suite 上的负向结果稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-pi05-adaptive-object-s44-cqa1-r3.md"
+}

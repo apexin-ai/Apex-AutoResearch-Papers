@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a04791c6be5c1d0a380b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops p0 obs only norm02 seed44 r4",
+  "task_key": "worker_ops_p0-obs-only-norm02-seed44-r4_20260516T144807",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_p0-obs-only-norm02-seed44-r4_20260516T144807_result.json",
+    "occurrence": 1,
+    "bytes": 783,
+    "sha256": "1d80568cb647b49512e42b7b8c2b8549fb86037c474ff8f7b0ebcdb7794fc6c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务全部完成。\n\n**Task 1 — P0 部署成功：**\n- `eval-obs-only-object-norm02-seed44-r4` 已在 bjb1-18228 cuda:2 启动\n- PID 501425 占用 5020MiB 显存，进程正常运行\n- Registry 已更新（RUNNING, PID=501420, hypothesis 已填写）\n\n**Task 2 — seed45 PID 已补录：**\n- `eval-obs-only-object-norm01-seed45` 主进程 PID=474319，运行在 cuda:0，已跑 ~5h47m\n- Registry pid 字段已更新为 474319\n\n**当前 bjb1-18228 GPU 分布：**\n| GPU | 实验 | PID | 显存 |\n|-----|------|-----|------|\n| cuda:0 | obs-only-norm01-seed45 | 474319 | 4717MiB |\n| cuda:1 | perdof-seed44 | 452987 | 2392MiB |\n| cuda:2 | **obs-only-norm02-seed44-r4** (新) | 501425 | 5020MiB |\n| cuda:3 | argmin-seed44-r2 | 428122 | 1887MiB |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-p0-obs-only-norm02-seed44-r4.md"
+}

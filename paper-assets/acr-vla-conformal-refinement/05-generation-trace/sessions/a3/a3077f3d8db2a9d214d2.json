@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3077f3d8db2a9d214d2",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_8_1778846949.md",
+  "task_key": "loop_8_1778846949",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_8_1778846949.md",
+    "occurrence": 1,
+    "bytes": 4542,
+    "sha256": "34d36a7bd6dbccf9bd044b0a60bc28e407d24feda851e004baeb17f4a15f3f7c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: max_wall_time\nupdated: '2026-05-15T11:35:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：`bjb2-40593:cuda:0`, `bjb1-18228:cuda:0-3`, `bjb1-32546:cuda:0-5`, `bjb2-28827:cuda:0-5`。白名单外的 GPU 即使 Director 指令也必须 push back\n- submit_training_job 命令必须用 `bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...\"` 包裹，否则 tmux 用 sh 执行会 EXIT_CODE=127\n- kill 操作必须核对完整 `--max_correction_norm` 参数值，不能只看 session 名称（norm03=0.3, norm003=0.03 是完全不同的实验，曾误杀）\n- 命名规范：小数点用 `p` 替代（`norm-0p3` 不是 `norm-0.3`），registry exp_id 只允许 `[a-zA-Z0-9_-]+`\n- Spatial CRM 全部 dead（D030 确认），不再值得跑。项目存活仅依赖 object benchmark + magnitude sweep\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228** (4× RTX 4090): root, `/root/acr-vla-conformal-refinement`, conda base `/root/miniconda3/bin/python`\n  - cuda:0: PID 325264 (eval-mag-obsonly-norm03-r2, obs_only norm=0.3, T3 running)\n  - cuda:1: PID 311886 (eval-acr-spatial-v4-scalar-r2, T8 running)\n  - cuda:2: **空闲**（seed43 已 kill，D030 确认不重启）\n  - cuda:3: **空闲**（obs-only-r3 已完成）\n- **bjb1-32546** (6× RTX 4090): root, 同项目路径\n  - cuda:0: PID 9659 (eval-reconvla-object)\n  - cuda:1: PID 11116 (eval-acr-object-v4-perdof)\n  - cuda:2: PID 13806 (eval-acr-object-v4-obs-only)\n  - cuda:3: PID 14012 (eval-acr-object-v4-scalar)\n  - cuda:4: PID 44270 (eval-acr-object-obs-only-norm02)\n  - cuda:5: PID 18814 (eval-vla-mean-object)\n- **bjb2-28827** (6× RTX 4090): root, magnitude sweep 6-way (perdof+obs_only × norm 0.03/0.05/0.2)\n- **bjb2-40593** (1× RTX 4090 D): PID 227434 (eval-mag-obsonly-norm003-b2, obs_only norm=0.03)\n- Checkpoints: `/root/autodl-tmp/checkpoints/crm_v3_norm/{crm_best.pt, obs_only/crm_best.pt, scalar_unc/crm_best.pt}`\n\n### 3. 📊 当前状态\n刚完成：\n- P0a/P0b kill（bjb1-32546 cuda:4 双进程 + bjb1-18228 cuda:2 seed43 僵尸）✅\n- obs-only-r3 结果提取：**35% (35/100)，+1pp over argmin，Scenario C FAILED**\n- eval-acr-spatial-v4-small-r2 (perdof)：**35% (35/100)，+1pp over argmin，per-DOF claim DEAD**\n\n正在等待：\n- Worker `worker_ops_p1-scan-bjb1-32546_20260515T111526`：object eval 全量进度扫描（running，已在跑）\n- 之前还有 `worker_ops_p0a-kill-bjb1-32546-cuda4` 和 `worker_ops_status-bjb1-18228-obsonly-r3` 完成但结果已 superseded\n\nRegistry RUNNING（14 个）：\n- bjb1-18228: eval-mag-obsonly-norm03-r2, eval-acr-spatial-v4-scalar-r2, eval-obs-only-spatial-seed43(已 DONE/failed 但 cron 可能还在)\n- bjb1-32546: 6 个 object eval\n- bjb2-28827: 6 个 magnitude sweep\n- bjb2-40593: eval-mag-obsonly-norm003-b2\n\n### 4. 📋 待办（条件触发式）\n- Worker p1-scan-bjb1-32546 回调 → 汇报 Director object eval 进度（用户在等）\n- Object eval 任一实验完成 → 立即提取逐 task SR，汇报 Director\n- bjb1-18228 cuda:2/cuda:3 空闲 → 等 Director 决定部署什么（D030 确认 spatial dead，可能部署 object seed=43 或其他）\n- Magnitude sweep 完成 → 汇总 norm 敏感性曲线，obs_only vs perdof 逐 norm 对比\n- scalar-r2 完成 → 更新 spatial 四路对比表（但 spatial 已判死，仅作记录）\n- eval-mag-obsonly-norm03-r2 完成 → obs_only norm=0.3 完整 10-task，对比 perdof norm=0.3（perdof 有 T1 骤降问题）\n\n### 5. 🎯 战略上下文\n- **D027**: perdof = argmin on spatial matched tasks (0pp delta) → per-DOF claim dead\n- **D029**: perdof spatial 10-task = 35%, argmin = 34%, +1pp → kill criterion triggered\n- **D030**: obs_only spatial 10-task = 35%, argmin = 34%, +1pp → Scenario C threshold (≥39%) NOT MET\n- **结论**：Spatial benchmark 上 ALL CRM modes (perdof/obs_only/scalar) ≈ argmin ≈ 34-35%。CRM 在 spatial 上无显著增益。\n- **项目唯一生路**：Object benchmark + Magnitude sweep。如果 object 上 obs_only > argmin 显著，可转 story 为 \"CRM correction is task-dependent, excels in object manipulation\"\n- **易错点**：\n  - 不要再在 spatial 上花 GPU（已证明无效）\n  - Object eval 前 2 tasks 全部 0%（包括 perdof/obs_only/reconvla/scalar），可能是 task 本身极难，需要看 T2+ 才有信号\n  - bjb2-40593 的 norm003-b2 之前有 ghost 进程问题，恢复后可能进度落后\n  - eval-obs-only-spatial-seed43 registry 是 DONE/failed，但之前 cron 可能还在监控，收到回调直接忽略\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778846949.md"
+}

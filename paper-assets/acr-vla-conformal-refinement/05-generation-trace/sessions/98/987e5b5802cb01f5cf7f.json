@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "987e5b5802cb01f5cf7f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest bjb1 32546 vla only results",
+  "task_key": "worker_harvest_bjb1-32546-vla-only-results_20260524T205956",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_bjb1-32546-vla-only-results_20260524T205956_result.json",
+    "occurrence": 1,
+    "bytes": 1892,
+    "sha256": "6497df8b5e3efc884bd7433f19290e9b4e2d85e7881a285807ee875e4e1357f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### bjb1-32546 — VLA-only 实验（全部仍在运行）\n\n启动时间 ~04:18，已运行 ~46 分钟，每个 benchmark 10 个 task：\n\n| 实验 | 完成 task | 当前进度 | 已完成 task 的 SR |\n|------|----------|---------|-----------------|\n| obj-s42 | 3/10 | task 4 starting | 81.7% (49/60) |\n| obj-s43 | 3/10 | task 4 starting | 71.7% (43/60) |\n| obj-s44 | 3/10 | task 4 starting | 71.7% (43/60) |\n| goal-s42 | 3/10 | task 4, 15/20 rollouts | 91.7% (55/60) |\n| long-s43 | 1/10 | task 2, 5/20 rollouts | 20.0% (4/20) |\n\n已完成的 task 明细：\n- **obj-s42**: alphabet_soup 85%, cream_cheese 75%, salad_dressing 85%\n- **obj-s43**: alphabet_soup 70%, cream_cheese 70%, salad_dressing 75%\n- **obj-s44**: alphabet_soup 70%, cream_cheese 70%, salad_dressing 75%\n- **goal-s42**: middle_drawer 85%, bowl_on_stove 100%, wine_bottle 90%\n- **long-s43**: alphabet_soup_tomato 20%\n\n**预计剩余时间**：~15 min/task → obj/goal 约 1.5-2h，long 更久（长 horizon task 慢）\n\n**GPU 1：完全空闲**（0%, 2 MiB）\n\n---\n\n### bjb2-40593 — K=5 spatial s42（即将完成）\n\n9/10 tasks 已完成，第 10 个 task 在跑（15/20 rollouts）。约 10-15 min 完成。\n\n| Task | SR |\n|------|-----|\n| bowl_between_plate_and_ramekin | 95.0% (19/20) |\n| bowl_next_to_ramekin | 90.0% (18/20) |\n| bowl_from_table_center | 100.0% (20/20) |\n| bowl_on_cookie_box | 100.0% (20/20) |\n| bowl_in_top_drawer | 65.0% (13/20) |\n| bowl_on_ramekin | 0.0% (0/20) |\n| bowl_next_to_cookie_box | 95.0% (19/20) |\n| bowl_on_stove | 80.0% (16/20) |\n| bowl_next_to_plate | 85.0% (17/20) |\n| bowl_on_wooden_cabinet | *running* |\n\n9-task 平均 SR = **78.9%** (142/180)\n\n---\n\n**结论**：全部实验仍在运行，无可收割结果。bjb2 K=5 spatial 最快完成（~15min），bjb1 的 5 个 VLA-only 还需 1.5-2+ 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-bjb1-32546-vla-only-results.md"
+}

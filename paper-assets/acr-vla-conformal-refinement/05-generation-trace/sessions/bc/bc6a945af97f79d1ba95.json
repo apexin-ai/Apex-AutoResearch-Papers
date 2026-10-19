@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc6a945af97f79d1ba95",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "urgent westd cleanup evalpy check",
+  "task_key": "worker_urgent_westd-cleanup-evalpy-check_20260526T084045",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_urgent_westd-cleanup-evalpy-check_20260526T084045_result.json",
+    "occurrence": 1,
+    "bytes": 778,
+    "sha256": "85ad7a147b28f7cecceb240aebabc82c2a9a251b3f465f821825fcc50d2ddf61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部结果已收集。\n\n```\n=== westd-49937 清理 ===\n新 tmux sessions found: 无（tmux server 未运行，无任何 session）\nGPU 状态: 全部 6 张 GPU 空闲，0MiB 显存占用，无运行进程\n已清理: 无需清理\n\n结论: 被取消的 Worker 未成功部署任何实验。\n\n=== evaluate.py 版本审计 ===\n| 服务器 | md5 | 版本 | 需要 revert |\n|--------|-----|------|------------|\n| westd-49937 | c15065ec | 旧代码 ✓ | 否 |\n| bjb1-32546 | c15065ec | 旧代码 ✓ | 否 |\n| bjb2-28827 | c15065ec | 旧代码 ✓ | 否 |\n| cqa1-32758 | c15065ec | 旧代码 ✓ | 否 |\n| bjb1-18228 | c15065ec | 旧代码 ✓ | 否 |\n\n所有 5 台服务器的 evaluate.py 均为 commit a594db5 的旧版本，无需 revert。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-westd-cleanup-evalpy-check.md"
+}

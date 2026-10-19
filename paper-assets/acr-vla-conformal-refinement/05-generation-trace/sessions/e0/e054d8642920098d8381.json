@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "e054d8642920098d8381",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "harvest eval supp spatial reconvla s47",
+  "task_key": "worker_harvest_eval-supp-spatial-reconvla-s47_20260524T150249",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_harvest_eval-supp-spatial-reconvla-s47_20260524T150249.jsonl",
+    "occurrence": 1,
+    "bytes": 179,
+    "sha256": "6130e0713a6b64f8f4147ae91c79ac54d11a3a81fde6b7d883f48ea7fd401fa2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T15:02:59.882905+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_harvest_eval-supp-spatial-reconvla-s47_20260524T150249"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/harvest-eval-supp-spatial-reconvla-s47.md"
+}

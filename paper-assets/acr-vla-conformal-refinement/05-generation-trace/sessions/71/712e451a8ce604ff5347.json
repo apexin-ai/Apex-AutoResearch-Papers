@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "712e451a8ce604ff5347",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops deploy bjb1 32546 gpu3 magnitude",
+  "task_key": "worker_ops_deploy-bjb1-32546-gpu3-magnitude_20260518T212737",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_deploy-bjb1-32546-gpu3-magnitude_20260518T212737_result.json",
+    "occurrence": 1,
+    "bytes": 555,
+    "sha256": "f5e67c0023136ff3126b6c62a3a3faafcefba187961ad3dd97a91510558a097f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n**GPU 3 (bjb1-32546) 状态：**\n- VRAM: 10862 MiB / 24564 MiB (~13.7 GB 空闲)\n- 实验 `eval-perdof-norm003-seed48-t16` 已启动，模型加载完毕，10 个 task 已加载\n- 同一 GPU 上还有一个 `norm01_seed48` 实验 (PID 698215)\n\n注意：原始命令的 tmux 工作目录缺失，导致相对路径 `logs/` 指向 `/root/logs/`（不存在）。已修复为 `-c /root/acr-vla-conformal-refinement`，日志正确写入 `/root/acr-vla-conformal-refinement/logs/eval_object_perdof_norm003_seed48.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deploy-bjb1-32546-gpu3-magnitude.md"
+}

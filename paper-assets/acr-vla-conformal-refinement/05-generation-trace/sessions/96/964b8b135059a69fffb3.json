@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "964b8b135059a69fffb3",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "knowledge update paper framing competitors",
+  "task_key": "worker_knowledge_update-paper-framing-competitors_20260514T074639",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_knowledge_update-paper-framing-competitors_20260514T074639_result.json",
+    "occurrence": 1,
+    "bytes": 776,
+    "sha256": "c8cb03966da922fc3d9fd55a6f19642a19675081dc8d1c68a77422de71c8e6a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "更新完成。主要变更：\n\n1. **Story Spine → Gap**：从原来仅提 ReconVLA/CP-in-the-Loop/UPS/A2C2 扩展为包含四个主要竞品（ReconVLA scalar CQR + selection only、SC-VLA residual RL 无统计保证、VLA-Pilot 2.41s 延迟启发式评分、ACoT-VLA 84.1% 但 training-time 静态模型），以\"所有方法均未将 per-DOF conformal statistics 作为 learned correction 输入\"收束。\n\n2. **新增 Competitive Landscape section**：四个竞品逐一分析关键差异，末尾明确 ACR-VLA 差异化定位——唯一同时具备 per-DOF statistical guarantees + learned dimension-selective correction + online coverage adaptation 的方法。\n\nCore Claims、Kill Criteria、Target Venue、Framing 备选策略均未修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-update-paper-framing-competitors.md"
+}

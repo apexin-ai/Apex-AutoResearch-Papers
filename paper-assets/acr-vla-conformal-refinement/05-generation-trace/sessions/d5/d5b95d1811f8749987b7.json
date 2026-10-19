@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5b95d1811f8749987b7",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose pi05 crm k2 long s43 r2",
+  "task_key": "worker_diagnose_pi05-crm-k2-long-s43-r2_20260526T122610",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_pi05-crm-k2-long-s43-r2_20260526T122610_result.json",
+    "occurrence": 1,
+    "bytes": 347,
+    "sha256": "0c3a890106c06998c49334d183964e128c718839d29b0791c8e4bb95eadd76bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：False positive，实验已完成。**\n\n| 指标 | 值 |\n|------|-----|\n| overall_success_rate | **76.0%** |\n| 总 successes | 152 / 200 |\n| 10 tasks × 20 rollouts | 全部完成 |\n\n与 s42 (82.0%) 相同的模式——eval 进程正常完成并写出 JSON 后退出，cron 检测到进程消失误报为失败。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-pi05-crm-k2-long-s43-r2-copy-2.md"
+}

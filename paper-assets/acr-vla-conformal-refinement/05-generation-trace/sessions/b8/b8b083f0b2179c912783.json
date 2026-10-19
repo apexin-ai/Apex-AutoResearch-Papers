@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8b083f0b2179c912783",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_22_1779342361.md",
+  "task_key": "loop_22_1779342361",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_22_1779342361.md",
+    "occurrence": 1,
+    "bytes": 3859,
+    "sha256": "b6c0a1e1fdea134bfc8e143c87b90c1576e055949ceb6fb05e162dbaffb59b0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 22\nreason: idle_timeout\nupdated: '2026-05-21T05:45:56+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: bjb2-40593:cuda:0, bjb1-18228:cuda:0-3, bjb1-32546:cuda:0-5, bjb2-28827:cuda:0-5（共 17 张）。白名单外的 GPU 即使 Director 指令也必须 push back\n- Table 1 CRM Object 只用 norm02 数据（D080），seed42 SR=20% 为 outlier 不纳入（D084）\n- Long OOD 结果必须用 cautious wording（MW-U p=0.061 n.s.，D081）\n- evaluate.py 使用 batched inference（D082），延迟表和效率分析需基于此\n- OpenVLA 实验线已恢复（D087 撤回 D086），v2 baseline SR=69% 可用\n\n### 2. 🖥️ 基础设施快照\n- **4 台服务器**，账号均为 root，工作目录 `/root/acr-vla-conformal-refinement`\n- Python: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 激活方式: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- CRM checkpoint: `/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`\n- HF cache: `/root/autodl-tmp/.hf_cache`（必须设 HF_HOME + HF_HUB_OFFLINE=1 + TRANSFORMERS_OFFLINE=1）\n- 环境变量: `MUJOCO_GL=egl`（headless 渲染）\n- **活跃进程**: eval-obs-only-object-norm02-seed43-r3 (PID 401735, bjb1-32546:cuda:2, cron 监控中)\n- **活跃 Worker**: worker_pipeline_openvla-crm-bjb2-28827（CPU task，OpenVLA pipeline）\n- 磁盘: bjb1-32546 400G/438G (4%), bjb1-18228 400G/438G (4%), bjb2-28827 399G/439G (5%), bjb2-40593 46G/437G (90%) ⚠️\n\n### 3. 📊 当前状态\n- 刚收到 `eval-obs-only-goal-norm02-seed51` 失败回调（process dead 5×, bjb1-32546:cuda:1）\n- 已派诊断 Worker (`worker_diagnose_eval-obs-only-goal-norm02-seed51_20260520T133048`) SSH 查日志，**尚未回调**\n- 已向 Director 汇报失败 + GPU 饱和度不足（1/17）\n- `eval-adaptive-k-spatial-p25-seed44` 也刚失败（EXIT_CODE=129, bjb2-28827），未单独诊断\n- **RUNNING**: eval-obs-only-object-norm02-seed43-r3 (bjb1-32546:cuda:2)\n- **PREPARING**: 38-39 项待处理实验（详见 report.md 待处理段）\n- **GPU 饱和度极低**: 17 张分配仅 1 张在跑\n\n### 4. 📋 待办\n- 诊断 Worker 回调 → 根据根因决定：transient failure 则立即重试 eval-obs-only-goal-norm02-seed51；代码问题则修复后重试\n- eval-adaptive-k-spatial-p25-seed44 (EXIT_CODE=129) → 需要单独诊断或直接重试（SIGHUP 通常是 transient）\n- eval-obs-only-object-norm02-seed43-r3 完成回调 → 按 on-experiment-done 处理，更新 Table 1 Object CRM seed 数\n- **紧急**: GPU 饱和度 1/17 → 诊断完成后立即批量铺设 PREPARING 中的实验（Spatial Adaptive K P50 seeds、Random Selection baseline、CRM Object seed42 补充等）\n- OpenVLA pipeline Worker 完成 → 整合 OpenVLA baseline 结果到论文\n\n### 5. 🎯 战略上下文\n- **投稿目标**: CoRL 2026, DDL 2026-05-29（剩 ~9 天）\n- **核心方向**: Adaptive inference-time compute for frozen VLAs。K=2 L2 distance 是唯一可用不确定性信号（ρ=0.9979），P50 阈值为 Pareto 最优\n- **关键决策链**: D078 P50最优 → D079 CRM magnitude NO-GO → D080 Table1 norm02 n=6 → D081 Long OOD cautious → D082 batched inference → D083 Spatial n=8 clean → D084 seed42 outlier 排除 → D085 跨 benchmark 阈值迁移 → D087 OpenVLA 恢复\n- **Object CRM K=10**: 16.8±1.8% (n=6) vs VLA 10.9%, p=9.5e-5***（核心 supporting evidence）\n- **Spatial Adaptive K sweep 是当前最大空缺**——Object 12/12 done，Spatial 需要 P50/P75/P25/P90 × 3 seeds\n- **易错点**: (1) bjb2-40593 磁盘 90% 快满，提交实验前必须检查 (2) 很多实验反复失败是 transient（进程被 kill、OOM），重试通常解决 (3) seed42 Object CRM SR=20% 是 outlier 不纳入 Table 1 (4) submit_training_job 的 command 必须包含完整环境激活链（source conda + cd + 环境变量）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-22-1779342361.md"
+}

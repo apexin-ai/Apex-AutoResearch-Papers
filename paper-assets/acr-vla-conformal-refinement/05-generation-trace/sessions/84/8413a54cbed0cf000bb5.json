@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8413a54cbed0cf000bb5",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops seed43 env check",
+  "task_key": "worker_ops_seed43-env-check_20260515T113915",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_seed43-env-check_20260515T113915_result.json",
+    "occurrence": 1,
+    "bytes": 424,
+    "sha256": "dcf435478cc90cba928ecfa2cb9ccff1568f6cf467dd501e059bd36ba303a220"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**全部检查通过，可以直接部署。**\n\n| 检查项 | 状态 |\n|---|---|\n| Object 数据 (10 tasks, 7.0GB) | OK |\n| obs_only checkpoint | OK |\n| perdof checkpoint | OK |\n| evaluate.py 支持 `--benchmark object --seed 43` | OK |\n| cuda:2 空闲 (1/24564 MiB) | OK |\n| cuda:3 空闲 (1/24564 MiB) | OK |\n| SmolVLA 模型 (906MB) | OK |\n\n报告已保存到 `artifacts/seed43_env_check.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-seed43-env-check.md"
+}

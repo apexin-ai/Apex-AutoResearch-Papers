@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9fa49993a47308fc3dfc",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh check seed45 progress",
+  "task_key": "worker_ssh_check-seed45-progress_20260516T170549",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_check-seed45-progress_20260516T170549_result.json",
+    "occurrence": 1,
+    "bytes": 1486,
+    "sha256": "4cd75a1464523c9d59bd4709a28cc488e2f3aca1175d50d55771593eb2464153"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### 实验 A: eval-obs-only-object-norm02-seed45 (bjb1-32546)\n\n**进度: 6.5/10 tasks** — 正在跑第 7 个 task (butter), rollout 5/10 已完成\n\n日志最后修改: 00:48:57 (约 17 分钟前)，进程可能仍在运行(rollout 无中间输出)\n\n已完成 tasks:\n| Task | Success Rate |\n|------|-------------|\n| alphabet_soup | 0% (0/10) |\n| cream_cheese | 0% (0/10) |\n| salad_dressing | 10% (1/10) |\n| bbq_sauce | 40% (4/10) |\n| ketchup | 10% (1/10) |\n| tomato_sauce | 10% (1/10) |\n| butter | 进行中... |\n\n运行时间: ~9.3h (启动 15:44)，每 task ~1.4h → **预估 ETA: ~06:00 CST (还需 ~5h)**\n\n---\n\n### 实验 B: eval-argmin-object-seed45 (bjb2-28827)\n\n**进度: 5.5/10 tasks** — 正在跑第 6 个 task (tomato_sauce), rollout 5/10 已完成\n\n日志最后修改: 01:03:01 (约 3 分钟前)，**进程活跃**\n\n已完成 tasks:\n| Task | Success Rate |\n|------|-------------|\n| alphabet_soup | 0% (0/10) |\n| cream_cheese | 0% (0/10) |\n| salad_dressing | 10% (1/10) |\n| bbq_sauce | 40% (4/10) |\n| ketchup | 0% (0/10) |\n| tomato_sauce | 进行中... |\n\n运行时间: ~9.3h (启动 15:44)，每 task ~1.7h → **预估 ETA: ~08:30 CST (还需 ~7.5h)**\n\n---\n\n### 初步观察\n\n两个实验在前 5 个 task 的结果几乎一致 (obs_only 和 argmin 在 ketchup 上有 10% vs 0% 的微小差异)。目前累计 success: 实验A 7/60, 实验B 5/50。最终 overall SR 看起来会比较接近。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-seed45-progress.md"
+}

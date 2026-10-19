@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9038dcea2172b85aed3",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "monitor director status check 3items",
+  "task_key": "worker_monitor_director-status-check-3items_20260523T085913",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_monitor_director-status-check-3items_20260523T085913_result.json",
+    "occurrence": 1,
+    "bytes": 2344,
+    "sha256": "1059c9713092cf7db36671136c9de27b3d4b709a2b28c79672172eef74b309cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 1. Object Adaptive tau=0.25 s42 (bjb2-28827)\n- **进程 620549**: 存活 (Rl)，已运行 1h43m\n- **进度**: Task 7/10，当前 `pick_up_the_butter` rollout 5/20\n- 已完成 6 个 task，速率 ~17 min/task\n- **预计剩余 ~55 min**\n\n## 2. CRM 4-suite 训练 (bjb1-32546)\n- **进程 668382**: 存活 (Rl)，已运行 4h48m\n- **进度**: **Epoch 50/50 (最后一轮)**，batch 5400/6316 (85.5%)\n- Loss 稳定在 0.007~0.012\n- 最新 checkpoint: epoch49 (16:40 保存)，每 epoch ~25 min\n- **预计 ~4 min 内完成！**\n\n## 3. 全部实验进度\n\n### bjb2-28827 — 运行中\n\n| 实验 | 进度 | 预估剩余 |\n|------|------|----------|\n| eval-supp-obj-adapt-tau025-s42 | Task 7/10, butter 5/20 | ~55 min |\n| eval-supp-k2mean-object-s42 | Task 7/10, butter 5/20 | ~55 min |\n| eval-supp-k2mean-spatial-s42 | Task 8/10, black_bowl_on_stove 10/20 | ~30 min |\n| eval-supp-goal-reconvla-s42 | Task 8/10, turn_on_the_stove 5/20 | ~35 min |\n| eval-object-vla-only-wrapper-s42-r2 | 运行 4h48m | 不确定 |\n| eval-goal-vla-only-wrapper-s42 | 运行 1h43m | 不确定 |\n| eval-supp-obj-reconvla-s43 | Task 0/10, 加载模型中 | ~1h40m |\n\n### bjb2-28827 — 已完成\n\n| 实验 | 结果 |\n|------|------|\n| eval-supp-goal-adapt-tau025-s42 | 84.0% (168/200) |\n| eval-supp-goal-crm005-s42 | 85.5% (171/200) |\n| eval-supp-obj-adapt-s42-r2 | 77.5% (155/200) |\n| eval-supp-obj-reconvla-s42 | 79.0% (158/200) |\n\n### bjb1-32546 — 运行中\n\n| 实验 | 进度 | 预估剩余 |\n|------|------|----------|\n| **train-crm-unified-4suite-r6** | **Epoch 50/50, batch 5400/6316** | **~4 min** |\n| eval-supp-adapt-tau025-object-s43 | Task 2/10, cream_cheese 5/20 | ~1h20m |\n| eval-supp-crm-norm005-object-s43 | Task 2/10 | ~1h20m |\n| eval-supp-crm-norm005-goal-s43 | Task 2/10, put_bowl_on_stove 10/20 | ~1h20m |\n| eval-supp-adapt-tau025-goal-s43 | Task 2/10, put_bowl_on_stove 10/20 | ~1h20m |\n\n### bjb1-32546 — 已完成\n\n| 实验 | 结果 |\n|------|------|\n| eval-supp-crm-norm02-spatial-s42-r2 | 79.0% (158/200) |\n\n### 即将完成排序\n1. **train-crm-unified-4suite-r6** — ~4 min（即将完成）\n2. **eval-supp-k2mean-spatial-s42** — ~30 min\n3. **eval-supp-goal-reconvla-s42** — ~35 min\n4. **eval-supp-obj-adapt-tau025-s42** / **eval-supp-k2mean-object-s42** — ~55 min"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-director-status-check-3items.md"
+}

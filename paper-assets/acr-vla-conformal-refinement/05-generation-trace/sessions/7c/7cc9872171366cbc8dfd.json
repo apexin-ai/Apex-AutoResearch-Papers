@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7cc9872171366cbc8dfd",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb2 28827 fill gpus",
+  "task_key": "worker_deploy_bjb2-28827-fill-gpus_20260515T191423",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb2-28827-fill-gpus_20260515T191423_result.json",
+    "occurrence": 1,
+    "bytes": 548,
+    "sha256": "3a3a3cf806e5d2958d9ca3db0ab0874b7e1393e7b629396ad75dec1b73fca1d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 个 GPU 全部有进程占用：\n\n| GPU | 显存占用 | 状态 |\n|-----|---------|------|\n| 0 | 5200 MiB | 已有实验 (perdof norm003 object) |\n| 1 | 5200 MiB | 已有实验 (perdof norm005 object) |\n| **2** | **23698 MiB** | **eval-mag-perdof-norm03-object-r2 ✓** |\n| **3** | **6239 MiB** | **eval-mag-perdof-norm02-seed43-object ✓** |\n| 4 | 5200 MiB | 已有实验 (obsonly norm005 object) |\n| 5 | 5200 MiB | 已有实验 (obsonly norm03 object) |\n\n两个实验已成功部署，注册表已更新为 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb2-28827-fill-gpus.md"
+}

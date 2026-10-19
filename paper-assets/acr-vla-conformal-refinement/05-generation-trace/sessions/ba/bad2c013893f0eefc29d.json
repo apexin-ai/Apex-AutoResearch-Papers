@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bad2c013893f0eefc29d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "verify pi05 r2 normfix",
+  "task_key": "worker_verify_pi05-r2-normfix_20260521T033549",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_pi05-r2-normfix_20260521T033549_result.json",
+    "occurrence": 1,
+    "bytes": 1127,
+    "sha256": "80df09001419bad90ce4bd12eceeb717f2a64af8b5fe09e7c25804006dcb6a30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n### 1. PID 802639\n- **已死亡**（`ps -p` 返回空）。启动于 09:49，使用**旧版代码**（fix 在 11:29 才部署），但已不再运行。不是问题。\n\n### 2. Wrapper 当前 normalization\n- **MEAN_STD** ✅ — 代码使用 `self.state_mean` / `self.state_std`，无 `q01`/`q99`/`QUANTILES` 的任何痕迹。修改时间 11:29:58。\n\n### 3. PID 811001 (r2) 当前进度\n- 正在跑修复版代码，**但全部 OOM 失败**\n- 已过 6/10 tasks，258 个 rollout 记录，**success rate 全部为 0%**\n- 每个 rollout 在 step 0 就 CUDA OOM（`resize_with_pad_torch` → `clamp` 报错）\n- GPU 当前占用 10.5GB/24.5GB — 看起来不满，但推理峰值内存超限\n\n### 4. 结论：需要 kill 811001 并排查 OOM\nr2 结果不可用（全 0 是 OOM 导致的，不是模型真实表现）。可能原因：\n- 之前 802639 死亡时没有完全释放 GPU 显存（需 `torch.cuda.empty_cache()` 或清理残留进程）\n- π0.5 模型本身在 4090 24GB 上推理时峰值内存紧张\n\n建议：kill 811001，确认 GPU 完全释放后重新启动 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-pi05-r2-normfix.md"
+}

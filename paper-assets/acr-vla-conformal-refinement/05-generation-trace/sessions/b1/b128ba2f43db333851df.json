@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b128ba2f43db333851df",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "mass deploy multi seed supplement",
+  "task_key": "worker_mass-deploy_multi-seed-supplement_20260520T104205",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_mass-deploy_multi-seed-supplement_20260520T104205_result.json",
+    "occurrence": 1,
+    "bytes": 1486,
+    "sha256": "48e4597ba53a9d0b9f7ed3184fb2901d94628f042be64d1917e504179473ac72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "12/12 全部部署成功。汇总：\n\n| # | Exp ID | Server | GPU | Benchmark | Mode | Seed |\n|---|--------|--------|-----|-----------|------|------|\n| 1 | eval-random-selection-spatial-seed42 | bjb1-18228 | cuda:0 | spatial | random_selection | 42 |\n| 2 | eval-random-selection-spatial-seed43 | bjb1-18228 | cuda:1 | spatial | random_selection | 43 |\n| 3 | eval-random-selection-spatial-seed44 | bjb1-18228 | cuda:2 | spatial | random_selection | 44 |\n| 4 | eval-obs-only-goal-norm02-seed51 | bjb1-18228 | cuda:3 | goal | crm_obs_only | 51 |\n| 5 | eval-obs-only-goal-norm02-seed52 | bjb1-32546 | cuda:0 | goal | crm_obs_only | 52 |\n| 6 | eval-obs-only-object-norm02-seed43-r3 | bjb1-32546 | cuda:1 | object | crm_obs_only | 43 |\n| 7 | eval-obs-only-object-norm02-seed49 | bjb1-32546 | cuda:3 | object | crm_obs_only | 49 |\n| 8 | eval-argmin-object-seed48 | bjb1-32546 | cuda:4 | object | reconvla | 48 |\n| 9 | eval-argmin-object-seed49 | bjb1-32546 | cuda:5 | object | reconvla | 49 |\n| 10 | eval-obs-only-spatial-norm02-seed42 | bjb2-28827 | cuda:0 | spatial | crm_obs_only | 42 |\n| 11 | eval-vla-only-goal-seed47 | bjb2-28827 | cuda:1 | goal | vla_only | 47 |\n| 12 | eval-vla-only-spatial-seed48 | bjb2-28827 | cuda:2 | spatial | vla_only | 48 |\n\n**优先级逻辑**：Spatial Random Selection（0 success）> Goal CRM（5）> Object CRM/Argmin/Spatial CRM（各6）> Goal/Spatial VLA-only（6-7）。所有 12 块空闲 GPU 已填满，timeout=12h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/mass-deploy-multi-seed-supplement.md"
+}

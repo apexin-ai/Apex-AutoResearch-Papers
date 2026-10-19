@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e4a8117b89e7e5b77dff",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh harvest newly completed",
+  "task_key": "worker_ssh_harvest-newly-completed_20260520T045334",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_harvest-newly-completed_20260520T045334_result.json",
+    "occurrence": 1,
+    "bytes": 1650,
+    "sha256": "be163764d689ce015661ccce528563aa5c6bb7188189a072f1bcc23215b05e68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "收割完成。以下是最近 30 分钟内新生成的 JSON 结果：\n\n| 服务器 | 文件 | mode | benchmark | SR | avg_K | fast_path | 备注 |\n|--------|------|------|-----------|-----|-------|-----------|------|\n| bjb2-28827 | eval_goal_obs_only_norm02_seed48.json | crm_obs_only | goal | **0.68** | — | — | 12:21 生成 |\n| bjb2-28827 | eval_spatial_obs_only_norm02_seed49.json | crm_obs_only | spatial | **0.32** | — | — | 12:37 生成 |\n| bjb1-32546 | eval_object_vla_only_seed51.json | vla_only | object | **0.15** | — | — | 12:28 生成 |\n| bjb1-32546 | eval_long_obs_only_norm02_seed48.json | crm_obs_only | long | **0.15** | — | — | 12:33 生成 |\n| bjb1-32546 | eval_long_obs_only_norm02_seed49.json | crm_obs_only | long | **0.14** | — | — | 12:32 生成 |\n| bjb1-32546 | eval_spatial_vla_only_seed51.json | vla_only | spatial | **0.33** | — | — | 12:47 生成 |\n| bjb2-40593 | — | — | — | — | — | — | 无新文件 |\n\n这些都是 baseline 实验（obs_only / vla_only），无 avg_K 和 fast_path 字段。\n\n**重点关注项状态：**\n\n1. **crm-goal-48** (bjb2-28827) — SR=0.68，已完成\n2. **crm-spatial-49** (bjb2-28827) — SR=0.32，已完成\n3. **vla-object-51** (bjb1-32546) — SR=0.15，已完成\n4. **crm-long-48/49** (bjb1-32546) — SR=0.15/0.14，两个 seed 均已完成\n5. **P25-seed44** (bjb2-40593) — **未生成**。logs 目录下无任何 `eval_*adaptive*` 或 `eval_*p25*` 文件，可能仍在运行或未启动\n\n另：只查了 3 台服务器（bjb2-40593 / bjb2-28827 / bjb1-32546），第 4 台服务器名称未知，请确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-newly-completed.md"
+}

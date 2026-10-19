@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de8ecc1cfa00367e3b45",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code check scalar unc mode",
+  "task_key": "worker_code_check-scalar-unc-mode_20260515T013823",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_check-scalar-unc-mode_20260515T013823_result.json",
+    "occurrence": 1,
+    "bytes": 1082,
+    "sha256": "5880db77c975e6706d8b22b2fb073ccc6023465046bbc87e1853d8d386509735"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息齐全。\n\n`evaluate.py` 中 `--mode` 的可选值（第67行）：\n`vla_only`, `crm_scalar`, `crm_perdof`, `acr_vla`, `crm_obs_only`, `reconvla`\n\nscalar_unc 对应的 mode 就是 **`crm_scalar`**。关键差异：\n- `crm_scalar` → `unc_dim = 3`（标量不确定性）\n- `crm_perdof` / `acr_vla` → `unc_dim = 40`（逐自由度不确定性）\n- `crm_obs_only` → `unc_dim = 0`\n\n在 `select_action_crm` 中（第178-179行），`crm_scalar` 模式会通过 `_to_scalar_uf()` 将不确定性特征压缩为标量形式后送入 CRM。\n\n完整可执行命令：\n\n```bash\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/acr-vla-conformal-refinement && HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --mode crm_scalar --benchmark spatial --n_rollouts 10 --seed 42 --K 10 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_v3_norm/scalar_unc/crm_best.pt --max_correction_norm 0.1\"\n```\n\n注意加了 `CUDA_VISIBLE_DEVICES=2` 以绑定 cuda:2。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-scalar-unc-mode.md"
+}

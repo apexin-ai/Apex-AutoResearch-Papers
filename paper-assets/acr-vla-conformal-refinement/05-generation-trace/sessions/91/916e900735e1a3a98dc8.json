@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "916e900735e1a3a98dc8",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops kill duplicates and deploy magnitude",
+  "task_key": "worker_ops_kill-duplicates-and-deploy-magnitude_20260517T225855",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_kill-duplicates-and-deploy-magnitude_20260517T225855_result.json",
+    "occurrence": 1,
+    "bytes": 680,
+    "sha256": "b2ae557d6b8932cee4768b3105638beb0db1750672a60a2b14e1e8a5edad34c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**bjb2-28827 kill 结果**：PID 449339、476536 已成功 kill（exit code 0）。GPU0-5 仍有其他实验在跑。\n\n**bjb1-18228 GPU 状态**：\n| GPU | 状态 | 显存 |\n|-----|------|------|\n| GPU0 | 占用 (PID 713405) | 3342MiB |\n| GPU1 | 空闲 | 4MiB |\n| GPU2 | 空闲 | 4MiB |\n| GPU3 | 占用 (PID 749547) | 5200MiB |\n\n**部署实验**：\n\n| 实验 | exp_id | GPU | PID | 参数 |\n|------|--------|-----|-----|------|\n| obs_only norm01 seed48 | `eval_obs_only_norm01_seed48` | GPU1 | 774337 | `--max_correction_norm 0.1` |\n| obs_only norm03 seed48 | `eval_obs_only_norm03_seed48` | GPU2 | 774538 | `--max_correction_norm 0.3` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-duplicates-and-deploy-magnitude.md"
+}

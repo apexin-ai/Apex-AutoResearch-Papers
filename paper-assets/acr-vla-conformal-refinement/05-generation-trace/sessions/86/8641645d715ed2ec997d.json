@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8641645d715ed2ec997d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb2 24035 now",
+  "task_key": "worker_deploy_bjb2-24035-now_20260526T172447",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb2-24035-now_20260526T172447_result.json",
+    "occurrence": 1,
+    "bytes": 331,
+    "sha256": "b27ed065e813b6babde2d9d331bc2f53b5baece8d96d15fb1608a5c44fc3488f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**部署中止（C001 违规）。** GPU 上正在运行另一个实验：\n\n- **PID 83735**（已运行 25 分钟）：`evaluate.py --mode adaptive_conformal_crm --conformal_threshold 0.45 --benchmark spatial --seed 42`\n- 显存占用：5926 MiB\n\n需要等当前实验跑完后再部署 τ=0.15 Object 实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb2-24035-now.md"
+}

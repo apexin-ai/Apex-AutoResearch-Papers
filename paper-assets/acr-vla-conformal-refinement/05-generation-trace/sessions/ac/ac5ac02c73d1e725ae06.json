@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "id": "ac5ac02c73d1e725ae06",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "ssh pi05 table2 full audit",
+  "task_key": "worker_ssh_pi05-table2-full-audit_20260527T085307",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_ssh_pi05-table2-full-audit_20260527T085307.jsonl",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "e5c02a30d6f968f9f6b7aa19a37ebdc7a3d20af67454141f0657c28bc2feedfe"
+  },
+  "statistics": {
+    "messages": 4,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 4
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-27T08:53:23.461548+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_pi05-table2-full-audit_20260527T085307"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-27T08:53:32.259835+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 29, 2pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_pi05-table2-full-audit_20260527T085307"
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-27T08:53:41.796308+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 29, 2pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_pi05-table2-full-audit_20260527T085307"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-27T08:53:50.931214+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 29, 2pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_pi05-table2-full-audit_20260527T085307"
+          },
+          "id": "event-000004"
+        }
+      ],
+      "message_count": 4
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-pi05-table2-full-audit.md"
+}

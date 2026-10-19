@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae0b5d53862ac4656a7b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnosis gpu conflict check",
+  "task_key": "worker_diagnosis_gpu-conflict-check_20260519T133705",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnosis_gpu-conflict-check_20260519T133705_result.json",
+    "occurrence": 1,
+    "bytes": 749,
+    "sha256": "a5e0c03313a34f45abe4d8759cc6991057206a810c67701c5019ce3c6f6e2610"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已更新 `eval-perdof-object-norm01-seed43` 从 ANALYZING → DONE (sr=12%)。\n\n---\n\n## 总结\n\n| 服务器 | GPU | 冲突 | 严重性 | 建议 |\n|--------|-----|------|--------|------|\n| bjb2-40593 | cuda:0 | random_selection_seed46 + spatial_norm02_seed43 | 中等（速度减半，无OOM风险） | 可接受共存，或 kill random_selection 优先跑 spatial 三连 |\n| bjb1-32546 | cuda:4 | perdof_norm005_seed45 + obs_only_default_seed48 | 低（都快完了） | 等完成即可，预计 1-2 小时内结束 |\n\n**已执行的修复：** `eval-perdof-object-norm01-seed43` ANALYZING → DONE\n\n**待你决定：** bjb2-40593 上是否 kill random_selection_seed46 来让 spatial 系列（3个seed串行）加速？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-gpu-conflict-check.md"
+}

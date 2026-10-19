@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ced640082ff1bd3855a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops fill bjb1 32546 idle gpus",
+  "task_key": "worker_ops_fill-bjb1-32546-idle-gpus_20260516T071129",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_fill-bjb1-32546-idle-gpus_20260516T071129_result.json",
+    "occurrence": 1,
+    "bytes": 1666,
+    "sha256": "0c8732b992ff62536285f60531d9290174192bfe869dc24154ab7286136048f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断\n**scalar-seed44 失败原因**: 日志仅 17 行，在 task 1 rollout 5/10 处截断，无 Python traceback。dmesg 不可访问（容器权限）。几乎确定是系统 OOM SIGKILL——SIGKILL 不给 Python 打印 traceback 的机会。已在 bjb1-32546 重试。\n\n**VLA-only-seed44 (bjb2-40593)**: PID 286989 已死，日志显示 **10/10 tasks 完成，overall 10.0% (10/100)**，EXIT_CODE=0。成功。\n\n## bjb1-32546 GPU 状态\n| GPU | Util | VRAM | 状态 |\n|-----|------|------|------|\n| cuda:0 | 22% | 5665/24564 MiB | eval-scalar-object-seed44-r2（已在跑） |\n| cuda:1 | 22% | 5165/24564 MiB | 其他任务 |\n| cuda:2 | 21% | 5665/24564 MiB | eval-acr-object-v4-obs-only |\n| cuda:3 | 24% | 1942/24564 MiB | eval-obs-only-object-norm02-seed43-r2 |\n| cuda:4 | 23% | 5665/24564 MiB | eval-obs-only-object-norm01-seed44（已在跑） |\n| cuda:5 | 0% | 2/24564 MiB | **空闲 → 已部署** |\n\n## 部署结果\n- **cuda:0 → eval-scalar-object-seed44-r2** — 已在运行（另一实例先提交，PID 226878）\n- **cuda:4 → eval-obs-only-object-norm01-seed44** — 已在运行（另一实例先提交，PID 227086）\n- **cuda:5 → eval-obs-only-object-default-seed44** — 已提交（PID 229742），obs_only default norm (~1.42) seed=44\n\n## 说明\ncuda:0 和 cuda:4 的实验已被另一进程提交（GPU 分配与任务计划略有不同：scalar 在 cuda:0 而非 cuda:4，obs-only-norm01 在 cuda:4 而非 cuda:5），但实验内容一致。cuda:5 是唯一剩余空卡，已部署 obs-only-default-seed44（因 VLA-only seed44 已完成）。\n\n## 问题/Blocker\n无。6 张卡全部满载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fill-bjb1-32546-idle-gpus.md"
+}

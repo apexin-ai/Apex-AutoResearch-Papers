@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b9dc308977392a6da1bd",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest cqa1 pi05 results",
+  "task_key": "worker_harvest_cqa1-pi05-results_20260526T154442",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_cqa1-pi05-results_20260526T154442_result.json",
+    "occurrence": 1,
+    "bytes": 1237,
+    "sha256": "f9c416daa288b1541f19aa026ace20f2be6b2fea5036f5111ed38413f6534a87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### Task 1: pi05-crm-k2-long-s44-cqa1 ✅ DONE\n- **SR: 76.0% (152/200)**\n- 日志干净，EXIT_CODE=0，无 OOM/CUDA error\n- 异常项：KITCHEN_SCENE8_both_moka_pots 20% (4/20)；其余 9 任务 65–95%\n- registry 已更新为 DONE，metrics/log_path/checkpoint_path 已设置\n\n### Task 2: adaptive-long r3（**两个都在正常运行**）\n| 实验 | PID | 状态 | GPU | 进度 |\n|---|---|---|---|---|\n| s43-cqa1-r3 | 350877 (alive, 4h48m) | RUNNING | cuda:4 11432 MiB, 70% | 6/10 任务完成，进行中：LIVING_ROOM_SCENE6 |\n| s44-cqa1-r3 | 351443 (alive, 4h47m) | RUNNING | cuda:5 11432 MiB, 64% | 6/10 任务完成，进行中：LIVING_ROOM_SCENE6 |\n\n无 OOM/error，日志持续输出。adaptive 模式 K=2 校正比 baseline 慢，预估剩余 ~2-3h（vs 估计的 1.7h，偏慢但不卡）。**无需 Agent 介入**。\n\n### Task 3: pi05-adaptive-object-s43-cqa1-r3（**接近完成**）\n- PID 364798 alive，4h14m elapsed\n- cuda:2 10320 MiB, 49% util\n- **9/10 任务完成**，最后一个任务（pick_up_the_orange_juice）已进行到 rollout 5/20\n- 预估 <30 分钟内收尾。**无需 Agent 介入**。\n\n三个运行中实验都健康，建议继续等待自然完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-cqa1-pi05-results.md"
+}

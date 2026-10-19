@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d9bd9098f6c455285e81",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest bjb1 32546 smolvla complete",
+  "task_key": "worker_harvest_bjb1-32546-smolvla-complete_20260526T064500",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_bjb1-32546-smolvla-complete_20260526T064500_result.json",
+    "occurrence": 1,
+    "bytes": 2323,
+    "sha256": "755e2e4be8b928da840c2c19483ebbd3f0a9d36a7bdc4dbe44ea007794b064b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 6 harvested. Compiling the final report.\n\n## bjb1-32546 报告\n\n### SmolVLA Harvest\n\n| exp_id | SR | conclusion | registry 更新 |\n|--------|-----|-----------|--------------|\n| goal_adapt_s48 | 0.850 | success (Δ+5.5pp vs VLA-only s48) | DONE ✓ |\n| goal_vla_only_s48 | 0.795 | success (baseline 数据点) | DONE ✓ |\n| tau_sweep_goal_tau045_s42 | 0.835 | negative (Δ=0.0pp vs VLA-only s42=0.835) | DONE ✓ |\n| tau_sweep_goal_tau040_s42 | 0.835 | negative (Δ=0.0pp) | DONE ✓ |\n| tau_sweep_goal_tau025_s42 | 0.835 | negative (Δ=0.0pp) | DONE ✓ |\n| tau_sweep_spatial_tau025_s42 | 0.785 | negative (Δ=0.0pp vs spatial VLA-only s42=0.785) | DONE ✓ |\n\n**关键发现**：goal s42 上三个 τ 值（0.25/0.40/0.45）全部得到 SR=0.835，等于 VLA-only baseline → τ 参数在 seed 42 上无差异化效果（推测 gating 几乎不触发，或修正在该 seed 上不改变成功 task 集合）。但 seed 48 的 adaptive_conformal_crm 比 VLA-only +5.5pp，说明效果有 seed 依赖性。\n\n### π0.5 CRM 状态（全部 RUNNING）\n\n启动 13:43（goal）/ 13:46（object），现在每个进程已完成 2/10 个 task（第 3 个 task rollout 5/20）。每 task ≈ 30 min，预计总时长 ≈ 5h。\n\n| GPU | exp_id | 进度 | VRAM | 预计完成 |\n|-----|--------|------|------|---------|\n| 0 | pi05-crm-k2-goal-s42-bjb1 | task 2.25/10 (put_wine_bottle 5/20, 2 成功) | 13.1GB | ~18:45 |\n| 1 | pi05-crm-k2-goal-s43-bjb1 | task 2.25/10 (put_wine_bottle 5/20, 4 成功) | 13.1GB | ~18:45 |\n| 2 | pi05-crm-k2-goal-s44-bjb1 | task 2.25/10 (put_wine_bottle 5/20, 3 成功) | 13.1GB | ~18:45 |\n| 3 | pi05-crm-k2-object-s42-bjb1 | task 2.25/10 (salad_dressing 5/20, 5 成功) | 13.2GB | ~18:50 |\n| 4 | pi05-crm-k2-object-s43-bjb1 | task 2.0/10 (cream_cheese 完成 70%) | 13.2GB | ~18:50 |\n| 5 | pi05-crm-k2-object-s44-bjb1 | task 2.25/10 (salad_dressing 5/20, 5 成功) | 13.2GB | ~18:50 |\n\n### 已完成 π0.5（无新结果待 harvest）\n\nbjb1-32546 上所有 6 个 π0.5 CRM 实验仍在跑，无新完成项。\n\n注意：`logs/eval_spatial_crm_obs_only_norm0.05_seed44_pi05_K2.json`（SR=0.970, 05-26 05:17）是早于 bjb2 那批 pi05-crm-k2-spatial-s44-bjb2（05-26 05:53 创建）的旧结果文件，不属于本服务器当前 harvest 范围。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-bjb1-32546-smolvla-complete.md"
+}

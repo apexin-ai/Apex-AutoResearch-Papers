@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a427f88860e70f696128",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diag cqa1 speed issue",
+  "task_key": "worker_diag_cqa1-speed-issue_20260526T020558",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_cqa1-speed-issue_20260526T020558_result.json",
+    "occurrence": 1,
+    "bytes": 1284,
+    "sha256": "322a83d0d127db5da7e6d1364d22e2aace62258b1523e832d2ff110ae50d469e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**用户的判断错误。实验运行正常，不要 kill。**\n\n### 实际情况\n\n| 项 | 值 |\n|----|----|\n| **模型** | SmolVLA（`/root/autodl-tmp/models/smolvla_libero/`） |\n| **模式** | `adaptive_conformal_crm`, K=2, max_corr=0.2 |\n| **CRM ckpt** | `crm_smolvla_3suite_v1/crm_best.pt` |\n| **Benchmark** | LIBERO-Goal, 10 tasks, n_rollouts=20, max_steps=300 |\n| **进程启动** | 08:32:58 |\n| **当前进度** | 6/6 进程都已完成 **5/10 tasks**（即 100/200 rollouts），第 6 个 task 进行中 |\n| **实际 wall clock** | ~93 分钟（**不是 10 小时**） |\n| **速率** | ~0.93 min/rollout，预计总耗时 ~3 小时 |\n\n### GPU/资源\n\n- 6× RTX 4090D，每个进程 3516 MiB（SmolVLA + CRM K=2 合理）\n- GPU util 20-29%，CPU 600-660%（LIBERO simulation 在 CPU 上跑，正常）\n\n### 根因分析\n\n不存在\"慢 100x\"的问题。**用户记忆/读数有误**。可能误把 \"5/10 task 完成\" 看成 \"1/10\"，或者把 tmux session 创建时间（07:37 birth）误当成进程启动时间——但进程实际 08:32 才启动，1.5 小时跑完 5 个 task 完全符合预期。\n\n### 建议\n\n**继续等待，不要 kill。** 预计 ~1.5 小时后（约 11:30）6 个进程全部完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-cqa1-speed-issue.md"
+}

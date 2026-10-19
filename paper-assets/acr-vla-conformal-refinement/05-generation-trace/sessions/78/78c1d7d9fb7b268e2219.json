@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78c1d7d9fb7b268e2219",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze smolvla tau020 long s42",
+  "task_key": "worker_analyze_smolvla-tau020-long-s42_20260528T042419",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_smolvla-tau020-long-s42_20260528T042419_result.json",
+    "occurrence": 1,
+    "bytes": 1196,
+    "sha256": "50675339a2160a6a66717887c9fed70b6a8a97d6982897b985dfac9d6e2d27f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总：\n\n```\n实验: smolvla-tau020-long-s42\nsuccess_rate: 0.585 (117/200)\ntrigger_rate: 8.9%\nmean_uncertainty: 0.1226\nwall_clock: 20202s (~5.6 GPU-hrs)\nconclusion: success (58.5% ≥ baseline 58%)\n\nPer-task:\n  KITCHEN_SCENE3_stove_moka_pot:           95.0% (19/20)\n  KITCHEN_SCENE4_black_bowl_drawer:        95.0% (19/20)\n  LIVING_ROOM_SCENE2_cream_cheese_butter:  90.0% (18/20)\n  STUDY_SCENE1_book_caddy:                 90.0% (18/20)\n  KITCHEN_SCENE6_mug_microwave:            65.0% (13/20)\n  LIVING_ROOM_SCENE1_alphabet_soup_cream:  60.0% (12/20)\n  LIVING_ROOM_SCENE5_two_mugs_plates:      35.0% (7/20)\n  LIVING_ROOM_SCENE6_mug_pudding:          30.0% (6/20)\n  LIVING_ROOM_SCENE2_alphabet_soup_tomato: 25.0% (5/20)\n  KITCHEN_SCENE8_two_moka_pots:             0.0% (0/20)\n\n与相邻 τ 对比:\n  τ=0.15: 61.0% (peak)\n  τ=0.20: 58.5% (本次)\n  τ=0.25: 56.0%\n```\n\nD170 假设结论：τ=0.20 (58.5%) 位于 τ=0.15 (61%) 和 τ=0.25 (56%) 之间，呈单调下降趋势（61→58.5→56），说明 τ=0.25 的 dip 不是孤立噪声，而是从 τ=0.15 峰值开始的平滑衰减。τ=0.15 仍是 Long suite 最优阈值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-smolvla-tau020-long-s42.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3252c99c048f9614e7b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops verify scalar crm data",
+  "task_key": "worker_ops_verify-scalar-crm-data_20260518T101620",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_verify-scalar-crm-data_20260518T101620_result.json",
+    "occurrence": 1,
+    "bytes": 1976,
+    "sha256": "a47cb4bd1035bf3c815a42203dfa3ca9647c996663439c48af8a8a41f3790dad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Scalar CRM 实验完整列表（LIBERO Object, norm=0.1）\n\n| Seed | SR | Successes/Total | n_rollouts/task | 来源文件 | 服务器 | 状态 |\n|------|-----|----------------|-----------------|----------|--------|------|\n| **42** | **9%** | 9/100 | 10 | `eval-acr-object-v4-scalar.log`（无 JSON 输出） | bjb1-32546 | **完整运行, EXIT_CODE=0** |\n| 43 | 10% | 10/100 | 10 | `eval_object_scalar_seed43.json` | bjb1-32546 | 完整 |\n| 44 | 6% | 6/100 | 10 | `eval_object_scalar_seed44_r2.json` | bjb1-32546 | 完整 |\n| 45 | 9% | 18/200 | **20** | `eval_object_scalar_seed45.json` | bjb2-28827 | 完整 |\n\n另有一次 seed42 重试 `eval-acr-object-v4-scalar-b2` 在 bjb2-28827 上因模型加载错误崩溃，无结果。\n\n---\n\n## 关键发现\n\n**1. Seed42 存在且有效。** `eval-acr-object-v4-scalar` 在 bjb1-32546 上完整跑完 10/10 tasks × 10 rollouts = 100 rollouts，SR=9%，EXIT_CODE=0。但它被排除在 `magnitude_curve_data.json` 的 scalar 条目之外（只有 seed 43/44/45）。\n\n**2. 论文数据与 JSON 一致：** `baselines.scalar` = {43: 0.10, 44: 0.06, 45: 0.09}，mean=8.33%, std=2.08%，论文写 8.3±2.1% ✓\n\n**3. 如果加入 seed42：** {42: 0.09, 43: 0.10, 44: 0.06, 45: 0.09} → mean=8.5%, std=1.73%（4 seeds）\n\n**4. seed45 的 n_rollouts 不一致：** seed45 用了 20 rollouts/task（18/200），其他 seed 用 10 rollouts/task。`magnitude_curve_data.json` metadata 写的是 `n_rollouts_per_task: 10`。\n\n**5. seed42 没有 JSON 输出文件**，因为运行时未指定 `--output_file` 参数（对比 seed43/44/45 都指定了）。结果只记录在 log 和 registry 中。\n\n---\n\n## Reviewer 问题的回应选项\n\nseed42 = 9%，是有效数据。论文要么：\n- **纳入 seed42**：报告 4 seeds, mean=8.5±1.7%\n- **解释排除原因**：需要合理理由（目前 registry conclusion 标记为 \"negative\" 但数据本身完整有效，没有技术问题）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-scalar-crm-data.md"
+}

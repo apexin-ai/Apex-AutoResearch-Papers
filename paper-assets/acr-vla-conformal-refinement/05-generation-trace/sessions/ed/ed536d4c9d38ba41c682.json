@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed536d4c9d38ba41c682",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy cqa1 kill orphans and backfill",
+  "task_key": "worker_deploy_cqa1-kill-orphans-and-backfill_20260523T175500",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cqa1-kill-orphans-and-backfill_20260523T175500_result.json",
+    "occurrence": 1,
+    "bytes": 665,
+    "sha256": "67bf73d3c79e41f72ad8bd23d1d99b5b7ea447d3d1286e05f5fca09278669751"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 结果\n\n| 项目 | 状态 |\n|------|------|\n| **Kill 孤儿进程** | PID 345585 (Long K2mean s44) 和 345660 (Long Reconvla s44) 已 kill -9 终止，tmux sessions 已清理 |\n| **新实验 PID** | s45: PID 359721 (cuda:0, 2030 MiB) / s46: PID 359798 (cuda:3, 1223 MiB)，模型加载正常 |\n| **3-suite checkpoint** | `/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt` 不存在于 cqa1-32758 |\n| **Registry** | `eval-supp-k2mean-obj-s45` 和 `eval-supp-k2mean-obj-s46` 均已注册并转为 RUNNING |\n\ncqa1-32758 当前 GPU 使用：0 (2030M), 1 (3714M), 2 (2131M), 3 (1223M), 4 (空闲), 5 (3347M)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-cqa1-kill-orphans-and-backfill.md"
+}

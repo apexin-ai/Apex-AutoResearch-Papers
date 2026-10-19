@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "id": "8d902920d7e51d68ca30",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "paper figure fig1 pipeline d155",
+  "task_key": "worker_paper_figure_fig1_pipeline_d155_20260526T061449",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_figure_fig1_pipeline_d155_20260526T061449_result.json",
+    "occurrence": 1,
+    "bytes": 2109283,
+    "sha256": "5e8f36e40366dc4bb1e2a67671a33739ed53d4e8ddd68007d19d8fa75d221ab9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "8d902920d7e51d68ca30-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig1-pipeline-d155.md"
+}

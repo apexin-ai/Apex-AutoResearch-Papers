@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "825d1ac61e232c43053b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "audit bjb1 s42 model identity",
+  "task_key": "worker_audit_bjb1-s42-model-identity_20260525T021418",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_audit_bjb1-s42-model-identity_20260525T021418_result.json",
+    "occurrence": 1,
+    "bytes": 1301,
+    "sha256": "7ceb29b33afd894b6d1ca30e0e6666960a96ad95a4529bc7eec596517149fc8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "tmux isn't allowed in read-only mode, but it doesn't matter — the log is conclusive.\n\n## 结论：模型是 SmolVLA，不是 π0.5\n\n### 证据\n\n1. **日志 args 明确声明** `'model': 'smolvla'`\n2. **加载信息**: `[eval] Loading SmolVLA from /root/autodl-tmp/models/smolvla_libero/...`\n3. **checkpoint 路径**: `smolvla_path: '/root/autodl-tmp/models/smolvla_libero/'`（不是 pi05 路径）\n4. **输出文件**: 写入 `eval_spatial_vla_only_seed42.json`（不是 `eval_spatial_vla_only_pi05_seed42.json`）\n5. **π0.5 结果独立存在**: 同目录下有单独的 `eval_spatial_vla_only_pi05_seed42.json`，其 SR=98%，与 SmolVLA 的 80% 完全不同\n\n### wall_clock 解释\n\n3.14h 对 SmolVLA 并非异常：10 tasks × 20 rollouts × max_steps=280 = 200 episodes，在该服务器上耗时合理。审计中 \"SmolVLA ≈ 30min\" 的估计可能基于更少 rollouts 或更快 GPU。\n\n### registry 状态\n\nRegistry 中 `exp_id: eval-supp-spatial-vla-only-s42` 返回 0 条记录，metadata 中标注 `model=pi05` 可能是注册时的标注错误。\n\n### 结论\n\n**SR=80.0% 可以用于 SmolVLA Table 1。** 该数据点确实是 SmolVLA spatial vla-only seed42 的结果。如果 registry 有错误标注，建议修正 model 字段为 `smolvla`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-bjb1-s42-model-identity.md"
+}

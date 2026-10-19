@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cfd3ddf0fe164f449039",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis progress scan all",
+  "task_key": "worker_analysis_progress-scan-all_20260515T101810",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_progress-scan-all_20260515T101810_result.json",
+    "occurrence": 1,
+    "bytes": 3479,
+    "sha256": "a09c2cf928581932c0a36a698e6927f10916ae85319f374a4f57e85f69b5d868"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the data. Here's the full report:\n\n```\n== bjb1-32546 Object Eval Progress ==\n(all on LIBERO object benchmark, 10 tasks × 10 rollouts each)\n\neval-reconvla-object (reconvla, no CRM):\n  5/10 tasks done, working on T5\n  T0=0% T1=0% T2=10% T3=30% T4=0%\n  Avg so far: 8% (4/50)\n\neval-acr-object-v4-perdof (crm_perdof, norm=0.1):\n  5/10 tasks done, T5 at rollout 5/10\n  T0=0% T1=0% T2=20% T3=30% T4=0%\n  Avg so far: 10% (5/50)\n\neval-acr-object-v4-obs-only (crm_obs_only, norm=0.1):\n  5/10 tasks done, T5 at rollout 5/10\n  T0=0% T1=10% T2=20% T3=40% T4=10%\n  Avg so far: 16% (8/50)  ← best among object evals\n\neval-acr-object-v4-scalar (crm_scalar, norm=0.1):\n  5/10 tasks done, working on T5\n  T0=0% T1=0% T2=10% T3=10% T4=0%\n  Avg so far: 4% (2/50)  ← worst\n\neval-acr-object-obs-only-norm02 (crm_obs_only, norm=0.2):\n  3/10 tasks done, T3 at rollout 5/10\n  T0=0% T1=0% T2=30%\n  Avg so far: 10% (3/30)\n\neval-vla-mean-object (vla_only, mean baseline):\n  5/10 tasks done, working on T5\n  T0=0% T1=0% T2=10% T3=30% T4=10%\n  Avg so far: 10% (5/50)\n\n  EXTRA: eval-acr-object-v4-default (acr_vla, perdof ckpt, no norm cap):\n  3/10 tasks done, T3 at rollout 5/10\n  T0=0% T1=0% T2=0%\n  Avg so far: 0% (0/30)  ← no norm cap → hurting badly\n\n== bjb2-28827 Magnitude Sweep Progress ==\n(all on LIBERO spatial benchmark, 10 tasks × 10 rollouts)\n\neval-mag-perdof-norm003 (acr_vla, norm=0.03):\n  5/10 tasks done, T5 at rollout 5/10\n  T0=60% T1=100% T2=0% T3=30% T4=10%\n  Avg so far: 40% (20/50)\n\neval-mag-perdof-norm005 (acr_vla, norm=0.05):\n  5/10 tasks done, starting T5\n  T0=50% T1=100% T2=0% T3=30% T4=0%\n  Avg so far: 36% (18/50)\n\neval-mag-perdof-norm02 (acr_vla, norm=0.2):\n  5/10 tasks done, T5 at rollout 5/10\n  T0=60% T1=90% T2=0% T3=20% T4=0%\n  Avg so far: 34% (17/50)\n\neval-mag-perdof-norm03 (acr_vla, norm=0.3):\n  5/10 tasks done, starting T5\n  T0=70% T1=50% T2=10% T3=10% T4=0%\n  Avg so far: 28% (14/50)\n\neval-mag-obsonly-norm005 (crm_obs_only, norm=0.05):\n  5/10 tasks done, T5 at rollout 5/10\n  T0=80% T1=90% T2=0% T3=40% T4=10%\n  Avg so far: 44% (22/50)\n\neval-mag-obsonly-norm02 (crm_obs_only, norm=0.2):\n  5/10 tasks done, T5 at rollout 5/10\n  T0=90% T1=100% T2=0% T3=30% T4=10%\n  Avg so far: 46% (23/50)  ← best among all mag sweep\n\n== bjb2-40593 ==\neval-mag-obsonly-norm003-b2 (crm_obs_only, norm=0.03, spatial):\n  3/10 tasks done, starting T3\n  T0=90% T1=100% T2=0%\n  Avg so far: 63% (19/30)  ← high but only 3 tasks\n\n== GPU Utilization Summary ==\nbjb1-32546: 6 GPUs active, 3.3-4.3 GB VRAM, 21-24% util (all running)\nbjb2-28827: 6 GPUs active, 3.6 GB VRAM each, 18-19% util (all running)\nbjb2-40593: 1 GPU active, 4.6 GB VRAM, 13% util\n\n== Key Observations ==\n\n1. ALL experiments are ~50% done (5/10 tasks) except 3 that are at 3/10\n2. Object benchmark results are universally poor (4-16% avg) — obs_only@0.1 \n   leads at 16% but still low\n3. Spatial mag sweep shows obs_only consistently beats perdof:\n   - obs_only norm=0.02: 46% | obs_only norm=0.05: 44% | obs_only norm=0.03 (b2): 63%*\n   - perdof norm=0.03: 40% | perdof norm=0.05: 36% | perdof norm=0.2: 34% | perdof norm=0.3: 28%\n4. T2 (table_center) is 0% across ALL spatial experiments — likely an impossible task\n5. Norm=0.3 for perdof degraded T1 from 100%→50%, suggesting over-correction\n6. No experiments near completion yet — earliest finishes likely in ~4-5 hours\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-progress-scan-all.md"
+}

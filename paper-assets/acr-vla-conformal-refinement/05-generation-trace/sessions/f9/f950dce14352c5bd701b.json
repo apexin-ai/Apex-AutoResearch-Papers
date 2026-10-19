@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f950dce14352c5bd701b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "fix kill dup eval bjb2",
+  "task_key": "worker_fix_kill-dup-eval-bjb2_20260513T232938",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_kill-dup-eval-bjb2_20260513T232938_result.json",
+    "occurrence": 1,
+    "bytes": 350,
+    "sha256": "aeba10709e15549cfafeceaf3cfcb6d3c0977ff5d1453b3cc8d8a18ca8d5b25d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **eval-object-v6-full**: 无 tmux server 运行，session 已不存在，无需清理\n- **eval-object-v5-full (PID 115623)**: 正常运行中，正在加载 libero_object 环境（10 tasks loaded）\n- **GPU 0**: 6056/24564 MiB 已用，utilization 12%，只有一个进程在使用\n\n一切正常，无重复进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-dup-eval-bjb2.md"
+}

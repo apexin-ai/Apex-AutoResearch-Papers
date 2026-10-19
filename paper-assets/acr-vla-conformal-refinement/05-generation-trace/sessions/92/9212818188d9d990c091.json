@@ -1,0 +1,1626 @@
+{
+  "schema_version": "1.0",
+  "id": "9212818188d9d990c091",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "deploy crm wave1 bjb1 32546 remaining3",
+  "task_key": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331.jsonl",
+    "occurrence": 1,
+    "bytes": 55854,
+    "sha256": "6e48fa3c44885e66e6cb9f522da23a47650ade10c1e778ac4afe06b4d014874b"
+  },
+  "statistics": {
+    "messages": 80,
+    "user_turns": 0,
+    "tool_calls": 39,
+    "roles": {
+      "assistant": 2,
+      "tool_call": 39,
+      "tool_result": 39
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T10:33:41.684180+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-25T10:36:21.213448+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "10"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-25T10:36:21.213847+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-25T10:36:21.214078+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "nvidia-smi --query-gpu=index,name,memory.used,utilization.gpu --format=csv,noheader"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-25T10:36:21.214220+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "ps -p 93006,93268,93531 -o pid,etime,cmd"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-25T10:36:21.214414+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA GeForce RTX 4090, 5609 MiB, 23 %\\\\n1, NVIDIA GeForce RTX 4090, 5159 MiB, 23 %\\\\n2, NVIDIA GeForce RTX 4090, 5731 MiB, 32 %\\\\n3, NVIDIA GeForce RTX 4090, 2 MiB, 0 %\\\\n4, NVIDIA GeForce RTX 4090, 2 MiB, 0 %\\\\n5, NVIDIA GeForce RTX 4090, 2 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-25T10:36:21.214561+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED CMD\\\\n 93006       15:57 python -u src/evaluate.py --benchmark goal --mode crm_obs_only --baseline_mode single --seed 43 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file logs/eval_goal_crm_seed43.json\\\\n 93268       15:55 python -u src/evaluate.py --benchmark goal --mode crm_obs_only --baseline_mode single --seed 44 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file logs/eval_goal_crm_seed44.json\\\\n 93531       15:52 python -u src/evaluate.py --benchmark object --mode crm_obs_only --baseline_mode single --seed 42 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file logs/eval_object_crm_seed42.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-25T10:36:21.214719+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "cd /root/acr-vla-conformal-refinement && tmux new-session -d -s eval-crm-object-s43-d149 \"CUDA_VISIBLE_DEVICES=3 python -u /root/acr-vla-conformal-refinement/src/evaluate.py --benchmark object --mode crm_obs_only --baseline_mode single --seed 43 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file /root/acr-vla-conformal-refinement/logs/eval_object_crm_seed43.json 2>&1 | tee /tmp/eval_object_crm_s43.log\""
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-25T10:36:21.214863+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-25T10:36:21.214983+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "cd /root/acr-vla-conformal-refinement && tmux new-session -d -s eval-crm-object-s44-d149 \"CUDA_VISIBLE_DEVICES=4 python -u /root/acr-vla-conformal-refinement/src/evaluate.py --benchmark object --mode crm_obs_only --baseline_mode single --seed 44 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file /root/acr-vla-conformal-refinement/logs/eval_object_crm_seed44.json 2>&1 | tee /tmp/eval_object_crm_s44.log\""
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-25T10:36:21.215105+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-25T10:36:21.215219+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "cd /root/acr-vla-conformal-refinement && tmux new-session -d -s eval-crm-spatial-s48-d149 \"CUDA_VISIBLE_DEVICES=5 python -u /root/acr-vla-conformal-refinement/src/evaluate.py --benchmark spatial --mode crm_obs_only --baseline_mode single --seed 48 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file /root/acr-vla-conformal-refinement/logs/eval_spatial_crm_seed48.json 2>&1 | tee /tmp/eval_spatial_crm_s48.log\""
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-25T10:36:21.215385+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-25T10:36:21.215507+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "tail -20 /tmp/eval_object_crm_s43.log"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-25T10:36:21.215629+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 43, 'K': 10, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': '/root/acr-vla-conformal-refinement/logs/eval_object_crm_seed43.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\\\n[eval] Mode: crm_obs_only, benchmark: object\\\\n[eval] max_steps set to 280 for benchmark object\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-25T10:36:21.215761+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "tail -20 /tmp/eval_object_crm_s44.log"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-25T10:36:21.215884+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'object', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 44, 'K': 10, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': '/root/acr-vla-conformal-refinement/logs/eval_object_crm_seed44.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\\\n[eval] Mode: crm_obs_only, benchmark: object\\\\n[eval] max_steps set to 280 for benchmark object\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-25T10:36:21.216002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "tail -20 /tmp/eval_spatial_crm_s48.log"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-25T10:36:21.216122+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[evaluate] args: {'benchmark': 'spatial', 'checkpoint': None, 'crm_checkpoint': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'n_rollouts': 20, 'max_steps': 300, 'seed': 48, 'K': 10, 'mode': 'crm_obs_only', 'baseline_mode': 'single', 'smolvla_path': '/root/autodl-tmp/models/smolvla_libero/', 'model': 'smolvla', 'pi05_path': '/root/autodl-tmp/models/pi05_libero_finetuned/', 'obs_dim': 960, 'unified_obs_dim': None, 'hidden_dim': 256, 'task_filter': None, 'render': False, 'output_file': '/root/acr-vla-conformal-refinement/logs/eval_spatial_crm_seed48.json', 'max_correction_norm': 0.05, 'adaptive_k': False, 'adaptive_threshold': 0.1, 'k_init': 2, 'k_full': 5, 'unc_head_checkpoint': None, 'unc_threshold': 0.5, 'conformal_threshold': 0.074855, 'n_action_steps': 10}\\\\n[eval] Mode: crm_obs_only, benchmark: spatial\\\\n[eval] max_steps set to 280 for benchmark spatial\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-25T10:36:21.216252+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:TodoWrite",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-25T10:36:21.216397+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-25T10:36:21.216532+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "pgrep -af \"src/evaluate.py.*crm_obs_only\""
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-25T10:36:21.216646+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'pgrep' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-25T10:36:21.216758+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "tmux ls"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-25T10:36:21.216869+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-25T10:36:21.216978+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "tmux ls && echo \"---\" && pgrep -af \"src/evaluate.py.*crm_obs_only\""
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-25T10:36:21.217135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval-crm-goal-s43-d149: 1 windows (created Mon May 25 18:18:02 2026)\\\\neval-crm-goal-s44-d149: 1 windows (created Mon May 25 18:18:05 2026)\\\\neval-crm-object-s42-d149: 1 windows (created Mon May 25 18:18:08 2026)\\\\neval-crm-object-s43-d149: 1 windows (created Mon May 25 18:34:08 2026)\\\\neval-crm-object-s44-d149: 1 windows (created Mon May 25 18:34:11 2026)\\\\neval-crm-spatial-s48-d149: 1 windows (created Mon May 25 18:34:13 2026)\\\\n---\\\\n93003 tmux new-session -d -s eval-crm-goal-s43-d149 -c /root/acr-vla-conformal-refinement CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark goal --mode crm_obs_only --baseline_mode single --seed 43 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file logs/eval_goal_crm_seed43.json 2>&1 | tee /tmp/eval_goal_crm_s43.log\\\\n93004 bash -c CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark goal --mode crm_obs_only --baseline_mode single --seed 43 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file logs/eval_goal_crm_seed43.json 2>&1 | tee /tmp/eval_goal_crm_s43.log\\\\n93006 python -u src/evaluate.py --benchmark goal --mode crm_obs_only --baseline_mode single --seed 43 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file logs/eval_goal_crm_seed43.json\\\\n93266 bash -c CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark goal --mode crm_obs_only --baseline_mode single --seed 44 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file logs/eval_goal_crm_seed44.json 2>&1 | tee /tmp/eval_goal_crm_s44.log\\\\n93268 python -u src/evaluate.py --benchmark goal --mode crm_obs_only --baseline_mode single --seed 44 --\n…[truncated 3258 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-25T10:36:21.217334+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-goal-s43-d149",
+              "field": "hypothesis",
+              "value": "SmolVLA CRM (K=10, norm=0.05) 在 goal 上提供 action correction（Table 1 D149 seed）"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-25T10:36:21.217485+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-goal-s43-d149\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T10:34:42.674Z\\\", \\\"updated_at\\\": \\\"2026-05-25T10:34:42.674Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (K=10, norm=0.05) 在 goal 上提供 action correction（Table 1 D149 seed）\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3709}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-25T10:36:21.217614+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-goal-s44-d149",
+              "field": "hypothesis",
+              "value": "SmolVLA CRM (K=10, norm=0.05) 在 goal 上提供 action correction（Table 1 D149 seed）"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-25T10:36:21.217747+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-goal-s44-d149\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T10:34:43.724Z\\\", \\\"updated_at\\\": \\\"2026-05-25T10:34:43.724Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (K=10, norm=0.05) 在 goal 上提供 action correction（Table 1 D149 seed）\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3932}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-25T10:36:21.217872+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-object-s42-d149",
+              "field": "hypothesis",
+              "value": "SmolVLA CRM (K=10, norm=0.05) 在 object 上提供 action correction（Table 1 D149 seed）"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-25T10:36:21.218003+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-object-s42-d149\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T10:34:45.261Z\\\", \\\"updated_at\\\": \\\"2026-05-25T10:34:45.262Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (K=10, norm=0.05) 在 object 上提供 action correction（Table 1 D149 seed）\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3724}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-25T10:36:21.218127+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-object-s43-d149",
+              "field": "hypothesis",
+              "value": "SmolVLA CRM (K=10, norm=0.05) 在 object 上提供 action correction（Table 1 D149 seed）"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-25T10:36:21.218278+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-object-s43-d149\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T10:34:46.286Z\\\", \\\"updated_at\\\": \\\"2026-05-25T10:34:46.286Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (K=10, norm=0.05) 在 object 上提供 action correction（Table 1 D149 seed）\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3649}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-25T10:36:21.218414+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-object-s44-d149",
+              "field": "hypothesis",
+              "value": "SmolVLA CRM (K=10, norm=0.05) 在 object 上提供 action correction（Table 1 D149 seed）"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-25T10:36:21.218545+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-object-s44-d149\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T10:34:47.851Z\\\", \\\"updated_at\\\": \\\"2026-05-25T10:34:47.851Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (K=10, norm=0.05) 在 object 上提供 action correction（Table 1 D149 seed）\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3626}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-25T10:36:21.218667+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-spatial-s48-d149",
+              "field": "hypothesis",
+              "value": "SmolVLA CRM (K=10, norm=0.05) 在 spatial 上提供 action correction（Table 1 D149 seed）"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-25T10:36:21.218796+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-spatial-s48-d149\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T10:34:48.981Z\\\", \\\"updated_at\\\": \\\"2026-05-25T10:34:48.982Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (K=10, norm=0.05) 在 spatial 上提供 action correction（Table 1 D149 seed）\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5222}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-25T10:36:21.218936+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-goal-s43-d149",
+              "field": "status",
+              "value": "RUNNING",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark goal --mode crm_obs_only --baseline_mode single --seed 43 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file logs/eval_goal_crm_seed43.json', 'server': 'bjb1-32546', 'gpu': 0, 'seed': 43, 'model_name': 'smolvla', 'data_path': 'LIBERO-Goal', 'data_count': 200, 'checkpoint_source': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'eval_data': 'LIBERO-Goal 10 tasks x 20 rollouts', 'checkpoint_path': 'N/A-eval-only', 'log_path': '/tmp/eval_goal_crm_s43.log'}"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-25T10:36:21.219081+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2494}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-25T10:36:21.219207+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-goal-s44-d149",
+              "field": "status",
+              "value": "RUNNING",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark goal --mode crm_obs_only --baseline_mode single --seed 44 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file logs/eval_goal_crm_seed44.json', 'server': 'bjb1-32546', 'gpu': 1, 'seed': 44, 'model_name': 'smolvla', 'data_path': 'LIBERO-Goal', 'data_count': 200, 'checkpoint_source': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'eval_data': 'LIBERO-Goal 10 tasks x 20 rollouts', 'checkpoint_path': 'N/A-eval-only', 'log_path': '/tmp/eval_goal_crm_s44.log'}"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-25T10:36:21.219366+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2178}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-25T10:36:21.219497+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-object-s42-d149",
+              "field": "status",
+              "value": "RUNNING",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --benchmark object --mode crm_obs_only --baseline_mode single --seed 42 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file logs/eval_object_crm_seed42.json', 'server': 'bjb1-32546', 'gpu': 2, 'seed': 42, 'model_name': 'smolvla', 'data_path': 'LIBERO-Object', 'data_count': 200, 'checkpoint_source': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'eval_data': 'LIBERO-Object 10 tasks x 20 rollouts', 'checkpoint_path': 'N/A-eval-only', 'log_path': '/tmp/eval_object_crm_s42.log'}"
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-25T10:36:21.219634+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2656}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-25T10:36:21.219756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-object-s43-d149",
+              "field": "status",
+              "value": "RUNNING",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=3 python -u /root/acr-vla-conformal-refinement/src/evaluate.py --benchmark object --mode crm_obs_only --baseline_mode single --seed 43 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file /root/acr-vla-conformal-refinement/logs/eval_object_crm_seed43.json', 'server': 'bjb1-32546', 'gpu': 3, 'seed': 43, 'model_name': 'smolvla', 'data_path': 'LIBERO-Object', 'data_count': 200, 'checkpoint_source': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'eval_data': 'LIBERO-Object 10 tasks x 20 rollouts', 'checkpoint_path': 'N/A-eval-only', 'log_path': '/tmp/eval_object_crm_s43.log'}"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-25T10:36:21.219912+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2274}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-25T10:36:21.220059+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-object-s44-d149",
+              "field": "status",
+              "value": "RUNNING",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=4 python -u /root/acr-vla-conformal-refinement/src/evaluate.py --benchmark object --mode crm_obs_only --baseline_mode single --seed 44 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file /root/acr-vla-conformal-refinement/logs/eval_object_crm_seed44.json', 'server': 'bjb1-32546', 'gpu': 4, 'seed': 44, 'model_name': 'smolvla', 'data_path': 'LIBERO-Object', 'data_count': 200, 'checkpoint_source': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'eval_data': 'LIBERO-Object 10 tasks x 20 rollouts', 'checkpoint_path': 'N/A-eval-only', 'log_path': '/tmp/eval_object_crm_s44.log'}"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-25T10:36:21.220313+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2417}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-25T10:36:21.220508+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-spatial-s48-d149",
+              "field": "status",
+              "value": "RUNNING",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=5 python -u /root/acr-vla-conformal-refinement/src/evaluate.py --benchmark spatial --mode crm_obs_only --baseline_mode single --seed 48 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file /root/acr-vla-conformal-refinement/logs/eval_spatial_crm_seed48.json', 'server': 'bjb1-32546', 'gpu': 5, 'seed': 48, 'model_name': 'smolvla', 'data_path': 'LIBERO-Spatial', 'data_count': 200, 'checkpoint_source': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'eval_data': 'LIBERO-Spatial 10 tasks x 20 rollouts', 'checkpoint_path': 'N/A-eval-only', 'log_path': '/tmp/eval_spatial_crm_s48.log'}"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-25T10:36:21.220661+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2224}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-25T10:36:21.220809+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-goal-s43-d149",
+              "field": "status",
+              "value": "QUEUED"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-25T10:36:21.220942+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-goal-s43-d149\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T10:34:42.674Z\\\", \\\"updated_at\\\": \\\"2026-05-25T10:35:27.450Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (K=10, norm=0.05) 在 goal 上提供 action correction（Table 1 D149 seed）\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6529}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-25T10:36:21.221077+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-goal-s44-d149",
+              "field": "status",
+              "value": "QUEUED"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-25T10:36:21.221208+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-goal-s44-d149\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T10:34:43.724Z\\\", \\\"updated_at\\\": \\\"2026-05-25T10:35:28.430Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (K=10, norm=0.05) 在 goal 上提供 action correction（Table 1 D149 seed）\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7008}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-25T10:36:21.221352+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-object-s42-d149",
+              "field": "status",
+              "value": "QUEUED"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-25T10:36:21.221469+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-object-s43-d149",
+              "field": "status",
+              "value": "QUEUED"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-25T10:36:21.221595+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-object-s42-d149\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T10:34:45.261Z\\\", \\\"updated_at\\\": \\\"2026-05-25T10:35:29.443Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (K=10, norm=0.05) 在 object 上提供 action correction（Table 1 D149 seed）\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6062}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-25T10:36:21.221725+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-object-s43-d149\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T10:34:46.286Z\\\", \\\"updated_at\\\": \\\"2026-05-25T10:35:30.066Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (K=10, norm=0.05) 在 object 上提供 action correction（Table 1 D149 seed）\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6501}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-25T10:36:21.221845+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-object-s44-d149",
+              "field": "status",
+              "value": "QUEUED"
+            }
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-25T10:36:21.221977+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-object-s44-d149\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T10:34:47.851Z\\\", \\\"updated_at\\\": \\\"2026-05-25T10:35:31.015Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (K=10, norm=0.05) 在 object 上提供 action correction（Table 1 D149 seed）\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6118}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-25T10:36:21.222098+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-spatial-s48-d149",
+              "field": "status",
+              "value": "QUEUED"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-25T10:36:21.222221+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-spatial-s48-d149\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T10:34:48.981Z\\\", \\\"updated_at\\\": \\\"2026-05-25T10:35:31.714Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (K=10, norm=0.05) 在 spatial 上提供 action correction（Table 1 D149 seed）\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6097}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-25T10:36:21.222365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-goal-s43-d149",
+              "field": "status",
+              "value": "RUNNING",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark goal --mode crm_obs_only --baseline_mode single --seed 43 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file logs/eval_goal_crm_seed43.json', 'server': 'bjb1-32546', 'gpu': 0, 'seed': 43, 'model_name': 'smolvla', 'data_path': 'LIBERO-Goal', 'data_count': 200, 'checkpoint_source': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'eval_data': 'LIBERO-Goal 10 tasks x 20 rollouts', 'checkpoint_path': 'N/A-eval-only', 'log_path': '/tmp/eval_goal_crm_s43.log'}"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-25T10:36:21.222522+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-goal-s43-d149\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T10:34:42.674Z\\\", \\\"updated_at\\\": \\\"2026-05-25T10:35:39.837Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (K=10, norm=0.05) 在 goal 上提供 action correction（Table 1 D149 seed）\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python -u src/evaluate.py --benchmark goal --mode crm_obs_only --baseline_mode single --seed 43 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file logs/eval_goal_crm_seed43.json\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": 0, \\\"seed\\\": 43, \\\"model_name\\\": \\\"smolvla\\\", \\\"data_path\\\": \\\"LIBERO-Goal\\\", \\\"data_count\\\": 200, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Goal 10 tasks x 20 rollouts\\\", \\\"checkpoint_path\\\": \\\"N/A-eval-only\\\", \\\"log_path\\\": \\\"/tmp/eval_goal_crm_s43.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6479}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-25T10:36:21.222663+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-goal-s44-d149",
+              "field": "status",
+              "value": "RUNNING",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark goal --mode crm_obs_only --baseline_mode single --seed 44 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file logs/eval_goal_crm_seed44.json', 'server': 'bjb1-32546', 'gpu': 1, 'seed': 44, 'model_name': 'smolvla', 'data_path': 'LIBERO-Goal', 'data_count': 200, 'checkpoint_source': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'eval_data': 'LIBERO-Goal 10 tasks x 20 rollouts', 'checkpoint_path': 'N/A-eval-only', 'log_path': '/tmp/eval_goal_crm_s44.log'}"
+            }
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-25T10:36:21.222817+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-goal-s44-d149\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T10:34:43.724Z\\\", \\\"updated_at\\\": \\\"2026-05-25T10:35:44.196Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (K=10, norm=0.05) 在 goal 上提供 action correction（Table 1 D149 seed）\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python -u src/evaluate.py --benchmark goal --mode crm_obs_only --baseline_mode single --seed 44 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file logs/eval_goal_crm_seed44.json\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": 1, \\\"seed\\\": 44, \\\"model_name\\\": \\\"smolvla\\\", \\\"data_path\\\": \\\"LIBERO-Goal\\\", \\\"data_count\\\": 200, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Goal 10 tasks x 20 rollouts\\\", \\\"checkpoint_path\\\": \\\"N/A-eval-only\\\", \\\"log_path\\\": \\\"/tmp/eval_goal_crm_s44.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6245}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-25T10:36:21.222949+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-object-s42-d149",
+              "field": "status",
+              "value": "RUNNING",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --benchmark object --mode crm_obs_only --baseline_mode single --seed 42 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file logs/eval_object_crm_seed42.json', 'server': 'bjb1-32546', 'gpu': 2, 'seed': 42, 'model_name': 'smolvla', 'data_path': 'LIBERO-Object', 'data_count': 200, 'checkpoint_source': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'eval_data': 'LIBERO-Object 10 tasks x 20 rollouts', 'checkpoint_path': 'N/A-eval-only', 'log_path': '/tmp/eval_object_crm_s42.log'}"
+            }
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-25T10:36:21.223101+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-object-s42-d149\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T10:34:45.261Z\\\", \\\"updated_at\\\": \\\"2026-05-25T10:35:48.351Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (K=10, norm=0.05) 在 object 上提供 action correction（Table 1 D149 seed）\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python -u src/evaluate.py --benchmark object --mode crm_obs_only --baseline_mode single --seed 42 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file logs/eval_object_crm_seed42.json\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": 2, \\\"seed\\\": 42, \\\"model_name\\\": \\\"smolvla\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 200, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object 10 tasks x 20 rollouts\\\", \\\"checkpoint_path\\\": \\\"N/A-eval-only\\\", \\\"log_path\\\": \\\"/tmp/eval_object_crm_s42.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6204}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-25T10:36:21.223241+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-object-s43-d149",
+              "field": "status",
+              "value": "RUNNING",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=3 python -u /root/acr-vla-conformal-refinement/src/evaluate.py --benchmark object --mode crm_obs_only --baseline_mode single --seed 43 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file /root/acr-vla-conformal-refinement/logs/eval_object_crm_seed43.json', 'server': 'bjb1-32546', 'gpu': 3, 'seed': 43, 'model_name': 'smolvla', 'data_path': 'LIBERO-Object', 'data_count': 200, 'checkpoint_source': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'eval_data': 'LIBERO-Object 10 tasks x 20 rollouts', 'checkpoint_path': 'N/A-eval-only', 'log_path': '/tmp/eval_object_crm_s43.log'}"
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-25T10:36:21.223420+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-object-s43-d149\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T10:34:46.286Z\\\", \\\"updated_at\\\": \\\"2026-05-25T10:35:52.539Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (K=10, norm=0.05) 在 object 上提供 action correction（Table 1 D149 seed）\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python -u /root/acr-vla-conformal-refinement/src/evaluate.py --benchmark object --mode crm_obs_only --baseline_mode single --seed 43 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file /root/acr-vla-conformal-refinement/logs/eval_object_crm_seed43.json\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": 3, \\\"seed\\\": 43, \\\"model_name\\\": \\\"smolvla\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 200, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object 10 tasks x 20 rollouts\\\", \\\"checkpoint_path\\\": \\\"N/A-eval-only\\\", \\\"log_path\\\": \\\"/tmp/eval_object_crm_s43.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8985}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-25T10:36:21.223558+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-object-s44-d149",
+              "field": "status",
+              "value": "RUNNING",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=4 python -u /root/acr-vla-conformal-refinement/src/evaluate.py --benchmark object --mode crm_obs_only --baseline_mode single --seed 44 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file /root/acr-vla-conformal-refinement/logs/eval_object_crm_seed44.json', 'server': 'bjb1-32546', 'gpu': 4, 'seed': 44, 'model_name': 'smolvla', 'data_path': 'LIBERO-Object', 'data_count': 200, 'checkpoint_source': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'eval_data': 'LIBERO-Object 10 tasks x 20 rollouts', 'checkpoint_path': 'N/A-eval-only', 'log_path': '/tmp/eval_object_crm_s44.log'}"
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-25T10:36:21.223720+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-object-s44-d149\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T10:34:47.851Z\\\", \\\"updated_at\\\": \\\"2026-05-25T10:35:56.787Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (K=10, norm=0.05) 在 object 上提供 action correction（Table 1 D149 seed）\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=4 python -u /root/acr-vla-conformal-refinement/src/evaluate.py --benchmark object --mode crm_obs_only --baseline_mode single --seed 44 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file /root/acr-vla-conformal-refinement/logs/eval_object_crm_seed44.json\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": 4, \\\"seed\\\": 44, \\\"model_name\\\": \\\"smolvla\\\", \\\"data_path\\\": \\\"LIBERO-Object\\\", \\\"data_count\\\": 200, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Object 10 tasks x 20 rollouts\\\", \\\"checkpoint_path\\\": \\\"N/A-eval-only\\\", \\\"log_path\\\": \\\"/tmp/eval_object_crm_s44.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7252}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-25T10:36:21.223858+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval-crm-spatial-s48-d149",
+              "field": "status",
+              "value": "RUNNING",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=5 python -u /root/acr-vla-conformal-refinement/src/evaluate.py --benchmark spatial --mode crm_obs_only --baseline_mode single --seed 48 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file /root/acr-vla-conformal-refinement/logs/eval_spatial_crm_seed48.json', 'server': 'bjb1-32546', 'gpu': 5, 'seed': 48, 'model_name': 'smolvla', 'data_path': 'LIBERO-Spatial', 'data_count': 200, 'checkpoint_source': '/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt', 'eval_data': 'LIBERO-Spatial 10 tasks x 20 rollouts', 'checkpoint_path': 'N/A-eval-only', 'log_path': '/tmp/eval_spatial_crm_s48.log'}"
+            }
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-25T10:36:21.224013+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-crm-spatial-s48-d149\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-25T10:34:48.981Z\\\", \\\"updated_at\\\": \\\"2026-05-25T10:36:00.892Z\\\", \\\"hypothesis\\\": \\\"SmolVLA CRM (K=10, norm=0.05) 在 spatial 上提供 action correction（Table 1 D149 seed）\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=5 python -u /root/acr-vla-conformal-refinement/src/evaluate.py --benchmark spatial --mode crm_obs_only --baseline_mode single --seed 48 --n_rollouts 20 --K 10 --max_correction_norm 0.05 --crm_checkpoint /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt --output_file /root/acr-vla-conformal-refinement/logs/eval_spatial_crm_seed48.json\\\", \\\"server\\\": \\\"bjb1-32546\\\", \\\"gpu\\\": 5, \\\"seed\\\": 48, \\\"model_name\\\": \\\"smolvla\\\", \\\"data_path\\\": \\\"LIBERO-Spatial\\\", \\\"data_count\\\": 200, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\\\", \\\"eval_data\\\": \\\"LIBERO-Spatial 10 tasks x 20 rollouts\\\", \\\"checkpoint_path\\\": \\\"N/A-eval-only\\\", \\\"log_path\\\": \\\"/tmp/eval_spatial_crm_s48.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6306}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-25T10:36:21.224163+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader"
+            }
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-25T10:36:21.224328+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "bjb1-32546",
+              "command": "tmux ls"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-25T10:36:21.224463+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 5159 MiB, 26 %\\\\n1, 5159 MiB, 29 %\\\\n2, 5267 MiB, 36 %\\\\n3, 5731 MiB, 37 %\\\\n4, 5731 MiB, 30 %\\\\n5, 6306 MiB, 25 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-25T10:36:21.224586+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval-crm-goal-s43-d149: 1 windows (created Mon May 25 18:18:02 2026)\\\\neval-crm-goal-s44-d149: 1 windows (created Mon May 25 18:18:05 2026)\\\\neval-crm-object-s42-d149: 1 windows (created Mon May 25 18:18:08 2026)\\\\neval-crm-object-s43-d149: 1 windows (created Mon May 25 18:34:08 2026)\\\\neval-crm-object-s44-d149: 1 windows (created Mon May 25 18:34:11 2026)\\\\neval-crm-spatial-s48-d149: 1 windows (created Mon May 25 18:34:13 2026)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-25T10:36:21.224749+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。\n\n## 报告\n\n**6 GPU 全部占用，6 个 tmux session 运行中：**\n\n| exp_id | benchmark | seed | GPU | PID | mem |\n|--------|-----------|------|-----|-----|-----|\n| eval-crm-goal-s43-d149 | goal | 43 | 0 | 93006 | 5.2GB |\n| eval-crm-goal-s44-d149 | goal | 44 | 1 | 93268 | 5.2GB |\n| eval-crm-object-s42-d149 | object | 42 | 2 | 93531 | 5.3GB |\n| eval-crm-object-s43-d149 | object | 43 | 3 | 101566 | 5.7GB |\n| eval-crm-object-s44-d149 | object | 44 | 4 | 101835 | 5.7GB |\n| eval-crm-spatial-s48-d149 | spatial | 48 | 5 | 102039 | 6.3GB |\n\nRegistry: 全 6 条状态 RUNNING（PREPARING → QUEUED → RUNNING，spec 已写入）。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_crm-wave1-bjb1-32546-remaining3_20260525T103331"
+          },
+          "id": "event-000080"
+        }
+      ],
+      "message_count": 80
+    }
+  ],
+  "readable_path": "readable/conversations/deploy-crm-wave1-bjb1-32546-remaining3.md"
+}

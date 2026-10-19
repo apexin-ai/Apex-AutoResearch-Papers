@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76bc737439312f72eeea",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diag spatial cache fix",
+  "task_key": "worker_diag_spatial-cache-fix_20260521T212824",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_spatial-cache-fix_20260521T212824_result.json",
+    "occurrence": 1,
+    "bytes": 1037,
+    "sha256": "6d68a175d012a58e02348ef4baefd9b7c9deb021f16d1bff7f3c1883bf704bcd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**问题已自愈，无需修复。** 报告的 `FileNotFoundError` 是历史快照——spatial precompute 在 03:23 完成后训练已重启。\n\n**实际目录结构**（路径完全正确）：\n- `/root/autodl-tmp/crm_cache_pi05/spatial/` — 60,250 samples, 1006M, manifest 完整\n- `/root/autodl-tmp/crm_cache_pi05/object/` — 69,303 samples, 1.3G\n\n**两个训练都健康运行**：\n- Spatial（CUDA:1，03:09 启动）：epoch 17/50, val_loss=0.0077（持续下降）\n- Object（PID 800111，CUDA:0，02:21 启动）：epoch 23/50, val_loss=0.0046（持续下降）\n\n**根因**：pipeline 在 spatial precompute shard6 未完成时（耗时 16112s）就启动了 spatial training，触发 FileNotFoundError。后续被重启后正常。\n\n**建议**（针对未来）：在 pipeline orchestrator 中加 `precompute EXIT_CODE=0` + `manifest.json 存在` 的依赖检查，而非按时序触发。\n\n诊断报告：`spatial_cache_diagnosis.md`（artifact id `art_20260521_75ad4a`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-spatial-cache-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b660545701e5908cd50f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "check bjb2 28827 status",
+  "task_key": "worker_check_bjb2-28827-status_20260526T080127",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_check_bjb2-28827-status_20260526T080127_result.json",
+    "occurrence": 1,
+    "bytes": 1390,
+    "sha256": "0fbe99623d8b7ec5d16c0074eebf3da6b07c0025368f8cb739c30e96b0ba5504"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== SERVER: bjb2-28827 (6×4090) ===\n服务器当前时间: 2026-05-26 16:02 CST\n实验启动时间: ~15:57-16:00 (即 ~5-7 分钟前，非用户所说 1.5-2h)\ntmux sessions: 全部 6 个活跃\nJSON 输出: 无（均未完成）\n\n[RUNNING] pi05-crm-k2-spatial-s42-bjb2     | GPU0 21% / 11525MB | task 2/N, rollout 5/20, task1 SR=85.0%\n[RUNNING] pi05-crm-k2-spatial-s43-bjb2     | GPU1 19% / 11525MB | task 2/N, rollout 5/20, task1 SR=80.0%\n[RUNNING] pi05-crm-k2-spatial-s44-bjb2     | GPU2 11% / 11525MB | task 2/N, rollout 5/20, task1 SR=80.0%\n[RUNNING] pi05-adaptive-spatial-s42-bjb2   | GPU3 21% / 11489MB | task 2/N, rollout 5/20, task1 SR=85.0%\n[RUNNING] pi05-adaptive-spatial-s43-bjb2   | GPU4 20% / 11489MB | task 2/N, rollout 5/20, task1 SR=95.0%\n[RUNNING] pi05-adaptive-spatial-s44-bjb2   | GPU5 20% / 11489MB | task 2/N, rollout 5/20, task1 SR=80.0%\n```\n\n**关键发现**：用户说\"1.5-2 小时前提交\"与实际不符。服务器当前时间 16:02 CST，日志首次写入时间 15:57-16:00，**实验实际只跑了 ~5-7 分钟**，远未完成。每个实验只完成了第一个 task（20 rollouts），正在第二个 task 的 5/20 rollout 处。spatial benchmark 通常有 ~10 tasks × 20 rollouts，按当前进度推算完整运行需要 ~1-1.5 小时。\n\n是否需要继续等待，或者你想确认提交时间是否搞错了？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-bjb2-28827-status-copy-2.md"
+}

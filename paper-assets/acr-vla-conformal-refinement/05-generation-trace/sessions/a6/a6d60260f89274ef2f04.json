@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6d60260f89274ef2f04",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_24_1779491454.md",
+  "task_key": "loop_24_1779491454",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_24_1779491454.md",
+    "occurrence": 1,
+    "bytes": 4432,
+    "sha256": "1bc131b028d5922a0852f8a64da7294c467e40e995b946f7ddfcd35230afecaa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 24\nreason: idle_timeout\nupdated: '2026-05-22T23:10:48+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb2-40593:cuda:0, bjb1-18228:cuda:0-3, bjb1-32546:cuda:0-5, bjb2-28827:cuda:0-5（共 17 张）\n- bjb1-18228:cuda:1 刚从 crm-loss-perdof 释放，但 cuda:0/2/3 仍在跑 loss 变体（mse-baseline/conformal/combined），不要动\n- π0.5 eval 占 bjb1-32546:cuda:0-2 + bjb2-28827:cuda:0-2，不要中断\n- submit_training_job 命令必须自带环境激活（`source /root/miniconda3/bin/activate && ...`），不假设 .venv\n- CRM 训练 obs_dim=960（SmolVLA），不要用 1030（那是旧版）\n- CoRL 2026 DDL 2026-05-29，≤7 天，禁止 fallback 思维\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**：工作目录 /root/acr-vla-conformal-refinement，Python /root/miniconda3/bin/python，磁盘 400G/438G 可用（4%）\n  - 活跃进程：crm-loss-mse-baseline(cuda:0, PID 845069), crm-loss-conformal(cuda:2, PID 845499), crm-loss-combined(cuda:3, PID 845729)\n  - crm-loss-perdof 已完成（cuda:1 已释放）\n  - 数据：/root/autodl-tmp/crm_cache_v5/，14570 samples\n- **bjb1-32546**：π0.5 Object eval×3 (cuda:0-2, PID 218131/218420/218700)，cuda:3-5 空闲\n- **bjb2-28827**：π0.5 Spatial eval×3 (cuda:0-2, PID 148748/149025/149307)，cuda:3-5 空闲\n- **bjb2-40593**：cuda:0 空闲，磁盘紧张（/nvidia-smi 分区 46G/437G，90%已用）\n- 无 W&B 配置段，metrics 从训练日志提取\n\n### 3. 📊 当前状态\n**刚发生**：crm-loss-perdof CRON 回调到达，已有 Worker `worker_analyze_crm-loss-perdof_20260522T062411` 在分析中（turn 14，已读到 best val_loss=0.000124）。等其完成回调。\n\n**RUNNING 实验（9个）**：\n| exp_id | server | GPU | 说明 |\n|--------|--------|-----|------|\n| crm-loss-mse-baseline | bjb1-18228 | cuda:0 | Track 2: MSE baseline CRM |\n| crm-loss-conformal | bjb1-18228 | cuda:2 | Track 2: conformal-guided loss |\n| crm-loss-combined | bjb1-18228 | cuda:3 | Track 2: per-DOF + conformal combined |\n| eval-pi05-crm-object-seed42/43/44 | bjb1-32546 | cuda:0-2 | Track 1: π0.5 Plan A Object eval |\n| eval-pi05-crm-spatial-seed42/43/44 | bjb2-28827 | cuda:0-2 | Track 1: π0.5 Plan A Spatial eval |\n\n**活跃 Worker（2个）**：\n- `worker_deploy_precompute-goal-long-bjb2_20260522T055604`：Track 3 Goal/Long precompute on bjb2\n- `worker_code_pi05-server-mode_20260522T061935`：π0.5 server mode 代码\n\n**等待中**：\n- Worker `analyze:crm-loss-perdof` 回调 → 更新 registry + 汇报 Director\n- crm-loss-mse-baseline / conformal / combined 完成回调 → 4 个 loss 变体对比分析\n- π0.5 eval×6 完成回调 → 收集结果\n- precompute Goal/Long Worker 回调 → 统一 CRM 训练\n\n### 4. 📋 待办（条件触发式）\n- analyze:crm-loss-perdof Worker 完成 → 检查 conclusion，更新 report.md，汇报 Director\n- crm-loss-mse-baseline/conformal/combined 任一完成 → 同样 spawn analyze Worker\n- 4 个 loss 变体全部完成 → 对比分析（val_loss + per-DOF breakdown），选最佳 variant 用于后续 eval\n- π0.5 eval×6 完成 → 汇总 3-seed 平均 SR，与 VLA-only baseline (Object 81.5%, Spatial 84.2%) 对比，判断 ceiling effect\n- precompute Worker 完成 → 合并 Goal+Long cache → 训练统一 4-suite CRM\n- bjb1-18228:cuda:1 已空闲 → 可用于下一个任务（等 Director 分配或 Track 3/4 需要时占用）\n- OpenVLA-OFT（Track 4）：调研+权重下载已完成，待 GPU 空闲时启动 baseline eval\n\n### 5. 🎯 战略上下文\n- **核心定位**：Method paper（D106），ACR-VLA = CRM + Adaptive K，跨模型跨任务泛化\n- **SmolVLA 结果 LOCKED**：Object 18.3%±2.1%, Spatial 35.0%±1.0%（Plan A K=2），不可改动\n- **π0.5 baseline LOCKED (D105)**：Object 81.5%±0.5%, Spatial 84.2%±1.0%——预期 ceiling effect，framing 策略是 \"no-harm + selective improvement\"\n- **当前 4 条并行线**：Track 1 (π0.5 eval) RUNNING，Track 2 (loss 变体) RUNNING，Track 3 (4 套件) PREPARING，Track 4 (OpenVLA-OFT) PREPARING\n- **易错点**：\n  - SmolVLA CRM 用 obs_dim=960，之前 1030 导致多次 state_dict shape mismatch（eval-smolvla-acr-goal-seed43 就是这么 fail 的）\n  - loss 变体实验（Track 2）是 ablation，最终只选一个最佳 variant 进论文，不是都要写\n  - π0.5 eval 预计 ~12h（task 1-2/10 阶段），不要因为慢就 kill\n  - bjb2-40593 磁盘 90% 已用，慎用\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-24-1779491454.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70a527b2ce330aaf7a9f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis pi05 goal seed43 44",
+  "task_key": "worker_analysis_pi05-goal-seed43-44_20260522T155340",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_pi05-goal-seed43-44_20260522T155340_result.json",
+    "occurrence": 1,
+    "bytes": 1407,
+    "sha256": "804c5c88171dcb2302cb219f46354c1e9e6826624bca65a8292175bc50047d48"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both evals are still in progress — 4/10 tasks completed each. Note: actual `n_rollouts` is 20 (not 10 as stated in task), based on the logged args.\n\nHere's what's available so far:\n\n```\neval-pi05-vla-only-goal-seed43-r4:  [RUNNING - 4/10 tasks done, n_rollouts=20]\n  per_task:\n    open_the_middle_drawer_of_the_cabinet: 100.0% (20/20)\n    put_the_bowl_on_the_stove: 100.0% (20/20)\n    put_the_wine_bottle_on_top_of_the_cabinet: 95.0% (19/20)\n    open_the_top_drawer_and_put_the_bowl_inside: 90.0% (18/20)\n    put_the_bowl_on_top_of_the_cabinet: in progress (5/5 so far)\n  overall_sr: N/A (still running)\n  wandb_run_id: none found\n  errors: none\n\neval-pi05-vla-only-goal-seed44-r4:  [RUNNING - 4/10 tasks done, n_rollouts=20]\n  per_task:\n    open_the_middle_drawer_of_the_cabinet: 90.0% (18/20)\n    put_the_bowl_on_the_stove: 100.0% (20/20)\n    put_the_wine_bottle_on_top_of_the_cabinet: 100.0% (20/20)\n    open_the_top_drawer_and_put_the_bowl_inside: 85.0% (17/20)\n  overall_sr: N/A (still running)\n  wandb_run_id: none found\n  errors: none\n```\n\nKey observations:\n- Both evals are **still running** (4/10 tasks completed each)\n- Actual `n_rollouts=20`, not 10\n- No W&B integration found in logs\n- No JSON results files yet (eval not complete)\n- No errors or anomalies\n- Partial average so far: seed43 = 96.25%, seed44 = 93.75% (across completed tasks only)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-pi05-goal-seed43-44.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a56ad9aac685bf194d4e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_20_1779058562.md",
+  "task_key": "loop_20_1779058562",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_20_1779058562.md",
+    "occurrence": 1,
+    "bytes": 3551,
+    "sha256": "2769cd24e86f1213c3c71ceb2718b0faacff8d22d373e6f9ce6bbc78c8165134"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 20\nreason: idle_timeout\nupdated: '2026-05-17T22:55:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单严格限定：bjb2-40593:cuda:0, bjb1-18228:cuda:0-3, bjb1-32546:cuda:0-5, bjb2-28827:cuda:0-5（共 17 卡）\n- LIBERO 并发上限：每台服务器 ≤4 评估进程（M005 约束），CPU-bound 导致 GPU 利用率 18-30% 是正常的\n- OpenVLA 环境独立：官方 repo + transformers 4.40.1，不能与 SmolVLA 环境混用\n- plan_802 结论：OpenVLA 7B 与现有 SmolVLA CRM 完全不兼容（feature dim 4096 vs 960），如做 OpenVLA+CRM 必须重新设计\n- D051 framing 选择未决前**不动 paper 文件**，但实验可以继续跑\n\n### 2. 🖥️ 基础设施快照\n- 服务器 4 台，account=root，project_path=/root/acr-vla-conformal-refinement\n  - bjb2-40593: 1×4090, cuda:0 跑 random selection baseline (PID 395256)\n  - bjb1-18228: 4×4090, SIGHUP 事故后诊断中，GPU 可能空闲\n  - bjb1-32546: 6×4090, cuda:0-5 全满（magnitude seed 补跑）\n  - bjb2-28827: 6×4090, cuda:1-5 全满（magnitude seed + perdof eval）\n- Python/conda: 需 SSH 探查确认（每台服务器 conda 配置可能不同）\n- wandb: 项目内 eval 用 LIBERO rollout 脚本，不全走 wandb\n- 活跃 cron 12 个，全部 still running，PID 见 reconcile 结果\n\n### 3. 📊 当前状态\n**刚完成**：session-start 初始化，reconcile 确认 12 个实验全部 still running。0 个 Worker 活跃。\n\n**RUNNING 实验（12 个）**：\n- bjb1-32546 (6): magnitude seed 补跑——obs_only ε=0.05/0.3/default + perdof ε=0.1/0.2/default，各种 seed\n- bjb2-28827 (5): obs_only ε=0.1 seed46/47 + perdof ε=0.2 seed46/47/43\n- bjb2-40593 (1): random selection baseline K=10 seed42（~35% 进度）\n\n**等待中**：\n- D051 framing 选择（Option A: K=10 primary / Option B: analysis paper）——用户未回复\n- bjb1-18228 SIGHUP 诊断——4 卡可能空闲待恢复\n- plan_802 OpenVLA+CRM 可行性分析已完成（结论：需完全重新设计）\n- 12 个 magnitude eval 的 cron 回调\n\n### 4. 📋 待办（条件触发式）\n- 任一 magnitude eval cron 回调 → update_registry + 检查 Figure 2 是否每点 ≥3 seeds → 缺的立即补提交\n- random selection baseline 完成 → 对比 CRM-guided vs random，确认 CRM scoring > random → 更新 report.md + 汇报 Director\n- 用户回复 D051 → 锁定 paper_framing.md → spawn Paper Agent 启动写作\n- bjb1-18228 诊断完成/健康确认 → 重启被杀的 eval（K=5 等）\n- 所有 magnitude 补 seed 完成 → 汇总 Figure 2 数据（每 (method, ε) 至少 3 seeds 的 mean±stderr）\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- K=10 obs_only 显著优于 argmin (17.5% vs 12.3%, p=0.0074) ✅\n- K=1 全部 negative（fallback/multi-scale/VLA-only 统计不可区分 10.0-10.8%）→ D051 framing 调整\n- Magnitude interaction 是核心 insight：obs_only 稳定，perdof 崩塌\n- OpenVLA baseline 68.5%（低于论文 88.4%），gap 原因未查明\n\n**CoRL 2026 deadline**：abstract ~May 26（9 天），full paper ~Jun 2（16 天）\n\n**易错点**：\n- 不要把 K=1 结果和 K=10 结果混着比——framing 已将 K=10 降为 supplementary\n- OpenVLA 68.5% vs 论文 88.4% gap 未解决前，Claim 3 (cross-VLA) 的可信度存疑\n- bjb1-18228 SIGHUP 后进程状态不确定，重启前必须先 SSH 确认所有旧进程已死\n- perdof uncapped (seed42) = 0% 是已知结果，不是 bug\n- plan_802 已证明 OpenVLA+CRM 需完全重新设计——不要尝试直接套用 SmolVLA 的 CRM checkpoint\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-20-1779058562.md"
+}

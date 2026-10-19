@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bbf36465836c9e038f43",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_1_1778725595.md",
+  "task_key": "loop_1_1778725595",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_1_1778725595.md",
+    "occurrence": 1,
+    "bytes": 5006,
+    "sha256": "f4d5aae9c5ac983f896465661efd8d090e7b0630e8d78768c9d27e54b86beec2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: idle_timeout\nupdated: '2026-05-14T02:07:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：`bjb1-18228:cuda:0/1/2/3` + `bjb2-40593:cuda:0`，共 5 张卡，禁止用其他设备\n- AutoDL 必须 `HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1`，否则 AutoProcessor 联网失败导致静默崩溃\n- `eval-object-v7-full` 和 `eval-object-v8-full` 共享 PID 125830（重复条目），v7 已标 killed，只认 v8\n- Ablation 实验超参必须锁定 bs=32/lr=1e-3（与 crm-train-v1 baseline 一致），否则 confound 比较\n- submit_training_job 命令必须自带环境激活（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），不要假设 .venv\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**: 4× RTX 4090, 工作目录 `/root/acr-vla-conformal-refinement`, Python `/root/miniconda3/bin/python`, conda base\n- **bjb2-40593**: 1× RTX 4090 D, 同上路径布局\n- 模型: `/root/autodl-tmp/models/smolvla_libero/` (450M, lerobot/smolvla_libero)\n- 数据: `/root/autodl-tmp/libero_data/` (spatial + object)\n- CRM cache (K=10): `/root/autodl-tmp/crm_cache/` (26737 samples, 完整)\n- CRM cache (K=5): `/root/autodl-tmp/crm_cache_k5/` (26737 samples, 完整)\n- CRM checkpoints: `/root/autodl-tmp/checkpoints/crm/` (baseline crm_best.pt, val_loss=0.009046)\n- CRM obs_only: `/root/autodl-tmp/checkpoints/crm/obs_only/crm_best.pt` (val_loss=0.018312)\n- CRM scalar_unc: `/root/autodl-tmp/checkpoints/crm/scalar_unc/` (训练中)\n- 活跃进程:\n  - `crm-train-k5` PID 139839, bjb1 cuda:0, tmux\n  - `eval-acr-spatial-v2` PID 117814, bjb1 cuda:1, tmux\n  - `eval-reconvla-spatial-v3` PID 118108, bjb1 cuda:2, tmux\n  - `crm-train-a4-scalar-unc` PID 121984, bjb1 cuda:3, tmux\n  - `eval-object-v8-full` PID 125830, bjb2 cuda:0, tmux\n- 6 个 cron 在监控上述进程\n\n### 3. 📊 当前状态\n所有 5 张 GPU 满载。正在并行跑 Phase 1 的关键对比实验：\n\n**RUNNING (5)**:\n| exp_id | GPU | 用途 |\n|--------|-----|------|\n| crm-train-k5 | bjb1:0 | K=5 ablation（K 敏感性） |\n| eval-acr-spatial-v2 | bjb1:1 | ACR-VLA per-DOF spatial eval（核心方法） |\n| eval-reconvla-spatial-v3 | bjb1:2 | SampleConsensus scalar baseline spatial eval |\n| crm-train-a4-scalar-unc | bjb1:3 | scalar uncertainty CRM 训练（3D vs 40D ablation） |\n| eval-object-v8-full | bjb2:0 | SmolVLA baseline object eval |\n\n**已完成关键数据点**:\n- SmolVLA spatial baseline: **30%** (eval-spatial-v7-full)\n- CRM baseline (K=10): val_loss=0.009046\n- CRM obs_only ablation: val_loss=0.018312 (2x差，证明 conformal features 关键)\n- MVP: per-DOF > scalar > none (6.7% / 16.7% improvement)\n\n**等待中**:\n- eval-scalar-unc-spatial (PREPARING) → 等 crm-train-a4-scalar-unc 训练完成后启动\n- SmolVLA object baseline 尚无结果 → 等 eval-object-v8-full 完成\n\n### 4. 📋 待办（条件触发式）\n- `eval-acr-spatial-v2` 完成 → 记录 ACR-VLA spatial success rate，与 baseline 30% 对比。≥40% 则 per-DOF correction 有效（core claim 1 validated）；<30% 则触发 red-section Framing 调整\n- `eval-reconvla-spatial-v3` 完成 → 记录 SampleConsensus spatial success rate，验证 correction > selection（core claim 2）\n- `crm-train-a4-scalar-unc` 完成 → 记录 val_loss 与 baseline 0.009046 对比 + spawn Worker 启动 eval-scalar-unc-spatial（已 PREPARING）\n- `crm-train-k5` 完成 → 记录 K=5 val_loss 与 K=10 baseline 对比（K 敏感性 ablation）；如果差距小则后续 eval 可省 K=5 arm\n- `eval-object-v8-full` 完成 → SmolVLA object baseline，后续需要 ACR-VLA object eval + SampleConsensus object eval\n- **4-way spatial 比较表齐全后**（VLA-only 30% + ACR-VLA + SampleConsensus + scalar-unc）→ 向 Director 汇报完整 spatial 结果 + 建议下一步（object eval 矩阵 / 论文写作）\n- 所有 spatial + object 结果齐全 → 计算 experiment coverage matrix，检查 paper_framing.md 的 claims 是否全部有实验支撑\n\n### 5. 🎯 战略上下文\n- **项目核心**: ACR-VLA = SmolVLA + Conformal Residual Module (CRM)，per-DOF conformal statistics 做 dimension-selective action correction，区别于 ReconVLA 的 scalar selection\n- **投稿目标**: ICLR 2027 (DDL Sep-Oct 2026)，时间充裕\n- **决策链**: D008(选 SmolVLA) → D009(用社区 checkpoint) → D011(放弃 CoRL, 转 ICLR) → D013(wrapper 必须对齐 lerobot) → D014(修复版部署+重跑)\n- **最易判断错的事**: \n  1. SampleConsensus baseline ≠ 真正的 ReconVLA。我们当前的 baseline 是简化版 (raw Euclidean argmin)，ReconVLA 用 CQR 分位数回归。如果 SampleConsensus 结果差，不能直接说\"优于 ReconVLA\"\n  2. eval-object-v7-full 是 killed 的重复条目（和 v8 共享 PID），不要当有效结果\n  3. 之前多批实验（v1-v5 系列）全部因 wrapper bug / env.reset 顺序 bug 被 kill，不可引用其指标\n  4. CRM 训练非常快（5-15min），瓶颈在 eval（每轮 2-4h per benchmark），规划时以 eval 时长为主\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-1778725595.md"
+}

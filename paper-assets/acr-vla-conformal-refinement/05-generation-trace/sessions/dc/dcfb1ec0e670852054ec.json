@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dcfb1ec0e670852054ec",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops collect object bjb1 32546",
+  "task_key": "worker_ops_collect-object-bjb1-32546_20260515T043846",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_collect-object-bjb1-32546_20260515T043846_result.json",
+    "occurrence": 1,
+    "bytes": 974,
+    "sha256": "a98fbd4adc410fbeb8404035e089e21d6d48c2948db4f5f6cf0d6694426d799c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated for all 6 experiments. Summary:\n\n**所有 6 个实验仍在运行中，进程启动于 ~2 小时前（10:37–11:00 UTC），并非 12+ 小时。**\n\n### eval-vla-only-object (K=1, 最快)\n```\nStatus: RUNNING, Tasks: 9.5/10\nT1  alphabet_soup:       0% (0/10)\nT2  cream_cheese:       10% (1/10)\nT3  salad_dressing:     20% (2/10)\nT4  bbq_sauce:          20% (2/10)\nT5  ketchup:             0% (0/10)\nT6  tomato_sauce:       10% (1/10)\nT7  butter:              0% (0/10)\nT8  milk:               10% (1/10)\nT9  chocolate_pudding:  20% (2/10)\nT10 orange_juice:       rollout 5/10 (2/5 so far)\nPartial overall: 7.8% (7/90)\n```\n\n### 其余 5 个实验 (K=10)\n```\nStatus: RUNNING, Tasks: 1/10\nT1 alphabet_soup: 0% (0/10) — 全部相同\n预计总时间: ~18-20 小时（每 task ~2 小时 × 10 tasks）\n```\n\nK=10 实验每步需要 10 次 VLA forward pass，所以比 K=1 慢 ~10 倍。预计还需 ~16-18 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-object-bjb1-32546.md"
+}

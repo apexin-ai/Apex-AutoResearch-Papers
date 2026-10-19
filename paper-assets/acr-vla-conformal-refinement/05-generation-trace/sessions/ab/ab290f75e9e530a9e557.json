@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab290f75e9e530a9e557",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh check gpu availability",
+  "task_key": "worker_ssh_check-gpu-availability_20260517T064049",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_check-gpu-availability_20260517T064049_result.json",
+    "occurrence": 1,
+    "bytes": 1706,
+    "sha256": "b993795a94e2a78dacfeb14b308148599cc1bc98cb5748bb95001c93a36ec8d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 空闲状态汇总\n\n| 服务器 | GPU | 型号 | Util | Mem Used | 状态 |\n|--------|-----|------|------|----------|------|\n| **bjb1-18228** | 0 | RTX 4090 | 21% | 2410 MiB | 忙 |\n| | 1 | RTX 4090 | 20% | 2411 MiB | 忙 |\n| | **2** | RTX 4090 | 0% | 1 MiB | **空闲** |\n| | **3** | RTX 4090 | 0% | 1 MiB | **空闲** |\n| **bjb1-32546** | 0 | RTX 4090 | 20% | 2876 MiB | 忙 |\n| | 1 | RTX 4090 | 20% | 1907 MiB | 忙 |\n| | 2 | RTX 4090 | 17% | 2411 MiB | 忙 |\n| | 3 | RTX 4090 | 21% | 2840 MiB | 忙 |\n| | **4** | RTX 4090 | 0% | 2 MiB | **空闲** |\n| | 5 | RTX 4090 | 21% | 2876 MiB | 忙 |\n| **bjb2-28827** | 0 | RTX 4090 | 17% | 2875 MiB | 忙 |\n| | 1 | RTX 4090 | 17% | 2875 MiB | 忙 |\n| | **2** | RTX 4090 | 0% | 1 MiB | **空闲** |\n| | 3 | RTX 4090 | 19% | 2875 MiB | 忙 |\n| | 4 | RTX 4090 | 18% | 1942 MiB | 忙 |\n| | 5 | RTX 4090 | 19% | 4268 MiB | 忙 |\n\n## 空闲卡汇总\n\n| 服务器 | 空闲 GPU | 数量 |\n|--------|----------|------|\n| bjb1-18228 | GPU 2, 3 | 2 张 |\n| bjb1-32546 | GPU 4 | 1 张 |\n| bjb2-28827 | GPU 2 | 1 张 |\n\n**总计 4 张空闲 RTX 4090。**\n\n## Tmux Sessions\n\n| 服务器 | Sessions | 备注 |\n|--------|----------|------|\n| bjb1-18228 | 0 | 无活跃 session（GPU 0/1 可能是后台进程） |\n| bjb1-32546 | 5 | eval-argmin-object-seed46/47, eval-dc-r2, eval-obs-only-object-norm02-seed47, eval-perdof-object-norm03-seed45-r2 |\n| bjb2-28827 | 2 | eval-obs-only-object-norm03-seed45-r2, eval-perdof-object-norm02-seed44 |\n\nbjb1-18228 的 GPU 0/1 虽在用但无 tmux session，可能是非 tmux 方式启动的进程。bjb1-32546 和 bjb2-28827 的忙碌 GPU 与 tmux 中的 eval 任务对应。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-gpu-availability.md"
+}

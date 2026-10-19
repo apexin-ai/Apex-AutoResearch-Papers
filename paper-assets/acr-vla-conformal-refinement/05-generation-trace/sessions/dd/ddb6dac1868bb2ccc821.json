@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ddb6dac1868bb2ccc821",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose seed66 failure",
+  "task_key": "worker_diagnose_seed66-failure_20260521T014117",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_seed66-failure_20260521T014117_result.json",
+    "occurrence": 1,
+    "bytes": 823,
+    "sha256": "f80987abed4c2fe13f9fd7793480281892a1e8ca31218878ce42523d838857ab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断结论：\n\n## seed66 失败诊断 (2026-05-21)\n\n**根因：Cron false positive。** 3 个 seed66 进程实际仍在 bjb1-18228 上正常运行。\n\n| 实验 | PID | GPU | 状态 |\n|------|-----|-----|------|\n| norm003-seed66 | 642428 | GPU0, 5.7GB, 35% | 运行中 |\n| norm005-seed66 | 642506 | GPU2, 5.7GB, 38% | 运行中 |\n| norm01-seed66 | 642775 | GPU3, 5.7GB, 34% | 运行中 |\n\n- 日志在两次读取间从 rollout 5/20 → 10/20，确认进程在推进\n- 无 OOM/CUDA error/traceback/segfault\n- `sentinels/` 目录完全为空——从未写过 sentinel file\n- seed66 用 `python3` 启动（无 `-u` 无 nohup），日志因 stdout 缓冲更新慢，但进程正常\n- **无需重跑。** 预计再需 1-2 小时完成，之后手动修正 conclusion=success 并补录 metrics。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-seed66-failure.md"
+}

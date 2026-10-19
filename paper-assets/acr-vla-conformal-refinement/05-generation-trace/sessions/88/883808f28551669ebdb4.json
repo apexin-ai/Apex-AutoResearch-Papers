@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "883808f28551669ebdb4",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "eval acr spatial v4 obs only",
+  "task_key": "worker_eval_acr-spatial-v4-obs-only_20260514T220927",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_eval_acr-spatial-v4-obs-only_20260514T220927_result.json",
+    "occurrence": 1,
+    "bytes": 729,
+    "sha256": "492e8091033db38dc858287ff7e9911d3fd0b60cff8fd8c1a1f57ff575f5c59d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n1. **清理 cuda:0**: 杀掉了残留 vla_only baseline eval (PID 143112)，无 tmux sessions 需清理\n2. **Checkpoint 路径修正**: 任务给的路径 `crm_v3_norm/obs_only/` 不存在，实际路径是 `/root/autodl-tmp/checkpoints/crm_v3/obs_only/crm_best.pt`\n3. **`max_correction_norm` 注意**: evaluate.py 没有此 CLI 参数，CRM 构造函数默认值 1.42 会被使用（非任务中说的 0.1）。该值是 Python 属性不在 state_dict 中\n4. **eval 已启动**: tmux session `eval-acr-spatial-v4-obs-only`，PID 199257，cuda:0 占用 4949 MiB，CRM 327K params 已加载，LIBERO spatial 10 tasks x 10 rollouts\n5. **Registry 已更新**: status=RUNNING，spec 已记录"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-acr-spatial-v4-obs-only.md"
+}

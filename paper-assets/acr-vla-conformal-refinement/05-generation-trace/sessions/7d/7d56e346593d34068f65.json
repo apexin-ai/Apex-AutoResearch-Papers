@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d56e346593d34068f65",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "package supplementary results",
+  "task_key": "worker_package_supplementary-results_20260528T073505",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_package_supplementary-results_20260528T073505_result.json",
+    "occurrence": 1,
+    "bytes": 1359,
+    "sha256": "27d796dd9144a2c80243f3016844736056f2aebf271b294b497534a74087179a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个文件已生成并注册：\n\n### 生成文件\n\n| 文件 | 行数 | 说明 |\n|------|------|------|\n| `tau_sweep_results.csv` | 55 行 | SmolVLA + Pi05，τ=0.05–0.90，含 delta_vs_vla_only |\n| `bonus_seeds_results.csv` | 65 行 | 4 benchmark × 4 method，seeds s42–s49 |\n| `pi05_cross_vla_results.csv` | 33 行 | Pi05 去重后的 canonical 结果，4 benchmark × 3 mode × 3 seeds |\n| `supplementary_summary.md` | 完整汇总 | 含 τ-sweep 表格、bonus seeds mean±std、K-sweep、CRM always-on ablation |\n\n### 各类数据量\n\n| 类别 | 有效实验数 | 状态 |\n|------|-----------|------|\n| A. τ-sweep | 55 (有 SR 值) / 81 总 | 充足 |\n| B. Bonus seeds | 65 (有 SR 值) / 115 总 | 部分 incomplete（见下） |\n| C. Pi05 cross-VLA | 33 canonical | 充足 |\n| D. K-sweep | 23 有 SR / 38 总 | 多数 K=20 实验缺 SR |\n| E. CRM always-on | 23 有 SR / 24 总 | 充足 |\n\n### 数据缺口\n\n- **Bonus seeds / long / adaptive**: s42/s45/s46 均无 SR — **incomplete**\n- **Bonus seeds / object / adaptive**: 仅 1 个有效实验 (s42)\n- **Bonus seeds / object & long / crm_obs_only**: 各仅 1 个有效实验\n- **Pi05 / long / crm_obs_only**: 仅 s44 一个 seed\n- **K-sweep K=20**: 仅 smolvla/object 有 SR，其余均为 None\n- **CRM always-on / smolvla / long / s45**: SR 为 None"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/package-supplementary-results.md"
+}

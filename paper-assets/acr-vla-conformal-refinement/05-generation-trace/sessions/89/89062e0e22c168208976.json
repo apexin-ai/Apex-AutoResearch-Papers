@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89062e0e22c168208976",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose bjb1 18228 batch failure",
+  "task_key": "worker_diagnose_bjb1-18228-batch-failure_20260521T012027",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_bjb1-18228-batch-failure_20260521T012027_result.json",
+    "occurrence": 1,
+    "bytes": 687,
+    "sha256": "c69981bfabbec7756e7938e4d9b3fa2d9e7aa5f57914bec76dc4fc29328cbf2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**核心结论：这是误报，不是实验失败。** 三个实验（norm005-seed58、norm01-seed57、norm003-seed59）全部正常完成，JSON 结果文件已存在。日志各 52 行，末尾有完整的 success rate 汇总，无任何错误。\n\n失败的表象原因：`evaluate.py` 没有 W&B logging 和 sentinel 文件写入逻辑，所以监控系统检测不到完成信号。\n\n结果摘要：\n- norm003-seed59: **13.0%**\n- norm005-seed58: **16.0%**\n- norm01-seed57: **19.0%**\n\nseed65 (PID 622479) 正在正常运行，约完成 40%。系统健康，不需要重跑。\n\n报告已写入 `artifacts/diagnose_bjb1_18228_failure.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-bjb1-18228-batch-failure.md"
+}

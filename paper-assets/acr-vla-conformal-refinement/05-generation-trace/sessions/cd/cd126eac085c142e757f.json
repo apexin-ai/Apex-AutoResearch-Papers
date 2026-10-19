@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd126eac085c142e757f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose eval vla only object seed49",
+  "task_key": "worker_diagnose_eval-vla-only-object-seed49_20260521T025247",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval-vla-only-object-seed49_20260521T025247_result.json",
+    "occurrence": 1,
+    "bytes": 405,
+    "sha256": "6a4e13d26e3cbcb2450757e62f0a32de1e0e8631a3cbb370f87398f44ce1ac32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已解决。`eval-vla-only-object-seed49` 从 ANALYZING → DONE。\n\n**结果**：实验已正常完成，输出 JSON 完整。卡在 ANALYZING 是 post-completion hook 未能推进状态，手动提取结果并关闭。\n\n| 指标 | 值 |\n|------|-----|\n| Overall SR | 10% |\n| Total rollouts | 100 (10 tasks × 10) |\n| Successful rollouts | 10 |\n| Per-task SR range | 0.0 – 0.2 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-vla-only-object-seed49.md"
+}

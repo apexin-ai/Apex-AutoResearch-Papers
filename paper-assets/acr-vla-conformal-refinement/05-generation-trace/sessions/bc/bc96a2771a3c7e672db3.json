@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc96a2771a3c7e672db3",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops check dead processes batch",
+  "task_key": "worker_ops_check-dead-processes-batch_20260520T220058",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-dead-processes-batch_20260520T220058_result.json",
+    "occurrence": 1,
+    "bytes": 1268,
+    "sha256": "6e8ff51b6c10b35876b89c454f5fb9e7faad244b0468c9ff57864beeb5e77517"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 7 个已完成实验已更新为 DONE。汇总：\n\n| # | exp_id | Server | JSON | SR | Status |\n|---|--------|--------|------|----|--------|\n| 1 | `eval-vla-only-object-seed50` | bjb1-32546 | `eval_vla_only_object_seed50.json` | **9%** | DONE |\n| 2 | `eval-random-selection-object-seed49` | bjb1-32546 | `eval_random_selection_object_seed49.json` | **12%** | DONE |\n| 3 | `eval-obs-only-object-norm02-seed52` | bjb1-32546 | `eval_obs_only_object_norm02_seed52.json` | **15%** | DONE |\n| 4 | `eval-obs-only-object-norm005-seed48` | bjb1-32546 | `eval_obs_only_object_norm005_seed48.json` | **13%** | DONE |\n| 5 | `eval-obs-only-object-norm005-seed47` | bjb2-28827 | `eval_obs_only_object_norm005_seed47.json` | **13%** | DONE |\n| 6 | `eval-obs-only-object-norm02-seed55` | bjb2-40593 | 未生成 | — | **RUNNING** (PID=776722 alive, VRAM 5960/24564 MiB, 刚加载完 10 tasks，尚未开始 rollout) |\n| 7 | `eval-k5-obs-only-object-seed44` | bjb1-32546 | `eval_k5_obs_only_object_seed44.json` | **14%** | DONE |\n| 8 | `eval-k20-obs-only-object-seed44` | bjb1-32546 | `eval_k20_obs_only_object_seed44.json` | **18%** | DONE |\n\n所有 JSON 均完整（10 tasks × 10 rollouts = 100 total）。seed55 进程正常运行中，不动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-dead-processes-batch.md"
+}

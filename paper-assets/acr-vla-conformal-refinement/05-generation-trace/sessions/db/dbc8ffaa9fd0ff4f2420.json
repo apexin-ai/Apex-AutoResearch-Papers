@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "dbc8ffaa9fd0ff4f2420",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "ops latency measurement",
+  "task_key": "worker_ops_latency-measurement_20260519T021351",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_latency-measurement_20260519T021351.log",
+    "occurrence": 1,
+    "bytes": 671666,
+    "sha256": "e8616de28bd01cfd1b0c933b8a3844c74a14ca7b78c5eae2173dc776df563005"
+  },
+  "statistics": {
+    "messages": 400,
+    "user_turns": 0,
+    "tool_calls": 174,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 48,
+      "tool_call": 174,
+      "tool_result": 174,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 400,
+      "chunks": [
+        {
+          "path": "dbc8ffaa9fd0ff4f2420-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "dbc8ffaa9fd0ff4f2420-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "dbc8ffaa9fd0ff4f2420-part-0003.json",
+          "message_count": 40
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-latency-measurement.md"
+}

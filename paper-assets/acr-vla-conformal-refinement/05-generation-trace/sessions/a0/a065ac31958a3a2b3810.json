@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a065ac31958a3a2b3810",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops deploy bjb2 28827 cuda0",
+  "task_key": "worker_ops_deploy-bjb2-28827-cuda0_20260516T083602",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_deploy-bjb2-28827-cuda0_20260516T083602_result.json",
+    "occurrence": 1,
+    "bytes": 490,
+    "sha256": "ff26b7295fbe7912f32f7e59216316632537f0fb43c870bf8a5219e0e176525b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n**总结：**\n\n| 项目 | 状态 |\n|------|------|\n| eval-mag-perdof-norm003-object | ✓ DONE，overall SR = 14% |\n| eval-scalar-object-seed45 | ✓ RUNNING on bjb2-28827:cuda:0 (PID 224623) |\n\n新实验详情：\n- **模式**: `crm_scalar`，norm=0.1，seed=45，LIBERO object\n- **Checkpoint**: `/root/autodl-tmp/checkpoints/crm_v3_norm/scalar_unc/crm_best.pt` (327,966 params)\n- **GPU**: 5645 MiB 已占用，10 tasks 已加载，正在 rollout"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deploy-bjb2-28827-cuda0.md"
+}

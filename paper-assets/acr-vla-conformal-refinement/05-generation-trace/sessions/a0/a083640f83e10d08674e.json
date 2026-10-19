@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a083640f83e10d08674e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops cleanup k5 cache gpu check",
+  "task_key": "worker_ops_cleanup-k5-cache-gpu-check_20260514T075942",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_cleanup-k5-cache-gpu-check_20260514T075942_result.json",
+    "occurrence": 1,
+    "bytes": 855,
+    "sha256": "c31846c4cecd145bdb11d06ac2c2560f48a75cc6bb544ecbb53741c0269d634a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**K5 缓存清理** — 已删除，`ls` 确认 `No such file or directory`。\n\n**GPU 状态** — 无 orphan 进程，4 个进程 PID 与预期一致：\n\n| GPU | PID | 显存占用 | GPU 利用率 |\n|-----|-------|---------|-----------|\n| cuda:0 | 180256 (shard0) | 1534 MiB / 24564 MiB | 26% |\n| cuda:1 | 180405 (shard1) | 1534 MiB / 24564 MiB | 25% |\n| cuda:2 | 118108 (eval-spatial-v3) | 1414 MiB / 24564 MiB | 19% |\n| cuda:3 | 180485 (shard2) | 1534 MiB / 24564 MiB | 25% |\n\n注：PID 与预期略有偏差（180251→180256, 180400→180405, 180480→180485），差值很小，可能是任务重启过，不算 orphan。\n\n**Precompute 进度** — 三个 shard 都在跑 spatial 阶段，当前均处理到 ~400/4056 样本（约 10%），速度 ~0.45s/sample，预计每个 shard 还需 ~27 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-k5-cache-gpu-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f76a02a6a75fc64ccf40",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb1 18228 pi05 fix and fill",
+  "task_key": "worker_deploy_bjb1-18228-pi05-fix-and-fill_20260525T072537",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb1-18228-pi05-fix-and-fill_20260525T072537_result.json",
+    "occurrence": 1,
+    "bytes": 1215,
+    "sha256": "b92653e1086b1b11c1c2b0aa2c3cada1068a9dcf73779c68bff45c148ae0f226"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 jobs running on bjb1-18228:\n\n**修复 Adaptive Spatial s42 crash (cuda:0, PID 484286)**\n- 根因: CRM checkpoint 由 `unified_obs_dim=2088` 训练而成（PI05 2048D 特征 zero-pad +40），但默认 `obs_dim=960`，导致 `input_mean` 形状不匹配 (2118 vs 990)\n- 修复: `--obs_dim 2048 --unified_obs_dim 2088`，crm.input_dim = `H_EFF*CORRECTION_DIM + 0 + 2088 = 30 + 2088 = 2118` ✓\n- 日志已确认: `[eval] CRM loaded from ... (615,966 params)` + `PI05 features (2048D) passed directly to CRM (no projection)`，已进入 rollout，GPU 14.6 GB / 59% util\n\n**VLA-only Object s42 (cuda:1, PID 484670)** — GPU 14.1 GB\n**VLA-only Spatial s43 (cuda:2, PID 485043)** — GPU 14.6 GB\n\n| GPU | mem | util | job |\n|---|---|---|---|\n| 0 | 14663 MiB | 20% | adaptive-spatial-s42-r2 |\n| 1 | 14060 MiB | 7% | vla-only-object-s42 |\n| 2 | 14663 MiB | 16% | vla-only-spatial-s43 |\n| 3 | 9883 MiB | 24% | (其他) |\n\n**注意**: registry 显示 `eval-pi05-vla-only-object-s42` 和 `eval-pi05-vla-only-spatial-s43` 已于 2026-05-25 00:37 在 bjb1-32546 完成（success rates 0.965 / 0.96），output_file 路径同名将被覆盖。已用 `-r2` 后缀注册新 exp_id 保留历史。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb1-18228-pi05-fix-and-fill.md"
+}

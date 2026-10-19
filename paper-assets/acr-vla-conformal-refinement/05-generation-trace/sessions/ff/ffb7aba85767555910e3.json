@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffb7aba85767555910e3",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops kill invalid crm v3 bjb2",
+  "task_key": "worker_ops_kill-invalid-crm-v3-bjb2_20260514T182117",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_kill-invalid-crm-v3-bjb2_20260514T182117_result.json",
+    "occurrence": 1,
+    "bytes": 284,
+    "sha256": "8eea3fe47c07a0ccc9338eb5e27c0ac09539b3478d3f0d15ed70ca2b76f36ad0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新工具不可用，需要手动更新或通过其他方式标记这 3 个实验为 DONE/KILLED。\n\n**总结**：3 个无效 CRM v3 进程已不存在（无需操作），eval-vla-mean-spatial 正常运行，GPU 显存已释放（2.5/24.6 GB 占用）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-invalid-crm-v3-bjb2.md"
+}

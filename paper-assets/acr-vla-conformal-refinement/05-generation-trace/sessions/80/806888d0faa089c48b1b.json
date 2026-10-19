@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "806888d0faa089c48b1b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose crm spatial timeout seed44",
+  "task_key": "worker_diagnose_crm-spatial-timeout-seed44_20260522T132355",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_crm-spatial-timeout-seed44_20260522T132355_result.json",
+    "occurrence": 1,
+    "bytes": 754,
+    "sha256": "a61ee55f478992e0b3eb41eef8440b71f3ec82f58f1af56bd2682b0308fe0452"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/diagnose_crm_spatial_timeout.md`。核心结论：\n\n**失败原因：纯超时，无任何 error 或 hang。** 每个 episode 耗时 ~310 秒，200 episodes 需要 ~17.2 小时，但 timeout 仅 ~12 小时。\n\n**完成进度：**\n- Seed 42: 7/10 tasks (140/200 eps), 部分平均 90.0%\n- Seed 43: 7/10 tasks (140/200 eps), 部分平均 85.7%\n- Seed 44: 6.5/10 tasks (130/200 eps), 部分平均 82.3%\n- 缺失 task 7/8/9，无 JSON 输出文件（进程被杀前未写入）\n\n**特别发现：** `on_ramekin` task 跨三个 seed 平均仅 41.7%，远低于其他 task 的 93%+。\n\n**建议：** 将 timeout 增至 20h (72000s) 重跑。不要改 n_action_steps=10，那会使运行时间变成 ~85h。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-crm-spatial-timeout-seed44.md"
+}

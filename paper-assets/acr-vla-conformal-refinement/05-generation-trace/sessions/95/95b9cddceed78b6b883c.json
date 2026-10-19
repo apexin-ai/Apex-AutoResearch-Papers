@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "95b9cddceed78b6b883c",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "diagnose vla only object seed49 analyzing",
+  "task_key": "worker_diagnose_vla-only-object-seed49-analyzing_20260521T025811",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_vla-only-object-seed49-analyzing_20260521T025811.log",
+    "occurrence": 1,
+    "bytes": 946650,
+    "sha256": "268be5d0ded8663d08a7429b8b05803b2127035107de834336617b1fb6e49409"
+  },
+  "statistics": {
+    "messages": 52,
+    "user_turns": 1,
+    "tool_calls": 15,
+    "roles": {
+      "log": 1,
+      "record": 1,
+      "system": 10,
+      "assistant": 8,
+      "tool_call": 15,
+      "user": 1,
+      "tool_result": 15,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "95b9cddceed78b6b883c-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 45,
+      "chunks": [
+        {
+          "path": "95b9cddceed78b6b883c-part-0001.json",
+          "message_count": 37
+        },
+        {
+          "path": "95b9cddceed78b6b883c-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "95b9cddceed78b6b883c-part-0003.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-vla-only-object-seed49-analyzing.md"
+}

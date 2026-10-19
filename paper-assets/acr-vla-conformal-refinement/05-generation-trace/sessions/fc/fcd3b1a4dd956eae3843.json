@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fcd3b1a4dd956eae3843",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy cqa1 32758 pi05 eval",
+  "task_key": "worker_deploy_cqa1-32758-pi05-eval_20260525T105254",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cqa1-32758-pi05-eval_20260525T105254_result.json",
+    "occurrence": 1,
+    "bytes": 97,
+    "sha256": "5003f8c9279cd78ffdbb30a931560577323fc838817111438ce9a6b73d09bbbe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 6 个实验已注册到 registry 并处于 RUNNING 状态。部署完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-cqa1-32758-pi05-eval.md"
+}

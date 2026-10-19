@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7737fa27dffcf0475614",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops bjb2 40593 cleanup and deploy",
+  "task_key": "worker_ops_bjb2-40593-cleanup-and-deploy_20260516T071715",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_bjb2-40593-cleanup-and-deploy_20260516T071715_result.json",
+    "occurrence": 1,
+    "bytes": 636,
+    "sha256": "8ed1978b02758fce882b352ce074e7cca67842ee7b753d51f331f2c6f4938fc4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 清理\n- killed 残留 scalar 评估进程 PID 310859（`crm_scalar --benchmark object --seed 44`），释放 5609 MiB VRAM\n- GPU 释放后：0 MiB / 24564 MiB, 0% utilization\n\n## 系统内存\n- Total: 503 GiB, Available: 445 GiB — 充足\n\n## 部署\n- **exp_id**: eval-perdof-object-default-seed44\n- **PID**: 316387 (GPU process) / 316382 (tmux)\n- **VRAM**: 5609 MiB / 24564 MiB\n- **GPU Util**: 9%\n- **状态**: RUNNING，模型加载完成，正在评估\n- **参数**: `--mode crm_perdof --benchmark object --seed 44 --K 10`，未传 `--max_correction_norm`（使用默认值 ~1.42）\n\n## 问题\n无"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-bjb2-40593-cleanup-and-deploy.md"
+}

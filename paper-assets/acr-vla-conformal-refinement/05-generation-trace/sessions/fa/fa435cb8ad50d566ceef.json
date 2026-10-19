@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa435cb8ad50d566ceef",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops check norm005 seed43 r2 bjb1 32546",
+  "task_key": "worker_ops_check-norm005-seed43-r2-bjb1-32546_20260518T004142",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-norm005-seed43-r2-bjb1-32546_20260518T004142_result.json",
+    "occurrence": 1,
+    "bytes": 408,
+    "sha256": "7c60f8179d4bb4ed73ca2e608e4b8e658d8ca74be47ec0b00a72a25d0c081913"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**eval-obs-only-object-norm005-seed43-r2** 完成。\n\n| 项目 | 值 |\n|---|---|\n| 状态 | DONE (success) |\n| Overall SR | **14%** (14/100) |\n| 方法 | obs_only CRM, ε=0.05, seed43 |\n| 服务器 | bjb1-32546 |\n| 释放 GPU | **cuda:0** on bjb1-32546 |\n\nCron 已删除。与 seed42 的 13% 基本一致，确认 ε=0.05 低 norm 段的 magnitude curve 数据点稳定在 ~13-14%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-norm005-seed43-r2-bjb1-32546.md"
+}

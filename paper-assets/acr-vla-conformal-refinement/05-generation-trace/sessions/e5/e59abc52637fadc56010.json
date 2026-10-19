@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e59abc52637fadc56010",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval supp goal reconvla s43",
+  "task_key": "worker_analyze_eval-supp-goal-reconvla-s43_20260523T113014",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-supp-goal-reconvla-s43_20260523T113014_result.json",
+    "occurrence": 1,
+    "bytes": 846,
+    "sha256": "f8203774df78a8c497197f50197803789b4e9085c0a42a6171384202c605dd07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**eval-supp-goal-reconvla-s43 结果：SR = 81.0% (162/200)，conclusion = negative**\n\n| Task | SR |\n|------|-----|\n| open_the_middle_drawer_of_the_cabinet | 65% |\n| put_the_bowl_on_the_stove | 95% |\n| put_the_wine_bottle_on_top_of_the_cabinet | 85% |\n| open_the_top_drawer_and_put_the_bowl_inside | 50% |\n| put_the_bowl_on_top_of_the_cabinet | 95% |\n| push_the_plate_to_the_front_of_the_stove | 90% |\n| put_the_cream_cheese_in_the_bowl | 55% |\n| turn_on_the_stove | 95% |\n| put_the_bowl_on_the_plate | 95% |\n| put_the_wine_bottle_on_the_rack | 85% |\n\n对比：\n- s42 = 81.0%, s43 = 81.0%（完全一致）\n- 两 seed 平均 81.0%，低于 VLA-only baseline 83.5% **-2.5pp**\n- Reconvla 在 Goal suite 上表现稳定但一致性地低于 baseline，结论为 **negative**\n\nRegistry 已更新，cron 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-supp-goal-reconvla-s43.md"
+}

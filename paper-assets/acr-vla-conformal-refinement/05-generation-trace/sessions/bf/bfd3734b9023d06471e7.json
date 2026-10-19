@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bfd3734b9023d06471e7",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis oracle upper bound feasibility",
+  "task_key": "worker_analysis_oracle-upper-bound-feasibility_20260518T072347",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_oracle-upper-bound-feasibility_20260518T072347_result.json",
+    "occurrence": 1,
+    "bytes": 3874,
+    "sha256": "49119d3da9e85d938872af091ab15ebc2307b5aeeaa6450c63a0044c6adef254"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "信息足够了。以下是完整分析：\n\n---\n\n## 方案 1（从已有数据推算）：**不可行**\n\n**原因**：\n- `select_action_crm` (evaluate.py ~L161-196) 在每个 timestep 生成 K=10 candidates，但只通过 argmin 选出 1 个执行 `env.step()`，其余 9 个**从未 rollout**\n- JSON 输出只记录 per-task 聚合成功率（successes/total），无 per-candidate、per-step、per-rollout 的信息\n- 没有任何数据能回溯其余 9 个 candidate 的结果\n\n---\n\n## 方案 2（新代码）：可行，但需明确 Oracle 的定义\n\n### 核心问题：Oracle 有两种语义\n\n**语义 A：Step-level Oracle（真正的天花板）**\n- 每个 timestep 的 K=10 candidates，Oracle 选出\"能最终导致成功\"的那个\n- 这是一个 **K^T 指数级搜索树** 问题（K=10, T≈300 steps → 10^300 条路径）\n- **完全不可行**\n\n**语义 B：Episode-level K-retry Oracle（实用近似）**\n- 对同一个 init_state，独立跑 K=10 个完整 episode（每次用 K=1 VLA sample）\n- 只要 10 次中有 1 次成功 → Oracle 成功\n- 这衡量的是\"K=10 次独立尝试的天花板\"，是 argmin selection 的合理 upper bound\n\n### 方案 2A：解析近似（零成本，立即可得）\n\n已有数据：VLA-only K=1 overall SR = 12%。假设独立性，Oracle K=10 = `1 - (1-p)^10`。\n\nPer-task 推算（基于 vla_only.json seed=42）：\n\n| Task | K=1 SR | Oracle K=10 (解析) |\n|------|--------|-------------------|\n| alphabet_soup | 0% | 0% |\n| cream_cheese | 10% | 65% |\n| salad_dressing | 20% | 89% |\n| bbq_sauce | 20% | 89% |\n| ketchup | 0% | 0% |\n| tomato_sauce | 10% | 65% |\n| butter | 0% | 0% |\n| milk | 10% | 65% |\n| chocolate_pudding | 20% | 89% |\n| orange_juice | 30% | 97% |\n| **Average** | **12%** | **~56%** |\n\n**局限**：\n- 独立性假设可能不成立（同一 obs 的 K 个 VLA samples 有相关性，实际天花板低于 56%）\n- p=0 的 3 个 task（alphabet_soup, ketchup, butter）可能只是样本量太小（10 rollouts），真实 p>0\n- 10 个 rollouts 使用不同 init_states，per-init-state 的 p 可能差异很大\n\n### 方案 2B：实证 K-retry 实验（推荐）\n\n**改动思路**：\n```python\n# 新模式 --mode oracle_k_retry\n# 对每个 (task, init_state)：\nfor attempt in range(K):  # K=10\n    success, steps = rollout_single(env, same_init_state, \n                                     action_fn_k1, max_steps)\n    if success:\n        oracle_success = True; break\n```\n\n**代码改动量**：~40-60 行\n- 新增一个 `evaluate_oracle()` 函数或在 `evaluate()` 中加 `--mode oracle` 分支\n- 内层循环：对同一 init_state 跑 K 次 K=1 VLA rollout\n- 记录 per-init-state 的 oracle success\n\n**计算成本**：\n- 现有 VLA-only K=1：10 tasks × 10 rollouts = 100 episodes ≈ **1.7 小时**（birth→modify 时间差）\n- Oracle K=10：10 tasks × 10 init_states × 10 attempts = 1000 episodes ≈ **~17 小时**\n- 可以减少：5 rollouts × 10 attempts = 500 episodes ≈ **~8.5 小时**\n\n**LIBERO 环境支持**：\n- `get_sim_state()` → `env.sim.get_state().flatten()` ✓\n- `set_state(mujoco_state)` → `env.sim.set_state_from_flattened()` ✓\n- 可以在每个 init_state 上 reset 后多次独立 rollout，无需 fork\n\n---\n\n## 推荐\n\n**先做 2A（解析近似），再决定是否做 2B。**\n\n理由：\n1. 解析近似零成本，马上能给出 Oracle 天花板的粗略范围（~56%），对比当前 CRM 最佳 ~22%，差距巨大 → 说明 selection 策略有很大改进空间\n2. 如果论文需要精确 Oracle 数字，再跑 2B（~8-17h GPU 时间）\n3. 2B 的代码改动不大（~50 行），主要成本在计算时间\n4. p=0 的 task 建议用更多 seed 跑 VLA-only 确认是否真正为 0（如果 p>0 但很小，Oracle K=10 会显著提升）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-oracle-upper-bound-feasibility.md"
+}

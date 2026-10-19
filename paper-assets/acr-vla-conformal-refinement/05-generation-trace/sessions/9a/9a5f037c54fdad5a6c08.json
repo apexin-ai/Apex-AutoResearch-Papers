@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a5f037c54fdad5a6c08",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis pi05 k2mean goal s42 r2",
+  "task_key": "worker_analysis_pi05-k2mean-goal-s42-r2_20260526T134522",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_pi05-k2mean-goal-s42-r2_20260526T134522_result.json",
+    "occurrence": 1,
+    "bytes": 496,
+    "sha256": "cc67ebfb7214819a8fa50bf6d466c7047fa7019bf5aae4e772f8ded917b78025"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**pi05-k2mean-goal-s42-r2 → DONE (conclusion: success)**\n\n| Metric | Value |\n|---|---|\n| Overall SR | 98.0% (196/200) |\n| Tasks | 10 × 20 rollouts |\n| Lowest task | open_the_middle_drawer_of_the_cabinet 90% |\n| Perfect tasks | 8/10 at 100% |\n\n**对比分析**:\n- π0.5 VLA-only K=1 Goal SR ≈ 96% → K=2 mean = 98% (+2pp)\n- 采样平均本身提供轻微但有意义的增益\n- 后续 CRM K=2 在 Goal s42 上的提升若超过 98%，可归因于校正而非采样"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-pi05-k2mean-goal-s42-r2.md"
+}

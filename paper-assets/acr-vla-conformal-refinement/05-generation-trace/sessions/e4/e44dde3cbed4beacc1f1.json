@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e44dde3cbed4beacc1f1",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy fill idle gpus magnitude",
+  "task_key": "worker_deploy_fill-idle-gpus-magnitude_20260516T201750",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_fill-idle-gpus-magnitude_20260516T201750_result.json",
+    "occurrence": 1,
+    "bytes": 466,
+    "sha256": "ebcb79ae87c385356e4d4bf00b052980dfca9e0cf438e6a444ed5df4af30c26e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实验全部部署完成，Registry 已更新。\n\n| 实验 | 服务器 | GPU | PID | 状态 |\n|------|--------|-----|-----|------|\n| eval-perdof-object-norm01-seed44 | bjb1-18228 | cuda:1 | 531963 | RUNNING |\n| eval-perdof-object-norm01-seed45 | bjb1-32546 | cuda:2 | 309151 | RUNNING |\n| eval-perdof-object-default-seed45 | bjb1-32546 | cuda:4 | 310477 | RUNNING |\n\nGPU 占用已验证，3 个目标 GPU 上均有对应进程在运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-fill-idle-gpus-magnitude.md"
+}

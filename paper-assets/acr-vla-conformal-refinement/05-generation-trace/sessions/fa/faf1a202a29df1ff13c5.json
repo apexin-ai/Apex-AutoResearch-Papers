@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "faf1a202a29df1ff13c5",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze p0 goal vla model check",
+  "task_key": "worker_analyze_p0-goal-vla-model-check_20260523T083407",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_p0-goal-vla-model-check_20260523T083407_result.json",
+    "occurrence": 1,
+    "bytes": 1738,
+    "sha256": "77e214aed6432d208e0e470ce145fb96e19507fb648f0c6779050e972d51c2fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结论明确。\n\n## 结果\n\n### 1. goal_vla_only_seed43_r4 和 seed44_r4 是 **SmolVLA**\n\n证据链：\n- **第 826 行**：`model_tag = f\"_{args.model}\" if args.model != \"smolvla\" else \"\"`——SmolVLA 时文件名不加 model tag，Pi0.5 时加 `_pi05`\n- 文件名 `eval_goal_vla_only_seed43_r4.json` 无 `_pi05` → 使用的是默认模型 SmolVLA\n- 对比同目录下 Pi0.5 的文件：`eval_goal_vla_only_pi05_seed42.json`（有 `_pi05`）\n- JSON 中无 model 字段，但 `baseline_mode: \"single\"` 表示 **K=1 单次采样**（非 K=10 均值）\n\n| 文件 | 模型 | overall_success_rate |\n|------|------|---------------------|\n| `eval_goal_vla_only_seed43_r4.json` | **SmolVLA** (K=1) | **98.0%** |\n| `eval_goal_vla_only_seed44_r4.json` | **SmolVLA** (K=1) | **97.5%** |\n| `eval_goal_vla_only_pi05_seed42.json` | Pi0.5 (K=1) | 98.0% |\n\n**SmolVLA K=1 在 Goal 上也达到 97.5-98%，与 Pi0.5 几乎无差异。** 之前报的 71% 可能是不同条件（K=10 mean 或不同 checkpoint）。如果 Goal CRM 是 85.5%，那确实是 -12pp 的退化，不是 +14.5pp 的提升。\n\n### 2. eval-goal-vla-only-wrapper-s42 进度\n\n进程存活（已运行 1h18m），当前在 **Task 6/10**（`push_the_plate_to_the_front_of_the_stove`），**rollout 10/20**。\n\n已完成 5 个 task 的成绩：\n| Task | Success Rate |\n|------|-------------|\n| open_the_middle_drawer_of_the_cabinet | 85.0% (17/20) |\n| put_the_bowl_on_the_stove | 100.0% (20/20) |\n| put_the_wine_bottle_on_top_of_the_cabinet | 90.0% (18/20) |\n| open_the_top_drawer_and_put_the_bowl_inside | 75.0% (15/20) |\n| put_the_bowl_on_top_of_the_cabinet | 80.0% (16/20) |\n\n当前 task 6 进行中：9/10 rollouts 成功。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-p0-goal-vla-model-check.md"
+}

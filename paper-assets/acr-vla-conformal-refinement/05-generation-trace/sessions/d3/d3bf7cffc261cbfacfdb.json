@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3bf7cffc261cbfacfdb",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diag eval random selection spatial seed42",
+  "task_key": "worker_diag_eval-random-selection-spatial-seed42_20260520T114747",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_eval-random-selection-spatial-seed42_20260520T114747_result.json",
+    "occurrence": 1,
+    "bytes": 1607,
+    "sha256": "87993da7a3708d0756de887b65d29b75a1b5085d7b1685bbd1064ae340d9294c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**实验并未真正失败——当前仍在 bjb1-18228 上活跃运行。**\n\n### 事实\n\n| 项目 | bjb1-32546（CRON 报告的） | bjb1-18228（spec 记录的） |\n|------|-------------------------|-------------------------|\n| 进程 | 不存在 | PID 346801，R 状态，370% CPU，9GB RSS |\n| GPU | — | 3075 MiB 占用 |\n| tmux session | 不存在 | 存在（created 18:51:05 +0800） |\n| exit file | `143\\|2026-05-20T11:44:15Z` ← **旧的** | 不存在（= 还没退出） |\n| 日志 | 到 task 7，有 EXIT_CODE=143 | 到 task 6 rollout 5/10，无 EXIT_CODE |\n\n### 根因\n\n**CRON 回调查错了服务器。** bjb1-32546 上有一个**更早的运行**（被 SIGTERM 杀掉）留下的 stale exit file（`/tmp/agent-ml-exit/eval-random-selection-spatial-seed42.exit`），CRON 轮询时读到了这个旧文件，误报为当前实验失败。\n\nbjb1-32546 上那次旧运行的 SIGTERM 原因：无 OOM 证据（dmesg 为空），tmux session 已不存在，最可能是服务器维护/资源回收/手动清理。\n\n### 当前状态\n\n实验在 bjb1-18228 正常运行，已完成 5/10 个 task，预计 30-40 分钟内完成。日志更新有几分钟延迟是 tee pipe 缓冲导致的，不影响实际执行。\n\n### 建议操作\n\n1. **不需要重跑**——当前实例正在运行\n2. **清理 bjb1-32546 的 stale exit file**：`rm /tmp/agent-ml-exit/eval-random-selection-spatial-seed42.exit`，防止 CRON 再次误报\n3. **修复 CRON 轮询逻辑**：确保回调检查 spec 记录的 server（bjb1-18228），而非 bjb1-32546"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-eval-random-selection-spatial-seed42.md"
+}

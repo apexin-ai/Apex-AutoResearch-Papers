@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a915bdac978bd00e8f63",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "investigate pi05 regression root cause",
+  "task_key": "worker_investigate_pi05-regression-root-cause_20260528T063031",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_investigate_pi05-regression-root-cause_20260528T063031_result.json",
+    "occurrence": 1,
+    "bytes": 3531,
+    "sha256": "5b70b229a918286d99fe58cc05b331a2cc50e8d5f229ca93cb449f9d4261e9f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完成。以下是完整汇报。\n\n---\n\n## 汇报\n\n### Part A: bjb1-18228 + cqa1-32758 GPU 状态\n\n**bjb1-18228（4× RTX 4090）：**\n| GPU | 占用 | 进程 |\n|-----|------|------|\n| 0 | 12757MiB | PID 982389 → `pi05-crm-always-on-long-s43` |\n| 1 | 1MiB | 空闲 |\n| 2 | 12757MiB | PID 983106 → `pi05-crm-always-on-long-s44` |\n| 3 | 1MiB | 空闲 |\n\n两个 session 日志均显示 **obs_dim=2048** ✓，SR 正常（85-95%/task），无 regression。**不需要 kill。**\n\n**cqa1-32758（6× RTX 4090D）：**\n- 6 张 GPU 全部被占（4017MiB ×3, 3807MiB ×2, 5849MiB ×1）\n- tmux sessions: `eval-supp-*`、`smolvla-adapt-*` — **无 Pi05 进程**\n\n---\n\n### Part B: Regression 来源分析\n\n**结论：obs_dim=960 在 VLA-only 模式下是红鲱鱼，不是导致 SR=0% 的原因。**\n\n- **来源**：`src/utils.py:20` 硬编码 `OBS_DIM = 960`（SmolVLA hidden_size），`evaluate.py:93` 用它做 argparse default\n- CRM 模式的启动脚本显式传 `--obs_dim 2048 --unified_obs_dim 2088`，所以 CRM 不受影响\n- VLA-only 模式不传 `--obs_dim`，所以 args 里显示 960——**但 obs_dim 只在 CRM 构造时使用，VLA-only 不加载 CRM，所以对推理无影响**\n- 证据：多个 VLA-only 实验 obs_dim=960 但 SR=94-100%\n- **376 missing keys** 是 PaliGemma vision tower 的 lm_head/projector/language_model keys，在所有 Pi05 实验中都出现（包括 CRM obs_dim=2048 的），是正常行为\n\n**Pi05 VLA-only 首次运行 SR=0% 的真实原因：**\n- `pi05-vla-only-object-s42-4090`：OOM（GPU 碰撞，另一个进程占了 12.43GB）\n- `pi05-vla-only-goal-s42-4090`：SR=0% (0/200) 完整跑完但全部失败——原因是当时的代码 bug（r2 同样 obs_dim=960 但 SR=98%）\n\n---\n\n### Part C: Table 2 旧 Pi05 s42 数据验证\n\n**CRM always-on s42（cqa1-32758）— 全部安全 ✅**\n\n| 实验 | obs_dim | SR | EXIT_CODE |\n|------|---------|-----|-----------|\n| pi05-crm-always-on-object-s42 | 2048 | **90.5%** | 0 |\n| pi05-crm-always-on-spatial-s42 | 2048 | **96.0%** | 0 |\n| pi05-crm-always-on-goal-s42 | 2048 | **81.5%** | 0 |\n| pi05-crm-always-on-long-s42 | 2048 | **77.0%** | 0 |\n\n所有 4 个 CRM always-on 实验 obs_dim=2048，无异常 missing keys（376 vision tower keys 是正常的），SR 合理非零，Table 2 数据安全。\n\n**VLA-only baselines（bjb1-18228）— r2/r3 版本安全 ✅**\n\n| 实验 | obs_dim (args) | SR | 状态 |\n|------|---------------|-----|------|\n| pi05-vla-only-object-s42-4090 | 960 | OOM | ❌ GPU碰撞 |\n| pi05-vla-only-object-s42-4090-**r2** | 960 | **100.0%** | ✅ 可用 |\n| pi05-vla-only-spatial-s42-4090-**r2** | 960 | **98.0%** | ✅ 可用 |\n| pi05-vla-only-goal-s42-4090 | 960 | 0.0% | ❌ 代码bug |\n| pi05-vla-only-goal-s42-4090-**r2** | 960 | **98.0%** | ✅ 可用 |\n| pi05-vla-only-long-s42-4090-**r3** | 960 | **94.0%** | ✅ 可用 |\n| pi05-vla-only-long-s43-4090 | 960 | **95.5%** | ✅ |\n| pi05-vla-only-long-s44-4090 | 960 | **95.5%** | ✅ |\n| eval-pi05-vla-only-goal-seed42-r4 | 960 | **98.0%** | ✅ |\n| eval-pi05-vla-only-long-seed43-r4 | 960 | **95.5%** | ✅ |\n| eval-pi05-vla-only-long-seed44-r4 | 960 | **95.5%** | ✅ |\n\n**总结**：Table 2 所有 Pi05 数据安全。obs_dim=960 是 argparse default 显示问题，不影响 VLA-only 推理。使用 r2+ 版本的 VLA-only 结果即可。建议在 `evaluate.py` 中当 `--model pi05` 时自动将 obs_dim override 为 2048 以消除日志中的混淆。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-pi05-regression-root-cause.md"
+}

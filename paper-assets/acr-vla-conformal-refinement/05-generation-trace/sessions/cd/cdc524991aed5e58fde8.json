@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "id": "cdc524991aed5e58fde8",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "analyze eval obs object norm003 s43",
+  "task_key": "worker_analyze_eval-obs-object-norm003-s43_20260527T093116",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_analyze_eval-obs-object-norm003-s43_20260527T093116.jsonl",
+    "occurrence": 1,
+    "bytes": 749,
+    "sha256": "c2fc653e8fe6b62791797bfdcd1a36b164e53a2d94d68e6740f054d8a996e112"
+  },
+  "statistics": {
+    "messages": 4,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 4
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-27T09:31:34.641073+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval-obs-object-norm003-s43_20260527T093116"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-27T09:31:49.026687+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 29, 2pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval-obs-object-norm003-s43_20260527T093116"
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-27T09:32:01.053076+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 29, 2pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval-obs-object-norm003-s43_20260527T093116"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-27T09:32:13.404621+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 29, 2pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval-obs-object-norm003-s43_20260527T093116"
+          },
+          "id": "event-000004"
+        }
+      ],
+      "message_count": 4
+    }
+  ],
+  "readable_path": "readable/conversations/analyze-eval-obs-object-norm003-s43.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7da233b9e30795cba772",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops deploy k5 argmin spatial",
+  "task_key": "worker_ops_deploy-k5-argmin-spatial_20260519T040524",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_deploy-k5-argmin-spatial_20260519T040524_result.json",
+    "occurrence": 1,
+    "bytes": 826,
+    "sha256": "82a6ed3d825604a1bde9b28b0352298604c6a4f4bf8ad06c286635a7ae124e90"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部提交成功。\n\n| 优先级 | exp_id | 服务器 | GPU | 预估完成 |\n|--------|--------|--------|-----|----------|\n| P1 | `eval-argmin-object-k5-seed42` | bjb2-28827 | cuda:4 | ~8-12h（5/20 凌晨） |\n| P1 | `eval-argmin-object-k5-seed43` | bjb1-18228 | cuda:2 | ~8-12h（5/20 凌晨） |\n| P2 | `eval-obs-only-spatial-norm02-k5-seed42` | bjb2-28827 | cuda:5 | ~8-12h（5/20 凌晨） |\n| P2 | `eval-obs-only-spatial-norm02-k5-seed43` | bjb1-32546 | cuda:1 | ~8-12h（5/20 凌晨） |\n\n说明：\n- **argmin mode = `reconvla`**：K 个 VLA samples → 计算均值 → L2 argmin 选最近的，无 CRM correction\n- 所有 GPU 与现有 eval 共享（eval VRAM ~3.5-6GB，24GB 卡空间充足）\n- 输出文件分别在各服务器 `/root/acr-vla-conformal-refinement/logs/` 下"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deploy-k5-argmin-spatial.md"
+}

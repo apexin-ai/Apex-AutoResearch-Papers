@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4ab76ad102ef8bcac23",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "infra fix libero bddl",
+  "task_key": "worker_infra_fix-libero-bddl_20260513T072831",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_infra_fix-libero-bddl_20260513T072831_result.json",
+    "occurrence": 1,
+    "bytes": 1101,
+    "sha256": "26b6d598ab51b43b56eab15f807f7de4796e2b9e4fa46236e444b663a396e117"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "autodl-4090x4 连接失败（可能实例已关闭或端口变更）。\n\n---\n\n## 修复总结\n\n### 根因\n两个问题叠加：\n\n1. **BDDL 路径错误**：`src/evaluate.py:91` 使用 `task.bddl_file` 只拿到了文件名（如 `pick_up_the_alphabet_soup_and_place_it_in_the_basket.bddl`），缺少完整路径前缀和子目录。\n   - **修复**：改为 `benchmark_instance.get_task_bddl_file_path(task_idx)`，返回完整绝对路径。\n\n2. **Assets 缺失**：LIBERO 通过 pip 安装后 `assets/` 目录（含 XML 场景定义文件）未包含在 wheel 中。\n   - **修复**：从 GitHub repo 克隆并复制 `assets/` 到 site-packages。\n\n### 验证结果\n- `load_libero_env('spatial')` — 10 个环境加载成功\n- `load_libero_env('object')` — 10 个环境加载成功（含原始报错的 `pick_up_the_alphabet_soup_and_place_it_in_the_basket`）\n\n### autodl-4090x4\n连接认证失败，可能实例已关闭或 SSH 端口变更。如果该服务器也跑评估，需要在其上线后执行同样的修复（改 evaluate.py + 复制 assets）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-fix-libero-bddl.md"
+}

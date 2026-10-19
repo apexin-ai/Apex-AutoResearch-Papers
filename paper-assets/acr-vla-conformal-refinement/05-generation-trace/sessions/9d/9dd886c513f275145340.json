@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "9dd886c513f275145340",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "ops register new experiments",
+  "task_key": "worker_ops_register-new-experiments_20260523T033617",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_register-new-experiments_20260523T033617.log",
+    "occurrence": 1,
+    "bytes": 1299650,
+    "sha256": "29b7cd0eff99587ff2b18a91b0becff9d36baae6bfab553701a2f4412ccdc906"
+  },
+  "statistics": {
+    "messages": 82,
+    "user_turns": 0,
+    "tool_calls": 34,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 14,
+      "tool_call": 34,
+      "tool_result": 31
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 82,
+      "chunks": [
+        {
+          "path": "9dd886c513f275145340-part-0001.json",
+          "message_count": 16
+        },
+        {
+          "path": "9dd886c513f275145340-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "9dd886c513f275145340-part-0003.json",
+          "message_count": 65
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-register-new-experiments.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fbeef57b23c7ada9e71b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_25_1779574883.md",
+  "task_key": "loop_25_1779574883",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_25_1779574883.md",
+    "occurrence": 1,
+    "bytes": 5038,
+    "sha256": "6f624843bac79a28c7ea6b63210f3f12c595c68c1af92d07b190a3dd2152ca37"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 25\nreason: idle_timeout\nupdated: '2026-05-23T22:19:16+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- bjb1-32546 GPU 白名单: cuda:0-5（全部分配给本项目）\n- bjb2-28827 GPU 白名单: cuda:0-5（全部分配给本项目）\n- bjb1-18228 GPU 白名单: cuda:0-3（正在跑 π0.5 precompute，不可中断）\n- bjb2-40593 已排除（磁盘满 90%，禁止提交新实验）\n- n_action_steps 必须统一为 10（之前 n_action_steps=50 导致 Object SR ~51.8% 不可比，决策 M063）\n- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/bin/activate && python ...`（aml-train 镜像用 conda，不要假设 .venv）\n- GPU 编号始终从 0 开始（框架自动注入 CUDA_VISIBLE_DEVICES）\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-32546**: 工作目录 `/root/acr-vla-conformal-refinement`，Python `/root/miniconda3/bin/python`，conda base\n  - CRM checkpoint: `/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt`\n  - 4-suite CRM 训练中: `/root/autodl-tmp/checkpoints/crm_unified_4suite_r6/`\n  - 日志: `/root/acr-vla-conformal-refinement/logs/`\n  - 磁盘: 400G/438G 可用（4%）\n- **bjb2-28827**: 同结构，`/root/acr-vla-conformal-refinement`，conda base\n  - 磁盘: 399G/439G 可用（5%）\n- **bjb1-18228**: π0.5 precompute 专用，`/root/acr-vla-conformal-refinement`\n  - 4 个 precompute 进程 (PID 113456/113796/114159/114507)，预计剩余 26-32h\n- W&B: entity/project 在 project config 中配置\n- 活跃 cron: 12 个（reconcile 已确认全部存活）\n\n### 3. 📊 当前状态\n**刚做完**: Session 初始化 + reconcile crons。收到 `eval-supp-adapt-tau015-spatial-s42-r2` 完成回调，已派 Worker 分析（worker_id: `worker_analyze_eval-supp-adapt-tau015-spatial-s42-r2_20260523T061528`，status=running，turn_count=7，正在读日志提取 metrics）。\n\n**RUNNING 实验 (9个)**:\n| exp_id | server | gpu | 摘要 |\n|--------|--------|-----|------|\n| eval-supp-adapt-tau035-spatial-s42-r2 | bjb1-32546 | cuda:4 | tau=0.35 sweep 最后一个点 |\n| eval-supp-obj-crm005-s42-r2 | bjb1-32546 | cuda:5 | Object CRM norm=0.05 |\n| train-crm-unified-4suite-r6 | bjb1-32546 | cuda:3 | 4-suite CRM 训练 epoch~38/50 |\n| eval-object-vla-only-wrapper-s42/s43/s44-r2 | bjb2-28827 | cuda:3/4/5 | Object VLA-only 3-seed baseline |\n| eval-supp-obj-adapt-s42-r2 | bjb2-28827 | cuda:0 | Object Adaptive CRM |\n| eval-supp-obj-reconvla-s42 | bjb2-28827 | cuda:1 | Object Reconvla K=10 |\n| eval-supp-goal-crm005-s42 | bjb2-28827 | cuda:2 | Goal CRM norm=0.05 |\n\n**ANALYZING (2个)**:\n- `eval-supp-adapt-tau015-spatial-s42-r2` — Worker 正在分析\n- `eval-supp-crm-norm02-spatial-s42-r2` — SR=79%，metrics 已提取但还在 ANALYZING（可能之前的 harvest Worker 已处理）\n\n**等待中**:\n- Worker 回调: `worker_analyze_eval-supp-adapt-tau015-spatial-s42-r2_20260523T061528`\n- Worker 回调: `worker_harvest_tau-sweep-bjb1_20260523T061143`（收割 tau sweep 结果）\n- PENDING 审批: `eval-smolvla-crm-goal-seed44`\n\n### 4. 📋 待办（条件触发式）\n- Worker 分析完 tau015 → 更新 registry metrics/conclusion/status=DONE → 汇报 Director tau sweep 进展\n- tau035 cron 回调到达 → 派 Worker 分析 → 收齐全部 4 个 tau 点后汇总 Pareto 曲线（tau=0.075/81%/92%, tau=0.15/?/?, tau=0.25/82%/19.4%, tau=0.35/?/?）→ 向 Director 汇报最优 tau 建议\n- Object VLA-only 3-seed 全部完成 → 计算 mean±std baseline → 解锁 Object 方法对比\n- Object 方法实验 (adapt/reconvla/crm005) 完成 → 与 Object baseline 对比 → cross-suite 验证结论\n- 4-suite CRM 训练完成 → 备选 4-suite eval\n- Spatial multi-seed (s43/s44) 等 threshold sweep 完成释放 bjb1-32546 GPU 后立即部署（P0）\n- eval-supp-crm-norm02-spatial-s42-r2 如果还在 ANALYZING → 确认是否需要手动推 DONE\n\n### 5. 🎯 战略上下文\n- **投稿目标**: CoRL 2026，DDL 2026-05-29，剩余 ≤6 天\n- **核心方法**: ACR-VLA = CRM + Adaptive K，method paper 定位\n- **Spatial seed42 已确认核心结果**: Adaptive CRM 81% > VLA-only 78.5%，但 +2.5pp 在单 seed 上统计力不足（0.86σ），multi-seed 是 P0\n- **CRM always-on norm=0.2 = 79%** vs Adaptive 81% → 证明 gating 贡献 +2pp（决策 D128：问题是 overcorrection magnitude 非方向错误）\n- **tau=0.25 是惊喜**: SR=82% 且 trigger_rate 仅 19.4%，可能是最优 Pareto 点（比默认 tau=0.075 的 81%/92% 更好）\n- **π0.5 baseline 饱和** (94-99%)，只适合 no-harm 验证，非 cross-model generalization\n- **SmolVLA Spatial 3-seed baseline**: 78.5/80.5/80.5 = 79.8%±1.2%\n\n**易踩的坑**:\n- Worker 两次假报部署成功（M065），验证 Worker 产出时必须 SSH 确认\n- eval-supp-crm-norm02-spatial-s42-r2 已有 metrics 但 status 仍 ANALYZING，可能需要手动推 DONE\n- registry 有 7 个未注册/误标进程（ROADMAP 已知问题 #2/#3）\n- bjb2-28827 的 cuda:0/1/2 上 3 个实验曾标记\"未注册\"（M064/M065），现在已在跑但需确认 registry 一致性\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-25-1779574883.md"
+}

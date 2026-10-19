@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae3ebb9a05c03107c056",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_3_1778782354.md",
+  "task_key": "loop_3_1778782354",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_3_1778782354.md",
+    "occurrence": 1,
+    "bytes": 5895,
+    "sha256": "cf7faf05152ebe4ce837036ca15b3d7db3ac4197fcfdd4781ced39f1bfcb5a05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_messages\nupdated: '2026-05-14T18:12:28+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- bjb1 GPU 白名单：cuda:0,1,2,3。bjb2 GPU 白名单：cuda:0。超出即违规\n- **bjb2 `/root/autodl-tmp/crm_cache/` 可能是 v4 旧 cache（6D state，D016 前）**——3 个 CRM v3 训练（PID 181668/181896/181973）正在 bjb2 上用这个 cache。上一轮派了 verify Worker 但未返回。**新 session 第一件事**：确认 bjb2 cache 版本。如果是 v4 → 立即 kill 3 个训练\n- crm_cache_v5（D016 修复后，8D state）仅存在于 bjb1 `/root/autodl-tmp/crm_cache_v5/`，bjb2 没有\n- norm_stats.pt 从 bjb1 crm_cache_v5 spatial 2402 样本计算；CRM v3 训练只用 spatial（非 spatial+object），数据量从 26737 缩至 ~2402\n- submit_training_job 命令必须包含 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- evaluate.py 已改 `strict=False` 加载 checkpoint，v2/v3 CRM 均兼容\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228** (4× RTX 4090 24GB)\n  - 工作目录：`/root/acr-vla-conformal-refinement`\n  - Python：`/root/miniconda3/bin/python`（conda base）\n  - 模型：`/root/autodl-tmp/models/smolvla_libero/`（SmolVLA 450M）\n  - crm_cache_v5：`/root/autodl-tmp/crm_cache_v5/`（spatial 12167 + object 14570 = 26737，8D state）\n  - CRM v2 ckpts：`/root/autodl-tmp/checkpoints/crm_v2/{perdof,scalar_unc,obs_only}/crm_best.pt`\n  - CRM v3 norm_stats：`/root/autodl-tmp/checkpoints/crm_v3/norm_stats.pt`\n  - 新代码：`src/gated_crm.py`（GatedCRM），`src/compute_norm_stats.py`，evaluate.py 新增 `--mode crm_obs_only / acr_gated`、`--max_correction_norm`、`--gate_threshold/mode/temperature`\n  - 活跃进程：eval-acr-spatial-v3 (PID 197057, cuda:0)、eval-argmin-only-spatial (PID 231421, cuda:1)、eval-tiny-correction-spatial (PID 232815, cuda:2)、eval-acr-object-v3 (PID 197803, cuda:3)\n- **bjb2-40593** (1× RTX 4090 D)\n  - 同结构工作目录，crm_cache 版本**待确认**\n  - 活跃进程：eval-vla-mean-spatial (PID 143106, cuda:0)、crm-train-v3-{perdof,scalar_unc,obs_only} (PID 181668/181896/181973, 串行 cuda:0)\n- HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl 在所有 eval 命令中必须设置\n\n### 3. 📊 当前状态\n**核心困境**：CRM correction 将 VLA 40% baseline 拖到 3%（D017）。代码审查确认无 train/eval 不匹配 bug，根因是 CRM 1030D 输入无 normalization，feature scale 失衡 1500x（log_volume ~-25 vs per_dof_std ~0.017），训练集上仅 49% 样本受益（D018）。\n\n**Registry RUNNING/PREPARING**：\n| exp_id | 服务器:GPU | 进度 | 角色 |\n|--------|-----------|------|------|\n| eval-acr-spatial-v3 | bjb1:0 | ~4/10 tasks, 1/30=3% | **CORE CLAIM（CRM v2 未归一化）** |\n| eval-argmin-only-spatial | bjb1:1 | 刚启动 | 诊断：隔离 argmin vs CRM delta |\n| eval-tiny-correction-spatial | bjb1:2 | 刚启动 | 诊断：max_norm=0.05 极保守 correction |\n| eval-acr-object-v3 | bjb1:3 | ~4/10 tasks, 0/30 | 跨 benchmark |\n| eval-vla-mean-spatial | bjb2:0 | 7/10 tasks, 28/70=40% | VLA mean K=10 baseline |\n| crm-train-v3-{perdof,scalar_unc,obs_only} | bjb2:0 | PREPARING ⚠️ | 可能用旧 cache |\n\n**等待中**：\n- verify Worker（验证 bjb2 cache 版本）——**最高优先级**，决定 3 个训练是否有效\n- 5 个 eval cron 回调（每个约 20h：10 tasks × 10 rollouts × 300 steps × K=10）\n- Director 未对 D017/D018 做 framing 级别的最终判定\n\n### 4. 📋 待办（条件触发式）\n- **verify Worker 返回 + cache 是 v4** → 立即 kill bjb2 3 个训练，在 bjb1 用 crm_cache_v5 + norm_stats retrain CRM v3\n- **verify Worker 返回 + cache 是 v5** → 更新训练状态为 RUNNING，等完成后启动 v3 eval\n- **eval-acr-spatial-v3 完成（大概率 <5% negative）** → 按 red-section skill 产 Framing 调整提案。CRM v2（未归一化）结果作为\"为什么需要 normalization\"的 evidence，不作为 core claim 判定依据\n- **eval-vla-mean-spatial 完成** → 确认 VLA mean K=10 baseline，更新对比表\n- **eval-argmin-only-spatial 完成** → 如果 ≈ 34%（≈ SampleConsensus），CRM delta 是唯一损害源；如果 << 34%，有其他代码问题\n- **eval-tiny-correction-spatial 完成** → tiny >> full 说明 correction magnitude 是问题；tiny ≈ full ≈ 0% 说明问题更深\n- **CRM v3 训练完成** → 对比 improvement ratio 是否 > 50%（v2 仅 49%），然后启动 eval-acr-spatial-v4\n- **Gated CRM 代码已就绪** (`src/gated_crm.py` + `--mode acr_gated`)，Director 说等 v3 eval 结果再决定\n\n### 5. 🎯 战略上下文\n**投稿目标**：ICLR 2027（DDL ~Sep-Oct 2026），时间充裕。CoRL 2026 已放弃（D011）。\n\n**决策链关键节点**：D015（SFT Gate 30% 继续）→ D016（发现 6D→8D state 不匹配 bug + 4 bug 修复）→ D017（CRM v2 全面 0-3%，kill 两路 ablation，启动诊断）→ D018（根因确认为 1500x feature scale 失衡，批准 normalization retrain v3）\n\n**已锁定 baselines**：VLA K=1 spatial 30% / object 13%，SampleConsensus spatial 34%，VLA mean spatial ~40%（待最终确认）\n\n**最容易判断错的事**：\n1. **不要把 eval-acr-spatial-v3 结果当作 core claim 最终判定**——v3 eval 用的是 CRM v2（未归一化），真正的判定在 CRM v3（带 normalization）eval 上\n2. **bjb2 cache 版本是悬而未决的炸弹**——如果是 v4（6D），3 个训练全废\n3. CRM v3 训练只用 spatial ~2402 样本（v2 用了 26737），如果 v3 仍 ≤50% improvement ratio，需要在 bjb2 补做 crm_cache_v5 precompute 或拷贝 bjb1 的\n4. Eval 每个 ~20h，4 个并行 eval 预计 ~16-24h 后完成，不要低估等待时间\n5. 如果 CRM v3 + normalization 仍 negative → 需要 framing pivot（如从 \"learned correction\" 转向 \"uncertainty-guided selection + gating\"），但**不是**降级 venue\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778782354.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8516f57a2f0e45f3c5f6",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose cqa1 32758 failures",
+  "task_key": "worker_diagnose_cqa1-32758-failures_20260524T031634",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_cqa1-32758-failures_20260524T031634_result.json",
+    "occurrence": 1,
+    "bytes": 811,
+    "sha256": "32446415a3b88e5a7b7b0a34df5d4392f068f23017a2a24803dc5b8764377dab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。核心结论：\n\n**全部是误报** — 被标记为失败的实验实际上都正常完成并保存了结果。监控系统检测到进程退出但无 sentinel/W&B 信号，误判为崩溃。\n\n各实验结果：\n- spatial-reconvla-s46: 80.0%\n- spatial-crm-norm005-s46: 81.0%\n- spatial-adapt-tau025-s46: 80.0%\n- spatial-vla-only-s46 (pid 604290): 80.5%，已完成退出\n- long-vla-only-s46 (pid 601530): **仍在运行**，GPU 3 上正常推进\n- k2mean-s45 相关：/tmp/ 下无对应日志，但 eval_goal_k2mean_seed45.json 已存在（81.0%）\n\n系统无任何异常（GPU/内存/磁盘全部正常）。无需重跑。长期建议是让 eval 脚本写 sentinel 文件以避免监控误报。\n\n报告已写入 `artifacts/diag_cqa1_32758_failures_20260524.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-cqa1-32758-failures-copy-2.md"
+}

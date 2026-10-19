@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d32462d7e0603d89bc45",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops check bjb2 cuda2 and deploy",
+  "task_key": "worker_ops_check-bjb2-cuda2-and-deploy_20260515T183742",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_check-bjb2-cuda2-and-deploy_20260515T183742_result.json",
+    "occurrence": 1,
+    "bytes": 1228,
+    "sha256": "833da74a20a8e19d03e26156829970afa5966f34396eebeebaaa1b8f37c71205"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:2 不空闲，无法提交新实验。**\n\ncuda:2 上运行着 `eval-mag-perdof-norm0p3-object`（PID 117278，已运行约 1 小时，占用 5645 MiB），是通过 `submit_training_job` 提交的 perdof norm=0.3 实验。\n\n### 全部 GPU 状态\n\n| GPU | PID | 实验 | 状态 |\n|-----|-----|------|------|\n| cuda:0 | 105947 | eval-mag-perdof-norm003 (`--max_correction_norm 0.03`) | 正常 |\n| cuda:1 | 109655 | eval-mag-perdof-norm005 (`--max_correction_norm 0.05`) | 正常 |\n| cuda:2 | 117278 | **eval-mag-perdof-norm0p3** (`--max_correction_norm 0.3`, output `eval_object_perdof_norm0p3.json`) | 通过 submit_training_job 提交 |\n| cuda:3 | 118886 | eval-mag-perdof-norm03 (`--max_correction_norm 0.3`, output `eval_object_perdof_norm03.json`) | 手动提交 |\n| cuda:4 | 101616 | eval-mag-obsonly-norm005 (`--max_correction_norm 0.05`) | 正常 |\n| cuda:5 | 103034 | eval-mag-obsonly-norm03 (`--max_correction_norm 0.3`) | 正常 |\n\n**注意：cuda:2 和 cuda:3 跑的是同一个实验（perdof, norm=0.3），只是输出文件名不同（`norm0p3` vs `norm03`）。** 这是重复提交。需要决定是否 kill 其中一个来腾出 GPU 给 `eval-acr-object-obs-only-default`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-bjb2-cuda2-and-deploy.md"
+}

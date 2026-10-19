@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f408b4836d4ec58cb0d4",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose scalar eval cron",
+  "task_key": "worker_diagnose_scalar-eval-cron_20260515T014456",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_scalar-eval-cron_20260515T014456_result.json",
+    "occurrence": 1,
+    "bytes": 648,
+    "sha256": "352392012cd6206b6589275b9ff5df0c11bc068ffcab711bc4bb6150561befb8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **PID**: 288939\n- **Log**: `/root/runs/acr-vla-conformal-refinement/eval-acr-spatial-v4-scalar.log`\n- **GPU**: cuda:2, 1450 MiB 显存占用\n- **启动时间**: 09:34 (约 11 分钟前)\n- **进度**: 0/10 tasks 完成。日志只有 16 行，停在 `[eval] 10 tasks loaded.`，说明正在跑第 1 个 task 的 rollouts，还没有任何 task 完成输出。\n- **错误**: 无。模型加载正常（SmolVLA + CRM scalar_unc），CPU 160% 活跃运行中。\n- **参数**: `--mode crm_scalar --benchmark spatial --n_rollouts 10 --K 10 --crm_checkpoint crm_v3_norm/scalar_unc/crm_best.pt --max_correction_norm 0.1`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-scalar-eval-cron.md"
+}

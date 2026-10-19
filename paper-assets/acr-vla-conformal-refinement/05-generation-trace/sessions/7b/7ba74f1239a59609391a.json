@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ba74f1239a59609391a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "harvest bjb2 28827 batch",
+  "task_key": "worker_harvest_bjb2-28827-batch_20260525T174412",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_bjb2-28827-batch_20260525T174412_result.json",
+    "occurrence": 1,
+    "bytes": 3303,
+    "sha256": "4c17f5773ee090acaf226e45cb24cb5c08cc639e6505d0c0da8f048c192e6197"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 全部更新完毕。汇总结果。\n\n---\n\n## bjb2-28827 实验状态汇总\n\n### 当前 GPU 使用\n\n| GPU | 实验 | 模型 | Mode | Benchmark | Seed | 状态 |\n|-----|------|------|------|-----------|------|------|\n| 0 | eval-pi05-crm-long-s42 | π0.5 | CRM | Long | 42 | 刚启动，加载环境中 |\n| 1 | eval-pi05-crm-long-s43 | π0.5 | CRM | Long | 43 | 刚启动，加载环境中 |\n| 2 | eval-crm-long-s44-d149 | SmolVLA | CRM | Long | 44 | 运行中，task 7/10 |\n| 3 | eval-pi05-crm-spatial-s42 | π0.5 | CRM | Spatial | 42 | 刚启动，加载环境中 |\n| 4 | eval-pi05-crm-spatial-s43 | π0.5 | CRM | Spatial | 43 | 刚启动，加载环境中 |\n| 5 | eval-adaptive-long-s43-d149 | SmolVLA | Adaptive | Long | 43 | 运行中，task 7/10 |\n\n> GPU 0/1/3/4 的 4 个 π0.5 CRM 实验是别的 session 在 01:42 新启动的，不是用户列表中的原始实验。\n\n### 用户列表中的实验结果\n\n| exp_id | GPU(原) | 实际状态 | SR | 备注 |\n|--------|---------|---------|-----|------|\n| eval-pi05-vla-only-goal-s44 | cuda:5 | **DONE** | **0.975** | 已收割 |\n| eval-pi05-vla-only-object-s43 | cuda:3 | **DONE** | **0.985** | 已收割 |\n| eval-pi05-adaptive-goal-s43 | cuda:1 | **KILLED** | — | 跑到 task 3/10 被杀，需重跑 |\n| eval-pi05-adaptive-object-s42 | cuda:2 | **KILLED** | — | 跑到 task 2/10 被杀，需重跑 |\n| eval-pi05-adaptive-object-s43 | cuda:4 | **KILLED** | — | 跑到 task 2/10 被杀，需重跑 |\n| eval-adaptive-long-s42-d149 | cuda:3 | **DONE** | **0.58** | SmolVLA, trigger_rate=4.3% |\n| eval-adaptive-long-s44-d149 | cuda:4 | **DONE** | **0.54** | SmolVLA, trigger_rate=4.5% |\n\n### \"可能已完成\" 的实验\n\n| exp_id | 实际状态 | SR | 备注 |\n|--------|---------|-----|------|\n| eval-pi05-crm-goal-s42-d149 | RUNNING(registry) | — | 服务器上无任何运行证据 |\n| eval-pi05-crm-goal-s43-d149 | RUNNING(registry) | — | 同上 |\n| eval-pi05-crm-goal-s44-d149 | RUNNING(registry) | — | 同上 |\n| eval-pi05-crm-spatial-s42-d149 | RUNNING(registry) | — | -d149 版本无证据；非 d149 版本刚在 GPU3 启动 |\n| eval-pi05-crm-spatial-s43-d149 | RUNNING(registry) | — | -d149 版本无证据；非 d149 版本刚在 GPU4 启动 |\n| eval-pi05-adaptive-goal-s44 | RUNNING(registry) | — | 无任何运行证据 |\n| eval-pi05-crm-object-s42 | RUNNING(registry) | — | 无任何运行证据 |\n\n### 额外收割的 SmolVLA 结果（同服务器完成）\n\n| exp_id | Mode | Benchmark | Seed | SR |\n|--------|------|-----------|------|----|\n| eval-smolvla-crm-goal-s42 | CRM | Goal | 42 | **0.83** |\n| eval-crm-long-s42-d149 | CRM | Long | 42 | **0.565** |\n\n### 关键发现\n\n1. **GPU 冲突不存在** — 原来 cuda:3/4 上的实验都已结束或被杀，当前无冲突\n2. **3 个 π0.5 Adaptive 实验被杀**（Goal s43, Object s42/s43），需要重新安排\n3. **7 个 \"可能已完成\" 的实验** 在 bjb2-28827 上没有任何运行或结果的证据，可能从未在这台机器上启动过，或在其他服务器\n4. **4 个新的 π0.5 CRM 实验**（long s42/s43, spatial s42/s43）刚在 01:42 被其他 session 启动\n5. **2 个 SmolVLA Long 实验**（CRM s44, Adaptive s43）还在跑，预计几小时内完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-bjb2-28827-batch.md"
+}

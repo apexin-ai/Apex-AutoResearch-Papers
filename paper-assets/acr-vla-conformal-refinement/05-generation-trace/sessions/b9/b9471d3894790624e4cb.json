@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b9471d3894790624e4cb",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb1 32546 redeploy",
+  "task_key": "worker_deploy_bjb1-32546-redeploy_20260523T040933",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb1-32546-redeploy_20260523T040933_result.json",
+    "occurrence": 1,
+    "bytes": 1155,
+    "sha256": "3ff6dc1c726ebe5f947bf8cd36832a35c6c9fccc5201927797ea4fe6b6f92e04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 6 个实验已成功启动并运行。\n\n## 部署报告\n\n| # | exp_id | GPU | PID | 状态 |\n|---|--------|-----|-----|------|\n| 1 | eval-supp-crm-norm02-spatial-s42-r2 | cuda:0 | 664402 | ✓ 10 tasks loaded |\n| 2 | eval-supp-adapt-tau015-spatial-s42-r2 | cuda:1 | 664686 | ✓ 10 tasks loaded |\n| 3 | eval-supp-adapt-tau025-spatial-s42-r2 | cuda:2 | 665520 | ✓ 10 tasks loaded |\n| 4 | eval-supp-adapt-tau035-spatial-s42-r2 | cuda:4 | 667018 | ✓ 10 tasks loaded |\n| 5 | train-crm-unified-4suite-r6 | cuda:3 | 668372 | ✓ epoch 39 训练中 |\n| 6 | eval-supp-obj-crm005-s42-r2 | cuda:5 | 669419 | ✓ 10 tasks loaded |\n\n**4-suite CRM 训练**：从 `/root/autodl-tmp/checkpoints/crm_unified_4suite_r4/checkpoint_epoch0038.pt`（epoch 38）恢复，当前已进入 epoch 39。\n\n**GPU 占用**：6 张 RTX 4090 全部分配，显存 544MB~6.3GB，utilization 10-31%。\n\n**注意**：部署前发现旧进程实际仍在运行（GPU 0/3/4/5 上有之前的 evaluate/train 进程）。按指示执行 `tmux kill-server` 清理后重新部署。4-suite 训练从 epoch 38 checkpoint 无缝恢复，无数据丢失。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb1-32546-redeploy.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f96efd87222a1132ed50",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy obs only norm003 pair",
+  "task_key": "worker_deploy_obs-only-norm003-pair_20260519T115838",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_obs-only-norm003-pair_20260519T115838_result.json",
+    "occurrence": 1,
+    "bytes": 1460,
+    "sha256": "3e0fd6067353e8b7bf7616e6a33406b8ae9e47d5a10475efd1ea68be6e0f002d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都在正常加载模型权重。汇报如下：\n\n---\n\n## 实验部署\n\n| 实验 | 服务器 | GPU | tmux session | PID | 状态 |\n|---|---|---|---|---|---|\n| obs_only ε=0.03 seed47 | bjb1-32546 | cuda:3 | `eval-obs-only-object-norm003-seed47-r2` | 894890 | 正在加载模型权重，启动成功 |\n| obs_only ε=0.03 seed48 | bjb1-18228 | cuda:1 | `eval-obs-only-object-norm003-seed48` | 67819 | 正在加载模型权重，启动成功 |\n\n残留 tmux session 均为空，已清理后重新提交。\n\n---\n\n## 收割结果\n\n### bjb1-32546: perdof-norm003-seed48 (SR=0.13)\n\n| Task | SR | Succ/Total |\n|---|---|---|\n| alphabet_soup | 0.0 | 0/10 |\n| cream_cheese | 0.0 | 0/10 |\n| salad_dressing | 0.2 | 2/10 |\n| bbq_sauce | 0.2 | 2/10 |\n| ketchup | 0.0 | 0/10 |\n| tomato_sauce | 0.1 | 1/10 |\n| butter | 0.1 | 1/10 |\n| milk | 0.1 | 1/10 |\n| chocolate_pudding | 0.3 | 3/10 |\n| orange_juice | 0.3 | 3/10 |\n| **Overall** | **0.13** | **13/100** (10 tasks × 10 rollouts) |\n\n### bjb1-18228: lto-splitA-vla-only-r3 (SR=0.14)\n\n| Task | SR | Succ/Total |\n|---|---|---|\n| salad_dressing | 0.3 | 3/10 |\n| ketchup | 0.0 | 0/10 |\n| tomato_sauce | 0.1 | 1/10 |\n| milk | 0.2 | 2/10 |\n| orange_juice | 0.1 | 1/10 |\n| **Overall** | **0.14** | **7/50** (5 tasks × 10 rollouts) |\n\n注意：lto-splitA-vla-only-r3 只有 5 个 task（不是完整 10 task benchmark），n_rollouts=10。\n\n---\n\n无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-obs-only-norm003-pair.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a48311e72215a6cd2585",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diag plan a spatial seed43 fail",
+  "task_key": "worker_diag_plan-a-spatial-seed43-fail_20260521T000354",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_plan-a-spatial-seed43-fail_20260521T000354_result.json",
+    "occurrence": 1,
+    "bytes": 740,
+    "sha256": "a58ae4b8efb7068820846af9edf73fcd6ec7603c013b5cc8289c6937833d3736"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**结论：seed42/43 没有失败，是监控误报。** 三个 seed 全部正常完成，结果文件完整有效：\n\n| seed | 成功率 | 状态 |\n|------|--------|------|\n| 42 | 34.0% | 完成，JSON 存在 |\n| 43 | 35.0% | 完成，JSON 存在 |\n| 44 | 36.0% | 完成，JSON 存在 |\n\n日志无任何 error/OOM/crash，三个 seed 的 conformal CRM 统计指标高度一致（mean_unc ~0.26, trigger_rate ~98%）。监控报 \"process dead 5× with no sentinel/W&B\" 是因为检测不到进程标记，不是进程真的挂了。\n\n**行动项**：将 seed42/43 状态更正为 completed，结果可直接使用，无需重试。报告已写入 `artifacts/diag_plan_a_spatial_seed42_43.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-plan-a-spatial-seed43-fail.md"
+}

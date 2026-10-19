@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "acef6accec0f20843eab",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "fix kill bjb2 28827 eval r2",
+  "task_key": "worker_fix_kill-bjb2-28827-eval-r2_20260522T011044",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_kill-bjb2-28827-eval-r2_20260522T011044_result.json",
+    "occurrence": 1,
+    "bytes": 108,
+    "sha256": "1c384ef34fdaf47f838d33c0215561ff8ea53e503f0827c620d7f459a482e830"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个进程（123807、124161）已不存在，可能之前已终止。返回 `KILLED_OK`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-bjb2-28827-eval-r2.md"
+}

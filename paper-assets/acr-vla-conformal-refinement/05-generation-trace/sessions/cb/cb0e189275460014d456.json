@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb0e189275460014d456",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "verify pi05 progress",
+  "task_key": "worker_verify_pi05-progress_20260521T030633",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_pi05-progress_20260521T030633_result.json",
+    "occurrence": 1,
+    "bytes": 912,
+    "sha256": "3f284086ed1f80b3d4508384a01cf5e655c22aaba64ac6c4c772426f3dda1364"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## π0.5 Baseline Eval 状态\n\n**进程**: PID 802634 存活，已运行 1h18m\n**GPU**: GPU 0 占用 13.5GB/24.6GB，利用率 37%\n\n**进度**: 10 个 task 中：\n- Task 1 `pick_up_the_alphabet_soup` — 完成，**0/20 (0%)**\n- Task 2 `pick_up_the_cream_cheese` — 进行中，rollout 10/20，**0/10**\n\n约完成 1.5/10 tasks。按当前速度（~52min/task），预计还需 **~7.5 小时**。\n\n**⚠️ 关键问题：SR 目前为 0%。** 两个 task 共 30 个 rollout 全部失败，高度怀疑是 **normalization mismatch** 问题——π0.5 训练用 MEAN_STD normalization，而 wrapper 可能用了 QUANTILES。如果后续 task 继续 0%，这次 eval 的结果无效，需要修复 normalization 后重跑。\n\n建议：可以现在就检查 `pi05_wrapper.py` 的 normalization 配置，确认是否与训练时一致，不必等全部 10 个 task 跑完再发现问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-pi05-progress.md"
+}

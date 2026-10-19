@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d414e19c03124dcd2fac",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "verify oft checkpoint fix",
+  "task_key": "worker_verify_oft-checkpoint-fix_20260522T121952",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_verify_oft-checkpoint-fix_20260522T121952_result.json",
+    "occurrence": 1,
+    "bytes": 922,
+    "sha256": "be9e12d12af580364bef1fd64225d25742668b34d39258c4674e7f2e7a7878b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "环境初始化超时了（30s 限制）。当前 eval 进度约 54%（270/500 episodes），全部失败。\n\n汇总诊断结果：\n\n**确认正确的部分：**\n- Checkpoint 来源：`moojink/openvla-7b-oft-finetuned-libero-object` ✓\n- 模型权重已包含 merged LoRA ✓  \n- action_head、proprio_projector 文件存在 ✓\n- 代码逻辑：官方 OFT repo，参数默认值正确 ✓\n- config.json/modeling_prismatic.py 的修改不影响 L1 regression 路径 ✓\n\n**问题：**\n- 270+ episodes，0% 成功率（论文报告 ~96%）\n- 当前参数 `num_trials=50, seed=7`（任务要求 `20, 42`）\n\n**未排除的可能原因：**\n- MuJoCo 3.8.1 与 LIBERO 的兼容性问题\n- 环境渲染出的图像与训练时不同\n- 模型下载不完整/权重损坏\n\n建议：Kill 当前 eval，用 **HF Hub 路径直接加载**（跳过本地文件），重新跑 eval。是否执行？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-oft-checkpoint-fix.md"
+}

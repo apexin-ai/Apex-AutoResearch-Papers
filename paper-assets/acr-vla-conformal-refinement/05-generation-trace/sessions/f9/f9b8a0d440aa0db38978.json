@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9b8a0d440aa0db38978",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops fix bjb1 32546 conflicts deploy",
+  "task_key": "worker_ops_fix-bjb1-32546-conflicts-deploy_20260516T213224",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_fix-bjb1-32546-conflicts-deploy_20260516T213224_result.json",
+    "occurrence": 1,
+    "bytes": 1412,
+    "sha256": "bafe99183ed66dde2830119839297b8d762f19943070a14522a09aeb1711be93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. Kill 结果\n两个未注册进程已成功终止：\n- PID 306318 (`crm_perdof`, norm=0.3, seed=45) — 已 kill\n- PID 306518 (`crm_perdof`, norm=0.2, seed=46) — 已 kill\n\nGPU 2 只剩 PID 309158，GPU 4 只剩 PID 310485，符合预期。\n\n### 2. 新实验部署状态\n\n| 实验 | GPU | tmux PID | Python PID | 显存 | 状态 |\n|------|-----|----------|-----------|------|------|\n| eval-obs-only-object-norm02-seed47 | cuda:0 | 319119 | 319128 | 5020 MiB | ✓ 运行中 |\n| eval-perdof-object-norm03-seed45-r2 | cuda:5 | 319454 | 319463 | 5630 MiB | ✓ 运行中 |\n\n### 3. 未注册进程来源分析\n\n被 kill 的两个进程的完整命令：\n```\n306318: python -u src/evaluate.py --mode crm_perdof ... --max_correction_norm 0.3 --seed 45 --output_file logs/eval_object_perdof_norm03_seed45.json\n306518: python -u src/evaluate.py --mode crm_perdof ... --max_correction_norm 0.2 --seed 46 --output_file logs/eval_object_perdof_norm02_seed46.json\n```\n\n**判断：旧 Worker 遗留进程。** 依据：\n- 无对应 tmux session（kill 前 tmux ls 只有 `eval-argmin-object-seed46`）\n- 无 cron 定时任务\n- 命令格式与 `submit_training_job` 提交的一致，但缺少 tmux 包装 → 可能是某次 Worker 通过 `ssh_execute` 直接启动（未走 `submit_training_job`），或对应 tmux session 意外退出后进程变为孤儿进程"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-bjb1-32546-conflicts-deploy.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8dd28b6fdbc058cb45e6",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose eval adaptive k spatial p50 seed42",
+  "task_key": "worker_diagnose_eval-adaptive-k-spatial-p50-seed42_20260520T073204",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval-adaptive-k-spatial-p50-seed42_20260520T073204_result.json",
+    "occurrence": 1,
+    "bytes": 639,
+    "sha256": "39d1aeb161c83550b9521bedd7c4e5bf6107ed2e84cad000d4be14376aca58ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**失败根因：Cron 误判（false positive）。** 原 PID 675831 被 deploy worker kill 后重启为 PID 681823，cron 未追踪到新 PID，5 次检测均无 sentinel/W&B 信号 → 自动标记 failed。\n\n**实际状态：进程正常运行中。**\n- PID 681823 状态 `Rl+`，已运行 17h36m\n- 已完成 3/10 tasks（SR: 70% / 100% / 0%），第 4 个 task 进行中\n- GPU 使用 5972/24564 MiB，无错误\n- 输出 JSON 尚未生成（全部 task 完成后才写入）\n\n**结论：无需重新提交。** 等进程自然完成后，手动修正 conclusion 为 success 并补录 metrics。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-adaptive-k-spatial-p50-seed42-copy-2.md"
+}

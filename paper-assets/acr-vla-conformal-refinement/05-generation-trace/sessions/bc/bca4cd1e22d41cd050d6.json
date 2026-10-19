@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bca4cd1e22d41cd050d6",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_22_1779331475.md",
+  "task_key": "loop_22_1779331475",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_22_1779331475.md",
+    "occurrence": 1,
+    "bytes": 4893,
+    "sha256": "bcf1f6c3a0e8954af73843ec2fe93342ebf1bdbb2aead307a263c868de1ff7de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 22\nreason: idle_timeout\nupdated: '2026-05-21T02:44:33+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单严格按 `get_project_status` 的 `execution.gpu_ids`，即使 Director 指令用白名单外 GPU 也必须 push back\n- Object CRM K=10 Table 1 只用 norm02 数据（D080），seed42 的 SR=20% 不纳入（D084 决策）\n- Spatial CRM K=10 用 clean n=8 数据 34.4±1.5%（D083），不要引用旧的 n=7\n- Long OOD 只能用 cautious wording（MW-U p=0.061 n.s.，D081）\n- evaluate.py 使用 batched inference（D082），延迟表和效率 claim 必须与此一致\n- CRM checkpoint 路径: `/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**: 6× RTX 4090, root, 工作目录 ~/runs/acr-vla-conformal-refinement/\n- **bjb1-32546**: 6× RTX 4090, root, 同上\n- **bjb2-28827**: 6× RTX 4090, root, 同上\n- **bjb2-40593**: GPU 信息待确认, root, 同上\n- Python: 各服务器用 conda（`source /root/miniconda3/bin/activate`），不要假设 .venv\n- 代码仓库: 各服务器 ~/acr-vla-conformal-refinement/（含 src/evaluate.py）\n- W&B: 可用，cron 回调说 \"W&B data available\"\n- 总计 17× RTX 4090 across 4 servers\n\n### 3. 📊 当前状态\n**刚做完**: session-start 初始化（read_registry + reconcile_crons + read report/ROADMAP）。收到 eval-crm-object-k20-seed43 完成回调。\n\n**已有 Worker 结果（上一轮 spawn 的）**:\n- eval-crm-object-k20-seed43: **DONE/success, SR=18.0%**（K=20 vs K=10 16.8% 仅 +1.2pp，边际收益可忽略）\n\n**已派 Worker（本轮 spawn，等回调）**:\n- `worker_analyze_bjb1-18228-batch_20260520T103655`: 分析 eval-crm-object-k20-seed42 / eval-adaptive-k-spatial-p75-seed42 / eval-vla-only-long-seed49-r2\n- `worker_analyze_bjb1-32546-batch_20260520T103702`: 分析 eval-adaptive-k-spatial-p75-seed43 / eval-obs-only-object-norm003-seed43-r2 / eval-obs-only-object-norm005-seed44\n\n**RUNNING 实验**:\n- eval-crm-object-k20-seed44 (bjb2-28827) — K=20 sweep 第3 seed\n- eval-adaptive-k-spatial-p50-seed42 (bjb2-40593) — Spatial Adaptive K P50 首 seed\n- eval-adaptive-k-spatial-p25-seed42 (bjb1-18228) — Spatial P25\n- eval-adaptive-k-spatial-p25-seed43 (bjb1-32546) — Spatial P25 seed43\n- eval-obs-only-object-norm005-seed44 (bjb1-32546) — 可能刚完成转 ANALYZING\n- eval-obs-only-object-norm003-seed43-r2 (bjb1-32546) — 同上\n\n**QUEUED**: eval-obs-only-object-norm003-seed44, eval-obs-only-object-norm005-seed43 (bjb2-28827)\n\n**未汇报 Director**: 本轮还没来得及汇报。需要等两个 batch Worker 回调后汇总所有结果一起报。\n\n### 4. 📋 待办\n- Worker bjb1-18228-batch 回调 → 汇总 K=20 seed42 + Spatial P75 seed42 + Long VLA-only seed49-r2 结果\n- Worker bjb1-32546-batch 回调 → 汇总 Spatial P75 seed43 + norm003/norm005 结果\n- 两个 Worker 都回来后 → 向 Director 汇报（开头带 [资源] 行），内容包括:\n  - K=20 sweep 汇总（seed42/43 结果 + seed44 还在跑）→ 预判 K=20 边际收益很小\n  - Spatial Adaptive K P75 cross-benchmark 结果\n  - plan_500 低 norm 补充数据点\n  - Long VLA-only seed49-r2 确认\n- eval-crm-object-k20-seed44 完成 → 完成 K=20 sweep 三 seed 汇总，如果都是 ~18% 则结论: K=20 不值得\n- Spatial Adaptive K P50 seed42 完成 → 开始 Spatial P50 三 seed 汇总（核心贡献数据）\n- **ROADMAP 待部署任务**（需 Director 确认 GPU 分配后执行）:\n  - Spatial Adaptive K P50 seed43, seed44\n  - Random Selection baseline seed42, seed44 (plan_600)\n  - CRM Object K=10 norm02 seed42（Table 1 n=6→n=7）\n  - fig3_kvalue 重新生成\n\n### 5. 🎯 战略上下文\n- **CoRL 2026 DDL: 2026-05-29，剩 ~8 天**\n- **D077（用户硬要求）**: Adaptive K = 论文核心贡献，K=10 分析降为 supporting evidence\n- **核心信号**: K=2 L2 distance（ρ=0.9979 vs K10_var），CRM magnitude 和 FMVD 都 NO-GO\n- **P50 = Pareto 最优**（D078）: SR 15.3%, avg_K ~3.8, fast_path ~77%, vs K=10 ~91% 性能保留\n- Object Adaptive K sweep 12/12 已全部 DONE，现在在做 **Spatial cross-benchmark** 验证\n- K=20 sweep 初步结论: seed43 SR=18.0% vs K=10 16.8%，仅 +1.2pp，边际收益可忽略——如果 seed42/44 也类似，K=20 作为 supporting evidence 写入附录即可\n- **易错点**: Spatial 实验用的 threshold 是 Object-calibrated 的（τ=P50 0.07246, P75 0.098735），cross-benchmark transfer 是论文的一个 claim，结果好坏直接影响 story strength\n- **论文 CRITICAL 待解决**: evaluate.py 推理模式确认(P0)、Spatial n=8 溯源、OOD 全量更新、P25 n=3 更新\n- 决策链: D075(FMVD NO-GO) → D076(K=2 L2 GO) → D077(Adaptive K 升核心) → D078(P50 Pareto) → D079(CRM mag NO-GO) → D080(Table1 norm02) → D081(Long OOD cautious) → D082(batched inference) → D083(Spatial n=8 clean) → D084(seed42 SR=20% 排除)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-22-1779331475.md"
+}

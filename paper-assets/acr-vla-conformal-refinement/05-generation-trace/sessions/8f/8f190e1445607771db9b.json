@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f190e1445607771db9b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval supp goal reconvla s42",
+  "task_key": "worker_analyze_eval-supp-goal-reconvla-s42_20260523T100553",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-supp-goal-reconvla-s42_20260523T100553_result.json",
+    "occurrence": 1,
+    "bytes": 936,
+    "sha256": "a0366e468cd39829ef273a0374506b86b79431d5ccd53aa4cdc5ba8219516e2d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Goal Reconvla K=10 argmin, seed=42\n\n**Overall: 81.0% (162/200)**\n\n| Task | Success Rate | Successes/Total |\n|------|-------------|-----------------|\n| open_the_middle_drawer_of_the_cabinet | 75.0% | 15/20 |\n| put_the_bowl_on_the_stove | 95.0% | 19/20 |\n| put_the_wine_bottle_on_top_of_the_cabinet | 90.0% | 18/20 |\n| open_the_top_drawer_and_put_the_bowl_inside | 50.0% | 10/20 |\n| put_the_bowl_on_top_of_the_cabinet | 95.0% | 19/20 |\n| push_the_plate_to_the_front_of_the_stove | 85.0% | 17/20 |\n| put_the_cream_cheese_in_the_bowl | 45.0% | 9/20 |\n| turn_on_the_stove | 100.0% | 20/20 |\n| put_the_bowl_on_the_plate | 95.0% | 19/20 |\n| put_the_wine_bottle_on_the_rack | 80.0% | 16/20 |\n\n对比：Goal VLA-only=83.5%, Goal CRM=85.5%, **Goal Reconvla=81.0%**。Reconvla 在 Goal suite 上低于 VLA-only 2.5pp，低于 CRM 4.5pp。两个弱任务拖后腿：cream_cheese (45%) 和 top_drawer_bowl (50%)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-supp-goal-reconvla-s42.md"
+}

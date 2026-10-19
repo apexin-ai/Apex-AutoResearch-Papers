@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8000a451573797971962",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze westd vla only batch and adaptive",
+  "task_key": "worker_analyze_westd-vla-only-batch-and-adaptive_20260526T115459",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_westd-vla-only-batch-and-adaptive_20260526T115459_result.json",
+    "occurrence": 1,
+    "bytes": 1271,
+    "sha256": "b580c6f3ab5d2a03211528f802ef40f18704f601eb8d3ada62d43fd5a0f71ca3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "7 个实验全部完成分析，registry 已更新。汇总：\n\n## 结果汇总\n\n| exp_id | benchmark | seed | success_rate | 备注 |\n|--------|-----------|------|-------------|------|\n| westd-pi05-vla-only-goal-s42-paired | goal | 42 | **97.5%** | 最低 task: open_drawer/push_plate/wine_rack 95% |\n| westd-pi05-vla-only-goal-s43-paired | goal | 43 | **96.5%** | 最低 task: open_top_drawer 85% |\n| westd-pi05-vla-only-goal-s44-paired | goal | 44 | **95.5%** | 最低 task: open_top_drawer 80% |\n| westd-pi05-vla-only-object-s42-paired | object | 42 | **99.5%** | 仅 bbq_sauce 95% |\n| westd-pi05-vla-only-object-s43-paired | object | 43 | **100%** | 10/10 tasks 全部满分 |\n| westd-pi05-vla-only-object-s44-paired | object | 44 | **99.5%** | 仅 bbq_sauce 95% |\n| pi05-adaptive-object-s42-cqa1 | object | 42 | **85.5%** | trigger_rate=3.7%, mean_unc=0.084, 最低 ketchup 50% |\n\n**VLA-only baseline 均值：**\n- Goal (westd): 96.5% ± 1.0%\n- Object (westd): 99.7% ± 0.3%\n\n**Adaptive vs VLA-only (Object, s42)：** 85.5% vs 99.5%，Adaptive 反而下降 14pp。trigger_rate 仅 3.7% 说明 conformal 几乎不触发，但触发时 CRM correction 损害了性能（尤其 ketchup 从 100%→50%，cream_cheese 从 100%→70%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-westd-vla-only-batch-and-adaptive.md"
+}

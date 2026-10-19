@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8fa3e1f1d8dc3f16da5",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "paper writing experiments",
+  "task_key": "worker_paper_writing_experiments_20260518T095825",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_experiments_20260518T095825_result.json",
+    "occurrence": 1,
+    "bytes": 942,
+    "sha256": "d7420a192ed96da263cb3cbb59895f02a6b0fdd0bcae27ef3be1e0fe6eef883f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "34 exp_id annotations covering all 7 relevant evidence sections (§2A magnitude, §2B K-value, §2C baselines, §2D decomposition, §2E statistics, §2G OpenVLA, §2H perdof collapse).\n\nExperiments section written to `docs/paper/experiments.tex` (217 lines). Structure:\n\n1. **Setup** (lines 13--46): benchmark, VLA, 4 baselines, 3 CRM variants, statistical protocol\n2. **Component Decomposition** (lines 49--103): Table 1 with 7 methods; selection ~1pp vs correction ~5pp; Fisher p=0.0074, Cohen's d=1.21; honest negatives for perdof/scalar\n3. **Conditioning-Magnitude Interaction** (lines 107--160): Table 2 (6 epsilon values x 2 variants); obs\\_only robust 13.5--17.5%, perdof collapses 14.0->0.0%\n4. **K-Value Curve** (lines 164--190): monotonic K=1(10.3%)→K=5(14.0%*)→K=10(17.5%); K=5 single-seed noted\n5. **Applicability Boundary** (lines 194--217): OpenVLA diversity failure (8/10 identical, variance <1e-30)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experiments-copy-2.md"
+}

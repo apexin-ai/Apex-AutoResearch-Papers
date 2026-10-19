@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e592eaec7e785e98d662",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_30_1780049894.md",
+  "task_key": "loop_30_1780049894",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_30_1780049894.md",
+    "occurrence": 1,
+    "bytes": 3128,
+    "sha256": "ebd1f728628a4e435c6a2139d5006ed9194133252a0cd02c26c0e515e4f537b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 30\nreason: idle_timeout\nupdated: '2026-05-29T10:03:36+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- CoRL 2026 DDL **2026-05-28 20:00 北京时间**已过（今天是 2026-05-29）。如果还没提交，需确认 Director 是否已提交或决定放弃\n- 用户已下令**全面停机**（2026-05-28），所有 179 项实验已 kill/cancel，**不要启动新实验**除非 Director 明确指令\n- westd-49937 服务器数据系统性偏低 4-5pp，该服务器结果**不入主表**\n- Pi05 Object CRM 数据不入 Table 2 主表，放 Supplement（D171）\n- memory.md 之前被误覆盖（原文件 Birth 2026-05-26 内容丢失），操作 memory.md 时**先读再追加**，禁止 save_project_file 全量覆盖\n\n### 2. 🖥️ 基础设施快照\n- **cqa1-32758**: Pi05 实验主力，6 卡。全面停机后状态未知（report.md 显示连接失败）\n- **bjb1-18228**: 4 卡（实测可能仅 1 卡可用）。report.md 显示连接失败\n- **bjb1-32546**: 6 卡。report.md 显示连接失败（AutoDL 实例可能已关机/端口变更）\n- **bjb2-28827**: 6 卡。report.md 显示连接失败\n- 活跃进程：0（全面停机）\n- 活跃 cron：0（reconcile 确认）\n- Worker 池：0\n\n### 3. 📊 当前状态\nLoop #30 刚完成 session-start 初始化。Registry 确认 0 个 RUNNING 实验。已向 Director 汇报全面停机状态 + 论文就绪待提交。\n\n论文状态：\n- 编译通过，8 页正文 + 6 页（refs 2 + appendix 4）\n- Table 1 K-matched 3 列重构完成，4/4 suites harmful 叙事升级完成\n- Table 3 (Pi05) 完成，4/4 suites degradation-only\n- Title 已锁定：\"Knowing When Not to Correct: Adaptive Te...\"（D179）\n\n等待中：Director 回复——确认是否已提交 CoRL / 下一步指令\n\n### 4. 📋 待办\n- Director 回复\"已提交\" → 项目进入 post-submission 阶段，等 camera-ready 或 rebuttal\n- Director 回复\"未提交 / 错过 DDL\" → 确认是否转投其他会议（注意：不要主动建议 fallback，这是 Director 决策空间）\n- Director 要求恢复实验 → 先确认服务器连接状态（4 台都报连接失败，AutoDL 实例可能已过期），再评估 GPU 可用性\n- 如需新实验 → 所有 AutoDL 实例端口可能已变，需用户去控制台查新端口更新 SSH config\n\n### 5. 🎯 战略上下文\n- **核心叙事**：CRM always-on 是双刃剑，4/4 suites 有害（SmolVLA + Pi05 跨模型验证），Adaptive gating 全面恢复\n- **三大 Claim**：MC1（4/4 harmful）、MC2（trigger rate ↔ Δ 单调正相关，cross-suite + τ-sweep）、MC3（跨 VLA 泛化）\n- **数据完整性**：SmolVLA 3-seed 完整，Pi05 degradation-only 两列（VLA-only + CRM always-on）完整\n- **Long suite 是最强证据**：SmolVLA CRM always-on Long -14.8pp（D178），Pi05 Long 94.0→77.0 Δ=-17.0pp\n- **DDL 已过**：今天是 5-29，DDL 是 5-28 20:00 BJ。项目处于\"论文就绪但不确定是否已提交\"状态。不要假设已提交——等 Director 确认\n- **易错点**：Pi05 VLA-only SR 用 percentage scale（97%=97），部分旧实验用 0-1 scale（0.98=98%），看 metrics 注意 scale\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-30-1780049894.md"
+}

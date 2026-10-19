@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d878303872ddba31e759",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis paper claims data alignment",
+  "task_key": "worker_analysis_paper-claims-data-alignment_20260517T111825",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_paper-claims-data-alignment_20260517T111825_result.json",
+    "occurrence": 1,
+    "bytes": 872,
+    "sha256": "3cf6fcec138712456729e705a1956d6a70e264bfc2bbcc4e4f3ec4b9801d1356"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/paper_data_alignment.md` 并注册。核心发现：\n\n**Claim 1 (pipeline improvement)**: ✅ 充分。6v6 seeds, p=0.0074, d=1.21 全部 registry 验证通过。\n\n**Claim 2 (magnitude interaction)**: ⚠️ 部分。趋势清晰但 Figure 2 低 norm 端 (0.03, 0.05) 双方法仅 1 seed，无法加 error bars，且无 RUNNING 实验覆盖。perdof default 也仅 1 seed。\n\n**Claim 3 (per-DOF negative result)**: ⚠️ 部分。所有 spatial 数据单 seed。perdof spatial norm=0.3 实际 26%，低于论文声称的 \"30-35%\" 范围。\n\n**数据错误**: scalar CRM seed42 paper_framing 写 15%，registry 实为 9%。VLA-mean seed44/45 已完成但 paper_framing 未更新。\n\n**关键建议**: 8 张空闲 GPU 应优先补 Figure 2 低 norm 端 (0.03/0.05) 的 multi-seed 数据和 perdof default 额外 seed。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-paper-claims-data-alignment.md"
+}

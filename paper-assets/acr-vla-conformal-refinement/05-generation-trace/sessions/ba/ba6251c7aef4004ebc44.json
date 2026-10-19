@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba6251c7aef4004ebc44",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy bjb1 32546 cuda5 fill",
+  "task_key": "worker_deploy_bjb1-32546-cuda5-fill_20260520T143627",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_bjb1-32546-cuda5-fill_20260520T143627_result.json",
+    "occurrence": 1,
+    "bytes": 687,
+    "sha256": "7ba7ca2dcce0140f350c4dc813bbb12671a7a9409128b7a35a86a7d9c1acc10c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "注册表中已有同名实验（DONE, success_rate=0.1, 之前在 bjb2-28827 上跑的，无 CRM checkpoint）。DONE→RUNNING 转换被拒绝。但进程已在运行中。\n\n**部署完成：**\n- **exp_id**: eval-random-selection-object-seed45\n- **PID**: 468175\n- **GPU**: bjb1-32546 cuda:5\n- **tmux**: `eval-random-selection-object-seed45`\n- **输出**: `logs/eval_random_selection_object_seed45.json`\n\n注意：该 exp_id 在 registry 中已有一条 DONE 记录（旧跑：bjb2-28827, 10% success rate, 无 CRM checkpoint, 输出文件名不同）。当前这次跑法加了 `--crm_checkpoint`，配置不同。如需区分，可用新 exp_id 重新注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-bjb1-32546-cuda5-fill.md"
+}

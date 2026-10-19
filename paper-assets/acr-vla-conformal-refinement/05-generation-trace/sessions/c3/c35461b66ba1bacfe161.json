@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "c35461b66ba1bacfe161",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "harvest comprehensive sr na 20260526T083351 retry2",
+  "task_key": "worker_harvest_comprehensive-sr-na_20260526T083351_retry2",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_harvest_comprehensive-sr-na_20260526T083351_retry2.log",
+    "occurrence": 1,
+    "bytes": 1680576,
+    "sha256": "27d389bbd206e68ca8f3a6a1a1b599e7f2cfc53fb407743b936220a292579489"
+  },
+  "statistics": {
+    "messages": 225,
+    "user_turns": 0,
+    "tool_calls": 92,
+    "roles": {
+      "system": 1,
+      "record": 2,
+      "assistant": 37,
+      "tool_call": 92,
+      "tool_result": 92,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 225,
+      "chunks": [
+        {
+          "path": "c35461b66ba1bacfe161-part-0001.json",
+          "message_count": 10
+        },
+        {
+          "path": "c35461b66ba1bacfe161-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "c35461b66ba1bacfe161-part-0003.json",
+          "message_count": 125
+        },
+        {
+          "path": "c35461b66ba1bacfe161-part-0004.json",
+          "message_count": 89
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/harvest-comprehensive-sr-na-20260526t083351-retry2.md"
+}

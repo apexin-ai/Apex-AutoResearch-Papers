@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "9f1d44c60b189b51991b",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "setup westd 49937 pi05 20260526T041200 retry1",
+  "task_key": "worker_setup_westd-49937-pi05_20260526T041200_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_setup_westd-49937-pi05_20260526T041200_retry1.log",
+    "occurrence": 1,
+    "bytes": 952852,
+    "sha256": "e69c476f94049b70116344aaba90269585654c711616c8f3c868d19b3ed10711"
+  },
+  "statistics": {
+    "messages": 669,
+    "user_turns": 0,
+    "tool_calls": 238,
+    "roles": {
+      "log": 11,
+      "tool_call": 238,
+      "tool_result": 233,
+      "assistant": 154,
+      "system": 25,
+      "record": 3,
+      "result": 5
+    },
+    "unparsed_lines_preserved": 11,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 669,
+      "chunks": [
+        {
+          "path": "9f1d44c60b189b51991b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "9f1d44c60b189b51991b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "9f1d44c60b189b51991b-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "9f1d44c60b189b51991b-part-0004.json",
+          "message_count": 129
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/setup-westd-49937-pi05-20260526t041200-retry1.md"
+}

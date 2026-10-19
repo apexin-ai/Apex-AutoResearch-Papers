@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "7abc2f51b0805bbfe369",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "analysis random selection spatial writeup",
+  "task_key": "worker_analysis_random-selection-spatial-writeup_20260521T035553",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_random-selection-spatial-writeup_20260521T035553.log",
+    "occurrence": 1,
+    "bytes": 653896,
+    "sha256": "fab2f9a42fd3a5b024625100860bd3395856340b648f639bbbe3babb299acf19"
+  },
+  "statistics": {
+    "messages": 69,
+    "user_turns": 0,
+    "tool_calls": 24,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 16,
+      "tool_call": 24,
+      "tool_result": 24,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 69,
+      "chunks": [
+        {
+          "path": "7abc2f51b0805bbfe369-part-0001.json",
+          "message_count": 62
+        },
+        {
+          "path": "7abc2f51b0805bbfe369-part-0002.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-random-selection-spatial-writeup.md"
+}

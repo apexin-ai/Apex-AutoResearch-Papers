@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89c050d024dee4695920",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "monitor norm sweep progress",
+  "task_key": "worker_monitor_norm-sweep-progress_20260521T010500",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_monitor_norm-sweep-progress_20260521T010500_result.json",
+    "occurrence": 1,
+    "bytes": 2369,
+    "sha256": "0eeddc2aa64a49db8cc53172b35191e3e2adacdaae2c437a5434ba0352fe7e78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完成，汇总如下：\n\n## Norm Sweep 实验进度汇总（2026-05-21 09:06 UTC）\n\n### bjb1-18228 (4×4090)\n\n| exp_id | PID | 状态 | 已运行 | 进度 | 预估剩余 |\n|--------|-----|------|--------|------|---------|\n| norm01-seed57 | 594635 | **已完成** | - | 10/10 | ✅ 09:03 完成 |\n| norm005-seed58 | 596867 | **已完成** | - | 10/10 | ✅ 09:02 完成 |\n| norm003-seed59 | 599925 | 运行中 | 1h41m | 9.5/10 (orange_juice rollout 5/10) | ~10min → **~09:16** |\n| norm005-seed65 | 622479 | 运行中 | 31m | 2.5/10 (salad_dressing rollout 5/10) | ~93min → **~10:40** |\n\n### bjb1-32546\n\n| exp_id | PID | 状态 | 已运行 | 进度 | 预估剩余 |\n|--------|-----|------|--------|------|---------|\n| norm005-seed61 | 712959 | 运行中 | 1h16m | 6.5/10 (butter rollout 5/10) | ~41min → **~09:47** |\n| norm003-seed64 | 723784 | 运行中 | 32m | 2/10 | ~1h28m → **~10:34** |\n| norm003-seed65 | 725722 | 运行中 | 29m | 2/10 | ~1h26m → **~10:32** |\n| norm01-seed64 | 726800 | 运行中 | 29m | 1.5/10 | ~1h40m → **~10:46** |\n| norm01-seed65 | 728057 | 运行中 | 28m | 1.5/10 | ~1h40m → **~10:46** |\n| norm005-seed64 | 729873 | 运行中 | 28m | 1.5/10 | ~1h40m → **~10:46** |\n\n### bjb2-28827\n\n| exp_id | PID | 状态 | 已运行 | 进度 | 预估剩余 |\n|--------|-----|------|--------|------|---------|\n| norm01-seed60 | 890012 | 运行中 | 1h39m | 7.5/10 (milk rollout 5/10) | ~33min → **~09:39** |\n| norm01-seed71 | 922504 | 运行中 | 19m | 1/10 | ~2h10m → **~11:16** |\n| norm005-seed72 | 922712 | 运行中 | 19m | 1/10 | ~2h10m → **~11:16** |\n| norm003-seed73 | 922982 | 运行中 | 19m | 1/10 | ~2h10m → **~11:16** |\n| norm01-seed74 | 923256 | 运行中 | 19m | 1/10 | ~2h10m → **~11:16** |\n| norm005-seed75 | 923398 | 运行中 | 19m | 1/10 | ~2h10m → **~11:16** |\n\n### 整体预估\n\n- **已完成**: 2/16（norm01-seed57, norm005-seed58）\n- **最早完成**: norm003-seed59 → ~09:16（约 10 分钟后）\n- **最晚完成**: bjb2-28827 上的 5 个新实验 → **~11:15-11:30 UTC**\n- **全部完成**: 今天 ~11:30 UTC（约 2.5 小时后）\n\n注意：bjb2-28827 有 6 个进程但可能只有 4 GPU，GPU 共享可能导致较新实验慢于预期（ETA 可能推迟到 ~12:00）。距 CoRL DDL（5/29）还有 8 天，时间充裕。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-norm-sweep-progress.md"
+}

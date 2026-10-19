@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b5e7c97dd80e2017f51",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diag eval v6 batch failure",
+  "task_key": "worker_diag_eval-v6-batch-failure_20260513T233517",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_eval-v6-batch-failure_20260513T233517_result.json",
+    "occurrence": 1,
+    "bytes": 702,
+    "sha256": "232790a9eaf07e6f9f97ad704d237cfc1a650790641d4e83ae3a416deaa90002"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根因**：三个实验同一原因 — `evaluate.py:203` 的 warm-up 循环 `env.step(np.zeros(7))` 在 robosuite 环境处于 terminated 状态时未做保护，直接抛出 `ValueError: executing action in terminated episode`。\n\n**原因细节**：`set_init_state()` 不清除 robosuite 的 `done` 标志。首次 rollout 时 env 创建后未 reset（vla_only 和 reconvla 在第一个 rollout 就崩）；后续 rollout 时前一轮的 `done=True` 残留（acr_vla 在第 6 个 rollout 崩）。\n\n**修复**：`evaluate.py` 第 201 行，在 `set_init_state()` 前加一行 `env.reset()`。\n\n报告已保存到 `artifacts/diag-eval-v6-batch-failure.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-eval-v6-batch-failure.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa481abcba809c344fbe",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_6_1778819983.md",
+  "task_key": "loop_6_1778819983",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_6_1778819983.md",
+    "occurrence": 1,
+    "bytes": 4797,
+    "sha256": "d3396ea41a519c626ecdc0a88351f7dfb52136aca9d2bb96841363bea807cb10"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-15T04:39:39+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-18228 cuda:0-3, bjb1-32546 cuda:0-5, bjb2-28827 cuda:0-5, bjb2-40593 cuda:0。**不得在白名单外 GPU 启动实验**\n- `submit_training_job` 启动命令必须用绝对路径 `/root/miniconda3/bin/python`，不要 `conda activate` 或 `source .venv/bin/activate`\n- **D025 硬裁决**：perdof 42%@5tasks 只比 argmin +4.5pp（噪声水平），obs_only 57.5%@4tasks 暂时领先。**必须等全 10 task 完成再做 framing 裁决**，不得提前宣布 perdof > obs_only\n- Claim 2 (ACI/COC) 已 DROP (D023)，Claim 3 (SRPO) 已 DROP (D022)。CoRL 论文只做 Claim 1\n- `max_correction_norm=0.1` 是必须参数——D024 确认 default norm (~1.42) 导致 0% SR，magnitude control 是必要的\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228** (4×4090): 工作目录 `/root/acr-vla-conformal-refinement`，Python `/root/miniconda3/bin/python`\n  - cuda:0 — eval-acr-spatial-v4-obs-only-r2 (crm_obs_only)\n  - cuda:1 — eval-argmin-only-spatial (reconvla)\n  - cuda:2 — eval-acr-spatial-v4-scalar (crm_scalar)\n  - cuda:3 — eval-acr-spatial-v4-small (acr_vla/perdof)\n- **bjb1-32546** (6×4090): 同上路径\n  - cuda:0 — eval-reconvla-object\n  - cuda:1 — eval-acr-object-v4-perdof\n  - cuda:2 — eval-acr-object-v4-obs-only\n  - cuda:3 — eval-acr-object-v4-scalar\n  - cuda:4 — eval-vla-only-object (未注册 registry)\n  - cuda:5 — eval-vla-mean-object (未注册 registry)\n- **bjb2-28827** (6×4090): 全空闲，环境+代码已就绪，SmolVLA+CRM config 已修复。magnitude sweep 6 个实验已在 registry (RUNNING 但实际可能未提交)\n- **bjb2-40593** (1×4090D): reconvla-object n=20 在跑；v4-default-r3 待 kill (D024)\n- 模型 checkpoint: `/root/autodl-tmp/checkpoints/crm_v3_norm/{perdof,scalar_unc,obs_only}/crm_best.pt`\n- HF cache: `/root/autodl-tmp/.hf_cache`\n- 日志: `/root/autodl-tmp/logs/`\n\n### 3. 📊 当前状态\n**Registry**: 53 DONE + 16 RUNNING + 14 PREPARING。注意 MCP `read_registry` 返回空——可能是 project 参数不对或 MCP 版本问题，直接读 `registry.yaml` 文件可靠。\n\n**核心悬念 (D025)**: Spatial 4-way ablation 未完成。obs_only 57.5%@4/10 暂时领先 perdof 42%@5/10。这决定 paper framing：\n- Scenario A (perdof > obs_only) → per-DOF narrative\n- Scenario B (perdof ≈ obs_only) → \"correction is key\" narrative\n- Scenario C (obs_only >> perdof) → observation-conditioned narrative\n\n**等待中**:\n- bjb1-18228 spatial eval 全 10 task 完成（~6-9h from last update at 03:08 UTC）\n- bjb1-32546 object eval 全部完成（刚启动，估计 12-18h）\n- bjb2-28827 magnitude sweep 实验实际提交状态不明——registry 标 RUNNING 但服务器全空闲，需 Worker SSH 确认\n- 无活跃 cron 回调（reconcile_crons 需重做）\n- 无活跃 Worker 回调\n\n### 4. 📋 待办（条件触发式）\n- bjb1-18228 spatial eval 10/10 完成 → 汇总 4-way ablation → **Claim 1 framing 裁决** → 向 Director 汇报 with framing 建议\n- bjb1-32546 object eval 完成 → cross-benchmark validation → 如果 spatial+object 一致则 paper confidence 高\n- bjb2-28827 确认 magnitude sweep 是否实际在跑 → 如果没跑，立即 spawn Worker 提交 6 路 magnitude sweep (norm ∈ {0.03, 0.05, 0.2, 0.3} for perdof + {0.05, 0.2} for obs_only)\n- bjb2-40593 kill v4-default-r3 (D024)\n- Spatial + Object 结果都出来 → 启动 Paper Agent 写 CoRL 初稿\n- 注册 bjb1-32546 cuda:4 (vla-only-object) 和 cuda:5 (vla-mean-object) 到 registry\n\n### 5. 🎯 战略上下文\n**项目核心**: ACR-VLA = conformal prediction + learned correction module (CRM) 改善 VLA 鲁棒性。投 CoRL 2026 (abstract DDL May 26 = 11 天)。\n\n**决策链**: D016(bug fix) → D017(CRM 拖累 baseline) → D018(输入未归一化根因) → D019(normalization+magnitude control) → D020(obs_only val_loss 最优) → D021(重瞄 CoRL) → D022(drop Claim 3) → D023(drop Claim 2) → D024(kill default norm) → D025(等全 10 task 再裁决)\n\n**最容易判断错的事**:\n1. **perdof vs obs_only 中间结果会误导你**。4/10 tasks 和 5/10 tasks 方差极大（尤其 scalar 80%@2tasks 只因为都是 easy tasks）。必须等 10/10\n2. **bjb2-28827 的 magnitude sweep 可能标 RUNNING 但实际没跑**。上一个 session 可能只注册了 registry 但 Worker 没成功提交。第一件事就是 SSH 确认\n3. **MCP read_registry 返回空**——不要依赖 MCP，直接读 YAML 文件\n4. **baselines 已锁定**: spatial K=1 30%, VLA-mean K=10 31%, object K=1 13%。不要重跑 baseline\n5. **obs_only 领先不是坏事**——Scenario B/C framing 在 paper_framing.md 里已有备选方案，论文仍可投，只是 claim 强度降级\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778819983.md"
+}

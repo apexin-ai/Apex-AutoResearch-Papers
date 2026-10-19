@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a72e01e7494eb20b0e99",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy magnitude bjb1 32546 cuda4",
+  "task_key": "worker_deploy_magnitude-bjb1-32546-cuda4_20260517T211455",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_magnitude-bjb1-32546-cuda4_20260517T211455_result.json",
+    "occurrence": 1,
+    "bytes": 398,
+    "sha256": "b4a7daa3b4c68ed9f6f3c9ee4d5673a331104262761ed795aefb6baedecb83fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署成功。\n\n- **服务器**: bjb1-32546, cuda:4（已占用 5665 MiB）\n- **PID**: 535594\n- **exp_id**: `eval-perdof-object-norm02-seed43-r3`\n- **状态**: RUNNING，模型和环境已加载，10 个 tasks 已就绪，正在 rollout\n- **日志**: `logs/eval_object_perdof_norm02_seed43_bjb1-32546.log`\n- **输出**: `logs/eval_object_perdof_norm02_seed43_bjb1-32546.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-magnitude-bjb1-32546-cuda4.md"
+}

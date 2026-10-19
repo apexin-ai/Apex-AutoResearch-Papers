@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "8a899d24f2acac0af19a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "ops spatial precompute check and train 20260521T183332 retry2",
+  "task_key": "worker_ops_spatial-precompute-check-and-train_20260521T183332_retry2",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_spatial-precompute-check-and-train_20260521T183332_retry2.log",
+    "occurrence": 1,
+    "bytes": 1049250,
+    "sha256": "626f647995c7dbae3b0836b2eba0a6a0f8487b17345f599c0c71fd5013e12538"
+  },
+  "statistics": {
+    "messages": 707,
+    "user_turns": 1,
+    "tool_calls": 261,
+    "roles": {
+      "system": 25,
+      "assistant": 146,
+      "record": 5,
+      "tool_call": 261,
+      "tool_result": 261,
+      "user": 1,
+      "result": 8
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 584,
+      "chunks": [
+        {
+          "path": "8a899d24f2acac0af19a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8a899d24f2acac0af19a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8a899d24f2acac0af19a-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "8a899d24f2acac0af19a-part-0004.json",
+          "message_count": 44
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 123,
+      "chunks": [
+        {
+          "path": "8a899d24f2acac0af19a-part-0004.json",
+          "message_count": 123
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-spatial-precompute-check-and-train-20260521t183332-retry2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef4d2847ec73b62f9a95",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis eval vla only object seed49",
+  "task_key": "worker_analysis_eval-vla-only-object-seed49_20260520T175600",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval-vla-only-object-seed49_20260520T175600_result.json",
+    "occurrence": 1,
+    "bytes": 676,
+    "sha256": "cd543081ba9a1a92b4dec7353b1509c249c2c261a0077f0989403a2f7a1d2614"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验仍在运行中（PID 542620，已运行约 92 分钟）。目前进度：\n\n| 任务 | SR |\n|------|-----|\n| pick_up_the_alphabet_soup_and_place_it_in_the_basket | 0.0% (0/10) |\n| pick_up_the_cream_cheese_and_place_it_in_the_basket | 10.0% (1/10) |\n\n**已完成 2/10 个任务**，JSON 输出文件尚未生成。日志无错误，运行正常。\n\n按每任务约 15-20 分钟估算，剩余 8 个任务还需约 2-2.5 小时完成。当前 2 个任务的平均 SR = 5.0%，在预期范围（7-15%）的低端偏下，但样本太少，最终结果可能回升。\n\n**结论：实验进行中，无法给出最终结果。建议稍后再查。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-vla-only-object-seed49.md"
+}

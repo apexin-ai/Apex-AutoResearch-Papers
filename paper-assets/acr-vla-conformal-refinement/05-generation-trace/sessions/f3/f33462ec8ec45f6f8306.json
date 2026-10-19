@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f33462ec8ec45f6f8306",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_27_1779825397.md",
+  "task_key": "loop_27_1779825397",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_27_1779825397.md",
+    "occurrence": 1,
+    "bytes": 4939,
+    "sha256": "3da43c00227081693dc1a8bdd5cbe02861e09fa23d61de7c1bc6d178ab2b1026"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 27\nreason: idle_timeout\nupdated: '2026-05-26T10:07:12+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-18228 (cuda:0-3), bjb1-32546 (cuda:0-5), bjb2-28827 (cuda:0-5), cqa1-32758 (cuda:0-5), westd-49937 (cuda:0-5), bjb2-24035 (cuda:0)。共 29 卡，不得使用白名单外 GPU\n- **westd-49937 是 RTX PRO 6000 (Blackwell)**，与 4090 存在 ~3pp 系统性偏差 → Table 2 π0.5 结果必须 same-server paired，不能混 westd 和其他服务器数据 (D158)\n- **evaluate.py 必须用 commit a594db5 版本** (D163)，所有补跑用旧代码确保 Table 1/2 一致性\n- π0.5 Adaptive 的 τ=0.25 是 SmolVLA 校准值，对 π0.5 可能不适用（π0.5 VLA-only 已达 94-99%，CRM correction 是有害噪声）\n- CoRL 2026 DDL: **2026-05-29**（距今 ~3 天）\n\n### 2. 🖥️ 基础设施快照\n- **服务器 → 工作目录**: 全部 `/root/acr-vla-conformal-refinement`，account=root\n- **Python**: bjb1/bjb2/cqa1 用 conda base (`/root/miniconda3/bin/python`)；westd 同\n- **CRM checkpoints**:\n  - SmolVLA: `.../crm_smolvla_3suite_v1/crm_best.pt`\n  - π0.5: `.../crm_pi05_unified_3suite/crm_best.pt`（obs_dim=2048, unified_obs_dim=2088）\n- **HF cache**: `/root/autodl-tmp/.hf_cache`（AutoDL 实例）\n- **W&B**: 实验不上报 W&B，靠 JSON 输出 + cron 监控\n- **活跃 cron（10 个）**:\n  - bjb1-18228: pi05-adaptive-goal-s43 (pid=42110)\n  - bjb2-28827: pi05-crm-k2-spatial-s42/s43/s44-r2 (pid=334539/334906/335268) + pi05-adaptive-spatial-s42/s43/s44-r2 (pid=335649/336003/pending)\n  - cqa1-32758: pi05-crm-k2-long-s44 + pi05-adaptive-object-s42 + pi05-adaptive-goal-s42\n- **bjb1-32546 无 .git**，无法回溯 evaluate.py 历史版本\n\n### 3. 📊 当前状态\n**刚做完**: 上一轮 session 部署了 π0.5 Table 2 大规模评估（4 suite × 3 mode × 3 seed），Paper Agent 已启动 Reframe 模式。\n\n**Registry 概览**: 977 DONE / 18 RUNNING / 14 QUEUED / 163 PREPARING / 4 ANALYZING / 6 DEPLOYED\n\n**RUNNING (18 个 π0.5 Table 2 实验)**:\n- bjb2-28827: 6× CRM-K2-Spatial s42-44-r2 + 6× Adaptive-Spatial s42-44-r2\n- bjb1-18228: 1× Adaptive-Goal s43\n- bjb1-32546: 3× CRM-K2-Object s42-44-r2 + 3× CRM-K2-Goal s42-44-r2（cron 未注册但进程可能在跑）\n- cqa1-32758: 3× CRM-K2-Long s44 + Adaptive-Object s42 + Adaptive-Goal s42\n\n**ANALYZING (4 个 westd 实验)**: westd-pi05-adaptive-object-s42, westd-pi05-crm-k2-goal-s42, westd-pi05-adaptive-goal-s42/s43 — 可能已完成但因 Blackwell 偏差 (D158) 数据不可用于 Table 2\n\n**QUEUED (14)**: 包括 π0.5 Long CRM s42/s43-r2、Adaptive Long s42-r2、K=2 mean baseline、τ-sweep、VLA-only baselines — 等 GPU 释放\n\n**无活跃 Worker**（Worker 池 = 0）\n\n### 4. 📋 待办（条件触发式）\n- **任一 RUNNING 实验 cron 回调 DONE** → spawn Worker 提取 JSON 结果 → update_registry(metrics+conclusion) → 刷新 report.md → 更新 memory.md π0.5 Table 2 数据\n- **π0.5 CRM-K2 Spatial s42-44 全部完成** → 对比 VLA-only 97.8% → 确认 CRM 在 Spatial ceiling 下无害/微害\n- **π0.5 Adaptive Spatial s42-44 全部完成** → 与 CRM 和 VLA-only 三方对比 → 确认 Adaptive gating 在强 VLA 上的行为\n- **所有 18 RUNNING 完成** → 释放 GPU → 部署 14 QUEUED 实验（优先 Long CRM s42/s43-r2 + Adaptive Long s42-r2）\n- **π0.5 Table 2 全部 4 suite 数据收齐** → 汇报 Director → 确认 MC3 reframe（模型能力依赖性分析）是否 hold\n- **westd ANALYZING 实验** → 仅作参考/附录，不入 Table 2 主表（Blackwell 偏差）\n- **Paper Agent 写作流水线** → Steps 2-5 待 Table 2 数据完成后推进 → DDL 前 48h 必须完成全文\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D146/D150/D159: SmolVLA Table 1 确立 — CRM always-on 在 Object/Long 有害，Adaptive gating 消除退化（MC1 consistency claim）\n- D155: π0.5 Table 2 改为\"模型能力依赖性分析\"（MC3 cross-model claim 放弃，因 π0.5 baseline 太强 CRM 全面有害）\n- D158: westd Blackwell GPU 3pp 偏差 → Table 2 必须 same-server paired\n- D162: CRM K=10 保留为强 baseline\n- D163: evaluate.py revert 到 a594db5 确保一致性\n\n**最容易判断错的事**:\n1. **不要把 westd (RTX PRO 6000) 结果混入 Table 2** — 4 个 ANALYZING 实验看起来完成了但因 GPU 偏差不可用\n2. **π0.5 Adaptive τ=0.25 是 SmolVLA 校准值** — π0.5 的最优 τ 未知，当前 Adaptive 结果预期负向，这是 reframe 的基础而非 bug\n3. **cqa1 跑 π0.5 注意 tokenizer** — gemma-2b-tokenizer 不完整会导致启动崩溃，需确保 tokenizer.model 存在\n4. **bjb1-32546 的实验可能没有 cron 监控** — 上面显示 6 个 CRM-K2 Object/Goal 实验 RUNNING 但 reconcile_crons 只返回 10 个 cron（不含 bjb1-32546）→ 可能需要手动检查进程状态\n5. **DDL 3 天** — 不要开新方向，集中完成 π0.5 Table 2 数据收集 + Paper Agent 写作流水线\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-27-1779825397.md"
+}

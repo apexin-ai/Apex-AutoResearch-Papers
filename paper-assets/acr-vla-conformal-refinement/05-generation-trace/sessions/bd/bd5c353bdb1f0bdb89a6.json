@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd5c353bdb1f0bdb89a6",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose eval vla only object seed45",
+  "task_key": "worker_diagnose_eval-vla-only-object-seed45_20260516T145848",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_eval-vla-only-object-seed45_20260516T145848_result.json",
+    "occurrence": 1,
+    "bytes": 1080,
+    "sha256": "83185dd39b72303aae37af2686b4fffe217e9f1794843556d3dae6684fbd5e58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**实验没有失败——它已经成功完成。**\n\n### 证据\n\n- 输出文件 `eval_object_vla_only_seed45.json` 于 2026-05-16 20:36:31 写入，包含完整结果\n- 日志 `eval_object_vla_only_seed45.log` 显示 10 个任务 × 20 rollouts = 200 次评估全部跑完，无报错\n- 最终输出：`Overall success rate (vla_only): 9.0% (18/200)`\n- 进程正常退出（return_code=0）\n\n### \"失败\"的原因\n\n这个 evaluate 脚本**不会向 W&B 上报指标**——它只把结果写到本地 JSON 文件。所以\"5次无有效 W&B 指标输出\"是因为脚本本身不集成 W&B，不是因为进程崩溃。\n\n### GPU cuda:4 状态\n\n当前空闲：1MiB 显存占用，0% 利用率，P8 省电状态。可用。\n\n### 结论\n\n| 项目 | 结果 |\n|------|------|\n| 失败根因 | **无失败**，实验正常完成，只是没有 W&B 集成 |\n| 是否需要重试 | 不需要，结果已完整 |\n| cuda:4 可用性 | 可用（空闲） |\n| 实验结果 | vla_only mode, object benchmark, seed=45, overall 9.0% |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-vla-only-object-seed45.md"
+}

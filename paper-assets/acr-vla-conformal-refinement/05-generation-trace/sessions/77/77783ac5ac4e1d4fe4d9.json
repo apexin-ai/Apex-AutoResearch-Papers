@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77783ac5ac4e1d4fe4d9",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "monitor stale experiments check",
+  "task_key": "worker_monitor_stale-experiments-check_20260524T082347",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_monitor_stale-experiments-check_20260524T082347_result.json",
+    "occurrence": 1,
+    "bytes": 1376,
+    "sha256": "3d463d64a09c7e0fb680ce229852d186479f1725bde4dc75f2b12ce0b4bf0acd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 中完全不存在 \"eval-smolvla-lerobot-*\" 命名的实验（包括搜 \"lerobot\"、\"goal-seed43\"、\"spatial-seed43\" 都无结果）。现在汇总结果。\n\n---\n\n## 任务 1: Stale lerobot 实验\n\n**`eval-smolvla-lerobot-goal-seed43-v3` 和 `eval-smolvla-lerobot-spatial-seed43-v3` 在 registry 中不存在。** 搜索了所有实验（包含关键字 \"lerobot\"、\"goal-seed43\"、\"spatial-seed43\"），均无匹配。可能是名称记错、已被删除、或属于其他项目。\n\n---\n\n## 任务 2: bjb2-28827 Spatial 实验进度\n\n**全部 5 个进程存活**（已通过 `ps -p` 确认），运行时间约 1h30m。\n\nLIBERO-Spatial 共 10 个 task × 20 rollouts/task。根据 tmux 输出的当前 task 位置：\n\n| 实验 | GPU | PID | 当前 task | 进度估算 |\n|---|---|---|---|---|\n| crm-norm005-spatial-s46 | 0 | 121241 | on_ramekin r15/20 | ~task 6/10 |\n| vla-only-spatial-s45 | 2 | 96831 | on_stove r5/20 | ~task 8/10 |\n| crm-norm005-spatial-s45 | 3 | 97070 | on_stove r5/20 | ~task 8/10 |\n| adapt-tau025-spatial-s45 | 4 | 97307 | on_stove r5/20 | ~task 8/10 |\n| vla-only-spatial-s46 | 5 | 97550 | next_to_cookie_box ~r15/20 | ~task 7/10 |\n\n**预计全部在 30-60 分钟内完成。** crm-norm005-s46 因晚启动 23 分钟，进度最慢。\n\n无已完成的实验需要收割，全部仍在跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-stale-experiments-check.md"
+}

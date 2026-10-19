@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "c952f27af87fdfcaf945",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "diagnose goal vla s47 r3 crash",
+  "task_key": "worker_diagnose_goal-vla-s47-r3-crash_20260524T112412",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_diagnose_goal-vla-s47-r3-crash_20260524T112412.jsonl",
+    "occurrence": 1,
+    "bytes": 171,
+    "sha256": "d8ebbca7aa80fc4902aabdefd4b8ac67ee66116b2a899058f5c9859f4c455f7d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T11:24:22.956487+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_goal-vla-s47-r3-crash_20260524T112412"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/diagnose-goal-vla-s47-r3-crash.md"
+}

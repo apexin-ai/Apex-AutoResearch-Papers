@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81da032368fd9dd17e33",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_27_1779849219.md",
+  "task_key": "loop_27_1779849219",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_27_1779849219.md",
+    "occurrence": 1,
+    "bytes": 3927,
+    "sha256": "3e46d930bc8ea87d0af782e68b2d38eee26c0a68b3986b239510e1f6c9f074dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 27\nreason: idle_timeout\nupdated: '2026-05-27T01:36:14+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- cqa1-32758 同时 ≤6 个 π0.5 进程，超过必 OOM（memory.md 已记录）\n- westd-49937 RTX PRO 6000 与 4090 存在 3pp 系统性偏差（D158），Table 2 必须 same-server paired，不可混用 westd 数据\n- π0.5 Adaptive 参数：τ=0.25, norm=0.2, K=2（SmolVLA 校准值，直接套用到 π0.5 可能不合适但 D155 已决定不再调）\n- evaluate.py 必须用 commit a594db5 版本（D163），所有补跑用旧代码确保 Table 一致性\n- bjb1-32546 无 .git，无法回溯代码历史\n\n### 2. 🖥️ 基础设施快照\n- **cqa1-32758** (6×4090D): 项目目录待确认（Worker 诊断中）；磁盘 /autodl-pub 94% ⚠️（仅 485G/7T 可用）\n- **bjb1-18228** (4×4090): SSH alias autodl-4090x4\n- **bjb1-32546** (6×4090): SmolVLA Table 1 数据全来自此服务器\n- **bjb2-28827** (6×4090): 1TB RAM，可并发 6 个 π0.5\n- **westd-49937** (6×RTX PRO 6000): Blackwell 偏差，仅用于非 Table 数据\n- **bjb2-24035** (1×4090D): 磁盘 /nvidia-smi 90% ⚠️\n- CRM checkpoint: SmolVLA `/root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt`，π0.5 `/root/autodl-tmp/checkpoints/crm_pi05_unified_3suite/crm_best.pt`\n- 活跃 cron 4 个：pi05-adaptive-goal-s43-bjb1-18228, pi05-crm-k2-long-s44-cqa1, pi05-adaptive-object-s42-cqa1, pi05-adaptive-goal-s42-cqa1\n\n### 3. 📊 当前状态\n**刚做完**：收到 pi05-adaptive-long-s44-cqa1 失败 cron 回调，发现 6 个实验批量失败（cqa1×3 + bjb1×3），全部 \"process dead 5× with no sentinel/W&B\"，日志文件不存在（启动即崩溃）。已派诊断 Worker `worker_diagnose_pi05-adaptive-long-s44-cqa1_20260526T093118`，**尚未回调**。\n\n**RUNNING (3)**:\n- pi05-crm-k2-long-s44-cqa1 — cqa1 cuda:0，π0.5 CRM K=2 Long s44\n- pi05-adaptive-object-s42-cqa1 — cqa1 cuda:1，π0.5 Adaptive Object s42\n- pi05-adaptive-goal-s42-cqa1 — cqa1 cuda:2，π0.5 Adaptive Goal s42\n\n**ANALYZING (4)**：reconcile 时未列出具体 exp_id，需查 registry\n\n**等待中**：\n- 诊断 Worker 回调 → 根据 root_cause 决定是否可重跑失败的 6 个实验\n- π0.5 Table 2 Long suite CRM 数据（pi05-crm-k2-long-s44 running）\n- 14 个 QUEUED 实验等 GPU\n\n### 4. 📋 待办（条件触发式）\n- 诊断 Worker 回调 → 按 root_cause 分类：infrastructure 则修复重跑，resource(OOM/磁盘) 则调整部署策略，向 Director 汇报\n- pi05-crm-k2-long-s44-cqa1 完成 → 补全 π0.5 CRM Long 行（s42/s43 需要重跑或从 QUEUED 部署）\n- pi05-adaptive-object-s42 / goal-s42 完成 → 更新 memory.md π0.5 Adaptive 数据表\n- 6 个失败实验确认可重跑 → 按 GPU 空闲情况重新部署（cqa1 cuda:3/4/5 空闲，bjb1-18228 可能有空闲 GPU）\n- 所有 π0.5 Table 2 数据收齐 → 汇报 Director，推动 Paper Agent 完成 Table 2 写作\n\n### 5. 🎯 战略上下文\n- **DDL 2026-05-29（~48h）**，CoRL 2026。SmolVLA Table 1 已完成，π0.5 Table 2 是最后拼图\n- **π0.5 核心发现**（D155）：CRM/Adaptive 在 π0.5 上全面负向（Goal -11.7pp, Object -11.3pp），已 reframe 为\"模型能力依赖性分析\"（MC3 不 claim cross-model generalization）\n- **π0.5 Table 2 已有数据**：VLA-only 全 4 suite 完成（94.7%-99.3%），CRM Spatial/Goal/Object 完成（85-97.5%），Long 和 Adaptive 大部分缺失或失败\n- **批量失败是 Table 2 交付的主要风险**：6 个实验同时失败，如果 root cause 是基础设施问题（磁盘满/环境损坏），修复后可快速重跑；如果是代码 bug，需要更多时间\n- **易错点**：cqa1 磁盘 /autodl-pub 已 94%，如果磁盘满导致的失败，需要先清理再重跑。清理时只删本项目已确认不需要的文件（>50GB 需 Director 批准）\n- **D163 代码锁定**：evaluate.py 已回退到 a594db5，不要升级或修改评估代码\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-27-1779849219.md"
+}

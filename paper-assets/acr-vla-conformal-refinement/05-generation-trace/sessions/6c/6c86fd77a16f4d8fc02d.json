@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "6c86fd77a16f4d8fc02d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "check stale running cleanup",
+  "task_key": "worker_check_stale-running-cleanup_20260524T234143",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_check_stale-running-cleanup_20260524T234143.jsonl",
+    "occurrence": 1,
+    "bytes": 168,
+    "sha256": "b1abb8f2f7b4747e07e365b67cffc2252c4c0e7d9d1f43d807f923a5dad708f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-24T23:41:53.826145+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_stale-running-cleanup_20260524T234143"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/check-stale-running-cleanup.md"
+}

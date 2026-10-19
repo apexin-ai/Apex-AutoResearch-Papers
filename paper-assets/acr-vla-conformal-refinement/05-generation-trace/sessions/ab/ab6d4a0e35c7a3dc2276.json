@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab6d4a0e35c7a3dc2276",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops fix seed44 bjb1 18228",
+  "task_key": "worker_ops_fix-seed44-bjb1-18228_20260516T045605",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_fix-seed44-bjb1-18228_20260516T045605_result.json",
+    "occurrence": 1,
+    "bytes": 1426,
+    "sha256": "9722b305cf0f5e9c88e0a7d469ff6d3ae2e50e6a3803a9b03fdaf944869052ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "r3 条目已清理为 DONE/killed。汇总如下：\n\n## bjb1-18228 GPU 状态\n\n| GPU | Python PID | 实验 | 进度 | 状态 |\n|-----|-----------|------|------|------|\n| cuda:0 | 390936 | crm_perdof seed**42** (eval_object_perdof_default_norm_r2) | 运行中 | 非 seed44 相关 |\n| cuda:1 | 452987 | **eval-perdof-object-seed44** | 刚启动，模型/环境已加载，0/10 tasks | 正常 |\n| cuda:2 | 428411 | **eval-obs-only-object-norm02-seed44-r2** | 2/10 tasks 完成，第3个进行中 | 正常 |\n| cuda:3 | 428122 | **eval-argmin-object-seed44-r2** | 2/10 tasks 完成 | 正常 |\n\n## seed=44 实验结论\n\n**没有 GPU 冲突。** r3 的两个进程（PID 430985/431189）已经死了，无 /proc，无 exit file。实际占用 GPU 的都是 r2 进程，且都在正常推进。\n\n**有效实验对应关系：**\n- `eval-argmin-object-seed44-r2` → 包装 PID=428117, Python PID=428122, cuda:3（Cron 追踪正确）\n- `eval-obs-only-object-norm02-seed44-r2` → 包装 PID=428406, Python PID=428411, cuda:2（Cron 追踪正确）\n- `eval-perdof-object-seed44` → 包装 PID=452982, Python PID=452987, cuda:1（新提交，刚开始跑）\n\n**已清理：** r3 的两个 registry 条目已从 PREPARING 转为 DONE/killed，不会再干扰。\n\n**cuda:1 并非空闲** — eval-perdof-object-seed44 刚被提交上去，正在跑（不是你提到的 seed43 已完成的那个）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-seed44-bjb1-18228.md"
+}

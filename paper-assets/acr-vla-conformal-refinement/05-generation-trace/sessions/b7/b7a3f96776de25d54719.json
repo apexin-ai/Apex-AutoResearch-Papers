@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b7a3f96776de25d54719",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis eval obs only object norm02 seed47",
+  "task_key": "worker_analysis_eval-obs-only-object-norm02-seed47_20260517T104946",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_eval-obs-only-object-norm02-seed47_20260517T104946_result.json",
+    "occurrence": 1,
+    "bytes": 998,
+    "sha256": "10d97d8e97dff934821f404826e9ab2a95ea3d2ccddf0a93425f1d740ac8b162"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正常完成。结果如下：\n\n## 总体结果\n\n**Overall success rate: 20.0% (20/100)** — seed47, obs_only CRM (ε=0.2), LIBERO Object\n\n## 各 Task 成功率\n\n| Task | Success |\n|------|---------|\n| pick_up_the_alphabet_soup | 0/10 (0%) |\n| pick_up_the_cream_cheese | 1/10 (10%) |\n| pick_up_the_salad_dressing | 2/10 (20%) |\n| pick_up_the_bbq_sauce | 3/10 (30%) |\n| pick_up_the_ketchup | 1/10 (10%) |\n| pick_up_the_tomato_sauce | 2/10 (20%) |\n| pick_up_the_butter | 2/10 (20%) |\n| pick_up_the_milk | 2/10 (20%) |\n| pick_up_the_chocolate_pudding | 4/10 (40%) |\n| pick_up_the_orange_juice | 3/10 (30%) |\n\n## 实验状态\n\n- 正常完成，EXIT_CODE=0\n- 结果已保存到 `logs/eval_object_obs_only_norm02_seed47.json`\n- 无异常或警告\n\n## 更新后的 5-seed pooled 结果\n\n加入 seed47 (20%) 后：\n- obs_only: seeds 42/43/44/45/47 = 22%/16%/16%/16%/20% → **90/500 = 18.0%**\n- seed47 是 5 个 seed 中第二高的，整体表现稳定"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-obs-only-object-norm02-seed47.md"
+}

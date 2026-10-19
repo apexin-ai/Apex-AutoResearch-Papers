@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "f462cca690681088c59e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "ops fix spatial cache and retrain 20260521T213031 retry1",
+  "task_key": "worker_ops_fix-spatial-cache-and-retrain_20260521T213031_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_fix-spatial-cache-and-retrain_20260521T213031_retry1.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/ops-fix-spatial-cache-and-retrain-20260521t213031-retry1.md"
+}

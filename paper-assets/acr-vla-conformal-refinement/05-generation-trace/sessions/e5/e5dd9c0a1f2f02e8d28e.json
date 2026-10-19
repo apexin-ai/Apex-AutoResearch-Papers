@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5dd9c0a1f2f02e8d28e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ops deploy argmin seed47 bjb1 32546",
+  "task_key": "worker_ops_deploy-argmin-seed47-bjb1-32546_20260516T213840",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ops_deploy-argmin-seed47-bjb1-32546_20260516T213840_result.json",
+    "occurrence": 1,
+    "bytes": 258,
+    "sha256": "85f0fba2a0c27c85f80e9e84081ba6363c769cc2c5842a80ab3c79ed1055c6af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。\n\n**状态汇报：**\n- **Session**: `eval-argmin-object-seed47`\n- **PID**: 322328 (wrapper) → 322337 (python worker)\n- **GPU**: cuda:3，显存占用 4545 MiB / 24564 MiB\n- **状态**: 运行中，模型已加载到 GPU"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-deploy-argmin-seed47-bjb1-32546.md"
+}

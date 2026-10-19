@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc91f4c8c6bf229e390f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analyze eval obs only spatial norm02 seed43 r2",
+  "task_key": "worker_analyze_eval-obs-only-spatial-norm02-seed43-r2_20260519T194726",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analyze_eval-obs-only-spatial-norm02-seed43-r2_20260519T194726_result.json",
+    "occurrence": 1,
+    "bytes": 1276,
+    "sha256": "0b1c4fec0c4a60926ec0662f2fc04653be0761cd0bc18dbbf1ebbad6b64fbdd5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正常完成，EXIT_CODE=0，10 个 tasks 各 10 rollouts = 100 total，无异常。\n\n## 结果汇总\n\n**Overall success rate: 34.0% (34/100)**\n\n### Per-task success rates\n\n| Task | Success Rate |\n|------|-------------|\n| between_plate_and_ramekin → plate | 90.0% (9/10) |\n| next_to_ramekin → plate | **100.0%** (10/10) |\n| from_table_center → plate | 0.0% (0/10) |\n| on_cookie_box → plate | 30.0% (3/10) |\n| in_top_drawer_wooden_cabinet → plate | 0.0% (0/10) |\n| on_ramekin → plate | 0.0% (0/10) |\n| next_to_cookie_box → plate | **100.0%** (10/10) |\n| on_stove → plate | 0.0% (0/10) |\n| next_to_plate → plate | 20.0% (2/10) |\n| on_wooden_cabinet → plate | 0.0% (0/10) |\n\n### 与已有 Spatial K=10 obs_only 结果对比\n\n| Seed | Success Rate |\n|------|-------------|\n| seed42 | 35.0% |\n| **seed43 (本次)** | **34.0%** |\n| seed44 | 36.0% |\n| seed45 | 34.0% |\n| seed46 | 33.0% |\n| seed47 | 32.0% |\n| **均值 (6 seeds)** | **34.0%** |\n\nseed43 = 34.0%，与其他 seeds 高度一致（32%-36% 范围内），均值 34.0%。分布呈现典型的两极化：3 个 task 成功率 ≥ 90%，5 个 task 成功率 = 0%，说明 obs_only CRM 对 spatial 任务的泛化存在明显的 task-specific 瓶颈。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-obs-only-spatial-norm02-seed43-r2.md"
+}

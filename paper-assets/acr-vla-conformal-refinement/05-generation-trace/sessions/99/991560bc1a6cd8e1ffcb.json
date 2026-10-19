@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "991560bc1a6cd8e1ffcb",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "setup openvla oft download",
+  "task_key": "worker_setup_openvla-oft-download_20260522T050256",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_setup_openvla-oft-download_20260522T050256_result.json",
+    "occurrence": 1,
+    "bytes": 861,
+    "sha256": "56b96c9ffd5125c19be3e433e3157c40159605cc743890a8a1501b2b33426704"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载完成。总结：\n\n| 项目 | 结果 |\n|------|------|\n| **HuggingFace Model ID** | `moojink/openvla-7b-oft-finetuned-libero-spatial-object-goal-10` |\n| **模型路径** | `/root/autodl-tmp/models/openvla-oft/` (15GB) |\n| **代码仓库** | `/root/openvla-oft-code/` (github.com/moojink/openvla-oft) |\n| **磁盘剩余** | 74GB (250GB 中用了 177GB) |\n| **下载状态** | ✅ 完成 (25/25 files, 6分19秒) |\n\n模型组成：\n- 4 个 safetensors 分片 (4.6G + 4.7G + 4.7G + 251M = ~14.2GB base weights)\n- `action_head--300000_checkpoint.pt` (289MB) — action head\n- `proprio_projector--300000_checkpoint.pt` (65MB) — proprioception projector\n- `lora_adapter/` — LoRA adapter weights\n- tokenizer + config 文件\n\n这个是覆盖全部 LIBERO 子任务 (spatial + object + goal + 10) 的综合 fine-tuned 版本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-openvla-oft-download.md"
+}

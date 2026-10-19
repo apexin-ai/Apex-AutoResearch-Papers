@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95adf7f39556ac1cdd3e",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code fix k2 mean evaluate",
+  "task_key": "worker_code_fix-k2-mean-evaluate_20260523T065032",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_fix-k2-mean-evaluate_20260523T065032_result.json",
+    "occurrence": 1,
+    "bytes": 787,
+    "sha256": "6e7ed9f751fe3fdd8eaac86f41ea026d8425edd15054817e6f2f5029b2a613a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两台服务器修改一致，`args.K = 10` 强制覆盖已删除，仅保留 `args.K = 1`（single 模式）。\n\n---\n\n**报告：**\n\n1. **Diff**：\n   ```diff\n    if args.mode == \"vla_only\":\n        if args.baseline_mode == \"single\":\n            args.K = 1\n   -    elif args.baseline_mode == \"mean\":\n   -        args.K = 10\n    if args.output_file is None:\n   ```\n\n2. **`--K` argparse 默认值**：`default=10`（第 76 行），所以不指定 `--K` 时 mean baseline 仍用 K=10，指定 `--K 2` 则用 2。\n\n3. **验证**：两台服务器 `grep -n \"args.K\"` 输出一致，仅第 813 行保留 `args.K = 1`（single 模式），无 `args.K = 10` 强制覆盖。\n\n4. **同步状态**：bjb1-32546 和 bjb2-28827 均已完成相同修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-k2-mean-evaluate.md"
+}

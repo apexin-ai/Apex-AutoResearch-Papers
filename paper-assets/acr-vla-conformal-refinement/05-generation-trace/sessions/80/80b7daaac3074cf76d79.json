@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80b7daaac3074cf76d79",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "paper writing",
+  "task_key": "worker_paper_writing_20260520T012837",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_paper_writing_20260520T012837_result.json",
+    "occurrence": 1,
+    "bytes": 1006,
+    "sha256": "bee4dc2567d505ad458f0ef0a2545a526d1c675a1c3716ebabaa0438142f8f6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Rewrite complete. Key changes from the previous version:\n\n- **VLA Robustness**: Added tokenized-vs-generative contrast (C3 requirement), grouped SRPO/RobustVLA thematically as RL post-training pair, strengthened A2C2 complementarity framing (temporal staleness vs. initial action quality, composable)\n- **Residual Policy Learning**: Expanded magnitude control motivation (unconstrained → learn from scratch), added TRANSIC gate-collapse detail, separated our method as no-RL alternative\n- **Inference-Time Compute Scaling**: Split LLM-domain contrast into its own paragraph with the +5.3pp number, connected to adaptive K allocation with section ref\n- **Conformal Prediction**: Compressed, added angelopoulos2023gentle foundational cite, ends with negative-result connection to conditioning analysis\n\nStyle: 0 em-dashes, 0 explanatory en-dashes, no -ing phrase endings, no transition word chains. ~608 words, within budget. All 25 `\\cite{}` keys verified against the approved list."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-copy-3.md"
+}

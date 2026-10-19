@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b9ecdd92779ad70887ea",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_30_1780060833.md",
+  "task_key": "loop_30_1780060833",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_30_1780060833.md",
+    "occurrence": 1,
+    "bytes": 3402,
+    "sha256": "582f0bc3083a1c935c12fe88186453f8cb56693fb763fb08f4f3041056d293bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 30\nreason: idle_timeout\nupdated: '2026-05-29T13:20:33+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目分配 GPU 服务器白名单：bjb1-18228, bjb1-32546, bjb2-28827, cqa1-32758（共 22 张），禁止使用白名单外 GPU\n- westd-49937 数据系统性偏低 4-5pp（LIBERO assets 版本差异），不可与其他服务器数据混合对比（D174/D175）\n- Table 1 已锁定为 K-matched 3 列结构（VLA-only K=1 / K=2 CRM always-on / K=2 Adaptive），不可回退（D177）\n- Table 2 只保留 degradation-only 两列（VLA-only + CRM always-on），不含 Adaptive（D181）\n- CoRL 2026 DDL 2026-05-28 20:00 北京时间**已过**\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**: 存活，1× RTX 4090（配置说 4 卡但实测仅 1 卡），空闲\n- **bjb1-32546**: ❌ 不可达（port 32546，AutoDL 实例可能已关机/端口变更）\n- **bjb2-28827**: ❌ 不可达（port 28827）。曾有 CRM checkpoint: /root/autodl-tmp/checkpoints/crm_smolvla_3suite_v1/crm_best.pt\n- **cqa1-32758**: ❌ 不可达（port 32758）。磁盘曾 /autodl-pub 94% 紧张\n- 所有服务器工作目录: /root/acr-vla-conformal-refinement, conda base (/root/miniconda3)\n- 活跃进程: **无**。0 RUNNING 实验，0 活跃 cron，0 运行中 Worker\n\n### 3. 📊 当前状态\nSession #30 启动，执行了 session-start 初始化（read_registry + reconcile_crons + report.md + ROADMAP）。发现状态与交接大幅偏离：\n- 交接提到 3 个 RUNNING 实验 + 1 个活跃 Worker，但实际全部已停止\n- report.md 记录\"2026-05-28 用户指令全面停机\"，大批实验在 ~12:30 UTC 被 mass-kill\n- **论文就绪**：ROADMAP 确认编译通过，Table 1 重构 + 4/4 harmful 叙事升级 + Table 2 degradation-only 全部完成\n- Registry: 1423 总实验（成功 768 / 负向 97 / 失败 130 / killed 大批）\n- 已向 Director 汇报当前状态并请示 post-submission 任务，**等待 Director 回复**\n\n### 4. 📋 待办\n- Director 回复 → 按指示执行（可能是 camera-ready 准备、supplementary 整理、代码开源、或项目归档）\n- 如需恢复服务器 → 提醒用户去 AutoDL 控制台查新端口并更新 SSH config（AutoDL 重启后端口会变）\n- 如需补充 tau-sweep 数据（smolvla-tau020/030/035）→ 需先恢复 bjb2-28827，数据在该服务器上\n- 如 Director 要求整理 supplementary → 派 Worker 从 registry 提取所有 tau-sweep 数据点生成 τ-performance 曲线\n\n### 5. 🎯 战略上下文\n- **核心结论**: CRM always-on 在 4/4 suites 有害（Long -14.8pp 最显著），Adaptive gating 全面恢复 → \"knowing when NOT to correct\" 叙事\n- **决策链**: D170(τ-sweep)→D172(matched-seed)→D174/175(westd偏差隔离)→D177(K-matched 3列)→D178(4/4 harmful)→D179(title锁定)→D180/181(Table 2 degradation-only)→D184(title+提交确认)\n- **τ-sweep Long 趋势（部分数据）**: τ=0.05(44%)→0.10(53.5%)→0.15(61%峰值)→0.20(未确认)→0.25(56%)→0.35(57.5%)→0.40(60%)→0.45(59.5%)。τ=0.20 的 Worker 分析在停机前未完成，数据可能丢失\n- **易错点**: \n  1. 3/4 服务器不可达，恢复前不要假设能 SSH\n  2. smolvla-tau020-long-s42 在 registry 中可能仍是 PREPARING 状态（分析 Worker 被停机中断），需手动修正\n  3. 项目处于 DDL 后状态，所有\"紧急\"逻辑不再适用，等 Director 定下一阶段方向\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-30-1780060833.md"
+}

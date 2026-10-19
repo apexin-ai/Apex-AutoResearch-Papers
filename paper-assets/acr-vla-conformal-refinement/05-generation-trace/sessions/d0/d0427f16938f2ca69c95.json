@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "d0427f16938f2ca69c95",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "deploy cqa1 32758 pi05 eval",
+  "task_key": "worker_deploy_cqa1-32758-pi05-eval_20260525T105254",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cqa1-32758-pi05-eval_20260525T105254.log",
+    "occurrence": 1,
+    "bytes": 963806,
+    "sha256": "22954812b10cb58e8edc6da7a73ad30215ff6377d22b1cae835bb2cf1ff26ae0"
+  },
+  "statistics": {
+    "messages": 610,
+    "user_turns": 0,
+    "tool_calls": 196,
+    "roles": {
+      "log": 1,
+      "system": 27,
+      "record": 1,
+      "assistant": 188,
+      "tool_call": 196,
+      "tool_result": 196,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 610,
+      "chunks": [
+        {
+          "path": "d0427f16938f2ca69c95-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d0427f16938f2ca69c95-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d0427f16938f2ca69c95-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d0427f16938f2ca69c95-part-0004.json",
+          "message_count": 70
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/deploy-cqa1-32758-pi05-eval.md"
+}

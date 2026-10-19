@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "id": "c974b009ae992c1ec183",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "analyze eval ksweep k20 obs object s42",
+  "task_key": "worker_analyze_eval-ksweep-k20-obs-object-s42_20260527T092716",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_analyze_eval-ksweep-k20-obs-object-s42_20260527T092716.jsonl",
+    "occurrence": 1,
+    "bytes": 373,
+    "sha256": "06964d0692e3ff040a6c23a862c8b4ae8203c12ea56c2250096a03204e739fe9"
+  },
+  "statistics": {
+    "messages": 2,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-27T09:27:42.119778+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval-ksweep-k20-obs-object-s42_20260527T092716"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-27T09:27:59.232186+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 29, 2pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval-ksweep-k20-obs-object-s42_20260527T092716"
+          },
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/analyze-eval-ksweep-k20-obs-object-s42.md"
+}

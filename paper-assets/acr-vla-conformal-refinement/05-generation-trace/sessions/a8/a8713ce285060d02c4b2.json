@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "id": "a8713ce285060d02c4b2",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "code pi05 server mode",
+  "task_key": "worker_code_pi05-server-mode_20260522T061935",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_code_pi05-server-mode_20260522T061935.jsonl",
+    "occurrence": 1,
+    "bytes": 346,
+    "sha256": "f80e7dbb4ee2ec1a06a7ad9f998970eed6432735e9f4de1bb1143163354d3ddd"
+  },
+  "statistics": {
+    "messages": 2,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T06:19:48.716262+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-server-mode_20260522T061935"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T06:20:00.524211+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 24, 1am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_pi05-server-mode_20260522T061935"
+          },
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/code-pi05-server-mode.md"
+}

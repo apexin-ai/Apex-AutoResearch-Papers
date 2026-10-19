@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dadae0a68c6a0ef87b40",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "ssh kill duplicate bjb2 28827",
+  "task_key": "worker_ssh_kill-duplicate-bjb2-28827_20260520T025635",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_ssh_kill-duplicate-bjb2-28827_20260520T025635_result.json",
+    "occurrence": 1,
+    "bytes": 166,
+    "sha256": "e4afa73dfa2e6b32f7fed3fdcdb42ad4db56ef5285443981056b340551471a2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:3 已释放**，显存占用从 5608 MiB 降至 1 MiB。\n\n原 PID 136894 已不存在，实际占 GPU 的是子进程 PID 136903，已 kill。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-duplicate-bjb2-28827.md"
+}

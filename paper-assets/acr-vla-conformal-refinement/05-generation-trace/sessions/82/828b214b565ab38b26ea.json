@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "828b214b565ab38b26ea",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "deploy cqa1 gpu012 pi05 staggered",
+  "task_key": "worker_deploy_cqa1-gpu012-pi05-staggered_20260526T064419",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_deploy_cqa1-gpu012-pi05-staggered_20260526T064419_result.json",
+    "occurrence": 1,
+    "bytes": 1611,
+    "sha256": "db4e93f9fd7a5f1194eb2124d36ce157dbac902ec6bdb2f035ef7430a754f14e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 3 个新实验已注册为 RUNNING。任务完成。\n\n## cqa1-32758 报告\n\n### Harvest\n- tau_sweep τ=0.50: SR=0.870, trigger_rate=2.06% (565/27431 steps) → registry DONE\n- tau_sweep τ=0.70: SR=0.870, trigger_rate=1.04% (283/27265 steps) → registry DONE\n- tau_sweep τ=0.90: SR=0.890, trigger_rate=0.35% (94/26628 steps) → registry DONE\n\nτ-sweep 关键发现：τ 从 0.25→0.90，SR 几乎不变（87-89%），但 trigger_rate 从 ~2% 降到 0.35%。τ=0.90 在极少触发 CRM 的情况下仍保持 89% SR，说明 π0.5 基础能力很强，CRM 修正在 Goal 上边际收益有限。\n\n### 新部署\n| GPU | 实验 | 状态 |\n|-----|------|------|\n| 0 | pi05-crm-k2-long-s44-cqa1 | 启动成功（14731 MiB, 已加载环境） |\n| 1 | pi05-adaptive-object-s42-cqa1 | 启动成功（14042 MiB, 已加载环境） |\n| 2 | pi05-adaptive-goal-s42-cqa1 | 启动成功（13920 MiB, 已加载环境） |\n\n注：3 个实验在本次任务执行前已被部署（tmux sessions 创建于 14:52-14:57），本次补注册 registry 并更新为 RUNNING。残留 pi05-tau050 tmux session 已清理。\n\n### OOM 事件\n无。6 GPU 并发 π0.5 稳定运行，总 VRAM 使用 ~84 GiB / 147 GiB (57%)。\n\n### GPU 3-5 状态\n| GPU | 实验 | 进度 | VRAM |\n|-----|------|------|------|\n| 3 | pi05-adaptive-object-s44-cqa1 | 3/10 tasks (当前: salad_dressing 10/20) | 13113 MiB |\n| 4 | pi05-adaptive-long-s43-cqa1 | 2/10 tasks (当前: cream_cheese_box 5/20) | 14018 MiB |\n| 5 | pi05-adaptive-long-s44-cqa1 | 2/10 tasks (当前: cream_cheese_box 5/20) | 14018 MiB |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-cqa1-gpu012-pi05-staggered.md"
+}

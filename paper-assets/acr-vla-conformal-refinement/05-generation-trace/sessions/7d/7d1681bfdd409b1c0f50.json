@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "7d1681bfdd409b1c0f50",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "deploy cqa1 gpu345 pi05",
+  "task_key": "worker_deploy_cqa1-gpu345-pi05_20260526T055153",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_deploy_cqa1-gpu345-pi05_20260526T055153.jsonl",
+    "occurrence": 1,
+    "bytes": 164,
+    "sha256": "c9fb824c5a119272948cb4ab2bff2615b24b962619df3bc33bff80682e86f6cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-26T05:52:01.484316+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_deploy_cqa1-gpu345-pi05_20260526T055153"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/deploy-cqa1-gpu345-pi05.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9dfcca4352d99213c46a",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_5_1778808421.md",
+  "task_key": "loop_5_1778808421",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_5_1778808421.md",
+    "occurrence": 1,
+    "bytes": 4987,
+    "sha256": "2cba69efae1cfcca0ed24f805c36be06d19e1ab922821be026d22d793a51c4f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: max_messages\nupdated: '2026-05-15T01:26:58+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：bjb1-18228:cuda:0/1/2/3 + bjb2-40593:cuda:0，禁止用其他 GPU\n- 目标 venue 已切回 **CoRL 2026**（D021），abstract DDL ~May 26，时间极紧\n- CRM v2 checkpoint（/root/autodl-tmp/checkpoints/crm_v2/）有 state dim mismatch bug（D016），禁止用于新实验；只用 v3-norm（/root/autodl-tmp/checkpoints/crm_v3_norm/）\n- SmolVLA 推理必须 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl，否则 AutoDL 网络崩溃\n- eval-vla-mean-spatial 已确认：K=10 平均 ≈ 31%，与 K=1 baseline 30% 无显著差异——多采样平均无收益已定论，不要再跑\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228** (4× RTX 4090): 工作目录 `/root/acr-vla-conformal-refinement`，Python `/root/miniconda3/bin/python`，conda base\n- **bjb2-40593** (1× RTX 4090 D): 同上路径布局\n- 模型：`/root/autodl-tmp/models/smolvla_libero/`（SmolVLA 450M, 7D action）\n- CRM checkpoints：`/root/autodl-tmp/checkpoints/crm_v3_norm/{perdof,scalar_unc,obs_only}/crm_best.pt`\n- 数据：`/root/autodl-tmp/libero_data/`，CRM cache `/root/autodl-tmp/crm_cache_v5/`\n- 活跃进程（bjb1）：\n  - eval-argmin-only-spatial: PID 231421, tmux, cuda:1\n  - eval-tiny-correction-spatial: PID 232815, tmux, cuda:2\n  - eval-acr-spatial-v4-small: PID 253085, tmux, cuda:3\n  - eval-acr-spatial-v4-obs-only-r2: PID 270097, tmux, cuda:0\n- 活跃进程（bjb2）：\n  - eval-vla-mean-spatial-t10: cuda:0（补跑 T10）\n- Cron 监控：上述 4 个 bjb1 实验均有活跃 cron\n\n### 3. 📊 当前状态\n5 路 eval 全部在跑，这是 D018-D020 normalization + magnitude control 消融的核心对比批次：\n\n| exp_id | GPU | 进度 | 早期信号 | 目的 |\n|--------|-----|------|---------|------|\n| eval-argmin-only-spatial | bjb1:1 | 5/10 tasks | 40% (20/50) | 隔离 argmin selection 贡献（无 CRM correction） |\n| eval-tiny-correction-spatial | bjb1:2 | 3/10 tasks | 53.3% (16/30) | CRM v2 + 极小 correction (0.05) |\n| eval-acr-spatial-v4-small | bjb1:3 | 1/10 tasks | 60% on T1 | CRM v3-norm perdof + correction 0.1 |\n| eval-acr-spatial-v4-obs-only-r2 | bjb1:0 | 刚启动 | — | CRM v3-norm obs_only + correction 0.1 |\n| eval-vla-mean-spatial-t10 | bjb2:0 | 补跑 T10 | — | VLA-mean 补最后 1 个 task |\n\n**等待中**：5 个 cron 回调（上述实验完成时触发）。eval-acr-spatial-v4-scalar (PREPARING) 等 GPU 空出。\n\n### 4. 📋 待办（条件触发式）\n- **eval-argmin-only-spatial 完成** → 更新 registry metrics → 与 baseline 30% 对比 → 如果 argmin-only > 35% 则 argmin selection 本身有强贡献，narrative 分层：\"selection > averaging > CRM correction adds precision\"\n- **eval-tiny-correction-spatial 完成** → 与 argmin-only 对比 → 如果 tiny-correction > argmin-only → CRM correction 方向对但需 magnitude control → 支持 \"Conformally-Calibrated Correction Magnitude\" framing\n- **eval-acr-spatial-v4-small 完成** → 这是 v3-norm + 0.1 correction 的核心实验 → 与 tiny-correction (v2+0.05) 对比验证 normalization 是否真正改善 correction 质量\n- **eval-acr-spatial-v4-obs-only-r2 完成** → 与 v4-small (perdof) 对比 → obs_only >= perdof 则 Claim 1 (per-DOF conformal features are essential) 需要重构\n- **任一 bjb1 GPU 空出** → 立即提交 eval-acr-spatial-v4-scalar（D020 三路消融最后一格：scalar_unc CRM + correction 0.1）\n- **全部 5 路 eval 完成** → 汇总完整对比表 → 向 Director 汇报 → 决定 framing 方向 + 是否铺 object benchmark\n\n### 5. 🎯 战略上下文\n**核心问题链**：CRM correction 在闭环 eval 中导致退化（40%→3%）→ D018 确认根因是 input 未归一化 → D019 发现 normalization alone 不够 → 当前 batch 测试 normalization + magnitude control 能否救回来。\n\n**关键数据点**：\n- Baseline (K=1): 30%\n- VLA-mean (K=10 avg): 31%（无收益，已定论）\n- Argmin-only (K=10 select): 40% 早期（5/10 tasks）→ **selection 本身就有强贡献**\n- Tiny-correction (0.05): 53.3% 早期（3/10 tasks）→ **方向对，幅度是问题**\n- v4-small (v3-norm perdof, 0.1): 60% on T1 only（太早）\n\n**决策链**：D015(SFT gate 30%) → D016(state dim bug) → D017(CRM全面拖累) → D018(normalization缺失) → D019(normalization alone不够) → D020(三路消融) → D021(回瞄CoRL 2026)\n\n**易错点**：\n1. eval-tiny-correction-spatial 用的是 CRM **v2**（buggy cache 训练），eval-acr-spatial-v4-small 用的是 CRM **v3-norm**（clean）。两者的对比**不是**纯 correction magnitude 消融——如果 v4-small < tiny-correction，可能是 v3-norm CRM 本身质量不如 v2\n2. CoRL 2026 abstract DDL ~May 26，只剩 ~11 天，完整 eval 每个约 10h，来不及做太多轮\n3. obs_only CRM val_loss (0.0165) 远优于 perdof (0.0358)，但闭环 eval 才是真相——不要被 val_loss 误导\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778808421.md"
+}

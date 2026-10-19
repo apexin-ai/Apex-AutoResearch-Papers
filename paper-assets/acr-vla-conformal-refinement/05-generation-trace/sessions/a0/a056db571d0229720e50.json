@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a056db571d0229720e50",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diagnose crm train obs only result",
+  "task_key": "worker_diagnose_crm-train-obs-only-result_20260514T220444",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diagnose_crm-train-obs-only-result_20260514T220444_result.json",
+    "occurrence": 1,
+    "bytes": 300,
+    "sha256": "ef087b65e4a0565d30cdd076125b66d56658a78e43f083c6ddb9baae892cafe4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**crm-train-v3-norm-obs-only 训练成功完成。** Registry 已更新为 DONE。\n\n关键指标：\n- 50/50 epochs 全部完成\n- best_val_loss = **0.01645**（epoch 48）\n- final_train_loss = 0.025576\n- checkpoint: `/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-crm-train-obs-only-result.md"
+}

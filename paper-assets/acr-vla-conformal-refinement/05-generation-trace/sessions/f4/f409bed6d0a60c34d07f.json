@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "f409bed6d0a60c34d07f",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "diagnose pi05 adaptive goal s42 tau015 bjb2",
+  "task_key": "worker_diagnose_pi05-adaptive-goal-s42-tau015-bjb2_20260526T181725",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_diagnose_pi05-adaptive-goal-s42-tau015-bjb2_20260526T181725.jsonl",
+    "occurrence": 1,
+    "bytes": 184,
+    "sha256": "8e1d2ede7b0cb5bc6fab3dbc10838d7a0e9554afcca0af932571ff765cf2fffd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-26T18:17:36.890233+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Not logged in · Please run /login"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_pi05-adaptive-goal-s42-tau015-bjb2_20260526T181725"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/diagnose-pi05-adaptive-goal-s42-tau015-bjb2.md"
+}

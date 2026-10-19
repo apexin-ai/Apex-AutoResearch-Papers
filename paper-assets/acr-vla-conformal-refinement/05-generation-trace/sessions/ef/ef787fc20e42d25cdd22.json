@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef787fc20e42d25cdd22",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "code d088 model training",
+  "task_key": "worker_code_d088-model-training_20260520T162150",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_code_d088-model-training_20260520T162150_result.json",
+    "occurrence": 1,
+    "bytes": 558,
+    "sha256": "730aa099643f330ea3618018988f7e6fc5d2e5bda834035e53440b1f2a5d65ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证通过。\n\n- **`uncertainty_head.py`**: 3层 MLP (960→16→16→1), 15,665 参数, Sigmoid 输出 [0,1]\n- **`precompute_uncertainty_labels.py`**: 支持 `--mode cache`（从已有 K=10 cache 提取）和 `--mode sample`（SmolVLA 重新采样），输出 `{obs_features, action_variance, task_names}` 的 `.pt` 文件\n- **`train_uncertainty_head.py`**: BCE binary classification（默认）或 MSE regression, Adam lr=1e-3, early stopping, val set 上 F1 最优阈值 τ 校准, 输出 `uncertainty_head_best.pt` + `threshold.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d088-model-training.md"
+}

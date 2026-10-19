@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85a879b44aedf7f3b024",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "research competitive analysis",
+  "task_key": "worker_research_competitive-analysis_20260515T014521",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_research_competitive-analysis_20260515T014521_result.json",
+    "occurrence": 1,
+    "bytes": 1529,
+    "sha256": "e78e00bab9add4b8e7e59627db66f110d0e2801e5a6ba50131c12376db5ceebd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已生成并注册。核心发现：\n\n**竞品覆盖**：8 篇竞品已分析（ACoT-VLA、ReconVLA、SC-VLA、VLA-Pilot、AsyncVLA、A2C2、PLD、SRPO）。paper_framing.md 和 literature_map.yaml 的覆盖率很好，主要缺失 **AsyncVLA** (arXiv:2511.14148)。\n\n**关键数据点**：\n- ACoT-VLA: LIBERO 98.5%, LIBERO-Plus 84.1% — CVPR 2026，confirmed SOTA\n- ReconVLA: AAAI 2026 Outstanding Paper — 需在 paper_framing.md 中标注\n- SC-VLA: ManiSkill +9% SR，但未在 LIBERO 评估\n- 无竞品使用 per-DOF conformal statistics 作为 learned correction 输入\n\n**建议行动**：\n1. `literature_map.yaml` 新增 AsyncVLA 条目\n2. paper_framing.md Gap 段补充 AsyncVLA 的 confidence-guided refinement 作为对比\n3. ReconVLA 条目补充 AAAI 2026 Outstanding Paper 信息\n4. 论文叙事策略：强调 relative improvement (+22.5pp) 和 stacking potential，而非与 7B+ backbone 方法做绝对数值竞争\n\nSources:\n- [ACoT-VLA (CVPR 2026)](https://arxiv.org/abs/2601.11404)\n- [SC-VLA](https://arxiv.org/abs/2602.21633)\n- [VLA-Pilot](https://arxiv.org/abs/2511.14178)\n- [AsyncVLA](https://arxiv.org/abs/2511.14148)\n- [ReconVLA](https://arxiv.org/html/2604.16677v1)\n- [A2C2](https://arxiv.org/abs/2509.23224)\n- [PLD (ICLR 2026)](https://arxiv.org/abs/2511.00091)\n- [SRPO](https://arxiv.org/abs/2511.15605)\n- [Conformal Risk Control for HRI](https://arxiv.org/abs/2603.10392)\n- [ICLR 2026 VLA landscape](https://mbreuss.github.io/blog_post_iclr_26_vla.html)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-competitive-analysis.md"
+}

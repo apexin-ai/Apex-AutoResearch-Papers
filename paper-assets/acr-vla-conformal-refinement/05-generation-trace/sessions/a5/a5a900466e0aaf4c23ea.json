@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5a900466e0aaf4c23ea",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "fix tmux exit code propagation",
+  "task_key": "worker_fix_tmux-exit-code-propagation_20260517T145516",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_fix_tmux-exit-code-propagation_20260517T145516_result.json",
+    "occurrence": 1,
+    "bytes": 662,
+    "sha256": "6ab04b21d1551c5c5e56b624fc84d4f0682f2768ff89b2081107f4109a32573f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 台服务器验证通过。\n\n**部署结果：**\n\n| 服务器 | 脚本 | 目录 | SUCCESS 测试 | FAILED 测试 |\n|---|---|---|---|---|\n| bjb2-28827 | ✓ | ✓ | ✓ | ✓ |\n| bjb1-18228 | ✓ | ✓ | ✓ | ✓ |\n| bjb1-32546 | ✓ | ✓ | ✓ | ✓ |\n| bjb2-40593 | ✓ | ✓ | ✓ | ✓ |\n\n**使用方式：** 在 tmux send-keys 中把原始命令包装为：\n```bash\nbash /root/acr-vla-conformal-refinement/scripts/tmux_wrapper.sh <exp_id> \"<original_command>\"\n```\n\nSentinel 文件写入 `/root/acr-vla-conformal-refinement/logs/sentinels/<exp_id>.sentinel`，内容为 `SUCCESS`/`FAILED` + 时间戳 + EXIT_CODE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-tmux-exit-code-propagation.md"
+}

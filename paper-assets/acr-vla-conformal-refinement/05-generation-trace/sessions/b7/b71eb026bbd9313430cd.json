@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b71eb026bbd9313430cd",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "agent / loop_22_1779346995.md",
+  "task_key": "loop_22_1779346995",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/agent/loop_22_1779346995.md",
+    "occurrence": 1,
+    "bytes": 4950,
+    "sha256": "3c1e6ca64e1f748b38612ef799bcc7b3659cfb2c0a482ed6b31f624e2a991b7c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 22\nreason: idle_timeout\nupdated: '2026-05-21T07:03:14+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单必须查 `load_project_config(\"acr-vla-conformal-refinement\", section=\"execution\")` 的 gpu_ids，不要假设\n- CRM checkpoint 路径固定: `/root/autodl-tmp/checkpoints/crm_v3_norm/obs_only/crm_best.pt`，所有 CRM eval 必须用这个\n- evaluate.py 使用 batched inference（D082 已确认），附录延迟表需按此更新\n- Object CRM Table 1 只用 norm02 数据（D080），不混入 norm01/norm03 的 seed\n- seed42 的 CRM Object norm02 (SR=20%) 不纳入 Table 1（D084 决策，outlier）\n- Long OOD 只能用 cautious wording（MW-U p=0.061 不显著，D081）\n\n### 2. 🖥️ 基础设施快照\n- **bjb1-18228**: 工作目录 `/root/acr-vla-conformal-refinement`，Python `/root/miniconda3/bin/python`，conda base。HF_HOME=/root/autodl-tmp/.hf_cache。磁盘 /autodl-pub 90% ⚠️\n- **bjb1-32546**: 同上结构。磁盘健康（4% used）\n- **bjb2-28827**: 同上结构。磁盘健康（5% used）。6 GPU 可用\n- **bjb2-40593**: 磁盘 /nvidia-smi 89% ⚠️\n- 所有服务器: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base` 激活环境，HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 MUJOCO_GL=egl\n- 活跃进程（reconcile 时刻）:\n  - eval-perdof-object-norm02-seed49: bjb1-32546 PID 450375\n  - eval-argmin-object-seed50: bjb1-32546 PID 423622 cuda:3\n  - eval-obs-only-spatial-norm02-seed49: bjb2-28827 PID 357304 cuda:2\n  - eval-random-selection-object-seed43: bjb2-28827 PID 707407\n  - eval-random-selection-object-seed45: bjb2-28827 PID 468175\n  - eval-crm-k1-object-seed42/43/44-plan702: bjb2-28827 PID 401372/401666/402276 cuda:0/1/5\n  - openvla-precompute-k1: bjb2-28827 cuda:3\n  - eval-vla-only-goal-seed51: RUNNING（无 cron 注册，需要检查）\n\n### 3. 📊 当前状态\n本 session 刚启动，收到 cron 回调 eval-vla-only-object-seed48-r2 完成。Reconcile 还发现 eval-adaptive-k-spatial-p90-seed44 也完成（EXIT_CODE=0 → ANALYZING）。eval-obs-only-object-norm02-seed50 也处于 ANALYZING（已有 worker 在跑）。\n\n**已派 Worker（等回调）:**\n- `worker_analyze_eval-vla-only-object-seed48-r2_20260520T145707` — 分析 VLA-only Object seed48 r2\n- `worker_analyze_eval-obs-only-object-norm02-seed50_20260520T145649` — 分析 CRM obs_only Object seed50（前 session 派的）\n- `worker_analyze_eval-adaptive-k-spatial-p90-seed44_20260520T145720` — 分析 Adaptive K Spatial P90 seed44\n\n**RUNNING (7):** eval-argmin-object-seed50, eval-obs-only-spatial-norm02-seed49, openvla-precompute-k1, eval-crm-k1-object-seed42/43/44-plan702, eval-perdof-object-norm02-seed49, eval-vla-only-goal-seed51\n\n**PREPARING (~33):** 包括 Spatial Adaptive K seeds、更多 VLA-only baselines、OOD Goal seeds 等\n\n**尚未向 Director 汇报本轮结果**——三个 Worker 都还在跑，等回调后再汇报。\n\n### 4. 📋 待办（条件触发式）\n- 3 个分析 Worker 回调到达 → 读 metrics、更新 report.md、向 Director 汇报（带 [资源] 行）\n- eval-vla-only-object-seed48-r2 结果确认 → VLA-only Object baseline 扩展到 n=9（seed42-48,50），计算新的均值±std\n- eval-obs-only-object-norm02-seed50 结果确认 → CRM Object norm02 从 n=7 扩到 n=8，更新 Table 1 统计\n- eval-adaptive-k-spatial-p90-seed44 结果确认 → Spatial P90 三 seed 齐全，计算 cross-benchmark 迁移效果，与 Object P90 (SR 13.3%, avg_K ~2.6) 对比\n- eval-crm-k1-object-seed42/43/44-plan702 完成 → CRM K=1 数据用于 correction vs selection decomposition\n- eval-vla-only-goal-seed51 无 cron → 需要检查是否还在跑，可能需要手动注册 cron 或 SSH 检查\n- GPU 释放后 → 从 PREPARING 队列中优先部署 Spatial Adaptive K P50 seeds（论文核心贡献）\n\n### 5. 🎯 战略上下文\n- **投稿目标: CoRL 2026，DDL 2026-05-29（~8天）**\n- **核心贡献（D077）:** Adaptive K（K=2 L2 distance 信号，自适应推理次数）。K=10 分析降为 supporting evidence\n- **P50 = Pareto 最优（D078）:** Object 上 SR 15.3%, avg_K ~3.8, fast_path ~77%, 保留 K=10 的 91% 性能\n- **信号选择已 CLOSED:** K=2 L2 distance (ρ=0.9979) 是唯一可用信号，CRM magnitude (ρ=0.15) 和 FMVD (ρ=0.08) 都 NO-GO\n- **Object CRM K=10 基准（D080）:** 16.8%±1.8% (n=6, norm02-only)，VLA-only ~10.9%，p=9.5e-5***\n- **OOD 结果:** Goal neutral (-0.7pp n.s.)，Long marginal (+2.3pp, MW-U p=0.061 n.s.)，LTO catastrophic (-12pp)\n- **易错点:** (1) seed42 CRM Object norm02 是 outlier (20%)，D084 决策不纳入 Table 1 (2) Adaptive K 阈值是从 Object 校准的，跨 benchmark 迁移到 Spatial 是关键验证——如果 Spatial P50 效果差，可能需要 per-benchmark 校准的 framing (3) eval-vla-only-goal-seed51 没有 cron，可能是孤儿进程 (4) 论文 CRITICAL 待解决：OOD 数据全量更新、附录延迟表更新、fig3_kvalue 重新生成\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-22-1779346995.md"
+}

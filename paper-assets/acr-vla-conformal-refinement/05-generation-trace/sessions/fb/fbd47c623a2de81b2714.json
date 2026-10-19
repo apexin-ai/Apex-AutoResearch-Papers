@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "fbd47c623a2de81b2714",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "conversation",
+  "title": "check gpu utilization recheck",
+  "task_key": "worker_check_gpu-utilization-recheck_20260521T154131",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/worker_check_gpu-utilization-recheck_20260521T154131.jsonl",
+    "occurrence": 1,
+    "bytes": 185,
+    "sha256": "2054d0dac05ddf1a680c3c8a08707abeb6de3be7f90418b0723cb4a96a768055"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T15:41:41.514933+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets May 22, 5pm (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_gpu-utilization-recheck_20260521T154131"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/check-gpu-utilization-recheck.md"
+}

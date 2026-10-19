@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "804142773bdbe24dc317",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "worker",
+  "title": "analysis pi05 object baseline harvest 20260521T114130 retry1",
+  "task_key": "worker_analysis_pi05-object-baseline-harvest_20260521T114130_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_pi05-object-baseline-harvest_20260521T114130_retry1.log",
+    "occurrence": 1,
+    "bytes": 675081,
+    "sha256": "ace495490add118892ac58cd8182985ee6cb9c0162aaf150f3c0343cf05e919b"
+  },
+  "statistics": {
+    "messages": 219,
+    "user_turns": 0,
+    "tool_calls": 88,
+    "roles": {
+      "system": 1,
+      "record": 1,
+      "assistant": 40,
+      "tool_call": 88,
+      "tool_result": 88,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 219,
+      "chunks": [
+        {
+          "path": "804142773bdbe24dc317-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "804142773bdbe24dc317-part-0002.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-pi05-object-baseline-harvest-20260521t114130-retry1.md"
+}

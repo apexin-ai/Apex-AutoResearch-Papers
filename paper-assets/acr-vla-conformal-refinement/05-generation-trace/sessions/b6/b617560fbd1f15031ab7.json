@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b617560fbd1f15031ab7",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "analysis 8 pair spatial data",
+  "task_key": "worker_analysis_8-pair-spatial-data_20260524T220019",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_analysis_8-pair-spatial-data_20260524T220019_result.json",
+    "occurrence": 1,
+    "bytes": 2136,
+    "sha256": "b8a56f4e2f0f87ac0057ebd97aafe3f36a8ca6f80f5dcd8672dfb29c77990ff1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Spatial 8-pair 完整原始数据表\n\n```\nseed | VLA-only SR | Adaptive SR | Δ       | VLA-only exp_id                  | Adaptive exp_id                       | 备注\ns42  | 80.0%       | 82.0%       | +2.0pp  | eval-supp-spatial-vla-only-s42   | eval-supp-adapt-tau025-spatial-s42-r2 | K=10, 干净supp\ns43  | 79.0%       | 80.0%       | +1.0pp  | eval-supp-spatial-vla-only-s43   | eval-supp-adapt-tau025-spatial-s43    | K=10, 干净supp\ns44  | 78.5%       | 80.5%       | +2.0pp  | eval-supp-spatial-vla-only-s44   | eval-supp-adapt-tau025-spatial-s44    | K=10, 干净supp\ns45  | 77.0%       | 80.0%       | +3.0pp  | eval-supp-spatial-vla-only-s45   | eval-supp-adapt-tau025-spatial-s45    | K=10, 干净supp; 154/200\ns46  | 80.5%       | 80.0%       | -0.5pp  | eval-supp-spatial-vla-only-s46   | eval-supp-spatial-adapt-tau025-s46    | ⚠️ K=2 (其余seed K=10)\ns47  | 80.0%       | 81.5%       | +1.5pp  | eval-supp-vla-only-spatial-s47   | eval-supp-adapt-tau025-spatial-s47    | K=10; VLA 160/200\ns48  | 79.5%       | 81.0%       | +1.5pp  | eval-supp-vla-only-spatial-s48   | eval-supp-adapt-tau025-spatial-s48    | K=10; status=PREPARING但metrics已有\ns49  | 78.5%       | 82.0%       | +3.5pp  | eval-supp-vla-only-spatial-s49   | eval-supp-adapt-tau025-spatial-s49    | K=10; status=PREPARING但metrics已有\n```\n\n**统计检验**：\n\n| 配置 | n | Δ(mean) | t-stat | paired t p-value | Wilcoxon p |\n|------|---|---------|--------|-----------------|------------|\n| 全 8 seeds (含 s46 K=2) | 8 | +1.750pp | 4.041 | **0.0049** | 0.0156 |\n| 排除 s46 (K=10 一致) | 7 | +2.071pp | 6.183 | **0.0008** | 0.0156 |\n\n**关键注释**：\n- `p=0.0049` 数值可复现（上述 n=8 数据）\n- `paper_framing.md` 标记该值\"废弃\"，原因是 s46 用 K=2 vs 其余 K=10 不一致\n- 论文主报告推荐用 n=7 (p=0.0008)，脚注中补充 n=8 robustness (p=0.0049)\n- s45 VLA-only 有两个 run（77% vs 80%），表中采用 77%（`eval-supp-spatial-vla-only-s45`）\n- s47 VLA-only 有两个 run（81% vs 80%），表中采用 80%（`eval-supp-vla-only-spatial-s47`）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-8-pair-spatial-data.md"
+}

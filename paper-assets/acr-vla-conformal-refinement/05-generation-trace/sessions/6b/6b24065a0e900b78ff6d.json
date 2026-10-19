@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b24065a0e900b78ff6d",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "result",
+  "title": "diag eval norm005 seed75 and seed51r3",
+  "task_key": "worker_diag_eval-norm005-seed75-and-seed51r3_20260521T031121",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/workers/worker_diag_eval-norm005-seed75-and-seed51r3_20260521T031121_result.json",
+    "occurrence": 1,
+    "bytes": 1294,
+    "sha256": "d5c0cbcc2ec67edc81f9ddcf9e8322641a147c87feadef61c031781bc144cde3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 实验 1: eval-obs-only-object-norm005-seed75 (bjb2-28827)\n\n**结论：正常完成，结果可信。**\n\n- 脚本跑完全部 10 个 task × 10 rollouts = 100 episodes，无 error/traceback\n- 日志最后输出 `Overall success rate (crm_obs_only): 15.0% (15/100)`，与 registry SR=0.15 一致\n- JSON 结果文件存在，内容完整，`overall_success_rate: 0.15`，10 个 task 的 per-task 数据齐全\n- 进程 return_code=0，正常退出\n\n### 实验 2: eval-obs-only-object-norm01-seed51-r3 (bjb1-32546)\n\n**结论：正常完成，结果可信。**\n\n- 脚本跑完全部 10 个 task × 10 rollouts = 100 episodes，无 error/traceback\n- 日志最后输出 `Overall success rate (crm_obs_only): 11.0% (11/100)`，与 registry SR=0.11 一致\n- JSON 结果文件存在，内容完整，`overall_success_rate: 0.11`，10 个 task 的 per-task 数据齐全\n- 进程 return_code=0，正常退出\n\n### 误报原因\n\n两个实验都是**正常完成后进程退出**，cron 监控系统检测到进程不存在且没有 W&B metrics / sentinel 文件，误判为异常退出。根本原因是 eval 脚本没有写 sentinel 标记文件也没有上报 W&B，只输出了 JSON 结果文件，导致 cron 的完成检测机制未被触发。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-eval-norm005-seed75-and-seed51r3.md"
+}

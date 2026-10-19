@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f44cfdfa74d68b5136dd",
+  "project": "acr-vla-conformal-refinement",
+  "kind": "history",
+  "title": "director / loop_27.md",
+  "task_key": "loop_27",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "task_context/history/director/loop_27.md",
+    "occurrence": 1,
+    "bytes": 2529,
+    "sha256": "5f4c6bb693c28a9b0c0f915eb5642f0a6e17bb44195302494b8ca7361c4ea473"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 27\nreason: max_messages\nupdated: '2026-05-28T21:15:08+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 用户已下达全面停机指令（05-28），所有实验已 kill/cancel，未收到恢复指令前不要启动任何实验\n- 论文提交状态未确认——用户未回复是否已提交 CoRL，不要假设已提交或未提交\n- DDL 存在歧义：ROADMAP 写 2026-05-28 20:00 BJ，审稿报告写 May 29 AoE，用户未澄清\n- 3 台服务器（bjb1-32546、bjb2-28827、cqa1-32758）已不可达，可能到期，不要尝试连接\n\n### 2. 🖥️ 基础设施快照\n- 仅 bjb1-18228 (connect.bjb1.seetacloud.com) 可能仍存活，4 GPU，上次报告利用率 23%\n- 其余 3 台服务器全部连接失败（bjb1-32546、bjb2-28827、cqa1-32758）\n- 工作目录：/root/acr-vla-conformal-refinement\n- 活跃进程：无（0 RUNNING、0 cron、0 Worker）\n- 论文源码在本地 workspace：projects/acr-vla-conformal-refinement/artifacts/ 下\n\n### 3. 📊 当前状态\n- 格式修复已完成：Figure 1 trim 11pt + textfloatsep 10pt、Table 3 改 [t]、AI 使用声明移到附录\n- 编译通过 17 页 0 error\n- Round 7 内部审稿：5/10 Borderline Reject，6 个 Critical Must-Fix（conformal 术语误导、selective prediction 文献遗漏、净收益微弱、K=2 argmin degenerate、π₀.5 单种子、CRM 设计空间未探索）\n- 用户最后消息（05-28 18:18 BJ）是格式修复请求，之后 4+ 天未回复\n- 已向用户发送 DDL 澄清 + 提交状态确认，无回复\n\n### 4. 📋 待办\n- 用户回复已提交 → 询问是否推进 camera-ready 修订（Round 7 的 Must-Fix 可部分处理）或关项目\n- 用户回复未提交 + DDL 是 May 29 AoE → 立即推进：去 conformal 命名、补 selective prediction 文献、去 \\enlargethispage hack、重新编译提交\n- 用户回复未提交 + DDL 已过 → 讨论是否改投其他 venue 或等下一轮 DDL\n- 用户长期不回复 → 保持待机，不主动操作\n\n### 5. 🎯 战略上下文\n- 论文核心 story：无条件 CRM 在 4/4 suites 有害，τ-gating 恢复退化但 vs VLA-only 净提升微弱\n- D184 锁定 title \"Knowing When Not to Correct: Adaptive...\"\n- Round 7 最致命问题：τ-gated ≈ VLA-only（N3），审稿建议重新定位为 empirical study 而非 method paper\n- 易错点：不要自行决定是否提交论文，这是用户的决定；不要因为 DDL 紧急就跳过用户确认\n- 22 GPU 名义分配但实际 3 台服务器已失联，恢复实验前必须先确认服务器状态\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-27.md"
+}
