@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "457d8624a62430477e92",
+  "project": "tbab_multi_turn",
+  "kind": "result",
+  "title": "bugfix attention analysis perband",
+  "task_key": "worker_bugfix_attention-analysis-perband_20260518T071718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_bugfix_attention-analysis-perband_20260518T071718_result.json",
+    "occurrence": 1,
+    "bytes": 668,
+    "sha256": "0c713c907e677388d6d6edf84b645c2adec37f505a19cd98cfbdcb9ace2c8437"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 bug 全部修复并验证通过：\n\n| Bug | 修复内容 | 验证状态 |\n|-----|---------|---------|\n| **Bug 1** (dim_idx) | `[2p, 2p+1]` → `[p, p+D_HEAD//2]`（split-half 配对），rotation 从 interleave even/odd 改为 first-half/second-half | pair 0→dims [0,64], pair 1→dims [1,65]，手动计算完全吻合 |\n| **Bug 2** (频段命名) | pairs 0-20 从 `low_freq` 改为 `high_freq`，pairs 43-63 从 `high_freq` 改为 `low_freq` | high_freq mean inv_freq=0.338 (半周期9位置)，low_freq mean inv_freq=7.7e-4 (半周期4078位置) |\n| **Bug 3** (dtype) | model_local.py `torch.float16` → `torch.bfloat16` | 已确认 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/bugfix-attention-analysis-perband.md"
+}

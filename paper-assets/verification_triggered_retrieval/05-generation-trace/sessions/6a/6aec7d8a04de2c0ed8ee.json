@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "6aec7d8a04de2c0ed8ee",
+  "project": "verification_triggered_retrieval",
+  "kind": "worker",
+  "title": "infra mvp 001 setup",
+  "task_key": "worker_infra_mvp_001_setup_20260517T060136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_mvp_001_setup_20260517T060136.log",
+    "occurrence": 1,
+    "bytes": 597354,
+    "sha256": "cb32597552ccd75994d85a2df774445c1659c0aac22a9b57e657a3a764a1105b"
+  },
+  "statistics": {
+    "messages": 397,
+    "user_turns": 0,
+    "tool_calls": 132,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 129,
+      "tool_call": 132,
+      "tool_result": 132,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 397,
+      "chunks": [
+        {
+          "path": "6aec7d8a04de2c0ed8ee-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6aec7d8a04de2c0ed8ee-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6aec7d8a04de2c0ed8ee-part-0003.json",
+          "message_count": 37
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-mvp-001-setup.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c20f95d1ff645c1a1718",
+  "project": "tbab_multi_turn",
+  "kind": "result",
+  "title": "ops eval progress and c2 config check",
+  "task_key": "worker_ops_eval-progress-and-c2-config-check_20260518T180059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-progress-and-c2-config-check_20260518T180059_result.json",
+    "occurrence": 1,
+    "bytes": 988,
+    "sha256": "d2f7fde58415bdc22acaef72ce3ab35400ba508511e9057af4dca73a104ae2b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Eval 进度\n| Session | 状态 | 进度 |\n|---------|------|------|\n| C4_s42 | alive | **66/91**（正在跑第 66 个） |\n| C1_s137 | alive | **64/91**（正在跑第 64 个） |\n\nGPU 占用：两个进程分别占 17160 MiB 和 17254 MiB。\n\n### C2/C3 配置 — 均正确\n\n- **C2** (`condition2_position_reset.yaml`): `use_bridge_tokens: false`, `use_position_reset: true` ✓\n- **C3** (`condition3_bridge_standard_pos.yaml`): `use_bridge_tokens: true`, `use_position_reset: false` ✓\n\n### C2_s42 训练 — 已崩溃\n\ntmux session `mvp_c2_s42` 已 **dead**。日志显示启动即报错：\n\n```\nFileNotFoundError: No such file or directory: 'configs/condition2_position_reset.yaml'\n```\n\n原因：训练脚本用了**相对路径** `configs/condition2_position_reset.yaml`，而 `cwd` 不在 `/root/tbab_multi_turn/scripts/`。需要改为绝对路径或确保启动命令先 `cd /root/tbab_multi_turn/scripts/` 再运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-progress-and-c2-config-check.md"
+}

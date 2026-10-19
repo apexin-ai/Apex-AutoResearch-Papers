@@ -1,0 +1,252 @@
+{
+  "schema_version": "1.0",
+  "id": "864a3619dca63a1b4a0b",
+  "project": "tbab_multi_turn",
+  "kind": "conversation",
+  "title": "code mvp gate script",
+  "task_key": "worker_code_mvp-gate-script_20260518T095254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_mvp-gate-script_20260518T095254.jsonl",
+    "occurrence": 1,
+    "bytes": 15343,
+    "sha256": "3e5ebd6f6126e0e07944d482fcee24c956ae18a63eb0d9bd1c9409df5d1b91cd"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "tool_call": 5,
+      "tool_result": 5,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T09:54:01.973046+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mvp-gate-script_20260518T095254",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T09:54:01.973352+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mvp-gate-script_20260518T095254",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T09:54:01.973566+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mvp-gate-script_20260518T095254",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-25721",
+              "command": "mkdir -p /root/tbab_multi_turn/eval",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T09:54:01.973720+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.67}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mvp-gate-script_20260518T095254",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T09:54:01.973902+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mvp-gate-script_20260518T095254",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-25721",
+              "command": "cat > /root/tbab_multi_turn/eval/mvp_gate.py << 'SCRIPT_EOF'\n\"\"\"\nMVP Gate Evaluation Script for TBAB Multi-Turn Experiments.\n\nReads evaluation results from 8 experiments (C1-C4 x 2 seeds) and outputs\na PASS / CONDITIONAL PASS / KILL verdict based on predefined criteria.\n\nInput: JSON file with keys like \"mvp_c{1-4}_s{42,137}\", each containing:\n  - p_bar: float, overall performance metric\n  - p_bar_by_shard: dict[str, float], performance by conversation shard\n  - a90: float, 90th percentile accuracy\n  - u1090: float, uncertainty metric (10-90 range)\n  - per_band_pattern: dict with head improvement counts across frequency bands\n\nOutput: Formatted report to stdout + JSON result file.\n\nUsage:\n  python3 mvp_gate.py --input eval_results.json\n  python3 mvp_gate.py --input eval_results.json --output mvp_gate_result.json\n  python3 mvp_gate.py --mock\n\"\"\"\n\nimport argparse\nimport json\nimport os\nimport sys\n\n\nCONDITIONS = [\"c1\", \"c2\", \"c3\", \"c4\"]\nSEEDS = [\"s42\", \"s137\"]\nCONDITION_LABELS = {\n    \"c1\": \"C1 (LoRA-only)\",\n    \"c2\": \"C2 (pos reset)\",\n    \"c3\": \"C3 (bridge+std)\",\n    \"c4\": \"C4 (full TBAB)\",\n}\n\n\ndef generate_mock_data():\n    import random\n    random.seed(2024)\n    data = {}\n    base_scores = {\"c1\": 0.58, \"c2\": 0.61, \"c3\": 0.63, \"c4\": 0.66}\n    for cond in CONDITIONS:\n        base = base_scores[cond]\n        for seed in SEEDS:\n            noise = random.uniform(-0.02, 0.02)\n            p_bar = base + noise\n            shards = {}\n            for s in range(2, 9):\n                decay = (s - 2) * 0.03\n                shard_noise = random.uniform(-0.015, 0.015)\n                shards[str(s)] = round(p_bar + 0.08 - decay + shard_noise, 4)\n            total_heads = 32\n            if cond == \"c4\":\n                mid_improved = random.randint(20, 25)\n            else:\n                mid_improved = random.randint(8, 15)\n            high_improved = random.randint(3, 7)\n            low_improved = random.randint(2, 5)\n            data[f\"mvp_{cond}_{seed}\"] = {\n                \"p_bar\": round(p_bar, 4),\n                \"p_bar_by_shard\": shards,\n                \"a90\": round(p_bar + random.uniform(0.05, 0.10), 4),\n                \"u1090\": round(random.uniform(0.10, 0.20), 4),\n                \"per_band_pattern\": {\n                    \"high_freq_heads_improved\": high_improved,\n                    \"mid_freq_heads_improved\": mid_improved,\n                    \"low_freq_heads_improved\": low_improved,\n                    \"total_heads\": total_heads,\n                },\n            }\n    return data\n\n\ndef compute_condition_mean(data, cond):\n    vals = []\n    for seed in SEEDS:\n        key = f\"mvp_{cond}_{seed}\"\n        vals.append(data[key][\"p_bar\"])\n    return sum(vals) / len(vals)\n\n\ndef compute_shard5plus_mean(data, cond):\n    all_vals = []\n    for seed in SEEDS:\n        key = f\"mvp_{cond}_{seed}\"\n        by_shard = data[key][\"p_bar_by_shard\"]\n        vals = [v for k, v in by_shard.items() if int(k) >= 5]\n        all_vals.extend(vals)\n    return sum(all_vals) / len(all_vals) if all_vals else 0.0\n\n\ndef check_p1(data):\n    results = {}\n    for seed in SEEDS:\n        key = f\"mvp_c4_{seed}\"\n        bp = data[key][\"per_band_pattern\"]\n        ratio = bp[\"mid_freq_heads_improved\"] / bp[\"total_heads\"]\n        results[seed] = ratio\n    passed = all(r >= 0.60 for r in results.values())\n    return passed, results\n\n\ndef check_p2(data):\n    c4_shard5plus = compute_shard5plus_mean(data, \"c4\")\n    c1_shard5plus = compute_shard5plus_mean(data, \"c1\")\n    diff = c4_shard5plus - c1_shard5plus\n    return diff >= 0.03, diff\n\n\ndef evaluate(data):\n    means = {c: compute_condition_mean(data, c) for c in CONDITIONS}\n    seeds_detail = {}\n    for cond in CONDITIONS:\n        seeds_detail[cond] = {}\n        for seed in SEEDS:\n            key = f\"mvp_{cond}_{seed}\"\n            seeds_detail[cond][seed] = data[key][\"p_bar\"]\n\n    main_diff = means[\"c4\"] - means[\"c1\"]\n    diff42 = means[\"c4\"] - means[\"c2\"]\n    diff43 = means[\"c4\"] - means[\"c3\"]\n    diff21 = means[\"c2\"] - means[\"c1\"]\n    diff31 = means[\"c3\"] - means[\"c1\"]\n\n    p1_passed, p1_ratios = check_p1(data)\n    p2_passed, p2_shard_diff = check_p2(data)\n\n    if (main_diff >= 0.03\n            and p1_passed\n            and (means[\"c4\"] > means[\"c3\"] or means[\"c4\"] > means[\"c2\"])):\n        verdict = \"PASS\"\n    elif main_diff < 0.03 and p2_passed:\n        verdict = \"CONDITIONAL PASS\"\n    else:\n        verdict = \"KILL\"\n\n    return {\n        \"means\": means,\n        \"seeds_detail\": seeds_detail,\n        \"main_diff\": main_diff,\n        \"diff42\": diff42,\n        \"diff43\": diff43,\n        \"diff21\": diff21,\n        \"diff31\": diff31,\n        \"p1_passed\": p1_passed,\n        \"p1_ratios\": p1_ratios,\n        \"p2_passed\": p2_passed,\n        \"p2_shard_diff\": p2_shard_diff,\n        \"verdict\": verdict,\n    }\n\n\ndef format_report(result):\n    m = result[\"means\"]\n    sd = result[\"seeds_detail\"]\n    p1r = result[\"p1_ratios\"]\n\n    lines = []\n    lines.append(\"═══════════════════════════════════════════\")\n    lines.append(\"         MVP GATE EVALUATION REPORT\")\n    lines.append(\"═══════════════════════════════════════════\")\n    lines.append(\"\")\n    lines.append(\"Condition Means (2-seed average):\")\n    for cond in CONDITIONS:\n        label = CONDITION_LABELS[cond]\n        lines.append(f\"  {label}:{' ' * (20 - len(label))}{m[cond]:.4f}\")\n    lines.append(\"\")\n    lines.append(\"Key Comparisons:\")\n    lines.append(f\"  C4 - C1 (main effect): {result['main_diff']:.4f} ({result['main_diff'] * 100:.1f}%)\")\n    lines.append(f\"  C4 - C2:               {result['diff42']:.4f}\")\n    lines.append(f\"  C4 - C3:               {result['diff43']:.4f}\")\n    lines.append(f\"  C2 - C1 (pos reset):   {result['diff21']:.4f}\")\n    lines.append(f\"  C3 - C1 (bridge only): {result['diff31']:.4f}\")\n    lines.append(\"\")\n    lines.append(\"Pattern Checks:\")\n    p1_status = \"PASS\" if result[\"p1_passed\"] else \"FAIL\"\n    pct1 = p1r[\"s42\"] * 100\n    pct2 = p1r[\"s137\"] * 100\n    lines.append(f\"  P1 (mid-freq >=60%):   {p1_status} (seed42: {pct1:.0f}%, seed137: {pct2:.0f}%)\")\n    p2_status = \"PASS\" if result[\"p2_passed\"] else \"FAIL\"\n    lines.append(f\"  P2 (shard>=5 >=3%):    {p2_status} (C4-C1 shard5+: {result['p2_shard_diff']:.4f})\")\n    lines.append(\"\")\n    lines.append(\"Per-seed Details:\")\n    for cond in CONDITIONS:\n        label = cond.upper()\n        lines.append(f\"  {label}: s42={sd[cond]['s42']:.4f}, s137={sd[cond]['s137']:.4f}\")\n    lines.append(\"\")\n    lines.append(\"═══════════════════════════════════════════\")\n    lines.append(f\"  VERDICT: {result['verdict']}\")\n    lines.append(\"═══════════════════════════════════════════\")\n    return \"\\n\".join(lines)\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"MVP Gate Evaluation for TBAB Multi-Turn\")\n    parser.add_argument(\"--input\", type=str, help=\"Path to evaluation results JSON file\")\n    parser.add_argument(\"--output\", type=str, default=\"eval/mvp_gate_result.json\",\n                        help=\"Path to save verdict JSON (default: eval/mvp_gate_result.json)\")\n    parser.add_argument(\"--mock\", action=\"store_true\", help=\"Run with mock data for testing\")\n    args = parser.parse_args()\n\n    if args.mock:\n        data = generate_mock_data()\n    elif args.input:\n        with open(args.input, \"r\") as f:\n            data = json.load(f)\n    else:\n        parser.error(\"Either --input or --mock is required\")\n\n    expected_keys = [f\"mvp_{c}_{s}\" for c in CONDITIONS for s in SEEDS]\n    missing = [k for k in expected_keys if k not in data]\n    if missing:\n        print(f\"ERROR: Missing keys in input: {missing}\", file=sys.stderr)\n        sys.exit(1)\n\n    result = evaluate(data)\n    report = format_report(result)\n    print(report)\n\n    output_data = {\n        \"verdict\": result[\"verdict\"],\n        \"condition_means\": {c.upper(): round(result[\"means\"][c], 4) for c in CONDITIONS},\n        \"main_effect\": round(result[\"main_diff\"], 4),\n        \"p1_passed\": result[\"p1_passed\"],\n        \"p1_ratios\": {k: round(v, 4) for k, v in result[\"p1_ratios\"].items()},\n        \"p2_passed\": result[\"p2_passed\"],\n        \"p2_shard_diff\": round(result[\"p2_shard_diff\"], 4),\n        \"seeds_detail\": {\n            c.upper(): {s: round(result[\"seeds_detail\"][c][s], 4) for s in SEEDS}\n            for c in CONDITIONS\n        },\n    }\n\n    output_path = args.output\n    os.makedirs(os.path.dirname(output_path) if os.path.dirname(output_path) else \".\", exist_ok=True)\n    with open(output_path, \"w\") as f:\n        json.dump(output_data, f, indent=2)\n    print(f\"\\nResult saved to {output_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T09:54:01.974278+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.95}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mvp-gate-script_20260518T095254",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T09:54:01.974464+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mvp-gate-script_20260518T095254",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-25721",
+              "command": "cd /root/tbab_multi_turn && python3 eval/mvp_gate.py --mock",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T09:54:01.974633+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"═══════════════════════════════════════════\\\\n         MVP GATE EVALUATION REPORT\\\\n═══════════════════════════════════════════\\\\n\\\\nCondition Means (2-seed average):\\\\n  C1 (LoRA-only):      0.5737\\\\n  C2 (pos reset):      0.6228\\\\n  C3 (bridge+std):     0.6410\\\\n  C4 (full TBAB):      0.6507\\\\n\\\\nKey Comparisons:\\\\n  C4 - C1 (main effect): 0.0770 (7.7%)\\\\n  C4 - C2:               0.0280\\\\n  C4 - C3:               0.0098\\\\n  C2 - C1 (pos reset):   0.0490\\\\n  C3 - C1 (bridge only): 0.0672\\\\n\\\\nPattern Checks:\\\\n  P1 (mid-freq >=60%):   PASS (seed42: 69%, seed137: 78%)\\\\n  P2 (shard>=5 >=3%):    PASS (C4-C1 shard5+: 0.0754)\\\\n\\\\nPer-seed Details:\\\\n  C1: s42=0.5788, s137=0.5687\\\\n  C2: s42=0.6208, s137=0.6247\\\\n  C3: s42=0.6412, s137=0.6407\\\\n  C4: s42=0.6514, s137=0.6500\\\\n\\\\n═══════════════════════════════��═══════════\\\\n  VERDICT: PASS\\\\n═══════════════════════════════════════════\\\\n\\\\nResult saved to eval/mvp_gate_result.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mvp-gate-script_20260518T095254",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T09:54:01.974844+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mvp-gate-script_20260518T095254",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-25721",
+              "command": "cat /root/tbab_multi_turn/eval/mvp_gate_result.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T09:54:01.975009+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"verdict\\\\\\\": \\\\\\\"PASS\\\\\\\",\\\\n  \\\\\\\"condition_means\\\\\\\": {\\\\n    \\\\\\\"C1\\\\\\\": 0.5737,\\\\n    \\\\\\\"C2\\\\\\\": 0.6228,\\\\n    \\\\\\\"C3\\\\\\\": 0.641,\\\\n    \\\\\\\"C4\\\\\\\": 0.6507\\\\n  },\\\\n  \\\\\\\"main_effect\\\\\\\": 0.077,\\\\n  \\\\\\\"p1_passed\\\\\\\": true,\\\\n  \\\\\\\"p1_ratios\\\\\\\": {\\\\n    \\\\\\\"s42\\\\\\\": 0.6875,\\\\n    \\\\\\\"s137\\\\\\\": 0.7812\\\\n  },\\\\n  \\\\\\\"p2_passed\\\\\\\": true,\\\\n  \\\\\\\"p2_shard_diff\\\\\\\": 0.0754,\\\\n  \\\\\\\"seeds_detail\\\\\\\": {\\\\n    \\\\\\\"C1\\\\\\\": {\\\\n      \\\\\\\"s42\\\\\\\": 0.5788,\\\\n      \\\\\\\"s137\\\\\\\": 0.5687\\\\n    },\\\\n    \\\\\\\"C2\\\\\\\": {\\\\n      \\\\\\\"s42\\\\\\\": 0.6208,\\\\n      \\\\\\\"s137\\\\\\\": 0.6247\\\\n    },\\\\n    \\\\\\\"C3\\\\\\\": {\\\\n      \\\\\\\"s42\\\\\\\": 0.6412,\\\\n      \\\\\\\"s137\\\\\\\": 0.6407\\\\n    },\\\\n    \\\\\\\"C4\\\\\\\": {\\\\n      \\\\\\\"s42\\\\\\\": 0.6514,\\\\n      \\\\\\\"s137\\\\\\\": 0.65\\\\n    }\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mvp-gate-script_20260518T095254",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T09:54:01.975172+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "`/root/tbab_multi_turn/eval/mvp_gate.py` 已创建并通过 mock 测试验证。脚本无报错，报告格式和 JSON 输出均符合要求。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mvp-gate-script_20260518T095254"
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/conversations/code-mvp-gate-script.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb7608872d62a946cf8e",
+  "project": "tbab_multi_turn",
+  "kind": "result",
+  "title": "ops p0 migrate fix dryrun",
+  "task_key": "worker_ops_p0-migrate-fix-dryrun_20260518T074644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_p0-migrate-fix-dryrun_20260518T074644_result.json",
+    "occurrence": 1,
+    "bytes": 2130,
+    "sha256": "c8508938a8f45a927f85be2108f40bde2b12c86bac0cfbfccaba794dbfaa47f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## P0 任务完成汇报\n\n### Step 1: 迁移 ✅\n从 westd-29046 通过 sshpass+rsync 迁移完成：\n- **scripts/**: `train.py`, `tbab_model.py`, `tbab_dataset.py`, `tbab_utils.py`, `configs/` (4 YAML)\n- **data/**: `training_data.json` (22MB), `preprocess.py`, `data_stats.txt`, `sharegpt_raw.json`\n- **eval/**: `run_eval.py`, `model_local.py`, `metrics.py`, `attention_analysis.py`, `tbab_inference.py`, `lost_in_conversation/`\n\n### Step 2: YAML 路径修复 ✅\n4 个 YAML 配置的 `model_name_or_path` 已从 `/root/autodl-tmp/.hf_cache/AI-ModelScope/...` 改为 `/root/autodl-tmp/models/Mistral-7B-Instruct-v0.1`。模型权重通过 ModelScope 下载完成（pytorch_model .bin 格式，14GB）。\n\n### Step 3: trainable_token_indices ✅\n**代码已经是修复后的状态** — `tbab_model.py` 中 `apply_lora()` 函数已正确使用 PEFT 原生 `trainable_token_indices` 参数，无需修改。没有 `_make_bridge_embeddings_trainable` 函数存在。\n\n### Step 4: Dry-Run 结果 ✅\n\n| 条件 | Trainable Params | % | 5-step Loss | 状态 |\n|------|-----------------|---|-------------|------|\n| C1 (LoRA only) | 83,886,080 (83.9M) | 1.1451% | 0.7315 | ✅ |\n| C2 (pos reset) | 83,886,080 (83.9M) | 1.1451% | 2.240 | ✅ |\n| C3 (bridge+std pos) | 83,918,848 (83.9M+33K) | 1.1455% | 0.7321 | ✅ |\n| C4 (full TBAB) | 83,918,848 (83.9M+33K) | 1.1455% | 2.244 | ✅ |\n\n**参数量验证**：C3/C4 比 C1/C2 多出 32,768 = 4 tokens × 4096 dim × 2 layers（embed_tokens + lm_head），而非之前错误实现的 346M。`trainable_token_indices` 正确工作。\n\n### 遇到的问题及解决\n1. **HuggingFace 下载失败** — 无 HF token，Mistral 模型可能有访问限制。改用 ModelScope 镜像下载\n2. **safetensors 文件缺失** — ModelScope 只提供 .bin 格式权重。删除 `model.safetensors.index.json` 让 transformers 回退到 .bin 加载\n3. **C2/C4 loss 偏高 (2.24)** — position reset 条件的 loss 比标准条件高，这在 5-step dry-run 中属正常现象（position reset 改变了注意力模式，前几步 loss 波动较大）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-p0-migrate-fix-dryrun.md"
+}

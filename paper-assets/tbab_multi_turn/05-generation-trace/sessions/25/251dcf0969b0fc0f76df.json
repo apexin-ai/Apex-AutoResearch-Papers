@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "251dcf0969b0fc0f76df",
+  "project": "tbab_multi_turn",
+  "kind": "result",
+  "title": "research eval lost in conversation",
+  "task_key": "worker_research_eval-lost-in-conversation_20260518T055049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_eval-lost-in-conversation_20260518T055049_result.json",
+    "occurrence": 1,
+    "bytes": 1035,
+    "sha256": "38f9edc1debb1736bd4ecbef0692a123ae354d6fd9512059d7bfe8d69c6927d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/eval_lost_in_conversation_report.md` 并注册。核心发现：\n\n**数据集**: 627 样本，6 种任务，shard 数 3-12。shard >= 5 子集 509 条（code 91, math 81）。\n\n**指标**: P̄/A⁹⁰/U₁₀⁹⁰ **不在仓库代码中**，是论文级 post-hoc 指标，需从 JSONL trace 自行计算。仓库只记录 per-conversation 的 `is_correct` 和 `score`。\n\n**评估方法**:\n- Code: **pass@1 执行评估**，forked subprocess（非安全沙盒），AST 提取代码\n- Math: **字符串精确匹配**（GSM8K 风格 normalize 后），无数值容差\n\n**对话模拟**: 3-agent 架构（User Agent LLM 逐轮透露 shard + Assistant 被测模型 + System Agent LLM 判断/提取答案）。不是固定模板，User Agent 是 LLM 驱动的。\n\n**本地适配**: 最小改动路径只需改 `model_openai.py`（~50-100 行），assistant 本地推理 + system/user agent 保持 API。3 GPU 并行 + vLLM，7B 模型全量评估（600 x N=10）预计 10-20 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-eval-lost-in-conversation.md"
+}

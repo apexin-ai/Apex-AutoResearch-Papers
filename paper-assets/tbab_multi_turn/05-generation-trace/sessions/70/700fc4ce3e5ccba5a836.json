@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "700fc4ce3e5ccba5a836",
+  "project": "tbab_multi_turn",
+  "kind": "result",
+  "title": "ops eval smoke test",
+  "task_key": "worker_ops_eval-smoke-test_20260518T101256",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-smoke-test_20260518T101256_result.json",
+    "occurrence": 1,
+    "bytes": 2775,
+    "sha256": "36f9bf0fc791f189d8f29c269a93dbe7da4f930891317c66f32534fdf57673d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval pipeline smoke test 完成。以下是汇报：\n\n---\n\n## Smoke Test 结果\n\n### 1. Pipeline 各环节状态\n\n| 环节 | 状态 | 备注 |\n|------|------|------|\n| 数据加载 | ✅ | sharded_instructions_600.json，91 条 code 样本（min_shards>=5） |\n| User Agent 调用 | ✅ | OpenRouter API（gpt-4o-mini）生成用户消息 + shard 揭示 |\n| Assistant 推理 | ✅ | 本地 Mistral-7B-Instruct-v0.1，GPU 与训练共存无 OOM |\n| System Agent 判题 | ✅ | OpenRouter API（gpt-4o-mini）turn classification + answer extraction + evaluation |\n| Metrics 计算 | ✅ | P̄ / A90 / U10-90 全部输出 |\n| 确定性输出 | ✅ | temperature=0，seed 42 固定子采样 |\n\n### 2. 3 条样本 P̄ 分数\n\n| task_id | shards | turns | score | correct |\n|---------|--------|-------|-------|---------|\n| sharded-livecodebench/2893 | 8 | 8 | 0 | ✗ |\n| sharded-HumanEval/141 | 10 | 10 | 0 | ✗ |\n| sharded-HumanEval/111 | 6 | 6 | 0 | ✗ |\n\n**P̄ = 0.0**（未微调 base model，符合预期）\n\n### 3. 遇到的问题和修复\n\n| 问题 | 修复 |\n|------|------|\n| `openai` 包未安装 | `pip install openai` |\n| `bson` 模块缺失 | `pip install pymongo` |\n| `sqlparse` 模块缺失 | `pip install sqlparse nltk sacrebleu` |\n| CWD 导致 prompt 文件找不到 | 必须从 `lost_in_conversation/` 目录运行 |\n| Mistral v0.1 不支持 system role | 修改 `model_local.py`：`_tokenize_messages` 将 system message 合并到第一条 user message |\n\n### 4. 正式评估注意事项\n\n- **运行时间**：3 条样本（24 轮总计）耗时 ~9 分钟。推算全量 91 条 code 样本（~500+ 轮）约 **3-4 小时**；加 math 翻倍\n- **GPU 共存**：训练占 31GB，eval 模型占 ~14GB，总计 ~45GB / 98GB，可以共存\n- **API 配置**：设置 `OPENAI_API_KEY` 和 `OPENAI_BASE_URL` 环境变量即可，openai 2.37.0 自动读取\n- **CWD**：必须 `cd /root/tbab_multi_turn/eval/lost_in_conversation` 再运行 `python3 ../run_eval.py`\n- **API rate limit**：未观察到限速，但正式评估大量并发时需关注\n- **model_openai.py cost_calculator**：当前只有 OpenAI 官方模型的定价，对 OpenRouter 代理会报错——如果 `user_agent_model` / `system_agent_model` 参数传非 gpt 模型名会崩溃\n\n### 5. API 相关配置位置\n\n| 配置项 | 位置 |\n|--------|------|\n| API key | 环境变量 `OPENAI_API_KEY` 或 `--openai_api_key` 参数 |\n| Base URL | 环境变量 `OPENAI_BASE_URL`（openai SDK 自动读取） |\n| User Agent 模型 | `--user_agent_model`（默认 `gpt-4o-mini`） |\n| System Agent 模型 | `--system_agent_model`（默认 `gpt-4o-mini`） |\n| OpenAI 客户端构造 | `eval/lost_in_conversation/model_openai.py:25-28` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-smoke-test.md"
+}

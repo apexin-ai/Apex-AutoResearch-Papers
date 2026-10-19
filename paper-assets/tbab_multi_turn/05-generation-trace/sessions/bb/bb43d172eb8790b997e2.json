@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb43d172eb8790b997e2",
+  "project": "tbab_multi_turn",
+  "kind": "result",
+  "title": "ops urgent gpu check 3",
+  "task_key": "worker_ops_urgent-gpu-check-3_20260518T211707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent-gpu-check-3_20260518T211707_result.json",
+    "occurrence": 1,
+    "bytes": 823,
+    "sha256": "70c44f4987e211097ff1a0ef149d871b9f76ce290a7bf99a5c6bc2ecadec1fa7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 运行正常：\n\n## 状态汇总\n\n| 项目 | 状态 |\n|---|---|\n| **GPU** | RTX PRO 6000，15.7G/97.9G VRAM，97% 利用率 |\n| **C2_s42 训练** | 已完成（step 471 = final step），但 checkpoint 保存时因**磁盘满**（30G overlay 100%）崩溃。模型权重完好（checkpoint-471/adapter_model.safetensors），仅 optimizer.pt 截断（eval 不需要） |\n| **C2_s42 eval** | **已启动** ✓ — tmux `eval_c2_s42`，处理 1/91，condition=`position_reset` |\n| **C4_s137 eval** | 已死（tmux session 不存在） |\n| **磁盘** | 清理了旧 checkpoint + optimizer 后从 100% 降到 95%（1.8G 可用） |\n\n**需要关注**：\n1. C4_s137 eval 之前死了，需要确认是否要重启\n2. 磁盘仍然很紧张（95%），如果后续需要写大文件可能再次满"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-gpu-check-3.md"
+}

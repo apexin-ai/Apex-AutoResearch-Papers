@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "625349326a91fc05210c",
+  "project": "tbab_multi_turn",
+  "kind": "result",
+  "title": "ops p0 merge unload verify",
+  "task_key": "worker_ops_p0-merge-unload-verify_20260518T180539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_p0-merge-unload-verify_20260518T180539_result.json",
+    "occurrence": 1,
+    "bytes": 1319,
+    "sha256": "ba40829b60dbfef38b2aef00357395f3ef7f88c42bdf42d9819f971c552eb2c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n### `merge_and_unload()` — **PASS，不是 bug 根因**\n\n完整输出：\n\n| 阶段 | embed norms (32000-32003) | lm_head norms (32000-32003) |\n|---|---|---|\n| Pre-merge (random init) | `[0.0271, 0.0271, 0.0271, 0.0271]` | `[0.0825, 0.0825, 0.0825, 0.0825]` |\n| Adapter loaded | `[0.6875, 0.6562, 0.6602, 0.6641]` | `[0.6328, 0.6211, 0.6328, 0.6328]` |\n| After merge_and_unload() | `[0.6875, 0.6562, 0.6602, 0.6641]` | `[0.6328, 0.6211, 0.6328, 0.6328]` |\n\n- PEFT 0.19.1 的 `trainable_token_indices` 机制通过 `token_adapter.trainable_tokens_delta` 存储了 4 个 bridge token 的训练 delta（shape `[4, 4096]`）\n- 训练后 bridge token norms 从 ~0.03/0.08 增长到 ~0.65，训练确实修改了它们\n- `merge_and_unload()` 完美保留了这些权重，adapter 状态和 merged 状态完全一致\n\n### `model_local.py` 加载方式\n\n`eval/model_local.py` 的加载流程：\n1. `resize_token_embeddings(32004)` — 扩展词表\n2. `PeftModel.from_pretrained(model, adapter_path)` — 加载 adapter\n3. `model.merge_and_unload()` — 合并\n\n流程正确，merge 也正确。**C4 eval P̄ ≈ 3.3% 的问题根因不在 merge_and_unload()，需要从其他方向排查**（如 position reset 逻辑、bridge token 插入位置、generate_tbab 实现等）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-p0-merge-unload-verify.md"
+}

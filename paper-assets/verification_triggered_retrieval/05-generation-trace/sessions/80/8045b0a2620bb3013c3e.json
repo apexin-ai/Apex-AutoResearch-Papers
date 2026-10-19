@@ -1,0 +1,124 @@
+{
+  "schema_version": "1.0",
+  "id": "8045b0a2620bb3013c3e",
+  "project": "verification_triggered_retrieval",
+  "kind": "worker",
+  "title": "code mvp 001 implement",
+  "task_key": "worker_code_mvp_001_implement_20260517T065939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp_001_implement_20260517T065939.log",
+    "occurrence": 1,
+    "bytes": 3057774,
+    "sha256": "77fcd402149a9899a20e277f8db9d697463a4011169b3fab91cbdcfebc8c33fe"
+  },
+  "statistics": {
+    "messages": 2694,
+    "user_turns": 2,
+    "tool_calls": 1246,
+    "roles": {
+      "log": 1,
+      "system": 16,
+      "record": 3,
+      "assistant": 178,
+      "tool_call": 1246,
+      "tool_result": 1246,
+      "user": 2,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 916,
+      "chunks": [
+        {
+          "path": "8045b0a2620bb3013c3e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "8045b0a2620bb3013c3e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "8045b0a2620bb3013c3e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "8045b0a2620bb3013c3e-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "8045b0a2620bb3013c3e-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "8045b0a2620bb3013c3e-part-0006.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1146,
+      "chunks": [
+        {
+          "path": "8045b0a2620bb3013c3e-part-0006.json",
+          "message_count": 164
+        },
+        {
+          "path": "8045b0a2620bb3013c3e-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "8045b0a2620bb3013c3e-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "8045b0a2620bb3013c3e-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "8045b0a2620bb3013c3e-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "8045b0a2620bb3013c3e-part-0011.json",
+          "message_count": 180
+        },
+        {
+          "path": "8045b0a2620bb3013c3e-part-0012.json",
+          "message_count": 82
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 632,
+      "chunks": [
+        {
+          "path": "8045b0a2620bb3013c3e-part-0012.json",
+          "message_count": 98
+        },
+        {
+          "path": "8045b0a2620bb3013c3e-part-0013.json",
+          "message_count": 180
+        },
+        {
+          "path": "8045b0a2620bb3013c3e-part-0014.json",
+          "message_count": 180
+        },
+        {
+          "path": "8045b0a2620bb3013c3e-part-0015.json",
+          "message_count": 174
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-mvp-001-implement.md"
+}

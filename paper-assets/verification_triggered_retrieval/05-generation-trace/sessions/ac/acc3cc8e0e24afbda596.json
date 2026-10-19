@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "acc3cc8e0e24afbda596",
+  "project": "verification_triggered_retrieval",
+  "kind": "result",
+  "title": "infra mvp 001 setup",
+  "task_key": "worker_infra_mvp_001_setup_20260517T060136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_mvp_001_setup_20260517T060136_result.json",
+    "occurrence": 1,
+    "bytes": 1393,
+    "sha256": "8440c02573e1245508ddffa7dee8d9027f023cc5b39a798b43955d3f268aa1f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "环境搭建完成。汇报如下：\n\n---\n\n## 服务器规格\n\n| 项目 | 值 |\n|------|-----|\n| GPU | NVIDIA RTX PRO 6000 Blackwell Server Edition |\n| 显存 | 95 GB |\n| CUDA | 12.8 |\n| Python | 3.12.3 (miniconda3) |\n| OS | Ubuntu 22.04.5 LTS |\n| 数据盘可用 | 231 GB (/root/autodl-tmp) |\n\n## 安装的包\n\n| 包 | 版本 |\n|----|------|\n| torch | 2.8.0+cu128 |\n| transformers | 5.8.1 |\n| datasets | 4.8.5 |\n| sentence-transformers | 5.5.0 |\n| faiss-gpu-cu12 | 1.14.1 (GPU OK) |\n| pyserini | 0.25.0 (BM25 OK) |\n| scipy | 1.17.1 |\n| numpy | 2.3.2 |\n| pandas | 3.0.3 |\n\n## 模型\n\n| 模型 | 路径 | 大小 |\n|------|------|------|\n| Qwen3-8B | /root/autodl-tmp/models/Qwen3-8B | 16 GB |\n| BGE-base-en-v1.5 | /root/autodl-tmp/models/bge-base-en-v1.5 | 837 MB |\n| NLI DeBERTa-v3-large | /root/autodl-tmp/models/nli-deberta-v3-large | 1.7 GB |\n\n## 数据\n\n- `/root/autodl-tmp/data/hotpotqa_dev_200.json` — 200 条 HotpotQA fullwiki 验证集\n\n## 注意事项\n\n1. **vllm 不可用** — 与 torch 2.8 ABI 不兼容，已卸载。后续用 transformers 直接推理（95GB 显存完全够载 Qwen3-8B fp16）\n2. **pyserini 环境变量** — 需要 `JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64` 和 `OPENAI_API_KEY=[REDACTED] .bashrc）\n3. **HF 下载** — hf-mirror 带宽低，modelscope 更快（已安装 modelscope 备用）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-mvp-001-setup.md"
+}

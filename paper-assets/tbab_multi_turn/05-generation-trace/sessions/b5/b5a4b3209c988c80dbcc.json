@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5a4b3209c988c80dbcc",
+  "project": "tbab_multi_turn",
+  "kind": "result",
+  "title": "ops check c2s42 training",
+  "task_key": "worker_ops_check-c2s42-training_20260518T180545",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-c2s42-training_20260518T180545_result.json",
+    "occurrence": 1,
+    "bytes": 1044,
+    "sha256": "093be6c8171476bfd955b2bf35bcc4840a1c6174137dd5b0f388744bc5815636"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## C2_s42 训练状态\n\n**训练正在运行。** Reviewer 的报告已过时。\n\n| 项目 | 状态 |\n|------|------|\n| PID 67815 | 存活（ELAPSED 3m29s，是启动脚本的 bash wrapper） |\n| 实际训练 PID | 67820（python3，占用 25994 MiB GPU 显存） |\n| tmux session | `mvp_c2_s42` 存活，创建于 2026-05-19 02:02:34 |\n| 训练进度 | 5/471 steps（~1%），约 29-31s/step |\n| GPU 利用率 | **100%**，444W/600W，69°C |\n| 显存 | 60427/97887 MiB（总占用，含其他进程） |\n\n**注意事项：**\n- 训练刚启动约 3 分钟，远未完成（按 ~30s/step 估算，471 steps 约需 3.9 小时）\n- GPU 上还有另外两个 python3 进程（PID 48198 和 50027，各占 ~17GB），分别对应 tmux session `eval_c1_s137` 和 `eval_c4_s42`\n- position_ids 为连续递增（0,1,2,...），说明 condition2_position_reset 配置下 position reset 可能未生效，需要确认这是否符合预期（日志中 Sample 0 和 Sample 1 都是从 0 开始连续递增的 position_ids）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-c2s42-training.md"
+}

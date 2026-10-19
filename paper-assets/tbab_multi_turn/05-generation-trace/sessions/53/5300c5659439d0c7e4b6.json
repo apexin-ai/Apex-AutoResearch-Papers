@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5300c5659439d0c7e4b6",
+  "project": "tbab_multi_turn",
+  "kind": "result",
+  "title": "analysis phase1 gate and diagnostics",
+  "task_key": "worker_analysis_phase1-gate-and-diagnostics_20260518T192541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase1-gate-and-diagnostics_20260518T192541_result.json",
+    "occurrence": 1,
+    "bytes": 2809,
+    "sha256": "5ee4aacf7e0dc54a86b1cc7f2b8c61565525bf06b76f225bcf112eae52a42ab0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已获取。汇总报告：\n\n---\n\n## 1. Phase 1 Gate 判定\n\n| 指标 | 值 |\n|---|---|\n| C1_s42 P̄ | 7.69% (7/91) |\n| C4_s42 P̄ | 5.49% (5/91) |\n| C4 - C1 | **-2.20%** |\n| 阈值 | ≥ 3% |\n| **VERDICT** | **KILL** |\n\nC4 不仅未超过 C1，反而更差。Phase 1 gate 未通过。\n\n---\n\n## 2. P̄ by turn count\n\n| turns | C4_s42 | C1_s42 |\n|-------|--------|--------|\n| 1 | 2/2 = 100.0% | 2/2 = 100.0% |\n| 2 | (无样本) | 3/3 = 100.0% |\n| 3 | 1/2 = 50.0% | (无样本) |\n| 4 | 2/2 = 100.0% | (无样本) |\n| 5 | 0/11 = 0.0% | 1/12 = 8.3% |\n| 6 | 0/17 = 0.0% | 0/18 = 0.0% |\n| 7 | 0/18 = 0.0% | 0/19 = 0.0% |\n| 8 | 0/21 = 0.0% | 1/21 = 4.8% |\n| 9 | 0/8 = 0.0% | 0/8 = 0.0% |\n| 10 | 0/8 = 0.0% | 0/8 = 0.0% |\n| 11 | 0/2 = 0.0% | (无样本) |\n\n两个模型在 turns≥5 时几乎全部崩溃。C4 的 turns 分布与 C1 不同（C4 有 turns=3,4 的样本，C1 有 turns=2 的样本），说明两者在对话展开的步调上存在差异。\n\n---\n\n## 3. P̄ by shard count\n\n| shards | C4_s42 | C1_s42 |\n|--------|--------|--------|\n| 5 | 1/12 = 8.3% | 1/12 = 8.3% |\n| 6 | 3/21 = 14.3% | 3/21 = 14.3% |\n| 7 | 0/19 = 0.0% | 0/19 = 0.0% |\n| 8 | 0/21 = 0.0% | 1/21 = 4.8% |\n| 9 | 1/9 = 11.1% | 1/9 = 11.1% |\n| 10 | 0/9 = 0.0% | 1/9 = 11.1% |\n\nshards=5-6 两者几乎相同。shards≥7 C1 略优（C1 在 shards=8,10 各多 1 个通过）。\n\n---\n\n## 4. Case study: 差异分析\n\n**Both pass (2):**\n| task_id | C4 turns | C1 turns | shards |\n|---------|----------|----------|--------|\n| HumanEval/43 | 4 | 2 | 6 |\n| HumanEval/8 | 1 | 2 | 6 |\n\n**C4 only pass (3):**\n| task_id | C4 turns | C1 turns | shards |\n|---------|----------|----------|--------|\n| HumanEval/86 | 4 | 6 (fail) | 6 |\n| livecodebench/2917 | 1 | 5 (fail) | 5 |\n| livecodebench/2977 | 3 | 9 (fail) | 9 |\n\n**C1 only pass (5):**\n| task_id | C4 turns | C1 turns | shards |\n|---------|----------|----------|--------|\n| HumanEval/124 | 9 (fail) | 8 | 9 |\n| HumanEval/25 | 6 (fail) | 1 | 6 |\n| HumanEval/7 | 5 (fail) | 1 | 5 |\n| livecodebench/2727 | 10 (fail) | 5 | 10 |\n| livecodebench/2876 | 8 (fail) | 2 | 8 |\n\n**关键观察：**\n\n1. C4 的 3 个独有通过都在较少 turns 内完成（1-4 turns），表明 TBAB 训练可能帮助模型在早期 turns 更快收敛到正确答案。\n2. C1 的 5 个独有通过中，3 个在 turns=1-2 就完成了（HumanEval/25, HumanEval/7, livecodebench/2876），说明 C4 的 TBAB 训练**损害了部分原本单轮就能解决的问题的能力**。\n3. C4 在这些 C1-easy 问题上用了全部 turns 仍失败（turns=shards），意味着 C4 丧失了 C1 的部分基础能力。\n4. 总体上 C1 独有通过 (5) > C4 独有通过 (3)，净损失 2 题，与 P̄ 差距 -2.2% 一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-phase1-gate-and-diagnostics.md"
+}

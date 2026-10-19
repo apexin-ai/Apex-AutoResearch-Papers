@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba459e9dd1964057db7c",
+  "project": "tbab_multi_turn",
+  "kind": "result",
+  "title": "research model selection rope10k",
+  "task_key": "worker_research_model-selection-rope10k_20260518T053036",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_model-selection-rope10k_20260518T053036_result.json",
+    "occurrence": 1,
+    "bytes": 840,
+    "sha256": "11612db5b588bdc87c5712074512fd012e8182ec462737c5fcc959066207f944"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/model_selection_rope10k_report.md` 并注册。\n\n**核心结论：**\n\n同时满足 rope_theta=10K + d_head=128 + 7B级 的模型只有 3 个：**Mistral-7B-v0.1**、**Llama-2-7B**、OLMo-7B。\n\n**MVP 首选：Mistral-7B-v0.1**，全面优于 Llama-2-7B：\n- rope_theta = 10,000, d_head = 128（精确匹配）\n- GQA 架构（32Q/8KV），比 Llama-2 的 MHA 更高效\n- 32K 上下文（Llama-2 仅 4K，multi-turn 不够用）\n- Apache 2.0 无限制（Llama-2 有 Meta License 限制）\n- 有官方 Instruct-v0.1 版本\n- ~1M 月下载，生态极活跃\n\n**关键发现：2023 年底后发布的 7B 模型全部将 rope_theta 提升到 500K-50M。** Llama-3 = 500K, Mistral-v0.3 = 1M, Qwen2.5 = 1M, Yi-1.5 = 5M, InternLM2.5 = 50M。不存在 \"新且 rope_theta=10K\" 的 7B 模型。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-model-selection-rope10k.md"
+}

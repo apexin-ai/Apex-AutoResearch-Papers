@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dca2ee0179e13e740ae3",
+  "project": "tbab_multi_turn",
+  "kind": "result",
+  "title": "analysis attention weight bridge",
+  "task_key": "worker_analysis_attention-weight-bridge_20260518T192950",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_attention-weight-bridge_20260518T192950_result.json",
+    "occurrence": 1,
+    "bytes": 1873,
+    "sha256": "5570cb11f0c8f64997c266a0db514b4cbc8a8b50c3e6f463cac317deaab33852"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have the complete results. Here's the analysis:\n\n## 结果总结\n\n### Bridge tokens 被 attend 了（机制确实 engage）\n\n**VERDICT: Peak attention ratio = 4.65x expected (STRONG)**\n\n#### 1. Content → Bridge 注意力\n\n| 层级 | 行为 |\n|------|------|\n| **L0-L1** | bridge 获得 **2.5-5.6x 预期**的注意力。L1 H24（最高 12.7% attention fraction，vs 1.16% baseline）是最强 bridge-attending head |\n| **L2-L30** | bridge 获得 **0.06-0.34x 预期**的注意力，被**主动抑制** |\n| **L31** | bridge 回升到 0.31-0.80x，但仍低于 chance |\n\n#### 2. Bridge → Content 注意力（信息聚合）\n\nBridge tokens **强烈 attend to 前序内容**：所有层 >97% 的注意力流向前序 content tokens（L31 略低，~80-90%）。这说明 bridge tokens 确实在聚合上文信息。\n\n#### 3. Notable Bridge-Attending Heads\n\n集中在 L0/L1：H8, H9, H24, H29, H5, H28, H11, H1。这些 head 给 bridge tokens 的注意力达到 **5-19x expected**。\n\n### 诊断结论\n\nBridge tokens 机制 **已经 engage**，但存在以下问题：\n\n1. **注意力集中在最浅层（L0-L1）**：只有最底层 attend to bridge，中间层和深层主动忽略。这意味着 bridge 信息没有被深层利用来改善生成质量。\n2. **Bridge 确实聚合了上文信息**（bridge→content >97%），但 **content 在深层不读取 bridge**（L2-L30 仅 0.06-0.34x）。\n3. C4 低于 C1 baseline 的原因：bridge tokens 作为额外的序列元素**分散了浅层的注意力预算**，但没有在深层提供有用信号来补偿这种开销。\n\n**方向判断**：机制 engage 了但方向有问题。Bridge tokens 成了「只写不读」的 dead memory：它们从上文收集信息（bridge→content 强），但后续 content 在做实际语言建模的深层却不读取它们。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-attention-weight-bridge.md"
+}

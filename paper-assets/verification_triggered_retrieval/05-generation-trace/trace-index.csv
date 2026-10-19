@@ -1,0 +1,14 @@
+source_archive,member_path,source_bytes,sanitized_bytes,processing
+diff_collision_sdf/workspace.tar.gz,logs/workers/worker_infra_mvp_001_setup_20260517T060136_result.json,1401,1393,Credentials and binary attachments redacted
+diff_collision_sdf/workspace.tar.gz,logs/workers/worker_data_musique_download_20260517T070050_result.json,894,894,Credentials and binary attachments redacted
+diff_collision_sdf/workspace.tar.gz,logs/workers/worker_code_mvp_002_wiki_pilot_20260517T094105.log,1020337,982245,Credentials and binary attachments redacted
+diff_collision_sdf/workspace.tar.gz,logs/workers/worker_code_mvp_001_implement_20260517T065939.log,3076314,3057774,Credentials and binary attachments redacted
+diff_collision_sdf/workspace.tar.gz,logs/workers/worker_data_musique_download_20260517T070050.log,133407,130715,Credentials and binary attachments redacted
+diff_collision_sdf/workspace.tar.gz,logs/workers/worker_code_mvp_002_wiki_pilot_20260517T094105_result.json,2431,2431,Credentials and binary attachments redacted
+diff_collision_sdf/workspace.tar.gz,logs/workers/worker_infra_mvp_001_setup_20260517T060136.log,662241,597354,Credentials and binary attachments redacted
+diff_collision_sdf/workspace.tar.gz,logs/workers/worker_analysis_mvp_001_results_20260517T091755.log,145405,144823,Credentials and binary attachments redacted
+diff_collision_sdf/workspace.tar.gz,logs/workers/worker_analysis_mvp_001_results_20260517T091755_result.json,2777,2777,Credentials and binary attachments redacted
+diff_collision_sdf/workspace.tar.gz,logs/chats/archive/feishu_group_oc_c700f06b1f685cad03f69fbb5a2e0b89_reviewer_20260517T101537_489288.jsonl,138237,136448,Credentials and binary attachments redacted
+diff_collision_sdf/workspace.tar.gz,logs/chats/archive/feishu_group_oc_e746080901de0bc3529f8a0e62fd4014_director_20260517T101539_257151.jsonl,115755,114077,Credentials and binary attachments redacted
+diff_collision_sdf/workspace.tar.gz,logs/chats/feishu_group_oc_c700f06b1f685cad03f69fbb5a2e0b89.jsonl,153473,151246,Credentials and binary attachments redacted
+diff_collision_sdf/workspace.tar.gz,logs/chats/worker_analysis_mvp_001_results_20260517T091755.jsonl,44538,43707,Credentials and binary attachments redacted

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aec8f69817fce79b9191",
+  "project": "tbab_multi_turn",
+  "kind": "result",
+  "title": "ops install tmux westb",
+  "task_key": "worker_ops_install-tmux-westb_20260518T082549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_install-tmux-westb_20260518T082549_result.json",
+    "occurrence": 1,
+    "bytes": 44,
+    "sha256": "e145509f88953b52758808de0b480bf465c924819b00aed957418a8e2d1838e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "安装成功。`tmux 3.2a`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-install-tmux-westb.md"
+}

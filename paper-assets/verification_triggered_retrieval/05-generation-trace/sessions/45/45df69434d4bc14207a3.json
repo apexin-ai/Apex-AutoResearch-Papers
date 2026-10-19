@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "45df69434d4bc14207a3",
+  "project": "verification_triggered_retrieval",
+  "kind": "worker",
+  "title": "code mvp 002 wiki pilot",
+  "task_key": "worker_code_mvp_002_wiki_pilot_20260517T094105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp_002_wiki_pilot_20260517T094105.log",
+    "occurrence": 1,
+    "bytes": 982245,
+    "sha256": "a71a8561739c84f952e862dc8a7743399e70f59a8e3bce92974e7251751277e2"
+  },
+  "statistics": {
+    "messages": 446,
+    "user_turns": 0,
+    "tool_calls": 177,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 88,
+      "tool_call": 177,
+      "tool_result": 177,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 446,
+      "chunks": [
+        {
+          "path": "45df69434d4bc14207a3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "45df69434d4bc14207a3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "45df69434d4bc14207a3-part-0003.json",
+          "message_count": 86
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-mvp-002-wiki-pilot.md"
+}

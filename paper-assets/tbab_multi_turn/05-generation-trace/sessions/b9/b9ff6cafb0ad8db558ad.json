@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b9ff6cafb0ad8db558ad",
+  "project": "tbab_multi_turn",
+  "kind": "result",
+  "title": "research position ids v2 consistency",
+  "task_key": "worker_research_position-ids-v2-consistency_20260518T053058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_position-ids-v2-consistency_20260518T053058_result.json",
+    "occurrence": 1,
+    "bytes": 950,
+    "sha256": "92d11d1059fca5c2bf8f62278a23e6cd65d60df204cf1c9dc225f21eccd1f18a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/position_ids_v2_report.md` 并注册。核心结论：\n\n**选定方案 B（bridge 归属后 turn）**，理由：\n\n1. **信息传递瓶颈在功能 2**（新 turn 读取 bridge）。方案 A 中新 turn 到 bridge 的 RoPE 距离 >= n（前 turn 长度），高频通道退化为噪声。方案 B 中距离仅为 1 到 K+m，所有频率通道充分贡献。\n2. 功能 1（bridge 读取前 turn）在方案 B 中距离较大，但可通过 content-based attention + 大 rope_theta 的慢衰减补偿。\n3. 与 Prefix Tuning、RMT、Register Tokens 等所有主流工作一致：需要被当前 segment 使用的 special tokens 作为该 segment 的前缀。\n4. 实现更简洁（固定偏移 K，无需跟踪前 turn 长度）。\n\n**模型泛化**：position_ids 接口、4D mask bypass、渐进式 tokenization turn 检测均为 HuggingFace 通用机制，代码不依赖任何模型特定常量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-position-ids-v2-consistency.md"
+}

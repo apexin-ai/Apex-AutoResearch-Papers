@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f548208ebc965c9d935",
+  "project": "tbab_multi_turn",
+  "kind": "result",
+  "title": "eval c1 s137 code n1",
+  "task_key": "worker_eval_c1-s137-code-n1_20260518T154134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_c1-s137-code-n1_20260518T154134_result.json",
+    "occurrence": 1,
+    "bytes": 474,
+    "sha256": "58ddf62974e254319650b9e8a151182810844e87565e0105ea108ffcbc3a98aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval C1_s137 已正常启动，汇总：\n\n| 项目 | 状态 |\n|---|---|\n| **tmux session** | `eval_c1_s137`（PID 50027） |\n| **GPU 显存** | 73,769 MiB / 97,887 MiB（75.4%），3 个进程并存 OK，剩余 ~24GB |\n| **进程** | 训练 mvp_c4_s137 (40996M) + eval_c4_s42 (17160M) + eval_c1_s137 (15594M) |\n| **首个 sample** | `[1/91] repeat=1 task=code id=sharded-HumanEval/105` 已开始 |\n| **预估完成** | ~2.5 小时（约 02:15 UTC） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-c1-s137-code-n1.md"
+}

@@ -1,0 +1,31 @@
+_next_id: 3
+decisions:
+- id: D001
+  date: 2026-05-17 09:23 UTC
+  summary: MVP distractor-corpus 结果 FAIL 但不 kill：追加 Wikipedia-scale pilot 验证 discriminative
+    power
+  rationale: MVP 在 ~2000 passages 语料库上两种 query 返回几乎相同文档（entity matching 主导），实验缺乏 discriminative
+    power。Kill criteria 预设了"MVP 能有效区分两种 query"的前提，该前提未被满足。追加 full Wikipedia 50 题 pilot：如果
+    top-5 overlap < 60% 且 entailment diff > 0 则假设存活，否则 kill。成本低（~1 天），信心高。
+  related_experiments:
+  - exp_id: mvp_001
+    role: trigger
+    result: FAIL on distractor corpus, -0.74pp, p=0.106, but low discriminative power
+  depends_on: []
+- id: D002
+  date: 2026-05-17 10:13 UTC
+  summary: 'KILL: 核心假设被两轮 MVP 决定性反驳，终止项目'
+  rationale: 'mvp_001 (distractor corpus): 无差异 (-0.74pp, p=0.106)。mvp_002 (Wikipedia
+    21M passages): verification queries 显著更差 (-3.28pp, p=0.005)。根因：assertion-form
+    queries 更长，BM25 匹配 claim 中的日期/地名/专有名词等 noise tokens，检索结果反而偏离目标。FEVER 中 claim-as-query
+    有效因 claims 短且 corpus 针对性强，multi-hop reasoning 产生的复杂 claims 不满足此条件。Oracle-mode
+    formulation 都失败，RL 不可能更好。'
+  related_experiments:
+  - exp_id: mvp_001
+    role: pilot
+    result: 'FAIL: -0.74pp, p=0.106, low discriminative power'
+  - exp_id: mvp_002
+    role: definitive
+    result: 'KILL: -3.28pp, p=0.005, actively refuted'
+  depends_on:
+  - D001

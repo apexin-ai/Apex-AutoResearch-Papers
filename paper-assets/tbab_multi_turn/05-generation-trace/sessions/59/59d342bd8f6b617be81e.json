@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59d342bd8f6b617be81e",
+  "project": "tbab_multi_turn",
+  "kind": "result",
+  "title": "ops c2s42 eval final check",
+  "task_key": "worker_ops_c2s42-eval-final-check_20260518T235652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_c2s42-eval-final-check_20260518T235652_result.json",
+    "occurrence": 1,
+    "bytes": 1405,
+    "sha256": "73e34b085c334d5b9a14ae76f5ab2ad7d4b12baddfd6db925641cc3d98fac598"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## C2_s42 Eval 最终结果\n\n**状态**: eval 已完成，tmux session 已退出。结果文件写入于 `2026-05-19T07:07`。\n\n### Overall\n\n| 指标 | 值 |\n|------|-----|\n| **P̄** | **5.49%** (5/91) |\n| a90 | 0.0 |\n| u10_90 | 38.5% |\n| Model | `c2_pos_reset_seed42/checkpoint-471` |\n| Condition | `position_reset` |\n\n### Per-source\n\n| Source | Pass | Rate |\n|--------|------|------|\n| sharded-HumanEval | 3/36 | **8.3%** |\n| sharded-livecodebench | 2/55 | **3.6%** |\n\n### Per-turn 分析\n\n| num_turns | Pass | Rate |\n|-----------|------|------|\n| 1 | 4/4 | **100.0%** |\n| 5 | 1/9 | 11.1% |\n| 6 | 0/21 | 0.0% |\n| 7 | 0/18 | 0.0% |\n| 8 | 0/18 | 0.0% |\n| 9 | 0/9 | 0.0% |\n| 10+ | 0/12 | 0.0% |\n\n### Passed samples\n\n- `sharded-HumanEval/25` — num_turns=1, num_shards=6\n- `sharded-HumanEval/7` — num_turns=5, num_shards=5\n- `sharded-HumanEval/97` — num_turns=1, num_shards=5\n- `sharded-livecodebench/2876` — num_turns=1, num_shards=8\n- `sharded-livecodebench/2917` — num_turns=1, num_shards=5\n\n### 关键发现\n\n模型几乎只能解 num_turns=1 的问题（4/4=100%），num_turns>=6 全部失败。唯一的多轮通过是 HumanEval/7（5 turns）。这表明 position_reset 条件下模型的多轮代码生成能力极弱。\n\n### 系统状态\n\n- **GPU**: RTX PRO 6000, 0MiB/97887MiB, 0% util, idle\n- **磁盘**: 18G/30G used (59%)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-c2s42-eval-final-check.md"
+}
